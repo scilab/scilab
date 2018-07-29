@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,28 +13,46 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="lib">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="lib">
     <refnamediv>
         <refname>lib</refname>
-        <refpurpose>library definition</refpurpose>
+        <refpurpose>loads a library of Scilab functions and variables, and sets its name</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>namelib = lib('lib-dir')</synopsis>
+        <synopsis>namelib = lib(lib_dir)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>lib-dir</term>
+                <term>lib_dir</term>
                 <listitem>
-                    <para>character string</para>
+                    <para>
+                        single path of the directory containing the lib file of the library to load.
+                        The <literal>TMPDIR</literal>, <literal>SCIHOME</literal>,
+                        <literal>SCI</literal>, <literal>home</literal> possible prefixes may be
+                        used and are expanded according to the value of corresponding predefined
+                        variables.
+                        Example: <literal>lib("SCI/modules/atoms/atoms_internals")</literal>
+                        will work.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>namelib</term>
                 <listitem>
-                    <para>library variable returned by 'lib'.</para>
+                    <para>
+                        Scilab variable (of <link linkend="type">type 14</link> and
+                        <link linkend="typeof">typeof "library"</link>) addressing the loaded
+                        library (its handle).
+                        This output argument is mandatory. Otherwise, lib() sets
+                        <literal>ans</literal> as library's identifier,  whose value will be
+                        overwritten and lost in a shortly after.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -42,75 +60,223 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>lib-dir</literal> is a character string defining a directory that contains
-            compiled Scilab function (<literal>.bin</literal>) files.
+            A Scilab library can be built with the
+            <literal><link linkend="genlib">genlib()</link></literal> function. It is made of
+            <itemizedlist>
+                <listitem>
+                    a dedicated directory <varname>lib_dir</varname>.
+                </listitem>
+                <listitem>
+                    a set of .bin files created by genlib() in the directory. These files
+                    contain the binary code of compiled Scilab functions.
+
+                </listitem>
+                <listitem>
+                    a file named <literal>lib</literal>. This file is an XML one and so is editable.
+                    It registers the list of *.bin files (and so features) belonging to the library.
+                </listitem>
+            </itemizedlist>
         </para>
         <para>
-            In addition to these files <literal>lib-dir</literal> must have a file called
-            <literal>names</literal>, that contains the names of the functions defined in
-            <literal>lib-dir</literal>.  On success, all functions in <literal>lib-dir</literal> are
-            available from within Scilab.  They are loaded on demand when called
-            for the first time.
+            All other files belonging to <varname>lib_dir</varname> and not registered in the
+            <literal>lib</literal> file are ignored.
+            In particular, the original source *.sci files compiled by genlib() to create *.bin
+            ones may indifferently remain in the directory or be removed.
         </para>
         <para>
-            Binary files can be created from within Scilab with the command
-            <literal>save</literal>.
-            A library variable
-            usually is saved for later loading, either on-line or from the
-            user-specific startup file (see startup).
+            <literal>lib()</literal> only reads the <literal>lib</literal> file, builds the library
+            object accordingly, and returns its handle as <varname>namelib</varname>.
         </para>
-        <para>value returned by 'lib' must be insert in a variable 'namelib' to access to macro functions of this library.</para>
-    </refsection>
-    <refsection>
-        <title>Restrictions</title>
         <para>
-            Scilab tacitly assumes that each xxxx.bin file defines a  variable named <literal>xxxx</literal>.
+            Then, <varname>namelib</varname> allows
+            <itemizedlist>
+                <listitem>
+                    to get the path to the library (= <varname>lib_dir</varname>).
+                </listitem>
+                <listitem>
+                    to get the list of functions belonging to the library
+                </listitem>
+                <listitem>
+                    to address functions members, resolving possible names conflicts.
+                </listitem>
+            </itemizedlist>
         </para>
+        <para>
+            For more information about libraries and their assets with respect to a simple set of
+            unbundled functions as created and loaded by <literal>getd()</literal>, please see the
+            <link linkend="library">dedicated page</link>.
+        </para>
+        <note>
+            <literal>load(lib_dir+"/lib")</literal> may be used instead of <literal>lib()</literal>
+            to load the library. The library identifier is then the default one set when
+            compiling and creating the library with <literal>genlib()</literal>. Its name is
+            registered in the <literal>lib</literal> file.
+            <para>
+                Hence, <literal>lib()</literal> (re)sets the library name, while
+                <literal>load()</literal> does not allow to set it.
+            </para>
+        </note>
+        <para/>
+        <warning>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <varname>namelib</varname> is created in the current scope. It is NOT a
+                        global object. Hence, if <literal>lib()</literal> is used inside a function,
+                        <varname>namelib</varname> (and so the access to the library) will not
+                        survive when leaving the function, unless it is returned as output object.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        If <varname>lib_dir</varname> contains some subdirectories where some other
+                        (sub)libraries are stored, <literal>lib(lib_dir)</literal> does not load
+                        them recursively. If needed, <literal>lib()</literal> must be called for
+                        each of them.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            Loading an existing Scilab sublibrary:
+        </para>
         <programlisting role="example"><![CDATA[
-//define some functions
-function z = myplus(x, y)
-  z = x + y
-endfunction
-
-function z = yourplus(x, y)
-  x = x - y
-endfunction
-
-//create the *.bin files in libdir
-libdir = TMPDIR;
-save(libdir + '/myplus.bin', myplus);
-save(libdir + '/yourplus.bin', yourplus);
-
-//create the name file
-mputl(['myplus';'yourplus'],TMPDIR+'/names');
-
-//build the library containing myplus and yourplus
-mylibfoo = lib(libdir+'/');
-
-//erase the variables
-clear myplus yourplus
-
-//Automatic loading and execution
-myplus(1,2)
-
-//erase the variables
-clear myplus yourplus
-
-mylibfoo
-[n,p] = libraryinfo('mylibfoo')
-
-isdef('myplus')
-clear mylibfoo
-isdef('myplus')
-
+// atomsDisp() is a function belonging to the atoms_internallib Scilab sub-library.
+// This sub-library is loaded only inside the atoms manager. Outside it, the library
+// -- and so all its functions -- are unknown:
+atomsDisp("abc")
  ]]></programlisting>
+    <screen><![CDATA[
+--> atomsDisp("abc")
+
+Undefined variable: atomsDisp
+]]></screen>
+        <para>
+            Let's load the library with lib():
+        </para>
+        <programlisting role="example"><![CDATA[
+thislib = lib("SCI/modules/atoms/macros/atoms_internals");
+thislib   // display from the library identifier
+ ]]></programlisting>
+    <screen><![CDATA[
+--> thislib = lib("SCI/modules/atoms/macros/atoms_internals")
+ thislib  =
+
+Functions files location : SCI\modules\atoms\macros\atoms_internals.
+
+atomsDESCRIPTIONadd  atomsDepTreeFlat  atomsAUWriteAccess  atomsDESCRIPTIONread
+atomsCompatibleVersions  atomsCloseProgressBar  atomsAutoloadLoad  atomsToremoveList
+...
+atomsCategoryGet  atomsInstallRegister  atomsDisp  atomsToremoveRegister 
+atomsRmfields  atomsGetDepParents  atomsSetInstalledList  atomsLoadInstalledStruct 
+atomsDESCRIPTIONcat  atomsReadDesc  atomsDESCRIPTIONrm  atomsOpenProgressBar
+...
+]]></screen>
+        <para>
+            Now use its atomsDisp() function:
+        </para>
+        <programlisting role="example"><![CDATA[
+isdef("atomsDisp", "l") // is false: we have not yet called it.
+atomsDisp("lib() test") // This automatically scans all loaded libraries
+                        //  searching for "atomsDisp". It is found in
+                        //  "thislib" and automatically loaded from it.
+                        // It now exists for any further calls:
+isdef("atomsDisp", "l")
+clear atomsDisp         // If it is cleared...
+whos -name atoms
+atomsDisp("Test")       // It is then automatically recovered from its library
+whos -name atoms
+ ]]></programlisting>
+    <screen><![CDATA[
+--> isdef("atomsDisp", "l")
+ ans  =
+  F
+--> atomsDisp("lib() test")
+Testing lib()
+
+--> isdef("atomsDisp", "l")
+ ans  =
+  T
+--> clear atomsDisp         // If it is cleared...
+--> whos -name atoms        //  .. no longer defined
+Name                     Type           Size           Bytes
+atomsguilib              library                       466
+atomslib                 library                       2488
+
+--> atomsDisp("Test")
+Test
+
+--> whos -name atoms
+Name                     Type           Size           Bytes
+atomsDisp                function                      3300
+atomsguilib              library                       466
+atomslib                 library                       2488
+]]></screen>
+        <para>
+            If we delete the library handle, its members not already called become unreachable:
+        </para>
+        <programlisting role="example"><![CDATA[
+clear thislib
+atomsDisp("abc")                                // still callable, since already loaded
+winid = atomsOpenProgressbar("Message", %t);    // => error
+ ]]></programlisting>
+    <screen><![CDATA[
+--> atomsDisp("abc")
+abc
+
+--> winid = atomsOpenProgressBar("Message", %t);
+
+Undefined variable: atomsOpenProgressBar
+]]></screen>
     </refsection>
+        <para>
+            Let's now use load() to reload the library:
+        </para>
+        <programlisting role="example"><![CDATA[
+// The default name of the library is "atomsinternalslib"
+// It is not loaded at the Scilab startup:
+atomsinternalslib      // => error
+// Let's load it:
+load("SCI/modules/atoms/macros/atoms_internals/lib"); // We refer to the "lib" file
+or(librarieslist()=="atomsinternalslib")              // OK, now true
+whos -name at
+winid = atomsOpenProgressBar("Message", %t);         // now it works
+close(winid)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> atomsinternalslib
+Undefined variable: atomsinternalslib
+
+--> load("SCI/modules/atoms/macros/atoms_internals/lib");
+
+--> or(librarieslist()=="atomsinternalslib")
+ ans  =
+  T
+
+--> whos -name at
+Name                     Type           Size           Bytes
+atomsDisp                function                      3300
+atomsguilib              library                       466
+atomsinternalslib        library                       5586
+atomslib                 library                       2488
+
+--> winid = atomsOpenProgressBar("Message", %t);     // now it works
+]]></screen>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="load">load</link>
+            </member>
+            <member>
+                <link linkend="librarieslist">librarieslist</link>
+            </member>
+            <member>
+                <link linkend="libraryinfo">libraryinfo</link>
+            </member>
             <member>
                 <link linkend="library">library</link>
             </member>
@@ -118,20 +284,23 @@ isdef('myplus')
                 <link linkend="genlib">genlib</link>
             </member>
             <member>
-                <link linkend="save">save</link>
-            </member>
-            <member>
-                <link linkend="deff">deff</link>
-            </member>
-            <member>
-                <link linkend="exec">exec</link>
-            </member>
-            <member>
                 <link linkend="whereis">whereis</link>
             </member>
             <member>
-                <link linkend="libraryinfo">libraryinfo</link>
+                <link linkend="getd">getd</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    lib() no longer needs the <literal>names</literal> file (ignored).
+                    It now uses the <literal>lib</literal> file, that is now mandatory.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
