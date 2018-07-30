@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
 import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -366,7 +368,7 @@ public class ScilabJavaCompiler {
         }
 
         public CharSequence getCharContent(boolean ignoreEncodingErrors) {
-            try ( FileReader reader = new FileReader(f) ) {
+            try ( Reader reader = new InputStreamReader(new FileInputStream(f), "UTF-8")) {
 
                 char[] buffer = new char[1024];
                 StringBuffer sb = new StringBuffer();
