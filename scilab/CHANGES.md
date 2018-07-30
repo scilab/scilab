@@ -217,6 +217,8 @@ input and output arguments.
 * `getPreferencesValue` can now read a tag having multiple occurrences, and accepts the path to a preference file instead of its XML handle.
 * The function `stripblanks` now supports an option to remove trailing or leading spaces or both.
 * `atomsSetConfig` does not update cache.
+* `lqe` has been upgraded: The process noise variance and the measurement noise variance and covariance can now be specified to the linear quadratic estimator.
+* `lqg` has been upgraded: The linear quadradic compensator can now be applied to a nominal plant, with a weighting matrix and a covariance matrix. Then, a matrix weigthing integral terms, and the degrees of freedom of the controler can be specified as options.
 * `lqi` function added to compute "linear quadratic integral compensator".
 * A new console `File => Go to Favorite directory` menu allows to go to a favorite directory selected in a dynamical list set from Scinotes favorite and most recent directories.
 * The console `File => Open a file` menu allows now to open xcos, zcos, scg or lib files with the proper Scilab component, and other files with the proper OS application. All files were opened in Scinotes and could freeze it.

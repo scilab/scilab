@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="lqg2stan">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="lqg2stan">
     <refnamediv>
         <refname>lqg2stan</refname>
         <refpurpose>LQG to standard problem</refpurpose>
@@ -26,10 +29,11 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>P22</term>
+                <term>P</term>
                 <listitem>
                     <para>
-                        State space representation of the nominal plant (<literal>nu</literal> inputs, <literal>ny</literal> outputs, <literal>nx</literal> states).
+                        State space representation of the nominal plant (<literal>nu</literal>
+                        inputs, <literal>ny</literal> outputs, <literal>nx</literal> states).
                     </para>
                 </listitem>
             </varlistentry>
@@ -37,7 +41,8 @@
                 <term>Qxu</term>
                 <listitem>
                     <para>
-                        <literal>[Q,S;S',N]</literal> symmetric <literal>nx+nu</literal> by <literal>nx+nu</literal> weighting matrix.
+                        <literal>[Q, S ; S', N]</literal> symmetric <literal>nx+nu</literal> by
+                        <literal>nx+nu</literal> weighting matrix.
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,7 +50,8 @@
                 <term>Qwv</term>
                 <listitem>
                     <para>
-                        <literal>[R,T;T',V]</literal> symmetric <literal>nx+ny</literal> by <literal>nx+ny</literal> covariance matrix.
+                        <literal>[R,T;T',V]</literal> symmetric <literal>nx+ny</literal> by
+                        <literal>nx+ny</literal> covariance matrix.
                     </para>
                 </listitem>
             </varlistentry>
@@ -76,7 +82,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    The nominal plant <literal>P22</literal>:described by
+                    The nominal plant <literal>P</literal>: described by
                 </para>
                 <latex style="display"
                    align="left">\left\{\begin{array}{l}\dot{x}=A x+B
@@ -111,26 +117,17 @@
             u  \\y_1=C_1 x+D_{12} W \\y_2=-C x+D_{21} W+D u
             \end{array}\right. \text{ for discrete time.}
         </latex>
-
-        <caution>
-            <para>
-                Up to Scilab-5.5.2 lqg2stan returns wrong inverted values
-                (see <ulink url="http://bugzilla.scilab.org/show_bug.cgi?id=13751"> bug 13751</ulink>)
-                to obtain the good result one had to use <code>[P,r]=lqg2stan(-P,Qxu,Qwv)</code>.
-            </para>
-            <para>
-                This bug is fixed since Scilab-6.0.0, old codes must be modified accordingly.
-            </para>
-        </caution>
     </refsection>
     <refsection>
         <title>Algorithm</title>
         <para>
-            If <literal>[B1;D21]</literal> is a factor of
-            <literal>Qxu</literal>, <literal>[C1,D12]</literal> is a
+            If <literal>[B1; D21]</literal> is a factor of
+            <literal>Qxu</literal>, <literal>[C1, D12]</literal> is a
             factor of <literal>Qwv</literal> (see: <link
             linkend="fullrf">fullrf</link>) then
-            <code>P_aug=syslin(P.dt,P.A,[B1,P.B],[C1;-P.C],[0,D12;D21,P.D])</code>
+		</para>
+		<para>
+            <literal>P_aug = syslin(P.dt, P.A, [B1,P.B], [C1;-P.C], [0,D12;D21,P.D])</literal>
         </para>
 
     </refsection>
@@ -138,17 +135,20 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-ny=2;nu=3;nx=4;
-P22=ssrand(ny,nu,nx);
-Qxu=rand(nx+nu,nx+nu);Qxu=Qxu*Qxu';
-Qwv=rand(nx+ny,nx+ny);Qwv=Qwv*Qwv';
-[P_aug,r]=lqg2stan(P,Qxu,Qwv);
-K=lqg(P_aug,r);  //K=LQG-controller
-spec(h_cl(P_aug,r,K))      //Closed loop should be stable
-//Same as Cl=P22/.K; spec(Cl('A'))
+ny = 2;
+nu = 3;
+nx = 4;
+P = ssrand(ny,nu,nx);
+Qxu = rand(nx+nu,nx+nu);
+Qxu = Qxu * Qxu';
+Qwv = rand(nx+ny,nx+ny);
+Qwv = Qwv * Qwv';
+[P_aug, r] = lqg2stan(P, Qxu, Qwv);
+K = lqg(P_aug,r);          // K=LQG-controller
+spec(h_cl(P_aug, r, K))    // Closed loop should be stable
+//Same as Cl = P/.K; spec(Cl('A'))
 
-s=poly(0,'s')
-lqg2stan(1/(s+2),eye(2,2),eye(2,2))
+lqg2stan(1/(%s+2), eye(2,2), eye(2,2))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -179,5 +179,18 @@ lqg2stan(1/(s+2),eye(2,2),eye(2,2))
                 <link linkend="feedback">feedback</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+      <title>History</title>
+      <revhistory>
+        <revision>
+          <revnumber>6.0</revnumber>
+          <revdescription>
+            It is no longer necessary to enter <varname>-P</varname> to get <varname>P_aug</varname>
+            instead of <varname>-P_aug</varname>
+            (bug <ulink url="http://bugzilla.scilab.org/show_bug.cgi?id=13751">13751</ulink> fixed).
+          </revdescription>
+        </revision>
+      </revhistory>
     </refsection>
 </refentry>
