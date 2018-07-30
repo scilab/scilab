@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+// Copyright (C) 2017-2018 - ESI Group - Clement DAVID
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -43,33 +44,26 @@ assert_checkequal(scs_m.objs(4).to,   [2 1 1]);
 assert_checkequal(scs_m.objs(2).graphics.pin, 4);    // Check that block #2 is connected to lnk1
 assert_checkequal(scs_m.objs(2).model.in,    -1);    // "
 
-// Change the end of the link to input port #2 of block #2
-scs_m.objs(4).to = [2 2 1];
-assert_checkequal(scs_m.objs(4).from, [1 1 0]);
-assert_checkequal(scs_m.objs(4).to,   [2 2 1]);
-assert_checkequal(scs_m.objs(2).graphics.pin, [0; 4]);   // Check that block #2 is connected to lnk1
-assert_checkequal(scs_m.objs(2).model.in,     [-1; -1]); // "
-
 // Disconnect the source
 scs_m.objs(4).from = [0 0 0];
 assert_checkequal(scs_m.objs(4).from, [0 0 0]);
-assert_checkequal(scs_m.objs(4).to,   [2 2 1]);
-assert_checkequal(scs_m.objs(1).graphics.pout, 0);     // Check that block #1 is not connected
-assert_checkequal(scs_m.objs(2).graphics.pin, [0; 4]); // But block #2 is still connected to the link
+assert_checkequal(scs_m.objs(4).to,   [2 1 1]);
+assert_checkequal(scs_m.objs(1).graphics.pout, 4);     // Check that block #1 is still connected
+assert_checkequal(scs_m.objs(2).graphics.pin, 4); // block #2 is still connected to the link
 
 // Disconnect the destination
 scs_m.objs(4).to = [0 0 0];
-assert_checkequal(scs_m.objs(2).graphics.pin, [0; 0]);  // Check that block #2 is not connected
+assert_checkequal(scs_m.objs(2).graphics.pin, 4);  // Check that block #2 is still connected
 
-// Now link the two Scope blocks together by adding an event output port to block #3 thanks to lnk2
+// Verify that it is impossible to create event links
 scs_m.objs(5).from = [2 1 1]; // Link the input of block #2
-scs_m.objs(5).to = [3 1 0];   // Add an event output to block #3 and link it to the previous
+scs_m.objs(5).to = [3 1 0];   // Try to add an event output to block #3 ; it should fail !
 assert_checkequal(scs_m.objs(5).from, [2 1 1]);
 assert_checkequal(scs_m.objs(5).to,   [3 1 0]);
-assert_checkequal(scs_m.objs(2).graphics.pein,  5);  // Check that block #2 is connected to lnk2
+assert_checkequal(scs_m.objs(2).graphics.pein,  0);  // Check that block #2 is connected to lnk2
 assert_checkequal(scs_m.objs(2).model.evtin,    1);  // "
-assert_checkequal(scs_m.objs(3).graphics.peout, 5);  // Check that block #3 is connected to lnk2
-assert_checkequal(scs_m.objs(3).model.evtout,  -1);  // "
+assert_checkequal(scs_m.objs(3).graphics.peout, []);  // Check that block #3 is not connected to lnk2
+assert_checkequal(scs_m.objs(3).model.evtout,  []);  // "
 
 // Verify that it is impossible to link two inputs or two outputs together
 scs_m.objs(5).from = [2 1 0]; // Two outputs
@@ -135,9 +129,9 @@ scs_m.objs
 assert_checkequal(scs_m.objs(1).from, [2 1 0]);
 assert_checkequal(scs_m.objs(1).to,   [3 1 1]);
 
-assert_checkequal(scs_m.objs(2).graphics.pout,  1);
+assert_checkequal(scs_m.objs(2).graphics.pout,  0);
 assert_checkequal(scs_m.objs(2).model.out,     -1);
-assert_checkequal(scs_m.objs(3).graphics.pin,   1);
+assert_checkequal(scs_m.objs(3).graphics.pin,   0);
 assert_checkequal(scs_m.objs(3).model.in,      -1);
 
 

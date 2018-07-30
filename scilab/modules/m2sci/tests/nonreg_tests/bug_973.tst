@@ -7,17 +7,22 @@
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 973 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=973
+// http://bugzilla.scilab.org/973
 //
 // <-- Short Description -->
 //    matlab file conversion problem (apparently: Extraction of
 //    out from 'funcall' tlist is not yet implemented)
 
-MFILECONTENTS=["%m2scideclare var|Unknown Unknown|Unknown";"var1 = strrep(var,'' '','','')"];
+MFILECONTENTS = [
+    "%m2scideclare var|? ?|?"
+    "% comment"
+    "var1 = strrep(var,'' '','','')"
+    ];
 
 MFILE=TMPDIR+"/bug973.m";
 SCIFILE=TMPDIR+"/bug973.sci";
@@ -32,14 +37,18 @@ fd=mopen(SCIFILE,"r");
 SCIFILECONTENTS=mgetl(fd,-1);
 mclose(fd);
 
-SCIFILECONTENTSREF=["";
-"// Display mode";
-"mode(0);";
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
-"";
-"var1 = mtlb_strrep(var,"" "","","")"];
+SCIFILECONTENTSREF=[
+    ""
+    "// Display mode"
+    "mode(0);"
+    ""
+    "// Display warning for floating point exception"
+    "ieee(1);"
+    ""
+    ""
+    "// comment"
+    "var1 = mtlb_strrep(var,"" "","","")"
+    ];
 
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end
+assert_checkequal(SCIFILECONTENTSREF, SCIFILECONTENTS);
+

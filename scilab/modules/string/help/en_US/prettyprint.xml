@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  *
- * This help file was generated from prettyprint.sci using help_from_sci().
+ * The initial version of this help file was generated from prettyprint.sci using help_from_sci().
+ * Following versions have been improved only here.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="prettyprint" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="prettyprint" xml:lang="en">
     <refnamediv>
         <refname>prettyprint</refname>
-        <refpurpose>From any Scilab datatype and provide a representation to the TeX, LaTeX or MathML formats</refpurpose>
+        <refpurpose>
+          Converts a Scilab object into some corresponding LaTeX, TeX or MathML string(s)
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            str = prettyprint(a) // Show the variable a with the default format (LaTeX)
-            str = prettyprint(a, exportFormat) // Show the variable a with the specified format
-            str = prettyprint(a, exportFormat, delim) // As above but change the delimiter
-            str = prettyprint(a, exportFormat, delim, processByElement) // As above but process each element independently
-            str = prettyprint(a,exportFormat, delim, processByElement, isWrapped) // As above Add the special keyword of Tex or LaTeX export
+            str = prettyprint(a)
+            str = prettyprint(a, exportFormat)
+            str = prettyprint(a, exportFormat, delim)
+            str = prettyprint(a, exportFormat, delim, processByElement)
+            str = prettyprint(a, exportFormat, delim, processByElement, isWrapped)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -31,25 +37,27 @@
             <varlistentry>
                 <term>exportFormat</term>
                 <listitem>
-                    <para> is the format, if omitted 'latex' is used by default,
-                        it can be 'latex', 'tex' or 'mathml'.
+                    <para>
+                      is the output format. Possible values are 'latex' (default), 'tex', or 'mathml'.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>delimiter</term>
                 <listitem>
-                    <para> is a string indicating the delimiter to use for the
-                        resulting matrix, it's only used if isWrapped is true. The
-                        delimiter can be '(', '{', '[', '|', '||' or ')'
+                    <para> is a string indicating the delimiter to bracket the whole
+                       resulting matrix. It's only used if <varname>processByElement</varname> is
+                       false. It can be '(' (default), '{', '[', '|', or '||'.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>processByElement</term>
                 <listitem>
-                    <para> is a boolean to indicate if the resulting matrix must
-                        be converted into a single string.
+                  <para> is a boolean: If set to <literal>%f</literal> (default), the result
+                    <varname>str</varname> is a single single representing the whole input
+                    matrix. Otherwise, <varname>str</varname> has as many elements as the input
+                    matrix <varname>a</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -58,14 +66,17 @@
                 <listitem>
                     <para> is a boolean to indicate if the result must be wrapped
                         inside delimiters ('$' for latex and tex or nothing for
-                        mathml) to be used with xstring or xtitle
+                        mathml) to be used with xstring or xtitle. The default value is %T (true).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>str</term>
                 <listitem>
-                    <para> the representation of the variable a</para>
+                  <para> a single string (if <varname>processByElement</varname> is %F),
+                    or a matrix of strings otherwise (with size(str)==size(a)):
+                    the representation of the input <varname>a</varname>.
+                  </para>
                 </listitem>
             </varlistentry>
         </variablelist>

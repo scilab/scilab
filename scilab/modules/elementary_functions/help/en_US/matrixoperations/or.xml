@@ -199,7 +199,7 @@ or(A, "c")
 
 --> or(%nan)
  ans  =
-  F           // %T expected => Bug 14522
+  T
 
 --> // Projection accross a dimension / along a direction:
 --> A = rand(2,5)<0.3

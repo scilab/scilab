@@ -589,10 +589,6 @@ libsciwindows_tools_la_root_DATA = license.txt
 libsciwindows_tools_la_etcdir = $(mydatadir)/etc
 libsciwindows_tools_la_etc_DATA = etc/windows_tools.quit etc/windows_tools.start
 
-#### windows_tools : gateway declaration ####
-libsciwindows_tools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libsciwindows_tools_la_sci_gateway_DATA = sci_gateway/windows_tools_gateway.xml
-
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 

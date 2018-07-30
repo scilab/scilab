@@ -1,13 +1,32 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varn" xml:lang="pt">
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) - INRIA
+* Copyright (C) 2018 - Samuel GOUGEON
+*
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="varn" xml:lang="pt">
     <refnamediv>
         <refname>varn</refname>
         <refpurpose>variável simbólica de polinômios ou de frações racionais</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[symb]=varn(p)
-            [pm]=varn(p,varname)
+        <synopsis>
+            symb = varn(p)
+            pm = varn(p, varname)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -16,25 +35,30 @@
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>matriz de polinômios ou de frações racionais</para>
+                    <para>
+                        matriz de polinômios ou de frações racionais. In Scilab, only univariate
+                        polynomials and rationals are supported. In a matrix, all polynomials
+                        or rationals have the same symbolic variable name.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>symb</term>
+                <term>symb, varname</term>
                 <listitem>
-                    <para>string</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>var</term>
-                <listitem>
-                    <para>variável simbólica (string) </para>
+                    <para>
+                        Caracteres string: nome atual ou novo da variável simbólica. Caracteres
+                        permitidos são os mesmos que para nomes de variáveis
+                        (veja <link linkend="names">regras de nomeação</link>).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>pm</term>
                 <listitem>
-                    <para>matriz de polinômios ou de frações racionais</para>
+                    <para>
+                        matriz de polinômios ou de frações racionais, igual a <varname>p</varname>,
+                        com seu nome de variável definido como <varname>varname</varname>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -43,8 +67,7 @@
         <title>Descrição</title>
         <para>
             <literal>symb=varn(p)</literal> retorna em <literal>symb</literal> a
-            variável simbólica de <literal>p</literal> (i.e.
-            <literal>varn(poly(0,'x'))</literal> is <literal>'x'</literal>).
+            variável simbólica de <literal>p</literal>.
         </para>
         <para>
             <literal>varn(p,'s')</literal> retorna uma matriz de polinômios com
@@ -55,15 +78,69 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
+        <para>Com uma matriz de polinômios :</para>
         <programlisting role="example"><![CDATA[
-s = poly(0,'s'); p = [s^2+1,s];
-varn(p)
-varn(p,'x')
-
-f = %z / (%z-1); f = [f f^2]
-varn(f)
-varn(f,"x")
+s = poly(0,'s'); p = [s , 1-s^2]
+v = varn(p)
+typeof(v)
+px = varn(p,'x')
+px == p
  ]]></programlisting>
+    <screen><![CDATA[
+--> s = poly(0,'s'); p = [s , 1-s^2]
+ p  =
+           2
+   s   1 -s
+
+--> v = varn(p)
+ v  =
+ s
+
+--> typeof(v)
+ ans  =
+ string
+
+--> px = varn(p,'x')
+ px  =
+           2
+   x   1 -x
+
+--> px == p
+ ans  =
+  T T
+]]></screen>
+        <para>Com frações racionais :</para>
+        <programlisting role="example"><![CDATA[
+f = %z/(%z-1); f = [f f^2]
+varn(f)
+fx = varn(f, "x")
+fx == f
+ ]]></programlisting>
+    <screen><![CDATA[
+--> f = %z/(%z-1); f = [f f^2]
+ f  =
+                 2
+     z          z
+   -------  -----------
+                      2
+   -1 + z   1 - 2z + z
+
+--> varn(f)
+ ans  =
+ z
+
+--> fx = varn(f, "x")
+ fx  =
+                 2
+     x          x
+   -------  -----------
+                      2
+   -1 + x   1 - 2x + x
+
+--> fx == f
+ ans  =
+  T T
+]]></screen>
     </refsection>
     <refsection>
         <title> Ver Também </title>
@@ -75,7 +152,7 @@ varn(f,"x")
                 <link linkend="rlist">rlist</link>
             </member>
             <member>
-                <link linkend="horner">horner</link>
+                <link linkend="names">naming rules</link>
             </member>
         </simplelist>
     </refsection>
@@ -87,6 +164,15 @@ varn(f,"x")
                 <revdescription>
                     <para>Extensão de frações racionais</para>
                 </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        O nome da variável simbólica não está mais limitado a 4 caracteres.
+                        Agora ele pode incluir caracteres UTF-8 estendidos.
+                    </para>
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

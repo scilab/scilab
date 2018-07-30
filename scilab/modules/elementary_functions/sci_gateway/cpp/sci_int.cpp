@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
             {
                 if (finite(pInI[i]))
                 {
-                    pOutI[i] = (double)(long long int)pInI[i];
+                    pOutI[i] = std::trunc(pInI[i]);
                 }
                 else
                 {
@@ -75,7 +75,7 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
         {
             if (finite(pInR[i]))
             {
-                pOutR[i] = (double)(long long int)pInR[i];
+                pOutR[i] = std::trunc(pInR[i]);
             }
             else
             {
@@ -105,12 +105,12 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
             {
                 if (finite(pNonZeroR[i]))
                 {
-                    pNonZeroR[i] = (double)(long long int)pNonZeroR[i];
+                    pNonZeroR[i] = std::trunc(pNonZeroR[i]);
                 }
 
                 if (finite(pNonZeroI[i]))
                 {
-                    pNonZeroI[i] = (double)(long long int)pNonZeroI[i];
+                    pNonZeroI[i] = std::trunc(pNonZeroI[i]);
                 }
 
                 std::complex<double> cplx(pNonZeroR[i], pNonZeroI[i]);
@@ -123,7 +123,7 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
             {
                 if (finite(pNonZeroR[i]))
                 {
-                    pNonZeroR[i] = (double)(long long int)pNonZeroR[i];
+                    pNonZeroR[i] = std::trunc(pNonZeroR[i]);
                 }
 
                 pSparseOut->set(pRows[i] - 1, pCols[i] - 1, pNonZeroR[i], false);
@@ -157,7 +157,7 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
                 {
                     if (finite(pPolyIn->get(i)->get()[j]))
                     {
-                        dataReal[j] = (double)(long long int)pPolyIn->get(i)->get()[j];
+                        dataReal[j] = std::trunc(pPolyIn->get(i)->get()[j]);
                     }
                     else
                     {
@@ -166,7 +166,7 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
 
                     if (finite(pPolyIn->get(i)->getImg()[j]))
                     {
-                        dataImg[j]  = (double)(long long int)pPolyIn->get(i)->getImg()[j];
+                        dataImg[j] = std::trunc(pPolyIn->get(i)->getImg()[j]);
                     }
                     else
                     {
@@ -192,7 +192,7 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
                     double dblVal = pPolyIn->get(i)->get()[j];
                     if (finite(dblVal))
                     {
-                        dataReal[j] = (double)((long long)dblVal);
+                        dataReal[j] = std::trunc(dblVal);
                     }
                     else
                     {

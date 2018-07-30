@@ -90,8 +90,8 @@ function [sl,name]=bloc2ss(syst)
             [mok,mik]=size(transfert)
             [msk,msk]=size([])
             if ms>0 then
-                b(ms,mi+1:mi+mik)=0*ones(1,mik)
-                c(mo+1:mo+mok,ms)=0*ones(mok,1)
+                b(ms,mi+1:mi+mik)= zeros(1,mik)
+                c(mo+1:mo+mok,ms)= zeros(mok,1)
             end
             d(mo+1:mo+mok,mi+1:mi+mik)=transfert
             mo=mo+mok;mi=mi+mik;ms=ms+msk
@@ -110,7 +110,7 @@ function [sl,name]=bloc2ss(syst)
         end
     end
     //on ecrit la matrice de feedback K
-    k=0*ones(insize(inn)-1,outsize(outn)-1)
+    k= zeros(insize(inn)-1,outsize(outn)-1)
     for numero=lliens
 
         fil=syst(numero)

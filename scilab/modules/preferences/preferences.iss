@@ -27,8 +27,6 @@ Source: modules\{#PREFERENCES}\jar\org.scilab.modules.{#PREFERENCES}.jar; DestDi
 ;
 Source: modules\{#PREFERENCES}\license.txt; DestDir: {app}\modules\{#PREFERENCES}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#PREFERENCES}\sci_gateway\{#PREFERENCES}_gateway.xml; DestDir: {app}\modules\{#PREFERENCES}\sci_gateway; Components: {#COMPN_SCILAB}
-;
 Source: modules\{#PREFERENCES}\etc\{#PREFERENCES}.quit; DestDir: {app}\modules\{#PREFERENCES}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#PREFERENCES}\etc\{#PREFERENCES}.start; DestDir: {app}\modules\{#PREFERENCES}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#PREFERENCES}\etc\*.xml; DestDir: {app}\modules\{#PREFERENCES}\etc; Components: {#COMPN_SCILAB}

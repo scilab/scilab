@@ -210,7 +210,7 @@ function copy_entity()
     r=ged_getobject([xc,yc])
     if r==[] return,end
     twinkle(r,1);
-    save(TMPDIR+"/G_Clipboard",r)
+    save(TMPDIR+"/G_Clipboard", "r")
 endfunction
 
 

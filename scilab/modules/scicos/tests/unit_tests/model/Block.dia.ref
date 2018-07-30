@@ -959,8 +959,8 @@ Xcos debug:   propertyUpdated( 18 , BLOCK , OUTPUTS ) : SUCCESS
 Xcos trace:   propertyUpdated( 18 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 18 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 18 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 21 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 22 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+Xcos trace:   propertyUpdated( 21 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 20 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 19 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 18 , BLOCK , CHILDREN ) : NO_CHANGES
@@ -1302,7 +1302,7 @@ Xcos trace:   objectReferenced( 23 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 23 , BLOCK ) : 0
           orig = [0,0]
           sz = [2,2]
-          exprs = ["1 3 5 7 9 11 13 15";"-1";"[]";"[600;400]";"-15";"15";"30";"20";"0";""]
+          exprs = ["1 3 5 7 9 11 13 15";"-1";"[]";"[6;4]";"-15";"15";"3";"2";"0";""]
           pin = 0
           pout = []
           pein = 0
@@ -1331,8 +1331,8 @@ Xcos trace:   objectUnreferenced( 23 , BLOCK ) : 0
           state = []
           dstate = []
           odstate = list()
-          rpar = [0;-15;15;30]
-          ipar = [-1;1;20;1;3;5;7;9;11;13;15;-1;-1;600;400]
+          rpar = [0;-15;15;3]
+          ipar = [-1;1;2;1;3;5;7;9;11;13;15;-1;-1;6;4]
           opar = list()
           blocktype = "c"
           firing = []
@@ -1348,7 +1348,7 @@ Xcos trace:   objectUnreferenced( 23 , BLOCK ) : 0
  ans  =
 orig = [0,0]
 sz = [2,2]
-exprs = ["1 3 5 7 9 11 13 15";"-1";"[]";"[600;400]";"-15";"15";"30";"20";"0";""]
+exprs = ["1 3 5 7 9 11 13 15";"-1";"[]";"[6;4]";"-15";"15";"3";"2";"0";""]
 pin = 0
 pout = []
 pein = 0
@@ -1378,8 +1378,8 @@ evtout = []
 state = []
 dstate = []
 odstate = list()
-rpar = [0;-15;15;30]
-ipar = [-1;1;20;1;3;5;7;9;11;13;15;-1;-1;600;400]
+rpar = [0;-15;15;3]
+ipar = [-1;1;2;1;3;5;7;9;11;13;15;-1;-1;6;4]
 opar = list()
 blocktype = "c"
 firing = []
@@ -1526,7 +1526,7 @@ Xcos trace:   objectReferenced( 26 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 26 , BLOCK ) : 0
           orig = [0,0]
           sz = [2,2]
-          exprs = ["1 3 5 7 9 11 13 15";"-1";"[]";"[600;400]";"-15";"15";"30";"20";"0";""]
+          exprs = ["1 3 5 7 9 11 13 15";"-1";"[]";"[6;4]";"-15";"15";"3";"2";"0";""]
           pin = 0
           pout = []
           pein = 0
@@ -1555,8 +1555,8 @@ Xcos trace:   objectUnreferenced( 26 , BLOCK ) : 0
           state = []
           dstate = []
           odstate = list()
-          rpar = [0;-15;15;30]
-          ipar = [-1;1;20;1;3;5;7;9;11;13;15;-1;-1;600;400]
+          rpar = [0;-15;15;3]
+          ipar = [-1;1;2;1;3;5;7;9;11;13;15;-1;-1;6;4]
           opar = list()
           blocktype = "c"
           firing = []
@@ -2234,7 +2234,7 @@ Xcos trace:   objectReferenced( 34 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 34 , BLOCK ) : 0
           orig = [0,0]
           sz = [2,2]
-          exprs = ["220";"50"]
+          exprs = ["22";"5"]
           pin = 0
           pout = 0
           pein = []
@@ -2263,7 +2263,7 @@ Xcos trace:   objectUnreferenced( 34 , BLOCK ) : 0
           state = []
           dstate = []
           odstate = list()
-          rpar = [220;50]
+          rpar = [22;5]
           ipar = []
           opar = list()
           blocktype = "c"
@@ -2272,7 +2272,7 @@ Xcos trace:   objectUnreferenced( 34 , BLOCK ) : 0
           label = ""
           nzcross = 0
           nmode = 0
-          equations = tlist(["modelica","model","inputs","outputs","parameters"],"VsourceAC","p","n",list(["VA";"f"],list(220,50)))
+          equations = tlist(["modelica","model","inputs","outputs","parameters"],"VsourceAC","p","n",list(["VA";"f"],list(22,5)))
           uid = ""
 o.model.equations
 Xcos trace:   objectReferenced( 34 , BLOCK ) : 1

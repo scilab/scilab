@@ -195,11 +195,11 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/c/operations/matrix_multiplication.c \
 	src/c/operations/matrix_power.c \
 	src/c/operations/matrix_transpose.c \
-	src/c/operations/operations_tools.c src/cpp/ast/expHistory.cpp \
-	src/cpp/ast/macrovarvisitor.cpp src/cpp/ast/printvisitor.cpp \
-	src/cpp/ast/runvisitor.cpp src/cpp/ast/shortcutvisitor.cpp \
-	src/cpp/ast/treevisitor.cpp src/cpp/ast/visitor_common.cpp \
-	src/cpp/ast/consoledebugger.cpp \
+	src/c/operations/operations_tools.c src/c/types/dtoa.c \
+	src/cpp/ast/expHistory.cpp src/cpp/ast/macrovarvisitor.cpp \
+	src/cpp/ast/printvisitor.cpp src/cpp/ast/runvisitor.cpp \
+	src/cpp/ast/shortcutvisitor.cpp src/cpp/ast/treevisitor.cpp \
+	src/cpp/ast/visitor_common.cpp src/cpp/ast/consoledebugger.cpp \
 	src/cpp/ast/debuggervisitor.cpp src/cpp/ast/debugmanager.cpp \
 	src/cpp/ast/prettyprintvisitor.cpp \
 	src/cpp/operations/interface_addition.cpp \
@@ -392,6 +392,7 @@ am_libsciast_la_OBJECTS =  \
 	src/c/operations/libsciast_la-matrix_power.lo \
 	src/c/operations/libsciast_la-matrix_transpose.lo \
 	src/c/operations/libsciast_la-operations_tools.lo \
+	src/c/types/libsciast_la-dtoa.lo \
 	src/cpp/ast/libsciast_la-expHistory.lo \
 	src/cpp/ast/libsciast_la-macrovarvisitor.lo \
 	src/cpp/ast/libsciast_la-printvisitor.lo \
@@ -1012,11 +1013,11 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/c/operations/matrix_multiplication.c \
 	src/c/operations/matrix_power.c \
 	src/c/operations/matrix_transpose.c \
-	src/c/operations/operations_tools.c src/cpp/ast/expHistory.cpp \
-	src/cpp/ast/macrovarvisitor.cpp src/cpp/ast/printvisitor.cpp \
-	src/cpp/ast/runvisitor.cpp src/cpp/ast/shortcutvisitor.cpp \
-	src/cpp/ast/treevisitor.cpp src/cpp/ast/visitor_common.cpp \
-	src/cpp/ast/consoledebugger.cpp \
+	src/c/operations/operations_tools.c src/c/types/dtoa.c \
+	src/cpp/ast/expHistory.cpp src/cpp/ast/macrovarvisitor.cpp \
+	src/cpp/ast/printvisitor.cpp src/cpp/ast/runvisitor.cpp \
+	src/cpp/ast/shortcutvisitor.cpp src/cpp/ast/treevisitor.cpp \
+	src/cpp/ast/visitor_common.cpp src/cpp/ast/consoledebugger.cpp \
 	src/cpp/ast/debuggervisitor.cpp src/cpp/ast/debugmanager.cpp \
 	src/cpp/ast/prettyprintvisitor.cpp \
 	src/cpp/operations/interface_addition.cpp \
@@ -1398,6 +1399,7 @@ includes/types/colon.hxx \
 includes/types/container.hxx \
 includes/types/cpp_gateway_prototype.hxx \
 includes/types/double.hxx \
+includes/types/dtoa.h \
 includes/types/file.hxx \
 includes/types/function.hxx \
 includes/types/gatewaystruct.hxx \
@@ -1628,6 +1630,14 @@ src/c/operations/libsciast_la-matrix_transpose.lo:  \
 src/c/operations/libsciast_la-operations_tools.lo:  \
 	src/c/operations/$(am__dirstamp) \
 	src/c/operations/$(DEPDIR)/$(am__dirstamp)
+src/c/types/$(am__dirstamp):
+	@$(MKDIR_P) src/c/types
+	@: > src/c/types/$(am__dirstamp)
+src/c/types/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/c/types/$(DEPDIR)
+	@: > src/c/types/$(DEPDIR)/$(am__dirstamp)
+src/c/types/libsciast_la-dtoa.lo: src/c/types/$(am__dirstamp) \
+	src/c/types/$(DEPDIR)/$(am__dirstamp)
 src/cpp/ast/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/ast
 	@: > src/cpp/ast/$(am__dirstamp)
@@ -2327,6 +2337,8 @@ mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f src/c/operations/*.$(OBJEXT)
 	-rm -f src/c/operations/*.lo
+	-rm -f src/c/types/*.$(OBJEXT)
+	-rm -f src/c/types/*.lo
 	-rm -f src/cpp/analysis/*.$(OBJEXT)
 	-rm -f src/cpp/analysis/*.lo
 	-rm -f src/cpp/ast/*.$(OBJEXT)
@@ -2355,6 +2367,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_power.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_transpose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-operations_tools.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/types/$(DEPDIR)/libsciast_la-dtoa.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-AnalysisVisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-ArgnAnalyzer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-Block.Plo@am__quote@
@@ -2675,6 +2688,13 @@ src/c/operations/libsciast_la-operations_tools.lo: src/c/operations/operations_t
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/operations/operations_tools.c' object='src/c/operations/libsciast_la-operations_tools.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/operations/libsciast_la-operations_tools.lo `test -f 'src/c/operations/operations_tools.c' || echo '$(srcdir)/'`src/c/operations/operations_tools.c
+
+src/c/types/libsciast_la-dtoa.lo: src/c/types/dtoa.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/types/libsciast_la-dtoa.lo -MD -MP -MF src/c/types/$(DEPDIR)/libsciast_la-dtoa.Tpo -c -o src/c/types/libsciast_la-dtoa.lo `test -f 'src/c/types/dtoa.c' || echo '$(srcdir)/'`src/c/types/dtoa.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/types/$(DEPDIR)/libsciast_la-dtoa.Tpo src/c/types/$(DEPDIR)/libsciast_la-dtoa.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/types/dtoa.c' object='src/c/types/libsciast_la-dtoa.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/types/libsciast_la-dtoa.lo `test -f 'src/c/types/dtoa.c' || echo '$(srcdir)/'`src/c/types/dtoa.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -4288,6 +4308,7 @@ mostlyclean-libtool:
 clean-libtool:
 	-rm -rf .libs _libs
 	-rm -rf src/c/operations/.libs src/c/operations/_libs
+	-rm -rf src/c/types/.libs src/c/types/_libs
 	-rm -rf src/cpp/analysis/.libs src/cpp/analysis/_libs
 	-rm -rf src/cpp/ast/.libs src/cpp/ast/_libs
 	-rm -rf src/cpp/operations/.libs src/cpp/operations/_libs
@@ -4521,6 +4542,8 @@ distclean-generic:
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
 	-rm -f src/c/operations/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/c/operations/$(am__dirstamp)
+	-rm -f src/c/types/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/c/types/$(am__dirstamp)
 	-rm -f src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/cpp/analysis/$(am__dirstamp)
 	-rm -f src/cpp/ast/$(DEPDIR)/$(am__dirstamp)
@@ -4546,7 +4569,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf src/c/operations/$(DEPDIR) src/cpp/analysis/$(DEPDIR) src/cpp/ast/$(DEPDIR) src/cpp/operations/$(DEPDIR) src/cpp/parse/$(DEPDIR) src/cpp/symbol/$(DEPDIR) src/cpp/system_env/$(DEPDIR) src/cpp/types/$(DEPDIR)
+	-rm -rf src/c/operations/$(DEPDIR) src/c/types/$(DEPDIR) src/cpp/analysis/$(DEPDIR) src/cpp/ast/$(DEPDIR) src/cpp/operations/$(DEPDIR) src/cpp/parse/$(DEPDIR) src/cpp/symbol/$(DEPDIR) src/cpp/system_env/$(DEPDIR) src/cpp/types/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -4597,7 +4620,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf src/c/operations/$(DEPDIR) src/cpp/analysis/$(DEPDIR) src/cpp/ast/$(DEPDIR) src/cpp/operations/$(DEPDIR) src/cpp/parse/$(DEPDIR) src/cpp/symbol/$(DEPDIR) src/cpp/system_env/$(DEPDIR) src/cpp/types/$(DEPDIR)
+	-rm -rf src/c/operations/$(DEPDIR) src/c/types/$(DEPDIR) src/cpp/analysis/$(DEPDIR) src/cpp/ast/$(DEPDIR) src/cpp/operations/$(DEPDIR) src/cpp/parse/$(DEPDIR) src/cpp/symbol/$(DEPDIR) src/cpp/system_env/$(DEPDIR) src/cpp/types/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

@@ -381,7 +381,6 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\sci_gateway\polynomials_gateway.xml" />
     <None Include="cacsd_f_Import.def" />
     <None Include="Elementary_functions_f_Import.def" />
     <None Include="Elementary_functions_Import.def" />

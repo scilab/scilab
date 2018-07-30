@@ -38,7 +38,7 @@ function demo_contourf2()
     xset("fpf"," ");
     clf();
 
-    contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8],0*ones(1,m))
+    contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8], zeros(1,m))
     xset("fpf","");
     halt(_("Press Return to continue ... \n"));
 

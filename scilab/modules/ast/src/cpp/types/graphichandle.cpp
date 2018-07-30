@@ -206,4 +206,10 @@ bool GraphicHandle::transpose(InternalType *& out)
     return type_traits::transpose(*this, out);
 }
 
+bool GraphicHandle::getMemory(int* _piSize, int* _piSizePlusType)
+{
+    *_piSize = sizeof(long long)*getSize();
+    *_piSizePlusType = *_piSize + sizeof(GraphicHandle);
+    return true;
+}
 }

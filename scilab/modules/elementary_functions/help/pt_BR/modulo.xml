@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2013 - Samuel GOUGEON
+ * Copyright (C) 2013, 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -14,14 +14,19 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="pt">
     <refnamediv>
         <refname>modulo</refname>
-        <refpurpose>Resto aritmético simétrico da divisão de n por m</refpurpose>
+        <refpurpose>
+            Resto módulo m com o sinal do operando esquerdo, ou de uma divisão polinomial
+        </refpurpose>
     </refnamediv>
     <refnamediv xml:id="pmodulo">
         <refname>pmodulo</refname>
-        <refpurpose>Resto aritmético positivo da divisão de n por m</refpurpose>
+        <refpurpose>Resto positivo da divisão de n por m</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
@@ -35,8 +40,30 @@
             <varlistentry>
                 <term>n,m</term>
                 <listitem>
-                    <para>inteiros ou vetores ou matrizes de inteiros de ordens
-                        iguais
+                    <para>
+                        Escalar, vetor, matriz ou hipermatriz de inteiros codificados, reais ou
+                        polinômios com coeficientes reais.
+                        <varname>m</varname> e <varname>n</varname> devem ter o mesmo tipo.
+                        Se eles são do tipo inteiro, eles podem ser de comprimento de codificação
+                        distinto (por exemplo, int8 e int16).
+                        Se nenhum deles for escalar, eles devem ter os mesmos tamanhos.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i</term>
+                <listitem>
+                    <para>
+                        Escalar, vetor, matriz ou hipermatriz do tipo (e inttype) <varname>n</varname>.
+                        <varname>i</varname> aceita os tamanhos do maior <varname>m</varname>
+                        ou <varname>n</varname>.
+                    </para>
+                    <para>
+                        <warning>
+                            For polynomials, when all remainders in the array <varname>i</varname>
+                            are constant (degree==0), <varname>i</varname> is of type 1
+                            (numbers) instead of 2 (constant polynomials).
+                        </warning>
                     </para>
                 </listitem>
             </varlistentry>
@@ -46,18 +73,36 @@
         <title>Descrição</title>
         <para>
             <literal>modulo</literal> computa <literal>i= n (modulo m)</literal>
-            i.e. resto da divisão de <literal>m</literal> (<literal>n</literal> e
-            <literal>m</literal> inteiros).
+            i.e. resto da divisão de <literal>m</literal>.
         </para>
-        <para>i = n - m .* int (n ./ m). Aqui, a resposta pode ser negativa se
-            <literal>n</literal> ou <literal>m</literal> são negativos.
-        </para>
-        <para>
-            <literal>pmodulo</literal> computa <literal>i = n - |m| .* floor (n ./
-                |m|)
-            </literal>
-            ,a resposta é positiva ou zero.
-        </para>
+        <para>Para polinômios, <literal>pdiv()</literal> é chamado.</para>
+        <para>
+            Para números,
+            <itemizedlist>
+                <listitem>
+                    <para>
+                    <literal>modulo()</literal> calcula <literal>i = n - m .* int (n ./m)</literal>.
+                    O resultado é negativo (ou nulo) quando <varname>n</varname> é negativo e
+                    é positivo caso contrário.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                    <literal>pmodulo()</literal> calcula <literal>i = n - | m | .* floor (n ./ | m |)</literal>.
+                    O resultado é sempre positivo ou nulo.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            <warning>
+                Se <varname>m</varname> contiver pelo menos um valor 0, <literal>modulo(x,m)</literal>
+                e <literal>pmodulo(x,m)</literal> executará uma divisão por zero.
+                Se <varname>m</varname> for do tipo real, esta exceção será processada de acordo
+                para o modo <literal>ieee()</literal>.
+                Para inteiros codificados, sempre gerará um erro.
+            </warning>
+        </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -72,6 +117,58 @@ modulo(10, -4)
 pmodulo(-3, 9)
 pmodulo(10, -6)
 pmodulo(-10, -6)
+
+// Inteiros codificados
+modulo( int8(-13), int16(-7))
+pmodulo(int8(-13), int16(-7))
+modulo( int8(-13), int16([-7 5]))
+pmodulo(int8(-13), int16([-7 5]))
+modulo( int8([-13 8]), int16(-7))
+pmodulo(int8([-13 8]), int16(-7))
+modulo( int8([-13 8]), int16([-7 5]))
+pmodulo(int8([-13 8]), int16([-7 5]))
+
+// Hypermatrices
+m = grand(2,2,2,"uin",-100,100)
+n = grand(2,2,2,"uin",-10 ,10);
+n(n==0) = 1
+modulo(m, 5)
+pmodulo(m,5)
+modulo(51, n)
+pmodulo(51,n)
+modulo(m, n)
+pmodulo(m,n)
+
+// Polinômios
+modulo( %z^2+1, %z)
+pmodulo(%z^2+1, %z)
  ]]></programlisting>
+    </refsection>
+    <refsection role= "see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="unwrap">unwrap</link>
+            </member>
+            <member>
+                <link linkend="ieee">ieee</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Extensão para inteiros codificados e para hypermatrices de inteiros codificados
+                    ou de reais.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revremark>Extensão para hipermatrizes de polinômios..</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

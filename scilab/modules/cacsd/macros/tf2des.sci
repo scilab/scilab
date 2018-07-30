@@ -46,10 +46,8 @@ function [S]=tf2des(G,flag)
 
     [n1,n1]=size(sp(2));
     [n2,n2]=size(spol(2));
-    A=[sp(2),0*ones(n1,n2);
-    0*ones(n2,n1),eye(n2,n2)];
-    E=[eye(n1,n1),0*ones(n1,n2);
-    0*ones(n2,n1),spol(2)];
+    A=[sp(2), zeros(n1,n2); zeros(n2,n1),eye(n2,n2)];
+    E=[eye(n1,n1), zeros(n1,n2); zeros(n2,n1),spol(2)];
     B=[sp(3);
     spol(3)];
     C=[sp(4),-spol(4)];

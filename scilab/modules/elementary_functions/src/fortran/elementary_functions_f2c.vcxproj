@@ -333,7 +333,6 @@ cd ..
     <ClCompile Include="lnblnk.c" />
     <ClCompile Include="magic.c" />
     <ClCompile Include="mtran.c" />
-    <ClCompile Include="nearfloat.c" />
     <ClCompile Include="old_pythag.c" />
     <ClCompile Include="orthes.c" />
     <ClCompile Include="ortran.c" />
@@ -445,7 +444,6 @@ cd ..
     <f2c_rule Include="lnblnk.f" />
     <f2c_rule Include="magic.f" />
     <f2c_rule Include="mtran.f" />
-    <f2c_rule Include="nearfloat.f" />
     <f2c_rule Include="old_pythag.f" />
     <f2c_rule Include="orthes.f" />
     <f2c_rule Include="ortran.f" />
@@ -502,7 +500,6 @@ cd ..
     <None Include="elementary_functions_Import.def" />
     <None Include="core_import.def" />
     <None Include="linpack_f_Import.def" />
-    <None Include="..\..\sci_gateway\elementary_functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="polynomials_f_Import.def" />
     <None Include="slatec_f_Import.def" />

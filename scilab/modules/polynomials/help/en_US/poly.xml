@@ -1,38 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="poly">
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) - INRIA
+* Copyright (C) 2018 - Samuel GOUGEON
+*
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="poly">
     <refnamediv>
         <refname>poly</refname>
-        <refpurpose>polynomial definition</refpurpose>
+        <refpurpose>Polynomial definition from given roots or coefficients, or characteristic to a square matrix.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>p = poly(a, vname, ["flag"])</synopsis>
+        <synopsis>
+            p = poly(vec, vname)
+            p = poly(vec, vname, "roots"|"coeff")
+            Pc = poly(matNN, vname)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>a</term>
-                <listitem>
-                    <para>a matrix or real number</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>vname</term>
                 <listitem>
-                    <para>a string, the symbolic variable name. The string must be 4 characters max.
+                    <para>
+                        a string: the symbolic variable name of the polynomial. Allowed characters
+                        are the same as for variables names
+                        (see <link linkend="names">naming rules</link>).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"flag"</term>
+                <term>vec</term>
+                <listitem>
+                    <para>scalar, vector, or non-square matrix of real or complex numbers.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag "roots" (default) | "coeff" (or "r" | "c")</term>
                 <listitem>
                     <para>
-                        string (<literal>"roots"</literal>, <literal>"coeff"</literal>),
-                        default value is <literal>"roots"</literal>.
+                        Indicates what numbers in <literal>vec</literal> represent.
+                        <literal>"roots"</literal> is the default value.
                     </para>
                     <para>
-                        Shortcuts can be also used: <literal>"r"</literal> for <literal>"roots"</literal> and <literal>"c"</literal> for <literal>"coeff"</literal>.
+                        Shortcuts can be used: <literal>"r"</literal> for <literal>"roots"</literal>,
+                        and <literal>"c"</literal> for <literal>"coeff"</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>
+                        Polynomial with given roots or coefficients and symbolic variable name.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>matNN</term>
+                <listitem>
+                    <para>Square matrix of real or complex numbers.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Pc</term>
+                <listitem>
+                    <para>
+                        Characteristic polynomial of the given square matrix,
+                        = <literal>det(x*eye() - matNN)</literal>, with the symbolic variable
+                        <literal>x = poly(0,vname)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,64 +93,162 @@
         <variablelist>
             <varlistentry>
                 <term>
-                    If <literal>a</literal> is a matrix,
-                </term>
-                <listitem>
-                    <para>
-                        <varname>p</varname> is the characteristic
-                        polynomial i.e. <code>determinant(x*eye()-a)</code>, <literal>x</literal> being
-                        the symbolic variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    If <literal>v</literal> is a vector,
+                    When a vector or non-square matrix <literal>vec</literal> is provided,
                 </term>
                 <listitem>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <code>poly(v,"x",["roots"])</code>  is the polynomial
-                                with <literal>roots</literal> the entries of <varname>v</varname> and
-                                <literal>"x"</literal> as formal variable. (In this case,
-                                <function>roots</function> and <function>poly</function> are inverse functions).
+                                <literal>p = poly(vec, "x", "roots")</literal> or
+                                <literal>p = poly(vec, "x")</literal> is the polynomial
+                                whose roots are  the <varname>vec</varname> components, and
+                                <literal>"x"</literal> is the name of its variable.
                                 <note>
-                                    Note that Infinite roots gives zero highest degree coefficients.
+                                    <itemizedlist>
+                                        <listitem>
+                                            <literal>degree(p)==length(vec)</literal>
+                                        </listitem>
+                                        <listitem>
+                                            <literal>poly()</literal> and
+                                            <literal>roots()</literal> are then inverse functions
+                                            of each other.
+                                        </listitem>
+                                        <listitem>
+                                            Infinite roots give null highest degree coefficients.
+                                            In this case, the actual degree of <varname>p</varname>
+                                            is smaller than <literal>length(vec)</literal>.
+                                            For instance,
+                                            <literal>poly([-%inf -1 2 %inf ], "x")</literal>
+                                            yields <literal>(x-2)(x+1)</literal> whose degree is 2.
+                                        </listitem>
+                                    </itemizedlist>
+                                </note>
+                            </para>
+                            <para>
+                                The simple expression <literal>x=poly(0,"x")</literal> defines the
+                                elementary <literal>p(x)=x</literal>, which then can be used with
+                                usual operators +, -, *, / and simple functions like
+                                <literal>sum()</literal>.
+                                <note>
+                                    Scilab provides 3 predefined elementary polynomials
+                                    <literal>%s</literal>, <literal>%z</literal>, and
+                                    <literal>$</literal>. The last one is mainly used as symbolic
+                                    value of last index (of a range).
                                 </note>
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <code>poly(v,"x","coeff")</code> creates the
-                                polynomial with symbol <literal>"x"</literal> and with coefficients
-                                the entries of <varname>v</varname> (<code>v(1)</code> is the constant term
-                                of the polynomial). (Here <function>poly</function> and <function>coeff</function> are inverse functions).
+                                <literal>poly(vec, "x", "coeff")</literal> builds the polynomial
+                                with symbol <literal>"x"</literal> whose coefficients in order of
+                                increasing degree are <varname>vec</varname> components
+                                (<literal>vec(1)</literal> is the constant term of
+                                the polynomial). Null high order coefficients (appended to
+                                <literal>vec</literal>) are ignored.
                             </para>
+                            <note>
+                                Conversely, <literal>coeff(p)</literal> returns the coefficients
+                                of a given polynomial.
+                            </note>
                         </listitem>
                     </itemizedlist>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>
+                    When a square matrix <literal>matNN</literal> is provided,
+                </term>
+                <listitem>
+                    <para>
+                        <literal>poly(matNN, vname)</literal> returns its characteristic polynomial
+                        of symbolic variable <literal>vname</literal>, i.e. <varname>p</varname> is set
+                        to <literal>det(x*eye() - matNN)</literal>, with <literal>x = poly(0,vname)</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
-        <para>
-            <code>s=poly(0,"s")</code> is the seed for defining
-            polynomials with symbol <literal>"s"</literal>.
-        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>Building a polynomial of given coefficients:</para>
         <programlisting role="example"><![CDATA[
-s=poly(0,"s");
-p=1+s+2*s^2
-A=rand(2,2);
-poly(A,"x")
-//rational fractions
-h=(1+2*%s)/poly(1:4,'s','coeff')
+// Direct building:
+x = poly(0, "x");
+p = 1 - x + 2*x^3
+
+// With poly():
+p2 = poly([1 -1 0 2], "x", "coeff")
+
+// With null high order coefficients
+p3 = poly([2 0 -3 zeros(1,8)], "y", "coeff")
  ]]></programlisting>
+    <screen><![CDATA[
+--> p = 1 - x + 2*x^3
+ p  =
+           3
+   1 -x +2x
+
+--> p2 = poly([1 -1 0 2], "x", "coeff")
+ p2  =
+           3
+   1 -x +2x
+
+--> p3 = poly([2 0 -3 zeros(1,8)], "y", "coeff")
+ p3  =
+        2
+   2 -3y
+]]></screen>
+        <para>Building a polynomial of given roots:</para>
+        <programlisting role="example"><![CDATA[
+// Direct building:
+x = poly(0,"x");
+p = (1-x)^2 * (2+x)
+
+// With poly():
+p2 = poly([1 1 -2], "x")
+
+// With infinite roots
+p3 = poly([%inf -1 2 %inf -%inf], "x")
+ ]]></programlisting>
+    <screen><![CDATA[
+--> p = (1-x)^2 * (2+x)
+ p  =
+           3
+   2 -3x +x
+
+--> p2 = poly([1 1 -2], "x")
+ p2  =
+           3
+   2 -3x +x
+
+--> p3 = poly([%inf -1 2 %inf -%inf], "x")
+ p3  =
+          2
+  -2 -x +x
+]]></screen>
+        <para>Characteristic polynomial of a square matrix:</para>
+        <programlisting role="example"><![CDATA[
+A = [1 2 ; 3 -4]
+poly(A, "x")
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = [1 2 ; 3 -4]
+ A  =
+   1.   2.
+   3.  -4.
+
+--> poly(A, "x")
+ ans  =
+            2
+  -10 +3x +x
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="inv_coeff">inv_coeff</link>
+            </member>
             <member>
                 <link linkend="coeff">coeff</link>
             </member>
@@ -114,13 +262,16 @@ h=(1+2*%s)/poly(1:4,'s','coeff')
                 <link linkend="horner">horner</link>
             </member>
             <member>
-                <link linkend="derivat">derivat</link>
+                <link linkend="percents">%s</link>
             </member>
             <member>
-                <link linkend="matrices">matrices</link>
+                <link linkend="percentz">%z</link>
             </member>
             <member>
                 <link linkend="rational">rational</link>
+            </member>
+            <member>
+                <link linkend="rlist">rlist</link>
             </member>
         </simplelist>
     </refsection>
@@ -129,7 +280,22 @@ h=(1+2*%s)/poly(1:4,'s','coeff')
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark>The only values allowed for the third argument are "roots", "coeff", "c" and "r".</revremark>
+                <revremark>
+                    The only values allowed for the third argument are "roots", "coeff", "c" and "r".
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    The name of the symbolic variable is no longer limited to 4 characters.
+                    It can include some extended UTF-8 characters.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revremark>
+                    With the "coeff" method, null high order coefficients are now ignored.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

@@ -10,15 +10,22 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function x=%s_or(a,flag)
-    // or(a) returns the logical OR
-    // for scalar matrices, an entry is TRUE if it is not zero.
+function x = %s_or(a,flag)
+    // or(a) returns the logical OR between a's components.
+    // A component is TRUE if it is not zero (including %nan)
     //!
     if argn(2)==1 then flag="*",end
     if flag=="*" then
-        x=find(abs(a)>0,1)<>[]
+        if a==[]
+            x = %f
+        else
+            x = find(a<>0,1)<>[]
+        end
     else
-        if a==[] then x=[],return,end
-        x=sum(bool2s(a),flag)>=1
+        if a==[] then
+            x = []
+        else
+            x = sum(bool2s(a),flag)>=1
+        end
     end
 endfunction

@@ -16,8 +16,8 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="system_getproperty">
     <refnamediv>
         <refname>system_getproperty</refname>
-        <refpurpose>gets the system property
-            indicated by a specified key.
+        <refpurpose>
+           gets the system property for a given JVM key
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -142,8 +142,8 @@
                 <td>Path separator (":" on UNIX)</td>
             </tr>
             <tr>
-                <td>line.separator Line separator</td>
-                <td>("\n" on UNIX)</td>
+                <td>line.separator</td>
+                <td>Line separator ("\n" on UNIX)</td>
             </tr>
             <tr>
                 <td>user.name</td>
@@ -165,6 +165,7 @@
 system_getproperty('awt.toolkit')
 system_getproperty('file.encoding')
 system_getproperty('file.encoding.pkg')
+
 system_getproperty('java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment')
 system_getproperty('java.awt.printerjob=sun.awt.windows.WPrinterJob')
 system_getproperty('java.class.path')
@@ -190,11 +191,14 @@ system_getproperty('java.vm.specification.vendor')
 system_getproperty('java.vm.specification.version')
 system_getproperty('java.vm.vendor')
 system_getproperty('java.vm.version')
+
+system_getproperty("jogl.gljpanel.nohw")
 system_getproperty('line.separator')
 system_getproperty('os.arch')
 system_getproperty('os.name')
 system_getproperty('os.version')
 system_getproperty('path.separator')
+
 system_getproperty('sun.arch.data.model')
 system_getproperty('sun.boot.class.path')
 system_getproperty('sun.boot.library.path')
@@ -205,6 +209,7 @@ system_getproperty('sun.io.unicode.encoding')
 system_getproperty('sun.jnu.encoding')
 system_getproperty('sun.management.compiler')
 system_getproperty('sun.os.patch.level')
+
 system_getproperty('user.country')
 system_getproperty('user.dir')
 system_getproperty('user.home')
@@ -213,5 +218,23 @@ system_getproperty('user.name')
 system_getproperty('user.timezone')
 system_getproperty('user.variant')
  ]]></programlisting>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="system_setproperty">system_setproperty</link>
+            </member>
+            <member>
+                <link linkend="getenv">getenv</link>
+            </member>
+            <member>
+                <link linkend="setenv">setenv</link>
+            </member>
+            <member>
+                <link linkend="root_properties">root_properties</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

@@ -1,6 +1,7 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+*  Copyright (C) 2018 - Stéphane MOTTELET
 *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -22,8 +23,11 @@
 
 extern "C"
 {
+#include "sci_malloc.h"
 #include "elem_common.h"
 #include "os_string.h"
+#include "dtoa.h"
+#include "charEncoding.h"
 }
 
 #define BLANK_SIZE 1
@@ -216,6 +220,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
     wchar_t pwstFormat[32] = {0};
     wchar_t pwstOutput[32] = {0};     // > @ format max
     wchar_t pwstSign[32] = {0};
+    char    pstBuf[32] = {0};
 
     if (_pDF == NULL)
     {
@@ -270,82 +275,53 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
     else if (_pDF->bExp)
     {
         // Prints the exponent part 1.543D+03 for example
-        double dblAbs = fabs(_dblVal);
-        double dblDec = 0;
-        double dblEnt = 0;
-        double dblTemp = 0;
+        int decpt = 0;
+        int sign = 0;
+        char *rve = nullptr;
+        char *dtoa_str = dtoa(fabs(_dblVal), 2, _pDF->iPrec + 1, &decpt, &sign, &rve);
 
-        // modf returns the fractional par in dblDec
-        // and stores the pointer to the integral part in dblEnt
-        dblDec = std::modf(dblAbs, &dblEnt);
-        if (dblEnt == 0)
+        std::string str(dtoa_str);
+        freedtoa(dtoa_str);
+
+        // in format("e") omiting the decimal point has a sense
+        // only if fabs(_dblVal) is an integer in {1...9}
+        if (_pDF->bPrintPoint || str.length() > 1)
         {
-            // The integral part in 0
-            // the number in between 0 and 1 in absolute value
-            // dblTemp stores the position of the significant digit
-            // floor(log10(0.01)) = -2
-            // floor(log10(0.00123)) = -3
-            // floor(log10(0.0015)) = -3
-            if (dblDec != 0)
-            {
-                dblTemp = std::floor(std::log10(dblDec));
-            }
-            else
-            {
-                dblTemp = 0;
-            }
-        }
-        else
-        {
-            // dblTemp stores the number of digit of the integral part minus one
-            // log10(15) = 1.176
-            // log10(1530) = 3.185
-            dblTemp = std::log10(dblEnt);
+            /* add trailing zeros */
+            str.append(fmax(0, _pDF->iPrec + 1 - str.length()), '0');
+            str.insert(1, ".");
         }
 
-        dblDec = dblAbs / std::pow(10., (double)(int)dblTemp);
-        dblDec = std::modf(dblDec, &dblEnt) * pow(10., _pDF->iPrec);
-
-        if (_pDF->bPrintPoint)
-        {
-            os_swprintf(pwstFormat, 32, L"%ls%%#d.%%0%dlldD%%+.02d", pwstSign, _pDF->iPrec);
-        }
-        else
-        {
-            os_swprintf(pwstFormat, 32, L"%ls%%d%%0%dlldD%%+.02d", pwstSign, _pDF->iPrec);
-        }
-
-        if ((long long int)std::round(dblDec) != (long long int)dblDec)
-        {
-            // casting to long long int to avoid overflow to negative values
-            double d1 = (long long int)std::round(dblDec);
-            d1 = fmod(d1, std::pow(10., _pDF->iPrec));
-            if (d1 < dblDec)
-            {
-                //inc integer part
-                ++dblEnt;
-            }
-
-            dblDec = d1;
-        }
-
-        // long long int to be able to print up to format(25) otherwise you just write overflow
-        // and write a negative number, dblEnt is at most one digit
-        os_swprintf(pwstOutput, 32, pwstFormat, (int)dblEnt, (long long int)dblDec, (int)dblTemp);
+        wchar_t* tmp = to_wide_string(str.data());
+        os_swprintf(pwstOutput, 32, L"%ls%lsD%+.02d", pwstSign, tmp, decpt - 1);
+        FREE(tmp);
     }
     else if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
     {
         //do not print if _bPrintOne == false && _dblVal == 1
-        if (_pDF->bPrintPoint)
+        int decpt = 0;
+        int sign = 0;
+        char *rve = nullptr;
+        char *dtoa_str = dtoa(fabs(_dblVal), 2, std::floor(log10(fabs(_dblVal))) + _pDF->iPrec + 1, &decpt, &sign, &rve);
+
+        std::string str(dtoa_str);
+        freedtoa(dtoa_str);
+
+        /* add leading 0.000..., if applicable */
+        if (decpt <= 0)
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%#-%d.%df", pwstSign, _pDF->iWidth - 1, _pDF->iPrec);
+            str.insert(str.begin(), 1 - decpt, '0');
+            str.insert(1, ".");
         }
-        else
+        else if (_pDF->bPrintPoint || decpt < str.length())
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%-%d.%df", pwstSign, _pDF->iWidth - 2, _pDF->iPrec);  //-2 no point needed
+            str.append(std::max(0, (int)(decpt - str.length())), '0');
+            str.insert(decpt, ".");
         }
 
-        os_swprintf(pwstOutput, 32, pwstFormat, fabs(_dblVal));
+        wchar_t* tmp = to_wide_string(str.data());
+        os_swprintf(pwstOutput, 32, L"%ls%ls", pwstSign, tmp);
+        FREE(tmp);
     }
     else if (wcslen(pwstSign) != 0)
     {

@@ -13,7 +13,7 @@ function []=GeomT(n)
         // E = 1/p ; sig2= (1-p)/p^2
         //--------------------------------------
         if p >= 1 then disp(_("p must be < 1"));end
-        y = 0*ones(m, n);
+        y =  zeros(m, n);
         for i=1:m*n,
             samples = 1;
             z = rand(1,1,"uniform");

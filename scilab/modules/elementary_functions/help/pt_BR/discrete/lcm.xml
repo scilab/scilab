@@ -13,13 +13,14 @@
  * along with this program.
  *
  -->
+<!--  module: polynomials  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
         xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
         xmlns:scilab="http://www.scilab.org" xml:id="lcm" xml:lang="pt">
     <refnamediv>
         <refname>lcm</refname>
-        <refpurpose>mínimo múltiplo comum</refpurpose>
+        <refpurpose>mínimo múltiplo comum (positivo) de inteiros ou de polinômios</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
@@ -34,19 +35,28 @@
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>vetor de polinômios </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fact</term>
-                <listitem>
-                    <para>vetor de polinômios ou inteiros (tipo igual a 8)</para>
+                    <para>
+                        matriz de polinômios (tipo 2), ou de inteiros decimais ou codificados
+                        (tipos 1 ou 8).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>pp</term>
                 <listitem>
-                    <para>polinômio ou inteiro</para>
+                    <para>
+                        um polinomial ou um inteiro decimal : Mínimo positivo múltiplo comum de
+                         Componentes <varname>p</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fact</term>
+                <listitem>
+                    <para>
+                        matriz de polinômios ou de inteiros decimais (tipo 1), com os tamanhos de
+                         <varname>p</varname>, tal que <literal>fact(i)=pp./p(i)</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -54,44 +64,136 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            <literal>pp=lcm(p)</literal> computa o MMC <literal>pp</literal> do
-            vetor de polinômios <literal>p</literal>.
+            <literal>pp=lcm(p)</literal> computa o MMC <literal>pp</literal> do matriz de
+            polinômios <literal>p</literal>.
         </para>
         <para>
-            <literal>[pp,fact]=lcm(p)</literal> computa, ainda, o vetor
-            <literal>fact</literal> tal que <literal>p.*fact=pp*ones(p)</literal>
+          Se <literal>p</literal> são polinômios, <literal>pp</literal> é um polinômio e
+           <varname>fact</varname> também é uma matriz de polinômios.
         </para>
         <para>
-          If <literal>p</literal> is a set of integers with some negative ones, the returned value
-          <literal>pp</literal> of their LCM is always positive.
+          Se <literal>p</literal> são inteiros,
+            <itemizedlist>
+                <listitem>
+                    inteiros codificados são convertidos em inteiros decimais antes do processamento.
+                </listitem>
+                <listitem>
+                    Qualquer entrada int64 ou uint64 input |inteiros| > 2^53 será truncado e lcm()
+                    retornará um resultado errado.
+                </listitem>
+                <listitem>
+                    se algum deles for negativo, o valor de retorno <literal>pp</literal> é sempre
+                    positivo.
+                </listitem>
+            </itemizedlist>
         </para>
         <para>
-            If <literal>p</literal> is an array of decimal integers, they are priorly converted
-            into <literal>int32</literal> before processing.
+            The least common multiple of an array <literal>p</literal> of real numbers can be
+            obtained by converting it to a polynomial before calling <literal>lcm</literal>,
+            through <literal>p = inv_coeff(p, 0)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
+        <para>Com polinômios :</para>
         <programlisting role="example"><![CDATA[
-//caso polinomial
-s=poly(0,'s');
-p=[s,s*(s+1)^2,s^2*(s+2)];
-[pp,fact]=lcm(p);
-p.*fact, pp
-
-//caso inteiro
-V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
-lcm(V)
+s = %s;
+p = [s , s*(s+1) , s^2-1]
+[pp, fact] = lcm(p)
+p .* fact == pp
  ]]></programlisting>
+    <screen><![CDATA[
+--> p = [s , s*(s+1) , s^2-1]
+ p  =
+           2       2
+   s   s +s   -1 +s
+
+--> [pp, fact] = lcm(p)
+ fact  =
+       2
+  -1 +s   -1 +s   s
+
+ pp  =
+       3
+  -s +s
+
+--> p .* fact == pp
+ ans  =
+  T T T
+]]></screen>
+    <para>Com inteiros codificados :</para>
+    <programlisting role="example"><![CDATA[
+// Prime numbers: 2  3  5  7  11  13  17  19  23  29  31  37  41  43  47
+V = int16([2*3 3*7 ; 7*5  3*5])
+[pp, fact] = lcm(V)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> V = int16([2*3 3*7 ; 7*5  3*5])
+ V  =
+   6  21
+  35  15
+
+--> [pp, fact] = lcm(V)
+ pp  =
+   210.
+
+ fact  =
+   35.   10.
+   6.    14.
+]]></screen>
+    <para>Com números inteiros decimais :</para>
+    <programlisting role="example"><![CDATA[
+V = [2*3 3*7 ; 7*5  3*5]
+[pp, fact] = lcm(V)
+ ]]></programlisting>
+    <para>Com grandes inteiros:</para>
+    <programlisting role="example"><![CDATA[
+V = [3*2^51 , 3*5]
+[pp, fact] = lcm(V)    // OK
+ ]]></programlisting>
+    <screen><![CDATA[
+--> V = [3*2^51 , 3*5]
+ V  =
+   6.755D+15   15.
+
+--> [pp, fact] = lcm(V)
+ fact  =
+   5.   2.252D+15
+
+ pp  =
+   3.378D+16
+]]></screen>
+    <para>
+        Quando a codificação numérica é excedida, truncatura ocorre e os resultados ficam errados :
+    </para>
+    <programlisting role="example"><![CDATA[
+V = [3*2^52 , 3*5]
+[pp, fact] = lcm(V)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> V = [3*2^52 , 3*5]
+ V  =
+   1.351D+16   15.
+
+--> [pp, fact] = lcm(V)
+ fact  =
+   15.   1.351D+16
+
+ pp  =
+   2.027D+17
+]]></screen>
     </refsection>
-    <refsection>
-        <title> Ver Também </title>
+    <refsection role="see also">
+        <title>Ver Também</title>
         <simplelist type="inline">
             <member>
                 <link linkend="gcd">gcd</link>
             </member>
             <member>
                 <link linkend="bezout">bezout</link>
+            </member>
+            <member>
+                <link linkend="factor">factor</link>
             </member>
         </simplelist>
     </refsection>
@@ -101,7 +203,27 @@ lcm(V)
             <revision>
                 <revnumber>6.0.1</revnumber>
                 <revdescription>
-                    For input integers possibly negative, the returned LCM is now always positive.
+                   For input integers possibly negative, the returned LCM is now always positive.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            int64 and uint64 input encoded integers are now supported.
+                        </listitem>
+                        <listitem>
+                            <varname>p</varname> can now be a matrix of any shape, not necessarily
+                            a row.
+                        </listitem>
+                        <listitem>
+                            When <varname>p</varname> is a matrix of encoded or decimal integers,
+                            computations are now performed in floating point instead of int32 format.
+                            <varname>pp</varname> and <varname>fact</varname> are now decimal
+                            integers (instead of int32 integers).
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

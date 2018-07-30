@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2018 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -41,6 +42,7 @@ import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxCellState;
+import java.awt.geom.NoninvertibleTransformException;
 
 /**
  * Painter for each vertex and edge
@@ -299,7 +301,11 @@ public class ScilabCanvas extends mxInteractiveCanvas {
         g.scale(ratio, ratio);
 
         // Paint
-        icon.paint(g);
+        try {
+            icon.paint(g);
+        } catch (IllegalArgumentException e) { // or NoninvertibleTransformException
+            // sometimes rethrow after a NoninvertibleTransformException.
+        }
     }
 
     /**

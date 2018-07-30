@@ -16,8 +16,8 @@
 // strsubst() replaces the wrong characters with the regexp mode and when the subject contains backslahes (windows path for example)
 //==============================================================
 
-p = "D:\compilation_chain_master\sci_compil\scilab-master-1230554708\modules\core\macros\with_tk.sci";
-ref = "D:\compilation_chain_master\sci_compil\scilab-master-1230554708\modules\core\macros\with_tk.bin";
+p = "D:\compilation_chain_master\sci_compil\scilab-master-1230554708\modules\core\macros\getshell.sci";
+ref = "D:\compilation_chain_master\sci_compil\scilab-master-1230554708\modules\core\macros\getshell.bin";
 r = strsubst(p, "/\.sci$/", '.bin', 'r');
 if r <> ref then pause,end
 

@@ -239,7 +239,6 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <None Include="output_stream_export.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\output_stream.iss" />
-    <None Include="..\..\sci_gateway\output_stream_gateway.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="output_stream.rc" />

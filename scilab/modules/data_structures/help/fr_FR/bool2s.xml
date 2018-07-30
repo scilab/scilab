@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<!--  module: boolean  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="bool2s">
+    <refnamediv>
+        <refname>bool2s</refname>
+        <refpurpose>convertit une matrice booléenne en une matrice 0-1  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>bool2s(x)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x  </term>
+                <listitem>
+                    <para>matrice réelle, complexe ou booléenne
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Si <literal>x</literal> est une matrice booléenne,
+            <literal>bool2s(x)</literal> renvoie une matrice où les valeurs %T (true=vrai) sont remplacées par des 1 et les %F (faux) par des 0.
+        </para>
+        <para>
+            Si <literal>x</literal> n'est pas une matrice booléenne,
+            <literal>bool2s(x)</literal> renvoie une matrice où les valeurs non-nulles sont remplacées par des 1.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+bool2s([%t %t %f %t])
+bool2s([2.3 0 10 -1])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="boolean">boolean</link>
+            </member>
+            <member>
+                <link linkend="find">find</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

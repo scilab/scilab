@@ -296,7 +296,6 @@
     <None Include="..\..\locales\integer.pot" />
     <None Include="Polynomials_f_Import.def" />
     <None Include="..\..\integer.iss" />
-    <None Include="..\..\sci_gateway\integer_gateway.xml" />
     <None Include="..\..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>

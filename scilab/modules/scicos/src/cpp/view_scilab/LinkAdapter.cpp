@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
- * Copyright (C) 2017 - ESI Group - Clement DAVID
+ * Copyright (C) 2017-2018 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -14,31 +14,30 @@
  *
  */
 
+#include <algorithm>
+#include <iterator>
 #include <string>
 #include <vector>
-#include <map>
-#include <iterator>
-#include <algorithm>
 
+#include "double.hxx"
 #include "internal.hxx"
 #include "list.hxx"
 #include "types.hxx"
 #include "user.hxx"
-#include "double.hxx"
 
-#include "utilities.hxx"
-#include "adapters_utilities.hxx"
 #include "Controller.hxx"
 #include "LinkAdapter.hxx"
+#include "adapters_utilities.hxx"
 #include "controller_helpers.hxx"
+#include "model/Block.hxx"
 #include "model/Link.hxx"
 #include "model/Port.hxx"
-#include "model/Block.hxx"
+#include "utilities.hxx"
 
 extern "C" {
-#include "sci_malloc.h"
 #include "charEncoding.h"
 #include "localization.h"
+#include "sci_malloc.h"
 }
 
 namespace org_scilab_modules_scicos
@@ -48,12 +47,12 @@ namespace view_scilab
 namespace
 {
 
-const std::string split ("split");
-const std::string lsplit ("lsplit");
-const std::string limpsplit ("limpsplit");
+const std::string split("split");
+const std::string lsplit("lsplit");
+const std::string limpsplit("limpsplit");
 
 // shared information for relinking across adapters hierarchy
-std::map<ScicosID, partial_link_t> partial_links;
+partials_links_t partial_links;
 
 struct xx
 {
@@ -93,7 +92,7 @@ struct xx
 
         int newXSize = current->getSize();
         int oldXSize = static_cast<int>(controlPoints.size() / 2);
-        std::vector<double> newControlPoints (controlPoints);
+        std::vector<double> newControlPoints(controlPoints);
 
         if (newXSize == oldXSize)
         {
@@ -155,7 +154,7 @@ struct yy
 
         int newYSize = current->getSize();
         int oldYSize = static_cast<int>(controlPoints.size() / 2);
-        std::vector<double> newControlPoints (controlPoints);
+        std::vector<double> newControlPoints(controlPoints);
 
         if (newYSize == oldYSize)
         {
@@ -254,7 +253,7 @@ struct thick
             return false;
         }
 
-        std::vector<double> thick (2);
+        std::vector<double> thick(2);
         thick[0] = current->get(0);
         thick[1] = current->get(1);
 
@@ -303,7 +302,7 @@ struct ct
         }
 
         int color = static_cast<int>(current->get(0));
-        int kind  = static_cast<int>(current->get(1));
+        int kind = static_cast<int>(current->get(1));
 
         controller.setObjectProperty(adaptee, COLOR, color);
         controller.setObjectProperty(adaptee, KIND, kind);
@@ -311,9 +310,10 @@ struct ct
     }
 };
 
-link_t getLinkEnd(model::Link* adaptee, const Controller& controller, const object_properties_t end)
+static link_t getLinkEnd(model::Link* adaptee, const Controller& controller,
+                         const object_properties_t end)
 {
-    link_t ret {0, 0, Start};
+    link_t ret{0, 0, Start};
     if (end == DESTINATION_PORT)
     {
         ret.kind = End;
@@ -325,7 +325,8 @@ link_t getLinkEnd(model::Link* adaptee, const Controller& controller, const obje
     {
         ScicosID sourceBlock;
         controller.getObjectProperty(endID, PORT, SOURCE_BLOCK, sourceBlock);
-        model::Block* sourceBlockObject = controller.getBaseObject<model::Block>(sourceBlock);
+        model::Block* sourceBlockObject =
+            controller.getBaseObject<model::Block>(sourceBlock);
 
         // Looking for the block number among the block IDs
         ScicosID parent;
@@ -345,28 +346,40 @@ link_t getLinkEnd(model::Link* adaptee, const Controller& controller, const obje
         }
         controller.getObjectProperty(parent, parentKind, CHILDREN, children);
 
-        ret.block = static_cast<int>(std::distance(children.begin(), std::find(children.begin(), children.end(), sourceBlock)) + 1);
+        ret.block =
+            static_cast<int>(std::distance(children.begin(),
+                                           std::find(children.begin(),
+                                                   children.end(), sourceBlock)) +
+                             1);
 
-        // To find the port index from its 'endID' ID, search through all the block's ports lists
+        // To find the port index from its 'endID' ID, search through all the
+        // block's ports lists
         std::vector<ScicosID> sourceBlockPorts;
         controller.getObjectProperty(sourceBlockObject, INPUTS, sourceBlockPorts);
 
-        std::vector<ScicosID>::iterator found = std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID);
+        std::vector<ScicosID>::iterator found =
+            std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID);
         if (found == sourceBlockPorts.end()) // Not found in the data inputs
         {
             sourceBlockPorts.clear();
-            controller.getObjectProperty(sourceBlockObject, OUTPUTS, sourceBlockPorts);
-            found = std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID);
+            controller.getObjectProperty(sourceBlockObject, OUTPUTS,
+                                         sourceBlockPorts);
+            found =
+                std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID);
             if (found == sourceBlockPorts.end()) // Not found in the data outputs
             {
                 sourceBlockPorts.clear();
-                controller.getObjectProperty(sourceBlockObject, EVENT_INPUTS, sourceBlockPorts);
-                found = std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID);
+                controller.getObjectProperty(sourceBlockObject, EVENT_INPUTS,
+                                             sourceBlockPorts);
+                found =
+                    std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID);
                 if (found == sourceBlockPorts.end()) // Not found in the event inputs
                 {
                     sourceBlockPorts.clear();
-                    controller.getObjectProperty(sourceBlockObject, EVENT_OUTPUTS, sourceBlockPorts);
-                    found = std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID);
+                    controller.getObjectProperty(sourceBlockObject, EVENT_OUTPUTS,
+                                                 sourceBlockPorts);
+                    found = std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(),
+                                      endID);
                     if (found == sourceBlockPorts.end()) // Not found in the event outputs
                     {
                         return ret;
@@ -374,7 +387,8 @@ link_t getLinkEnd(model::Link* adaptee, const Controller& controller, const obje
                 }
             }
         }
-        ret.port = static_cast<int>(std::distance(sourceBlockPorts.begin(), found) + 1);
+        ret.port =
+            static_cast<int>(std::distance(sourceBlockPorts.begin(), found) + 1);
 
         int kind;
         controller.getObjectProperty(endID, PORT, PORT_KIND, kind);
@@ -526,7 +540,6 @@ void setLinkEnd(model::Link* linkObject, Controller& controller, const object_pr
             newPortKind = PORT_EIN;
             sourceBlockPorts = evtin;
         }
-
     }
     else if (linkType == model::regular || linkType == model::implicit)
     {
@@ -606,13 +619,9 @@ void setLinkEnd(model::Link* linkObject, Controller& controller, const object_pr
         }
     }
 
-    // Disconnect the old port if it was connected. After that, concernedPort will be reused to designate the new port
-    if (concernedPort != ScicosID())
-    {
-        controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, ScicosID());
-    }
 
-    model::Port* concernedPortObject;
+
+    model::Port* concernedPortObject = nullptr;
     int nBlockPorts = static_cast<int>(sourceBlockPorts.size());
     if (nBlockPorts >= portIndex)
     {
@@ -621,55 +630,17 @@ void setLinkEnd(model::Link* linkObject, Controller& controller, const object_pr
     }
     else
     {
-        while (nBlockPorts < portIndex) // Create as many ports as necessary
-        {
-            concernedPortObject = controller.createBaseObject<model::Port>(PORT);
-            concernedPort = concernedPortObject->id();
-            controller.setObjectProperty(concernedPortObject, IMPLICIT, newPortIsImplicit);
-            controller.setObjectProperty(concernedPortObject, PORT_KIND, static_cast<int>(newPortKind));
-            controller.setObjectProperty(concernedPortObject, SOURCE_BLOCK, blkID);
-            controller.setObjectProperty(concernedPortObject, CONNECTED_SIGNALS, ScicosID());
-            // Set the default dataType so it is saved in the model
-            std::vector<int> dataType;
-            controller.getObjectProperty(concernedPortObject, DATATYPE, dataType);
-            controller.setObjectProperty(concernedPortObject, DATATYPE, dataType);
-
-            std::vector<ScicosID> concernedPorts;
-            if (linkType == model::activation)
-            {
-                if (v.kind == Start)
-                {
-                    controller.getObjectProperty(blkObject, EVENT_OUTPUTS, concernedPorts);
-                    concernedPorts.push_back(concernedPort);
-                    controller.setObjectProperty(blkObject, EVENT_OUTPUTS, concernedPorts);
-                }
-                else
-                {
-                    controller.getObjectProperty(blkObject, EVENT_INPUTS, concernedPorts);
-                    concernedPorts.push_back(concernedPort);
-                    controller.setObjectProperty(blkObject, EVENT_INPUTS, concernedPorts);
-                }
-            }
-            else // model::regular || model::implicit
-            {
-                if (v.kind == Start)
-                {
-                    controller.getObjectProperty(blkObject, OUTPUTS, concernedPorts);
-                    concernedPorts.push_back(concernedPort);
-                    controller.setObjectProperty(blkObject, OUTPUTS, concernedPorts);
-                }
-                else
-                {
-                    controller.getObjectProperty(blkObject, INPUTS, concernedPorts);
-                    concernedPorts.push_back(concernedPort);
-                    controller.setObjectProperty(blkObject, INPUTS, concernedPorts);
-                }
-            }
-
-            nBlockPorts++;
-        }
+        // the interface does not match, we should not create anything else but rather alert the user that he is not matching the block interface.
+        return;
     }
-    ScicosID oldLink;
+
+    // Disconnect the old port if it was connected. After that, concernedPort will be reused to designate the new port
+    if (concernedPort != ScicosID())
+    {
+        controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, ScicosID());
+    }
+
+    ScicosID oldLink = ScicosID();
     controller.getObjectProperty(concernedPortObject, CONNECTED_SIGNALS, oldLink);
     if (oldLink != ScicosID())
     {
@@ -724,7 +695,6 @@ bool is_valid(types::Double* o)
     return false;
 }
 
-
 struct from
 {
 
@@ -766,7 +736,7 @@ struct from
             return false;
         }
 
-        link_t from_content {0, 0, Start};
+        link_t from_content{0, 0, Start};
         if (current->getSize() >= 2)
         {
             from_content.block = static_cast<int>(current->get(0));
@@ -843,7 +813,7 @@ struct to
             return false;
         }
 
-        link_t to_content {0, 0, End};
+        link_t to_content{0, 0, End};
         if (current->getSize() >= 2)
         {
             to_content.block = static_cast<int>(current->get(0));
@@ -879,8 +849,8 @@ struct to
 template<>
 #endif
 property<LinkAdapter>::props_t property<LinkAdapter>::fields = property<LinkAdapter>::props_t();
-LinkAdapter::LinkAdapter(const Controller& c, org_scilab_modules_scicos::model::Link* adaptee) :
-    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(c, adaptee)
+
+LinkAdapter::LinkAdapter(const Controller& c, org_scilab_modules_scicos::model::Link* adaptee) : BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(c, adaptee)
 {
     if (property<LinkAdapter>::properties_have_not_been_set())
     {
@@ -896,19 +866,12 @@ LinkAdapter::LinkAdapter(const Controller& c, org_scilab_modules_scicos::model::
     }
 }
 
-LinkAdapter::LinkAdapter(const LinkAdapter& adapter) :
-    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(adapter)
+LinkAdapter::LinkAdapter(const LinkAdapter& adapter) : BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(adapter)
 {
-    Controller controller;
-    add_partial_links_information(controller, adapter.getAdaptee(), getAdaptee());
 }
 
 LinkAdapter::~LinkAdapter()
 {
-    if (getAdaptee()->refCount() == 0)
-    {
-        partial_links.erase(getAdaptee()->id());
-    }
 }
 
 std::wstring LinkAdapter::getTypeStr() const
@@ -920,20 +883,8 @@ std::wstring LinkAdapter::getShortTypeStr() const
     return getSharedTypeStr();
 }
 
-void LinkAdapter::relink(Controller& controller, model::Link* adaptee, const std::vector<ScicosID>& children)
+void refresh_shared_values(Controller& controller, model::Link* adaptee, partials_links_t::iterator& it)
 {
-    auto it = partial_links.find(adaptee->id());
-    if (it == partial_links.end())
-    {
-        // unable to relink as there is no information to do so
-        return;
-    }
-    partial_link_t l = it->second;
-
-    setLinkEnd(adaptee, controller, SOURCE_PORT, l.from, children);
-    setLinkEnd(adaptee, controller, DESTINATION_PORT, l.to, children);
-
-    // refresh the shared values
     ScicosID from;
     controller.getObjectProperty(adaptee, SOURCE_PORT, from);
     ScicosID to;
@@ -946,54 +897,155 @@ void LinkAdapter::relink(Controller& controller, model::Link* adaptee, const std
     }
 }
 
-void LinkAdapter::add_partial_links_information(Controller& controller, model::BaseObject* original, model::BaseObject* cloned)
+void LinkAdapter::relink(Controller& controller, model::Link* adaptee, const std::vector<ScicosID>& children)
 {
-    // precondition
-    if (cloned == nullptr)
+    auto it = partial_links.find(adaptee->id());
+    if (it == partial_links.end())
+    {
+        // unable to relink as there is no information to do so
+        return;
+    }
+    const partial_link_t& l = it->second;
+
+    setLinkEnd(adaptee, controller, SOURCE_PORT, l.from, children);
+    setLinkEnd(adaptee, controller, DESTINATION_PORT, l.to, children);
+
+    refresh_shared_values(controller, adaptee, it);
+}
+
+std::vector<model::Port*> getPorts(Controller& controller, model::Block* adaptee, object_properties_t port_kind)
+{
+    std::vector<ScicosID> ids;
+    controller.getObjectProperty(adaptee, port_kind, ids);
+
+    std::vector<model::Port*> ports;
+    ports.reserve(ids.size());
+    for (ScicosID id : ids)
+    {
+        ports.push_back(controller.getBaseObject<model::Port>(id));
+    }
+
+    return ports;
+}
+
+void LinkAdapter::reverse_relink(Controller& controller, model::Block* adaptee, int index, const std::vector<ScicosID>& children)
+{
+    if (adaptee->id() != children[index])
     {
         return;
     }
 
-    switch (original->kind())
+    for (object_properties_t p :
+            {
+                INPUTS, OUTPUTS, EVENT_INPUTS, EVENT_OUTPUTS
+            })
     {
-        // add the from / to information if applicable
-        case LINK:
+        std::vector<model::Port*> ports = getPorts(controller, adaptee, p);
+
+        for (size_t i = 0; i < ports.size(); i++)
         {
-            auto it = partial_links.find(original->id());
-            if (it != partial_links.end())
-            {
-                partial_links.insert({cloned->id(), it->second});
-            }
-            else
-            {
-                partial_link_t l;
-                l.from = getLinkEnd(static_cast<model::Link*>(original), controller, SOURCE_PORT);
-                l.to = getLinkEnd(static_cast<model::Link*>(original), controller, DESTINATION_PORT);
-                partial_links.insert({cloned->id(), l});
-            }
-            break;
-        }
+            ScicosID signal = ScicosID();
+            controller.getObjectProperty(ports[i], CONNECTED_SIGNALS, signal);
+            model::Link* link = controller.getBaseObject<model::Link>(signal);
 
-        // handle recursion
-        case DIAGRAM:
-        case BLOCK:
+            auto opposite = partial_links.find(signal);
+            if (opposite != partial_links.end())
+            {
+                auto& from = opposite->second.from;
+                auto& to = opposite->second.to;
+
+                if (from.block == index + 1 && from.port == i)
+                {
+                    controller.setObjectProperty(link, SOURCE_PORT, ports[i]->id());
+                    from.kind = Start;
+                }
+                else if (to.block == index + 1 && to.port == i)
+                {
+                    controller.setObjectProperty(link, DESTINATION_PORT, ports[i]->id());
+                    to.kind = End;
+                }
+
+                refresh_shared_values(controller, link, opposite);
+            }
+        }
+    }
+}
+
+void LinkAdapter::add_partial_links_information(Controller& controller, ScicosID original, ScicosID cloned)
+{
+    auto it = partial_links.find(original);
+    if (it != partial_links.end())
+    {
+        partial_links.insert({cloned, it->second});
+    }
+    else
+    {
+        model::Link* link = controller.getBaseObject<model::Link>(original);
+
+        partial_link_t l;
+        l.from = getLinkEnd(link, controller, SOURCE_PORT);
+        l.to = getLinkEnd(link, controller, DESTINATION_PORT);
+        partial_links.insert({cloned, l});
+    }
+}
+
+void reverse_store(Controller& controller, model::Block* removed, object_properties_t port_kind)
+{
+    std::vector<model::Port*> ports = getPorts(controller, removed, port_kind);
+    for (model::Port* p : ports)
+    {
+        ScicosID signal = ScicosID();
+        controller.getObjectProperty(p, CONNECTED_SIGNALS, signal);
+        if (signal == ScicosID())
         {
-            std::vector<ScicosID> originalChildren;
-            controller.getObjectProperty(original->id(), original->kind(), CHILDREN, originalChildren);
-            std::vector<ScicosID> clonedChildren;
-            controller.getObjectProperty(cloned->id(), cloned->kind(), CHILDREN, clonedChildren);
-
-            for (size_t i = 0; i < originalChildren.size(); ++i)
-            {
-                add_partial_links_information(controller, controller.getBaseObject(originalChildren[i]), controller.getBaseObject(clonedChildren[i]));
-            }
-            break;
+            continue;
         }
+        model::Link* link = controller.getBaseObject<model::Link>(signal);
 
-        default:
-            break;
+        auto it = partial_links.find(link->id());
+        if (it == partial_links.end())
+        {
+            partial_link_t l;
+            l.from = getLinkEnd(link, controller, SOURCE_PORT);
+            l.to = getLinkEnd(link, controller, DESTINATION_PORT);
+            partial_links.insert({link->id(), l});
+        }
+    }
+}
+
+// manage partial information before a model delete
+void LinkAdapter::store_partial_links_information(Controller& controller, model::BaseObject* added, int index, const std::vector<ScicosID>& children)
+{
+    model::BaseObject* removed = controller.getBaseObject(children[index]);
+    if (removed == nullptr || added == nullptr)
+    {
+        return;
     }
 
+    if (removed->kind() == LINK && added->kind() == LINK)
+    {
+        model::Link* link = static_cast<model::Link*>(added);
+
+        partial_link_t l;
+        l.from = getLinkEnd(link, controller, SOURCE_PORT);
+        l.to = getLinkEnd(link, controller, DESTINATION_PORT);
+        partial_links.insert({link->id(), l});
+    }
+    else if (removed->kind() == BLOCK && added->kind() == BLOCK)
+    {
+        model::Block* block = static_cast<model::Block*>(removed);
+
+        reverse_store(controller, block, INPUTS);
+        reverse_store(controller, block, OUTPUTS);
+        reverse_store(controller, block, EVENT_INPUTS);
+        reverse_store(controller, block, EVENT_OUTPUTS);
+    }
+}
+
+// delete all information related to the block
+void LinkAdapter::remove_partial_links_information(ScicosID uid)
+{
+    partial_links.erase(uid);
 }
 
 } /* namespace view_scilab */

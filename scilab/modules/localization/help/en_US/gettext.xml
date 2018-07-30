@@ -3,6 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -14,71 +15,480 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="gettext">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="gettext">
     <refnamediv>
         <refname>gettext</refname>
-        <refpurpose>get text translated into the current locale and domain.</refpurpose>
+        <refpurpose>indexes or/and translates some indexed english messages</refpurpose>
     </refnamediv>
     <refnamediv xml:id="_">
         <refname>_</refname>
         <refpurpose>
-            Similar to <link linkend="gettext">gettext</link>
+            Alias of gettext().
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>msg=gettext([myDomain,] myString)
-            msg=_([myDomain,] myString)
+        <synopsis>
+            gettext("The literal reference message")
+            gettext(["item #1" ; "item#2"])
+            translated = gettext("The literal reference message")
+            translated = gettext(["item #1" ; "item#2"])
+            translated = gettext(msgid)
+            .. gettext(domain, ..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>myDomain</term>
+                <term>"The literal reference message"</term>
                 <listitem>
-                    <para>a string, the name of the messages domain</para>
+                    <para>
+                        Single literal text of an english message to be indexed or/and
+                        translated. A column of literal texts explicitly separated with
+                        semi-colons may also be specified.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>myString</term>
+                <term>msgid</term>
                 <listitem>
-                    <para>a string, the message to be translated</para>
+                    <para>
+                        single or array of messages identifiers (in english) to be translated,
+                        in a variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>translated</term>
+                <listitem>
+                    <para>
+                        Input messages translated in the current language of the Scilab session.
+                        If no translated version is available for an input message, the input
+                        version in english is returned. The input and output arrays have
+                        the same sizes.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>domain</term>
+                <listitem>
+                    <para>
+                        word of text: the name of a domain. When localizing an external module,
+                        <varname>domain</varname> may be usually set to the technical name of the
+                        module.
+                    </para>
+                    <para>
+                        <varname>domain</varname> can indifferently be a literal or a variable.
+                        It is case-sensitive.
+                    </para>
+                    <para>
+                        <varname>domain</varname> is required by
+                        <literal>tbx_generate_pofile()</literal> to make the literal msgid string
+                        indexed (harvesting stage. See below).
+                    </para>
+                    <para>
+                        When <literal>gettext(domain, msgid)</literal> is used to retrieve the
+                        translated version, <varname>domain</varname> is used to get the path
+                        to the directory where translations are stored, as beforehand registered
+                        with <literal>addlocalizationdomain(domain, path)</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
+        <refsect3>
+        <title>Harvesting messages and overall processing</title>
         <para>
-            <literal>gettext(myString)</literal> gets the translation of a string <literal>myString</literal> to the current locale in the current domain.
+            <emphasis role="italic">gettext</emphasis> is a free and open external application
+            shipped within Scilab to support multilinguism for messages. This support consists in
+            4 main stages:
+            <orderedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Harvesting</emphasis> messages among the code and
+                        <emphasis role="bold">indexing</emphasis> them to be
+                        translated. For an external module, this is explicitly performed with the
+                        <literal>xgettext</literal> external binary, that is part of the
+                        <literal>gettext</literal> external application, and that is called by the
+                        <link linkend="tbx_generate_pofile">tbx_generate_pofile</link> Scilab function.
+                        In Scilab, it is also possible to use <literal>tbx_build_localization(..)</literal>
+                        or <literal>tbx_make . localization</literal>, that both call
+                        <literal>tbx_generate_pofile(..)</literal>.
+                    </para>
+                    <para>
+                        Each collected message is considered as an identifier (a message id, = msgid)
+                        for all its forthcoming translations. In Scilab, the reference language for
+                        identifiers is <emphasis role="italic">english</emphasis>.
+                        Therefore, the msgids to be indexed must be written in english.
+                    </para>
+                    <para>
+                        Only <emphasis role="bold">single literal and in one piece messages</emphasis>
+                        being as <literal>gettext</literal> input argument are collected. Hence,
+                        the following syntaxes and cases won't index the considered message, and no
+                        further translated versions will be available:
+                    </para>
+                    <para>
+                        <table>
+                            <tr>
+                                <th>#</th><th>Syntax</th><th>Status</th>
+                                <th align="left">Harvesting results</th>
+                            </tr>
+                            <tr valign="top">
+                                <th>1</th>
+                                <td style="white-space:nowrap">
+                                    <literal>gettext("To be translated")</literal>
+                                </td>
+                                <td>OK</td>
+                                <td>standard syntax</td>
+                            </tr>
+                            <tr valign="top">
+                                <th>2</th>
+                                <td style="white-space:pre"><literal>
+msg = "To be translated";
+gettext(msg)</literal>
+                                </td>
+                                <td>NOK</td>
+                                <td>
+                                    The text is in a variable. It is not a literal.
+                                    It won't be indexed.
+                                    Nevertheless, this syntax will work to <emphasis>retrieve</emphasis>
+                                    the translated version, <emphasis>provided that the message
+                                    has been collected elsewhere in a right way</emphasis>.
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th>3</th>
+                                <td style="white-space:nowrap">
+                                    <literal>gettext("To be" + " translated")</literal>
+                                </td>
+                                <td>NOK</td>
+                                <td>
+                                    "To be" and " translated" are indexed as 2 separate msgid.
+                                    Then, since the concatenated msgid "To be translated" does not exist,
+                                    retrieving its translation will fail.
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th>4</th>
+                                <td style="white-space:pre"><literal>
+gettext("To be" + ..
+                  " translated")</literal>
+                                </td>
+                                <td>NOK</td>
+                                <td>Same as #3</td>
+                            </tr>
+                            <tr valign="top">
+                                <th>5</th>
+                                <td style="white-space:nowrap">
+                                    <literal>gettext(["item#1", "item#2"])</literal>
+                                </td>
+                                <td>NOK</td>
+                                <td>Only "item#1" is collected. "item#2" is ignored.</td>
+                            </tr>
+                            <tr valign="top">
+                                <th>6</th>
+                                <td style="white-space:nowrap">
+                                    <literal>gettext(["item#1"  "item#2"])</literal>
+                                </td>
+                                <td>NOK</td>
+                                <td>
+                                    "item#1item#2" is indexed. Then, since "item#1" and "item#2"
+                                    are unknown separate msgid, retrieving their respective
+                                    translation will fail.
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th>7</th>
+                                <td style="white-space:pre"><literal>
+gettext(["item#1"
+         "item#2"])</literal>
+                                </td>
+                                <td>NOK</td>
+                                <td>Same as #6</td>
+                            </tr>
+                            <tr valign="top">
+                                <th>8</th>
+                                <td style="white-space:nowrap">
+                                    <literal>gettext(["item#1" ; "item#2"])</literal>
+                                </td>
+                                <td>OK</td>
+                                <td>"item#1" and "item#2" are indexed as separate msgids.</td>
+                            </tr>
+                            <tr valign="top">
+                                <th>9</th>
+                                <td style="white-space:pre"><literal>
+gettext(["item#1" ;
+         "item#2"])</literal>
+                                </td>
+                                <td>OK</td>
+                                <td>
+                                    Same as #8. Please take care of the semi-colon. Without it,
+                                    the case #7 fails.
+                                </td>
+                            </tr>
+                        </table>
+                    </para>
+                    <important>
+                        For an external module,
+                        <link linkend="tbx_generate_pofile">tbx_generate_pofile()</link>
+                        harvests only <literal>gettext</literal> occurrences that specify a
+                        <varname>domain</varname>. It ignores any call to <literal>gettext</literal>
+                        with only one input argument.
+                        <para>
+                            Harvesting does not need to beforehand declare the
+                            <varname>domain</varname> with
+                            <literal>addlocalizationdomain()</literal>
+                        </para>
+                    </important>
+                </listitem>
+                <listitem>
+                    <para>
+                        All indexed texts are then translated by the author of the code or by some
+                        contributors. Anyway, by some humans. Good translation tools are also available
+                        online.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        All translated versions are bundled in a way that <literal>gettext(..)</literal>
+                        becomes efficient to retrieve the version in the current session's language.
+                        This is done by running <literal>tbx_generate_pofile()</literal> another
+                        time.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Finally, some calls like <literal>gettext(message)</literal> or
+                        <literal>gettext("The message content")</literal> are used to retrieve and
+                        return the translated version.
+                    </para>
+                    <para>
+                        When the message is not a native Scilab one (for instance it is specific
+                        to an external module), the <varname>domain</varname> where the message
+                        and its translations can be found must be specified, as in
+                        <literal>gettext(domain, message)</literal>
+                        or <literal>gettext(domain, "The message content")</literal>.
+                        In this case, <literal>addlocalizationdomain(domain, path)</literal> must
+                        be run before in order to make <varname>domain</varname> pointing to
+                        the storage directory.
+                    </para>
+                </listitem>
+            </orderedlist>
         </para>
         <para>
-            <literal>gettext(myDomain, myString)</literal> gets the translation of a string <literal>myString</literal> to the <literal>myDomain</literal> domain.
+            Most often, a message is declared to be harvested and is used to retrieve its
+            translated version through the same <literal>gettext("The literal message")</literal>
+            call.
+            However, it is not mandatory. Hence, a piece of code like
+            <literal>if %F, gettext("The literal message"), end</literal> will never execute
+            the <literal>gettext</literal> call, but is nevertherless meaningfull: It is here only
+            to make the message visible to the <literal>xgettext</literal> scanner/harvester.
+            Then, somewhere else in the code, it will be possible to use
+            <literal>msg = "The literal message"; gettext(msg)</literal> to return the translated
+            version.
         </para>
         <para>
-            <code>_(myString)</code> is an alias of <code>gettext(myString)</code>.
+            As well, using several times the same literal
+            <literal>gettext("The literal message")</literal> call won't be rare, for example to
+            retrieve the translation in several files. In this case, the <literal>xgettext</literal>
+            harvester will collect the message only once, and the same translation will be returned
+            for all calls.
         </para>
-        <para>
-            <code>_(myDomain, myString)</code> is an alias of <code>gettext(myDomain, myString)</code>.
-        </para>
+        <warning>
+            Limitations: There is no way to translate a message
+            <itemizedlist>
+                <listitem>
+                    <para>
+                    in a language other than the current session's one. If this is really required,
+                    the session's language will have to be temporarily switched to the desired
+                    language, then <literal>gettext()</literal> called, and at last the initial
+                    session's language restored.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        from a translated version rather than from the message id in english.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </warning>
+        </refsect3>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <refsect3>
+            <title>Messages</title>
+            <para>
+                To be correctly processed, english messages must comply with a few rules:
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            Messages identifiers are case-sensitive.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Literal harvestable messages may be indifferently delimited with single
+                            or double quotes.
+                        </para>
+                        <warning>
+                            When <literal>gettext()</literal> or <literal>_()</literal> is used in
+                            an XML file such as in the preferences files of an external module, the
+                            literal domain string and the literal message id must no longer be
+                            delimited. For instance, <literal>_(my_domain, My message)</literal>
+                            will be used instead of <literal>_("my_domain", "My message")</literal>.
+                        </warning>
+                    </listitem>
+                    <listitem>
+                        <para>
+                        Double quotes must be avoided in the body of messages. Please use single quotes.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                        Inner escaped sequences like "\t" "\n" etc are not interpreted, neither by
+                        the <literal>xgettext</literal> scanner nor by the <literal>gettext</literal>
+                        function. They are collected and stored as is in the messages.
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Some template messages may often include some "%" C-like directives
+                            aiming to be replaced with some input custom data through
+                            <literal>msprintf()</literal> at run time.
+                            For instance,
+                            <literal>msprintf("Hi %s, could you come at %s today?", "John", "12:30")</literal>
+                            will return <literal>"Hi John, could you come at 12:30 today?"</literal>.
+                        </para>
+                        <warning>
+                        <para>
+                            Now, let's assume that you wish to make the template message translatable:
+                            <literal>msg = _("Hi %s, could you come at %s today?")</literal>
+                            and <literal>msprintf(msg, "John", "12:30")</literal>
+                            will be used. However, the author or/and translaters must be aware that,
+                            in the translated versions, the input data must appear in the same order:
+                            "%s" for "John" before "%s" for "12:30", to comply with the order
+                            imposed by the <literal>msprintf()</literal> input list of values.
+                            This is not always possible, noticeably for languages far from
+                            latin like right-to-left languages.
+                        </para>
+                        </warning>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-setlanguage("fr_FR");
-gettext("Startup execution:")
-_("Startup execution:")
-addlocalizationdomain("tbx", "SCI/modules/localization/tests/unit_tests/locale")
-gettext("tbx", "%s: something not in Scilab.\n")
-_("tbx", "%s: something not in Scilab.\n")
+setlanguage("fr");
+
+// Messages ids are case-sensitive:
+// "monday" is not an indexed native msgid, while "Monday" is:
+gettext(["monday" ; "Monday"])
+
+//_() is an alias of gettext():
+_("Sunday")
+
+// In Scilab, messages ids are in english:
+setlanguage("ru");
+_("Dimanche")       // The french version can't be used as msgid
+_("Sunday")
  ]]></programlisting>
+    <screen><![CDATA[
+--> gettext(["monday" ; "Monday"])
+ ans  =
+!monday  !
+!Lundi   !
+
+--> _("Sunday")
+ ans  =
+ Dimanche
+
+--> setlanguage("ru");
+--> _("Dimanche")
+ ans  =
+ Dimanche
+
+--> _("Sunday")
+ ans  =
+ Воскресенье
+]]></screen>
+    <para>
+        Using a domain: Here, "tbx" is a predefined domain used to test translation features:
+    </para>
+        <programlisting role="example"><![CDATA[
+setlanguage("fr");
+msg = "%s: something not in Scilab.\n";  // unknown in the main native Scilab domain:
+gettext(msg)          // So, it is returned as is.
+
+//  If we use the domain without having declared it before,
+//  Scilab does not know where to find the translation:
+gettext("tbx", msg)   // The input message is still returned as is.
+
+// So, let's declare the domain:
+addlocalizationdomain("tbx", "SCI/modules/localization/tests/unit_tests/locale");
+gettext("tbx", msg)   // Now it works
+
+// The answer is a joke: Here it is still in english (while french is expected).
+// The point is that it has been set as the french translation of the input msgid.
+
+// The same msgid can be used as a native Scilab one with its native translations,
+// and in one or several domains, with other translations:
+msg = "%s: No more memory.\n";
+[_(msg) ; _("tbx", msg)]
+ ]]></programlisting>
+    <screen><![CDATA[
+--> msg = "%s: something not in Scilab.\n"; // unknown in the main native Scilab domain:
+--> gettext(msg)
+ ans  =
+ %s: something not in Scilab.\n
+
+--> //  Scilab does not know yet where to find the translation:
+--> gettext("tbx", msg)
+ ans  =
+ %s: something not in Scilab.\n
+
+--> // We declare the domain:
+--> addlocalizationdomain("tbx", "SCI/modules/localization/tests/unit_tests/locale");
+--> gettext("tbx", msg)   // Now it works
+ ans  =
+ %s : it is true, that is not in Scilab.\n
+
+--> msg = "%s: No more memory.\n";
+--> [_(msg) ; _("tbx", msg)]
+ ans  =
+!%s : Plus de mémoire disponible.\n    !
+!%s : Overwrite Scilab translation.\n  !
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="msprintf">msprintf</link>
+            </member>
+            <member>
+                <link linkend="setlanguage">setlanguage</link>
+            </member>
+            <member>
                 <link linkend="addlocalizationdomain">addlocalizationdomain</link>
+            </member>
+            <member>
+                <link linkend="tbx_generate_pofile">tbx_generate_pofile</link>
+            </member>
+            <member>
+                <link linkend="tbx_make">tbx_make . localization</link>
+            </member>
+            <member>
+                <link linkend="tbx_build_localization">tbx_build_localization</link>
+            </member>
+            <member>
+                <ulink url="https://www.gnu.org/software/gettext/">GNU gettext website</ulink>
             </member>
         </simplelist>
     </refsection>

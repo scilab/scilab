@@ -206,8 +206,8 @@ msgstr "Attention : division gauche par zéro...\n"
 msgid "Operator \\ : Error %d not yet managed.\n"
 msgstr "Erreur de l'opérateur \\ : %d n'est pas implémenté.\n"
 
-msgid "Invalid exponent: expected real exponents.\n"
-msgstr "Exposant invalide : réel attendu.\n"
+msgid "Invalid exponent: expected finite integer exponents.\n"
+msgstr "Exposant invalide : entiers finis attendus.\n"
 
 msgid "Invalid exponent.\n"
 msgstr "Exposant invalide.\n"

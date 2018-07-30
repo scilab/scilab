@@ -67,7 +67,7 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     // past conditions for up
     //--------------------------
     if rhs <=2,
-        up=0*ones(bl1,1);
+        up= zeros(bl1,1);
     else
         up=x3;
         if bl1==0 then
@@ -86,7 +86,7 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     // past conditions for yp
     //--------------------------
     if rhs <=3,
-        yp=0*ones(al1,1)
+        yp= zeros(al1,1)
     else
         yp=x4;
         if al1==0 then
@@ -105,7 +105,7 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     // past conditions for ep
     //--------------------------
     if rhs <=4,
-        ep=0*ones(dl1,1);
+        ep= zeros(dl1,1);
     else
         ep=x5
         if dl1==0 then
@@ -126,7 +126,7 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     // but xi must be set to a scalar value to provide proper
     // result dimensions.
     //
-    xi=[0*ones(al,1);xi];
+    xi=[ zeros(al,1);xi];
     z=ode("discrete",xi,0,1:Nu,fff);
     // Now z contains y_{1},.....y_{Nu};
     z=z(1:al,:)

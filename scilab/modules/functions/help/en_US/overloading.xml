@@ -292,14 +292,24 @@
                 <td/>
             </tr>
             <tr>
-                <td>implicit polynom</td>
+                <td>implicit list</td>
                 <td>
                     <literal>ip</literal>
                 </td>
                 <td>
-                    <literal>size implicit</literal>
+                    <literal>implicitlist</literal>
                 </td>
                 <td>1:1:$</td>
+            </tr>
+            <tr>
+                <td>undefined|null object</td>
+                <td>
+                    <literal>0</literal>
+                </td>
+                <td>
+                    <literal>listdelete, void</literal>
+                </td>
+                <td>see null(), list()</td>
             </tr>
         </informaltable>
         <para>

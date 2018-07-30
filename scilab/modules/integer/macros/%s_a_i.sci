@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -11,10 +12,6 @@
 // along with this program.
 
 
-function r=%s_a_i(a,b)
-    if a==[] then
-        if mtlb_mode() then r=[],else r=b,end
-    else
-        r=iconvert(a,inttype(b))+b
-    end
+function r = %s_a_i(a, b)
+    r = %i_a_s(b, a)
 endfunction

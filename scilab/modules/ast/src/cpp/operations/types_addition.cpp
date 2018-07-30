@@ -1942,6 +1942,11 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
             _pR->killMe();
         }
 
+        if (pOut != NULL)
+        {
+            pOut->updateRank();
+        }
+
         return pOut;
     }
 
@@ -2021,6 +2026,11 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         if (pRSave != _pR)
         {
             _pR->killMe();
+        }
+
+        if (pOut != NULL)
+        {
+            pOut->updateRank();
         }
 
         return pOut;

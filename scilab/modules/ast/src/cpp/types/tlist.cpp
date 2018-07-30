@@ -55,6 +55,24 @@ TList::~TList()
 #endif
 }
 
+bool TList::getMemory(int* _piSize, int* _piSizePlusType)
+{
+    *_piSize = 0;
+    *_piSizePlusType = 0;
+    for (auto pData : *m_plData)
+    {
+        int piS, piSPT;
+        if (pData->getMemory(&piS, &piSPT))
+        {
+            *_piSize += piS;
+            *_piSizePlusType += piSPT;
+        }
+    }
+
+    *_piSizePlusType += sizeof(TList);
+    return true;
+}
+
 /**
 ** Clone
 ** Create a new List and Copy all values.

@@ -184,6 +184,12 @@
                     <para>a janela de gráficos foi fechada</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>ibut==-10000</term>
+                <listitem>
+                    <para>Unmanaged event. It might be a drag and drop or a fast click and move</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
         <para>Por exemplo, digamos que o nome da função de gerenciamento de
             eventos seja fooHandler para a janela de número 0. Um clique com o botão

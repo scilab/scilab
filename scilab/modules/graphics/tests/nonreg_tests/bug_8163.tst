@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 8163 -->
 //
@@ -14,7 +15,8 @@
 //
 // <-- Short Description -->
 // datatipToggle cannot be called without argument as stated in the help page
+// datatipToggle replaced by datatipManagerMode in Scilab 6.1
 
 plot(1:10)
-if execstr('datatipToggle()','errcatch')<>0 then pause,end
+datatipManagerMode()
 

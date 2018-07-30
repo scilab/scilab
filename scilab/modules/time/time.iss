@@ -32,8 +32,6 @@ Source: modules\{#TIME}\includes\realtime.h; DestDir: {app}\modules\{#TIME}\incl
 Source: modules\{#TIME}\includes\timer.h; DestDir: {app}\modules\{#TIME}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\includes\dynlib_time.h; DestDir: {app}\modules\{#TIME}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\sci_gateway\{#TIME}_gateway.xml; DestDir: {app}\modules\{#TIME}\sci_gateway; Components: {#COMPN_SCILAB}
-;
 Source: modules\{#TIME}\etc\{#TIME}.quit; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\etc\{#TIME}.start; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}
 ;

@@ -203,22 +203,33 @@ function [helppart,txt,batch]=m2sci_syntax(txt)
         kc=isacomment(tk)
         if kc<>0 then // Current line has or is a comment
             // If function prototype immediately followed by a comment on same line
-            if part(stripblanks(tk),1:9) == "function " | part(stripblanks(tk),1:9) == "function[" then
+            protoline = or(part(stripblanks(tk),1:9) == ["function " "function["]);
+            if protoline then
                 first_ncl=k
             end
-            com=part(tk,kc+1:length(tk))
-            if stripblanks(part(tk,1:kc-1))<>"" &  ~(stripblanks(part(tk,1:9))=="function " | stripblanks(part(tk,1:9))=="function[")  then endofhelp=%t;end
-            if ~endofhelp & part(tk,1:9) ~= "function " then helppart=[helppart;com];end // Get help part placed at the beginning of the file
+            com = part(tk,kc+1:length(tk))
+            endofhelp = stripblanks(part(tk,1:kc-1))<>"" & ~protoline
+            if ~endofhelp & part(tk,1:9) ~= "function " then
+                helppart = [helppart;com];
+            end // Get help part placed at the beginning of the file
             if length(com)==0 then com=" ",end
-            com=strsubst(com,quote,quote+quote)
-            com=strsubst(com,dquote,dquote+dquote)
-            if part(com,1:12)=="m2sciassume " | part(com,1:13)=="m2scideclare " then // User has given a clue to help translation
+            com = strsubst(com, quote, quote+quote)
+            com = strsubst(com, dquote, dquote+dquote)
+            if part(com,1:12)=="m2sciassume " | part(com,1:13)=="m2scideclare " then
+                // User has given a clue to help translation
                 if part(com,1:12)=="m2sciassume " then
                     warning(gettext("m2sciassume is obsolete, used m2scideclare instead."));
                 end
-                com=";m2scideclare("+quote+part(com,13:length(com))+quote+")"
+                com = "m2scideclare("+quote+part(com,13:$)+quote+")"
+                if kc>1
+                    com = ";" + com
+                end
             else
-                com=" //"+com
+                if protoline
+                    com = ";//" + com
+                else
+                    com = " //" + com
+                end
             end
             tkbeg=part(tk,1:kc-1)
 
@@ -443,5 +454,4 @@ function [helppart,txt,batch]=m2sci_syntax(txt)
         end
         // END of BUG 2341 fix: function prototype with no comma between output parameters names
     end
-
 endfunction

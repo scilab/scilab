@@ -57,6 +57,7 @@
             <literal>rank(X,tol)</literal> est le nombre de valeurs singulières de
             <literal>X</literal> supérieures à <literal>tol</literal>.
         </para>
+        <para><literal>rank([])</literal> vaut 0.</para>
         <para>
             <note>
                 Notez que la valeur par défaut de <literal>tol</literal> est

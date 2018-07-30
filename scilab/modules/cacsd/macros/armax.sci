@@ -97,7 +97,7 @@ function [archap,la,lb,sig,resid]=armax(r,s,y,u,b0f,prf)
     if b0f==0 then
         b=coef(:,r*ny+1:(s+1)*nu+r*ny);
     else
-        b=[0*ones(ny,nu),coef(:,r*ny+1:r*ny+s*nu)];
+        b=[ zeros(ny,nu),coef(:,r*ny+1:r*ny+s*nu)];
     end
     // For the SISO systems, the estimated standard deviation is added.
     // It is to be done for the MIMO

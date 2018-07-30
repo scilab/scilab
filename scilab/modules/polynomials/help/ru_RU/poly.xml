@@ -1,43 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="poly">
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) - INRIA
+* Copyright (C) 2018 - Samuel GOUGEON
+*
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ru" xml:id="poly">
     <refnamediv>
         <refname>poly</refname>
-        <refpurpose>определение полинома</refpurpose>
+        <refpurpose>
+          Определение полинома через указанные корни или коэффициенты или
+          определение характеристического полинома квадратной матрицы.
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>p = poly(a, vname, ["flag"])</synopsis>
+        <synopsis>
+            p = poly(vec, vname)
+            p = poly(vec, vname, "roots"|"coeff")
+            Pc = poly(matNN, vname)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>a</term>
-                <listitem>
-                    <para>матрица или вещественное число</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>vname</term>
                 <listitem>
                     <para>
-                        Строка, имя символьной переменной. Если строка больше 4 символов, то из них
-                        учитываются только 4 первых.
+                        строка: имя символьной переменной полинома. Разрешённые символы те же самые, что и для имён переменных (<link linkend="names">правила наименования</link>).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"flag"</term>
+                <term>vec</term>
+                <listitem>
+                    <para>скаляр, вектор или неквадратная матрица вещественных или комплексных чисел.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>флаг "roots" (по умолчанию) | "coeff" (либо "r" | "c")</term>
                 <listitem>
                     <para>
-                        символьная строка ( <literal>"roots"</literal>,
-                        <literal>"coeff"</literal>), значение по
-                        умолчанию <literal>"roots"</literal>.
+                        Указывает какие числа представлены в <literal>vec</literal>.
+                        <literal>"roots"</literal> является значением по умолчанию.
                     </para>
                     <para>
-                        Также могут быть использованы сокращения:
-                        <literal>"r"</literal> для <literal>"roots"</literal>
-                        и <literal>"c"</literal>  для <literal>"coeff"</literal>.
+                        Могут быть использованы сокращения: <literal>"r"</literal> для <literal>"roots"</literal>,
+                        и <literal>"c"</literal> для <literal>"coeff"</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>
+                        Полином с указанными корнями или коэффициентами и имя символьной переменной.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>matNN</term>
+                <listitem>
+                    <para>Квадратная матрица вещественных или комплексных чисел.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Pc</term>
+                <listitem>
+                    <para>
+                        Характеристический полином указанной квадратной матрицы
+                        = <literal>det(x*eye() - matNN)</literal> с символьной переменной
+                        <literal>x = poly(0,vname)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -48,63 +94,159 @@
         <variablelist>
             <varlistentry>
                 <term>
-                    Если <literal>a</literal> - матрица, то
-                </term>
-                <listitem>
-                    <para>
-                        <varname>p</varname> является характеристическим полиномом, то есть
-                        <code>determinant(x*eye()-a)</code>, где <literal>x</literal> является
-                        символьной переменной.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
-                    Если <literal>v</literal> - вектор, то
+                    Когда указан вектор или неквадратная матрица <literal>vec</literal>
                 </term>
                 <listitem>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <code>poly(v,"x",["roots"])</code> является полиномом с корнями, хранящимися в элементах <varname>v</varname> и
-                                <literal>"x"</literal> в качестве формальной переменной. (В этом случае
-                                <function>roots</function> и <function>poly</function> являются обратными функциями).
+                                <literal>p = poly(vec, "x", "roots")</literal> или
+                                <literal>p = poly(vec, "x")</literal> является полиномом,
+                                чьи корни являются компонентами <varname>vec</varname>, а
+                                <literal>"x"</literal> - это имя его переменной.
                                 <note>
-                                    Заметьте, что бесконечные корни дают нулевые коэффициенты наивысшей степени.
+                                    <itemizedlist>
+                                        <listitem>
+                                            <literal>degree(p)==length(vec)</literal>
+                                        </listitem>
+                                        <listitem>
+                                            <literal>poly()</literal> и
+                                            <literal>roots()</literal> являются обратными функциями друг другу.
+                                        </listitem>
+                                        <listitem>
+                                            Бесконечные корни дают нулевые коэффициенты наивысшей степени.
+                                            В этом случае фактическая степень <varname>p</varname>
+                                            меньше, чем <literal>length(vec)</literal>.
+                                            Например,
+                                            <literal>poly([-%inf -1 2 %inf ], "x")</literal>
+                                            даёт <literal>(x-2)(x+1)</literal>, чья степень 2.
+                                        </listitem>
+                                    </itemizedlist>
+                                </note>
+                            </para>
+                            <para>
+                                Простое выражение <literal>x=poly(0,"x")</literal> определяет
+                                элементарное выражение <literal>p(x)=x</literal>, которое может
+                                быть использовано с обычными операторами +,
+                                -, *, / и простые функции типа <literal>sum()</literal>.
+                                <note>
+                                    Scilab предоставляет 3 предопределённых элементарных полинома
+                                    <literal>%s</literal>, <literal>%z</literal> и <literal>$</literal>.
+                                    Последний полином главным образом используется в качестве символьного
+                                    значения последнего индекса (в интервале).
                                 </note>
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <code>poly(v,"x","coeff")</code> создаёт полином с символом
-                                <literal>"x"</literal> и с коэффициентами, хранящимися в элементах
-                                <varname>v</varname> (<code>v(1)</code> - постоянный член полинома). Здесь
-                                <function>poly</function> и <function>coeff</function> являются обратными функциями.
+                                <literal>poly(vec, "x", "coeff")</literal> формирует полином с символом
+                                <literal>"x"</literal>, чьи коэффициенты в порядке увеличения степени являются
+                                компонентами <varname>vec</varname> (<literal>vec(1)</literal> - это
+                                постоянный член полинома). Нулевые коэффициенты высокого порядка
+                                (добавленные к концу <literal>vec</literal>) игнорируются.
                             </para>
+                            <note>
+                                В свою очередь, <literal>coeff(p)</literal> возвращает коэффициенты
+                                указанного полинома.
+                            </note>
                         </listitem>
                     </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    Когда указана квадратная матрица <literal>matNN</literal>
+                </term>
+                <listitem>
+                    <para>
+                        <literal>poly(matNN, vname)</literal> возвращает её характеристический полином
+                        символьной переменной <literal>vname</literal>, т.е. <varname>p</varname> установлен
+                        в <literal>det(x*eye() - matNN)</literal> с <literal>x = poly(0,vname)</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>
-            <code>s=poly(0,"s")</code> является семенем для определения полиномов с символом
-            <literal>"s"</literal>.
-        </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
+        <para>Формирование полинома указанных коэффициентов:</para>
         <programlisting role="example"><![CDATA[
-s=poly(0,"s");
-p=1+s+2*s^2
-A=rand(2,2);
-poly(A,"x")
-//рациональные дроби
-h=(1+2*%s)/poly(1:4,'s','c')
+// Прямое формирование:
+x = poly(0,"x");
+p = 1 - x + 2*x^3
+
+// С poly():
+p2 = poly([1 -1 0 2], "x", "coeff")
+
+// С нулевыми коэффициентами высокого порядка
+p3 = poly([2 0 -3 zeros(1,8)], "y", "coeff")
  ]]></programlisting>
+    <screen><![CDATA[
+--> p = 1 - x + 2*x^3
+ p  =
+           3
+   1 -x +2x
+
+--> p2 = poly([1 -1 0 2], "x", "coeff")
+ p2  =
+           3
+   1 -x +2x
+
+--> p3 = poly([2 0 -3 zeros(1,8)], "y", "coeff")
+ p3  =
+        2
+   2 -3y
+]]></screen>
+        <para>Формирование полинома указанных корней:</para>
+        <programlisting role="example"><![CDATA[
+// Прямое формирование:
+x = poly(0,"x");
+p = (1-x)^2 * (2+x)
+
+// С poly():
+p2 = poly([1 1 -2], "x")
+
+// С бесконечными корнями
+p3 = poly([%inf -1 2 %inf -%inf], "x")
+ ]]></programlisting>
+    <screen><![CDATA[
+--> p = (1-x)^2 * (2+x)
+ p  =
+           3
+   2 -3x +x
+
+--> p2 = poly([1 1 -2], "x")
+ p2  =
+           3
+   2 -3x +x
+
+--> p3 = poly([%inf -1 2 %inf -%inf], "x")
+ p3  =
+          2
+  -2 -x +x
+]]></screen>
+        <para>Характеристический полином квадратной матрицы:</para>
+        <programlisting role="example"><![CDATA[
+A = [1 2 ; 3 -4]
+poly(A, "x")
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = [1 2 ; 3 -4]
+ A  =
+   1.   2.
+   3.  -4.
+--> poly(A, "x")
+ ans  =
+            2
+  -10 +3x +x
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="inv_coeff">inv_coeff</link>
+            </member>
             <member>
                 <link linkend="coeff">coeff</link>
             </member>
@@ -118,14 +260,41 @@ h=(1+2*%s)/poly(1:4,'s','c')
                 <link linkend="horner">horner</link>
             </member>
             <member>
-                <link linkend="derivat">derivat</link>
+                <link linkend="percents">%s</link>
             </member>
             <member>
-                <link linkend="matrices">матрицы</link>
+                <link linkend="percentz">%z</link>
             </member>
             <member>
-                <link linkend="rational">рациональное число</link>
+                <link linkend="rational">rational</link>
+            </member>
+            <member>
+                <link linkend="rlist">rlist</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Для третьего аргумента разрешены только значения "roots", "coeff", "c" и "r".
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    Имя символьной переменной больше не ограничено четырьмя символами.
+                    Оно может включать в себя некоторые расширенные символы UTF-8.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revremark>
+                    С методом "coeff", нулевые коэффициенты высокого порядка теперь игнорируются.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

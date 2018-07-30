@@ -186,7 +186,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
     [tevts,evtspt,pointi]=init_agenda(initexe,clkptr)
     if show_trace then mprintf("c_pass61:\t%f\n", timer()),end
 
-    //mod=0*ones(modptr($)-1,1)
+    //mod= zeros(modptr($)-1,1)
 
     outtb=list();
     outtb=buildouttb(lnksz,lnktyp);

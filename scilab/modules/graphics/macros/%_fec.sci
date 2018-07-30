@@ -28,7 +28,7 @@ function [] = %_fec()
     x=cos(n*2*%pi/N);
     y=sin(n*2*%pi/N);
     noeuds=N;
-    noeul=[(1:(N))',x',y',0*ones(N,1)];
+    noeul=[(1:(N))',x',y', zeros(N,1)];
     noeul=[noeul;(N+1),0,0,0];
     trianl=[];
     for i=1:(N-1),trianl=[trianl;i,i,i+1,N+1,0];end

@@ -149,7 +149,6 @@
     </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\windows_tools.iss" />
-    <None Include="..\..\sci_gateway\windows_tools_gateway.xml" />
     <None Include="..\..\locales\windows_tools.pot">
       <Filter>localization</Filter>
     </None>

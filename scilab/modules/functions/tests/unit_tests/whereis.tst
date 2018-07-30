@@ -16,8 +16,8 @@ assert_checkequal(whereis("aaa"), []);
 //macros
 assert_checkequal(whereis("sci2exp"), "stringlib");
 assert_checkequal(whereis(sci2exp), "stringlib");
-assert_checkequal(whereis("with_tk"), "corelib");
-assert_checkequal(whereis(with_tk), "corelib");
+assert_checkequal(whereis("getshell"), "corelib");
+assert_checkequal(whereis(getshell), "corelib");
 
 a = corelib;
 assert_checkequal(whereis("with_tk"), ["a" ; "corelib"]);

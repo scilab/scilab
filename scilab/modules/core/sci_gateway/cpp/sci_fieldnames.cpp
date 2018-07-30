@@ -79,7 +79,7 @@ types::Function::ReturnValue sci_fieldnames(types::typed_list &in, int _iRetCoun
         types::List *pInList = in[0]->getAs<types::List>();
         pIT = pInList->get(0);
 
-        if (pIT == nullptr || pIT->isString() == false)
+        if (pIT == nullptr || pIT->isString() == false || pIT->getAs<types::String>()->getSize() < 2)
         {
             // FIXME : iso-functionnal to Scilab < 6
             // Works on other types except userType, {m,t}list and struct

@@ -343,7 +343,6 @@
     <None Include="core_import.def" />
     <None Include="..\jni\DataLoader.i" />
     <None Include="..\..\graphic_objects.iss" />
-    <None Include="..\..\sci_gateway\graphic_objects_gateway.xml" />
     <None Include="..\..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>

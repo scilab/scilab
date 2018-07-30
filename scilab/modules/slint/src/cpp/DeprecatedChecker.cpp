@@ -100,12 +100,14 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     // Scilab 6.0.x => 6.1.0
     map.emplace(L"_d", L"_");
     map.emplace(L"dgettext", L"gettext");
+    map.emplace(L"datatipToggle", L"datatipManagerMode");
     map.emplace(L"denom", L".den");
     map.emplace(L"lstsize", L"size");
     map.emplace(L"nanmin", L"min");
     map.emplace(L"nanmax", L"max");
     map.emplace(L"numer", L".num");
     map.emplace(L"square", L"replot");
+    map.emplace(L"with_tk", L"with_module('tclsci')");
     map.emplace(L"xgetech", L"gca");
     map.emplace(L"xinfo", L"gcf().info_message");
 
@@ -142,6 +144,8 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"havewindow", L"getscilabmode");
     map.emplace(L"xpause", L"sleep");
     map.emplace(L"curblockc", L"curblock");
+    map.emplace(L"extract_help_examples", L"");
+    map.emplace(L"mtlb_mode", L"oldEmptyBehaviour");
 
     map.emplace(L"addf", L"");
     map.emplace(L"subf", L"");

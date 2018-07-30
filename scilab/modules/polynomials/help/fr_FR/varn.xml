@@ -1,38 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="varn">
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) - INRIA
+* Copyright (C) 2018 - Samuel GOUGEON
+*
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="fr" xml:id="varn">
     <refnamediv>
         <refname>varn</refname>
         <refpurpose>variable symbolique d'un polynôme ou d'une fraction rationnelle</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[symb]=varn(p)
-            [pm]=varn(p,varname)
+        <synopsis>
+            symb = varn(p)
+            pm = varn(p, varname)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>p  </term>
                 <listitem>
-                    <para>matrice de polynômes ou de fractions rationelles
+                    <para>
+                        matrice de polynômes ou de fractions rationelles. En Scilab, seuls des
+                        polynômes et fractions rationnelles à une seule variable peuvent être
+                        définis. Dans une matrice, tous les polynômes ou fractions rationnelles ont
+                        toujours la même variable symbolique.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>symb  </term>
+                <term>symb, varname  </term>
                 <listitem>
                     <para>
-                        chaîne de caractères: nom de l'indéterminée des éléments de <literal>p</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>varname  </term>
-                <listitem>
-                    <para>
-                        chaîne de caractères: nouveau nom à attribuer à la variable des polynômes ou fractions rationnelles de <literal>p</literal>
+                        Mot : nom actuel ou nouveau nom de la variable symbolique. Les caractères
+                        autorisés sont les mêmes que pour les noms de variables
+                        (voir les règles de <link linkend="names">nommage</link>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -40,7 +57,7 @@
                 <term>pm  </term>
                 <listitem>
                     <para>
-                        matrice <literal>p</literal> actualisée avec le nouveau nom de variable <literal>varname</literal>
+                        matrice <literal>p</literal> actualisée avec le nouveau nom de variable <literal>varname</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -49,24 +66,79 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>symb=varn(p)</literal> renvoie dans <literal>symb</literal> l'indéterminée du polynôme <literal>p</literal>
-            (par exemple <literal>varn(poly(0,'x'))</literal> est égal à <literal>'x'</literal>).
+            <literal>symb=varn(p)</literal> renvoie dans <literal>symb</literal> le nom de la
+            variable du polynôme <literal>p</literal>.
         </para>
         <para>
-            <literal>varn(p,'s')</literal> renvoie une matrice polynomiale de même taille que <literal>p</literal> mais avec <literal>'s'</literal> comme indéterminée.
+            <literal>varn(p,'s')</literal> renvoie une matrice polynomiale égale à
+            <literal>p</literal> mais avec <literal>'s'</literal> comme indéterminée.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
+        <para>Avec une matrice de polynômes :</para>
         <programlisting role="example"><![CDATA[
-s = poly(0,'s'); p = [s^2+1,s];
-varn(p)
-varn(p,'x')
-
-f = %z / (%z-1); f = [f f^2]
-varn(f)
-varn(f,"x")
+s = poly(0,'s'); p = [s , 1-s^2]
+v = varn(p)
+typeof(v)
+px = varn(p,'x')
+px == p
  ]]></programlisting>
+    <screen><![CDATA[
+--> s = poly(0,'s'); p = [s , 1-s^2]
+ p  =
+           2
+   s   1 -s
+
+--> v = varn(p)
+ v  =
+ s
+
+--> typeof(v)
+ ans  =
+ string
+
+--> px = varn(p,'x')
+ px  =
+           2
+   x   1 -x
+
+--> px == p
+ ans  =
+  T T
+]]></screen>
+        <para>Avec des fractions rationnelles :</para>
+        <programlisting role="example"><![CDATA[
+f = %z/(%z-1); f = [f f^2]
+varn(f)
+fx = varn(f, "x")
+fx == f
+ ]]></programlisting>
+    <screen><![CDATA[
+--> f = %z/(%z-1); f = [f f^2]
+ f  =
+                 2
+     z          z
+   -------  -----------
+                      2
+   -1 + z   1 - 2z + z
+
+--> varn(f)
+ ans  =
+ z
+
+--> fx = varn(f, "x")
+ fx  =
+                 2
+     x          x
+   -------  -----------
+                      2
+   -1 + x   1 - 2x + x
+
+--> fx == f
+ ans  =
+  T T
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
@@ -78,7 +150,7 @@ varn(f,"x")
                 <link linkend="rlist">rlist</link>
             </member>
             <member>
-                <link linkend="horner">horner</link>
+                <link linkend="names">nommage</link>
             </member>
         </simplelist>
     </refsection>
@@ -90,6 +162,15 @@ varn(f,"x")
                 <revdescription>
                     <para>Extension aux fractions rationnelles</para>
                 </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        Le nom de la variable symbolique n'est plus limité à 4 caractères.
+                        Il peut désormais inclure des caractères UTF-8 étendus.
+                    </para>
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

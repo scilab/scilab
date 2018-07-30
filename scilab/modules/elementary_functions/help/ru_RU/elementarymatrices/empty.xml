@@ -21,15 +21,6 @@
             <literal> [ [], A] = [A, []] = A </literal>
         </para>
         <para>
-            <literal> inv([]) = [] </literal>
-        </para>
-        <para>
-            <literal> det([]) = cond([]) = rcond([]) = 1</literal>
-        </para>
-        <para>
-            <literal> rank([]) = 0 </literal>
-        </para>
-        <para>
             Матричные функции возвращают <literal>[]</literal> или сообщение об
             ошибке, если нет однозначного ответа. Пустые линейные системы (списки
             <literal>syslin</literal>) могут иметь несколько строк или столбцов.
@@ -53,23 +44,48 @@ size(wr), w1=ss2tf(wr), size(w1)
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="matrices">матрицы</link>
+                <link linkend="null">null</link>
             </member>
             <member>
-                <link linkend="poly">poly</link>
+                <link linkend="isempty">isempty</link>
             </member>
             <member>
-                <link linkend="string">string</link>
+                <link linkend="emptystr">emptystr</link>
             </member>
             <member>
-                <link linkend="boolean">boolean</link>
+                <link linkend="brackets">brackets</link>
             </member>
             <member>
-                <link linkend="rational">rational</link>
+                <link linkend="symbols">operators</link>
             </member>
             <member>
-                <link linkend="syslin">syslin</link>
+                <link linkend="matrices">matrices</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <itemizedlist>
+                      <listitem>
+                          <literal>A+[]</literal>, <literal>[]+A</literal> and <literal>A-[]</literal>
+                          now return <literal>[]</literal> instead of <literal>A</literal>.
+                          <literal>[]-A</literal> now returns <literal>[]</literal> instead of
+                          <literal>-A</literal>.
+                      </listitem>
+                      <listitem>
+                         <literal> A>[] </literal>, <literal> A>=[] </literal>,
+                         <literal> A&lt;[] </literal>, <literal> A&lt;=[] </literal>,
+                         <literal> []>A </literal>, <literal> []>=A </literal>,
+                         <literal> []&lt;A </literal>, and <literal> []&lt;=A </literal> now return
+                         <literal> [] </literal> instead of an error.
+                      </listitem>
+                    </itemizedlist>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

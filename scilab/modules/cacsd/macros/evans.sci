@@ -173,7 +173,7 @@ function evans(n,d,kmax)
         end
         if md==2,
             if coeff(d,md)<0 then
-                x1=0*ones(2),y1=0*ones(2)
+                x1= zeros(2),y1= zeros(2)
             end,
         end;
         if max(k)>0 then

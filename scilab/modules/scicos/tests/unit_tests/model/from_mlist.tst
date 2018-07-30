@@ -10,6 +10,7 @@
 // <-- CLI SHELL MODE -->
 
 scicos_log("TRACE");
+loadXcosLibs
 
 // Loading a Superblock containing an mlist as subdiagram
 exec("SCI/modules/scicos/palettes/Lookup_Tables.cosf", -1);

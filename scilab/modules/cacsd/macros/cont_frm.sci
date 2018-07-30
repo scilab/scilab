@@ -44,11 +44,11 @@ function sl=cont_frm(num,den)
         den=coeff(den);c=coeff(num,0:nd-1)
         a=[];
         for k=1:nd,a=[a,-den(k)*eye(ne,ne)];end
-        a=[0*ones((nd-1)*ne,ne),eye(ne*(nd-1),ne*(nd-1));a];
-        b=[0*ones((nd-1)*ne,ne);eye(ne,ne)]
+        a=[ zeros((nd-1)*ne,ne),eye(ne*(nd-1),ne*(nd-1));a];
+        b=[ zeros((nd-1)*ne,ne);eye(ne,ne)]
     else
         a=[];b=[];c=[]
     end;
     [n,n]=size(a);
-    sl=syslin([],a,b,c,d,0*ones(n,1))
+    sl=syslin([],a,b,c,d, zeros(n,1))
 endfunction

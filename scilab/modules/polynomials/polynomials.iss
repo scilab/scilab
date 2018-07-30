@@ -26,8 +26,6 @@ Source: bin\{#POLYNOMIALS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB
 ;
 Source: modules\{#POLYNOMIALS}\license.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#POLYNOMIALS}\sci_gateway\{#POLYNOMIALS}_gateway.xml; DestDir: {app}\modules\{#POLYNOMIALS}\sci_gateway; Components: {#COMPN_SCILAB}
-;
 Source: modules\{#POLYNOMIALS}\etc\{#POLYNOMIALS}.quit; DestDir: {app}\modules\{#POLYNOMIALS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#POLYNOMIALS}\etc\{#POLYNOMIALS}.start; DestDir: {app}\modules\{#POLYNOMIALS}\etc; Components: {#COMPN_SCILAB}
 ;

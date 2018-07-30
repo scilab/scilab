@@ -339,6 +339,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
                 iRightDivisionComplexMatrixByComplexMatrix(pC->get(), pC->getImg(), 1, &dblDivR, &dblDivI, 0, pC->get(), pC->getImg(), 1, pC->getSize());
             }
         }
+        (*_pPolyOut)->updateRank();
         return 0;
     }
 
@@ -406,6 +407,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
             delete pResultCoef;
         }
     }
+    (*_pPolyOut)->updateRank();
     return 0;
 }
 

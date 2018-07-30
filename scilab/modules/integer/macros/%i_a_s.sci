@@ -11,10 +11,14 @@
 // along with this program.
 
 
-function r=%i_a_s(a,b)
+function r = %i_a_s(a,b)
     if b==[] then
-        if mtlb_mode() then r=[],else r=a,end
+        if oldEmptyBehaviour("query")=="off" then
+            r = []
+        else
+            r = a
+        end
     else
-        r=a+iconvert(b,inttype(a))
+        r = a + iconvert(b,inttype(a))
     end
 endfunction

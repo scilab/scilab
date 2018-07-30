@@ -9,10 +9,15 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-function r=%i_s_s(a,b)
+
+function r = %i_s_s(a,b)
     if b==[] then
-        if mtlb_mode() then r=[],else r=a,end
+        if oldEmptyBehaviour("query")=="off" then
+            r = []
+        else
+            r = a
+        end
     else
-        r=a-iconvert(b,inttype(a))
+        r = a - iconvert(b, inttype(a))
     end
 endfunction

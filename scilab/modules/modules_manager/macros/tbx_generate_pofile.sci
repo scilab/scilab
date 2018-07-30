@@ -55,7 +55,6 @@ function ret = tbx_generate_pofile(tbx_name, tbx_path)
     // Retrieving the toolbox name
     // ---------------------------
     tbx_name = tbx_get_name_from_path(tbx_path)
-
     //
     old = pwd();
     cd(tbx_path);
@@ -100,7 +99,7 @@ function ret = tbx_generate_pofile(tbx_name, tbx_path)
     end
 
     //parse all files
-    srcFiles = strcat(srcFiles, " ");
+    srcFiles = strcat(""""+srcFiles+"""", " ");
     cmd = XGETTEXT + XGETTEXT_OPTIONS + " -d " + tbx_name + " " + srcFiles + " -p " + TARGETDIR + " -o " + "en_US.po.tmp";
     host(cmd);
     if exists("xmlTmpFile") then
@@ -131,7 +130,9 @@ function ret = tbx_generate_pofile(tbx_name, tbx_path)
 
     // Making location paths relative to the toolbox root
     poFile = strsubst(poFile, "#: "+fullpath(tbx_path), "#: ~");
-    poFile = strsubst(poFile, "#: "+xmlTmpFile, "#: a XML file");
+    if isdef("xmlTmpFile", "l") then
+        poFile = strsubst(poFile, "#: "+xmlTmpFile, "#: a XML file");
+    end
 
     // Building the final file
     mputl(poFile, TARGETDIR + "/en_US.po");

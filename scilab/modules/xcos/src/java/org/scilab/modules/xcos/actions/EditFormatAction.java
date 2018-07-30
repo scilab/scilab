@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2015 - Scilab Enterprises - Clement DAVID
- * Copyright (C) 2017 - ESI Group - Clement DAVID
+ * Copyright (C) 2017-2018 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -43,7 +43,6 @@ import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
-import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -355,6 +354,21 @@ public final class EditFormatAction extends DefaultAction {
         if (cell != identifier) {
             model.setStyle(identifier, identifierStyle.toString());
         }
+
+        // convert to a C / Scilab compatible variable name
+        StringBuilder str = new StringBuilder(oneliner.length());
+        for (char c : oneliner.toCharArray()) {
+            if (('0' <= c && c <= '9') || ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || ( c == '_')) {
+                str.append(c);
+            }
+            if (c == ' ') {
+                str.append('_');
+            }
+        }
+        if (str.length() > 0 && '0' <= str.charAt(0) && str.charAt(0) <= '9') {
+            str.insert(0, '_');
+        }
+        oneliner = str.toString();
 
         graph.cellLabelChanged(cell, oneliner, false);
         graph.fireEvent(new mxEventObject(mxEvent.LABEL_CHANGED, "cell", cell, "value", text, "parent", cell.getParent()));

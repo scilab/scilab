@@ -191,6 +191,7 @@ test_clean
 test_run
 test_run_level
 unit_test_run
+%s_gamma
 %b_grand
 %c_grand
 %grand_perm
@@ -314,6 +315,7 @@ mtlb_image
 mtlb_imp
 mtlb_int16
 mtlb_int32
+mtlb_int64
 mtlb_int8
 mtlb_is
 mtlb_isa
@@ -370,6 +372,7 @@ mtlb_true
 mtlb_type
 mtlb_uint16
 mtlb_uint32
+mtlb_uint64
 mtlb_uint8
 mtlb_upper
 mtlb_var
@@ -615,7 +618,6 @@ systmat
 %ce_e
 %ce_i_s
 %ce_i_st
-%ce_matrix
 %ce_size
 %ce_t
 %champdat_i_h
@@ -932,6 +934,7 @@ systmat
 %r_z_r
 %r_z_s
 %r_zeros
+%rp_k_generic
 %s_5
 %s_a_ip
 %s_a_lss
@@ -1111,7 +1114,6 @@ generic_i_ce
 generic_i_h
 generic_i_hm
 generic_i_s
-generic_i_st
 st_i_generic
 %TSIMPLEX_p
 %TSIMPLEX_string
@@ -1819,6 +1821,8 @@ flipdim
 hex2dec
 ind2sub
 intersect
+isDocked
+iscolor
 iscolumn
 isempty
 isinf

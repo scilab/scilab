@@ -142,10 +142,6 @@ libscipreferences_cli_la_LIBADD = libscipreferences-algo.la
 libscipreferences_la_LIBADD = libscipreferences-algo.la $(X_LIBS) $(X_EXTRA_LIBS) $(XML_LIBS)
 
 
-#### preferences : gateway declaration ####
-libscipreferences_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscipreferences_la_sci_gateway_DATA = sci_gateway/preferences_gateway.xml
-
 if GUI
     USEANT=1
 endif

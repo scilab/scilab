@@ -203,44 +203,52 @@ function plot(varargin)
 
         if (provided_data == 2) then
 
-            if (type(ListArg(xyIndexLineSpec(i,2))) == 13 | type(ListArg(xyIndexLineSpec(i,2))) == 130)
-                // A function (macro or primitive) is given. We need to build the vector or matrix.
+            // A function (macro or primitive) is given:
+            if (type(ListArg(xyIndexLineSpec(i,2))) == 13 | ..
+                type(ListArg(xyIndexLineSpec(i,2))) == 130)
+                //   We need to build the vector or matrix.
                 sizefirstarg = size(ListArg(xyIndexLineSpec(i,1)));
                 buildFunc = ListArg(xyIndexLineSpec(i,2));
                 firstarg = ListArg(xyIndexLineSpec(i,1));
-                tmp = [];
-
-                for ii=1:sizefirstarg(1,2)
-                    for jj=1:sizefirstarg(1,1)
-
-                        // function evaluation may fail
-                        // try/cacth is buggy for now
-                        // so use execstr until the bug is fixed
-                        err = execstr("tmp(jj,ii) = buildFunc(firstarg(jj,ii))","errcatch","n");
-
-                        if (err <> 0) then
-                            // reset data
-                            ResetFigureDDM(current_figure, cur_draw_mode);
-
-                            // get error
-                            [err_message, err_number, err_line, err_func] = lasterror(%t);
-
-                            clear buildFunc;
-                            // print it
-                            if (err_func <> "") then
-                                // ascii(10) = \n
-                                error(msprintf(gettext("%s: Error : unable to evaluate input function ''%s''.") + ascii(10) + gettext("Error %d at line %d of the function: ''%s''"), "plot", err_func,err_number, err_line, err_message));
-                            else
-                                error(msprintf(gettext("%s: Error : unable to evaluate input function.") + ascii(10) + gettext("Error %d at line %d of the function: ''%s''"), "plot", err_number, err_line, err_message));
-                            end
-                            // exit function
-                            return;
-                        end
-
-                    end
+                // We test if the function is vectorized:
+                isvectorized = %t;
+                try
+                    s1 = min(2,sizefirstarg(1,1))
+                    s2 = min(2,sizefirstarg(1,2))
+                    tmp = buildFunc(firstarg(1:s1,1:s2))
+                    isvectorized = and(size(tmp)==[s1 s2]);
+                catch
+                    isvectorized = %f;
                 end
 
+                // We evaluate ordinates accordingly:
+                try
+                    if isvectorized
+                        tmp = buildFunc(firstarg);
+                    else
+                        tmp = [];
+                        for ii = 1:sizefirstarg(1,2)
+                            for jj = 1:sizefirstarg(1,1)
+                                tmp(jj,ii) = buildFunc(firstarg(jj,ii));
+                            end
+                        end
+                    end
+                catch // An error has occurred:
+                    // reset data
+                    ResetFigureDDM(current_figure, cur_draw_mode);
 
+                    // get error info
+                    [err_message, err_number, err_line, err_func] = lasterror(%t);
+
+                    // yield it
+                    if err_func~="", err_func = """"+err_func+"""", end
+                    msg1 = gettext("%s: Error : unable to evaluate input function %s.")
+                    msg2 = gettext("Error %d at line %d of the function: ''%s''")
+                    error(msprintf(msg1 + ascii(10) + msg2, "plot", ..
+                        err_func, err_number, err_line, err_message));
+                end
+
+                // All right: go on plotting:
                 ListArg(xyIndexLineSpec(i,2)) = tmp;
                 // if there is another iteration, we will have error message redefining function.
                 // we need to clear here and not before, because user must see the warning if needed.

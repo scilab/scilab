@@ -139,14 +139,11 @@
                     <term>a builtin written and compiled in an external language (C, C++..):</term>
                     <para>
                         <literal>whereis</literal> returns the name of the module the function
-                        belongs to. More precisely, the name of the "gateway" is returned.
-                        It matches the module's name for all cases except for
-                        <literal>action_binding_gw, functions_gw, matio_gw, signal_processing_gw,
-                        statistics_gw</literal>, for which <literal>"_gw"</literal>
-                        is appended to the module name.
+                        belongs to.
                     </para>
                     <para>
-                        The gateway file is located at
+                        The gateway file where the builtin function is declared to belong to the
+                        module is located at
                         <literal>SCI/modules/moduleName/gateway/moduleName_gateway.xml</literal>,
                         where <literal>moduleName</literal> must be replaced with the actual module name.
                     </para>
@@ -166,7 +163,7 @@
         <programlisting role="example"><![CDATA[
 // Case of an unregistered macro:
 function myTest(), disp("Unregistered function"), endfunction
-whereis("myTest")               // => "script"
+whereis myTest                  // => "script"
 
 // Case of a registered macro:
 r = whereis("ls")               // => "fileiolib"
@@ -181,7 +178,7 @@ whereis ls                      // => ["fileiolib"; "lslib"]
 
 // Case of a builtin function
 whereis sin                     // => "elementary_functions"
-whereis conv2                   // => "signal_processing_gw"
+whereis conv2                   // => "signal_processing"
 
 // Case of an unregistered macro defined/loaded after a registered one:
 clear ls lslib

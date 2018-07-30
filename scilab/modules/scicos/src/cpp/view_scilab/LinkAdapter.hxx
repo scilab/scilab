@@ -17,17 +17,19 @@
 #define LINKADAPTER_HXX_
 
 #include <string>
+#include <vector>
 
 #include "adapters_utilities.hxx"
 #include "BaseAdapter.hxx"
 #include "model/Link.hxx"
+#include "model/Block.hxx"
 
 namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
 
-class LinkAdapter : public BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>
+class LinkAdapter final : public BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>
 {
 public:
     LinkAdapter(const Controller& c, org_scilab_modules_scicos::model::Link* adaptee);
@@ -42,11 +44,15 @@ public:
     std::wstring getTypeStr() const;
     std::wstring getShortTypeStr() const;
 
-    // move (if possible) the partial informatios to the model
+    // move (if possible) the partial informations to the model
     static void relink(Controller& controller, model::Link* adaptee, const std::vector<ScicosID>& children);
+    static void reverse_relink(Controller& controller, model::Block* adaptee, int index, const std::vector<ScicosID>& children);
     // manage partial information after a model clone
-	static void add_partial_links_information(Controller& controller, model::BaseObject* original, model::BaseObject* cloned);
-
+    static void add_partial_links_information(Controller& controller, ScicosID original, ScicosID cloned);
+    // manage partial information before a model delete
+    static void store_partial_links_information(Controller& controller, model::BaseObject* added, int index, const std::vector<ScicosID>& children);
+    // remove all information related to the link
+    static void remove_partial_links_information(ScicosID uid);
 };
 
 } /* namespace view_scilab */

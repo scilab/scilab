@@ -22,6 +22,7 @@
 
 #include "internal.hxx"
 #include "utilities.hxx"
+#include "Controller.hxx"
 #include "model/BaseObject.hxx"
 
 extern "C"
@@ -62,6 +63,7 @@ public:
     model::BaseObject* descriptor(types::InternalType* v);
     model::BaseObject* descriptor(adapters_index_t index, types::InternalType* v);
     types::InternalType* allocate_view(ScicosID id, kind_t kind);
+    types::InternalType* allocate_view(Controller& controller, model::BaseObject* o);
 
 private:
 

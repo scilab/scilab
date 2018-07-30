@@ -197,16 +197,12 @@ BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
     BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adapter),
     doc_content(reference_value(adapter.doc_content))
 {
-    Controller controller;
-    GraphicsAdapter::add_partial_links_information(controller, adapter.getAdaptee(), getAdaptee());
 }
 
 BlockAdapter::~BlockAdapter()
 {
     doc_content->DecreaseRef();
     doc_content->killMe();
-
-    GraphicsAdapter::remove_partial_links_information(getAdaptee());
 }
 
 std::wstring BlockAdapter::getTypeStr() const

@@ -37,10 +37,8 @@ function [P,r]=macglov(Sl)
     R12=sqrtm(R1);
     Ap=A;
     Bp=[-H*R12,B];
-    Cp=[C;0*ones(nb,n);C];
-    Dp=[R12,0*C*B;
-    0*ones(nb,nc),eye(nb,nb);
-    R12,D];
+    Cp=[C; zeros(nb,n);C];
+    Dp=[R12, 0*C*B; zeros(nb,nc), eye(nb,nb); R12, D];
     P=syslin("c",Ap,Bp,Cp,Dp);
     if flag==1 then P=ss2tf(P);end
 endfunction

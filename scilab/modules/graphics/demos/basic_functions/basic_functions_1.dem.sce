@@ -49,7 +49,7 @@ function demo_basic_function1()
     // Demo I.3
     expr=["x=0:40:240;";
     "boxes=[x;90*ones(x);30*ones(x);30*ones(x)];";
-    "arcs=[boxes; 0*ones(x);64*180*ones(x)];";
+    "arcs=[boxes;  zeros(x);64*180*ones(x)];";
     "pats=[0,4,8,12,15,colorMapSize,0];";
     "xarcs(arcs,pats);"];
     messagebox(["[I.3] xarcs(arcs,patterns)";expr],"modal");
@@ -58,7 +58,7 @@ function demo_basic_function1()
     // Demo I.4
     expr=["x=0:40:240;";
     "boxes=[x;135*ones(x);30*ones(x);30*ones(x)];";
-    "arcs=[boxes; 0*ones(x);64*360*ones(x)];";
+    "arcs=[boxes;  zeros(x);64*360*ones(x)];";
     "xarcs(arcs);"];
     messagebox(["[I.4] xarcs(arcs)";expr],"modal");
     execstr(expr);

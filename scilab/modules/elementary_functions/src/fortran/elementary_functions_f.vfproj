@@ -114,7 +114,6 @@
 		<File RelativePath=".\lnblnk.f"/>
 		<File RelativePath=".\magic.f"/>
 		<File RelativePath=".\mtran.f"/>
-		<File RelativePath=".\nearfloat.f"/>
 		<File RelativePath=".\old_pythag.f"/>
 		<File RelativePath=".\orthes.f"/>
 		<File RelativePath=".\ortran.f"/>
@@ -164,6 +163,5 @@
 		<File RelativePath=".\wwpow1.f"/>
 		<File RelativePath=".\wwpowe.f"/>
 		<File RelativePath=".\wwrdiv.f"/></Filter>
-		<File RelativePath="..\..\sci_gateway\elementary_functions_gateway.xml"/>
 		<File RelativePath="..\..\Makefile.am"/></Files>
 	<Globals/></VisualStudioProject>

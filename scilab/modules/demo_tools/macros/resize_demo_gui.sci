@@ -3,6 +3,7 @@
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
 // Copyright (C) 2012 - DIGITEO - Vincent COUVERT
 // Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -17,7 +18,9 @@
 function resize_demo_gui(frame_number)
     axes_w = frame_number * 250; // axes width
     demo_fig = get("scilab_demo_fig");
-    demo_fig.axes_size(1) = axes_w;
+    if ~isDocked(demo_fig)
+        demo_fig.axes_size(1) = axes_w;
+    end
     demo_fig.children($:-1:$-(frame_number-1)).visible = "on";
     //hide other frame
     demo_fig.children($-frame_number:-1:1).visible = "off";

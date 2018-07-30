@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2013 - Samuel GOUGEON
+ * Copyright (C) 2013, 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -14,10 +14,15 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="en">
     <refnamediv>
         <refname>modulo</refname>
-        <refpurpose>remainder modulo m with the left operand sign</refpurpose>
+        <refpurpose>
+            remainder modulo m with the sign of the left operand, or of a polynomial division
+        </refpurpose>
     </refnamediv>
     <refnamediv xml:id="pmodulo">
         <refname>pmodulo</refname>
@@ -35,9 +40,13 @@
             <varlistentry>
                 <term>m, n</term>
                 <listitem>
-                    <para>Scalar, vector, matrix or hypermatrix of encoded integers, reals or polynomials (Hypermatrix is not supported for polynomials).
-                        <varname>m</varname> and <varname>n</varname> must have the same type. If they are of integer type, they may be of distinct
-                        encoding length (for instance int8 and int16). If none of them is scalar, they must have the same sizes.
+                    <para>
+                        Scalar, vector, matrix or hypermatrix of encoded integers, reals, or
+                        polynomials with real coefficients.
+                        <varname>m</varname> and <varname>n</varname> must have the same type.
+                        If they are of integer type, they may be of distinct encoding length
+                        (for instance int8 and int16).
+                        If none of them is scalar, they must have the same sizes.
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,8 +54,17 @@
                 <term>i</term>
                 <listitem>
                     <para>
-                        Scalar, vector, matrix or hypermatrix of same type (and inttype) as <varname>n</varname>.
-                        <varname>i</varname> takes the sizes of the bigger <varname>m</varname> or<varname>n</varname>.
+                        Scalar, vector, matrix or hypermatrix of <varname>n</varname>'s type
+                        (and inttype).
+                        <varname>i</varname> takes the sizes of the bigger <varname>m</varname>
+                        or <varname>n</varname>.
+                    </para>
+                    <para>
+                        <warning>
+                            For polynomials, when all remainders in the array <varname>i</varname>
+                            are constant (degree==0), <varname>i</varname> is of type 1
+                            (numbers) instead of 2 (constant polynomials).
+                        </warning>
                     </para>
                 </listitem>
             </varlistentry>
@@ -55,20 +73,37 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>modulo</function> computes <code>i = n (modulo m)</code>
+            <literal>modulo()</literal> computes <literal>i = n (modulo m)</literal>
             i.e. remainder of <varname>n</varname> divided by <varname>m</varname>.
         </para>
+        <para>For polynomials, <literal>pdiv()</literal> is called.</para>
         <para>
-            <code>i = n - m .* int (n ./ m)</code>. Here the answer may be negative
-            if <varname>n</varname> or <varname>m</varname> are negative.
+            For numbers,
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <literal>modulo()</literal> computes <literal>i = n - m .* int (n ./ m)</literal>.
+                        The result is negative (or null) when <varname>n</varname> is negative, and
+                        is positive otherwise.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <literal>pmodulo()</literal> computes <literal>i = n - |m| .* floor (n ./ |m|)</literal>.
+                        The result is always positive or null.
+                    </para>
+                </listitem>
+            </itemizedlist>
         </para>
         <para>
-            <function>pmodulo</function> computes <code>i = n - |m| .* floor (n ./ |m|)</code>,
-            the answer is positive or zero.
+            <warning>
+                If <varname>m</varname> contains at least one 0 value, <literal>modulo(x,m)</literal>
+                and <literal>pmodulo(x,m)</literal> will perform a division by zero.
+                If <varname>m</varname> is of real type, this exception will be processed according
+                to the <literal>ieee()</literal> mode.
+                For encoded integers, it will always yield an error.
+            </warning>
         </para>
-        <warning>
-            If <varname>m</varname> contains at least one 0 value, <code>modulo(x,m)</code> and <code>pmodulo(x,m)</code> will perform a division by zero. If <varname>m</varname> is of real type, this exception will be processed according to the <literal>ieee()</literal> mode. For encoded integers, it will always yield an error.
-        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -108,8 +143,6 @@ pmodulo(m,n)
 // Polynomials
 modulo( %z^2+1, %z)
 pmodulo(%z^2+1, %z)
-
-
  ]]></programlisting>
     </refsection>
     <refsection role= "see also">
@@ -130,7 +163,10 @@ pmodulo(%z^2+1, %z)
                 <revnumber>5.5.0</revnumber>
                 <revremark>Extension to encoded integers and to hypermatrices of encoded integers or reals.</revremark>
             </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revremark>Extension to hypermatrices of polynomials.</revremark>
+            </revision>
         </revhistory>
     </refsection>
-
 </refentry>

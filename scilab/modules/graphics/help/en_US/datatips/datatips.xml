@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatips">
     <refnamediv>
         <refname>datatips</refname>
-        <refpurpose>Tool for placing and editing tips along the plotted curves.</refpurpose>
+        <refpurpose>Tool for placing and editing tips along the plotted curves</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -24,8 +24,8 @@
             commonly used mode is the interactive one:
         </para>
         <para>
-            The datatips mode can be enabled by <link linkend="datatipToggle">datatipToggle()</link> or using the
-            <literal>Edit/Start datatip manager</literal> or clicking on the
+            The datatips mode can be enabled by <link linkend="datatipManagerMode">datatipManagerMode()</link>
+            or using the <literal>Edit/Start datatip manager</literal> or clicking on the
             toolbar icon
             <inlinemediaobject>
                 <imageobject>
@@ -66,8 +66,8 @@
     datatipSetOrientation(t,"upper left")
 
     function str=myfmt(h)
-		pt = h.data;
-		str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
+        pt = h.data;
+        str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
     endfunction
     datatipSetDisplay(t,"myfmt")
 
@@ -123,7 +123,7 @@
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="datatipToggle">datatipToggle</link>
+                <link linkend="datatipManagerMode">datatipManagerMode</link>
             </member>
             <member>
                 <link linkend="datatipCreate">datatipCreate</link>

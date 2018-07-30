@@ -23,6 +23,7 @@ import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.commons.ScilabCommons;
@@ -173,8 +174,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
             }
         }
 
-        SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabDockablePanel) helpTab.getAsSimpleTab());
-        ScilabGUIUtilities.toFront(window);
+        ScilabGUIUtilities.toFront((SwingScilabDockablePanel) helpTab.getAsSimpleTab(),Messages.gettext("Help Browser"));
 
         return instance;
     }

@@ -8,6 +8,7 @@
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 682 -->
 //
@@ -26,17 +27,18 @@ mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
-SCIFILECONTENTSREF=["";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
-		"";
-		"b = 1;";
-		"if b==0 | b(2)>0 then";
-		"  a = 1;";
-		"else a = 0;";
-		"end;"];
+SCIFILECONTENTSREF=[""
+        "// Display mode"
+        "mode(0);"
+        ""
+        "// Display warning for floating point exception"
+        "ieee(1);"
+        ""
+        "b = 1;"
+        "if b==0 | mtlb_logic(b(2),"">"",0) then"
+        "  a = 1;"
+        "else"
+        "  a = 0;"
+        "end;"];
 
-if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end
+assert_checkequal(SCIFILECONTENTSREF, SCIFILECONTENTS);

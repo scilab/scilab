@@ -349,7 +349,6 @@
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\elementary_functions.iss" />
-    <None Include="..\..\sci_gateway\elementary_functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\elementary_functions.pot">
       <Filter>localization</Filter>

@@ -56,6 +56,9 @@ _("tbx", "%s: something not in Scilab.\n")
             <member>
                 <link linkend="gettext">gettext</link>
             </member>
+            <member>
+                <link linkend="tbx_generate_pofile">tbx_generate_pofile</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection>

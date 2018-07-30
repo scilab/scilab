@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2004-2007 - INRIA - Serge STEER
-    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
-    *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2004-2007 - INRIA - Serge STEER
+ * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -14,22 +15,24 @@
  * along with this program.
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="savematfile">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ja" xml:id="savematfile">
     <refnamediv>
         <refname>savematfile</refname>
         <refpurpose>Matlab MATファイル (バイナリまたは ASCII)を書き込む</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>savematfile('filename')
+        <synopsis>
+            savematfile('filename')
+            savematfile('filename', varnames, ...)
             savematfile('filename', 'var1', 'var2', ...)
+            savematfile filename var1 var2 ...
             savematfile('filename', '-struct', 's')
             savematfile('filename', '-struct', 's', 'f1', 'f2', ...)
-            savematfile(..., '-v4')
-            savematfile(..., '-v6')
-            savematfile(..., '-v7')
-            savematfile(..., '-v7.3')
-            savematfile filename var1 var2 ...
+            savematfile(..., format)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -42,71 +45,69 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>format</term>
+                <term>varnames</term>
                 <listitem>
-                    <para>使用するデータ形式</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>"-mat"</term>
-                            <listitem>
-                                <para>バイナリMATファイル (デフォルト)</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"-ascii"</term>
-                            <listitem>
-                                <para>8ビット ASCII形式</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"-ascii" "-double"</term>
-                            <listitem>
-                                <para>16ビット ASCII形式</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"-ascii" "-tabs"</term>
-                            <listitem>
-                                <para>タブ区切り形式</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"-ascii" "-double" "-tabs"</term>
-                            <listitem>
-                                <para>16桁アスキー形式, タブ区切り形式</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"-v4"</term>
-                            <listitem>
-                                <para>MATLABバージョン4がオープンできる形式</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"-v6"</term>
-                            <listitem>
-                                <para>MATLABバージョン6以降がオープンできる形式</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"-v7"</term>
-                            <listitem>
-                                <para>MATLABバージョン7以降がオープンできる形式 (デフォルト)</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"-v7.3"</term>
-                            <listitem>
-                                <para>MATLABバージョン7.3以降がオープンできる形式</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <para>
+                        変数<literal>["var1" "var2" ..]</literal>のように、保存する変数の名前（テキスト）のベクトル.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>var1, var2</term>
                 <listitem>
                     <para>読み込む変数の名前を有する文字列 (バイナリファイル専用)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>format</term>
+                <listitem>
+                    <para>使用するデータ形式</para>
+                    <para>
+                        <table border="0">
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">"-mat"</emphasis></td>
+                                <td>: バイナリMATファイル (デフォルト)</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">"-ascii"</emphasis></td>
+                                <td>: 8ビット ASCII形式</td>
+                            </tr>
+                            <tr valign="top">
+                                <td style="white-space:nowrap" align="right">
+                                    <emphasis role="bold">"-ascii" "-double"</emphasis>
+                                </td>
+                                <td>: 16ビット ASCII形式</td>
+                            </tr>
+                            <tr valign="top">
+                                <td style="white-space:nowrap" align="right">
+                                    <emphasis role="bold">"-ascii" "-tabs"</emphasis>
+                                </td>
+                                <td>: タブ区切り形式</td>
+                            </tr>
+                            <tr valign="top">
+                                <td style="white-space:nowrap" align="right">
+                                    <emphasis role="bold">"-ascii" "-double" "-tabs"</emphasis>
+                                </td>
+                                <td>: 16桁アスキー形式, タブ区切り形式</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">"-v4"</emphasis></td>
+                                <td>: MATLABバージョン4がオープンできる形式</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">"-v6"</emphasis></td>
+                                <td>: MATLABバージョン6以降がオープンできる形式</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">"-v7"</emphasis></td>
+                                <td>: MATLABバージョン7以降がオープンできる形式 (デフォルト)</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">"-v7.3"</emphasis></td>
+                                <td>: MATLABバージョン7.3以降がオープンできる形式</td>
+                            </tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -133,6 +134,12 @@
             Scilabから Matlab MATファイルに変数を保存します. Scilabのデータ型は
             等価なMatlabのデータ型に変換されます.
         </para>
+        <warning>
+            <itemizedlist>
+                <listitem>ブール変数は保存できません.</listitem>
+                <listitem>テキスト：同じ長さのテキストの列のみを保存できます.</listitem>
+            </itemizedlist>
+        </warning>
     </refsection>
     <refsection>
         <title>例</title>
@@ -144,6 +151,7 @@ clear;
 loadmatfile("test_matfile.mat");
 disp(A)
 disp(B)
+
 // Matlab 7.3ファイル
 A = rand(10, 10);
 B = sprand(100, 100, 0.1);
@@ -158,16 +166,19 @@ disp(B)
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="load">load</link>
+                <link linkend="loadmatfile">loadmatfile</link>
+            </member>
+            <member>
+                <link linkend="matfile2sci">matfile2sci</link>
+            </member>
+            <member>
+                <link linkend="mfile2sci">mfile2sci</link>
             </member>
             <member>
                 <link linkend="save">save</link>
             </member>
             <member>
-                <link linkend="loadmatfile">loadmatfile</link>
-            </member>
-            <member>
-                <link linkend="mfile2sci">mfile2sci</link>
+                <link linkend="load">load</link>
             </member>
         </simplelist>
     </refsection>

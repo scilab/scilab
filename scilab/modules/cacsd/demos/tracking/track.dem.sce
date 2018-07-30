@@ -19,7 +19,7 @@ A=A-max(real(spec(A)))*eye(A);
 B=rand(nw,nuu);
 C=2*rand(ny,nw);
 D=0*rand(C*B);
-xx0=0*ones(nw,1);
+xx0= zeros(nw,1);
 Model=syslin("c",A,B,C,D,xx0);
 
 // Input to Model (t is a vector), nuu components
@@ -47,9 +47,9 @@ K=-ppol(F,G,-0.3*ones(1,nx));
 // Bigsyst= closed loop system: um --> [yplant;ymodel].
 // full state gain is [K, L - K*T] * (xplant, xmodel) + M * umodel
 BigA=[F+G*K,G*(L-K*T);
-0*ones(nw,nx),A];
+zeros(nw,nx),A];
 BigC=[H+J*K,J*(L-K*T);
-0*ones(ny,nx),C];
+zeros(ny,nx),C];
 BigB=[G*M;
 B];
 BigD=[J*M;

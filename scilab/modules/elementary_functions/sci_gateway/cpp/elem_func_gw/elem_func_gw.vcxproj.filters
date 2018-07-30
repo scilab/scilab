@@ -45,9 +45,6 @@
     <ClCompile Include="..\..\c\sci_isequalbitwise.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\c\sci_nearfloat.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\c\sci_number_properties.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -196,6 +193,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\sci_issquare.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_nearfloat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

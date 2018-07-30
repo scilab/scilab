@@ -18,14 +18,14 @@ function [zt]=BinomialT(n)
         ntirc = ntir;
         y = rand(ntir,nb,"uniform");
         indy = find( y < pb);
-        y = 0*ones(y);
+        y =  zeros(y);
         y(indy) = 1;
         y = sum(y,"c")
         res = [res;y];
         while ( ntirc < m*n )
             y = rand(ntir,nb,"uniform");
             indy = find(y< pb);
-            y = 0*ones(y);
+            y =  zeros(y);
             y(indy) = 1;
             y = sum(y,"c")
             res = [res;y];

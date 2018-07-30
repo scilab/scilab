@@ -36,7 +36,7 @@ function []=wheel_show(xx,t,p)
     nu = prod(size(l));
     xu = r1*cos(l).*.ones(time);
     yu = r1*sin(l).*.ones(time);
-    zu = 0*ones(l).*.ones(time);
+    zu = zeros(l).*.ones(time);
 
     //[2] Adding rays ( they are moving with time in the (u,v,w) space
     //turning around w with angle psi
@@ -44,7 +44,7 @@ function []=wheel_show(xx,t,p)
     l       = ones(4,1).*.xx(3,time) + [0;%pi/2;%pi;3*%pi/2].*.ones(time);
     xr      = r1*cos(l).*.[0;1];
     yr      = r1*sin(l).*.[0;1];
-    zr      = 0*ones(l).*.[0;1];
+    zr      = zeros(l).*.[0;1];
     [nr,pr] = size(xr);
 
     //[3] using wheelg to transform these vectors in the (x,y,z) space

@@ -632,10 +632,6 @@ libsciboolean_la_etc_DATA = \
     etc/boolean.start
 
 
-#### boolean : gateway declaration ####
-libsciboolean_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libsciboolean_la_sci_gateway_DATA = sci_gateway/boolean_gateway.xml
-
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 

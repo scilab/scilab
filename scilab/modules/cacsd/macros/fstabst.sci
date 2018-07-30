@@ -63,7 +63,7 @@ function [J]=fstabst(Stplant,r)
     bj=[h ,(b2-h*d22)*inv(R12)],
     cj=[-f;
     -inv(R22)*(c2-d22*f)],
-    dj=[0*ones(p,r)            eye(p,p)*inv(R12);
+    dj=[ zeros(p,r)            eye(p,p)*inv(R12);
     inv(R22)*eye(r,r)         d22],
     //Normalization to get inner and co-inner factors
     J=syslin("c",aj,bj,cj,dj),

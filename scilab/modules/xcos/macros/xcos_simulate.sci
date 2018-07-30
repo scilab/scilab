@@ -394,17 +394,21 @@ function [%cpr, ok] = xcos_simulate(scs_m, needcompile)
     //and call '[names(1), names(2), ...] = resume(names(1), names(2), ...)' to save the variable into Scilab
     if ~isempty(Names) then
         for i=1:size(Names, "c")
-            execstr("NamesIval  = "+Names(i)+"_val;");
-            execstr("NamesIvalt = "+Names(i)+"_valt;");
-            // If input is a matrix, use function matrix() to reshape the saved values
-            // Check condition using time vector, if we have more values than time stamps, split it
-            if (size(NamesIval, "r") > size(NamesIvalt, "r")) then
-                nRows  = size(NamesIvalt, "r");
-                nCols  = size(NamesIval, "c");
-                nCols2 = size(NamesIval, "r") / nRows;
-                NamesIval = matrix(NamesIval, nCols, nCols2, nRows);
+            if isdef(Names(i)+"_val") then // The block has been activated
+                execstr("NamesIval  = "+Names(i)+"_val;");
+                execstr("NamesIvalt = "+Names(i)+"_valt;");
+                // If input is a matrix, use function matrix() to reshape the saved values
+                // Check condition using time vector, if we have more values than time stamps, split it
+                if (size(NamesIval, "r") > size(NamesIvalt, "r")) then
+                    nRows  = size(NamesIvalt, "r");
+                    nCols  = size(NamesIval, "c");
+                    nCols2 = size(NamesIval, "r") / nRows;
+                    NamesIval = matrix(NamesIval, nCols, nCols2, nRows);
+                end
+                ierr = execstr(Names(i)+" = struct(''values'', NamesIval, ''time'', NamesIvalt)", "errcatch");
+            else
+                ierr = execstr(Names(i)+" = struct(''values'', [], ''time'', [])", "errcatch");
             end
-            ierr = execstr(Names(i)+" = struct(''values'', NamesIval, ''time'', NamesIvalt)", "errcatch");
             if ierr <> 0 then
                 str_err = split_lasterror(lasterror());
                 message(["Simulation problem" ; "Unable to resume To Workspace Variable {"+Names(i)+"}:" ; str_err]);

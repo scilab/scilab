@@ -3,6 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
  * Copyright (C) DIGITEO - 2012 - Allan CORNET
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -105,17 +106,48 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example">atomsSetConfig("Verbose","True");
-            atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
-            atomsInstall(["toolbox_2" "1.0"]);
-            atomsInstall(["toolbox_2" "2.0"]);
+        <programlisting role="example"><![CDATA[
+// Get the list of installed BUT unloaded external modules:
+p = setdiff(atomsGetInstalled(), atomsGetLoaded());
 
-            atomsLoad(["toolbox_2" "1.0"]);
-            t2_version()
-            t2_function1()
+if p~=[] then
+    // There is at least one installed BUT unloaded module
+    // Let's load it
+    atomsLoad(p(1))
+    // Now, you may have a look to its help pages (in a fresh help browser session),
+    // use its functions, use its demos (if any), etc.
 
-            atomsRemove("toolbox_2");
-        </programlisting>
+else
+    // There is no installed external module, or they are all already loaded.
+    // Let's install a new module, and then load it in the session:
+
+    // Get the list of available modules names
+    load(SCI+"/modules/atoms/macros/atoms_internals/lib");
+    P = atomsDESCRIPTIONget();
+    clear atomsinternalslib
+    available = fieldnames(P);
+
+    notInstalled = setdiff(available, atomsGetInstalled()(:,1));
+    module = notInstalled(1)
+    versions = fieldnames(P(module))
+
+    // Install the module: This requires an INTERNET CONNEXION
+    atomsInstall([module, versions(1)])
+
+    // Installing a module does not load it in the session:
+    atomsIsLoaded(module)   // %F
+
+    // Let's load it
+    atomsLoad(module)       //
+    atomsIsLoaded(module)   // %T
+
+    // Now, you may have a look to its help pages (in a fresh help browser session),
+    // use its functions, use its demos (if any), etc.
+
+    // Now, uninstall it (cleaning):
+    atomsRemove(module)
+end
+]]>     </programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

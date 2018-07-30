@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 // Copyright (C) ???? - INRIA - Serge STEER
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -107,7 +108,11 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
     end
 
     // Function name
-    fnam=part(base_name,k($)+1:ke) // File name without extension
+    if k~=[] then
+        fnam = part(base_name,k($)+1:ke) // File name without extension
+    else
+        fnam = base_name
+    end
 
     // logfile initialisation
     if exists("logfile")==0 then
@@ -187,6 +192,7 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
             firstline=part(txt(1),ksc+1:length(txt(1)));
         end
 
+        // Extraction of the macro's name
         func_proto=part(txt(1),kc+9:ksc-1)
         keq=min(strindex(func_proto,"="))
         kpar=min(strindex(func_proto,"("))
@@ -199,15 +205,12 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
 
         func_proto=part(func_proto,1:keq)+strsubst(stripblanks(part(func_proto,keq+1:kpar-1))," ","_")+part(func_proto,kpar:length(func_proto))
 
-        wold = who("get");
-        deff(func_proto,[firstline;txt(2:$)])
-        w = who("get");
-        w(find(w == "deff")) = [];
-        w(find(w == "wold")) = [];
-        for i=1:size(wold, "*")
-            w(find(w == wold(i))) = [];
+        mname = getMacroNameFromPrototype(func_proto)
+        if mname=="" | mname==[]
+            msg = _("%s: ""%s"" does not exist or is not the macro name.\n");
+            error(msprintf(msg,"mfile2sci", mname))
         end
-        mname=w(1);
+        w = mname;
         nametbl=[nametbl;mname]
         if fnam<>mname & ~batch then // warning is not displayed for a batch file
             mss=msprintf(gettext("Warning: file %s defines function %s instead of %s\n         %s.sci, %s.cat and sci_%s.sci will be generated !"),fil,mname,fnam,mname,mname,mname);
@@ -218,7 +221,20 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
         // Compilation
         txt = [part(txt(1),kc:ksc-1);firstline;txt(2:$)]
         mputl(txt, TMPDIR+"/"+mname+".sci");
-        exec(TMPDIR+"/"+mname+".sci", -1);
+        err = exec(TMPDIR+"/"+mname+".sci", "errcatch", -1);
+        if err~=0
+            // Maybe a final {end} closing {function} => try without it
+            txt($) = []   // removing "endfunction"
+            while size(txt,1)>0 & stripblanks(txt($))==""
+                txt($) = []
+            end
+            if size(txt,1)>0 & stripblanks(txt($))=="end" then
+                txt($) = []
+                txt = [txt ; "endfunction"]
+                mputl(txt, TMPDIR+"/"+mname+".sci");
+            end
+            exec(TMPDIR+"/"+mname+".sci", -1);
+        end
         funcprot(fprot);
         mdelete(TMPDIR+"/"+mname+".sci");
 
@@ -367,4 +383,22 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
     mdelete(pathconvert(TMPDIR)+fnam+ ".tree")
     mdelete(pathconvert(TMPDIR)+"logfile.dat")
 
+endfunction
+
+function funcname = getMacroNameFromPrototype(proto)
+    // Private utility function
+    // Extraction of the macro's name
+    tmp = tokens(proto,["(" "=" ")"]);
+    if size(tmp,1)>1
+        [?,?,?,funcname] = regexp(proto, "/(?:.*?=(.*?)\(|(.*?)\(|[^(]+?=\s*([^(]+))/","o");
+        funcname = stripblanks(funcname);
+        funcname(funcname=="") = [];
+    else
+        funcname = proto;
+    end
+    // proto = "[b,hy]=fun2(bar=3)";
+    // proto = "fun3 (bar=3)";
+    // proto = "a = fun4 ()";
+    // proto = "fun5";
+    // proto = "a = fun6"; // from bug_2341 use case
 endfunction

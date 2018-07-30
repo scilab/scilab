@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="ru">
     <refnamediv>
         <refname>modulo</refname>
         <refpurpose>симметричный арифметический остаток от деления по модулю m</refpurpose>
@@ -33,17 +36,34 @@
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>n</term>
+                <term>m, n</term>
                 <listitem>
                     <para>
-                        вещественный или полиномиальный вектор или матрица
+                        Скаляр, вектор, матрица или гиперматрица закодированных целых чисел,
+                        реалов или многочлены с вещественными коэффициентами.
+                        <varname>m</varname> и <varname>n</varname> должны иметь один и тот же тип.
+                        Если они имеют целочисленный тип, они могут иметь разную длину кодирования
+                        (например, int8 и int16).
+                        Если ни один из них не является скалярным, они должны иметь одинаковые размеры.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>m</term>
+                <term>i</term>
                 <listitem>
-                    <para>вещественный вектор или матрица</para>
+                    <para>
+                        Скалярная, векторная, матричная или гиперматрица типа <varname>n</varname>
+                        (и inttype).
+                        <varname>i</varname> принимает размеры более крупного <varname>m</varname>
+                        или <varname>n</varname>.
+                    </para>
+                    <para>
+                        <warning>
+                            Для полиномов, если все остатки от деления в массиве <varname>i</varname>
+                            являются константами (порядок равен 0), то <varname>i</varname> имеет тип 1
+                            (числа) вместо 2 (постоянные полиномы).
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -51,27 +71,39 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <function>modulo</function> вычисляет <code>i= n (modulo m)</code>,
+            <function>modulo</function> вычисляет <literal>i = n (modulo m)</literal>,
             т. е. остаток от деления <varname>n</varname> на <varname>m</varname>
             (<varname>n</varname> и <varname>m</varname> - целые числа).
         </para>
+        <para>Для полиномов используется <literal>pdiv()</literal>.</para>
         <para>
-            <code>i= n - m .* int (n ./ m)</code>. Здесь ответ может быть
-            отрицательным, если <varname>n</varname> или <varname>m</varname>
-            являются отрицательными.
-        </para>
-        <para>
-            <function>pmodulo</function> вычисляет <code>i = n - |m| .* floor (n
-                ./ |m|)
-            </code>
-            , ответ является положительным либо равным нулю.
-        </para>
-        <para>
-            <code>modulo(x,0)</code> возвращает сообщение об ошибке: "Деление на нуль...". При <code>ieee(2)</code>, <code>modulo(x,0)</code> возвращает <constant>%nan</constant>.
-        </para>
-        <para>
-            <code>pmodulo(x,0)</code> возвращает сообщение об ошибке: "Деление на нуль...". При <code>ieee(2)</code>, <code>pmodulo(x,0)</code> возвращает <constant>%nan</constant>.
-        </para>
+            Для чисел,
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <literal>modulo()</literal> вычисляет <literal>i = n - m. * int (n ./ m)</literal>.
+                        Результат отрицательный (или нулевой), когда <varname>n</varname>
+                        отрицательный, и в противном случае.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <literal>pmodulo()</literal> вычисляет
+                        <literal>i = n - | m | . * floor (n ./ | m |)</literal>,
+                        ответ является положительным либо равным причинам.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            <warning>
+                Если <varname>m</varname> содержит хотя бы одно значение 0, <literal>modulo(x, m)</literal>
+                и <literal>pmodulo(x, m)</literal> выполнит деление на ноль.
+                Если <varname>m</varname> имеет реальный тип, это исключение будет обрабатываться
+                в соответствии с к режиму <literal>ieee()</literal>.
+                Для закодированных целых чисел он всегда будет давать ошибку.
+            </warning>
+        </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
@@ -86,6 +118,55 @@ modulo(10, -4)
 pmodulo(-3, 9)
 pmodulo(10, -6)
 pmodulo(-10, -6)
+
+// Кодированные целые числа
+modulo( int8(-13), int16(-7))
+pmodulo(int8(-13), int16(-7))
+modulo( int8(-13), int16([-7 5]))
+pmodulo(int8(-13), int16([-7 5]))
+modulo( int8([-13 8]), int16(-7))
+pmodulo(int8([-13 8]), int16(-7))
+modulo( int8([-13 8]), int16([-7 5]))
+pmodulo(int8([-13 8]), int16([-7 5]))
+
+// гиперматрицам
+m = grand(2,2,2,"uin",-100,100)
+n = grand(2,2,2,"uin",-10 ,10);
+n(n==0) = 1
+modulo(m, 5)
+pmodulo(m,5)
+modulo(51, n)
+pmodulo(51,n)
+modulo(m, n)
+pmodulo(m,n)
+
+// Полиномы
+modulo( %z^2+1, %z)
+pmodulo(%z^2+1, %z)
  ]]></programlisting>
+    </refsection>
+    <refsection role= "see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="unwrap">unwrap</link>
+            </member>
+            <member>
+                <link linkend="ieee">ieee</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Расширение до кодированных целых чесел и гиперматриц кодированных целых чисел или вещественных чисел.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revremark>Расширение до гиперматриц полиномов.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

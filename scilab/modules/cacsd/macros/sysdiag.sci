@@ -29,11 +29,11 @@ function r=sysdiag(varargin)
     //!
     r=varargin(1);
     [m1,n1]=size(r);
-    for k=2:size(varargin)
-        ak=varargin(k)
-        [mk,nk]=size(ak);
-        r=[r,0*ones(m1,nk);0*ones(mk,n1),ak]
-        m1=m1+mk
-        n1=n1+nk
+    for k = 2:size(varargin)
+        ak = varargin(k)
+        [mk,nk] = size(ak);
+        r=[r, zeros(m1,nk); zeros(mk,n1), ak]
+        m1 = m1+mk
+        n1 = n1+nk
     end
 endfunction

@@ -19,7 +19,10 @@
         xml:lang="fr" xml:id="end">
     <refnamediv>
         <refname>end</refname>
-        <refpurpose>mot-clé end  </refpurpose>
+      <refpurpose>
+        Fin d'un bloc <literal>if</literal> ou <literal>select</literal>,
+        ou d'une boucle <literal>for</literal> ou <literal>while</literal>
+      </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -99,8 +102,8 @@ end
                         </listitem>
                         <listitem>
                             <literal>end</literal> peut désormais être utilisé pour conclure un bloc
-                            <literal>function</literal>, à la place <literal>endfunction</literal>
-                            (lequel reste preferable).
+                            <literal>function</literal>, à la place de <literal>endfunction</literal>
+                            (lequel reste préférable).
                         </listitem>
                         <listitem>
                             <literal>end</literal> est désormais protégé. Les affectations telles que

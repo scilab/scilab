@@ -12,7 +12,7 @@ function [z]=PoissonT(n)
         // P{n} = exp(-lambda)lambda^n/n!
         // pmean =lambda
         //----------------------------
-        y=0*ones(m,n)
+        y= zeros(m,n)
         bound= exp(-pmean);
         for i=1:m*n,
             count = 0;

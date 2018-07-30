@@ -28,7 +28,6 @@
     </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\preferences.iss" />
-    <None Include="..\..\sci_gateway\preferences_gateway.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="preferences.rc">

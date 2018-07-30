@@ -41,6 +41,7 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
+import org.scilab.modules.commons.gui.ScilabGUIUtilities;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
@@ -67,9 +68,9 @@ import org.scilab.modules.history_browser.actions.EditInScinotesAction;
 import org.scilab.modules.history_browser.actions.EvaluateAction;
 import org.scilab.modules.history_browser.actions.HelpAction;
 import org.scilab.modules.history_browser.actions.PrefsAction;
+import org.scilab.modules.history_browser.CommandHistoryMessages;
 import org.scilab.modules.history_manager.HistoryManagement;
 import org.scilab.modules.localization.Messages;
-
 /**
  * Main Scilab Command History GUI
  * @author Vincent COUVERT
@@ -423,6 +424,7 @@ public final class CommandHistory extends SwingScilabDockablePanel implements Si
                 }
             }
         }
+        ScilabGUIUtilities.toFront(browserTab,CommandHistoryMessages.TITLE);
         
         browserTab.setVisible(true);
         expandAll();

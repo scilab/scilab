@@ -71,8 +71,4 @@ libsciboolean_la_etc_DATA = \
     etc/boolean.quit \
     etc/boolean.start
 
-#### boolean : gateway declaration ####
-libsciboolean_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libsciboolean_la_sci_gateway_DATA = sci_gateway/boolean_gateway.xml
-
 include $(top_srcdir)/Makefile.incl.am

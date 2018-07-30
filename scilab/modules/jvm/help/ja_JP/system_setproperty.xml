@@ -109,5 +109,23 @@ system_getproperty('myproperty')
 
     </refsection>
 
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="system_getproperty">system_getproperty</link>
+            </member>
+            <member>
+                <link linkend="setenv">setenv</link>
+            </member>
+            <member>
+                <link linkend="getenv">getenv</link>
+            </member>
+            <member>
+                <link linkend="root_properties">root_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+
 </refentry>
 

@@ -70,6 +70,12 @@ clc(5); // Delete the 5 previous lines
             <member>
                 <link linkend="tohome">tohome</link>
             </member>
+            <member>
+                <link linkend="clf">clf</link>
+            </member>
+            <member>
+                <link linkend="consolebox">host cls (consolebox)</link>
+            </member>
         </simplelist>
     </refsection>
 </refentry>

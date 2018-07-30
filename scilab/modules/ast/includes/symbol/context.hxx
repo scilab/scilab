@@ -85,8 +85,8 @@ public:
     int getVarsName(std::list<std::wstring>& lst);
     int getMacrosName(std::list<std::wstring>& lst);
     int getFunctionsName(std::list<std::wstring>& lst);
-    int getVarsNameForWho(std::list<std::wstring>& lst, bool sorted);
-    int getGlobalNameForWho(std::list<std::wstring>& lst, bool sorted);
+    int getVarsInfoForWho(std::list<std::pair<std::wstring,int>>& lst, bool bSorted);
+    int getGlobalInfoForWho(std::list<std::pair<std::wstring,int>>& lst, bool bSorted);
     int getCurrentScope(std::list<std::wstring>& lst, bool sorted);
     int getWhereIs(std::list<std::wstring>& lst, const std::wstring& _str);
     int getLibrariesList(std::list<std::wstring>& lst);

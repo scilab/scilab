@@ -1,15 +1,17 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="with_tk" xml:lang="pt">
     <refnamediv>
         <refname>with_tk</refname>
-        <refpurpose>checa se o Scilab foi construído com TCL/TK</refpurpose>
+        <refpurpose>
+            checa se o Scilab foi construÃ­do com TCL/TK  (<emphasis role="bold">obsolete</emphasis>)
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>r=with_tk()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>r</term>
@@ -20,10 +22,36 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
+        <warning>
+            <literal>with_tk()</literal> will no longer be available in Scilab 6.1.
+            Please use <literal>with_module("tclsci")</literal> instead.
+        </warning>
         <para>
-            Retorna <literal>%t</literal> se o Scilab tiver sido construído com
-            a interface TCL/TK ou <literal>%f</literal> se não.
+            Retorna <literal>%t</literal> se o Scilab tiver sido construÃ­do com
+            a interface TCL/TK ou <literal>%f</literal> se nÃ£o.
         </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+if with_tk() == %t then
+   disp("Tk is available");
+else
+   disp("Tk is not available");
+end
+ ]]></programlisting>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    with_tk() is declared obsolete to be removed from Scilab 6.1.
+                    It may be replaced with <literal>with_module("tclsci")</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -142,6 +142,11 @@
                 </listitem>
             </varlistentry>
         </variablelist>
+
+      <para>Avec [] :</para>
+      <para>
+        <literal>norm([])</literal> et <literal>norm([],p)</literal> valent 0.
+      </para>
     </refsection>
     <refsection>
         <title>Exemples</title>

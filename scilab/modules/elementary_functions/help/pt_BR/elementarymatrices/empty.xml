@@ -1,5 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="empty" xml:lang="pt">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="empty" xml:lang="pt">
     <refnamediv>
         <refname>empty</refname>
         <refpurpose>([]) matriz vazia</refpurpose>
@@ -20,15 +23,6 @@
         </para>
         <para>
             <literal> [ [], A] = [A, []] = A </literal>
-        </para>
-        <para>
-            <literal> inv([]) = [] </literal>
-        </para>
-        <para>
-            <literal> det([]) = cond([]) = rcond([]) = 1</literal>
-        </para>
-        <para>
-            <literal> rank([]) = 0 </literal>
         </para>
         <para>
             Funções de matrizes retornam <literal>[]</literal> ou produzem uma
@@ -55,23 +49,48 @@ size(wr), w1=ss2tf(wr), size(w1)
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
+                <link linkend="null">null</link>
+            </member>
+            <member>
+                <link linkend="isempty">isempty</link>
+            </member>
+            <member>
+                <link linkend="emptystr">emptystr</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets</link>
+            </member>
+            <member>
+                <link linkend="symbols">operators</link>
+            </member>
+            <member>
                 <link linkend="matrices">matrices</link>
             </member>
-            <member>
-                <link linkend="poly">poly</link>
-            </member>
-            <member>
-                <link linkend="string">string</link>
-            </member>
-            <member>
-                <link linkend="boolean">boolean</link>
-            </member>
-            <member>
-                <link linkend="rational">rational</link>
-            </member>
-            <member>
-                <link linkend="syslin">syslin</link>
-            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <itemizedlist>
+                      <listitem>
+                          <literal>A+[]</literal>, <literal>[]+A</literal> and <literal>A-[]</literal>
+                          now return <literal>[]</literal> instead of <literal>A</literal>.
+                          <literal>[]-A</literal> now returns <literal>[]</literal> instead of
+                          <literal>-A</literal>.
+                      </listitem>
+                      <listitem>
+                         <literal> A>[] </literal>, <literal> A>=[] </literal>,
+                         <literal> A&lt;[] </literal>, <literal> A&lt;=[] </literal>,
+                         <literal> []>A </literal>, <literal> []>=A </literal>,
+                         <literal> []&lt;A </literal>, and <literal> []&lt;=A </literal> now return
+                         <literal> [] </literal> instead of an error.
+                      </listitem>
+                    </itemizedlist>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

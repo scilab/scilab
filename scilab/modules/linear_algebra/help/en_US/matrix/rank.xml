@@ -52,9 +52,10 @@
             <literal>rank(X,tol)</literal> is the number of singular values of
             <literal>X</literal> that are larger than <literal>tol</literal>.
         </para>
+        <para><literal>rank([])</literal> returns 0.</para>
         <para>
             <note>
-                Note that the default value of <literal>tol</literal> is proportional to
+                The default value of <literal>tol</literal> is proportional to
                 <literal>norm(X)</literal>. As a consequence
                 <literal>rank([1.d-80,0;0,1.d-80])</literal> is 2 !.
             </note>

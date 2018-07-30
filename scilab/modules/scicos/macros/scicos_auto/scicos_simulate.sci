@@ -307,7 +307,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
         ierr = execstr("[state, t] = scicosim(%cpr.state, %tcur, tf, %cpr.sim," + ..
         "''start'', tolerances)","errcatch")
         if ierr <> 0 then
-            error(_("Initialization problem:"))
+            error([_("Initialization problem:");lasterror()])
         end
         %cpr.state = state
     end
@@ -348,7 +348,7 @@ function [alreadyran, %cpr, Resume_line, TOWS_vals, Names] = do_terminate1(scs_m
 
     // Default return values
     Resume_line = "";
-    TOWS_vals = struct("values",[],"time",[]);
+    TOWS_vals = [];
     Names = [];
 
     if prod(size(%cpr)) < 2 then
@@ -395,28 +395,29 @@ function [alreadyran, %cpr, Resume_line, TOWS_vals, Names] = do_terminate1(scs_m
         //and call '[names(1), names(2), ...] = resume(names(1), names(2), ...)' to save the variable into Scilab
         if ~isempty(Names) then
             for i=1:size(Names, "c")
-                execstr("NamesIval = "+Names(i)+"_val;");
-                execstr("NamesIvalt = "+Names(i)+"_valt;");
-                // If input is a matrix, use function matrix() to reshape the saved values
-                // Check condition using time vector, if we have more values than time stamps, split it
-                if (size(NamesIval, "r") > size(NamesIvalt, "r")) then  // In this case, size(Names(i), 'r') = buff_sizes(i) * nCols2
-                    nRows  = size(NamesIvalt, "r");
-                    nCols  = size(NamesIval, "c");
-                    nCols2 = size(NamesIval, "r") / nRows;
-                    NamesIval = matrix(NamesIval, nCols, nCols2, nRows);
-                end
-                if i == 1 then
-                    // Replace default struct with value vector of first element of 'Names'
-                    TOWS_vals.values = NamesIval;
-                    TOWS_vals.time   = NamesIvalt;
-                    Resume_line_args = Names(1);
-                else
+                if isdef(Names(i)+"_val") then // The block has been activated
+                    execstr("NamesIval = "+Names(i)+"_val;");
+                    execstr("NamesIvalt = "+Names(i)+"_valt;");
+                    // If input is a matrix, use function matrix() to reshape the saved values
+                    // Check condition using time vector, if we have more values than time stamps, split it
+                    if (size(NamesIval, "r") > size(NamesIvalt, "r")) then  // In this case, size(Names(i), 'r') = buff_sizes(i) * nCols2
+                        nRows  = size(NamesIvalt, "r");
+                        nCols  = size(NamesIval, "c");
+                        nCols2 = size(NamesIval, "r") / nRows;
+                        NamesIval = matrix(NamesIval, nCols, nCols2, nRows);
+                    end
                     ierr = execstr("TOWS_vals = [TOWS_vals struct(''values'', NamesIval, ''time'', NamesIvalt)];", "errcatch");
                     if ierr <> 0 then
                         str_err = split_lasterror(lasterror());
                         message(["Simulation problem" ; "Unable to find To Workspace Variable {"+Names(i)+"}:" ; str_err]);
                         break;
                     end
+                else
+                    ierr = execstr("TOWS_vals = [TOWS_vals struct(''values'', [], ''time'', [])];", "errcatch");
+                end
+                if i == 1 then
+                    Resume_line_args = Names(1);
+                else
                     Resume_line_args   = Resume_line_args + ", " + Names(i);  // Concatenate the variable names up to the last one
                 end
             end

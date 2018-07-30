@@ -224,7 +224,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <None Include="polynomials_f_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\polynomials.iss" />
-    <None Include="..\..\sci_gateway\polynomials_gateway.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="polynomials.rc" />

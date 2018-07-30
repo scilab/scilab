@@ -209,22 +209,24 @@ function result = atomsRemove(packages,section,del)
     // Loop on remList to print if a package has to be remove
     // or not
     // =========================================================================
+    LF = ascii(10)
     if ATOMSVERBOSE
         for i=1:size(remove_package_list(:,1),"*")
             if remove_package_list(i,1) == "-" then
                 if del==%T then
-                    atomsDisp(msprintf("\t%s (%s) will be removed from the ''%s'' section and its package fully deleted",remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5)));
+                    atomsDisp(msprintf(_("\t%s (%s) will be removed from the ''%s'' section and its package fully deleted"),remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5))+LF);
                 else
-                    atomsDisp(msprintf("\t%s (%s) will be removed from the ''%s'' section",remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5)));
+                    atomsDisp(msprintf(_("\t%s (%s) will be removed from the ''%s'' section"),remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5))+LF);
                 end
             elseif (remove_package_list(i,1) == "~") & (remove_package_list(i,1) == "B") then
-                atomsDisp(msprintf("\t%s (%s) cannot be removed from the ''%s'' section and will be broken",remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5)));
+                atomsDisp(msprintf(_("\t%s (%s) cannot be removed from the ''%s'' section and will be broken"),remove_package_list(i,3),remove_package_list(i,4),remove_package_list(i,5))+LF);
             end
         end
     end
 
     // Now we have the list of package that have to be uninstalled
     // =========================================================================
+    atomsDisp(LF)
 
     for i=1:size(remove_package_list(:,1),"*")
 
@@ -242,11 +244,11 @@ function result = atomsRemove(packages,section,del)
 
         // Check if the package is loaded or not
         if atomsIsLoaded([this_package_name this_package_version]) then
-            mprintf( "\tthe package %s (%s) is currently loaded, It will be removed at next Scilab start\n" , this_package_name , this_package_version );
+            mprintf(_("\tthe package %s (%s) is currently loaded, It will be removed at next Scilab start\n") , this_package_name , this_package_version );
             continue;
         end
 
-        atomsDisp(msprintf(gettext("Removing %s (%s)(%s).\n\n"), this_package_name , this_package_version , this_package_section));
+        atomsDisp(msprintf(gettext("\tRemoving %s (%s)(%s)... "), this_package_name , this_package_version , this_package_section));
 
         // Online or offline, we only need the information registered in
         load(atomsPath("system",this_package_section)+"installed.bin");
@@ -343,7 +345,7 @@ function result = atomsRemove(packages,section,del)
 
         // Success message if needed
         // =====================================================================
-        atomsDisp(msprintf(" success"));
+        atomsDisp(msprintf(" success")+LF);
     end
 
     // Go to the initial location

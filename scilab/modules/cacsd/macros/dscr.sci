@@ -52,7 +52,7 @@ function [f,r]=dscr(sys,dt,m)
         error(msprintf(_("%s: Wrong value for input argument #%d: Proper system expected.\n"),"dscr",1));
     end
     [n1,m1]=size(b),
-    s=expm([a,b;0*ones(m1,n1+m1)]*dt),
+    s=expm([a,b; zeros(m1,n1+m1)]*dt),
     f=s(1:n1,1:n1);g=s(1:n1,n1+1:n1+m1);
     if rhs==3 then
         s=expm([-a,m;0*a a']*dt),

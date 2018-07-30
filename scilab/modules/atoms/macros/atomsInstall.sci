@@ -251,17 +251,18 @@ function result = atomsInstall(packages,section)
     // Loop on install_package_list to print if a package has to be installed
     // or not
     // =========================================================================
+    LF = ascii(10)
     for i=1:size(install_package_list(:,1),"*")
         if install_package_list(i,1) == "+" then
-            atomsDisp(msprintf("\t%s (%s) will be installed in the ''%s'' section\n",install_package_list(i,3),install_package_list(i,4),section));
+            atomsDisp(msprintf(_("\t%s (%s) will be installed in the ''%s'' section"),install_package_list(i,3),install_package_list(i,4),section)+LF);
         elseif install_package_list(i,1) == "~" then
-            atomsDisp(msprintf("\t%s (%s) is already installed in the ''%s'' section and up-to-date\n",install_package_list(i,3),install_package_list(i,4),section));
+            atomsDisp(msprintf(_("\t%s (%s) is already installed in the ''%s'' section and up-to-date"),install_package_list(i,3),install_package_list(i,4),section)+LF);
         end
     end
 
     // Now really install the packages
     // =========================================================================
-
+    atomsDisp(LF)
     for i=1:size(install_package_list(:,1),"*")
 
         toarchive = %T;
@@ -474,7 +475,7 @@ function result = atomsInstall(packages,section)
 
         // Success message if needed
         // =====================================================================
-        atomsDisp(msprintf(" success"));
+        atomsDisp(msprintf(" success")+LF);
 
     end
 

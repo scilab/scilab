@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007-2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="hypermat" xml:lang="pt">
+    <refnamediv>
+        <refname>hypermat</refname>
+        <refpurpose>inicializa matrizes n-dimensionais</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>M=hypermat(dims [,v])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>dims</term>
+                <listitem>
+                    <para>vetor de dimensões da hipermatriz </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>vetor de entradas da hipermatriz (valor padrão
+                        <literal>zeros(prod(dims),1)</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>Incializa uma hipermatriz cujas dimensões são dadas pelo vetor dims
+            e as entradas são dadas pelo argumento opcional
+            <literal>v</literal>
+        </para>
+        <para>A estrutura de dados de M contém o vetor de dimensões da matriz
+            <literal>M('dims')</literal> e o vetor de entradas
+            <literal>M('entries')</literal> tais que os índices subescritos mais à
+            esquerda variam primeiro:
+            <literal>[M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]</literal>
+        </para>
+        <para>
+            Warning: If you build your own <literal>hypermat</literal>, you must be careful. The M('dims') entry must be a row vector whereas the M('entries') must be a column vector.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+M = hypermat([2 3 2 2],1:24)
+disp(size(M('dims')))
+disp(size(M('entries')))
+
+M_own            = mlist(['hm','dims','entries']);
+M_own('dims')    = [2 3 2 2];
+M_own('entries') = [1:24]';
+disp(size(M_own('dims')))
+disp(size(M_own('entries')))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="hypermatrices">hypermatrices</link>
+            </member>
+            <member>
+                <link linkend="zeros">zeros</link>
+            </member>
+            <member>
+                <link linkend="ones">ones</link>
+            </member>
+            <member>
+                <link linkend="grand">grand</link>
+            </member>
+            <member>
+                <link linkend="matrix">matrix</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

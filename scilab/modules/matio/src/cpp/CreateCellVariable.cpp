@@ -58,13 +58,14 @@ int CreateCellVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
     types::Cell* pCell = new types::Cell(iRank, piDims);
 
     matvar_t** allData = (matvar_t**)(matVariable->data);
-    types::InternalType** ppIT = new types::InternalType*[matVariable->data_size];
+    types::InternalType** ppIT = new types::InternalType*[iSize];
     for (int i = 0; i < iSize; i++)
     {
         ppIT[i] = CreateMatlabTreeVariable(allData[i]);
     }
 
     pCell->set(ppIT);
+    delete[] ppIT;
 
     out[rhs - 1] = pCell;
 

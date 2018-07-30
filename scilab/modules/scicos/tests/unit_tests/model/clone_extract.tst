@@ -11,7 +11,7 @@ loadXcosLibs();
 scicos_log("TRACE");
 
 // Creating a Diagram containing a Link connected to a Block
-scs = scicos_diagram( objs=list(scicos_block(),scicos_link(from=[1,1,0])) );
+scs = scicos_diagram( objs=list(BIGSOM_f("define"),scicos_link(from=[1,1,0])) );
 
 // Extracting and modifying the Link should not modify the original Diagram
 newLink = scs.objs(2);

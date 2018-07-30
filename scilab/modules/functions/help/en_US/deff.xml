@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,10 +14,13 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="deff">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="deff">
     <refnamediv>
         <refname>deff</refname>
-        <refpurpose>on-line definition of function</refpurpose>
+        <refpurpose>in-line definition of a function in Scilab language</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -52,31 +56,81 @@
             written in text strings. The resulting function object has the same properties
             of any other function defined in a text file and loaded with <function>exec</function>.
         </para>
-        <para>
-            Quotes in the instructions (delimiting strings or meaning matrix transposition)
-            have to be doubled to be interpreted correctly (see help <link linkend="quote">quote</link>). This can make
-            writing up a little awkward.
-        </para>
+        <warning>
+            Quotes included in instructions given in strings must be doubled to be protected.
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-deff('[x]=myplus(y,z)','x=y+z')
-deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
+deff('x = myplus(y,z)', 'x = y+z')
+myplus(1,%i)
+
+deff('[y, z] = mymacro(x)', ['y = 3*x+1'; 'z = a*x + x.^2'])
+a = 3;
+[u, v] = mymacro(2)
  ]]></programlisting>
+    <screen><![CDATA[
+--> deff('x = myplus(y,z)', 'x = y+z')
+--> myplus(1,%i)
+ ans  =
+   1. + i
+
+--> deff('[y, z] = mymacro(x)', ['y = 3*x+1'; 'z = a*x + x.^2'])
+--> a = 3;
+--> [u, v] = mymacro(2)
+ v  =
+   10.
+
+ u  =
+   7.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="function">function</link>
+            </member>
+            <member>
                 <link linkend="exec">exec</link>
             </member>
             <member>
-                <link linkend="function">function</link>
+                <link linkend="getd">getd</link>
+            </member>
+            <member>
+                <link linkend="genlib">genlib</link>
             </member>
             <member>
                 <link linkend="quote">quote</link>
             </member>
+            <member>
+                <link linkend="jdeff">jdeff</link>
+            </member>
+            <member>
+                <link linkend="jcompile">jcompile</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                   <itemizedlist>
+                     <listitem>
+                       The input option
+                       <ulink url="https://help.scilab.org/docs/5.5.2/en_US/deff.html">
+                         <varname>opt="c"|"p"|"n"</varname>
+                       </ulink> is no longer available.
+                     </listitem>
+                     <listitem>
+                        The defined <varname>newfunction</varname> is now of type 13 (instead of 11).
+                     </listitem>
+                  </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

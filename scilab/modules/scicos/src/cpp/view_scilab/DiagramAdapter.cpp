@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2017-2018 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -109,7 +110,7 @@ struct objs
                 case BLOCK :
                     ret->append(new BlockAdapter(controller, controller.referenceBaseObject<model::Block>(o)));
                     break;
-                case LINK :
+                case LINK:
                 {
                     ret->append(new LinkAdapter(controller, controller.referenceBaseObject<model::Link>(o)));
                     break;
@@ -217,7 +218,7 @@ struct objs
             {
                 if (u.adaptee != nullptr)
                 {
-                    controller.deleteObject(u.adaptee->id());
+                    controller.deleteBaseObject(u.adaptee);
                 }
             });
         }
@@ -256,6 +257,7 @@ struct objs
 
         // work buffer :
         std::vector<update_t> childrenToUpdate;
+        Controller::cloned_t mapped;
 
         // fill the work buffers accordingly to the arguments
         for (int i = 0; i < argumentList->getSize(); ++i)
@@ -272,22 +274,26 @@ struct objs
                         return false;
                     }
 
+                    // filter out non modified children
+                    if (o->id() == children[i])
+                    {
+                        break;
+                    }
+
                     // clone if the adapter is used somewhere else (eg. not owned by the list)
                     if (pIT->getRef() > 1 || o->refCount() > 0) // over-clone some elements but PASS the tests
                         //                     if (pIT->getRef() > 1) // TODO: investigate why this expression is not enough
                     {
-                        types::InternalType* clonedAdapter = pIT->clone();
-                        model::BaseObject* cloned = Adapters::instance().descriptor(clonedAdapter);
+                        model::BaseObject* cloned = controller.cloneBaseObject(mapped, o, true, true);
+                        types::InternalType* clonedAdapter = Adapters::instance().allocate_view(controller, cloned);
 
-                        LinkAdapter::add_partial_links_information(controller, o, cloned);
-                        GraphicsAdapter::add_partial_links_information(controller, o, cloned);
                         childrenToUpdate.emplace_back(i, cloned, clonedAdapter);
+                        break;
                     }
-                    else
-                    {
-                        pIT->IncreaseRef();
-                        childrenToUpdate.emplace_back(i, o, pIT);
-                    }
+
+                    // o have been edited in place, refresh partial information
+                    pIT->IncreaseRef();
+                    childrenToUpdate.emplace_back(i, o, pIT);
                     break;
                 }
                 case types::InternalType::ScilabMList:
@@ -331,7 +337,14 @@ struct objs
             // reference / derefence the content
             if (update.adapter == nullptr)
             {
-                controller.deleteObject(children[update.index]);
+                ScicosID c = children[update.index];
+                if (c == ScicosID())
+                {
+                    continue;
+                }
+
+                auto o = controller.getBaseObject(c);
+                controller.deleteBaseObject(o);
             }
             else
             {
@@ -345,6 +358,9 @@ struct objs
                     // Then 'offset' will skip the mlist so all the old children are deleted
                     ++offset;
                 }
+
+                LinkAdapter::store_partial_links_information(controller, update.adaptee, update.index + offset, children);
+                GraphicsAdapter::store_partial_links_information(controller, update.adaptee, update.index + offset, children);
                 controller.deleteObject(children[update.index + offset]);
             }
 
@@ -377,20 +393,24 @@ struct objs
         }
 
         /*
-         * Update partial linking information (links then ports)
+         * Update partial linking information
          */
-        for (const auto & update : childrenToUpdate)
+        for (auto it = childrenToUpdate.begin(); it != childrenToUpdate.end(); ++it)
         {
-            if (update.adaptee != nullptr && update.adaptee->kind() == LINK)
+            if (it->adaptee != nullptr && it->adaptee->kind() == BLOCK)
             {
-                LinkAdapter::relink(controller, static_cast<model::Link*>(update.adaptee), children);
+                model::Block* adaptee = static_cast<model::Block*>(it->adaptee);
+                GraphicsAdapter::relink(controller, adaptee, children);
+                LinkAdapter::reverse_relink(controller, adaptee, it->index, children);
             }
         }
-        for (const auto & update : childrenToUpdate)
+        for (auto it = childrenToUpdate.begin(); it != childrenToUpdate.end(); ++it)
         {
-            if (update.adaptee != nullptr && update.adaptee->kind() == BLOCK)
+            if (it->adaptee != nullptr && it->adaptee->kind() == LINK)
             {
-                GraphicsAdapter::relink(controller, static_cast<model::Block*>(update.adaptee), children);
+                model::Link* adaptee = static_cast<model::Link*>(it->adaptee);
+                LinkAdapter::relink(controller, adaptee, children);
+                GraphicsAdapter::reverse_relink(controller, adaptee, it->index, children);
             }
         }
 
@@ -525,7 +545,6 @@ DiagramAdapter::DiagramAdapter(const DiagramAdapter& adapter) :
     BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::BaseObject>(adapter),
     contrib_content(reference_value(adapter.contrib_content))
 {
-    contrib_content->IncreaseRef();
 }
 
 DiagramAdapter::~DiagramAdapter()

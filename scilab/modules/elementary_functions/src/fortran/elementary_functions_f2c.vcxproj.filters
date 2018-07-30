@@ -198,9 +198,6 @@
     <ClCompile Include="mtran.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="nearfloat.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="orthes.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -530,9 +527,6 @@
     <f2c_rule Include="mtran.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="nearfloat.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="orthes.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -691,7 +685,6 @@
     <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="..\..\sci_gateway\elementary_functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="linpack_f_Import.def">
       <Filter>Libraries Dependencies</Filter>

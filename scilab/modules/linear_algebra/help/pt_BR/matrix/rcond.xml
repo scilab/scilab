@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2010 - DIGITEO - Michael Baudin
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -16,14 +17,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rcond" xml:lang="pt">
     <refnamediv>
         <refname>rcond</refname>
-        <refpurpose>n�mero de condicionamento inverso</refpurpose>
+        <refpurpose>número de condicionamento inverso</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seq��ncia de Chamamento</title>
-        <synopsis>rcond(X)</synopsis>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>r = rcond(X)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Par�metros</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
@@ -31,40 +32,56 @@
                     <para>matriz quadrada de reais ou complexos</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>número real positivo</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descri��o</title>
+        <title>Descrição</title>
         <para>
-            <literal>rcond(X)</literal> � uma estimativa para a rec�proca da
-            condi��o de <literal>X</literal> na norma-1.
+            <literal>rcond(X)</literal> é uma estimativa para a recíproca da
+            condição de <literal>X</literal> na norma-1.
         </para>
         <para>
-            Se <literal>X</literal> � bem condicionada,
-            <literal>rcond(X)</literal> � pr�ximo a 1. Sen�o,
-            <literal>rcond(X)</literal> � pr�ximo a 0.
+            Se <literal>X</literal> é bem condicionada,
+            <literal>rcond(X)</literal> é próximo a 1. Senão,
+            <literal>rcond(X)</literal> é próximo a 0.
         </para>
         <para>
-            <literal>[r,z]=rcond(X)</literal> ajusta <literal>r</literal> a
-            <literal>rcond(X)</literal> e retorna <literal>z</literal> tal que
-            <literal>norm(X*z,1) = r*norm(X,1)*norm(z,1)</literal>
+          <note>
+            Estimar o número da condição inversa de 1-norma com <literal>rcond</literal> é
+            muito (mais de 200x) mais rápido do que calcular o número da condição de 2 normas com
+            <literal>cond</literal>.
+            Como um trade-off, <literal>rcond</literal> pode ser menos confiável.
+          </note>
         </para>
         <para>
-            Portanto, se <literal>rcond</literal> � pequeno,
-            <literal>z</literal> � um vetor do n�cleo.
+            Algoritmo: Calculamos a norma 1 de X com Lapack / DLANGE. Em seguida, sua decomposição
+            de LU é calculada com Lapack / DGETRF. Finalmente, a condição é avaliada com
+            Lapack / DGECON.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-A=diag([1:10]);
+A = diag([1:10]);
 rcond(A)
-A(1,1)=0.000001;
+A(1,1) = 0.000001;
 rcond(A)
+ ]]></programlisting>
+      <para>Benchmarks comparativos</para>
+        <programlisting role="example"><![CDATA[
+    A = ones(1000, 1000);
+    timer(); cond(A);    timer()
+    timer(); 1/rcond(A); timer()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Tamb�m</title>
+        <title>Ver Também</title>
         <simplelist type="inline">
             <member>
                 <link linkend="svd">svd</link>

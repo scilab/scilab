@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="varn">
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) - INRIA
+* Copyright (C) 2018 - Samuel GOUGEON
+*
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ja" xml:id="varn">
     <refnamediv>
         <refname>varn</refname>
         <refpurpose>多項式または有理分数のシンボリック変数</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>[symb]=varn(p)
-            [pm]=varn(p,varname)
+        <synopsis>
+            symb = varn(p)
+            pm = varn(p, varname)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -16,25 +35,28 @@
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>多項式のか合理的な画分の行列</para>
+                    <para>
+                        多項式のか合理的な画分の行列. In Scilab, only univariate polynomials and
+                        rationals are supported. In a matrix, all polynomials or rationals have
+                        the same symbolic variable name.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>symb</term>
+                <term>symb, varname</term>
                 <listitem>
-                    <para>文字列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>varname</term>
-                <listitem>
-                    <para>記号変数 (文字列)</para>
+                    <para>
+                        文字列：記号変数の現在または新しい名前。 使用できる文字は変数名と同じです
+                        （<link linkend="names">命名規則</link>を参照）。
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>pm</term>
                 <listitem>
-                    <para>多項式のか合理的な画分の行列</para>
+                    <para>
+                        変数名が<varname>varname</varname>に設定された<varname>p</varname>と等しい多項式または有理数の行列。
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -43,8 +65,7 @@
         <title>説明</title>
         <para>
             <literal>symb=varn(p)</literal> は,
-            多項式<literal>p</literal>の記号変数 <literal>symb</literal>を返します
-            (すなわち,<literal>varn(poly(0,'x'))</literal> は <literal>'x'</literal> です).
+            多項式<literal>p</literal>の記号変数 <literal>symb</literal>を返します.
         </para>
         <para>
             <literal>varn(p,'s')</literal> は,<literal>p</literal>と
@@ -54,15 +75,69 @@
     </refsection>
     <refsection>
         <title>例</title>
+        <para>多項式の行列の場合：</para>
         <programlisting role="example"><![CDATA[
-s = poly(0,'s'); p = [s^2+1,s];
-varn(p)
-varn(p,'x')
-
-f = %z / (%z-1); f = [f f^2]
-varn(f)
-varn(f,"x")
+s = poly(0,'s'); p = [s , 1-s^2]
+v = varn(p)
+typeof(v)
+px = varn(p,'x')
+px == p
  ]]></programlisting>
+    <screen><![CDATA[
+--> s = poly(0,'s'); p = [s , 1-s^2]
+ p  =
+           2
+   s   1 -s
+
+--> v = varn(p)
+ v  =
+ s
+
+--> typeof(v)
+ ans  =
+ string
+
+--> px = varn(p,'x')
+ px  =
+           2
+   x   1 -x
+
+--> px == p
+ ans  =
+  T T
+]]></screen>
+        <para>With some rationals:</para>
+        <programlisting role="example"><![CDATA[
+f = %z/(%z-1); f = [f f^2]
+varn(f)
+fx = varn(f, "x")
+fx == f
+ ]]></programlisting>
+    <screen><![CDATA[
+--> f = %z/(%z-1); f = [f f^2]
+ f  =
+                 2
+     z          z
+   -------  -----------
+                      2
+   -1 + z   1 - 2z + z
+
+--> varn(f)
+ ans  =
+ z
+
+--> fx = varn(f, "x")
+ fx  =
+                 2
+     x          x
+   -------  -----------
+                      2
+   -1 + x   1 - 2x + x
+
+--> fx == f
+ ans  =
+  T T
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -74,7 +149,7 @@ varn(f,"x")
                 <link linkend="rlist">rlist</link>
             </member>
             <member>
-                <link linkend="horner">horner</link>
+                <link linkend="names">naming rules</link>
             </member>
         </simplelist>
     </refsection>
@@ -86,6 +161,15 @@ varn(f,"x")
                 <revdescription>
                     <para>Extension to rationals</para>
                 </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        シンボリック変数の名前はもはや4文字に制限されていません。
+                        拡張されたUTF-8文字を追加できるようになりました。
+                    </para>
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

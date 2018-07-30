@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="hypermat">
+    <refnamediv>
+        <refname>hypermat</refname>
+        <refpurpose>initialisation d'une matrice à N dimensions. <emphasis role="bold">obsolète</emphasis> SVP utiliser <link linkend="matrix">matrix()</link>.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>M=hypermat(dims [,v])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>dims  </term>
+                <listitem>
+                    <para>vecteur des dimensions de l'hypermatrice
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v  </term>
+                <listitem>
+                    <para>
+                        vecteur des termes de l'hypermatrice (valeur par défaut <literal>zeros(prod(dims),1)</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Initialisation d'une matrice à N dimensions dont les dimensions sont données dans le vecteur dims
+            et dont les termes sont éventuellement donnés dans un vecteur optionnel <literal>v</literal>.
+        </para>
+        <para>
+            La structure de données M contient un champ <literal>M('dims')</literal> contenant les dimensions de l'hypermatrice et un champ contenant le vecteur des termes <literal>M('entries')</literal>, rangés tel que l'indice
+            le plus à gauche varie en premier :
+            <literal>[M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]</literal>
+            <para>
+                Attention: Si vous construisez votre propre <literal>hypermat</literal>, vous devez faire attention. L'entrée M('dims') doit être un vecteur ligne alors que l'entrée M('entries') doit être un vecteur colonne.
+            </para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+M = hypermat([2 3 2 2],1:24)
+disp(size(M('dims')))
+disp(size(M('entries')))
+
+M_own            = mlist(['hm','dims','entries']);
+M_own('dims')    = [2 3 2 2];
+M_own('entries') = [1:24]';
+disp(size(M_own('dims')))
+disp(size(M_own('entries')))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="zeros">zeros</link>
+            </member>
+            <member>
+                <link linkend="ones">ones</link>
+            </member>
+            <member>
+                <link linkend="grand">grand</link>
+            </member>
+            <member>
+                <link linkend="matrix">matrix</link>
+            </member>
+        </simplelist>
+    </refsection>
+<refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revremark>Suppression de hypermat()</revremark>
+            </revision>
+        </revhistory>
+</refsection>
+</refentry>

@@ -130,6 +130,24 @@ public final class AfficheBlock extends BasicBlock {
         super(controller, uid, kind, value, geometry, style, id);
     }
 
+    /**
+     * As the displayed text is stored as block's value, this implementation
+     * must ensure that this text is stored properly even if it is not a valid
+     * Scilab / C variable name.
+     *
+     * @param controller the controller
+     * @param value the value
+     */
+    @Override
+    protected void setMVCValue(JavaController controller, Object value) {
+        if (value == null) {
+            return;
+        }
+
+        // don't check anything, let the user handle that
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, String.valueOf(value));
+    }
+
     @Override
     protected void updateStyle(JavaController controller, XcosDiagram parent, BasicBlock modifiedBlock) {
         final StyleMap styleMap = new StyleMap(modifiedBlock.getStyle());

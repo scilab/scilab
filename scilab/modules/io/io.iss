@@ -27,8 +27,6 @@ Source: bin\{#IO}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#IO}\license.txt; DestDir: {app}\modules\{#IO}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#IO}\sci_gateway\{#IO}_gateway.xml; DestDir: {app}\modules\{#IO}\sci_gateway; Components: {#COMPN_SCILAB}
-;
 Source: modules\{#IO}\etc\{#IO}.quit; DestDir: {app}\modules\{#IO}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#IO}\etc\{#IO}.start; DestDir: {app}\modules\{#IO}\etc; Components: {#COMPN_SCILAB}
 ;

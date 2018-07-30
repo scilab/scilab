@@ -10,7 +10,7 @@
 loadXcosLibs
 scicos_log("TRACE");
 
-b = scicos_block();
+b = standard_define([1 1], scicos_model( in=-1 ), [], []);
 l = scicos_link();
 super = SUPER_f("define");
 super.model.rpar.objs($+1) = b;

@@ -180,6 +180,12 @@
                     <para>graphic window has been closed</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>ibut==-10000</term>
+                <listitem>
+                    <para>Unmanaged event; it could be a drag and drop or a fast click and move</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
         <para>
             For example, let say that the name of the event handler function is fooHandler

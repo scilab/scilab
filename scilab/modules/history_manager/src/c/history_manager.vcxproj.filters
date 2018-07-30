@@ -85,7 +85,6 @@
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\history_manager.iss" />
-    <None Include="..\..\sci_gateway\history_manager_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\history_manager.pot">
       <Filter>localization</Filter>

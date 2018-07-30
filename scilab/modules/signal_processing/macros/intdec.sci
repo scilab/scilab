@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [y]=intdec(x,lom)
+function [y] = intdec(x,lom)
     //y=intdec(x,lom)
     //Changes the sampling rate of a 1D or 2D signal by the rates in lom
     //  x      :Input sampled signal
@@ -22,30 +22,31 @@ function [y]=intdec(x,lom)
 
     //Get dimensions of vectors
 
-    xsize=size(x);
-    xmin=min(x);xmax=max(x);
+    xsize = size(x);
+    xmin = min(x);
+    xmax = max(x);
     if xsize(1)==1 then, lom=[1 lom]; end,
     if xsize(2)==1 then, lom=[lom 1]; end,
 
     //compute sampling rate change as ratio of two integers
 
-    [l,m]=rat(lom);
+    [l,m] = rat(lom);
 
     //Assuming that the signal length is N (=xsize)
     //the interpolated signal is N*l and the decimated
     //signal is N*l/m.  The resulting output will have
     //length int(N*l/m).
 
-    xlsize=xsize.*l;
-    xmsize=int(xlsize./m);
+    xlsize = xsize.*l;
+    xmsize = int(xlsize./m);
 
     //Since the location of %pi in the frequency domain
     //falls on a sample point for N even and between two
     //sample points for N odd care must be taken to differentiate
     //between the two cases in the following manipulations.
 
-    leven=2*(int(xsize/2)-xsize/2)+ones(xsize);
-    meven=2*(int(xmsize/2)-xmsize/2)+ones(xmsize);
+    leven = 2*(int(xsize/2)-xsize/2)+ones(xsize);
+    meven = 2*(int(xmsize/2)-xmsize/2)+ones(xmsize);
 
     //The position of %pi for the Fourier transform of the
     //original signal is different for odd and even length signals.
@@ -53,16 +54,16 @@ function [y]=intdec(x,lom)
     //for an odd length signal %pi is between the (N+1)/2 and the
     //(N+1)/2 + 1 samples.
 
-    fp=int(xsize/2)+ones(xsize);
-    fpc=xsize-fp+leven;
+    fp = int(xsize/2)+ones(xsize);
+    fpc = xsize-fp+leven;
 
-    fm=int(xmsize/2)+ones(xmsize);
-    fmc=fm-ones(fm)-meven;
+    fm = int(xmsize/2)+ones(xmsize);
+    fmc = fm-ones(fm)-meven;
 
     //If the input is a constant then don't do the work
 
     if xmax==xmin then,
-        y=xmax*ones(xmsize(1),xmsize(2));
+        y = xmax*ones(xmsize(1),xmsize(2));
     else,
 
         //For interpolation we, theoretically, would upsample x by putting l-1
@@ -79,18 +80,18 @@ function [y]=intdec(x,lom)
 
         //Fourier transform the signal
 
-        xf=fft(x,-1);
+        xf = fft(x,-1);
 
         //Re-assemble the correct portions of the frequency domain signal
 
         if fm(1)<fp(1) then,//reduce row length (decimation)
-            xlf=[xf(1:fm(1),:);xf(xsize(1)-fmc(1)+1:xsize(1),:)];
+            xlf = [xf(1:fm(1),:); xf(xsize(1)-fmc(1)+1:xsize(1),:)];
         else,
             if xmsize(1)==xsize(1) then,//no changes in row length
-                xlf=xf;
+                xlf = xf;
             else,//increase row length (interpolation)
-                xlf=[xf(1:fp(1),:);...
-                0*ones(xmsize(1)-fpc(1)-fp(1),xsize(2));...
+                xlf = [xf(1:fp(1),:);...
+                       zeros(xmsize(1)-fpc(1)-fp(1),xsize(2));...
                 xf(xsize(1)-fpc(1)+1:xsize(1),:)];
             end,
         end,
@@ -98,18 +99,16 @@ function [y]=intdec(x,lom)
             xlf=[xlf(:,1:fm(2)),xlf(:,xsize(2)-fmc(2)+1:xsize(2))];
         else,
             if xmsize(2)==xsize(2) then,//no changes in column length
-                xlf=xlf;
-            else,//increase column length (interpolation)
+                xlf = xlf;
+            else, //increase column length (interpolation)
                 xlf=[xlf(:,1:fp(2)),...
-                0*ones(xmsize(1),xmsize(2)-fpc(2)-fp(2)),...
-                xlf(:,xsize(2)-fpc(2)+1:xsize(2))];
+                     zeros(xmsize(1),xmsize(2)-fpc(2)-fp(2)),...
+                     xlf(:,xsize(2)-fpc(2)+1:xsize(2))];
             end,
         end,
 
         //recuperate new signal and rescale
-
-        y=real(fft(xlf,1));
-        y=prod(lom)*y;
-
+        y = real(fft(xlf,1));
+        y = prod(lom)*y;
     end
 endfunction

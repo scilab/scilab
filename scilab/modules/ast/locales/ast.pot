@@ -424,7 +424,7 @@ msgstr ""
 #
 # File: modules/ast/src/cpp/operations/types_power.cpp, line: 66
 # File: modules/ast/src/cpp/operations/types_power.cpp, line: 137
-msgid "Invalid exponent: expected real exponents.\n"
+msgid "Invalid exponent: expected finite integer exponents.\n"
 msgstr ""
 
 #

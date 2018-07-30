@@ -70,11 +70,6 @@ double dfrexps(double _dblVal, double *_pdblExp)
     return dblCoef;
 }
 
-double dblNearFloat(double _dblVal, double _dblMode)
-{
-    return C2F(nearfloat)(&_dblVal, &_dblMode);
-}
-
 double durands(int* _iVal)
 {
     static int ia = 0, ic = 0, itwo = 2, m2 = 0, m = 0, mic = 0;

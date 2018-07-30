@@ -369,12 +369,13 @@ void Controller::cloneProperties(model::BaseObject* initial, model::BaseObject* 
     }
 }
 
-model::BaseObject* Controller::cloneBaseObject(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, bool cloneChildren, bool clonePorts)
+model::BaseObject* Controller::cloneBaseObject(cloned_t& mapped, model::BaseObject* initial, bool cloneChildren, bool clonePorts)
 {
     const kind_t k = initial->kind();
     ScicosID o = createObject(k);
     model::BaseObject* cloned = getBaseObject(o);
-    mapped.insert(std::make_pair(initial, cloned));
+    mapped.insert(
+        std::make_pair(initial->id(), cloned_pair_t(initial, cloned)));
 
     lock(&m_instance.onViewsStructuralModification);
     for (auto v : m_instance.allViews)
@@ -440,18 +441,16 @@ model::BaseObject* Controller::cloneBaseObject(std::unordered_map<model::BaseObj
     return cloned;
 }
 
-void Controller::deepClone(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound)
+void Controller::deepClone(cloned_t& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound)
 {
     ScicosID v;
     getObjectProperty(initial, p, v);
 
-    model::BaseObject* opposite = getBaseObject(v);
-    model::BaseObject* cloned;
-
-    std::unordered_map<model::BaseObject*, model::BaseObject*>::iterator it = mapped.find(opposite);
+    ScicosID cloned;
+    cloned_t::iterator it = mapped.find(v);
     if (it != mapped.end())
     {
-        cloned = it->second;
+        cloned = it->second.cloned->id();
     }
     else
     {
@@ -459,38 +458,34 @@ void Controller::deepClone(std::unordered_map<model::BaseObject*, model::BaseObj
         {
             if (v != ScicosID())
             {
-                cloned = cloneBaseObject(mapped, opposite, true, true);
+                model::BaseObject *opposite = getBaseObject(v);
+                cloned = cloneBaseObject(mapped, opposite, true, true)->id();
             }
             else
             {
-                cloned = nullptr;
+                cloned = ScicosID();
             }
         }
         else
         {
-            cloned = nullptr;
+            cloned = ScicosID();
         }
     }
 
-    if (cloned == nullptr)
-    {
-        setObjectProperty(clone, p, ScicosID());
-    }
-    else
-    {
-        setObjectProperty(clone, p, cloned->id());
-    }
+    setObjectProperty(clone, p, cloned);
 }
 
-void Controller::deepCloneVector(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped, model::BaseObject* initial, model::BaseObject* clone, object_properties_t p, bool cloneIfNotFound)
+void Controller::deepCloneVector(cloned_t &mapped, model::BaseObject *initial,
+                                 model::BaseObject *clone,
+                                 object_properties_t p, bool cloneIfNotFound)
 {
     std::vector<ScicosID> v;
     getObjectProperty(initial, p, v);
 
-    std::vector<model::BaseObject*> cloned;
+    std::vector<model::BaseObject *> cloned;
     cloned.reserve(v.size());
 
-    for (const ScicosID & id : v)
+    for (const ScicosID &id : v)
     {
         if (id == ScicosID())
         {
@@ -499,11 +494,11 @@ void Controller::deepCloneVector(std::unordered_map<model::BaseObject*, model::B
             continue;
         }
 
-        model::BaseObject* opposite = getBaseObject(id);
-        std::unordered_map<model::BaseObject*, model::BaseObject*>::iterator it = mapped.find(opposite);
+        model::BaseObject *opposite = getBaseObject(id);
+        cloned_t::iterator it = mapped.find(id);
         if (it != mapped.end())
         {
-            cloned.push_back(it->second);
+            cloned.push_back(it->second.cloned);
         }
         else
         {
@@ -511,7 +506,8 @@ void Controller::deepCloneVector(std::unordered_map<model::BaseObject*, model::B
             {
                 if (id != ScicosID())
                 {
-                    model::BaseObject* clone = cloneBaseObject(mapped, opposite, true, true);
+                    model::BaseObject *clone =
+                        cloneBaseObject(mapped, opposite, true, true);
                     cloned.push_back(clone);
                 }
                 else
@@ -534,7 +530,8 @@ void Controller::deepCloneVector(std::unordered_map<model::BaseObject*, model::B
 
     // set the main object vector property
     std::vector<ScicosID> clonedUIDs(cloned.size());
-    std::transform(cloned.begin(), cloned.end(), clonedUIDs.begin(), [](model::BaseObject * o)
+    std::transform(cloned.begin(), cloned.end(), clonedUIDs.begin(),
+                   [](model::BaseObject * o)
     {
         if (o == nullptr)
         {
@@ -549,12 +546,12 @@ void Controller::deepCloneVector(std::unordered_map<model::BaseObject*, model::B
     setObjectProperty(clone, p, clonedUIDs);
 }
 
-void Controller::updateChildrenRelatedPropertiesAfterClone(std::unordered_map<model::BaseObject*, model::BaseObject*>& mapped)
+void Controller::updateChildrenRelatedPropertiesAfterClone(cloned_t &mapped)
 {
-    for (auto const & it : mapped)
+    for (auto const &it : mapped)
     {
-        model::BaseObject* initial = it.first;
-        model::BaseObject* cloned = it.second;
+        model::BaseObject *initial = it.second.initial;
+        model::BaseObject *cloned = it.second.cloned;
 
         switch (initial->kind())
         {
@@ -573,8 +570,9 @@ void Controller::updateChildrenRelatedPropertiesAfterClone(std::unordered_map<mo
 
 ScicosID Controller::cloneObject(ScicosID uid, bool cloneChildren, bool clonePorts)
 {
-    std::unordered_map<model::BaseObject*, model::BaseObject*> mapped;
-    model::BaseObject* clone = cloneBaseObject(mapped, getBaseObject(uid), cloneChildren, clonePorts);
+    cloned_t mapped;
+    model::BaseObject *clone =
+        cloneBaseObject(mapped, getBaseObject(uid), cloneChildren, clonePorts);
 
     return clone->id();
 }

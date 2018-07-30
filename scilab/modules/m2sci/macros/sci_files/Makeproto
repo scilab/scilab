@@ -146,12 +146,16 @@ sci_int16.sci: sci_PROTO9.g
 	@./GEN $? int16 int16 > $@
 sci_int32.sci: sci_PROTO9.g
 	@./GEN $? int32 int32 > $@
+sci_int64.sci: sci_PROTO9.g
+	@./GEN $? int64 int64 > $@
 sci_uint8.sci: sci_PROTO9.g
 	@./GEN $? uint8 uint8 > $@
 sci_uint16.sci: sci_PROTO9.g
 	@./GEN $? uint16 uint16 > $@
 sci_uint32.sci: sci_PROTO9.g
 	@./GEN $? uint32 uint32 > $@
+sci_uint64.sci: sci_PROTO9.g
+	@./GEN $? uint64 uint64 > $@
 
 # Files generated from file : sci_PROTO10.g
 sci_lower.sci: sci_PROTO10.g

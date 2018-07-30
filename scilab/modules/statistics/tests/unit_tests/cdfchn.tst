@@ -16,7 +16,7 @@ prec = 1.e-5;
 
 x      = [0.01,0.025,0.05,0.1,0.9,0.95];
 y1     = cdfchi("PQ",x,ones(x));
-y2     = cdfchn("PQ",x,ones(x),0*ones(x));
+y2     = cdfchn("PQ",x,ones(x), zeros(x));
 if norm(y1-y2) > prec then pause,end
 
 df     = [1,2,3,4,5,6];

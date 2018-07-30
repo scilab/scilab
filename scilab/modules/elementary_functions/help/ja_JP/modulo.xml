@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2013 - Samuel GOUGEON
+ * Copyright (C) 2013, 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="modulo" xml:lang="ja">
     <refnamediv>
         <refname>modulo</refname>
         <refpurpose>左オペランド符号を有するモジュロm剰余演算</refpurpose>
@@ -36,15 +39,12 @@
                 <term>m, n</term>
                 <listitem>
                     <para>
-                        エンコードされた整数, 実数または多項式の
-                        スカラー, ベクトル, またはハイパー行列
-                        (ハイパー行列は多項式ではサポートされません).
+                        エンコードされた整数, 実数または多項式の,  スカラー, ベクトル, またはハイパー行列
                         <varname>m</varname> および <varname>n</varname>は,
                         同じ型である必要があります.
                         yが整数型の場合,(int8およびint16のように)
                         異なるエンコード長とすることが可能です.
-                        どちらもスカラーでない場合、yは同じ大きさとする
-                        必要があります.
+                        どちらもスカラーでない場合、yは同じ大きさとする 必要があります.
                     </para>
                 </listitem>
             </varlistentry>
@@ -58,6 +58,13 @@
                         <varname>m</varname>または<varname>n</varname>の
                         大きい方の大きさとなります.
                     </para>
+                    <para>
+                        <warning>
+                            For polynomials, when all remainders in the array <varname>i</varname>
+                            are constant (degree==0), <varname>i</varname> is of type 1
+                            (numbers) instead of 2 (constant polynomials).
+                        </warning>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -65,25 +72,31 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>modulo</literal> は,
-            <literal>i= n (modulo m)</literal>,
-            すなわち, <literal>n</literal>を<literal>m</literal>で
-            割った剰余を計算します.
+            <literal>modulo</literal> は, <literal>i= n (modulo m)</literal>,
+            すなわち, <literal>n</literal>を<literal>m</literal>で 割った剰余を計算します.
         </para>
+        <para>多項式の場合は、<literal>pdiv（）</literal>が使用されます.</para>
         <para>
-            <code>i = n - m .* int (n ./ m)</code>.
-            この式で,
-            <literal>n</literal> または <literal>m</literal>が負の場合,
-            答えが負となる可能性があります.
-        </para>
-        <para>
-            <literal>pmodulo</literal> は,
-            <code>i = n - |m| .* floor (n ./ |m|)</code>
-            を計算します.答えは正またはゼロとなります.
+            数字の場合、
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <literal>modulo（）</literal>は<literal>i = n  -  m.* int（n./ m）</literal>を計算します.
+                        <varname>n</varname>が負の場合、結果は負（またはヌル）になります. それ以外は肯定的です.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <literal>pmodulo()</literal> は,
+                        <literal>i = n - |m| .* floor (n ./ |m|)</literal>
+                        を計算します.答えは正またはゼロとなります.
+                    </para>
+                </listitem>
+            </itemizedlist>
         </para>
         <warning>
             <varname>m</varname>が1つ以上の値0を含む場合,
-            <code>modulo(x,m)</code> および <code>pmodulo(x,m)</code>
+            <literal>modulo(x,m)</literal> および <literal>pmodulo(x,m)</literal>
             はゼロ割を発生します.
             <varname>m</varname>ｈが実数型の場合,
             この例外は<literal>ieee()</literal> モードに基づき処理されます.
@@ -95,12 +108,14 @@
         <programlisting role="example"><![CDATA[
 n = [1,2,10,15];
 m = [2,2,3,5];
+
 modulo(n,m)
 modulo(-3, 9)
 modulo(10, -4)
 pmodulo(-3, 9)
 pmodulo(10, -6)
 pmodulo(-10, -6)
+
 // エンコードされた整数
 modulo( int8(-13), int16(-7))
 pmodulo(int8(-13), int16(-7))
@@ -110,6 +125,7 @@ modulo( int8([-13 8]), int16(-7))
 pmodulo(int8([-13 8]), int16(-7))
 modulo( int8([-13 8]), int16([-7 5]))
 pmodulo(int8([-13 8]), int16([-7 5]))
+
 // ハイパー行列
 m = grand(2,2,2,"uin",-100,100)
 n = grand(2,2,2,"uin",-10 ,10);
@@ -120,6 +136,7 @@ modulo(51, n)
 pmodulo(51,n)
 modulo(m, n)
 pmodulo(m,n)
+
 // 多項式
 modulo( %z^2+1, %z)
 pmodulo(%z^2+1, %z)
@@ -145,6 +162,10 @@ pmodulo(%z^2+1, %z)
                     エンコードされた整数およびエンコードされた整数または実数の
                     ハイパー行列に拡張されました.
                 </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revremark>Extension to hypermatrices of polynomials.</revremark>
             </revision>
         </revhistory>
     </refsection>

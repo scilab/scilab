@@ -36,7 +36,6 @@
       <Filter>Libraries Dependencies\Export</Filter>
     </None>
     <None Include="..\localization.iss" />
-    <None Include="..\sci_gateway\localization_gateway.xml" />
     <None Include="..\Makefile.am" />
     <None Include="..\locales\localization.pot">
       <Filter>localization</Filter>

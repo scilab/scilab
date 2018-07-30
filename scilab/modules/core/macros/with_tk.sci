@@ -11,5 +11,6 @@
 // along with this program.
 
 function r = with_tk()
+    warnobsolete("with_module(''tclsci'')","6.1")
     r = (with_module("tclsci") & getscilabmode() <> "NWNI");
 endfunction

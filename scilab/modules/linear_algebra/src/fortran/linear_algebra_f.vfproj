@@ -53,6 +53,5 @@
 		<File RelativePath=".\DGELSY1.f"/>
 		<File RelativePath="find.f"/>
 		<File RelativePath=".\ZGELSY1.f"/></Filter>
-		<File RelativePath="..\..\sci_gateway\linear_algebra_gateway.xml"/>
 		<File RelativePath="..\..\Makefile.am"/></Files>
 	<Globals/></VisualStudioProject>
