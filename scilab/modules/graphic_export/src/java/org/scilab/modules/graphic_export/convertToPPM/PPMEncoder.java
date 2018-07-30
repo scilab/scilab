@@ -92,7 +92,7 @@ public class PPMEncoder extends ImageEncoder {
     }
 
     void writeString(String str) throws IOException {
-        byte[] buf = str.getBytes();
+        byte[] buf = str.getBytes("UTF-8");
         out.write(buf);
     }
 
