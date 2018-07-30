@@ -28,7 +28,7 @@ function [rects,btn]=dragrect(varargin)
     rep=[rects(1),rects(2),-1]
     while rep(3)==-1 then
         repn=xgetmouse()
-        if repn(3)==-100  then //window has been closed
+        if repn(3)==-1000  then //window has been closed
             btn=repn(3)
             return
         end

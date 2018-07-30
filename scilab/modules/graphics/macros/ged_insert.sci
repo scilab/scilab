@@ -45,7 +45,7 @@ function ged_insert(k,win)
     default_axes = gca(); // get the default axes where we start
     rep(3)=-1
     select k
-    case -100 then //window has been closed
+    case -1000 then //window has been closed
         ged_insert_end(),return
     case 1 then //Single Line
         axes = get_insertion_axes(job,f,default_axes,xc,yc)
@@ -80,7 +80,7 @@ function ged_insert(k,win)
                 r.data($,:)= [rep(1),rep(2),0]
                 gcf().info_message = mess1;
             end
-            if or(rep(3)==[2 5 -100]) then break,end
+            if or(rep(3)==[2 5 -1000]) then break,end
             r.data=[r.data;r.data($,:)]
         end
     case 3 // Arrow (single arrow)
@@ -226,7 +226,7 @@ endfunction
 function [men,xc,yc]=ged_click()
     global  men
     [btn,xc,yc]=xclick()
-    if btn==-100 then men=-100,end
+    if btn==-1000 then men=-1000,end
     for k=1:3,end
     job=men
 endfunction

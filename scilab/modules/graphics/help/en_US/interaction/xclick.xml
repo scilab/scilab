@@ -190,12 +190,6 @@
                 <term>ibutton==-1000</term>
                 <listitem>
                     <para>graphic window has been closed.</para>
-                    <para>
-                        WARNING: <literal>ibutton</literal> was equal to -100 for
-                        graphic window closure up to Scilab 4.1.2, but this code has been
-                        changed (in Scilab 5.0) because it was also the code returned for
-                        <literal>d</literal> key release.
-                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -224,5 +218,16 @@
                 <link linkend="seteventhandler">seteventhandler</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.0</revnumber>
+                <revdescription>
+                    Closing a figure now returns the event code -1000 instead of -100.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

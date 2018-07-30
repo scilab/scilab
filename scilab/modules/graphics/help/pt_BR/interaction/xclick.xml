@@ -184,12 +184,6 @@
                 <term>ibutton==-1000</term>
                 <listitem>
                     <para>a janela de gráficos foi fechada</para>
-                    <para>
-                        Aviso: <literal>ibutton</literal> era igual a -100 para
-                        fechamento de janelas gráficas até o Scilab 4.1.2, mas este código
-                        foi modificado (no Scilab 5.0), pois também era o código retornado
-                        pela liberação da tecla <literal>d</literal>.
-                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -216,9 +210,15 @@
             </member>
         </simplelist>
     </refsection>
-    <refsection>
-        <title>Autores</title>
-        <para>J.Ph.C.</para>
-        <para>V.C.</para>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.0</revnumber>
+                <revdescription>
+                    Fechar uma janela de gráficos agora retorna o código de evento -1000 em vez de -100.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
