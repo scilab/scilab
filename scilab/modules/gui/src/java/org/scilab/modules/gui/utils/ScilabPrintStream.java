@@ -96,7 +96,7 @@ public final class ScilabPrintStream extends PrintStream {
          * {@inheritDoc}
          */
         public void write(byte[] b) throws IOException {
-            CallScilabBridge.display(new String(b));
+            CallScilabBridge.display(new String(b, "UTF-8"));
             if (out != null) {
                 out.write(b);
             }
@@ -106,7 +106,7 @@ public final class ScilabPrintStream extends PrintStream {
          * {@inheritDoc}
          */
         public void write(byte[] b, int off, int len) throws IOException {
-            CallScilabBridge.display(new String(b, off, len));
+            CallScilabBridge.display(new String(b, off, len, "UTF-8"));
             if (out != null) {
                 out.write(b, off, len);
             }
@@ -116,7 +116,7 @@ public final class ScilabPrintStream extends PrintStream {
          * {@inheritDoc}
          */
         public void write(int b) throws IOException {
-            CallScilabBridge.display(new String (new byte[] {(byte) b}));
+            CallScilabBridge.display(new String (new byte[] {(byte) b}, "UTF-8"));
             if (out != null) {
                 out.write(b);
             }
