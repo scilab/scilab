@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -16,32 +16,32 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lsslist" xml:lang="pt">
     <refnamediv>
         <refname>lsslist</refname>
-        <refpurpose>definição de função linear de espaço de estados do
+        <refpurpose>definiÃ§Ã£o de funÃ§Ã£o linear de espaÃ§o de estados do
             Scilab
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>lsslist()
             lsslist(A, B, C, X0, dt)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>lsslist(A, B, C, X0, dt)</literal> é um atalho para
+            <literal>lsslist(A, B, C, X0, dt)</literal> Ã© um atalho para
             <literal>tlist(["lss", "A", "B", "C", "D", "X0", "dt"], A, B, C, D, X0, dt)</literal>
         </para>
         <para>
             Cria um <literal>tlist</literal> com
             <literal>["lss", "A", "B", "C", "D", "X0", "dt"]</literal> como primeiras entradas e
             os A, B, C, X0, dt
-            como próximas entradas, se tiver algum. Não é
-            feita verificação de tipo ou tamanho nos <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varname>.
+            como prÃ³ximas entradas, se tiver algum. NÃ£o Ã©
+            feita verificaÃ§Ã£o de tipo ou tamanho nos <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varname>.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="abcd">abcd</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plzr" xml:lang="pt">
     <refnamediv>
         <refname>plzr</refname>
-        <refpurpose>Esboço de pólo-zero</refpurpose>
+        <refpurpose>EsboÃ§o de pÃ³lo-zero</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>plzr(sl)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>sl</term>
@@ -36,8 +36,8 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Produz um esboço de pólo-zero do sistema linear
+        <title>DescriÃ§Ã£o</title>
+        <para>Produz um esboÃ§o de pÃ³lo-zero do sistema linear
             <literal>sl</literal> (lista <literal>syslin</literal>)
         </para>
     </refsection>
@@ -52,7 +52,7 @@ plzr(h);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="trzeros">trzeros</link>
