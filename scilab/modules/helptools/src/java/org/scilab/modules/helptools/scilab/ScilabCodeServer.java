@@ -160,8 +160,6 @@ public final class ScilabCodeServer {
             if (args[i].length() >= 2 && args[i].charAt(0) == '-') {
                 if (option != null) {
                     map.put(option, "");
-                    option = null;
-                    option = args[i];
                 }
                 if (args[i].charAt(1) == '-') {
                     option = args[i].substring(2);
