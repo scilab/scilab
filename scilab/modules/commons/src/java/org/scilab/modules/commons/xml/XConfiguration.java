@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.FileFilter;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -229,10 +230,12 @@ public class XConfiguration {
         String str = "";
         try {
             transformer.transform(source, result);
-            str = stream.toString();
+            str = stream.toString("UTF-8");
         } catch (TransformerException e) {
             System.err.println("Cannot dump xml");
             return str;
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         } finally {
             try {
                 stream.close();
