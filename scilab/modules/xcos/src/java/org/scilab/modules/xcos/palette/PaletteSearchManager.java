@@ -32,7 +32,6 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
-import org.apache.lucene.util.Version;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
@@ -62,7 +61,7 @@ public final class PaletteSearchManager {
         try {
             indexedDirectory = new RAMDirectory();
             analyzer = new StandardAnalyzer();
-            IndexWriterConfig config = new IndexWriterConfig(Version.LATEST, analyzer);
+            IndexWriterConfig config = new IndexWriterConfig(analyzer);
             config.setOpenMode(OpenMode.CREATE);
             writer = new IndexWriter(indexedDirectory, config);
         } catch (IOException ex) {
