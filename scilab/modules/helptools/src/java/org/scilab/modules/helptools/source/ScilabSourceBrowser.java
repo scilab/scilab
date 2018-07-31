@@ -22,6 +22,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -61,7 +63,7 @@ public class ScilabSourceBrowser extends HTMLScilabCodeHandler {
             try {
                 File f = new File(file);
                 System.out.println(f);
-                Reader input = new BufferedReader(new FileReader(f));
+                Reader input = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"));
                 currentCommand = f.getName().split("\\.")[0];
                 buffer = new FileWriter(outputDirectory + File.separator + currentCommand + ".html");
                 buffer.append(entete);
@@ -135,7 +137,7 @@ public class ScilabSourceBrowser extends HTMLScilabCodeHandler {
         files = new ArrayList<String>();
         mapId = new HashMap<String, String>();
         try {
-            input = new BufferedReader(new FileReader(filename));
+            input = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"));
             String line = null;
             while ((line = input.readLine()) != null) {
                 files.add(line);
@@ -162,7 +164,7 @@ public class ScilabSourceBrowser extends HTMLScilabCodeHandler {
             for (String file : files) {
                 try {
                     File f = new File(file);
-                    Reader input = new BufferedReader(new FileReader(f));
+                    Reader input = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"));
                     currentCommand = f.getName().split("\\.")[0];
                     scilabLexer.convert(this, input, false);
                 } catch (IOException e) {
