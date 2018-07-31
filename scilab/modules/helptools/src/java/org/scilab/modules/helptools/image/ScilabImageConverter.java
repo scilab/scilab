@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.Map;
@@ -93,7 +95,7 @@ public class ScilabImageConverter implements ExternalImageConverter {
      * {@inheritDoc}
      */
     public String convertToImage(File code, Map<String, String> attributes, File imageFile, String imageName) {
-        try (BufferedReader in = new BufferedReader(new FileReader(code))) {
+        try (BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(code), "UTF-8"))) {
             StringBuilder buffer = new StringBuilder(8192);
             String line;
 
