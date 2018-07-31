@@ -19,6 +19,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
 import java.util.Map;
 
 import org.scilab.forge.jlatexmath.TeXConstants;
@@ -94,7 +96,7 @@ public class LaTeXImageConverter implements ExternalImageConverter {
         StringBuilder buffer = new StringBuilder();
         boolean ok = false;
         try {
-            input = new BufferedReader(new FileReader(latex));
+            input = new BufferedReader(new InputStreamReader(new FileInputStream(latex), "UTF-8"));
             String line = null;
             while ((line = input.readLine()) != null) {
                 buffer.append(line);
