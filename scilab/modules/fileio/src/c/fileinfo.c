@@ -74,7 +74,7 @@ double* filesinfoW(wchar_t** _pwstFilename, int _iSize, int* _piErr)
 #ifdef _MSC_VER
 static double *fileinfo_WindowsW(wchar_t* _pwstFilename, int *_piErr)
 {
-    struct _stat buf;
+    struct _stat64 buf;
     wchar_t DriveTemp[PATH_MAX + FILENAME_MAX + 1];
 
     double *FILEINFO_ARRAY = NULL;
@@ -94,7 +94,7 @@ static double *fileinfo_WindowsW(wchar_t* _pwstFilename, int *_piErr)
         DriveTemp[wcslen(DriveTemp) - 1] = L'\0';
     }
 
-    result = _wstat(DriveTemp, &buf );
+    result = _wstat64(DriveTemp, &buf );
 
     if ( result != 0 )
     {
