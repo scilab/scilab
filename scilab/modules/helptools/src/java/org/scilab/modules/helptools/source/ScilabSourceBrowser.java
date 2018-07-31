@@ -24,6 +24,8 @@ import java.io.Reader;
 import java.io.Writer;
 import java.io.InputStreamReader;
 import java.io.FileInputStream;
+import java.io.OutputStreamWriter;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -65,7 +67,7 @@ public class ScilabSourceBrowser extends HTMLScilabCodeHandler {
                 System.out.println(f);
                 Reader input = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"));
                 currentCommand = f.getName().split("\\.")[0];
-                buffer = new FileWriter(outputDirectory + File.separator + currentCommand + ".html");
+                buffer = new OutputStreamWriter(new FileOutputStream(outputDirectory + File.separator + currentCommand + ".html"), "UTF-8");
                 buffer.append(entete);
                 buffer.append("<div style=\"code\"><pre>");
                 scilabLexer.convert(this, input, false);
