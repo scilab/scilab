@@ -19,6 +19,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -106,8 +108,8 @@ public final class FileUtils {
      */
     public static boolean isBinaryFile(File f) {
         if (f.isFile() && f.canRead()) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(f)))
-                {                
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8")))
+                {
                 char[] buffer = new char[CHARTOREAD];
                 int len = reader.read(buffer, 0, CHARTOREAD);
                 int i = 0;
