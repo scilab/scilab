@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
 import java.nio.charset.Charset;
 
 /**
@@ -104,7 +106,7 @@ public class TemplateHandler {
     private void parseFile(File f) {
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new FileReader(f));
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"));
             String line = null;
             StringBuilder stringBuilder = new StringBuilder();
             while ((line = reader.readLine()) != null ) {
