@@ -25,6 +25,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.channels.FileChannel;
 import java.util.HashMap;
 import java.util.Map;
@@ -126,7 +128,7 @@ public final class ImageConverter {
         if (f.exists() && f.canRead()) {
             BufferedReader reader = null;
             try {
-                reader = new BufferedReader(new FileReader(f));
+                reader = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"));
                 String line = reader.readLine();
                 while (line != null) {
                     String[] arr = line.split("=");
@@ -168,7 +170,7 @@ public final class ImageConverter {
         if (f.canWrite()) {
             BufferedWriter writer = null;
             try {
-                writer = new BufferedWriter(new FileWriter(f));
+                writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), "UTF-8"));
                 Map<String, String> tree = new TreeMap<String, String>(map);
                 for (Map.Entry<String, String> entry : tree.entrySet()) {
                     String s = entry.getKey() + "=" + entry.getValue();
