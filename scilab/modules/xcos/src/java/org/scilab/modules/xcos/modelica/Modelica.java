@@ -23,6 +23,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.io.OutputStreamWriter;
+import java.io.FileOutputStream;
+import java.io.Writer;
 import java.nio.charset.Charset;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -168,7 +171,7 @@ public final class Modelica {
             }
             buffer.append(newline);
 
-            try (FileWriter fw = new FileWriter(file)) {
+            try (Writer fw =  new OutputStreamWriter(new FileOutputStream(file), "UTF-8")) {
                 fw.append(buffer);
             }
         } catch (FactoryConfigurationError | IOException e) {
