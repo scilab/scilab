@@ -21,6 +21,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -402,7 +404,7 @@ public class SearchManager {
      * @return true if it is a binary file
      */
     public static boolean isBinaryFile(File f) {
-        try ( BufferedReader reader = new BufferedReader(new FileReader(f)) ) {
+        try ( BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8")) ) {
             char[] buffer = new char[8192];
             int len = reader.read(buffer, 0, 8192);
 
