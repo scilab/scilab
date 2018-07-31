@@ -83,7 +83,7 @@
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
-                <link linkend="io">io</link>
+                <link linkend="percentio">%io</link>
             </member>
             <member>
                 <link linkend="consolebox">consolebox</link>
