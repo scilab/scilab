@@ -19,6 +19,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
 import java.util.regex.Matcher;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -147,7 +149,7 @@ public class SciDocConfiguration {
     private static String getVersion(String ver) {
         String ret = "";
         if (ver == null || ver.isEmpty()) {
-          try (BufferedReader reader = new BufferedReader(new FileReader(VERSION))) {
+          try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(VERSION), "UTF-8"))) {
                ret = reader.readLine().split("=")[1];
             } catch (IOException e) {
                 System.err.println(e);
