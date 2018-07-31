@@ -29,6 +29,9 @@ import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.io.FileOutputStream;
 import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
@@ -213,7 +216,7 @@ public class SetContextDialog extends JDialog {
                  */
                 try {
                     File f = File.createTempFile(ScilabDirectHandler.CONTEXT, ".sce");
-                    try (FileWriter writer = new FileWriter(f)) {
+                    try (Writer writer =  new OutputStreamWriter(new FileOutputStream(f), "UTF-8")) {
                         writer.write(context, 0, context.length());
                     }
 
