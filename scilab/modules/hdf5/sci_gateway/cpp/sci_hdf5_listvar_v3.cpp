@@ -707,7 +707,7 @@ static bool read_struct(int dataset, VarInfo6& info)
         std::string cname(name);
         FREE(name);
 
-        if (cname != "__dims__" && cname != "__refs__")
+        if (cname != "__dims__" && cname != "__refs__" && cname != "__fields__")
         {
             int dataref = getDataSetIdFromName(dataset, cname.data());
             if (dataref < 0)

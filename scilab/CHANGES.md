@@ -497,6 +497,7 @@ Known issues
 * [#15496](http://bugzilla.scilab.org/show_bug.cgi?id=15496): Scinotes `File > Open recent` menu was not updated when it should.
 * [#15499](http://bugzilla.scilab.org/show_bug.cgi?id=15499): Scinotes menus were inactive after session restore under OSX.
 * [#15501](http://bugzilla.scilab.org/show_bug.cgi?id=15501): listvarinfile() crashes Scilab when listing a cell array (regression).
+* [#15502](http://bugzilla.scilab.org/show_bug.cgi?id=15502): listvarinfile() misses listing arrays of struct, and then locks the file.
 * [#15508](http://bugzilla.scilab.org/show_bug.cgi?id=15508): `int8..uint64` and `iconvert` help pages had errors and were not up to date.
 * [#15510](http://bugzilla.scilab.org/show_bug.cgi?id=15510): 'Initialization problem' error did not provide extra information.
 * [#15511](http://bugzilla.scilab.org/show_bug.cgi?id=15511): Keyboard ctrl-left ctrl-right shortcuts could not be used for slider under OSX.
