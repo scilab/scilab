@@ -77,7 +77,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
     }
 
     /***** get data *****/
-    if (in.size() == 1 && in[0]->isList())
+    if (in.size() == 1 && in[0]->isList() && in[0]->isTList() == false && in[0]->isMList() == false)
     {
         types::List* pList = in[0]->getAs<types::List>();
         iCountElem = pList->getSize();
