@@ -62,10 +62,13 @@ public:
     {
         if (converter)
         {
+//avoid double free with Inpector clear
+#ifndef _DEBUG
             //unprotect it
             converter->DecreaseRef();
             converter->killMe();
             converter = nullptr;
+#endif
         }
     }
 

@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- NO CHECK REF -->
 // <-- CLI SHELL MODE -->
 //
@@ -16,9 +16,14 @@
 // <-- Short Description -->
 // listvarinfile() crashes when listing a boolean sparse matrix (regression)
 
-spb = sprand(4,10,0.1) < 0.5;
-spbc = spb;
-path = TMPDIR + "/test.dat";
+x = matrix(1:100, [10, 10]);
+b = modulo(x, 5) == 0;
+spb = sparse(b);
+
+path = TMPDIR + "/bug_15692.dat";
 save(path, "spb");
-listvarinfile(path);
-assert_checkequal(spb, spbc);
+[names, typs, dims, vols] = listvarinfile(path);
+assert_checkequal(names, "spb");
+assert_checkequal(typs, type(spb));
+assert_checkequal(dims(1), size(spb));
+assert_checkequal(vols, 120);
