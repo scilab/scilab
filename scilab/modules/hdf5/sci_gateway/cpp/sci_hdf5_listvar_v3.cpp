@@ -610,6 +610,7 @@ static bool read_poly(int dataset, VarInfo6& info)
         {
             return false;
         }
+        info.dims = dims;
         info.size += datasize * sizeof(double) * (complex + 1);
     }
 

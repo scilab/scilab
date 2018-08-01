@@ -551,6 +551,7 @@ Known issues
 * [#15660](http://bugzilla.scilab.org/show_bug.cgi?id=15660): `atomsInstall` and `atomsRemove` displayed concatenated notifications instead of stacked ones.
 * [#15670](http://bugzilla.scilab.org/show_bug.cgi?id=15670): `set(H, prop1,val1, prop2,val2, ..)`: Setting multiple properties for a vector of handles yielded an error.
 * [#15692](http://bugzilla.scilab.org/show_bug.cgi?id=15692): listvarinfile() crashes when listing a boolean sparse matrix (regression)
+* [#15693](http://bugzilla.scilab.org/show_bug.cgi?id=15693): listvarinfile() misses displaying the size of polynomial variables (regression)
 
 
 ### Bugs fixed in 6.0.1:
