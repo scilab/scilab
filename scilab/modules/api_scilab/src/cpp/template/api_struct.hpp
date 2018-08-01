@@ -131,12 +131,16 @@ int API_PROTO(getFields)(scilabEnv env, scilabVar var, wchar_t***  fields)
     }
 #endif
 
+    if (s->getSize() == 0)
+    {
+        return 0;
+    }
+
     std::unordered_map<std::wstring, int> fieldsMap = s->get(0)->getFields();
     *fields = new wchar_t*[fieldsMap.size()];
-    int iter = 0;
     for (const auto & field : fieldsMap)
     {
-        (*fields)[iter++] = os_wcsdup(field.first.data());
+        (*fields)[field.second] = os_wcsdup(field.first.data());
     }
 
     return (int)fieldsMap.size();

@@ -33,9 +33,21 @@ static bool export_data(scilabEnv env, scilabVar var, int indent, std::wostrings
 
 int level = -1;
 
-static double printType(double dbl)
+template <typename T>
+static T printType(T dbl)
 {
     return dbl;
+}
+
+//to avoid character printing
+static int printType(char c)
+{
+    return (int)c;
+}
+
+static unsigned int printType(unsigned char c)
+{
+    return (unsigned int)c;
 }
 
 static void string_replace(std::wstring& str, const std::wstring& f, const std::wstring& r)
@@ -59,7 +71,7 @@ static std::wstring printType(const std::wstring& s)
     return L"\"" + str + L"\"";
 }
 
-std::wstring printType(int b)
+static std::wstring printType(bool b)
 {
     return b ? L"true" : L"false";
 }
@@ -158,7 +170,8 @@ static bool export_struct(scilabEnv env, int indent, const std::vector<wchar_t*>
         indentStr2 = L"\n" + std::wstring(indent * (level + 1), L' ');
     }
 
-    if (fields.size() == 0)
+    int size = (int)fields.size();
+    if (size == 0)
     {
         os << L"{}";
         return true;
@@ -169,7 +182,6 @@ static bool export_struct(scilabEnv env, int indent, const std::vector<wchar_t*>
     os << L"\"" << fields[0] << L"\": ";
     export_data(env, data[0], indent, os);
 
-    int size = (int)fields.size();
     for (int i = 1; i < size; ++i)
     {
         os << L",";
@@ -180,7 +192,6 @@ static bool export_struct(scilabEnv env, int indent, const std::vector<wchar_t*>
 
     os << indentStr;
     os << L"}";
-
     return true;
 }
 
@@ -192,6 +203,12 @@ static bool export_struct_array(scilabEnv env, int indent, const std::vector<wch
     if (dim == 2 && dims[0] == 1 && dims[1] == 1)
     {
         int size = (int)fields.size();
+        if (size == 0)
+        {
+            os << L"{}";
+            return true;
+        }
+
         std::vector<scilabVar> data(size);
         for (int i = 0; i < size; ++i)
         {
@@ -207,6 +224,12 @@ static bool export_struct_array(scilabEnv env, int indent, const std::vector<wch
     {
         indentStr = L"\n" + std::wstring(indent * level, L' ');
         indentStr2 = L"\n" + std::wstring(indent * (level + 1), L' ');
+    }
+
+    if (dim == 2 && dims[0] == 0 && dims[1] == 0)
+    {
+        os << L"{}";
+        return true;
     }
 
     int size = 1;
@@ -292,14 +315,92 @@ static bool export_data(scilabEnv env, scilabVar var, int indent, std::wostrings
             break;
         }
 
+        case sci_ints: //ints
+        {
+            int rows = 0;
+            int cols = 0;
+            scilab_getDim2d(env, var, &rows, &cols);
+
+            int itype = scilab_getIntegerPrecision(env, var);
+            switch (itype)
+            {
+                case SCI_INT8:
+                {
+                    char* i8 = nullptr;
+                    scilab_getInteger8Array(env, var, &i8);
+                    ret = export_type(rows, cols, i8, indent, os);
+                    break;
+                }
+                case SCI_UINT8:
+                {
+                    unsigned char* ui8 = nullptr;
+                    scilab_getUnsignedInteger8Array(env, var, &ui8);
+                    ret = export_type(rows, cols, ui8, indent, os);
+                    break;
+                }
+                case SCI_INT16:
+                {
+                    short* i16 = nullptr;
+                    scilab_getInteger16Array(env, var, &i16);
+                    ret = export_type(rows, cols, i16, indent, os);
+                    break;
+                }
+                case SCI_UINT16:
+                {
+                    unsigned short* ui16 = nullptr;
+                    scilab_getUnsignedInteger16Array(env, var, &ui16);
+                    ret = export_type(rows, cols, ui16, indent, os);
+                    break;
+                }
+                case SCI_INT32:
+                {
+                    int* i32 = nullptr;
+                    scilab_getInteger32Array(env, var, &i32);
+                    ret = export_type(rows, cols, i32, indent, os);
+                    break;
+                }
+                case SCI_UINT32:
+                {
+                    unsigned int* ui32 = nullptr;
+                    scilab_getUnsignedInteger32Array(env, var, &ui32);
+                    ret = export_type(rows, cols, ui32, indent, os);
+                    break;
+                }
+                case SCI_INT64:
+                {
+                    long long* i64 = nullptr;
+                    scilab_getInteger64Array(env, var, &i64);
+                    ret = export_type(rows, cols, i64, indent, os);
+                    break;
+                }
+                case SCI_UINT64:
+                {
+                    unsigned long long* ui64 = nullptr;
+                    scilab_getUnsignedInteger64Array(env, var, &ui64);
+                    ret = export_type(rows, cols, ui64, indent, os);
+                    break;
+                }
+            }
+
+            break;
+        }
+
         case sci_boolean: //boolean
         {
             int rows = 0;
             int cols = 0;
-            int* b = nullptr;
+            int* i32 = nullptr;
             scilab_getDim2d(env, var, &rows, &cols);
-            scilab_getBooleanArray(env, var, &b);
+            scilab_getBooleanArray(env, var, &i32);
+
+            bool* b = new bool[rows * cols];
+            for (int i = 0; i < rows * cols; ++i)
+            {
+                b[i] = i32[i] == 0 ? false : true;
+            }
+
             ret = export_type(rows, cols, b, indent, os);
+            delete[] b;
             break;
         }
 
@@ -355,7 +456,7 @@ static bool export_data(scilabEnv env, scilabVar var, int indent, std::wostrings
         case sci_struct: //struct
         {
             //check is a struct or hymermatix
-            wchar_t** w;
+            wchar_t** w = nullptr;
             int size = scilab_getFields(env, var, &w);
 
             //build a vector for C array
