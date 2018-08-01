@@ -569,6 +569,7 @@ static bool read_boolean_sparse(int dataset, VarInfo6& info)
     readInteger32Matrix(datannz, &nnz);
 
     info.dims = 2;
+    info.pdims.resize(2);
     info.pdims[0] = pdims[0];
     info.pdims[1] = pdims[1];
     //rows(int) + nnz(int)
