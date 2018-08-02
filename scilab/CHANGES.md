@@ -572,6 +572,7 @@ Known issues
 * [#15652](http://bugzilla.scilab.org/show_bug.cgi?id=15652): An appended comment // after a comma in an multiline literal array now generates an error (regression).
 * [#15653](http://bugzilla.scilab.org/show_bug.cgi?id=15653): sparse - complex substraction was corrupted
 * [#15655](http://bugzilla.scilab.org/show_bug.cgi?id=15655): `clear a; a(1:4,:,1) = (1:4)` raised an error  (regression).
+* [#15658](http://bugzilla.scilab.org/show_bug.cgi?id=15658): `tbx_builder_src` required a C|C++|fortran compiler to compile only Java sources.
 * [#15659](http://bugzilla.scilab.org/show_bug.cgi?id=15659): `plot(x,fun)` could be very slow and crash Scilab.
 * [#15660](http://bugzilla.scilab.org/show_bug.cgi?id=15660): `atomsInstall` and `atomsRemove` displayed concatenated notifications instead of stacked ones.
 * [#15670](http://bugzilla.scilab.org/show_bug.cgi?id=15670): `set(H, prop1,val1, prop2,val2, ..)`: Setting multiple properties for a vector of handles yielded an error.
