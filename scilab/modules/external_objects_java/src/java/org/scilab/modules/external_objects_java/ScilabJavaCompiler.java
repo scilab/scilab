@@ -18,7 +18,6 @@ package org.scilab.modules.external_objects_java;
 import java.io.BufferedWriter;
 import java.io.CharArrayWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.InputStreamReader;
