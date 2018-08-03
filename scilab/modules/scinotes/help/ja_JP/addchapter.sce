@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("scilab editor",SCI+"/modules/scinotes/help/ja_JP",%T);
+add_help_chapter("Script editor",SCI+"/modules/scinotes/help/ja_JP",%T);
 

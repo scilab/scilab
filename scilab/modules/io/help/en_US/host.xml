@@ -94,7 +94,7 @@
                 <listitem>
                     Its starting environment variables are copied from the OS interpreter session
                     homing the current Scilab session. They can be modified using
-                    <link linkend="setvenv">setenv</link>, before calling host().
+                    <link linkend="setenv">setenv</link>, before calling host().
                 </listitem>
                 <listitem>
                     Changing the CWD or/and the environment variables with instructions in

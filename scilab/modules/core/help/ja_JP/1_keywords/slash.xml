@@ -14,12 +14,12 @@
         </para>
         <para>
             スラッシュ (右除算) とバックスラッシュ (左除算) 演算子は以下の等式で関係付けられます:
-            <code>B/A=(A'\B')'</code>.
+            <literal>B/A=(A'\B')'</literal>.
         </para>
         <para>
             <literal>A</literal>が正方の場合,
             <literal>X</literal> の解はLU分解または線形最小二乗ソルバにより求められます.
-            <literal>A</literal>の条件数が <code>1/(10*%eps)</code>以下の場合(すなわち<literal>A</literal>
+            <literal>A</literal>の条件数が <literal>1/(10*%eps)</literal>以下の場合(すなわち<literal>A</literal>
             の条件が良い場合), ピボット選択付きLU分解が使用されます.
             そうでない場合 (すなわち <literal>A</literal> の条件が悪い場合),
             <literal>X</literal> は<literal>A</literal>の完全直交分解により
@@ -27,37 +27,32 @@
             (すなわち, <literal>X</literal>は線形最小二乗問題の解となります).
         </para>
         <para>
-            <code>A./B</code> は要素毎の右除算, すなわち,
+            <literal>A./B</literal> は要素毎の右除算, すなわち,
             エントリ<literal>A(i,j)/B(i,j)</literal>を有する行列となります.
             <literal>B</literal> がスカラー (1x1 行列)の場合,この演算は
-            <code>A./B*ones(A)</code>と同じになります.
+            <literal>A./B*ones(A)</literal>と同じになります.
             <literal>A</literal>がスカラーの場合も同様です.
         </para>
         <para>
-            <note>
-                <code>123./B</code> は <code>(123.)/B</code>と解釈されることに注意してください.
-                この場合,ドットは演算子ではなく数値の一部となります.
-            </note>
-        </para>
-        <para>
-            システムフィードバック. <code>S = G/.K</code>は
-            <code>S = G*(eye() + K*G)^(-1)</code> と評価されます.
+            システムフィードバック. <literal>S = G/.K</literal>は
+            <literal>S = G*(eye() + K*G)^(-1)</literal> と評価されます.
             この演算子はシンプルな記述が容易に可能となります.
         </para>
+        <note>
+          Note that <literal>123./B</literal> is interpreted as <literal>(123)./B</literal>.
+          In this case, the dot is part of the operator, not of the decimal number.
+          <para/>
+          In the opposite, <literal>G/.5</literal> is interpreted as <literal>G/(.5)</literal> :
+          The dot here is part of the number, while it is not the case in
+          <literal>G/. 5</literal>
+        </note>
         <para>
-            <note>
-                <code>G/.5</code> は
-                <code>G/(.5)</code>と解釈されることに注意してください.
-                この場合, ドット(.) は演算子ではなく数値の一部となります.
-            </note>
+            コメント <literal>//</literal> は, 特定の行をコメントにします.
+            すなわち, <literal>//</literal> で始まる行はインタプリタから無視されます.
         </para>
         <para>
-            コメント <code>//</code> は, 特定の行をコメントにします.
-            すなわち, <code>//</code> で始まる行はインタプリタから無視されます.
-        </para>
-        <para>
-            It is the same with <code>/*</code> which start to comment a
-            block of code and with <code>*/</code> which end to comment this block.
+            It is the same with <literal>/*</literal> which start to comment a
+            block of code and with <literal>*/</literal> which end to comment this block.
         </para>
     </refsection>
     <refsection>
@@ -99,6 +94,12 @@ comments are useful */
             <revision>
                 <revnumber>5.4.1</revnumber>
                 <revremark>バックスラッシュの条件数の閾値が増加しました.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                  1./B  means now 1 ./ B, no longer 1. / B
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

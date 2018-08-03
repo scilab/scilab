@@ -239,43 +239,27 @@ along with this program.
             </itemizedlist>
 
         </para>
-
-    </refsection>
-
-    <refsection>
-
-        <title>注意</title>
-
-        <link linkend="corr">corr</link>
-
-        関数は<literal>x</literal>および<literal>y</literal>の
-
-        バイアス付き("biased")共分散を計算し,
-
-        <literal>c</literal>のみを返します.
-
-        自己共分散の並びは,C<subscript>k≥0</subscript>となります.
-
-    </refsection>
-
-    <refsection>
-
-        <refsection>
-
-            <title>手法</title>
-
-            この関数は,
-
-            <literal>ifft(fft(x).*conj(fft(y)))</literal>により
-
-            <emphasis>C</emphasis>を計算します.
-
+        <para>
+          <note>
+            <para>
+              <link linkend="corr">corr</link>
+              関数は<literal>x</literal>および<literal>y</literal>の
+              バイアス付き("biased")共分散を計算し,
+              <literal>c</literal>のみを返します.
+              自己共分散の並びは,C<subscript>k≥0</subscript>となります.
+            </para>
+            <para>
+              <title>手法</title>
+              この関数は,
+              <literal>ifft(fft(x).*conj(fft(y)))</literal>により
+              <emphasis>C</emphasis>を計算します.
+            </para>
+          </note>
+        </para>
         </refsection>
 
         <refsection>
-
             <title>例</title>
-
             <programlisting role="example">t = linspace(0, 100, 2000);
 
                 y = 0.8 * sin(t) + 0.8 * sin(2 * t);
@@ -300,7 +284,7 @@ along with this program.
 
         </refsection>
 
-        <refsection>
+        <refsection role="see also">
 
             <title>参照</title>
 

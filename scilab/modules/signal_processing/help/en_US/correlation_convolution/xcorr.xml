@@ -11,7 +11,10 @@ and continues to be available under such terms.
 For more information, see the COPYING file which you should have received
 along with this program.
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xcorr" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="xcorr" xml:lang="en">
     <refnamediv>
         <refname>xcorr</refname>
         <refpurpose>Computes discrete auto or cross correlation</refpurpose>
@@ -133,17 +136,19 @@ along with this program.
                 </listitem>
             </itemizedlist>
         </para>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
-        The <link linkend="corr">corr</link> function computes the "biased" covariance of
-        <literal>x</literal> and <literal>y</literal> and only return in <literal>c</literal>
-        the sequence of auto correlation lags C<subscript>k≥0</subscript>
-        .
-    </refsection>
-    <refsection>
-        <title>Method</title> This function computes <emphasis>C</emphasis> using
-        <literal>ifft(fft(x).*conj(fft(y)))</literal>.
+      <para>
+        <note>
+          <para>
+            The <link linkend="corr">corr</link> function computes the "biased" covariance of
+            <literal>x</literal> and <literal>y</literal> and only return in <literal>c</literal>
+            the sequence of auto correlation lags C<subscript>k≥0</subscript>.
+          </para>
+          <para>
+            Method: This function computes <emphasis>C</emphasis> using
+            <literal>ifft(fft(x).*conj(fft(y)))</literal>.
+          </para>
+        </note>
+      </para>
     </refsection>
     <refsection>
           <title>Examples</title>
@@ -159,7 +164,7 @@ along with this program.
             plot(ind, c)
           </scilab:image>
       </refsection>
-      <refsection>
+      <refsection role="see also">
           <title>See also</title>
           <simplelist type="inline">
             <member>

@@ -16,12 +16,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="sdf">
     <refnamediv>
         <refname>sdf</refname>
-        <refpurpose>Set default figure. </refpurpose>
+        <refpurpose>reSets the properties of the Default Figure to their factory values</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>sdf()
-            f = gdf(); set(f,"default_values",1)
+        <synopsis>
+            sdf()
+            set(gdf(),"default_values",1)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -67,10 +68,16 @@ end
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="sda">sda</link>
+                <link linkend="colordef">colordef</link>
             </member>
             <member>
                 <link linkend="gdf">gdf</link>
+            </member>
+            <member>
+                <link linkend="scf">scf</link>
+            </member>
+            <member>
+                <link linkend="sda">sda</link>
             </member>
             <member>
                 <link linkend="gda">gda</link>
@@ -81,6 +88,9 @@ end
             <member>
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
-        </simplelist>
+            <member>
+                <link linkend="setlookandfeel">setlookandfeel</link>
+            </member>
+      </simplelist>
     </refsection>
 </refentry>

@@ -120,7 +120,7 @@
             architectures (little and big endian automatically handled).
         </note>
         <warning>
-            Built-in functions can't be saved.
+            Built-in functions and implicit lists (like 10:2:$) can't be saved.
         </warning>
     </refsection>
     <refsection>
@@ -433,6 +433,9 @@ Undefined variable: myPi
                         <listitem>
                             The syntaxes save(fid) and save(fid, x1,..) with a file id are no longer
                             supported.
+                        </listitem>
+                        <listitem>
+                            Lists with undefined components can now be saved.
                         </listitem>
                     </itemizedlist>
                 </revremark>

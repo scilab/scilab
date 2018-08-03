@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
@@ -26,45 +26,44 @@
             operação é o mesmo que <literal> a./b*ones(a)</literal>. (mesma convenção
             se <literal>a</literal> é um escalar).
         </para>
-        <para>
-            Observe que<literal> 123./b</literal> é interpretado como
-            <literal>(123.)/b</literal>. Nestes casos, o ponto é parte do número, não
-            do operador.
-        </para>
         <para>(\) significa divisão direita-esquerda.</para>
         <para>
             Feedback de sistema.<literal> S=G/.K</literal> avalia
             <literal>S=G*(eye()+K*G)^(-1)</literal> . Este operador evita o problema
             de simplificação.
         </para>
-        <para>
-            Observe que<literal> G/.5</literal> é interpretado como
-            <literal>G/(.5)</literal>. Em tais casos, o ponto é parte do número, não
-            do operador.
-        </para>
+        <note>
+           Observe que <literal>123./b</literal> é interpretado como <literal>(123)./b</literal>.
+           Nestes casos, o ponto é parte do operador, não do número.
+          <para/>
+           In the opposite, <literal>G/.5</literal> é interpretado como <literal>G/(.5)</literal>.
+           Em tais casos, o ponto é parte do número, não do operador, while it is not the case in
+          <literal>G/. 5</literal>
+        </note>
         <para>
             Comentário. <literal>//</literal> comenta uma linha, i.e. linhas que
             começam por <literal>//</literal> são ignoradas pelo interpretador.
         </para>
         <para>
-            It is the same with <code>/*</code> which start to comment a
-            block of code and with <code>*/</code> which end to comment this block.
+            It is the same with <literal>/*</literal> which start to comment a
+            block of code and with <literal>*/</literal> which end to comment this block.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-a=[3.,-24.,30.];
-B=[
+a = [3.,-24.,30.];
+B = [
    9.   -36.    30.
   -36.   192.  -180.
    30.  -180.   180.
 ];
-x=a/B
+x = a/B
 x*B-a // proche de zéro
 
-a=4 / 2; // Doit renvoyer 2
-a=2 ./ [2,4]; //     1.    0.5
+a = 4 / 2; // Doit renvoyer 2
+a = 2 ./ [2,4]; //     1.    0.5
+
 // Un commentaire aide à comprendre le code.
 /* Even long, that is to say on many lines,
 comments are useful */
@@ -95,6 +94,12 @@ comments are useful */
                 <revremark>
                   The threshold level which switches between Gaussian Elimination with row pivoting
                   and linear least squares when computing B/A is decreased from sqrt(eps) to eps.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                  1./B  means now 1 ./ B, no longer 1. / B
                 </revremark>
             </revision>
         </revhistory>

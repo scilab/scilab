@@ -94,7 +94,7 @@
                     Ses variables d'environnement initiales sont identiques (noms et valeurs)
                     à celles du terminal OS dans lequel la session Scilab fonctionne (consolebox),
                     au moment où host() est appelée. Elles peuvent être modifiées avec
-                    <link linkend="setvenv">setenv</link> avant l'appel à host().
+                    <link linkend="setenv">setenv</link> avant l'appel à host().
                 </listitem>
                 <listitem>
                     Toute modification dans la session host() du dossier de travail et/ou des

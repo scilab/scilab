@@ -13,11 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="calerf" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="calerf" xml:lang="en">
     <refnamediv>
         <refname>calerf</refname>
         <refpurpose>computes error functions.</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+          y = calerf(x, erfType)
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
@@ -28,9 +37,24 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>erfType</term>
                 <listitem>
-                    <para>integer indicator</para>
+                    <para>
+                      <table border="0">
+                        <tr valign="top">
+                          <th>0</th>
+                          <td> : computes the error function <literal>erf(x)</literal></td>
+                        </tr>
+                        <tr valign="top">
+                          <th>1</th>
+                          <td> : computes the complementary error function <literal>erfc(x)</literal></td>
+                        </tr>
+                        <tr valign="top">
+                          <th>2</th>
+                          <td> : computes the scaled complementary  error function <literal>erfcx(x)</literal></td>
+                        </tr>
+                      </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -40,21 +64,6 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            <literal>calerf(x,0)</literal> computes the error function
-            <literal>erf(x)</literal>
-        </para>
-        <para>
-            <literal>calerf(x,1)</literal> computes the complementary error
-            function <literal>erfc(x)</literal>
-        </para>
-        <para>
-            <literal>calerf(x,2)</literal> computes the scaled complementary
-            error function <literal>erfcx(x)</literal>
-        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

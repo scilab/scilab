@@ -161,7 +161,7 @@ along with this program.
           plot(ind, c)
         </scilab:image>
       </refsection>
-      <refsection>
+      <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
           <member>

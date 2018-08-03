@@ -51,7 +51,7 @@
                         library (its handle).
                         This output argument is mandatory. Otherwise, lib() sets
                         <literal>ans</literal> as library's identifier,  whose value will be
-                        overwritten and lost in a shortly after.
+                        overwritten and lost shortly after.
                     </para>
                 </listitem>
             </varlistentry>
