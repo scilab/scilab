@@ -310,9 +310,13 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
     public void dragDropEnd(DragSourceDropEvent dsde) {
         Component c = null;
         for (SciNotes sn : SciNotes.getSciNotesList()) {
-            Point point = new Point(dsde.getLocation());
-            SwingUtilities.convertPointFromScreen(point, sn);
-            c = SwingUtilities.getDeepestComponentAt(sn, (int) point.getX(), (int) point.getY());
+            try {
+                Point point = new Point(dsde.getLocation());
+                SwingUtilities.convertPointFromScreen(point, sn);
+                c = SwingUtilities.getDeepestComponentAt(sn, (int) point.getX(), (int) point.getY());
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
             if (c != null) {
                 break;
             }
