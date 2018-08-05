@@ -427,10 +427,12 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             if (gds != null) {
                 for (GraphicsDevice gd : gds) {
                     Rectangle r = gd.getDefaultConfiguration().getBounds();
-                    if (r.contains(p)) {
-                        positionned = true;
-                        window.setLocation(p.x, p.y);
-                        break;
+                    if (r != null) {
+                        if (r.contains(p)) {
+                            positionned = true;
+                            window.setLocation(p.x, p.y);
+                            break;
+                        }
                     }
                 }
             }
@@ -441,7 +443,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         }
 
         window.setSize(((Integer) attrs.get("width")).intValue(), ((Integer) attrs.get("height")).intValue());
-        
+
         /* remove ICONIFIED at restoration */
         int state = ((Integer)attrs.get("state")).intValue();
         if((state & SwingScilabWindow.ICONIFIED) == SwingScilabWindow.ICONIFIED) {
