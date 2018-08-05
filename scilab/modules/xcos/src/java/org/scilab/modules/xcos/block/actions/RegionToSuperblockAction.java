@@ -457,16 +457,21 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
          * Place the super block
          */
         final mxRectangle dims = parentGraph.getBoundingBoxFromGeometry(selection);
-        final double minX = dims.getX();
-        final double maxX = minX + dims.getWidth();
+        
+        try {
+            final double minX = dims.getX();
+            final double maxX = minX + dims.getWidth();
 
-        final double minY = dims.getY();
-        final double maxY = minY + dims.getHeight();
+            final double minY = dims.getY();
+            final double maxY = minY + dims.getHeight();
 
-        mxGeometry geom = superBlock.getGeometry();
-        geom.setX((maxX + minX - geom.getWidth()) / 2.0);
-        geom.setY((maxY + minY - geom.getHeight()) / 2.0);
-        superBlock.setGeometry(geom);
+            mxGeometry geom = superBlock.getGeometry();
+            geom.setX((maxX + minX - geom.getWidth()) / 2.0);
+            geom.setY((maxY + minY - geom.getHeight()) / 2.0);
+            superBlock.setGeometry(geom);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
         /*
          * get statistics to flip and rotate
