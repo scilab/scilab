@@ -165,7 +165,7 @@ public final class HelpOnTypingManager implements KeyListener {
                                 break;
                             default :
                         }
-                    } catch (BadLocationException exc) {
+                    } catch (BadLocationException | NullPointerException exc) {
                         System.err.println(exc);
                     }
                 }
