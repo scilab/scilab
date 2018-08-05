@@ -534,7 +534,11 @@ public class ClosingOperationsManager {
                 for (SwingScilabDockablePanel tab : list) {
                     if (closingOps.get(tab) == null) {
                         tab.setVisible(false);
-                        tab.getActionButton("undock").getAction().actionPerformed(null);
+                        try {
+                            tab.getActionButton("undock").getAction().actionPerformed(null);
+                        } catch (NullPointerException e) {
+                            e.printStackTrace();
+                        }
                         Action action = ((SciClosingAction) tab.getActionButton(DockingConstants.CLOSE_ACTION).getAction()).getAction();
                         if (action == null) {
                             SwingScilabWindow win = getWindow(tab);
