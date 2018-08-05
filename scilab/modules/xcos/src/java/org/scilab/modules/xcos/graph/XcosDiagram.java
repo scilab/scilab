@@ -2082,7 +2082,11 @@ public class XcosDiagram extends ScilabGraph {
                         while (ex instanceof RuntimeException) {
                             ex = ex.getCause();
                         }
-                        instance.setLastError(ex.getMessage());
+                        try {
+                            instance.setLastError(ex.getMessage());
+                        } catch (NullPointerException exp) {
+                            exp.printStackTrace();
+                        }
                     }
                     instance.notify();
                 }
