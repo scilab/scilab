@@ -297,10 +297,14 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
                 /*
                  * Set the child position
                  */
-                mxGeometry geom = childBlock.getGeometry();
-                geom.setX(x);
-                geom.setY(y);
-                childBlock.setGeometry(geom);
+                try {
+                    mxGeometry geom = childBlock.getGeometry();
+                    geom.setX(x);
+                    geom.setY(y);
+                    childBlock.setGeometry(geom);
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
             }
 
             return childBlock;
