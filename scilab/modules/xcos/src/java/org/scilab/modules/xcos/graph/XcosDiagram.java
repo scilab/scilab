@@ -999,12 +999,16 @@ public class XcosDiagram extends ScilabGraph {
         }
 
         // snap the center of the split block on the grid
-        mxGeometry geom = splitBlock.getGeometry();
-        double x = snap(splitPoint.getX()) - (SplitBlock.DEFAULT_SIZE / 2.);
-        double y = snap(splitPoint.getY()) - (SplitBlock.DEFAULT_SIZE / 2.);
-        geom.setX(x);
-        geom.setY(y);
-        splitBlock.setGeometry(geom);
+        try {
+            mxGeometry geom = splitBlock.getGeometry();
+            double x = snap(splitPoint.getX()) - (SplitBlock.DEFAULT_SIZE / 2.);
+            double y = snap(splitPoint.getY()) - (SplitBlock.DEFAULT_SIZE / 2.);
+            geom.setX(x);
+            geom.setY(y);
+            splitBlock.setGeometry(geom);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
 
         getModel().beginUpdate();
         try {
