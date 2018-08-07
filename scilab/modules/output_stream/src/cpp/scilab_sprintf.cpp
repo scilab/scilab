@@ -377,30 +377,39 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
     if (token.size() > 1 && in.size() > first)
     {
         iLoop = in[first]->getAs<types::GenericType>()->getRows();
-        for (int i = first+1; i < in.size(); ++i)
+        for (int i = first + 1; i < in.size(); ++i)
         {
             iLoop = std::min(iLoop, in[i]->getAs<types::GenericType>()->getRows());
         }
-
-        if (*_piNewLine || (*_piOutputRows) > 1)
-        {
-            (*_piOutputRows) *= iLoop;
-        }
     }
 
+    // count number of output lines in function of \n and size of input args
+    (*_piOutputRows) *= iLoop;
+    (*_piOutputRows) += *_piNewLine == 1 ? 0 : 1;
+
+    pwstOutput = (wchar_t**)MALLOC((*_piOutputRows) * sizeof(wchar_t*));
+    int outputIter = 0;
     std::wostringstream oFirstOutput;
     for (int j = 0; j < iLoop; j++)
     {
-        //copy the 0th token
-        TokenDef* f = token.front();
-        oFirstOutput << f->pwstToken;
-
-        //start at 1, the 0th is always without %
-        std::list<TokenDef*>::iterator it = std::next(token.begin());
-        for (; it != token.end(); ++it)
+        wchar_t* tmpToken = NULL;
+        for (auto it = token.begin(); it != token.end();/*no inc*/)
         {
             TokenDef* tok = *it;
-            switch (tok->outputType)
+            wchar_t* token = tmpToken ? tmpToken : tok->pwstToken;
+            // find LF in token
+            wchar_t* lf = wcsstr(token, L"\n");
+            if(lf)
+            {
+                // create tkoen as part of current token
+                size_t sToken = lf - token;
+                token = (wchar_t*)MALLOC((sToken + 1) * sizeof(wchar_t));
+                wcsncpy(token, tmpToken ? tmpToken : tok->pwstToken, sToken);
+                token[sToken] = L'\0';
+            }
+
+            // if tmpToken != NULL: we already have managed the % so manage this (part) token as a string without %
+            switch (tmpToken ? types::InternalType::ScilabNull : tok->outputType)
             {
                 case types::InternalType::ScilabDouble:
                 {
@@ -413,22 +422,22 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         {
                             if (tok->precStar)
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->width, tok->prec, dblVal);
+                                os_swprintf(pwstTemp, bsiz, token, tok->width, tok->prec, dblVal);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->width, dblVal);
+                                os_swprintf(pwstTemp, bsiz, token, tok->width, dblVal);
                             }
                         }
                         else
                         {
                             if (tok->precStar)
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->prec, dblVal);
+                                os_swprintf(pwstTemp, bsiz, token, tok->prec, dblVal);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, dblVal);
+                                os_swprintf(pwstTemp, bsiz, token, dblVal);
                             }
                         }
                     }
@@ -468,22 +477,22 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         {
                             if (tok->precStar)
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->width, tok->prec, iVal);
+                                os_swprintf(pwstTemp, bsiz, token, tok->width, tok->prec, iVal);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->width, iVal);
+                                os_swprintf(pwstTemp, bsiz, token, tok->width, iVal);
                             }
                         }
                         else
                         {
                             if (tok->precStar)
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->prec, iVal);
+                                os_swprintf(pwstTemp, bsiz, token, tok->prec, iVal);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, iVal);
+                                os_swprintf(pwstTemp, bsiz, token, iVal);
                             }
                         }
                     }
@@ -526,22 +535,22 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         {
                             if (tok->precStar)
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->width, tok->prec, iVal);
+                                os_swprintf(pwstTemp, bsiz, token, tok->width, tok->prec, iVal);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->width, iVal);
+                                os_swprintf(pwstTemp, bsiz, token, tok->width, iVal);
                             }
                         }
                         else
                         {
                             if (tok->precStar)
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, tok->prec, iVal);
+                                os_swprintf(pwstTemp, bsiz, token, tok->prec, iVal);
                             }
                             else
                             {
-                                os_swprintf(pwstTemp, bsiz, tok->pwstToken, iVal);
+                                os_swprintf(pwstTemp, bsiz, token, iVal);
                             }
                         }
                     }
@@ -599,8 +608,8 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         pwstStr = it->getAs<types::String>()->get(j, tok->col);
                     }
 
-                    int posC = (int)wcscspn(tok->pwstToken, L"c");
-                    int posS = (int)wcscspn(tok->pwstToken, L"s");
+                    int posC = (int)wcscspn(token, L"c");
+                    int posS = (int)wcscspn(token, L"s");
 
                     if (posS == 0 || posC == 0)
                     {
@@ -625,7 +634,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         }
                     }
 
-                    int tokenLen = (int)wcslen(tok->pwstToken);
+                    int tokenLen = (int)wcslen(token);
                     len += tokenLen;
                     len = std::max(len, std::abs(tok->width));
                     //add len of string after token like "%20s>>>" add space for ">>>"
@@ -636,22 +645,22 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     {
                         if (tok->widthStar)
                         {
-                            os_swprintf(pwstTemp, len + 1, tok->pwstToken, tok->width, pwstStr[0]);
+                            os_swprintf(pwstTemp, len + 1, token, tok->width, pwstStr[0]);
                         }
                         else
                         {
-                            os_swprintf(pwstTemp, len + 1, tok->pwstToken, pwstStr[0]);
+                            os_swprintf(pwstTemp, len + 1, token, pwstStr[0]);
                         }
                     }
                     else
                     {
                         if (tok->widthStar)
                         {
-                            os_swprintf(pwstTemp, len + 1, tok->pwstToken, tok->width, pwstStr);
+                            os_swprintf(pwstTemp, len + 1, token, tok->width, pwstStr);
                         }
                         else
                         {
-                            os_swprintf(pwstTemp, len + 1, tok->pwstToken, pwstStr);
+                            os_swprintf(pwstTemp, len + 1, token, pwstStr);
                         }
                     }
 
@@ -660,14 +669,39 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     break;
                 }
                 default:
+                {
                     // management of %%
-                    oFirstOutput << tok->pwstToken;
-                    break;
+                    oFirstOutput << token;
+                }
             }
+
+            if(lf)
+            {
+                // write current line
+                pwstOutput[outputIter++] = os_wcsdup((wchar_t*)oFirstOutput.str().c_str());
+                // clear temporary stream and token
+                oFirstOutput.clear();
+                oFirstOutput.str(L"");
+                FREE(token);
+                // skip LF
+                tmpToken = ++lf;
+                // if not at the end of token, continue with same token
+                if(lf - tok->pwstToken < wcslen(tok->pwstToken))
+                {
+                    continue;
+                }
+            }
+
+            tmpToken = NULL;
+            ++it;
         }
     }
 
-    pwstFirstOutput = os_wcsdup((wchar_t*)oFirstOutput.str().c_str());
+    // write last line
+    if(oFirstOutput.str().length())
+    {
+        pwstOutput[outputIter++] = os_wcsdup((wchar_t*)oFirstOutput.str().c_str());
+    }
 
     for (auto & tok : token)
     {
@@ -675,30 +709,6 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
         delete tok;
     }
 
-    pwstOutput = (wchar_t**)MALLOC((*_piOutputRows) * sizeof(wchar_t*));
-
-    size_t iLen = wcslen(pwstFirstOutput);
-    int iStart = 0;
-    int j = 0;
-    for (int i = 0; i < iLen; i++)
-    {
-        if (pwstFirstOutput[i] == L'\n')
-        {
-            int iSize = i - iStart;
-            pwstOutput[j] = (wchar_t*)MALLOC(sizeof(wchar_t) * (iSize + 1));
-            wcsncpy(pwstOutput[j], pwstFirstOutput + iStart, iSize);
-            pwstOutput[j][iSize] = L'\0';
-            iStart = i + 1;
-            j++;
-        }
-    }
-
-    if (j == (*_piOutputRows) - 1)
-    {
-        pwstOutput[j] = os_wcsdup(pwstFirstOutput + iStart);
-    }
-
-    FREE(pwstFirstOutput);
     return pwstOutput;
 }
 /*--------------------------------------------------------------------------*/
@@ -712,7 +722,7 @@ static wchar_t* replaceAndCountLines(const wchar_t* _pwstInput, int* _piLines, i
     wchar_t* pwstFirstOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * (iInputLen + 1));
 
     int iPos = 0;
-    *_piLines = 1;
+    *_piLines = 0;
 
     for (int i = 0; i < iInputLen; i++)
     {
@@ -770,7 +780,6 @@ static wchar_t* replaceAndCountLines(const wchar_t* _pwstInput, int* _piLines, i
     // it will be manage by piNewLine
     if (iPos > 0 && pwstFirstOutput[iPos - 1] == '\n')
     {
-        (*_piLines)--;
         (*_piNewLine) = 1;
     }
 
@@ -787,7 +796,7 @@ static wchar_t* addl(TokenDef* token)
 
     wcsncpy(pwstToken, token->pwstToken, iPos);
     pwstToken[iPos] = L'l';
-    pwstToken[iPos + 1] = L's';
+    pwstToken[iPos + 1] = token->pwstToken[iPos];
     wcsncpy(&pwstToken[iPos + 2], token->pwstToken + iPos + 1, sizeTotal - (iPos + 1));
     pwstToken[sizeTotal + 1] = L'\0';
 
