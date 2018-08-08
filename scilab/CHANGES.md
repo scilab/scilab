@@ -470,6 +470,7 @@ Known issues
 * [#14988](http://bugzilla.scilab.org/show_bug.cgi?id=14988): The example of Xcos diagram on the DERIV help page was distorted.
 * [#14989](http://bugzilla.scilab.org/show_bug.cgi?id=14989): The example of Xcos diagram on the INTEGRAL_m help page was distorted.
 * [#14990](http://bugzilla.scilab.org/show_bug.cgi?id=14990): The example of Xcos diagram on the NEGTOPOS_f help page was distorted.
+* [#14995](http://bugzilla.scilab.org/show_bug.cgi?id=14995): savematfile crashes Scilab
 * [#15091](http://bugzilla.scilab.org/show_bug.cgi?id=15091): `translatepaths()` was KO.
 * [#15092](http://bugzilla.scilab.org/show_bug.cgi?id=15092): Scalar variable was resized as a column vector instead of row.
 * [#15017](http://bugzilla.scilab.org/show_bug.cgi?id=15017): `lcm` did not support int64 and uint64 input integers. Input integers had to be in a row instead of any matrix. For input decimal integers, results were int32 encoded.

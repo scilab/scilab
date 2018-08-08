@@ -102,8 +102,12 @@ int sci_matfile_varreadnext(char *fname, void* pvApiCtx)
             LhsVar(3) = Rhs + 3;
         }
 
-        PutLhsVar();
+        if(matvar)
+        {
+            Mat_VarFree(matvar);
+        }
 
+        PutLhsVar();
         return TRUE;
     }
 

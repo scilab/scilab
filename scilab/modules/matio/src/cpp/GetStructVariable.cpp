@@ -72,15 +72,17 @@ matvar_t* GetStructMatVar(types::Struct* pStruct, const char *name, int matfile_
         pszDims[K] = ((int*)pDims)[K];
     }
 
-    structEntries = (matvar_t **)MALLOC(sizeof(matvar_t*) * prodDims * isizeFieldNames + 1);
+    int iSize = prodDims * isizeFieldNames + 1;
+    structEntries = (matvar_t **)MALLOC(iSize * sizeof(matvar_t*));
     if (structEntries == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "GetStructMatVar");
+        pFieldNames->killMe();
         FREE(pszDims);
         return NULL;
     }
 
-    for (int K = 0; K < prodDims * isizeFieldNames + 1; ++K)
+    for (int K = 0; K < iSize; ++K)
     {
         structEntries[K] = NULL;
     }
@@ -91,9 +93,12 @@ matvar_t* GetStructMatVar(types::Struct* pStruct, const char *name, int matfile_
     {
         for (int j = 0; j < isizeFieldNames; j++)
         {
-            structEntries[i * isizeFieldNames + j] = ConvertSciVarToMatVar(ppSingleStruct[i]->get(pFieldNames->get(j)), wide_string_to_UTF8(pFieldNames->get(j)), matfile_version);
+            char* pcFName = wide_string_to_UTF8(pFieldNames->get(j));
+            structEntries[i * isizeFieldNames + j] = ConvertSciVarToMatVar(ppSingleStruct[i]->get(pFieldNames->get(j)), pcFName, matfile_version);
+            FREE(pcFName);
             if (structEntries[i * isizeFieldNames + j] == NULL)
             {
+                pFieldNames->killMe();
                 FREE(structEntries);
                 FREE(pszDims);
                 return NULL;
@@ -101,8 +106,12 @@ matvar_t* GetStructMatVar(types::Struct* pStruct, const char *name, int matfile_
         }
     }
 
-    pMatVarOut = Mat_VarCreate(name, MAT_C_STRUCT, MAT_T_STRUCT, prodDims * isizeFieldNames, pszDims, structEntries, 0);
+    pFieldNames->killMe();
 
+    pMatVarOut = Mat_VarCreate(name, MAT_C_STRUCT, MAT_T_STRUCT, Dims, pszDims, structEntries, 0);
+
+    FREE(structEntries);
     FREE(pszDims);
+
     return pMatVarOut;
 }
