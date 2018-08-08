@@ -346,7 +346,6 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
             }
 
             delete s;
-            free(serialAst);
             delete parser.getTree();
         }
 

@@ -608,6 +608,10 @@ private :
 
 public :
     SerializeVisitor(Exp* _ast) : ast(_ast), buf(NULL), buflen(0), bufsize(0), saveNodeNumber(true), saveLocation(true) {}
+    ~SerializeVisitor()
+    {
+        if(buf) free(buf);
+    }
 
     SerializeVisitor* clone()
     {

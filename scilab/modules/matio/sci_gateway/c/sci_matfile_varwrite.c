@@ -162,7 +162,7 @@ int sci_matfile_varwrite(char *fname, void* pvApiCtx)
     }
 
     flag = Mat_VarWrite(matfile, matvar, compressionFlag);
-
+    Mat_VarFree(matvar);
     /* Return execution flag */
     var_type = (flag == 0);
     createScalarBoolean(pvApiCtx, Rhs + 1, var_type);

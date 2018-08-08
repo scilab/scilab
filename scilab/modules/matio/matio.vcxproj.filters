@@ -42,9 +42,6 @@
     <ClCompile Include="src\c\CreateSparseVariable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\DllmainMatio.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\GetMatlabVariable.c">
       <Filter>Source Files</Filter>
     </ClCompile>

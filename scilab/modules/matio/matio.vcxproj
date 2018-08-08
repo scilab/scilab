@@ -214,7 +214,6 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\CreateIntegerVariable.c" />
     <ClCompile Include="src\c\CreateMatlabVariable.c" />
     <ClCompile Include="src\c\CreateSparseVariable.c" />
-    <ClCompile Include="src\c\DllmainMatio.c" />
     <ClCompile Include="src\c\GetMatlabVariable.c" />
     <ClCompile Include="src\c\matfile_manager.c" />
   </ItemGroup>

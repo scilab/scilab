@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
- 
+
 #include <string>
 #include <numeric>
 #include <iostream>
@@ -2383,7 +2383,6 @@ ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg)
         timer.check(msgD.c_str());
     }
 
-    free(newast);
     delete s;
     delete d;
     return newTree;
