@@ -128,6 +128,10 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     //only scalar can be used to ".=" operation
     if (iSeqCount != pSource->getSize() && pSource->isScalar() == false)
     {
+        delete[] piCountDim;
+        delete[] piMaxDim;
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
 
@@ -180,6 +184,10 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     {
         if (indexes.size() == 0)
         {
+            delete[] piCountDim;
+            delete[] piMaxDim;
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return this;
         }
 
@@ -189,6 +197,10 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         //only scalar can be used to ".=" operation
         if (sizeIn != 1 && count != sizeIn)
         {
+            delete[] piCountDim;
+            delete[] piMaxDim;
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
         }
 
@@ -257,6 +269,10 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
             if (status)
             {
+                delete[] piCountDim;
+                delete[] piMaxDim;
+                //free pArg content
+                cleanIndexesArguments(_pArgs, &pArg);
                 return this;
             }
 

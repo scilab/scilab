@@ -894,7 +894,6 @@ static int export_macro(int parent, const std::string& name, types::Macro* data)
     dims[0] = 1;
     dims[1] = size;
     writeIntegerMatrix6(dset, "body", H5T_NATIVE_UINT8, "u8", 2, dims, serialAst);
-    free(serialAst);
 
     closeList6(dset);
     return dset;
