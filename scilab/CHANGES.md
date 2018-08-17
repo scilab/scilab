@@ -556,6 +556,7 @@ Known issues
 * [#15615](http://bugzilla.scilab.org/show_bug.cgi?id=15615): `datatipToggle()` was a duplicate of `datatipManagerMode()`.
 * [#15617](http://bugzilla.scilab.org/show_bug.cgi?id=15617): `evstr(list(..))` did not check the number and types of list components. When an input component can't be evaluated, the error messages were not clear enough.
 * [#15621](http://bugzilla.scilab.org/show_bug.cgi?id=15621): polynomial exponentiation silently truncated exponent (regression).
+* [#15624](http://bugzilla.scilab.org/show_bug.cgi?id=15624): parser allowed `fun(,)` or `fun(x,)` for built-in functions.
 * [#15625](http://bugzilla.scilab.org/show_bug.cgi?id=15625): `delip(1,1)=0` instead of `Inf`
 * [#15626](http://bugzilla.scilab.org/show_bug.cgi?id=15626): clicking on its icon did not give focus to a docked Scinotes.
 * [#15627](http://bugzilla.scilab.org/show_bug.cgi?id=15627): changing font in SciNotes window with ctrl-mouse wheel in splitted view messed other view.

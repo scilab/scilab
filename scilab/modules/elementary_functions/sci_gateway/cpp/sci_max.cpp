@@ -114,6 +114,14 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
     // get the size of the first input non scalar
     for (int i = 0; i < inputs.size(); i++)
     {
+        if(inputs[i]->isGenericType() == false)
+        {
+            wchar_t* wcsMinMax = to_wide_string(fname);
+            std::wstring wstFuncName = L"%" + inputs[i]->getShortTypeStr() + L"_" + wcsMinMax;
+            FREE(wcsMinMax);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
+        }
+
         pGT = inputs[i]->getAs<types::GenericType>();
         if (pGT->getSize() == 0)
         {

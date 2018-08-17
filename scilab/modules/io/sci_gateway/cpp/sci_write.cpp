@@ -112,6 +112,12 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
         //iAccess is thrid parameter
     }
 
+    if(in[1]->isGenericType() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real matrix or column vector expected.\n"), "write", 2);
+        return types::Function::Error;
+    }
+
     int iRows = in[1]->getAs<types::GenericType>()->getRows();
     int iCols;
     if (in[1]->isString())

@@ -1349,6 +1349,12 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     }
 
     // reshape data with size of hypermatrix
+    if(pIT->isGenericType() == false)
+    {
+        delete[] piDimsArray;
+        return false;
+    }
+
     pGT = pIT->getAs<types::GenericType>();
     pGT->reshape(piDimsArray, piDims[1]);
 
