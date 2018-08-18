@@ -580,6 +580,7 @@ Known issues
 * [#15685](http://bugzilla.scilab.org/show_bug.cgi?id=15685): The page of `file()` needed to be updated about error numbers, and improved.
 * [#15692](http://bugzilla.scilab.org/show_bug.cgi?id=15692): listvarinfile() crashes when listing a boolean sparse matrix (regression)
 * [#15693](http://bugzilla.scilab.org/show_bug.cgi?id=15693): listvarinfile() misses displaying the size of polynomial variables (regression)
+* [#15710](http://bugzilla.scilab.org/show_bug.cgi?id=15710): The Xcos EXPRESSION block did not accept expressions including some `&` or `~` characters.
 * [#15733](http://bugzilla.scilab.org/show_bug.cgi?id=15733): Some fixes after `deg(0*%s)` => `-%inf`.
 * [#15735](http://bugzilla.scilab.org/show_bug.cgi?id=15735): `interp1` yielded some []+n warnings.
 * [#15736](http://bugzilla.scilab.org/show_bug.cgi?id=15736): `unique` failed with complex numbers.

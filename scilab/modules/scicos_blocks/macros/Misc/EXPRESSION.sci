@@ -102,6 +102,8 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
                             //  used as subfield separator in the graphics.style field...
                             // => using a LaTeX expression instead
                             lab = strsubst(exprs(2), "%", "\%");
+                            lab = strsubst(lab, "&", "\&");
+                            lab = strsubst(lab, "~", "{\small\sim\!}");
                             tmp = [
                                 "$\mathsf\scalebox{0.8}{"
                                 "\begin{array}{c}"
