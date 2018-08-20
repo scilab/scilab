@@ -31,9 +31,9 @@ function z = bit_op(x, y, fname)
         error(msprintf(msg, fname, 1, 2))
     else
         if size(x,"*")==1
-            x = x * ones(y)
+            x = x .* ones(y)
         elseif size(y,"*")==1
-            y = y * ones(x)
+            y = y .* ones(x)
         end
     end
 
