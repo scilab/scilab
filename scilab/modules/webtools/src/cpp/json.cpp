@@ -61,7 +61,7 @@ static void string_replace(std::wstring& str, const std::wstring& f, const std::
     str.replace(pos, f.length(), r);
 }
 
-static std::wstring printType(const std::wstring& s)
+static std::wstring printType(wchar_t* s)
 {
     std::wstring str = s;
     string_replace(str, L"\\", L"\\\\");
