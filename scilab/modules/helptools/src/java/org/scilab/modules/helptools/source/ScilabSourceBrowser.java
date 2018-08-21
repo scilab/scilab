@@ -62,21 +62,27 @@ public class ScilabSourceBrowser extends HTMLScilabCodeHandler {
     public void generateSource() {
         new FirstPass().getMacroUsage();
         for (String file : files) {
+            Reader input = null;
             try {
                 File f = new File(file);
                 System.out.println(f);
-                Reader input = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"));
+                input = new BufferedReader(new InputStreamReader(new FileInputStream(f), "UTF-8"));
                 currentCommand = f.getName().split("\\.")[0];
                 buffer = new OutputStreamWriter(new FileOutputStream(outputDirectory + File.separator + currentCommand + ".html"), "UTF-8");
                 buffer.append(entete);
                 buffer.append("<div style=\"code\"><pre>");
                 scilabLexer.convert(this, input, false);
                 buffer.append("</pre></div>\n</body>\n</html>");
-                ((Writer) buffer).flush();
-                ((Writer) buffer).close();
-                input.close();
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    ((Writer) buffer).flush();
+                    ((Writer) buffer).close();
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
