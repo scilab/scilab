@@ -244,6 +244,7 @@ input and output arguments.
 * `gamma()` can now process an hypermatrix.
 * `surf()` and `mesh()`: It is now possible to specify the `foreground`, `facecolor`, `markforeground` and `markbackground` global properties with any color name of the full predefined colors list. Up to now, only the 9 main colors names were usable. Moreover, colors can now be specified with their "#RRGGBB" hexa code or their indices in the color map.
 * `unique` can now unduplicate a set of complex numbers.
+* `save()` can now process lists with undefined components.
 
 Help pages:
 -----------
@@ -256,7 +257,7 @@ Help pages:
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`,
   `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`, `recursionlimit`, `for`, `fileinfo`, `end`,
   `iconvert`, `cond`, `Globalproperty`, `unique`, `intdec`, `plus`, `minus`, `varn`, `savematfile`,
-  `empty`, `modulo`, `pdiv`, `unix_g`, `unix_s`, `unix_w`, `unix_x`, `dos`
+  `empty`, `modulo`, `pdiv`, `unix_g`, `unix_s`, `unix_w`, `unix_x`, `dos`, `listvarinfile`, 
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `lcm`, `isglobal`,
@@ -443,6 +444,7 @@ Known issues
 * [#12275](http://bugzilla.scilab.org/show_bug.cgi?id=12275): `msprintf("%s",ascii(97*ones(1,4097)))` produced "An error occurred: Buffer too small."
 * [#12402](http://bugzilla.scilab.org/show_bug.cgi?id=12402): The menu `Applications => Scinotes` could launch the external editor instead of Scinotes.
 * [#12520](http://bugzilla.scilab.org/show_bug.cgi?id=12520): Variable browser did not display the size of the variables.
+* [#12529](http://bugzilla.scilab.org/show_bug.cgi?id=12529): The `listvarinfile` help page needed to be updated.
 * [#12534](http://bugzilla.scilab.org/show_bug.cgi?id=12534): Variable browser did not display the size of the variables.
 * [#12566](http://bugzilla.scilab.org/show_bug.cgi?id=12566): `disp()` of a T-list with a single field set to an encoded integer value generated an error.
 * [#12618](http://bugzilla.scilab.org/show_bug.cgi?id=12618): `mfile2sci()` failed converting `a=1i // ab` into `a=1*%i // ab`.

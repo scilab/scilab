@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="listvarinfile">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="listvarinfile">
     <refnamediv>
         <refname>listvarinfile</refname>
-        <refpurpose>list of variables in a saved data file</refpurpose>
+        <refpurpose>lists variables stored in a binary archive (names, types, sizes..)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>listvarinfile(filename)
+        <synopsis>
+            listvarinfile(filename);
             [names, typs, dims, vols] = listvarinfile(filename)
         </synopsis>
     </refsynopsisdiv>
@@ -58,31 +76,77 @@
     <refsection>
         <title>Description</title>
         <para>
-            This utility function lists "a la <link linkend="whos">whos</link>" the variables contained in
-            a Scilab data file produced by <link linkend="save">save</link>.
+            This utility function lists "a la <link linkend="whos">whos</link>" the variables
+            stored in a Scilab data file created with <link linkend="save">save</link>.
         </para>
         <para>
             <note>
-                Hypermatrices are reported as plain mlists;
-                rationals and state-spaces are reported as plain tlists;
-                graphic handles are not recognized.
+                Rationals and state-space linear systems are reported as plain tlists
             </note>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-a=eye(2,2); b=int16(ones(a)); c=rand(2,3,3);
-save(fullfile(TMPDIR,"vals.sod"),'a','b','c')
-[names,typs,dims,vols] = listvarinfile(fullfile(TMPDIR,"vals.sod"))
+// Preparing some data of various types:
+b = rand(2,3) < 0.5;                    // booleans
+i = uint64(grand(3,4,2,"uin",0,100));   // hypermatrix of encoded integers
+c = grand(3,3,"uin",-10,10); c=c+c'*%i; // complex numbers
+p = (1-%z).^(0:3);                      // polynomials
+r = p/(1+%z);                           // rationals
+sp = sprand(10,15,0.1);                 // sparse numbers
+spb = sp<0.5;                           // sparse booleans
+t = ["This" "software" ; "is" "Scilab"];// Texts
+g = [gdf() gda()];                      // Graphics
+function Test()                         // macro
+    disp("listvarinfile() test for macros")
+end
+M = linspace;                           // macro
+L = list(%f, int8(-23),, %i-%z, list("abc",%e)); // simple list
+C = {"abc" %t ; %z list(1/%z, 4)};      // array of cells
+S(4,2).r = %pi;                         // array of structures
+vars = list("b","i","c","p","r","sp","spb","t","g","Test","M","L","C","S");
+
+// Archiving data in a binary file:
+File = TMPDIR + "\listvarinfile.sod";
+save(File, vars(:))
+
+// Listing the file content:
+[names,types,dims,vols] = listvarinfile(File);
+types(find(names=="Test"))
+dims(find(names=="i"))
  ]]></programlisting>
+    <screen><![CDATA[
+--> [names,types,dims,vols] = listvarinfile(File);
+Name                     Type           Size            Bytes
+-------------------------------------------------------------
+C                        cell           2 by 2          76
+L                        list           4               51
+M                        macro          1 by 1          0
+S                        struct         4 by 2          8
+Test                     macro          1 by 1          0
+b                        boolean        2 by 3          24
+c                        double         3 by 3          144
+g                        handle         1 by 2          0
+i                        integer        3 by 4 by 2     192
+p                        polynomial     1 by 4          80
+r                        tlist          4               162
+sp                       sparse         10 by 15        232
+spb                      boolean sparse 10 by 15        624
+t                        string         2 by 2          40
+
+--> types(find(names=="Test"))
+ ans  =
+   13.
+
+--> dims(find(names=="i"))
+ ans  =
+   3.   4.   2.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="whos">whos</link>
-            </member>
             <member>
                 <link linkend="save">save</link>
             </member>
@@ -95,6 +159,43 @@ save(fullfile(TMPDIR,"vals.sod"),'a','b','c')
             <member>
                 <link linkend="type">type</link>
             </member>
+            <member>
+                <link linkend="whos">whos</link>
+            </member>
+            <member>
+                <link linkend="who">who</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Hypermatrices are now listed with the type of their content, instead of
+                            "mlist" and type 17. Their sizes are now the actual ones, instead of 3.
+                        </listitem>
+                        <listitem>
+                            Cells and Structures arrays now appear as "cell" and "struct" instead
+                            of "mlist". Their sizes are now the actual ones, instead of 3.
+                        </listitem>
+                        <listitem>
+                            Arrays of graphic handles now appear as "handle" and type 9,
+                            instead of "tlist" and type 16.
+                            Their sizes are now the actual ones, instead of 3.
+                        </listitem>
+                        <listitem>
+                            Macros now appear as "macro" and type 13, instead of "tlist" and type 16.
+                        </listitem>
+                        <listitem>
+                            Real and complex numbers now appear as "double" instead of "constant".
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
