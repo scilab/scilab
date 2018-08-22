@@ -78,6 +78,7 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
 {
     int iH5File = 0;
     bool bAppendMode = false;
+    bool isNewFile = true;
     int rhs = static_cast<int>(in.size());
     std::string filename;
     std::map<std::string, types::InternalType*> vars;
@@ -175,6 +176,7 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
         }
         else
         {
+            isNewFile = false;
             int iVersion = getSODFormatAttribute(iH5File);
             if (iVersion != SOD_FILE_VERSION)
             {
@@ -231,7 +233,10 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
         if (iDataset == -1)
         {
             closeHDF5File(iH5File);
-            deleteafile(filename.data());
+            if (isNewFile)
+            {
+                deleteafile(filename.data());
+            }
             Scierror(999, _("%s: Unable to export variable \'%s\' in file \'%s\'.\n"), fname.data(), var.first.data(), filename.data());
             return types::Function::Error;
         }

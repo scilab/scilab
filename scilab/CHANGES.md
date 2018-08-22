@@ -586,6 +586,7 @@ Known issues
 * [#15693](http://bugzilla.scilab.org/show_bug.cgi?id=15693): listvarinfile() misses displaying the size of polynomial variables (regression)
 * [#15710](http://bugzilla.scilab.org/show_bug.cgi?id=15710): The Xcos EXPRESSION block did not accept expressions including some `&` or `~` characters.
 * [#15718](http://bugzilla.scilab.org/show_bug.cgi?id=15718): `bitand`, `bitxor` and `bitor` might miswork with some `uint64` inputs.
+* [#15721](http://bugzilla.scilab.org/show_bug.cgi?id=15721): An error while using `save(File, "-append", ..)` deleted the existing file.
 * [#15733](http://bugzilla.scilab.org/show_bug.cgi?id=15733): Some fixes after `deg(0*%s)` => `-%inf`.
 * [#15735](http://bugzilla.scilab.org/show_bug.cgi?id=15735): `interp1` yielded some []+n warnings.
 * [#15736](http://bugzilla.scilab.org/show_bug.cgi?id=15736): `unique` failed with complex numbers.
@@ -596,6 +597,7 @@ Known issues
 * [#15814](http://bugzilla.scilab.org/show_bug.cgi?id=15814): Selecting graphic children with booleans yielded an error.
 * [#15818](http://bugzilla.scilab.org/show_bug.cgi?id=15818): `polarplot()` example could not be subplotted. `polarplot`'s demo did not display 'View code' and too often prompted the user.
 * [#15847](http://bugzilla.scilab.org/show_bug.cgi?id=15847): Scilab crashed at startup.
+
 
 
 ### Bugs fixed in 6.0.1:
