@@ -247,6 +247,7 @@ input and output arguments.
 * `save()` can now process lists with undefined components.
 * `surf(x,y,fun)` and `surf(x,y,list(fun,params))` syntaxes are now supported, with a function identifier `fun`.
 * Figure editor's terms have been clarify to ease usage.
+* `plot(x, list(fun, params))` is now supported.
 
 Help pages:
 -----------
@@ -259,7 +260,7 @@ Help pages:
   `uigetfont`, `uigetdir`, `uigetfile`, `uiputfile`, `cat`, `makecell`, `xstring`, `norm`, `barhomogenize`,
   `colordef`, `matrix`, `coffg`, `diag`, `speye`, `sparse`, `recursionlimit`, `for`, `fileinfo`, `end`,
   `iconvert`, `cond`, `Globalproperty`, `unique`, `intdec`, `plus`, `minus`, `varn`, `savematfile`,
-  `empty`, `modulo`, `pdiv`, `unix_g`, `unix_s`, `unix_w`, `unix_x`, `dos`, `listvarinfile`, `surf`, 
+  `empty`, `modulo`, `pdiv`, `unix_g`, `unix_s`, `unix_w`, `unix_x`, `dos`, `listvarinfile`, `surf`, `plot`
 * rewritten: `consolebox`, `double`, `isoview`, `pixel_drawing_mode`, `householder`, `or`, `|,||`,
  `and`, `&,&&`, `format`, `type`, `typeof`, `brackets`, `setlanguage`, `sleep`, `isinf`, `unique`,
  `bitor`, `bitxor`, `bitand`, `macr2tree`, `geomean`, `clf`, `getPreferencesValue`, `gcd`, `lcm`, `isglobal`,
@@ -415,6 +416,7 @@ Known issues
 * [#6939](http://bugzilla.scilab.org/show_bug.cgi?id=6939): `nearfloat("succ",rand(2,2,2))` returned a (2,2) matrix with no error.
 * [#6990](http://bugzilla.scilab.org/show_bug.cgi?id=6990): `or(hm,"r")`, `or(hm,"c")`, `and(hm,"r")` and `and(hm,"c")` generated an error for any hypermatrix hm of booleans, encoded integers, or doubles.
 * [#7107](http://bugzilla.scilab.org/show_bug.cgi?id=7107): The `graphics_entities` page missed listing the console_properties, root_properties, uicontrol_properties, and uimenu_properties. References to `getsystemmetrics` and to `setlookandfeel` were missing in the `See also` section.
+* [#7151](http://bugzilla.scilab.org/show_bug.cgi?id=7151): `plot(x, fun)` could not be used to plot a function with input parameters.
 * [#7215](http://bugzilla.scilab.org/show_bug.cgi?id=7215): Some Matlab-Scilab equivalences were missing/outdated (A,B,C chapters).
 * [#7221](http://bugzilla.scilab.org/show_bug.cgi?id=7221): `modulo` was not indicated as the equivalent of Matlab's rem().
 * [#7277](http://bugzilla.scilab.org/show_bug.cgi?id=7277): SciNotes `File>Open recent` menu was not updated after 5 items were added.

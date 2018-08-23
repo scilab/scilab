@@ -2,9 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
- * Copyright (C) 2018 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,9 +28,11 @@
             plot(y)
             plot(x, y)
             plot(x, fun)
+            plot(x, list(fun, param))
             plot(.., LineSpec)
             plot(.., LineSpec, GlobalProperty)
-            plot(x1,y1,LineSpec1, x2,y2,LineSpec2,...xN,yN,LineSpecN, GlobalProperty1, GlobalProperty2,..GlobalPropertyM)
+            plot(x1, y1, LineSpec1, x2,y2,LineSpec2,...xN, yN, LineSpecN, GlobalProperty1,.. GlobalPropertyM)
+            plot(x1,fun1,LineSpec1, x2,y2,LineSpec2,...xN,funN,LineSpecN, GlobalProperty1, ..GlobalPropertyM)
             plot(axes_handle,...)
         </synopsis>
     </refsynopsisdiv>
@@ -57,10 +58,15 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>fun</term>
+                <term>fun, fun1, ..</term>
                 <listitem>
                     <para>
-                        handle of a function, as in <literal>plot(x, sin)</literal>
+                        handle of a function, as in <literal>plot(x, sin)</literal>.
+                    </para>
+                    <para>
+                        If the function to plot needs some parameters as input arguments, the
+                        function and its parameters can be specified through a list, as in
+                        <literal>plot(x, list(delip, -0.4))</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -83,7 +89,7 @@
                     <para>このオプションの引数は,
                         グローバルオブジェクトのプロパティを定義する
                         一連の命令<literal>{PropertyName,PropertyValue}</literal>
-                        を表し,	このプロットで作成された全ての曲線に適用されます.
+                        を表し,    このプロットで作成された全ての曲線に適用されます.
                         利用可能なプロパティの全て参照するには
                         <link linkend="GlobalProperty">GlobalProperty</link>を参照してください.
                     </para>
@@ -313,57 +319,305 @@
     </refsection>
     <refsection role="examples">
         <title>例</title>
+        <para>
+            <emphasis role="bold">Simple plot of a single curve:</emphasis>
+        </para>
         <programlisting role="example"><![CDATA[
-// x 初期化
-x=[0:0.1:2*%pi]';
-//simple plot
-plot(sin(x))
+// Default abscissae = indices
+subplot(1,2,1)
+plot(sin(0:0.1:2*%pi))
+xlabel("x indices")
+
+// With explicit abscissae:
+x = [0:0.1:2*%pi]';
+subplot(1,2,2)
+plot(x, sin(x))
+xlabel("Specified abscissae")
  ]]></programlisting>
         <scilab:image>
-            x=[0:0.1:2*%pi]';
-            plot(sin(x))
+            // Default abscissae = indices
+            subplot(1,2,1)
+            plot(sin(0:0.1:2*%pi))
+            xlabel("x indices")
+
+            // With explicit abscissae:
+            x = [0:0.1:2*%pi]';
+            subplot(1,2,2)
+            plot(x, sin(x))
+            xlabel("Specified abscissae")
+
+            gcf().axes_size = [700 350];
         </scilab:image>
+        <para/>
+        <para>
+            <emphasis role="bold">Multiple curves with shared abscissae:</emphasis>
+            Y: 1 column = 1 curve:
+        </para>
         <programlisting role="example"><![CDATA[
 clf()
-x=[0:0.1:2*%pi]';
-plot(x,sin(x))
- ]]></programlisting>
-        <scilab:image>
-            x=[0:0.1:2*%pi]';
-            plot(x,sin(x))
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-//複数プロット
-x=[0:0.1:2*%pi]';
-plot(x,[sin(x) sin(2*x) sin(3*x)])
+x = [0:0.1:2*%pi]';
+plot(x, [sin(x) sin(2*x) sin(3*x)])
  ]]></programlisting>
         <scilab:image>
             x=[0:0.1:2*%pi]';
             plot(x,[sin(x) sin(2*x) sin(3*x)])
+
+            gcf().axes_size = [700 350];
         </scilab:image>
+        <para/>
+        <para>
+            <emphasis role="bold">
+                Specifying a macro or a builtin instead of explicit ordinates:
+            </emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+clf
+subplot(2,2,1)         // sin() is a builtin
+plot(1:0.1:10, sin)    // <=> plot(1:0.1:10, sin(1:0.1:10))
+title("plot(x, sin)", "fontsize",3)
+
+// with a macro:
+deff('y = myFun(x)','y = x + rand(x)')
+subplot(2,2,2)
+plot(-3:0.1:5, myFun)
+title("plot(x, myFun)", "fontsize",3)
+
+// With functions with parameters:
+subplot(2,2,3)
+plot(1:0.05:7, list(delip, -0.4))  // <=> plot(1:0.05:7, delip(1:0.05:7,-0.4) )
+title("plot(x, list(delip,-0.4))", "fontsize",3)
+
+function Y = myPow(x,p)
+    [X,P] = ndgrid(x,p);
+    Y = X.^P;
+    m = max(abs(Y),"r");
+    for i = 1:size(Y,2)
+        Y(:,i) = Y(:,i)/m(i);
+    end
+endfunction
+x = -5:0.1:6;
+subplot(2,2,4)
+plot(x, list(myPow,1:5))
+title("plot(x, list(myPow,1:5))", "fontsize",3)
+ ]]></programlisting>
+        <scilab:image><![CDATA[
+            subplot(2,2,1)         // sin() is a builtin
+            plot(1:0.1:10, sin)    // <=> plot(1:0.1:10, sin(1:0.1:10))
+            title("plot(x,sin)", "fontsize",3)
+
+            // with a macro:
+            deff('y = myFun(x)','y = x + rand(x)')
+            subplot(2,2,2)
+            plot(-3:0.1:5, myFun)
+            title("plot(x, myFun)", "fontsize",3)
+
+            // With functions with parameters:
+            subplot(2,2,3)
+            plot(1:0.05:7, list(delip, -0.4))  // <=> plot(1:0.05:7, delip(1:0.05:7,-0.4) )
+            title("plot(x, list(delip,-0.4))", "fontsize",3)
+
+            function Y = myPow(x,p)
+                [X,P] = ndgrid(x,p);
+                Y = X.^P;
+                m = max(abs(Y),"r");
+                for i = 1:size(Y,2)
+                    Y(:,i) = Y(:,i)/m(i);
+                end
+            endfunction
+            x = -5:0.1:6;
+            subplot(2,2,4)
+            plot(x, list(myPow,1:5))
+            title("plot(x, list(myPow,1:5))", "fontsize",3)
+
+            gcf().axes_size = [730 500];
+        ]]></scilab:image>
+        <para/>
+        <para>
+            <emphasis role="bold">Setting curves simple styles when calling plot():</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+clf
+t = -%pi:%pi/20:2*%pi;
+// sin() : in Red, with O marks, without line
+// cos() : in Green, with + marks, with a solid line
+// gaussian: in Blue, without marks, with dotted line
+gauss = 1.5*exp(-(t/2-1).^2)-1;
+
+plot(t,sin,'ro', t,cos,'g+-', t,gauss,':b')
+ ]]></programlisting>
+        <scilab:image><![CDATA[
+            t = -%pi:%pi/20:2*%pi;
+            // sin() : in Red, with O marks, without line
+            // cos() : in Green, with + marks, with a solid line
+            // gaussian: in Blue, without marks, with dotted line
+            gauss = 1.5*exp(-(t/2-1).^2)-1;
+
+            plot(t,sin,'ro', t,cos,'g+-', t,gauss,':b')
+
+            gcf().axes_size = [800 400];
+        ]]>
+        </scilab:image>
+        <para/>
+        <para>
+        Vertical segments between two curves, with automatic colors, and using Global properties
+        for markers styles. Targeting a defined axes.
+        </para>
+        <programlisting role="example"><![CDATA[
+clf
+subplot(1,3,3)
+ax3 = gca();         // We will draw here later
+xsetech([0 0 0.7 1]) // Defines the first Axes area
+t = -3:%pi/20:7;
+// Tuning markers properties
+plot([t ;t],[sin(t) ;cos(t)],'marker','d','markerFaceColor','green','markerEdgeColor','yel')
+
+// Targeting a defined axes
+plot(ax3, t, sin)
+ ]]></programlisting>
+        <scilab:image><![CDATA[
+            clf
+            subplot(1,3,3)
+            ax3 = gca();         // We will draw here later
+            xsetech([0 0 0.7 1]) // Defines the first Axes area
+            t = -3:%pi/20:7;
+            // Tuning markers properties
+            plot([t ;t],[sin(t) ;cos(t)],'marker','d','markerFaceColor','green','markerEdgeColor','yel')
+
+            // Targeting a defined axes
+            plot(ax3, t, sin)
+
+            gcf().axes_size = [800 400];
+        ]]>
+        </scilab:image>
+        <para/>
+        <para/>
+        <para>
+            <emphasis role="bold">Case of a non-square Y matrix:</emphasis>
+            When it is consistent and required, X or/and Y data are
+            automatically transposed in order to become plottable.
+        </para>
         <programlisting role="example"><![CDATA[
 clf()
-x=[0:0.1:2*%pi]';
-// 右に軸
-plot(x,sin(x))
-a=gca(); // カレントの軸エンティティのハンドル
-a.y_location ="right";
+x = [5 6 7 8]
+y = [1   1   1   1   8
+     2   3   4   5   9
+     3   4   5   6  10
+     4   5   6   7  12];
+
+// Only one matching possibility case: how to make 4 identical plots in 4 manners...
+// x is 1x4 (vector) and y is 4x5 (non square matrix)
+subplot(221); plot(x', y , "o-");    // OK as is
+subplot(222); plot(x , y , "o-");    // x is transposed
+subplot(223); plot(x', y', "o-");    // y is transposed
+subplot(224); plot(x , y', "o-");    // x and y are transposed
  ]]></programlisting>
         <scilab:image>
-            x=[0:0.1:2*%pi]';
-            plot(x,sin(x))
-            a=gca();
-            a.y_location ="right";
+            x = [5 6 7 8]
+            y = [1   1   1   1   8
+                 2   3   4   5   9
+                 3   4   5   6  10
+                 4   5   6   7  12];
+
+            // Only one matching possibility case: how to make 4 identical plots in 4 manners...
+            // x is 1x4 (vector) and y is 4x5 (non square matrix)
+            subplot(221); plot(x', y , "o-");    // OK as is
+            subplot(222); plot(x , y , "o-");    // x is transposed
+            subplot(223); plot(x', y', "o-");    // y is transposed
+            subplot(224); plot(x , y', "o-");    // x and y are transposed
         </scilab:image>
+        <para>
+            <emphasis role="bold">Case of a square Y matrix, and X implicit or square:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+clf
+t = [1   1   1   1
+     2   3   4   5
+     3   4   5   6
+     4   5   6   7];
+
+subplot(231), plot(t,"o-") , title("plot(t)",  "fontsize",3)
+subplot(234), plot(t',"o-"), title("plot(t'')", "fontsize",3)
+
+subplot(232), plot(t,t,"o-") , title("plot(t, t)",  "fontsize",3)
+subplot(233), plot(t,t',"o-"), title("plot(t,t'')", "fontsize",3)
+
+subplot(235), plot(t', t,"o-"),  title("plot(t'', t)",   "fontsize",3)
+subplot(236), plot(t', t',"o-"), title("plot(t'', t'')", "fontsize",3)
+
+for i=1:6, gcf().children(i).data_bounds([1 3]) = 0.5; end
+ ]]></programlisting>
+        <scilab:image>
+            clf
+            t = [1   1   1   1
+                 2   3   4   5
+                 3   4   5   6
+                 4   5   6   7];
+
+            subplot(231), plot(t,"o-") , title("plot(t)",  "fontsize",3)
+            subplot(234), plot(t',"o-"), title("plot(t'')", "fontsize",3)
+
+            subplot(232), plot(t,t,"o-") , title("plot(t, t)",  "fontsize",3)
+            subplot(233), plot(t,t',"o-"), title("plot(t,t'')", "fontsize",3)
+
+            subplot(235), plot(t', t,"o-"),  title("plot(t'', t)",   "fontsize",3)
+            subplot(236), plot(t', t',"o-"), title("plot(t'', t'')", "fontsize",3)
+
+            for i=1:6, gcf().children(i).data_bounds([1 3]) = 0.5; end
+
+            gcf().axes_size = [800 450];
+        </scilab:image>
+        <para/>
+        <para>
+            <emphasis role="bold">Special cases of a matrix X and a vector Y:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+clf
+X = [1   1   1   1
+     2   3   4   5
+     3   4   5   6
+     4   5   6   7];
+y = [1 2 3 4];
+
+subplot(221), plot(X, y,  "o-"), title("plot(X, row)",  "fontsize",3)
+        // equivalent to plot(t, [1 1 1 1; 2 2 2 2; 3 3 3 3; 4 4 4 4])
+subplot(223), plot(X, y', "o-"), title("plot(X, col)  (row = col'')",  "fontsize",3)
+subplot(222), plot(X',y,  "o-"), title("plot(X'', row)",  "fontsize",3)
+subplot(224), plot(X',y', "o-"), title("plot(X'', col)  (row = col'')",  "fontsize",3)
+
+for i = 1:4, gcf().children(i).data_bounds([1 3]) = 0.5; end
+ ]]></programlisting>
+        <scilab:image>
+            clf
+            X = [1   1   1   1
+                 2   3   4   5
+                 3   4   5   6
+                 4   5   6   7];
+            y = [1 2 3 4];
+
+            subplot(221), plot(X, y,  "o-"), title("plot(X, row)",  "fontsize",3)
+                    // equivalent to plot(t, [1 1 1 1; 2 2 2 2; 3 3 3 3; 4 4 4 4])
+            subplot(223), plot(X, y', "o-"), title("plot(X, col)  (row = col'')",  "fontsize",3)
+            subplot(222), plot(X',y,  "o-"), title("plot(X'', row)",  "fontsize",3)
+            subplot(224), plot(X',y', "o-"), title("plot(X'', col)  (row = col'')",  "fontsize",3)
+
+            for i = 1:4, gcf().children(i).data_bounds([1 3]) = 0.5; end
+        </scilab:image>
+        <para/>
+        <para/>
+        <para>
+            <emphasis role="bold">Post-tuning Axes and curves:</emphasis>
+        </para>
         <programlisting role="example"><![CDATA[
 x=[0:0.1:2*%pi]';
-// (0,0)を中心とする軸
 plot(x-4,sin(x),x+2,cos(x))
+
+// (0,0)を中心とする軸
 a=gca(); // 軸エンティティのハンドル
 a.x_location = "origin";
 a.y_location = "origin";
+isoview on
+
 // plotにより作成されたエンティティに複数の処理を行う
-isoview
 a.children // 軸の子のリスト : ここでは,2個のエンティティの複合子オブジェクト
 poly1= a.children.children(2); //線分群のハンドルをpoly1 に保存
 poly1.foreground = 4; // スタイルを変更する別の方法...
@@ -372,228 +626,18 @@ poly1.clip_state='off' // 制御をクリップ
 isoview off
  ]]></programlisting>
         <scilab:image>
-            x=[0:0.1:2*%pi]';
+            x = [0:0.1:2*%pi]';
             plot(x-4,sin(x),x+2,cos(x))
-            isoview()
-            a=gca();
+            a = gca();
             a.x_location = "origin";
             a.y_location = "origin";
+            isoview on
             a.children
-            poly1= a.children.children(2);
+            poly1 = a.children.children(2);
             poly1.foreground = 4;
             poly1.thickness = 3;
             poly1.clip_state='off'
-            isoview("off");
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-//LineSpec と GlobalProperty の例:
-clf();
-t=0:%pi/20:2*%pi;
-plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
-scf(2)
-plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2])
-scf(3)
-axfig3 = gca();
-scf(4) // 空白のままにする
-plot(axfig3,[t ;t],[sin(t) ;cos(t)],'zdat',[1:2],'marker','d','markerfac','green','markeredg','yel')
-xdel(winsid())
- ]]></programlisting>
-        <scilab:image>
-            t=0:%pi/20:2*%pi;
-            plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
-            scf(2)
-            plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2])
-            scf(3)
-            axfig3 = gca();
-            scf(4) // should remain blank
-            plot(axfig3,[t ;t],[sin(t) ;cos(t)],'zdat',[1:2],'marker','d','markerfac','green','markeredg','yel')
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-//データ指定
-t=-%pi:0.1:%pi;
-size(t)
-plot(t) // ベクトルtの大きさに対してyをプロット
- ]]></programlisting>
-        <scilab:image>
-            t=-%pi:0.1:%pi;
-            size(t)
-            plot(t)
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-t=-%pi:0.1:%pi;
-plot(t,sin(t)); // tに対してsin(t)をプロット
- ]]></programlisting>
-        <scilab:image>
-            t=-%pi:0.1:%pi;
-            plot(t,sin(t));
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-t=[1     1     1     1
-   2     3     4     5
-   3     4     5     6
-   4     5     6     7];
-plot(t) // 行の大きさに対してtの各列をプロット
- ]]></programlisting>
-        <scilab:image>
-            t=[1     1     1     1
-            2     3     4     5
-            3     4     5     6
-            4     5     6     7];
-            plot(t) // plots each t column versus row size
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-t=[1     1     1     1
-   2     3     4     5
-   3     4     5     6
-   4     5     6     7];
-subplot(221)
-plot(t,sin(t)); // 列毎にtに対してsin(t)をプロット
-xtitle("sin(t) versus t")
-subplot(222)
-plot(t,sin(t)')
-xtitle("sin(t)'' versus t")
-subplot(223)
-plot(t',sin(t))
-a=gca();
-a.data_bounds=[0 -1;7 1]; // y軸に隠された垂直線を表示
-xtitle("sin(t) versus t''")
-subplot(224)
-plot(t',sin(t)')
-xtitle("sin(t)'' versus t''")
- ]]></programlisting>
-        <scilab:image>
-            t=[1     1     1     1
-            2     3     4     5
-            3     4     5     6
-            4     5     6     7];
-            subplot(221)
-            plot(t,sin(t)); // plots sin(t) versus t column by column this time
-            xtitle("sin(t) versus t")
-            subplot(222)
-            plot(t,sin(t)')
-            xtitle("sin(t)'' versus t")
-            subplot(223)
-            plot(t',sin(t))
-            a=gca();
-            a.data_bounds=[0 -1;7 1]; // to see the vertical line hidden by the y axis
-            xtitle("sin(t) versus t''")
-            subplot(224)
-            plot(t',sin(t)')
-            xtitle("sin(t)'' versus t''")
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-t=[1     1     1     1
-   2     3     4     5
-   3     4     5     6
-   4     5     6     7];
-//特別な場合1
-//x : vector ([5 6 7 8]) and y : matrix (t)
-x=[5 6 7 8]
-plot(x,t);
-plot(x',t); // idem, x はtに一致するように自動的に転置される (ここでは列)
- ]]></programlisting>
-        <scilab:image>
-            t=[1     1     1     1
-            2     3     4     5
-            3     4     5     6
-            4     5     6     7];
-            x=[5 6 7 8];
-            plot(x',t);
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-clf()
-x=[5 6 7 8]
-t=[1     1     1     1
-   2     3     4     5
-   3     4     5     6
-   4     5     6     7];
-// Only one matching possibility case : how to make 4 identical plots in 4 manners...
-// x is 1x4 (vector) and y is 4x5 (non square matrix)
-subplot(221);
-plot(x,[t [8;9;10;12]]');
-subplot(222);
-plot(x',[t [8;9;10;12]]);
-subplot(223);
-plot(x,[t [8;9;10;12]]');
-subplot(224);
-plot(x',[t [8;9;10;12]]');
-clf()
- ]]></programlisting>
-        <scilab:image>
-            x=[5 6 7 8]
-            t=[1     1     1     1
-            2     3     4     5
-            3     4     5     6
-            4     5     6     7];
-            // Only one matching possibility case : how to make 4 identical plots in 4 manners...
-            // x is 1x4 (vector) and y is 4x5 (non square matrix)
-            subplot(221);
-            plot(x',[t [8;9;10;12]]);
-            subplot(222);
-            plot(x',[t [8;9;10;12]]);
-            subplot(223);
-            plot(x',[t [8;9;10;12]]);
-            subplot(224);
-            plot(x',[t [8;9;10;12]]);
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-t=[1     1     1     1
-   2     3     4     5
-   3     4     5     6
-   4     5     6     7];
-//特別な場合2
-// xまたはyのみが疎行列の場合
-//x : matrix (t) と y  : vector ([1 2 3 4])
-plot(t,[1 2 3 4]) // plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])と同じ
-plot(t,[1;2;3;4]) // 同じプロット
-clf();
- ]]></programlisting>
-        <scilab:image>
-            t=[1     1     1     1
-            2     3     4     5
-            3     4     5     6
-            4     5     6     7];
-            //Special case 2
-            // Case where only x or y is a square matrix
-            //x : matrix (t) and y  : vector ([1 2 3 4])
-            plot(t,[1 2 3 4]') // equivalent to plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-t=[1     1     1     1
-   2     3     4     5
-   3     4     5     6
-   4     5     6     7];
-clf();
-cols = 1:4;
-// cols is transposed : notice the priority given to the columns treatment
-plot(t', cols) // equivalent to plot(t',[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
-plot(t', cols') // the same plot
- ]]></programlisting>
-        <scilab:image>
-            t=[1     1     1     1
-            2     3     4     5
-            3     4     5     6
-            4     5     6     7];
-            clf();
-            cols = 1:4;
-            // cols is transposed : notice the priority given to the columns treatment
-            plot(t',cols') // the same plot
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-// y はプリミティブで定義された関数
-plot(1:0.1:10,sin) // plot(1:0.1:10,sin(1:0.1:10))と同じ
- ]]></programlisting>
-        <scilab:image>
-            plot(1:0.1:10,sin)
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-// ..マクロ:
-deff('[y]=toto(x)','y=x.*x')
-plot(1:10,toto)
- ]]></programlisting>
-        <scilab:image>
-            deff('[y]=toto(x)','y=x.*x')
-            plot(1:10,toto)
+            isoview off
         </scilab:image>
     </refsection>
     <refsection role="see also">
@@ -601,6 +645,18 @@ plot(1:10,toto)
         <simplelist type="inline">
             <member>
                 <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="plot2d2">plot2d2</link>
+            </member>
+            <member>
+                <link linkend="plot2d3">plot2d3</link>
+            </member>
+            <member>
+                <link linkend="plot2d4">plot2d4</link>
+            </member>
+            <member>
+                <link linkend="param3d">param3d</link>
             </member>
             <member>
                 <link linkend="surf">surf</link>
@@ -637,6 +693,13 @@ plot(1:10,toto)
                     The "color"|"foreground", "markForeground", and "markBackground" GlobalProperty
                     colors can now be chosen among the full predefined colors list, or by
                     their "#RRGGBB" hexadecimal codes, or by their indices in the colormap.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    Plotting a function fun(x, params) with input parameters is now possible with
+                    plot(x, list(fun, params)).
                 </revdescription>
             </revision>
         </revhistory>

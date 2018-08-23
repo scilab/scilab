@@ -2,6 +2,7 @@
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
 // Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,10 +33,8 @@ function plot(varargin)
     end
 
 
-
     CurColor = 0; // current color used if no color specified via LineSpec
     // nor PropertyName
-
 
 
     ListArg = varargin;
@@ -47,7 +46,8 @@ function plot(varargin)
             sca(ListArg(1));
             ListArg(1) = null(); // remove this parameter from the list
         else
-            warning("Handle should be an Axes handle")
+            msg = _("%s: Argument #%d: Graphic handle(s) of type ""%s"" expected.\n")
+            warning(msprintf(msg, "plot", 1, "Axes"))
             return;
         end
     end
@@ -70,8 +70,9 @@ function plot(varargin)
 
     for i=1:nv-1
         acceptedTypes=[];
-        acceptedTypes=find(Ttmp(i,1)==1 & or(Ttmp(i+1,1)==[1,13,130])) // to accept double, macro function or primitive as second argument
-
+        // double, macro function or primitive,
+        //    or list(macro|primitive, params) accepted as second argument
+        acceptedTypes=find(Ttmp(i,1)==1 & or(Ttmp(i+1,1)==[1,13,130,15])) 
         if (acceptedTypes<>[]) then
             couple=[couple i];
             Ttmp(i,1)  = 99; // Replace a known type by 99 (no meaning) to count it once only!
@@ -156,8 +157,6 @@ function plot(varargin)
         xyIndexLineSpec(1,1) = 0; // no x specified
         xyIndexLineSpec(1,2) = couple;
 
-        //pause;
-
         if (couple+1 < P1)
             if (argTypes(couple+1,1)==10) then // LineSpec treatment
                 xyIndexLineSpec(1,3) = couple+1;
@@ -185,8 +184,7 @@ function plot(varargin)
 
     FinalAgreg=[]; // Final Compound containing all the new created plots.
 
-    //for i=numplot:-1:1
-    for i=1:numplot
+    for i = 1:numplot
         // Set off auto_clear for allowing multiple graphics entity
         // will be restored behond
         if i>1 then
@@ -205,17 +203,33 @@ function plot(varargin)
 
             // A function (macro or primitive) is given:
             if (type(ListArg(xyIndexLineSpec(i,2))) == 13 | ..
-                type(ListArg(xyIndexLineSpec(i,2))) == 130)
+                type(ListArg(xyIndexLineSpec(i,2))) == 130| ..
+                type(ListArg(xyIndexLineSpec(i,2))) == 15)
                 //   We need to build the vector or matrix.
-                sizefirstarg = size(ListArg(xyIndexLineSpec(i,1)));
-                buildFunc = ListArg(xyIndexLineSpec(i,2));
                 firstarg = ListArg(xyIndexLineSpec(i,1));
+                sizefirstarg = size(firstarg);
+                secondarg = ListArg(xyIndexLineSpec(i,2));
+                params = list();
+                withParams = type(secondarg)==15
+                if withParams
+                    if size(secondarg)~=2 | and(type(secondarg(1))~=[13 130])
+                        ResetFigureDDM(current_figure, cur_draw_mode);
+                        msg = _("%s: wrong list() specification for the curve #%d.\n")
+                        error(msprintf(msg, "plot", i))
+                    end
+                    buildFunc = secondarg(1)
+                    secondarg(1) = null()
+                    params = secondarg
+                else
+                    buildFunc = secondarg
+                end
+
                 // We test if the function is vectorized:
                 isvectorized = %t;
                 try
-                    s1 = min(2,sizefirstarg(1,1))
-                    s2 = min(2,sizefirstarg(1,2))
-                    tmp = buildFunc(firstarg(1:s1,1:s2))
+                    s1 = min(3,sizefirstarg(1,1))
+                    s2 = min(3,sizefirstarg(1,2))
+                    tmp = buildFunc(firstarg(1:s1,1:s2), params(:))
                     isvectorized = and(size(tmp)==[s1 s2]);
                 catch
                     isvectorized = %f;
@@ -224,12 +238,12 @@ function plot(varargin)
                 // We evaluate ordinates accordingly:
                 try
                     if isvectorized
-                        tmp = buildFunc(firstarg);
+                        tmp = buildFunc(firstarg, params(:));
                     else
                         tmp = [];
                         for ii = 1:sizefirstarg(1,2)
                             for jj = 1:sizefirstarg(1,1)
-                                tmp(jj,ii) = buildFunc(firstarg(jj,ii));
+                                tmp(jj,ii) = buildFunc(firstarg(jj,ii), params(:));
                             end
                         end
                     end
@@ -247,12 +261,11 @@ function plot(varargin)
                     error(msprintf(msg1 + ascii(10) + msg2, "plot", ..
                         err_func, err_number, err_line, err_message));
                 end
-
                 // All right: go on plotting:
                 ListArg(xyIndexLineSpec(i,2)) = tmp;
                 // if there is another iteration, we will have error message redefining function.
                 // we need to clear here and not before, because user must see the warning if needed.
-                clear buildFunc;
+                clear buildFunc secondarg;
             end
             [X,Y] = checkXYPair(typeOfPlot,ListArg(xyIndexLineSpec(i,1)),ListArg(xyIndexLineSpec(i,2)),current_figure,cur_draw_mode)
         else
