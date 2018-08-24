@@ -839,7 +839,7 @@ N=100000;
 X = grand(1,N,"exp",lambda);
 scf();
 classes = linspace(0,12,25);
-histplot(classes,X)
+histplot(classes,X);
 x=linspace(0,12,25);
 y = (1/lambda)*exp(-(1/lambda)*x);
 plot(x,y,"ro-");
