@@ -11,22 +11,19 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-//2012/08/06 add return value with variable list.
-
 function ret = who_user(%__bPrint__)
     //get user variables
-    [nams,mem]=who("get"); //get all variables
-    p=predef("names");
+    [nams,mem] = who("get"); //get all variables
+    p = predef("names");
+    excluded=["nargin" "nargout" "demolist","%helps","%helps_modules","who_user", "%__bPrint__"];
+    p = [p' excluded];
 
-    //remove predef vars
-    ke=grep(nams,p);
-    nams(ke) = [];
-    mem(ke) = [];
-
-    //modifiable system variables
-    excluded=["nargin","nargout","demolist","%helps","%helps_modules","home","who_user", "%__bPrint__"];
-    ke=grep(nams,excluded)
-    nams(ke)=[];mem(ke)=[];
+    // remove predef and other excluded vars
+    for i = 1:size(p,"*")
+        k = nams==p(i)
+        nams(k) = []
+        mem(k) = []
+    end
     ret = nams
 
     [%_lhs, %_rhs] = argn();
