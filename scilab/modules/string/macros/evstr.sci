@@ -15,7 +15,7 @@
 
 function [%val, %ierr] = evstr(%str)
 
-    [lhs, rhs] = argn(0);
+    %lhs = argn(1);
     %val = [];
     %ierr =  0;
 
@@ -58,8 +58,10 @@ function [%val, %ierr] = evstr(%str)
         %t1(1) = "%val=[" + %t1(1);
         %t1($) = part(%t1($), 1:length(%t1($)) - 1)+";";
         %t1($+1) = "]";
+        clear k tmp vars vals regExp comm %str
+
         %ierr = execstr(%t1, "errcatch");
-        if lhs == 1 & %ierr~=0 then
+        if %lhs == 1 & %ierr~=0 then
             msg = _("%s: Argument #%d: Some expression can''t be evaluated (%s).\n")
             error(msprintf(msg, "evstr", 1, strcat(lasterror())))
         end
@@ -75,13 +77,12 @@ function [%val, %ierr] = evstr(%str)
             error(msprintf(msg, "evstr", 1));
         end
         %sexp = %str(2),
-        %nstr = prod(size(%sexp));
         % = list();
-        for %k_ = 1:%nstr,
+        for %k_ = 1:prod(size(%sexp))
             [%w, %ierr] = evstr(%sexp(%k_));
             %(%k_) = %w;
             if %ierr <>0  then
-                if lhs==2
+                if %lhs == 2
                     %val = [];
                     return;
                 else
@@ -90,7 +91,7 @@ function [%val, %ierr] = evstr(%str)
                 end
             end
         end
-        if lhs==2
+        if %lhs == 2
             [%val, %ierr] = evstr(%str(1));
         else
             %val = evstr(%str(1));
