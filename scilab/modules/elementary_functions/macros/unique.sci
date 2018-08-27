@@ -37,7 +37,9 @@ function [x,k]=unique(x,orient)
                     x = complex(x(:,1),x(:,2));
                     if sz(1)==1 // => put results in row
                         x = x.'
-                        k = k'
+                        if argn(1)>1
+                            k = k'
+                        end
                     end
                 elseif orient=="r" | orient==1
                     x = [real(x) imag(x)]
