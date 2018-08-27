@@ -170,7 +170,7 @@ static bool export_struct(scilabEnv env, int indent, const std::vector<wchar_t*>
         indentStr2 = L"\n" + std::wstring(indent * (level + 1), L' ');
     }
 
-    int size = (int)fields.size();
+    size_t size = fields.size();
     if (size == 0)
     {
         os << L"{}";
@@ -182,7 +182,7 @@ static bool export_struct(scilabEnv env, int indent, const std::vector<wchar_t*>
     os << L"\"" << fields[0] << L"\": ";
     export_data(env, data[0], indent, os);
 
-    for (int i = 1; i < size; ++i)
+    for (size_t i = 1; i < size; ++i)
     {
         os << L",";
         os << indentStr2;
@@ -202,7 +202,7 @@ static bool export_struct_array(scilabEnv env, int indent, const std::vector<wch
 
     if (dim == 2 && dims[0] == 1 && dims[1] == 1)
     {
-        int size = (int)fields.size();
+        size_t size = fields.size();
         if (size == 0)
         {
             os << L"{}";
@@ -210,7 +210,7 @@ static bool export_struct_array(scilabEnv env, int indent, const std::vector<wch
         }
 
         std::vector<scilabVar> data(size);
-        for (int i = 0; i < size; ++i)
+        for (size_t i = 0; i < size; ++i)
         {
             data[i] = scilab_getStructMatrix2dData(env, var, fields[i], 0, 0);
         }
@@ -253,7 +253,7 @@ static bool export_struct_array(scilabEnv env, int indent, const std::vector<wch
         //convert to col-major
         int idx = m * dims[1] + n + extra * size2d;
 
-        for (int f = 0; f < fields.size(); ++f)
+        for (size_t f = 0; f < fields.size(); ++f)
         {
             scilabVar v = scilab_getStructMatrix2dData(env, var, fields[f], m, n);
             d[idx].push_back(v);
@@ -270,7 +270,8 @@ static bool export_struct_array(scilabEnv env, int indent, const std::vector<wch
             os << L",";
         }
 
-        if (dims[0] != 1) {
+        if (dims[0] != 1)
+        {
             os << L"[";
         }
 
@@ -285,7 +286,8 @@ static bool export_struct_array(scilabEnv env, int indent, const std::vector<wch
             level--;
         }
 
-        if (dims[0] != 1) {
+        if (dims[0] != 1)
+        {
             os << L"]";
         }
     }
@@ -468,11 +470,8 @@ static bool export_data(scilabEnv env, scilabVar var, int indent, std::wostrings
 
             delete[] w;
 
-            int* dims = nullptr;
-            int dim = scilab_getDimArray(env, var, &dims);
-
             ret = export_struct_array(env, indent, fields, var, os);
-            for(auto f : fields)
+            for (auto f : fields)
             {
                 FREE(f);
             }
@@ -496,7 +495,7 @@ std::string toJSON(types::InternalType* it, int indent)
     std::wostringstream os;
     scilabVar var = (int*)it;
 
-    bool ret = export_data(nullptr, var, indent, os);
+    export_data(nullptr, var, indent, os);
 
     char* c = wide_string_to_UTF8(os.str().data());
     std::string s(c);
@@ -523,7 +522,8 @@ enum JSONType
     JSON_LIST
 };
 
-struct JSONVar {
+struct JSONVar
+{
     JSONType kind;
     std::vector<int> dims;
     bool reduced;
@@ -539,7 +539,7 @@ struct JSONVar {
     std::vector<JSONVar*> a;
     std::unordered_map<std::string, std::vector<JSONVar*>> o;
 
-    JSONVar() : reduced(false), d1(0.0), b1(0), kind(JSON_UNDEFINED)
+    JSONVar() : kind(JSON_UNDEFINED), reduced(false), d1(0.0), b1(0)
     {
         s1 = nullptr;
     }
@@ -551,7 +551,7 @@ struct JSONVar {
             FREE(c);
         }
 
-        if(s1)
+        if (s1)
         {
             FREE(s1);
         }
@@ -572,8 +572,8 @@ struct JSONVar {
 void getIndexArray(int idx, const std::vector<int>& dims, std::vector<int>& index)
 {
     int iMul = 1;
-    int size = (int)dims.size();
-    for (int i = 0; i < size; ++i)
+    size_t size = dims.size();
+    for (size_t i = 0; i < size; ++i)
     {
         index[i] = (int)(idx / iMul) % dims[i];
         iMul *= dims[i];
@@ -631,7 +631,7 @@ scilabVar createScilabVar(scilabEnv env, const JSONVar* v)
                     scilab_setBooleanArray(env, ret, v->b.data());
                     break;
 
-                case 2: //maxtrix
+                case 2: //matrix
                     ret = scilab_createBooleanMatrix2d(env, v->dims[0], v->dims[1]);
                     scilab_setBooleanArray(env, ret, v->b.data());
                     break;
@@ -704,11 +704,10 @@ scilabVar createScilabVar(scilabEnv env, const JSONVar* v)
 
         case JSON_LIST:
         {
-            int* piAddr = nullptr;
-            int size = (int)v->a.size();
+            size_t size = v->a.size();
             ret = scilab_createList(env);
 
-            for (int i = 0; i < size; ++i)
+            for (size_t i = 0; i < size; ++i)
             {
                 scilabVar var = createScilabVar(env, v->a[i]);
                 scilab_setListItem(env, ret, i, var);
@@ -718,7 +717,7 @@ scilabVar createScilabVar(scilabEnv env, const JSONVar* v)
 
         case JSON_STRUCT:
         {
-            int fsize = (int)v->fields.size();
+            size_t fsize = v->fields.size();
             std::vector<wchar_t*> fields;
             fields.reserve(fsize);
             for (auto f : v->fields)
@@ -737,7 +736,7 @@ scilabVar createScilabVar(scilabEnv env, const JSONVar* v)
                 case 0:
                 {
                     ret = scilab_createStruct(env);
-                    for (int i = 0; i < fsize; ++i)
+                    for (size_t i = 0; i < fsize; ++i)
                     {
                         scilab_addField(env, ret, fields[i]);
                         scilabVar var = createScilabVar(env, v->o1.at(v->fields[i]));
@@ -745,54 +744,54 @@ scilabVar createScilabVar(scilabEnv env, const JSONVar* v)
                     }
                     break;
 
-                case 1:
-                {
-                    if (v->dims[0] == 1) //single struct [{"toto":42}]
+                    case 1:
                     {
-                        ret = scilab_createStruct(env);
-                        for (int i = 0; i < fsize; ++i)
+                        if (v->dims[0] == 1) //single struct [{"toto":42}]
                         {
-                            scilab_addField(env, ret, fields[i]);
-                            scilabVar var = createScilabVar(env, v->o.at(v->fields[i])[0]);
-                            scilab_setStructMatrix2dData(env, ret, fields[i], 0, 0, var);
+                            ret = scilab_createStruct(env);
+                            for (size_t i = 0; i < fsize; ++i)
+                            {
+                                scilab_addField(env, ret, fields[i]);
+                                scilabVar var = createScilabVar(env, v->o.at(v->fields[i])[0]);
+                                scilab_setStructMatrix2dData(env, ret, fields[i], 0, 0, var);
+                            }
                         }
+                        else //row vector [{"toto":1},{"toto":2}]
+                        {
+                            ret = scilab_createStructMatrix2d(env, 1, size);
+                            for (size_t i = 0; i < fsize; ++i)
+                            {
+                                scilab_addField(env, ret, fields[i]);
+                                for (int x = 0; x < size; ++x)
+                                {
+                                    scilabVar var = createScilabVar(env, v->o.at(v->fields[i])[x]);
+                                    scilab_setStructMatrix2dData(env, ret, fields[i], 0, x, var);
+                                }
+                            }
+                        }
+
+                        break;
                     }
-                    else //row vector [{"toto":1},{"toto":2}]
+
+                    default: //2 and more
                     {
-                        ret = scilab_createStructMatrix2d(env, 1, size);
-                        for (int i = 0; i < fsize; ++i)
+                        ret = scilab_createStructMatrix(env, (int)v->dims.size(), v->dims.data());
+                        for (size_t i = 0; i < fsize; ++i)
                         {
                             scilab_addField(env, ret, fields[i]);
+                            std::vector<int> index(v->dims.size());
                             for (int x = 0; x < size; ++x)
                             {
+                                getIndexArray(x, v->dims, index);
                                 scilabVar var = createScilabVar(env, v->o.at(v->fields[i])[x]);
-                                scilab_setStructMatrix2dData(env, ret, fields[i], 0, x, var);
+                                scilab_setStructMatrixData(env, ret, fields[i], index.data(), var);
                             }
                         }
                     }
-
-                    break;
-                }
-
-                default: //2 and more
-                {
-                    ret = scilab_createStructMatrix(env, (int)v->dims.size(), v->dims.data());
-                    for (int i = 0; i < fsize; ++i)
-                    {
-                        scilab_addField(env, ret, fields[i]);
-                        std::vector<int> index(v->dims.size());
-                        for (int x = 0; x < size; ++x)
-                        {
-                            getIndexArray(x, v->dims, index);
-                            scilabVar var = createScilabVar(env, v->o.at(v->fields[i])[x]);
-                            scilab_setStructMatrixData(env, ret, fields[i], index.data(), var);
-                        }
-                    }
-                }
                 }
             }
 
-            for(auto wc : fields)
+            for (auto wc : fields)
             {
                 FREE(wc);
             }
@@ -839,7 +838,7 @@ JSONVar* getJSONVar(const jsmntok_t& t)
             v->d1 = val;
             return v;
         }
-        catch (std::invalid_argument e)
+        catch (const std::invalid_argument& e)
         {
             JSONVar* v = new JSONVar();
             v->kind = JSON_STRING;
@@ -942,7 +941,7 @@ JSONVar* import_data(const jsmntok_t* t)
                         return v;
                     }
 
-                    for (int i = 0; i < ref.size(); ++i)
+                    for (size_t i = 0; i < ref.size(); ++i)
                     {
                         if (ref[i] != dims[i])
                         {
@@ -994,7 +993,10 @@ JSONVar* import_data(const jsmntok_t* t)
                             {
                                 v->d.resize(totalSize * v->a.size());
                                 std::transform(v->a.begin(), v->a.end(), v->d.begin(),
-                                    [](JSONVar* val){ return val->d1; });
+                                               [](JSONVar * val)
+                                {
+                                    return val->d1;
+                                });
                                 break;
                             }
 
@@ -1008,7 +1010,7 @@ JSONVar* import_data(const jsmntok_t* t)
                                     for (int j = 0; j < cols; ++j)
                                     {
                                         double val = v->a[i]->d[j];
-                                        v->d[j*rows + i] = val;
+                                        v->d[j * rows + i] = val;
                                     }
                                 }
                                 break;
@@ -1046,7 +1048,10 @@ JSONVar* import_data(const jsmntok_t* t)
                             {
                                 v->b.resize(totalSize * v->a.size());
                                 std::transform(v->a.begin(), v->a.end(), v->b.begin(),
-                                    [](JSONVar* val){ return val->b1; });
+                                               [](JSONVar * val)
+                                {
+                                    return val->b1;
+                                });
                                 break;
                             }
 
@@ -1060,7 +1065,7 @@ JSONVar* import_data(const jsmntok_t* t)
                                     for (int j = 0; j < cols; ++j)
                                     {
                                         int val = v->a[i]->b[j];
-                                        v->b[j*rows + i] = val;
+                                        v->b[j * rows + i] = val;
                                     }
                                 }
                                 break;
@@ -1099,7 +1104,10 @@ JSONVar* import_data(const jsmntok_t* t)
                             {
                                 v->s.resize(totalSize * v->a.size());
                                 std::transform(v->a.begin(), v->a.end(), v->s.begin(),
-                                    [](JSONVar* val){ return os_strdup(val->s1); });
+                                               [](JSONVar * val)
+                                {
+                                    return os_strdup(val->s1);
+                                });
                                 break;
                             }
 
@@ -1113,7 +1121,7 @@ JSONVar* import_data(const jsmntok_t* t)
                                     for (int j = 0; j < cols; ++j)
                                     {
                                         char* val = v->a[i]->s[j];
-                                        v->s[j*rows + i] = os_strdup(val);
+                                        v->s[j * rows + i] = os_strdup(val);
                                     }
                                 }
                                 break;
@@ -1160,7 +1168,7 @@ JSONVar* import_data(const jsmntok_t* t)
                             fref.push_back(c);
                         }
 
-                        for (int i = 1; i < v->a.size(); ++i)
+                        for (size_t i = 1; i < v->a.size(); ++i)
                         {
                             //same field count
                             if (v->a[i]->fields.size() != fref.size())
@@ -1273,14 +1281,15 @@ types::InternalType* fromJSON(const std::string& s)
     jsmn_parser p;
     jsmn_init(&p);
     int r = jsmn_parse(&p, json.data(), (int)json.size(), nullptr, 0);
-    if (r <= 0) {
+    if (r <= 0)
+    {
         return nullptr;
     }
 
     //reset parser
     jsmn_init(&p);
     jsmntok_t *t = new jsmntok_t[r];
-    int r2 = jsmn_parse(&p, json.data(), (int)json.size(), t, r);
+    jsmn_parse(&p, json.data(), (int)json.size(), t, r);
 
     if (r > 1 && t[0].type != JSMN_ARRAY && t[0].type != JSMN_OBJECT)
     {
