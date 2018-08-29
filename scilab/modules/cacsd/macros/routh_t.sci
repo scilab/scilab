@@ -53,7 +53,7 @@ function [r,num]=routh_t(h,k,normalized)
         if size(n,"*")<>1 then
             error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"routh_t",1))
         end
-        nd=max([degree(d) degree(n)])+1;
+        nd=max([0 degree(d) degree(n)])+1;
         cod=coeff(d,0:nd-1);//coeff du denominateur
         con=coeff(n,0:nd-1);//coeff du numerateur
         cobf=cod+k*con //coeff de la boucle fermee
@@ -65,7 +65,7 @@ function [r,num]=routh_t(h,k,normalized)
             error(msprintf(gettext("%s: Wrong size for input argument #%d: A polynomial expected.\n"),"routh_t",1))
         end
 
-        nd=degree(h)+1;
+        nd=max(0,degree(h))+1;
         cobf=coeff(h,0:nd-1)
     end;
     //
