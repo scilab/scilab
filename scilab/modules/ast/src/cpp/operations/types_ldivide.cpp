@@ -112,7 +112,7 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         return RDivideDoubleByDouble(_pDouble2, _pDouble1, _pDoubleOut);
     }
 
-    if (_pDouble2->isScalar())
+    /* if (_pDouble2->isScalar())
     {
         //X \ y => X \ (eye() * y)
         pDblTmp = new types::Double(_pDouble1->getRows(), _pDouble1->getRows(), _pDouble2->isComplex());
@@ -142,12 +142,18 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         }
 
         _pDouble2 = pDblTmp;
-    }
+    }*/
 
-    if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getRows() != _pDouble2->getRows())
+    if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2)
     {
         //not managed
         return 0;
+    }
+
+    if (_pDouble1->getRows() != _pDouble2->getRows())
+    {
+        // matrix dimensions do not agree
+        return 1;
     }
 
     *_pDoubleOut = new Double(_pDouble1->getCols(), _pDouble2->getCols(), _pDouble1->isComplex() || _pDouble2->isComplex());

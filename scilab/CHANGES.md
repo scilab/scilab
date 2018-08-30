@@ -597,6 +597,7 @@ Known issues
 * [#15733](http://bugzilla.scilab.org/show_bug.cgi?id=15733): Some fixes after `deg(0*%s)` => `-%inf`.
 * [#15735](http://bugzilla.scilab.org/show_bug.cgi?id=15735): `interp1` yielded some []+n warnings.
 * [#15736](http://bugzilla.scilab.org/show_bug.cgi?id=15736): `unique` failed with complex numbers.
+* [#15746](http://bugzilla.scilab.org/show_bug.cgi?id=15746): `1/[1 2 3]` and `[1 2 3]'\1` did not raise an error
 * [#15747](http://bugzilla.scilab.org/show_bug.cgi?id=15747): no output in overloaded operator crashed Scilab
 * [#15753](http://bugzilla.scilab.org/show_bug.cgi?id=15753): `issparse()` returned 0 instead of 1 for sparse booleans.
 * [#15758](http://bugzilla.scilab.org/show_bug.cgi?id=15758): sparse([0 0],1) crashes scilab (regression)

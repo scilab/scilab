@@ -37,8 +37,8 @@ y5 = 2.^[1 2; 3 4];
 y5_ref = 2 .^ [1 2; 3 4];
 assert_checkequal(y5, y5_ref);
 
-y6 = 2. / [1 2; 3 4];
-y6_ref = 2 / [1 2; 3 4];
+y6 = 2. / 2;
+y6_ref = 2 / 2;
 assert_checkequal(y6, y6_ref);
 
 y7 = 2. \ [1 2; 3 4];

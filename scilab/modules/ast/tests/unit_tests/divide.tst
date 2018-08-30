@@ -31,18 +31,6 @@ assert_checkalmostequal(c / c, 1);
 
 
 
-//double / DOUBLE
-
-//r / R
-assert_checkalmostequal(r / R, [-4,2;3,-1]);
-//r / C
-assert_checkalmostequal(r / C, [-0.8+1.6*%i,0.4-0.8*%i;0.6-1.2*%i,-0.2+0.4*%i]);
-//c / R
-assert_checkalmostequal(c / R, [-2-4*%i,1+2*%i;1.5+3*%i,-0.5-1*%i]);
-//c / C
-assert_checkalmostequal(c / C, [-2,1;1.5,-0.5]);
-
-
 //DOUBLE / double
 
 //R / r
