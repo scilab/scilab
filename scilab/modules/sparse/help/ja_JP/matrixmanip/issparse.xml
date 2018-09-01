@@ -13,10 +13,13 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="issparse" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="issparse" xml:lang="ja">
     <refnamediv>
         <refname>issparse</refname>
-        <refpurpose>入力値が疎行列かどうかを調べる</refpurpose>
+        <refpurpose>入力値が疎行列かどうかを調べる (numeric or boolean)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
@@ -48,19 +51,31 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example">sp = sparse([1,2;4,5;3,10],[1,2,3]);
-            if issparse(sp) == 1 then
-            disp("It is a sparse");
-            end
-            A = 1;
-            if issparse(A) == 0 then
-            disp("It is not a sparse");
-            end
-        </programlisting>
+        <programlisting role="example"><![CDATA[
+sp = sprand(10, 20, 0.1);
+if issparse(sp) == 1 then
+   mprintf("Number of non-zero components: %d", nnz(sp));
+end
+
+A = %T;
+if issparse(A) == 0 then
+    disp("A is not a sparse matrix");
+end
+
+spb = sp~=0 & sp&lt;0.5;
+issparse(spb)
+nnz(spb)
+    ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="isreal">isreal</link>
+            </member>
+            <member>
+                <link linkend="sparse">sparse</link>
+            </member>
             <member>
                 <link linkend="type">type</link>
             </member>
@@ -68,5 +83,16 @@
                 <link linkend="typeof">typeof</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    issparse() now returns 1 instead of 0 for sparse booleans.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

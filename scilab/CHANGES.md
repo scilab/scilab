@@ -571,6 +571,7 @@ Known issues
 * [#15735](http://bugzilla.scilab.org/show_bug.cgi?id=15735): `interp1` yielded some []+n warnings.
 * [#15736](http://bugzilla.scilab.org/show_bug.cgi?id=15736): `unique` failed with complex numbers.
 * [#15747](http://bugzilla.scilab.org/show_bug.cgi?id=15747): no output in overloaded operator crashed Scilab 
+* [#15753](http://bugzilla.scilab.org/show_bug.cgi?id=15753): `issparse()` returned 0 instead of 1 for sparse booleans.
 * [#15758](http://bugzilla.scilab.org/show_bug.cgi?id=15758): sparse([0 0],1) crashes scilab (regression)
 * [#15762](http://bugzilla.scilab.org/show_bug.cgi?id=15762): `error()` refused multiline error messages.
 
