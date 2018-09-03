@@ -481,37 +481,48 @@ public final class BlockPositioning {
      */
     public static void toggleAntiClockwiseRotation(final XcosDiagram diag, BasicBlock block) {
         StyleMap styleMap = new StyleMap(block.getStyle());
-        styleMap.put(XcosConstants.STYLE_ROTATION, Integer.toString(getNextAntiClockwiseAngle(styleMap)));
+        computeNextAntiClockwiseAngle(styleMap);
 
+        mxGeometry old = block.getGeometry();
+        mxGeometry rotated = new mxGeometry(old.getCenterX() - old.getHeight() / 2,
+                                            old.getCenterY() - old.getWidth() / 2, old.getHeight(), old.getWidth());
+        diag.getModel().setGeometry(block, rotated);
         diag.getModel().setStyle(block, styleMap.toString());
         updateBlockView(diag, block);
     }
 
     /**
-     * Get the next anti-clockwise rotation value
-     *
+     * Compute and set some properties to rotate the element style
      * @param styleMap
      *            the data to parse
-     * @return The angle value
      */
-    public static int getNextAntiClockwiseAngle(StyleMap styleMap) {
-        final int intRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0")).intValue();
+    private static void computeNextAntiClockwiseAngle(StyleMap styleMap) {
+        final int rotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0")).intValue();
+        boolean flip = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
+        boolean mirror = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
 
-        int angle = (intRotation - ROTATION_STEP + MAX_ROTATION) % MAX_ROTATION;
-        return angle;
-    }
+        int angle = (rotation - ROTATION_STEP + MAX_ROTATION) % MAX_ROTATION;
+        if (angle > 90) {
+            angle = angle - 180;
+            flip = !flip;
+            mirror = !mirror;
+        }
 
-    /**
-     * Get the next clockwise rotation value
-     *
-     * @param styleMap
-     *            the data to parse
-     * @return The angle value
-     */
-    public static int getNextClockwiseAngle(StyleMap styleMap) {
-        final int intRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0")).intValue();
-        int angle = (intRotation + ROTATION_STEP) % MAX_ROTATION;
-        return angle;
+        if (angle == 0) {
+            styleMap.remove(XcosConstants.STYLE_ROTATION);
+        } else {
+            styleMap.put(XcosConstants.STYLE_ROTATION, Integer.toString(angle));
+        }
+        if (!flip) {
+            styleMap.remove(XcosConstants.STYLE_FLIP);
+        } else {
+            styleMap.put(XcosConstants.STYLE_FLIP, Boolean.toString(flip));
+        }
+        if (!mirror) {
+            styleMap.remove(XcosConstants.STYLE_MIRROR);
+        } else {
+            styleMap.put(XcosConstants.STYLE_MIRROR, Boolean.toString(mirror));
+        }
     }
 
     /**

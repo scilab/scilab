@@ -448,6 +448,7 @@ Known issues
 * [#10171](http://bugzilla.scilab.org/show_bug.cgi?id=10171): `loadmatfile()` did not load files containing a matlab cell structure.
 * [#10190](http://bugzilla.scilab.org/show_bug.cgi?id=10190): Xcos blocks and labels positioning were not aligned to the grid on creation.
 * [#10197](http://bugzilla.scilab.org/show_bug.cgi?id=10197): creating implicit vector of integers could fail.
+* [#10411](http://bugzilla.scilab.org/show_bug.cgi?id=10411): Pivoting blocks drew out of bounds icons.
 * [#10639](http://bugzilla.scilab.org/show_bug.cgi?id=10639): The page of `intersect` poorly described the arguments. Examples were not illustrated.
 * [#10668](http://bugzilla.scilab.org/show_bug.cgi?id=10668): Some words in the `bloc2ss` page were inaccurate or misleading.
 * [#10918](http://bugzilla.scilab.org/show_bug.cgi?id=10918): After `a=5`, `a([%t ; %f])` returned `[5 ; 2.1e-314]` instead of `5`.
