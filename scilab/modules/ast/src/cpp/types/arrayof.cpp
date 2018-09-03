@@ -1638,7 +1638,7 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
                 getIndexes(i, piIndexes);
                 int iNewIdx = getIndexWithDims(piIndexes, _piDims, _iDims);
                 pRealData[iNewIdx] = m_pRealData[i];
-                m_pRealData[i] = NULL;
+                m_pRealData[i] = T();
 
                 for (int j = iPreviousNewIdx; j < iNewIdx; ++j)
                 {
@@ -1658,7 +1658,7 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             for (int i = m_iSize; i < iOldSizeMax; ++i)
             {
                 deleteData(m_pRealData[i]);
-                m_pRealData[i] = NULL;
+                m_pRealData[i] = T();
             }
 
             //if (iPreviousNewIdx < iOldSizeMax)
@@ -1666,7 +1666,7 @@ ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
             //    for (int i = iPreviousNewIdx; i < iOldSizeMax; ++i)
             //    {
             //        pRealData[i] = m_pRealData[i];
-            //        m_pRealData[i] = NULL;
+            //        m_pRealData[i] = T();
             //    }
             //}
             //else

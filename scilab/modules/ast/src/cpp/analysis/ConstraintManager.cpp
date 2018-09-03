@@ -95,6 +95,8 @@ bool ConstraintManager::check(const MPolyConstraintSet & set, const std::vector<
                 return false;
             }
         }
+        default:
+            return false;
     }
 }
 
