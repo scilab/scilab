@@ -172,8 +172,7 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscielementary_functions_la_etcdir)" \
-	"$(DESTDIR)$(libscielementary_functions_la_rootdir)" \
-	"$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libscielementary_functions_la_rootdir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libdummy_elementary_functions_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -412,7 +411,8 @@ am__objects_8 =  \
 	sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_issquare.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo \
-	sci_gateway/cpp/libscielementary_functions_la-sci_nearfloat.lo
+	sci_gateway/cpp/libscielementary_functions_la-sci_nearfloat.lo \
+	sci_gateway/cpp/libscielementary_functions_la-sci_permute.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_7) \
 	$(am__objects_8)
 libscielementary_functions_la_OBJECTS =  \
@@ -499,8 +499,7 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 DATA = $(libscielementary_functions_la_etc_DATA) \
-	$(libscielementary_functions_la_root_DATA) \
-	$(libscielementary_functions_la_sci_gateway_DATA)
+	$(libscielementary_functions_la_root_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -1150,7 +1149,8 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_sqrt.cpp \
     sci_gateway/cpp/sci_issquare.cpp \
     sci_gateway/cpp/sci_isvector.cpp\
-    sci_gateway/cpp/sci_nearfloat.cpp
+    sci_gateway/cpp/sci_nearfloat.cpp\
+    sci_gateway/cpp/sci_permute.cpp		
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
@@ -2136,6 +2136,9 @@ sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo:  \
 sci_gateway/cpp/libscielementary_functions_la-sci_nearfloat.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscielementary_functions_la-sci_permute.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscielementary_functions.la: $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_DEPENDENCIES) $(EXTRA_libscielementary_functions_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscielementary_functions_la_rpath) $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_LIBADD) $(LIBS)
@@ -2205,6 +2208,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_max.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_nearfloat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_ones.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_permute.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_prod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_rand.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_rat.Plo@am__quote@
@@ -3107,6 +3111,13 @@ sci_gateway/cpp/libscielementary_functions_la-sci_nearfloat.lo: sci_gateway/cpp/
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_nearfloat.lo `test -f 'sci_gateway/cpp/sci_nearfloat.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_nearfloat.cpp
 
+sci_gateway/cpp/libscielementary_functions_la-sci_permute.lo: sci_gateway/cpp/sci_permute.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_permute.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_permute.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_permute.lo `test -f 'sci_gateway/cpp/sci_permute.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_permute.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_permute.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_permute.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_permute.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_permute.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_permute.lo `test -f 'sci_gateway/cpp/sci_permute.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_permute.cpp
+
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
 
@@ -3171,27 +3182,6 @@ uninstall-libscielementary_functions_la_rootDATA:
 	@list='$(libscielementary_functions_la_root_DATA)'; test -n "$(libscielementary_functions_la_rootdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscielementary_functions_la_rootdir)'; $(am__uninstall_files_from_dir)
-install-libscielementary_functions_la_sci_gatewayDATA: $(libscielementary_functions_la_sci_gateway_DATA)
-	@$(NORMAL_INSTALL)
-	@list='$(libscielementary_functions_la_sci_gateway_DATA)'; test -n "$(libscielementary_functions_la_sci_gatewaydir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)" || exit 1; \
-	fi; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)" || exit $$?; \
-	done
-
-uninstall-libscielementary_functions_la_sci_gatewayDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscielementary_functions_la_sci_gateway_DATA)'; test -n "$(libscielementary_functions_la_sci_gatewaydir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -3280,7 +3270,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscielementary_functions_la_etcdir)" "$(DESTDIR)$(libscielementary_functions_la_rootdir)" "$(DESTDIR)$(libscielementary_functions_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscielementary_functions_la_etcdir)" "$(DESTDIR)$(libscielementary_functions_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -3354,8 +3344,7 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libscielementary_functions_la_etcDATA \
-	install-libscielementary_functions_la_rootDATA \
-	install-libscielementary_functions_la_sci_gatewayDATA
+	install-libscielementary_functions_la_rootDATA
 
 install-dvi: install-dvi-am
 
@@ -3403,7 +3392,6 @@ ps-am:
 
 uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
 	uninstall-libscielementary_functions_la_rootDATA \
-	uninstall-libscielementary_functions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: check-am install-am install-strip
@@ -3418,17 +3406,15 @@ uninstall-am: uninstall-libscielementary_functions_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscielementary_functions_la_etcDATA \
-	install-libscielementary_functions_la_rootDATA \
-	install-libscielementary_functions_la_sci_gatewayDATA \
-	install-man install-pdf install-pdf-am \
-	install-pkglibLTLIBRARIES install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags tags-am uninstall uninstall-am \
+	install-libscielementary_functions_la_rootDATA install-man \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-am uninstall uninstall-am \
 	uninstall-libscielementary_functions_la_etcDATA \
 	uninstall-libscielementary_functions_la_rootDATA \
-	uninstall-libscielementary_functions_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .PRECIOUS: Makefile

@@ -69,6 +69,7 @@ int ElemFuncModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"number_properties", &sci_number_properties, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ones", &sci_ones, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"prod", &sci_prod, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"permute", &sci_permute, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"rand", &sci_rand, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"real", &sci_real, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"round", &sci_round, MODULE_NAME));
