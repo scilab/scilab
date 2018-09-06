@@ -473,6 +473,7 @@ Known issues
 * [#14989](http://bugzilla.scilab.org/show_bug.cgi?id=14989): The example of Xcos diagram on the INTEGRAL_m help page was distorted.
 * [#14990](http://bugzilla.scilab.org/show_bug.cgi?id=14990): The example of Xcos diagram on the NEGTOPOS_f help page was distorted.
 * [#14995](http://bugzilla.scilab.org/show_bug.cgi?id=14995): savematfile crashes Scilab
+* [#15024](http://bugzilla.scilab.org/show_bug.cgi?id=15024): `A=10; A{1}=2` corrupted A and silently failed
 * [#15033](http://bugzilla.scilab.org/show_bug.cgi?id=15033): `fileinfo` gave negative size if filesize bigger than 2^31
 * [#15091](http://bugzilla.scilab.org/show_bug.cgi?id=15091): `translatepaths()` was KO.
 * [#15092](http://bugzilla.scilab.org/show_bug.cgi?id=15092): Scalar variable was resized as a column vector instead of row.
