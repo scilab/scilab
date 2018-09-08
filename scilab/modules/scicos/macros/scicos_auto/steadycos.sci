@@ -57,10 +57,6 @@ function [X,U,Y,XP] = steadycos(scs_m,X,U,Y,Indx,Indu,Indy,Indxp,param)
         load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
     end
 
-    if exists("scicos_autolib")==0 then
-        load("SCI/modules/scicos/macros/scicos_auto/lib") ;
-    end
-
     if exists("scicos_utilslib")==0 then
         load("SCI/modules/scicos/macros/scicos_utils/lib") ;
     end

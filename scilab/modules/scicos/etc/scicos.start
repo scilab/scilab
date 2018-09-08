@@ -13,3 +13,4 @@
 
 load('SCI/modules/scicos/macros/scicos_utils/lib');
 load('SCI/modules/scicos/macros/scicos_auto/lib');
+load('SCI/modules/scicos/macros/scicos_scicos/lib');
