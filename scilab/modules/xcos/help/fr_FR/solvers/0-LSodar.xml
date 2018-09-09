@@ -158,7 +158,7 @@ Temps pour Adams / Functional :
             Les solveurs d'EDO à pas variable ne sont pas appropriés pour des applications temps réel déterministes car le surplus de calcul au passage d'un pas de temps varie au cours de l'application.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>Voir Aussi</title>
         <simplelist type="inline">
             <member>
@@ -212,7 +212,7 @@ Temps pour Adams / Functional :
         </para>
     </refsection>
     <refsection>
-        <title>Histoire</title>
+        <title>Historique</title>
         <revhistory>
             <revision>
                 <revnumber>5.4.1</revnumber>

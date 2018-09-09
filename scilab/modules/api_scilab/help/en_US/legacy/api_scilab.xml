@@ -132,87 +132,87 @@
             </revision>
         </revhistory>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also - API_Scilab</title>
         <simplelist type="inline">
             <member>
-                <link linkend="boolean_reading_API">boolean reading API</link>,
+                <link linkend="boolean_reading_API">boolean reading API</link>
             </member>
             <member>
-                <link linkend="boolean_writing_API">boolean writing API</link>,
+                <link linkend="boolean_writing_API">boolean writing API</link>
             </member>
             <member>
-                <link linkend="bsparse_reading_API">boolean sparse reading API</link>,
+                <link linkend="bsparse_reading_API">boolean sparse reading API</link>
             </member>
             <member>
-                <link linkend="bsparse_writing_API">boolean sparse writing API</link>,
+                <link linkend="bsparse_writing_API">boolean sparse writing API</link>
             </member>
             <member>
-                <link linkend="Common_getvaraddr_API">Common getvaraddr API</link>,
+                <link linkend="Common_getvaraddr_API">Common getvaraddr API</link>
             </member>
             <member>
-                <link linkend="Common_getvardimension_API">Common getvardimension API</link>,
+                <link linkend="Common_getvardimension_API">Common getvardimension API</link>
             </member>
             <member>
-                <link linkend="Common_getvartype_API">Common getvartype API</link>,
+                <link linkend="Common_getvartype_API">Common getvartype API</link>
             </member>
             <member>
-                <link linkend="Common_iscomplex_API">Common iscomplex API</link>,
+                <link linkend="Common_iscomplex_API">Common iscomplex API</link>
             </member>
             <member>
-                <link linkend="Common_isvarmatrixtype_API">Common isvarmatrixtype API</link>,
+                <link linkend="Common_isvarmatrixtype_API">Common isvarmatrixtype API</link>
             </member>
             <member>
-                <link linkend="Double_management_reading_API">Double management reading API</link>,
+                <link linkend="Double_management_reading_API">Double management reading API</link>
             </member>
             <member>
-                <link linkend="Double_management_writing_API">Double management writing API</link>,
+                <link linkend="Double_management_writing_API">Double management writing API</link>
             </member>
             <member>
-                <link linkend="Integer_management_reading_API">Integer management reading API</link>,
+                <link linkend="Integer_management_reading_API">Integer management reading API</link>
             </member>
             <member>
-                <link linkend="Integer_management_writing_API">Integer management writing API</link>,
+                <link linkend="Integer_management_writing_API">Integer management writing API</link>
             </member>
             <member>
-                <link linkend="int_getmatrixofintegerprecision_API">getmatrixofintegerprecision API</link>,
+                <link linkend="int_getmatrixofintegerprecision_API">getmatrixofintegerprecision API</link>
             </member>
             <member>
-                <link linkend="Pointer_reading_API">Pointer reading API</link>,
+                <link linkend="Pointer_reading_API">Pointer reading API</link>
             </member>
             <member>
-                <link linkend="Pointer_writing_API">Pointer writing API</link>,
+                <link linkend="Pointer_writing_API">Pointer writing API</link>
             </member>
             <member>
-                <link linkend="poly_getpolyvariablename_API">poly getpolyvariablename API</link>,
+                <link linkend="poly_getpolyvariablename_API">poly getpolyvariablename API</link>
             </member>
             <member>
-                <link linkend="Polynomial_management_reading_API">Polynomial management reading API</link>,
+                <link linkend="Polynomial_management_reading_API">Polynomial management reading API</link>
             </member>
             <member>
-                <link linkend="Polynomial_management_writing_API">Polynomial management writing API</link>,
+                <link linkend="Polynomial_management_writing_API">Polynomial management writing API</link>
             </member>
             <member>
-                <link linkend="Sparse_management_reading_API">Sparse management reading API</link>,
+                <link linkend="Sparse_management_reading_API">Sparse management reading API</link>
             </member>
             <member>
-                <link linkend="Sparse_management_writing_API">Sparse management writing_API</link>,
+                <link linkend="Sparse_management_writing_API">Sparse management writing_API</link>
             </member>
             <member>
-                <link linkend="String_management_reading_API">String management reading API</link>,
+                <link linkend="String_management_reading_API">String management reading API</link>
             </member>
             <member>
                 <link linkend="String_management_writing_API">String management writing API</link>
             </member>
             <member>
-                <link linkend="handle_reading_API">handle reading API</link>,
+                <link linkend="handle_reading_API">handle reading API</link>
             </member>
             <member>
-                <link linkend="handle_writing_API">handle writing API</link>,
+                <link linkend="handle_writing_API">handle writing API</link>
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also - API_Scilab list management</title>
         <simplelist type="inline">
             <member>
@@ -274,7 +274,7 @@
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also - call_scilab</title>
         <simplelist type="inline">
             <member>

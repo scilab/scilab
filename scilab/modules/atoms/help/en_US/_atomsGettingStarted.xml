@@ -104,7 +104,7 @@ the package NISP (2.1) is currently loaded, It will removed at next Scilab resta
             </itemizedlist>
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also</title>
         <para>
             More information on the autoload
@@ -122,7 +122,4 @@ the package NISP (2.1) is currently loaded, It will removed at next Scilab resta
             </simplelist>
         </para>
     </refsection>
-    <!-- ===================================================================== -->
-    <!-- Authors -->
-    <!-- ===================================================================== -->
 </refentry>

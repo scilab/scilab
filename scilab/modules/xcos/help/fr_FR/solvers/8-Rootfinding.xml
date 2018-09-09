@@ -16,7 +16,7 @@
     <refnamediv>
         <refname>Recherche de racines</refname>
         <refpurpose>
-            Cette fonctionnalité trouve des racines de fonctions continues pour les blocks Zero-crossing.
+            Trouve des racines de fonctions continues pour les blocks Zero-crossing.
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -137,7 +137,7 @@ Temps sans recherche de racine :
             Suivant le nombre de racines, l'aspect de la fonction à l'approche de ces racines, les tolérances, ..., le surplus de temps de calcul va de 25% à 45%.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>Voir Aussi</title>
         <simplelist type="inline">
             <member>

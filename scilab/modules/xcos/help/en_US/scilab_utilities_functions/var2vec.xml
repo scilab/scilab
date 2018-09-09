@@ -85,14 +85,12 @@ b  =
 2.
  ]]></programlisting>
     </refsection>
-    <refsection id="SeeAlso_var2vec">
+    <refsection id="SeeAlso_var2vec" role="see also">
         <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="vec2var">vec2var - Transform a vector of double in a scilab variable (Scilab Function)</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist>
+          <member>
+            <link linkend="vec2var">vec2var</link>
+          </member>
+        </simplelist>
     </refsection>
 </refentry>

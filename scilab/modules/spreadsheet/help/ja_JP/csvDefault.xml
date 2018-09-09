@@ -202,7 +202,7 @@
             bRes = csvDefault("precision","Ouch!") // 期待値 = %f
         </programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>

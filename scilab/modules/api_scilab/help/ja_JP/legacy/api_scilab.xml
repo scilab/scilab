@@ -136,81 +136,81 @@
             </revision>
         </revhistory>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照 - API_Scilab</title>
         <simplelist type="inline">
             <member>
-                <link linkend="boolean_reading_API">論理値を読み込むAPI</link>,
+                <link linkend="boolean_reading_API">論理値を読み込むAPI</link>
             </member>
             <member>
-                <link linkend="boolean_writing_API">論理値を書き込むAPI</link>,
+                <link linkend="boolean_writing_API">論理値を書き込むAPI</link>
             </member>
             <member>
-                <link linkend="bsparse_reading_API">論理値の疎行列を読み込むAPI</link>,
+                <link linkend="bsparse_reading_API">論理値の疎行列を読み込むAPI</link>
             </member>
             <member>
-                <link linkend="bsparse_writing_API">論理値の疎行列を書き込むAPI</link>,
+                <link linkend="bsparse_writing_API">論理値の疎行列を書き込むAPI</link>
             </member>
             <member>
-                <link linkend="Common_getvaraddr_API">getvaraddr 共通API</link>,
+                <link linkend="Common_getvaraddr_API">getvaraddr 共通API</link>
             </member>
             <member>
-                <link linkend="Common_getvardimension_API">getvardimension 共通API</link>,
+                <link linkend="Common_getvardimension_API">getvardimension 共通API</link>
             </member>
             <member>
-                <link linkend="Common_getvartype_API">getvartype 共通API</link>,
+                <link linkend="Common_getvartype_API">getvartype 共通API</link>
             </member>
             <member>
-                <link linkend="Common_iscomplex_API">iscomplex 共通API</link>,
+                <link linkend="Common_iscomplex_API">iscomplex 共通API</link>
             </member>
             <member>
-                <link linkend="Common_isvarmatrixtype_API">isvarmatrixtype 共通API</link>,
+                <link linkend="Common_isvarmatrixtype_API">isvarmatrixtype 共通API</link>
             </member>
             <member>
-                <link linkend="Double_management_reading_API">double管理読み込みAPI</link>,
+                <link linkend="Double_management_reading_API">double管理読み込みAPI</link>
             </member>
             <member>
-                <link linkend="Double_management_writing_API">double管理書き込みAPI</link>,
+                <link linkend="Double_management_writing_API">double管理書き込みAPI</link>
             </member>
             <member>
-                <link linkend="Integer_management_reading_API">整数管理読み込みAPI</link>,
+                <link linkend="Integer_management_reading_API">整数管理読み込みAPI</link>
             </member>
             <member>
-                <link linkend="Integer_management_writing_API">整数管理書き込みAPI</link>,
+                <link linkend="Integer_management_writing_API">整数管理書き込みAPI</link>
             </member>
             <member>
-                <link linkend="int_getmatrixofintegerprecision_API">getmatrixofintegerprecision API</link>,
+                <link linkend="int_getmatrixofintegerprecision_API">getmatrixofintegerprecision API</link>
             </member>
             <member>
-                <link linkend="Pointer_reading_API">ポインタ読み込みAPI</link>,
+                <link linkend="Pointer_reading_API">ポインタ読み込みAPI</link>
             </member>
             <member>
-                <link linkend="Pointer_writing_API">ポインタ書き込みAPI</link>,
+                <link linkend="Pointer_writing_API">ポインタ書き込みAPI</link>
             </member>
             <member>
-                <link linkend="poly_getpolyvariablename_API">多項式getpolyvariablename API</link>,
+                <link linkend="poly_getpolyvariablename_API">多項式getpolyvariablename API</link>
             </member>
             <member>
-                <link linkend="Polynomial_management_reading_API">多項式管理読み込みAPI</link>,
+                <link linkend="Polynomial_management_reading_API">多項式管理読み込みAPI</link>
             </member>
             <member>
-                <link linkend="Polynomial_management_writing_API">多項式管理書き込みAPI</link>,
+                <link linkend="Polynomial_management_writing_API">多項式管理書き込みAPI</link>
             </member>
             <member>
-                <link linkend="Sparse_management_reading_API">疎行列管理読み込みAPI</link>,
+                <link linkend="Sparse_management_reading_API">疎行列管理読み込みAPI</link>
             </member>
             <member>
-                <link linkend="Sparse_management_writing_API">疎行列管理書き込みAPI</link>,
+                <link linkend="Sparse_management_writing_API">疎行列管理書き込みAPI</link>
             </member>
             <member>
-                <link linkend="String_management_reading_API">文字列管理読み込みAPI</link>,
+                <link linkend="String_management_reading_API">文字列管理読み込みAPI</link>
             </member>
             <member>
                 <link linkend="String_management_writing_API">文字列管理書き込みAPI</link>
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照 - API_Scilab リスト管理</title>
         <simplelist type="inline">
             <member>
@@ -272,7 +272,7 @@
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照 - call_scilab</title>
         <simplelist type="inline">
             <member>

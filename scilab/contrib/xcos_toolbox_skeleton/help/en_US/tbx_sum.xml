@@ -43,11 +43,12 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="SeeAlso_tbx_sum">
+    <refsection id="SeeAlso_tbx_sum" role="see also">
+        <!-- The short description of each item belonging to the toolbox will be automatically added after its link -->
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="TBX_SUM_c">TBX_SUM_c</link> : corresponding <link type="scilab" linkend="scilab.help/xcos">Xcos</link> block.
+                <link linkend="TBX_SUM_c">TBX_SUM_c</link>
             </member>
             <member>
                 <link type="scilab" linkend="scilab.help/sum">Link to the Scilab help page</link>

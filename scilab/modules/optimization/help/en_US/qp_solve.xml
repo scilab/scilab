@@ -164,7 +164,7 @@ me=3;
 // Only linear constraints (1 to 4) are active
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>

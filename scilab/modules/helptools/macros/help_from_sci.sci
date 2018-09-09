@@ -453,7 +453,7 @@ function [txt, doing] = change_activity(currently_doing, start_doing)
     case "EXAMPLES"
         txt = [txt; ""; "<refsection>"; "   <title>Examples</title>"; "   <programlisting role=""example""><![CDATA["];
     case "SEE ALSO"
-        txt = [txt; ""; "<refsection>"; "   <title>See also</title>"; "   <simplelist type=""inline"">"];
+        txt = [txt; ""; "<refsection role=""see also"">"; "   <title>See also</title>"; "   <simplelist type=""inline"">"];
     case "AUTHORS"
         txt = [txt; ""; "<refsection>"; "   <title>Authors</title>"; "   <simplelist type=""vert"">"];
     case "BIBLIOGRAPHY"

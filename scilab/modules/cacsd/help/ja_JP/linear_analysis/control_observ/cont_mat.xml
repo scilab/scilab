@@ -54,8 +54,8 @@
 Cc=[B, AB, A^2 B,..., A^(n-1) B]
  ]]></programlisting>
     </refsection>
-    <refsection>
-        <title>See also</title>
+    <refsection role="see also">
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ctr_gram">ctr_gram</link>

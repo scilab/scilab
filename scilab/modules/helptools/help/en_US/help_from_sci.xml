@@ -146,7 +146,7 @@
 
    ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
@@ -167,7 +167,7 @@
                 <revnumber>6.0.1</revnumber>
                 <revdescription>
                   Numerical HTML entities like <literal>&amp;#969;</literal> are now accepted in
-                  heading comments.
+                  heading comments. However, writting directly UTF8 characters should be preferred.
                 </revdescription>
             </revision>
         </revhistory>

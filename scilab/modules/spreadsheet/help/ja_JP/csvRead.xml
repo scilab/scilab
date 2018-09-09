@@ -171,7 +171,6 @@
             オプションの入力引数に空の行列<literal>[]</literal>を指定すると,
             デフォルト値が設定されます.
         </para>
-        
         <para>
             入力引数 "conversion" が "double" の時,
             .csvの中の数値以外のフィールド(例:文字列)は NaNに変換されます.
@@ -384,11 +383,17 @@ header = 2;
 [M, c] = csvRead(filename, ascii(9), ",", "double", [], [], [], header) // 最初の2行(ヘッダ)を無視
     ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="csvTextscan">csvTextscan</link>
+            </member>
+            <member>
                 <link linkend="csvWrite">csvWrite</link>
+            </member>
+            <member>
+                <link linkend="csvDefault">csvDefault</link>
             </member>
         </simplelist>
     </refsection>

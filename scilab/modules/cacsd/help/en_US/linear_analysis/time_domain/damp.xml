@@ -191,7 +191,7 @@
     [wn,z] = damp((1:5)+%i)
     ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
@@ -213,5 +213,4 @@
             </revision>
         </revhistory>
     </refsection>
-
 </refentry>
