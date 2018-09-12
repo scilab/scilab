@@ -561,6 +561,7 @@ Known issues
 * [#15692](http://bugzilla.scilab.org/show_bug.cgi?id=15692): listvarinfile() crashes when listing a boolean sparse matrix (regression)
 * [#15693](http://bugzilla.scilab.org/show_bug.cgi?id=15693): listvarinfile() misses displaying the size of polynomial variables (regression)
 * [#15735](http://bugzilla.scilab.org/show_bug.cgi?id=15735): `interp1` yielded some []+n warnings.
+* [#15762](http://bugzilla.scilab.org/show_bug.cgi?id=15762): `error()` refused multiline error messages.
 
 
 ### Bugs fixed in 6.0.1:
