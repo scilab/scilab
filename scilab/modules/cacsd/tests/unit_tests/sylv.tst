@@ -7,6 +7,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 
 // Run with test_run('cacsd', 'sylv', ['no_check_error_output']);
 
@@ -15,7 +16,7 @@ A = rand(4, 4); C = rand(4, 3); B = rand(3, 3);
 // Solve continuous-time Sylvester equation: A*X+X*B = C
 X = sylv(A, B, C, "c");
 
-expected_norm = 1.D-16;
+expected_norm = 1.D-15;
 
 if norm(A*X+X*B-C)-expected_norm > 1.D-15 then pause,end
 
