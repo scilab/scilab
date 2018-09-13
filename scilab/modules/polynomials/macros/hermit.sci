@@ -26,7 +26,7 @@ function [a,u]=hermit(a)
     end
     [a,u]=htrianr(a)
     for l=n-1:-1:1
-        dl(l:n)=degree(a(l,l:n));
+        dl(l:n)=max(0,degree(a(l,l:n)));
         for k=l+1:n
             if dl(k)>=dl(l) then
                 all=a(l,l);

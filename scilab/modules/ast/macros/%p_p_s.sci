@@ -25,7 +25,7 @@ function f=%p_p_s(p,s)
     if ms==1&ns==1 then
         if m==1|n==1 then //Element wise exponentiation p.^s with p vector
             if s<0 then
-                if or(abs(coeff(p(:)))*ones(max(degree(p))+1,1)==0) then
+                if or(abs(coeff(p(:)))*ones(max(0,max(degree(p)))+1,1)==0) then
                     msg = _("%s: Division by zero...")
                     error(msprintf(msg, fname))
                 end
@@ -57,7 +57,7 @@ function f=%p_p_s(p,s)
         num=ones(s)
         den=ones(s)
         num(kp)=p.^s(kp)
-        if abs(coeff(p))*ones(degree(p)+1,1)==0 then
+        if abs(coeff(p))*ones(max(0,degree(p))+1,1)==0 then
             msg = _("%s: Division by zero...")
             error(msprintf(msg, fname))
         end

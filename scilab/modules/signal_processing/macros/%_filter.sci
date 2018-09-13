@@ -96,7 +96,7 @@ function [y, z] = %_filter(b, a, x, z)
         end
         deg_b = degree(b);
         deg_a = degree(a);
-        deg = max(deg_b, deg_a);
+        deg = max(0,max(deg_b, deg_a));
         b = coeff(b, deg:-1:0);
         a = coeff(a, deg:-1:0);
     end

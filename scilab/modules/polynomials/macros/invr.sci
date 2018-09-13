@@ -62,7 +62,7 @@ function [f, d] = invr(h, flag)
                     f = b+eye(n,n)*d;
                 end;
                 d = sum(diag(h*f))/n;
-                if degree(d)==0 then
+                if degree(d) <= 0 then
                     d = coeff(d);
                 end
                 if lhs==1 then
@@ -70,7 +70,7 @@ function [f, d] = invr(h, flag)
                 end
             case "C"
                 [f,d] = coffg(h);
-                if degree(d)==0 then
+                if degree(d) <= 0 then
                     d = coeff(d);
                 end
                 if lhs==1 then
