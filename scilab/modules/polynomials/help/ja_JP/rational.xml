@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="rational">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ja" xml:id="rational">
     <refnamediv>
         <refname>rational</refname>
         <refpurpose>Scilab オブジェクト, Scilabの有理数</refpurpose>
@@ -9,16 +26,36 @@
         <para>
             有理数 <literal>r</literal> は,2つの多項式の商<literal>r=num/den</literal>です.
             有理数の内部表現はリストです.
-            <literal>r=tlist(['r','num','den','dt'],num,den,[])</literal>は
-            <literal>r=num/den</literal>と同じです.
-            有理行列は通常の構文で定義できます.
-            例えば, <literal>[r11,r12;r21,r22]</literal>は 2x2 行列です.
-            ただし, <literal>rij</literal> は 1x1 有理数です.
-            有理行列は,
-            <literal>num</literal> および <literal>den</literal>を多項式行列として
-            リスト<literal>rlist(num,den,[])</literal>により
-            定義することも可能です.
         </para>
+        <para>
+            An array <literal>R</literal> of rationals can be directly defined as the elementwise
+            quotient of two polynomial arrays <literal>Num</literal> and <literal>Den</literal> :
+            <literal>R = Num./Den</literal>.
+        </para>
+        <para>
+            The internal representation of a rational is a list of type "r":
+            <literal>R = tlist(['r','num','den','dt'], Num, Den,[])</literal>, or
+            <literal>R = rlist(Num, Den, [])</literal>.
+        </para>
+        <para>
+            All usual operators can be used with arrays of rationals:
+            <literal>'  .'  +  -  *  .*  /  ./  .^  .*.  [,] [;]</literal>,
+        </para>
+        <para>
+            As for polynomials, the <literal>horner()</literal> function allows to compute
+            the value of rationals for some value of their variable.
+        </para>
+        <para>
+            Many other Scilab functions can be used with rationals input : <literal>permute</literal>,
+            <literal>cat</literal>, <literal>real</literal>, <literal>imag</literal>,
+            <literal>conj</literal>, <literal>isreal</literal>, etc.
+        </para>
+        <warning>
+            Addressing some components of an array <literal>R</literal> of rationals with their
+            linearized indices can be done using the syntax <literal>R(k,0)</literal> where
+            <literal>k</literal> is the vector of linearized indices, and 0 is used instead of
+            <literal>j</literal> or higher order indices.
+        </warning>
     </refsection>
     <refsection>
         <title>例</title>
@@ -33,6 +70,44 @@ syslin('c',Num,Den)
 syslin('c',H)
 [Num1,Den1]=simp(Num,Den)
  ]]></programlisting>
+    <para/>
+    <programlisting role="example"><![CDATA[
+R = (1-%s).^[1 0 2] ./ %s.^[1 2 0]
+horner(R,[-1 0 2 -2]')
+
+R = (1-%s)/(1+%s)
+horner(R, 1-%z^2)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> R = (1-%s).^[1 0 2] ./ %s.^[1 2 0]
+ R  =
+                         2
+   1 - s   1   1 - 2s + s
+   ------  --  -----------
+            2
+     s     s       1
+
+--> horner(R,[-1 0 2 -2]')
+ ans  =
+  -2.    1.     4.
+   Inf   Inf    1.
+  -0.5   0.25   1.
+  -1.5   0.25   9.
+
+--> R = (1-%s)/(1+%s)
+ R  =
+   1 - s
+   ------
+   1 + s
+
+--> horner(R, 1-%z^2)
+ ans  =
+      2
+     z
+   ------
+        2
+   2 - z
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -44,8 +119,23 @@ syslin('c',H)
                 <link linkend="syslin">syslin</link>
             </member>
             <member>
+                <link linkend="horner">horner</link>
+            </member>
+            <member>
                 <link linkend="simp">simp</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    The syntax <literal>R(k,0)</literal> is now available to address components
+                    with their linearized indices k.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
