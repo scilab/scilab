@@ -255,6 +255,7 @@ input and output arguments.
    - When an error occurs, the output file is now closed and unlocked.
    - Encoded integers can now be saved in `-v4` format.
 * `sci2exp` now uses `%s` or `%z` in literal expressions of polynomials in `s` or `z`.
+* `min` and `max` hardly worked with sparse-encoded inputs. They are now fully enabled.
 
 Help pages:
 -----------
@@ -646,7 +647,11 @@ Known issues
 * [#15741](http://bugzilla.scilab.org/show_bug.cgi?id=15741):  Operations between 2 polynomials with distinct variables no longer called the corresponding overloads (Regression)
 * [#15746](http://bugzilla.scilab.org/show_bug.cgi?id=15746): `1/[1 2 3]` and `[1 2 3]'\1` did not raise an error
 * [#15747](http://bugzilla.scilab.org/show_bug.cgi?id=15747): no output in overloaded operator crashed Scilab
+* [#15748](http://bugzilla.scilab.org/show_bug.cgi?id=15748): `min(Sparse,"r"|"c")` and `max(Sparse,"r"|"c")` always returned vectors of zeros. In addition, with sparse inputs,  `min` and `max` did not compute indices as second output.
+* [#15751](http://bugzilla.scilab.org/show_bug.cgi?id=15751): `min(sparse([],[])) returned 0 instead of []. `max()` as well.
+* [#15752](http://bugzilla.scilab.org/show_bug.cgi?id=15752): `min` and `max` did not ignore `Nan` values in sparse inputs.
 * [#15753](http://bugzilla.scilab.org/show_bug.cgi?id=15753): `issparse()` returned 0 instead of 1 for sparse booleans.
+* [#15755](http://bugzilla.scilab.org/show_bug.cgi?id=15755): `min(A1,A2,..)` and `max(A1,A2,..)` did not allow mixing sparse with scalar inputs.
 * [#15757](http://bugzilla.scilab.org/show_bug.cgi?id=15757): The public function `xcosPalAddBlock` did not load scicos_scicoslib when needed, and then yielded an error. When the block is specified as a .sod file and the file does not exist, the error message was obscur.
 * [#15758](http://bugzilla.scilab.org/show_bug.cgi?id=15758): sparse([0 0],1) crashes scilab (regression)
 * [#15762](http://bugzilla.scilab.org/show_bug.cgi?id=15762): `error()` refused multiline error messages.

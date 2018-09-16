@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,35 +13,115 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="min" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="min" xml:lang="en">
     <refnamediv>
         <refname>min</refname>
         <refpurpose>minimum</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[m [,k]]=min(A)
-            [m [,k]]=min(A,'c')
-            [m [,k]]=min(A,'r')
-            [m [,k]]=min(A,'m')
-            [m [,k]]=min(A1,A2,...,An)
-            [m [,k]]=min(list(A1,A2,...,An))
+        <synopsis>
+            m = min(A)
+            Col = min(A, 'c')
+            Row = min(A, 'r'|'m')
+            M = min(A1, A2,..., An)
+            M = min(list(A1, A2,..., An))
+            [.., K] = min(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>A</term>
+                <term>A, A1, ..., An</term>
                 <listitem>
-                    <para>real vector or matrix.</para>
+                    <para>
+                        scalars, vectors, matrices or hypermatrices of encoded integers or of real
+                        numbers, in dense or sparse format. They must have the same sizes, or be
+                        mixed with scalars (scalars are then implicitly expanded to the arrays sizes).
+                        Sparse arrays can't be mixed with dense ones, except with dense
+                        <emphasis>positive</emphasis> scalars.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>A1,...,An</term>
+                <term>m</term>
                 <listitem>
-                    <para>a set of real vectors or matrices, all of the same size or
-                        scalar.
+                    <para>
+                        single number = minimum of all values of <varname>A</varname> elements.
+                        Always in dense format, even when <varname>A</varname> is sparse encoded.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Col</term>
+                <listitem>
+                    <para>
+                        column vector if <varname>A</varname> is a 2D matrix, or hypermatrix of
+                        size(A) with size(A,2) set to 1: Minima over columns (for each row).
+                        If <varname>A</varname> is sparse, then <varname>Col</varname> is sparse
+                        as well.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Row</term>
+                <listitem>
+                    <para>
+                        row vector if <varname>A</varname> is a 2D matrix, or hypermatrix of
+                        size(A) with size(A,1) set to 1: Minima over rows (for each column).
+                        If <varname>A</varname> is sparse, then <varname>Row</varname> is sparse
+                        as well.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>
+                        Array of size = <literal>size(A1)</literal>, such that for any q
+                        <literal>M(q) = min(A1(q),A2(q),..An(q))</literal>
+                        If <varname>A</varname>,..,<varname>An</varname> are sparse, then
+                        <varname>M</varname> is sparse as well.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        Indices in <varname>A</varname>.. of the (first) minimum found.
+                        When <literal>[m,K]=min(A)</literal> is used,
+                        <itemizedlist>
+                            <listitem>
+                                If <literal>A</literal> is a vector, K is a scalar.
+                            </listitem>
+                            <listitem>
+                                Otherwise, <varname>K</varname> is a row vector [i,j,..] of subscripts.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        For other syntaxes, <varname>K</varname> has the shape and sizes of
+                        <varname>Col</varname>, <varname>Row</varname>, and <varname>M</varname>.
+                    </para>
+                    <para>
+                        With the <literal>[M,K] = min(A1,A2,..,An)</literal> syntax, we have,
+                        for any linear index q:
+                        <literal>[M(q),K(q)] = min([A1(q) A2(q) .. An(q)])</literal>.
+                    </para>
+                    <para>
+                        <warning>
+                            <varname>K</varname> is always in dense format, even when
+                            <varname>A, A1,..,An</varname> are sparse-encoded. Hence, when the
+                            <literal>[M,K]=min(A1,A2,..)</literal> syntax is used with huge but
+                            sparse matrices, this may lead to a huge <emphasis>dense</emphasis>
+                            <varname>K</varname> matrix. The user must check that enough memory
+                            is available for it.
+                        </warning>
                     </para>
                 </listitem>
             </varlistentry>
@@ -50,55 +130,208 @@
     <refsection>
         <title>Description</title>
         <para>
-            For <literal>A</literal>, a real vector or matrix,
-            <literal>min(A)</literal> is the least element <literal>A</literal>.
-            <literal>[m,k]=min(A)</literal> gives in addition the index of the
-            minimum. A second argument of type string <literal>'r'</literal> or
+            For <literal>A</literal>, a real vector or matrix, <literal>min(A)</literal> is the
+            least element of <literal>A</literal>.
+        </para>
+        <para>
+            <literal>[m,K]=min(A)</literal> gives in addition the indices of the first minimum.
+        </para>
+        <para>
+            A second argument of type string <literal>'r'</literal> or
             <literal>'c'</literal> can be used : <literal>'r'</literal> is used to get
-            a row vector <literal>m</literal> such that <literal>m(j)</literal>
-            contains the minimum of the <literal>j</literal>th column of <literal>A</literal>
-            (<literal>A(:,j)</literal>), <literal>k(j)</literal> gives the row indice
-            which contain the minimum for column <literal>j</literal>.
+            a row vector <literal>Row</literal> such that <literal>Row(j)</literal>
+            contains the minimum of the <literal>j</literal>th column <literal>A(:,j)</literal>,
+            <literal>K(j)</literal> gives the index of the row
+            which contains the minimum, for the column #<literal>j</literal>.
+        </para>
+        <para>
             <literal>'c'</literal> is used for the dual operation on the rows of
-            <literal>A</literal>. <literal>'m'</literal> is used for compatibility
-            with Matlab.
+            <literal>A</literal>. <literal>'m'</literal> is used for compatibility with Matlab.
         </para>
         <para>
-            <literal>m=min(A1,A2,...,An)</literal>, where all the
-            <literal>Aj</literal> are matrices of the same sizes, returns a vector or a
-            matrix <literal>m</literal> of size <literal>size(m)=size(A1)</literal>
-            such that <literal>m(i)= min( Aj(i)), j=1,...,n</literal>.
-            <literal>[m,k]=min(A1,A2,...,An)</literal> gives in addition the vector or
-            matrix <literal>k</literal>. For a fixed <literal>i</literal>,
-            <literal>k(i)</literal> is the number of the first
-            <literal>Aj(i)</literal> achieving the minimum.
+            <literal>[M,K]=min(list(A1,...,An))</literal> is an equivalent
+            syntax of <literal>[M,K]=min(A1,A2,...,An)</literal>.
         </para>
-        <para>
-            <literal>[m,k]=min(list(A1,...,An))</literal> is an equivalent
-            syntax of <literal>[m,k]=min(A1,A2,...,An)</literal>.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
-        <para>
-            <note>
-                This function ignores terms of <varname>A</varname> which are NANs.
-            </note>
-        </para>
+        <note>
+            <itemizedlist>
+                <listitem>
+                    min() ignores NaN values (unless there are only NaN values).
+                </listitem>
+                <listitem>
+                    <literal>min([])</literal> returns
+                    <literal>[]</literal> for values and <varname>K</varname>.
+                </listitem>
+            </itemizedlist>
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-[m,n]=min([1,3,1])
-[m,n]=min([3,1,1],[1,3,1],[1,1,3])
-[m,n]=min([3,-2,1],1)
-[m,n]=min(list([3,1,1],[1,3,1],[1,1,3]))
-[m,n]=min(list(1,3,1))
+[m, k] = min([])
+[m, k] = min([5 3 ; 2 %nan])
+[m, n] = min([5 3 ; 2 %nan], 4)
+[m, k] = min([5 -1 2], [1 5 1], [0 1 3])
+[m, k] = min(list([5 -1 2], [1 5 1], [0 1 3]))
  ]]></programlisting>
+    <screen><![CDATA[
+--> [m, k] = min([])
+ m  =
+    []
+ k  =
+    []
+
+--> [m, k] = min([5 3 ; 2 %nan])
+ m  =
+   2.
+
+ k  =
+   2.   1.
+
+--> [m, k] = min([5 3 ; 2 %nan], 4)
+ m  =
+   4.   3.
+   2.   4.
+
+ k  =
+   2.   1.
+   1.   2.
+
+--> [m, k] = min([5 -1 2], [1 5 1], [0 1 3])
+ m  =
+   0.  -1.   1.
+
+ k  =
+   3.   1.   2.
+]]></screen>
+        <para>
+            <emphasis role="bold">With the "r" or "c" options</emphasis>:
+        </para>
+        <programlisting role="example"><![CDATA[
+A = grand(4,6,"uin",0,30); A(3,4) = %nan
+[Row, K] = min(A, "r")
+[Col, K] = min(A, "c")
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = grand(4,6,"uin",0,30); A(3,4) = %nan
+ A  =
+   24.   14.   24.   4.    6.    11.
+   23.   25.   29.   6.    19.   5.
+   30.   2.    20.   Nan    6.   6.
+   20.   8.    13.   14.   16.   3.
+
+--> [Row, K] = min(A, "r")
+ Row  =
+   20.   2.   13.   4.   6.   3.
+
+ K  =
+   4.   3.   4.   1.   1.   4.
+
+--> [Col, K] = min(A, "c")
+ Col  =
+   4.
+   5.
+   2.
+   3.
+
+ K  =
+   4.
+   6.
+   2.
+   6.
+ ]]></screen>
+        <para>
+            <emphasis role="bold">With sparse inputs</emphasis>:
+        </para>
+        <programlisting role="example"><![CDATA[
+s = sprand(5,4,0.5); k = s~=0; s(k) = round((s(k)-0.5)*10), full(s)
+[Row, K] = min(s, "r")
+[Col, K] = min(s, "c")
+[M, K] = min(s,1);   [full(s)  ones(s(:,1))*%nan  full(M)]
+issparse(M)
+K
+ ]]></programlisting>
+    <screen><![CDATA[
+--> s = sprand(5,4,0.5); k = s~=0; s(k) = round((s(k)-0.5)*10), full(s)
+ s  =
+(  5,  4) sparse matrix
+(  1,  3)     5.
+(  1,  4)    -2.
+(  2,  1)    -3.
+(  2,  3)    -5.
+(  3,  1)     3.
+(  3,  2)    -1.
+(  3,  3)     3.
+(  3,  4)     4.
+(  5,  3)     4.
+(  5,  4)    -5.
+
+ ans  =
+   0.   0.   5.  -2.
+  -3.   0.  -5.   0.
+   3.  -1.   3.   4.
+   0.   0.   0.   0.
+   0.   0.   4.  -5.
+
+
+--> [Row, K] = min(s, "r")
+ Row  =
+(  1,  4) sparse matrix
+(  1,  1)    -3.
+(  1,  2)    -1.
+(  1,  3)    -5.
+(  1,  4)    -5.
+
+ K  =
+   2.   3.   2.   5.
+
+--> [Col, K] = min(s, "c")
+ Col  =
+(  5,  1) sparse matrix
+(  1,  1)    -2.
+(  2,  1)    -5.
+(  3,  1)    -1.
+(  5,  1)    -5.
+
+ K  =
+   4.
+   3.
+   2.
+   1.
+   4.
+
+--> [M, K] = min(s,1);   [full(s)  ones(s(:,1))*%nan  full(M)]
+ ans  =
+   0.   0.   5.  -2.   Nan   0.   0.   1.  -2.
+  -3.   0.  -5.   0.   Nan  -3.   0.  -5.   0.
+   3.  -1.   3.   4.   Nan   1.  -1.   1.   1.
+   0.   0.   0.   0.   Nan   0.   0.   0.   0.
+   0.   0.   4.  -5.   Nan   0.   0.   1.  -5.
+
+--> issparse(M)
+ ans  =
+   1.
+
+--> K
+ K  =
+   1.   1.   2.   1.
+   1.   1.   1.   1.
+   2.   1.   2.   2.
+   1.   1.   1.   1.
+   1.   1.   2.   1.
+]]> </screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="max">max</link>
+            </member>
+            <member>
+                <link linkend="strange">strange</link>
+            </member>
+            <member>
+                <link linkend="mean">mean</link>
+            </member>
             <member>
                 <link linkend="gsort">gsort</link>
             </member>
@@ -106,8 +339,19 @@
                 <link linkend="find">find</link>
             </member>
             <member>
-                <link linkend="max">max</link>
+                <link linkend="full">full</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    min() now actually works with sparse matrices
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
