@@ -122,6 +122,18 @@ types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFu
             types::Function::ReturnValue ret;
             ret = pCall->call(in, opt, _iRetCount, out);
 
+            if (out.size() !=  _iRetCount)
+            {
+                char pstError[512];
+                char *pstFuncName = wide_string_to_UTF8(_stOverloadingFunctionName.c_str());
+
+                os_sprintf(pstError, _("%s: Wrong number of arguments: %d expected while %d given.\n"), pstFuncName, out.size(), _iRetCount);
+                FREE(pstFuncName);
+                ast::InternalError ie(pstError);
+                ie.SetErrorType(ast::TYPE_EXCEPTION);
+                throw ie;
+            }
+
             // remove function name in where
             ConfigVariable::where_end();
             ConfigVariable::decreaseRecursion();
