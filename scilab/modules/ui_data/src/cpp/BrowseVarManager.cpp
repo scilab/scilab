@@ -147,7 +147,6 @@ void SetBrowseVarData()
         err = getVarType(NULL, (int*)pIT, &piAllVariableTypes[i]);
         if (!err.iErr)
         {
-            piAllVariableBytes[i] = 0;
             err = getVarDimension(NULL, (int*)pIT, &nbRows, &nbCols);
         }
 
@@ -218,7 +217,10 @@ void SetBrowseVarData()
         {
             piAllVariableFromUser[i] = FALSE;
         }
-
+        
+        int bytesWithoutOverHead;
+        pIT->getMemory(&bytesWithoutOverHead, &piAllVariableBytes[i]);
+        
         ++i;
     }
 
@@ -241,14 +243,16 @@ void SetBrowseVarData()
         }
         //type
         piAllVariableTypes[i] = sci_lib;
-
-        piAllVariableBytes[i] = 0;
         pstAllVariableSizes[i] = os_strdup(N_A);
         piAllVariableIntegerTypes[i] = -1;
         pstAllVariableListTypes[i] = os_strdup("");
         piAllVariableFromUser[i] = FALSE;
         piAllVariableNbRows[i] = 1;
         piAllVariableNbCols[i] = 1;
+        //get value and bytes
+        types::GenericType* pIT = sl->m_pLib;
+        int bytesWithoutOverHead;
+        pIT->getMemory(&bytesWithoutOverHead, &piAllVariableBytes[i]);
 
         ++i;
     }
