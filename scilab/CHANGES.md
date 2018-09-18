@@ -622,6 +622,7 @@ Known issues
 * [#15818](http://bugzilla.scilab.org/show_bug.cgi?id=15818): `polarplot()` example could not be subplotted. `polarplot`'s demo did not display 'View code' and too often prompted the user.
 * [#15847](http://bugzilla.scilab.org/show_bug.cgi?id=15847): Scilab crashed at startup.
 * [#15854](http://bugzilla.scilab.org/show_bug.cgi?id=15854): `horner(1:$,4)` yielded an error. Extractions from `cblock` tables were impacted.
+* [#15740](http://bugzilla.scilab.org/show_bug.cgi?id=15740): now `(%s == %z) == %f` and `(%s ~= %z) == %t` 
 
 
 ### Bugs fixed in 6.0.1:

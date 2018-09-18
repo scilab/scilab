@@ -2955,6 +2955,11 @@ InternalType* compequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
     SinglePoly** pSPL = _pL->get();
     SinglePoly** pSPR = _pR->get();
 
+    if (_pL->getVariableName() != _pR->getVariableName())
+    {
+        return new Bool(false);
+    }
+
     if (_pR->isScalar())
     {
         pbOut = new Bool(_pL->getDims(), _pL->getDimsArray());
