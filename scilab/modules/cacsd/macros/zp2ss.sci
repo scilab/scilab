@@ -15,9 +15,7 @@ function s=zp2ss(Z,P,K,dt)
     if siso then Z=Z(:);end
 
     for k=1:size(Z,2)
-        z=Z(:,k);
-        Zc=z(imag(z)<>0);nc=size(Zc,"*");
-        if modulo(nc,2)<>0|size(intersect(Zc,conj(Zc)),"*")<nc/2 then
+        if ~isreal(poly(Z(:,k),'x')) then
             error(msprintf(_("%s: Wrong value for input argument #%d: complex zeros  must appear in complex conjugate pairs.\n"),"zp2ss",1))
         end
     end
@@ -25,8 +23,7 @@ function s=zp2ss(Z,P,K,dt)
     if type(P)<>1 then
         error(msprintf(_("%s: Wrong type for input argument #%d: Real or complex vector expected.\n"),"zp2ss",2))
     end
-    Pc=P(imag(P)<>0);nc=size(Pc,"*");
-    if modulo(nc,2)<>0|size(intersect(Pc,conj(Pc)),"*")<nc/2 then
+    if ~isreal(poly(P,'x')) then
         error(msprintf(_("%s: Wrong value for input argument #%d: complex poles  must appear in complex conjugate pairs.\n"),"zp2ss",2))
     end
 
