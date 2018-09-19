@@ -4,6 +4,7 @@
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,185 +22,152 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CANIMXY">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="CANIMXY">
     <refnamediv>
         <refname>CANIMXY</refname>
         <refpurpose>y=f(x) animated viewer</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CANIMXY.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CANIMXY.png" align="center" valign="middle"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_CANIMXY">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CANIMXY">y=f(x) animated viewer</link>
-                </para>
+              <xref linkend="Description_CANIMXY">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CANIMXY">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CANIMXY">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_CANIMXY">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CANIMXY">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CANIMXY">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_CANIMXY">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_CANIMXY">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+              <xref linkend="Dialogbox_CANIMXY">Parameters</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_CANIMXY">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Sinks_pal">Sinks palette</link>
-                </para>
+              <xref linkend="Defaultproperties_CANIMXY">Default properties</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Interfacingfunction_CANIMXY">Interfacing function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Computationalfunction_CANIMXY">Computational function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Example_CANIMXY">Example</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Seealso_CANIMXY">See also</xref>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Description_CANIMXY">
         <title>Description</title>
         <para>
-            This block realizes the visualization of the evolution of the two regular input signals by drawing the second input as a function of the first at instants of events on the event input port.  When a point is drawn on screen it stays until the buffer length is reached. This scope is useful to make simple animations.
-        </para>
-        <para>
+            This block performs the visualization of the evolution of the two regular input signals by drawing the second input as a function of the first at instants of events on the event input port.  When a point is drawn on screen, it stays until the buffer length is reached. This scope is useful to make simple animations.
         </para>
     </refsection>
+
     <refsection id="Dialogbox_CANIMXY">
-        <title>Dialog box</title>
-        <para>
+        <title>Parameters</title>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../images/gui/CANIMXY_gui.gif" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/gui/CANIMXY_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
                 </imageobject>
             </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Number of Curves</emphasis>
-                </para>
-                <para> Set the number of curves.</para>
-                <para> Properties : Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">color </emphasis>
-                </para>
-                <para>
-                    an integer. It is the color number (≥ 0) or marker type (&lt; 0) used to draw
-                    the evolution of the input port signal.
-                    See <link linkend="polyline_properties">polyline properties</link>
-                    for color (dash type) definitions.
-                </para>
-                <para> Properties : Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">line or mark size</emphasis>
-                </para>
-                <para> an integer.</para>
-                <para> Properties : Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Output window number</emphasis>
-                </para>
-                <para> The number of graphic window used for the display. It is often good to use high values to avoid conflict with palettes and Super Block windows. If you have more than one scope, make sure they do not have the same window numbers (unless superposition of the curves is desired).</para>
-                <para>Properties: Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Output window position</emphasis>
-                </para>
-                <para>A 2 element vector specifying the coordinates of the upper left corner of the graphic window. Answer [] for default window position.</para>
-                <para>Properties: Type 'vec' of size -1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Output window sizes</emphasis>
-                </para>
-                <para>A 2 element vector specifying the width and height of the graphic window. Answer [] for default window dimensions.</para>
-                <para>Properties: Type 'vec' of size -1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Xmin</emphasis>
-                </para>
-                <para>Minimum value of the first input: used to set up the X-axis of the plot in the graphics window.</para>
-                <para>Properties: Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Xmax</emphasis>
-                </para>
-                <para>Maximum value of the first input: used to set up the X-axis of the plot in the graphics window.</para>
-                <para>Properties: Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Ymin</emphasis>
-                </para>
-                <para>Minimum value of the second input: used to set up the Y-axis of the plot in the graphics window.</para>
-                <para>Properties: Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Ymax</emphasis>
-                </para>
-                <para>Maximum value of the second input; used to set up the Y-axis of the plot in the graphics window.</para>
-                <para>Properties: Type 'vec' of size 1 </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <emphasis role="bold">Buffer size</emphasis>
-                </para>
-                <para>An integer value. In order to minimize the number of graphics outputs, data may buffered.</para>
-                <para>Properties: Type 'vec' of size 1</para>
-            </listitem>
-        </itemizedlist>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Number of Curves</emphasis>
+                    </para>
+                    <para> Set the number of curves.</para>
+                    <para> Properties : Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">color </emphasis>
+                    </para>
+                    <para>
+                        an integer. It is the color number (≥ 0) or marker type (&lt; 0) used to draw
+                        the evolution of the input port signal.
+                        See <link linkend="polyline_properties">polyline properties</link>
+                        for color (dash type) definitions.
+                    </para>
+                    <para> Properties : Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">line or mark size</emphasis>
+                    </para>
+                    <para> an integer.</para>
+                    <para> Properties : Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Output window number</emphasis>
+                    </para>
+                    <para> The number of graphic window used for the display. It is often good to use high values to avoid conflict with palettes and Super Block windows. If you have more than one scope, make sure they do not have the same window numbers (unless superposition of the curves is desired).</para>
+                    <para>Properties: Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Output window position</emphasis>
+                    </para>
+                    <para>A 2 element vector specifying the coordinates of the upper left corner of the graphic window. Answer [] for default window position.</para>
+                    <para>Properties: Type 'vec' of size -1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Output window sizes</emphasis>
+                    </para>
+                    <para>A 2 element vector specifying the width and height of the graphic window. Answer [] for default window dimensions.</para>
+                    <para>Properties: Type 'vec' of size -1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Xmin</emphasis>
+                    </para>
+                    <para>Minimum value of the first input: used to set up the X-axis of the plot in the graphics window.</para>
+                    <para>Properties: Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Xmax</emphasis>
+                    </para>
+                    <para>Maximum value of the first input: used to set up the X-axis of the plot in the graphics window.</para>
+                    <para>Properties: Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Ymin</emphasis>
+                    </para>
+                    <para>Minimum value of the second input: used to set up the Y-axis of the plot in the graphics window.</para>
+                    <para>Properties: Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Ymax</emphasis>
+                    </para>
+                    <para>Maximum value of the second input; used to set up the Y-axis of the plot in the graphics window.</para>
+                    <para>Properties: Type 'vec' of size 1 </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Buffer size</emphasis>
+                    </para>
+                    <para>An integer value. In order to minimize the number of graphics outputs, data may buffered.</para>
+                    <para>Properties: Type 'vec' of size 1</para>
+                </listitem>
+            </itemizedlist>
+		<para/>
     </refsection>
+
     <refsection id="Defaultproperties_CANIMXY">
         <title>Default properties</title>
         <itemizedlist>
@@ -266,7 +234,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
+
     <refsection id="Interfacingfunction_CANIMXY">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -282,9 +252,11 @@
                 <para> SCI/modules/scicos_blocks/src/c/canimxy.c (Type 4)</para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
-    <refsection id="Example_CANIMXY">
-        <title>Animated point viewer example</title>
+
+    <refsection id="Example_CANIMXY" role="examples">
+        <title>Example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/CANIMXY_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
@@ -293,14 +265,15 @@
             </inlinemediaobject>
         </link>
     </refsection>
-    <refsection id="Seealso_CANIMXY">
+    <refsection id="Seealso_CANIMXY" role="see also">
         <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="CANIMXY3D">CANIMXY3D - z=f(x,y) animated viewer</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="BARXY">BARXY</link>
+            </member>
+            <member>
+                <link linkend="CANIMXY3D">CANIMXY3D</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

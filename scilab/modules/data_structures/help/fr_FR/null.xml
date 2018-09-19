@@ -1,34 +1,220 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="null">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="fr" xml:id="null">
     <refnamediv>
         <refname>null</refname>
-        <refpurpose>suppression d'un terme d'une liste  </refpurpose>
+        <refpurpose>supprime un élément d'une liste, ou un champ d'une structure, M-liste ou T-liste</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>l(i)=null()</synopsis>
+        <title>Syntaxe</title>
+        <synopsis>
+            List(i) = null()
+            Struct.field = null()
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>
-            Suppression d'un terme d'une liste
+            <literal>List</literal> étant une liste simple, <literal>List(i)=[]</literal> déclare
+            <literal>[]</literal> comme valeur de l'élément n° i de la liste. Ainsi, contrairement
+            à son action sur les tableaux, <literal>[]</literal> ne peut pas ici servir de destructeur.
         </para>
+        <para>
+            <literal>null()</literal> est conçue pour le faire. Elle produit un objet de type 0 et
+            de typeof <literal>listdelete</literal> qui supprime l'objet auquel il est affecté.
+        </para>
+        <note>
+            Le code de surcharge est objets de typeof <literal>listdelete</literal> est 0.
+        </note>
+        <warning>
+            L'affectation du résultat de <literal>null()</literal> à une variable supprime celle-ci.
+            L'utilisation de <code>clear</code> doit cependant être préférée pour supprimer les
+            objets nommés (tels que les variables).
+        </warning>
     </refsection>
     <refsection>
         <title>Exemples</title>
+        <para><emphasis role="bold">type, typeof, et code de surcharge</emphasis> :</para>
         <programlisting role="example"><![CDATA[
-l=list(1,"foo",3);
-l(2)=null() // get list(1,3)
+type(null())
+typeof(null())
+null()==null()
  ]]></programlisting>
+            <screen><![CDATA[
+--> type(null())
+ ans  =
+   0.
+
+--> typeof(null())
+ ans  =
+ listdelete
+
+--> null()==null()
+
+Opération indéfinie pour les opérandes données.
+vérifier ou définir la fonction %0_o_0 pour la surcharge.
+]]></screen>
+        <para><emphasis role="bold">Suppression d'un élément d'une liste</emphasis> :</para>
+        <programlisting role="example"><![CDATA[
+L = list(1:10, "foo", %f, (1-%z)^2);
+length(L)
+L(2) = null();
+length(L)
+L(2)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> length(L)
+ ans  =
+   4.
+
+--> L(2) = null();
+
+--> length(L)
+ ans  =
+   3.
+
+--> L(2)
+ ans  =
+  F
+]]></screen>
+    <para><emphasis role="bold">Suppression d'un champ d'un tableau de structure</emphasis> :</para>
+    <programlisting role="example"><![CDATA[
+s(2,3).r = %pi;
+s(2,1).p = (1-%z)^2;
+s(1,2).b = %T
+s.p = null()
+ ]]></programlisting>
+    <screen><![CDATA[
+--> s(2,3).r = %pi;
+--> s(2,1).p = (1-%z)^2;
+--> s(1,2).b = %T
+ s  =
+  2x3 struct array with fields:
+    r
+    p
+    b
+
+--> s.p = null()
+ s  =
+  2x3 struct array with fields:
+    r
+    b
+]]></screen>
+    <para><emphasis role="bold" id="null_tlist_mlist_overload">
+        Suppression d'un champ d'une M-liste ou d'une T-liste</emphasis> :
+        aucun destructeur n'est défini par défaut :
+     </para>
+    <programlisting role="example"><![CDATA[
+ML = mlist(["test" "b" "c" "rp" "t"],[%t %f], %i, 1+%s^2, ["abc" "de" "f"]);
+fieldnames(ML)'
+ML.rp
+ML.rp = null()
+]]></programlisting>
+    <screen><![CDATA[
+--> fieldnames(ML)'
+ ans  =
+!b  c  rp  t  !
+
+--> ML.rp
+ ans  =
+       2
+   1 +s
+
+--> ML.rp = null()
+
+Fonction non définie pour les types fournis.
+  vérifier les arguments ou définir la fonction %0_i_test pour la surcharge.
+]]></screen>
+    <programlisting role="example"><![CDATA[
+// Définissons un destructeur de champ appelé par "= null()" :
+
+function L = %0_i_test(fieldName, Null, L)
+    header = getfield(1,L)
+    i = find(header==fieldName);
+    if i~=[] then
+        header(i) = [];
+        L = setfield(1, header, L);
+        L = setfield(i, null(), L);
+    end
+endfunction
+
+// Utilisation :
+ML.rp = null();
+fieldnames(ML)'
+ML.b, ML.c, ML.t
+]]></programlisting>
+    <screen><![CDATA[
+--> ML.rp = null();
+--> fieldnames(ML)'
+ ans  =
+!b  c  t  !
+
+--> ML.b, ML.c, ML.t
+ ans  =
+  T F
+
+ ans  =
+   i
+
+ ans  =
+!abc  de  f  !
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
+                <link linkend="clear">clear</link>
+            </member>
+            <member>
+                <link linkend="clearglobal">clearglobal</link>
+            </member>
+            <member>
+                <link linkend="empty">[]</link>
+            </member>
+            <member>
+                <link linkend="delete">delete</link>
+            </member>
+            <member>
+                <link linkend="xmlDelete">xmlDelete</link>
+            </member>
+            <member>
+                <link linkend="jremove">jremove</link>
+            </member>
+            <member>
+                <link linkend="jnull">jnull</link>
+            </member>
+            <member>
+                <link linkend="jvoid">jvoid</link>
+            </member>
+            <member>
                 <link linkend="list">list</link>
             </member>
             <member>
-                <link linkend="clear">clear</link>
+                <link linkend="mlist">mlist</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="struct">struct</link>
             </member>
         </simplelist>
     </refsection>

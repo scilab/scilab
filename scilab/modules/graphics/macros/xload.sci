@@ -40,21 +40,25 @@ function xload(fil,num)
         end
     end
     if ~targetFigAlreadyExists then
+        h = scf(num)
+        uid = h.uid
         xloadFigure(fil)
-        gcf().figure_id = num
+        if gcf().uid~=uid   // load() has opened a new figure
+            xdel(h.figure_id)
+            gcf().figure_id = num
+        end
         return
     end
 
     // The target figure already exists
     // ================================
-    // The target figure may be empty (only a default axes). In this case, 
+    // The target figure may be empty (only a default axes). In this case,
     //  - the loaded figure must impose its properties to the existing target.
     //  - the default axes will have to be deleted
     %__f__= scf(num);  // target figure
     // Is the target figure blank?
-    targetFigWasBlank = length(%__f__.children)==1 & %__f__.children.type=="Axes" & ..
+    targetFigWasBlank = length(%__f__.children)==1 && %__f__.children.type=="Axes" && ..
                         length(%__f__.children.children)==0
-
     // Loading the source figure
     xloadFigure(fil)
     loadedFig = gcf();
@@ -76,13 +80,15 @@ function xload(fil,num)
     end
 
     // Copying contents:
-    for kC = size(loadedFig.children, "*"):-1:1
-        copy(loadedFig.children(kC), %__f__); // Copy axes & uicontrols
+    if loadedFig ~= %__f__ then
+        for kC = size(loadedFig.children, "*"):-1:1
+            copy(loadedFig.children(kC), %__f__); // Copy axes & uicontrols
+        end
+        delete(loadedFig); // Delete it, returned figure will be the one set as current by xload
     end
     if targetFigWasBlank then
         delete(%__f__.children($));
     end
-    delete(loadedFig); // Delete it, returned figure will be the one set as current by xload
     %__f__.visible="on"
     %__f__.immediate_drawing="on";
 endfunction

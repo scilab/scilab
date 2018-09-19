@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="lqi">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="lqi">
     <refnamediv>
         <refname>lqi</refname>
-        <refpurpose>Linear quadratic integral compensator (full state)  </refpurpose>
+        <refpurpose>Linear quadratic integral compensator (full state)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[K,X]=lqi(P,Q,R [,S])</synopsis>
+        <synopsis>
+          [K, X] = lqi(P, Q, R)
+          [K, X] = lqi(P, Q, R, S)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -75,9 +81,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function computes the linear quadratic integral
-            full-state gain K for the plant P. The associated system
-            block diagram is:
+            This function computes the linear quadratic integral full-state gain K for the plant P.
+            The associated system block diagram is:
         </para>
         <para>
             <inlinemediaobject>
@@ -92,8 +97,15 @@
             The cost function in l2-norm is:
             <latex style="display">\int_{t=0}^\infty{z(t)' Q z(t)+u(t)' R u(t)+2 z(t) S u(t) dt}\text{ in continuous time } </latex>
             <latex style="display">\sum_{k=0}^\infty{z(k)' Q z(k)+u(k)' R u(k)+2 z(k) S u(k)}\text{ in discrete time.}</latex>
-            where <latex>z=\left[\begin{array}{l}x\\x_i \end{array}\right]</latex> and <latex>x_i</latex> is the integrator(s) state(s);
+            where <latex>z=\left[\begin{array}{l}x\\x_i \end{array}\right]</latex> and <emphasis>x<subscript>i</subscript></emphasis> is the integrator(s) state(s);
         </para>
+        <warning>
+            It is assumed that matrix <emphasis>R</emphasis> is non singular.
+        </warning>
+        <note>
+            If the full state of the system is not available, an estimator  of the plant state
+            can be built using the <link linkend="lqe">lqe()</link> function.
+        </note>
     </refsection>
     <refsection>
         <title>Algorithm</title>
@@ -102,20 +114,6 @@
             <latex style="display"><![CDATA[\left\lbrace \begin{array}{l}\left[\begin{array}{l}\dot{x}\\ \dot{x_i} \end{array}\right]=\left[\begin{array}{ll}A&0\\-C&0 \end{array}\right]\left[\begin{array}{l}x\\x_i \end{array}\right]+\left[\begin{array}{l}B\\-G \end{array}\right] u \end{array}\right. \text{ in continuous time }]]></latex>
             <latex style="display"><![CDATA[\text{P}=\left\lbrace\begin{array}{l}\left[\begin{array}{l}\overset{+}{x}\\ \overset{+}{x_i} \end{array}\right]=\left[\begin{array}{ll}A&0\\-C dt&I \end{array}\right]\left[\begin{array}{l}x\\x_i \end{array}\right]+\left[\begin{array}{l}B\\-G dt \end{array}\right] u \end{array} \right.\text{ in discrete time }]]>
             </latex>
-        </para>
-    </refsection>
-    <refsection>
-        <title>Caution</title>
-        <para>
-            It is assumed that matrix <latex>R</latex> is non singular.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
-        <para>
-            If the full state of the system is not available, An estimator
-            of the plant state can be built using the <link
-      linkend="lqe">lqe</link> function.
         </para>
     </refsection>
     <refsection>
@@ -181,5 +179,16 @@
                 <link linkend="lft">lft</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+      <title>History</title>
+      <revhistory>
+        <revision>
+          <revnumber>6.0</revnumber>
+          <revdescription>
+             lqi() function introduced.
+          </revdescription>
+        </revision>
+      </revhistory>
     </refsection>
 </refentry>

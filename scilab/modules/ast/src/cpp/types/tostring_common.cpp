@@ -318,9 +318,13 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
             str.append(std::max(0, (int)(decpt - str.length())), '0');
             str.insert(decpt, ".");
         }
+        else 
+        {
+            str.append(std::max(0, (int)(decpt - str.length())), '0');
+        }
 
         wchar_t* tmp = to_wide_string(str.data());
-        os_swprintf(pwstOutput, 32, L"%ls%ls", pwstSign, tmp);
+        os_swprintf(pwstOutput, 32, L"%ls%-*ls", pwstSign,_pDF->iWidth-1,tmp);
         FREE(tmp);
     }
     else if (wcslen(pwstSign) != 0)

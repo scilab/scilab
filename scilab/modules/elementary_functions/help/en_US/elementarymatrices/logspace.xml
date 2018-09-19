@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="logspace" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="logspace" xml:lang="en">
     <refnamediv>
         <refname>logspace</refname>
         <refpurpose>logarithmically spaced vector</refpurpose>
@@ -45,9 +48,9 @@
         <title>Description</title>
         <para>
             returns a row vector of <literal>n</literal> logarithmically equally
-            spaced points between <latex>10^{d1}</latex> and
-            <latex>10^{d2}</latex>. If <latex>d2=\pi</latex> then the points are
-            between <latex>10^{d1}</latex> and <latex>\pi</latex>.
+            spaced points between 10<superscript>d1</superscript> and
+            10<superscript>d2</superscript>. If <emphasis>d2=π</emphasis> then the points are
+            between 10<superscript>d1</superscript> and π.
         </para>
     </refsection>
     <refsection>

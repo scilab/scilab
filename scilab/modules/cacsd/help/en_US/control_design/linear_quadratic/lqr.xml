@@ -13,15 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="lqr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="lqr">
     <refnamediv>
         <refname>lqr</refname>
         <refpurpose>LQ compensator (full state)  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[K,X]=lqr(P12)</synopsis>
-        <synopsis>[K,X]=lqr(P,Q,R [,S])</synopsis>
+        <synopsis>
+          [K, X] = lqr(P12)
+          [K, X] = lqr(P, Q, R)
+          [K, X] = lqr(P, Q, R, S)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -65,7 +71,7 @@
                 <term>S</term>
                 <listitem>
                     <para>
-                        real matrix, the default value is <code>zeros(size(R,1),size(Q,2))</code>
+                        real matrix, the default value is <literal>zeros(size(R,1),size(Q,2))</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -85,89 +91,116 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
-        <title>Description</title>
-        <variablelist>
-            <varlistentry>
-                <term>
-                    Syntax  <literal>[K,X]=lqr(P)</literal>
-                </term>
-                <listitem>
-                    <para>
-                        Computes the linear optimal LQ full-state gain K  for the state space representation P
-                        <latex style="display">\left\{\begin{array}{l}\dot{x}=A x+B u\\z=C x+D u\end{array}\right. \text{ in continuous time or }
-                            \left\{\begin{array}{l}x^+=A x+B u\\z=C x+D u\end{array}\right.
-                            \text{ in discrete time.}
-                        </latex>
 
-                        And instantaneous cost function in l2-norm:
-                        <latex style="display"><![CDATA[\left[\begin{array}{ll}x'&u'\end{array}\right]  BigQ  \left[\begin{array}{l}x\\u\end{array}\right] \text{ where }BigQ=\left[\begin{array}{l}C'\\D'\end{array}\right] \left[\begin{array}{ll}C&D\end{array}\right]=\left[\begin{array}{ll}Q&S'\\S&R\end{array}\right]]]></latex>
+    <refsection>
+      <title>Description</title>
+        <variablelist>
+          <varlistentry>
+            <term>
+              Syntax  <literal>[K,X]=lqr(P)</literal>
+            </term>
+            <listitem>
+              <para>
+                Computes the linear optimal LQ full-state gain K  for the state space representation P
+                <latex style="display">\left\{\begin{array}{l}\dot{x}=A x+B u\\z=C x+D u\end{array}\right. \text{ in continuous time or }
+                  \left\{\begin{array}{l}x^+=A x+B u\\z=C x+D u\end{array}\right.
+                  \text{ in discrete time.}
+                </latex>
+
+                And instantaneous cost function in l2-norm:
+                <latex style="display"><![CDATA[\left[\begin{array}{ll}x'&u'\end{array}\right]  BigQ  \left[\begin{array}{l}x\\u\end{array}\right] \text{ where }BigQ=\left[\begin{array}{l}C'\\D'\end{array}\right] \left[\begin{array}{ll}C&D\end{array}\right]=\left[\begin{array}{ll}Q&S'\\S&R\end{array}\right]]]></latex>
+              </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+          <term>Syntax <literal>[K,X]=lqr(P,Q,R [,S])</literal></term>
+          <listitem>
+            <para>
+              Computes the linear optimal LQ full-state gain K for the linear dynamical system P:
+              <latex style="display">\dot{x}=A x+B u \text{ in continuous time or }x^+=A x+B u \text{ in discrete time.}</latex>
+              And  instantaneous cost function in l2-norm:
+              <latex style="display"><![CDATA[\left[\begin{array}{ll}x'&u'\end{array}\right]  BigQ  \left[\begin{array}{l}x\\u\end{array}\right]\text{ where }BigQ=\left[\begin{array}{ll}Q&S'\\S&R\end{array}\right]]]></latex>
+            </para>
+              <para>
+                <note>
+                    In this case the <emphasis>P.C</emphasis> and <emphasis>P.D</emphasis>
+                    componants of the system  are ignored.
+                </note>
+              </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+      <refsect2>
+        <title>Algorithm</title>
+        <itemizedlist>
+          <listitem>
+              <para>
+                 For a continuous plant, if <emphasis>X</emphasis> is the stabilizing solution of the
+                 Riccati equation:
+              </para>
+              <para>
+                <emphasis>
+                  (A - B.R<superscript>-1</superscript>.S)'.X + X.(A - B.R<superscript>-1</superscript>.S)
+                  - X.B.R<superscript>-1</superscript>.B'.X + Q - S'.R<superscript>-1</superscript>.S = 0
+                </emphasis>
+              </para>
+              <para>
+                  the linear optimal LQ full-state gain K is given by
+              </para>
+              <para>
+                  <emphasis>K = -R<superscript>-1</superscript>(B'X + S')</emphasis>
+              </para>
+          </listitem>
+          <listitem><para>
+            For a discrete plant, if <emphasis>X</emphasis> is the stabilizing solution of the
+            Riccati equation:
           </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry><term>Syntax <literal>[K,X]=lqr(P,Q,R [,S])</literal></term><listitem>
-      <para>
-        Computes the linear optimal LQ full-state gain K for the linear dynamical system P:
-        <latex style="display">\dot{x}=A x+B u \text{ in continuous time or }x^+=A x+B u \text{ in discrete time.}</latex>
-        And  instantaneous cost function in l2-norm:
-        <latex style="display"><![CDATA[\left[\begin{array}{ll}x'&u'\end{array}\right]  BigQ  \left[\begin{array}{l}x\\u\end{array}\right]\text{ where }BigQ=\left[\begin{array}{ll}Q&S'\\S&R\end{array}\right]]]></latex>
-      </para>
-      <note>
-        <title>Remark</title>
+          <para>
+            <emphasis>
+              A'.X.A - X - (A'.X.B + S')(B'.X.B + R)<superscript>+</superscript>(B'.X.A + S) + Q = 0
+            </emphasis>
+          </para>
+          <para>
+            the linear optimal LQ full-state gain K is given by
+          </para>
+          <para>
+            <emphasis>K = -(B'.X.B + R)<superscript>+</superscript>(B'.X.A + S)</emphasis>
+          </para>
+          <para>
+            An equivalent form for the equation is
+            <latex style="display"  align="center">(\overline{A}' \text{X}^{-1}+B R^{-1} B') \overline{A}+\overline{Q}-\text{X}=0</latex>
+            with <latex style="display" align="center">\overline{A}=A-B R^{-1} S'\text{ and }\overline{Q}=Q-S R^{-1} S'</latex>
+          </para></listitem>
+        </itemizedlist>
         <para>
-          In this case the P.C and P.D componants of the system  are ignored
+          The gain <literal>K</literal> is such that <literal>A + B.K</literal> is stable.
+        </para>
+        <para>
+          The resolution of the Riccati equation is obtained by  <link linkend="schur">schur</link>
+          factorization of the 3-blocks matrix pencils associated with these Riccati equations:
+          <itemizedlist>
+            <listitem><para>For a continuous plant
+            <latex style="display"> <![CDATA[s\left[\begin{array}{lll}I&0&0\\0&I&0\\0&0&0\end{array}\right]-\left[\begin{array}{lll}A&0&B\\-Q&-A'&-S'\\S&-B'&R\end{array}\right]]]></latex>
+            </para></listitem>
+            <listitem><para>For a discrete time plant
+            <latex style="display"><![CDATA[z\left[\begin{array}{lll}I&0&0\\0&A'&0\\0&-B'&0\end{array}\right]-\left[\begin{array}{lll}A&0& B\\-Q&I&-S'\\S&0& R\end{array}\right]]]></latex>
+            </para></listitem>
+          </itemizedlist>
+        </para>
+      </refsect2>
+      <warning>
+        <para>
+          It is assumed that matrix <emphasis>R</emphasis> or <emphasis>D'D</emphasis> is non singular.
+        </para>
+      </warning>
+      <note>
+        <para>
+          Remark: If the full state of the system is not available, an estimator can be built using
+          the <link linkend="lqe">lqe</link> or the <link linkend="lqg">lqg</link> function.
         </para>
       </note>
-    </listitem>
-      </varlistentry>
-    </variablelist>
   </refsection>
-  <refsection>
-    <title>Algorithm</title>
-    <itemizedlist>
-      <listitem><para>
-        For a continuous plant, if <latex>\text{X}</latex> is the stabilizing solution of the Riccati equation:
-        <latex style="display" align="center">(A-B R^{-1}S)'\text{X}+\text{X} (A-B R^{-1} S)-\text{X} B R^{-1} B' \text{X}+Q-S' R^{-1} S=0</latex>
-        the linear optimal LQ full-state gain K is given by <latex  style="display" align="center">\text{K}=-R^{-1} (B' \text{X}+S')</latex>
-      </para></listitem>
-      <listitem><para>
-        For a discrete plant, if <latex>\text{X}</latex> is the stabilizing solution of the Riccati equation:
-        <latex style="display"  align="center">A' \text{X} A-\text{X}-(A' \text{X} B+S') (B' \text{X} B+R)^{+} (B' \text{X} A+S)+Q=0</latex>
-        the linear optimal LQ full-state gain K is given by <latex  style="display" align="center" > \text{K}=-(B' \text{X} B+R)^{+} (B' \text{X} A+S)</latex>
-      </para>
-      <para>
-        An equivalent form for the equation is
-        <latex style="display"  align="center">(\overline{A}' \text{X}^{-1}+B R^{-1} B') \overline{A}+\overline{Q}-\text{X}=0</latex>
-        with <latex style="display" align="center">\overline{A}=A-B R^{-1} S'\text{ and }\overline{Q}=Q-S R^{-1} S'</latex>
-      </para></listitem>
-    </itemizedlist>
-    <para>
-      The gain <literal>K</literal> is such that <latex>A + B \text{K}</latex> is stable.
-    </para>
-    <para>
-      The resolution of the Riccati equation is obtained by  <link linkend="schur">schur</link> factorization of the 3-blocks matrix pencils associated with these Riccati equations:
-      <itemizedlist>
-        <listitem><para>For a continuous plant
-        <latex style="display"> <![CDATA[s\left[\begin{array}{lll}I&0&0\\0&I&0\\0&0&0\end{array}\right]-\left[\begin{array}{lll}A&0&B\\-Q&-A'&-S'\\S&-B'&R\end{array}\right]]]></latex>
-        </para></listitem>
-        <listitem><para>For a discrete time plant
-        <latex style="display"><![CDATA[z\left[\begin{array}{lll}I&0&0\\0&A'&0\\0&-B'&0\end{array}\right]-\left[\begin{array}{lll}A&0& B\\-Q&I&-S'\\S&0& R\end{array}\right]]]></latex>
-        </para></listitem>
-      </itemizedlist>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Caution</title>
-    <para>
-      It is assumed that matrix <latex>R</latex> or <latex>D' D</latex> is non singular.
-    </para>
-  </refsection>
-  <refsection>
-    <title>Remark</title>
-    <para>
-      If the full state of the system is not available, An estimator can be built using the <link linkend="lqe">lqe</link> or the <link linkend="lqg">lqg</link> function.
-    </para>
-  </refsection>
+
   <refsection>
     <title>Examples</title>
     <para>
@@ -177,11 +210,12 @@
           <imagedata fileref="../../../images/twoMasses.png"/>
         </imageobject>
       </mediaobject>
-      A force <latex> u=\bar{u}+e</latex> (where <latex>e</latex>
+      A force <latex> u=\bar{u}+e</latex> (where <emphasis>e</emphasis>
       is a noise) is applied to the big one. Here it is assumed
       that the deviations from equilibrium positions of the mass
-      <latex>dy_1</latex> and <latex>dy_2</latex> positions has
-      well as their derivatives are measured.
+      <emphasis>dy<subscript>1</subscript></emphasis> and
+      <emphasis>dy<subscript>2</subscript></emphasis>
+      positions has well as their derivatives are measured.
     </para>
     <para>
       A state space representation of this system is:

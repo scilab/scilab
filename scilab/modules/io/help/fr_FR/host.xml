@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,70 +14,215 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="host">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="host">
     <refnamediv>
         <refname>host</refname>
-        <refpurpose>exécution d'une commande Unix ou DOS  </refpurpose>
+        <refpurpose>exécute une commande Windows, Linux, ou MacOS</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="unix">
+        <refname>unix</refname>
+        <refpurpose>alias de host()</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>stat=host(command-name)</synopsis>
+        <synopsis>status = host(commands)</synopsis>
+        <para/>
+        <synopsis>status = unix(commands)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>command-name  </term>
+                <term>commands</term>
                 <listitem>
-                    <para>chaîne de caractères contenant les commandes à exécuter
+                    <para>texte unique constitué d'instructions à soumettre à l'interpréteur de
+                        commandes du système d'exploitation (Windows, Linux, ou MacOS) pour exécution.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>stat  </term>
+                <term>status</term>
                 <listitem>
-                    <para>un entier
+                    <para>
+                      un entier: -1 si la commande ne peut pas être exécutée (par exemple pour
+                      mémoire insuffisante). Si la commande est exécutée (avec succès ou non) :
+                      code entier de sortie retourné par l'interpréteur de commande.
                     </para>
+                    <note>
+                       Sous Windows, 0 est le plus souvent retourné en cas d'exécution sans erreur.
+                    </note>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection id="host_description">
         <title>Description</title>
         <para>
-            Envoie la chaîne <literal>command-name</literal> à l'interpréteur de commande
-            (sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs sont reportées dans
-            l'interpréteur de commande.
+            <literal>host(…)</literal>
+            <itemizedlist>
+                <listitem>
+                    créée une session de l'interpréteur de commande du système d'exploitation (OS)
+                    (<emphasis>sh</emphasis> avec Linux, <emphasis>cmd.exe</emphasis> avec Windows,
+                    etc..).
+                </listitem>
+                <listitem>
+                    envoie la <literal>commands</literal> à l'interpréteur,
+                </listitem>
+                <listitem>
+                    attend que l'interpréteur de l'OS l'exécute,
+                </listitem>
+                <listitem>
+                    reçoit tous les messages normalement affichés dans le terminal de l'interpréteur,
+                </listitem>
+                <listitem>
+                    et ferme la session de l'interpréteur.
+                </listitem>
+            </itemizedlist>
         </para>
+        <important>
+            La session de l'interpréteur de commandes créée est un clône de la session OS depuis
+            laquelle Scilab a été lancé. En conséquence, son contexte est le suivant :
+            <itemizedlist>
+                <listitem>
+                    Son dossier initial de travail (CWD) est le dossier de travail de la session
+                    Scilab lors de l'appel à <literal>host(…)</literal>.
+                </listitem>
+                <listitem>
+                    Ses variables d'environnement initiales sont identiques (noms et valeurs)
+                    à celles du terminal OS dans lequel la session Scilab fonctionne (consolebox),
+                    au moment où host() est appelée. Elles peuvent être modifiées avec
+                    <link linkend="setvenv">setenv</link> avant l'appel à host().
+                </listitem>
+                <listitem>
+                    Toute modification dans la session host() du dossier de travail et/ou des
+                    variables d'environnement n'a aucun effet ni sur le dossier de travail de la
+                    session Scilab, ni sur les variables d'environnement du terminal OS dans
+                    lequel la session Scilab fonctionne.
+                </listitem>
+            </itemizedlist>
+        </important>
         <para>
-            <literal>stat</literal> vaut -1 en sortie si la fonction ne peut pas être appelée (pas assez de mémoire par exemple) ou
-            alors le code de sortie de l'interpréteur de commande.
+            Les messages de résultat et/ou d'erreur issus de l'interpréteur et normalement affichés
+            dans son propre terminal sont détournés et affichés dans le terminal de lancement de
+            Scilab (pour MS Windows, dans la <link linkend="consolebox">consolebox</link>).
         </para>
+        <note>
+            host() doit être préférée à son alias unix(), dont le nom prête à confusion.
+        </note>
+        <note>
+            <literal>host cls;</literal> efface le contenu de la consolebox (MS Windows).
+        </note>
     </refsection>
     <refsection>
         <title>Exemples</title>
+        <refsect3>
+            <title>Pour les utilisateurs de Windows :</title>
+            <para>
+                Dossier de travail dans les sessions respectives de Scilab / de l'interpréteur DOS :
+            </para>
+            <programlisting role="example"><![CDATA[
+pwd                 // Dossier de travail courant dans la session Scilab
+if getos()=="Windows"
+    host cls;
+    consolebox on;
+    host cd;        // Dossier de travail initial dans la session de l'interpréteur de l'OS
+else
+    host pwd;
+end
+// Les chemins affichés dans le terminal DOS/consolebox et dans la console Scilab sont les mêmes.
+     ]]></programlisting>
+        <para>
+            Affichage dans le terminal DOS de Scilab (consolebox) :
+        </para>
         <programlisting role="example"><![CDATA[
-//creation d'un fontion pour recuperer la path courant
-function wd=getdir()
-  if getos() == 'Windows' then
-    host('cd>'+TMPDIR+'\path');
-  else
-    host('pwd>'+TMPDIR+'/path');
-  end
-  wd=read(TMPDIR+'/path',1,1,'(a)')
-endfunction
-//appel de la fonction
-wd=getdir()
- ]]></programlisting>
+host cls;
+host "echo Scilab host() function";
+host "echo A & echo BC";
+host("echo DEF"+ascii(10)+"echo G");
+host("echo Dossier de travail: & cd");
+host dira;   // => erreur : commande inconnue
+     ]]></programlisting>
+        <screen><![CDATA[
+Scilab host() function
+A
+BC
+DEF
+Dossier de travail:
+C:\Scilab\tests
+'dira' n'est pas reconnu en tant que commande interne
+ou externe, un programme exécutable ou un fichier de commandes.
+]]></screen>
+        <para>
+            Variables d'environnement du DOS, respectivement dans les sessions Scilab et host() :
+        </para>
+            <programlisting role="example"><![CDATA[
+setenv TEST AAAA;
+getenv NUMBER_OF_PROCESSORS
+host cls;
+host "echo %TEST%";
+host "echo %USERNAME% %NUMBER_OF_PROCESSORS%";
+host "set TEST=BBBB";
+getenv TEST
+     ]]></programlisting>
+        Affichage : les lignes ci-dessous préfixées avec ":" sont affichées dans la consolebox (DOS).
+        Les autres sont affichées dans la console Scilab :
+        <screen><![CDATA[
+--> setenv TEST AAAA;
+--> getenv NUMBER_OF_PROCESSORS
+ ans  =
+ 2
+
+--> host cls;
+--> host "echo %TEST%";
+: AAAA
+
+--> host "echo %USERNAME% %NUMBER_OF_PROCESSORS%";
+: Samuel 2
+
+--> host "set TEST=BBBB"  // correctement exécuté :
+ ans  =
+   0.
+
+--> getenv TEST
+ ans  =
+ AAAA
+]]></screen>
+        </refsect3>
+        <refsect3>
+            <title>Exemples d'application :</title>
+            <para>Fonction openURL() portable basée sur host():</para>
+            <programlisting role="example"><![CDATA[
+    function openURL(url)
+        if getos()=="Windows"
+            winopen(url)
+        elseif getos()=="Linux"
+            host("xdg-open """+url+"""")
+        elseif getos()=="Darwin"         // Mac OS
+            host("open """+url+"""")
+        else
+            warning("openURL: OS inconnu")
+        end
+    endfunction
+
+    // Utilisation :
+    openURL("https://help.scilab.org/docs/current/en_US/host.html")
+        ]]></programlisting>
+        </refsect3>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="edit">edit</link>
+                <link linkend="consolebox">consolebox</link>
             </member>
             <member>
-                <link linkend="manedit">manedit</link>
+                <link linkend="getos">getos</link>
+            </member>
+            <member>
+                <link linkend="setenv">setenv</link>
             </member>
             <member>
                 <link linkend="unix_g">unix_g</link>
@@ -89,6 +235,15 @@ wd=getdir()
             </member>
             <member>
                 <link linkend="unix_x">unix_x</link>
+            </member>
+            <member>
+                <link linkend="dos">dos</link>
+            </member>
+            <member>
+                <link linkend="powershell">powershell</link>
+            </member>
+            <member>
+                <ulink url="https://msdn.microsoft.com/en-us/library/windows/desktop/ms681382.aspx">Liste de codes de sortie des commandes MS Windows</ulink>
             </member>
         </simplelist>
     </refsection>

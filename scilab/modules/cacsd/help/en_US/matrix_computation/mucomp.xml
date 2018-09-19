@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="mucomp">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="mucomp">
     <refnamediv>
         <refname>mucomp</refname>
         <refpurpose>mu (structured singular value) calculation</refpurpose>
@@ -36,11 +39,8 @@
             <varlistentry>
                 <term>K</term>
                 <listitem>
-                    <para> the vector of length m containing the block
-                        dimensions of the structured uncertainty
-                        <latex>\Delta</latex>. The uncertainty
-                        <latex>\Delta</latex> is supposed to be a block
-                        diagonal matrix.
+                    <para> the vector of length m containing the block dimensions of the structured
+                        uncertainty Δ. The uncertainty Δ is supposed to be a block diagonal matrix.
                     </para>
                 </listitem>
             </varlistentry>
@@ -84,11 +84,9 @@
             block structure of the uncertainty.
         </para>
         <para>
-            The structured singular value <latex>\mu(Z)</latex> is
-            defined as the inverse of the norm of the smallest
-            uncertainty <latex>\Delta</latex> that makes
-            <latex>det(I-\Delta Z)=0</latex>. Here <latex>\Delta</latex>
-            is supposed to be a block diagonal matrix.
+            The structured singular value μ(Z) is defined as the inverse of the norm of the smallest
+            uncertainty Δ that makes <literal>det(I- ΔZ)=0</literal>. Here Δ is supposed to be a
+            block diagonal matrix.
         </para>
     </refsection>
     <refsection>

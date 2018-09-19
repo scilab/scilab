@@ -379,7 +379,8 @@ void mxDestroyArray(mxArray *ptr)
 {
     if (mxGetClassID(ptr) != mxUNKNOWN_CLASS)
     {
-        delete (types::InternalType*)ptr->ptr;
+        types::InternalType* pIT = (types::InternalType*)ptr->ptr;
+        pIT->killMe();
     }
 
     delete ptr;

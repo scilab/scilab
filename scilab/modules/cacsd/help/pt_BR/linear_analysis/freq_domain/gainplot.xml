@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -16,17 +16,17 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="gainplot" xml:lang="pt">
     <refnamediv>
         <refname>gainplot</refname>
-        <refpurpose>esboço de magnitude</refpurpose>
+        <refpurpose>esboÃ§o de magnitude</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>gainplot(sl,fmin,fmax [,step] [,comments] )
             gainplot(frq,db,phi [,comments])
             gainplot(frq, repf [,comments])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>sl</term>
@@ -39,13 +39,13 @@
             <varlistentry>
                 <term>fmin,fmax</term>
                 <listitem>
-                    <para>escalares reais (intervalo de freqüência). </para>
+                    <para>escalares reais (intervalo de freqÃ¼Ãªncia). </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>step</term>
                 <listitem>
-                    <para>real (passo de discretização (escala logarítmica)) </para>
+                    <para>real (passo de discretizaÃ§Ã£o (escala logarÃ­tmica)) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -57,7 +57,7 @@
             <varlistentry>
                 <term>frq</term>
                 <listitem>
-                    <para>matriz (freqüências linha por linha) </para>
+                    <para>matriz (freqÃ¼Ãªncias linha por linha) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -72,15 +72,15 @@
                 <term>repf</term>
                 <listitem>
                     <para>matriz de complexos. Uma linha para cada resposta de
-                        freqüência.
+                        freqÃ¼Ãªncia.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>É o mesmo que Bode, mas esboça apenas a magnitude.</para>
+        <title>DescriÃ§Ã£o</title>
+        <para>Ã‰ o mesmo que Bode, mas esboÃ§a apenas a magnitude.</para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -97,7 +97,7 @@ title('Gainplot')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="bode">bode</link>

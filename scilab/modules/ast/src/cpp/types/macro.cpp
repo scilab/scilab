@@ -527,16 +527,10 @@ bool Macro::operator==(const InternalType& it)
     unsigned int macroSize = *((unsigned int*)macroSerial);
     if (oldSize != macroSize)
     {
-        free(oldSerial);
-        free(macroSerial);
         return false;
     }
 
     bool ret = (memcmp(oldSerial, macroSerial, oldSize) == 0);
-
-    free(oldSerial);
-    free(macroSerial);
-
     return ret;
 }
 

@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,24 +14,26 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="unix_w">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="unix_w">
     <refnamediv>
         <refname>unix_w</refname>
-        <refpurpose>shell (sh) command execution, output
-            redirected to scilab window
+        <refpurpose>executes some Windows, Linux or MacOS instructions: output in Scilab's console
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>unix_w(cmd)</synopsis>
+        <synopsis>unix_w(commands)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>cmd</term>
+                <term>commands</term>
                 <listitem>
-                    <para>a character string</para>
+                    <para>A single text: instruction(s) Windows, Linux or MacOS to be executed.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -38,16 +41,42 @@
     <refsection>
         <title>Description</title>
         <para>
-            Sends a string <literal>cmd</literal> to Unix for execution by the sh shell.
-            The standard output is redirected to scilab window. Unix execution errors
-            are trapped.
+            <literal>unix_w(…)</literal> opens a new session of the Operating System (OS) command
+            interpreter (<emphasis>sh</emphasis> with Linux, <emphasis>cmd.exe</emphasis> with
+            Windows, etc..), sends <varname>commands</varname> to it,
+            lets it processing <varname>commands</varname> instructions, receives the standard
+            output and possible error message yielded by the processing, and closes the interpreter
+            session.
         </para>
         <para>
+            The starting working directory and environment variables of the opened interpreter
+            are set <link linkend="host_description">as described for host()</link>.
+        </para>
+        <para>
+          The standard output returned by the OS is displayed in Scilab's console ("_w" stands
+          for the main Scilab's "Window").
+        </para>
+        <para>
+            If an instruction in <varname>commands</varname> generates an error,
+            <itemizedlist>
+                <listitem>
+                    the error message from the OS is displayed in the Scilab console
+                </listitem>
+                <listitem>
+                    <literal>unix_w</literal> stops and displays its own error message in the
+                    Scilab console.
+                </listitem>
+                <listitem>
+                    In <varname>commands</varname>, the remaining unprocessed instructions are ignored.
+                </listitem>
+            </itemizedlist>
             <warning>
-                *NOTE* that only the last shell command error is reported
-                when a list of command separated by ";" is sent: this is not
-                recommended.
+                The effects of valid instructions processed before the erroneous one remain actual
+                (for instance, deleted files). However, their standard output is lost: It is not
+                displayed in the Scilab console.
             </warning>
+            <varname>commands</varname> with multiple instructions are not recommended.
+            They are more difficult to debug.
         </para>
     </refsection>
     <refsection>
@@ -64,12 +93,6 @@ end
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="edit">edit</link>
-            </member>
-            <member>
-                <link linkend="manedit">manedit</link>
-            </member>
-            <member>
                 <link linkend="unix_g">unix_g</link>
             </member>
             <member>
@@ -79,7 +102,16 @@ end
                 <link linkend="unix_x">unix_x</link>
             </member>
             <member>
-                <link linkend="unix">unix</link>
+                <link linkend="host">host</link>
+            </member>
+            <member>
+                <link linkend="powershell">powershell</link>
+            </member>
+            <member>
+                <link linkend="setenv">setenv</link>
+            </member>
+            <member>
+                <link linkend="getos">getos</link>
             </member>
         </simplelist>
     </refsection>

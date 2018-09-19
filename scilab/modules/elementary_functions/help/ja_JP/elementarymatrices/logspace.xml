@@ -45,11 +45,11 @@
     <refsection>
         <title>説明</title>
         <para>
-            <latex>10^{d1}</latex> および
-            <latex>10^{d2}</latex>の間に指数的に等間隔にとった
+            10<superscript>d1</superscript> および
+            10<superscript>d2</superscript>の間に指数的に等間隔にとった
             <literal>n</literal>個の点からなる行ベクトルを返します.
-            <latex>d2=\pi</latex> の場合,
-            <latex>10^{d1}</latex> および <latex>\pi</latex>の間の
+            <emphasis>d2=π</emphasis> の場合,
+            10<superscript>d1</superscript> および πの間の
             点となります.
         </para>
     </refsection>

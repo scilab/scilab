@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,54 +14,180 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="dos">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="dos">
     <refnamediv>
         <refname>dos</refname>
-        <refpurpose>shell (cmd) command execution (Windows
-            only)
+        <refpurpose>executes some DOS instructions (Windows only)
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>bOK=dos(command-name)
-            bOK=dos(command-name,'-echo')
-            [output,bOK]=dos(command-name)
-            [output,bOK,exitcode]=dos(command-name)
-            [output,bOK]=dos(command-name,'-echo')
-            [output,bOK,exitcode]=dos(command-name,'-echo')
+        <synopsis>
+            bOK = dos(commands)
+            [output, bOK] = dos(commands)
+            [output, bOK, exitcode] = dos(commands)
+            .. = dos(commands, '-echo')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>commands</term>
+                <listitem>
+                    <para>
+                        Single text containing instructions sent to the MS Windows cmd.exe command
+                        interpreter.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>'-echo'</term>
+                <listitem>
+                    <para>
+                        Forces the display of results (Windows standard output and error message)
+                        in the Scilab console.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bOK</term>
+                <listitem>
+                    <para>
+                        Single boolean: <literal>%T</literal> if <varname>commands</varname>
+                        has been executed without cmd.exe error, <literal>%F</literal> otherwise.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>output</term>
+                <listitem>
+                    <para>
+                        Column of text: standard output and standard errors yielded by the
+                        MS Windows interpreter.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>exitcode</term>
+                <listitem>
+                    <para>Integer exit code returned by cmd.exe after completion.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
         <title>Description</title>
-        <para>Sends a string command-name to Windows for execution by the cmd shell.
-            Standard output and standard errors of the shell command are written in
-            the calling shell. bOK returns if command has been executed.
+        <para>
+            <literal>dos()</literal> opens a new session of the MS Windows command interpreter
+            <emphasis>cmd.exe</emphasis>, sends the <varname>commands</varname> to it,
+            lets it processing <varname>commands</varname> instructions, receives the standard
+            output and possible error message yielded by the processing, and closes the interpreter
+            session.
         </para>
-        <para>[output,bOK] = dos(command-name,'-echo') forces the output to the
-            Command Window, even though it is also being assigned into a variable.
+        <para>
+            The starting current working directory and environment variables of the cmd.exe
+            session are set <link linkend="host_description">as described for host()</link>.
         </para>
-        <para>exitcode value returned by the external process.</para>
-        <para>To open the notepad editor and return control immediately to Scilab
-            dos('start notepad')
+        <para>
+            The standard output and error messages yielded by the OS interpreter are never
+            displayed in the OS terminal running Scilab (the <link linkend="consolebox">consolebox</link>).
+            They are managed in the following ways:
+            <itemizedlist>
+                <listitem>
+                    If the <varname>output</varname> argument is expected, the standard output
+                    and errors messages are returned in it as a column of text.
+                </listitem>
+                <listitem>
+                    If the <varname>'-echo'</varname> option is used, the standard output and
+                    errors messages are (in addition) displayed in the Scilab console.
+                </listitem>
+            </itemizedlist>
         </para>
+        <note>
+            For Scilab on MS Windows, the functions <link linkend="unix_g">unix_g()</link>,
+            <link linkend="unix_s">unix_s()</link>, <link linkend="unix_w">unix_w()</link> and
+            <link linkend="unix_x">unix_x()</link> are based on <literal>dos()</literal>.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para/>
         <programlisting role="example"><![CDATA[
-[s,w] = dos('dir');
-[s,w] = dos('dir','-echo');
+[r, s] = dos('dir');
+r
+[r, s] = dos('dir','-echo');
+
 dos('start notepad')
+
 dos('taskkill /IM notepad.exe') // Caution, this command will kill all launched notepad's process
-[s, w] = dos('foo')
-[s, w, code] = dos('dir')
-[s, w, code] = dos('foo')
+
+[r, s, code] = dos('foo')
+[r, s, code] = dos('dir')
+     ]]></programlisting>
+        <para>Current working directory and environment variables in the cmd.exe session:</para>
+        <programlisting role="example"><![CDATA[
+pwd()                           // in the Scilab session
+[r, ok] = dos("cd"); r          // in the dos() session
+
+setenv TEST AAAA ;              // in the Windows interpreter running the Scilab session
+[r,ok] = dos("echo %TEST%"); r  // in the dos() session
+
+// Environment variables set in a dos() session are lost when dos() returns:
+dos("set TEST=BBBB")
+[r,ok] = dos("echo %TEST%"); r
+getenv TEST
  ]]></programlisting>
+    <screen><![CDATA[
+--> pwd()                           // in the Scilab session
+ ans  =
+ C:\Scilab\tests
+
+--> [r, ok] = dos("cd"); r          // in the dos() session
+ r  =
+ C:\Scilab\tests
+
+--> setenv TEST AAAA ;              // in the Windows interpreter running the Scilab session
+--> [r,ok] = dos("echo %TEST%"); r  // in the dos() session
+ r  =
+ AAAA
+
+--> // Environment variables set in a dos() session are lost when dos() returns:
+--> dos("set TEST=BBBB")
+ ans  =
+  T
+
+--> [r,ok] = dos("echo %TEST%"); r
+ r  =
+ AAAA
+
+--> getenv TEST
+ ans  =
+ AAAA
+]]></screen>
     </refsection>
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="unix">unix</link>
+                <link linkend="setenv">setenv</link>
+            </member>
+            <member>
+                <link linkend="host">host</link>
+            </member>
+            <member>
+                <link linkend="unix_g">unix_g</link>
+            </member>
+            <member>
+                <link linkend="powershell">powershell</link>
+            </member>
+            <member>
+                <ulink url="https://msdn.microsoft.com/en-us/library/windows/desktop/ms681382.aspx">List of MS Windows exit codes</ulink>
             </member>
         </simplelist>
     </refsection>

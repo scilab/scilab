@@ -356,18 +356,6 @@
 
                     <para>グラフィックウインドウが閉じられた.</para>
 
-                    <para>
-
-                        警告: <literal>ibutton</literal> は, Scilab 4.1.2 まではグラフィックウインドウを
-
-                        閉じる際の値が -100でしたが,
-
-                        キー<literal>d</literal>が開放された際に返されるコードでもあったため,
-
-                        このコードは(Scilab 5.0)で変更されました.
-
-                    </para>
-
                 </listitem>
 
             </varlistentry>
@@ -418,6 +406,17 @@
 
         </simplelist>
 
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.0</revnumber>
+                <revdescription>
+                    Closing a figure now returns the event code -1000 instead of -100.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 
 </refentry>

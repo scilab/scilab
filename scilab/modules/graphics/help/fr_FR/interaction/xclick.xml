@@ -193,11 +193,6 @@
                 <term>ibutton==-1000</term>
                 <listitem>
                     <para>La fenêtre graphique a été fermée.</para>
-                    <para>ATTENTION : ibutton était égal à -100 pour la fermeture de la
-                        fenêtre graphique jusqu'à Scilab 4.1.2, mais ce code a été changé
-                        (dans Scilab 5.0) parce qu'il correspondait aussi au code retourné
-                        pour la touche <literal>d</literal> relachée.
-                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -226,5 +221,16 @@
                 <link linkend="seteventhandler">seteventhandler</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.0</revnumber>
+                <revdescription>
+                    La fermeture d'une figure retourne désormais le code -1000 au lieu de -100.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

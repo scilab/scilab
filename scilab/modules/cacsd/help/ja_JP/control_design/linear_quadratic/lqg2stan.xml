@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="lqg2stan">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="lqg2stan">
     <refnamediv>
         <refname>lqg2stan</refname>
         <refpurpose>LQG を標準問題に変換する</refpurpose>
@@ -152,5 +155,18 @@ lqg2stan(1/(s+2),eye(2,2),eye(2,2))
                 <link linkend="feedback">feedback</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+      <title>History</title>
+      <revhistory>
+        <revision>
+          <revnumber>6.0</revnumber>
+          <revdescription>
+            It is no longer necessary to enter <varname>-P22</varname> to get <varname>P</varname>
+            instead of <varname>-P</varname>
+            (bug <ulink url="http://bugzilla.scilab.org/show_bug.cgi?id=13751">13751</ulink> fixed).
+          </revdescription>
+        </revision>
+      </revhistory>
     </refsection>
 </refentry>

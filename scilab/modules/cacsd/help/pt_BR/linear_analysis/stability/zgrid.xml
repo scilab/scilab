@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -16,20 +16,20 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="zgrid" xml:lang="pt">
     <refnamediv>
         <refname>zgrid</refname>
-        <refpurpose>esboçode um z-grid</refpurpose>
+        <refpurpose>esboÃ§ode um z-grid</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>zgrid()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
-        <para>Esboça as linhas de grid de um Z-plano: linhas de fator constante de
-            amortecimento (zeta) e freqüência natural (Wn) são esboçadas dentro do
-            círculo unitário do Z-plano.
+        <title>DescriÃ§Ã£o</title>
+        <para>EsboÃ§a as linhas de grid de um Z-plano: linhas de fator constante de
+            amortecimento (zeta) e freqÃ¼Ãªncia natural (Wn) sÃ£o esboÃ§adas dentro do
+            cÃ­rculo unitÃ¡rio do Z-plano.
         </para>
-        <para>Curvas de iso-freqüência são exibidas em freqüência*passo no
-            intervalo [0,0.5]. O limite superior corresponde à freqüência de Shannon
+        <para>Curvas de iso-freqÃ¼Ãªncia sÃ£o exibidas em freqÃ¼Ãªncia*passo no
+            intervalo [0,0.5]. O limite superior corresponde Ã  freqÃ¼Ãªncia de Shannon
             <literal>( 1/dt &gt; 2*f )</literal>.
         </para>
     </refsection>
@@ -62,7 +62,7 @@
     </refsection>
 
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="frep2tf">frep2tf</link>

@@ -207,7 +207,7 @@
         <para>формирует:</para>
         <mediaobject>
             <imageobject>
-                <imagedata fileref="../images/img001.png" width="5.95cm" depth="1.64cm"/>
+                <imagedata fileref="../images/img001.png"/>
             </imageobject>
         </mediaobject>
         <para>
@@ -344,7 +344,7 @@
         </para>
         <mediaobject>
             <imageobject>
-                <imagedata fileref="../images/img002.png" width="5.95cm" depth="1.64cm"/>
+                <imagedata fileref="../images/img002.png"/>
             </imageobject>
         </mediaobject>
         <para>в hdfview.</para>
@@ -817,10 +817,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="justify">
+                    <td align="center">
                         <para>0</para>
                     </td>
-                    <td align="justify">
+                    <td align="center">
                         <para>5.2.0</para>
                     </td>
                     <td align="justify">
@@ -828,10 +828,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="justify">
+                    <td align="center">
                         <para>1</para>
                     </td>
-                    <td align="justify">
+                    <td align="center">
                         <para>5.4.0 alpha / beta</para>
                     </td>
                     <td align="left">
@@ -859,11 +859,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="justify">
-
+                    <td align="center">
+                        3
                     </td>
-                    <td align="justify">
-                        <para>6.0.0 (будущая)</para>
+                    <td align="center">
+                        <para>6.0.0</para>
                     </td>
                     <td align="justify">
                         <para>.bin не поддерживается.</para>

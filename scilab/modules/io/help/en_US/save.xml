@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,17 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="save" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="save" xml:lang="en">
     <refnamediv>
         <refname>save</refname>
-        <refpurpose>Save a variable or a serie of variables in a binary
-            file
+        <refpurpose>Saves some chosen variables in a binary data file
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>save(filename [,x1,x2,...,xn])
-            save(fd [,x1,x2,...,xn])
+        <synopsis>
+            save(filename)
+            save(filename, x1, x2,...,xn)
+            save(filename, x1, x2,...,xn, "-append")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,19 +36,17 @@
             <varlistentry>
                 <term>filename</term>
                 <listitem>
-                    <para>Character string containing the path of the file</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>fd</term>
-                <listitem>
-                    <para>A file descriptor given by a call to mopen</para>
+                    <para>Character string containing the path of the file.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>xi</term>
                 <listitem>
-                    <para>Arbitrary Scilab variable(s)</para>
+                    <para>
+                        Names (as strings) of Scilab variables to be saved. Objects returned by
+                        expressions -- like gcf() -- can't be directly saved. They must be
+                        explicitly named: <literal>f = gcf(); save(filename, "f")</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -52,32 +54,59 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>save</literal> command can be used to save Scilab
-            current variables in a binary file. If a variable is a graphic handle, the
-            <literal>save</literal> function saves all the corresponding <link linkend="graphics_entities">graphics_entities</link> definition.
+            <literal>save(filename)</literal> saves in the file defined by <literal>filename</literal>
+            <emphasis>all</emphasis> Scilab variables defined by the user, and reachable at the
+            current level.
         </para>
-        <para>The file can be given either by its paths or by its descriptor
-            previously given by <literal>mopen</literal>.
+        <note>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        When some global variables are defined, only their local counterparts
+                        -- if any -- can be saved. Hence, the "global status" is never saved.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        If a variable is a graphic handle, <literal>save(..)</literal> records all
+                        the corresponding <emphasis>descending</emphasis>
+                        <link linkend="graphics_entities">graphical entity</link> definition,
+                        including its existing children -- if any.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Saving a XML pointer is possible but does not save the pointed object. If in
+                        the meantime the XML object is deleted, restoring its pointer won't restore
+                        the object. Please see the dedicated example.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        TCL variables defined from Scilab (with <link linkend="TCL_SetVar">TCL_SetVar</link>)
+                        can't be saved. Only their counterparts in Scilab -- if any -- can be considered.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        Scilab save/load functions use the Scilab Open Data (SOD) binary format,
+                        based on the HDF-5 storage format. The SOD format is described
+                        <link linkend="save_format">there</link>. Scilab binary data files can be read
+                        and handled through external HDF-5 libraries or applications.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </note>
+        <para>
+            When only some variables chosen among all defined ones must be saved, their names must
+            be listed after the filename, as in <literal>save(filename,"x","y")</literal>. If one
+            indicated variable is not defined, the file is not created or overwritten and an error
+            is yielded.
         </para>
         <para>
-            <literal>save(filename)</literal> saves all current variables in the
-            file defined by <literal>filename</literal>.
-        </para>
-        <para>
-            <literal>save(fd)</literal> saves all current variables in the file
-            defined by the descriptor <literal>fd</literal>. <emphasis role="bold">This prototype is obsolete and will be removed in Scilab 6.</emphasis>
-        </para>
-        <para>
-            <literal>save(filename,x,y)</literal> or <literal>save(fd,x,y)</literal> (with <literal>x</literal> and <literal>y</literal> variables of your environment) saves only named variables <literal>x</literal> and <literal>y</literal>. <literal>save(fd,x,y)</literal> <emphasis role="bold"> is obsolete and will be removed in Scilab 6.</emphasis>
-        </para>
-        <para>
-            <literal>save(filename,"x","y")</literal> (with <literal>"x"</literal> and <literal>"y"</literal> names of variables of your environment) will save your data using the SOD (Scilab Open Data) format (based on HDF5), format that will be readable by Scilab 6 family.
-        </para>
-        <para>
-            <literal>save(filename,"-append","w", "z")</literal> (with <literal>"w"</literal> and <literal>"z"</literal> names of variables of your environment) will append your data in the existing SOD file called <literal>filename</literal>.
-        </para>
-        <para>
-            The change of format between the family 5 and 6 of Scilab has been decided because the 5 format is undocumented, not specified and hard to read. SOD (Scilab 6 default format) is fully documented and easy to read through HDF5 libraries or applications.
+            The <literal>"-append"</literal> keyword can be used in option at any place after
+            the <varname>filename</varname>. Then, listed variables are appended to the existing
+            file. If some listed variables already exist in the file, their stored values are updated.
         </para>
         <para>
             Saved variables can be reloaded by the
@@ -86,41 +115,260 @@
             </literal>
             command.
         </para>
-        <para>Note that the written file is portable to other operating systems and architectures (little and big endian).
-        </para>
+        <note>
+            The archives files generated with save() are portable to other operating systems and
+            architectures (little and big endian automatically handled).
+        </note>
+        <warning>
+            Built-in functions can't be saved.
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            With homogeneous arrays of simple data types:
+        </para>
         <programlisting role="example"><![CDATA[
-// Binary format readable up to Scilab 5 family
-a=eye(2,2);b=ones(a);
-save('val.dat',a,b);
+// For each created object, we make a current copy for comparison after restoring.
+b = [%t %f %f];          bc = b;  // Booleans
+i = int8([0 -17 38 ]);   ic = i;  // Encoded integers
+d = [%pi %e %inf %i];    dc = d;  // Decimal numbers (real or complex numbers)
+p = (1-%z)^[1 2];        pc = p;  // Polynomials (real or complex coefficients)
+r = %z./(1-%z)^[1 2];    rc = r;  // Rationals (real or complex coefficients)
+t = ["Sci" "‫البرمجیات‬"];    tc = t;  // Texts
+sp = sprand(4,10,0.1);  spc = sp; // Sparse matrix of numbers
+spb = sp < 0.5;        spbc = spb;// Sparse matrix of boolean numbers
+
+path = TMPDIR + "/test.dat";
+save(path, "b","i","d","p","r","t","sp","spb")
+clear b i d p r t sp spb
+isdef(["b" "i" "d" "p" "r" "t" "sp" "spb"],"l")
+listvarinfile(path);
+load(path);
+isdef(["b" "i" "d" "p" "r" "t" "sp" "spb"],"l")
+[b==bc, i==ic, d==dc, t==tc, p==pc, r==rc, and(sp==spc), and(spb==spbc)]
+    ]]></programlisting>
+        <screen><![CDATA[
+--> path = TMPDIR + "/test.dat";
+--> save(path, "b","i","d","p","r","t","sp","spb")
+--> clear b i d p r t sp spb
+--> isdef(["b" "i" "d" "p" "r" "t" "sp" "spb"],"l")
+ ans  =
+  F F F F F F F F
+
+--> listvarinfile(path);
+Name                     Type           Size            Bytes
+-------------------------------------------------------------
+b                        boolean        1 by 3          12
+d                        double         1 by 4          64
+i                        integer        1 by 3          3
+p                        polynomial     1 by 2          40
+r                        tlist          4               108
+sp                       sparse         4 by 10         76
+spb                      boolean sparse 4 by 10         160
+t                        string         1 by 2          108
+
+--> load(path);
+--> isdef(["b" "i" "d" "p" "r" "t" "sp" "spb"],"l")
+ ans  =
+  T T T T T T T T
+
+--> [b==bc, i==ic, d==dc, t==tc, p==pc, r==rc, and(sp==spc), and(spb==spbc)]
+ans  =
+  T T T T T T T T T T T T T T T T T
+]]></screen>
+        <para>
+            With a user-defined macro:
+        </para>
+        <programlisting role="example"><![CDATA[
+path = TMPDIR + "/test.dat";
+function myTest(), disp("User-defined macros can be saved"), endfunction
+save(path, "myTest")
+clear myTest
+listvarinfile(path);
+load(path);
+myTest()
+    ]]></programlisting>
+        <screen><![CDATA[
+--> clear myTest
+--> listvarinfile(path);
+Name                     Type           Size            Bytes
+-------------------------------------------------------------
+myTest                   macro          1 by 1          0
+
+--> load(path);
+--> myTest()
+ User-defined macros can be saved
+]]></screen>
+        <para>
+            With (nested) heterogeneous containers:
+        </para>
+        <programlisting role="example"><![CDATA[
+// lists
+L = list(%pi,%t,%s^2,"abc",{"Scilab" 2},list(%e,%z/(1-%z))); Lc = L;
+// cells arrays
+c = {%pi, %t ; %s^2, "abc"};  cc = c;
+// array of structures
+s = struct("n",%i+1, "p",(1+%z)^3, "L",L, "c",c); sc = s;
+
+path = TMPDIR + "/test.dat";
+save(path, "L", "c", "s")
+clear L c s
+isdef(["L" "c" "s"], "l")
+listvarinfile(path);
+load(path);
+[isequal(L,Lc) isequal(c,cc) isequal(s,sc)]
+    ]]></programlisting>
+        <screen><![CDATA[
+--> isdef(["L" "c" "s"], "l")
+ ans  =
+  F F F
+
+--> listvarinfile(path);
+Name                     Type           Size            Bytes
+-------------------------------------------------------------
+L                        list           6               156
+c                        cell           2 by 2          48
+s                        struct         2 by 2          864
+
+--> load(path);
+--> [isequal(L,Lc) isequal(c,cc) isequal(s,sc)]
+ ans  =
+  F F F
+]]></screen>
+        <para>
+            With some graphic handles:
+        </para>
+        <programlisting role="example"><![CDATA[
+clf reset
+subplot(1,2,1), param3d()
+subplot(1,2,2), plot2d4(), xtitle("plot2d4()"); a = gca();
+path = TMPDIR + "/test.dat";
+save(path, "a");       // We save only the right axes (plot2d4)
+clf reset, clear a
+xload(path);           // The right axes is restored and rendered
+gcf().axes_size = [700 300];
+    ]]></programlisting>
+        <scilab:image>
+            subplot(1,2,1), param3d()
+            subplot(1,2,2), plot2d4(), xtitle("plot2d4()"); a = gca();
+            path = TMPDIR + "/test.dat";
+            save(path, "a");       // We save only the right axes (hist3d)
+            clf reset, clear a
+            xload(path);           // The right axes is restored and rendered
+            gcf().axes_size = [700 300];
+        </scilab:image>
+        <para>
+            With a global variable:
+        </para>
+        <programlisting role="example"><![CDATA[
+path = TMPDIR + "/test.dat";
 clear a
-clear b
-load('val.dat','a','b');
+global a, a = 1.234;
+isglobal a
+save(path, "a")
+clear a, clearglobal a
+load(path); a
+isglobal("a")   // The global attribute was not saved and so is not restored
+    ]]></programlisting>
+        <screen><![CDATA[
+--> isglobal a
+ ans  =
+  T
+--> save(path, "a")
+--> clear a, clearglobal a
+--> load(path); a
+ a  =
+   1.234
+--> isglobal("a")
+ ans  =
+  F
+]]></screen>
+        <para>
+            With a XML pointer:
+        </para>
+        <programlisting role="example"><![CDATA[
+path = TMPDIR + "/test.dat";
+doc = xmlReadStr("<root><b>Hello</b></root>");
+save(path, "doc")
+clear doc             // This does not delete the document
+load(path); doc       // We restore the saved pointer to the document. It is still valid.
+// Let's delete both the document and the pointer to it:
+xmlDelete(doc), clear doc
+load(path);           // We restore the saved pointer (to the unexisting document)
+isdef("doc","l")        // The pointer is restored...
+xmlIsValidObject doc  //  but not the pointed document
+    ]]></programlisting>
+        <screen><![CDATA[
+--> path = TMPDIR + "/test.dat";
+--> doc = xmlReadStr("<root><b>Hello</b></root>");
+--> save(path, "doc")
+--> clear doc
+--> load(path); doc
+ doc  =
+XML Document
+url: Undefined
+root: XML Element
 
-// sequential save into a file
-fd=mopen('TMPDIR/foo','wb')
-for k=1:4, x=k^2;save(fd,x,k),end
-mclose(fd)
-fd=mopen('TMPDIR/foo','rb')
-for i=1:4, load(fd,'x','k');x,k,end
-mclose(fd)
-
-// appending variables to an old save file
-fd=mopen('TMPDIR/foo','rb+')
-mseek(0,fd,'end')
-lst=list(1,2,3)
-save(fd,lst)
-mclose(fd)
-
-// Binary format readable by Scilab 5.4.X and Scilab 6 family
-a=eye(2,2);b=ones(a);
-save("val.sod", "a", "b");
+--> xmlDelete(doc), clear doc
+--> load(path)
+--> isdef("doc","l")
+ ans  =
+  T
+ doc  =
+--> xmlIsValidObject doc
+ ans  =
+  F
+]]></screen>
+        <para>
+            With the "-append" option:
+        </para>
+        <programlisting role="example"><![CDATA[
+a = 1; b = %t;
+path = TMPDIR + "/test.dat";
+save(path, "a", "b");
+listvarinfile(path);
+a = [%e %pi];
+c = %i;
+save(path, "a", "c", "-append");
+listvarinfile(path);
 clear a
-clear b
-load("val.sod", "a", "b");
- ]]></programlisting>
+load(path, "a"); a
+    ]]></programlisting>
+        <screen><![CDATA[
+--> save(path, "a", "b");
+--> listvarinfile(path);
+Name                     Type           Size            Bytes
+-------------------------------------------------------------
+a                        double         1 by 1          8
+b                        boolean        1 by 1          4
+
+--> a = [%e %pi];
+--> c = %i;
+--> save(path, "a", "c", "-append");
+--> listvarinfile(path);
+Name                     Type           Size            Bytes
+-------------------------------------------------------------
+a                        double         1 by 2          16
+b                        boolean        1 by 1          4
+c                        double         1 by 1          16
+
+--> clear a
+--> load(path, "a"); a    // has been updated
+ a  =
+   2.7182818   3.1415927
+]]></screen>
+        <para>
+            save() can't save TCL variables:
+        </para>
+        <programlisting role="example"><![CDATA[
+TCL_SetVar("myPi", 3.14);   // Creates the myPi variable in the TCL session
+myPi    // => error: the variable is a TCL one, not a Scilab one => It can't be save()d
+]]></programlisting>
+        <screen><![CDATA[
+--> myPi
+Undefined variable: myPi
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -129,13 +377,22 @@ load("val.sod", "a", "b");
                 <link linkend="load">load</link>
             </member>
             <member>
-                <link linkend="write">write</link>
-            </member>
-            <member>
                 <link linkend="save_format">save_format</link>
             </member>
             <member>
-                <link linkend="mopen">mopen</link>
+                <link linkend="savematfile">savematfile</link>
+            </member>
+            <member>
+                <link linkend="xsave">xsave</link>
+            </member>
+            <member>
+                <link linkend="saveGui">saveGui</link>
+            </member>
+            <member>
+                <link linkend="write">write</link>
+            </member>
+            <member>
+                <link linkend="TCL_SetVar">TCL_SetVar</link>
             </member>
         </simplelist>
     </refsection>
@@ -145,18 +402,40 @@ load("val.sod", "a", "b");
             <revision>
                 <revnumber>5.0.0</revnumber>
                 <revremark>
-                    All <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also saved by this function.
+                    All <link linkend="uimenu">uimenu</link> or
+                    <link linkend="uicontrol">uicontrol</link> handles are also saved by this function.
                 </revremark>
             </revision>
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revdescription>
                     <itemizedlist>
-                        <listitem>When called with variables names (character string) as input, variables are saved in SOD format, format that will be readable by Scilab 6 family.</listitem>
-                        <listitem>The Scilab 5.X format is deprecated and will be removed with Scilab 6.</listitem>
-                        <listitem>Using save with a file descriptor as first input argument is deprecated and will be removed with Scilab 6.</listitem>
+                        <listitem>
+                            When called with variables names (character string) as input, variables
+                            are saved in SOD format (HDF5-based).
+                        </listitem>
+                        <listitem>
+                            The Scilab &lt;5.4 binary data format is deprecated.
+                        </listitem>
+                        <listitem>
+                            Using save() with a file descriptor as first input argument is deprecated.
+                        </listitem>
                     </itemizedlist>
                 </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>
+                            save() no longer supports the old Scilab &lt;5.4 data format.
+                        </listitem>
+                        <listitem>
+                            The syntaxes save(fid) and save(fid, x1,..) with a file id are no longer
+                            supported.
+                        </listitem>
+                    </itemizedlist>
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

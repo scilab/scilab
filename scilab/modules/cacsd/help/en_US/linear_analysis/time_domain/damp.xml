@@ -13,7 +13,10 @@
  * along with this program.
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en_US" xml:id="damp">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en_US" xml:id="damp">
     <refnamediv>
         <refname>damp</refname>
         <refpurpose>Natural frequencies and damping factors. </refpurpose>
@@ -92,8 +95,8 @@
         <para>
             If <literal>sys</literal> is a continuous time system,
             <literal>[wn,z] = damp(sys)</literal> returns in <literal>wn</literal> the natural
-            pulsation <latex>\omega_n</latex>(in rad/s) and in <literal>z</literal> the damping factors
-            <latex>\xi</latex> of the poles of the linear dynamical system
+            pulsation ω<subscript>n</subscript> (in rad/s) and in <literal>z</literal> the damping
+            factors ξ of the poles of the linear dynamical system
             <literal>sys</literal>. The <literal>wn</literal> and
             <literal>z</literal> arrays are ordered according to the increasing
             pulsation order.
@@ -102,8 +105,8 @@
             If <literal>sys</literal> is a discrete time system
             <literal>[wn,z] = damp(sys)</literal> returns in
             <literal>wn</literal> the natural pulsation
-            <latex>\omega_n</latex>(in rad/s) and in <literal>z</literal> the
-            damping factors <latex>\xi</latex> of the continuous time
+            ω<subscript>n</subscript> (in rad/s) and in <literal>z</literal> the
+            damping factors ξ of the continuous time
             equivalent poles of <literal>sys</literal>. The
             <literal>wn</literal> and <literal>z</literal> arrays are
             ordered according to the increasing pulsation order.
@@ -111,8 +114,8 @@
         <para>
             <literal>[wn,z] = damp(P)</literal> returns in
             <literal>wn</literal> the natural pulsation
-            <latex>\omega_n</latex>(in rad/s) and in <literal>z</literal> the
-            damping factors <latex>\xi</latex> of the set of roots of the polynomials
+            ω<subscript>n</subscript> (in rad/s) and in <literal>z</literal> the
+            damping factors ξ of the set of roots of the polynomials
             stored in the <literal>P</literal> array. If
             <literal>dt</literal> is given and non 0, the roots are first
             converted to their continuous time equivalents.
@@ -123,8 +126,8 @@
         <para>
             <literal>[wn,z] = damp(R)</literal> returns in
             <literal>wn</literal> the natural pulsation
-            <latex>\omega_n</latex>(in rad/s) and in <literal>z</literal> the
-            damping factors <latex>\xi</latex> of the set of roots stored in the
+            ω<subscript>n</subscript> (in rad/s) and in <literal>z</literal> the
+            damping factors ξ of the set of roots stored in the
             <literal>R</literal> array.
 
             If <literal>dt</literal> is given and non 0, the roots are first
@@ -182,7 +185,7 @@
             </scilab:image>
         </para>
         <para>
-            Computing the natural pulsations and daping ratio for a set of roots:
+            Computing the natural pulsations and damping ratio for a set of roots:
         </para>
         <programlisting role="example"><![CDATA[
     [wn,z] = damp((1:5)+%i)

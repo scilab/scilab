@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
  * Copyright (C) INRIA - Serge Steer
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,28 +14,61 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="locate">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="locate">
     <refnamediv>
         <refname>locate</refname>
-        <refpurpose>mouse selection of a set of points</refpurpose>
+        <refpurpose>mouse selection of a set of points in a 2D axes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>x=locate([n,flag])</synopsis>
+        <synopsis>
+            xy = locate()
+            xy = locate(n)
+            xy = locate(n, cross)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>n</term>
                 <listitem>
-                    <para>matrix of size (2,n1). n1=n if the parameter n is given.</para>
+                    <para>
+                        integer:
+                        <itemizedlist>
+                            <listitem>
+                            <emphasis role="bold">n > 0</emphasis> : number of points to be selected.
+                            </listitem>
+                            <listitem>
+                            <emphasis role="bold">any n ≤ 0</emphasis> : undefined number of
+                            points. Stops the selection by right-clicking.
+                            </listitem>
+                        </itemizedlist>
+                        Default value = -1.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>n,flag</term>
+                <term>cross</term>
                 <listitem>
-                    <para>integer values.</para>
+                    <para>
+                        When <varname>cross</varname> it set to 1, locate(.) displays a "X" mark
+                        at each clicked position in the current axes. Default = 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xy</term>
+                <listitem>
+                    <para>
+                        matrix of size (2,n1). n1=n if the parameter n is given.
+                        <literal>xy(1,:)</literal> are abscissae. <literal>xy(2,:)</literal> are
+                        ordinates. <literal>xy(:,i)</literal> are the [x;y] coordinates of the
+                        i<superscript>th</superscript> clicked point.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -44,37 +77,99 @@
         <title>Description</title>
         <para>
             <literal>locate</literal> is used to get the coordinates of one or more
-            points selected with the mouse in a graphics window. The coordinates
-            are given using the current graphics scale.
+            points selected with the mouse in the current graphic axes. The coordinates values
+            use the data scales of the axes.
         </para>
         <para>
-            If n&gt;0, n points are selected and their coordinates are returned in
-            the matrix <literal>x</literal>.
+            If <literal>n > 0</literal>, n points are expected to be selected. There is no way to
+            escape the series before the n<superscript>th</superscript> point is clicked (except
+            with CTRL+C).
+            The coordinates of selected points are returned in the matrix <literal>xy</literal>.
         </para>
         <para>
-            If n&lt;=0, points are selected until the user clicks with the left button
-            of the mouse which stands for stop. The last point (clicked with the left
-            button) is not returned.
+            If <literal>n ≤ 0</literal>, points are selected until the user clicks the right
+            button of the mouse. The position of this exit click is neither recorded nor returned.
         </para>
         <para>
-            x=locate() is the same as <literal>x=locate(-1)</literal>.
+            <literal>xy=locate()</literal> stands for <literal>xy=locate(-1)</literal>.
         </para>
         <para>
-            If <literal>flag=1</literal> a cross is drawn at the points where the mouse is clicked.
+            Eventual crosses drawn when clicking are erased when <literal>locate()</literal> ends.
         </para>
+        <para>
+            If the figure is closed (with its top-right cross) while locate() is running on it,
+            <itemizedlist>
+                <listitem>
+                    if  n>0 : [] is returned.
+                </listitem>
+                <listitem>
+                    if n &lt;=0 : The coordinates of points already selected are returned.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <important>
+            Left clicking anywhere out of the current axes of the current figure does not select
+            any point.
+        </important>
+        <note>
+            Logarithmic and/or reversed axes are supported.
+        </note>
     </refsection>
-    plot2d(0,0,0,rect=[0,0,1,1])
-    xgrid(3)
-    X=locate(4)
-    xfpolys(X(1,:)',X(2,:)',4)
+    <refsection role="examples">
+        <title>Examples</title>
+        <programlisting><![CDATA[
+x = 1:0.1:100;
+clf
+plot2d("ll", x, 1.2 .^x)
+xgrid(color("grey70")*[1 1], [1 1], [7 7]);
+gca().axes_reverse(1) = "on";
+gca().tight_limits = "on";
+        gcf().axes_size=[600 320];
+XY = locate(-1,1)  // Select any number of points. Right click to quit
+
+// Draw a filled polygon made of the selected points
+xfpolys(XY(1,:)',XY(2,:)', color("cyan"))
+     ]]></programlisting>
+     <screen><![CDATA[
+--> XY = locate(-1,1)
+ XY  =
+   40.22022    3.0199517   3.0199517   6.056507    10.102863   30.199517
+   10082801.   9352311.2   94.100636   102608.45   1213.6949   95174.553
+]]></screen>
+     <scilab:image>
+        x = 1:0.1:100;
+        clf
+        plot2d("ll", x, 1.2 .^x)
+        xgrid(color("grey70")*[1 1], [1 1], [7 7]);
+        gca().axes_reverse(1) = "on";
+        gca().tight_limits = "on";
+        // XY = locate(-1,1)  // Select any number of points. Right click to quit
+        // Draws a filled polygon made of the selected points
+         XY  = [
+           40.22022    3.0199517   3.0199517   6.056507    10.102863   30.199517
+           10082801.   9352311.2   94.100636   102608.45   1213.6949   95174.553
+           ];
+        xfpolys(XY(1,:)',XY(2,:)', 4)
+        gcf().axes_size=[600 320];
+     </scilab:image>
+     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="edit_curv">edit_curv</link>
+            </member>
+            <member>
+                <link linkend="ieditor">interactive editor</link>
+            </member>
+            <member>
+                <link linkend="rubberbox">rubberbox</link>
+            </member>
+            <member>
                 <link linkend="xclick">xclick</link>
             </member>
             <member>
-                <link linkend="xgetmouse">xgetmouse</link>
+                <link linkend="ged">ged</link>
             </member>
         </simplelist>
     </refsection>

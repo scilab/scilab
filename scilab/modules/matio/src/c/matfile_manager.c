@@ -111,3 +111,67 @@ void matfile_manager(int action, int *fileIndex, mat_t **matfile)
         /* Return NULL */
     }
 }
+
+static void clearOpenedMatfiles()
+{
+    if(openedMatfiles)
+    {
+        int i = 0;
+        for(i = 0; i < numberOfMatfiles; ++i)
+        {
+            if(openedMatfiles[i])
+            {
+                Mat_Close(openedMatfiles[i]);
+            }
+        }
+        FREE(openedMatfiles);
+        numberOfMatfiles = 0;
+    }
+}
+
+/*** free memory at library unload ***/
+#ifdef _MSC_VER
+#include <windows.h>
+/*--------------------------------------------------------------------------*/
+//for Visual Leak Detector in debug compilation mode
+//#define DEBUG_VLD
+#if defined(DEBUG_VLD) && defined(_DEBUG)
+#include <vld.h>
+#endif
+/*--------------------------------------------------------------------------*/
+#pragma comment(lib,"../../bin/libintl.lib")
+#pragma comment(lib,"../../bin/libmatio.lib")
+/*--------------------------------------------------------------------------*/
+int WINAPI DllMain(HINSTANCE hinstDLL, DWORD flag, LPVOID reserved)
+{
+    switch (flag)
+    {
+        case DLL_PROCESS_ATTACH :
+            break;
+        case DLL_PROCESS_DETACH :
+            clearOpenedMatfiles();
+            break;
+        case DLL_THREAD_ATTACH :
+            break;
+        case DLL_THREAD_DETACH :
+            break;
+        default :
+            return 0;
+    }
+
+    return 1;
+}
+#else
+void __attribute__ ((constructor)) loadmatio(void);
+void __attribute__ ((destructor)) unloadmatio(void);
+
+void loadmatio(void)
+{
+
+}
+
+void unloadmatio(void)
+{
+   clearOpenedMatfiles();
+}
+#endif

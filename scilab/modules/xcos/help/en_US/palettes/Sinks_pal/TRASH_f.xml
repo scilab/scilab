@@ -4,6 +4,7 @@
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,76 +22,47 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="TRASH_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="TRASH_f">
     <refnamediv>
         <refname>TRASH_f</refname>
         <refpurpose>Trash block</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/TRASH_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/TRASH_f.png" align="center" valign="middle"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_TRASH_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="TRASH_f">Trash block</link>
-                </para>
+              <xref linkend="Description_TRASH_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_TRASH_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_TRASH_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_TRASH_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_TRASH_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_TRASH_f">Computational function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+              <xref linkend="Defaultproperties_TRASH_f">Default properties</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_TRASH_f">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Sinks_pal">Sinks palette</link>
-                </para>
+              <xref linkend="Interfacingfunction_TRASH_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Computationalfunction_TRASH_f">Computational function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Example_TRASH_f">Example</xref>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Description_TRASH_f">
         <title>Description</title>
         <para>
-            That block is an end-block. It do nothing.
-        </para>
-        <para>
+            This block is an end-block. It does nothing.
         </para>
     </refsection>
     <refsection id="Defaultproperties_TRASH_f">
@@ -156,6 +128,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
     <refsection id="Interfacingfunction_TRASH_f">
         <title>Interfacing function</title>
@@ -172,9 +145,10 @@
                 <para> SCI/modules/scicos_blocks/src/fortran/trash.f (Type 0)</para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
-    <refsection id="Example_TRASH_f">
-        <title>Trash example</title>
+    <refsection id="Example_TRASH_f" role="examples">
+        <title>Example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/TRASH_f_Example.zcos">
             <inlinemediaobject>
                 <imageobject>

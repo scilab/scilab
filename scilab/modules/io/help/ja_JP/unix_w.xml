@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,22 +14,25 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="unix_w">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="unix_w">
     <refnamediv>
         <refname>unix_w</refname>
-        <refpurpose>シェル (sh) コマンドを実行, 出力をScilabウインドウにリダイレクトする</refpurpose>
+        <refpurpose>いくつかのWindows、LinuxまたはMacOS命令を実行し、結果をScilabコンソールに表示する</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>unix_w(cmd)</synopsis>
+        <synopsis>unix_w(commands)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
         <variablelist>
             <varlistentry>
-                <term>cmd</term>
+                <term>commands</term>
                 <listitem>
-                    <para>文字列</para>
+                    <para>単一のテキスト：実行されるべきWindows、LinuxまたはMacOSの命令。</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -36,12 +40,36 @@
     <refsection>
         <title>説明</title>
         <para>
-            shシェルで実行する文字列 <literal>cmd</literal> を Unixに送信します .
-            標準出力はScilabウインドウにリダイレクトされます.
-            Unix実行エラーはトラップされます; *注意*
-            コマンドのリストを ";" で区切った場合,
-            最後のシェルコマンドエラーのみが
-            リポートされます.これは推奨されません.
+            <literal>unix_w（）</literal>は、オペレーティングシステム（OS）（<emphasis>sh</emphasis>、
+            Linuxでは<emphasis>cmd.exe</emphasis>）のコマンドインタープリタの新しいセッションを開き、 等..）。
+            次に、<varname>commands</varname>がOSインタプリタに送信され、その命令が処理されます。
+            処理によって得られた標準出力とエラーメッセージが受信され、インタプリタセッションが閉じられます。
+        </para>
+        <para>
+            開いているインタプリタの開始作業ディレクトリと環境変数は、
+            <link linkend="host_description">host()</link>ページで説明されているように定義されています。
+        </para>
+        <para>
+          OSから返される標準出力はScilabのコンソールに表示されます("_w"はScilabのメインウィンドウを表します)。
+        </para>
+        <para>
+            <varname>commands</varname>の命令がエラーを生成した場合、,
+            <itemizedlist>
+                <listitem>
+                    OSからのエラーメッセージがScilabコンソールに表示されます
+                </listitem>
+                <listitem>
+                    <literal>unix_w</literal>が停止し、独自のエラーメッセージが表示されます。
+                </listitem>
+                <listitem>
+                    <varname>commands</varname>の残りの命令は無視されます。
+                </listitem>
+            </itemizedlist>
+            <warning>
+              誤った命令の前に処理された有効な命令の効果は、実際に残っている（例えば、ファイルを削除する）。
+              ただし、標準出力は失われます。 Scilabコンソールには表示されません。
+              複数の命令を持つ<varname>commands</varname>はお勧めできません。 それらはデバッグするのがより困難です。
+            </warning>
         </para>
     </refsection>
     <refsection>
@@ -58,12 +86,6 @@ end
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="edit">edit</link>
-            </member>
-            <member>
-                <link linkend="manedit">manedit</link>
-            </member>
-            <member>
                 <link linkend="unix_g">unix_g</link>
             </member>
             <member>
@@ -73,7 +95,16 @@ end
                 <link linkend="unix_x">unix_x</link>
             </member>
             <member>
-                <link linkend="unix">unix</link>
+                <link linkend="host">host</link>
+            </member>
+            <member>
+                <link linkend="powershell">powershell</link>
+            </member>
+            <member>
+                <link linkend="setenv">setenv</link>
+            </member>
+            <member>
+                <link linkend="getos">getos</link>
             </member>
         </simplelist>
     </refsection>

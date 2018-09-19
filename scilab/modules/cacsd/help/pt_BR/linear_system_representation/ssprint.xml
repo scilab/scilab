@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,13 +19,13 @@
         <refpurpose>embelezador de sistemas lineares</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>ssprint(sl)
             ssprint(sl, out]
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>sl</term>
@@ -39,16 +39,16 @@
                 <term>out</term>
                 <listitem>
                     <para>
-                        saída (valor padrão <literal>out=%io(2)</literal>)
+                        saÃ­da (valor padrÃ£o <literal>out=%io(2)</literal>)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Representação embelezada de uma sistema linear em lista syslin de
-            forma de espaço de estados <literal>sl=(A,B,C,D)</literal>.
+        <title>DescriÃ§Ã£o</title>
+        <para>RepresentaÃ§Ã£o embelezada de uma sistema linear em lista syslin de
+            forma de espaÃ§o de estados <literal>sl=(A,B,C,D)</literal>.
         </para>
     </refsection>
     <refsection>

@@ -129,12 +129,14 @@
             <title>Transform description</title>
             <para>
                 This function realizes direct or
-                inverse 1-D or N-D Discrete Sine Transforms with shift depending on the <literal>option</literal> parameter value:
+                inverse 1-D or N-D Discrete Sine Transforms with shift depending on the
+                <literal>option</literal> parameter value:
             </para>
             <itemizedlist>
                 <listitem>
                     <para>
-                        For <literal>"dst1"</literal> the function computes the unnormalized DST-I transform. The 1-D transform of a vector of length <latex>$n$</latex> is:
+                        For <literal>"dst1"</literal> the function computes the unnormalized DST-I
+                       transform. The 1-D transform of a vector of length <emphasis>n</emphasis> is:
                     </para>
                     <para>
                         <latex>
@@ -145,7 +147,8 @@
                 </listitem>
                 <listitem>
                     <para>
-                        For <literal>"dst2"</literal>  the function computes the unnormalized DST-II transform. the 1-D transform of a vector of length <latex>$n$</latex> is:
+                        For <literal>"dst2"</literal>  the function computes the unnormalized DST-II
+                        transform. the 1-D transform of a vector of length <emphasis>n</emphasis> is:
                     </para>
                     <para>
                         <latex>
@@ -156,7 +159,8 @@
                 </listitem>
                 <listitem>
                     <para>
-                        For <literal>"dst3"</literal> the function computes the unnormalized DST-III transform. The 1-D transform  of a vector of length <latex>$n$</latex> is:
+                        For <literal>"dst3"</literal> the function computes the unnormalized DST-III
+                        transform. The 1-D transform  of a vector of length <emphasis>n</emphasis> is:
                     </para>
                     <para>
                         <latex>
@@ -168,7 +172,9 @@
 
                 <listitem>
                     <para>
-                        For <literal>"dst4"</literal>  the function computes the unnormalized DST-IV transform. the 1-D transform of a vector of length <latex>$n$</latex> is:
+                        For <literal>"dst4"</literal>  the function computes the unnormalized
+                        DST-IV transform. the 1-D transform of a vector of length
+                        <emphasis>n</emphasis> is:
                     </para>
                     <para>
                         <latex>
@@ -179,7 +185,9 @@
                 </listitem>
                 <listitem>
                     <para>
-                        For <literal>"dst"</literal> the function computes the normalized DST-I transform. The 1-D transform of a vector of length <latex>$n$</latex> is:
+                        For <literal>"dst"</literal> the function computes the normalized
+                        DST-I transform. The 1-D transform of a vector of length
+                      <emphasis>n</emphasis> is:
                     </para>
                     <para>
                         <latex>
@@ -191,7 +199,9 @@
 
                 <listitem>
                     <para>
-                        For <literal>"idst"</literal> the function computes the normalized DST-I transform. The 1-D transform of a vector of length <latex>$n$</latex> is:
+                        For <literal>"idst"</literal> the function computes the normalized
+                        DST-I transform. The 1-D transform of a vector of length
+                        <emphasis>n</emphasis> is:
                     </para>
                     <para>
                         <latex>
@@ -224,7 +234,8 @@
                                     <para>
                                         <literal>X=dst(A,-1 [,option])</literal> or
                                         <literal>X=dst(A [,option])</literal> gives a direct
-                                        transform according to the <literal>option</literal> value. The default is normalized DST-I direct transform.
+                                        transform according to the <literal>option</literal> value.
+                                        The default is normalized DST-I direct transform.
                                     </para>
                                     <para>
                                         If <literal>A</literal> is a vector (only one

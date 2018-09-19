@@ -38,3 +38,32 @@ REF = [%T,%T, %T];
 assert_checkequal(or(B, 'r'), REF);
 REF = [%T; %T; %T];
 assert_checkequal(or(B, 'c'), REF);
+
+// HYPERMATRICES
+A = eye(3,3,3);
+r = matrix(eye(3,3), 1, 3, 3)==1;
+c = matrix(eye(3,3), 3, 1, 3)==1;
+z = eye(3,3)==1;
+
+// decimal numbers
+assert_checkequal(or(A, 'r'), r);
+assert_checkequal(or(A, 'c'), c);
+assert_checkequal(or(A, 1), r);
+assert_checkequal(or(A, 2), c);
+assert_checkequal(or(A, 3), z);
+// encoded integers
+A0 = A;
+A = int8(A);
+assert_checkequal(or(A, 'r'), r);
+assert_checkequal(or(A, 'c'), c);
+assert_checkequal(or(A, 1), r);
+assert_checkequal(or(A, 2), c);
+assert_checkequal(or(A, 3), z);
+// Booleans
+A = A0==1;
+assert_checkequal(or(A, 'r'), r);
+assert_checkequal(or(A, 'c'), c);
+assert_checkequal(or(A, 1), r);
+assert_checkequal(or(A, 2), c);
+assert_checkequal(or(A, 3), z);
+

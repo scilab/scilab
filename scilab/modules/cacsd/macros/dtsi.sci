@@ -53,7 +53,7 @@ function [ga,gs,gi]=dtsi(g,tol)
         for i=1:t1,
             for j=1:t2,
                 n=num(i,j),d=den(i,j),
-                dn=degree(n),dd=degree(d),
+                dn=max(0,degree(n)),dd=max(0,degree(d)),
                 if dn>dd then
                     error(msprintf(gettext("%s: Wrong values for input argument #%d: proper elements expected.\n"),"dtsi",1))
                 end,
@@ -142,7 +142,7 @@ function D=ginfini(g)
     for i=1:nn,
         for j=1:mm,
             n=num(i,j),d=den(i,j),
-            dn=degree(n),dd=degree(d),
+            dn=max(0,degree(n)),dd=max(0,degree(d)),
             if dn>dd then
                 error(msprintf(gettext("%s: Wrong values for input argument #%d: Proper transfer function expected.\n"),"dtsi/ginfini",1 )),
             else

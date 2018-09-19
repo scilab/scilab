@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2017 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -78,78 +77,85 @@
             <variablelist>
                 <varlistentry>
                     <term>a "macro" (written in Scilab language and compiled):</term>
-                    <para>
-                        it may be not loaded (not yet called), but its library must be so.
-                    </para>
-                    <para>
-                        When the same function name is registered in several loaded libraries of
-                        macros, <literal>whereis</literal> returns the name of all of them.
-                    </para>
-                    <para>
-                        <link linkend="libraryinfo">libraryinfo(..)</link> allows to retrieve the
-                        path to definition files of a library.
-                    </para>
-                    <warning>
-                        <itemizedlist>
-                            <listitem>
-                                Since Scilab 6.0: When, in the mymacro.sci file defining a public
-                                macro mymacro() registered in a library, some additional functions
-                                are defined after mymacro(), these additional functions are NOT
-                                registered in the library.
-                                So, <literal>whereis</literal> ignores them and will return
-                                <literal>[]</literal> for them. See the Examples section.
-                            </listitem>
-                            <listitem>
-                                When a module like <literal>xcos</literal> has sublibraries,
-                                these ones are often loaded in Scilab only after the first call
-                                to the main function (like <literal>xcos()</literal>).
-                                As a consequence,
-                                <literal>whereis(..)</literal> querried for a function of such a
-                                sublibrary will return <literal>[]</literal>, until the main
-                                function -- like <literal>xcos()</literal> -- is called a first time.
-                                See the Examples section.
-                            </listitem>
-                        </itemizedlist>
-                    </warning>
-                    <para></para>
+                    <listitem>
+                        <para>
+                            it may be not loaded (not yet called), but its library must be so.
+                        </para>
+                        <para>
+                            When the same function name is registered in several loaded libraries of
+                            macros, <literal>whereis</literal> returns the name of all of them.
+                        </para>
+                        <para>
+                            <link linkend="libraryinfo">libraryinfo(..)</link> allows to retrieve the
+                            path to definition files of a library.
+                        </para>
+                        <warning>
+                            <itemizedlist>
+                                <listitem>
+                                    Since Scilab 6.0: When, in the mymacro.sci file defining a public
+                                    macro mymacro() registered in a library, some additional functions
+                                    are defined after mymacro(), these additional functions are NOT
+                                    registered in the library.
+                                    So, <literal>whereis</literal> ignores them and will return
+                                    <literal>[]</literal> for them. See the Examples section.
+                                </listitem>
+                                <listitem>
+                                    When a module like <literal>xcos</literal> has sublibraries,
+                                    these ones are often loaded in Scilab only after the first call
+                                    to the main function (like <literal>xcos()</literal>).
+                                    As a consequence,
+                                    <literal>whereis(..)</literal> querried for a function of such a
+                                    sublibrary will return <literal>[]</literal>, until the main
+                                    function -- like <literal>xcos()</literal> -- is called a first time.
+                                    See the Examples section.
+                                </listitem>
+                            </itemizedlist>
+                        </warning>
+                    </listitem>
                 </varlistentry>
                 <varlistentry>
                     <term>a user-defined function registered in no library</term>
-                    <para>
-                        but defined
-                        <itemizedlist>
-                            <listitem>
-                                directly in the console by <literal>deff(..)</literal> or by
-                                <literal>function ... endfunction</literal>, or
-                            </listitem>
-                            <listitem>
-                                in a file loaded in the Scilab session with <literal>exec(functionfile.sci)</literal>
-                                or with <literal>getd(..)</literal>,
-                            </listitem>
-                        </itemizedlist>
-                    </para>
-                    <para>
-                        <literal>whereis</literal> returns <literal>"script"</literal>.
-                        When this function is defined in a file, there is no way to retrieve the file
-                        path and name.
-                    </para>
-                    <para/>
+                    <listitem>
+                        <para>
+                            but defined
+                            <itemizedlist>
+                                <listitem>
+                                    directly in the console by <literal>deff(..)</literal> or by
+                                    <literal>function ... endfunction</literal>, or
+                                </listitem>
+                                <listitem>
+                                    in a file loaded in the Scilab session with
+                                    <literal>exec(functionfile.sci)</literal> or with
+                                    <literal>getd(..)</literal>,
+                                </listitem>
+                            </itemizedlist>
+                        </para>
+                        <para>
+                            <literal>whereis</literal> returns <literal>"script"</literal>.
+                            When this function is defined in a file, there is no way to retrieve the file
+                            path and name.
+                        </para>
+                    </listitem>
                 </varlistentry>
                 <varlistentry>
                     <term>a builtin written and compiled in an external language (C, C++..):</term>
-                    <para>
-                        <literal>whereis</literal> returns the name of the module the function
-                        belongs to.
-                    </para>
-                    <para>
-                        The gateway file where the builtin function is declared to belong to the
-                        module is located at
-                        <literal>SCI/modules/moduleName/gateway/moduleName_gateway.xml</literal>,
-                        where <literal>moduleName</literal> must be replaced with the actual module name.
-                    </para>
+                    <listitem>
+                        <para>
+                            <literal>whereis</literal> returns the name of the module the function
+                            belongs to.
+                        </para>
+                        <para>
+                            The gateway file where the builtin function is declared to belong to the
+                            module is located at
+                            <literal>SCI/modules/moduleName/gateway/moduleName_gateway.xml</literal>,
+                            where <literal>moduleName</literal> must be replaced with the actual
+                            module name.
+                        </para>
+                    </listitem>
                 </varlistentry>
             </variablelist>
         </para>
+        <para>
         <warning>
             In the case that the function name is simultaneously defined as a unregistered function
             ("script"), and as a registered one in a library and as a builtin,
@@ -157,6 +163,7 @@
             <literal>builtin's module > macro's library > "script" for unregistered macro</literal>.
             However, the actual result may vary (and be []).
         </warning>
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

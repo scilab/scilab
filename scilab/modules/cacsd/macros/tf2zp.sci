@@ -16,7 +16,7 @@ function [z,p,k]=tf2zp(S)
     if ny==1 then //siso case
         p=roots(S.den);
         z=roots(S.num);
-        k=coeff(S.num,degree(S.num))./coeff(S.den,degree(S.den));
+        k=coeff(S.num,max(0,degree(S.num)))./coeff(S.den,max(0,degree(S.den)));
     else
         //find common denominator
         [den,fact]=lcm(S.den);
@@ -25,7 +25,7 @@ function [z,p,k]=tf2zp(S)
 
         k=[];
         for i=1:ny
-            k=[k;coeff(num(i),degree(num(i)))];
+            k=[k;coeff(num(i),max(0,degree(num(i))))];
             zi=roots(num(i),"e")
             if i==1 then
                 z=zi
@@ -40,6 +40,6 @@ function [z,p,k]=tf2zp(S)
                 z=[z,zi];
             end
         end
-        k=k/coeff(den,degree(den));
+        k=k/coeff(den,max(0,degree(den)));
     end
 endfunction

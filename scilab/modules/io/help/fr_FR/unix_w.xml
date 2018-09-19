@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,24 +14,26 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="unix_w">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="unix_w">
     <refnamediv>
         <refname>unix_w</refname>
-        <refpurpose>exécution d'une commande Unix ou DOS,
-            sortie redirigée vers la fenêtre de Scilab
+        <refpurpose>exécute des instructions Windows, Linux ou MacOS : résultats dans la console Scilab
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>unix_w(command-name)</synopsis>
+        <synopsis>unix_w(commands)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>command-name</term>
+                <term>commands</term>
                 <listitem>
-                    <para>chaîne de caractères</para>
+                    <para>Texte unique contenant les instructions à exécuter.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -38,18 +41,44 @@
     <refsection>
         <title>Description</title>
         <para>
-            Envoie la chaîne <literal>command-name</literal> à  
-            l'interpréteur de commande (sh sous Unix, ou cmd.com sous Windows). La
-            sortie standard et les erreurs sont reportées dans la variable
-            <literal>rep</literal>. Les erreurs se produisant dans l'interpréteur de commande
-            sont interceptées.
+            <literal>unix_w()</literal> ouvre une nouvelle session de l'interpréteur de commandes
+            du système d'exploitation (OS) (<emphasis>sh</emphasis> avec Linux,
+            <emphasis>cmd.exe</emphasis> avec MS Windows, etc..), lui envoie les instructions
+            <varname>commands</varname>, attend le traitement de celles-ci, reçoit les messages
+            de résultats standard ou le possible message d'erreur générés lors du traitement,
+            et ferme la session de l'interpréteur.
         </para>
         <para>
-            <warning>
-                Notez que la *dernière erreur uniquement* est signalée
-                quand <literal>command-name</literal> est une suite de commandes séparées par des
-                ";".
-            </warning>
+            Le dossier de travail initial et les variables d'environnement de la session OS ouverte
+            sont établis <link linkend="host_description">comme pour host()</link>.
+        </para>
+        <para>
+          Le résultat normalement affiché dans le terminal de l'OS est redirigé et affiché dans la
+          console Scilab ("_w" comme "main Window").
+        </para>
+        <para>
+            Si dans <varname>commands</varname> une instruction produit une erreur,
+            <itemizedlist>
+                <listitem>
+                    le message d'erreur issu de l'OS est affiché dans la console Scilab.
+                </listitem>
+                <listitem>
+                    <literal>unix_w</literal> est interrompue et affiche son propre message d'erreur
+                    dans la console Scilab.
+                </listitem>
+                <listitem>
+                    Dans <varname>commands</varname>, les instructions suivantes sont ignorées.
+                </listitem>
+                <warning>
+                    Les opérations effectuées par les instructions valides figurant avant l'instruction
+                    erronées demeurent réelles (par exemple, suppression de fichiers). Leurs
+                    compte-rendus ou résultats affichables sont cependant ignorés : ils ne sont pas
+                    affichés dans la console Scilab.
+                    Les <literal>commands</literal> comportant plusieurs instructions sont
+                    déconseillées. Elles sont plus difficiles à déboguer.
+                </warning>
+
+            </itemizedlist>
         </para>
     </refsection>
     <refsection>
@@ -66,12 +95,6 @@ end
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="edit">edit</link>
-            </member>
-            <member>
-                <link linkend="manedit">manedit</link>
-            </member>
-            <member>
                 <link linkend="unix_g">unix_g</link>
             </member>
             <member>
@@ -81,7 +104,16 @@ end
                 <link linkend="unix_x">unix_x</link>
             </member>
             <member>
-                <link linkend="unix">unix</link>
+                <link linkend="host">host</link>
+            </member>
+            <member>
+                <link linkend="powershell">powershell</link>
+            </member>
+            <member>
+                <link linkend="setenv">setenv</link>
+            </member>
+            <member>
+                <link linkend="getos">getos</link>
             </member>
         </simplelist>
     </refsection>

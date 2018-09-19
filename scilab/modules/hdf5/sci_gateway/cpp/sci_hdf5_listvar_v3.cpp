@@ -314,6 +314,7 @@ static bool read_short_data(int dataset, VarInfo6& info)
         return false;
     }
 
+    closeDataSet(dataset);
     return true;
 }
 
@@ -569,6 +570,7 @@ static bool read_boolean_sparse(int dataset, VarInfo6& info)
     readInteger32Matrix(datannz, &nnz);
 
     info.dims = 2;
+    info.pdims.resize(2);
     info.pdims[0] = pdims[0];
     info.pdims[1] = pdims[1];
     //rows(int) + nnz(int)
@@ -608,6 +610,7 @@ static bool read_poly(int dataset, VarInfo6& info)
         {
             return false;
         }
+        info.dims = dims;
         info.size += datasize * sizeof(double) * (complex + 1);
     }
 
@@ -706,7 +709,7 @@ static bool read_struct(int dataset, VarInfo6& info)
         std::string cname(name);
         FREE(name);
 
-        if (cname != "__dims__" && cname != "__refs__")
+        if (cname != "__dims__" && cname != "__refs__" && cname != "__fields__")
         {
             int dataref = getDataSetIdFromName(dataset, cname.data());
             if (dataref < 0)

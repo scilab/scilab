@@ -29,7 +29,7 @@ function h=trfmod(h,job)
         end
         flag="lss"
         den=real(poly(h("A"),"s"))
-        na=degree(den)
+        na=max(0,degree(den))
         c=h(4)
         [m,i]=max(abs(c))
         ci=c(i)
@@ -174,9 +174,9 @@ function h=trfmod(h,job)
         end
         den=den*f
     end
-    x=evstr(tgain)/coeff(den,degree(den))
+    x=evstr(tgain)/coeff(den,max(0,degree(den)))
     h("num")=num*x
-    h("den")=den/coeff(den,degree(den))
+    h("den")=den/coeff(den,max(0,degree(den)))
     format(ft(2),ft(1));
     if flag=="lss" then h=tf2ss(h),end
 endfunction

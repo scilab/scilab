@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="evans" xml:lang="pt">
     <refnamediv>
         <refname>evans</refname>
-        <refpurpose>lugar geométrico das raízes Evans</refpurpose>
+        <refpurpose>lugar geomÃ©trico das raÃ­zes Evans</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>evans(H [,kmax])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>H</term>
@@ -36,27 +36,27 @@
             <varlistentry>
                 <term>kmax</term>
                 <listitem>
-                    <para>real (ganho máximo desejado para o esboço)</para>
+                    <para>real (ganho mÃ¡ximo desejado para o esboÃ§o)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Fornece o lugar geométrico das raízes Evans para um sistema linear
-            em estado-espaço ou forma de transferência H(s) (lista
-            <literal>syslin</literal>). Este é o lugar geométrico das raízes de
+        <title>DescriÃ§Ã£o</title>
+        <para>Fornece o lugar geomÃ©trico das raÃ­zes Evans para um sistema linear
+            em estado-espaÃ§o ou forma de transferÃªncia H(s) (lista
+            <literal>syslin</literal>). Este Ã© o lugar geomÃ©trico das raÃ­zes de
             <literal>1+k*H(s)=1+k*N(s)/D(s)</literal>, no plano dos complexos. Para
             uma amostra seleta de ganhos <literal>k &lt;= kmax</literal>, a parte
-            imaginária das raízes de <literal>D(s)+k*N(s)</literal> é esboçada versus
+            imaginÃ¡ria das raÃ­zes de <literal>D(s)+k*N(s)</literal> Ã© esboÃ§ada versus
             a parte real.
         </para>
-        <para>Para obter o ganho num dado ponto do lugar geométrico, você pode
-            simplesmente executar a seguinte instrução:
+        <para>Para obter o ganho num dado ponto do lugar geomÃ©trico, vocÃª pode
+            simplesmente executar a seguinte instruÃ§Ã£o:
             <literal>k=-1/real(horner(h,[1,%i]*locate(1)))</literal> e clicar no ponto
-            desejado sobre lugar geométrico das raízes. Se as coordenadas dos pontos
-            selecionados estão no vetor de reais 2 x 1 <literal>P=locate(1)</literal>
-            este <literal>k</literal> resolve a equação <literal>k*N(w) + D(w)
+            desejado sobre lugar geomÃ©trico das raÃ­zes. Se as coordenadas dos pontos
+            selecionados estÃ£o no vetor de reais 2 x 1 <literal>P=locate(1)</literal>
+            este <literal>k</literal> resolve a equaÃ§Ã£o <literal>k*N(w) + D(w)
                 =0
             </literal>
             com <literal>w=P(1)+%i*P(2)=[1,%i]*P</literal>.
@@ -84,7 +84,7 @@
         </para>
     </refsection>
     <refsection>
-        <title>Ver Também </title>
+        <title>Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="kpure">kpure</link>

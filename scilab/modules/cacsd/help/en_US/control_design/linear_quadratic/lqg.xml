@@ -13,16 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="lqg">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="lqg">
     <refnamediv>
         <refname>lqg</refname>
         <refpurpose>LQG compensator</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>K=lqg(P_aug,r)</synopsis>
-        <synopsis>K=lqg(P,Qxu,Qwv)</synopsis>
-        <synopsis>K=lqg(P,Qxu,Qwv,Qi,#dof)</synopsis>
+        <synopsis>
+          K = lqg(P_aug, r)
+          K = lqg(P, Qxu, Qwv)
+          K = lqg(P, Qxu, Qwv, Qi, #dof)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -103,7 +108,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <refsection>
+        <refsect2>
             <title>Regulation around zero</title>
             <mediaobject>
                 <imageobject>
@@ -136,8 +141,8 @@
                     </para>
                 </varlistentry>
             </variablelist>
-        </refsection>
-        <refsection>
+        </refsect2>
+        <refsect2>
             <title>
                 Regulation around a reference signal, Syntax <literal>K=lqg(P,Qxu,Qwv,Qi [,#dof])</literal>
             </title>
@@ -154,7 +159,7 @@
                 <literal>Qxu</literal> and the noise covariance matrix
                 <literal>Qwv</literal>
             </para>
-        </refsection>
+        </refsect2>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -169,11 +174,11 @@
             </mediaobject>
         </para>
         <para>
-            A force <latex> u=\bar{u}+e</latex> (where <latex>e</latex> is a
-            noise) is applied to M, the deviations <latex>dy_1</latex> and
-            <latex>dy_2</latex> from equilibrium positions of the masses are
-            measured. These measures are subject to an additionnal
-            noise <latex>v</latex>.
+            A force <latex> u=\bar{u}+e</latex> (where <emphasis>e</emphasis> is a noise) is
+            applied to M, the deviations <emphasis>dy<subscript>1</subscript></emphasis> and
+            <emphasis>dy<subscript>2</subscript></emphasis> from equilibrium positions of the
+            masses are measured. These measures are subject to an additionnal
+            noise <emphasis>v</emphasis>.
         </para>
         <para>
             A continuous time state space representation of this system is:
@@ -190,10 +195,9 @@
             </latex>
         </para>
         <para>
-            The instructions below can be used to compute a LQG compensator
-            of the discretized version of this dynamical
-            system.  <latex valign="center">e</latex> and <latex>v</latex> are discrete
-            time white noises such as <latex style="display"
+            The instructions below can be used to compute a LQG compensator of the discretized
+            version of this dynamical system. <emphasis>e</emphasis> and <emphasis>v</emphasis>
+            are discrete time white noises such as <latex style="display"
       align="left">\mathbb{E}(e e')=Q_e \text{ , }\mathbb{E}(v
                 v')=R_vv \text{ and }\mathbb{E}(e v')=S_{ev}
             </latex>
@@ -203,7 +207,7 @@
       align="left"><![CDATA[\sum_0^\infty\left[\begin{array}{ll}x'&u'\end{array}\right]\left[\begin{array}{ll}Q_{xx}&0\\0&R_{uu}\end{array}\right]\left[\begin{array}{l}x\\u\end{array}\right]
       dt]]></latex>
         </para>
-        <refsection>
+        <refsect2>
             <title>Regulation around zero</title>
             <programlisting role="example"><![CDATA[
       // Form the state space model
@@ -292,14 +296,15 @@
                 L=legend(["$dy_1$","$dy_2$"]);L.font_size=4;
                 xlabel('Time (s)')
             </scilab:image>
-        </refsection>
-        <refsection>
+        </refsect2>
+        <refsect2>
             <title>
                 Regulation around a reference signal, Syntax <literal>K=lqg(P,Qxu,Qwv,Qi [,#dof])</literal>
             </title>
             <para>
                 The purpose of the controller is here to assign
-                <latex>dy_2</latex> using the measure of <latex>dy_2</latex>.
+                <emphasis>dy<subscript>2</subscript></emphasis> using the measure of
+                <emphasis>dy<subscript>2</subscript></emphasis>.
             </para>
             <programlisting role="example"><![CDATA[
       M = 1; m = 0.2; k = 0.1; b = 0.004;
@@ -378,7 +383,7 @@
                 u=flts([r;dy2],J);
                 subplot(212);plot(t',u');xlabel("Time");ylabel("u")
             </scilab:image>
-        </refsection>
+        </refsect2>
     </refsection>
     <refsection>
         <title>Reference</title>
@@ -405,5 +410,16 @@
                 <link linkend="obscont">obscont</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+      <title>History</title>
+      <revhistory>
+        <revision>
+          <revnumber>6.0</revnumber>
+          <revdescription>
+             lqg(P,Qxu,Qwv) and lqg(P,Qxu,Qwv,Qi,#dof) syntaxes added.
+          </revdescription>
+        </revision>
+      </revhistory>
     </refsection>
 </refentry>

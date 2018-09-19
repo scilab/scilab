@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,12 +23,14 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[unit [,err]]=file("open", file-name [,status] [,access [,recl]] [,format])
+        <synopsis>
+            [unit, err] = file("open", file-name [,status] [,access [,recl]] [,format])
             file("close", unit)
             file("rewind", unit)
             file("backspace", unit)
             file("last", unit)
-            [units [,typ [,nams [,mod [,swap]]]]] = file([unit])
+            [units, typ, nams, mod, swap] = file()
+            [units, typ, nams, mod, swap] = file(unit)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -38,6 +40,10 @@
                 <term>file-name</term>
                 <listitem>
                     <para>string, file name of the file to be opened</para>
+                    <warning>
+                        This function can not open files whose path or/and name have non-ascii
+                        UTF characters (accented, etc). In this case, mopen() must be used.
+                    </warning>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -152,71 +158,39 @@
             <varlistentry>
                 <term>mod</term>
                 <listitem>
-                    <para>file opening mode. Formed by three digits abc</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>Fortran files</term>
-                            <listitem>
-                                <variablelist>
-                                    <varlistentry>
-                                        <term>a</term>
-                                        <listitem>
-                                            <para>0 stands for formatted and 1 for unformatted
-                                                (binary)
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>b</term>
-                                        <listitem>
-                                            <para>0 stands for sequential access and 1 for direct
-                                                access
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>c</term>
-                                        <listitem>
-                                            <para>0 stands for "new", 1 for "old", 2 for "scratch"
-                                                and 3 for "unknown"
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                </variablelist>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>C files</term>
-                            <listitem>
-                                <variablelist>
-                                    <varlistentry>
-                                        <varlistentry>
-                                            <term>a</term>
-                                            <listitem>
-                                                <para>1 stands for "r" (read), 2 stands for "w" (write)
-                                                    and 3 for "a" (append)
-                                                </para>
-                                            </listitem>
-                                            <varlistentry>
-                                                <term>b</term>
-                                                <listitem>
-                                                    <para>is 1 if file has been opened with a "+" (updating)
-                                                        mode
-                                                    </para>
-                                                </listitem>
-                                            </varlistentry>
-                                        </varlistentry>
-                                        <term>b</term>
-                                        <listitem>
-                                            <para>is 1 if file has been opened with a "b" (binary)
-                                                mode
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                </variablelist>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <para>file opening mode. Formed by three digits abc:</para>
+                    <table border="0">
+                        <tr valign="top">
+                            <th colspan="2">Fortran files</th>
+                        </tr>
+                        <tr valign="top">
+                            <th>a</th>
+                            <td>0 stands for formatted and 1 for unformatted (binary)</td>
+                        </tr>
+                        <tr valign="top">
+                            <th>b</th>
+                            <td>0 stands for sequential access and 1 for direct access</td>
+                        </tr>
+                        <tr valign="top">
+                            <th>c</th>
+                            <td>0 stands for "new", 1 for "old", 2 for "scratch" and 3 for "unknown"</td>
+                        </tr>
+                        <tr valign="top">
+                            <th colspan="2">C files</th>
+                        </tr>
+                        <tr valign="top">
+                            <th>a</th>
+                            <td>1 stands for "r" (read), 2 stands for "w" (write)  and 3 for "a" (append)</td>
+                        </tr>
+                        <tr valign="top">
+                            <th>b</th>
+                            <td>is 1 if file has been opened with a "+" (updating) mode</td>
+                        </tr>
+                        <tr valign="top">
+                            <th>c</th>
+                            <td>is 1 if file has been opened with a "b" (binary) mode</td>
+                        </tr>
+                    </table>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -230,9 +204,18 @@
             <varlistentry>
                 <term>err</term>
                 <listitem>
-                    <para>integer, error message number (see error), if open fails. If
-                        err is omitted an error message is issued.
+                    <para>integer code returned if opening the file fails. If <varname>err</varname>
+                    is omitted, an error message is issued.
                     </para>
+                    <table>
+                        <tr valign="top"><th>65</th><td>File already used</td></tr>
+                        <tr valign="top"><th>66</th><td>Too many files opened!</td></tr>
+                        <tr valign="top"><th>67</th><td>Unknown file format</td></tr>
+                        <tr valign="top"><th>240</th>
+                                         <td>The file already exists or directory write
+                                             access denied.</td></tr>
+                        <tr valign="top"><th>241</th><td>The file does not exist or read access denied.</td></tr>
+                    </table>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -240,13 +223,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            selects a logical unit <varname>unit</varname> and manages the file
-            <varname>file-name</varname>.
+            <literal>file(…)</literal> selects a logical unit <varname>unit</varname> and manages
+            the file <varname>file-name</varname>.
         </para>
         <variablelist>
             <varlistentry>
-                <term>[unit [,err]]=file("open", file-name [,status] [,access
-                    [,recl]][,format])
+                <term>[unit [,err]]=file("open", file-name [,status] [,access [,recl]][,format])
                 </term>
                 <listitem>
                     <para>
@@ -276,7 +258,7 @@
                 </term>
                 <listitem>
                     <para>
-                        puts the pointer at the beginning of file.
+                        puts the pointer at the beginning of the file.
                     </para>
                 </listitem>
             </varlistentry>
@@ -306,16 +288,17 @@
                 </term>
                 <listitem>
                     <para>
-                        returns the logical unit descriptors of
-                        the opened files. So <literal>file("close",file())</literal> closes all
-                        user opened files (C or Fortran type).
+                        returns the descriptors of the opened files.
+                    </para>
+                    <para>To test whether a file whose unit is <literal>id</literal> is opened,
+                        <literal>file(id)~=[]</literal> may be used.
+                    </para>
+                    <para>To close all user opened files (C or Fortran type),
+                        <literal>file("close",file())</literal> may be used.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
-        <warning>
-            This function can not open a UTF filename. In this case, please use mopen.
-        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -343,31 +326,28 @@ mclose(u2);
                 <link linkend="isfile">isfile</link>
             </member>
             <member>
+                <link linkend="read">read</link>
+            </member>
+            <member>
+                <link linkend="readb">readb</link>
+            </member>
+            <member>
+                <link linkend="write">write</link>
+            </member>
+            <member>
+                <link linkend="writb">writb</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
                 <link linkend="save">save</link>
             </member>
             <member>
                 <link linkend="load">load</link>
             </member>
             <member>
-                <link linkend="write">write</link>
-            </member>
-            <member>
-                <link linkend="read">read</link>
-            </member>
-            <member>
-                <link linkend="writb">writb</link>
-            </member>
-            <member>
-                <link linkend="readb">readb</link>
-            </member>
-            <member>
                 <link linkend="uigetfile">uigetfile</link>
-            </member>
-            <member>
-                <link linkend="mopen">mopen</link>
-            </member>
-            <member>
-                <link linkend="mclose">mclose</link>
             </member>
         </simplelist>
     </refsection>

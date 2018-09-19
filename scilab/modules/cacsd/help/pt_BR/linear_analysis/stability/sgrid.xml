@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -16,27 +16,27 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sgrid" xml:lang="pt">
     <refnamediv>
         <refname>sgrid</refname>
-        <refpurpose>esboça linhas de grid de um s-plano </refpurpose>
+        <refpurpose>esboÃ§a linhas de grid de um s-plano </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>sgrid()
             sgrid('new')
             sgrid(zeta,wn [,color])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
-        <para>Usado em conjunto com evans, esboça linhas de taxa de amortecimento
-            constante (<literal>zeta</literal>) e freqüência natural
+        <title>DescriÃ§Ã£o</title>
+        <para>Usado em conjunto com evans, esboÃ§a linhas de taxa de amortecimento
+            constante (<literal>zeta</literal>) e freqÃ¼Ãªncia natural
             (<literal>wn</literal>).
         </para>
         <variablelist>
             <varlistentry>
                 <term>sgrid()</term>
                 <listitem>
-                    <para>adiciona um grid sobre uma raiz do s-plano contínuo existente
-                        com valores padrões para <literal>zeta</literal> e
+                    <para>adiciona um grid sobre uma raiz do s-plano contÃ­nuo existente
+                        com valores padrÃµes para <literal>zeta</literal> e
                         <literal>wn</literal>.
                     </para>
                 </listitem>
@@ -44,8 +44,8 @@
             <varlistentry>
                 <term>sgrid('new')</term>
                 <listitem>
-                    <para>limpa a tela de gráficos e então esboça um grid de s-plano
-                        padrão
+                    <para>limpa a tela de grÃ¡ficos e entÃ£o esboÃ§a um grid de s-plano
+                        padrÃ£o
                     </para>
                 </listitem>
             </varlistentry>
@@ -53,8 +53,8 @@
                 <term>sgrid(zeta,wn [,color])</term>
                 <listitem>
                     <para>
-                        é o mesmo que <literal>sgrid()</literal> mas utiliza a taxa de
-                        amortecimento e a freqüência natural fornecidas.
+                        Ã© o mesmo que <literal>sgrid()</literal> mas utiliza a taxa de
+                        amortecimento e a freqÃ¼Ãªncia natural fornecidas.
                     </para>
                 </listitem>
             </varlistentry>
@@ -70,7 +70,7 @@ sgrid(0.6,2,7)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="evans">evans</link>

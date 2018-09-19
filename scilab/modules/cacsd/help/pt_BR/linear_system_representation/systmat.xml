@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -19,11 +19,11 @@
         <refpurpose>matriz sistema</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[Sm]=systmat(Sl);</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>Sl</term>
@@ -43,11 +43,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             Matriz sistema do sistema linear <literal>Sl</literal> (lista
-            <literal>syslin</literal>) em forma de espaço de estados (função
-            utilitária).
+            <literal>syslin</literal>) em forma de espaÃ§o de estados (funÃ§Ã£o
+            utilitÃ¡ria).
         </para>
         <programlisting role=""><![CDATA[
 Sm = [-sI + A   B;
@@ -63,7 +63,7 @@ Sm = [-sE + A   B;
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ss2des">ss2des</link>

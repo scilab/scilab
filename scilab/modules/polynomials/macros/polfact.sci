@@ -32,7 +32,7 @@ function [f]=polfact(p)
         error(msprintf(gettext("%s: Input argument #%d must be real.\n"),"polfact",1))
     end
     p=real(p)
-    n=degree(p);f=coeff(p,n);
+    n=max(0,degree(p));f=coeff(p,n);
     if n==0 then return,end
     var=varn(p);
     r=roots(p);[s,k]=gsort(abs(r));r=r(k)

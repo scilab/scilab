@@ -30,6 +30,10 @@ function result = atomsQuit()
 
     atomsModulesLoaded = atomsGetLoaded();
     sizeLoaded = size(atomsModulesLoaded);
+    // To silently redefine the same quitModule() in the series of .quit files,
+    // when several modules are unloaded:
+    old_prot = funcprot(0);
+
     for i = 1:sizeLoaded(1)
 
         this_package_name = atomsModulesLoaded(i, 1);
@@ -49,4 +53,5 @@ function result = atomsQuit()
             end
         end
     end
+    funcprot(old_prot)
 endfunction

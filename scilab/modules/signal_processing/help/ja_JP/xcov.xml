@@ -160,102 +160,65 @@ along with this program.
                 <literal>c=xcov(x)</literal>
 
                 は,以下の正規化しない離散共分散を計算します:
-
-                <latex>{\begin{matrix}C_k = \sum_{i=0}^{n-k-1}
-
-                    {(x_{i+k}-\mu_x})({x_i-\mu_x})^{*} , k \geq 0
-
-                    \mu_x=\sum_{i=0}^{n-1}{x_i} C_k = C^{*}_{-k}, k \leq
-
-                    -1\end{matrix}.}$
-
-                </latex>
-
+                <para>
+                  <latex>{\begin{matrix}C_k = \sum_{i=0}^{n-k-1}
+                      {(x_{i+k}-\mu_x})({x_i-\mu_x})^{*} , k \geq 0
+                      \mu_x=\sum_{i=0}^{n-1}{x_i} C_k = C^{*}_{-k}, k \leq
+                      -1\end{matrix}.}$
+                  </latex>
+                </para>
                 そして,<literal>c</literal>を返します.
-
-                共分散の並びは, <latex>$C_k,k=-n:n$</latex>
-
+              共分散の並びは, C<subscript>k=-n:n</subscript>
                 となります. ただし,<literal>n</literal> は
-
                 <literal>x</literal>の長さです.
-
             </listitem>
-
             <listitem>
-
                 <literal>xcov(x,y)</literal>
-
                 は,以下のように正規化しない離散相互共分散を計算します:
-
-                <latex>${\begin{matrix}C_k = \sum_{i=1}^{n-k}
-
-                    {(x_{i+k}-\mu_x})*({y_i}-\mu_y)^{*}, k \geq 0
-
-                    \mu_x=\sum_{i=0}^{n-1}{x_i} \mu_y=\sum_{i=0}^{n-1}{y_i} C_k =
-
-                    C^{*}_{-k}, k \leq -1\end{matrix}.}$
-
-                </latex>
-
+                 <para>
+                    <latex>${\begin{matrix}C_k = \sum_{i=1}^{n-k}
+                        {(x_{i+k}-\mu_x})*({y_i}-\mu_y)^{*}, k \geq 0
+                        \mu_x=\sum_{i=0}^{n-1}{x_i} \mu_y=\sum_{i=0}^{n-1}{y_i} C_k =
+                        C^{*}_{-k}, k \leq -1\end{matrix}.}$
+                    </latex>
+                </para>
                 結果を<literal>c</literal>に返します.
-
-                相互共分散の並びは,
-
-                <latex>$C_k,k=-n:n$</latex>
-
-                となります.ただし,<literal>n</literal>は
-
+                相互共分散の並びは, C<subscript>k=-n:n</subscript> となります.ただし,<literal>n</literal>は
                 <literal>x</literal>および<literal>y</literal>
-
                 の長さの大きい方です.
-
             </listitem>
-
         </itemizedlist>
-
         <para>
-
             <literal>maxlags</literal> 引数が指定された場合,
-
             <literal>xcov</literal> は <literal>c</literal> を
-
-            返し,共分散の並びは <latex>$C_k,k=-maxlags:maxlags$</latex> と
-
+            返し,共分散の並びは C<subscript>k=-maxlags:maxlags</subscript> と
             なります.
-
             <literal>maxlags</literal> が <literal>length(x)</literal>よりも
-
             大きい場合, <literal>c</literal>の先頭と末尾の複数の値は
-
             ゼロになります.
-
         </para>
-
         <para>
-
             <literal>scaling</literal> 引数は,
-
             <literal>c</literal>に結果を出力する前に
-
-            <latex>C(k)</latex>を正規化する方法を以下のように指定します:
+            <emphasis>C(k)</emphasis>を正規化する方法を以下のように指定します:
 
             <itemizedlist>
 
                 <listitem>
 
-                    <term>"biased"</term>:<literal>c=</literal><latex>$C$</latex><literal>/n</literal>.
+                    <term>"biased"</term>: <literal>c=</literal><emphasis>C</emphasis><literal>/n</literal>.
 
                 </listitem>
 
                 <listitem>
 
-                    <term>"unbiased"</term>:<literal>c=</literal><latex>$C$</latex><literal>./(n-(-maxlags:maxlags))</literal>.
+                    <term>"unbiased"</term>: <literal>c=</literal><emphasis>C</emphasis><literal>./(n-(-maxlags:maxlags))</literal>.
 
                 </listitem>
 
                 <listitem>
 
-                    <term>"coeff"</term>:<literal>c=</literal><latex>$C$</latex><literal>/(norm(x)*norm(y))</literal>.
+                    <term>"coeff"</term>: <literal>c=</literal><emphasis>C</emphasis><literal>/(norm(x)*norm(y))</literal>.
 
                 </listitem>
 
@@ -277,99 +240,75 @@ along with this program.
 
         <literal>c</literal>のみを返します.
 
-        共分散の並びは,<latex>$C_k,k \geq 0$</latex>となります.
+        共分散の並びは,C<subscript>k≥0</subscript>となります.
 
     </refsection>
 
+      <refsection>
+
+        <title>手法</title>
+
+        この関数は,
+
+        <literal>xcorr(x-mean(x),y-mean(y),...)</literal>により
+
+        <emphasis>C</emphasis>を計算します.
+
+      </refsection>
+
+      <refsection>
+
+        <title>例</title>
+
+        <programlisting role="example">t = linspace(0, 100, 2000);
+
+          y = 0.8 * sin(t) + 0.8 * sin(2 * t);
+
+          [c, ind] = xcov(y, "biased");
+
+          plot(ind, c)
+
+        </programlisting>
+
+        <scilab:image>
+
+          t = linspace(0, 100, 2000);
+
+          y = 0.8 * sin(t) + 0.8 * sin(2 * t);
+
+          [c, ind] = xcov(y, "biased");
+
+          plot(ind, c)
+
+        </scilab:image>
+
+      </refsection>
+
     <refsection>
 
-        <refsection>
+      <title>参照</title>
 
-            <title>手法</title>
+      <simplelist type="inline">
 
-            この関数は,
+        <member>
 
-            <literal>xcorr(x-mean(x),y-mean(y),...)</literal>により
+          <link linkend="xcorr">xcorr</link>
 
-            <latex>$C$</latex>を計算します.
+        </member>
 
-        </refsection>
+        <member>
 
-        <refsection>
+          <link linkend="corr">corr</link>
 
-            <title>例</title>
+        </member>
 
-            <programlisting role="example">t = linspace(0, 100, 2000);
+        <member>
 
-                y = 0.8 * sin(t) + 0.8 * sin(2 * t);
+          <link linkend="fft">fft</link>
 
-                [c, ind] = xcov(y, "biased");
+        </member>
 
-                plot(ind, c)
-
-            </programlisting>
-
-            <scilab:image>
-
-                t = linspace(0, 100, 2000);
-
-                y = 0.8 * sin(t) + 0.8 * sin(2 * t);
-
-                [c, ind] = xcov(y, "biased");
-
-                plot(ind, c)
-
-            </scilab:image>
-
-        </refsection>
-
-        <refsection>
-
-            <title>参照</title>
-
-            <simplelist type="inline">
-
-                <member>
-
-                    <link linkend="xcorr">xcorr</link>
-
-                </member>
-
-                <member>
-
-                    <link linkend="corr">corr</link>
-
-                </member>
-
-                <member>
-
-                    <link linkend="fft">fft</link>
-
-                </member>
-
-            </simplelist>
-
-        </refsection>
-
-        <refsection>
-
-            <title>作者</title>
-
-            <simplelist type="vert">
-
-                <member>Serge Steer, INRIA</member>
-
-            </simplelist>
-
-        </refsection>
-
-        <title>使用される関数</title>
-
-        <para>
-
-            <link linkend="xcorr">xcorr</link>
-
-        </para>
+      </simplelist>
 
     </refsection>
 

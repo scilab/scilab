@@ -50,7 +50,7 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
     int Dims = pStr->getDims();
     int* pDims = pStr->getDimsArray();
     matvar_t * pMatVarOut = NULL;
-    int iLen = 0;
+    unsigned int iLen = 0;
 
     if (Dims > 2)
     {
@@ -98,19 +98,9 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
     char* pstMatData = NULL;
     if (iLen != 0)
     {
-
-        char** ppcName = (char**)MALLOC(sizeof(char*) * pDims[0] * pDims[1]);
-        if (ppcName == NULL)
-        {
-            FREE(psize_t);
-            Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
-            return NULL;
-        }
-
-        pstMatData = (char*)MALLOC(sizeof(char) * pDims[0] * iLen);
+        pstMatData = (char*)MALLOC(sizeof(char) * (pDims[0] * iLen + 1));
         if (pstMatData == NULL)
         {
-            FREE(ppcName);
             FREE(psize_t);
             Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
             return NULL;
@@ -118,35 +108,24 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
 
         for (int i = 0; i < pDims[0]; ++i)
         {
-            ppcName[i] = wide_string_to_UTF8(pStr->get(i));
-            if (ppcName[i] == NULL)
+            char* pcName = wide_string_to_UTF8(pStr->get(i));
+            if (pcName == NULL)
             {
-                for (int idelete = 0; idelete < i; ++idelete)
-                {
-                    FREE(ppcName[idelete]);
-                }
-                FREE(ppcName);
                 FREE(pstMatData);
                 FREE(psize_t);
                 Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
                 return NULL;
             }
-        }
 
-        for (int i = 0; i < pDims[0]; ++i)
-        {
-            for (int j = 0; j < iLen; ++j)
+            for (unsigned int j = 0; j < iLen; ++j)
             {
-                pstMatData[i + j * pDims[0]] = ppcName[i][j];
+                pstMatData[j * pDims[0] + i] = pcName[j];
             }
+
+            FREE(pcName);
         }
 
-        for (int i = 0; i < pDims[0]; ++i)
-        {
-            FREE(ppcName[i]);
-        }
-
-        FREE(ppcName);
+        pstMatData[pDims[0] * iLen] = '\0';
     }
 
     /* Save the variable */

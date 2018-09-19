@@ -28,7 +28,7 @@ function sl=cont_frm(num,den)
             num(1,1)=poly(num(1,1),varn(den),"c"),
         end
     end
-    nd=degree(den);
+    nd=max(0,degree(den));
     // normalization
     dnd=coeff(den,nd);den=den/dnd;num=num/dnd
     // D(s)
@@ -38,7 +38,7 @@ function sl=cont_frm(num,den)
             num(l,k)=nl,d(l,k)=dl,
         end,
     end
-    if max(degree(d))==0 then d=coeff(d),end
+    if max(0,degree(d))==0 then d=coeff(d),end
     //matrices a b and c
     if nd<>0 then
         den=coeff(den);c=coeff(num,0:nd-1)

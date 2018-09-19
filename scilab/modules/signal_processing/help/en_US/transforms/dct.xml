@@ -129,7 +129,9 @@
             <title>Transform description</title>
             <para>
                 This function realizes direct or
-                inverse 1-D or N-D Discrete Cosine Transforms with shift depending on the <literal>option</literal> parameter value. For a 1-D array  <latex>$A$</latex> of length  <latex>$n$</latex>:
+                inverse 1-D or N-D Discrete Cosine Transforms with shift depending on the
+                <literal>option</literal> parameter value. For a 1-D array  <emphasis>A</emphasis>
+                of length  <emphasis>n</emphasis>:
             </para>
             <itemizedlist>
                 <listitem>
@@ -217,8 +219,8 @@
             </para>
             <para>
                 The normalized multi-dimensional DCT transform of an array
-                <literal>A</literal> with dimensions <latex>$n_1, n_2, \ldots, n_p$</latex>
-                is given by
+                <literal>A</literal> with dimensions <emphasis>n<subscript>1</subscript>,
+                n<subscript>2</subscript>, …, n<subscript>p</subscript></emphasis> is given by
             </para>
             <para>
                 <latex>
@@ -236,7 +238,8 @@
             </para>
             <para>
                 The normalized multi-dimensional DCT inverse transform of an
-                array <literal>A</literal> with dimensions <latex>$n_1, n_2, \ldots, n_p$</latex>is given by
+                array <literal>A</literal> with dimensions <emphasis>n<subscript>1</subscript>,
+                n<subscript>2</subscript>, …, n<subscript>p</subscript></emphasis> is given by
             </para>
             <para>
                 <latex>

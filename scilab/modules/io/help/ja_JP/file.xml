@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,9 +23,14 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[unit [,err]]=file('open', file-name [,status] [,access [,recl]] [,format])
-            file(action,unit)
-            [units [,typ [,nams [,mod [,swap]]]]] = file([unit])
+        <synopsis>
+            [unit, err] = file("open", file-name [,status] [,access [,recl]] [,format])
+            file("close", unit)
+            file("rewind", unit)
+            file("backspace", unit)
+            file("last", unit)
+            [units, typ, nams, mod, swap] = file()
+            [units, typ, nams, mod, swap] = file(unit)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -35,6 +40,10 @@
                 <term>file-name</term>
                 <listitem>
                     <para>文字列, オープンするファイルのファイル名</para>
+                    <warning>
+                        この関数は、ASCII以外のUTF文字（アクセント付きなど）を含むパスまたは名前のファイルを開くことはできません.
+                        この場合,mopenを使用してください.
+                    </warning>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -150,71 +159,40 @@
             <varlistentry>
                 <term>mod</term>
                 <listitem>
-                    <para>ファイルをオープンするモード.
-                        3桁 abc により構成.
+                    <para>ファイルをオープンするモード. 3桁 abc により構成.
                     </para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>Fortranファイル</term>
-                            <listitem>
-                                <variablelist>
-                                    <varlistentry>
-                                        <term>a</term>
-                                        <listitem>
-                                            <para>0 は整形済み, 1 は未整形(バイナリ)を意味します
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>b</term>
-                                        <listitem>
-                                            <para>0 は連続アクセス, 1 は直接アクセスを意味します</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>c</term>
-                                        <listitem>
-                                            <para>0 は "new", 1 は "old", 2 は "scratch"
-                                                および 3 は "unknown"を意味します
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                </variablelist>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>Cファイル</term>
-                            <listitem>
-                                <variablelist>
-                                    <varlistentry>
-                                        <varlistentry>
-                                            <term>a</term>
-                                            <listitem>
-                                                <para>1は "r" (読み込み)を意味し, 2 は "w" (書き込み)
-                                                    そして 3 は "a" (追加)を意味します
-                                                </para>
-                                            </listitem>
-                                            <varlistentry>
-                                                <term>b</term>
-                                                <listitem>
-                                                    <para>
-                                                        ファイルが "+" (更新)モードでオープンされている場合に 1
-                                                    </para>
-                                                </listitem>
-                                            </varlistentry>
-                                        </varlistentry>
-                                        <term>b</term>
-                                        <listitem>
-                                            <para>
-                                                ファイルが "b" (バイナリ)モードで
-                                                オープンされている場合に 1
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                </variablelist>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <table border="0">
+                        <tr valign="top">
+                            <th colspan="2">Fortranファイル</th>
+                        </tr>
+                        <tr valign="top">
+                            <th>a</th>
+                            <td>0 は整形済み, 1 は未整形(バイナリ)を意味します</td>
+                        </tr>
+                        <tr valign="top">
+                            <th>b</th>
+                            <td>0 は連続アクセス, 1 は直接アクセスを意味します</td>
+                        </tr>
+                        <tr valign="top">
+                            <th>c</th>
+                            <td>0 は "new", 1 は "old", 2 は "scratch" および 3 は "unknown"を意味します</td>
+                        </tr>
+                        <tr valign="top">
+                            <th colspan="2">Cファイル</th>
+                        </tr>
+                        <tr valign="top">
+                            <th>a</th>
+                            <td>1は "r" (読み込み)を意味し, 2 は "w" (書き込み) そして 3 は "a" (追加)を意味します</td>
+                        </tr>
+                        <tr valign="top">
+                            <th>b</th>
+                            <td>ファイルが "+" (更新)モードでオープンされている場合に 1</td>
+                        </tr>
+                        <tr valign="top">
+                            <th>c</th>
+                            <td>ファイルが "b" (バイナリ)モードで オープンされている場合に 1</td>
+                        </tr>
+                    </table>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -230,10 +208,18 @@
             <varlistentry>
                 <term>err</term>
                 <listitem>
-                    <para>整数, オープンに失敗した場合は,
-                        エラーメッセージ番号 (error 参照).
-                        err が省略された場合,エラーメッセージが発行されます.
+                    <para>整数, オープンに失敗した場合は, エラーメッセージ番号. <varname>err</varname>
+                    が省略された場合,エラーメッセージが発行されます.
                     </para>
+                    <table>
+                        <tr valign="top"><th>65</th><td>File already used</td></tr>
+                        <tr valign="top"><th>66</th><td>Too many files opened!</td></tr>
+                        <tr valign="top"><th>67</th><td>Unknown file format</td></tr>
+                        <tr valign="top"><th>240</th>
+                                         <td>The file already exists or directory write
+                                             access denied.</td></tr>
+                        <tr valign="top"><th>241</th><td>The file does not exist or read access denied.</td></tr>
+                    </table>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -294,9 +280,6 @@
             <literal>writb</literal>,<literal>save</literal>, <literal>load</literal>
             関数コールにおいてファイル記述子と同様に使用することができます.
         </para>
-        <warning>この関数はUTFファイル名をオープンすることができません.
-            この場合,mopenを使用してください.
-        </warning>
         <para>
             <literal>file(action,unit)</literal> により,ファイルを閉じたり,
             カレントのファイルポインタを移動することができます.
@@ -306,6 +289,9 @@
             オープンされたファイルの論理ユニット記述子を返します.この場合,
             <literal>file('close',file() )</literal> は
             ユーザにオープンされたファイル(CまたはFortran型)を全て閉じます.
+        </para>
+        <para>To test whether a file  #<literal>id</literal> is opened,
+            <literal>file(id)~=[]</literal> may be used.
         </para>
     </refsection>
     <refsection>
@@ -334,31 +320,28 @@ mclose(u2);
                 <link linkend="isfile">isfile</link>
             </member>
             <member>
+                <link linkend="read">read</link>
+            </member>
+            <member>
+                <link linkend="readb">readb</link>
+            </member>
+            <member>
+                <link linkend="write">write</link>
+            </member>
+            <member>
+                <link linkend="writb">writb</link>
+            </member>
+            <member>
+                <link linkend="mopen">mopen</link>
+            </member>
+            <member>
                 <link linkend="save">save</link>
             </member>
             <member>
                 <link linkend="load">load</link>
             </member>
             <member>
-                <link linkend="write">write</link>
-            </member>
-            <member>
-                <link linkend="read">read</link>
-            </member>
-            <member>
-                <link linkend="writb">writb</link>
-            </member>
-            <member>
-                <link linkend="readb">readb</link>
-            </member>
-            <member>
                 <link linkend="uigetfile">uigetfile</link>
-            </member>
-            <member>
-                <link linkend="mopen">mopen</link>
-            </member>
-            <member>
-                <link linkend="mclose">mclose</link>
             </member>
         </simplelist>
     </refsection>

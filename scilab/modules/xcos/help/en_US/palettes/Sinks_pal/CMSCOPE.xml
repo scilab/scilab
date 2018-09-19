@@ -4,7 +4,7 @@
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * Copyright (C) 2016-2017 - FOSSEE IIT Bombay - Dipti Ghosalkar
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,75 +22,50 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CMSCOPE">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="CMSCOPE">
     <refnamediv>
         <refname>CMSCOPE</refname>
-        <refpurpose>Multi display scope</refpurpose>
+        <refpurpose>Multi display scope in subplot(N,1)</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CMSCOPE.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CMSCOPE.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_CMSCOPE">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CMSCOPE">Multi display scope</link>
-                </para>
+              <xref linkend="Description_CMSCOPE">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CMSCOPE">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CMSCOPE">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_CMSCOPE">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CMSCOPE">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CMSCOPE">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_CMSCOPE">Computational function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+              <xref linkend="Dialogbox_CMSCOPE">Parameters</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_CMSCOPE">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Sinks_pal">Sinks palette</link>
-                </para>
+              <xref linkend="Defaultproperties_CMSCOPE">Default properties</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Interfacingfunction_CMSCOPE">Interfacing function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Computationalfunction_CMSCOPE">Computational function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Example_CMSCOPE">Example</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Seealso_CMSCOPE">See also</xref>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Description_CMSCOPE">
         <title>Description</title>
         <para>
@@ -99,21 +74,17 @@
             block can have multiple axes (one per port); all axes have a common
             time range with independent y-axes. The Scope allows you to adjust the
             amount of time and the range of input values displayed.
-
         </para>
     </refsection>
-    <refsection id="Dialogbox_CMSCOPE">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/CMSCOPE_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
 
-        </para>
+    <refsection id="Dialogbox_CMSCOPE">
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/CMSCOPE_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -201,7 +172,9 @@
                 <para> Properties : Type 'str' of size 1</para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
+
     <refsection id="Defaultproperties_CMSCOPE">
         <title>Default properties</title>
         <itemizedlist>
@@ -268,7 +241,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
+
     <refsection id="Interfacingfunction_CMSCOPE">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -284,16 +259,37 @@
                 <para> SCI/modules/scicos_blocks/src/c/cmscope.c (Type 4)</para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
+
     <refsection id="Example_CMSCOPE">
-        <title>Multi display scope example</title>
+        <title>Example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/tests/unit_tests/cmscope.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../tests/unit_tests/cmscope.zcos" valign="middle"/>
+                    <imagedata fileref="../../../../tests/unit_tests/cmscope.zcos" align="center"/>
                 </imageobject>
             </inlinemediaobject>
         </link>
+		<para/>
+    </refsection>
+
+    <refsection id="Seealso_CMSCOPE" role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="CSCOPE">CSCOPE</link>
+            </member>
+            <member>
+                <link linkend="CFSCOPE">CFSCOPE</link>
+            </member>
+            <member>
+                <link linkend="CSCOPXY">CSCOPXY</link>
+            </member>
+            <member>
+                <link linkend="CSCOPXY3D">CSCOPXY3D</link>
+            </member>
+        </simplelist>
     </refsection>
     <refsection id="Seealso_CMSCOPE">
         <title>See also</title>

@@ -39,10 +39,9 @@
         <title>Description</title>
         <para>
             Renvoie un vecteur ligne <literal>n</literal> de valeurs
-            logarithmiquement équidistantes entre <latex>10^{d1}</latex> et
-            <latex>10^{d2}</latex>. Si <latex>d2=\pi</latex> alors les valeurs
-            sont comprises entre <latex>10^{d1}</latex> et
-            <latex>\pi</latex>.
+            logarithmiquement équidistantes entre 10<superscript>d1</superscript> et
+            10<superscript>d2</superscript>. Si <emphasis>d2=π</emphasis> alors les valeurs
+            sont comprises entre 10<superscript>d1</superscript> et π.
         </para>
     </refsection>
     <refsection>

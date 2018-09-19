@@ -4,6 +4,7 @@
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,80 +22,50 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CSCOPE">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+            xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+            xml:id="CSCOPE">
     <refnamediv>
         <refname>CSCOPE</refname>
         <refpurpose>Single Display Scope</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CSCOPE.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CSCOPE.png" align="center" valign="middle"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_CSCOPE">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CSCOPE">Single Display Scope</link>
-                </para>
+              <xref linkend="Description_CSCOPE">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CSCOPE">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CSCOPE">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_CSCOPE">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CSCOPE">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CSCOPE">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_CSCOPE">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_CSCOPE">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+              <xref linkend="Dialogbox_CSCOPE">Parameters</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_CSCOPE">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Sinks_pal">Sinks palette</link>
-                </para>
+              <xref linkend="Defaultproperties_CSCOPE">Default properties</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Interfacingfunction_CSCOPE">Interfacing function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Computationalfunction_CSCOPE">Computational function</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Example_CSCOPE">Example</xref>
+            </listitem>
+            <listitem>
+              <xref linkend="Seealso_CSCOPE">See also</xref>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Description_CSCOPE">
         <title>Description</title>
         <para>
@@ -104,18 +75,15 @@
 
         </para>
     </refsection>
-    <refsection id="Dialogbox_CSCOPE">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/CSCOPE_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
 
-        </para>
+    <refsection id="Dialogbox_CSCOPE">
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/CSCOPE_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -196,7 +164,9 @@
                 <para> Properties : Type 'str' of size 1</para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Defaultproperties_CSCOPE">
         <title>Default properties</title>
         <itemizedlist>
@@ -260,6 +230,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_CSCOPE">
         <title>Interfacing function</title>
@@ -276,9 +247,11 @@
                 <para> SCI/modules/scicos_blocks/src/c/cscope.c (Type 4)</para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Example_CSCOPE">
-        <title>Single display scope example</title>
+        <title>Example</title>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/en_US/CSCOPE_en_US.zcos">
                 <inlinemediaobject>
@@ -292,20 +265,23 @@
             importXcosDiagram(SCI + "/modules/xcos/examples/sinks_pal/en_US/CSCOPE_en_US.zcos");
             xcos_simulate(scs_m, 4);
         ]]></scilab:image>
-    </refsection>
-    <refsection id="Seealso_CSCOPE">
+        </refsection>
+
+    <refsection id="Seealso_CSCOPE" role="see also">
         <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="SCALE_CSCOPE">SCALE_CSCOPE - Single Display Scope with autoscale feature of graph</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="CMSCOPE">CMSCOPE - Multi display scope</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist type="inline">
+            <member>
+                <link linkend="CMSCOPE">CMSCOPE</link>
+            </member>
+            <member>
+                <link linkend="CFSCOPE">CFSCOPE</link>
+            </member>
+            <member>
+                <link linkend="CSCOPXY">CSCOPXY</link>
+            </member>
+            <member>
+                <link linkend="CSCOPXY3D">CSCOPXY3D</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

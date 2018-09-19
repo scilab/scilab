@@ -10,12 +10,16 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-// STILL USED (6.0.0-b2)
-
 function x = %hm_or(m,d)
     if argn(2)==1 | d=="*" then
         x = or(m(:))
         return
+    else
+        if d=="r"
+            d = 1;
+        elseif d=="c"
+            d = 2;
+        end
     end
     dims = size(m)
     if d=="m" then

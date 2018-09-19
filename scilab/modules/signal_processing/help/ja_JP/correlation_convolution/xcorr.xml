@@ -158,25 +158,17 @@ along with this program.
                 <literal>c=xcorr(x)</literal>
 
                 は,以下のように正規化しない離散自己共分散を計算します:
-
-                <latex>{\begin{matrix}C_k = \sum_{i=1}^{n-k}
-
-                    {x_{i+k}*x^{*}_i}, k \geq 0 \\ C_k = C^{*}_{-k}, k \leq
-
-                    -1\end{matrix}.$
-
-                </latex>
-
+                <para>
+                  <latex>{\begin{matrix}C_k = \sum_{i=1}^{n-k}
+                      {x_{i+k}*x^{*}_i}, k \geq 0 \\ C_k = C^{*}_{-k}, k \leq
+                      -1\end{matrix}.$
+                  </latex>
+                </para>
                 そして,<literal>c</literal> を返します.
-
                 自己共分散の並びは,
-
-                <latex>$C_k,k=-n:n$</latex>
-
+                C<subscript>k=-n:n</subscript>
                 となります.ただし,<literal>n</literal>は,
-
                 <literal>x</literal>の長さです.
-
             </listitem>
 
             <listitem>
@@ -184,38 +176,27 @@ along with this program.
                 <literal>xcorr(x,y)</literal>
 
                 は正規化しない離散相互共分散を以下のように計算します:
-
-                <latex>{\begin{matrix}C_k = \sum_{i=1}^{n-k}
-
-                    {x_{i+k}*y^{*}_i}, k \geq 0 \\ C_k = C^{*}_{-k}, k \leq
-
-                    -1\end{matrix}}.$
-
-                </latex>
-
+                <para>
+                  <latex>{\begin{matrix}C_k = \sum_{i=1}^{n-k}
+                      {x_{i+k}*y^{*}_i}, k \geq 0 \\ C_k = C^{*}_{-k}, k \leq
+                      -1\end{matrix}}.$
+                  </latex>
+                </para>
                 結果を<literal>c</literal>に返します.
-
                 相互共分散の並びは,
-
-                <latex>$C_k,k=-n:n$</latex>となります.
-
+                C<subscript>k=-n:n</subscript>となります.
                 ただし,<literal>n</literal>は,
-
                 <literal>x</literal>および<literal>y</literal>
-
                 の長さの大きい方です.
-
             </listitem>
-
         </itemizedlist>
-
         <para>
 
             <literal>maxlags</literal> 引数が指定された場合,
 
             <literal>xcorr</literal> は <literal>c</literal> を
 
-            返し,共分散の並びは <latex>$C_k,k=-maxlags:maxlags$</latex> と
+            返し,共分散の並びは C<subscript>k=-maxlags:maxlags</subscript> と
 
             なります.
 
@@ -233,25 +214,25 @@ along with this program.
 
             <literal>c</literal>に結果を出力する前に
 
-            <latex>C(k)</latex>を正規化する方法を以下のように指定します:
+            <emphasis>C(k)</emphasis>を正規化する方法を以下のように指定します:
 
             <itemizedlist>
 
                 <listitem>
 
-                    <term>"biased"</term>:<literal>c=</literal><latex>$C$</latex><literal>/n</literal>.
+                    <term>"biased"</term>: <literal>c=</literal><emphasis>C</emphasis><literal>/n</literal>.
 
                 </listitem>
 
                 <listitem>
 
-                    <term>"unbiased"</term>:<literal>c=</literal><latex>$C$</latex><literal>./(n-(-maxlags:maxlags))</literal>.
+                    <term>"unbiased"</term>: <literal>c=</literal><emphasis>C</emphasis><literal>./(n-(-maxlags:maxlags))</literal>.
 
                 </listitem>
 
                 <listitem>
 
-                    <term>"coeff"</term>:<literal>c=</literal><latex>$C$</latex><literal>/(norm(x)*norm(y))</literal>.
+                    <term>"coeff"</term>: <literal>c=</literal><emphasis>C</emphasis><literal>/(norm(x)*norm(y))</literal>.
 
                 </listitem>
 
@@ -273,7 +254,7 @@ along with this program.
 
         <literal>c</literal>のみを返します.
 
-        自己共分散の並びは,<latex>$C_k,k \geq 0$</latex>となります.
+        自己共分散の並びは,C<subscript>k≥0</subscript>となります.
 
     </refsection>
 
@@ -287,7 +268,7 @@ along with this program.
 
             <literal>ifft(fft(x).*conj(fft(y)))</literal>により
 
-            <latex>$C$</latex>を計算します.
+            <emphasis>C</emphasis>を計算します.
 
         </refsection>
 
@@ -347,27 +328,6 @@ along with this program.
 
         </refsection>
 
-        <refsection>
-
-            <title>作者</title>
-
-            <simplelist type="vert">
-
-                <member>Serge Steer, INRIA</member>
-
-            </simplelist>
-
-        </refsection>
-
-        <title>使用される関数</title>
-
-        <para>
-
-            <link linkend="fft">fft</link>
-
-        </para>
-
-    </refsection>
 
     <refsection>
 

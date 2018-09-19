@@ -1,4 +1,3 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Serge Steer
 //
@@ -40,7 +39,7 @@ function [y,xf] = flts(u, sl, x0)
           msg = gettext("%s: Wrong type for argument #%d: In discrete time expected.\n")
           error(msprintf(msg, fname, 2))
         end
-        np = max(degree(sl.D))
+        np = max(0, max(degree(sl.D)))
         [xf,x] = ltitr(sl.A, sl.B, u(:,1:(mu-np)), x0)
         D = sl.D
         if type(D)==1 then
@@ -74,12 +73,12 @@ function [y,xf] = flts(u, sl, x0)
             end
         end
         for l = 1:ns
-            nm(l) = degree(nden(l))-max(degree(nnum(l,:)))
+            nm(l) = max(0, degree(nden(l))) - max(0, max(degree(nnum(l,:))))
         end
         ly = mu+min(nm)
         if rhs==3 then
             [mx, nx] = size(x0);
-            maxdgd = max(degree(nden))
+            maxdgd = max(0, max(degree(nden)))
             if nx < maxdgd then
                 msg = gettext("%s: At least %s past values needed.\n")
                 error(msprintf(msg, fname, string(maxdgd)))
@@ -91,8 +90,8 @@ function [y,xf] = flts(u, sl, x0)
         end
         y = zeros(ns,ly);
         for l = 1:ns
-            ddl = degree(nden(l))
-            dnl = max(degree(nnum(l,:)))
+            ddl = max(0, degree(nden(l)))
+            dnl = max(0, max(degree(nnum(l,:))))
             lent = ly-ddl+dnl
             select rhs
             case 2 then

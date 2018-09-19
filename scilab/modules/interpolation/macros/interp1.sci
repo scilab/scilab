@@ -348,7 +348,9 @@ function yi=interp1(varargin)
                 k(xitemp<x(1)) = 1;
                 k(xitemp>=x(x_size)) = x_size-1;
                 i = find(xitemp >= matrix((x(k)+x(k+1))/2,size(k)));
-                k(i) = k(i)+1;
+                if i~=[]
+                    k(i) = k(i)+1;
+                end
                 yi=y(k)
                 yi=matrix(yi,1,-1)
                 //extrapolation
@@ -399,7 +401,9 @@ function yi=interp1(varargin)
                 k(xitemp<x(1)) = 1;
                 k(xitemp>=x(x_size)) = x_size-1;
                 i = find(xitemp >= matrix((x(k)+x(k+1))/2,size(k)));
-                k(i) = k(i)+1;
+                if i~=[]
+                    k(i) = k(i)+1;
+                end
                 for l=1:size(y,"*")/size(y,1)
                     ytemp=matrix(y(:,l),1,-1)
                     yi(:,l) =ytemp(k)

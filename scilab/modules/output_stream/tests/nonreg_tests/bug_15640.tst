@@ -19,3 +19,12 @@ format("e",25)
 256
 %pi
 nearfloat("succ",0)
+format("v",10)
+X=testmatrix('magi',4)/3;
+X([2 3 4 7 8 12])=%eps*[2 3 4 7 8 12]/8
+X=[1 2;3 4]
+exp(%i*%pi*X)
+exp(%i*%pi*X/2)
+exp(%i*%pi*X/4)
+X=[1 20;300 4000]
+string(X)

@@ -102,17 +102,8 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
                 wchar_t* temp;
                 matvar_t** allData = (matvar_t**)(matVariable->data);
 
-                bool bSearchSizeStruck = false;
-                for (int i = 0; (allData[i] != NULL) && (bSearchSizeStruck == false) && (i < iSizeStruct); i++)
+                for (int i = 0; i < iSizeStruct; i++)
                 {
-                    for (int j = (i - 1); j >= 0; j--)
-                    {
-                        if (strcmp((char*)allData[i]->name, (char*)allData[j]->name) == 0)
-                        {
-                            bSearchSizeStruck = true;
-                            break;
-                        }
-                    }
                     temp = to_wide_string((char*)allData[i]->name);
                     std::wstring wstField(temp);
                     FREE(temp);
@@ -135,12 +126,20 @@ types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
         break;
         case MAT_C_CHAR: /* 4 */
         {
-            char* pChar = (char*)MALLOC(sizeof(char) * (piDims[1] + 1));
-            pChar[0] = '\0';
-            strncat(pChar, (char*)matVariable->data, piDims[1]);
-            types::String* pString = new types::String(pChar);
+            types::String* pString = new types::String(piDims[0], 1);
+            for(int i = 0; i < piDims[0]; ++i)
+            {
+                char* pChar = (char*)MALLOC(sizeof(char) * (piDims[1] + 1));
+                for(int j = 0; j < piDims[1]; ++j)
+                {
+                    pChar[j] = ((char*)matVariable->data)[j * piDims[0] + i];
+                }
+                pChar[piDims[1]] = '\0';
+                pString->set(i, pChar);
+                FREE(pChar);
+            }
+
             pOut = pString;
-            FREE(pChar);
         }
         break;
         case MAT_C_SPARSE: /* 5 */

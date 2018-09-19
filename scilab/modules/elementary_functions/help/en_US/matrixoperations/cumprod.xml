@@ -20,10 +20,12 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>y=cumprod(x)</synopsis>
-        <synopsis>y=cumprod(x,orientation)</synopsis>
-        <synopsis>y=cumprod(x,outtype)</synopsis>
-        <synopsis>y=cumprod(x,orientation,outtype)</synopsis>
+        <synopsis>
+          y = cumprod(x)
+          y = cumprod(x, orientation)
+          y = cumprod(x, outtype)
+          y = cumprod(x, orientation, outtype)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

@@ -42,7 +42,7 @@ function evans(n,d,kmax)
     if prod(size(n))<>1 then
         error(msprintf(_("%s: Wrong value for input argument #%d: Single input, single output system expected.\n"),"evans",1));
     end
-    if degree(n)==0&degree(d)==0 then
+    if degree(n)<=0&degree(d)<=0 then
         error(msprintf(_("%s: The given system has no poles and no zeros.\n"),"evans"));
     end
 
