@@ -593,6 +593,7 @@ Known issues
 * [#15685](http://bugzilla.scilab.org/show_bug.cgi?id=15685): The page of `file()` needed to be updated about error numbers, and improved.
 * [#15692](http://bugzilla.scilab.org/show_bug.cgi?id=15692): listvarinfile() crashes when listing a boolean sparse matrix (regression)
 * [#15693](http://bugzilla.scilab.org/show_bug.cgi?id=15693): listvarinfile() misses displaying the size of polynomial variables (regression)
+* [#15698](http://bugzilla.scilab.org/show_bug.cgi?id=15698): `intg` raised a roundoff error with a trivial integral
 * [#15710](http://bugzilla.scilab.org/show_bug.cgi?id=15710): The Xcos EXPRESSION block did not accept expressions including some `&` or `~` characters.
 * [#15718](http://bugzilla.scilab.org/show_bug.cgi?id=15718): `bitand`, `bitxor` and `bitor` might miswork with some `uint64` inputs.
 * [#15721](http://bugzilla.scilab.org/show_bug.cgi?id=15721): An error while using `save(File, "-append", ..)` deleted the existing file.

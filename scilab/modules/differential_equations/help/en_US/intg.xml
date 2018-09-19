@@ -48,7 +48,7 @@
                 <term>ea</term>
                 <listitem>
                     <para>absolute error required on the result. Default value:
-                        1.d-14.
+                        1.d-13.
                     </para>
                 </listitem>
             </varlistentry>
