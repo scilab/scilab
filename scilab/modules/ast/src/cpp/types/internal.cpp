@@ -325,6 +325,11 @@ bool InternalType::isUserType(void)
     return false;
 }
 
+bool InternalType::isVoid(void)
+{
+    return false;
+}
+
 void InternalType::clearPrintState()
 {
     m_bPrintFromStart = true;
