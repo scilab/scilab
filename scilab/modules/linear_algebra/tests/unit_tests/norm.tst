@@ -133,16 +133,3 @@ for i = 1:1000
 end
 t = toc();
 assert_checktrue( t < 4 );
-
-//
-// IEEE compliance
-//
-refMsg = msprintf(_("%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"), "norm", 1);
-assert_checkerror("norm(%nan)", refMsg);
-assert_checkerror("norm([%i %nan])", refMsg);
-assert_checkerror("norm([%i %inf])", refMsg);
-assert_checkerror("norm([%i; %nan])", refMsg);
-assert_checkerror("norm([%i; %inf])", refMsg);
-assert_checkerror("norm([1 0; %nan 0])", refMsg);
-assert_checkerror("norm([1 0; %inf 0]);", refMsg);
-assert_checkerror("norm([%inf 0; %nan 0]);", refMsg);

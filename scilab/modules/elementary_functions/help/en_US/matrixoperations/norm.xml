@@ -135,10 +135,13 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-      <para>For [] :</para>
+    </refsection>
+    <refsection>
+        <title>Remark</title>
       <para>
         <literal>norm([])</literal> and <literal>norm([],p)</literal> return 0.
       </para>
+      <para><literal>norm(x)</literal> and <literal>norm(x,p)</literal> return NaN if x contains NaNs.</para>
     </refsection>
     <refsection>
         <title>Examples</title>

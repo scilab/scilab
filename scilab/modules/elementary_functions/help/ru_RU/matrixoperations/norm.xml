@@ -44,25 +44,25 @@
                     <para>
                         <itemizedlist>
                             <listitem>
-                                For a matrix <literal>x</literal>: a number among
-                                <literal>1, 2, %inf, -%inf</literal>, or a word among
-                                <literal>"inf"</literal> (or <literal>"i"</literal>) or
-                                <literal>"fro"</literal> (or <literal>"f"</literal>).
+                                Для матрицы <literal>x</literal>: число из
+                                <literal>1, 2, %inf, -%inf</literal>, или слово среди
+                                <literal>"inf"</literal> (или <literal>"i"</literal>) или
+                                <literal>"fro"</literal> (или <literal>"f"</literal>).
                             </listitem>
                             <listitem>
-                                For a vector <literal>x</literal>: any number or <literal>%inf</literal>,
-                                <literal>-%inf</literal>; or a word <literal>"inf"</literal>
+                                Для вектора <literal>x</literal>: любое число или <literal>%inf</literal>,
+                                <literal>-%inf</literal>; либо слово <literal>"inf"</literal>
                                 (<literal>"i"</literal>), <literal>"fro"</literal> (<literal>"f"</literal>).
                             </listitem>
                         </itemizedlist>
                     </para>
-                    Default value = 2.
+                    Значение по умолчанию = 2.
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
                     <para>
-                        norm: single positive real number.
+                        norm: отдельное положительное вещественное число.
                     </para>
                 </listitem>
             </varlistentry>
@@ -135,10 +135,15 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-
-        <para>For [] :</para>
+    </refsection>
+    <refsection>
+        <title>Примечание</title>
         <para>
-            <literal>norm([])</literal> and <literal>norm([],p)</literal> return 0.
+            <literal>norm([])</literal> и <literal>norm([],p)</literal> возвращают 0.
+        </para>
+        <para>
+          По соглашению <literal>norm (x)</literal> и <literal>norm (x,p)</literal> возвращают
+          <literal>NaN</literal>, если <literal>x</literal> содержит <literal>NaN</literal>.
         </para>
     </refsection>
     <refsection>

@@ -134,10 +134,14 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-
-      <para>For [] :</para>
+    </refsection>
+    <refsection>
+        <title>リマーク</title>
       <para>
-        <literal>norm([])</literal> and <literal>norm([],p)</literal> return 0.
+       <literal>norm([])</literal>と<literal>norm([],p)</literal>は0を返します。 
+      </para>
+      <para>
+        <literal>norm(x)</literal>と<literal>norm(x,p)</literal>は、xにNaNが含まれる場合、NaNを返します。    
       </para>
     </refsection>
     <refsection>

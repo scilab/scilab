@@ -142,11 +142,13 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-
-      <para>Avec [] :</para>
+    </refsection>
+    <refsection>
+        <title>Remarque</title>
       <para>
         <literal>norm([])</literal> et <literal>norm([],p)</literal> valent 0.
       </para>
+      <para><literal>norm(x)</literal> et <literal>norm(x,p)</literal> valent NaN si x contient des NaNs.</para>
     </refsection>
     <refsection>
         <title>Exemples</title>
