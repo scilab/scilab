@@ -625,6 +625,7 @@ Known issues
 * [#15762](http://bugzilla.scilab.org/show_bug.cgi?id=15762): `error()` refused multiline error messages.
 * [#15770](http://bugzilla.scilab.org/show_bug.cgi?id=15770): zp2ss and zp2tf unitary tests were failing
 * [#15774](http://bugzilla.scilab.org/show_bug.cgi?id=15774): `clean()` failed on sparse complex matrix.
+* [#15776](http://bugzilla.scilab.org/show_bug.cgi?id=15776): `assert_checktrue` and `assert_checkfalse` did not accept a sparse boolean input. When failing, their error message did not indicate the index of the failing entry. The failing message of `assert_checkfalse` was wrong.
 * [#15778](http://bugzilla.scilab.org/show_bug.cgi?id=15778): Deleting some rows or columns of a boolean sparse array with `= []` crashed Scilab
 * [#15779](http://bugzilla.scilab.org/show_bug.cgi?id=15779): `test_run` did not accept the wildcard * in tests names.
 * [#15796](http://bugzilla.scilab.org/show_bug.cgi?id=15796): Display after `mprintf("")` crashed Scilab (regression)
