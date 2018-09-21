@@ -95,7 +95,7 @@ public:
         return *this;
     };
 
-    size_t original_index;
+    int original_index;
     std::wstring name;
     getter_t get;
     setter_t set;

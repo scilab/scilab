@@ -117,12 +117,12 @@ static std::vector<std::string> to_string_vector(const std::vector<double>& v)
     std::vector<std::string> ret;
     std::vector<double>::const_iterator it = v.begin();
 
-    int strHeader = *it++;
+    int strHeader = static_cast<int>(*it++);
     if (strHeader != sci_strings)
     {
         return ret;
     }
-    unsigned int iDims = *it++;
+    unsigned int iDims = static_cast<unsigned int>(*it++);
 
     // manage multi-dimensional arrays (will be serialized as a vector)
     unsigned int iElements = 1;
@@ -137,7 +137,7 @@ static std::vector<std::string> to_string_vector(const std::vector<double>& v)
     stringsLength.push_back(0);
     for (unsigned int i = 0; i < iElements; ++i)
     {
-        stringsLength.push_back(*it++);
+        stringsLength.push_back(static_cast<unsigned int>(*it++));
     }
 
     // Retrieving the pointers (already UTF-8 encoded char*) and store them as strings

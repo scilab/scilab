@@ -105,7 +105,7 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
         {
             model::BaseObject* o = controller.getBaseObject(objects[i]);
 
-            refCounts->set(i, 0, o->id());
+            refCounts->set(i, 0, (double) o->id());
             refCounts->set(i, 1, o->kind());
             refCounts->set(i, 2, o->refCount());
         }
