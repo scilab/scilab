@@ -248,6 +248,12 @@ input and output arguments.
 * `surf(x,y,fun)` and `surf(x,y,list(fun,params))` syntaxes are now supported, with a function identifier `fun`.
 * Figure editor's terms have been clarify to ease usage.
 * `plot(x, list(fun, params))` is now supported.
+* `savematfile` has been upgraded:
+   - `savematfile(File)` now saves only user variables instead of all current ones.
+   - In formats 6, 7 and 7.3, `savematfile()` no longer breaks the saving when an unsupported type is encountered. A warning is now softly yielded.
+   - Input variables can no longer be corrupted by internal values before being saved.
+   - When an error occurs, the output file is now closed and unlocked.
+   - Encoded integers can now be saved in `-v4` format.
 
 Help pages:
 -----------
@@ -580,6 +586,7 @@ Known issues
 * [#15594](http://bugzilla.scilab.org/show_bug.cgi?id=15594): The `bool2s` page was alone in a main chapter instead of being with the `boolean` page.
 * [#15598](http://bugzilla.scilab.org/show_bug.cgi?id=15598): `string(handle)` returned "" instead of calling `%h_string()`
 * [#15599](http://bugzilla.scilab.org/show_bug.cgi?id=15599): degree of zero polynomial was 0 instead of -Inf.
+* [#15600](http://bugzilla.scilab.org/show_bug.cgi?id=15600): `savematfile(File)` was fragile and had many pitfalls.
 * [#15601](http://bugzilla.scilab.org/show_bug.cgi?id=15601): `tbx_generate_pofile` failed when the absolute toolbox path includes some spaces, or when the toolbox has no XML files.
 * [#15605](http://bugzilla.scilab.org/show_bug.cgi?id=15605): CLR and DLR Xcos blocks did not accept expressions including "%" like "%i"
 * [#15609](http://bugzilla.scilab.org/show_bug.cgi?id=15609): (1:1):2 crashed Scilab.
