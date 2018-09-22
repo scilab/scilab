@@ -59,7 +59,7 @@ public:
 
         _exps.push_back(&test);
         _exps.push_back(t.getAs<Exp>());
-        _exps.push_back(new ast::CommentExp(location, new std::wstring(L"No else !!")));
+        _exps.push_back(new ast::CommentExp(location, new std::wstring(L"No else\n")));
         _exps[2]->setParent(this);
     }
 
