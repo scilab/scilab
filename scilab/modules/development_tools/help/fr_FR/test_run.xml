@@ -4,8 +4,8 @@
  * Copyright (C) INRIA
  * Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added 32/64bits separation
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +15,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="test_run" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="test_run" xml:lang="fr">
     <refnamediv>
         <refname>test_run</refname>
         <refpurpose>
@@ -63,7 +66,13 @@
                 <term>test_name</term>
                 <listitem>
                     <para>
-                        Un tableau de chaînes de caractères ou <literal>[]</literal> (ou <literal>"[]"</literal>). Le nom des tests à exécuter lors de cette passe de tests, tous les tests si <literal>[]</literal>
+                        Noms des tests à effectuer (tableau de texte), ou <literal>[]</literal>
+                        ou <literal>"[]"</literal> pour tous les tests disponibles pour le
+                        module considéré.
+                    </para>
+                    <para>
+                        Le joker * peut être utilisé, tel que dans <literal>*sin</literal>,
+                        <literal>*sin</literal>, ou <literal>*sin*</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -71,7 +80,10 @@
                 <term>options</term>
                 <listitem>
                     <para>
-                        Un tableau de chaînes de caractères ou <literal>[]</literal> (ou <literal>"[]"</literal>). Les options à utiliser pour la passe de test, les options par défaut si <literal>[]</literal>
+                        Un tableau de chaînes de caractères : étiquettes des options à utiliser
+                        pour le lot de tests (liste ci-après).
+                        Indiquer <literal>[]</literal> ou <literal>"[]"</literal> pour utiliser
+                        les options par défaut.
                     </para>
                     <variablelist>
                         <varlistentry>
@@ -403,7 +415,7 @@ test_run(['time','string']);
 // Teste un sous-module
 test_run('optimization|neldermead');
 
-// Teste définit par le chemin d'accès
+// Test défini par le chemin d'accès
 test_run(SCI+'/modules/core');
 
 // Lance un test spécifique
@@ -461,6 +473,45 @@ test_run('SCI/contrib/toolbox_skeleton')
 test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");
 test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
  ]]></programlisting>
+        <para>
+            <emphasis role="bold">Sélections avec joker * :</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+test_run elementary_functions *space
+test_run elementary_functions dec2*
+test_run string *ascii*
+ ]]></programlisting>
+    <screen><![CDATA[
+--> test_run elementary_functions *space
+   TMPDIR = C:\MyPath\AppData\Local\Temp\SCI_TMP_3668_1147
+
+   001/002 - [elementary_functions] logspace....................passed
+   002/002 - [elementary_functions] linspace....................passed
+   --------------------------------------------------------------------------
+   Summary
+../..
+
+--> test_run elementary_functions dec2*
+   TMPDIR = C:\MyPath\AppData\Local\Temp\SCI_TMP_3668_1147
+
+   001/004 - [elementary_functions] dec2oct.....................passed
+   002/004 - [elementary_functions] dec2hex.....................passed
+   003/004 - [elementary_functions] dec2bin.....................passed
+   004/004 - [elementary_functions] dec2base....................passed
+   --------------------------------------------------------------------------
+   Summary
+../..
+
+--> test_run string *ascii*
+   TMPDIR = C:\MyPath\AppData\Local\Temp\SCI_TMP_3668_1147
+
+   001/003 - [string] isascii...................................passed
+   002/003 - [string] asciimat..................................passed
+   003/003 - [string] ascii.....................................passed
+   --------------------------------------------------------------------------
+   Summary
+../..
+]]></screen>
     </refsection>
     <refsection>
         <title>Design interne</title>
@@ -514,6 +565,14 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
                     <para>mode profiling ajouté pour permettre l'analyse du profil d'exécution avec valgrind (Linux uniquement)</para>
                     <para>
                         durée d'exécution maximale d'un test sans <literal>LONG TIME EXECUTION</literal> configurée à 5 minutes.
+                    </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    <para>Les noms de tests avec joker * sont désormais utilisables,
+                        tels que sin*, *sin, ou *sin*
                     </para>
                 </revdescription>
             </revision>

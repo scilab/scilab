@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="test_run" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="test_run" xml:lang="ja">
     <refnamediv>
         <refname>test_run</refname>
         <refpurpose>テストを実行</refpurpose>
@@ -59,7 +62,15 @@
             <varlistentry>
                 <term>test_name</term>
                 <listitem>
-                    <para>文字列配列</para>
+                    <para>
+                        A string array or <literal>[]</literal> or <literal>"[]"</literal>:
+                        The names of the tests to execute during this run. If <varname>test_name</varname>
+                        is <literal>[]</literal>, all tests found in the module or in the directory are executed.
+                    </para>
+                    <para>
+                        The wildcard * can be used, like in <literal>*sin</literal>,
+                        <literal>*sin</literal>, or <literal>*sin*</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -404,41 +415,56 @@
 // test_run([],[]);
 // test_run("[]","[]");
 // test_run [] [];
+
 // 1つまたは複数のモジュールをテスト
 // =============================================
 // 1つのモジュールをテスト
 test_run('time');
+
 // 複数のモジュールをテスト
 test_run(['time','string']);
+
 // サブモジュールをテスト
 test_run('optimization|neldermead');
+
 // パスで指定したモジュールを参照
 test_run(SCI+'/modules/core');
+
 // 指定したテストを実行
 // =============================================
 // テストを1つ指定
 test_run('time','datenum');
+
 // 複数のテストを指定
 test_run('time',['datenum';'calendar']);
+
 // いくつかのテストをスキップ
 // =============================================
 test_run('time',['datenum';'calendar'],'skip_tests');
+
 // オプション
 // =============================================
 // .dia と .dia.ref が等しいかどうかをチェックしません
 test_run('time','datenum','no_check_ref');
+
 // .dia.refファイルを作成しますが,.diaと.dia.refが等しいかどうかをチェックしません
 test_run([],[],'create_ref');
+
 // テストを実行しないが,利用可能なテストの一覧を表示します
 test_run([],[],'list');
+
 // このコマンドの使用法に関するいくつかの例を表示します
 test_run([],[],'help');
+
 // 非回帰テストのみを実行し,ユニットテストをスキップします
 test_run([],[],'nonreg_test');
+
 // ユニットテストのみを実行し,非回帰テストをスキップします
 test_run([],[],'unit_test');
+
 // エラー出力 (std err)をチェックしません
 test_run('boolean','bug_2799','no_check_error_output');
+
 // 複数のオプションを同時に指定
 test_run([],[],['no_check_ref','mode_nw']);
 // Console mode
@@ -453,6 +479,45 @@ test_run('SCI/contrib/toolbox_skeleton')
 test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");
 test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
  ]]></programlisting>
+        <para>
+            <emphasis role="bold">Selections with wildcard *:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+test_run elementary_functions *space
+test_run elementary_functions dec2*
+test_run string *ascii*
+ ]]></programlisting>
+    <screen><![CDATA[
+--> test_run elementary_functions *space
+   TMPDIR = C:\MyPath\AppData\Local\Temp\SCI_TMP_3668_1147
+
+   001/002 - [elementary_functions] logspace....................passed
+   002/002 - [elementary_functions] linspace....................passed
+   --------------------------------------------------------------------------
+   Summary
+../..
+
+--> test_run elementary_functions dec2*
+   TMPDIR = C:\MyPath\AppData\Local\Temp\SCI_TMP_3668_1147
+
+   001/004 - [elementary_functions] dec2oct.....................passed
+   002/004 - [elementary_functions] dec2hex.....................passed
+   003/004 - [elementary_functions] dec2bin.....................passed
+   004/004 - [elementary_functions] dec2base....................passed
+   --------------------------------------------------------------------------
+   Summary
+../..
+
+--> test_run string *ascii*
+   TMPDIR = C:\MyPath\AppData\Local\Temp\SCI_TMP_3668_1147
+
+   001/003 - [string] isascii...................................passed
+   002/003 - [string] asciimat..................................passed
+   003/003 - [string] ascii.....................................passed
+   --------------------------------------------------------------------------
+   Summary
+../..
+]]></screen>
     </refsection>
     <refsection>
         <title>内部設計</title>
@@ -505,14 +570,24 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
                         XMLファイルにエクスポートする4番目の引数が追加されました
                     </para>
                 </revdescription>
+            </revision>
+            <revision>
                 <revnumber>5.5.0</revnumber>
                 <revdescription>32/64bits separation available</revdescription>
+            </revision>
+            <revision>
                 <revnumber>6.0.0</revnumber>
                 <revdescription>
                     <para>profiling mode added to profile execution with valgrind (Linux only)</para>
                     <para>
                         timeout delay (watchdog timer) set to 5 minutes for single tests without <literal>LONG TIME EXECUTION</literal>
                     </para>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    <para>Tests names with the * wildcard like sin*, *sin, or *sin* are now allowed</para>
                 </revdescription>
             </revision>
         </revhistory>

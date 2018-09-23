@@ -3,8 +3,8 @@
 // Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2010-2012 - DIGITEO - Antoine ELIAS
 // Copyright (C) 2011 - DIGITEO - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2016 - 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -381,10 +381,12 @@ function status = test_module(_params)
             for j = 1:size(directories, "*")
                 currentDir = directories(j);
                 testFile = currentDir + filesep() + _params.tests_mat(i) + ".tst";
-
-                if isfile(testFile) then
-                    tests($+1, [1,2]) = [currentDir, _params.tests_mat(i)];
-                    bFind = %t;
+                testFile = listfiles(testFile);  // allows *pattern*
+                for File = testFile'
+                    if isfile(File) then
+                        tests($+1, [1,2]) = [currentDir, basename(File)];
+                        bFind = %t;
+                    end
                 end
             end
 
