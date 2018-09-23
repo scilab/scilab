@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2008 - INRIA - Vincent COUVERT
-    *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
-    *
-    -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="matfile_varreadnext">
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2008 - INRIA - Vincent COUVERT
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2018 - Samuel GOUGEON
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="matfile_varreadnext">
     <refnamediv>
         <refname>matfile_varreadnext</refname>
         <refpurpose>Matlab バイナリ MATファイルの次の変数を読み込む.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[name[, value[, vartype]]] = matfile_varreadnext(fd)</synopsis>
+        <synopsis>
+            [name, value, vartype] = matfile_varreadnext(fd)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -53,16 +58,14 @@
                     <para>実数: 変数の型(読み込みに成功した場合)または:</para>
                     <itemizedlist>
                         <listitem>
-                            <para>
-                                <emphasis>0</emphasis>: 変数の型が不明の場合.
-                            </para>
+                            <emphasis>0</emphasis>: 変数の型が不明の場合.
                         </listitem>
                         <listitem>
-                            <para>
-                                <emphasis>-1</emphasis>: ファイル終端に達した場合.
-                            </para>
+                            <emphasis>-1</emphasis>: ファイル終端に達した場合.
                         </listitem>
                     </itemizedlist>
+                    Please see <link linkend="matfile_listvar">matfile_listvar</link> for the list
+                    of Matlab types.
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -77,25 +80,87 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-A = rand(10,10);
-B = sprand(10,10,0.1);
-C = "foo";
-D = "bar";
-savematfile('test_matfile.mat','A','B','C','D','-v6');
-clear();
-fd = matfile_open("test_matfile.mat");
-//-- 保存された変数についてループ処理
+// Preparing some data
+H = rand(2,4,2);
+N = complex(rand(2,3), rand(2,3));
+I = int8(grand(4,10,"uin",-100,100));
+T = ["foo" "bar"]';
+S = struct("num",H, "imag",N, "text",T, "int",I);
+C = {"Scilab", rand(2,3); H, S};
+
+// Saving them
+File = TMPDIR+"/matfile_listvar_example.mat";
+savematfile(File,'-v7.3', 'H','N','I','T','S','C');
+
+// Reading variables one by one:
+fd = matfile_open(File, "r", "7.3");
+
+//-- Loop on the stored variables
 while %t
    [Name, Value, Type] = matfile_varreadnext(fd);
-   if Name == "" then
-      break;
+   if Type<0 then
+      break
    else
-      disp("The variable " + Name + " has type " + string(Type) + " and contains:");
+      mprintf("The variable ""%s"" has type %d and contains\n", Name, Type);
       disp(Value);
    end
 end
 matfile_close(fd);
+sleep(2000)
+deletefile(File)
  ]]></programlisting>
+    <screen><![CDATA[
+--> // Reading variables one by one:
+--> fd = matfile_open(File, "r", "7.3");
+
+--> //-- Loop on the stored variables
+--> while %t
+  >    [Name, Value, Type] = matfile_varreadnext(fd);
+  >    if Type<0 then
+  >       break
+  >    else
+  >       mprintf("The variable ""%s"" has type %d and contains\n", Name, Type);
+  >       disp(Value);
+  >    end
+  > end
+The variable "C" has type 1 and contains
+
+  [  1x1 string  ]  [2x3 constant]
+  [2x4x2 constant]  [1x1 struct  ]
+
+The variable "H" has type 6 and contains
+
+(:,:,1)
+   0.2113249   0.0002211   0.6653811   0.8497452
+   0.7560439   0.3303271   0.6283918   0.685731
+(:,:,2)
+   0.8782165   0.5608486   0.7263507   0.5442573
+   0.068374    0.6623569   0.1985144   0.2320748
+
+The variable "I" has type 8 and contains
+
+  100  51 -52  92  17  34 -94 -30  36 -30
+  -70 -72  -9 -19 -78 -15   1 -53 -23  91
+   76 -83  93 -23  63 -80 -69  86  -7  57
+   25  31  58 -64 -96  -9 -70  -4 -66 -34
+
+The variable "N" has type 6 and contains
+
+   0.2312237 + 0.2146008i   0.8833888 + 0.3616361i   0.3076091 + 0.5664249i
+   0.2164633 + 0.312642i    0.6525135 + 0.2922267i   0.9329616 + 0.4826472i
+
+The variable "S" has type 2 and contains
+
+  num: [2x4x2 constant]
+  imag: [2x3 constant]
+  text: [2x1 string]
+  int: [4x10 int8]
+
+The variable "T" has type 4 and contains
+
+!foo  !
+!bar  !
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
