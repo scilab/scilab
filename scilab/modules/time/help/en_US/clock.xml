@@ -20,18 +20,18 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>c = clock</synopsis>
+        <synopsis>c = clock()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
-        <para>c = clock returns a 6-element date vector containing the current date and time in decimal form:</para>
+        <para>c = clock() returns a 6-element date vector containing the current date and time in decimal form:</para>
         <para>c = [year month day hour minute seconds]</para>
         <para>the first five elements are integers. The seconds element is accurate to several digits beyond the decimal point.</para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-clock
+clock()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

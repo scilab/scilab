@@ -37,7 +37,7 @@ csch(A)
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-(1) ./sinh(A)
+csch(A)
 ]]></programlisting>
                 </td>
             </tr>

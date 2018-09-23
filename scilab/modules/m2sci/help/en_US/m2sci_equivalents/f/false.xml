@@ -33,20 +33,22 @@
                 <td>
                     <programlisting role="example"><![CDATA[
 false
+F = false(n)
+F = false(sz)
+F = false(sz1,...,szN)
+F = false(___,'like',p)
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-No equivalent
+%F
+F = zeros(n, n)>1
+F = zeros(sz(1), sz(2), ..)>1
+F = zeros(sz1,...,szN)>1
+// no equivalent
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            To get the same result in Scilab, use: <emphasis role="bold">zeros(...)==1</emphasis>. See <emphasis role="bold">zeros</emphasis>.
-        </para>
     </refsection>
 </refentry>

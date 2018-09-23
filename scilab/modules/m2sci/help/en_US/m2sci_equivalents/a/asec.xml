@@ -33,12 +33,12 @@
                 <td>
                     <programlisting role="example"><![CDATA[
 asec(A)
-]]></programlisting>
+                 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-acos((1) ./A)
-]]></programlisting>
+asec(A)
+                 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>

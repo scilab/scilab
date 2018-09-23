@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_fgets">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="m2sci_fgets">
     <refnamediv>
         <refname>fgets (Matlab function)</refname>
         <refpurpose>Read line from file, keep newline character</refpurpose>
@@ -63,12 +66,12 @@ fgetstr
             <tr>
                 <td>
                     <programlisting role="example"><![CDATA[
-fgets(fid,n)
+fgets(fid, n)
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-fgetstr(n,fid)
+mgetstr(n, fid)
 ]]></programlisting>
                 </td>
             </tr>

@@ -32,43 +32,12 @@
             <tr>
                 <td>
                     <programlisting role="example"><![CDATA[
-blanks
+blanks(n)
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-No equivalent
-]]></programlisting>
-                </td>
-            </tr>
-        </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            There is no Scilab equivalent function for Matlab box but it can be easily replaced by Scilab equivalent instructions.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <informaltable border="1" width="100%">
-            <tr>
-                <td align="center">
-                    <emphasis role="bold">Matlab</emphasis>
-                </td>
-                <td align="center">
-                    <emphasis role="bold">Scilab</emphasis>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <programlisting role="example"><![CDATA[
-A = ['xxx' blanks(20) 'yyy'];
-]]></programlisting>
-                </td>
-                <td>
-                    <programlisting role="example"><![CDATA[
-A = "xxx"+part(" ",ones(1,20))+"yyy";
+blanks(n)
 ]]></programlisting>
                 </td>
             </tr>

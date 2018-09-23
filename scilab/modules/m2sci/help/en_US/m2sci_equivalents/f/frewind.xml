@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_frewind">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="m2sci_frewind">
     <refnamediv>
         <refname>frewind (Matlab function)</refname>
         <refpurpose>Move the file position indicator to the beginning of an open file</refpurpose>
@@ -37,7 +40,7 @@ frewind(fid)
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-mseek("0",fid)
+mseek(0, fid)
 ]]></programlisting>
                 </td>
             </tr>

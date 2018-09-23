@@ -20,11 +20,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>c = clock</synopsis>
+        <synopsis>c = clock()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>説明</title>
-        <para>c = clock は,現在の10進形式の日付と時間を有する要素数6の日付ベクトル
+        <para>c = clock() は,現在の10進形式の日付と時間を有する要素数6の日付ベクトル
             を返します:
         </para>
         <para>c = [年 月 日 時間 分 秒]</para>
@@ -33,7 +33,7 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-clock
+clock()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

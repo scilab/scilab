@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_grid">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="m2sci_grid">
     <refnamediv>
         <refname>grid (Matlab function)</refname>
         <refpurpose>Grid lines for two- and three-dimensional plots</refpurpose>
@@ -56,7 +59,7 @@ No equivalent
                 <term>grid on</term>
                 <listitem>
                     <para>
-                        may be replaced by <emphasis role="bold">set(gca(),"grid",[1 1])</emphasis>
+                        may be replaced by <emphasis role="bold">gca().grid=[1 1 1]</emphasis>
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,7 +67,7 @@ No equivalent
                 <term>grid off</term>
                 <listitem>
                     <para>
-                        may be replaced by <emphasis role="bold">set(gca(),"auto_clear",[-1 -1])</emphasis>
+                        may be replaced by <emphasis role="bold">gca().grid=-[1 1 1]</emphasis>
                     </para>
                 </listitem>
             </varlistentry>
@@ -88,7 +91,7 @@ No equivalent
                 <term>grid(axes_handle,"on")</term>
                 <listitem>
                     <para>
-                        may be replaced by <emphasis role="bold">axes_handle.grid=[1 1]</emphasis>
+                        may be replaced by <emphasis role="bold">axes_handle.grid=[1 1 1]</emphasis>
                     </para>
                 </listitem>
             </varlistentry>
@@ -96,7 +99,7 @@ No equivalent
                 <term>grid(axes_handle,"off")</term>
                 <listitem>
                     <para>
-                        may be replaced by <emphasis role="bold">axes_handle.grid=[-1 -1]</emphasis>
+                        may be replaced by <emphasis role="bold">axes_handle.grid=-[1 1 1]</emphasis>
                     </para>
                 </listitem>
             </varlistentry>

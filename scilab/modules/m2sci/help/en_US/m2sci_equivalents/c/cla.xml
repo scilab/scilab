@@ -33,35 +33,16 @@
                 <td>
                     <programlisting role="example"><![CDATA[
 cla
+cla reset
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-No equivalent
+// no equivalent
+delete(gca().children)
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <variablelist>
-            <varlistentry>
-                <term>cla</term>
-                <listitem>
-                    <para>
-                        Scilab equivalent could be <emphasis role="bold">a = gca();delete(a.children);</emphasis> but in this case, all current axes children will be deleted because there is no HandleVisibility property in Scilab graphics.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>cla reset</term>
-                <listitem>
-                    <para>
-                        Scilab equivalent is <emphasis role="bold">a = gca();delete(a.children);</emphasis>.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
     </refsection>
 </refentry>
