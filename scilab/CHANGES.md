@@ -401,6 +401,7 @@ Known issues
 ### Bugs fixed in 6.0.2:
 * [#2464](http://bugzilla.scilab.org/show_bug.cgi?id=2464): `null()` was poorly documented.
 * [#4050](http://bugzilla.scilab.org/show_bug.cgi?id=4050): `ged()` did not support graphical texts with a font size > 5.
+* [#4953](http://bugzilla.scilab.org/show_bug.cgi?id=4953): The `clean` function does not work when the matrix contains %inf.
 * [#5430](http://bugzilla.scilab.org/show_bug.cgi?id=5430): `clf` could erase the ATOMS GUI or the m2sci one.
 * [#5521](http://bugzilla.scilab.org/show_bug.cgi?id=5521): `surf(X,Y,fun)` and `surf(X,Y,list(fun,params))` were not supported.
 * [#5557](http://bugzilla.scilab.org/show_bug.cgi?id=5557): `locate()` allowed to click out of the current axes and then returned meaningless coordinates.
@@ -584,6 +585,7 @@ Known issues
 * [#15635](http://bugzilla.scilab.org/show_bug.cgi?id=15635): `dellip(1,4)` terminated with neither output nor error (regression)
 * [#15636](http://bugzilla.scilab.org/show_bug.cgi?id=15636): Clicking on its icon did not always give focus to Help browser
 * [#15645](http://bugzilla.scilab.org/show_bug.cgi?id=15645): `deff('y=f(x)','z=x^2'),fsolve(1,f)` crashed scilab
+* [#15642](http://bugzilla.scilab.org/show_bug.cgi?id=15642):A(:) gave incorrect display when A is sparse boolean (regression)
 * [#15647](http://bugzilla.scilab.org/show_bug.cgi?id=15647): `spzeros(-1,-1)` yielded a corrupted result
 * [#15648](http://bugzilla.scilab.org/show_bug.cgi?id=15648): `sparse([1 1],1,[-1 -1])` crashed scilab
 * [#15652](http://bugzilla.scilab.org/show_bug.cgi?id=15652): An appended comment // after a comma in an multiline literal array now generates an error (regression).

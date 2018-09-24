@@ -4134,7 +4134,7 @@ GenericType* SparseBool::extract(typed_list* _pArgs)
         }
     }
 
-    finalize();
+    pOut->finalize();
 
     delete[] piMaxDim;
     delete[] piCountDim;
