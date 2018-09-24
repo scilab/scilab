@@ -3487,6 +3487,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
 {
     typedef SparseBool* (SparseBool::*insert_t)(typed_list*, InternalType*);
     SparseBool* pIT = checkRef(this, (insert_t)&SparseBool::insert, _pArgs, _pSource);
+
+
     if (pIT != this)
     {
         return pIT;
@@ -3834,15 +3836,6 @@ GenericType* SparseBool::remove(typed_list* _pArgs)
             //compute new index
             pOut->set(iNewPos, get(i));
             iNewPos++;
-        }
-    }
-
-    //free allocated data
-    for (int i = 0; i < iDims; i++)
-    {
-        if (pArg[i] != (*_pArgs)[i])
-        {
-            delete pArg[i];
         }
     }
 
