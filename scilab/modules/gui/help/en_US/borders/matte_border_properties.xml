@@ -45,7 +45,7 @@
                 <term>color</term>
                 <listitem>
                     <para>String</para>
-                    <para>The name of the color of the border.</para>
+                    <para>The name of the color of the border or a string like <literal>#FFFFFF</literal>.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

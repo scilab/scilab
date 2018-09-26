@@ -33,28 +33,28 @@
                 <term>hlouter</term>
                 <listitem>
                     <para>String</para>
-                    <para>The name of the color used for the outer edge highlight.</para>
+                    <para>The name of the color or a string like <literal>#FFFFFF</literal> used for the outer edge highlight.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>hlinner</term>
                 <listitem>
                     <para>String</para>
-                    <para>The name of the color used for the inner edge highlight.</para>
+                    <para>The name of the color or a string like <literal>#FFFFFF</literal> used for the inner edge highlight.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>shadowouter</term>
                 <listitem>
                     <para>String</para>
-                    <para>The name of the color used for the outer shadow area.</para>
+                    <para>The name of the color or a string like <literal>#FFFFFF</literal> used for the outer shadow area.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>shadowinner</term>
                 <listitem>
                     <para>String</para>
-                    <para>The name of the color used for the inner shadow area.</para>
+                    <para>The name of the color or a string like <literal>#FFFFFF</literal> used for the inner shadow area.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

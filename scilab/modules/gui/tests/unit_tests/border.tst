@@ -7,7 +7,6 @@
 
 // <-- TEST WITH GRAPHIC -->
 
-
 l = list();
 //border
 //none
@@ -59,3 +58,23 @@ for i = 1:size(l)
     u = uicontrol(f, "style", "frame", "border", l(i));
     assert_checkequal(u.border, l(i));
 end
+
+//generate colors from parula color map
+colors = sprintf("#%02X%02X%02X\n", (parulacolormap(64) .* 255));
+
+f = figure( ...
+    "dockable", "off", ...
+    "menubar_visible", "off", ...
+    "infobar_visible", "off", ...
+    "toolbar_visible", "off", ...
+    "visible", "off", ...
+    "layout", "grid", ...
+    "layout_options", createLayoutOptions("grid", [8,0], [1 1]));
+
+for i = 1:size(colors, "*")
+    b = createBorder("line", colors(i));
+    u = uicontrol(f, "style", "frame", "border", b);
+    assert_checkequal(u.border, b);
+end
+
+f.visible = "on";
