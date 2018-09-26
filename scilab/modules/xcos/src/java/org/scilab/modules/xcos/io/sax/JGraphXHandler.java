@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015-2017 - Scilab Enterprises - Clement DAVID
- * Copyright (C) 2017 - ESI Group - Clement DAVID
+ * Copyright (C) 2017-2018 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -24,6 +24,8 @@ import org.xml.sax.Attributes;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxPoint;
+import com.mxgraph.util.mxUtils;
+
 import java.nio.DoubleBuffer;
 import java.nio.LongBuffer;
 import java.util.ArrayList;
@@ -184,7 +186,7 @@ class JGraphXHandler implements ScilabHandler {
         final long uid = saxHandler.controller.createObject(kind);
         String value = atts.getValue("value");
         if (value != null) {
-            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, value);
+            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, mxUtils.getBodyMarkup(value, false));
         }
         String style = atts.getValue("style");
         if (style != null) {
