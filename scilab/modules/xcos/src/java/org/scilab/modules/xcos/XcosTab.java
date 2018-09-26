@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2011 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017-2018 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -332,6 +333,7 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         if (visible) {
             tab.createDefaultWindow().setVisible(true);
 
+            graph.fireEvent(new mxEventObject(mxEvent.ROOT));
             graph.updateTabTitle();
             BarUpdater.updateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
         }

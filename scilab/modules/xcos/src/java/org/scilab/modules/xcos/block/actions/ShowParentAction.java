@@ -31,6 +31,9 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.XcosView;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
+import org.scilab.modules.xcos.graph.model.XcosCell;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -79,30 +82,36 @@ public class ShowParentAction extends DefaultAction {
 
         if (graph.getKind() == Kind.BLOCK) {
             JavaController controller = new JavaController();
-            long[] parent = new long[1];
-            Kind kind = Kind.BLOCK;
-            controller.getObjectProperty(graph.getUID(), kind, ObjectProperties.PARENT_BLOCK, parent);
-            if (parent[0] == 0) {
-                kind = Kind.DIAGRAM;
-                controller.getObjectProperty(graph.getUID(), kind, ObjectProperties.PARENT_DIAGRAM, parent);
+
+            XcosCell defaultParent = (XcosCell) graph.getDefaultParent();
+            XcosDiagram parentGraph = Xcos.findParent(controller, defaultParent.getUID(), defaultParent.getKind());
+
+            // the parent graph is not visible yet, load it into the UI
+            if (parentGraph == null) {
+                long[] parent = {0};
+                Kind parentKind = Kind.BLOCK;
+
+                // use parent / children model property
+                controller.getObjectProperty(defaultParent.getUID(), defaultParent.getKind(), ObjectProperties.PARENT_BLOCK, parent);
+                if (parent[0] == 0) {
+                    parentKind = Kind.DIAGRAM;
+                    controller.getObjectProperty(defaultParent.getUID(), defaultParent.getKind(), ObjectProperties.PARENT_DIAGRAM, parent);
+                }
+
+                parentGraph = new XcosDiagram(controller, parent[0], parentKind, "");
+                XcosCellFactory.insertChildren(controller, parentGraph);
+                parentGraph.installListeners();
+
+                Xcos.getInstance().addDiagram(Xcos.findRoot(controller, graph), parentGraph);
             }
 
-            XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getName());
-
-            XcosDiagram diagram = (XcosDiagram) view.getVisibleObjects().get(parent[0]);
-            if (diagram == null) {
-                String[] strUID = new String[] { "" };
-                controller.getObjectProperty(graph.getUID(), kind, ObjectProperties.UID, strUID);
-
-                diagram = new XcosDiagram(controller, parent[0], kind, strUID[0]);
-                view.getVisibleObjects().put(parent[0], diagram);
-            }
-
-            final XcosTab tab = XcosTab.get(diagram);
+            // restore the parent graph tab
+            final XcosTab tab = XcosTab.get(parentGraph);
             if (tab == null) {
-                XcosTab.restore(diagram);
+                XcosTab.restore(parentGraph);
             } else {
                 tab.setCurrent();
+                tab.requestFocus();
             }
         }
     }

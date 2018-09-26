@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
- * Copyright (C) 2017 - ESI Group - Clement DAVID
+ * Copyright (C) 2015-2017 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017-2018 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -162,8 +162,10 @@ public class CustomWriter extends ScilabWriter {
         final int len = children.size();
         for (int i = 0; i < len; i++) {
             long child = children.get(i);
-            Kind childKind = Kind.values()[kinds.get(i)];
-            shared.write(child, childKind);
+            if (child != 0) {
+                Kind childKind = Kind.values()[kinds.get(i)];
+                shared.write(child, childKind);
+            }
         }
 
         shared.layers.pop();

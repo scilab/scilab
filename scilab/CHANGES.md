@@ -503,6 +503,8 @@ Known issues
 * [#14522](http://bugzilla.scilab.org/show_bug.cgi?id=14522): `or(%nan)` was %F.
 * [#14536](http://bugzilla.scilab.org/show_bug.cgi?id=14536): `xpoly` crashed Scilab when it is used in logarithmic mode for points with negative or null coordinates.
 * [#14539](http://bugzilla.scilab.org/show_bug.cgi?id=14539): It was not possible to build Scilab with hdf5 1.10.0.
+* [#14606](http://bugzilla.scilab.org/show_bug.cgi?id=14606): Memory used by variables returned by `[names,mem]=who()` was always zero.
+* [#14670](http://bugzilla.scilab.org/show_bug.cgi?id=14670): Superblocks could be opened more than once.
 * [#14701](http://bugzilla.scilab.org/show_bug.cgi?id=14701): `poly(c,v,"coeff")` did not ignore null high order coefficients.
 * [#14704](http://bugzilla.scilab.org/show_bug.cgi?id=14704): In Scinotes, URL for the `https://`, `ftp://`, `ftps://`, and `file://` protocols were no longer hyperlinked.
 * [#14708](http://bugzilla.scilab.org/show_bug.cgi?id=14708): polynomial operators `+` `-` `/` `./` `*` `.*` no longer simplified null high orders coefficients from result
@@ -605,13 +607,9 @@ Known issues
 * [#15632](http://bugzilla.scilab.org/show_bug.cgi?id=15632): `x=[];x()=1` crashed Scilab.
 * [#15635](http://bugzilla.scilab.org/show_bug.cgi?id=15635): `dellip(1,4)` terminated with neither output nor error (regression)
 * [#15636](http://bugzilla.scilab.org/show_bug.cgi?id=15636): Clicking on its icon did not always give focus to Help browser
-<<<<<<< HEAD
-* [#15645](http://bugzilla.scilab.org/show_bug.cgi?id=15645): `deff('y=f(x)','z=x^2'),fsolve(1,f)` crashed scilab
-* [#15642](http://bugzilla.scilab.org/show_bug.cgi?id=15642):A(:) gave incorrect display when A is sparse boolean (regression)
-=======
 * [#15638](http://bugzilla.scilab.org/show_bug.cgi?id=15638): `colorbar()`: Both colors on the bar tips spanned an interval twice smaller than for other colors. This made almost impossible to choose a convenient number of colors to share the whole values interval in a simple way.
-* [#15648](http://bugzilla.scilab.org/show_bug.cgi?id=15648): `sparse([1 1],1,[-1 -1])` crashed scilab
->>>>>>> 04860748d5d... * Bugs 15638 15805 15806 fixed: colorbar() improved
+* [#15642](http://bugzilla.scilab.org/show_bug.cgi?id=15642):A(:) gave incorrect display when A is sparse boolean (regression)
+* [#15645](http://bugzilla.scilab.org/show_bug.cgi?id=15645): `deff('y=f(x)','z=x^2'),fsolve(1,f)` crashed scilab
 * [#15647](http://bugzilla.scilab.org/show_bug.cgi?id=15647): `spzeros(-1,-1)` yielded a corrupted result
 * [#15648](http://bugzilla.scilab.org/show_bug.cgi?id=15648): `sparse([1 1],1,[-1 -1])` crashed scilab
 * [#15652](http://bugzilla.scilab.org/show_bug.cgi?id=15652): An appended comment // after a comma in an multiline literal array now generates an error (regression).

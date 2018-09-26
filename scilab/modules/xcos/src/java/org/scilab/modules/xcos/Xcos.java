@@ -69,8 +69,6 @@ import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
-import com.mxgraph.model.mxGraphModel;
-import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.view.mxStylesheet;
@@ -1027,6 +1025,28 @@ public final class Xcos {
                 GraphActionManager.setEnable(StopAction.class, true);
             }
         });
+    }
+
+    /**
+     * Look for the diagram that match the model object in the diagram hierarchy.
+     * @param uid
+     *            the UID to search for
+     * @return the associated diagram
+     */
+    public static XcosDiagram findDiagram(long uid) {
+        final Xcos instance = getInstance();
+
+        for (Collection<XcosDiagram> diags : instance.diagrams.values()) {
+            for (XcosDiagram diag : diags) {
+                final Object defaultParent = diag.getDefaultParent();
+
+                if (defaultParent instanceof XcosCell && ((XcosCell) defaultParent).getUID() == uid) {
+                    return diag;
+                }
+            }
+        }
+
+        return null;
     }
 
     /**
