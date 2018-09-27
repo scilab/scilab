@@ -55,7 +55,7 @@ public class BorderConvertor {
     public static Color getColor(String str) {
         try {
             if(str.charAt(0) == '#') {
-                return new Color.decode(str);
+                return Color.decode(str);
             } else {     
                 Field field = Class.forName("java.awt.Color").getField(str);
                 return (Color) field.get(null);
