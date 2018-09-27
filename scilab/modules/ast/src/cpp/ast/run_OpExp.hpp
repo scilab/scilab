@@ -503,7 +503,7 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
     _paramL->DecreaseRef();
     _paramR->DecreaseRef();
 
-    return out[0];
+    return out.size() ? out[0] : nullptr;
 }
 
 } /* namespace ast */
