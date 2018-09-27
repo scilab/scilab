@@ -15,6 +15,7 @@
 
 package org.scilab.modules.xcos.io.spec;
 
+import java.io.CharConversionException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Logger;
@@ -57,15 +58,21 @@ public class ContentEntry implements Entry {
     }
 
     @Override
-    public void load(ZipEntry entry, InputStream stream) throws IOException {
+    public void load(ZipEntry entry, InputStream stream, String encoding) throws CharConversionException, IOException {
+        if (encoding == null)
+            encoding = "UTF-8";
+        
         try {
             XcosSAXHandler handler = new XcosSAXHandler(content, pack.getDictionary());
             XMLReader reader = XMLReaderFactory.createXMLReader();
             reader.setContentHandler(handler);
             reader.setErrorHandler(handler);
 
+            InputSource is = new InputSource(stream);
+            is.setEncoding(encoding);
+            
             LOG.entering("XMLReader", "parse");
-            reader.parse(new InputSource(stream));
+            reader.parse(is);
             LOG.exiting("XMLReader", "parse");
         } catch (SAXException e) {
             e.printStackTrace();

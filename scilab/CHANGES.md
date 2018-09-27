@@ -507,6 +507,7 @@ Known issues
 * [#15455](http://bugzilla.scilab.org/show_bug.cgi?id=15455): OCaml build sometimes failed with Linenum being an unbound module.
 * [#15457](http://bugzilla.scilab.org/show_bug.cgi?id=15457): The icon of the "Trigo functions" and "CONVERT" Xcos blocks was not updated according to actual input parameters.
 * [#15464](http://bugzilla.scilab.org/show_bug.cgi?id=15464): Xcos C-blocks could not link dlls on Windows.
+* [#15468](http://bugzilla.scilab.org/show_bug.cgi?id=15468): Xcos saved file used non UTF-8 characters which lead to invalid file loading later.
 * [#15484](http://bugzilla.scilab.org/show_bug.cgi?id=15484): On Windows, `isdir("w:")`, `isdir("w:/")`, and `isdir("w:\")` returned %T whenever the W: drive does not exist.
 * [#15489](http://bugzilla.scilab.org/show_bug.cgi?id=15489): Help pages of `covStart`, `covStop`, `covWrite` and `covMerge` were not built for the fr, ja, pt and ru languages, and were unreachable from a session in non `en_US` language.
 * [#15495](http://bugzilla.scilab.org/show_bug.cgi?id=15495): SampleCLK simple demo failed to simulate.
