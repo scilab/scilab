@@ -502,6 +502,7 @@ Known issues
 * [#15033](http://bugzilla.scilab.org/show_bug.cgi?id=15033): `fileinfo` gave negative size if filesize bigger than 2^31
 * [#15091](http://bugzilla.scilab.org/show_bug.cgi?id=15091): `translatepaths()` was KO.
 * [#15092](http://bugzilla.scilab.org/show_bug.cgi?id=15092): Scalar variable was resized as a column vector instead of row.
+* [#15095](http://bugzilla.scilab.org/show_bug.cgi?id=15095): The Matlab=>Scilab translator failed when working with non-ASCII paths.
 * [#15017](http://bugzilla.scilab.org/show_bug.cgi?id=15017): `lcm` did not support int64 and uint64 input integers. Input integers had to be in a row instead of any matrix. For input decimal integers, results were int32 encoded.
 * [#15115](http://bugzilla.scilab.org/show_bug.cgi?id=15115): Tabs order in SciNotes was incorrect when opening file and restoring session.
 * [#15157](http://bugzilla.scilab.org/show_bug.cgi?id=15157): min/max on tlist or mlist did not call good overload.

@@ -1,9 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 // Copyright (C) ???? - INRIA - Serge STEER
-// Copyright (C) 2018 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,33 +11,34 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprintoutput)
+function res = mfile2sci(fil, results_path, Recmode, only_double, verbose_mode, prettyprintoutput)
     // This function performs translation of a single M-file
     // - fil: file name
-    // - res_path: path to write translated file in (default value is fil path)
+    // - results_path: path to write translated file in (default value is fil path)
     // - Recmode: recursive mode (default value is false)
 
     // Get default arguments
     [lhs,rhs]=argn(0)
-    if rhs<6 then prettyprintoutput=%F,end
-    if rhs<5 then verbose_mode=3,end
-    if rhs<4 then only_double = %F,end
-    if rhs<3 then Recmode=%F,end
-    if rhs<2 then res_path="./",end
-    if rhs<1 then m2sci_gui();res=[];return;end
-    if getos() == "Windows" then
-        fil=strsubst(fil,filesep(),"/")
-        res_path=strsubst(res_path,"\","/")
+    if ~isdef("prettyprintoutput","l"), prettyprintoutput = %F, end
+    if ~isdef("verbose_mode","l"),      verbose_mode = 3,       end
+    if ~isdef("only_double","l"),       only_double = %T,       end
+    if ~isdef("Recmode","l"),           Recmode = %F,           end
+    if ~isdef("results_path","l"),      results_path = ".",     end
+    if rhs<1 then
+        m2sci_gui();
+        res = [];
+        return
     end
-    if part(res_path,length(res_path))<>"/" then
-        res_path=res_path+"/"
-    end
+    fil = strsubst(fil,filesep(),"/")
+    results_path = getshortpathname(pathconvert(results_path));
+    results_path = strsubst(results_path,"\","/")
+
     // Loads libraries related to m2sci
     if exists("m2scikernellib")==0 then load("SCI/modules/m2sci/macros/kernel/lib"),end
     if exists("m2scipercentlib")==0 then load("SCI/modules/m2sci/macros/percent/lib"),end
     if exists("m2scisci_fileslib")==0 then load("SCI/modules/m2sci/macros/sci_files/lib"),end
 
-    if multi_fun_file(fil,res_path,Recmode,only_double,verbose_mode,prettyprintoutput) then
+    if multi_fun_file(fil,results_path,Recmode,only_double,verbose_mode,prettyprintoutput) then
         res=1
         return
     end
@@ -116,21 +116,22 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
 
     // logfile initialisation
     if exists("logfile")==0 then
-        [tempfd1,ierr1]=file("open",pathconvert(TMPDIR)+"logfile.dat","old")
+        File = getshortpathname(pathconvert(TMPDIR))+"logfile.dat"
+        [tempfd1,ierr1] = file("open",File,"old")
         if ierr1==0 then
-            load(pathconvert(TMPDIR)+"logfile.dat")
+            load(File)
             file("close",tempfd1)
             file("close",logfile)
-            mdelete(pathconvert(TMPDIR)+"logfile.dat")
+            mdelete(File)
         end
-        logfile=file("open",res_path+"m2sci_"+fnam+".log","unknown")
-        save(pathconvert(TMPDIR)+"logfile.dat", "logfile")
+        logfile = file("open",results_path+"m2sci_"+fnam+".log","unknown")
+        save(File, "logfile")
     end
 
     // Output beginning message
     mss=[gettext("****** Beginning of mfile2sci() session ******");
     gettext("File to convert:")+" "+fil;
-    gettext("Result file path:")+" "+res_path;
+    gettext("Result file path:")+" "+results_path;
     gettext("Recursive mode:")+" "+rec;
     gettext("Only double values used in M-file:")+" "+dble;
     gettext("Verbose mode:")+" "+string(verbose_mode);
@@ -154,7 +155,8 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
     // Make minor changes on syntax
     m2sci_info(gettext("Syntax modification..."),-1);
     ierr=execstr("load(''"+pathconvert(TMPDIR)+fnam+ ".tree'',''txt'',''helppart'',''batch'')","errcatch","n")
-    if ierr<>0 | exists("txt")==0 | exists("batch")==0 & strindex(res_path,TMPDIR)==[] then
+    if ierr<>0 | exists("txt")==0 | exists("batch")==0 & ..
+                 strindex(results_path,getshortpathname(TMPDIR))==[] then
         [helppart,txt,batch]=m2sci_syntax(txt)
     elseif ierr==0 & newest(fil,pathconvert(TMPDIR)+fnam+ ".tree")==1 then
         [helppart,txt,batch]=m2sci_syntax(tmptxt)
@@ -164,8 +166,8 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
 
     // Write .cat file and update whatis
     if helppart<>[] then
-        catfil=res_path+fnam+".cat"
-        whsfil=res_path+"whatis"
+        catfil = results_path + fnam+".cat"
+        whsfil = results_path + "whatis"
         mputl(helppart,catfil);
         if exists("whsfil_unit")==1 then
             write(whsfil_unit,stripblanks(helppart(1))+" |"+fnam,"(a)")
@@ -265,14 +267,16 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
         // if mtlbref_fun<>[]|not_mtlb_fun<>[]|mtlbtool_fun<>[] then
         //resume_logfile initialisation
         if exists("resume_logfile")==0 then
-            [tempfd2,ierr2]=file("open",pathconvert(TMPDIR)+gettext("resumelogfile.dat"),"old")
+            File = getshortpathname(pathconvert(TMPDIR))+gettext("resumelogfile.dat")
+            [tempfd2,ierr2] = file("open",File,"old")
             if ierr2==0 then
                 load(pathconvert(TMPDIR)+gettext("resumelogfile.dat"))
-                file("close",tempfd2)
-                file("close",resume_logfile)
+                file("close", tempfd2)
+                file("close", resume_logfile)
                 mdelete(pathconvert(TMPDIR)+gettext("resumelogfile.dat"))
             end
-            resume_logfile=file("open",res_path+gettext("resume")+"_m2sci_"+fnam+".log","unknown")
+            resume_logfile = results_path+gettext("resume")+"_m2sci_"+fnam+".log"
+            resume_logfile = file("open", resume_logfile, "unknown")
             save(pathconvert(TMPDIR)+gettext("resumelogfile.dat"), "resume_logfile")
         end
 
@@ -336,13 +340,13 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
         res=res(1:n)
 
         // Write sci-file
-        ext=".sci"
-        scifil=res_path+fnam+ext
-        mputl(res,scifil);
+        ext = ".sci"
+        scifil = results_path + fnam + ext
+        mputl(res, scifil);
 
         // Write sci_<mname>.sci translation file
         if trad<>[] then
-            sci_fil=res_path+"sci_"+mname+".sci"
+            sci_fil = results_path + "sci_" + mname + ".sci"
             mputl(trad,sci_fil);
             res=1
         else
@@ -350,12 +354,12 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
         end
 
         // Output summary information
-        infos=[]
+        infos = []
         if m2sci_infos(1) then
-            infos=gettext("Translation may be improved: see the //! comments and for all mtlb_<funname> function call\n  Type help mtlb_<funname> in Scilab command window to get information about improvements.");
+            infos = gettext("Translation may be improved: see the //! comments and for all mtlb_<funname> function call\n  Type help mtlb_<funname> in Scilab command window to get information about improvements.");
         end
         if m2sci_infos(2) then
-            infos=[infos;gettext("Translation may be wrong (see the //!! comments).")]
+            infos = [infos ; gettext("Translation may be wrong (see the //!! comments).")]
         end
 
         nametbl($)=[]
@@ -370,10 +374,10 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
     m2sci_info([infos;mss],-1);
 
     if Reclevel>1 then
-        m2sci_infos=m2sci_infos_save
+        m2sci_infos = m2sci_infos_save
     end
 
-    file("close",logfile)
+    file("close", logfile)
     clearglobal m2sci_infos
     clearglobal mtlbref_fun
     clearglobal mtlbtool_fun
