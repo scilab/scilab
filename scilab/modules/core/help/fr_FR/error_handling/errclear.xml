@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="errclear" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="errclear" xml:lang="fr">
     <refnamediv>
         <refname>errclear</refname>
-        <refpurpose>"effacement" d'une erreur</refpurpose>
+        <refpurpose>efface le dernier rapport d'erreur (si son numéro est celui indiqué)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>errclear([n])</synopsis>
+        <synopsis>
+          errclear()
+          errclear(n)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
@@ -21,19 +27,49 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example">a = 1;
-            b = undefinedvariable + a;
-            lasterror()
-            b = undefinedvariable + a;
-            errclear()
-            lasterror()
-            b = undefinedvariable + a;
-            errclear(5)
-            lasterror() // l'erreur 4 est toujours la dernière erreur
-            b = undefinedvariable + a;
-            errclear(4)
-            lasterror()
+        <programlisting role="example">
+a = 1;
+try, b = undefinedvariable + a; end
+[m,n0] = lasterror();
+n0
+try, b = undefinedvariable + a; end
+errclear()
+[m,n] = lasterror();
+n
+try, b = undefinedvariable + a; end
+errclear(100)
+[m,n] = lasterror(); n
+
+try, b = undefinedvariable + a; end
+errclear(999)
+[m,n] = lasterror(); n
         </programlisting>
+      <screen><![CDATA[
+--> try, b = undefinedvariable + a; end
+--> [m,n0] = lasterror();
+--> n0
+ n0  =
+   999.
+
+--> try, b = undefinedvariable + a; end
+--> errclear()
+--> [m,n] = lasterror();
+--> n
+ n  =
+   0.
+
+--> try, b = undefinedvariable + a; end
+--> errclear(100)
+--> [m,n] = lasterror(); n
+ n  =
+   999.
+
+--> try, b = undefinedvariable + a; end
+--> errclear(999)
+--> [m,n] = lasterror(); n
+ n  =
+   0.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

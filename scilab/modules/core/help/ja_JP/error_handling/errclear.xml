@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="errclear">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="errclear">
     <refnamediv>
         <refname>errclear</refname>
         <refpurpose>エラーのクリア</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>errclear([n])</synopsis>
+        <synopsis>
+          errclear()
+          errclear(n)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>説明</title>
@@ -21,19 +27,49 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example">a = 1;
-            b = undefinedvariable + a;
-            lasterror()
-            b = undefinedvariable + a;
-            errclear()
-            lasterror()
-            b = undefinedvariable + a;
-            errclear(5)  // error 4 always as last error
-            lasterror()
-            b = undefinedvariable + a;
-            errclear(4)
-            lasterror()
+        <programlisting role="example">
+a = 1;
+try, b = undefinedvariable + a; end
+[m,n0] = lasterror();
+n0
+try, b = undefinedvariable + a; end
+errclear()
+[m,n] = lasterror();
+n
+try, b = undefinedvariable + a; end
+errclear(100)
+[m,n] = lasterror(); n
+
+try, b = undefinedvariable + a; end
+errclear(999)
+[m,n] = lasterror(); n
         </programlisting>
+      <screen><![CDATA[
+--> try, b = undefinedvariable + a; end
+--> [m,n0] = lasterror();
+--> n0
+ n0  =
+   999.
+
+--> try, b = undefinedvariable + a; end
+--> errclear()
+--> [m,n] = lasterror();
+--> n
+ n  =
+   0.
+
+--> try, b = undefinedvariable + a; end
+--> errclear(100)
+--> [m,n] = lasterror(); n
+ n  =
+   999.
+
+--> try, b = undefinedvariable + a; end
+--> errclear(999)
+--> [m,n] = lasterror(); n
+ n  =
+   0.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

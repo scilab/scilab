@@ -181,7 +181,7 @@ input arguments (more values that format needs).
 * `deletefile` can delete multiple files at once.
 * `exec` of macro executes the body in the current scope, but the prototype must have zero
 input and output arguments.
-* `error`: an error number in the input is deprecated.
+* `error`: absolute error numbers are no longer supported. Providing an explicit error message is now mandatory.
 * `impl`: Recall `impl` with the same parameters as in its previous stop is now available.
 * `ode`: `y0` is restricted to a column vector.
 * `pppdiv`: Returns a scalar of type 'constant' when the rank is 0.
@@ -412,6 +412,7 @@ Known issues
 * [#7277](http://bugzilla.scilab.org/show_bug.cgi?id=7277): SciNotes `File>Open recent` menu was not updated after 5 items were added.
 * [#7362](http://bugzilla.scilab.org/show_bug.cgi?id=7362): There were 10 unused macros in the scicos_blocks hydraulic directory.
 * [#7641](http://bugzilla.scilab.org/show_bug.cgi?id=7641): `uint8(1):uint16(4)` produced an error instead of being parsed as `uint8(1):1:uint16(4)`, that passes.
+* [#7659](http://bugzilla.scilab.org/show_bug.cgi?id=7659): The `error` page was not up-to-date for Scilab 6.
 * [#7675](http://bugzilla.scilab.org/show_bug.cgi?id=7675): sparse() got a wrong result, when creation with many values in same position.
 * [#8000](http://bugzilla.scilab.org/show_bug.cgi?id=8000): `get(gcf(), "%s %s %s..")` crashed Scilab.
 * [#8017](http://bugzilla.scilab.org/show_bug.cgi?id=8017): `atomsInstall` yielded an error when a version without packaging subversion is specified.

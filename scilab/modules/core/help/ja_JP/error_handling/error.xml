@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="error">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="error">
     <refnamediv>
         <refname>error</refname>
         <refpurpose>エラーメッセージ</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>error(message)
+        <synopsis>
+            error(message)
             error(message, n)
-            error(n)
             error(n, message)
-            error(n, pos)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -28,12 +44,6 @@
                     <para>整数. エラーメッセージの番号</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>pos</term>
-                <listitem>
-                    <para>整数. エラーメッセージのパラメータ</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -44,32 +54,16 @@
             デフォルトで <literal>error</literal> は実行を停止し,
             プロンプトレベルに復帰します.
             このデフォルト動作は,<literal>errcatch</literal> または
-            <literal>execstr(...,'errcatch')</literal> 関数により変更できます.
+            <literal>execstr(…,'errcatch')</literal> 関数により変更できます.
         </para>
         <para>
             <literal>error(message)</literal> は<literal>message</literal>の文字列を
-            出力します.
-            エラーメッセージの番号は 10000 となります.
+            出力します. エラーメッセージの番号は 10000 となります.
         </para>
         <para>
             <literal>error(message,n)</literal> は
             <literal>message</literal>の文字列を出力します.
             エラーメッセージの番号は<literal>n</literal>で指定されます.
-            この番号は 10000 より大きい必要があります.
-        </para>
-        <para>
-            <literal>error(n)</literal> は,
-            エラー番号 <literal>n</literal>の
-            定義済みエラーメッセージを出力します.
-        </para>
-        <para>
-            いくつかの定義済みエラーメッセージは
-            パラメータを必要とします(
-            <link linkend="error_table">error_table</link>参照).
-            この場合,パラメータの値を指定するために
-            <literal>error(n,pos)</literal>のように
-            引数<literal>pos</literal>を使用する必要があります.
-            その他の場合, <literal>pos</literal>  引数は無視されます.
         </para>
         <para>
             エラーメッセージのリストおよび対応するエラー番号については
@@ -78,26 +72,78 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[error('my error message')
-error(43)
-error(52, 3)
-error(10001, ['A'; 'multi';'line';'error';'message'])
-lasterror()]]></programlisting>
+        <programlisting role="example"><![CDATA[
+function test(a)
+    if argn(2)~=1
+        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
+        error(msprintf(msg, "test", 1))
+    end
+endfunction
+function myfun()
+    a = 1;
+    test()
+endfunction
+
+// ----------
+
+error(['A multi line' 'error message'])
+error(500, 'Error: my error message')
+[m, n] = lasterror()
+
+test()
+myfun()
+    ]]></programlisting>
+    <screen><![CDATA[
+--> error(['A multi line' 'error message'])
+
+A multi line
+error message
+
+--> error(500, 'Error: my error message')
+
+Error: my error message
+
+--> [m, n] = lasterror()
+ n  =
+   500.
+ m  =
+ Error: my error message
+
+
+--> test()
+関数の     4 行目 test
+
+test: 入力引数の数が間違っています: 1 個の引数を指定してください.
+--> myfun()
+関数の     4 行目 test
+関数の     3 行目 myfun
+
+test: 入力引数の数が間違っています: 1 個の引数を指定してください.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="lasterror">lasterror</link>
+            </member>
+            <member>
+                <link linkend="error_table">error_table</link>
+            </member>
+            <member>
+                <link linkend="gettext">gettext</link>
+            </member>
+            <member>
                 <link linkend="warning">warning</link>
+            </member>
+            <member>
+                <link linkend="try">try</link>
             </member>
             <member>
                 <link linkend="execstr">execstr</link>
             </member>
             <member>
-                <link linkend="lasterror">lasterror</link>
-            </member>
-            <member>
-                <link linkend="messagebox">messagebox</link>
+                <link linkend="where">where</link>
             </member>
         </simplelist>
     </refsection>
@@ -105,9 +151,23 @@ lasterror()]]></programlisting>
         <title>履歴</title>
         <revhistory>
             <revision>
+                <revnumber>5.0.0</revnumber>
+                <revremark>
+                    <literal>error(n, message)</literal> syntax introduced.
+                </revremark>
+            </revision>
+            <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>
                     <literal>error</literal> 関数は入力引数として文字列ベクトルを受け付けます.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    The <literal>error(n)</literal> and <literal>error(n, pos)</literal> syntaxes
+                    are no longer supported: Providing an explicit error message is now mandatory.
+                    There is no longer any absolute error identifier.
                 </revremark>
             </revision>
         </revhistory>
