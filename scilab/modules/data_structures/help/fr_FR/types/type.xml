@@ -310,15 +310,7 @@ type(r)                     // Fractions polynomiales (rationnelles)
             <revision>
                 <revnumber>6.0</revnumber>
                 <revdescription>
-                    <simplelist>
-                        <member>
-                            Le type 11 est supprimé. Il était utilisé pour les fonctions Scilab non
-                            compilées.
-                        </member>
-                        <member>
-                           <literal>type(:)</literal> vaut désormais 129 au lieu de 1.
-                        </member>
-                    </simplelist>
+                  Le type 11 est supprimé. Il était utilisé pour les fonctions Scilab non compilées.
                 </revdescription>
             </revision>
         </revhistory>

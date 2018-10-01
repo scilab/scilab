@@ -190,7 +190,20 @@ A(i)
             <revision>
                 <revnumber>6.0</revnumber>
                 <revdescription>
-                  <literal>%i:10</literal> produit désormais une erreur.
+                  <itemizedlist>
+                    <listitem>
+                        <literal>type(:)</literal> vaut 129 (comme pour <literal>1:$</literal>)
+                        au lieu de 1. <literal>size(:)</literal> est indéfinie
+                        (au lieu de <literal>[-1,-1]</literal>).
+                    </listitem>
+                    <listitem>
+                        <literal>typeof(:)</literal> est désormais <literal>"implicitlist"</literal>,
+                        comme pour <literal>1:$</literal>.
+                    </listitem>
+                    <listitem>
+                        <literal>%i:10</literal>  produit désormais une erreur.
+                    </listitem>
+                  </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

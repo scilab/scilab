@@ -82,17 +82,17 @@
             例えば以下のようにします:
         </para>
         <programlisting role=""><![CDATA[
-      i = 0
-      while i<5
-          disp("i");
-          i = i + 1;
-      end
+i = 0;
+while i<5
+    disp(i);
+    i = i + 1;
+end
 ]]></programlisting>
         <para>
             以下は推奨されません.
         </para>
         <programlisting role=""><![CDATA[
-      i = 0; while i<5 disp("i"); i = i + 1; end
+i = 0; while i<5, disp(i), i = i + 1; end
 ]]></programlisting>
       <warning>
         条件付き命令(if while for または select/case)の本文を定義するために使用可能な

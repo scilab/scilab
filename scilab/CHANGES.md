@@ -121,7 +121,7 @@ See [the wiki page on porting code from 5.5 to 6.0](https://wiki.scilab.org/From
 * `{}` and `[]` are now distinct operators. Matrices can no longer be defined using `{}` operators. These are reserved for cell definition.
 * Addition, subtraction, and inequality comparisons `<` `<=` `>=` `>` with an empty matrix now returns an empty matrix.
 * New `&&` and `||` boolean AND and OR operators are introduced. They are shortcut in expressions even out of conditional tests, like `A = [1 %pi] || det([1 2])`
-* Syntax `%i:10` is now deprecated (only real scalars can be used).
+* The colon `: ` is now such that `type(:)==type(1:$)==129`, `typeof(:)==typeof(1:$)=='implicitlist'`, and `size(:)` is now undefined instead of `[-1,-1]`. In addition, `%i:10` is deprecated: Only real scalars can be used.
 * Control and block keywords `break` `case` `catch` `continue` `do` `else` `elseif` `end` endfunction` `for` `function` `if` `resume` `return` `select` `then` `try` and `while` can no longer be overloaded as regular assignable variables as in `end=1`. They are now reserved and protected.
 * `else` is no longer supported in a `while ... end` control instruction.
 * `end` can no longer be directly followed by an instruction on the line without a `,` or `;` separator.

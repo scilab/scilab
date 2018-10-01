@@ -305,14 +305,7 @@ type(r)                     // rational fractions
             <revision>
                 <revnumber>6.0</revnumber>
                 <revdescription>
-                <simplelist>
-                    <member>
-                       The type 11 is removed. It was used for uncompiled Scilab functions.
-                    </member>
-                    <member>
-                       <literal>type(:)</literal> now returns 129 instead of 1.
-                    </member>
-                </simplelist>
+                  The type 11 is removed. It was used for uncompiled Scilab functions.
                 </revdescription>
             </revision>
         </revhistory>

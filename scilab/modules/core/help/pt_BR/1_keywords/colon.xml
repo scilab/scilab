@@ -126,7 +126,20 @@
             <revision>
                 <revnumber>6.0</revnumber>
                 <revdescription>
-                  <literal>%i:10</literal> now yields an error.
+                  <itemizedlist>
+                    <listitem>
+                        <literal>type(:)</literal> is 129 (as for <literal>1:$</literal>)
+                        instead of 1. <literal>size(:)</literal> is undefined
+                        (instead of <literal>[-1,-1]</literal>).
+                    </listitem>
+                    <listitem>
+                        <literal>typeof(:)</literal> is now <literal>"implicitlist"</literal>,
+                        like <literal>1:$</literal>.
+                    </listitem>
+                    <listitem>
+                        <literal>%i:10</literal> now yields an error.
+                    </listitem>
+                  </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

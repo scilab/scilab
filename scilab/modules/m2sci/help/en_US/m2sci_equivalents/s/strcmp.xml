@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_strcmp">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="m2sci_strcmp">
     <refnamediv>
         <refname>strcmp (Matlab function)</refname>
         <refpurpose>Compare strings</refpurpose>
@@ -32,12 +35,12 @@
             <tr>
                 <td>
                     <programlisting role="example"><![CDATA[
-strcmp(str1,str2)
+strcmp(str1, str2)
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-str1==str2
+strcmp(str1, str2)
 ]]></programlisting>
                 </td>
             </tr>
@@ -47,7 +50,8 @@ str1==str2
         <title>Particular cases</title>
         <para>
             <note>
-                Note that <emphasis role="bold">strcmp</emphasis> can be use with not string inputs, in this case Matlab returns <emphasis role="bold">0</emphasis>. Scilab <emphasis role="bold">==</emphasis> will in this case return <emphasis role="bold">%T</emphasis> if both inputs are equal.
+                Note that <emphasis role="bold">strcmp</emphasis> can be use with not string inputs.
+                In this case Matlab returns <emphasis role="bold">0</emphasis>.
             </note>
         </para>
     </refsection>
