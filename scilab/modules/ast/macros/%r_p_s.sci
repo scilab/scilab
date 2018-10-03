@@ -23,7 +23,7 @@ function f=%r_p_s(f,s)
         if m==1|n==1 then //Element wise exponentiation f.^s with f vector
             if s<0 then
                 num=f("num")
-                if or(abs(coeff(num(:)))*ones(max(degree(num))+1,1)==0) then
+                if or(abs(coeff(num(:)))*ones(max(0,max(degree(num)))+1,1)==0) then
                     error(_("Division by zero"))
                 end
                 s=-s
@@ -47,7 +47,7 @@ function f=%r_p_s(f,s)
         den=ones(s)
         num(kp)=f("num").^s(kp)
         den(kp)=f("den").^s(kp)
-        if abs(coeff(f("num")))*ones(degree(f("num"))+1,1)==0 then
+        if abs(coeff(f("num")))*ones(max(0,degree(f("num")))+1,1)==0 then
             error(_("Division by zero"))
         end
         num(kn)=f("den").^(-s(kn))

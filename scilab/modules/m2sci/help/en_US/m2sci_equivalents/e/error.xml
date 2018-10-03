@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_error">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="m2sci_error">
     <refnamediv>
         <refname>error (Matlab function)</refname>
         <refpurpose>Display error messages</refpurpose>
@@ -32,21 +35,19 @@
             <tr>
                 <td>
                     <programlisting role="example"><![CDATA[
-error
+error(msg)
+error(msg, A1, A2, ..)
+error(msgID, ..)
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-error
+error(msg)
+error(msprintf(msg, A1, A2, ..))
+error(msgID, ..)
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Scilab <emphasis role="bold">error</emphasis> function can only take one character string as input but Matlab function can take more than one character string as input and also numerical values.
-        </para>
     </refsection>
 </refentry>

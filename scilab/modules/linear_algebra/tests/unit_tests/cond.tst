@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // unit tests for cond function
 // =============================================================================
@@ -58,6 +59,12 @@ refMsg = msprintf(_("%s: Wrong type for input argument #%d: A square matrix expe
 assert_checkerror("cond([8 5 2;4 5 6], 1)", refMsg);
 
 // cond(A)
+assert_checkalmostequal(cond([]), 0);
+assert_checkalmostequal(cond([],1), 0);
+assert_checkalmostequal(cond([],2), 0);
+assert_checkalmostequal(cond([],%inf), 0);
+assert_checkalmostequal(cond([],"fro"), 0);
+
 A = [8 5 2;4 5 6];
 assert_checkalmostequal(cond(A), 3.1529469);
 

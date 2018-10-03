@@ -175,15 +175,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabDockablePanel i
                         } catch (IllegalArgumentException exception) {
                             /* If the type is not known/managed, don't crash */
                         }
-                    } else {
-
-                        if (colIndex == BrowseVar.SIZE_COLUMN_INDEX) {
-                            /* Use the getModel() method because the
-                             * column 5 has been removed from display
-                             * but still exist in the model */
-                            tip = Messages.gettext("Bytes:") + " " + model.getValueAt(rowIndex, BrowseVar.BYTES_COLUMN_INDEX).toString();
-                        }
-                    }
+                    } 
                 }
                 return tip;
             }
@@ -212,7 +204,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabDockablePanel i
         table.removeColumn(column);
 
         column = table.getColumnModel().getColumn(BrowseVar.BYTES_COLUMN_INDEX);
-        table.removeColumn(column);
+        //table.removeColumn(column);
 
         table.addMouseListener(new BrowseVarMouseListener());
         // Mouse selection mode

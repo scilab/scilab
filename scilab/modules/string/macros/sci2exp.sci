@@ -296,7 +296,7 @@ function t=pol2exp(a,lmax)
     for i=1:m
         x=emptystr(1)
         for j=1:n,
-            v=a(i,j);d=degree(v);
+            v=a(i,j);d=max(0,degree(v));
             v=coeff(v);
             k0=1;while (k0<d+1)&(v(k0))==0 then k0=k0+1,end
             y=emptystr(1)

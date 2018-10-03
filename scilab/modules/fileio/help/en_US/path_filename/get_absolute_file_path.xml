@@ -77,6 +77,12 @@ mclose(a);
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="dispfiles">dispfiles</link>
+            </member>
+            <member>
+                <link linkend="file">file()</link>
+            </member>
+            <member>
                 <link linkend="getshortpathname">getshortpathname</link>
             </member>
             <member>

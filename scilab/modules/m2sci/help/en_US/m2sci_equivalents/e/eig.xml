@@ -13,81 +13,16 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_eig">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="m2sci_eig">
     <refnamediv>
         <refname>eig (Matlab function)</refname>
         <refpurpose>Find eigenvalues and eigenvectors</refpurpose>
     </refnamediv>
     <refsection>
         <title>Matlab/Scilab equivalent</title>
-        <informaltable border="1" width="100%">
-            <tr>
-                <td align="center">
-                    <emphasis role="bold">Matlab</emphasis>
-                </td>
-                <td align="center">
-                    <emphasis role="bold">Scilab</emphasis>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <programlisting role="example"><![CDATA[
-eig
-]]></programlisting>
-                </td>
-                <td>
-                    <programlisting role="example"><![CDATA[
-spec ; bdiag
-]]></programlisting>
-                </td>
-            </tr>
-        </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <variablelist>
-            <varlistentry>
-                <term>eig(A)</term>
-                <listitem>
-                    <para>Scilab equivalent for eig(A) is spec(A). Scilab eigenvector matrix can differ from Matlab one.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>eig(A,'nobalance')</term>
-                <listitem>
-                    <para>
-                        There is no Scilab equivalent for <emphasis role="bold">"nobalance"</emphasis> option. See examples.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>eig(A,B,flag)</term>
-                <listitem>
-                    <para>
-                        There is no Scilab equivalent for <emphasis role="bold">flag</emphasis>.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>Additional Remarks</title>
-        <para>
-            <note>
-                If matrix <varname>B</varname> is nonsingular, the generalized eigenvalues can be computed
-                as the eigenvalues of the matrix <latex>B^{-1}A</latex> i.e. <code>d=spec(B^-1*A)</code>.
-            </note>
-        </para>
-        <para>
-            <note>
-                If <varname>A</varname> is a real random square matrix, Scilab equivalent for the Matlab syntax <code>[V,D] = eig(A,'balance')</code>
-                is <code>[D,V] = bdiag(A+%i*0, 1/%eps)</code>. In this case <varname>D</varname> consists of complex 1x1 blocks.
-            </note>
-        </para>
-    </refsection>
-
-    <refsection>
-        <title>Examples</title>
         <informaltable border="1" width="100%">
             <tr>
                 <td align="center">
@@ -122,5 +57,52 @@ d = spec(inv(B)*A)
                 </td>
             </tr>
         </informaltable>
+    </refsection>
+    <refsection>
+        <title>Particular cases</title>
+        <variablelist>
+            <varlistentry>
+                <term>eig(A)</term>
+                <listitem>
+                    <para>Scilab equivalent for eig(A) is spec(A). Scilab eigenvector matrix can differ from Matlab one.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>eig(A,'nobalance')</term>
+                <listitem>
+                    <para>
+                        There is no Scilab equivalent for <emphasis role="bold">"nobalance"</emphasis> option. See examples.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>eig(A,B,flag)</term>
+                <listitem>
+                    <para>
+                        There is no Scilab equivalent for <emphasis role="bold">flag</emphasis>.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para/>
+        <note>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        If matrix <varname>B</varname> is nonsingular, the generalized
+                        eigenvalues can be computed as the eigenvalues of the matrix
+                        <latex>B^{-1}A</latex> i.e. <code>d=spec(B^-1*A)</code>.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        If <varname>A</varname> is a real random square matrix, Scilab
+                        equivalent for the Matlab syntax <code>[V,D] = eig(A,'balance')</code>
+                        is <code>[D,V] = bdiag(A+%i*0, 1/%eps)</code>.
+                        In this case <varname>D</varname> consists of complex 1x1 blocks.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </note>
     </refsection>
 </refentry>

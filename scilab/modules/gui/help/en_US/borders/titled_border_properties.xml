@@ -58,7 +58,7 @@
                 <term>color</term>
                 <listitem>
                     <para>String</para>
-                    <para>The color of the title.</para>
+                    <para>The color name of the title or a string like <literal>#FFFFFF</literal>.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

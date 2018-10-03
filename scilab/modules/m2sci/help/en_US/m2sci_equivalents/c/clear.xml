@@ -33,46 +33,20 @@
                 <td>
                     <programlisting role="example"><![CDATA[
 clear
+clear myvar
+clear variables
+clear global myvar
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
 clear
+clear myvar
+clear
+clearglobal myvar
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Scilab and Matlab <emphasis role="bold">clear</emphasis> functions are only equivalent when called using <emphasis role="bold">clear</emphasis> or <emphasis role="bold">clear name</emphasis>.
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>clear global ...</term>
-                <listitem>
-                    <para>
-                        Scilab equivalent for Matlab <emphasis role="bold">clear global [name]</emphasis> is <emphasis role="bold">clearglobal([name])</emphasis>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>clear variables ...</term>
-                <listitem>
-                    <para>
-                        Scilab equivalent for Matlab <emphasis role="bold">clear variables</emphasis> is simply <emphasis role="bold">clear</emphasis>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>clear keyword ...</term>
-                <listitem>
-                    <para>
-                        For all other keywords, there is no Scilab equivalent for Matlab <emphasis role="bold">clear call</emphasis>.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
     </refsection>
 </refentry>

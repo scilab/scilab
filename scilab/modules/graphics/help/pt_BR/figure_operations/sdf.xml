@@ -20,8 +20,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>sdf()
-            f = gdf(); set(f,"default_values",1)
+        <synopsis>
+            sdf()
+            set(gdf(), "default_values",1)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -65,10 +66,16 @@ for (i=1:6)
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
-                <link linkend="sda">sda</link>
+                <link linkend="colordef">colordef</link>
             </member>
             <member>
                 <link linkend="gdf">gdf</link>
+            </member>
+            <member>
+                <link linkend="scf">scf</link>
+            </member>
+            <member>
+                <link linkend="sda">sda</link>
             </member>
             <member>
                 <link linkend="gda">gda</link>
@@ -78,6 +85,9 @@ for (i=1:6)
             </member>
             <member>
                 <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+            <member>
+                <link linkend="setlookandfeel">setlookandfeel</link>
             </member>
         </simplelist>
     </refsection>

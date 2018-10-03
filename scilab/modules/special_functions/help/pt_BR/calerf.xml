@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -13,13 +13,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="calerf" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="calerf" xml:lang="pt">
     <refnamediv>
         <refname>calerf</refname>
-        <refpurpose>computa funções de erro</refpurpose>
+        <refpurpose>computa funÃ§Ãµes de erro</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>
+          y = calerf(x, erfType)
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -28,9 +37,24 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>erfType</term>
                 <listitem>
-                    <para>indicador inteiro </para>
+                    <para>inteiro:
+                      <table border="0">
+                        <tr valign="top">
+                          <th>0</th>
+                          <td> : computa a funÃ§Ã£o de erro <literal>erf(x)</literal></td>
+                        </tr>
+                        <tr valign="top">
+                          <th>1</th>
+                          <td> : computa a funÃ§Ã£o de erro complementar <literal>erfc(x)</literal></td>
+                        </tr>
+                        <tr valign="top">
+                          <th>2</th>
+                          <td> : computa a funÃ§Ã£o de erro complementar escalada <literal>erfcx(x)</literal></td>
+                        </tr>
+                      </table>
+                  </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -42,21 +66,6 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>
-            <literal>calerf(x,0)</literal> computa a função de erro
-            <literal>erf(x)</literal>
-        </para>
-        <para>
-            <literal>calerf(x,1)</literal> computa a função de erro complementar
-            <literal>erfc(x)</literal>
-        </para>
-        <para>
-            <literal>calerf(x,2)</literal> computa a função de erro complementar
-            escalada <literal>erfcx(x)</literal>
-        </para>
-    </refsection>
-    <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 deff('y=f(t)','y=exp(-t^2)');
@@ -65,7 +74,7 @@ calerf(1,0)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="erf">erf</link>
@@ -77,5 +86,14 @@ calerf(1,0)
                 <link linkend="erfcx">erfcx</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>The calerf function is based on the fadddeeva package</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

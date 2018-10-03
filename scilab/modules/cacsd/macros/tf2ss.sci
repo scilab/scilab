@@ -54,7 +54,7 @@ function [sl]=tf2ss(h,tol)
         d=[d dk];
     end;
 
-    if degree(d)==0 then d=coeff(d),end
+    if max(0,degree(d))==0 then d=coeff(d),end
 
     if n1<>0 then
         nrmb=norm(b,1);

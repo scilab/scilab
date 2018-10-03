@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="error">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="error">
     <refnamediv>
         <refname>error</refname>
-        <refpurpose>сообщение об ошибке</refpurpose>
+        <refpurpose>сообщает об ошибке во время выполнения</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
             error(message)
             error(message, n)
-            error(n)
             error(n, message)
-            error(n, pos)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -21,7 +36,9 @@
                 <term>message</term>
                 <listitem>
                     <para>
-                        строка или вектор строк. Сообщение об ошибке, которое будет выведено на экран.
+                        Вектор символьных значений. Сообщение об ошибке для вывода на экран. Каждый компонент
+                        выводится на отдельной строчке. Хорошей практикой является обеспечение перевода
+                        сообщения об ошибке с помощью <literal>gettext(…)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -29,15 +46,9 @@
                 <term>n</term>
                 <listitem>
                     <para>
-                        целое число. Число связано с сообщением об ошибке.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>pos</term>
-                <listitem>
-                    <para>
-                        целое число. Параметр для сообщения об ошибке.
+                        целое число > 0: числовой идентификатор приписанный к ошибке. По умолчанию = 10000.
+                        В то время, как сообщение часто переводится на язык текущей сессии,
+                        <varname>n</varname> позволяет проверит ошибку способом, независимым от языка.
                     </para>
                 </listitem>
             </varlistentry>
@@ -46,51 +57,96 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <literal>error</literal> позволяет выдавать сообщение об ошибке и обрабатывать
-            ошибку. По умолчанию <literal>error</literal> прекращает текущее выполнение и возвращается
-            на уровень командной строки. Это поведение по умолчанию можно изменить с
-            помощью функций <literal>execstr(...,'errcatch')</literal>.
+            Функция <literal>error(…)</literal> позволяет выдавать сообщение об ошибке и обрабатывать
+            ошибку. По умолчанию <literal>error</literal>
+            <itemizedlist>
+                <listitem>
+                    прекращает текущее выполнение,
+                </listitem>
+                <listitem>
+                    отображает в командном окне рекурсивное дерево вызовов, приводящее к ошибке,
+                </listitem>
+                <listitem>
+                    выводит на экран сообщение об ошибке <varname>message</varname>,
+                </listitem>
+                <listitem>
+                    и возвращается на уровень командной строки.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            Чтобы обработать ошибку, не останавливая выполнение, ее можно поймать, используя
+            <literal>try … catch</literal> или <literal>execstr(…,'errcatch')</literal>
+            и для проверки его с помощью <literal>lasterror(…)</literal>..
         </para>
         <para>
             <literal>error(message)</literal> выводит на экран символьную строку, содержащуюся в
-            <literal>message</literal>. Номер, связанный с сообщением об ошибке, 10000.
+            <literal>message</literal>.
         </para>
         <para>
             <literal>error(message,n)</literal> выводит на экран символьную строку, содержащуюся в
             <literal>message</literal>. Номер, связанный с сообщением об ошибке указывается с помощью
-            <literal>n</literal>. Этот номер должен быть больше 10000.
+            <literal>n</literal>.
         </para>
         <para>
-            <literal>error(n)</literal> выводит на экран предопределённое сообщение об ошибке, связанное с номером ошибки <literal>n</literal>.
-        </para>
-        <para>
-            Некоторые сообщения об ошибке требуют параметр (см.
-            <link linkend="error_table">таблица ошибок</link>). В этом случае должен быть использован
-            аргумент <literal>pos</literal> для указания величины параметра
-            (<literal>error(n,pos)</literal>). В других случаях аргумент <literal>pos</literal>
-            игнорируется.
-        </para>
-        <para>
-            См. <link linkend="error_table">таблица ошибок</link>, где перечислены сообщения об ошибках и связанные с ними номера.
+            См. <link linkend="error_table">таблица ошибок</link>, где перечислены сообщения об
+            ошибках.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[error('my error message')
-error(43)
-error(52, 3)
-error(10001, ['A'; 'multi';'line';'error';'message'])
-lasterror()]]></programlisting>
+        <programlisting role="example"><![CDATA[
+function test(a)
+    if argn(2)~=1
+        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
+        error(msprintf(msg, "test", 1))
+    end
+endfunction
+function myfun()
+    a = 1;
+    test()
+endfunction
+
+// ----------
+
+error(['A multi line' 'error message'])
+error(500, 'Error: my error message')
+[m, n] = lasterror()
+
+test()
+myfun()
+    ]]></programlisting>
+    <screen><![CDATA[
+--> error(['A multi line' 'error message'])
+
+A multi line
+error message
+
+--> error(500, 'Error: my error message')
+
+Error: my error message
+
+--> [m, n] = lasterror()
+ n  =
+   500.
+ m  =
+ Error: my error message
+
+--> test()
+на строке     4 функции test
+
+test: Неверное количество входных аргументов: ожидалось 1.
+
+--> myfun()
+на строке     4 функции test
+на строке     3 функции myfun
+
+test: Неверное количество входных аргументов: ожидалось 1.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="warning">warning</link>
-            </member>
-            <member>
-                <link linkend="execstr">execstr</link>
-            </member>
             <member>
                 <link linkend="lasterror">lasterror</link>
             </member>
@@ -98,7 +154,19 @@ lasterror()]]></programlisting>
                 <link linkend="error_table">таблица ошибок</link>
             </member>
             <member>
-                <link linkend="messagebox">messagebox</link>
+                <link linkend="gettext">gettext</link>
+            </member>
+            <member>
+                <link linkend="warning">warning</link>
+            </member>
+            <member>
+                <link linkend="try">try</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="where">where</link>
             </member>
         </simplelist>
     </refsection>
@@ -106,9 +174,23 @@ lasterror()]]></programlisting>
         <title>История</title>
         <revhistory>
             <revision>
+                <revnumber>5.0.0</revnumber>
+                <revremark>
+                    <literal>error(n, message)</literal> syntax introduced.
+                </revremark>
+            </revision>
+            <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>
                     Функция <literal>error</literal> может принимать вектор строк в качестве входного аргумента.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    Синтаксисы <literal>error(n)</literal> и <literal>error(n, pos)</literal> более
+                    не поддерживаются: теперь обязательно указывать напрямую сообщение об ошибке. Нет
+                    более никакого абсолютного идентификатора ошибки.
                 </revremark>
             </revision>
         </revhistory>

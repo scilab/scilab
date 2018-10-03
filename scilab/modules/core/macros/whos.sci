@@ -51,9 +51,13 @@ function whos(%_opt,%_sel)
     //============================================================================
 
     function writeWhosLine(_name, _namedtype, _sz, _bytes)
+        _sz_str=_sz;
+        if type(_sz)==1 then
+            _sz_str=part(msprintf("%dx",_sz(:)),1:$-1);
+        end
         mprintf("%s\n", part(_name, 1:25) + part(_namedtype,1:15) + ..
-        part(strcat(string(_sz), "x"), 1:15) + ..
-        part(string(_bytes), 1:13));
+        part(_sz_str,1:15) + ..
+        part(msprintf("%d",_bytes), 1:13));
     endfunction
 
     //============================================================================

@@ -37,7 +37,7 @@ csc(A)
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-(1) ./sin(A)
+csc(A)
 ]]></programlisting>
                 </td>
             </tr>

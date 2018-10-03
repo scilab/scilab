@@ -54,8 +54,12 @@ import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorderType
 public class BorderConvertor {
     public static Color getColor(String str) {
         try {
-            Field field = Class.forName("java.awt.Color").getField(str);
-            return (Color) field.get(null);
+            if(str.charAt(0) == '#') {
+                return Color.decode(str);
+            } else {     
+                Field field = Class.forName("java.awt.Color").getField(str);
+                return (Color) field.get(null);
+            }
         } catch (Exception e) {
             return Color.black;
         }

@@ -37,7 +37,7 @@ acsch(A)
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-asinh((1) ./A)
+acsch(A)
 ]]></programlisting>
                 </td>
             </tr>

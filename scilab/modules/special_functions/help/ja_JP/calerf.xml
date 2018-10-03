@@ -13,11 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="calerf" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="calerf" xml:lang="ja">
     <refnamediv>
         <refname>calerf</refname>
         <refpurpose>誤差関数を計算する.</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>
+          y = calerf(x, erfType)
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>引数</title>
         <variablelist>
@@ -28,9 +37,24 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>flag</term>
+                <term>erfType</term>
                 <listitem>
-                    <para>整数インジケータ</para>
+                    <para>整数:
+                      <table border="0">
+                        <tr valign="top">
+                          <th>0</th>
+                          <td> : は誤差関数 <literal>erf(x)</literal> を計算します</td>
+                        </tr>
+                        <tr valign="top">
+                          <th>1</th>
+                          <td> : は相補誤差関数 <literal>erfc(x)</literal> を計算します</td>
+                        </tr>
+                        <tr valign="top">
+                          <th>2</th>
+                          <td> : はスケーリング付き相補誤差関数 <literal>erfcx(x)</literal> を計算します</td>
+                        </tr>
+                      </table>
+                   </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -40,21 +64,6 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            <literal>calerf(x,0)</literal> は誤差関数
-            <literal>erf(x)</literal>を計算します
-        </para>
-        <para>
-            <literal>calerf(x,1)</literal> は相補誤差関数
-            <literal>erfc(x)</literal>を計算します
-        </para>
-        <para>
-            <literal>calerf(x,2)</literal> はスケーリング付き相補誤差関数
-            <literal>erfcx(x)</literal>を計算します
-        </para>
     </refsection>
     <refsection>
         <title>例</title>

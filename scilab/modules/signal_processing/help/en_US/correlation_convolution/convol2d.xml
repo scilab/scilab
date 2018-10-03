@@ -59,7 +59,7 @@
     convol2d(s,A);
     ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>

@@ -55,13 +55,13 @@ function [r] = horner(p,x)
             // special case: p = 1x1 polynomial, x = matrix
             cp = coeff(p)
             r = cp($) * ones(x)
-            for (k = degree(p) : -1 : 1)
+            for (k = max(0,degree(p)) : -1 : 1)
                 r = r .* x + cp(k)
             end
 
         elseif (n*mx == 1)
             // p = one column, x = one row
-            nd = max(degree(p));
+            nd = max(0,max(degree(p)));
             r = zeros(p) * x;
             for (k = nd : -1: 0)
                 c = coeff(p, k);
@@ -70,7 +70,7 @@ function [r] = horner(p,x)
 
         elseif (m*nx == 1)
             // p = one row, x = one column
-            nd = max(degree(p));
+            nd = max(0,max(degree(p)));
             r = x * zeros(p);
             for (k = nd : -1: 0)
                 c = coeff(p, k);
@@ -79,7 +79,7 @@ function [r] = horner(p,x)
 
         elseif (mx*nx == 1)
             // p = matrix, x = scalar
-            nd = max(degree(p));
+            nd = max(0,max(degree(p)));
             r = zeros(p);
             for (k = nd : -1: 0)
                 c = coeff(p, k);
@@ -93,7 +93,7 @@ function [r] = horner(p,x)
                 rk = []
                 for (k = 1 : n)
                     plk = p(l,k)
-                    d = degree(plk)
+                    d = max(0,degree(plk))
                     rlk = coeff(plk,d) * ones(x); // for the case horner(1,x)
                     for (kk = 1 : d)
                         rlk = rlk .* x + coeff(plk,d-kk)

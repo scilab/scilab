@@ -37,7 +37,7 @@ acot(A)
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-atan((1) ./A)
+acot(A)
 ]]></programlisting>
                 </td>
             </tr>

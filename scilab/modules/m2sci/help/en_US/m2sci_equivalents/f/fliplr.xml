@@ -37,7 +37,7 @@ fliplr(A)
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-A(:,$:-1:1)
+flipdim(A,2)
 ]]></programlisting>
                 </td>
             </tr>
@@ -46,7 +46,9 @@ A(:,$:-1:1)
     <refsection>
         <title>Particular cases</title>
         <para>
-            Due to the fact that Scilab and Matlab do not consider character string in the same way, result is different for this kind of input, in this case, use <emphasis role="bold">mtlb_fliplr</emphasis> instead.
+            Due to the fact that Scilab and Matlab do not consider character string in the same way,
+           result is different for this kind of input, in this case, use
+           <emphasis role="bold">mtlb_fliplr</emphasis> instead.
         </para>
     </refsection>
 </refentry>

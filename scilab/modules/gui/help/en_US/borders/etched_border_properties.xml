@@ -27,14 +27,14 @@
                 <term>hl</term>
                 <listitem>
                     <para>String</para>
-                    <para>The name of the color used for border highlights.</para>
+                    <para>The name of the color or a string like <literal>#FFFFFF</literal> used for border highlights.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>shadow</term>
                 <listitem>
                     <para>String</para>
-                    <para>The name of the color used for the border shadows.</para>
+                    <para>The name of the color or a string like <literal>#FFFFFF</literal> used for the border shadows.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

@@ -16,45 +16,54 @@
             <literal>b/a = (a' \ b')'</literal>.
         </para>
         <para>
-            <literal>a./  b</literal> est la matrice dont les termes sont égaux à <literal>a(i,j)/ b(i,j)</literal>.
-            Si <literal>b</literal> est un scalaire (matrice 1x1) cette opération est la même que <literal> a./b*ones(a)</literal> (même convention si <literal>a</literal> est un scalaire).
+            <literal>a./  b</literal> est la matrice dont les termes sont égaux à
+            <literal>a(i,j)/ b(i,j)</literal>.
+            Si <literal>b</literal> est un scalaire (matrice 1x1) cette opération est la même que
+            <literal> a./b*ones(a)</literal> (même convention si <literal>a</literal> est un scalaire).
         </para>
         <para>
-            Notez que <literal>123./b</literal> est interprété comme <literal>(123.)/b</literal>. Dans un tel cas le point fait partie du nombre et non pas de l'opérateur.
-        </para>
-        <para>
-            L'anti-slash ("contre-barre" ou backslash) signifie quant à lui la division à gauche (voir <literal>backslash</literal>).
+            L'anti-slash ("contre-barre" ou backslash) signifie quant à lui la division à gauche
+           (voir <literal>backslash</literal>).
         </para>
         <para>
             Feedback de systèmes dynamiques.
-            <literal>S=G/.K</literal> évalue <literal>S=G*(eye()+K*G)^(-1)</literal>. Cet opérateur évite des problèmes de simplification.
+            <literal>S=G/.K</literal> évalue <literal>S=G*(eye()+K*G)^(-1)</literal>.
+            Cet opérateur évite des problèmes de simplification.
+        </para>
+        <note>
+            Noter que <literal>123./b</literal> est interprété comme <literal>(123)./b</literal>.
+            Dans de tels cas, le point fait partie de l'opérateur, non du nombre décimal.
+          <para/>
+            Mais attention : <literal>G/.5</literal> est interprété comme <literal>G/(.5)</literal> :
+            Le point fait ici partie du nombre décimal, non de l'opérateur, contrairement
+            à <literal>G/. 5</literal>
+        </note>
+        <para>
         </para>
         <para>
-            Notez aussi que <literal>G/.5</literal> est interprété comme <literal>G/(.5)</literal>. Dans un tel cas le point fait partie du nombre et non pas de l'opérateur.
+            La suite de symboles <literal>//</literal> met une ligne en commentaire, c'est à dire,
+            les lignes commençant par <literal>//</literal> sont ignorées par l'interpréteur.
         </para>
         <para>
-        </para>
-        <para>
-            La suite de symboles <literal>//</literal> met une ligne en commentaire, c'est à dire, les lignes commençant par <literal>//</literal> sont ignorées par l'interpréteur.
-        </para>
-        <para>
-            De le même façon, <code>/*</code> débute un commentaire et <code>*/</code> termine un commentaire.
+            De le même façon, <literal>/*</literal> débute un commentaire et <literal>*/</literal>
+            termine un commentaire.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-a=[3.,-24.,30.];
-B=[
+a = [3., -24., 30.];
+B = [
    9.   -36.    30.
   -36.   192.  -180.
    30.  -180.   180.
 ];
-x=a/B
-x*B-a // proche de zéro
+x = a / B
+x*B - a // proche de zéro
 
-a=4 / 2; // Doit renvoyer 2
-a=2 ./ [2,4]; //     1.    0.5
+a = 4 / 2; // Doit renvoyer 2
+a = 2 ./ [2,4]; //     1.    0.5
+
 // Un commentaire aide à comprendre le code.
 /* Même longs, c'est à die sur plusieurs lignes,
 les commentaires sont utiles. */
@@ -85,6 +94,12 @@ les commentaires sont utiles. */
                 <revremark>
                   The threshold level which switches between Gaussian Elimination with row pivoting
                   and linear least squares when computing B/A is decreased from sqrt(eps) to eps.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                  1./B  signifie désormais 1 ./ B, non plus 1. / B
                 </revremark>
             </revision>
         </revhistory>

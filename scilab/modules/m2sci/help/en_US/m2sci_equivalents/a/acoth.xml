@@ -37,7 +37,7 @@ acoth(A)
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-atanh((1) ./A)
+acoth(A)
 ]]></programlisting>
                 </td>
             </tr>
@@ -46,7 +46,8 @@ atanh((1) ./A)
     <refsection>
         <title>Particular cases</title>
         <para>
-            In Matlab <emphasis role="bold">y=acoth(x)</emphasis> and Scilab <emphasis role="bold">y=atanh(1 ./x)</emphasis>, for real elements of <emphasis role="bold">x</emphasis> outside the domain <emphasis role="bold">[-1,1]</emphasis>, the complex part of Scilab <emphasis role="bold">y</emphasis> value is the opposite of Matlab <emphasis role="bold">y</emphasis> value. See <emphasis role="bold">atanh</emphasis>.
+            For <literal>x</literal> real in <literal>]-1,1[</literal>, <literal>imag(acoth(x))</literal>
+            is +?/2 in Matlab and -?/2 in Scilab.
         </para>
     </refsection>
 </refentry>

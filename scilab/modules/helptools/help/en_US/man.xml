@@ -750,6 +750,7 @@ end
                 <revdescription>
                   <itemizedlist>
                     <listitem>Documentation updated to Docbook 5.1</listitem>
+                    <listitem>&lt;refsect1>, &lt;refsect2>, and &lt;refsect3> tags added.</listitem>
                     <listitem>&lt;td>: valign and style attributes are now supported.</listitem>
                     <listitem>&lt;th>: align, valign and style attributes are now supported.</listitem>
                     <listitem>&lt;tr>: valign attribute now supported.</listitem>

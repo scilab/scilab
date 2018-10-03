@@ -25,7 +25,7 @@ function c = cond(varargin)
                 error(msprintf(gettext("%s: Wrong value for input argument #%d: must not contain %s or %s.\n"), "cond", 1, "%nan", "%inf"));
             end
             if A == [] then
-                c = 1;
+                c = 0;
                 return
             end
             s = svd(A);

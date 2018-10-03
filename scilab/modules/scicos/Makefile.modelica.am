@@ -2,6 +2,7 @@
 # Copyright (C) 2008 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
 # Copyright (C) 2010 - DIGITEO - Sylvestre Ledru
 # Copyright (C) 2014 - Scilab Enterprises - Clement DAVID
+# Copyright (C) 2018 - ESI Group - Clement DAVID
 #
 # Copyright (C) 2012 - 2016 - Scilab Enterprises
 #
@@ -39,7 +40,6 @@ XML2Modelica_SOURCES = \
 
 XML2Modelica_SOURCES_mly = $(XML2Modelica_SOURCES:.mly=.ml)
 MLS_XML2Modelica = $(XML2Modelica_SOURCES_mly:.mll=.ml)
-MLIS_XML2Modelica = $(MLS_XML2Modelica:.ml=.mli)
 
 BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
 
@@ -64,7 +64,6 @@ modelicat_SOURCES = \
 
 modelicat_SOURCES_mly = $(modelicat_SOURCES:.mly=.ml)
 MLS_modelicat = $(modelicat_SOURCES_mly:.mll=.ml)
-MLIS_modelicat = $(MLS_modelicat:.ml=.mli)
 
 INCLUDE_modelicat = -I $(srcdir)/src/translator/compilation \
 -I $(srcdir)/src/translator/exceptionHandling \
@@ -96,52 +95,13 @@ modelicac_SOURCES = \
 
 modelicac_SOURCES_mly = $(modelicac_SOURCES:.mly=.ml)
 MLS_modelicac = $(modelicac_SOURCES_mly:.mll=.ml)
-MLIS_modelicac = $(MLS:.ml=.mli)
 
 BASE_PATH_MODELICAC = $(srcdir)/src/modelica_compiler
 
 INCLUDE = -I $(BASE_PATH_MODELICAC) -I $(BASE_PATH_XML2Modelica)
 
 ########## COMMON
-SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
-
-# @TODO check how to avoid the rebuild of the parser/lexer
-
-.cmi.cmo:
-	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $*.ml; \
-		$(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $*.ml; \
-	else \
-		echo $(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $*.ml; \
-		$(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $*.ml; \
-	fi
-
-.cmi.cmx:
-	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLOPT) $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) -c $*.ml; \
-		$(OCAMLOPT) $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) -c $*.ml; \
-	else \
-		echo $(OCAMLOPT) $(INCLUDE) $(OCAMLOPTFLAGS) -c $*.ml; \
-		$(OCAMLOPT) $(INCLUDE) $(OCAMLOPTFLAGS) -c $*.ml; \
-	fi
-
-.mli.cmi:
-	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $<; \
-		$(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $<; \
-	else \
-		echo $(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $<; \
-		$(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $<; \
-	fi
-
-.ml.mli:
-	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -i $< > $@; \
-		$(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -i $< > $@; \
-	else \
-		echo $(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -i $< > $@; \
-		$(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -i $< > $@; \
-	fi
+SUFFIXES += .mll .mly
 
 .mll.ml:
 	$(OCAMLLEX) $<
@@ -150,31 +110,25 @@ SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 	$(OCAMLYACC) $<
 	@rm $*.mli
 
-# Build the binaries, disabling parallel building
+# Build the binaries, disabling parallel building as ocamldep ordering seems to fail on some systems
 
-modelicac: $(modelicac_SOURCES)
-	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicac:.ml=.cmx)
-	$(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicac:.ml=.cmx)
+modelicac: $(modelicac_SOURCES) $(MLS_modelicac)
+	/usr/bin/time -v $(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicac)
 
-modelicac.ocamlc: $(modelicac_SOURCES)
-	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicac:.ml=.cmo)
-	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicac:.ml=.cmo)
+modelicac.ocamlc: $(modelicac_SOURCES) $(MLS_modelicac)
+	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicac)
 
-XML2Modelica: $(XML2Modelica_SOURCES)
-	$(MAKE) MAKEFLAGS=-j1 $(MLS_XML2Modelica:.ml=.cmx)
-	$(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx)
+XML2Modelica: $(XML2Modelica_SOURCES) $(MLS_XML2Modelica)
+	$(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica)
 
-XML2Modelica.ocamlc: $(XML2Modelica_SOURCES)
-	$(MAKE) MAKEFLAGS=-j1 $(MLS_XML2Modelica:.ml=.cmo)
-	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS) $(MLS_XML2Modelica:.ml=.cmo)
+XML2Modelica.ocamlc: $(XML2Modelica_SOURCES) $(MLS_XML2Modelica)
+	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS) $(MLS_XML2Modelica)
 
-modelicat: $(modelicat_SOURCES)
-	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicat:.ml=.cmx)
-	$(OCAMLOPT) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicat:.ml=.cmx)
+modelicat: $(modelicat_SOURCES) $(MLS_modelicat)
+	$(OCAMLOPT) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicat)
 
-modelicat.ocamlc: $(modelicat_SOURCES)
-	$(MAKE) MAKEFLAGS=-j1 $(MLS_modelicat:.ml=.cmo)
-	$(OCAMLC) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicat:.ml=.cmo)
+modelicat.ocamlc: $(modelicat_SOURCES) $(MLS_modelicat)
+	$(OCAMLC) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicat)
 
 CLEANFILES = $(BASE_PATH)/*/*.cmi \
 	$(BASE_PATH)/*/*.o \
@@ -212,15 +166,6 @@ CLEANFILES = $(BASE_PATH)/*/*.cmi \
 	$(BASE_PATH)/translator/translation/libraryManager.mli \
 	$(BASE_PATH)/translator/translation/translator.mli \
 	$(BASE_PATH)/translator/translation/versiondate.mli
-
-#BUILT_SOURCES = depend
-
-depend: $(MLS_XML2Modelica) $(MLS_modelicac) $(MLS_modelicat)
-	$(OCAMLDEP) -all $(INCLUDE) $(MLS_XML2Modelica) $(MLIS_XML2Modelica) > .depend
-	$(OCAMLDEP) -all $(INCLUDE_modelicat) $(MLS_modelicat) $(MLIS_modelicat) >> .depend
-	$(OCAMLDEP) -all $(INCLUDE) $(MLS_modelicac) $(MLIS_modelicac) >> .depend
-
-include .depend
 
 endif # OCAML
 endif # XCOS

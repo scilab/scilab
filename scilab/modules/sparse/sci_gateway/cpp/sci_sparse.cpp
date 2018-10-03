@@ -18,6 +18,7 @@
 #include "sparse_gw.hxx"
 #include "function.hxx"
 #include "sparse.hxx"
+#include "double.hxx"
 
 extern "C"
 {
@@ -116,78 +117,88 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
             }
         }
     }
-    else if (in.size() == 2 || in.size() == 3)
+    else // 2 or 3 arguments
     {
-        // if two arguments are given the first is a 'n x 2' matrix of the non zero indices and the second is a 'n x 1' vector of the values
-        for (int i = 0 ; i < in.size() ; i++)
+        types::Double* pDij = in[0]->getAs<types::Double>(); // arg 2 necessarily *Double
+        types::GenericType* pGT2 = in[1]->getAs<types::GenericType>();
+        int size = pGT2->getSize();
+
+        if ( ((size !=0) || (pDij->getSize() != 0)) && ((pDij->getCols() != 2) || (pDij->getRows() != size)))
         {
-            if (in[i]->isDouble() == false && !(in[i]->isBool() && i == 1))
+            if (size > 0)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"), "sparse", i + 1);
-                return types::Function::Error;
+                Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"), "sparse", 1, size, 2);
             }
+            else
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: An empty matrix expected.\n"), "sparse", 1);
+            }
+            return types::Function::Error;
         }
 
-        //Double* pDims( (in.size()==3) ? in[2]->getAs<Double>() : 0);
-        types::Double* pDims = NULL;
+        //Double* pDdims( (in.size()==3) ? in[2]->getAs<Double>() : 0);
+        types::Double* pDdims = NULL;
         if (in.size() == 3)
         {
-            pDims = in[2]->getAs<types::Double>();
-            if (pDims->getRows() != 1 || pDims->getCols() != 2)
+            pDdims = in[2]->getAs<types::Double>();
+            if (pDdims->getSize() != 2)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"), "sparse", 3, 1, 2);
                 return types::Function::Error;
             }
 
-            if (pDims->get(0) != (double) ( (unsigned int) pDims->get(0) ) || pDims->get(1) != (double) ( (unsigned int) pDims->get(1) ))
+            if (pDdims->get(0) != (double) ( (unsigned int) pDdims->get(0) ) || pDdims->get(1) != (double) ( (unsigned int) pDdims->get(1) ))
             {
                 Scierror(999, _("%s: Wrong values for input argument #%d: Positive integers expected.\n"), "sparse", 3);
                 return types::Function::Error;
             }
-
-
-            if (pDims->get(0) * pDims->get(1) == 0)
-            {
-                out.push_back(types::Double::Empty());
-                return types::Function::OK;
-            }
-        }
-
-        types::Double* ij = in[0]->getAs<types::Double>();
-        types::GenericType* pGT2 = in[1]->getAs<types::GenericType>();
-
-        if (pGT2->getSize() != ij->getRows())
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"), "sparse", 2, ij->getRows());
-            return types::Function::Error;
         }
 
         bool alloc = false;
-        if (pDims == nullptr)
+        double* i = pDij->get();
+        double* j = i + size;
+
+        if ( (size > 0) && ((*std::min_element(i, i + size) <= 0) || (*std::min_element(j, j + size) <= 0)) )
         {
-            int size = ij->getRows();
-            double* i = ij->get();
-            double* j = i + ij->getRows();
-            pDims = new types::Double(1, 2, false);
-            pDims->set(0, *std::max_element(i, i + size));
-            pDims->set(1, *std::max_element(j, j + size));
-            alloc = true;
+            Scierror(999, _("%s: Invalid index.\n"), "sparse");
+            return types::Function::Error;
         }
 
-        if (in[1]->isDouble())
+        if (pDdims == nullptr)
         {
-            types::Double* dbl = pGT2->getAs<types::Double>();
-            pRetVal = new types::Sparse(*dbl, *ij, *pDims);
+            pDdims = new types::Double(1, 2, false);
+            pDdims->setZeros();
+            if (size > 0)
+            {
+                pDdims->set(0, *std::max_element(i, i + size));
+                pDdims->set(1, *std::max_element(j, j + size));
+            }
+            alloc = true;
+        }
+        else if ( (size > 0) && ((pDdims->get(0) < *std::max_element(i, i + size)) || (pDdims->get(1) < *std::max_element(j, j + size))) )
+        {
+            Scierror(999, _("%s: Invalid index.\n"),"sparse");
+            return types::Function::Error;
+        }
+
+        if ((pDdims->get(0) == 0) || (pDdims->get(1) == 0))
+        {
+            pRetVal = new types::Sparse(0,0,false);
+        }
+        else if (in[1]->isDouble())
+        {
+            types::Double* pDbl = pGT2->getAs<types::Double>();
+            pRetVal = new types::Sparse(*pDbl, *pDij, *pDdims);
         }
         else
         {
-            types::Bool* b = pGT2->getAs<types::Bool>();
-            pRetVal = new types::SparseBool(*b, *ij, *pDims);
+            types::Bool* pBb = pGT2->getAs<types::Bool>();
+            pRetVal = new types::SparseBool(*pBb, *pDij, *pDdims);
         }
 
         if (alloc)
         {
-            delete pDims;
+            delete pDdims;
         }
     }
 

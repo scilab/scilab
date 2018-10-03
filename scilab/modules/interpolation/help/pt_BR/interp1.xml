@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
@@ -13,17 +13,24 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="interp1" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="interp1" xml:lang="pt">
     <refnamediv>
         <refname>interp1</refname>
-        <refpurpose>função de interpolação 1d</refpurpose>
+        <refpurpose>funÃ§Ã£o de interpolaÃ§Ã£o 1d</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>[yp]=interp1(x, y,xp [, method,[extrapolation]])</synopsis>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>
+          yp = interp1(x, y, xp)
+          yp = interp1(x, y, xp, method)
+          yp = interp1(x, y, xp, method, extrapolation)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>xp</term>
@@ -41,7 +48,7 @@
             <varlistentry>
                 <term>method</term>
                 <listitem>
-                    <para>(opcional) string definindo o método de interpolação </para>
+                    <para>(opcional) string definindo o mÃ©todo de interpolaÃ§Ã£o </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -61,34 +68,34 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Dados <literal>(x,y,xp)</literal>, esta função faz corresponder os
-            yp componentes aos xp por interpolação (linear por padrão) definida por x
+            Dados <literal>(x,y,xp)</literal>, esta funÃ§Ã£o faz corresponder os
+            yp componentes aos xp por interpolaÃ§Ã£o (linear por padrÃ£o) definida por x
             e y.
         </para>
         <para>
-            Se <literal>yp</literal> é um vetor, então o comprimento de xp é
-            igual ao comprimento de <literal>yp</literal>. Se <literal>yp</literal> é
-            uma matriz, então <literal>xp</literal> tem o mesmo comprimento que cada
-            uma das colunas de yp. Se <literal>yp</literal> é uma hipermatriz, então o
-            comprimento de <literal>xp</literal> é o mesmo da primeira dimensão de
+            Se <literal>yp</literal> Ã© um vetor, entÃ£o o comprimento de xp Ã©
+            igual ao comprimento de <literal>yp</literal>. Se <literal>yp</literal> Ã©
+            uma matriz, entÃ£o <literal>xp</literal> tem o mesmo comprimento que cada
+            uma das colunas de yp. Se <literal>yp</literal> Ã© uma hipermatriz, entÃ£o o
+            comprimento de <literal>xp</literal> Ã© o mesmo da primeira dimensÃ£o de
             <literal>yp. </literal>
         </para>
-        <para>Se size(y)=[C,M1,M2,M3,...,Mj] e size(xp)= [N1,N2,N3,...,Nk] então
+        <para>Se size(y)=[C,M1,M2,M3,...,Mj] e size(xp)= [N1,N2,N3,...,Nk] entÃ£o
             size(yp)= [N1,N2,..,Nk,M1,M2,...Mj] e o comprimento de x deve ser igual a
             size(y,1)
         </para>
         <para>
-            O parâmetro <literal>method</literal> ajusta a regra avaliação para
-            interpolação.
+            O parÃ¢metro <literal>method</literal> ajusta a regra avaliaÃ§Ã£o para
+            interpolaÃ§Ã£o.
         </para>
         <variablelist>
             <varlistentry>
                 <term>"linear"</term>
                 <listitem>
                     <para>
-                        a interpolação é definida pelo método linear (ver <link linkend="interpln">interpln</link>)
+                        a interpolaÃ§Ã£o Ã© definida pelo mÃ©todo linear (ver <link linkend="interpln">interpln</link>)
                     </para>
                 </listitem>
             </varlistentry>
@@ -96,7 +103,7 @@
                 <term>"spline"</term>
                 <listitem>
                     <para>
-                        definição de interpolação por spline cúbico (ver <link linkend="splin">splin</link> , <link linkend="interp">interp</link>)
+                        definiÃ§Ã£o de interpolaÃ§Ã£o por spline cÃºbico (ver <link linkend="splin">splin</link> , <link linkend="interp">interp</link>)
                     </para>
                 </listitem>
             </varlistentry>
@@ -104,22 +111,22 @@
                 <term>"nearest"</term>
                 <listitem>
                     <para>para cada valor xp(j), yp(j) toma o valor ou y(i)
-                        correspondente ao x(i), o vízinho mais próximo de xp(j)
+                        correspondente ao x(i), o vÃ­zinho mais prÃ³ximo de xp(j)
                     </para>
                     <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
         <para>
-            O parâmetro <literal>extrapolation</literal> ajusta a regra de
-            avaliação para extrapolação, i.e para <literal>xp(i) </literal>fora do
+            O parÃ¢metro <literal>extrapolation</literal> ajusta a regra de
+            avaliaÃ§Ã£o para extrapolaÃ§Ã£o, i.e para <literal>xp(i) </literal>fora do
             intervalo [x1,xn]
         </para>
         <variablelist>
             <varlistentry>
                 <term>"extrap"</term>
                 <listitem>
-                    <para>a extrapolação é realizada pelo método definido.
+                    <para>a extrapolaÃ§Ã£o Ã© realizada pelo mÃ©todo definido.
                         yp=interp1(x,y,xp,method,"extrap")
                     </para>
                 </listitem>
@@ -127,17 +134,17 @@
             <varlistentry>
                 <term>valor real</term>
                 <listitem>
-                    <para>você pode escolher um valor real para extrapolação. Deste
+                    <para>vocÃª pode escolher um valor real para extrapolaÃ§Ã£o. Deste
                         modo, yp(i) toma este valor para xp(i) fora do intervalo [x1,xn],
-                        por exemplo 0 (mas também nan ou inf). yi=interp1(x,y,xp,method, 0)
+                        por exemplo 0 (mas tambÃ©m nan ou inf). yi=interp1(x,y,xp,method, 0)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>por padrão</term>
+                <term>por padrÃ£o</term>
                 <listitem>
-                    <para>a extrapolação é realizada pelo método definido (para método
-                        spline), e por nan para os métodos "linear" e "nearest".
+                    <para>a extrapolaÃ§Ã£o Ã© realizada pelo mÃ©todo definido (para mÃ©todo
+                        spline), e por nan para os mÃ©todos "linear" e "nearest".
                         yp=interp1(x,y,xp,method)
                     </para>
                 </listitem>
@@ -147,19 +154,19 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-x=linspace(0,3,20);
-y=x^2;
-xx=linspace(0,3,100);
-yy1=interp1(x,y,xx,'linear');
-yy2=interp1(x,y,xx,'spline');
-yy3=interp1(x,y,xx,'nearest');
-plot(xx,[yy1;yy2;yy3],x,y,'*')
+x = linspace(0, 3, 20);
+y = x^2;
+xx = linspace(0, 3, 100);
+yy1 = interp1(x, y, xx, 'linear');
+yy2 = interp1(x, y, xx, 'spline');
+yy3 = interp1(x, y, xx, 'nearest');
+plot(xx, [yy1; yy2; yy3], x, y, '*')
 xtitle('interpolation of square function')
-legend(['linear','spline','nearest'],a=2)
+legend(['linear','spline','nearest'], "in_upper_left");
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="interp">interp</link>

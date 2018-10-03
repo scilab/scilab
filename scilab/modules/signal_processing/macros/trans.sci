@@ -36,7 +36,7 @@ function [hzt,zt,gt]=trans(pd,zd,gd,tr_type,frq)
         frq=gd;frq_pos=3;
         pd=roots(hz.den)
         zd=roots(hz.num)
-        gd=coeff(hz.num,degree(hz.num))/coeff(hz.den,degree(hz.den))
+        gd=coeff(hz.num,max(0,degree(hz.num)))/coeff(hz.den,max(0,degree(hz.den)))
     case 5 then //trans(pd,zd,gd,tr_type,frq):  filter given by zeros,poles and gain
         if type(pd)<>1 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),"trans",1))

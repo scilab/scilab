@@ -23,7 +23,7 @@ function f = %p_j_s(p,s)
     [ms,ns] = size(s)
     if ms==1 & ns==1 then
         if s<0 then
-            if or(abs(coeff(p(:)))*ones(max(degree(p))+1,1)==0) then
+            if or(abs(coeff(p(:)))*ones(max(0,max(degree(p)))+1,1)==0) then
                 msg = _("%s: Division by 0...\n")
                 error(msprintf(msg, "%p_j_s"))
             end
@@ -48,7 +48,7 @@ function f = %p_j_s(p,s)
         num=p
         den=ones(s)
         num(kp)=num(kp).^s(kp)
-        if or(abs(coeff(p(kn)))*ones(max(degree(p(kn)))+1,1)==0) then
+        if or(abs(coeff(p(kn)))*ones(max(0,max(degree(p(kn))))+1,1)==0) then
             msg = _("%s: Division by 0...\n")
             error(msprintf(msg, "%p_j_s"))
         end

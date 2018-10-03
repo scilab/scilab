@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="m2sci_eigs">
+    <refnamediv>
+        <refname>eigs (Matlab function)</refname>
+        <refpurpose>Subset of eigenvalues and eigenvectors</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Matlab / Scilab equivalent</title>
+        <informaltable border="1" width="100%">
+            <tr>
+                <td align="center">
+                    <emphasis role="bold">Matlab</emphasis>
+                </td>
+                <td align="center">
+                    <emphasis role="bold">Scilab</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <screen><![CDATA[
+d = eigs(A)
+d = eigs(A, k)
+
+d = eigs(A, k, sigma)
+    % sigma:
+    % 'largestabs' (default)
+    % 'smallestabs'
+    % 'largestreal'
+    % 'smallestreal'
+    % 'bothendsreal'
+    % 'largestimag'
+    % 'smallestimag'
+    % 'bothendsimag'
+    % scalar
+    % (No equivalent)
+    % (No equivalent)
+    % (No equivalent)
+
+d = eigs(A, k, sigma, Name, Value)
+
+d = eigs(A, k, sigma, opts)
+    % opts.issym  = 1
+    % opts.tol
+    % opts.maxit (= 300)
+    % opts.p
+    % opts.v0
+    % opts.disp
+    % opts.fail
+    % opts.spdB
+    % opts.cholB
+    % opts.permB
+    % (No equivalent)
+
+d = eigs(A, B, ..)
+d = eigs(Afun, n, ..)
+[V, D] = eigs(..)
+[V, D, flag] = eigs(..)
+]]></screen>
+                </td>
+                <td>
+                    <screen role="example"><![CDATA[
+d = eigs(A)
+d = eigs(A, [], k)
+
+d = eigs(A, [], k, sigma)
+    // sigma:
+    // 'LM' : Largest Magnitudes (default)
+    // 'SM' : Smallest Magnitudes
+    // 'LR' : Largest Real parts
+    // 'SM' : Smallest Real parts
+    // (No equivalent)
+    // 'LI' : Largest Imaginary parts (real non-symmetric or complex problems)
+    // 'SI' : Smallest Imaginary parts (real non-symmetric or complex problems)
+    // (No equivalent)
+    // scalar
+    // 'LA' : Largest Algebraic eigenvalues (real symmetric problems).
+    // 'SA' : Smallest Algebraic eigenvalues (real symmetric problems).
+    // 'BE' : half from each end of the spectrum (real symmetric problems).
+
+// No equivalent. Sets and uses the opts structure instead
+
+d = eigs(A, [], k, sigma, opts)
+    // opts.issym   (= %t) : used with Afun
+    // opts.tol
+    // opts.maxiter (= 300)
+    // opts.ncv       : Number of Lanczos basis vectors
+    // opts.resid     : starting residual vector
+    // (No equivalent)
+    // (No equivalent)
+    // (No equivalent)
+    // opts.cholB
+    // (No equivalent)
+    // opts.isreal (= %t) : used with Afun
+
+d = eigs(A, B, ..)
+d = eigs(Afun, n, ..)
+[D, V] = eigs(..)    // D still as first output
+// No equivalent
+]]></screen>
+                </td>
+            </tr>
+        </informaltable>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="m2sci_eig">eig</link>
+            </member>
+            <member>
+                <link linkend="spec">spec</link>
+            </member>
+            <member>
+                <link linkend="bdiag">bdiag</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

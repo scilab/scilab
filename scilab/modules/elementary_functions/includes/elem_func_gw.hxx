@@ -74,6 +74,7 @@ CPP_GATEWAY_PROTOTYPE(sci_max); // Old name sci_maxi
 CPP_GATEWAY_PROTOTYPE(sci_min); // Old name sci_mini
 CPP_GATEWAY_PROTOTYPE(sci_nearfloat);
 CPP_GATEWAY_PROTOTYPE(sci_ones);
+CPP_GATEWAY_PROTOTYPE(sci_permute);
 CPP_GATEWAY_PROTOTYPE(sci_prod);
 CPP_GATEWAY_PROTOTYPE(sci_rand);
 CPP_GATEWAY_PROTOTYPE(sci_rat);

@@ -17,8 +17,8 @@ function [y,zf] = mtlb_filter(b,a,x,zi)
     a=poly(a($:-1:1),"z","c")
     b=poly(b($:-1:1),"z","c")
     z=poly(0,"z")
-    da = degree(a)
-    db = degree(b)
+    da = max(0,degree(a))
+    db = max(0,degree(b))
     if (da-db) > 0 then b=b*z^(da-db); end
     if (db-da) > 0 then a=a*z^(db-da); end
     if  lhs==1 then

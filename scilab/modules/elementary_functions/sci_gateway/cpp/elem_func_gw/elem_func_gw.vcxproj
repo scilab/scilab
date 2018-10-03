@@ -248,6 +248,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\sci_ones.cpp">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MaxSpeed</Optimization>
     </ClCompile>
+    <ClCompile Include="..\sci_permute.cpp" />
     <ClCompile Include="..\sci_prod.cpp" />
     <ClCompile Include="..\sci_rand.cpp" />
     <ClCompile Include="..\sci_rat.cpp" />

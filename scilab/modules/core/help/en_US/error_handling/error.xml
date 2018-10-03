@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="error">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="error">
     <refnamediv>
         <refname>error</refname>
-        <refpurpose>error message</refpurpose>
+        <refpurpose>reports a run time error</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>error(message)
+        <synopsis>
+            error(message)
             error(message, n)
-            error(n)
             error(n, message)
-            error(n, pos)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -19,19 +35,22 @@
             <varlistentry>
                 <term>message</term>
                 <listitem>
-                    <para>a string or a vector of strings. The error message to be displayed.</para>
+                    <para>
+                        Vector of strings. The error message to be displayed.
+                        Each component is displayed on a separate line.
+                        Providing an error message translated with <literal>gettext(…)</literal>
+                        is a good practice.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>an integer. The number associated with the error message.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>pos</term>
-                <listitem>
-                    <para>an integer. A parameter for the error message.</para>
+                    <para>
+                        integer > 0: numerical identifier ascribed to the error. Default = 10000.
+                        While the message is often translated into the current session language,
+                        <varname>n</varname> allows to test the error in a language-independent way.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,52 +58,95 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>error</literal> function allows to issue an error message and to
-            handle the error. By default <literal>error</literal> stops the current
-            execution and resume to the prompt level. This default can be changed
-            using the <literal>execstr(...,'errcatch')</literal> functions.
+            <literal>error(…)</literal> allows to issue an error. By default <literal>error</literal>
+            <itemizedlist>
+                <listitem>
+                    stops the current execution,
+                </listitem>
+                <listitem>
+                    displays in the console the recursive calling tree leading to the error,
+                </listitem>
+                <listitem>
+                    displays the given error <varname>message</varname>,
+                </listitem>
+                <listitem>
+                    and resumes to the prompt level.
+                </listitem>
+            </itemizedlist>
         </para>
         <para>
-            <literal>error(message)</literal> prints the character string contained in
-            <literal>message</literal>. The number associated with the error message is
-            10000
+            In order to handle the error without stopping the execution, it is possible to catch
+            it by using <literal>try … catch</literal> or <literal>execstr(…,'errcatch')</literal>,
+            and to test it with <literal>lasterror(…)</literal>.
         </para>
         <para>
-            <literal>error(message,n)</literal> prints the character string contained in
-            <literal>message</literal>. The number associated with the error message is
-            given by <literal>n</literal>. This number should be greater than 10000.
+            <literal>error(message)</literal> yields an error #10000 (and displays the given
+            <varname>message</varname>).
         </para>
         <para>
-            <literal>error(n)</literal> prints the predefined error message associated with
-            the error number <literal>n</literal>.
-        </para>
-        <para>Some predefined error messages  require a parameter (see
-            <link linkend="error_table">error_table</link>). In this case the <literal>pos</literal>
-            argument must be used <literal>error(n,pos)</literal> to give the parameter
-            value. In the other cases the <literal>pos</literal>  argument is ignored.
+            <literal>error(message, n)</literal> displays the character string contained in
+            <varname>message</varname>. The numerical identifier ascribed to the error is
+            <varname>n</varname>.
         </para>
         <para>
-            See <link linkend="error_table">error_table</link> for a list of error messages and the
-            associated error numbers.
+            See <link linkend="error_table">error_table</link> for a list of standard error messages.
+            Most of them are already translated in the 4 main supported languages.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[error('my error message')
-error(43)
-error(52, 3)
-error(10001, ['A'; 'multi';'line';'error';'message'])
-lasterror()]]></programlisting>
+        <programlisting role="example"><![CDATA[
+function test(a)
+    if argn(2)~=1
+        msg = gettext("%s: Wrong number of input arguments: %d expected.\n")
+        error(msprintf(msg, "test", 1))
+    end
+endfunction
+function myfun()
+    a = 1;
+    test()
+endfunction
+
+// ----------
+
+error(['A multi line' 'error message'])
+error(500, 'Error: my error message')
+[m, n] = lasterror()
+
+test()
+myfun()
+    ]]></programlisting>
+    <screen><![CDATA[
+--> error(['A multi line' 'error message'])
+
+A multi line
+error message
+
+--> error(500, 'Error: my error message')
+
+Error: my error message
+
+--> [m, n] = lasterror()
+ n  =
+   500.
+ m  =
+ Error: my error message
+
+--> test()
+at line     4 of function test
+
+test: Wrong number of input arguments: 1 expected.
+
+--> myfun()
+at line     4 of function test
+at line     3 of function myfun
+
+test: Wrong number of input arguments: 1 expected.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="warning">warning</link>
-            </member>
-            <member>
-                <link linkend="execstr">execstr</link>
-            </member>
             <member>
                 <link linkend="lasterror">lasterror</link>
             </member>
@@ -92,7 +154,19 @@ lasterror()]]></programlisting>
                 <link linkend="error_table">error_table</link>
             </member>
             <member>
-                <link linkend="messagebox">messagebox</link>
+                <link linkend="gettext">gettext</link>
+            </member>
+            <member>
+                <link linkend="warning">warning</link>
+            </member>
+            <member>
+                <link linkend="try">try</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="where">where</link>
             </member>
         </simplelist>
     </refsection>
@@ -100,9 +174,23 @@ lasterror()]]></programlisting>
         <title>History</title>
         <revhistory>
             <revision>
+                <revnumber>5.0.0</revnumber>
+                <revremark>
+                    <literal>error(n, message)</literal> syntax introduced.
+                </revremark>
+            </revision>
+            <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>
                     The <literal>error</literal> function can take vector of strings as input argument.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    The <literal>error(n)</literal> and <literal>error(n, pos)</literal> syntaxes
+                    are no longer supported: Providing an explicit error message is now mandatory.
+                    There is no longer any absolute error identifier.
                 </revremark>
             </revision>
         </revhistory>

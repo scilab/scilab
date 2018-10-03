@@ -151,6 +151,20 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             CellCallExp *pCell = static_cast<CellCallExp*>(&e.getLeftExp());
             types::InternalType *pOut = NULL;
 
+            if (pCell->getName().isSimpleVar())
+            {
+                ast::SimpleVar* var = pCell->getName().getAs<ast::SimpleVar>();
+                types::InternalType* pIT = ctx->getCurrentLevel(var->getStack());
+                if (pIT)
+                {
+                    if (pIT->isCell() == false)
+                    {
+                        CoverageInstance::stopChrono((void*)&e);
+                        throw ast::InternalError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, e.getLeftExp().getLocation());
+                    }
+                }
+            }
+
             /*getting what to assign*/
             types::InternalType* pITR = e.getRightVal();
             if (pITR == NULL)
