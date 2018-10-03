@@ -413,6 +413,7 @@ Known issues
 * [#6737](http://bugzilla.scilab.org/show_bug.cgi?id=6737): mouse events were not correctly reported to an event handler function.
 * [#6939](http://bugzilla.scilab.org/show_bug.cgi?id=6939): `nearfloat("succ",rand(2,2,2))` returned a (2,2) matrix with no error.
 * [#6990](http://bugzilla.scilab.org/show_bug.cgi?id=6990): `or(hm,"r")`, `or(hm,"c")`, `and(hm,"r")` and `and(hm,"c")` generated an error for any hypermatrix hm of booleans, encoded integers, or doubles.
+* [#7107](http://bugzilla.scilab.org/show_bug.cgi?id=7107): The `graphics_entities` page missed listing the console_properties, root_properties, uicontrol_properties, and uimenu_properties. References to `getsystemmetrics` and to `setlookandfeel` were missing in the `See also` section.
 * [#7215](http://bugzilla.scilab.org/show_bug.cgi?id=7215): Some Matlab-Scilab equivalences were missing/outdated (A,B,C chapters).
 * [#7221](http://bugzilla.scilab.org/show_bug.cgi?id=7221): `modulo` was not indicated as the equivalent of Matlab's rem().
 * [#7277](http://bugzilla.scilab.org/show_bug.cgi?id=7277): SciNotes `File>Open recent` menu was not updated after 5 items were added.

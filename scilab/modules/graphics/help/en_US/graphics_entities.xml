@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -49,6 +49,29 @@
         </para>
         <para/>
         <variablelist>
+            <varlistentry>
+                <term>Console, root, mouse: </term>
+                <listitem>
+                    <para>
+                        With its menus, the console may be considered as a special graphic windows.
+                        Its menus and some graphical meta options may be addressed through its
+                        handle as returned by <code>c=get(0)</code>.
+                        See <link linkend="console_properties">Console properties</link> for details.
+                    </para>
+                    <para>
+                        The root object is a virtual graphical object used to get the computer
+                        screen properties. Its handle is the same as the console's one:
+                        <code>r=get(0)</code>, but the screen properties can be addressed only
+                        in read-only mode.
+                        See <link linkend="root_properties">Root properties</link> for details.
+                    </para>
+                    <para>
+                        On Windows, some additional screen, windowing and mouse parameters may be
+                        retrieved throught the <link linkend="getsystemmetrics">getsystemmetrics</link>
+                        function.
+                    </para>
+                </listitem>
+            </varlistentry>
             <varlistentry>
                 <term>Figure: </term>
                 <listitem>
@@ -293,39 +316,69 @@
                 </listitem>
             </varlistentry>
         </variablelist>
+        <refsect3>
+            <title>Other entities</title>
+            <variablelist>
+                <varlistentry>
+                    <term>Interactive components (uicontrol)</term>
+                    <listitem>
+                        <para>
+                            Scilab allows to create graphical interactive components like sliders,
+                            spinners, editable tables, editable texts on graphics, checkboxes,
+                            groups of radio buttons, listboxes, popup menus, push buttons, etc.
+                            These objects are direct children of the figure where they are defined.
+                            Their properties can be set and tuned through their handles as for
+                            any other graphical objects. Please
+                            see <link linkend="uicontrol_properties">uicontrol properties</link> for
+                            details.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>UI menus</term>
+                    <listitem>
+                        <para>
+                            <link linkend="uimenu">uimenu</link>() allows to add and manage some
+                            menus on the menu bar of any graphical figure. <literal>uimenu()</literal>
+                            returns a handle through which the contents and properties of the
+                            created menu can be addressed. Please see
+                            <link linkend="uimenu_properties">uimenus properties</link> for details.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 //Play this example line per line
 
-scf() //create a figure in entity mode
+// Creates a figure in entity mode, gets its handle, displays its properties
+f = scf()
+a = f.children // the handle on the Axes child
+x = (1:10)';  plot2d(x,[x.^2 x.^1.5])
+e = a.children //Compound of 2 polylines
 
-//get the handle on the Figure entity and display its properties
-f=get("current_figure")
-a=f.children // the handle on the Axes child
-x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
-e=a.children //Compound of 2 polylines
-
-p1=e.children(1) //the last drawn polyline properties
-p1.foreground=5;  // change the polyline color
-e.children.thickness=5; // change the thickness of the two polylines
+p1 = e.children(1)  //the last drawn polyline properties
+p1.foreground = 5;  // change the polyline color
+e.children.thickness = 5; // change the thickness of the two polylines
 
 delete(e.children(2))
 
 move(e.children,[0,30]) //translate the polyline
 
-a.axes_bounds=[0 0 0.5 0.5];
+a.axes_bounds = [0 0 0.5 0.5];
 
 subplot(222) //create a new Axes entity
 plot(1:10);
-a1=f.children(1); //get its handle
-copy(e.children,a1); //copy the polyline of the first plot in the new Axes
-a1.data_bounds=[1 0;10 100]; //change the Axes bounds
+a1 = f.children(1);  // get its handle
+copy(e.children,a1); // copy the polyline of the first plot in the new Axes
+a1.data_bounds = [1 0;10 100]; //change the Axes bounds
 
-set("current_figure",10) //create a new figure with figure_id=10
-plot3d() //the drawing are sent to figure 10
-set("current_figure",f) //make the previous figure the current one
+scf(10); // create a new figure with figure_id=10
+plot3d() // the drawing are sent to figure 10
+scf(f);  // makes the previous figure the current one
 plot2d(x,x^3)  //the drawing are sent to the initial figure
  ]]></programlisting>
     </refsection>
@@ -345,6 +398,9 @@ plot2d(x,x^3)  //the drawing are sent to the initial figure
                 <link linkend="delete">delete</link>
             </member>
             <member>
+                <link linkend="ged">ged</link>
+            </member>
+            <member>
                 <link linkend="object_editor">object editor</link>
             </member>
             <member>
@@ -352,6 +408,12 @@ plot2d(x,x^3)  //the drawing are sent to the initial figure
             </member>
             <member>
                 <link linkend="surf">surf</link>
+            </member>
+            <member>
+                <link linkend="getsystemmetrics">getsystemmetrics</link>
+            </member>
+            <member>
+                <link linkend="setlookandfeel">setlookandfeel</link>
             </member>
         </simplelist>
     </refsection>
