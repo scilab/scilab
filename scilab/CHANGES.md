@@ -428,7 +428,7 @@ Known issues
 * [#8000](http://bugzilla.scilab.org/show_bug.cgi?id=8000): `get(gcf(), "%s %s %s..")` crashed Scilab.
 * [#8017](http://bugzilla.scilab.org/show_bug.cgi?id=8017): `atomsInstall` yielded an error when a version without packaging subversion is specified.
 * [#8127](http://bugzilla.scilab.org/show_bug.cgi?id=8127): When using `ode()`, some internal errors messages were in french.
-* [#8143](http://bugzilla.scilab.org/show_bug.cgi?id=8143): Checking of `mtlb_qr` input and output arguments was incorrect. 
+* [#8143](http://bugzilla.scilab.org/show_bug.cgi?id=8143): Checking of `mtlb_qr` input and output arguments was incorrect.
 * [#8767](http://bugzilla.scilab.org/show_bug.cgi?id=8767): `%F & ~%F | %T & ~%F` was `%F`.
 * [#8779](http://bugzilla.scilab.org/show_bug.cgi?id=8779): gsort(x,'lr') did not preserve order of equal items in index output.
 * [#8810](http://bugzilla.scilab.org/show_bug.cgi?id=8810): Insertions with an hypermatrix of indices failed.
@@ -493,6 +493,7 @@ Known issues
 * [#14704](http://bugzilla.scilab.org/show_bug.cgi?id=14704): In Scinotes, URL for the `https://`, `ftp://`, `ftps://`, and `file://` protocols were no longer hyperlinked.
 * [#14708](http://bugzilla.scilab.org/show_bug.cgi?id=14708): polynomial operators `+` `-` `/` `./` `*` `.*` no longer simplified null high orders coefficients from result
 * [#14840](http://bugzilla.scilab.org/show_bug.cgi?id=14840): `load()` is unable to load old data files saved with Scilab < 5.4.0 out of the SOD format.
+* [#14854](http://bugzilla.scilab.org/show_bug.cgi?id=14854): The `error_table` page needed to be updated.
 * [#14897](http://bugzilla.scilab.org/show_bug.cgi?id=14897): `xinfo` is poor and useless. It is declared obsolete.
 * [#14906](http://bugzilla.scilab.org/show_bug.cgi?id=14906): The `histplot` normalization was broken.
 * [#14915](http://bugzilla.scilab.org/show_bug.cgi?id=14915): `ascii(10)` makes `mprintf()` stop printing (REGRESSION).
@@ -611,7 +612,7 @@ Known issues
 * [#15733](http://bugzilla.scilab.org/show_bug.cgi?id=15733): Some fixes after `deg(0*%s)` => `-%inf`.
 * [#15735](http://bugzilla.scilab.org/show_bug.cgi?id=15735): `interp1` yielded some []+n warnings.
 * [#15736](http://bugzilla.scilab.org/show_bug.cgi?id=15736): `unique` failed with complex numbers.
-* [#15740](http://bugzilla.scilab.org/show_bug.cgi?id=15740): now `(%s == %z) == %f` and `(%s ~= %z) == %t` 
+* [#15740](http://bugzilla.scilab.org/show_bug.cgi?id=15740): now `(%s == %z) == %f` and `(%s ~= %z) == %t`
 * [#15741](http://bugzilla.scilab.org/show_bug.cgi?id=15741):  Operations between 2 polynomials with distinct variables no longer called the corresponding overloads (Regression)
 * [#15746](http://bugzilla.scilab.org/show_bug.cgi?id=15746): `1/[1 2 3]` and `[1 2 3]'\1` did not raise an error
 * [#15747](http://bugzilla.scilab.org/show_bug.cgi?id=15747): no output in overloaded operator crashed Scilab

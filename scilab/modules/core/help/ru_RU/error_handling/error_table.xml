@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) - INRIA
-* Copyright (C) - DIGITEO - 2012 - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C)             - INRIA
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,324 +11,423 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
--->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="error_table" xml:lang="ru">
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="error_table" xml:lang="ru">
     <refnamediv>
-        <refname>таблица ошибок</refname>
-        <refpurpose>таблица сообщений об ошибках</refpurpose>
+        <refname>Таблица ошибок</refname>
+        <refpurpose>список сообщений главных стандартных ошибок</refpurpose>
     </refnamediv>
+    <refsection>
+        <title>Содержание</title>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    Сообщения
+                    <itemizedlist>
+                        <listitem>
+                            <link linkend="error_table_arg_number">Проверка количества аргументов</link>
+                        </listitem>
+                        <listitem>
+                            <link linkend="error_table_type_checking">
+                                Проверка типов и кодировки контейнера и содержимого
+                            </link>
+                        </listitem>
+                        <listitem>
+                            <link linkend="error_table_sizes_checking">
+                                Проверка размеров
+                            </link>
+                        </listitem>
+                        <listitem>
+                            <link linkend="error_table_values_checking">Проверка значений</link>
+                        </listitem>
+                        <listitem>
+                            <link linkend="error_table_interarguments_constrains">
+                                Связи между аргументами
+                            </link>
+                        </listitem>
+                        <listitem>
+                            <link linkend="error_table_files_directories">Файлы, папки</link>
+                        </listitem>
+                        <listitem>
+                            <link linkend="error_table_dynamical_systems">Динамические системы</link>
+                        </listitem>
+                        <listitem>
+                            <link linkend="error_table_miscellaneous">Разное</link>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+                <listitem>
+                    <link linkend="error_table_examples">Примеры</link>
+                </listitem>
+                <listitem>
+                    <link linkend="error_table_seealso">См. также</link>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </refsection>
     <refsection>
         <title>Описание</title>
         <para>
-            Эта страница представляет таблицу предопределённых сообщений об ошибках и присвоенных им
-            номерах. Некоторые из этих сообщений об ошибках используются в самой системе Scilab для
-            синтаксических ошибок или ошибок специальных встроенных функций. Некоторые из них являются
-            более общими и могут быть использованы в функциях Scilab. Сообщения об ошибках, помеченные
-            звёздочкой, предназначены для тех, чей синтаксис имеет вид <literal>error(n,pos)</literal>.
+            Эта страница даёт неполный список главных стандартных предопределённых сообщений об ошибках,
+            исползуемых в самом Scilab. Эти сообщения так же могут быть использованы во внешнем коде.
         </para>
-        <para>1 "Некорректное присвоение."</para>
-        <para>2 "Неправильный множитель."</para>
-        <para>3 "Ожидание закрывающей скобки."</para>
-        <para>4 "Неизвестная переменная: %s"</para>
-        <para>5 "Несогласованное количество столбцов или строк."</para>
-        <para>6 "Несогласованное количество строк или столбцов."</para>
-        <para>7 "Точка не может быть использована в качестве модификатора этого оператора."</para>
-        <para>8 "Некорректное суммирование."</para>
-        <para>9 "Некорректное вычитание."</para>
-        <para>10 "Некорректное умножение."</para>
-        <para>11 "Некорректное правое деление."</para>
-        <para>12 "Некорректное левое деление."</para>
-        <para>13 "Переопределение неизменной переменной."</para>
-        <para>14 "Переменная единичной матрицы в данном контексте не определена."</para>
-        <para>15 "Подматрица задана некорректно."</para>
-        <para>16 "Некорректная команда!"</para>
-        <para>18 "Слишком много переменных!"</para>
-        <para>19 "Задача вырождена."</para>
-        <para>(*) 20 "Неверный тип первого аргумента %d: ожидалась квадратная матрица."</para>
-        <para>21 "Неправильный индекс."</para>
-        <para>22 "Проблемы рекурсии. Извините..."</para>
-        <para>23 "Доступные матричные нормы: 1, 2, inf и fro."</para>
-        <para>24 "Проблема сходимости..."</para>
-        <para>25 "Плохой вызов примитива: %s"</para>
-        <para>26 "Слишком сложная рекурсия! (заполнена таблица рекурсии)"</para>
-        <para>27 "Деление на нуль…"</para>
-        <para>28 "Пустая функция..."</para>
-        <para>29 "Матрица не является положительно определённой"</para>
-        <para>30 "Неправильный показатель степени."</para>
-        <para>31 "Неправильная строка."</para>
-        <para>32 "Особая точка функции log или tan."</para>
-        <para>33 "Слишком много «:»"</para>
-        <para>34 "Неправильный синтаксис управляющей инструкции."</para>
-        <para>34 "Ошибка синтаксиса в инструкции «select/case»."
-            (if,while,select/case)
-        </para>
-        <para>(*) 36 "Неверный входной параметр %d."</para>
-        <para>(*) 37 "Некорректная функция в строке %d."</para>
-        <para>38 "Неправильное имя файла."</para>
-        <para>39 "Неправильное количество входных аргументов."</para>
-        <para>40 "Ожидание конца команды."</para>
-        <para>41 "Несовместимый выходной параметр."</para>
-        <para>42 "Несовместимый входной параметр."</para>
-        <para>43 "Не реализовано в scilab..."</para>
-        <para>(*) 44 "Неверный параметр %d."</para>
-        <para>(*) 45 "нулевая матрица (параметр №%d)."</para>
-        <para>46 "Некорректный синтаксис."</para>
-        <para>47 " пропущен end или else..."</para>
-        <para>(*) 48 " входная строка длиннее размера буфера: %d"</para>
-        <para>49 "Некорректный файл или формат."</para>
-        <para>50 "подпрограмма не найдена: %s"</para>
-        <para>51 Нет сообщения</para>
-        <para>(*) 52 "Неверный тип параметра %d: ожидалась матрица вещественных чисел."</para>
-        <para>(*) 53 "Неверный тип входного параметра %d: ожидалась матрица вещественных или комплексных чисел."
-        </para>
-        <para>(*) 54 "Неверный тип входного параметра %d: ожидался полином."</para>
-        <para>(*) 55 "Неверный тип параметра %d: ожидалась строка."</para>
-        <para>(*) 56 "Неверный тип параметра %d: ожидался список."</para>
-        <para>57 "Проблема с символом сравнения..."</para>
-        <para>58 "Неверное число входных параметров."</para>
-        <para>59 "Неверное число выходных параметров."</para>
-        <para>60 "Неверный размер параметра: размерности несовместимы."</para>
-        <para>61 "Прямой доступ: задайте формат."</para>
-        <para>(*) 62 "Конец файла в строке %d."</para>
-        <para>(*) 63 "%d графический терминал?"</para>
-        <para>64 "Интегрирование не удалось."</para>
-        <para>(*) 65 "%d: логический блок уже используется."</para>
-        <para>66 "Открыто слишком много файлов!"</para>
-        <para>67 "Неизвестный формат файла."</para>
-        <para>68 "Неустранимая ошибка!!! Ваши переменные сохранены в файле:
-            %s
-            Неверный вызов к функции scilab?
-            В противном случае отправьте отчёт об ошибке:http://bugzilla.scilab.org/"
-        </para>
-        <para>69 "Исключение операции с плавающей точкой."</para>
-        <para>72 "%s некорректна в этом контексте."</para>
-        <para>73 "Ошибка связывания (linking)."</para>
-        <para>74 "Старший коэффициент равен нулю."</para>
-        <para>75 "Слишком большая степень (максимум 100)."</para>
-        <para>(*) 76 "цикл for x=val для type(val)=%d не реализован в Scilab."
-        </para>
-        <para>77 "%s: Неверное количество входных параметров."</para>
-        <para>78 "%s: Неверное количество выходных параметров."</para>
-        <para>79 "Индексация недопустима для выходных параметров resume."</para>
-        <para>80 "Некорректная функция (параметр n: %d)."</para>
-        <para>81 "%s: Неверный тип параметра %d: ожидалась матрица вещественных или комплексных чисел."
-        </para>
-        <para>82 "%s: Неверный тип параметра %d: ожидалась матрица вещественных чисел."</para>
-        <para>83 "%s: Неверный тип параметра %d: ожидался вещественный вектор."</para>
-        <para>84 "%s: Неверный тип параметра %d: ожидался скаляр."</para>
-        <para>85 "Хост не отвечает..."</para>
-        <para>86 "Неконтролируемая система."</para>
-        <para>87 "Ненаблюдаемая система."</para>
-        <para>88 "sfact: вырожденная или асимметричная задача."</para>
-        <para>(*) 89 "Неверный размер параметра %d."</para>
-        <para>(*) 90 "Неверный тип параметра %d: ожидалась передаточная матрица."</para>
-        <para>(*) 91 "Неверный тип параметра %d: ожидалась форма в пространстве состояний."
-        </para>
-        <para>(*) 92 "Неверный тип параметра %d: ожидалась рациональная матрица."</para>
-        <para>(*) 93 "Неверный тип параметра %d: ожидалось в непрерывном времени."
-        </para>
-        <para>(*) 94 "Неверный тип параметра %d: ожидалось в дискретном времени."</para>
-        <para>(*) 95 "Неверный тип параметра %d: Ожидалось SISO (один вход, один выход)."</para>
-        <para>(*) 96 "Временной интервал аргумента %d не задан."</para>
-        <para>(*) 97 "Неверный тип параметра %d: ожидалась система в пространстве состояний или в форме передаточной матрицы."
-        </para>
-        <para>98 "Функция аргумента scilab вернула некорректную переменную."
-        </para>
-        <para>(*) 99 "Элементы %d-го параметра должны быть отсортированы по возрастанию."</para>
-        <para>(*) 100 "Элементы %d-го параметра не являются непрерывно убывающими."
-        </para>
-        <para>(*) 101 "Последний элемент %d-го параметра не равен первому."</para>
-        <para>102 "Переменной или функции %s нет в файле."</para>
-        <para>103 "Переменная %s не является корректной рациональной функцией."</para>
-        <para>104 "Переменная %s не является корректным представлением пространства состояний."</para>
-        <para>105 "Неопределённая функция."</para>
-        <para>106 "Имя функции уже используется."</para>
-        <para>(*) 107 "Определено слишком много функций (максимум: %d)."</para>
-        <para>108 "Слишком сложно для scilab, возможно слишком длинная управляющая инструкция."
-        </para>
-        <para>109 "Слишком велико, невозможно отобразить."</para>
-        <para>110 "%s была функцией во время компиляции, а теперь это примитив!"</para>
-        <para>111 "Попытка переопределить функцию %s."</para>
-        <para>112 "Не осталось доступной памяти."</para>
-        <para>113 "Слишком длинная строка."</para>
-        <para>114 "Слишком много закрытых программ."</para>
-        <para>115 "Внутри цикла обнаружена проблема со стеком.
-            Функция-примитив была вызвана с неверный количеством выходных параметров.
-            При этом для функции не была произведёна проверка выходных параметров.
-            Пожалуйста, сообщите об этой проблеме :
-            http://bugzilla.scilab.org/"
-        </para>
-        <para>(*) 116 "Неверное значение параметра %d."</para>
-        <para>(*) 117 "Элемент списка с номером %d не определён (Undefined)."</para>
-        <para>(*) 118 "Неверный тип параметра %d: ожидалась именованная переменная или выражение."
-        </para>
-        <para>120 "Индексы ненулевых элементов должны быть заданы в виде матрицы из двух столбцов.."
-        </para>
-        <para>121 "Несовместимые индексы ненулевых элементов."</para>
-        <para>(*) 122 "Номер логического блока должен быть больше %d."</para>
-        <para>123 "Функция не ограничена снизу."</para>
-        <para>125 "Возможно проблема ограничения: слишком большое расстояние между двумя последовательными итерациями."
-        </para>
-        <para>126 "Несовместимые ограничения."</para>
-        <para>127 "Нет допустимых решений."</para>
-        <para>128 "Вырожденная начальная точка."</para>
-        <para>129 "Допустимых точек не найдено."</para>
-        <para>130 "Оптимизация не удалась: возврат к исходному положению."</para>
-        <para>131 "optim: Симулятор запросил остановку (ind=0)"</para>
-        <para>132 "optim: Неверные входные параметры."</para>
-        <para>133 "Слишком мало памяти."</para>
-        <para>134 "optim: Проблема с исходными константами симуляции (simul)."</para>
-        <para>135 "optim : Исходные значения не соответствуют граничным условиям."</para>
-        <para>136 "optim : Данный метод не реализован."</para>
-        <para>137 "Горячий перезапуск НЕ доступен в этом методе."</para>
-        <para>138 "optim: Некорректные параметры остановки."</para>
-        <para>139 "optim: Некорректные граничные условия."</para>
-        <para>140 "Переменная: %s должна быть списком"</para>
-        <para>(*) 141 "Некорректная функция (параметр n: %d)."</para>
-        <para>(*) 142 "Горячий перезапуск: размерность рабочей таблицы (параметр n:%d)."
-        </para>
-        <para>143 "optim: df0 должен быть положительным!"</para>
-        <para>144 "Операция для заданных операндов не определена.
-            отметьте или определите функцию %s как перегружаемую."
-        </para>
-        <para>145 to 200: No message</para>
-        <para>201 "%s: Неверный тип параметра %d: ожидалась матрица вещественных или комплексных чисел."
-        </para>
-        <para>202 "%s: Неверный тип параметра %d: ожидалась матрица вещественных чисел."</para>
-        <para>203 "%s: Неверный тип параметра %d: ожидался вещественный вектор."</para>
-        <para>(*) 204 "%s: Неверный тип параметра %d: ожидался скаляр."</para>
-        <para>205 "%s: Неверный размер параметра %d:  ожидался размер (%d,%d)."</para>
-        <para>206 "%s: Неверный размер параметра %d:  ожидался размер %d."</para>
-        <para>207 "%s: Неверный тип параметра %d: ожидалась матрица строк."
-        </para>
-        <para>208 "%s: Неверный тип параметра %d: ожидалась матрица логических значений."
-        </para>
-        <para>209 "%s: Неверный тип параметра %d: ожидалась матрица."</para>
-        <para>210 "%s: Неверный тип параметра %d: ожидался список."</para>
-        <para>211 "%s: Неверный тип параметра %d: ожидалась функция или строка (внешняя функция)."
-        </para>
-        <para>212 "%s: Неверный тип параметра %d: Ожидался полином."</para>
-        <para>213 "%s: Неверный тип параметра %d: ожидалась целочисленная рабочая матрица."
-        </para>
-        <para>214 "%s: Неверный тип параметра %d: ожидался вектор."
-        </para>
-        <para>(*) 215 "Тип %d-го параметра должен быть логическим."</para>
-        <para>(*) 216 "Неверный тип параметра %d: ожидалось логическое значение или скаляр."
-        </para>
-        <para>(*) 217 "Неверный тип параметра %d: ожидалась разреженная числовая матрица."
-        </para>
-        <para>(*) 218 "Неверный тип параметра %d: ожидался дескриптор разреженных LU-множителей."
-        </para>
-        <para>(*) 219 "Неверный тип параметра %d: ожидалась полная или разреженная числовая матрица."
-        </para>
-        <para>220 "Здесь не может использоваться пустая переменная."</para>
-        <para>221 "Элемент разреженной матрицы был задан двумя разными значениями."
-        </para>
-        <para>222 "%s пока не реализована для полных входных параметров."</para>
-        <para>223 "Невозможно переопределить примитив %s таким способом (см. clearfun)."
-        </para>
-        <para>224 "База данных типов заполнена."</para>
-        <para>225 "Этот тип данных уже определён."</para>
-        <para>226 "Сравнение неравенства с пустой матрицей."</para>
-        <para>227 "Пропущен индекс."</para>
-        <para>228 "ссылка на очищенную глобальную переменную %s."</para>
-        <para>229 "Параметры команд / и \ не могут содержать NaN или Inf."
-        </para>
-        <para>230 "частичное определение не удалось."</para>
-        <para>231 "Неверный тип первого входного параметра: ожидалась одиночная строка."
-        </para>
-        <para>232 "Имя входа не найдено."</para>
-        <para>233 "Достигнут предел количества динамических интерфейсов."</para>
-        <para>234 "link: ожидалось более одного параметра."</para>
-        <para>235 "link: проблема с одной из точек входа."</para>
-        <para>236 "link: разделяемый архив не было загружен."</para>
-        <para>237 "link: В этой операционной системе допускается только одна точка входа."
-        </para>
-        <para>238 "link: Первый параметр не может быть числом."</para>
-        <para>239 "Вы не можете связать больше функций, достигнуто значение maxentry."</para>
-        <para>240 "Файл «%s» уже существует или нет доступа для записи в каталог."
-        </para>
-        <para>241 "Файл «%s» не существует или недоступен для чтения."</para>
-        <para>242 "Двоичные файлы прямого доступа могут быть открыты только командой «file»."</para>
-        <para>243 "Здесь недопустим логический блок C-файла."</para>
-        <para>244 "Здесь недопустим логический блок Fortran-файла."</para>
-        <para>(*) 245 "С логическим блоком %d не ассоциирован входной файл."</para>
-        <para>246 "Функция не определена для заданных типов параметров,
-            проверьте параметры или определите функцию %s как перегружаемую."
-        </para>
-        <para>247 "Неверное значение параметра %d: дескриптор LU более недействителен."
-        </para>
-        <para>(*) 248 "Неверное значение параметра %d: ожидалось корректное имя переменной."
-        </para>
-        <para>(*) 249 "Неверное значение параметра %d: ожидалась пустая строка."</para>
-        <para>250 "Рекурсивное извлечение недопустимо в этом контексте."</para>
-        <para>251 "bvode: должен иметь размер как минимум 11.."</para>
-        <para>252 "bvode: ltol должен соответствовать размеру ipar(4)."</para>
-        <para>253 "bvode: fixpnt должен соответствовать размеру ipar(11)."</para>
-        <para>254 "bvode: ожидалось ncomp &lt; 20."</para>
-        <para>255 "bvode: m должно соответствовать размеру ncomp."</para>
-        <para>256 "bvode: sum(m) должно быть менее 40."</para>
-        <para>257 "bvode: sum(m) должно быть менее 40."</para>
-        <para>258 "bvode: ошибка во входных данных."</para>
-        <para>259 "bvode: количество шагов разбиения не умещается в доступную память."</para>
-        <para>260 "bvode: Матрица расположения вырождена."</para>
-        <para>261 "Таблица свойств интерфейсов переполнена."</para>
-        <para>(*) 262 "Слишком много глобальных переменных! Максимальное число не более %d."</para>
-        <para>263 "Ошибка при записи в файл: диск полный или файл удалён."</para>
-        <para>(*) 264 "Неверное значение параметра %d0: параметр не должен содержать NaN и Inf."
-        </para>
-        <para>265 "A и B должны иметь одинаковое количество строк."</para>
-        <para>266 "A и B должны иметь одинаковое количество столбцов."</para>
-        <para>267 "A и B должны иметь одинаковые размеры."</para>
-        <para>(*) 268 "Неправильное значение возвращено функцией выполненной в качестве параметра %d."</para>
-        <para>(*) 269 "Неверное значение параметра %d: собственные значения должны иметь отрицательные вещественные части."
-        </para>
-        <para>(*) 270 "Неверное значение параметра %d: модуль собственного значения должен быть меньше единицы."
-        </para>
-        <para>(*) 271 "Параметр переменной длины a*eye(), (параметр %d) здесь недопустим."
-        </para>
-        <para>272 "пропущено ключевое слово endfunction."</para>
-        <para>273 "Левосторонняя инструкция: ожидается точка или открывающая скобка."
-        </para>
-        <para>274 "Левосторонняя инструкция: ожидается имя."</para>
-        <para>275 "Ключевое слово varargout не может быть использовано здесь."</para>
-        <para>276 "Пропущен оператор, запятая или точка с запятой."</para>
-        <para>277 "Задано слишком много команд."</para>
-        <para>278 "%s: Входные параметры должны иметь одинаковое имя формальной переменной." или "Входные параметры должны иметь одинаковое имя формальной переменной."
-        </para>
-        <para>279, 280: Нет сообщений</para>
         <para>
+            Какой бы ни был язык текущей сессии Scilab, используется английская версия сообщений в
+            качестве идентификатора сообщения с помощью системы перевода <link linkend="gettext">gettext</link>().
+            В самом Scilab используются перечисленные сообщения.
             <note>
-                Пожалуйста, избегайте использования этого списка, поскольку он может измениться в будущем релизе.
+                Пожалуйста, избегайте использования двойных кавычек " внутри сообщения: вместо них должны
+                использоваться одинарные кавычки '.
             </note>
         </para>
+        <para>
+            Сообщение может включать в себя некоторые метки, начинающиеся с символа "%". Эти метки соответствуют
+            Си-подобному синтаксису (см. <link linkend="printf_conversion">правила преобразования printf()</link>).
+            Они предназначены для замены настраиваемым содержимым для того, чтобы настроить стандарт под
+            локальные данные благодаря  <link linkend="msprintf">msprintf</link>. Чтобы включить в такое
+            сообщение собственном символ "%" используйте "%%".
+        </para>
+        <para>
+            Стандартные сообщения должны начинаться с "%s" и заканчиваться "\n". Стоящее впереди "%s"
+            будет заменено именем функции, в которой произошла ошибка.
+        </para>
+        <refsect2 id="error_table_arg_number">
+            <title>Проверка количества аргументов</title>
+            <para>
+                <emphasis role="bold">Входные аргументы:</emphasis>
+            </para>
+            <screen><![CDATA[
+"%s: Wrong number of input arguments.\n"
+"%s: Wrong number of input arguments: %d expected.\n"
+"%s: Wrong number of input arguments: %d or %d expected.\n"
+"%s: Wrong number of input arguments: %d to %d expected.\n"
+"%s: Wrong number of input arguments: At least %d expected.\n"
+"%s: Wrong number of input arguments: At most %d expected.\n"
+]]></screen>
+            <para>
+                <emphasis role="bold">Выходные аргументы:</emphasis>
+            </para>
+            <screen><![CDATA[
+"%s: Wrong number of output arguments: %d expected.\n"
+"%s: Wrong number of output arguments: %d to %d expected.\n"
+]]></screen>
+        </refsect2>
+        <!-- ====================================================== -->
+        <refsect2 id="error_table_type_checking">
+            <title>Проверка типов контейнера и содержимого</title>
+            <para>
+                <emphasis role="bold">Неверный тип содержимого:</emphasis>
+            </para>
+            <screen><![CDATA[
+"%s: Argument #%d: Boolean(s) expected.\n"
+
+"%s: Argument #%d: Encoded integer expected.\n"
+"%s: Argument #%d: Encoded integer of type (%s) expected.\n"
+"%s: Argument #%d: Integer expected.\n"         // целочисленное или десятичное кодирование
+"%s: Argument #%d: Decimal integer expected.\n"
+"%s: Argument #%d: Decimal number expected.\n"
+"%s: Argument #%d: Decimal or complex number expected.\n"
+"%s: Argument #%d: Complex number expected.\n"
+"%s: Argument #%d: Complex number not supported.\n"
+
+"%s: Argument #%d: Polynomial expected.\n"
+"%s: Argument #%d: Rational fraction expected.\n"
+"%s: Argument #%d: Polynomial or rational expected.\n"
+"%s: Argument #%d: Real polynomial expected.\n"
+"%s: Argument #%d: Real rational expected.\n"
+
+"%s: Argument #%d: Text(s) expected.\n"
+
+"%s: Argument #%d: Graphic handle expected.\n"
+"%s: Argument #%d: Graphic handle of type ''%s'' expected.\n"
+
+"%s: Argument #%d: Function expected.\n"
+"%s: Argument #%d: Transfer function expected.\n"
+"%s: Argument #%d: Linear state space expected.\n"
+"%s: Argument #%d: %s expected.\n"
+
+"%s: Type %s is not implemented.\n"
+]]></screen>
+            <para>
+                <emphasis role="bold">Неверный контейнер:</emphasis>
+            </para>
+            <screen><![CDATA[
+"%s: Argument #%d: List expected.\n"
+"%s: Argument #%d: Cell expected.\n"
+"%s: Argument #%d: Structure expected.\n"
+"%s: Argument #%d: M-list expected.\n"
+"%s: Argument #%d: T-list of type %s expected.\n"
+"%s: Argument #%d: %s expected.\n"
+]]></screen>
+            <para>
+                <emphasis role="bold">Неверное кодирование:</emphasis>
+            </para>
+            <screen><![CDATA[
+"%s: Argument #%d: Sparse matrix expected.\n"
+"%s: Argument #%d: Dense matrix expected.\n"
+]]></screen>
+        </refsect2>
+        <!-- ====================================================== -->
+        <refsect2 id="error_table_sizes_checking">
+            <title>Проверка размерности и размеров контейнера</title>
+            <para>
+                <emphasis role="bold">Размерности / размеры / форма контейнера:</emphasis>
+                <itemizedlist>
+                    <listitem>
+                        "Массив" применяется к селл-массивам и структурам
+                    </listitem>
+                    <listitem>
+                        "Скаляр", "Строка", "Столбец" применяются к матрицам и некоторым другим
+                        массивам (селл-массивам и структурам)
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <screen><![CDATA[
+"%s: Argument #%d: Non-empty matrix expected.\n"
+"%s: Argument #%d: Empty matrix expected.\n"
+"%s: Argument #%d: Scalar (1 element) expected.\n"
+"%s: Argument #%d: Row expected.\n"
+"%s: Argument #%d: Column expected.\n"
+"%s: Argument #%d: Vector expected.\n"
+"%s: Argument #%d: Row with %d elements expected.\n"
+"%s: Argument #%d: Column with %d elements expected.\n"
+"%s: Argument #%d: Vector with %d elements expected.\n"
+
+"%s: Argument #%d: Matrix expected.\n"
+"%s: Argument #%d: Square matrix expected.\n"
+"%s: Argument #%d: %d-by-%d matrix expected.\n"
+"%s: Argument #%d: Matrix with %d rows expected.\n"
+"%s: Argument #%d: Matrix with %d columns expected.\n"
+"%s: Argument #%d: Matrix with %s rows expected.\n"    // %s является наиболее общей; она может использоваться для диапазона
+"%s: Argument #%d: Matrix with %s columns expected.\n" // то же самое
+"%s: Argument #%d: 2D-array expected.\n"
+
+"%s: Argument #%d: Hypermatrix expected.\n"
+"%s: Argument #%d: %dD hypermatrix expected.\n"
+"%s: Argument #%d: %dD array expected.\n"
+
+"%s: Argument #%d: %d-element list expected.\n"
+"%s: Argument #%d: List of %d to %d elements expected.\n"
+
+"%s: Argument #%d: %s expected.\n"
+"%s: Implicit size not supported.\n"
+"%s: Hypermatrix not supported.\n"
+]]></screen>
+            <para>
+                <emphasis role="bold">Строковые значения</emphasis>
+            </para>
+            <screen><![CDATA[
+"%s: Argument #%d: string length %s %d characters expected.\n" // '='|'>'|'>='|'<' ...etc
+]]></screen>
+        </refsect2>
+        <!-- ====================================================== -->
+        <refsect2 id="error_table_values_checking">
+            <title>Проверка значений</title>
+            <para>
+                <emphasis role="bold">Неверные значения:</emphasis>
+            </para>
+            <screen><![CDATA[
+"%s: Argument #%d: Must be in the interval [%s, %s].\n"
+"%s: Argument #%d: Must be in the interval [%d, %d].\n"
+"%s: Argument #%d: Must be in the interval %s.\n"
+"%s: Argument #%d: Must be < %d.\n"
+"%s: Argument #%d: Must be > %d.\n"
+"%s: Argument #%d: Must be <= %d.\n"
+"%s: Argument #%d: Must be >= %d.\n"
+"%s: Argument #%d: Inf value forbidden.\n"
+"%s: Argument #%d: Nan value forbidden.\n"
+"%s: Argument #%d: Inf and Nan values forbidden.\n"
+"%s: Argument #%d: ''%s'' expected .\n"
+"%s: Argument #%d: Must be in the set {%s}.\n"
+"%s: Argument #%d: Non-negative integers expected.\n"
+"%s: Argument #%d: Elements must be in increasing order.\n"
+"%s: Argument #%d: Elements must be in decreasing order.\n"
+"%s: Argument #%d: Elements must be in strictly increasing order.\n"
+"%s: Argument #%d: Elements must be in strictly decreasing order.\n"
+"%s: Argument #%d: An integer value expected.\n"
+
+"%s: Argument #%d: Unknown or unexpected property name ''%s''.\n"
+"%s: Argument #%d: Wrong type of graphic handle: ''%s'' expected.\n"
+"%s: Argument #%d: The %s handle is no longer valid.\n"  // графики, XML, lu и другие указатели
+"%s: Argument #%d: Wrong color specification.\n"
+]]></screen>
+        <para>
+            Обратите внимание, что сообщение об ошибке для интервалов является особым: любой тип интервала
+            наподобие [#, #], (#, #], [#, #), (#, #) (-oo, #], [#, oo) и др. может без труда определён
+            внутри того же унифицированного сообщения. Должны быть выполнены границы форматирования и
+            замещения с помощью msprintf(..)
+        </para>
+        </refsect2>
+        <!-- ====================================================== -->
+        <refsect2 id="error_table_interarguments_constrains">
+            <title>Проверка связи между аргументами:</title>
+            <screen><![CDATA[
+"%s: Arguments #%d and #%d: Incompatible sizes.\n"
+"%s: Arguments #%d and #%d: Same sizes expected.\n"
+"%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
+"%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
+"%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
+"%s: Arguments #%d and #%d: Same types expected.\n"
+"%s: Arguments #%d and #%d: Same formal variable expected.\n"  // полиномы и рациональные значения
+]]></screen>
+        </refsect2>
+        <!-- ====================================================== -->
+        <refsect2 id="error_table_files_directories">
+            <title>Файлы, папки</title>
+            <screen><![CDATA[
+"%s: Cannot open file ''%s''.\n"
+"%s: The file ''%s'' does not exist.\n"
+"%s: File ''%s'': Read access denied.\n"
+"%s: File ''%s'' already exists or directory write access denied.\n"
+"%s: Error while copying the file ''%s'' to the directory ''%s''.\n"
+"%s: The file ''%s'' cannot be written.\n"
+"%s: The file ''%s'' is not well formated at line %d\n"
+"%s: Cannot close the file ''%s''.\n"
+"%s: End of file at line %d.\n"
+"%s: Binary direct access files must be opened by ''file''.\n"
+"%s: C file logical unit not allowed here.\n"
+"%s: Fortran file logical unit not allowed here.\n"
+"%s: No input file associated to logical unit %d.\n"
+]]></screen>
+        </refsect2>
+        <!-- ====================================================== -->
+        <refsect2 id="error_table_dynamical_systems">
+            <title>Динамические системы</title>
+        <screen><![CDATA[
+"%s: Argument #%d: Transfer matrix expected.\n"
+"%s: Argument #%d: In state space form expected.\n"
+"%s: Argument #%d: In continuous time expected.\n"
+"%s: Argument #%d: In discrete time expected.\n"
+"%s: Argument #%d: SISO expected.\n"
+"%s: Argument #%d: Undefined time domain.\n"
+"%s: Argument #%d: Invalid state space representation.\n"
+"%s: Argument #%d: A system in state space or transfer matrix form expected.\n"
+]]></screen>
+        </refsect2>
+        <!-- ====================================================== -->
+        <refsect2 id="error_table_miscellaneous">
+            <title>Разное</title>
+            <screen><![CDATA[
+"%s: No more memory.\n"
+"%s: No more memory: %d requested, %d available.\n"
+"%s: Non implemented feature.\n"
+"%s: Inconsistent addition.\n"
+"%s: Inconsistent multiplication.\n"
+"%s: The problem is singular.\n"
+"%s: Division by 0...\n"
+"%s: Invalid index.\n"
+"%s: ''%s'' expected instead of ''%s''.\n"
+"%s: Recursion limit reached.\n"
+"%s: Recursion problems. Sorry...\n"
+"%s: Convergence problem...\n"
+
+"%s: Incorrect syntax.\n"
+"%s: Incorrect assignment.\n"
+"%s: Subroutine ''%s'' not found.\n"
+"%s: Bad call to primitive ''%s''.\n"
+"%s: Dot cannot be used as modifier for this operator.\n"
+"%s: Problem with comparison symbol...\n"
+"%s: Missing operator, comma, or semicolon.\n"
+]]></screen>
+        </refsect2>
     </refsection>
-    <refsection>
+    <refsection id="error_table_examples">
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-    error(43);
-    // Вывод на экран "Не реализовано в scilab..."
-    error(42);
-    // Вывод на экран "Несовместимый входной параметр."
-    lasterror()
+lang0 = getlanguage();
+setlanguage fr;
+
+msg = _("%s: Wrong number of input arguments: %d or %d expected.\n")
+error(msprintf(msg, "myfun", 2, 3))
+
+msg = _("%s: Argument #%d: Must be in the set {%s}.\n")
+error(msprintf(msg, "myfun", 2, "''r'' ''c''"))
+
+msg = _("%s: Non implemented feature.\n")
+error(msprintf(msg, "myfun"))
+
+setlanguage(lang0);
+
+msg = _("%s: Argument #%d: Encoded integer of type (%s) expected.\n")
+error(msprintf(msg, "myfun", 1, "uint16"))
+
+msg = _("%s: Argument #%d: The %s handle is no longer valid.\n")
+error(msprintf(msg, "myfun", 3, _("graphic")))
  ]]></programlisting>
+    <screen><![CDATA[
+--> msg = _("%s: Wrong number of input arguments: %d or %d expected.\n")
+ msg  =
+ %s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n
+
+--> error(msprintf(msg, "myfun", 2, 3))
+myfun : Nombre erroné d'arguments d'entrée : 2 ou 3 attendus.
+
+
+--> msg = _("%s: Argument #%d: Must be in the set {%s}.\n")
+ msg  =
+ %s : Argument #%d : doit être dans l'ensemble {%s}.\n
+
+--> error(msprintf(msg, "myfun", 2, """r"" ""c"""))
+myfun : Argument #2 : doit être dans l'ensemble {"r" "c"}.
+
+
+--> msg = _("%s: Non implemented feature.\n")
+ msg  =
+ %s : Fonction non implémentée\n
+
+--> error(msprintf(msg, "myfun"))
+myfun : Fonction non implémentée
+
+--> setlanguage(lang0);
+
+--> msg = _("%s: Argument #%d: Encoded integer of type (%s) expected.\n");
+--> error(msprintf(msg, "myfun", 1, "uint16"))
+
+myfun: Argument #1: Encoded integer of type (uint16) expected.
+
+--> msg = _("%s: Argument #%d: The %s handle is no longer valid.\n");
+--> error(msprintf(msg, "myfun", 3, _("graphic")))
+
+myfun: Argument #3: The graphic handle is no longer valid.
+]]></screen>
     </refsection>
-    <refsection role="see also">
-        <title>Смотрите также</title>
+    <refsection role="see also" id="error_table_seealso">
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="error">error</link>
             </member>
             <member>
-                <link linkend="warning">warning</link>
+                <link linkend="gettext">gettext</link>
             </member>
             <member>
-                <link linkend="execstr">execstr</link>
+                <link linkend="msprintf">msprintf</link>
+            </member>
+            <member>
+                <link linkend="printf_conversion">printf_conversion</link>
+            </member>
+            <member>
+                <link linkend="warning">warning</link>
             </member>
             <member>
                 <link linkend="lasterror">lasterror</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    Нельзя больше использовать номера ошибок. Теперь есть необязателные (по умолчанию
+                    = 10000) и локальные (устанавилвается при каждом вызове error()).
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
