@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
@@ -14,138 +13,76 @@
  * along with this program.
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="head_comments">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="head_comments">
     <refnamediv>
-
         <refname>head_comments</refname>
-
         <refpurpose>Scilab関数のヘッダのコメントを表示</refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
         <synopsis>
-
-            head_comments(name)
-
-            head_comments(name,%paths)
-
+            head_comments(fname)
         </synopsis>
-
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
-                <term>name</term>
-
+                <term>fname</term>
                 <listitem>
-
                     <para>文字列, 関数名</para>
-
                 </listitem>
-
             </varlistentry>
-
-            <varlistentry>
-
-                <term>%paths</term>
-
-                <listitem>
-
-                    <para>文字列ベクトル, sci-ファイルを探す場所のパス
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
         <para>
-
-            <code>head_comments(name)</code> は,
-
-            (Matlabヘルプのように)
-
-            関数ヘッダのコメントを表示します.
-
-            コメントは関連する sci-ファイルから読み込まれます.
-
-            <varname>name</varname>がライブラリ中の関数の場合,
-
-            sci-ファイルはライブラリパスで指定したパスとなります
-
-            (<link linkend="lib">lib</link>参照).
-
-            <varname>name</varname>がライブラリ中ではない関数の場合,
-
-            変数<varname>%paths</varname>で指定したディレクトリの中で
-
-            <varname>name</varname><literal>.sci</literal>という名前のファイルが
-
-            探されます.
-
+            <code>head_comments(fname)</code> は, 関数ヘッダのコメントを表示します.
         </para>
-
         <warning>
-
-            警告: Scilabのほとんどの定義済みの関数はもはやヘッダコメントを
-
-            有していません.
-
+            警告: Scilabのほとんどの定義済みの関数はもはやヘッダコメントを 有していません.
         </warning>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
-
         <programlisting role="example"><![CDATA[
-head_comments sinc
+head_comments logspace
+edit("logspace",1)
  ]]></programlisting>
-
+    <screen><![CDATA[
+--> head_comments logspace
+function [y] = logspace(d1,d2,n)
+ Geometrical series of numbers in [10^d1, 10^d2].
+ logspace(d1,d2) generates a row vector of 50 logarithmically
+ equally spaced values between 10^d1 and 10^d2.
+ If d2=%pi, then the points are between 10^d1 and pi.
+ logspace(d1, d2, n) generates n values.
+]]></screen>
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
                 <link linkend="help">help</link>
-
             </member>
-
             <member>
-
-                <link linkend="lib">lib</link>
-
+                <link linkend="help_from_sci">help_from_sci</link>
             </member>
-
         </simplelist>
-
     </refsection>
-
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.0</revnumber>
+                <revdescription>
+                    Second input argument %path removed.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
-
