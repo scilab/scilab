@@ -77,6 +77,18 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>sci$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetName>sci$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <TargetName>sci$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetName>sci$(ProjectName)</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -93,10 +105,10 @@
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -123,10 +135,10 @@
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -153,12 +165,12 @@
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -188,12 +200,12 @@
     </PreLinkEvent>
     <Link>
       <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>

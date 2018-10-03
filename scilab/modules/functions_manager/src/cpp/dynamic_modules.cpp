@@ -258,7 +258,7 @@ int Hdf5Module::Load()
 {
     std::wstring wstModuleName = L"hdf5";
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
 #else
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
