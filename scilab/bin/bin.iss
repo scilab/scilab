@@ -74,8 +74,14 @@ Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ; hdf5 libraries
 Source: bin\szip.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\zlib.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\hdf5dll.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\hdf5_hldll.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hdf5.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hdf5.lib ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hdf5_cpp.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hdf5_cpp.lib ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hdf5_hl.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hdf5_hl.lib ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hdf5_hl_cpp.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hdf5_hl_cpp.lib ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 
 ;
 ; batch files
