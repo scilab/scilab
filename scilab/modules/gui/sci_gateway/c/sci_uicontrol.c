@@ -237,8 +237,10 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                 getGraphicObjectProperty(iParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
                 if (iParentType == __GO_UICONTROL__)  /* Focus management */
                 {
+                    int fake = 0; //no real data
                     GraphicHandle = (unsigned long)hParent;
-                    requestFocus(iParentUID);
+                    setGraphicObjectProperty(iParentUID, __GO_UI_FOCUS__, &fake, jni_int, 1);
+                    //requestFocus(iParentUID);
                 }
                 else if (iParentType == __GO_FIGURE__ || iParentType == __GO_UIMENU__)  /* PushButton creation */
                 {

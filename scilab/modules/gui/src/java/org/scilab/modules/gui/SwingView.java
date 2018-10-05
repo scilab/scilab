@@ -73,6 +73,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WAITBAR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOCUS__;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
 
 import java.awt.Component;
@@ -790,6 +791,11 @@ public final class SwingView implements GraphicView {
         if (registeredObject == null && property == __GO_STYLE__) {
             int style = (Integer) GraphicController.getController().getProperty(id, __GO_STYLE__);
             allObjects.put(id, CreateObjectFromType(style, id));
+            return;
+        }
+
+        if(property == __GO_UI_FOCUS__) {
+            requestFocus(registeredObject);
             return;
         }
 
@@ -1603,6 +1609,17 @@ public final class SwingView implements GraphicView {
         }
         if (needRevalidate && updatedComponent != null) {
             updatedComponent.validate();
+        }
+    }
+
+    private void requestFocus(TypedObject updatedObject) {
+        SwingViewObject uicontrol = updatedObject.getValue();
+        if (uicontrol instanceof SwingScilabScrollableFrame) {
+            ((SwingScilabScrollableFrame) uicontrol).requestFocus();
+        } else if (uicontrol instanceof SwingScilabFrame) {
+            ((SwingScilabFrame) uicontrol).requestFocus();
+        } else {
+            ((Widget) uicontrol).requestFocus();
         }
     }
 }
