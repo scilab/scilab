@@ -25,11 +25,9 @@ extern "C"
 
 void computeOffsets(int iDims, const int* piDimsArray, const std::vector<int>& dimsVect, int* piOffset, int* piMaxOffset)
 {
-    int iOffset;
-
     for (int i = 0; i < iDims; ++i)
     {
-        iOffset = i > 0 ? iOffset * piDimsArray[dimsVect[i - 1] - 1] : 1;
+        int iOffset = i > 0 ? iOffset * piDimsArray[dimsVect[i - 1] - 1] : 1;
         int j = dimsVect[i] - 1;
         piOffset[j] = iOffset;
         piMaxOffset[j] = iOffset * piDimsArray[j];
@@ -163,7 +161,7 @@ types::Function::ReturnValue sci_permute(types::typed_list& in, int _iRetCount, 
     int iDims = pIn->getDims();
     int* piDimsArray = pIn->getDimsArray();
     int iNewDims = pDims->getSize();
-    int* piNewDimsArray;
+    int* piNewDimsArray = NULL;
     std::vector<int> dimsVect;
 
     if ((iNewDims >= iDims) & pDims->isDouble() & !pDims->getAs<types::Double>()->isComplex())
@@ -193,6 +191,7 @@ types::Function::ReturnValue sci_permute(types::typed_list& in, int _iRetCount, 
 
     if (dimsVect.empty())
     {
+        delete[] piNewDimsArray;
         Scierror(78, _("%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>%d] integers.\n"), "permute", 2, iDims - 1);
         return types::Function::Error;
     }
@@ -270,6 +269,12 @@ types::Function::ReturnValue sci_permute(types::typed_list& in, int _iRetCount, 
         {
             pOut = doPermute(in[0]->getAs<types::Cell>(), dimsVect);
             break;
+        }
+        default:
+        {
+            delete[] piNewDimsArray;
+            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_permute";
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
     }
 
