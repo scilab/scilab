@@ -25,7 +25,8 @@
         <title>Seqüência de Chamamento</title>
         <synopsis>
             bar(x, y)
-            bar(x, y [,width [,color [,style]]])
+            bar(x, y, width, colors, style)
+            bar(x, y [,width] [,colors] [,style])
             bar(h, x, y ..)
         </synopsis>
     </refsynopsisdiv>
@@ -41,7 +42,18 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>escalar real, vetor de tamanho N ou uma matriz NxM.</para>
+                    <para>
+                        scalar, vector of size N, or matrix N*M of real numbers or encoded integers,
+                      with
+                      <itemizedlist>
+                        <listitem>
+                          N : number of groups (each group of bars gathered on/around an x position)
+                        </listitem>
+                        <listitem>
+                          M : number of categories in each group
+                        </listitem>
+                      </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -63,10 +75,11 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>color</term>
+                <term>colors</term>
                 <listitem>
-                    <para>(opcional) the color filling bars, specified by its literal name among
-                        predefined ones, or by its "#RRGGBB" hexadecimal code. Padrão: 'blue')
+                    <para>(opcional) Single string or vector of M strings: colors names (among
+                        predefined ones) or "#RRGGBB" hexadecimal codes of categories colors.
+                        Default = default plot() colors series, starting with "blue".
                     </para>
                 </listitem>
             </varlistentry>
@@ -110,7 +123,7 @@
             style = 'stacked' permite empilhá-las.
         </para>
         <para>
-            <literal>bar(...,color,...) : </literal>define a cor da barra.
+            <literal>bar(...,colors,...) : </literal>define a cor da barra.
         </para>
         <para>Se há várias chamadas a bar(), a função
             <literal>barhomogenize</literal> permite homogeneizar a largura e estilo
@@ -122,7 +135,7 @@
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 // primeiro exemplo: desenhando uma barra (i.e uma poligonal com polyline_style =6) com
-// width=0.5 e color='yellow' e style='grouped', x=1:length(y).
+// width=0.5 e colors='yellow' e style='grouped', x=1:length(y).
 scf(0);
 y=[1 -3 5];
 bar(y,0.5,'yellow');
@@ -137,7 +150,7 @@ scf(2);
 x=[1 2 5]; y=[1 4 7;2 5 8;3 6  9];
 bar(x,y,'stacked');
 
-// quarto exemplo: width=0.2;color='green', style='grouped'
+// quarto exemplo: width=0.2;colors='green', style='grouped'
 scf(3);
 x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
 bar(x,y,0.2,'green');
@@ -164,6 +177,9 @@ bar(x,y,0.2,'green');
             <member>
                 <link linkend="polyline_properties">polyline_properties</link>
             </member>
+            <member>
+                <link linkend="hist3d">hist3d</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection role="history">
@@ -172,9 +188,18 @@ bar(x,y,0.2,'green');
             <revision>
                 <revnumber>6.0.1</revnumber>
                 <revdescription>
-                    color is no longer restricted to the 10 major colors: It can now be any of the
-                    numerous predefined Scilab color names. Moreover, it can now be specified by
-                    its "#RRGGBB" hexadecimal code.
+                    <itemizedlist>
+                      <listitem>
+                        A vector of M colors can now be provided, one for each category.
+                      </listitem>
+                      <listitem>
+                        Available colors are no longer restricted to the 10 major colors. All the
+                        predefined colors names can now be used.
+                      </listitem>
+                      <listitem>
+                        Colors can now be specified also by their "#RRGGBB" hexadecimal codes.
+                      </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

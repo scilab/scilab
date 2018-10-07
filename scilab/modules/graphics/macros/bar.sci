@@ -1,9 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005 - INRIA - Farid Belahcene
 // Copyright (C) 2012 - Michael Baudin
-// Copyright (C) 2018 - Samuel GOUGEON
-// 
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,9 +11,12 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-
 function  bar(varargin)
-    // bar(x, y, width, colors, "stacked"|"grouped")|
+    // bar(y)
+    // bar(x, y)
+    // bar(x, y, width, colors, style)
+    // bar(x, y [,width] [,colors] [,style])
+    // bar(h, ..)
     //
     // Input :
     // x : a real scalar or a vector
@@ -28,19 +30,18 @@ function  bar(varargin)
     //         has as many components as there are categories.
     // style : a string 'grouped' or 'stacked' (default: style='grouped')
 
-    if size(varargin)<1 | size(varargin)>5  then
-        msg = gettext("%s: Wrong number of input argument(s): %d to %d expected.\n")
-        error(msprintf(msg, "bar", 1, 5));
-    end
-
-    styletab=["grouped","stacked"]
-    COLORBOOL=%f
-    STYLE="grouped"
-
-    //Check RHS argument
+    fname = "bar"
     ListArg = varargin;
 
-    //detect and set the current axes now:
+    if size(varargin)<1 | size(varargin)>6  then
+        msg = gettext("%s: Wrong number of input argument(s): %d to %d expected.\n")
+        error(msprintf(msg, fname, 1, 6));
+    end
+
+    // PARSING INPUT ARGUMENTS
+    // =======================
+    // Targeted axes
+    // -------------
     shift = 0;  // shift for argins positions
     if type(ListArg(1)) == 9
         hdle = ListArg(1);
@@ -49,182 +50,153 @@ function  bar(varargin)
             ListArg(1) = null(); // remove this parameter from the list
             shift = 1;
         else
-            msg = gettext("%s: Wrong type for input argument #%d: Axes handle expected.\n")
-            warning(msprintf(msg, "bar", 1));
-            return
+            msg = gettext("%s: Argument #%d: Graphic handle of type ''%s'' expected.\n")
+            error(msprintf(msg, fname, 1, "Axes"));
         end
     end
-
-    if size(ListArg) == 4 then
-        COLOR=ListArg(4);
-        c = iscolor(COLOR,"a#")
-        if or(c(:,1)==-1)
-            msg = gettext("%s: Argument #%d: Wrong color specification.\n")
-            error(msprintf(msg, "bar", shift+4));
-        end
-    end
-    if size(ListArg) == 5 then
-        STYLE=ListArg(5);
-        if type(STYLE) <> 10 then
-            msg = gettext("%s: Wrong type for input arguments #%d: string expected.\n")
-            error(msprintf(msg, "bar", shift+5));
-        end
-    end
-    nv = size(ListArg)
-
-    T=[];
-
-    // Number of inputs arguments < 6
-    if  size(ListArg)>5 then
-        msg = gettext("%s: Wrong number of input arguments: %d to %d expected.\n")
-        error(msprintf(msg, "bar", 1, shift+5));
-    end
-
-    for k=1:nv
-        T(k) = type(ListArg(k))
-    end
-
-    argdb=find(T==1)
-    argstr=find(T==10)
-
-    if size(argdb,"*")<> argdb($) then
-        msg = gettext("%s: Wrong type for input arguments: Matrix expected for %s, %s and %s.\n")
-        error(msprintf(msg, "bar", "x", "y", "width"));
-    end
-
-    if size(argstr,"*") <> nv-argdb($) then
-        msg = gettext("%s: Wrong type for input arguments: String expected for %s and %s.\n")
-        error(msprintf(msg, "bar", "color", "style"));
-    end
-
-    //set the double argument : x,y,width
-    // bar(y,...)
-    if size(argdb,"*")==1
-        Y=ListArg(1)
-        WIDTH = 0.8
-        if or(size(Y)==1) then
-            Y=Y(:)
-        end
-        X=1:size(Y,1)
-    end
-
-    if size(argdb,"*")==2
-        if size(ListArg(2),"*")==1 then
-            // bar(x,y,...)
-            if size(ListArg(1),"*")==1 then
-                WIDTH=0.8
-                X=ListArg(1)
-                Y=ListArg(2)
-            else
-                //bar(y,width,...)
-                WIDTH=ListArg(2)
-                Y=ListArg(1)
-                if or(size(Y)==1) then
-                    Y=Y(:)
-                end
-                X=1:size(Y,1)
+    // Style
+    // -----
+    STYLE = "grouped"
+    if length(ListArg)>0 & type(ListArg($))==10 then
+        tmp = stripblanks(convstr(ListArg($)))
+        if or(tmp=="stacked" | tmp=="grouped")
+            if size(tmp,"*")>1
+                msg = gettext("%s: Argument #%d: Scalar (1 element) expected.\n")
+                error(msprintf(msg, fname, shift+length(ListArg)));
             end
-        else
-            // bar(x,y,...)
-            X=ListArg(1)
-            Y=ListArg(2)
-            if or(size(X)==1) then
-                if size(X,"*")<>1 then // X is a vector
-                    if or(size(Y)==1) then // Y is a vector
-                        Y=Y(:)
-                    end
-                    if size(X,"*")<>size(Y,1) // Y is a matrix
-                        msg = gettext("%s: Wrong size for input arguments #%d and #%d: The number of rows of argument #%d must be equal to the size of argument #%d.\n")
-                        error(msprintf(msg, "bar", shift+1, shift+2, shift+2, shift+1));
-                    end
-                elseif size(Y,1)>1 then
-                    msg = gettext("%s: Wrong size for input argument #%d: A scalar or a row vector expected.\n")
-                    error(msprintf(msg,"bar", shift+2));
-                end
-            else
-                msg = gettext("%s: Wrong type for input argument #%d: A scalar or a vector expected.\n")
-                error(msprintf(msg, "bar", shift+1));
-            end
-            WIDTH=0.8
+            STYLE = tmp
+            ListArg($) = null()
         end
     end
-
-    // bar(x,y,width,...)
-    if size(argdb,"*")==3
+    // bar([h,] y,..)
+    // --------------
+    msg = gettext("%s: Argument #%d: Decimal number(s) expected.\n")
+    if length(ListArg)>0 & (length(ListArg)==1 | and(type(ListArg(2))~=[1 8]) | ..
+        (length(ListArg(2))==1 & ListArg(2)>0 & ListArg(2)<=1))  // is width
+        Y = ListArg(1)
+        if isvector(Y)
+            Y = Y(:)
+        end
+        X = (1:size(Y,1))'
+        ListArg(1) = null()
+        ky = shift+1
+    else
+        // bar([h,] x, y,..)  expected
+        // X
+        if ListArg==list()
+            error(msprintf(msg, fname, shift+1));
+        end
         X = ListArg(1)
-        Y = ListArg(2)
-        WIDTH = ListArg(3)
+        ListArg(1) = null()
+        // Y
+        if ListArg==list()
+            error(msprintf(msg, fname, shift+2));
+        end
+        Y = ListArg(1)
+        ListArg(1) = null()
+        ky = shift+2
+        if X==[]
+            X = 1:size(Y,1)
+        end
+        X = X(:)
+        if isvector(X) & isvector(Y)
+            Y = Y(:)
+        end
+    end
+    if Y==[] then
+        msg = gettext("%s: Argument #%d: Non-empty matrix expected.\n")
+        error(msprintf(msg, fname, ky))
+    end
+    if and(type(X)~=[1 8]) | (type(X)==1 & ~isreal(X)) then
+        error(msprintf(msg, fname, shift+1))
+    else
+        X = double(X)
+    end
+    if and(type(Y)~=[1 8]) | (type(Y)==1 & ~isreal(Y)) then
+        error(msprintf(msg, fname, ky))
+    else
+        Y = double(Y)
+    end
+    if size(Y,1)~=length(X) then
+        msg = gettext("%s: Arguments #%d and #%d: Incompatible sizes.\n")
+        error(msprintf(msg, fname, shift+1, shift+2))
+    end
+    if (isnan(X) | isinf(X))
+        msg = gettext("%s: Argument #%d: Inf and Nan values forbidden.\n")
+        error(msprintf(msg, fname, shift+1))
+    end
+    if STYLE=="stacked"
+        if (isnan(Y) | isinf(Y))
+            msg = gettext("%s: Argument #%d: Inf and Nan values forbidden.\n")
+            error(msprintf(msg, fname, ky))
+        end
+        if or(Y<0)
+            msg = gettext("%s: Argument #%d: Non-negative values expected.\n")
+            warning(msprintf(msg, fname, ky))
+        end
+    end
+
+    // Width
+    // -----
+    kw = ky
+    WIDTH = 0.8
+    if length(ListArg)>0 & or(type(ListArg(1))==[1 8]) then
+        kw = ky+1   // position of the width arg
+        WIDTH = ListArg(1)
+        if length(WIDTH)>1
+            msg = gettext("%s: Argument #%d: Scalar (1 element) expected.\n")
+            error(msprintf(msg, fname, kw))
+        end
         if WIDTH==[]
             WIDTH = 0.80
         end
-        if size(WIDTH,"*")<>1 then
-            msg = gettext("%s: Wrong type for input argument #%d: A scalar expected.\n")
-            error(msprintf(msg, "bar", shift+3));
-        elseif or(size(X)==1) then
-            if size(X,"*")<>1 then // X is a vector
-                if or(size(Y)==1) then // Y is a vector
-                    Y=Y(:)
-                end
-                if size(X,"*")<>size(Y,1)
-                    msg = gettext("%s: Wrong size for input arguments #%d and #%d: The number of rows of argument #%d must be equal to the size of argument #%d.\n");
-                    error(msprintf(msg, "bar", shift+1, shift+2, shift+2, shift+1))
-                end
-            elseif size(Y,1)>1 then
-                msg = gettext("%s: Wrong size for input arguments #%d: A scalar or a column vector expected.\n");
-                error(msprintf(msg, "bar", shift+2));
+        if ~isreal(WIDTH) | WIDTH<0 | WIDTH>1
+            msg = gettext("%s: Argument #%d: Must be in the interval %s.\n")
+            error(msprintf(msg, fname, kw, "[0, 1]"))
+        end
+        ListArg(1) = null();
+    end
+
+    // Colors
+    // ------
+    COLOR = []
+    if length(ListArg)>0
+        COLOR = ListArg(1)
+        if COLOR~=[]
+            nColors = size(COLOR,"*")
+            msg = gettext("%s: Argument #%d: Wrong color specification.\n")
+            if type(COLOR)~=10
+                error(msprintf(msg, fname, kw+1));
             end
-        else
-            msg = gettext("%s: Wrong type for input argument #%d: A scalar or a vector expected.\n");
-            error(msprintf(msg, "bar", shift+1));
-        end
-    end
-    X=X(:)
-
-    // set the string argument
-    for i=1:size(argstr,"*")
-        // bar(...,style)
-        if or(ListArg(argstr(i))==styletab) then
-            STYLE=ListArg(argstr(i))
-        else
-            COLOR=ListArg(argstr(i))
-            COLORBOOL=%t
-        end
-    end
-    // drawlater
-    curFig = gcf();
-    immediate_drawing = curFig.immediate_drawing;
-
-    wmode = warning("query");
-    if COLORBOOL
-        c = iscolor(COLOR);
-        if or(c(:,1)==-1)
-            msg = _("%s: Argument #%d: Wrong color specification.\n")
-            error(msprintf(msg, "bar", shift+4));
-        end
-        nparts = max(1, size(Y,"c"));
-
-        if size(c,"r")==1
-            // Only one color is provided => we replicate it
-            if type(COLOR)==10
-                COLOR = emptystr(1,nparts) + COLOR;  // name or "#RRGGBB"
-            elseif size(COLOR,"c")==3
-                COLOR = ones(nparts,1)*COLOR        // [r g b]
+            c = iscolor(COLOR, "a#")
+            if or(c(:,1)==-1)
+                error(msprintf(msg, fname, kw+1));
+            end
+            if nColors~=1 & nColors<size(Y,2) then
+                msg = _("%s: Arguments #%d and #%d: Incompatible sizes.\n")
+                error(msprintf(msg, fname, ky, kw+1));
+            end
+            if nColors>1 then
+                COLOR = COLOR(1:size(Y,2)) // extra components ignored
             else
-                COLOR = ones(nparts,1)*COLOR        // index in colormap
+                COLOR = emptystr(1,size(Y,2)) + COLOR;  // name or "#RRGGBB"
             end
-        elseif size(c,"r") < nparts
-            msg = _("%s: Arguments #%d and #%d: Incompatible sizes.\n")
-            error(msprintf(msg, "bar", shift+2, shift+4));
         end
-        warning("off"); // See bug #13579 (some bar() syntaxes will lead to a plot() warning)
-        plot(X,Y,"color",COLOR); // plot manages immediate_drawing property itself to avoid flickering
-    else
-        warning("off"); 
-        plot(X,Y); // plot manages immediate_drawing property itself to avoid flickering
     end
-    warning(wmode);
 
-    curFig.immediate_drawing = "off";
+    // PLOTTING
+    // ========
+    curFig = gcf()
+    immediate_drawing = curFig.immediate_drawing
+    wmode = warning("query")
+    warning("off")
+    if COLOR~=[]
+        plot(X,Y, "color",COLOR)
+    else
+        plot(X,Y)
+    end
+    warning(wmode)
+    curFig.immediate_drawing = "off"
 
     bar_number=size(Y,2)
     if size(X,"*")>1 then
@@ -234,7 +206,11 @@ function  bar(varargin)
             inter=min(Xtemp(i+1)-Xtemp(i),inter)
         end
         if bar_number>1
-            inter=inter*0.9
+            if STYLE == "stacked"
+                inter = inter * 0.9
+            else
+                inter = inter * 0.7
+            end
         end
     else
         Xtemp=X
@@ -242,13 +218,11 @@ function  bar(varargin)
     end
 
     wmax=inter/bar_number
-
     y_shift=zeros(size(X,"*"),1)
-
     bar_number= bar_number
 
-    e=gce()
-    a=gca()
+    e = gce()
+    a = gca()
 
     a.sub_ticks(1) = 0; // bar (barh => a.sub_ticks(2) = 0;)
 
@@ -272,17 +246,17 @@ function  bar(varargin)
 
         // Udate the axes data bounds
         if STYLE=="grouped"
-            xmin = min(a.data_bounds(1,1),min(X)+x_shift-0.4*wmax)
+            xmin = min(a.data_bounds(1,1),min(X)+x_shift-0.45*wmax)
             ymin = min(a.data_bounds(1,2),0,min(y_shift+Y(:,bar_number-i+1)))
-            xmax = max(a.data_bounds(2,1),max(X)+x_shift+0.4*wmax)
+            xmax = max(a.data_bounds(2,1),max(X)+x_shift+0.45*wmax)
             ymax = max(a.data_bounds(2,2),0)
             ei.x_shift = x_shift*ones(size(X,"*"),1)
         else
             wmax = inter
-            xmin = min(a.data_bounds(1,1),min(X)-0.4*wmax)
-            ymin = min(a.data_bounds(1,2),min(y_shift+Y(:,bar_number-i+1)))
-            xmax = max(a.data_bounds(2,1),max(X)+0.4*wmax)
-            ymax = max(a.data_bounds(2,2),max(y_shift+Y(:,bar_number-i+1)))
+            xmin = min(a.data_bounds(1,1),min(X)-0.45*wmax)
+            ymin = min(a.data_bounds(1,2), 0, min(y_shift+Y(:,bar_number-i+1)))
+            xmax = max(a.data_bounds(2,1),max(X)+0.45*wmax)
+            ymax = max(a.data_bounds(2,2), 0, max(y_shift+Y(:,bar_number-i+1)))
             ei.y_shift = y_shift
         end
         a.data_bounds=[xmin ymin; xmax ymax]

@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-
  * Copyright (C) INRIA - Farid Belahcene
-
  *
-
-
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -17,9 +11,7 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-
  *
-
  -->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -39,9 +31,11 @@
 
         <title>呼び出し手順</title>
 
-        <synopsis>bar(y)
+        <synopsis>
+            bar(y)
             bar(x, y)
-            bar(x, y [,width [,color [,style]]])
+            bar(x, y, width, colors, style)
+            bar(x, y [,width] [,colors] [,style])
             bar(h, x, y ..)
         </synopsis>
 
@@ -71,7 +65,18 @@
 
                 <listitem>
 
-                    <para>実数スカラー, 大きさ Nのベクトル, または N*M行列.</para>
+                    <para>
+                        scalar, vector of size N, or matrix N*M of real numbers or encoded integers,
+                      with
+                      <itemizedlist>
+                        <listitem>
+                          N : number of groups (each group of bars gathered on/around an x position)
+                        </listitem>
+                        <listitem>
+                          M : number of categories in each group
+                        </listitem>
+                      </itemizedlist>
+                    </para>
 
                 </listitem>
 
@@ -83,12 +88,15 @@
 
                 <listitem>
 
-                    <para>実数スカラー, 大きさ Nのベクトル, (デフォルト:  y がベクトルの場合,
-
-                        x はベクトルで xの長さはyの長さに等しくなります.
-
-                        yが行列の場合,xはベクトルとなりxの長さはyの行数と等しくなります.
-
+                    <para>a real scalar or a vector of size N. By default,
+                      <itemizedlist>
+                        <listitem>
+                          If <varname>y</varname> is a vector: <literal>x=1:length(y)</literal>
+                        </listitem>
+                        <listitem>
+                          If <varname>y</varname> is a matrix: <literal>x=1:size(y,"r")</literal>
+                        </listitem>
+                      </itemizedlist>
                     </para>
 
                 </listitem>
@@ -113,12 +121,13 @@
 
             <varlistentry>
 
-                <term>color</term>
+                <term>colors</term>
 
                 <listitem>
                     <para>
-                        (オプション) the color filling bars, specified by its literal name among
-                        predefined ones, or by its "#RRGGBB" hexadecimal code.  Default: "blue"
+                        (オプション) Single string or vector of M strings: colors names (among
+                        predefined ones) or "#RRGGBB" hexadecimal codes of categories colors.
+                        Default = default plot() colors series, starting with "blue".
                     </para>
                 </listitem>
 
@@ -203,9 +212,8 @@
         </para>
 
         <para>
-
-            <literal>bar(...,color,...) : </literal>は,barの色を定義します.
-
+            <literal>bar(...,colors,...) : </literal> defines the colors identifying categories
+            and filling the corresponding subsets of bars.
         </para>
 
         <para>bar()を複数回コールする場合,
@@ -242,7 +250,7 @@
 
 // 最初の例: 棒を描画 (すなわち,polyline_style type =6のポリライン) ただし,
 
-// width=0.5 , color='yellow' で default style='grouped', x=1:length(y).
+// width=0.5 , colors='yellow' で default style='grouped', x=1:length(y).
 
 scf(0);
 
@@ -304,7 +312,7 @@ bar(x,y,'stacked');
 
         <programlisting role="example"><![CDATA[
 
-// 4番目の例: width=0.2;color='green'; default style='grouped'
+// 4番目の例: width=0.2;colors='green'; default style='grouped'
 
 scf(3);
 
@@ -349,6 +357,9 @@ bar(x,y,0.2,'green');
             <member>
                 <link linkend="polyline_properties">polyline_properties</link>
             </member>
+            <member>
+                <link linkend="hist3d">hist3d</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection role="history">
@@ -357,9 +368,18 @@ bar(x,y,0.2,'green');
             <revision>
                 <revnumber>6.0.1</revnumber>
                 <revdescription>
-                    color is no longer restricted to the 10 major colors: It can now be any of the
-                    numerous predefined Scilab color names. Moreover, it can now be specified by
-                    its "#RRGGBB" hexadecimal code.
+                    <itemizedlist>
+                      <listitem>
+                        A vector of M colors can now be provided, one for each category.
+                      </listitem>
+                      <listitem>
+                        Available colors are no longer restricted to the 10 major colors. All the
+                        predefined colors names can now be used.
+                      </listitem>
+                      <listitem>
+                        Colors can now be specified also by their "#RRGGBB" hexadecimal codes.
+                      </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // Unit test for barhomogenize
 
@@ -95,7 +96,8 @@ assert_checkequal(a1.y_ticks.labels, ["0";"10";"20";"30"]);
 assert_checkequal(a1.z_ticks.labels, a3.z_ticks.labels);
 assert_checkequal(a1.sub_ticks, a3.sub_ticks);
 assert_checktrue(abs(a1.data_bounds - [0.55,0;3.45,33]) < 0.05);
-assert_checkequal(a1.margins, a3.margins);
+assert_checkequal(a1.margins, a3.margins);  // fails (before Change 20540)
+                           // a1.margins(1) is 0.1353722 instead of 0.125
 assert_checktrue(abs(a1.axes_bounds - [0.6666667,0,0.3333333,0.5]) < 0.05);
 
 // Check polylines of first graphic
@@ -110,9 +112,9 @@ assert_checkequal(p311.mark_size_unit, "point");
 assert_checkequal(p311.mark_size, 0);
 assert_checkequal(p311.mark_foreground, -1);
 assert_checkequal(p311.mark_background, -2);
-assert_checkequal(p311.x_shift, [0.3,0.3,0.3]);
+assert_checkequal(p311.x_shift, [0.7,0.7,0.7]/3);
 assert_checkequal(p311.y_shift, []);
-assert_checkalmostequal(p311.bar_width, 0.24);
+assert_checkalmostequal(p311.bar_width, 0.56/3);
 
 assert_checkequal(p312.data, [1,3;2,7;3,10]);
 assert_checkequal(p312.line_style, 1);
@@ -127,7 +129,7 @@ assert_checkequal(p312.mark_foreground, -1);
 assert_checkequal(p312.mark_background, -2);
 assert_checkequal(p312.x_shift, [0,0,0]);
 assert_checkequal(p312.y_shift, []);
-assert_checkalmostequal(p312.bar_width, 0.24);
+assert_checkalmostequal(p312.bar_width, 0.56/3);
 
 assert_checkequal(p313.data, [1,4;2,6;3,9]);
 assert_checkequal(p313.line_style, 1);
@@ -140,9 +142,9 @@ assert_checkequal(p313.mark_size_unit, "point");
 assert_checkequal(p313.mark_size, 0);
 assert_checkequal(p313.mark_foreground, -1);
 assert_checkequal(p313.mark_background, -2);
-assert_checkequal(p313.x_shift, [-0.3,-0.3,-0.3]);
+assert_checkequal(p313.x_shift, -0.7*[1 1 1]/3);
 assert_checkequal(p313.y_shift, []);
-assert_checkalmostequal(p313.bar_width, 0.24);
+assert_checkalmostequal(p313.bar_width, 0.56/3);
 
 assert_checkequal(p321.data, [1,1;2,2;3,3]);
 assert_checkequal(p321.line_style, 1);
@@ -153,7 +155,7 @@ assert_checkequal(p321.mark_mode, "off");
 assert_checkequal(p321.mark_style, 0);
 assert_checkequal(p321.mark_size_unit, "point");
 assert_checkequal(p321.mark_size, 0);
-assert_checkequal(p321.mark_foreground, -1);
+assert_checkequal(p321.mark_foreground, -1); // fails (before Change 20540): 7 returned
 assert_checkequal(p321.mark_background, -2);
 assert_checkequal(p321.x_shift, [0,0,0]);
 assert_checkequal(p321.y_shift, []);

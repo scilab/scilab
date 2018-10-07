@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 7080 -->
 //
@@ -23,11 +24,11 @@ f13="Sgrayplot";
 f14="TitleLabel";
 
 //bar
-msgerr11=msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"),f1,1,5);
-assert_checkerror("bar(gca(),[1 2],[1 2],0.8,""blue"",""grouped"")", msgerr11);
-msgerr12=msprintf(gettext("%s: Wrong type for input arguments: Matrix expected for %s, %s and %s.\n"),"bar", "x", "y", "width");
+msgerr11=msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"),f1,1,6);
+assert_checkerror("bar(gca(),[1 2],[1 2],0.8,""blue"",""grouped"",[])", msgerr11);
+msgerr12=msprintf(gettext("%s: Argument #%d: Decimal number(s) expected.\n"), f1, 2);
 assert_checkerror("bar(gca(),[""s"" ""d""],[1 2 3])", msgerr12);
-msgerr13=msprintf(_("%s: Wrong size for input arguments #%d and #%d: The number of rows of argument #%d must be equal to the size of argument #%d.\n"),"bar",1, 2, 2, 1);
+msgerr13=msprintf(_("%s: Arguments #%d and #%d: Incompatible sizes.\n"), f1, 1, 2);
 assert_checkerror("bar([1 2],[1 2 3],0.8,""blue"")", msgerr13);
 
 //barh

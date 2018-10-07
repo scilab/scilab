@@ -25,8 +25,9 @@
         <title>Syntax</title>
         <synopsis>bar(y)
             bar(x, y)
-            bar(x, y [,width [,color [,style]]])
-            bar(h, x, y ..)
+            bar(x, y, width, colors, style)
+            bar(x, y [,width] [,colors] [,style])
+            bar(h, ..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -41,16 +42,32 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>a real scalar, vector of size N, or a matrix N*M.</para>
+                    <para>
+                        scalar, vector of size N, or matrix N*M of real numbers or encoded integers,
+                      with
+                      <itemizedlist>
+                        <listitem>
+                          N : number of groups (each group of bars gathered on/around an x position)
+                        </listitem>
+                        <listitem>
+                          M : number of categories in each group
+                        </listitem>
+                      </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>a real scalar or a vector of size N, (default: if y is a
-                        vector then x is a vector and x length equals to y length. If y is a
-                        matrix then x is a vector and x length equals to the lines number of
-                        y.
+                    <para>a real scalar or a vector of size N. By default,
+                      <itemizedlist>
+                        <listitem>
+                          If <varname>y</varname> is a vector: <literal>x=1:length(y)</literal>
+                        </listitem>
+                        <listitem>
+                          If <varname>y</varname> is a matrix: <literal>x=1:size(y,"r")</literal>
+                        </listitem>
+                      </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,18 +80,19 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>color</term>
+                <term>colors</term>
                 <listitem>
                     <para>
-                        (optional) the color filling bars, specified by its literal name among
-                        predefined ones, or by its "#RRGGBB" hexadecimal code.  Default: "blue"
+                        (optional) Single string or vector of M strings: colors names (among
+                        predefined ones) or "#RRGGBB" hexadecimal codes of categories colors.
+                        Default = default plot() colors series, starting with "blue".
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>style:</term>
+                <term>style</term>
                 <listitem>
-                    <para>a string, 'grouped' or 'stacked' (default: 'grouped').</para>
+                    <para>a string, 'grouped' (default), or 'stacked'.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -82,36 +100,36 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>bar(y,...) :</literal> if y is a vector then bar function draws a
-            polyline which has the <literal>polyline_style</literal> type 6. If y is a
-            vector, bar draws vector y versus vector 1:size(y,'*') . If y is a matrix
-            N*M, bar draws M polylines (type 6), each polyline corresponds to a column
-            of y versus vector x=1:size(y,1).
+            <literal>bar(y,...) :</literal> if y is a vector, then bar() draws a
+            polyline which has the <literal>polyline_style</literal> type 6, versus x=1:length(y).
+            If y is a matrix N*M, bar() draws M polylines (type 6), versus x=1:size(y,1).
+            Each polyline represents a category, with a specific color.
         </para>
         <para>
-            <literal>bar(x,y,...) :</literal> if y is a vector then bar function draws a
+            <literal>bar(x,y,...) :</literal> if y is a vector, then bar() draws a
             polyline which has the <literal>polyline_style</literal> type 6, where x length
-            = y length.If y is a matrix NxM then bar function draws M polylines which
+            = y length. If y is a matrix NxM then bar function draws M polylines which
             have the type 6. Each polyline corresponds to a column of y versus vector
             x.
         </para>
         <para>
-            <literal>bar(h,...) :</literal> defines the current axes where the drawing is
+            <literal>bar(h,...) :</literal> specifies the targeted axes where the drawing is
             performed.
         </para>
         <para>
-            <literal>bar(...,width,...) :</literal> defines the width of the bar(s) in
-            percentage (generally: 0&lt;width&lt;=1).
+            <literal>bar(...,width,...) :</literal> defines the relative width of the bar(s):
+            0&lt;width&lt;=1.
         </para>
         <para>
             <literal>bar(...,style,...) :</literal> defines how the bar is drawn. If y is
-            a matrix N*M (so M polylines of type 6) then there are two ways to draw
+            a matrix N*M (so M polylines of type 6), then there are two ways to draw
             the M bars. the style option = 'grouped' allows to center the M polylines
             versus each components of x, and the style option 'stacked' allows to
             stack them.
         </para>
         <para>
-            <literal>bar(...,color,...) : </literal> defines the bars filling color.
+            <literal>bar(...,colors,...) : </literal> defines the colors identifying categories
+            and filling the corresponding subsets of bars.
         </para>
         <para>
             If there are several bar() calls, the <literal>barhomogenize</literal> function
@@ -123,7 +141,7 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // First example: draw a bar (i.e a polyline with polyline_style type =6) with
-// width=0.5 and color='yellow' and default style='grouped', x=1:length(y).
+// width=0.5 and colors='yellow' and default style='grouped', x=1:length(y).
 scf(0);
 y=[1 -3 5];
 bar(y,0.5,'yellow');
@@ -158,7 +176,7 @@ bar(x,y,'stacked');
             bar(x,y,'stacked');
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// Fourth example: width=0.2;color='green'; default style='grouped'
+// Fourth example: width=0.2;colors='green'; default style='grouped'
 scf(3);
 x=[1 2 5];
 y=[1 4 7;2 5 8;3 6 9];
@@ -191,6 +209,9 @@ bar(x,y,0.2,'green');
             <member>
                 <link linkend="polyline_properties">polyline_properties</link>
             </member>
+            <member>
+                <link linkend="hist3d">hist3d</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection role="history">
@@ -199,9 +220,18 @@ bar(x,y,0.2,'green');
             <revision>
                 <revnumber>6.0.1</revnumber>
                 <revdescription>
-                    color is no longer restricted to the 10 major colors: It can now be any of the
-                    numerous predefined Scilab color names. Moreover, it can now be specified by
-                    its "#RRGGBB" hexadecimal code.
+                    <itemizedlist>
+                      <listitem>
+                        A vector of M colors can now be provided, one for each category.
+                      </listitem>
+                      <listitem>
+                        Available colors are no longer restricted to the 10 major colors. All the
+                        predefined colors names can now be used.
+                      </listitem>
+                      <listitem>
+                        Colors can now be specified also by their "#RRGGBB" hexadecimal codes.
+                      </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>
