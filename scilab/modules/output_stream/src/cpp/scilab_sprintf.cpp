@@ -698,11 +698,16 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
     }
 
     // write last line
-    if(oFirstOutput.str().length())
+    if (oFirstOutput.str().length())
     {
         pwstOutput[outputIter++] = os_wcsdup((wchar_t*)oFirstOutput.str().c_str());
     }
-
+    // fill in the remaining allocated space with default value
+    while (outputIter < *_piOutputRows)
+    {
+        pwstOutput[outputIter++] = os_wcsdup(L"");
+    }
+    
     for (auto & tok : token)
     {
         delete[] tok->pwstToken;

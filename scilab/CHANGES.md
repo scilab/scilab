@@ -622,6 +622,7 @@ Known issues
 * [#15774](http://bugzilla.scilab.org/show_bug.cgi?id=15774): `clean()` failed on sparse complex matrix.
 * [#15778](http://bugzilla.scilab.org/show_bug.cgi?id=15778): Deleting some rows or columns of a boolean sparse array with `= []` crashed Scilab
 * [#15779](http://bugzilla.scilab.org/show_bug.cgi?id=15779): `test_run` did not accept the wildcard * in tests names.
+* [#15796](http://bugzilla.scilab.org/show_bug.cgi?id=15796): Display after `mprintf("")` crashed Scilab (regression)
 * [#15809](http://bugzilla.scilab.org/show_bug.cgi?id=15809): HDF5 load/save was super slow for nested lists.
 * [#15814](http://bugzilla.scilab.org/show_bug.cgi?id=15814): Selecting graphic children with booleans yielded an error.
 * [#15818](http://bugzilla.scilab.org/show_bug.cgi?id=15818): `polarplot()` example could not be subplotted. `polarplot`'s demo did not display 'View code' and too often prompted the user.
