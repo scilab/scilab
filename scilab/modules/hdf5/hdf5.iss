@@ -20,7 +20,7 @@
 ;
 #define HDF5 "hdf5"
 ;
-Source: bin\{#HDF5}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\sci{#HDF5}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 ;Source: bin\nohdf5.dll; DestDir: {app}\bin; DestName: scihdf5.dll; Components: not ({#COMPN_SCILAB})
 ;

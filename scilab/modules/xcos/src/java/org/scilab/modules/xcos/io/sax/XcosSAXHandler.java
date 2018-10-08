@@ -103,7 +103,7 @@ public class XcosSAXHandler extends DefaultHandler {
      * Current state of the parser, also raw shared with the sub-handlers
      */
 
-    /** Contains the decoded parent' node (as an in-depth view of decoded elements) */
+    /** Contains the decoded parent's node (as an in-depth view of decoded elements) */
     Stack<Object> parents = new Stack<>();
     /** Mapping of UID JGraphX strings to an MVC decoded object */
     Stack<HashMap<String, Long>> allChildren = new Stack<>();

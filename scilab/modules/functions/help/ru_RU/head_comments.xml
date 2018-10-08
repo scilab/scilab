@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="head_comments">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="head_comments">
     <refnamediv>
         <refname>head_comments</refname>
         <refpurpose>
@@ -23,27 +26,17 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            head_comments(name)
-            head_comments(name,%paths)
+            head_comments(fname)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>name</term>
+                <term>fname</term>
                 <listitem>
                     <para>
                         символьная строка, имя функции.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>%paths</term>
-                <listitem>
-                    <para>
-                        вектор символьных строк, пути по которым
-                        разыскивается соответствующий sci-файл.
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,25 +45,28 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Команда <code>head_comments(name)</code> выводит на экран
-            комментарии в начале функции (как справка в Matlab'е).
-            Комментарии считываются из соответствующего sci-файла. Если
-            <varname>name</varname> - это имя функции из библиотеки, то
-            путь к sci-файлу тогда указывается путём к библиотеке (см.
-            <link linkend="lib">lib</link>). Если <varname>name</varname> -
-            это функция не из библиотеки, то файл с именем
-            <varname>name</varname><literal>.sci</literal> разыскивается
-            в директориях, указанных переменной <varname>%paths</varname>.
+            <code>head_comments(fname)</code> отображает комментарии заголовка функции, то есть
+            первый блок комментариев, следующий за строкой «функция» в определении функции.
         </para>
         <warning>
-            Внимание: большинство предопределённых Scilab-функций не имеет начальных комментариев.
+            большинство предопределённых Scilab-функций не имеет начальных комментариев.
         </warning>
     </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-head_comments sinc
+head_comments logspace
+edit("logspace",1)
  ]]></programlisting>
+    <screen><![CDATA[
+--> head_comments logspace
+function [y] = logspace(d1,d2,n)
+ Geometrical series of numbers in [10^d1, 10^d2].
+ logspace(d1,d2) generates a row vector of 50 logarithmically
+ equally spaced values between 10^d1 and 10^d2.
+ If d2=%pi, then the points are between 10^d1 and pi.
+ logspace(d1, d2, n) generates n values.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
@@ -79,8 +75,19 @@ head_comments sinc
                 <link linkend="help">help</link>
             </member>
             <member>
-                <link linkend="lib">lib</link>
+                <link linkend="help_from_sci">help_from_sci</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.0</revnumber>
+                <revdescription>
+                    Second input argument %path removed.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

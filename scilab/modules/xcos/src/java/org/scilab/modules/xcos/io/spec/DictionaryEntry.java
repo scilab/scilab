@@ -51,7 +51,7 @@ public class DictionaryEntry implements Entry {
     }
 
     @Override
-    public void load(ZipEntry entry, InputStream stream) throws IOException {
+    public void load(ZipEntry entry, InputStream stream, String encoding) throws IOException {
         try (ObjectInputStream ois = new ObjectInputStream(stream)) {
 
             pack.getDictionary().clear();

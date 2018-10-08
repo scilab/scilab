@@ -15,6 +15,7 @@
 
 package org.scilab.modules.xcos.io.spec;
 
+import java.io.CharConversionException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -24,6 +25,7 @@ import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.zip.CRC32;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
@@ -183,8 +185,10 @@ public class XcosPackage {
 
             // open the file on each entry to manage non well ordered (but still
             // valid) zip files
-            final FileInputStream fis = new FileInputStream(file);
-            try (ZipInputStream zin = new ZipInputStream(fis)) {
+            try (
+                final FileInputStream fis = new FileInputStream(file);
+                ZipInputStream zin = new ZipInputStream(fis)
+            ) {
 
                 ZipEntry entry;
                 while ((entry = zin.getNextEntry()) != null) {
@@ -192,7 +196,16 @@ public class XcosPackage {
                     if (path.equals(e.getFullPath())) {
                         // decode the current entry
                         e.setup(this);
-                        e.load(entry, new EntryInputStream(zin));
+                        try {
+                            e.load(entry, new EntryInputStream(zin), "UTF-8");
+                        } catch (CharConversionException ex) {
+                            // re-open the file and decode the entry using latin1 using an indexed access
+                            try (ZipFile reopened = new ZipFile(file)) {
+                                ZipEntry reentry = reopened.getEntry(entry.getName());
+                                InputStream is = reopened.getInputStream(reentry);
+                                e.load(entry, is, "ISO-8859-1");
+                            }
+                        }
 
                         // try to decode the next entry (for well ordered zip,
                         // the more common case)

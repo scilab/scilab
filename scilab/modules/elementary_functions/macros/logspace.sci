@@ -10,12 +10,12 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function y=logspace(d1, d2, n)
-    // Logarithmically spaced vector.
-    // logspace(d1, d2) generates a row vector of n logarithmically
-    // equally spaced points between 10^d1 and 10^d2.  If d2=%pi
-    // then the points are between 10^d1 and pi.
-    // logspace(d1, d2, n) generates n points.
+function y = logspace(d1, d2, n)
+    // Geometrical series of numbers in [10^d1, 10^d2].
+    // logspace(d1,d2) generates a row vector of 50 logarithmically
+    // equally spaced values between 10^d1 and 10^d2.
+    // If d2=%pi, then the points are between 10^d1 and pi.
+    // logspace(d1, d2, n) generates n values.
 
     rhs = argn(2);
     if rhs < 2 then

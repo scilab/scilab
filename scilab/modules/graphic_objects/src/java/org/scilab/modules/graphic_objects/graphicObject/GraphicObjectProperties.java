@@ -424,5 +424,6 @@ public class GraphicObjectProperties {
     public static final int __GO_NUM_MARK_FOREGROUNDS__ = 401;
     public static final int __GO_MARK_BACKGROUNDS__ = 402;
     public static final int __GO_NUM_MARK_BACKGROUNDS__ = 403;
+    public static final int __GO_UI_FOCUS__ = 404;
 
 }

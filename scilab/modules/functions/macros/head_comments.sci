@@ -10,11 +10,11 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function head_comments(name, %paths)
+function head_comments(name)
     // Displays the first comments of a function
 
     if argn(2) < 1 then
-        error(sprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "head_comments", 1, 2));
+        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "head_comments", 1));
     end
 
     if type(name) <> 10 then

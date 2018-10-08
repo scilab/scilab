@@ -21,25 +21,16 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            head_comments(name)
-            head_comments(name,%paths)
+            head_comments(fname)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>name</term>
+                <term>fname</term>
                 <listitem>
                     <para>a character string, the function name.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>%paths</term>
-                <listitem>
-                    <para>
-                        a character string vector, paths where to look for the associated sci-file.
-                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -47,22 +38,29 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>head_comments(name)</code> displays the function header comments (like the
-            Matlab help). The comments are read from the associated sci-file. If <varname>name</varname>
-            is a function which is in a library the sci-file path is those given by the library
-            path (see <link linkend="lib">lib</link>). If <varname>name</varname> is a function which is
-            not in a library, a file with name <varname>name</varname><literal>.sci</literal> is searched in the
-            directories given by the variable <varname>%paths</varname>.
+            <code>head_comments(fname)</code> displays the function heading comments, that is to say,
+            the first block of comments immediately following the "function" line in the function
+            definition.
         </para>
         <warning>
-            Warning: most of the Scilab predefined functions have no header comments.
+            Warning: most of the Scilab predefined functions have no heading comments.
         </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-head_comments sinc
+head_comments logspace
+edit("logspace",1)
  ]]></programlisting>
+    <screen><![CDATA[
+--> head_comments logspace
+function [y] = logspace(d1,d2,n)
+ Geometrical series of numbers in [10^d1, 10^d2].
+ logspace(d1,d2) generates a row vector of 50 logarithmically
+ equally spaced values between 10^d1 and 10^d2.
+ If d2=%pi, then the points are between 10^d1 and pi.
+ logspace(d1, d2, n) generates n values.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -71,8 +69,19 @@ head_comments sinc
                 <link linkend="help">help</link>
             </member>
             <member>
-                <link linkend="lib">lib</link>
+                <link linkend="help_from_sci">help_from_sci</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.0</revnumber>
+                <revdescription>
+                    Second input argument %path removed.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

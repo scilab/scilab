@@ -80,6 +80,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOCUS__;
 
 import java.awt.Font;
 import java.util.Arrays;
@@ -546,7 +547,8 @@ public class Uicontrol extends GraphicObject {
         SCROLLABLE,
         ICON,
         EVENTHANDLER,
-        EVENTHANDLERENABLE
+        EVENTHANDLERENABLE,
+        FOCUS
     };
 
     /**
@@ -787,6 +789,8 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolProperty.EVENTHANDLER;
             case __GO_EVENTHANDLER_ENABLE__:
                 return UicontrolProperty.EVENTHANDLERENABLE;
+            case __GO_UI_FOCUS__:
+                return UicontrolProperty.FOCUS;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -998,6 +1002,8 @@ public class Uicontrol extends GraphicObject {
                 return setEventHandler((String) value);
             case EVENTHANDLERENABLE:
                 return setEventHandlerEnable((Boolean) value);
+            case FOCUS:
+                return UpdateStatus.Success;
             default:
                 return super.setProperty(property, value);
         }

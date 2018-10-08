@@ -65,8 +65,10 @@ public interface Entry {
      *            the current entry to load
      * @param stream
      *            the current stream with data
+     * @param encoding
+     *            encoding of the data ("UTF-8" used as default)
      */
-    public void load(ZipEntry entry, InputStream stream) throws IOException;
+    public void load(ZipEntry entry, InputStream stream, String encoding) throws IOException;
 
     /**
      * Methods used to store data
