@@ -536,6 +536,7 @@ Known issues
 * [#15489](http://bugzilla.scilab.org/show_bug.cgi?id=15489): Help pages of `covStart`, `covStop`, `covWrite` and `covMerge` were not built for the fr, ja, pt and ru languages, and were unreachable from a session in non `en_US` language.
 * [#15495](http://bugzilla.scilab.org/show_bug.cgi?id=15495): SampleCLK simple demo failed to simulate.
 * [#15496](http://bugzilla.scilab.org/show_bug.cgi?id=15496): Scinotes `File > Open recent` menu was not updated when it should.
+* [#15497](http://bugzilla.scilab.org/show_bug.cgi?id=15497): After `s.a=list(1)`, `type(s("a"))` was `1`.
 * [#15499](http://bugzilla.scilab.org/show_bug.cgi?id=15499): Scinotes menus were inactive after session restore under OSX.
 * [#15501](http://bugzilla.scilab.org/show_bug.cgi?id=15501): listvarinfile() crashes Scilab when listing a cell array (regression).
 * [#15502](http://bugzilla.scilab.org/show_bug.cgi?id=15502): listvarinfile() misses listing arrays of struct, and then locks the file.
