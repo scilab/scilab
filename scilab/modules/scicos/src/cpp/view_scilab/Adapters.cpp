@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
+ *  Copyright (C) 2017-2018 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -186,11 +187,13 @@ types::InternalType* Adapters::allocate_view(Controller& controller, model::Base
     switch (o->kind())
     {
         case BLOCK:
-            return new view_scilab::BlockAdapter(controller, static_cast<model::Block*>(o));
+	        return new view_scilab::BlockAdapter(controller, static_cast<model::Block*>(o));
+        case DIAGRAM:
+	        return new view_scilab::DiagramAdapter(controller, static_cast<model::Diagram*>(o));
+        case ANNOTATION:
+	        return new view_scilab::TextAdapter(controller, static_cast<model::Annotation*>(o));
         case LINK:
             return new view_scilab::LinkAdapter(controller, static_cast<model::Link*>(o));
-        case DIAGRAM:
-            return new view_scilab::DiagramAdapter(controller, static_cast<model::Diagram*>(o));
         default:
             return nullptr;
     }
