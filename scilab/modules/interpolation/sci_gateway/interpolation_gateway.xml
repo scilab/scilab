@@ -33,4 +33,5 @@
     <gateway name="sci_splin3d"         function="splin3d"          type="1" />
     <gateway name="sci_interp3d"        function="interp3d"         type="1" />
     <gateway name="sci_bsplin3val"      function="bsplin3val"       type="1" />
+    <gateway name="sci_mesh2di"         function="mesh2di"          type="1" />
 </module>

@@ -211,6 +211,7 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="..\..\sci_gateway\cpp\sci_interp3d.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_linear_interpn.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_lsq_splin.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_mesh2di.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_splin.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_splin2d.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_splin3d.cpp" />

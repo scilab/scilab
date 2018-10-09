@@ -92,6 +92,7 @@ lib /DEF:&quot;$(InputDir)slatec_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:
 		<File RelativePath=".\cshep2d.f"/>
 		<File RelativePath=".\dspfit.f"/>
 		<File RelativePath=".\somespline.f"/></Filter>
+		<File RelativePath=".\mesh2b.f"/></Filter>
 		<File RelativePath="..\..\sci_gateway\interpolation_gateway.xml"/>
 		<File RelativePath="..\..\Makefile.am"/></Files>
 	<Globals/></VisualStudioProject>

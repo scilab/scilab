@@ -65,6 +65,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_splin3d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_mesh2di.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_interpolation.h">

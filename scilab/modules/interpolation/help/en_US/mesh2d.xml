@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2018 - Stéphane MOTTELET
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program. *
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:lang="en" 
+xmlns:scilab="http://www.scilab.org"
+xml:id="mesh2d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mesh2d</refname>
+    <refpurpose>Triangulation of n points in the plane</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+triEdges = mesh2d(x, y)
+[triEdges, bdy] = mesh2d(x, y)
+triEdges = mesh2d(x, y, bdy)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>real vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bdy</term>
+        <listitem>
+          <para>integer vector</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>triEdges</term>
+        <listitem>
+          <para>integer matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    <literal>mesh2d</literal> computes a triangulation of <literal>n</literal> points in the plane with coordinates given by vectors<literal>x,y</literal>. It 
+     returns a matrix <literal>triEdges</literal> of size <literal>[3,nbt]</literal> where <literal>triEdges(:,i)</literal> gives the vertices numbers of triangle <literal>#i</literal> and <literal>nbt</literal> is the number of triangles.
+  </para>
+  <para>
+    When <literal>bdy</literal> is given as an input parameter this vector defines the
+    boundary and contains the indices of edges belonging to it, grouped by successive connected components. Each component is positively oriented, i.e. successive <literal>bdy(i:i+1)</literal> segments have the interior of the domain to their left. Hence, for a simply connected domain, the boundary is given counterclockwise, and eventual holes are always given clockwise.
+    Each connected component must be closed and is represented by the vector <literal>[i1,..,i_nc]</literal> such that 
+    <literal>i1 == i_nc</literal>. 
+  </para>
+  <para>
+    When <literal>bdy</literal> is given as an output parameter the boundary is computed prior to the triangulation as the convex hull of input points <literal>x,y</literal> and is returned in <literal>bdy</literal> with the same convention as above, i.e. counterclockwise sucessive vertices numbers.
+  </para>
+
+    <para>Possible error cases are the following:
+      <varlistentry>
+    <listitem>all nodes are collinear,</listitem>
+    <listitem>some points are identical,</listitem>
+    <listitem>wrong boundary array,</listitem>
+    <listitem>crossed boundary,</listitem>
+    <listitem>wrong orientation of the boundary,</listitem>
+    <listitem>size limitation,</listitem>
+    <listitem>an interior point is too close to the boundary,</listitem>
+    <listitem>an interior point is on the boundary,</listitem>
+  </varlistentry>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Warning</title>
+    <para>The triangulation computed by <literal>mesh2d</literal> is not garanteed to be a Delaunay triangulation of points <literal>(x,y)</literal>.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+function displayTri(X, Y, Tr)
+  plot(0,0,rect=[-1 -1 2 2])
+  [m, n] = size(Tr);
+  xpols = matrix(X(Tr), m, n); 
+  ypols = matrix(Y(Tr), m, n);
+  xfpolys(xpols, ypols, [n/4:n/4+n-1]);
+endfunction 
+
+r1 = 1;
+n1 = 20;
+u = linspace(2*%pi, 0, n1);
+xc1 = r1*cos(u(1:$-1));
+yc1 = r1*sin(u(1:$-1));
+bdy1 = [1:n1-1, 1];
+
+r2 = 2;
+n2 = 40;
+v = linspace(0, 2*%pi, n2);
+xc2 = r2*cos(v(1:$-1));
+yc2 = r2*sin(v(1:$-1));
+bdy2 = n1-1+[1:n2-1, 1];
+
+xr = (rand(1, 100)-.5)*2*r2;
+yr = (rand(1, 100)-.5)*2*r2;
+r = sqrt(xr.^2+yr.^2);
+
+clf
+gcf().color_map = rand(400, 3); 
+gcf().position(4)=300
+
+// [t, bdy] = mesh2d(x, y) syntax
+subplot(1, 2, 1)
+k = find(r < = r2);
+[t, bdy] = mesh2d(xr(k), yr(k));
+displayTri(xr(k), yr(k), t)
+plot(xr(k(bdy)), yr(k(bdy)),"-ok","thickness",2)
+xtitle("[triEdges, bdy] = mesh2d(x, y)")
+isoview
+
+
+// t = mesh2d(x, y, bdy) syntax
+subplot(1, 2, 2)
+k = find((r > =  r1) & (r < =  r2));
+x = [xc1 xc2 xr(k)];
+y = [yc1 yc2 yr(k)];
+t = mesh2d(x, y, [bdy1 bdy2]);
+displayTri(x, y, t)
+plot(x(bdy1), y(bdy1),"-ok","thickness",2)
+plot(x(bdy2), y(bdy2),"-ok","thickness",2)
+xtitle("triEdges = mesh2d(x, y, bdy)")
+isoview
+ ]]></programlisting>
+ <scilab:image>
+function displayTri(X, Y, Tr)
+  plot(0,0,rect=[-1 -1 2 2])
+  [m, n] = size(Tr);
+  xpols = matrix(X(Tr), m, n); 
+  ypols = matrix(Y(Tr), m, n);
+  xfpolys(xpols, ypols, [n/4:n/4+n-1]);
+endfunction 
+
+r1 = 1;
+n1 = 20;
+u = linspace(2*%pi, 0, n1);
+xc1 = r1*cos(u(1:$-1));
+yc1 = r1*sin(u(1:$-1));
+bdy1 = [1:n1-1, 1];
+
+r2 = 2;
+n2 = 40;
+v = linspace(0, 2*%pi, n2);
+xc2 = r2*cos(v(1:$-1));
+yc2 = r2*sin(v(1:$-1));
+bdy2 = n1-1+[1:n2-1, 1];
+
+xr = (rand(1, 100)-.5)*2*r2;
+yr = (rand(1, 100)-.5)*2*r2;
+r = sqrt(xr.^2+yr.^2);
+
+clf
+gcf().color_map = rand(400, 3); 
+gcf().position(4)=300
+
+// [t, bdy] = mesh2d(x, y) syntax
+subplot(1, 2, 1)
+k = find(r &lt; = r2);
+[t, bdy] = mesh2d(xr(k), yr(k));
+displayTri(xr(k), yr(k), t)
+plot(xr(k(bdy)), yr(k(bdy)),"-ok","thickness",2)
+xtitle("[triEdges, bdy] = mesh2d(x, y)")
+isoview
+
+
+// t = mesh2d(x, y, bdy) syntax
+subplot(1, 2, 2)
+k = find((r &gt; =  r1) &amp; (r &lt; =  r2));
+x = [xc1 xc2 xr(k)];
+y = [yc1 yc2 yr(k)];
+t = mesh2d(x, y, [bdy1 bdy2]);
+displayTri(x, y, t)
+plot(x(bdy1), y(bdy1),"-ok","thickness",2)
+plot(x(bdy2), y(bdy2),"-ok","thickness",2)
+xtitle("triEdges = mesh2d(x, y, bdy)")
+isoview
+
+
+
+ </scilab:image>
+  </refsection>
+  <refsection>
+    <title>References</title>
+    <para><literal>mesh2d</literal> was previously part of the <literal>metanet</literal> ATOMS module.
+    </para>
+  </refsection>
+</refentry>

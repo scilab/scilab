@@ -94,6 +94,7 @@ Feature changes and additions
   - Integer and Text input are now actually supported.
   - Default input arguments can be skipped instead of still having to be provided.
   - The result string is better formatted to be easily wrappable and indentable.
+* `mesh2d` has been introduced to compute a 2d mesh from vectors (x,y) of points.
 
 Help pages:
 -----------

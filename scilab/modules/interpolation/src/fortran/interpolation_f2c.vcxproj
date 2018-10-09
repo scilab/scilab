@@ -256,11 +256,13 @@ cd ..
     <ClCompile Include="common_f2c.c" />
     <ClCompile Include="cshep2d.c" />
     <ClCompile Include="dspfit.c" />
+    <ClCompile Include="mesh2b.c" />
     <ClCompile Include="somespline.c" />
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="cshep2d.f" />
     <f2c_rule Include="dspfit.f" />
+    <f2c_rule Include="mesh2b.f" />
     <f2c_rule Include="somespline.f" />
   </ItemGroup>
   <ItemGroup>

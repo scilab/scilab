@@ -10,7 +10,8 @@
 INTERPOLATION_FORTRAN_SOURCES = \
     src/fortran/somespline.f \
     src/fortran/dspfit.f \
-    src/fortran/cshep2d.f
+    src/fortran/cshep2d.f \
+    src/fortran/mesh2b.f
 
 INTERPOLATION_C_SOURCES = \
     src/c/interpolation.c \
@@ -27,7 +28,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_splin2d.cpp \
     sci_gateway/cpp/sci_splin3d.cpp \
     sci_gateway/cpp/sci_bsplin3val.cpp \
-    sci_gateway/cpp/sci_eval_cshep2d.cpp
+    sci_gateway/cpp/sci_eval_cshep2d.cpp \
+		sci_gateway/cpp/sci_mesh2di.cpp
 
 libsciinterpolation_la_CPPFLAGS= \
     -I$(srcdir)/includes/ \

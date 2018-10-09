@@ -54,3 +54,6 @@ extern double C2F(cs2val)(double* px, double* py, int* n, double* x, double* y, 
 extern int C2F(cs2grd)(double* px, double* py, int* n, double* x, double* y, double* f, int* nr, int* lcell, int* lnext, double* xmin, double* ymin, double* dx, double* dy, double* rmax, double* rw, double* a, double* c, double* cx, double* cy, int* ier);
 extern int C2F(cs2hes)(double* px, double* py, int* n, double* x, double* y, double* f, int* nr, int* lcell, int* lnext, double* xmin, double* ymin, double* dx, double* dy, double* rmax, double* rw, double* a, double* c, double* cx, double* cy, double* cxx, double* cxy, double* cyy, int* ier);
 
+//mesh2d
+extern int C2F(deumesh)(int *, int *, int *, double *, double *, int *,int *, int *, int *, int*);
+extern int C2F(mesh2b)(int *, int *, int *, int *, double *, double *, int *, int *, int *, int *,int *);
