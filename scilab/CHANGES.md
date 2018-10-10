@@ -662,6 +662,7 @@ Known issues
 * [#15779](http://bugzilla.scilab.org/show_bug.cgi?id=15779): `test_run` did not accept the wildcard * in tests names.
 * [#15796](http://bugzilla.scilab.org/show_bug.cgi?id=15796): Display after `mprintf("")` crashed Scilab (regression)
 * [#15799](http://bugzilla.scilab.org/show_bug.cgi?id=15799): `ifftshift()` could not invert `fftshift(x, along)` directional actions.
+* [#15800](http://bugzilla.scilab.org/show_bug.cgi?id=15800): Distributive assignments of a property values in a vector of handles were not supported.
 * [#15805](http://bugzilla.scilab.org/show_bug.cgi?id=15805): `colorbar()` ticking was poor and most often irrelevant or puzzling, set to not simple values, with useless unreadable minor ticks.
 * [#15806](http://bugzilla.scilab.org/show_bug.cgi?id=15806): `colorbar(..)` missed some simple syntaxes with default umin, umax and colminmax values, such as `colorbar()`.
 * [#15808](http://bugzilla.scilab.org/show_bug.cgi?id=15808): `[5i]` was parsed as `[5,i]`

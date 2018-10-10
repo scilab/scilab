@@ -20,10 +20,45 @@ function hdl = %h_set(varargin)
 
     elseif s > 2
         hdl = varargin(1)
-        sh = size(hdl,"*");
-        for i = 2:2:s
-            for j = 1:sh
-                hdl(j)(varargin(i)) = varargin(i+1);
+        Hsize = size(hdl);
+        nh = prod(Hsize);
+        for i = 2:2:s   // Loop on ("property",value) pairs
+            prop = varargin(i);
+            rhs = varargin(i+1);
+            if nh==1
+                // scalar handle => direct assignment
+                hdl(prop) = rhs;
+            else
+                // array of handles
+                RHSsize = size(rhs);
+                for j = 1:nh  // Loop on handles
+                    h = hdl(j)  // works around http://bugzilla.scilab.org/15802
+                    lhs = h(prop);     // Current handle's content
+                    LHSsize = size(lhs);
+                    if and(RHSsize==LHSsize) | lhs==[]  // => repeated assignment
+                        h(prop) = rhs;
+                    elseif size(lhs,"*")==1 & and(RHSsize==Hsize)
+                        // => element-wise assignments
+                        h(prop) = rhs(j);
+                    elseif LHSsize(2)==1 & LHSsize(1)==RHSsize(1) & RHSsize(2)==nh
+                        // column-wise assignments
+                        h(prop) = rhs(:,j);
+                    elseif LHSsize(1)==1 & LHSsize(2)==RHSsize(2) & RHSsize(1)==nh
+                        // row-wise assignments
+                        h(prop) = rhs(j,:);
+                    elseif prod(LHSsize)==prod(RHSsize)
+                        // Repeated assignment after RHS reformating
+                        h(prop) = matrix(rhs,LHSsize);
+                    elseif RHSsize(1)==nh & RHSsize(2)==prod(LHSsize)
+                        // example: axes.data_bounds is a 2x2 matrix,
+                        //          but a 1x4 assigment is possible
+                        h(prop) = rhs(j,:);
+                    else
+                        msg = _("%s: Unsupported assignment for property ''%s''.\n")
+                        error(msprintf(msg, "%h_set", prop))
+                    end
+                    hdl(j) = h;
+                end
             end
         end
     end
