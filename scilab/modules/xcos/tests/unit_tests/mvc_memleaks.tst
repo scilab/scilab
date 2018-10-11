@@ -5,68 +5,49 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
-// <-- TEST WITH GRAPHIC -->
-// <-- LINUX ONLY -->
+// <-- TEST WITH XCOS -->
+// <-- NO CHECK REF -->
+
 //
 // <-- Short Description -->
 // Check that a diagram import and a simulation does not leak MVC objects.
 
-// helper function to generate a MVC log of a script
-function logfile = generatelog(script)
-    mputl( ["loadXcosLibs();"
-    "jimport java.lang.System;"
-    ""
-    "scicos_log(""DEBUG"");"
-    ""
-    script
-    ""
-    "System.gc();"
-    "clear scs_m;"], "memleaks.sce");
 
-    cmd = SCI+"/bin/scilab -nw <memleaks.sce &>memleaks.sce.log"
-    host(cmd);
+function check_memleaks(diary_id)
+    diary(diary_id, "close");
 
-    logfile = "memleaks.sce.log";
+    log = mgetl(TMPDIR + "/mvc_leak.log");
+    log = log(grep(log, ["objectCreated", "objectDeleted"]));
 
-    deletefile("memleaks.sce");
-endfunction
 
-// helper function to parse the MVC log and extract leaks
-function leaks = parselog(logfile)
-    leaks = [];
+    objects = strtod(csvTextScan(log, " ", ".", "string")(:, 7));
+    objects = gsort(objects);
 
-    fd = mopen(logfile, "r");
-    if fd < 0 then pause, end
-
-    line = mgetl(fd, 1);
-    while line <> [] do
-        t = tokens(line);
-        if and(size(t) == [9 1]) & and(t(1:2) == ["Xcos";"debug:"]) then
-            if t(3) == "objectUnreferenced(" then
-                increment = -1;
-            elseif t(3) == "objectReferenced(" then
-                increment = +1;
-            else
-                increment = 0;
-            end
-            uid = msscanf(t(4), "%d");
-
-            if size(leaks, "*") < uid then
-                leaks(uid) = 0;
-            end
-            leaks(uid) = leaks(uid) + increment;
-        end
-
-        line = mgetl(fd, 1);
+    leaks = objects(2*find((objects(1:2:$-1) - objects(2:2:$))));
+    if leaks <> [] then
+        scicos_log("WARNING");
+        error("check_memleaks found leaks at " + string(leaks));
     end
-    mclose(fd);
 endfunction
 
-logfile = generatelog("importXcosDiagram(SCI+""/modules/xcos/demos/Discrete-KalmanFilter.zcos"");");
-leaks = parselog(logfile);
-find(leaks)
+loadXcosLibs();
+jimport java.lang.System;
+scicos_log("INFO");
 
-logfile = generatelog( ["importXcosDiagram(SCI+""/modules/xcos/demos/Discrete-KalmanFilter.zcos"");"
-"xcos_simulate(scs_m);"]);
-leaks = parselog(logfile);
-find(leaks)
+
+diary_id = diary(TMPDIR + "/mvc_leak.log");
+importXcosDiagram(SCI+"/modules/xcos/demos/Discrete-KalmanFilter.zcos");
+clear scs_m;
+System.gc();
+sleep(2, "s");
+check_memleaks(diary_id);
+
+diary_id = diary(TMPDIR + "/mvc_leak.log");
+importXcosDiagram(SCI+"/modules/xcos/demos/Discrete-KalmanFilter.zcos");
+xcos_simulate(scs_m, 4);
+clear scs_m;
+System.gc();
+sleep(2, "s");
+check_memleaks(diary_id);
+
+deletefile(TMPDIR + "/mvc_leak.log");
