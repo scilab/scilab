@@ -246,6 +246,7 @@ input and output arguments.
 * `unique` can now unduplicate a set of complex numbers.
 * `save()` can now process lists with undefined components.
 * `surf(x,y,fun)` and `surf(x,y,list(fun,params))` syntaxes are now supported, with a function identifier `fun`.
+* Figure editor's terms have been clarify to ease usage.
 
 Help pages:
 -----------

@@ -308,8 +308,8 @@ public class Editor {
         paste.setToolTipText(Messages.gettext("Paste copied object on this figure"));
         delete = new JMenuItem(Messages.gettext("Delete"));
         delete.setToolTipText(Messages.gettext("Delete selected object"));
-        clear = new JMenuItem(Messages.gettext("Clear"));
-        clear.setToolTipText(Messages.gettext("Clears the figure"));
+        clear = new JMenuItem(Messages.gettext("Clear axes"));
+        clear.setToolTipText(Messages.gettext("Delete axes contents and labels"));
         hide = new JMenuItem(Messages.gettext("Hide"));
         hide.setToolTipText(Messages.gettext("Hide selected object"));
         unhide = new JMenuItem(Messages.gettext("Unhide all"));
@@ -317,13 +317,13 @@ public class Editor {
         clipboardCopy = new JMenuItem(Messages.gettext("Copy to Clipboard"));
         clipboardCopy.setToolTipText(Messages.gettext("Copy figure to system clipboard"));
         title = new JMenuItem(Messages.gettext("Title"));
-        title.setToolTipText(Messages.gettext("Insert a title"));
+        title.setToolTipText(Messages.gettext("Set the axes main title"));
         labelX = new JMenuItem(Messages.gettext("Label X"));
-        labelX.setToolTipText(Messages.gettext("Insert a label in X axis"));
+        labelX.setToolTipText(Messages.gettext("Set the X axis label"));
         labelY = new JMenuItem(Messages.gettext("Label Y"));
-        labelY.setToolTipText(Messages.gettext("Insert a label in Y axis"));
+        labelY.setToolTipText(Messages.gettext("Set the Y axis label"));
         labelZ = new JMenuItem(Messages.gettext("Label Z"));
-        labelZ.setToolTipText(Messages.gettext("Insert a label in Z axis"));
+        labelZ.setToolTipText(Messages.gettext("Set the Z axis label"));
         insert = new JMenuItem(Messages.gettext("Insert"));
         insert.setToolTipText(Messages.gettext("Insert a legend into the selected curve"));
         remove = new JMenuItem(Messages.gettext("Remove"));
