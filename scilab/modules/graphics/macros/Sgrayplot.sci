@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) Bruno Pincon
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,7 +11,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
+function Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
     //
     // PURPOSE
     //    Like grayplot but the function fec is used to smooth the
@@ -44,19 +44,34 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
         return
 
     elseif rhs < 3 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"Sgrayplot",3));
+        msg = gettext("%s: Wrong number of input arguments: At least %d expected.\n")
+        error(msprintf(msg, "Sgrayplot", 3));
     end
 
     // some checks
     if ~(type(x)==1 & isreal(x) & type(y)==1 & isreal(y) & type(z)==1 & isreal(z)) then
-        error(msprintf(gettext("%s: Wrong type for input argument(s): Arguments #%d, #%d and #%d must be real.\n"), "Sgrayplot",1,2,3));
+        msg = gettext("%s: Wrong type for input argument(s): Arguments #%d, #%d and #%d must be real.\n")
+        error(msprintf(msg, "Sgrayplot", 1, 2, 3));
     end
     nx = length(x); ny = length(y); [p,q] = size(z)
     if p ~= nx then
-        error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: The number of rows of argument #%d must be equal to the size of argument #%d.\n"),"Sgrayplot", 1, 3, 3, 1));
+        msg = gettext("%s: Wrong size for input arguments #%d and #%d: The number of rows of argument #%d must be equal to the size of argument #%d.\n")
+        error(msprintf(msg, "Sgrayplot", 1, 3, 3, 1));
     elseif q~=ny then
-        error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: The number of columns of argument #%d must be equal to the size of argument #%d.\n"),"Sgrayplot", 2, 3, 3, 2));
+        msg = gettext("%s: Wrong size for input arguments #%d and #%d: The number of columns of argument #%d must be equal to the size of argument #%d.\n")
+        error(msprintf(msg, "Sgrayplot", 2, 3, 3, 2));
     end
+
+    // http://bugzilla.scilab.org/15638 :
+    if ~isdef("colminmax","l")
+        colminmax = [1, size(gcf().color_map,1)]
+    end
+    nbc = colminmax(2)-colminmax(1)+1
+    if ~isdef("zminmax","l") then
+        zminmax = [min(z), max(z)]
+    end
+    dz = (zminmax(2) - zminmax(1))/nbc/2
+    zminmax = zminmax + [dz -dz]
 
     // parsing the optional args
     opt_arg_list = ["strf", "rect","nax","zminmax", "colminmax", "mesh", "colout"]

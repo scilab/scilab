@@ -604,8 +604,13 @@ Known issues
 * [#15632](http://bugzilla.scilab.org/show_bug.cgi?id=15632): `x=[];x()=1` crashed Scilab.
 * [#15635](http://bugzilla.scilab.org/show_bug.cgi?id=15635): `dellip(1,4)` terminated with neither output nor error (regression)
 * [#15636](http://bugzilla.scilab.org/show_bug.cgi?id=15636): Clicking on its icon did not always give focus to Help browser
+<<<<<<< HEAD
 * [#15645](http://bugzilla.scilab.org/show_bug.cgi?id=15645): `deff('y=f(x)','z=x^2'),fsolve(1,f)` crashed scilab
 * [#15642](http://bugzilla.scilab.org/show_bug.cgi?id=15642):A(:) gave incorrect display when A is sparse boolean (regression)
+=======
+* [#15638](http://bugzilla.scilab.org/show_bug.cgi?id=15638): `colorbar()`: Both colors on the bar tips spanned an interval twice smaller than for other colors. This made almost impossible to choose a convenient number of colors to share the whole values interval in a simple way.
+* [#15648](http://bugzilla.scilab.org/show_bug.cgi?id=15648): `sparse([1 1],1,[-1 -1])` crashed scilab
+>>>>>>> 04860748d5d... * Bugs 15638 15805 15806 fixed: colorbar() improved
 * [#15647](http://bugzilla.scilab.org/show_bug.cgi?id=15647): `spzeros(-1,-1)` yielded a corrupted result
 * [#15648](http://bugzilla.scilab.org/show_bug.cgi?id=15648): `sparse([1 1],1,[-1 -1])` crashed scilab
 * [#15652](http://bugzilla.scilab.org/show_bug.cgi?id=15652): An appended comment // after a comma in an multiline literal array now generates an error (regression).
@@ -643,6 +648,8 @@ Known issues
 * [#15779](http://bugzilla.scilab.org/show_bug.cgi?id=15779): `test_run` did not accept the wildcard * in tests names.
 * [#15796](http://bugzilla.scilab.org/show_bug.cgi?id=15796): Display after `mprintf("")` crashed Scilab (regression)
 * [#15799](http://bugzilla.scilab.org/show_bug.cgi?id=15799): `ifftshift()` could not invert `fftshift(x, along)` directional actions.
+* [#15805](http://bugzilla.scilab.org/show_bug.cgi?id=15805): `colorbar()` ticking was poor and most often irrelevant or puzzling, set to not simple values, with useless unreadable minor ticks.
+* [#15806](http://bugzilla.scilab.org/show_bug.cgi?id=15806): `colorbar(..)` missed some simple syntaxes with default umin, umax and colminmax values, such as `colorbar()`.
 * [#15808](http://bugzilla.scilab.org/show_bug.cgi?id=15808): `[5i]` was parsed as `[5,i]`
 * [#15809](http://bugzilla.scilab.org/show_bug.cgi?id=15809): HDF5 load/save was super slow for nested lists.
 * [#15813](http://bugzilla.scilab.org/show_bug.cgi?id=15813): In polarplot mode, datatips displayed irrelevant cartesian coordinates instead of polar ones.
