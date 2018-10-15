@@ -27,9 +27,9 @@ assert_checkequal(scs_m.objs(4).id, "link1");
 assert_checkequal(scs_m.objs(5).id, "link2");
 
 // labels inside the superblock
-assert_checkequal(scs_m.objs(3).model.rpar.objs(1).model.label, "bigsom_label")
-assert_checkequal(scs_m.objs(3).model.rpar.objs(2).model.label, "input1")
-assert_checkequal(scs_m.objs(3).model.rpar.objs(3).model.label, "input2")
+assert_checkequal(scs_m.objs(3).model.rpar.objs(1).graphics.id, "bigsom_label")
+assert_checkequal(scs_m.objs(3).model.rpar.objs(2).graphics.id, "input1")
+assert_checkequal(scs_m.objs(3).model.rpar.objs(3).graphics.id, "input2")
 
 // save a copy and recheck
 xcosDiagramToScilab(TMPDIR + "/bug_15024.zcos", scs_m);
@@ -40,7 +40,7 @@ assert_checkequal(scs_m.objs(4).id, "link1");
 assert_checkequal(scs_m.objs(5).id, "link2");
 
 // labels inside the superblock
-assert_checkequal(scs_m.objs(3).model.rpar.objs(1).model.label, "bigsom_label")
-assert_checkequal(scs_m.objs(3).model.rpar.objs(2).model.label, "input1")
-assert_checkequal(scs_m.objs(3).model.rpar.objs(3).model.label, "input2")
+assert_checkequal(scs_m.objs(3).model.rpar.objs(1).graphics.id, "bigsom_label")
+assert_checkequal(scs_m.objs(3).model.rpar.objs(2).graphics.id, "input1")
+assert_checkequal(scs_m.objs(3).model.rpar.objs(3).graphics.id, "input2")
 

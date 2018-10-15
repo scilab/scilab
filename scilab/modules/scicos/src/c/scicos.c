@@ -912,7 +912,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     {
         phase = 1;
         idoit(t0);
-        if (*ierr == 0)
+        if (*ierr == 0 && Max(nx, ng) > 0)
         {
             if ((W = MALLOC(sizeof(double) * (Max(nx, ng)))) == NULL )
             {

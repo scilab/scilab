@@ -48,8 +48,6 @@ function str = x_mdialog(desc, labels, ini)
         str = []; // cancelling
     end
 endfunction
-function messagebox(msg, msg_title)
-endfunction
 // set the path for external file
 for i = 1:size(scs_m.objs)
     if typeof(scs_m.objs(i)) == "Block" & scs_m.objs(i).gui == "MBLOCK" then
@@ -63,22 +61,75 @@ end
 [cpr, ok] = xcos_compile(scs_m);
 --------------------------------------------\
  Main Modelica : TMPDIR\bug_13396_im.mo
-
  Flat Modelica : TMPDIR\bug_13396_imf.mo
  Simulation C code :TMPDIR\bug_13396_im.c
+!messagebox: Modelica blocks are reduced to a block with:              !
+!                                                                      !
+!messagebox: Number of differential states: 0                          !
+!                                                                      !
+!messagebox: Number of algebraic states: 1                             !
+!                                                                      !
+!messagebox: Number of discrete time states  : 0                       !
+!                                                                      !
+!messagebox: Number of zero-crossing surfaces: 1                       !
+!                                                                      !
+!messagebox: Number of modes  : 1                                      !
+!                                                                      !
+!messagebox: Number of inputs : 0                                      !
+!                                                                      !
+!messagebox: Number of outputs: 1                                      !
+!                                                                      !
+!messagebox: Input/output dependency:[T]                               !
+!                                                                      !
+!messagebox: Analytical Jacobian: enabled  (%Jacobian=%t)              !
+!                                                                      !
+!messagebox: Parameter embedding mode: enabled (%Modelica_ParEmb=%t)   !
+!                                                                      !
+!messagebox:                                                           !
+!                                                                      !
+!messagebox: Generated files path: C:\Users\cdd\AppData\Local\Temp\SCI_!
+!TMP_25080_3547\                                                       !
+!                                                                      !
+!messagebox:                                                           !
 WARNING: Diagram contains implicit blocks, compiling for implicit Solver.
 assert_checktrue(ok);
 // simulate the diagram
 xcos_simulate(scs_m, 4);
 --------------------------------------------\
  Main Modelica : TMPDIR\bug_13396_im.mo
-
  Flat Modelica : TMPDIR\bug_13396_imf.mo
  Simulation C code :TMPDIR\bug_13396_im.c
+!messagebox: Modelica blocks are reduced to a block with:              !
+!                                                                      !
+!messagebox: Number of differential states: 0                          !
+!                                                                      !
+!messagebox: Number of algebraic states: 1                             !
+!                                                                      !
+!messagebox: Number of discrete time states  : 0                       !
+!                                                                      !
+!messagebox: Number of zero-crossing surfaces: 1                       !
+!                                                                      !
+!messagebox: Number of modes  : 1                                      !
+!                                                                      !
+!messagebox: Number of inputs : 0                                      !
+!                                                                      !
+!messagebox: Number of outputs: 1                                      !
+!                                                                      !
+!messagebox: Input/output dependency:[T]                               !
+!                                                                      !
+!messagebox: Analytical Jacobian: enabled  (%Jacobian=%t)              !
+!                                                                      !
+!messagebox: Parameter embedding mode: enabled (%Modelica_ParEmb=%t)   !
+!                                                                      !
+!messagebox:                                                           !
+!                                                                      !
+!messagebox: Generated files path: C:\Users\cdd\AppData\Local\Temp\SCI_!
+!TMP_25080_3547\                                                       !
+!                                                                      !
+!messagebox:                                                           !
 WARNING: Diagram contains implicit blocks, compiling for implicit Solver.
 WARNING: Diagram has been compiled for implicit solver
-         switching to implicit Solver
-
+WARNING: switching to implicit Solver
 funcprot(prot);
 ilib_verbose(level);
 mdelete(TMPDIR+"/bug_13396.mo");

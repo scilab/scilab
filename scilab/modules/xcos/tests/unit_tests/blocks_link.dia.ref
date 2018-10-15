@@ -32,8 +32,8 @@ notTested = ["SUPER_f", "DSUPER", ..              // Specific blocks
 "PENDULUM_ANIM", "BPLATFORM", "MBLOCK", ..
 "TKSCALE", "BARXY", ..
 "SLIDER_f", "WFILE_f", "func_block", "SOM_f", ..  // Deprecated blocks
-"MPBLOCK", "fortran_block", ..       // blocks with code generation
-"CBLOCK", "scifunc_block", "scifunc_block_m"];
+"MPBLOCK", "c_block", "fortran_block", ..       // blocks with code generation
+"CBLOCK", "CBLOCK4", "scifunc_block", "scifunc_block_m"];
 invalidFunctions = unique(gsort(["csuper", "junk", ..
 "clkfrom", "clkgoto", ..
 "goto", "from", "gotomo", "frommo", ..

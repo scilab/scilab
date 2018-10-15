@@ -14,17 +14,38 @@
 // <-- Short Description -->
 // Fails under Mac OS X 10.9
 ilib_verbose(0);
-prot = funcprot();
-funcprot(0);
-// Stubbing the messagebox method
-function messagebox(msg, msg_title)
-endfunction
-funcprot(prot);
 importXcosDiagram(SCI+"/modules/xcos/tests/nonreg_tests/bug_12384.zcos");
 xcos_simulate(scs_m, 4);
 --------------------------------------------\
  Main Modelica : TMPDIR\Loop_im.mo
-
  Flat Modelica : TMPDIR\Loop_imf.mo
  Simulation C code :TMPDIR\Loop_im.c
+!messagebox: Modelica blocks are reduced to a block with:              !
+!                                                                      !
+!messagebox: Number of differential states: 0                          !
+!                                                                      !
+!messagebox: Number of algebraic states: 1                             !
+!                                                                      !
+!messagebox: Number of discrete time states  : 0                       !
+!                                                                      !
+!messagebox: Number of zero-crossing surfaces: 0                       !
+!                                                                      !
+!messagebox: Number of modes  : 0                                      !
+!                                                                      !
+!messagebox: Number of inputs : 0                                      !
+!                                                                      !
+!messagebox: Number of outputs: 1                                      !
+!                                                                      !
+!messagebox: Input/output dependency:[T]                               !
+!                                                                      !
+!messagebox: Analytical Jacobian: enabled  (%Jacobian=%t)              !
+!                                                                      !
+!messagebox: Parameter embedding mode: enabled (%Modelica_ParEmb=%t)   !
+!                                                                      !
+!messagebox:                                                           !
+!                                                                      !
+!messagebox: Generated files path: C:\Users\cdd\AppData\Local\Temp\SCI_!
+!TMP_27048_3452\                                                       !
+!                                                                      !
+!messagebox:                                                           !
 WARNING: Diagram contains implicit blocks, compiling for implicit Solver.
