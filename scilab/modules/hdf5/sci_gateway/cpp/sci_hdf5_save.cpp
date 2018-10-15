@@ -163,32 +163,36 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
     {
         for (int i = 1; i < rhs; ++i)
         {
-            if (in[i]->getId() != types::InternalType::IdScalarString)
+            if (!in[i]->isString())
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname.data(), i + 1);
                 return types::Function::Error;
             }
 
-            wchar_t* wvar = in[i]->getAs<types::String>()->get()[0];
-            if (wcscmp(wvar, L"-append") == 0)
-            {
-                bAppendMode = true;
-                continue;
+            types::String *pS = in[i]->getAs<types::String>(); 
+            wchar_t* wvar = pS->get(0);
+            if (wcscmp(wvar, L"-append") == 0) {
+              bAppendMode = true;
+              continue;
             }
 
-            types::InternalType* pIT = ctx->get(symbol::Symbol(wvar));
-            if (pIT == NULL)
+            for (int j = 0; j < pS->getSize(); j++)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname.data(), i + 1);
-                return types::Function::Error;
+                wvar = pS->get(j);
+                types::InternalType* pIT = ctx->get(symbol::Symbol(wvar));
+                if (pIT == NULL)
+                {
+                    Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname.data(), i + 1);
+                    return types::Function::Error;
+                }
+
+                char* cvar = wide_string_to_UTF8(wvar);
+                std::string var(cvar);
+                FREE(cvar);
+
+                //check var exists
+                vars[var] = pIT;                
             }
-
-            char* cvar = wide_string_to_UTF8(wvar);
-            std::string var(cvar);
-            FREE(cvar);
-
-            //check var exists
-            vars[var] = pIT;
         }
     }
     //check append option

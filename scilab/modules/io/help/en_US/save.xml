@@ -27,7 +27,9 @@
         <synopsis>
             save(filename)
             save(filename, x1, x2,...,xn)
-            save(filename, x1, x2,...,xn, "-append")
+            save(filename, variables)
+            save(filename, "-append", ..)
+            save(.., "-append")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -46,6 +48,15 @@
                         Names (as strings) of Scilab variables to be saved. Objects returned by
                         expressions -- like gcf() -- can't be directly saved. They must be
                         explicitly named: <literal>f = gcf(); save(filename, "f")</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>variables</term>
+                <listitem>
+                    <para>
+                        A matrix of strings containing the names of Scilab variables to be saved,
+                      e.g. <literal>["x1", "x2", ..., "xn"]</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -438,6 +449,12 @@ Undefined variable: myPi
                             Lists with undefined components can now be saved.
                         </listitem>
                     </itemizedlist>
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revremark>
+                   The names of variables to be saved can now be provided in a vector.
                 </revremark>
             </revision>
         </revhistory>
