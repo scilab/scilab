@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) INRIA - Fabrice Leray
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="surface_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="surface_properties">
     <refnamediv>
         <refname>surface properties</refname>
         <refpurpose>description of the 3D entities
@@ -57,11 +60,16 @@
                 <term>visible: </term>
                 <listitem>
                     <para>
-                        This field contains the <literal>visible</literal> property value for
-                        the entity . It should be <literal>"on" </literal> or <literal>"off"</literal> .
-                        By default, surfaces are visibles, the value's property is
-                        <literal>"on"</literal>. If <literal>"off"</literal> the 3D graphics are not
-                        displayed on the screen.
+                        <itemizedlist>
+                            <listitem>
+                                <emphasis role="bold">"on"</emphasis> (default): The surface is
+                                displayed, possibly with its mesh and markers.
+                            </listitem>
+                            <listitem>
+                                <emphasis role="bold">"off"</emphasis> : The surface and its mesh
+                                and markers are hidden.
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
@@ -69,9 +77,17 @@
                 <term>surface_mode: </term>
                 <listitem>
                     <para>
-                        This field contains the default <literal>surface_mode</literal> property
-                        value for the surface. Its value should be <literal>"on" </literal>(surface
-                        drawn) or <literal>"off"</literal> (no surface drawn).
+                        <itemizedlist>
+                            <listitem>
+                                <emphasis role="bold">"on"</emphasis> (default): facets (body and
+                                edges) are drawn.
+                            </listitem>
+                            <listitem>
+                                <emphasis role="bold">"off"</emphasis> : facets (body and edges)
+                                are hidden. But markers -- if any -- are still displayed
+                                (provided that <literal>.mark_mode = "on"</literal>).
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
@@ -198,171 +214,188 @@
                 <term>color_mode: </term>
                 <listitem>
                     <para>
-                        an integer between <literal>[-size(colormap) ; size(colormap)]</literal>
-                        defining the color of the facet when <literal>color_flag</literal> value is
-                        <literal>0</literal>. As stated before, if<literal> color_mode &gt; 0</literal>,
-                        edges are drawn using <literal>foreground</literal> color. If
-                        <literal>color_mode</literal> is set to <literal>0</literal>, a mesh of the
-                        surface is drawn: front faces have no colors. Finally, when
-                        <literal>color_mode &lt; 0</literal>, front faces are painted with color
-                        <literal>-color_mode</literal> but no edges are displayed.
+                        color index in <literal>[-size(colormap), size(colormap)]</literal>
+                        <para>
+                            If <emphasis role="italic">color_flag == 0</emphasis> :
+                            The uniform color of the whole upward surface is set to the index
+                            <literal>abs(color_mode)</literal>.
+                        </para>
+                        <para>
+                            In addition, whatever is <literal>color_flag</literal>,
+                            <itemizedlist>
+                                <listitem>
+                                    <literal>color_mode = 0</literal> makes facets hollow and displays
+                                    only the surface's mesh.
+                                </listitem>
+                                <listitem>
+                                    <literal>color_mode &lt; 0</literal> displays facets bodies and
+                                    edges.
+                                </listitem>
+                                <listitem>
+                                    <literal>color_mode > 0</literal> hides the mesh and displays
+                                    only facets bodies.
+                                </listitem>
+                            </itemizedlist>
+                        </para>
+                        <para>
+                            When it is displayed, the mesh color is set to <varname>foreground</varname>.
+                        </para>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>color_flag: </term>
                 <listitem>
-                    <para>This field is used to specify the algorithm used to set facets'
-                        colors.
+                    <para>Chooses the algorithm used to set the color of the body of the upward face
+                        of facets, when it is displayed.
                     </para>
                     <para>
-                        Note that the rules on <literal>color_mode</literal>,
-                        <literal>foreground</literal> and <literal>hiddencolor</literal> are still applied
-                        to this case.
+                        In addition,
+                        <itemizedlist>
+                            <listitem>
+                                <varname>color_mode</varname> rules the display of the mesh
+                                (facets edges) and/or body of facets.
+                            </listitem>
+                            <listitem>
+                                <varname>foreground</varname> and <varname>thickness</varname> rules
+                                the line color and thickness of the mesh.
+                            </listitem>
+                            <listitem>
+                                <varname>hiddencolor</varname> rules the color of the backward facets
+                                face.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        Here below,
+                        <itemizedlist>
+                            <listitem>
+                                <emphasis role="bold">nf</emphasis> stands for the number of facets
+                                of the surface.
+                            </listitem>
+                            <listitem>
+                                <emphasis role="bold">n</emphasis> stands for the number of
+                                vertices of each facet. All facets have the same number of vertices.
+                            </listitem>
+                        </itemizedlist>
+                        Then we have:
                     </para>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>color_flag == 0</literal>
+                                <term>color_flag = 0</term> <emphasis role="bold">(uniform color)</emphasis> :
                             </para>
-                            <itemizedlist>
-                                <listitem>
-                                    <para>All facets are painted using the color index and method
-                                        defined by <literal>color_mode</literal> (see above).
-                                    </para>
-                                </listitem>
-                            </itemizedlist>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <literal>color_flag == 1</literal>
-                            </para>
-                            <itemizedlist>
-                                <listitem>
-                                    <para>All facets are painted using one color index per facet
-                                        proportional to <literal>z</literal>. The minimum <literal>z</literal>
-                                        value is painted using the index 1 color while the maximum
-                                        <literal>z</literal> value is painted using highest color index. The
-                                        edges of the facets can be additionally drawn depending on the
-                                        value of <literal>color_mode</literal> (see above).
-                                    </para>
-                                </listitem>
-                            </itemizedlist>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                The 3 remaining cases (<literal>color_flag</literal><literal>== 2,3 or
-                                    4
-                                </literal>
-                                )are only available only with <literal>Fac3d</literal> entity.
-                                Then, the <literal>data.color</literal> value is used to set colors for
-                                facets (indices in the current colormap) if it exists. If not, the
-                                current <literal>color_mode</literal> is used to paint the facets.
+                            <para>All facets are painted using the same color index and method
+                                defined by <literal>color_mode</literal> (see above).
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>color_flag == 2 ('flat' shading)</literal>
+                                <term>color_flag = 1</term>
+                                <emphasis role="bold">(uniform color on each facet, mapping Z)</emphasis> :
                             </para>
-                            <itemizedlist>
+                            <para>
+                                The average Z of each facet is computed according to the Z of
+                                its vertices.
+                                Then the [Zmin, Zmax] range of facets Z is computed.
+                                Each facet gets its uniform color in [1, size(colormap)] according
+                                to its Z position in [Zmin, Zmax].
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        <emphasis role="bold">color_flag== 2,3 or 4</emphasis> values
+                        are only available with <literal>Fac3d</literal> entities.
+                        These algorithms require the <literal>data.color</literal> input to set
+                        facets colors. If <literal>data.color</literal> is empty, the
+                        <literal>color_flag=1</literal> fallback algorithm is used.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <term>color_flag = 2</term> <emphasis role="bold">('flat' shading)</emphasis> :
+                            </para>
+                            <para>All facets are painted using the color index given in the
+                                <literal>data.color</literal> property (one color per facet is
+                                needed). Two cases are then possible :
+                            </para>
+                            <orderedlist>
                                 <listitem>
-                                    <para>All facets are painted using the color index given in the
-                                        <literal>data.color</literal> property (one color per facet is
-                                        needed). Two cases are then possible :
+                                    <para>
+                                        <literal>data.color</literal> is a vector of as many
+                                        <literal>color</literal> indices as there are facets,
+                                        <literal>color(i)</literal> being the color index for the
+                                        facet <literal>#i</literal> :
+                                        <itemizedlist>
+                                            <listitem>
+                                                <literal>color(i)>0</literal>: the boundary of the facet
+                                                is drawn with current line style and color.
+                                            </listitem>
+                                            <listitem>
+                                                <literal>color(i)&lt;0</literal>: the facet's
+                                                boundary is not drawn, and <literal>-color(i)</literal>
+                                                is used as facet's color.
+                                            </listitem>
+                                        </itemizedlist>
                                     </para>
                                 </listitem>
                                 <listitem>
                                     <para>
-                                        <literal>data.color</literal> contains a <literal>color</literal>
-                                        vector : if <literal>color(i)</literal> is positive it gives the
-                                        color of facet <literal>i</literal> and the boundary of the facet is
-                                        drawn with current line style and color. If
-                                        <literal>color(i)</literal> is negative, color id
-                                        <literal>-color(i)</literal> is used and the boundary of the facet
-                                        is not drawn.
-                                    </para>
-                                    <para>
-                                        <literal>data.color</literal> contains a color matrix of size
-                                        (nf,n) where <literal>n</literal> stands for the number of facets
-                                        and <literal>nf</literal> for the number of points defining the
-                                        polygonal facet. For the <literal>nf</literal> vertices defining
-                                        each facet, the algorithm computes an <literal>average value</literal>
-                                        of the color index (from the matrix color index) : the
-                                        <literal>nf</literal> vertices of the same facet will have the same
-                                        color index value.
+                                        <literal>data.color</literal> is a matrix of color indices,
+                                        of size (n,nf). Then, the actual color index of the facet is
+                                        set to the average color of all its vertices.
                                     </para>
                                 </listitem>
-                            </itemizedlist>
+                            </orderedlist>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>color_flag == 3 ('interpolated' shading)</literal>
+                                <term>color_flag = 3</term>
+                                <emphasis role="bold">(interpolated shading on each facet)</emphasis> :
                             </para>
-                            <itemizedlist>
+                            <para>
+                                Facets painting is done by interpolating their vertices colors.
+                                The indices of vertices color are given in the
+                                <literal>data.color</literal> property (one color per vertex is
+                                needed). Two cases are possible :
+                            </para>
+                            <orderedlist>
                                 <listitem>
-                                    <para>Facets painting results of interpolation of vertices
-                                        colors. The indices of vertices color are given in the
-                                        <literal>data.color</literal> property (one color per vertex is
-                                        needed). Two cases are possible :
+                                    <para>
+                                        <literal>data.color</literal> is a vector of <literal>nf</literal>
+                                        <literal>color</literal> indices,
+                                        <literal>color(i)</literal> being the index of the flat uniform
+                                        color of the facet <literal>#i</literal>.
                                     </para>
                                 </listitem>
                                 <listitem>
                                     <para>
-                                        <literal>data.color</literal> contains a <literal>colors</literal>
-                                        vector : then, there are too few data to complete the
-                                        interpolated shading mode. Indeed, a color matrix of size
-                                        (nf,n) (where <literal>n</literal> stands for the number of facets
-                                        and <literal>nf</literal> for the number of points defining the
-                                        polygonal facet) is needed to perform this operation. For each
-                                        facet, the algorithm copies the single color index value of
-                                        the facet into the <literal>nf</literal> color indexes vertices
-                                        defining the facet's boundary.
+                                        <literal>data.color</literal> is a color matrix of size
+                                        (n,nf): The facet #i is drawn with some graded colors
+                                        interpolated between the <literal>color(:,i)</literal>
+                                        colors of its vertices.
                                     </para>
-                                    <para>
-                                        <literal>data.color</literal> contains a color matrix of size
-                                        (nf,n) (see upper for <literal>nf</literal> and <literal>n</literal>
-                                        definitions), the interpolated shading mode can be completed
-                                        normally using those color indexes.
-                                    </para>
+                                    <note>
+                                        If the Z coordinate of vertices has been assigned to
+                                        <literal>data.color</literal>, this mode allows to map local Z
+                                        with colors, down to the facet scale. See also the
+                                        <literal>.cdata_mapping</literal> property.
+                                    </note>
                                 </listitem>
-                            </itemizedlist>
+                            </orderedlist>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>color_flag == 4 (Matlab-like 'flat' shading)</literal>
+                                <term> color_flag = 4</term>
+                                <emphasis role="bold">(Matlab-like 'flat' shading)</emphasis> :
                             </para>
-                            <itemizedlist>
-                                <listitem>
-                                    <para>
-                                        Same as <literal>color_flag==2</literal> with a slight difference
-                                        when <literal>data.color</literal> is a matrix. All facets are
-                                        painted using the color index given in the
-                                        <literal>data.color</literal> property (one color per facet is
-                                        needed). Two cases are then possible :
-                                    </para>
-                                </listitem>
-                                <listitem>
-                                    <para>
-                                        <literal>data.color</literal> contains a <literal>color</literal>
-                                        vector : if <literal>color(i)</literal> is positive it gives the
-                                        color of facet <literal>i</literal> and the boundary of the facet is
-                                        drawn with current line style and color. If
-                                        <literal>color(i)</literal> is negative, color id
-                                        <literal>-color(i)</literal> is used and the boundary of the facet
-                                        is not drawn.
-                                    </para>
-                                    <para>
-                                        <literal>data.color</literal> contains a color matrix of size
-                                        (nf,n) where <literal>n</literal> stands for the number of facets
-                                        and <literal>nf</literal> for the number of points defining the
-                                        polygonal facet. For the <literal>nf</literal> vertices defining
-                                        each facet, the algorithm takes the<literal> color of the first
-                                            vertex
-                                        </literal>
-                                        defining the patch (facet).
-                                    </para>
-                                </listitem>
-                            </itemizedlist>
+                            <para>
+                                Same as <literal>color_flag==2</literal>, except that, when
+                                <literal>data.color</literal> is a color matrix, each facet #i is
+                                painted with the uniform <literal>color(1,i)</literal> of its
+                                first vertex (instead of the average color of all its vertices).
+                                Other vertices colors are ignored.
+                            </para>
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -371,26 +404,38 @@
                 <term>cdata_mapping: </term>
                 <listitem>
                     <para>
-                        <literal>Specific to Fac3d handles</literal>. A string with value
-                        <literal>'scaled'</literal> or <literal>'direct'</literal>. If a
-                        <literal>data.color</literal> is set, each index color data specifies a
-                        single value for each vertex. <literal>cdata_mapping</literal> determines
-                        whether those indices are scaled to map linearly into the current
-                        colormap (<literal>'scaled'</literal> mode) or point directly into this
-                        colormap (<literal>'direct</literal>' mode). This property is useful when
-                        <literal>color_flag</literal> equals <literal>2</literal>,<literal>3</literal> or
-                        <literal>4</literal>.
+                        <literal>'scaled'</literal> or <literal>'direct'</literal>.
+                        Used only for <literal>color_flag=2|3|4</literal>
+                        (<literal>Fac3d</literal> handles), with some <literal>data.color</literal>
+                        defined. Otherwise ignored.
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <emphasis>"direct"</emphasis>: <literal>data.color</literal>
+                                    values are directly considered as color indices in the
+                                    current gcf().color_map.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para><emphasis>"scaled"</emphasis>: <literal>c=data.color</literal>
+                                    values are linearly mapped on the interval <literal>[1,nC]</literal>,
+                                    with <literal>nC=size(gcf().color_map,1)</literal> is the total
+                                    number of colors in the current colormap. Then,
+                                    <literal>min(c)</literal> represents the color #1, and
+                                    <literal>max(c)</literal> represents the color #nC.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>hiddencolor: </term>
                 <listitem>
-                    <para>This field contains the color index used to draw the backward
-                        faces of a surface. Its value should be a positive integer (color
-                        index relative to the current colormap). If it is a negative
-                        integer,the same color than the "visible" face is applied to the rear
-                        face.
+                    <para>
+                        Positive index of the color of the uniform backward faces of all facets.
+                        If a negative or null value is provided, backward faces are painted with
+                        the same respective colors as the upward visible ones.
                     </para>
                 </listitem>
             </varlistentry>
@@ -559,6 +604,12 @@ e.color_flag= 3; // interpolated shading mode (based on blue default color becau
             </member>
             <member>
                 <link linkend="surf">surf</link>
+            </member>
+            <member>
+                <link linkend="grayplot_properties">grayplot_properties</link>
+            </member>
+            <member>
+                <link linkend="Matplot_properties">Matplot_properties</link>
             </member>
             <member>
                 <link linkend="graphics_entities">graphics_entities</link>
