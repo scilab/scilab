@@ -182,7 +182,7 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
 #else
                     std::fpos_t cur1 = ifs.tellg().seekpos();
 #endif
-                    ifs.seekg(cur1 - offset, std::ios::beg);
+                    ifs.seekg((std::streamoff)cur1 - offset, std::ios::beg);
                 }
                 else
                 {
