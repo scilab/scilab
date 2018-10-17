@@ -12,6 +12,9 @@
 
 function r=%h_e(i,h)
     h=h
+    if type(i)==4
+        i = find(i);
+    end
     if type(i)==10 then
         r=get(h,i)
     elseif type(i)==15 then

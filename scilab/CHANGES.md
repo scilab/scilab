@@ -581,6 +581,7 @@ Known issues
 * [#15758](http://bugzilla.scilab.org/show_bug.cgi?id=15758): sparse([0 0],1) crashes scilab (regression)
 * [#15762](http://bugzilla.scilab.org/show_bug.cgi?id=15762): `error()` refused multiline error messages.
 * [#15582](http://bugzilla.scilab.org/show_bug.cgi?id=15582): The default `mfile2sci`'s `only-double` option set to %T was misleading and too restrictive.
+* [#15814](http://bugzilla.scilab.org/show_bug.cgi?id=15814): Selecting graphic children with booleans yielded an error.
 
 
 ### Bugs fixed in 6.0.1:
