@@ -90,7 +90,9 @@ function pie(varargin)
     xi = [];
     CurColor = 0;
 
-    drawlater();
+    initDrawingMode = gcf().immediate_drawing;
+    gcf().immediate_drawing = "off";
+
     a = gca();
     // Create a close polyline for every parts of pie, the polyline inside color is determinated by the plot colormap
     for i=1:size(x,"*")
@@ -146,5 +148,6 @@ function pie(varargin)
     isoview("on")
     a.box = "off";
     a.axes_visible = "off";
-    drawnow();
+
+    gcf().immediate_drawing = initDrawingMode;
 endfunction

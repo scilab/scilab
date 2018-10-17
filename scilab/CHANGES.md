@@ -626,6 +626,7 @@ Known issues
 * [#15796](http://bugzilla.scilab.org/show_bug.cgi?id=15796): Display after `mprintf("")` crashed Scilab (regression)
 * [#15809](http://bugzilla.scilab.org/show_bug.cgi?id=15809): HDF5 load/save was super slow for nested lists.
 * [#15814](http://bugzilla.scilab.org/show_bug.cgi?id=15814): Selecting graphic children with booleans yielded an error.
+* [#15816](http://bugzilla.scilab.org/show_bug.cgi?id=15816): `polarplot()`, `pie()`, `mesh()` and  `contourf()` ignored / canceled any upstream `drawlater`.
 * [#15818](http://bugzilla.scilab.org/show_bug.cgi?id=15818): `polarplot()` example could not be subplotted. `polarplot`'s demo did not display 'View code' and too often prompted the user.
 * [#15847](http://bugzilla.scilab.org/show_bug.cgi?id=15847): Scilab crashed at startup.
 * [#15854](http://bugzilla.scilab.org/show_bug.cgi?id=15854): `horner(1:$,4)` yielded an error. Extractions from `cblock` tables were impacted.
