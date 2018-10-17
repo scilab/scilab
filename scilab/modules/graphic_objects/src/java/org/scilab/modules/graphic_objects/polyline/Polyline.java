@@ -18,6 +18,7 @@ package org.scilab.modules.graphic_objects.polyline;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BAR_WIDTH__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLOSED__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATA_MODEL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIPS_COUNT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIPS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DISPLAY_FNC__;
@@ -56,7 +57,7 @@ public class Polyline extends ClippableContouredObject {
     private enum PolylineProperty { CLOSED, ARROWSIZEFACTOR, POLYLINESTYLE,
                                     INTERPCOLORVECTOR, INTERPCOLORVECTORSET, INTERPCOLORMODE,
                                     XSHIFT, YSHIFT, ZSHIFT, BARWIDTH, DATATIPS, DATATIPSCOUNT,
-                                    TIP_DISPLAY_FNC, TIP_MARK, COLORSET, DATATIPDISPLAYMODE
+                                    TIP_DISPLAY_FNC, TIP_MARK, COLORSET, DATATIPDISPLAYMODE, DATA
                                   };
 
     public enum DatatipDisplayMode { ALWAYS, MOUSECLICK, MOUSEOVER;
@@ -170,6 +171,8 @@ public class Polyline extends ClippableContouredObject {
                 return PolylineProperty.ZSHIFT;
             case __GO_BAR_WIDTH__ :
                 return PolylineProperty.BARWIDTH;
+            case __GO_DATA_MODEL__ :
+                return PolylineProperty.DATA;
             case __GO_DATATIPS__ :
                 return PolylineProperty.DATATIPS;
             case __GO_DATATIPS_COUNT__ :
@@ -215,6 +218,8 @@ public class Polyline extends ClippableContouredObject {
                     return getZShift();
                 case BARWIDTH:
                     return getBarWidth();
+                case DATA:
+                    return getIdentifier();
                 case DATATIPS:
                     return getDatatips();
                 case DATATIPSCOUNT:
@@ -268,6 +273,9 @@ public class Polyline extends ClippableContouredObject {
                         break;
                     case BARWIDTH:
                         setBarWidth((Double) value);
+                        break;
+                    case DATA:
+                        updateDatatips();
                         break;
                     case DATATIPS:
                         setDatatips((Integer[]) value);
@@ -467,6 +475,17 @@ public class Polyline extends ClippableContouredObject {
      */
     public Integer[] getDatatips() {
         return datatips.toArray(new Integer[datatips.size()]);
+    }
+
+    public UpdateStatus updateDatatips() {
+        GraphicController controller =  GraphicController.getController();
+        for (Integer uid : getDatatips()) {
+            Datatip datatip = (Datatip) controller.getObjectFromId(uid);
+            datatip.updateText();
+            //trigger redraw
+            controller.setProperty(uid, __GO_DATA_MODEL__, 0);
+        }
+        return UpdateStatus.Success;
     }
 
     /**
