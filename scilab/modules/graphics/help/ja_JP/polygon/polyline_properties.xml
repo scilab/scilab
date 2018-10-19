@@ -473,6 +473,19 @@
                         この関数は, datatip本体に類似のプロパティを設定することで,
                         オーバーロードできます.
                     </para>
+                   <para>
+                        Some datatips formatting functions are predefined:
+                        <table border="1">
+                          <tr valign="top">
+                            <th align="left">polar_datatip_display()</th>
+                            <td>: set by polarplot()</td>
+                          </tr>
+                          <tr valign="top">
+                            <th align="left">formatBodePhaseTip()</th>
+                            <td>: set by bode()</td>
+                          </tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
