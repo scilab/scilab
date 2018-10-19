@@ -172,6 +172,21 @@ x(:,1:$-1) - x(:,2:$)
  -13 -14 -13 -14 -13 -14 -13 -14 -14
   13  14  13  14  13  14  13  14  14
 ]]></screen>
+        <programlisting role="example"><![CDATA[
+// shape interpolation between a sphere and a cone
+[T,P]=meshgrid(linspace(0,2*%pi,32),linspace(-%pi/2,%pi/2,32));
+X=cos(T).*cos(P);
+Y=sin(T).*cos(P);
+
+Z=linspace(sin(P),cos(P)-1,100);
+
+h=uicontrol("style","slider","units","normalized",...
+"position",[0.2 0.03 0.6 0.05],"min",1,"max",100,...
+"callback",...
+"drawlater;delete(gca().children);mesh(X,Y,Z(:,:,h.value));isoview;drawnow")
+
+execstr(h.callback)
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

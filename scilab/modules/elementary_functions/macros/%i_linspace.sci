@@ -12,7 +12,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function y = linspace(d1, d2, n)
+function y = %i_linspace(d1, d2, n)
     // Linearly spaced vector.
     // linspace(x1, x2) generates a row vector of 100 linearly
     // equally spaced points between x1 and x2.
@@ -88,39 +88,39 @@ function y = linspace(d1, d2, n)
 endfunction
 // -----------------
 function y = linspace_integers_64(d1,d2,n)
-        s = d2>=d1
-        span = zeros(d1)
-        if typeof(d1)=="int64"  then
-            span = uint64(span)
-        end
-        span(s) = d2(s) - d1(s)
-        span(~s) = d1(~s) - d2(~s)
-        step = span/(n-1)
-        y = iconvert(zeros(size(d1,1),n), inttype(d1))
-        if or(s)  // d2 > d1
-            y(s,:) = d1(s)*ones(1,n) + step(s)*(0:n-1)
-        end
-        if or(~s)
-            y(~s,:) = d1(~s)*ones(1,n) - step(~s)*(0:n-1)
-        end
-        y(:,$) = d2
-        // Computing the balancing corrections
-            // We computes actual intervals
-        if typeof(d1)=="uint64" then
-            i = int64(zeros(size(d1,1),n-1))
-            i(s, :) = y(s, 2:$)    -  y(s, 1:$-1)
-            i(~s,:) = y(~s, 1:$-1) -  y(~s, 2:$)
-        else // int64
-            i = diff(y,1,2);
-        end
-            // diff wrt the 1st interval's width
-        e = i - i(:,1) * ones(1,n-1)
+    s = d2>=d1
+    span = zeros(d1)
+    if typeof(d1)=="int64"  then
+        span = uint64(span)
+    end
+    span(s) = d2(s) - d1(s)
+    span(~s) = d1(~s) - d2(~s)
+    step = span/(n-1)
+    y = iconvert(zeros(size(d1,1),n), inttype(d1))
+    if or(s)  // d2 > d1
+        y(s,:) = d1(s)*ones(1,n) + step(s)*(0:n-1)
+    end
+    if or(~s)
+        y(~s,:) = d1(~s)*ones(1,n) - step(~s)*(0:n-1)
+    end
+    y(:,$) = d2
+    // Computing the balancing corrections
+    // We computes actual intervals
+    if typeof(d1)=="uint64" then
+        i = int64(zeros(size(d1,1),n-1))
+        i(s, :) = y(s, 2:$)    -  y(s, 1:$-1)
+        i(~s,:) = y(~s, 1:$-1) -  y(~s, 2:$)
+    else // int64
+        i = diff(y,1,2);
+    end
+    // diff wrt the 1st interval's width
+    e = i - i(:,1) * ones(1,n-1)
 
-            // Computing corrections
-        S = mean(double(e), 'c') * ones(1,n-1)
-        cumE = cumsum(e, 'c')
-        cumS = cumsum(S, 'c')
-        delta = cumS - cumE
-        // Applying the corrections
-        y(:,2:$) = y(:,2:$) + delta
+    // Computing corrections
+    S = mean(double(e), "c") * ones(1,n-1)
+    cumE = cumsum(e, "c")
+    cumS = cumsum(S, "c")
+    delta = cumS - cumE
+    // Applying the corrections
+    y(:,2:$) = y(:,2:$) + delta
 endfunction

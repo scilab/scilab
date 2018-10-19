@@ -241,6 +241,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\sci_isequal.cpp" />
     <ClCompile Include="..\sci_isreal.cpp" />
     <ClCompile Include="..\sci_kron.cpp" />
+    <ClCompile Include="..\sci_linspace.cpp" />
     <ClCompile Include="..\sci_log.cpp" />
     <ClCompile Include="..\sci_log1p.cpp" />
     <ClCompile Include="..\sci_matrix.cpp" />

@@ -61,6 +61,7 @@ int ElemFuncModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isreal", &sci_isreal, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isequal", &sci_isequal, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"kron", &sci_kron, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"linspace", &sci_linspace, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"log", &sci_log, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"log1p", &sci_log1p, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"matrix", &sci_matrix, MODULE_NAME));
