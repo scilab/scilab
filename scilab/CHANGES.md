@@ -505,7 +505,6 @@ Known issues
 * [#15448](http://bugzilla.scilab.org/show_bug.cgi?id=15448): The Linux desktop files needed to be refreshed.
 * [#15449](http://bugzilla.scilab.org/show_bug.cgi?id=15449): Some small changes were required to ease the compilation with gcc >= 7.
 * [#15450](http://bugzilla.scilab.org/show_bug.cgi?id=15450): Scilab's compilation did not support the ppc64le architecture.
-* [#15452](http://bugzilla.scilab.org/show_bug.cgi?id=15452): The libsciconsole-minimal.la library was not linked.
 * [#15453](http://bugzilla.scilab.org/show_bug.cgi?id=15453): Scilab's compilation needed HOME to be writable.
 * [#15454](http://bugzilla.scilab.org/show_bug.cgi?id=15454): Hundreds of typos fixed all over the code: occured => occured, formated => formatted, an other => another, setted => set, retrived => retrieved ..
 * [#15455](http://bugzilla.scilab.org/show_bug.cgi?id=15455): OCaml build sometimes failed with Linenum being an unbound module.
