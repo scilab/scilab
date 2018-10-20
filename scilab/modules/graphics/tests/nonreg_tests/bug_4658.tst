@@ -43,5 +43,3 @@
 // edit_curv
 // errbar
 // eval3dp
-// fac3d1
-// fac3d

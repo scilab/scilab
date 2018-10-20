@@ -35,9 +35,9 @@ function [x,y,z]=eval3dp(fun,p1,p2)
     //                             'y=p1.*cos(p1).*cos(p2)';
     //                             'z=p1.*sin(p2)'])
     //  [x,y,z]=eval3dp(scp,0:0.3:2*%pi,-%pi:0.3:%pi);
-    //  fac3d(x,y,z,35,45,'x@y@z')
+    //  plot3d(x,y,z,35,45,'x@y@z')
     //%Voir aussi
-    // plot3d fac3d
+    // plot3d
     //!
 
     [lhs,rhs]=argn(0)

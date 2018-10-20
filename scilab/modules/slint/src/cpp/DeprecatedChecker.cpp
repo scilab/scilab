@@ -136,6 +136,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"fcontour2d", L"contour2d");
     map.emplace(L"fcontour", L"contour");
     map.emplace(L"fac3d", L"plot3d");
+    map.emplace(L"fac3d1", L"plot3d1");
     map.emplace(L"eval3d", L"ndgrid");
 
     map.emplace(L"gspec", L"spec");

@@ -3230,8 +3230,6 @@ msgstr ""
 # File: modules/graphics/macros/colorbar.sci, line: 51
 # File: modules/graphics/macros/colordef.sci, line: 18
 # File: modules/graphics/macros/comet.sci, line: 53
-# File: modules/graphics/macros/fac3d.sci, line: 46
-# File: modules/graphics/macros/fac3d1.sci, line: 46
 # File: modules/graphics/macros/getcolor.sci, line: 49
 # File: modules/graphics/macros/iscolor.sci, line: 38
 # File: modules/graphics/macros/replot.sci, line: 37

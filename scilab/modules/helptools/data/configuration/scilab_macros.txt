@@ -1660,8 +1660,6 @@ edit_curv
 errbar
 eval3d
 eval3dp
-fac3d
-fac3d1
 fchamp
 fgrayplot
 fplot2d

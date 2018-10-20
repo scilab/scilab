@@ -187,6 +187,8 @@ Removed Functions
 * `square` was obsolete and has been removed.
 * `strcmpi` was obsolete and has been removed. Please use `strcmp(,'i')` instead.
 * `xgetech` was obsolete and has been removed. Please use `gca` instead.
+* `fac3d` was obsolete since Scilab 4 and has been removed. Please use `plot3d` instead.
+* `fac3d1` was obsolete since Scilab 4 and has been removed. Please use `plot3d1` instead.
 
 
 Known issues
@@ -258,7 +260,6 @@ Bug Fixes
 * [#15523](http://bugzilla.scilab.org/show_bug.cgi?id=15523): `%ODEOPTIONS(1)=2` didn't work with solvers 'rk' and 'rkf'
 * [#15534](http://bugzilla.scilab.org/show_bug.cgi?id=15534): Booleans and encoded integers could not be concatenated together.
 * [#15577](http://bugzilla.scilab.org/show_bug.cgi?id=15577): `edit` did not accept a line number as text, as with `edit linspace 21`.
-
 * [#15580](http://bugzilla.scilab.org/show_bug.cgi?id=15580): `det(sparse([],[]))` yielded an error.
 * [#15981](http://bugzilla.scilab.org/show_bug.cgi?id=15981): `wavread()` kept the wav file open and locked when returning on errors. It weakly managed the input file name. It claimed for invalid data formats instead of unsupported ones, with poor information about the current format vs the supported ones. Several error messages refered to a wrong function.
 * [#15595](http://bugzilla.scilab.org/show_bug.cgi?id=15595): `unique()` was not able to return distinct values in their original order, without sorting them. A `keepOrder` option now allows it.
@@ -272,6 +273,7 @@ Bug Fixes
 * [#15744](http://bugzilla.scilab.org/show_bug.cgi?id=15744): `sylm(a,b)` yielded an error when degree(a)==0 or degree(b)==0.
 * [#15745](http://bugzilla.scilab.org/show_bug.cgi?id=15745): `diophant(0,0,m)`, `diophant([p 0],q)`, `diophant([0 p],q)` with m<>0 and p>q were wrong. There was no flag for cases with an infinite number of solutions. When there is no solution, some values were returned anyway, instead of []. In this case, the documented definition of the err value was dubious. Decimal numbers and integers were accepted, but not encoded integers. Inf and NaN input coefficients were not rejected.
 * [#15812](http://bugzilla.scilab.org/show_bug.cgi?id=15812): On assigning variables the source variable may become become corrupted
+* [#15821](http://bugzilla.scilab.org/show_bug.cgi?id=15821): `fac3d()` and fac3d1()` were still in Scilab 6.0 despite they were tagged obsolete 14 years ago in Scilab 4.1
 * [#15840](http://bugzilla.scilab.org/show_bug.cgi?id=15840): `grand(1,"prm",m)` yielded an unsqueezed size([size(m) 1]) hypermatrix
 * [#15934](http://bugzilla.scilab.org/show_bug.cgi?id=15934): The `^ hat` page wrongly indicated that `^` applied to a rectangular matrix not being a vector is done element-wise.
 * [#15948](http://bugzilla.scilab.org/show_bug.cgi?id=15948): `xlabel`, `ylabel`, `zlabel` and `title` needed to be upgraded.
