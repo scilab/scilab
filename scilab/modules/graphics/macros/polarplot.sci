@@ -15,7 +15,8 @@ function polarplot(theta,rho,style,strf,leg,rect)
     if rhs<=0 then
         theta=0:.01:2*%pi;
         rho=sin(2*theta).*cos(2*theta)
-        clf();
+        s = gca().axes_bounds;
+        delete(gca()); xsetech(s) // clears & keeps the current axes area
         polarplot(theta,rho)
         return
     end
