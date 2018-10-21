@@ -1,210 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="fftshift">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="fftshift">
     <refnamediv>
-
         <refname>fftshift</refname>
-
         <refpurpose>fft出力を再配置し,スペクトルの中心に周波数0を移動する</refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
-        <synopsis>y=fftshift(x [,job])</synopsis>
-
+        <synopsis>
+            y = fftshift(x)
+            y = fftshift(x, along)
+        </synopsis>
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
-                <term>x</term>
-
+                <term>x, y</term>
                 <listitem>
-
-                    <para>実数または複素数のベクトルまたは行列.</para>
-
+                    <para>同じサイズのベクトル、行列またはハイパーマトリックス.</para>
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
-                <term>y</term>
-
+                <term>along</term>
                 <listitem>
-
-                    <para>実数または複素数のベクトルまたは行列.</para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
-                <term>job</term>
-
-                <listitem>
-
                     <para>整数, 選択する次元, または文字列 'all'</para>
-
                 </listitem>
-
             </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
         <para>
-
             <literal>x</literal>がFFT計算の結果の場合,
-
             <literal>y= fftshift(x)</literal> または <literal>y= fftshift(x,"all")</literal>
-
             は,扱いが容易な形式である,周波数0要素をよりスペクトルの中心に移動します.
-
         </para>
+        <screen><![CDATA[
+x = [x1  x2 ]    gives   y = [x2  x1 ]  // vector
 
+    [x11 x12]                [x22 x21]
+x = |       |    gives   y = |       |  // matrix
+    [x21 x22]                [x12 x11]
+etc
+]]></screen>
         <para>
-
-            <literal>x</literal> が大きさnのベクトルの場合,y はiベクトル
-
-            <literal>x([n/2+1:n,1:n/2])</literal>となります
-
-        </para>
-
-        <para>
-
-            <literal>x</literal>が  <literal>m</literal> 行 <literal>n</literal> 列行列の場合,
-
-            <literal>y</literal> は行列
-
-            <literal>x([m/2+1:n,1:m/2],[n/2+1:n,1:n/2])</literal>となります.
-
-        </para>
-
-        <programlisting role=""><![CDATA[
-  [x11 x12]                  [x22 x21]
-x=[       ]        gives   y=[       ]
-  [x21 x22]                  [x12 x11]
- ]]></programlisting>
-
-        <para>
-
             <literal>y= fftshift(x,n)</literal> は<literal>n</literal>番目の次元
-
             のみについて配置換えを行ないます.
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
+        <programlisting role="example"><![CDATA[
+x = [1 2 3 4 5 6 7]
+fftshift(x)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> x = [1 2 3 4 5 6 7]
+ x  =
+   1.   2.   3.   4.   5.   6.   7.
 
+--> fftshift(x)
+ ans  =
+   5.   6.   7.   1.   2.   3.   4.
+]]></screen>
+    <para/>
+        <programlisting role="example"><![CDATA[
+x = matrix(1:36,6,6)
+fftshift(x)
+fftshift(x, "r")
+fftshift(x, "c")
+ ]]></programlisting>
+    <screen><![CDATA[
+--> x = matrix(1:36,6,6)
+ x  =
+   1.   7.    13.   19.   25.   31.
+   2.   8.    14.   20.   26.   32.
+   3.   9.    15.   21.   27.   33.
+   4.   10.   16.   22.   28.   34.
+   5.   11.   17.   23.   29.   35.
+   6.   12.   18.   24.   30.   36.
+
+--> fftshift(x)       // Corners go to the center
+ ans  =
+   22.   28.   34.   4.   10.   16.
+   23.   29.   35.   5.   11.   17.
+   24.   30.   36.   6.   12.   18.
+   19.   25.   31.   1.   7.    13.
+   20.   26.   32.   2.   8.    14.
+   21.   27.   33.   3.   9.    15.
+
+--> fftshift(x, "r")  // External rows become middle rows
+ ans  =
+   4.   10.   16.   22.   28.   34.
+   5.   11.   17.   23.   29.   35.
+   6.   12.   18.   24.   30.   36.
+   1.   7.    13.   19.   25.   31.
+   2.   8.    14.   20.   26.   32.
+   3.   9.    15.   21.   27.   33.
+
+--> fftshift(x, "c")  // External columns become middle columns
+ ans  =
+   19.   25.   31.   1.   7.    13.
+   20.   26.   32.   2.   8.    14.
+   21.   27.   33.   3.   9.    15.
+   22.   28.   34.   4.   10.   16.
+   23.   29.   35.   5.   11.   17.
+   24.   30.   36.   6.   12.   18.
+]]></screen>
+    <para/>
         <programlisting role="example"><![CDATA[
 //信号を作成
-t=0:0.1:1000;
-x=3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
+t = 0:0.1:1000;
+x = 3*sin(t) + 8*sin(3*t) + 0.5*sin(5*t) + 3*rand(t);
 //compute the fft
-y=fft(x,-1);
+y = fft(x,-1);
 
 //表示
 clf();
-subplot(2,1,1);plot2d(abs(y))
-subplot(2,1,2);plot2d(fftshift(abs(y)))
+subplot(2,1,1); plot2d(abs(y))
+subplot(2,1,2); plot2d(fftshift(abs(y)))
  ]]></programlisting>
-
         <scilab:image>
-
             t=0:0.1:1000;
-
             x=3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
-
             y=fft(x,-1);
-
             subplot(2,1,1);plot2d(abs(y))
-
             subplot(2,1,2);plot2d(fftshift(abs(y)))
-
         </scilab:image>
-
         <programlisting role="example"><![CDATA[
 //2次元画像を作成
-t=0:0.1:30;
-x=3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
-  0.5*sin(5*t')*sin(5*t)+3*rand(t')*rand(t);
+t = 0:0.1:30;
+x = 3*sin(t')*cos(2*t) + 8*sin(3*t')*sin(5*t) + ..
+    0.5*sin(5*t')*sin(5*t) + 3*rand(t')*rand(t);
 //fftを計算
-y=fft(x,-1);
+y = fft(x,-1);
 
 //表示
 clf();
 gcf().color_map = hotcolormap(256);
-subplot(2,1,1);
-Matplot(abs(y))
-subplot(2,1,2);
-Matplot(fftshift(abs(y)))
+subplot(2,1,1); Matplot(abs(y))
+subplot(2,1,2); Matplot(fftshift(abs(y)))
  ]]></programlisting>
-
         <scilab:image>
-
             t=0:0.1:30;
-
             x=3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
-
             0.5*sin(5*t')*sin(5*t)+3*rand(t')*rand(t);
-
             y=fft(x,-1);
-            
             gcf().color_map = hotcolormap(256);
-            
             subplot(2,1,1);
-            
             Matplot(abs(y))
-            
             subplot(2,1,2);
-            
             Matplot(fftshift(abs(y)))
-            
         </scilab:image>
-
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
                 <link linkend="fft">fft</link>
-
             </member>
-
             <member>
-
                 <link linkend="ifftshift">ifftshift</link>
-
             </member>
-
+            <member>
+                <link linkend="flipdim">flipdim</link>
+            </member>
         </simplelist>
-
     </refsection>
-
 </refentry>
-

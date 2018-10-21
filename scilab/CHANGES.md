@@ -642,6 +642,7 @@ Known issues
 * [#15778](http://bugzilla.scilab.org/show_bug.cgi?id=15778): Deleting some rows or columns of a boolean sparse array with `= []` crashed Scilab
 * [#15779](http://bugzilla.scilab.org/show_bug.cgi?id=15779): `test_run` did not accept the wildcard * in tests names.
 * [#15796](http://bugzilla.scilab.org/show_bug.cgi?id=15796): Display after `mprintf("")` crashed Scilab (regression)
+* [#15799](http://bugzilla.scilab.org/show_bug.cgi?id=15799): `ifftshift()` could not invert `fftshift(x, along)` directional actions.
 * [#15808](http://bugzilla.scilab.org/show_bug.cgi?id=15808): `[5i]` was parsed as `[5,i]`
 * [#15809](http://bugzilla.scilab.org/show_bug.cgi?id=15809): HDF5 load/save was super slow for nested lists.
 * [#15813](http://bugzilla.scilab.org/show_bug.cgi?id=15813): In polarplot mode, datatips displayed irrelevant cartesian coordinates instead of polar ones.

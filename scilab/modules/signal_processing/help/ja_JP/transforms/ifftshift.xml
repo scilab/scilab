@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,14 +12,20 @@
  * For more information, see the COPYING file which you should have received
  * along with this program.
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ifftshift">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="ifftshift">
     <refnamediv>
         <refname>ifftshift</refname>
         <refpurpose>fftshiftを反転する</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>y=ifftshift(x)</synopsis>
+        <synopsis>
+            y = ifftshift(x)
+            y = ifftshift(x, along)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -28,6 +34,12 @@
                 <term>x, y</term>
                 <listitem>
                     <para>実数または複素数のベクトルまたは行列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>along</term>
+                <listitem>
+                    <para>整数, 選択する次元, または文字列 'all'</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -47,16 +59,67 @@
             <literal>ifftshift(x)</literal> は各次元で<literal>x</literal>の
             "半分の空間"を交換します.
         </para>
+        <para>
+            <literal>y= ifftshift(x,n)</literal> は<literal>n</literal>番目の次元
+            のみについて配置換えを行ないます.
+        </para>
+        <note>
+            <literal>ifftshift()</literal> is designed in such a way that whatever is
+            <literal>x</literal> with even or/and odd sizes,
+            <literal>ifftshift(fftshift(x))</literal> and <literal>fftshift(ifftshift(x))</literal>
+            are always equal to <literal>x</literal>.
+        </note>
     </refsection>
     <refsection>
         <title>例</title>
         <para>
-            例 #1:
+            Example #1:
+        </para>
+        <para>
+            When the size of a vector (or of a dimension>1) is even, <literal>fftshift()</literal>
+            and <literal>ifftshift()</literal> are equivalent. It is no longer the case when a size
+            is odd:
+        </para>
+        <programlisting role="example"><![CDATA[
+even = [1 2 3 4 5 6];
+odd  = [1 2 3 4 5 6 7];
+[fftshift(even) ; ifftshift(even)]
+[fftshift(odd)  ; ifftshift(odd)]
+
+// Both are always reciprocal:
+ifftshift(fftshift(odd))
+fftshift(ifftshift(odd))
+ ]]></programlisting>
+    <screen><![CDATA[
+--> even = [1 2 3 4 5 6];
+--> odd  = [1 2 3 4 5 6 7];
+--> [fftshift(even) ; ifftshift(even)]
+ ans  =
+   4.   5.   6.   1.   2.   3.
+   4.   5.   6.   1.   2.   3.
+
+--> [fftshift(odd)  ; ifftshift(odd)]
+ ans  =
+   5.   6.   7.   1.   2.   3.   4.
+   4.   5.   6.   7.   1.   2.   3.
+
+--> // Both are always reciprocal:
+--> ifftshift(fftshift(odd))
+ ans  =
+   1.   2.   3.   4.   5.   6.   7.
+
+--> fftshift(ifftshift(odd))
+ ans  =
+   1.   2.   3.   4.   5.   6.   7.
+]]></screen>
+        <para/>
+        <para>
+            例 #2:
         </para>
         <programlisting role="example"><![CDATA[
 // 信号を生成
 t = 0:0.1:1000;
-x = 3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
+x = 3*sin(t) + 8*sin(3*t) + 0.5*sin(5*t) + 3*rand(t);
 // fftを計算
 y = fft(x, -1);
 // 結果を反転
@@ -66,16 +129,18 @@ invShift = ifftshift(shift);
 // 元の結果を再成したどうかを確認
 and(y == invShift)
  ]]></programlisting>
+        <para/>
         <para>
-            例 #2:
+            例 #3:
         </para>
         <programlisting role="example"><![CDATA[
 // 2次元画像を生成
 t = 0:0.1:30;
-x = 3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
-  0.5*sin(5*t')*sin(5*t)+3*rand(t')*rand(t);
+x = 3*sin(t')*cos(2*t) + 8*sin(3*t')*sin(5*t) + ..
+  0.5*sin(5*t')*sin(5*t) + 3*rand(t')*rand(t);
 // fftを計算
 y = fft(x,-1);
+
 // 結果を反転
 shift = fftshift(y);
 // 反転結果を反転
@@ -93,6 +158,20 @@ and(y == invShift)
             <member>
                 <link linkend="fft">fft</link>
             </member>
+            <member>
+                <link linkend="flipdim">flipdim</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    Option <literal>along</literal> added.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
