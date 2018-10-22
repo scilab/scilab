@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C)  1985-2010 - INRIA - Serge Steer
+// Copyright (C) 1985 - 2010 - INRIA - Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,6 +13,14 @@
 function str = formatBodeMagTip(datatipHandle)
     // This function is called by the datatips mechanism to format the tip
     // string for the magnitude bode curves
+
+    unit = gettext("Hz")
+    a = datatipHandle.parent.parent;
+    while a.type~="Axes", a = a.parent, end
+    if grep(a.x_label.text,"rad/s")~=[] then
+        unit = gettext("rad/s")
+    end
+
     pt = datatipHandle.data(1:2);
-    str = msprintf("%.4g"+_("Hz")+"\n%.4g"+_("dB"), pt(1), pt(2));
+    str = msprintf("%.4g "+unit+"\n%.4g"+gettext(" dB"), pt(1), pt(2));
 endfunction

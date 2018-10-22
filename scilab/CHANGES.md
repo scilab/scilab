@@ -633,6 +633,7 @@ Known issues
 * [#15816](http://bugzilla.scilab.org/show_bug.cgi?id=15816): `polarplot()`, `pie()`, `mesh()` and  `contourf()` ignored / canceled any upstream `drawlater`.
 * [#15817](http://bugzilla.scilab.org/show_bug.cgi?id=15817): `ascii(c)` with c>=128 crashed on OSX.
 * [#15818](http://bugzilla.scilab.org/show_bug.cgi?id=15818): `polarplot()` example could not be subplotted. `polarplot`'s demo did not display 'View code' and too often prompted the user.
+* [#15827](http://bugzilla.scilab.org/show_bug.cgi?id=15828): After `bode(..'rad')`, abscissae were titled 'Fréquence' instead of 'Pulsation' in french, and datatips still shew 'Hz' instead of 'rad/s'.
 * [#15847](http://bugzilla.scilab.org/show_bug.cgi?id=15847): Scilab crashed at startup.
 * [#15854](http://bugzilla.scilab.org/show_bug.cgi?id=15854): `horner(1:$,4)` yielded an error. Extractions from `cblock` tables were impacted.
 
