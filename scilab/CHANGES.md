@@ -676,6 +676,7 @@ Known issues
 * [#15817](http://bugzilla.scilab.org/show_bug.cgi?id=15817): `ascii(c)` with c>=128 crashed on OSX.
 * [#15818](http://bugzilla.scilab.org/show_bug.cgi?id=15818): `polarplot()` example could not be subplotted. `polarplot`'s demo did not display 'View code' and too often prompted the user.
 * [#15827](http://bugzilla.scilab.org/show_bug.cgi?id=15828): After `bode(..'rad')`, abscissae were titled 'Fréquence' instead of 'Pulsation' in french, and datatips still shew 'Hz' instead of 'rad/s'.
+* [#15830](http://bugzilla.scilab.org/show_bug.cgi?id=15830): `linspace` was not reliable for series of encoded integers.
 * [#15847](http://bugzilla.scilab.org/show_bug.cgi?id=15847): Scilab crashed at startup.
 * [#15850](http://bugzilla.scilab.org/show_bug.cgi?id=15850): Adding a space after a string increases its size.
 * [#15853](http://bugzilla.scilab.org/show_bug.cgi?id=15853): `mlist("cblock")` displayed endlessly "operation +: Warning adding..."
