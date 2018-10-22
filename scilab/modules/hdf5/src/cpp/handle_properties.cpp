@@ -39,7 +39,7 @@ extern "C"
 }
 
 extern types::InternalType* import_data(int dataset);
-extern int export_data(int parent, const std::string& name, types::InternalType* data);
+extern int export_data(int parent, const std::string& name, types::InternalType* data, hid_t xfer_plist_id);
 
 static int getHandleInt(int dataset, const std::string& prop, int* val)
 {
@@ -1919,17 +1919,17 @@ static void getHandleStringVectorProperty(int uid, int prop, char*** vals)
     getGraphicObjectProperty(uid, prop, jni_string_vector, (void **)vals);
 }
 
-static bool export_handle_generic(int parent, int uid, const HandleProp& props);
-static bool export_handle_layout_options(int parent, int uid);
-static bool export_handle_userdata(int parent, int uid);
-static bool export_handle_tag(int parent, int uid);
-static bool export_handle_figure(int parent, int uid);
-static bool export_handle_axes(int parent, int uid);
-static bool export_handle_label(int parent, int uid);
-static bool export_handle_champ(int parent, int uid);
-static bool export_handle_children(int parent, int uid);
+static bool export_handle_generic(int parent, int uid, const HandleProp& props, hid_t xfer_plist_id);
+static bool export_handle_layout_options(int parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_userdata(int parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_tag(int parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_figure(int parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_axes(int parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_label(int parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_champ(int parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_children(int parent, int uid, hid_t xfer_plist_id);
 
-static bool export_handle_generic(int parent, int uid, const HandleProp& props)
+static bool export_handle_generic(int parent, int uid, const HandleProp& props, hid_t xfer_plist_id)
 {
     for (auto & prop : props)
     {
@@ -1949,7 +1949,7 @@ static bool export_handle_generic(int parent, int uid, const HandleProp& props)
                     std::vector<int> dims = {1, 1};
                     int val = 0;
                     getHandleBoolProperty(uid, go, &val);
-                    writeBooleanMatrix6(parent, name, static_cast<int>(dims.size()), dims.data(), &val);
+                    writeBooleanMatrix6(parent, name, static_cast<int>(dims.size()), dims.data(), &val, xfer_plist_id);
                     break;
                 }
                 case jni_double:
@@ -1957,7 +1957,7 @@ static bool export_handle_generic(int parent, int uid, const HandleProp& props)
                     std::vector<int> dims = {1, 1};
                     double val = 0;
                     getHandleDoubleProperty(uid, go, &val);
-                    writeDoubleMatrix6(parent, name, static_cast<int>(dims.size()), dims.data(), &val);
+                    writeDoubleMatrix6(parent, name, static_cast<int>(dims.size()), dims.data(), &val, xfer_plist_id);
                     break;
                 }
                 case jni_int:
@@ -1965,7 +1965,7 @@ static bool export_handle_generic(int parent, int uid, const HandleProp& props)
                     std::vector<int> dims = {1, 1};
                     int val = 0;
                     getHandleIntProperty(uid, go, &val);
-                    writeIntegerMatrix6(parent, name, H5T_NATIVE_INT32, "32", static_cast<int>(dims.size()), dims.data(), &val);
+                    writeIntegerMatrix6(parent, name, H5T_NATIVE_INT32, "32", static_cast<int>(dims.size()), dims.data(), &val, xfer_plist_id);
                     break;
                 }
                 case jni_string:
@@ -1973,7 +1973,7 @@ static bool export_handle_generic(int parent, int uid, const HandleProp& props)
                     std::vector<int> dims = {1, 1};
                     char* val;
                     getHandleStringProperty(uid, go, &val);
-                    writeStringMatrix6(parent, name, static_cast<int>(dims.size()), dims.data(), &val);
+                    writeStringMatrix6(parent, name, static_cast<int>(dims.size()), dims.data(), &val, xfer_plist_id);
                     releaseGraphicObjectProperty(go, val, jni_string, 1);
                     break;
                 }
@@ -2011,7 +2011,7 @@ static bool export_handle_generic(int parent, int uid, const HandleProp& props)
                     std::vector<int> dims = {row, col};
                     int* vals;
                     getHandleBoolVectorProperty(uid, go, &vals);
-                    writeBooleanMatrix6(parent, name, static_cast<int>(dims.size()), dims.data(), vals);
+                    writeBooleanMatrix6(parent, name, static_cast<int>(dims.size()), dims.data(), vals, xfer_plist_id);
                     releaseGraphicObjectProperty(go, vals, jni_bool_vector, row * col);
                     break;
                 }
@@ -2020,7 +2020,7 @@ static bool export_handle_generic(int parent, int uid, const HandleProp& props)
                     std::vector<int> dims = {row, col};
                     double* vals;
                     getHandleDoubleVectorProperty(uid, go, &vals);
-                    writeDoubleMatrix6(parent, name, static_cast<int>(dims.size()), dims.data(), vals);
+                    writeDoubleMatrix6(parent, name, static_cast<int>(dims.size()), dims.data(), vals, xfer_plist_id);
                     releaseGraphicObjectProperty(go, vals, jni_double_vector, row * col);
                     break;
                 }
@@ -2029,7 +2029,7 @@ static bool export_handle_generic(int parent, int uid, const HandleProp& props)
                     std::vector<int> dims = {row, col};
                     int* vals;
                     getHandleIntVectorProperty(uid, go, &vals);
-                    writeIntegerMatrix6(parent, name, H5T_NATIVE_INT32, "32", static_cast<int>(dims.size()), dims.data(), vals);
+                    writeIntegerMatrix6(parent, name, H5T_NATIVE_INT32, "32", static_cast<int>(dims.size()), dims.data(), vals, xfer_plist_id);
                     releaseGraphicObjectProperty(go, vals, jni_int_vector, row * col);
                     break;
                 }
@@ -2038,7 +2038,7 @@ static bool export_handle_generic(int parent, int uid, const HandleProp& props)
                     std::vector<int> dims = {row, col};
                     char** vals;
                     getHandleStringVectorProperty(uid, go, &vals);
-                    writeStringMatrix6(parent, name, static_cast<int>(dims.size()), dims.data(), vals);
+                    writeStringMatrix6(parent, name, static_cast<int>(dims.size()), dims.data(), vals, xfer_plist_id);
                     releaseGraphicObjectProperty(go, vals, jni_string_vector, row * col);
                     break;
                 }
@@ -2051,15 +2051,15 @@ static bool export_handle_generic(int parent, int uid, const HandleProp& props)
     }
 
     //user_data
-    export_handle_userdata(parent, uid);
+    export_handle_userdata(parent, uid, xfer_plist_id);
     //tag
-    export_handle_tag(parent, uid);
+    export_handle_tag(parent, uid, xfer_plist_id);
     //children
-    export_handle_children(parent, uid);
+    export_handle_children(parent, uid, xfer_plist_id);
     return true;
 }
 
-static bool export_handle_layout_options(int parent, int uid)
+static bool export_handle_layout_options(int parent, int uid, hid_t xfer_plist_id)
 {
     int layout_type = 0;
     getHandleIntProperty(uid, __GO_LAYOUT__, &layout_type);
@@ -2078,12 +2078,12 @@ static bool export_handle_layout_options(int parent, int uid)
             std::vector<int> dims = {1, 2};
             int* grid = nullptr;
             getHandleIntVectorProperty(uid, __GO_GRID_OPT_GRID__, &grid);
-            writeIntegerMatrix6(layout, "grid", H5T_NATIVE_INT32, "32", 2, dims.data(), grid);
+            writeIntegerMatrix6(layout, "grid", H5T_NATIVE_INT32, "32", 2, dims.data(), grid, xfer_plist_id);
             releaseGraphicObjectProperty(__GO_GRID_OPT_GRID__, grid, jni_int_vector, 2);
 
             int* pad = nullptr;
             getHandleIntVectorProperty(uid, __GO_GRID_OPT_PADDING__, &pad);
-            writeIntegerMatrix6(layout, "padding", H5T_NATIVE_INT32, "32", 2, dims.data(), pad);
+            writeIntegerMatrix6(layout, "padding", H5T_NATIVE_INT32, "32", 2, dims.data(), pad, xfer_plist_id);
             releaseGraphicObjectProperty(__GO_GRID_OPT_PADDING__, pad, jni_int_vector, 2);
             break;
         }
@@ -2092,7 +2092,7 @@ static bool export_handle_layout_options(int parent, int uid)
             std::vector<int> dims = {1, 2};
             int* pad = nullptr;
             getHandleIntVectorProperty(uid, __GO_BORDER_OPT_PADDING__, &pad);
-            writeIntegerMatrix6(layout, "padding", H5T_NATIVE_INT32, "32", 2, dims.data(), pad);
+            writeIntegerMatrix6(layout, "padding", H5T_NATIVE_INT32, "32", 2, dims.data(), pad, xfer_plist_id);
             releaseGraphicObjectProperty(__GO_BORDER_OPT_PADDING__, pad, jni_int_vector, 2);
             break;
         }
@@ -2102,19 +2102,19 @@ static bool export_handle_layout_options(int parent, int uid)
 
     return true;
 }
-static bool export_handle_tag(int parent, int uid)
+static bool export_handle_tag(int parent, int uid, hid_t xfer_plist_id)
 {
     char* tag = nullptr;
     getHandleStringProperty(uid, __GO_TAG__, &tag);
     int dims[2];
     dims[0] = 1;
     dims[1] = 1;
-    writeStringMatrix6(parent, "tag", 2, dims, &tag);
+    writeStringMatrix6(parent, "tag", 2, dims, &tag, xfer_plist_id);
     releaseGraphicObjectProperty(__GO_TAG__, tag, jni_string, 1);
     return true;
 }
 
-static bool export_handle_userdata(int parent, int uid)
+static bool export_handle_userdata(int parent, int uid, hid_t xfer_plist_id)
 {
 
     int size = 0;
@@ -2123,7 +2123,7 @@ static bool export_handle_userdata(int parent, int uid)
     if (size == 0)
     {
         std::vector<int> dims = {0, 0};
-        writeDoubleMatrix6(parent, "userdata", 2, dims.data(), NULL);
+        writeDoubleMatrix6(parent, "userdata", 2, dims.data(), NULL, xfer_plist_id);
     }
     else
     {
@@ -2144,7 +2144,7 @@ static bool export_handle_userdata(int parent, int uid)
             pUD = ((types::InternalType*) * p);
         }
 
-        export_data(parent, "userdata", pUD);
+        export_data(parent, "userdata", pUD, xfer_plist_id);
         //do not release, data is a reference on data in model
         //releaseGraphicObjectProperty(__GO_USER_DATA__, data, jni_int_vector, size);
     }
@@ -2152,7 +2152,7 @@ static bool export_handle_userdata(int parent, int uid)
     return true;
 }
 
-static bool export_handle_datatips(int parent, int uid)
+static bool export_handle_datatips(int parent, int uid, hid_t xfer_plist_id)
 {
     int count = 0;
     getHandleIntProperty(uid, __GO_DATATIPS_COUNT__, &count);
@@ -2166,7 +2166,7 @@ static bool export_handle_datatips(int parent, int uid)
 
     for (int i = 0; i < count; ++i)
     {
-        if (export_handle(node, std::to_string(i), datatips[i]) == false)
+        if (export_handle(node, std::to_string(i), datatips[i], xfer_plist_id) == false)
         {
             releaseGraphicObjectProperty(__GO_DATATIPS__, datatips, jni_int_vector, count);
             closeList6(node);
@@ -2179,16 +2179,16 @@ static bool export_handle_datatips(int parent, int uid)
     return true;
 }
 
-static bool export_handle_border(int dataset, int uid);
+static bool export_handle_border(int dataset, int uid, hid_t xfer_plist_id);
 
-static bool export_handle_border_none(int dataset, int uid)
+static bool export_handle_border_none(int dataset, int uid, hid_t xfer_plist_id)
 {
     //nothing to do
     closeList6(dataset);
     return true;
 }
 
-static bool export_handle_border_line(int dataset, int uid)
+static bool export_handle_border_line(int dataset, int uid, hid_t xfer_plist_id)
 {
     bool ret = false;
     int dims[2];
@@ -2198,7 +2198,7 @@ static bool export_handle_border_line(int dataset, int uid)
     //color
     char* color = nullptr;
     getHandleStringProperty(uid, __GO_UI_FRAME_BORDER_COLOR__, &color);
-    writeStringMatrix6(dataset, "color", 2, dims, &color);
+    writeStringMatrix6(dataset, "color", 2, dims, &color, xfer_plist_id);
     releaseGraphicObjectProperty(__GO_UI_FRAME_BORDER_COLOR__, color, jni_string, 1);
 
     //thickness
@@ -2206,7 +2206,7 @@ static bool export_handle_border_line(int dataset, int uid)
     ret = getHandleIntProperty(uid, __GO_LINE_THICKNESS__, &thickness);
     if (ret)
     {
-        writeIntegerMatrix6(dataset, "thickness", H5T_NATIVE_INT32, "32", 2, dims, &thickness);
+        writeIntegerMatrix6(dataset, "thickness", H5T_NATIVE_INT32, "32", 2, dims, &thickness, xfer_plist_id);
     }
 
     //rounded
@@ -2214,14 +2214,14 @@ static bool export_handle_border_line(int dataset, int uid)
     ret = getHandleBoolProperty(uid, __GO_UI_FRAME_BORDER_ROUNDED__, &rounded);
     if (ret)
     {
-        writeBooleanMatrix6(dataset, "rounded", 2, dims, &rounded);
+        writeBooleanMatrix6(dataset, "rounded", 2, dims, &rounded, xfer_plist_id);
     }
 
     closeList6(dataset);
     return true;
 }
 
-static bool export_handle_border_bevel(int dataset, int uid)
+static bool export_handle_border_bevel(int dataset, int uid, hid_t xfer_plist_id)
 {
     bool ret = false;
     int dims[2];
@@ -2234,14 +2234,14 @@ static bool export_handle_border_bevel(int dataset, int uid)
     ret = getHandleIntProperty(uid, __GO_UI_FRAME_BORDER_TYPE__, &type);
     if (ret)
     {
-        writeIntegerMatrix6(dataset, "type", H5T_NATIVE_INT32, "32", 2, dims, &type);
+        writeIntegerMatrix6(dataset, "type", H5T_NATIVE_INT32, "32", 2, dims, &type, xfer_plist_id);
     }
 
     //highlight out
     getHandleStringProperty(uid, __GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__, &data);
     if (data)
     {
-        writeStringMatrix6(dataset, "highlight_out", 2, dims, &data);
+        writeStringMatrix6(dataset, "highlight_out", 2, dims, &data, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__, data, jni_string, 1);
     }
 
@@ -2249,7 +2249,7 @@ static bool export_handle_border_bevel(int dataset, int uid)
     getHandleStringProperty(uid, __GO_UI_FRAME_BORDER_HIGHLIGHT_IN__, &data);
     if (data)
     {
-        writeStringMatrix6(dataset, "highlight_in", 2, dims, &data);
+        writeStringMatrix6(dataset, "highlight_in", 2, dims, &data, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_UI_FRAME_BORDER_HIGHLIGHT_IN__, data, jni_string, 1);
     }
 
@@ -2257,7 +2257,7 @@ static bool export_handle_border_bevel(int dataset, int uid)
     getHandleStringProperty(uid, __GO_UI_FRAME_BORDER_SHADOW_OUT__, &data);
     if (data)
     {
-        writeStringMatrix6(dataset, "shadow_out", 2, dims, &data);
+        writeStringMatrix6(dataset, "shadow_out", 2, dims, &data, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_UI_FRAME_BORDER_SHADOW_OUT__, data, jni_string, 1);
     }
 
@@ -2265,19 +2265,19 @@ static bool export_handle_border_bevel(int dataset, int uid)
     getHandleStringProperty(uid, __GO_UI_FRAME_BORDER_SHADOW_IN__, &data);
     if (data)
     {
-        writeStringMatrix6(dataset, "shadow_in", 2, dims, &data);
+        writeStringMatrix6(dataset, "shadow_in", 2, dims, &data, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_UI_FRAME_BORDER_SHADOW_IN__, data, jni_string, 1);
     }
     closeList6(dataset);
     return true;
 }
 
-static bool export_handle_border_soft_bevel(int dataset, int uid)
+static bool export_handle_border_soft_bevel(int dataset, int uid, hid_t xfer_plist_id)
 {
-    return export_handle_border_bevel(dataset, uid);
+    return export_handle_border_bevel(dataset, uid, xfer_plist_id);
 }
 
-static bool export_handle_border_etched(int dataset, int uid)
+static bool export_handle_border_etched(int dataset, int uid, hid_t xfer_plist_id)
 {
     bool ret = false;
     int dims[2];
@@ -2290,14 +2290,14 @@ static bool export_handle_border_etched(int dataset, int uid)
     ret = getHandleIntProperty(uid, __GO_UI_FRAME_BORDER_TYPE__, &type);
     if (ret)
     {
-        writeIntegerMatrix6(dataset, "type", H5T_NATIVE_INT32, "32", 2, dims, &type);
+        writeIntegerMatrix6(dataset, "type", H5T_NATIVE_INT32, "32", 2, dims, &type, xfer_plist_id);
     }
 
     //highlight out
     getHandleStringProperty(uid, __GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__, &data);
     if (data)
     {
-        writeStringMatrix6(dataset, "highlight_out", 2, dims, &data);
+        writeStringMatrix6(dataset, "highlight_out", 2, dims, &data, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__, data, jni_string, 1);
     }
 
@@ -2305,7 +2305,7 @@ static bool export_handle_border_etched(int dataset, int uid)
     getHandleStringProperty(uid, __GO_UI_FRAME_BORDER_SHADOW_OUT__, &data);
     if (data)
     {
-        writeStringMatrix6(dataset, "shadow_out", 2, dims, &data);
+        writeStringMatrix6(dataset, "shadow_out", 2, dims, &data, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_UI_FRAME_BORDER_SHADOW_OUT__, data, jni_string, 1);
     }
 
@@ -2313,7 +2313,7 @@ static bool export_handle_border_etched(int dataset, int uid)
     return true;
 }
 
-static bool export_handle_border_titled(int dataset, int uid)
+static bool export_handle_border_titled(int dataset, int uid, hid_t xfer_plist_id)
 {
     bool ret = false;
     int dims[2];
@@ -2327,14 +2327,14 @@ static bool export_handle_border_titled(int dataset, int uid)
     if (ret)
     {
         int node = openList6(dataset, "title_border", g_SCILAB_CLASS_HANDLE);
-        export_handle_border(node, title);
+        export_handle_border(node, title, xfer_plist_id);
     }
 
     //title
     getHandleStringProperty(uid, __GO_TITLE__, &data);
     if (data)
     {
-        writeStringMatrix6(dataset, "title", 2, dims, &data);
+        writeStringMatrix6(dataset, "title", 2, dims, &data, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_TITLE__, data, jni_string, 1);
     }
 
@@ -2343,14 +2343,14 @@ static bool export_handle_border_titled(int dataset, int uid)
     ret = getHandleIntProperty(uid, __GO_UI_FRAME_BORDER_JUSTIFICATION__, &justification);
     if (ret)
     {
-        writeIntegerMatrix6(dataset, "justification", H5T_NATIVE_INT32, "32", 2, dims, &justification);
+        writeIntegerMatrix6(dataset, "justification", H5T_NATIVE_INT32, "32", 2, dims, &justification, xfer_plist_id);
     }
 
     //fontname
     getHandleStringProperty(uid, __GO_UI_FONTNAME__, &data);
     if (data)
     {
-        writeStringMatrix6(dataset, "fontname", 2, dims, &data);
+        writeStringMatrix6(dataset, "fontname", 2, dims, &data, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_UI_FONTNAME__, data, jni_string, 1);
         data = nullptr;
     }
@@ -2359,7 +2359,7 @@ static bool export_handle_border_titled(int dataset, int uid)
     getHandleStringProperty(uid, __GO_UI_FONTANGLE__, &data);
     if (data)
     {
-        writeStringMatrix6(dataset, "fontangle", 2, dims, &data);
+        writeStringMatrix6(dataset, "fontangle", 2, dims, &data, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_UI_FONTANGLE__, data, jni_string, 1);
         data = nullptr;
     }
@@ -2369,14 +2369,14 @@ static bool export_handle_border_titled(int dataset, int uid)
     ret = getHandleIntProperty(uid, __GO_UI_FONTSIZE__, &fonsize);
     if (ret)
     {
-        writeIntegerMatrix6(dataset, "fontsize", H5T_NATIVE_INT32, "32", 2, dims, &fonsize);
+        writeIntegerMatrix6(dataset, "fontsize", H5T_NATIVE_INT32, "32", 2, dims, &fonsize, xfer_plist_id);
     }
 
     //fontweight
     getHandleStringProperty(uid, __GO_UI_FONTWEIGHT__, &data);
     if (data)
     {
-        writeStringMatrix6(dataset, "fontweight", 2, dims, &data);
+        writeStringMatrix6(dataset, "fontweight", 2, dims, &data, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_UI_FONTWEIGHT__, data, jni_string, 1);
         data = nullptr;
     }
@@ -2386,14 +2386,14 @@ static bool export_handle_border_titled(int dataset, int uid)
     ret = getHandleIntProperty(uid, __GO_UI_FRAME_BORDER_POSITION__, &position);
     if (ret)
     {
-        writeIntegerMatrix6(dataset, "position", H5T_NATIVE_INT32, "32", 2, dims, &position);
+        writeIntegerMatrix6(dataset, "position", H5T_NATIVE_INT32, "32", 2, dims, &position, xfer_plist_id);
     }
 
     //color
     getHandleStringProperty(uid, __GO_UI_FRAME_BORDER_COLOR__, &data);
     if (data)
     {
-        writeStringMatrix6(dataset, "color", 2, dims, &data);
+        writeStringMatrix6(dataset, "color", 2, dims, &data, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_UI_FRAME_BORDER_COLOR__, data, jni_string, 1);
         data = nullptr;
     }
@@ -2402,7 +2402,7 @@ static bool export_handle_border_titled(int dataset, int uid)
     return true;
 }
 
-static bool export_handle_border_empty(int dataset, int uid)
+static bool export_handle_border_empty(int dataset, int uid, hid_t xfer_plist_id)
 {
     int dims[2];
     dims[0] = 1;
@@ -2413,7 +2413,7 @@ static bool export_handle_border_empty(int dataset, int uid)
     getHandleDoubleVectorProperty(uid, __GO_POSITION__, &pos);
     if (pos)
     {
-        writeDoubleMatrix6(dataset, "position", 2, dims, pos);
+        writeDoubleMatrix6(dataset, "position", 2, dims, pos, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_POSITION__, pos, jni_double_vector, 4);
     }
 
@@ -2421,7 +2421,7 @@ static bool export_handle_border_empty(int dataset, int uid)
     return true;
 }
 
-static bool export_handle_border_compound(int dataset, int uid)
+static bool export_handle_border_compound(int dataset, int uid, hid_t xfer_plist_id)
 {
     bool ret = false;
     //out_border
@@ -2431,20 +2431,20 @@ static bool export_handle_border_compound(int dataset, int uid)
     if (ret)
     {
         int node = openList6(dataset, "out_border", g_SCILAB_CLASS_HANDLE);
-        export_handle_border(node, out_border);
+        export_handle_border(node, out_border, xfer_plist_id);
 
         //title_border
         int in_border = 0;
         getHandleIntProperty(uid, __GO_UI_FRAME_BORDER_IN_BORDER__, &in_border);
         node = openList6(dataset, "in_border", g_SCILAB_CLASS_HANDLE);
-        export_handle_border(node, in_border);
+        export_handle_border(node, in_border, xfer_plist_id);
     }
 
     closeList6(dataset);
     return true;
 }
 
-static bool export_handle_border_matte(int dataset, int uid)
+static bool export_handle_border_matte(int dataset, int uid, hid_t xfer_plist_id)
 {
     int dims[2];
     dims[0] = 1;
@@ -2456,21 +2456,21 @@ static bool export_handle_border_matte(int dataset, int uid)
     dims[0] = 1;
     dims[1] = 4;
     getHandleDoubleVectorProperty(uid, __GO_POSITION__, &pos);
-    writeDoubleMatrix6(dataset, "position", 2, dims, pos);
+    writeDoubleMatrix6(dataset, "position", 2, dims, pos, xfer_plist_id);
     releaseGraphicObjectProperty(__GO_POSITION__, pos, jni_double_vector, 4);
 
     //color
     dims[0] = 1;
     dims[1] = 1;
     getHandleStringProperty(uid, __GO_UI_FRAME_BORDER_COLOR__, &data);
-    writeStringMatrix6(dataset, "color", 2, dims, &data);
+    writeStringMatrix6(dataset, "color", 2, dims, &data, xfer_plist_id);
     releaseGraphicObjectProperty(__GO_UI_FRAME_BORDER_COLOR__, data, jni_string, 1);
 
     closeList6(dataset);
     return true;
 }
 
-static bool export_handle_border(int dataset, int uid)
+static bool export_handle_border(int dataset, int uid, hid_t xfer_plist_id)
 {
     int style = 0;
     getHandleIntProperty(uid, __GO_UI_FRAME_BORDER_STYLE__, &style);
@@ -2478,36 +2478,36 @@ static bool export_handle_border(int dataset, int uid)
     dims[0] = 1;
     dims[1] = 1;
 
-    writeIntegerMatrix6(dataset, "style", H5T_NATIVE_INT32, "32", 2, dims, &style);
+    writeIntegerMatrix6(dataset, "style", H5T_NATIVE_INT32, "32", 2, dims, &style, xfer_plist_id);
 
     switch (style)
     {
         default:
         case NONE:
-            return export_handle_border_none(dataset, uid);
+            return export_handle_border_none(dataset, uid, xfer_plist_id);
         case LINE:
-            return export_handle_border_line(dataset, uid);
+            return export_handle_border_line(dataset, uid, xfer_plist_id);
         case BEVEL:
-            return export_handle_border_bevel(dataset, uid);
+            return export_handle_border_bevel(dataset, uid, xfer_plist_id);
         case SOFTBEVEL:
-            return export_handle_border_soft_bevel(dataset, uid);
+            return export_handle_border_soft_bevel(dataset, uid, xfer_plist_id);
         case ETCHED:
-            return export_handle_border_etched(dataset, uid);
+            return export_handle_border_etched(dataset, uid, xfer_plist_id);
         case TITLED:
-            return export_handle_border_titled(dataset, uid);
+            return export_handle_border_titled(dataset, uid, xfer_plist_id);
         case EMPTY:
-            return export_handle_border_empty(dataset, uid);
+            return export_handle_border_empty(dataset, uid, xfer_plist_id);
         case COMPOUND:
-            return export_handle_border_compound(dataset, uid);
+            return export_handle_border_compound(dataset, uid, xfer_plist_id);
         case MATTE:
-            return export_handle_border_matte(dataset, uid);
+            return export_handle_border_matte(dataset, uid, xfer_plist_id);
     }
 }
 
-static bool export_handle_uicontrol(int parent, int uid)
+static bool export_handle_uicontrol(int parent, int uid, hid_t xfer_plist_id)
 {
     bool ret = false;
-    if (export_handle_generic(parent, uid, UicontrolHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, UicontrolHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2526,7 +2526,7 @@ static bool export_handle_uicontrol(int parent, int uid)
         dims[1] = 1;
         char null_char = '\0';
         char* empty = &null_char;
-        writeStringMatrix6(parent, "string", 2, dims, &empty);
+        writeStringMatrix6(parent, "string", 2, dims, &empty, xfer_plist_id);
 
     }
     else
@@ -2536,7 +2536,7 @@ static bool export_handle_uicontrol(int parent, int uid)
         dims[1] = col;
         char** string = nullptr;
         getHandleStringVectorProperty(uid, __GO_UI_STRING__, &string);
-        writeStringMatrix6(parent, "string", 2, dims, string);
+        writeStringMatrix6(parent, "string", 2, dims, string, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_UI_STRING__, string, jni_string_vector, size);
     }
 
@@ -2546,17 +2546,16 @@ static bool export_handle_uicontrol(int parent, int uid)
     if (ret)
     {
         int ub = openList6(parent, "border", g_SCILAB_CLASS_HANDLE);
-        export_handle_border(ub, border);
+        export_handle_border(ub, border, xfer_plist_id);
     }
 
     closeList6(parent);
     return true;
 }
 
-
-static bool export_handle_uicontextmenu(int parent, int uid)
+static bool export_handle_uicontextmenu(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, UicontextmenuHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, UicontextmenuHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2565,9 +2564,9 @@ static bool export_handle_uicontextmenu(int parent, int uid)
     return true;
 }
 
-static bool export_handle_uimenu(int parent, int uid)
+static bool export_handle_uimenu(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, UimenuHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, UimenuHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2576,9 +2575,9 @@ static bool export_handle_uimenu(int parent, int uid)
     return true;
 }
 
-static bool export_handle_light(int parent, int uid)
+static bool export_handle_light(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, LightHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, LightHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2587,9 +2586,9 @@ static bool export_handle_light(int parent, int uid)
     return true;
 }
 
-static bool export_handle_axis(int parent, int uid)
+static bool export_handle_axis(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, AxisHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, AxisHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2598,9 +2597,9 @@ static bool export_handle_axis(int parent, int uid)
     return true;
 }
 
-static bool export_handle_text(int parent, int uid)
+static bool export_handle_text(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, TextHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, TextHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2610,7 +2609,7 @@ static bool export_handle_text(int parent, int uid)
     getHandleIntVectorProperty(uid, __GO_TEXT_ARRAY_DIMENSIONS__, &dims);
     char** text;
     getHandleStringVectorProperty(uid, __GO_TEXT_STRINGS__, &text);
-    writeStringMatrix6(parent, "text", 2, dims, text);
+    writeStringMatrix6(parent, "text", 2, dims, text, xfer_plist_id);
     closeList6(parent);
     return true;
 }
@@ -2659,9 +2658,9 @@ bool get_entity_path(int entity, std::vector<int>& path)
     return true;
 }
 
-static bool export_handle_legend(int parent, int uid)
+static bool export_handle_legend(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, LegendHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, LegendHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2680,7 +2679,7 @@ static bool export_handle_legend(int parent, int uid)
             int dims[2];
             dims[0] = 1;
             dims[1] = static_cast<int>(path.size());
-            writeIntegerMatrix6(node, std::to_string(i).data(), H5T_NATIVE_INT32, "32", 2, dims, path.data());
+            writeIntegerMatrix6(node, std::to_string(i).data(), H5T_NATIVE_INT32, "32", 2, dims, path.data(), xfer_plist_id);
         }
     }
 
@@ -2692,14 +2691,14 @@ static bool export_handle_legend(int parent, int uid)
     getHandleIntVectorProperty(uid, __GO_TEXT_ARRAY_DIMENSIONS__, &dims);
     char** text;
     getHandleStringVectorProperty(uid, __GO_TEXT_STRINGS__, &text);
-    writeStringMatrix6(parent, "text", 2, dims, text);
+    writeStringMatrix6(parent, "text", 2, dims, text, xfer_plist_id);
     closeList6(parent);
     return true;
 }
 
-static bool export_handle_fec(int parent, int uid)
+static bool export_handle_fec(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, FecHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, FecHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2715,16 +2714,16 @@ static bool export_handle_fec(int parent, int uid)
     int dims[2];
     dims[0] = indices;
     dims[1] = vect + 2;
-    writeDoubleMatrix6(parent, "triangles", 2, dims, triangles);
+    writeDoubleMatrix6(parent, "triangles", 2, dims, triangles, xfer_plist_id);
     releaseGraphicObjectProperty(__GO_DATA_MODEL_FEC_ELEMENTS__, triangles, jni_double_vector, dims[0] * dims[1]);
 
     closeList6(parent);
     return true;
 }
 
-static bool export_handle_matplot(int parent, int uid)
+static bool export_handle_matplot(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, MatplotHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, MatplotHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2799,15 +2798,15 @@ static bool export_handle_matplot(int parent, int uid)
     dims[0] = 1;
     dims[1] = size;
 
-    writeDoubleMatrix6(parent, "data", 2, dims, data);
+    writeDoubleMatrix6(parent, "data", 2, dims, data, xfer_plist_id);
     releaseGraphicObjectProperty(__GO_DATA_MODEL_Z__, data, jni_double_vector, size);
     closeList6(parent);
     return true;
 }
 
-static bool export_handle_grayplot(int parent, int uid)
+static bool export_handle_grayplot(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, GrayplotHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, GrayplotHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2828,23 +2827,23 @@ static bool export_handle_grayplot(int parent, int uid)
     int dims[2];
     dims[0] = 1;
     dims[1] = row;
-    writeDoubleMatrix6(parent, "data_x", 2, dims, dataX);
+    writeDoubleMatrix6(parent, "data_x", 2, dims, dataX, xfer_plist_id);
 
     dims[0] = 1;
     dims[1] = col;
-    writeDoubleMatrix6(parent, "data_y", 2, dims, dataY);
+    writeDoubleMatrix6(parent, "data_y", 2, dims, dataY, xfer_plist_id);
 
     dims[0] = row;
     dims[1] = col;
-    writeDoubleMatrix6(parent, "data_z", 2, dims, dataZ);
+    writeDoubleMatrix6(parent, "data_z", 2, dims, dataZ, xfer_plist_id);
 
     closeList6(parent);
     return true;
 }
 
-static bool export_handle_segs(int parent, int uid)
+static bool export_handle_segs(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, SegsHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, SegsHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2853,9 +2852,9 @@ static bool export_handle_segs(int parent, int uid)
     return true;
 }
 
-static bool export_handle_arc(int parent, int uid)
+static bool export_handle_arc(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, ArcHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, ArcHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2864,9 +2863,9 @@ static bool export_handle_arc(int parent, int uid)
     return true;
 }
 
-static bool export_handle_rectangle(int parent, int uid)
+static bool export_handle_rectangle(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, RectangleHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, RectangleHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2875,9 +2874,9 @@ static bool export_handle_rectangle(int parent, int uid)
     return true;
 }
 
-static bool export_handle_datatip(int parent, int uid)
+static bool export_handle_datatip(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, DatatipHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, DatatipHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -2886,7 +2885,7 @@ static bool export_handle_datatip(int parent, int uid)
     return true;
 }
 
-static bool export_handle_polyline_shift(int parent, int uid, const std::string& name, int go_set, int go_data)
+static bool export_handle_polyline_shift(int parent, int uid, const std::string& name, int go_set, int go_data, hid_t xfer_plist_id)
 {
     int set = 0;
     getHandleBoolProperty(uid, go_set, &set);
@@ -2900,7 +2899,7 @@ static bool export_handle_polyline_shift(int parent, int uid, const std::string&
         int dims[2];
         dims[0] = 1;
         dims[1] = count;
-        writeDoubleMatrix6(parent, name.data(), 2, dims, data);
+        writeDoubleMatrix6(parent, name.data(), 2, dims, data, xfer_plist_id);
 
         releaseGraphicObjectProperty(uid, data, jni_double_vector, count);
     }
@@ -2909,30 +2908,30 @@ static bool export_handle_polyline_shift(int parent, int uid, const std::string&
         int dims[2];
         dims[0] = 0;
         dims[1] = 0;
-        writeDoubleMatrix6(parent, name.data(), 2, dims, NULL);
+        writeDoubleMatrix6(parent, name.data(), 2, dims, NULL, xfer_plist_id);
     }
 
     return true;
 }
 
-static bool export_handle_polyline(int parent, int uid)
+static bool export_handle_polyline(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_datatips(parent, uid) == false)
+    if (export_handle_datatips(parent, uid, xfer_plist_id) == false)
     {
         return false;
     }
 
-    if (export_handle_generic(parent, uid, PolylineHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, PolylineHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
 
     //x_shift
-    export_handle_polyline_shift(parent, uid, "x_shift", __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__, __GO_DATA_MODEL_X_COORDINATES_SHIFT__);
+    export_handle_polyline_shift(parent, uid, "x_shift", __GO_DATA_MODEL_X_COORDINATES_SHIFT_SET__, __GO_DATA_MODEL_X_COORDINATES_SHIFT__, xfer_plist_id);
     //y_shift
-    export_handle_polyline_shift(parent, uid, "y_shift", __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__);
+    export_handle_polyline_shift(parent, uid, "y_shift", __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, xfer_plist_id);
     //z_shift
-    export_handle_polyline_shift(parent, uid, "z_shift", __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__);
+    export_handle_polyline_shift(parent, uid, "z_shift", __GO_DATA_MODEL_Z_COORDINATES_SHIFT_SET__, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, xfer_plist_id);
 
     //interp_color_vector
     int set = 0;
@@ -2947,7 +2946,7 @@ static bool export_handle_polyline(int parent, int uid)
         int dims[2];
         dims[0] = 1;
         dims[1] = count;
-        writeIntegerMatrix6(parent, "interp_color_vector", H5T_NATIVE_INT32, "32", 2, dims, data);
+        writeIntegerMatrix6(parent, "interp_color_vector", H5T_NATIVE_INT32, "32", 2, dims, data, xfer_plist_id);
         releaseGraphicObjectProperty(uid, data, jni_int_vector, count);
     }
     else
@@ -2955,7 +2954,7 @@ static bool export_handle_polyline(int parent, int uid)
         int dims[2];
         dims[0] = 0;
         dims[1] = 0;
-        writeIntegerMatrix6(parent, "interp_color_vector", H5T_NATIVE_INT32, "32", 2, dims, NULL);
+        writeIntegerMatrix6(parent, "interp_color_vector", H5T_NATIVE_INT32, "32", 2, dims, NULL, xfer_plist_id);
     }
 
     //data
@@ -2971,8 +2970,8 @@ static bool export_handle_polyline(int parent, int uid)
     getHandleDoubleVectorProperty(uid, __GO_DATA_MODEL_X__, &dataX);
     getHandleDoubleVectorProperty(uid, __GO_DATA_MODEL_Y__, &dataY);
 
-    writeDoubleMatrix6(parent, "data_x", 2, dims, dataX);
-    writeDoubleMatrix6(parent, "data_y", 2, dims, dataY);
+    writeDoubleMatrix6(parent, "data_x", 2, dims, dataX, xfer_plist_id);
+    writeDoubleMatrix6(parent, "data_y", 2, dims, dataY, xfer_plist_id);
 
     releaseGraphicObjectProperty(__GO_DATA_MODEL_X__, dataX, jni_double_vector, count);
     releaseGraphicObjectProperty(__GO_DATA_MODEL_Y__, dataY, jni_double_vector, count);
@@ -2982,7 +2981,7 @@ static bool export_handle_polyline(int parent, int uid)
     {
         double* dataZ = nullptr;
         getHandleDoubleVectorProperty(uid, __GO_DATA_MODEL_Z__, &dataZ);
-        writeDoubleMatrix6(parent, "data_z", 2, dims, dataZ);
+        writeDoubleMatrix6(parent, "data_z", 2, dims, dataZ, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_DATA_MODEL_Z__, dataZ, jni_double_vector, count);
     }
     else
@@ -2990,21 +2989,21 @@ static bool export_handle_polyline(int parent, int uid)
         //[]
         dims[0] = 0;
         dims[1] = 0;
-        writeDoubleMatrix6(parent, "data_z", 2, dims, NULL);
+        writeDoubleMatrix6(parent, "data_z", 2, dims, NULL, xfer_plist_id);
     }
 
     closeList6(parent);
     return true;
 }
 
-static bool export_handle_surface(int parent, int uid)
+static bool export_handle_surface(int parent, int uid, hid_t xfer_plist_id)
 {
-    return export_handle_generic(parent, uid, SurfaceHandle::getPropertyList());
+    return export_handle_generic(parent, uid, SurfaceHandle::getPropertyList(), xfer_plist_id);
 }
 
-static bool export_handle_plot3d(int parent, int uid)
+static bool export_handle_plot3d(int parent, int uid, hid_t xfer_plist_id)
 {
-    bool ret = export_handle_surface(parent, uid);
+    bool ret = export_handle_surface(parent, uid, xfer_plist_id);
     if (ret)
     {
         double* colors = NULL;
@@ -3030,17 +3029,17 @@ static bool export_handle_plot3d(int parent, int uid)
         int dims[2];
         dims[0] = xDims[0];
         dims[1] = xDims[1];
-        writeDoubleMatrix6(parent, "data_x", 2, dims, dataX);
+        writeDoubleMatrix6(parent, "data_x", 2, dims, dataX, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_DATA_MODEL_X__, dataX, jni_double_vector, dims[0] * dims[1]);
 
         dims[0] = yDims[0];
         dims[1] = yDims[1];
-        writeDoubleMatrix6(parent, "data_y", 2, dims, dataY);
+        writeDoubleMatrix6(parent, "data_y", 2, dims, dataY, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_DATA_MODEL_Y__, dataY, jni_double_vector, dims[0] * dims[1]);
 
         dims[0] = row;
         dims[1] = col;
-        writeDoubleMatrix6(parent, "data_z", 2, dims, dataZ);
+        writeDoubleMatrix6(parent, "data_z", 2, dims, dataZ, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_DATA_MODEL_Z__, dataZ, jni_double_vector, dims[0] * dims[1]);
 
         releaseGraphicObjectProperty(__GO_DATA_MODEL_X_DIMENSIONS__, xDims, jni_int_vector, 2);
@@ -3051,9 +3050,9 @@ static bool export_handle_plot3d(int parent, int uid)
     return ret;
 }
 
-static bool export_handle_fac3d(int parent, int uid)
+static bool export_handle_fac3d(int parent, int uid, hid_t xfer_plist_id)
 {
-    bool ret = export_handle_surface(parent, uid);
+    bool ret = export_handle_surface(parent, uid, xfer_plist_id);
     if (ret)
     {
         double* colors = NULL;
@@ -3075,9 +3074,9 @@ static bool export_handle_fac3d(int parent, int uid)
         dims[0] = row;
         dims[1] = col;
 
-        writeDoubleMatrix6(parent, "data_x", 2, dims, dataX);
-        writeDoubleMatrix6(parent, "data_y", 2, dims, dataY);
-        writeDoubleMatrix6(parent, "data_z", 2, dims, dataZ);
+        writeDoubleMatrix6(parent, "data_x", 2, dims, dataX, xfer_plist_id);
+        writeDoubleMatrix6(parent, "data_y", 2, dims, dataY, xfer_plist_id);
+        writeDoubleMatrix6(parent, "data_z", 2, dims, dataZ, xfer_plist_id);
 
         releaseGraphicObjectProperty(__GO_DATA_MODEL_X__, dataX, jni_double_vector, dims[0] * dims[1]);
         releaseGraphicObjectProperty(__GO_DATA_MODEL_Y__, dataY, jni_double_vector, dims[0] * dims[1]);
@@ -3106,7 +3105,7 @@ static bool export_handle_fac3d(int parent, int uid)
             dims[1] = 0;
         }
 
-        writeDoubleMatrix6(parent, "colors", 2, dims, colors);
+        writeDoubleMatrix6(parent, "colors", 2, dims, colors, xfer_plist_id);
         releaseGraphicObjectProperty(__GO_DATA_MODEL_COLORS__, colors, jni_double_vector, dims[0] * dims[1]);
 
         //cdata_mapping
@@ -3114,7 +3113,7 @@ static bool export_handle_fac3d(int parent, int uid)
         getHandleIntProperty(uid, __GO_DATA_MAPPING__, &cdata);
         dims[0] = 1;
         dims[1] = 1;
-        writeIntegerMatrix6(parent, "cdata_mapping", H5T_NATIVE_INT32, "32", 2, dims, &cdata);
+        writeIntegerMatrix6(parent, "cdata_mapping", H5T_NATIVE_INT32, "32", 2, dims, &cdata, xfer_plist_id);
 
     }
 
@@ -3123,9 +3122,9 @@ static bool export_handle_fac3d(int parent, int uid)
 }
 
 
-static bool export_handle_champ(int parent, int uid)
+static bool export_handle_champ(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, ChampHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, ChampHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -3143,37 +3142,37 @@ static bool export_handle_champ(int parent, int uid)
     getHandleDoubleVectorProperty(uid, __GO_BASE_X__, &arrowBasesX);
     dims[0] = 1;
     dims[1] = dimensions[0];
-    writeDoubleMatrix6(parent, "base_x", 2, dims, arrowBasesX);
+    writeDoubleMatrix6(parent, "base_x", 2, dims, arrowBasesX, xfer_plist_id);
     releaseGraphicObjectProperty(__GO_BASE_X__, arrowBasesX, jni_double_vector, dims[1]);
 
     //base y
     getHandleDoubleVectorProperty(uid, __GO_BASE_Y__, &arrowBasesY);
     dims[0] = 1;
     dims[1] = dimensions[1];
-    writeDoubleMatrix6(parent, "base_y", 2, dims, arrowBasesY);
+    writeDoubleMatrix6(parent, "base_y", 2, dims, arrowBasesY, xfer_plist_id);
     releaseGraphicObjectProperty(__GO_BASE_Y__, arrowBasesY, jni_double_vector, dims[1]);
 
     //direction x
     getHandleDoubleVectorProperty(uid, __GO_DIRECTION_X__, &arrowDirectionsX);
     dims[0] = dimensions[0];
     dims[1] = dimensions[1];
-    writeDoubleMatrix6(parent, "direction_x", 2, dims, arrowDirectionsX);
+    writeDoubleMatrix6(parent, "direction_x", 2, dims, arrowDirectionsX, xfer_plist_id);
     releaseGraphicObjectProperty(__GO_DIRECTION_X__, arrowDirectionsX, jni_double_vector, dims[0] * dims[1]);
 
     //direction y
     getHandleDoubleVectorProperty(uid, __GO_DIRECTION_Y__, &arrowDirectionsY);
     dims[0] = dimensions[0];
     dims[1] = dimensions[1];
-    writeDoubleMatrix6(parent, "direction_y", 2, dims, arrowDirectionsY);
+    writeDoubleMatrix6(parent, "direction_y", 2, dims, arrowDirectionsY, xfer_plist_id);
     releaseGraphicObjectProperty(__GO_DIRECTION_Y__, arrowDirectionsY, jni_double_vector, dims[0] * dims[1]);
 
     releaseGraphicObjectProperty(__GO_CHAMP_DIMENSIONS__, dimensions, jni_int_vector, 2);
     closeList6(parent);
     return true;
 }
-static bool export_handle_label(int parent, int uid)
+static bool export_handle_label(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, LabelHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, LabelHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -3188,15 +3187,15 @@ static bool export_handle_label(int parent, int uid)
     std::vector<int> dims = {dimensions[0], dimensions[1]};
     releaseGraphicObjectProperty(__GO_TEXT_ARRAY_DIMENSIONS__, dimensions, jni_int_vector, 2);
 
-    writeStringMatrix6(parent, "text", 2, dims.data(), text);
+    writeStringMatrix6(parent, "text", 2, dims.data(), text, xfer_plist_id);
     releaseGraphicObjectProperty(__GO_TEXT_STRINGS__, text, jni_string_vector, dims[0] * dims[1]);
 
     closeList6(parent);
     return true;
 }
-static bool export_handle_axes(int parent, int uid)
+static bool export_handle_axes(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, AxesHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, AxesHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -3204,45 +3203,45 @@ static bool export_handle_axes(int parent, int uid)
     //title
     int title = 0;
     getHandleIntProperty(uid, __GO_TITLE__, &title);
-    export_handle(parent, "title", title);
+    export_handle(parent, "title", title, xfer_plist_id);
 
     //x_label
     int x_label = 0;
     getHandleIntProperty(uid, __GO_X_AXIS_LABEL__, &x_label);
-    export_handle(parent, "x_label", x_label);
+    export_handle(parent, "x_label", x_label, xfer_plist_id);
 
     //y_label
     int y_label = 0;
     getHandleIntProperty(uid, __GO_Y_AXIS_LABEL__, &y_label);
-    export_handle(parent, "y_label", y_label);
+    export_handle(parent, "y_label", y_label, xfer_plist_id);
 
     //z_label
     int z_label = 0;
     getHandleIntProperty(uid, __GO_Z_AXIS_LABEL__, &z_label);
-    export_handle(parent, "z_label", z_label);
+    export_handle(parent, "z_label", z_label, xfer_plist_id);
 
 
     closeList6(parent);
     return true;
 }
 
-static bool export_handle_figure(int parent, int uid)
+static bool export_handle_figure(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, FigureHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, FigureHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
 
     //layout_options
-    export_handle_layout_options(parent, uid);
+    export_handle_layout_options(parent, uid, xfer_plist_id);
 
     closeList6(parent);
     return true;
 }
 
-static bool export_handle_compound(int parent, int uid)
+static bool export_handle_compound(int parent, int uid, hid_t xfer_plist_id)
 {
-    if (export_handle_generic(parent, uid, CompoundHandle::getPropertyList()) == false)
+    if (export_handle_generic(parent, uid, CompoundHandle::getPropertyList(), xfer_plist_id) == false)
     {
         return false;
     }
@@ -3251,7 +3250,7 @@ static bool export_handle_compound(int parent, int uid)
     return true;
 }
 
-bool export_handle(int parent, const std::string& name, int uid)
+bool export_handle(int parent, const std::string& name, int uid, hid_t xfer_plist_id)
 {
     //get handle type
     int type = 0;
@@ -3265,112 +3264,112 @@ bool export_handle(int parent, const std::string& name, int uid)
     {
         case __GO_FIGURE__:
         {
-            ret = export_handle_figure(h, uid);
+            ret = export_handle_figure(h, uid, xfer_plist_id);
             break;
         }
         case __GO_AXES__:
         {
-            ret = export_handle_axes(h, uid);
+            ret = export_handle_axes(h, uid, xfer_plist_id);
             break;
         }
         case __GO_LABEL__:
         {
-            ret = export_handle_label(h, uid);
+            ret = export_handle_label(h, uid, xfer_plist_id);
             break;
         }
         case __GO_CHAMP__:
         {
-            ret = export_handle_champ(h, uid);
+            ret = export_handle_champ(h, uid, xfer_plist_id);
             break;
         }
         case __GO_FAC3D__:
         {
-            ret = export_handle_fac3d(h, uid);
+            ret = export_handle_fac3d(h, uid, xfer_plist_id);
             break;
         }
         case __GO_PLOT3D__:
         {
-            ret = export_handle_plot3d(h, uid);
+            ret = export_handle_plot3d(h, uid, xfer_plist_id);
             break;
         }
         case __GO_POLYLINE__:
         {
-            ret = export_handle_polyline(h, uid);
+            ret = export_handle_polyline(h, uid, xfer_plist_id);
             break;
         }
         case __GO_DATATIP__:
         {
-            ret = export_handle_datatip(h, uid);
+            ret = export_handle_datatip(h, uid, xfer_plist_id);
             break;
         }
         case __GO_COMPOUND__:
         {
-            ret = export_handle_compound(h, uid);
+            ret = export_handle_compound(h, uid, xfer_plist_id);
             break;
         }
         case __GO_RECTANGLE__:
         {
-            ret = export_handle_rectangle(h, uid);
+            ret = export_handle_rectangle(h, uid, xfer_plist_id);
             break;
         }
         case __GO_ARC__:
         {
-            ret = export_handle_arc(h, uid);
+            ret = export_handle_arc(h, uid, xfer_plist_id);
             break;
         }
         case __GO_SEGS__:
         {
-            ret = export_handle_segs(h, uid);
+            ret = export_handle_segs(h, uid, xfer_plist_id);
             break;
         }
         case __GO_GRAYPLOT__:
         {
-            ret = export_handle_grayplot(h, uid);
+            ret = export_handle_grayplot(h, uid, xfer_plist_id);
             break;
         }
         case __GO_MATPLOT__:
         {
-            ret = export_handle_matplot(h, uid);
+            ret = export_handle_matplot(h, uid, xfer_plist_id);
             break;
         }
         case __GO_FEC__:
         {
-            ret = export_handle_fec(h, uid);
+            ret = export_handle_fec(h, uid, xfer_plist_id);
             break;
         }
         case __GO_LEGEND__:
         {
-            ret = export_handle_legend(h, uid);
+            ret = export_handle_legend(h, uid, xfer_plist_id);
             break;
         }
         case __GO_TEXT__:
         {
-            ret = export_handle_text(h, uid);
+            ret = export_handle_text(h, uid, xfer_plist_id);
             break;
         }
         case __GO_AXIS__:
         {
-            ret = export_handle_axis(h, uid);
+            ret = export_handle_axis(h, uid, xfer_plist_id);
             break;
         }
         case __GO_LIGHT__:
         {
-            ret = export_handle_light(h, uid);
+            ret = export_handle_light(h, uid, xfer_plist_id);
             break;
         }
         case __GO_UIMENU__:
         {
-            ret = export_handle_uimenu(h, uid);
+            ret = export_handle_uimenu(h, uid, xfer_plist_id);
             break;
         }
         case __GO_UICONTEXTMENU__:
         {
-            ret = export_handle_uicontextmenu(h, uid);
+            ret = export_handle_uicontextmenu(h, uid, xfer_plist_id);
             break;
         }
         case __GO_UICONTROL__:
         {
-            ret = export_handle_uicontrol(h, uid);
+            ret = export_handle_uicontrol(h, uid, xfer_plist_id);
             break;
         }
         default:
@@ -3382,7 +3381,7 @@ bool export_handle(int parent, const std::string& name, int uid)
     return ret;
 }
 
-static bool export_handle_children(int parent, int uid)
+static bool export_handle_children(int parent, int uid, hid_t xfer_plist_id)
 {
     int count = 0;
     getHandleIntProperty(uid, __GO_CHILDREN_COUNT__, &count);
@@ -3402,7 +3401,7 @@ static bool export_handle_children(int parent, int uid)
         getHandleBoolProperty(child, __GO_HIDDEN__, &hidden);
         if (hidden == 0)
         {
-            if (export_handle(node, std::to_string(index), child) == false)
+            if (export_handle(node, std::to_string(index), child, xfer_plist_id) == false)
             {
                 releaseGraphicObjectProperty(__GO_CHILDREN__, children, jni_int_vector, count);
                 closeList6(node);

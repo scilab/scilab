@@ -596,6 +596,7 @@ Known issues
 * [#15753](http://bugzilla.scilab.org/show_bug.cgi?id=15753): `issparse()` returned 0 instead of 1 for sparse booleans.
 * [#15758](http://bugzilla.scilab.org/show_bug.cgi?id=15758): sparse([0 0],1) crashes scilab (regression)
 * [#15762](http://bugzilla.scilab.org/show_bug.cgi?id=15762): `error()` refused multiline error messages.
+* [#15809](http://bugzilla.scilab.org/show_bug.cgi?id=15809): HDF5 load/save was super slow for nested lists.
 * [#15814](http://bugzilla.scilab.org/show_bug.cgi?id=15814): Selecting graphic children with booleans yielded an error.
 * [#15818](http://bugzilla.scilab.org/show_bug.cgi?id=15818): `polarplot()` example could not be subplotted. `polarplot`'s demo did not display 'View code' and too often prompted the user.
 * [#15847](http://bugzilla.scilab.org/show_bug.cgi?id=15847): Scilab crashed at startup.

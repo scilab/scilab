@@ -2085,7 +2085,7 @@ int deleteHDF5Var(int _iFile, const char* _pstName)
 }
 
 /*Scilab 6*/
-int writeDoubleMatrix6(int parent, const char* name, int dims, int* pdims, double* data)
+int writeDoubleMatrix6(int parent, const char* name, int dims, int* pdims, double* data, hid_t xfer_plist_id)
 {
     hid_t space = 0;
     hid_t dset = 0;
@@ -2142,7 +2142,7 @@ int writeDoubleMatrix6(int parent, const char* name, int dims, int* pdims, doubl
             return -1;
         }
 
-        status = H5Dwrite(dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
+        status = H5Dwrite(dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, xfer_plist_id, data);
         if (status < 0)
         {
             return -1;
@@ -2178,7 +2178,7 @@ int writeDoubleMatrix6(int parent, const char* name, int dims, int* pdims, doubl
     return dset;
 }
 
-HDF5_SCILAB_IMPEXP int writeDoubleComplexMatrix6(int parent, const char* name, int dims, int* pdims, double* real, double* img)
+HDF5_SCILAB_IMPEXP int writeDoubleComplexMatrix6(int parent, const char* name, int dims, int* pdims, double* real, double* img, hid_t xfer_plist_id)
 {
     hid_t space = 0;
     hid_t dset = 0;
@@ -2225,7 +2225,7 @@ HDF5_SCILAB_IMPEXP int writeDoubleComplexMatrix6(int parent, const char* name, i
 
     //convert double data doublecomplex data
     pData = oGetDoubleComplexFromPointer(real, img, iSize);
-    status = H5Dwrite(dset, compoundId, H5S_ALL, H5S_ALL, H5P_DEFAULT, pData);
+    status = H5Dwrite(dset, compoundId, H5S_ALL, H5S_ALL, xfer_plist_id, pData);
     FREE(pData);
     if (status < 0)
     {
@@ -2261,7 +2261,7 @@ HDF5_SCILAB_IMPEXP int writeDoubleComplexMatrix6(int parent, const char* name, i
     return dset;
 }
 
-int writeStringMatrix6(int parent, const char* name, int dims, int* pdims, char** data)
+int writeStringMatrix6(int parent, const char* name, int dims, int* pdims, char** data, hid_t xfer_plist_id)
 {
     int iSize = 0;
     hsize_t* piDims = NULL;
@@ -2324,7 +2324,7 @@ int writeStringMatrix6(int parent, const char* name, int dims, int* pdims, char*
             return -1;
         }
 
-        status = H5Dwrite(dset, typeId, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
+        status = H5Dwrite(dset, typeId, H5S_ALL, H5S_ALL, xfer_plist_id, data);
         if (status < 0)
         {
             return -1;
@@ -2360,7 +2360,7 @@ int writeStringMatrix6(int parent, const char* name, int dims, int* pdims, char*
     return dset;
 }
 
-int writeBooleanMatrix6(int parent, const char* name, int dims, int* pdims, int* data)
+int writeBooleanMatrix6(int parent, const char* name, int dims, int* pdims, int* data, hid_t xfer_plist_id)
 {
     int iSize = 0;
     hsize_t* piDims = NULL;
@@ -2392,7 +2392,7 @@ int writeBooleanMatrix6(int parent, const char* name, int dims, int* pdims, int*
         return -1;
     }
 
-    status = H5Dwrite(dset, H5T_NATIVE_INT, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
+    status = H5Dwrite(dset, H5T_NATIVE_INT, H5S_ALL, H5S_ALL, xfer_plist_id, data);
     if (status < 0)
     {
         return -1;
@@ -2427,7 +2427,7 @@ int writeBooleanMatrix6(int parent, const char* name, int dims, int* pdims, int*
     return dset;
 }
 
-int writeIntegerMatrix6(int parent, const char* name, int type, const char* prec, int dims, int* pdims, void* data)
+int writeIntegerMatrix6(int parent, const char* name, int type, const char* prec, int dims, int* pdims, void* data, hid_t xfer_plist_id)
 {
     hsize_t* piDims = NULL;
     herr_t status = 0;
@@ -2482,7 +2482,7 @@ int writeIntegerMatrix6(int parent, const char* name, int type, const char* prec
             return -1;
         }
 
-        status = H5Dwrite(dset, type, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
+        status = H5Dwrite(dset, type, H5S_ALL, H5S_ALL, xfer_plist_id, data);
         if (status < 0)
         {
             return -1;
@@ -2557,7 +2557,7 @@ int addItemStruct6(int dataset, hobj_ref_t * refs, int pos, const char *name)
     return status;
 }
 
-int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_ref_t * refs)
+int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_ref_t * refs, hid_t xfer_plist_id)
 {
     hid_t space = 0;
     hid_t dset = 0;
@@ -2590,7 +2590,7 @@ int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_r
         return -1;
     }
 
-    status = H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, refs);
+    status = H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, xfer_plist_id, refs);
     if (status < 0)
     {
         return -1;
@@ -2618,7 +2618,7 @@ int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_r
     return dset;
 }
 
-int writeVoid6(int parent, const char* name)
+int writeVoid6(int parent, const char* name, hid_t xfer_plist_id)
 {
     hsize_t piDims[1] = {1};
     herr_t status = 0;
@@ -2645,7 +2645,7 @@ int writeVoid6(int parent, const char* name)
         return -1;
     }
 
-    status = H5Dwrite(iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, &cData);
+    status = H5Dwrite(iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, xfer_plist_id, &cData);
     if (status < 0)
     {
         return -1;
@@ -2680,7 +2680,7 @@ int writeVoid6(int parent, const char* name)
     return 0;
 }
 
-int writeUndefined6(int parent, const char* name)
+int writeUndefined6(int parent, const char* name, hid_t xfer_plist_id)
 {
     hsize_t piDims[1] = {1};
     herr_t status = 0;
@@ -2707,7 +2707,7 @@ int writeUndefined6(int parent, const char* name)
         return -1;
     }
 
-    status = H5Dwrite(iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT, &cData);
+    status = H5Dwrite(iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, xfer_plist_id, &cData);
     if (status < 0)
     {
         return -1;
