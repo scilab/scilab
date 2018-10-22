@@ -61,12 +61,6 @@
                     <literal>[]</literal>.
                 </para>
             </listitem>
-            <listitem>
-                <para>
-                    Si mtlb_mode()==%T, alors <literal>mtlb_a(A,B)</literal>
-                    peut être remplacé par <literal>A+B</literal> dans tous les cas où
-                    <literal>A</literal> et <literal>B</literal> ne sont pas des chaînes de caractères.
-                </para>
             </listitem>
         </itemizedlist>
         <para>
@@ -79,7 +73,7 @@
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="mtlb_mode">mtlb_mode</link>
+                <link linkend="mtlb_s">mtlb_s</link>
             </member>
         </simplelist>
     </refsection>

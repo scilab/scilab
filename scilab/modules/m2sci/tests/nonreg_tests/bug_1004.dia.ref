@@ -39,7 +39,7 @@ mode(-1);
   File to convert: TMPDIR/bug1004.m
   Result file path: TMPDIR/
   Recursive mode: OFF
-  Only double values used in M-file: YES
+  Only double values used in M-file: NO
   Verbose mode: 3
   Generate formatted code: NO
   M-file reading...

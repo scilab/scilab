@@ -93,6 +93,7 @@ function [x,y,typ]=CLR(job,arg1,arg2)
                         txt = strsubst(txt,"*","\,")
                         txt = strsubst(txt,"+","\!+\!")
                         txt = strsubst(txt,"-","\!-\!")
+                        txt = strsubst(txt,"%","\%")
                         content(i) = txt;
                     end
                 end

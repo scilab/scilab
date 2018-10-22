@@ -1,10 +1,79 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg id="svg2" xmlns="http://www.w3.org/2000/svg" height="32" width="35" version="1.0">
- <g id="layer1" stroke-linejoin="miter" stroke="#000" stroke-linecap="butt" fill="none">
-  <path id="path17478" style="stroke-dasharray:none;" d="M16,5.0011v21.999" stroke-miterlimit="4" stroke-width="1.5"/>
-  <path id="path17480" style="stroke-dasharray:none;" d="m19,27,0-21.999" stroke-miterlimit="4" stroke-width="1.5"/>
-  <path id="path17482" d="M16.113,16,0.0000169,16" stroke-width="1px"/>
-  <path id="path17484" d="M18.981,16h16.019" stroke-width="1px"/>
- </g>
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   height="32"
+   width="35"
+   version="1.0"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="Capacitor.svg">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1019"
+     id="namedview8"
+     showgrid="false"
+     inkscape:zoom="10.429825"
+     inkscape:cx="30.484105"
+     inkscape:cy="17.112001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <g
+     id="layer1"
+     transform="translate(-0.54237288,0.13559322)"
+     style="fill:none;stroke:#000000;stroke-linecap:butt;stroke-linejoin:miter">
+    <path
+       id="path17478"
+       style="stroke-width:1.91452003;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 15.616485,9.799789 V 26.51596"
+       stroke-miterlimit="4"
+       inkscape:connector-curvature="0" />
+    <path
+       id="path17482"
+       d="m 16.106858,17.72582 -16.29245589,0"
+       inkscape:connector-curvature="0"
+       style="stroke-width:1.44187295px" />
+    <path
+       id="path17478-4"
+       style="fill:none;stroke:#000000;stroke-width:1.91452003;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none"
+       d="M 20.485181,9.7956404 V 26.511811"
+       stroke-miterlimit="4"
+       inkscape:connector-curvature="0" />
+    <path
+       id="path17482-0"
+       d="m 36.589356,17.674332 -16.292455,0"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:1.44187295px;stroke-linecap:butt;stroke-linejoin:miter" />
+  </g>
 </svg>

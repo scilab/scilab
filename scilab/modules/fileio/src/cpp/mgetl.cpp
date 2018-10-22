@@ -148,6 +148,7 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
 #endif
                     if (t <= 0)
                     {
+                        //reset error flags
                         ifs.clear();
                     }
 
@@ -171,7 +172,12 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
                 if (!ifs.eof())
                 {
                     //some data stay in buf, rewind file to begin of this data and read it again
-                    ifs.seekg(ptr - buf, std::ios::beg);
+#ifndef _MSC_VER
+                    auto cur1 = ifs.tellg();
+#else
+                    std::fpos_t cur1 = ifs.tellg().seekpos();
+#endif
+                    ifs.seekg((std::streamoff)cur1 - offset, std::ios::beg);
                 }
                 else
                 {

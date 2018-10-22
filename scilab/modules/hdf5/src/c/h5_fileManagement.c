@@ -93,6 +93,8 @@ int createHDF5File(const char *name)
 
     file = H5Fcreate(filename, H5F_ACC_TRUNC, H5P_DEFAULT, fapl);
 
+    H5Pclose(fapl);
+
     scichdir(currentpath);
 
     FREE(currentpath);

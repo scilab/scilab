@@ -49,7 +49,7 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
     {
         if (in[0]->isString() == FALSE)
         {
-            if (in[0]->getAs<types::GenericType>()->getSize() == 0)
+            if (in[0]->isGenericType() && in[0]->getAs<types::GenericType>()->getSize() == 0)
             {
                 out.push_back(types::Double::Empty());
                 return types::Function::OK;

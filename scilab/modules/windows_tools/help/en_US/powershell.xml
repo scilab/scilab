@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - Allan CORNET
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,40 +14,153 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="powershell">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="powershell">
     <refnamediv>
         <refname>powershell</refname>
-        <refpurpose>shell (powershell) command execution (Windows
-            only)
+        <refpurpose>executes a command with the Windows powershell interpreter (Windows only)
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>output=powershell(command-name)
-            [output,bOK]=powershell(command-name)
+        <synopsis>
+            output = powershell(command)
+            [output,bOK] = powershell(command)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>command</term>
+                <listitem>
+                    <para>
+                        Single text containing instructions sent to the MS Windows powershell.exe
+                        command interpreter.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>output</term>
+                <listitem>
+                    <para>
+                        Column of text: output (and error message) yielded and normally displayed by
+                        Powershell on its screen.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bOK</term>
+                <listitem>
+                    <para>
+                        Single boolean: <literal>%T</literal> if <varname>command</varname> has
+                        been executed without error, <literal>%F</literal> otherwise.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
         <title>Description</title>
-        <para>Sends a string command-name to Windows for execution by the powershell.
-            Standard output and standard errors of the shell command are written in
-            the calling shell. bOK returns if command has been executed.
+        <para>
+            <literal>powershell()</literal> opens a new session of the MS Windows
+            <emphasis>powershell.exe</emphasis> command interpreter, sends <varname>command</varname>
+            to it, lets it processing <varname>command</varname> instructions, receives as text the
+            <varname>output</varname> and possible error message yielded by the processing,
+            and closes the interpreter session.
         </para>
+        <para>
+            The starting current working directory and environment variables of the powershell.exe
+            session are set <link linkend="host_description">as described for host()</link>.
+        </para>
+        <para>
+            If an instruction in <varname>command</varname> generates an error, the error message
+            is caught and returned in <varname>output</varname>. Nothing is directly displayed
+            neither in the Scilab console nor in the <link linkend="consolebox">consolebox</link>.
+            <warning>
+                The effects of valid instructions processed before the erroneous one remain actual
+                (for instance, deleted files). However, their valid output is canceled and not
+                returned in <varname>output</varname>.
+            </warning>
+        </para>
+        <note>
+            Any path included in the <varname>command</varname> must be single-quoted.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para/>
+        <para>Current directory:</para>
         <programlisting role="example"><![CDATA[
-[s,w] = powershell('ls');
+r = powershell("pwd");
+r(4)
+
+// Directory content
+path = TMPDIR + "\répertoire test";
+mkdir(path);
+mputl("Test of listing", path+"\test.txt");
+[r,ok] = powershell("ls ''"+path+"''"); ok   // single quotes ' needed
+rmdir(path, "s");
+     ]]></programlisting>
+        <para/>
+        <para>
+            Handling of environment variables, date:
+        </para>
+        <programlisting role="example"><![CDATA[
+setenv TEST ABCD;
+powershell("$env:TEST")
+
+// Current date:
+[r,ok] = powershell("get-Date -format ""yyyy-MM-dd HH:mm"""); ok  // => error
+[r,ok] = powershell("get-Date -format ''yyyy-MM-dd HH:mm''")
  ]]></programlisting>
+    <screen><![CDATA[
+--> setenv TEST ABCD;
+--> powershell("$env:TEST")
+ ans  =
+ ABCD
+
+
+--> // Current date:
+--> [r,ok] = powershell("get-Date -format ""yyyy-MM-dd HH:mm"""); ok
+ ok  =
+  F
+
+--> [r,ok] = powershell("get-Date -format ''yyyy-MM-dd HH:mm''")
+ ok  =
+  T
+ r  =
+ 2018-04-30 07:12
+]]></screen>
+        <para/>
+        <para>
+            Multiple instructions separated with ";":
+        </para>
+        <programlisting role="example"><![CDATA[
+powershell("echo $env:USERNAME'' uses powershell in Scilab'' ; Get-Date")
+ ]]></programlisting>
+    <screen><![CDATA[
+--> powershell("echo $env:USERNAME'' uses powershell in Scilab'' ; Get-Date")
+ ans  =
+!Samuel uses powershell in Scilab  !
+!                                  !
+!lundi 30 avril 2018 07:21:02      !
+!                                  !
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="unix">unix</link>
+                <link linkend="host">host</link>
             </member>
             <member>
                 <link linkend="dos">dos</link>
+            </member>
+            <member>
+                <link linkend="unix_g">unix_g</link>
             </member>
         </simplelist>
     </refsection>

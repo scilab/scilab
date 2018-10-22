@@ -86,7 +86,8 @@ public final class SaveFileInAction extends SaveAsAction {
      * @return the menuitem
      */
     public static MenuItem createMenu(SciNotes editor, String path) {
-        return createMenu(path, null, new SaveFileInAction(path, path, editor), null);
+        String path_dot=path+"/.";
+        return createMenu(path, null, new SaveFileInAction(path, path_dot, editor), null);
     }
 
     /**

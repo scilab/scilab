@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014-2016 - Scilab Enterprises - Clement DAVID
- * Copyright (C) 2017 - ESI Group - Clement DAVID
+ * Copyright (C) 2017-2018 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -613,12 +613,17 @@ void Controller::sortAndFillKind(std::vector<ScicosID>& uids, std::vector<int>& 
         ScicosID first;
         int second;
     };
-    std::vector<local_pair> container(uids.size());
+    std::vector<local_pair> container;
+    container.reserve(uids.size());
 
     // fill it
-    for (size_t i = 0; i < uids.size(); ++i)
+    for (ScicosID uid : uids)
     {
-        container[i] = { uids[i], m_instance.model.getKind(uids[i]) };
+        // if something went wrong on the adapters, clean the invalid children
+        if (uid == ScicosID())
+	        continue;
+
+        container.push_back({ uid, m_instance.model.getKind(uid) });
     }
 
     // sort according to the kinds
@@ -629,7 +634,8 @@ void Controller::sortAndFillKind(std::vector<ScicosID>& uids, std::vector<int>& 
 
     // move things back
     uids.clear();
-    kinds.reserve(uids.capacity());
+    uids.reserve(container.size());
+    kinds.reserve(container.size());
     for (const auto & v : container)
     {
         uids.push_back(v.first);

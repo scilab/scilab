@@ -94,7 +94,7 @@ endif
 
 
 #### hdf5 : include files ####
-FORCE_HDF_1.8_API = \
+FORCE_HDF_API = \
     -DH5Dopen_vers=2 \
     -DH5Topen_vers=2 \
     -DH5Dcreate_vers=2 \
@@ -102,7 +102,10 @@ FORCE_HDF_1.8_API = \
     -DH5Gcreate_vers=2 \
     -DH5Gopen_vers=2 \
     -DH5Tget_array_dims_vers=2 \
-    -DH5Acreate_vers=2 -DNO_DEPRECATED_SYMBOLS
+    -DH5Acreate_vers=2 \
+    -DH5Rdereference_vers=2 \
+    -DNO_DEPRECATED_SYMBOLS
+
 
 libscihdf5_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
@@ -132,7 +135,7 @@ libscihdf5_la_CPPFLAGS = \
     $(JAVA_JNI_INCLUDE) \
     $(HDF5_CFLAGS) \
     $(AM_CPPFLAGS) \
-    $(FORCE_HDF_1.8_API)
+    $(FORCE_HDF_API)
 
 
 

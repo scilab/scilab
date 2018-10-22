@@ -2,9 +2,9 @@
 // Copyright (C) 2008 - INRIA - Simon LIPP <simon.lipp@scilab.org>
 // Copyright (C) 2010 - DIGITEO - Pierre MARECHAL
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
-// Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,12 +38,6 @@ function tbx_builder_src(module)
         error(msprintf(gettext("%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"),"tbx_builder_src",module));
     end
 
-    // Check the compiler
-
-    if ~haveacompiler() then
-        error(msprintf(gettext("%s: This module requires a C or Fortran compiler and it has not been found.\n"),"tbx_builder_src"));
-    end
-
     // check there is a builder file is  present and if so execute it with tbx_builder
     builder_src_dir = module + "/src/";
     if isdir(builder_src_dir)
@@ -55,6 +49,13 @@ function tbx_builder_src(module)
         if isempty(languages)
             warning(_("No builder file found, nothing to be done"));
             return
+        end
+        // Check the compiler (not needed if only Java sources)
+        if sum(members(convstr(languages), ["c" "cpp" "fortran"]))>0
+            if ~haveacompiler() then
+                msg = gettext("%s: This module requires a C or Fortran compiler and it has not been found.\n")
+                error(msprintf(msg, "tbx_builder_src"))
+            end
         end
         if ~isempty(builder_src_file)
             builder_src_file = pathconvert(builder_src_dir + "/" + builder_src_file, %F);
