@@ -14,21 +14,22 @@
 // stripblanks(1) returns "stripblank : Pas assez de mémoire."
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //==============================================================
 ierr = execstr("r = stripblanks(1);","errcatch");
-if ierr <> 999 then pause,end
+if ierr == 0 then pause,end
 //==============================================================
 ierr = execstr("r = cd(1);","errcatch");
-if ierr <> 999 then pause,end
+if ierr == 0 then pause,end
 //==============================================================
 ierr = execstr("r = ls(1);","errcatch");
-if ierr <> 999 then pause,end
+if ierr == 0 then pause,end
 //==============================================================
 ierr = execstr("r = dir(1);","errcatch");
-if ierr <> 999 then pause,end
+if ierr == 0 then pause,end
 //==============================================================
 ierr = execstr("r = help(1);","errcatch");
-if ierr <> 999 then pause,end
+if ierr == 0 then pause,end
 //==============================================================
 
