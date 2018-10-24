@@ -19,8 +19,8 @@ public class SurfaceData {
     return SurfaceDataJNI.createObject3dData(obj, newObj, type);
   }
 
-  public static double pickSurface(int uid, double x, double y, double z, double dx, double dy, double dz, double mx, double my, double mz, double mw) {
-    return SurfaceDataJNI.pickSurface(uid, x, y, z, dx, dy, dz, mx, my, mz, mw);
+  public static double pickSurface(int uid, double x, double y, double z, double dx, double dy, double dz) {
+    return SurfaceDataJNI.pickSurface(uid, x, y, z, dx, dy, dz);
   }
 
 }

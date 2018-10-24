@@ -22,8 +22,9 @@ extern "C"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "sciprint.h"
 
-    double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
+double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz);
 
 }
 
@@ -96,17 +97,16 @@ public:
 };
 
 int test_tri(Vec3 V1, Vec3 V2, Vec3 V3, Vec3 Dir, Vec3 P0, Vec3 &ret);
-void QuadTestAndSaveZ(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 direction, Vec3 point,
-                      double mx, double my, double mz, double mw, double &retZ);
+void QuadTestAndSaveT(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 direction, Vec3 point, double &retT);
 
 /*
- * Given a ray (point(x, y,z) + direction(dx, dy, dz))
+ * Given a ray (point(x, y,z) and direction(dx, dy, dz))
  * check if the ray intersects any triangle from the given surface.
- * returns the projected Z from the intersection point (p) (p.x*mx + p.y*my + p.z*mz + mw;)
- * or 2.0 if there isn't intersection (projected z vary between -1.0 - 1.0).
+ * returns t such that the intersection point is (x, y,z) + t * (dx, dy, dz)
+ * or -INFINITY if there isn't intersection.
  */
 
-double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw)
+double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz)
 {
     double* X = NULL;
     double* Y = NULL;
@@ -114,7 +114,7 @@ double pickSurface(int uid, double x, double y,  double z, double dx, double dy,
 
     int type;
     int * pType = &type;
-    double lastZ = 2.0;
+    double lastT = -INFINITY;
 
     Vec3 direction = Vec3(dx, dy, dz);
     Vec3 point = Vec3(x, y, z);
@@ -169,7 +169,7 @@ double pickSurface(int uid, double x, double y,  double z, double dx, double dy,
                 Vec3 P2 = Vec3(X[i + 1], Y[j + 1], Z[(i + 1) + (j + 1) * numX]);
                 Vec3 P3 = Vec3(X[i],   Y[j + 1], Z[i + (j + 1) * numX]);
 
-                QuadTestAndSaveZ(bounds, P0, P1, P2, P3, direction, point, mx, my, mz, mw, lastZ);
+                QuadTestAndSaveT(bounds, P0, P1, P2, P3, direction, point, lastT);
             }
         }
     }
@@ -201,7 +201,7 @@ double pickSurface(int uid, double x, double y,  double z, double dx, double dy,
             Vec3 P2 = Vec3(X[i + 2], Y[i + 2], Z[i + 2]);
             Vec3 P3 = Vec3(X[i + 3], Y[i + 3], Z[i + 3]);
 
-            QuadTestAndSaveZ(bounds, P0, P1, P2, P3, direction, point, mx, my, mz, mw, lastZ);
+            QuadTestAndSaveT(bounds, P0, P1, P2, P3, direction, point, lastT);
         }
     }
     if (type == __GO_GRAYPLOT__)
@@ -224,7 +224,7 @@ double pickSurface(int uid, double x, double y,  double z, double dx, double dy,
         Vec3 P2 = Vec3(X[numX - 1], Y[numY - 1], 0);
         Vec3 P3 = Vec3(X[0],      Y[numY - 1], 0);
 
-        QuadTestAndSaveZ(bounds, P0, P1, P2, P3, direction, point, mx, my, mz, mw, lastZ);
+        QuadTestAndSaveT(bounds, P0, P1, P2, P3, direction, point, lastT);
     }
     if (type == __GO_MATPLOT__)
     {
@@ -254,9 +254,9 @@ double pickSurface(int uid, double x, double y,  double z, double dx, double dy,
         Vec3 P2 = Vec3(mbounds[2],      mbounds[3],      zShift);
         Vec3 P3 = Vec3(mbounds[0],      mbounds[3],      zShift);
 
-        QuadTestAndSaveZ(bounds, P0, P1, P2, P3, direction, point, mx, my, mz, mw, lastZ);
+        QuadTestAndSaveT(bounds, P0, P1, P2, P3, direction, point, lastT);
     }
-    return lastZ;
+    return lastT;
 
 }
 
@@ -268,10 +268,10 @@ double pickSurface(int uid, double x, double y,  double z, double dx, double dy,
  * 0 <= u <= 1 && 0 <= v <= 1 && (u + v) <= 1, then the
  * intersection point is inside the triangle.
  */
-int test_tri(Vec3 V1, Vec3 V2, Vec3 V3, Vec3 Dir, Vec3 P0, Vec3 &ret)
+int test_tri(Vec3 V1, Vec3 V2, Vec3 V3, Vec3 Dir, Vec3 P0, double &t)
 {
     Vec3 Edge1, Edge2, tVec, pVec, qVec;
-    double det, inv_det, t, u, v;
+    double det, inv_det, u, v;
 
     Edge1 = V2 - V1;
     Edge2 = V3 - V1;
@@ -303,8 +303,6 @@ int test_tri(Vec3 V1, Vec3 V2, Vec3 V3, Vec3 Dir, Vec3 P0, Vec3 &ret)
     }
 
     t = Edge2.dot(qVec) * inv_det;
-    ret = P0 + Dir * t;
-
 
     return 1;
 }
@@ -316,31 +314,28 @@ bool isInViewBox(double * bounds, Vec3 point)
             bounds[4] <= point.z && bounds[5] >= point.z);
 }
 
-void QuadTestAndSaveZ(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 direction, Vec3 point,
-                      double mx, double my, double mz, double mw, double &retZ)
+void QuadTestAndSaveT(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 direction, Vec3 point, double &retT)
 {
-    Vec3 ret;
-
+    Vec3 intersectionPoint;
+    double t;
     /*test first triangle*/
-    if (test_tri(P0, P1, P2, direction, point, ret) == 1)
+    if (test_tri(P0, P1, P2, direction, point, t) == 1)
     {
         /*the intersection point can be outside the view box(invisible)*/
-        if (isInViewBox(bounds, ret))
+        intersectionPoint = point + direction * t;        
+        if (isInViewBox(bounds, intersectionPoint))
         {
-            /* ray intersects the triangle, then we project only the Z cordinate
-             * and store the nearest projected Z.
-             */
-            double curZ = ret.x * mx + ret.y * my + ret.z * mz + mw;
-            retZ = retZ < curZ ? retZ : curZ;
+            // ray intersects the triangle, we store the greatest t (nearest from viewpoint) 
+            retT = retT > t ? retT : t;
         }
     }
     /*test second triangle*/
-    if (test_tri(P0, P2, P3, direction, point, ret) == 1)
+    if (test_tri(P0, P2, P3, direction, point, t) == 1)
     {
-        if (isInViewBox(bounds, ret))
+        intersectionPoint = point + direction * t;        
+        if (isInViewBox(bounds, intersectionPoint))
         {
-            double curZ = ret.x * mx + ret.y * my + ret.z * mz + mw;
-            retZ = retZ < curZ ? retZ : curZ;
+            retT = retT > t ? retT : t;
         }
     }
 }

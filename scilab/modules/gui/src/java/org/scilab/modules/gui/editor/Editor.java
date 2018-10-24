@@ -72,6 +72,7 @@ public class Editor {
     JMenu labels, legends;
 
     EntityPicker.LegendInfo selectedLegend = null;
+    EntityPicker.SurfaceInfo selectedSurface = null;
     Integer selected = null;
     Integer figureUid = null;
     Integer[] lastClick = { 0, 0 };
@@ -826,11 +827,11 @@ public class Editor {
                 selectedType = SelectionType.POLYLINE;
                 return picked;
             } else {
-                picked = entityPicker.pickSurface(figureUid, pos);
-                if (picked != null) {
+                selectedSurface = entityPicker.pickSurface(figureUid, pos);
+                if (selectedSurface.surface != null) {
                     selectedType = SelectionType.SURFACE;
                 }
-                return picked;
+                return selectedSurface.surface;
             }
         }
     }

@@ -175,7 +175,7 @@ int getDataSizeZ(int uid)
 
 %{
 extern int createObject3dData(int obj, int newObj, int type);
-extern double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
+extern double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz);
 %}
 
 
@@ -183,7 +183,7 @@ double * getSurfDataX(int uid);
 double * getSurfDataY(int uid);
 double * getSurfDataZ(int uid);
 int createObject3dData(int obj, int newObj, int type);
-double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz, double mx, double my, double mz, double mw);
+double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz);
 
 
 
