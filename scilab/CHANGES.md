@@ -492,6 +492,7 @@ Known issues
 * [#14296](http://bugzilla.scilab.org/show_bug.cgi?id=14296): Xcos labels moving after creating blocks using scripts crashed Scilab.
 * [#14318](http://bugzilla.scilab.org/show_bug.cgi?id=14318): There was a memory leak when writing a HDF5 file.
 * [#14355](http://bugzilla.scilab.org/show_bug.cgi?id=14355): `powershell` was poorly documented.
+* [#14373](http://bugzilla.scilab.org/show_bug.cgi?id=14373): the `xcosAddToolMenu` callback did not work without selecting a block.
 * [#14386](http://bugzilla.scilab.org/show_bug.cgi?id=14386): `string(macro)` commented some `end` (missing `\n`).
 * [#14388](http://bugzilla.scilab.org/show_bug.cgi?id=14388): Feeding a cell component or clearing a cell array often crashed Scilab.
 * [#14460](http://bugzilla.scilab.org/show_bug.cgi?id=14460): sparse boolean indices were not supported.

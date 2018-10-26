@@ -115,6 +115,8 @@ public final class ExternalAction extends DefaultAction {
             command.append("if exists('blk') then xcosCellCreated(blk); end\n");
         } else {
             block = null;
+            command.append("blk = [];\n");
+            command.append(localCommand).append('\n');
         }
 
 
