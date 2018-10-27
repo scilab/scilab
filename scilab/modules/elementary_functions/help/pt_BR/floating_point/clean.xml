@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,47 +13,54 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="clean" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="clean" xml:lang="pt">
     <refnamediv>
         <refname>clean</refname>
         <refpurpose>limpa matrizes (arredonda para zero entradas pequenas)
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento</title>
-        <synopsis>B=clean(A [,epsa [,epsr]])</synopsis>
+        <title> SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>
+          B = clean(A)
+          B = clean(A, epsa)
+          B = clean(A, epsa, epsr)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>uma matriz numérica (de escalares, de polinômios, esparsa...)
+                    <para>
+                        nÃºmero escalar, vetor, matriz ou hipermatriz de nÃºmeros decimais ou de
+                        nÃºmeros complexos, em codificaÃ§Ã£o densa ou esparsa, ou de polinÃ´mios ou
+                        racionais com coeficientes reais ou complexos.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>epsa,epsr</term>
+                <term>epsa, epsr</term>
                 <listitem>
-                    <para>números reais (valores padrões respectivos: 1.d-10 e
-                        1.d-10)
+                    <para>
+                        nÃºmeros reais positivos: tolerÃ¢ncias de limpeza. Ambos os valores padrÃ£o sÃ£o
+                        10<superscript>-10</superscript>.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta função elimina (i.e. ajusta para zero) todos os coeficientes
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta funÃ§Ã£o ajusta para zero todos os coeficientes
             com valores absolutos&lt; <literal>epsa</literal> e valores relativos&lt;
-            <literal>epsr</literal> (relativo siginifica "em relação à norma-1 de
-            coeficientes") em um polinômio (possivelmente uma matriz de polinômios ou
-            matriz de razões de polinômios).
-        </para>
-        <para>
-            Os valores padrões são <literal>epsa=1.d-10</literal> e
-            <literal>epsr=1.d-10;</literal>
+            <literal>epsr</literal> (relativo em relaÃ§Ã£o ao max(A), ignorando %inf e %nan valores
+            de <varname>A</varname>) em um polinÃ´mio (possivelmente uma matriz de polinÃ´mios ou
+            matriz de razÃµes de polinÃ´mios).
         </para>
         <para>
             Para uma matriz de constantes <literal>clean(A,epsa)</literal>
@@ -64,10 +71,84 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-x=poly(0,'x');
-w=[x,1,2+x;3+x,2-x,x^2;1,2,3+x]/3;
-w*inv(w)
-clean(w*inv(w))
- ]]></programlisting>
+m = grand(3,5,"uin",1,9) .* 10.^grand(3,5,"uin",-16,1)
+clean(m)
+clean(m, 1e-7)
+     ]]></programlisting>
+   <screen><![CDATA[
+--> m = grand(3,5,"uin",1,9) .* 10.^grand(3,5,"uin",-16,1)
+ m  =
+   5.000D-08   5.          0.8         7.000D-08   4.000D-11
+   0.00007     7.          4.000D-09   6.000D-13   2.000D-16
+   2.000D-08   1.000D-14   1.          8.          0.7
+
+--> clean(m)
+ ans  =
+   5.000D-08   5.   0.8         7.000D-08   0.
+   0.00007     7.   4.000D-09   0.          0.
+   2.000D-08   0.   1.          8.          0.7
+
+--> clean(m, 1e-7)
+ ans  =
+   0.        5.   0.8   0.   0.
+   0.00007   7.   0.    0.   0.
+   0.        0.   1.    8.   0.7
+]]></screen>
+        <para/>
+        <para>
+            <emphasis role="bold">For rationals:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+x = poly(0,'x');
+w = [3+2*x, 2+x; 3+x, 2-x]/5
+r = w * inv(w)
+clean(r)
+     ]]></programlisting>
+   <screen><![CDATA[
+--> w = [3+2*x, 2+x; 3+x, 2-x]/5
+ w  =
+   0.6 +0.4x   0.4 +0.2x
+   0.6 +0.2x   0.4 -0.2x
+
+--> r = w * inv(w)
+ r  =
+                                                                2
+   -3.140D-16 + x                        -1.110D-15 + 3.331D-16x
+   ---------------                       ------------------------
+                                                           2
+         x                                   1.3333333x + x
+                                      2                             2
+   1.110D-15 - 2.220D-16x - 5.551D-17x   -1.110D-15 + 1.3333333x + x
+   ------------------------------------  ----------------------------
+                           2                                 2
+             1.3333333x + x                    1.3333333x + x
+
+--> clean(r)
+ ans  =
+   1   0
+   --  --
+   1   1
+
+   0   1
+   --  --
+   1   1
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver TambÃ©m</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="percenteps">%eps</link>
+            </member>
+            <member>
+                <link linkend="cond">cond</link>
+            </member>
+            <member>
+                <link linkend="nearfloat">nearfloat</link>
+            </member>
+            <member>
+                <link linkend="number_properties">number_properties</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

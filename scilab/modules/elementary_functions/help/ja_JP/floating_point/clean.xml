@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,115 +13,138 @@
  * along with this program.
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="clean">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="clean">
     <refnamediv>
-
         <refname>clean</refname>
-
-        <refpurpose>行列を消去 (小さなエントリをゼロに丸める)    </refpurpose>
-
+        <refpurpose>行列を消去 (小さなエントリをゼロに丸める)</refpurpose>
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
-        <synopsis>B=clean(A [,epsa [,epsr]])</synopsis>
-
+        <synopsis>
+          B = clean(A)
+          B = clean(A, epsa)
+          B = clean(A, epsa, epsr)
+        </synopsis>
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>A</term>
-
                 <listitem>
-
                     <para>数値行列(スカラー, 多項式, 疎行列...)</para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>epsa,epsr</term>
-
                 <listitem>
-
                     <para>
-
                         実数. 消去の際の閾値 (デフォルト値はそれぞれ
-
-                        <literal>1.d-10</literal>および<literal>1.d-10</literal>)
-
+                        10<superscript>-10</superscript>および10<superscript>-10</superscript>)
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
         <para>
-
             この関数は,
-
             多項式(もしくは多項式行列または有理行列)において
-
             絶対値&lt; <literal>epsa</literal>または
-
             相対値&lt; <literal>epsr</literal>の係数を全て消去(すなわち,ゼロに設定)します.
-
             (相対とは係数の1次ノルムに関する相対値を意味します)
-
         </para>
-
         <para>
-
-            デフォルト値は <varname>epsa</varname><literal>=1.d-10</literal> および
-
-            <varname>epsr</varname><literal>=1.d-10</literal>です.
-
-        </para>
-
-        <para>
-
             (多項式でない)定数行列の場合,<code>clean(A,epsa)</code>は
-
             <varname>epsa</varname>より小さな<literal>A</literal>のエントリを
-
             全てゼロに設定します.
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
-
         <programlisting role="example"><![CDATA[
-x=poly(0,'x');
-w=[x,1,2+x;3+x,2-x,x^2;1,2,3+x]/3;
-w*inv(w)
-clean(w*inv(w))
- ]]></programlisting>
+m = grand(3,5,"uin",1,9) .* 10.^grand(3,5,"uin",-16,1)
+clean(m)
+clean(m, 1e-7)
+     ]]></programlisting>
+   <screen><![CDATA[
+--> m = grand(3,5,"uin",1,9) .* 10.^grand(3,5,"uin",-16,1)
+ m  =
+   5.000D-08   5.          0.8         7.000D-08   4.000D-11
+   0.00007     7.          4.000D-09   6.000D-13   2.000D-16
+   2.000D-08   1.000D-14   1.          8.          0.7
 
+--> clean(m)
+ ans  =
+   5.000D-08   5.   0.8         7.000D-08   0.
+   0.00007     7.   4.000D-09   0.          0.
+   2.000D-08   0.   1.          8.          0.7
+
+--> clean(m, 1e-7)
+ ans  =
+   0.        5.   0.8   0.   0.
+   0.00007   7.   0.    0.   0.
+   0.        0.   1.    8.   0.7
+]]></screen>
+        <para/>
+        <para>
+            <emphasis role="bold">For rationals:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+x = poly(0,'x');
+w = [3+2*x, 2+x; 3+x, 2-x]/5
+r = w * inv(w)
+clean(r)
+     ]]></programlisting>
+   <screen><![CDATA[
+--> w = [3+2*x, 2+x; 3+x, 2-x]/5
+ w  =
+   0.6 +0.4x   0.4 +0.2x
+   0.6 +0.2x   0.4 -0.2x
+
+--> r = w * inv(w)
+ r  =
+                                                                2
+   -3.140D-16 + x                        -1.110D-15 + 3.331D-16x
+   ---------------                       ------------------------
+                                                           2
+         x                                   1.3333333x + x
+                                      2                             2
+   1.110D-15 - 2.220D-16x - 5.551D-17x   -1.110D-15 + 1.3333333x + x
+   ------------------------------------  ----------------------------
+                           2                                 2
+             1.3333333x + x                    1.3333333x + x
+
+--> clean(r)
+ ans  =
+   1   0
+   --  --
+   1   1
+
+   0   1
+   --  --
+   1   1
+]]></screen>
     </refsection>
-
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="percenteps">%eps</link>
+            </member>
+            <member>
+                <link linkend="cond">cond</link>
+            </member>
+            <member>
+                <link linkend="nearfloat">nearfloat</link>
+            </member>
+            <member>
+                <link linkend="number_properties">number_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
-
