@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -30,10 +30,37 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::Double* pDblInd = NULL;
+    //
+    // Special cases
+    //
+    if (in[0]->isGenericType() == false)
+    {
+        // custom types
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
+        return Overload::call(wstFuncName, in, _iRetCount, out);
+    }
+    types::GenericType* pGTIn = in[0]->getAs<types::GenericType>();
+    if (pGTIn->getDims() > 2)
+    {
+        // hypermatrix
+        return Overload::call(L"%hm_gsort", in, _iRetCount, out);
+    }
+    if (pGTIn->isSparse())
+    {
+        // sparse
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
+        return Overload::call(wstFuncName, in, _iRetCount, out);
+    }
+    if (pGTIn->isComplex() && symbol::Context::getInstance()->getFunction(symbol::Symbol(L"%_gsort")))
+    {
+        // complex is documented as being managed through overloading
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
+        return Overload::call(wstFuncName, in, _iRetCount, out);
+    }
 
-    std::wstring wstrWay     = L"d";
-    std::wstring wstrProcess = L"g";
+    //
+    // Common case
+    //
 
     if (in.size() < 1 || in.size() > 3)
     {
@@ -47,8 +74,9 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    /***** get data and perform operation *****/
-    if (in.size() == 3) // get Direction
+    // Get the sorting order
+    std::wstring wstrWay = L"d";
+    if (in.size() > 2)
     {
         if (in[2]->isString() == false)
         {
@@ -59,12 +87,14 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
         wstrWay = in[2]->getAs<types::String>()->get(0);
         if (wstrWay != L"i" && wstrWay != L"d")
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"), "gsort", 3);
+            Scierror(999, _("%s: Wrong value for input argument #%d: %s expected.\n"), "gsort", 3, "'i'|'d'");
             return types::Function::Error;
         }
     }
 
-    if (in.size() >= 2) // get Option
+    // Get the sorting method
+    std::wstring wstrProcess = L"g";
+    if (in.size() >= 2)
     {
         if (in[1]->isString() == false)
         {
@@ -85,24 +115,12 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-    // get data and perform operation for each types::
-    if (in[0]->isGenericType() == false)
-    {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
-    }
-
-    types::GenericType* pGTOut = in[0]->getAs<types::GenericType>();
-
-    if (pGTOut->getDims() > 2)
-    {
-        return Overload::call(L"%hm_gsort", in, _iRetCount, out);
-    }
-
+    // Get data and perform operation for each types::
+    types::Double* pDblInd = NULL;
     if (_iRetCount == 2)
     {
-        int iRowsInd = (wstrProcess == L"lc") ? 1 : pGTOut->getRows();
-        int iColsInd = (wstrProcess == L"lr") ? 1 : pGTOut->getCols();
+        int iRowsInd = (wstrProcess == L"lc") ? 1 : pGTIn->getRows();
+        int iColsInd = (wstrProcess == L"lr") ? 1 : pGTIn->getCols();
 
         pDblInd = new types::Double(iRowsInd, iColsInd);
     }
@@ -110,29 +128,8 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     if (in[0]->isDouble()) // double
     {
         types::Double* pDblIn = in[0]->getAs<types::Double>();
-        // doc says : "With complex numbers, gsort can be overloaded"
-        if (pDblIn->isComplex() && symbol::Context::getInstance()->getFunction(symbol::Symbol(L"%_gsort")))
-        {
-            if (_iRetCount == 2)
-            {
-                delete pDblInd;
-            }
-
-            return Overload::call(L"%_gsort", in, _iRetCount, out);
-        }
-
         types::Double* pDblOut = gsort(pDblIn, pDblInd, wstrWay, wstrProcess);
         out.push_back(pDblOut);
-    }
-    else if (in[0]->isSparse()) // sparse
-    {
-        if (_iRetCount == 2)
-        {
-            delete pDblInd;
-        }
-
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
     else if (in[0]->isString()) // string
     {
@@ -188,13 +185,13 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
         types::UInt64* pIOut = gsort(pIIn, pDblInd, wstrWay, wstrProcess);
         out.push_back(pIOut);
     }
-    else
+    else    // Other generic data types not supported
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    /***** set result *****/
+    // Returns indices when requested
     if (_iRetCount == 2)
     {
         out.push_back(pDblInd);
