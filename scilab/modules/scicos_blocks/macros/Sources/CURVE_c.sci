@@ -54,6 +54,12 @@ function [x,y,typ]=CURVE_c(job,arg1,arg2)
                 exprs(4)="n";
                 PO=0;
             end
+            if graf=="y" | graf=="Y" then
+                gui=1;
+            else
+                exprs(5)="n";
+                gui=0;
+            end
 
             mtd=int(Method);
             if mtd<0 then
@@ -83,7 +89,7 @@ function [x,y,typ]=CURVE_c(job,arg1,arg2)
                 N= size(xy,"r");
                 exprs(5)="n";// exprs.graf='n'
 
-                if graf=="y" | graf=="Y" then //_______Graphic editor___________
+                if gui then //_______Graphic editor___________
                     ipar=[N;mtd;PO];
                     rpar=[];
 
@@ -1207,7 +1213,11 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            gcf().info_message = "ERROR in SPLINE: "+METHOD
+	if gui then
+	gcf().info_message = "ERROR in SPLINE: "+METHOD
+	else
+	messagebox(lasterror(), "ERROR in SPLINE: "+METHOD);
+	end
         end
 
     end
@@ -1221,7 +1231,11 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            gcf().info_message = "ERROR in SPLINE: " + METHOD
+	if gui then
+	gcf().info_message = "ERROR in SPLINE: "+METHOD
+	else
+	messagebox(lasterror(), "ERROR in SPLINE: "+METHOD);
+	end
         end
     end
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1231,7 +1245,11 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            gcf().info_message = "ERROR in SPLINE: " + METHOD
+	if gui then
+	gcf().info_message = "ERROR in SPLINE: "+METHOD
+	else
+	messagebox(lasterror(), "ERROR in SPLINE: "+METHOD);
+	end
         end
 
     end
@@ -1242,7 +1260,11 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            gcf().info_message = "ERROR in SPLINE:  " + METHOD
+	if gui then
+	gcf().info_message = "ERROR in SPLINE: "+METHOD
+	else
+	messagebox(lasterror(), "ERROR in SPLINE: "+METHOD);
+	end
         end
     end
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1252,7 +1274,11 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            gcf().info_message = "ERROR in SPLINE: " + METHOD
+	if gui then
+	gcf().info_message = "ERROR in SPLINE: "+METHOD
+	else
+	messagebox(lasterror(), "ERROR in SPLINE: "+METHOD);
+	end
         end
     end
 

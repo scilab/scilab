@@ -134,8 +134,8 @@ User Interface improvements:
 Xcos
 ----
 
-* Default ending time reduced from 100000 to 30, to fit default scope block
-
+* Default ending time reduced from 100000 to 30, to fit default scope block.
+* `CURVE_c` settings did not always display a window.
 
 API modification
 ----------------
