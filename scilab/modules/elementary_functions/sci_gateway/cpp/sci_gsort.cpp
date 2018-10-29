@@ -17,6 +17,7 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
+#include "polynom.hxx"
 #include "overload.hxx"
 #include "gsort.hxx"
 #include "context.hxx"
@@ -36,71 +37,30 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
         Scierror(77, _("%s: Wrong number of input argument(s): At least %d expected.\n"), "gsort", 1);
         return types::Function::Error;
     }
-    // The maximal number of input args may depend on the input data type, due to specific options
 
     //
-    // Special cases
-    //
+    // Custom typeof
+    // -------------
     if (in[0]->isGenericType() == false)
     {
         // custom types
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
-    types::GenericType* pGTIn = in[0]->getAs<types::GenericType>();
-    if (pGTIn->getDims() > 2)
+    // Otherwise: max numbers of inputs / outputs
+    if (in.size() > 4 )
     {
-        // hypermatrix
-        return Overload::call(L"%hm_gsort", in, _iRetCount, out);
-    }
-    if (pGTIn->isSparse())
-    {
-        // sparse
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
-    }
-    if (pGTIn->isComplex() && symbol::Context::getInstance()->getFunction(symbol::Symbol(L"%_gsort")))
-    {
-        // complex is documented as being managed through overloading
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
-    }
-
-    //
-    // Common case
-    //
-
-    if (in.size() > 3)
-    {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "gsort", 1, 3);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "gsort", 1, 4);
         return types::Function::Error;
     }
-
     if (_iRetCount > 2)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "gsort", 1, 2);
         return types::Function::Error;
     }
 
-    // Get the sorting order
-    std::wstring wstrWay = L"d";
-    if (in.size() > 2)
-    {
-        if (in[2]->isString() == false)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "gsort", 3);
-            return types::Function::Error;
-        }
-
-        wstrWay = in[2]->getAs<types::String>()->get(0);
-        if (wstrWay != L"i" && wstrWay != L"d")
-        {
-            Scierror(999, _("%s: Wrong value for input argument #%d: %s expected.\n"), "gsort", 3, "'i'|'d'");
-            return types::Function::Error;
-        }
-    }
-
-    // Get the sorting method
+    // Get the sorting method, always as argin#2 for all generic types
+    // ----------------------
     std::wstring wstrProcess = L"g";
     if (in.size() >= 2)
     {
@@ -118,7 +78,57 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
                 wstrProcess != L"lc" &&
                 wstrProcess != L"lr")
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] expected.\n"), "gsort", 2);
+            Scierror(999, _("%s: Argument #%d: Must be in the set {%s}.\n"), "gsort", 2, "'g','r','c','lc','lr'");
+            return types::Function::Error;
+        }
+    }
+
+    types::GenericType* pGTIn = in[0]->getAs<types::GenericType>();
+	
+    if (pGTIn->getDims() > 2)
+    {
+        // hypermatrix
+        return Overload::call(L"%hm_gsort", in, _iRetCount, out);
+    }
+    if (pGTIn->isSparse())
+    {
+        // sparse
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
+        return Overload::call(wstFuncName, in, _iRetCount, out);
+    }
+    if (pGTIn->isDouble() && pGTIn->isComplex())
+    {
+        // complex numbers
+        return Overload::call(L"%s_gsort", in, _iRetCount, out);
+    }
+    if (in.size() == 4)
+    {
+        // Direct multilevel sorting
+        return Overload::call(L"%gsort_multilevel", in, _iRetCount, out);
+    }
+    if (pGTIn->isPoly())
+    {
+        // real or complex polynomials
+        return Overload::call(L"%p_gsort", in, _iRetCount, out);
+    }
+
+    //
+    // Common case
+    //
+    // Get the sorting order
+    std::wstring wstrWay = L"d";
+    if (in.size() > 2)
+    {
+        if (in[2]->isString() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "gsort", 3);
+            return types::Function::Error;
+        }
+
+        wstrWay = in[2]->getAs<types::String>()->get(0);
+        if (wstrWay != L"i" && wstrWay != L"d")
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: %s expected.\n"), "gsort", 3, "'i'|'d'");
             return types::Function::Error;
         }
     }

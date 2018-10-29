@@ -140,6 +140,7 @@ Feature changes and additions
 * `nicholschart` is improved: more neutral default frame color; improved labels positionning; colors can now be specified by their predefined name or "#RRGGBB" hexa code; a structure of handles is now returned to easily postprocess both subframes and the set of labels.
 * `sciargs()` returns a column instead of formerly a row.
 * Booleans and encoded integers can now be concatenated together, as in `[%f int8(-5)]`.
+* `gsort` can now perform multilevel sorting. This noticeably allows to sort completely complex numbers.
 
 Help pages:
 -----------
@@ -206,6 +207,7 @@ Bug Fixes
 * [#7657](http://bugzilla.scilab.org/show_bug.cgi?id=7657): `lstsize` was a duplicate of `size` and should be removed.
 * [#7724](http://bugzilla.scilab.org/show_bug.cgi?id=7724): When a figure is created in .auto_resize="on" mode, its .axes_size sets its .figure_size accordingly, not the reverse. But this was not documented.
 * [#7765](http://bugzilla.scilab.org/show_bug.cgi?id=7765): `champ1()` is useless. `champ().colored` is available for a long time.
+* [#7948](http://bugzilla.scilab.org/show_bug.cgi?id=7948): `gsort()` could not perform multilevel sorting.
 * [#7967](http://bugzilla.scilab.org/show_bug.cgi?id=7967): The tricky size `[ny,nx]` of `meshgrid(x,y)` results and usages with graphics was not enough documented.
 * [#8307](http://bugzilla.scilab.org/show_bug.cgi?id=8307): `list2vec()` and `vec2list()` were located in the [optimization] module instead of in [data_structures], and were missing in the `See also` section of `list()`.
 * [#8418](http://bugzilla.scilab.org/show_bug.cgi?id=8418): `unique()` was not able to return the number of occurences of returned dictinct entities.
@@ -277,6 +279,7 @@ Bug Fixes
 * [#15745](http://bugzilla.scilab.org/show_bug.cgi?id=15745): `diophant(0,0,m)`, `diophant([p 0],q)`, `diophant([0 p],q)` with m<>0 and p>q were wrong. There was no flag for cases with an infinite number of solutions. When there is no solution, some values were returned anyway, instead of []. In this case, the documented definition of the err value was dubious. Decimal numbers and integers were accepted, but not encoded integers. Inf and NaN input coefficients were not rejected.
 * [#15812](http://bugzilla.scilab.org/show_bug.cgi?id=15812): On assigning variables the source variable may become become corrupted
 * [#15821](http://bugzilla.scilab.org/show_bug.cgi?id=15821): `fac3d()` and fac3d1()` were still in Scilab 6.0 despite they were tagged obsolete 14 years ago in Scilab 4.1
+* [#15825](http://bugzilla.scilab.org/show_bug.cgi?id=15825): `gsort()` could not sort completely dense matrices of complex numbers.
 * [#15840](http://bugzilla.scilab.org/show_bug.cgi?id=15840): `grand(1,"prm",m)` yielded an unsqueezed size([size(m) 1]) hypermatrix
 * [#15934](http://bugzilla.scilab.org/show_bug.cgi?id=15934): The `^ hat` page wrongly indicated that `^` applied to a rectangular matrix not being a vector is done element-wise.
 * [#15948](http://bugzilla.scilab.org/show_bug.cgi?id=15948): `xlabel`, `ylabel`, `zlabel` and `title` needed to be upgraded.
