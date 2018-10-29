@@ -1887,7 +1887,6 @@ check_modules_xml
 check_versions
 edit
 getshell
-perl
 toolboxes
 ver
 whereami

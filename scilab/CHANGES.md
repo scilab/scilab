@@ -391,6 +391,7 @@ Removed Functions
 * `readgateway` has been removed.
 * `fort` has been removed. Please use `call` instead.
 * `mtlb_mode` has been removed. Please use `oldEmptyBehavior` instead.
+* `perl` was obsolete since Scilab 5.5.0. It is removed.
 
 
 Known issues

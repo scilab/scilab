@@ -736,32 +736,6 @@ msgstr "%s: %s є непридатною до редагування вбудо�
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: помилкова кількість вхідних параметрів.\n"
 
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: не вдалося знайти файл Perl: %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати рядковий "
-"тип.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: не вказано команди perl."
-
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s: не вдалося знайти інтерпретатор Perl у «%s»"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: не вдалося знайти інтерпретатор Perl.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: помилка системи: виконувалася команда: %s"
-
 msgid "Scilab Version: "
 msgstr "Версія Scilab: "
 

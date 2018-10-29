@@ -682,32 +682,6 @@ msgstr "%s: %s è una funzione precodificata non modificabile.\n"
 msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: Impossibile trovare il file Perl: %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attese delle "
-"stringhe.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: Nessun comando Perl specificato."
-
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s: Impossibile trovare Perl in '%s"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Impossibile trovare Perl.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: Errore di sistema: comando eseguito: %s"
-
 msgid "Scilab Version: "
 msgstr "Versione di Scilab: "
 

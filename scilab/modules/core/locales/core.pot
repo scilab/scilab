@@ -1088,42 +1088,6 @@ msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 
 #
-# File: modules/core/macros/perl.sci, line: 26
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr ""
-
-#
-# File: modules/core/macros/perl.sci, line: 31
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr ""
-
-#
-# File: modules/core/macros/perl.sci, line: 46
-#, c-format
-msgid "%s: No perl command specified."
-msgstr ""
-
-#
-# File: modules/core/macros/perl.sci, line: 52
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr ""
-
-#
-# File: modules/core/macros/perl.sci, line: 68
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr ""
-
-#
-# File: modules/core/macros/perl.sci, line: 73
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr ""
-
-#
 # File: modules/core/macros/ver.sci, line: 19
 msgid "Scilab Version: "
 msgstr ""

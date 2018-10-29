@@ -690,30 +690,6 @@ msgstr "%s: %s является нередактируемой жёстко за
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: Неверное количество входных аргументов.\n"
 
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: Файл Perl не найден: %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: Команда perl не была задана."
-
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s: Perl не найден в «%s»."
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Perl не найден.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: Системная ошибка: выполняемая команда: %s"
-
 msgid "Scilab Version: "
 msgstr "Версия Scilab: "
 

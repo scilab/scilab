@@ -6,7 +6,6 @@
 ;##############################################################################################################
 
 ; Repertoire tools
-Source: tools\Perl\Readme.txt; DestDir: {app}\tools\Perl; Components: {#COMPN_SCILAB}
 Source: tools\curl\*.*; DestDir: {app}\tools\curl; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: tools\zip\*.*; DestDir: {app}\tools\zip; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: tools\gzip\*.*; DestDir: {app}\tools\gzip; Flags: recursesubdirs; Components: {#COMPN_SCILAB}

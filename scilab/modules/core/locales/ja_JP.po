@@ -722,36 +722,6 @@ msgstr "%s: %s は編集不可のハードコードされた関数です.\n"
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: 入力引数の数が間違っています.\n"
 
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: Perlファイルが見つかりません: %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: Perl コマンドが指定されていません."
-
-#
-# File: macros/perl.sci, line: 47
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s: '%s' でPerlを見つけられません"
-
-#
-# File: macros/perl.sci, line: 63
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Perlを見つけられません。\n"
-
-#
-# File: macros/perl.sci, line: 68
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: システム・エラー: コマンドは実行されました: %s"
-
 msgid "Scilab Version: "
 msgstr "Scilabバージョン: "
 

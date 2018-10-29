@@ -636,30 +636,6 @@ msgstr ""
 msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s：无法找到 Perl 文件 %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s：输入参数 #%d 的类型出错：应该为字符串。\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s：没有指定 perl 命令。"
-
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s：在 “%s” 中没有找到 Perl"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s：没有找到 Perl。\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s：系统错误：命令 %s 被执行"
-
 msgid "Scilab Version: "
 msgstr "Scilab版本： "
 
