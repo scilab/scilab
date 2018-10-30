@@ -12,6 +12,10 @@
 
 function %cblock_p(m)
     n=size(definedfields(m),"*")
+    if n==1 then
+        mprintf(_("  (empty table)\n"))
+        return
+    end
     txt=[];
     for k=2:n
         txt=[txt string(getfield(k,m))];
