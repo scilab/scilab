@@ -462,9 +462,11 @@ Known issues
 * [#12659](http://bugzilla.scilab.org/show_bug.cgi?id=12659): Crash on big modulo.
 * [#12711](http://bugzilla.scilab.org/show_bug.cgi?id=12711): Zoom with mouseWheel was always centered at the center of viewing box and was not using cursor position.
 * [#12810](http://bugzilla.scilab.org/show_bug.cgi?id=12810): support added to build RTL help pages.
+* [#12835](http://bugzilla.scilab.org/show_bug.cgi?id=12835): Calling without LHS a function returning varargout set to list() yielded an error.
 * [#12926](http://bugzilla.scilab.org/show_bug.cgi?id=12926): `~%f==1` was parsed as `~(%f==1)` instead of `(~%f)==1`.
 * [#13306](http://bugzilla.scilab.org/show_bug.cgi?id=13306): Evaluating a function set as a structure field could fail.
 * [#13197](http://bugzilla.scilab.org/show_bug.cgi?id=13197): The documentation of `lib()` needed to be updated for Scilab 6.
+* [#13231](http://bugzilla.scilab.org/show_bug.cgi?id=13231): `[X,D]=spec(rand(2000,2000))` yielded a segmentation fault.
 * [#13374](http://bugzilla.scilab.org/show_bug.cgi?id=13374): When setting an erroneous Xcos context, the error message printed in console could easily be missed.
 * [#13039](http://bugzilla.scilab.org/show_bug.cgi?id=13039): In Scinotes, the "File => Save file in" action opened the parent of the targeted directory.
 * [#13466](http://bugzilla.scilab.org/show_bug.cgi?id=13466): Since Scilab 5.5.0, it was no longer possible to dock the demo GUI.
@@ -484,6 +486,7 @@ Known issues
 * [#14318](http://bugzilla.scilab.org/show_bug.cgi?id=14318): There was a memory leak when writing a HDF5 file.
 * [#14355](http://bugzilla.scilab.org/show_bug.cgi?id=14355): `powershell` was poorly documented.
 * [#14386](http://bugzilla.scilab.org/show_bug.cgi?id=14386): `string(macro)` commented some `end` (missing `\n`).
+* [#14388](http://bugzilla.scilab.org/show_bug.cgi?id=14388): Feeding a cell component or clearing a cell array often crashed Scilab.
 * [#14460](http://bugzilla.scilab.org/show_bug.cgi?id=14460): sparse boolean indices were not supported.
 * [#14489](http://bugzilla.scilab.org/show_bug.cgi?id=14489): clicking the scinotes icon did not bring its window in the foreground.
 * [#14506](http://bugzilla.scilab.org/show_bug.cgi?id=14506): An `atomsInstallList` error message had a wrong number of input arguments.
