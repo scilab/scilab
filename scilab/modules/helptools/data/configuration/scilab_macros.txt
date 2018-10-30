@@ -1908,7 +1908,6 @@ who_user
 whos
 with_javasci
 with_macros_source
-with_tk
 createBorderFont
 createWindow
 linsolve

@@ -19,9 +19,6 @@ assert_checkequal(whereis(sci2exp), "stringlib");
 assert_checkequal(whereis("getshell"), "corelib");
 assert_checkequal(whereis(getshell), "corelib");
 
-a = corelib;
-assert_checkequal(whereis("with_tk"), ["a" ; "corelib"]);
-
 //builtin
 assert_checkequal(whereis("exit"), "core");
 assert_checkequal(whereis(exit), "core");

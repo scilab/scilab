@@ -193,6 +193,7 @@ Removed Functions
 * `fac3d` was obsolete since Scilab 4 and has been removed. Please use `plot3d` instead.
 * `fac3d1` was obsolete since Scilab 4 and has been removed. Please use `plot3d1` instead.
 * `xinfo` was obsolete and has been removed. Please use `gcf().info_message` instead.
+* `with_tk` was obsolete and has been removed. Please use `with_module('tclsci')` instead.
 
 
 Known issues
@@ -273,6 +274,7 @@ Bug Fixes
 * [#15715](http://bugzilla.scilab.org/show_bug.cgi?id=15715): `%nan` indices crashed Scilab.
 * [#15742](http://bugzilla.scilab.org/show_bug.cgi?id=15742): The `compatibility_functions` module should be merged in the `m2sci` one.
 * [#15581](http://bugzilla.scilab.org/show_bug.cgi?id=15581): display of complex matrix was ugly.
+* [#15628](http://bugzilla.scilab.org/show_bug.cgi?id=15628): `with_tk` was a duplicate of `with_module('tclsci')`. It is removed.
 * [#15680](http://bugzilla.scilab.org/show_bug.cgi?id=15680): `loadmatfile` could not return variables in a structure instead of into the calling environment.
 * [#15701](http://bugzilla.scilab.org/show_bug.cgi?id=15701): `A\B` was not faster when `A` is square and triangular.
 * [#15734](http://bugzilla.scilab.org/show_bug.cgi?id=15734):  Trivial infinite loop could not be interrupted.
