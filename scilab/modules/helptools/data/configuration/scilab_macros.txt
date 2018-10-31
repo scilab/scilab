@@ -458,7 +458,6 @@ instruction2code
 justify
 rhs2code
 sci2exp
-strcmpi
 tokenpos
 tree2code
 airy

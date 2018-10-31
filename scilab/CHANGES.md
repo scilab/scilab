@@ -185,6 +185,7 @@ Removed Functions
 * `hypermat` was obsolete and has been removed. Please use `matrix` instead.
 * `lstsize` was obsolete and has been removed. Please use `size` instead.
 * `square` was obsolete and has been removed.
+* `strcmpi` was obsolete and has been removed. Please use `strcmp(,'i')` instead.
 * `xgetech` was obsolete and has been removed. Please use `gca` instead.
 
 
@@ -217,6 +218,7 @@ Bug Fixes
 * [#11363](http://bugzilla.scilab.org/show_bug.cgi?id=11363): show_window() did not raise the current graphics window.
 * [#12520](http://bugzilla.scilab.org/show_bug.cgi?id=12520): Vriable browser did not display the size of the variables.
 * [#12534](http://bugzilla.scilab.org/show_bug.cgi?id=12534): Variable browser did not display the size of the variables.
+* [#12837](http://bugzilla.scilab.org/show_bug.cgi?id=12837): `strcmpi` was an obsolete duplicate of `strcmp(,'i')`. It is removed.
 * [#13766](http://bugzilla.scilab.org/show_bug.cgi?id=13766): Minimal values for `.figure_size` were not documented.
 * [#14015](http://bugzilla.scilab.org/show_bug.cgi?id=14015): Nan terms added to a polynomial were ignored.
 * [#14422](http://bugzilla.scilab.org/show_bug.cgi?id=14422): `clc(0)` did nothing, now clears last console entry. Remove leading blank after a `clc()`.
