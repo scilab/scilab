@@ -10,7 +10,18 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function b = %s_c_cblock(a, b)
-    CallingOverloadName = "%s_c_cblock"
-    b = %generic_c_cblock(a, b)
+function a = %cblock_c_generic(a, b)
+    if b==[] then return,end
+    v = getfield($,a)
+
+    emptyTable = v=='cblock'
+    if ~emptyTable & size(v,1)<>size(b,1) then
+        msg = _("%s: Arguments #%d and #%d: Incompatible sizes.\n")
+        error(msprintf(msg, CallingOverloadName, 1, 2))
+    end
+    if ~emptyTable & type(b)==type(v) then
+        a = setfield($,[v b],a)
+    else
+        a = setfield($+1,b,a)
+    end
 endfunction
