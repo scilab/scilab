@@ -676,6 +676,8 @@ Known issues
 * [#15858](http://bugzilla.scilab.org/show_bug.cgi?id=15858): `size(cblock,'r'|'c'|'*'|1|2)` did not take the option into account. `size()` of an empty cblock table yielded an error.
 * [#15859](http://bugzilla.scilab.org/show_bug.cgi?id=15859): `isempty` could not be overloaded for custom mlist or tlist typeof.
 * [#15860](http://bugzilla.scilab.org/show_bug.cgi?id=15860): Horizontal concatenations with cblock tables had troubles.
+* [#15866](http://bugzilla.scilab.org/show_bug.cgi?id=15866): Unlike all other set functions, `setdiff` did not accept any "r" or "c" option.
+* [#15867](http://bugzilla.scilab.org/show_bug.cgi?id=15867): For input encoded integers, `setdiff` returned selected elements in decreasing order.
 * [#15878](http://bugzilla.scilab.org/show_bug.cgi?id=15878): `sgrid` and `evans` were broken.
 * [#15880](http://bugzilla.scilab.org/show_bug.cgi?id=15880): `sgrid` needed some improvements: Labeling was sometimes ambiguous ; large circles were not labeled ; data_bounds did not always take the input wn into account ; named and #RRGGBB colors specifications could not be used. `evans` needed some improvements: the block of legends hid data ; asymptotes were too visible.
 * [#15886](http://bugzilla.scilab.org/show_bug.cgi?id=15886): Display of polynomials was broken.
