@@ -534,6 +534,7 @@ Known issues
 * [#15157](http://bugzilla.scilab.org/show_bug.cgi?id=15157): min/max on tlist or mlist did not call good overload.
 * [#15182](http://bugzilla.scilab.org/show_bug.cgi?id=15182): The result of `a.*.b` with mixed integer/decimal operands introduced in Scilab 6 returned some doubles instead of integers, inconsistently wrt the `*` and `.*` products.
 * [#15187](http://bugzilla.scilab.org/show_bug.cgi?id=15187): Super block diagram title (on the window bar) was not set.
+* [#15259](http://bugzilla.scilab.org/show_bug.cgi?id=15259): LaTeX images did not have alt='..' attribute providing the LaTeX formula as text.
 * [#15263](http://bugzilla.scilab.org/show_bug.cgi?id=15263): Assignments in an array of structures often overwrote some untargeted elements.
 * [#15279](http://bugzilla.scilab.org/show_bug.cgi?id=15279): `unique` could not be used on sets of complex numbers.
 * [#15284](http://bugzilla.scilab.org/show_bug.cgi?id=15284): Port names are not set to the corresponding I/O block labels.

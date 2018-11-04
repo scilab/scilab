@@ -61,6 +61,10 @@ public class LaTeXImageConverter implements ExternalImageConverter {
         try {
             TeXFormula formula = new TeXFormula(latex);
             String display = attributes.get("style");
+            String alt = attributes.get("alt");
+            if (alt == null) {
+                attributes.put("alt", latex);
+            }
             int style = TeXConstants.STYLE_DISPLAY;
             if (display != null && display.equals("text")) {
                 style = TeXConstants.STYLE_TEXT;
