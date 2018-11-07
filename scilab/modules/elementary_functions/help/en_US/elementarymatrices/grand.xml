@@ -446,7 +446,7 @@
                     <para>
                         <code>Y = grand(m, n, "def")</code> generates
                         random variates from the uniform distribution over
-                        <literal>[0,1)</literal> (<literal>1</literal> is never return).
+                        <literal>[0,1)</literal> (<literal>1</literal> is never returned).
                     </para>
                 </listitem>
             </varlistentry>
@@ -456,7 +456,7 @@
                     <para>
                         <code>Y = grand(m, n, "unf", Low, High)</code>
                         generates random reals uniformly distributed in
-                        <literal>[Low, High)</literal> (<varname>High</varname> is never return).
+                        <literal>[Low, High)</literal> (<varname>High</varname> is never returned).
                     </para>
                 </listitem>
             </varlistentry>
