@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,71 +11,60 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function a=sprand(m,n,density,typ)
+function a = sprand(m, n, density, law)
 
-    //---- Check arguments----------------------------------------------
+    // CHECK ARGUMENTS
+    // ---------------
     rhs = argn(2)
-
-    if ( rhs < 3 | rhs > 4 ) then
+    if rhs < 3 | rhs > 4 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "sprand" , 3 , 4 ));
     end
-
-    if ( rhs < 4 ) then
-        typ="def";
+    if rhs < 4 then
+        law = "unf";
     end
-
-    if type(typ)<>10 then
+    if m==0 | n==0 then
+        a = sparse([], [], [0 0])
+        return
+    end
+    // law
+    if type(law)<>10 then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"sprand",4));
     end
-
-    if and(typ<>["u";"n";"uniform";"normal";"def";"nor"]) then
+    if and(law<>["u" "unf" "uniform" "def" "n" "nor" "normal"]) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),"sprand",4,"uniform","normal"));
     end
-    if typ == "u" | typ == "uniform" then //"uniform" is the syntax for uniform distribution with rand, the equivalent with grand is "def"
-        typ = "def";
-    elseif typ == "n" | typ == "normal" then //"normal" is the syntax for normal distribution with rand, the equivalent with grand is "nor"
-        typ = "nor";
+    if or(law == ["u" "uniform" "def"]) then
+        law = "unf";
+    elseif or(law == ["n" "normal"]) then
+        law = "nor";
     end
 
-    density=max(min(density,1),0);
-
-    nel=m*n*density; //the objective number of non zero elements
+    // INITIALIZATION
+    // --------------
+    N = m*n
+    density = max(min(density,1),0);
+    nel = round(N*density); // the objective number of non zero elements
     if nel==0 then
-        a=sparse([],[],[m,n])
+        a = sparse([],[], [m,n])
         return
     end
 
-    //---- generate a sequence of increments----------------------------
-    mdist = 1/density //the mean distance between to consecutive index
-    nel1  = (2.2-density)*nel; //generate more increments than requested nnz elements
-    if nel1<1
-        ij = 1;
-    else
-        ij    = round(1+grand(nel1,1,"exp",(mdist-1)))
-    end
+    // GENERATION OF RANDOM UNIQUE INDICES OF NON-ZERO VALUES
+    // ------------------------------------------------------
+    // generate a sequence of increments greater than 1 ------------------------
+    di = N / nel
+    mdist = 1/density //the mean distance between two consecutive non-zero values
+    ij    = grand(nel*1.01, 1, "exp", (mdist-1))
 
-    //---- sum the increments to get the index--------------------------
-    ij=cumsum(ij);
+    s = (nel + sum(ij(1:nel)))/(N-di/2)  // rescaling factor
+    ij = 1 + ij/s              // rescales intervals & guaranties that indices are unique
+    ij = floor(cumsum(ij));    // Intervals between indices => indices
+    ij(find(ij > N)) = [];     // Garanties that linear indices are <= m*n
+    nel = length(ij)
+    ij = ind2sub([m,n], ij);   // => [I J] conversion
 
-    //---- eliminate the index with exceed the maximum matrix index
-    ij(find(ij>m*n))=[];
-    nel1=size(ij,"*");
-    if nel1==0 then
-        a=sparse([],[],[m,n]);
-        return
-    end
-    //---- generate the row and column indices from the 1D index--------
-
-    ij=ind2sub([m,n],ij);
-
-    //----  generates the random non zeros elements --------------------
-    //according to the requested law and create the sparse matrix
-    if typ == "nor" then // Because of the syntax of grand, we have two cases, one with "def" and one with "nor"
-        a=sparse(ij,grand(nel1,1,typ,0,1),[m,n]);
-    elseif typ == "def" then
-        a=sparse(ij,grand(nel1,1,typ),[m,n]);
-    end
-
-
+    // RESULT
+    // ------
+    a = sparse(ij, grand(nel, 1, law, 0, 1),[m,n]);
 endfunction
 

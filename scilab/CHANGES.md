@@ -541,7 +541,7 @@ Known issues
 * [#15284](http://bugzilla.scilab.org/show_bug.cgi?id=15284): Port names are not set to the corresponding I/O block labels.
 * [#15310](http://bugzilla.scilab.org/show_bug.cgi?id=15310): `isdef` considered void arguments as defined (regression)
 * [#15346](http://bugzilla.scilab.org/show_bug.cgi?id=15346): In an array of rationals, there was no way to address components with their linearized indices.
-* [#15403](http://bugzilla.scilab.org/show_bug.cgi?id=15403): `bar(..,"stacked")` could start from y<>0. Input arguments and possible syntaxes were poorly tested. 
+* [#15403](http://bugzilla.scilab.org/show_bug.cgi?id=15403): `bar(..,"stacked")` could start from y<>0. Input arguments and possible syntaxes were poorly tested.
 * [#15404](http://bugzilla.scilab.org/show_bug.cgi?id=15404): `surf()` and `mesh()` did not allow to specify `foreground`, `facecolor`, `markforeground` and `markbackground` global properties colors as a predefined named color out of a list of the 9 main color names. Colors specifications as "#RRGGBB" hexa code or Colors indices in the color map were nor allowed.
 * [#15422](http://bugzilla.scilab.org/show_bug.cgi?id=15422): `strsubst("ab", "", "cd")` crashed Scilab.
 * [#15423](http://bugzilla.scilab.org/show_bug.cgi?id=15423): `tbx_make(myModule,sections)` executed the existing builder (if any), instead of targeting only selected module sections. Otherwise, tbx_make(myModule, "help"|"macros") yielded an error, and tbx_make(myModule,"localization") never built it.
@@ -686,6 +686,7 @@ Known issues
 * [#15860](http://bugzilla.scilab.org/show_bug.cgi?id=15860): Horizontal concatenations with cblock tables had troubles.
 * [#15866](http://bugzilla.scilab.org/show_bug.cgi?id=15866): Unlike all other set functions, `setdiff` did not accept any "r" or "c" option.
 * [#15867](http://bugzilla.scilab.org/show_bug.cgi?id=15867): For input encoded integers, `setdiff` returned selected elements in decreasing order.
+* [#15873](http://bugzilla.scilab.org/show_bug.cgi?id=15873): In average, `sprand(100, 100, 0.8)` yielded ~8800 non-zero values instead of ~8000.
 * [#15878](http://bugzilla.scilab.org/show_bug.cgi?id=15878): `sgrid` and `evans` were broken.
 * [#15880](http://bugzilla.scilab.org/show_bug.cgi?id=15880): `sgrid` needed some improvements: Labeling was sometimes ambiguous ; large circles were not labeled ; data_bounds did not always take the input wn into account ; named and #RRGGBB colors specifications could not be used. `evans` needed some improvements: the block of legends hid data ; asymptotes were too visible.
 * [#15881](http://bugzilla.scilab.org/show_bug.cgi?id=15881): Demos about stems, bars and histograms were spread in several subsections.
