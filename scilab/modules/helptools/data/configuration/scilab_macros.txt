@@ -1919,7 +1919,7 @@ parulacolormap
 powershell
 qpsolve
 scatter
-scatter3
+scatter3d
 ss2zp
 tbx_make
 tf2zp

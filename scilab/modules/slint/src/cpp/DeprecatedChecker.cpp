@@ -119,6 +119,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"with_tk", L"with_module('tclsci')");
     map.emplace(L"xgetech", L"gca");
     map.emplace(L"xinfo", L"gcf().info_message");
+    map.emplace(L"scatter3", L"scatter3d");
 
     // Scilab 5.5.2 => 6.0.0
     map.emplace(L"fort", L"call");

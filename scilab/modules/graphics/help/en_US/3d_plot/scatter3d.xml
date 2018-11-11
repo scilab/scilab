@@ -13,16 +13,23 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="scatter3">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="scatter3d">
     <refnamediv>
-        <refname>scatter3</refname>
+        <refname>scatter3d</refname>
         <refpurpose>3D scatter plot</refpurpose>
+    </refnamediv>
+    <refnamediv xml:id="scatter3">
+        <refname>scatter3</refname>
+        <refpurpose>3D scatter plot (obsolete)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            polyline = scatter3(x, y, z, msizes, mcolors, "fill", marker, &lt;marker_property,value&gt;)
-            polyline = scatter3(axes_handle,...)
+            polyline = scatter3d(x, y, z, msizes, mcolors, "fill", marker, &lt;marker_property,value&gt;)
+            polyline = scatter3d(axes_handle,...)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -281,15 +288,19 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            <literal>scatter3()</literal> is obsolete and will be removed in Scilab 6.1.x.
+            Please use <literal>scatter3d()</literal> instead.
+        </warning>
         <para>
-            <literal>scatter3(x,y,z)</literal> creates a scatter plot with markers at the locations
+            <literal>scatter3d(x,y,z)</literal> creates a scatter plot with markers at the locations
             specified by <varname>x</varname>, <varname>y</varname>, and <varname>z</varname>.
             The default type of the marker is a circle, the default color is "blue" and the default
             marker size is 36.
             This means the circle surrounding the marker has an area of 36 points squared.
         </para>
         <para>
-            Using <literal>scatter3(x,y,z,s,c)</literal> different sizes and colors for each marker
+            Using <literal>scatter3d(x,y,z,s,c)</literal> different sizes and colors for each marker
             can be specified.
             There are many different ways to specify marker types, marker colors and marker sizes.
             For more details see the description of the arguments and the examples.
@@ -298,7 +309,7 @@
             <itemizedlist>
               <listitem>
                 To skip an argument, just replace it with <literal>[]</literal> as in
-                <literal>scatter3(x,y,z,[],mcolors)</literal>.
+                <literal>scatter3d(x,y,z,[],mcolors)</literal>.
               </listitem>
               <listitem>
                  When the axes is rotated, the markers are automatically rotated as well in order
@@ -319,7 +330,7 @@ x = t .* cos(t) .* sin(t);
 y = t .* sin(t) .* sin(t);
 z = t .* cos(t);
 // create 3D scatter plot
-scatter3(x, y, z);
+scatter3d(x, y, z);
 // modify rotation angles
 gca().rotation_angles = [60, 45];
  ]]></programlisting>
@@ -328,7 +339,7 @@ gca().rotation_angles = [60, 45];
             x = t.*cos(t).*sin(t)
             y = t.*sin(t).*sin(t)
             z = t.*cos(t)
-            scatter3(x,y,z)
+            scatter3d(x,y,z)
             gca().rotation_angles = [60, 45];
         </scilab:image>
         <para>
@@ -343,7 +354,7 @@ z = t .* cos(t);
 // size according to radius
 s = linspace(50, 1, length(t));
 // create 3D scatter plot
-scatter3(x, y, z, s);
+scatter3d(x, y, z, s);
 // modify rotation angles
 gca().rotation_angles = [60, 45];
  ]]></programlisting>
@@ -353,7 +364,7 @@ gca().rotation_angles = [60, 45];
             y = t .* sin(t) .* sin(t)
             z = t .* cos(t)
             s = linspace(50, 1, length(t))
-            scatter3(x, y, z, s)
+            scatter3d(x, y, z, s)
             gca().rotation_angles = [60, 45];
         </scilab:image>
         <para>
@@ -372,7 +383,7 @@ gcf().color_map = coolcolormap(64);
 // color according to radius
 c = t;
 // create 3D scatter plot
-scatter3(x, y, z, s, c);
+scatter3d(x, y, z, s, c);
 // modify rotation angles
 gca().rotation_angles = [60, 45];
  ]]></programlisting>
@@ -384,7 +395,7 @@ gca().rotation_angles = [60, 45];
             s = linspace(50,1,length(t))
             gcf().color_map = coolcolormap(64);
             c = t
-            scatter3(x,y,z,s,c)
+            scatter3d(x,y,z,s,c)
             gca().rotation_angles = [60, 45];
         </scilab:image>
         <para>
@@ -396,7 +407,7 @@ z = linspace(0, 25, 200);
 x = z .* cos(z);
 y = z .* sin(z);
 // create 3D scatter plot
-scatter3(x, y, z, "fill");
+scatter3d(x, y, z, "fill");
 // modify rotation angles
 gca().rotation_angles = [60, 45];
  ]]></programlisting>
@@ -404,7 +415,7 @@ gca().rotation_angles = [60, 45];
             z = linspace(0,25,200)
             x = z.*cos(z)
             y = z.*sin(z)
-            scatter3(x,y,z,"fill")
+            scatter3d(x,y,z,"fill")
             gca().rotation_angles = [60, 45];
         </scilab:image>
         <para>
@@ -416,7 +427,7 @@ z = linspace(0, 25, 200);
 x = z .* cos(z);
 y = z .* sin(z);
 // create 3D scatter plot
-scatter3(x, y, z, "*");
+scatter3d(x, y, z, "*");
 // modify rotation angles
 gca().rotation_angles = [60, 45];
  ]]></programlisting>
@@ -424,7 +435,7 @@ gca().rotation_angles = [60, 45];
             z = linspace(0,25,200)
             x = z.*cos(z)
             y = z.*sin(z)
-            scatter3(x,y,z,"*")
+            scatter3d(x,y,z,"*")
             gca().rotation_angles = [60,45];
         </scilab:image>
         <para>
@@ -436,7 +447,7 @@ z = linspace(0, 25, 200);
 x = z .* cos(z);
 y = z .* sin(z);
 // create 3D scatter plot
-scatter3(x, y, z,...
+scatter3d(x, y, z,...
         "markerEdgeColor", "black",...
         "markerFaceColor", [0 .8 .8]);
 // modify rotation angles
@@ -446,7 +457,7 @@ gca().rotation_angles = [60, 45];
             z = linspace(0,25,200)
             x = z.*cos(z)
             y = z.*sin(z)
-            scatter3(x,y,z,...
+            scatter3d(x,y,z,...
             "markerEdgeColor","black",...
             "markerFaceColor",[0 .8 .8])
             gca().rotation_angles = [60, 45];
@@ -461,12 +472,12 @@ n = 20;
 z = exp(-x.^2 - y.^2);
 // create 3D scatter subplot
 subplot(2,1,1)
-scatter3(gca(), x(:), y(:), z(:));
+scatter3d(gca(), x(:), y(:), z(:));
 // modify rotation angles
 gca().rotation_angles = [60,45];
 // create 3D scatter subplot
 subplot(2,1,2)
-scatter3(gca(), x(:), y(:), z(:), "markerFaceColor", [0 .8 .8]);
+scatter3d(gca(), x(:), y(:), z(:), "markerFaceColor", [0 .8 .8]);
 // modify rotation angles
 gca().rotation_angles = [60,45];
  ]]></programlisting>
@@ -475,10 +486,10 @@ gca().rotation_angles = [60,45];
             [x,y] = meshgrid(linspace(-2,2,n))
             z = exp(-x.^2 - y.^2)
             subplot(2,1,1)
-            scatter3(gca(), x(:), y(:), z(:))
+            scatter3d(gca(), x(:), y(:), z(:))
             gca().rotation_angles = [60, 45];
             subplot(2,1,2)
-            scatter3(gca(),x(:),y(:),z(:),"markerFaceColor",[0 .8 .8])
+            scatter3d(gca(),x(:),y(:),z(:),"markerFaceColor",[0 .8 .8])
             gca().rotation_angles = [60, 45];
         </scilab:image>
         <para>
@@ -493,7 +504,7 @@ z = t .* cos(t);
 // size according to radius
 s = linspace(50, 1, length(t));
 // create 3D scatter plot
-scatter3(x, y, z, s);
+scatter3d(x, y, z, s);
 // modify rotation angles
 gca().rotation_angles = [60,45];
  ]]></programlisting>
@@ -503,7 +514,7 @@ gca().rotation_angles = [60,45];
             y = t.*sin(t).*sin(t)
             z = t.*cos(t)
             s = linspace(50,1,length(t))
-            p = scatter3(x,y,z,s)
+            p = scatter3d(x,y,z,s)
             gca().rotation_angles = [60,45];
         </scilab:image>
         <programlisting role="example"><![CDATA[
@@ -517,7 +528,7 @@ p.mark_background = color(0.5, 0.5, 0);
             y = t.*sin(t).*sin(t)
             z = t.*cos(t)
             s = linspace(50,1,length(t))
-            p = scatter3(x,y,z,s)
+            p = scatter3d(x,y,z,s)
             set(gca(),"rotation_angles",[60,45])
             // modify polyline
             p.mark_foreground = color(0.5, 0, 0)
@@ -553,7 +564,7 @@ p.mark_background = color(0.5, 0.5, 0);
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revremark>
-                    Function <function>scatter3</function> introduced.
+                    Function <function>scatter3d</function> introduced.
                 </revremark>
             </revision>
         </revhistory>

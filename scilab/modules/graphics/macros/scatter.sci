@@ -36,7 +36,7 @@ function polyLine = scatter(varargin)
                 axesHandle = varargin(1);
                 X = varargin(2);
                 Y = varargin(3);
-                polyLine = scatter3(axesHandle,X,Y,[],varargin(4:n));
+                polyLine = scatter3d(axesHandle,X,Y,[],varargin(4:n));
             end
         else
             warning("Handle should be an Axes handle.")
@@ -49,7 +49,7 @@ function polyLine = scatter(varargin)
         else
             X = varargin(1);
             Y = varargin(2);
-            polyLine = scatter3(X,Y,[],varargin(3:n));
+            polyLine = scatter3d(X,Y,[],varargin(3:n));
         end
     end
     

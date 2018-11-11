@@ -299,7 +299,7 @@
         </para>
         <note>
           To skip an argument, just replace it with <literal>[]</literal> like in
-          <literal>scatter3(x,y,z,[],mcolors)</literal>.
+          <literal>scatter3d(x,y,z,[],mcolors)</literal>.
         </note>
     </refsection>
     <refsection>
@@ -478,7 +478,7 @@ p.mark_background = color("darkcyan");
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="scatter3">scatter3</link>
+                <link linkend="scatter3d">scatter3d</link>
             </member>
             <member>
                 <link linkend="plot">plot</link>

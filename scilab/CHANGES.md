@@ -231,6 +231,7 @@ Obsolete functions or features
 * `noisegen` will be removed from Scilab 6.1.x. Please use `grand` instead.
 * `get_figure_handle(n)` is obsolete. Please use `findobj('figure_id',n)` instead.
 * `hist3d` is renamed `bar3d`. The former `hist3d` function is declared obsolete and will be replaced by an actual 3D histogram function in Scilab 6.2.
+* `scatter3` is obsolete. Please use `scatter3d` instead.
 
 Removed Functions
 -----------------
@@ -258,6 +259,7 @@ Bug Fixes
 ---------
 
 ### Bugs fixed in 6.1.0:
+<<<<<<< HEAD
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
 * [#5824](https://bugzilla.scilab.org/5824): The `datafit` algorithm was not documented.
 * [#6070](https://bugzilla.scilab.org/6070): How to make multiscaled plots was not documented.
@@ -363,6 +365,7 @@ Bug Fixes
 * [#15821](https://bugzilla.scilab.org/15821): `fac3d` and `fac3d1` were still in Scilab 6.0 despite they were tagged obsolete 14 years ago in Scilab 4.1
 * [#15825](https://bugzilla.scilab.org/15825): `gsort` could not sort completely dense matrices of complex numbers.
 * [#15840](https://bugzilla.scilab.org/15840): `grand(1,"prm",m)` yielded an unsqueezed size([size(m) 1]) hypermatrix
+* [#15874](https://bugzilla.scilab.org/15874): The `scatter3` function name was an unfounded naming exception. It had to be renamed `scatter3d`.
 * [#15934](https://bugzilla.scilab.org/15934): The `^ hat` page wrongly indicated that `^` applied to a rectangular matrix not being a vector is done element-wise.
 * [#15948](https://bugzilla.scilab.org/15948): `xlabel`, `ylabel`, `zlabel` and `title` needed to be upgraded.
 * [#15964](https://bugzilla.scilab.org/15954): A complex empty sparse matrix could be obtained after insertion.

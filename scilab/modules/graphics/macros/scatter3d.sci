@@ -10,9 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function polyLine = scatter3(varargin)
-
-    warnobsolete("scatter3d()", "6.1.x")
+function polyLine = scatter3d(varargin)
 
     polyLine = 0;
     [lhs,rhs] = argn(0);
