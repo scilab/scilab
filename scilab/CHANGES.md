@@ -415,6 +415,7 @@ Known issues
 * [#7215](http://bugzilla.scilab.org/show_bug.cgi?id=7215): Some Matlab-Scilab equivalences were missing/outdated (A,B,C chapters).
 * [#7221](http://bugzilla.scilab.org/show_bug.cgi?id=7221): `modulo` was not indicated as the equivalent of Matlab's rem().
 * [#7277](http://bugzilla.scilab.org/show_bug.cgi?id=7277): SciNotes `File>Open recent` menu was not updated after 5 items were added.
+* [#7305](http://bugzilla.scilab.org/show_bug.cgi?id=7305): `issparse` returned 0 or 1 instead of %F or %T.
 * [#7362](http://bugzilla.scilab.org/show_bug.cgi?id=7362): There were 10 unused macros in the scicos_blocks hydraulic directory.
 * [#7641](http://bugzilla.scilab.org/show_bug.cgi?id=7641): `uint8(1):uint16(4)` produced an error instead of being parsed as `uint8(1):1:uint16(4)`, that passes.
 * [#7659](http://bugzilla.scilab.org/show_bug.cgi?id=7659): The `error` page was not up-to-date for Scilab 6.
