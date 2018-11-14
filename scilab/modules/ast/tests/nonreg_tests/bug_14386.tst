@@ -18,10 +18,9 @@
 
 
 function test()
-    if 2>1
+    if 2 > 1 then
         disp("Bug 14386 fixed")
     end
 endfunction
-[i,o,t] = string(test); t
+[i,o,t] = string(test);
 assert_checkequal(t($-1), "end");
-

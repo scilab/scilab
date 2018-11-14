@@ -401,7 +401,7 @@ void TreeVisitor::visit(const LogicalOpExp &e)
 void TreeVisitor::visit(const IfExp  &e)
 {
     types::TList* tl = new types::TList();
-    bool hasElse = e.hasElse() && e.getElse().isCommentExp() == false;
+    bool hasElse = e.hasElse();
     //header
     types::String* s = new types::String(1, 5);
     s->set(0, L"ifthenelse");

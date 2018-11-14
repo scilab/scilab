@@ -493,7 +493,7 @@ void PrettyPrintVisitor::visit(const IfExp & e)
     e.getThen().accept(*this);
     if (e.hasElse())
     {
-        e.getElse ().accept(*this);
+        e.getElse().accept(*this);
     }
     END_NODE();
 }

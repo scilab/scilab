@@ -513,15 +513,7 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
         }
         else if (e.hasElse())
         {
-            const ast::Exp & _else = e.getElse();
-            if (_else.isCommentExp())
-            {
-                CoverageInstance::invoke(_else);
-            }
-            else
-            {
-                e.getElse().accept(*this);
-            }
+            e.getElse().accept(*this);
         }
     }
     catch (ScilabException &)
@@ -531,30 +523,39 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
     }
 
     if (e.isBreakable()
-            && ((&e.getElse())->isBreak()
-                || (&e.getThen())->isBreak()))
+        && ((e.hasElse() && (&e.getElse())->isContinue())
+        || (&e.getThen())->isBreak()))
     {
         const_cast<IfExp*>(&e)->setBreak();
-        const_cast<Exp*>(&e.getElse())->resetBreak();
         const_cast<Exp*>(&e.getThen())->resetBreak();
+        if (e.hasElse())
+        {
+            const_cast<Exp*>(&e.getElse())->resetBreak();
+        }
     }
 
     if (e.isContinuable()
-            && ((&e.getElse())->isContinue()
-                || (&e.getThen())->isContinue()))
+        && ((e.hasElse() && (&e.getElse())->isContinue())
+        || (&e.getThen())->isContinue()))
     {
         const_cast<IfExp*>(&e)->setContinue();
-        const_cast<Exp*>(&e.getElse())->resetContinue();
         const_cast<Exp*>(&e.getThen())->resetContinue();
+        if (e.hasElse())
+        {
+            const_cast<Exp*>(&e.getElse())->resetContinue();
+        }
     }
 
     if (e.isReturnable()
-            && ((&e.getElse())->isReturn()
-                || (&e.getThen())->isReturn()))
+        && ((e.hasElse() && (&e.getElse())->isReturn())
+        || (&e.getThen())->isReturn()))
     {
         const_cast<IfExp*>(&e)->setReturn();
-        const_cast<Exp*>(&e.getElse())->resetReturn();
         const_cast<Exp*>(&e.getThen())->resetReturn();
+        if (e.hasElse())
+        {
+            const_cast<Exp*>(&e.getElse())->resetReturn();
+        }
     }
 
     CoverageInstance::stopChrono((void*)&e);

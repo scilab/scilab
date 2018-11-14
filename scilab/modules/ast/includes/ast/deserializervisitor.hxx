@@ -309,7 +309,7 @@ private :
                 Exp* test = get_exp();
                 Exp* _then = get_exp();
                 IfExp* ifexp;
-                if ( hasElse )
+                if (hasElse)
                 {
                     Exp* _else = get_exp();
                     ifexp = new IfExp(loc, *test, *_then->getAs<SeqExp>(), *_else->getAs<SeqExp>());

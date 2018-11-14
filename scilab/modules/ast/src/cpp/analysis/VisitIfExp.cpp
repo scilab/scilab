@@ -38,6 +38,7 @@ void AnalysisVisitor::visit(ast::IfExp & e)
             test.accept(cv.getExec());
             pIT = ce.getConstant();
         }
+
         if (pIT)
         {
             const bool result = pIT->isTrue();
@@ -46,7 +47,7 @@ void AnalysisVisitor::visit(ast::IfExp & e)
                 shortcutExp = &e.getThen();
                 e.getExps()[1] = nullptr;
             }
-            else
+            else if (e.hasElse())
             {
                 shortcutExp = &e.getElse();
                 e.getExps()[2] = nullptr;
@@ -137,15 +138,15 @@ void AnalysisVisitor::visit(ast::IfExp & e)
             TIType & ty = res.getType();
             if ((ty.ismatrix() && ty.isscalar()) || (getCM().check(ConstraintManager::STRICT_POSITIVE, ty.rows.getValue()) || getCM().check(ConstraintManager::STRICT_POSITIVE, ty.cols.getValue())))
             {
-                if (isEq)
-                {
-                    shortcutExp = &e.getElse();
-                    e.getExps()[2] = nullptr;
-                }
-                else
+                if (isEq == false)
                 {
                     shortcutExp = &e.getThen();
                     e.getExps()[1] = nullptr;
+                }
+                else if (e.hasElse())
+                {
+                    shortcutExp = &e.getElse();
+                    e.getExps()[2] = nullptr;
                 }
             }
         }
