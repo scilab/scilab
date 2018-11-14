@@ -14071,7 +14071,7 @@ keywords (148)
   167             | . "\\." functionCall
   168 listableBegin: . ":" variable
   169              | . ":" functionCall
-  169              | ":" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  169              | ":" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   170 listableEnd: . listableBegin ":" variable
   171            | . listableBegin ":" functionCall
   172            | . listableBegin
@@ -14080,32 +14080,26 @@ keywords (148)
   181         | functionCall . listableEnd
   197         | functionCall . "(" functionArgs ")"
 
-    "'"         décalage et aller à l'état 114
-    "("         décalage et aller à l'état 164
-    "."         décalage et aller à l'état 165
-    ".'"        décalage et aller à l'état 118
-    "+"         décalage et aller à l'état 119
-    "-"         décalage et aller à l'état 120
-    "*"         décalage et aller à l'état 121
-    ".*"        décalage et aller à l'état 122
-    ".*."       décalage et aller à l'état 123
-    "*."        décalage et aller à l'état 124
-    "/"         décalage et aller à l'état 125
-    "./"        décalage et aller à l'état 126
-    "/."        décalage et aller à l'état 127
-    "./."       décalage et aller à l'état 128
-    "\\"        décalage et aller à l'état 129
-    ".\\"       décalage et aller à l'état 130
-    "\\."       décalage et aller à l'état 131
-    ".\\."      décalage et aller à l'état 132
-    "** or ^"   décalage et aller à l'état 133
-    ".^"        décalage et aller à l'état 134
-    "=="        décalage et aller à l'état 135
-    "<> or ~="  décalage et aller à l'état 136
-    "<"         décalage et aller à l'état 137
-    "<="        décalage et aller à l'état 138
-    ">"         décalage et aller à l'état 139
-    ">="        décalage et aller à l'état 140
+    "'"        décalage et aller à l'état 114
+    "("        décalage et aller à l'état 164
+    "."        décalage et aller à l'état 165
+    ".'"       décalage et aller à l'état 118
+    "+"        décalage et aller à l'état 119
+    "-"        décalage et aller à l'état 120
+    "*"        décalage et aller à l'état 121
+    ".*"       décalage et aller à l'état 122
+    ".*."      décalage et aller à l'état 123
+    "*."       décalage et aller à l'état 124
+    "/"        décalage et aller à l'état 125
+    "./"       décalage et aller à l'état 126
+    "/."       décalage et aller à l'état 127
+    "./."      décalage et aller à l'état 128
+    "\\"       décalage et aller à l'état 129
+    ".\\"      décalage et aller à l'état 130
+    "\\."      décalage et aller à l'état 131
+    ".\\."     décalage et aller à l'état 132
+    "** or ^"  décalage et aller à l'état 133
+    ".^"       décalage et aller à l'état 134
 
     $défaut  réduction par utilisation de la règle 169 (listableBegin)
 
@@ -14135,12 +14129,12 @@ keywords (148)
     Conflit entre la règle 169 et le jeton ".\\." résolu par décalage (COLON < ".\\.").
     Conflit entre la règle 169 et le jeton "** or ^" résolu par décalage (COLON < "** or ^").
     Conflit entre la règle 169 et le jeton ".^" résolu par décalage (COLON < ".^").
-    Conflit entre la règle 169 et le jeton "==" résolu par décalage (COLON < "==").
-    Conflit entre la règle 169 et le jeton "<> or ~=" résolu par décalage (COLON < "<> or ~=").
-    Conflit entre la règle 169 et le jeton "<" résolu par décalage (COLON < "<").
-    Conflit entre la règle 169 et le jeton "<=" résolu par décalage (COLON < "<=").
-    Conflit entre la règle 169 et le jeton ">" résolu par décalage (COLON < ">").
-    Conflit entre la règle 169 et le jeton ">=" résolu par décalage (COLON < ">=").
+    Conflit entre la règle 169 et le jeton "==" résolu par réduction ("==" < COLON).
+    Conflit entre la règle 169 et le jeton "<> or ~=" résolu par réduction ("<> or ~=" < COLON).
+    Conflit entre la règle 169 et le jeton "<" résolu par réduction ("<" < COLON).
+    Conflit entre la règle 169 et le jeton "<=" résolu par réduction ("<=" < COLON).
+    Conflit entre la règle 169 et le jeton ">" résolu par réduction (">" < COLON).
+    Conflit entre la règle 169 et le jeton ">=" résolu par réduction (">=" < COLON).
     Conflit entre la règle 169 et le jeton "&" résolu par réduction ("&" < COLON).
     Conflit entre la règle 169 et le jeton "&&" résolu par réduction ("&&" < COLON).
     Conflit entre la règle 169 et le jeton "|" résolu par réduction ("|" < COLON).
@@ -14216,7 +14210,7 @@ keywords (148)
   166             | . "\\." variable
   167             | . "\\." functionCall
   168 listableBegin: . ":" variable
-  168              | ":" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  168              | ":" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   169              | . ":" functionCall
   170 listableEnd: . listableBegin ":" variable
   171            | . listableBegin ":" functionCall
@@ -14227,32 +14221,26 @@ keywords (148)
   180         | variable . listableEnd
   196         | variable . "(" functionArgs ")"
 
-    "'"         décalage et aller à l'état 150
-    "("         décalage et aller à l'état 166
-    "."         décalage et aller à l'état 167
-    ".'"        décalage et aller à l'état 153
-    "+"         décalage et aller à l'état 119
-    "-"         décalage et aller à l'état 120
-    "*"         décalage et aller à l'état 121
-    ".*"        décalage et aller à l'état 122
-    ".*."       décalage et aller à l'état 123
-    "*."        décalage et aller à l'état 124
-    "/"         décalage et aller à l'état 125
-    "./"        décalage et aller à l'état 126
-    "/."        décalage et aller à l'état 127
-    "./."       décalage et aller à l'état 128
-    "\\"        décalage et aller à l'état 129
-    ".\\"       décalage et aller à l'état 130
-    "\\."       décalage et aller à l'état 131
-    ".\\."      décalage et aller à l'état 132
-    "** or ^"   décalage et aller à l'état 154
-    ".^"        décalage et aller à l'état 155
-    "=="        décalage et aller à l'état 135
-    "<> or ~="  décalage et aller à l'état 136
-    "<"         décalage et aller à l'état 137
-    "<="        décalage et aller à l'état 138
-    ">"         décalage et aller à l'état 139
-    ">="        décalage et aller à l'état 140
+    "'"        décalage et aller à l'état 150
+    "("        décalage et aller à l'état 166
+    "."        décalage et aller à l'état 167
+    ".'"       décalage et aller à l'état 153
+    "+"        décalage et aller à l'état 119
+    "-"        décalage et aller à l'état 120
+    "*"        décalage et aller à l'état 121
+    ".*"       décalage et aller à l'état 122
+    ".*."      décalage et aller à l'état 123
+    "*."       décalage et aller à l'état 124
+    "/"        décalage et aller à l'état 125
+    "./"       décalage et aller à l'état 126
+    "/."       décalage et aller à l'état 127
+    "./."      décalage et aller à l'état 128
+    "\\"       décalage et aller à l'état 129
+    ".\\"      décalage et aller à l'état 130
+    "\\."      décalage et aller à l'état 131
+    ".\\."     décalage et aller à l'état 132
+    "** or ^"  décalage et aller à l'état 154
+    ".^"       décalage et aller à l'état 155
 
     $défaut  réduction par utilisation de la règle 168 (listableBegin)
 
@@ -14282,12 +14270,12 @@ keywords (148)
     Conflit entre la règle 168 et le jeton ".\\." résolu par décalage (COLON < ".\\.").
     Conflit entre la règle 168 et le jeton "** or ^" résolu par décalage (COLON < "** or ^").
     Conflit entre la règle 168 et le jeton ".^" résolu par décalage (COLON < ".^").
-    Conflit entre la règle 168 et le jeton "==" résolu par décalage (COLON < "==").
-    Conflit entre la règle 168 et le jeton "<> or ~=" résolu par décalage (COLON < "<> or ~=").
-    Conflit entre la règle 168 et le jeton "<" résolu par décalage (COLON < "<").
-    Conflit entre la règle 168 et le jeton "<=" résolu par décalage (COLON < "<=").
-    Conflit entre la règle 168 et le jeton ">" résolu par décalage (COLON < ">").
-    Conflit entre la règle 168 et le jeton ">=" résolu par décalage (COLON < ">=").
+    Conflit entre la règle 168 et le jeton "==" résolu par réduction ("==" < COLON).
+    Conflit entre la règle 168 et le jeton "<> or ~=" résolu par réduction ("<> or ~=" < COLON).
+    Conflit entre la règle 168 et le jeton "<" résolu par réduction ("<" < COLON).
+    Conflit entre la règle 168 et le jeton "<=" résolu par réduction ("<=" < COLON).
+    Conflit entre la règle 168 et le jeton ">" résolu par réduction (">" < COLON).
+    Conflit entre la règle 168 et le jeton ">=" résolu par réduction (">=" < COLON).
     Conflit entre la règle 168 et le jeton "&" résolu par réduction ("&" < COLON).
     Conflit entre la règle 168 et le jeton "&&" résolu par réduction ("&&" < COLON).
     Conflit entre la règle 168 et le jeton "|" résolu par réduction ("|" < COLON).
@@ -18572,7 +18560,7 @@ keywords (148)
   103                | . "||" ":"
   104                | . "==" variable
   105                | . "==" functionCall
-  105                | "==" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  105                | "==" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   106                | . "==" ":"
   107                | . "<> or ~=" variable
   108                | . "<> or ~=" functionCall
@@ -18635,6 +18623,7 @@ keywords (148)
   197         | functionCall . "(" functionArgs ")"
 
     "'"        décalage et aller à l'état 114
+    ":"        décalage et aller à l'état 115
     "("        décalage et aller à l'état 164
     "."        décalage et aller à l'état 165
     ".'"       décalage et aller à l'état 118
@@ -18663,7 +18652,7 @@ keywords (148)
     listableEnd      aller à l'état 149
 
     Conflit entre la règle 105 et le jeton "'" résolu par décalage (EQ < "'").
-    Conflit entre la règle 105 et le jeton ":" résolu par réduction (":" < EQ).
+    Conflit entre la règle 105 et le jeton ":" résolu par décalage (EQ < ":").
     Conflit entre la règle 105 et le jeton "(" résolu par décalage (EQ < "(").
     Conflit entre la règle 105 et le jeton "." résolu par décalage (EQ < ".").
     Conflit entre la règle 105 et le jeton ".'" résolu par décalage (EQ < ".'").
@@ -18711,7 +18700,7 @@ keywords (148)
   102                | . "||" functionCall
   103                | . "||" ":"
   104                | . "==" variable
-  104                | "==" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  104                | "==" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   105                | . "==" functionCall
   106                | . "==" ":"
   107                | . "<> or ~=" variable
@@ -18776,6 +18765,7 @@ keywords (148)
   196         | variable . "(" functionArgs ")"
 
     "'"        décalage et aller à l'état 150
+    ":"        décalage et aller à l'état 115
     "("        décalage et aller à l'état 166
     "."        décalage et aller à l'état 167
     ".'"       décalage et aller à l'état 153
@@ -18804,7 +18794,7 @@ keywords (148)
     listableEnd      aller à l'état 158
 
     Conflit entre la règle 104 et le jeton "'" résolu par décalage (EQ < "'").
-    Conflit entre la règle 104 et le jeton ":" résolu par réduction (":" < EQ).
+    Conflit entre la règle 104 et le jeton ":" résolu par décalage (EQ < ":").
     Conflit entre la règle 104 et le jeton "(" résolu par décalage (EQ < "(").
     Conflit entre la règle 104 et le jeton "." résolu par décalage (EQ < ".").
     Conflit entre la règle 104 et le jeton ".'" résolu par décalage (EQ < ".'").
@@ -18863,7 +18853,7 @@ keywords (148)
   106                | . "==" ":"
   107                | . "<> or ~=" variable
   108                | . "<> or ~=" functionCall
-  108                | "<> or ~=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  108                | "<> or ~=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   109                | . "<> or ~=" ":"
   110                | . ">" variable
   111                | . ">" functionCall
@@ -18923,6 +18913,7 @@ keywords (148)
   197         | functionCall . "(" functionArgs ")"
 
     "'"        décalage et aller à l'état 114
+    ":"        décalage et aller à l'état 115
     "("        décalage et aller à l'état 164
     "."        décalage et aller à l'état 165
     ".'"       décalage et aller à l'état 118
@@ -18951,7 +18942,7 @@ keywords (148)
     listableEnd      aller à l'état 149
 
     Conflit entre la règle 108 et le jeton "'" résolu par décalage (NE < "'").
-    Conflit entre la règle 108 et le jeton ":" résolu par réduction (":" < NE).
+    Conflit entre la règle 108 et le jeton ":" résolu par décalage (NE < ":").
     Conflit entre la règle 108 et le jeton "(" résolu par décalage (NE < "(").
     Conflit entre la règle 108 et le jeton "." résolu par décalage (NE < ".").
     Conflit entre la règle 108 et le jeton ".'" résolu par décalage (NE < ".'").
@@ -19002,7 +18993,7 @@ keywords (148)
   105                | . "==" functionCall
   106                | . "==" ":"
   107                | . "<> or ~=" variable
-  107                | "<> or ~=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  107                | "<> or ~=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   108                | . "<> or ~=" functionCall
   109                | . "<> or ~=" ":"
   110                | . ">" variable
@@ -19064,6 +19055,7 @@ keywords (148)
   196         | variable . "(" functionArgs ")"
 
     "'"        décalage et aller à l'état 150
+    ":"        décalage et aller à l'état 115
     "("        décalage et aller à l'état 166
     "."        décalage et aller à l'état 167
     ".'"       décalage et aller à l'état 153
@@ -19092,7 +19084,7 @@ keywords (148)
     listableEnd      aller à l'état 158
 
     Conflit entre la règle 107 et le jeton "'" résolu par décalage (NE < "'").
-    Conflit entre la règle 107 et le jeton ":" résolu par réduction (":" < NE).
+    Conflit entre la règle 107 et le jeton ":" résolu par décalage (NE < ":").
     Conflit entre la règle 107 et le jeton "(" résolu par décalage (NE < "(").
     Conflit entre la règle 107 et le jeton "." résolu par décalage (NE < ".").
     Conflit entre la règle 107 et le jeton ".'" résolu par décalage (NE < ".'").
@@ -19157,7 +19149,7 @@ keywords (148)
   112                | . ">" ":"
   113                | . "<" variable
   114                | . "<" functionCall
-  114                | "<" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  114                | "<" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   115                | . "<" ":"
   116                | . ">=" variable
   117                | . ">=" functionCall
@@ -19211,6 +19203,7 @@ keywords (148)
   197         | functionCall . "(" functionArgs ")"
 
     "'"        décalage et aller à l'état 114
+    ":"        décalage et aller à l'état 115
     "("        décalage et aller à l'état 164
     "."        décalage et aller à l'état 165
     ".'"       décalage et aller à l'état 118
@@ -19239,7 +19232,7 @@ keywords (148)
     listableEnd      aller à l'état 149
 
     Conflit entre la règle 114 et le jeton "'" résolu par décalage (LT < "'").
-    Conflit entre la règle 114 et le jeton ":" résolu par réduction (":" < LT).
+    Conflit entre la règle 114 et le jeton ":" résolu par décalage (LT < ":").
     Conflit entre la règle 114 et le jeton "(" résolu par décalage (LT < "(").
     Conflit entre la règle 114 et le jeton "." résolu par décalage (LT < ".").
     Conflit entre la règle 114 et le jeton ".'" résolu par décalage (LT < ".'").
@@ -19296,7 +19289,7 @@ keywords (148)
   111                | . ">" functionCall
   112                | . ">" ":"
   113                | . "<" variable
-  113                | "<" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  113                | "<" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   114                | . "<" functionCall
   115                | . "<" ":"
   116                | . ">=" variable
@@ -19352,6 +19345,7 @@ keywords (148)
   196         | variable . "(" functionArgs ")"
 
     "'"        décalage et aller à l'état 150
+    ":"        décalage et aller à l'état 115
     "("        décalage et aller à l'état 166
     "."        décalage et aller à l'état 167
     ".'"       décalage et aller à l'état 153
@@ -19380,7 +19374,7 @@ keywords (148)
     listableEnd      aller à l'état 158
 
     Conflit entre la règle 113 et le jeton "'" résolu par décalage (LT < "'").
-    Conflit entre la règle 113 et le jeton ":" résolu par réduction (":" < LT).
+    Conflit entre la règle 113 et le jeton ":" résolu par décalage (LT < ":").
     Conflit entre la règle 113 et le jeton "(" résolu par décalage (LT < "(").
     Conflit entre la règle 113 et le jeton "." résolu par décalage (LT < ".").
     Conflit entre la règle 113 et le jeton ".'" résolu par décalage (LT < ".'").
@@ -19451,7 +19445,7 @@ keywords (148)
   118                | . ">=" ":"
   119                | . "<=" variable
   120                | . "<=" functionCall
-  120                | "<=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  120                | "<=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   121                | . "<=" ":"
   123 operation: functionCall . rightOperand
   130          | functionCall . "** or ^" variable
@@ -19499,6 +19493,7 @@ keywords (148)
   197         | functionCall . "(" functionArgs ")"
 
     "'"        décalage et aller à l'état 114
+    ":"        décalage et aller à l'état 115
     "("        décalage et aller à l'état 164
     "."        décalage et aller à l'état 165
     ".'"       décalage et aller à l'état 118
@@ -19527,7 +19522,7 @@ keywords (148)
     listableEnd      aller à l'état 149
 
     Conflit entre la règle 120 et le jeton "'" résolu par décalage (LE < "'").
-    Conflit entre la règle 120 et le jeton ":" résolu par réduction (":" < LE).
+    Conflit entre la règle 120 et le jeton ":" résolu par décalage (LE < ":").
     Conflit entre la règle 120 et le jeton "(" résolu par décalage (LE < "(").
     Conflit entre la règle 120 et le jeton "." résolu par décalage (LE < ".").
     Conflit entre la règle 120 et le jeton ".'" résolu par décalage (LE < ".'").
@@ -19590,7 +19585,7 @@ keywords (148)
   117                | . ">=" functionCall
   118                | . ">=" ":"
   119                | . "<=" variable
-  119                | "<=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  119                | "<=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   120                | . "<=" functionCall
   121                | . "<=" ":"
   122 operation: variable . rightOperand
@@ -19640,6 +19635,7 @@ keywords (148)
   196         | variable . "(" functionArgs ")"
 
     "'"        décalage et aller à l'état 150
+    ":"        décalage et aller à l'état 115
     "("        décalage et aller à l'état 166
     "."        décalage et aller à l'état 167
     ".'"       décalage et aller à l'état 153
@@ -19668,7 +19664,7 @@ keywords (148)
     listableEnd      aller à l'état 158
 
     Conflit entre la règle 119 et le jeton "'" résolu par décalage (LE < "'").
-    Conflit entre la règle 119 et le jeton ":" résolu par réduction (":" < LE).
+    Conflit entre la règle 119 et le jeton ":" résolu par décalage (LE < ":").
     Conflit entre la règle 119 et le jeton "(" résolu par décalage (LE < "(").
     Conflit entre la règle 119 et le jeton "." résolu par décalage (LE < ".").
     Conflit entre la règle 119 et le jeton ".'" résolu par décalage (LE < ".'").
@@ -19730,7 +19726,7 @@ keywords (148)
   109                | . "<> or ~=" ":"
   110                | . ">" variable
   111                | . ">" functionCall
-  111                | ">" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  111                | ">" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   112                | . ">" ":"
   113                | . "<" variable
   114                | . "<" functionCall
@@ -19787,6 +19783,7 @@ keywords (148)
   197         | functionCall . "(" functionArgs ")"
 
     "'"        décalage et aller à l'état 114
+    ":"        décalage et aller à l'état 115
     "("        décalage et aller à l'état 164
     "."        décalage et aller à l'état 165
     ".'"       décalage et aller à l'état 118
@@ -19815,7 +19812,7 @@ keywords (148)
     listableEnd      aller à l'état 149
 
     Conflit entre la règle 111 et le jeton "'" résolu par décalage (GT < "'").
-    Conflit entre la règle 111 et le jeton ":" résolu par réduction (":" < GT).
+    Conflit entre la règle 111 et le jeton ":" résolu par décalage (GT < ":").
     Conflit entre la règle 111 et le jeton "(" résolu par décalage (GT < "(").
     Conflit entre la règle 111 et le jeton "." résolu par décalage (GT < ".").
     Conflit entre la règle 111 et le jeton ".'" résolu par décalage (GT < ".'").
@@ -19869,7 +19866,7 @@ keywords (148)
   108                | . "<> or ~=" functionCall
   109                | . "<> or ~=" ":"
   110                | . ">" variable
-  110                | ">" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  110                | ">" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   111                | . ">" functionCall
   112                | . ">" ":"
   113                | . "<" variable
@@ -19928,6 +19925,7 @@ keywords (148)
   196         | variable . "(" functionArgs ")"
 
     "'"        décalage et aller à l'état 150
+    ":"        décalage et aller à l'état 115
     "("        décalage et aller à l'état 166
     "."        décalage et aller à l'état 167
     ".'"       décalage et aller à l'état 153
@@ -19956,7 +19954,7 @@ keywords (148)
     listableEnd      aller à l'état 158
 
     Conflit entre la règle 110 et le jeton "'" résolu par décalage (GT < "'").
-    Conflit entre la règle 110 et le jeton ":" résolu par réduction (":" < GT).
+    Conflit entre la règle 110 et le jeton ":" résolu par décalage (GT < ":").
     Conflit entre la règle 110 et le jeton "(" résolu par décalage (GT < "(").
     Conflit entre la règle 110 et le jeton "." résolu par décalage (GT < ".").
     Conflit entre la règle 110 et le jeton ".'" résolu par décalage (GT < ".'").
@@ -20024,7 +20022,7 @@ keywords (148)
   115                | . "<" ":"
   116                | . ">=" variable
   117                | . ">=" functionCall
-  117                | ">=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  117                | ">=" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   118                | . ">=" ":"
   119                | . "<=" variable
   120                | . "<=" functionCall
@@ -20075,6 +20073,7 @@ keywords (148)
   197         | functionCall . "(" functionArgs ")"
 
     "'"        décalage et aller à l'état 114
+    ":"        décalage et aller à l'état 115
     "("        décalage et aller à l'état 164
     "."        décalage et aller à l'état 165
     ".'"       décalage et aller à l'état 118
@@ -20103,7 +20102,7 @@ keywords (148)
     listableEnd      aller à l'état 149
 
     Conflit entre la règle 117 et le jeton "'" résolu par décalage (GE < "'").
-    Conflit entre la règle 117 et le jeton ":" résolu par réduction (":" < GE).
+    Conflit entre la règle 117 et le jeton ":" résolu par décalage (GE < ":").
     Conflit entre la règle 117 et le jeton "(" résolu par décalage (GE < "(").
     Conflit entre la règle 117 et le jeton "." résolu par décalage (GE < ".").
     Conflit entre la règle 117 et le jeton ".'" résolu par décalage (GE < ".'").
@@ -20163,7 +20162,7 @@ keywords (148)
   114                | . "<" functionCall
   115                | . "<" ":"
   116                | . ">=" variable
-  116                | ">=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  116                | ">=" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   117                | . ">=" functionCall
   118                | . ">=" ":"
   119                | . "<=" variable
@@ -20216,6 +20215,7 @@ keywords (148)
   196         | variable . "(" functionArgs ")"
 
     "'"        décalage et aller à l'état 150
+    ":"        décalage et aller à l'état 115
     "("        décalage et aller à l'état 166
     "."        décalage et aller à l'état 167
     ".'"       décalage et aller à l'état 153
@@ -20244,7 +20244,7 @@ keywords (148)
     listableEnd      aller à l'état 158
 
     Conflit entre la règle 116 et le jeton "'" résolu par décalage (GE < "'").
-    Conflit entre la règle 116 et le jeton ":" résolu par réduction (":" < GE).
+    Conflit entre la règle 116 et le jeton ":" résolu par décalage (GE < ":").
     Conflit entre la règle 116 et le jeton "(" résolu par décalage (GE < "(").
     Conflit entre la règle 116 et le jeton "." résolu par décalage (GE < ".").
     Conflit entre la règle 116 et le jeton ".'" résolu par décalage (GE < ".'").
@@ -25408,39 +25408,33 @@ keywords (148)
   169              | . ":" functionCall
   170 listableEnd: . listableBegin ":" variable
   171            | . listableBegin ":" functionCall
-  171            | listableBegin ":" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  171            | listableBegin ":" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   172            | . listableBegin
   178 variable: functionCall . "." "identifier"
   179         | functionCall . "." keywords
   181         | functionCall . listableEnd
   197         | functionCall . "(" functionArgs ")"
 
-    "'"         décalage et aller à l'état 114
-    "("         décalage et aller à l'état 164
-    "."         décalage et aller à l'état 165
-    ".'"        décalage et aller à l'état 118
-    "+"         décalage et aller à l'état 119
-    "-"         décalage et aller à l'état 120
-    "*"         décalage et aller à l'état 121
-    ".*"        décalage et aller à l'état 122
-    ".*."       décalage et aller à l'état 123
-    "*."        décalage et aller à l'état 124
-    "/"         décalage et aller à l'état 125
-    "./"        décalage et aller à l'état 126
-    "/."        décalage et aller à l'état 127
-    "./."       décalage et aller à l'état 128
-    "\\"        décalage et aller à l'état 129
-    ".\\"       décalage et aller à l'état 130
-    "\\."       décalage et aller à l'état 131
-    ".\\."      décalage et aller à l'état 132
-    "** or ^"   décalage et aller à l'état 133
-    ".^"        décalage et aller à l'état 134
-    "=="        décalage et aller à l'état 135
-    "<> or ~="  décalage et aller à l'état 136
-    "<"         décalage et aller à l'état 137
-    "<="        décalage et aller à l'état 138
-    ">"         décalage et aller à l'état 139
-    ">="        décalage et aller à l'état 140
+    "'"        décalage et aller à l'état 114
+    "("        décalage et aller à l'état 164
+    "."        décalage et aller à l'état 165
+    ".'"       décalage et aller à l'état 118
+    "+"        décalage et aller à l'état 119
+    "-"        décalage et aller à l'état 120
+    "*"        décalage et aller à l'état 121
+    ".*"       décalage et aller à l'état 122
+    ".*."      décalage et aller à l'état 123
+    "*."       décalage et aller à l'état 124
+    "/"        décalage et aller à l'état 125
+    "./"       décalage et aller à l'état 126
+    "/."       décalage et aller à l'état 127
+    "./."      décalage et aller à l'état 128
+    "\\"       décalage et aller à l'état 129
+    ".\\"      décalage et aller à l'état 130
+    "\\."      décalage et aller à l'état 131
+    ".\\."     décalage et aller à l'état 132
+    "** or ^"  décalage et aller à l'état 133
+    ".^"       décalage et aller à l'état 134
 
     $défaut  réduction par utilisation de la règle 171 (listableEnd)
 
@@ -25470,12 +25464,12 @@ keywords (148)
     Conflit entre la règle 171 et le jeton ".\\." résolu par décalage (COLON < ".\\.").
     Conflit entre la règle 171 et le jeton "** or ^" résolu par décalage (COLON < "** or ^").
     Conflit entre la règle 171 et le jeton ".^" résolu par décalage (COLON < ".^").
-    Conflit entre la règle 171 et le jeton "==" résolu par décalage (COLON < "==").
-    Conflit entre la règle 171 et le jeton "<> or ~=" résolu par décalage (COLON < "<> or ~=").
-    Conflit entre la règle 171 et le jeton "<" résolu par décalage (COLON < "<").
-    Conflit entre la règle 171 et le jeton "<=" résolu par décalage (COLON < "<=").
-    Conflit entre la règle 171 et le jeton ">" résolu par décalage (COLON < ">").
-    Conflit entre la règle 171 et le jeton ">=" résolu par décalage (COLON < ">=").
+    Conflit entre la règle 171 et le jeton "==" résolu par réduction ("==" < COLON).
+    Conflit entre la règle 171 et le jeton "<> or ~=" résolu par réduction ("<> or ~=" < COLON).
+    Conflit entre la règle 171 et le jeton "<" résolu par réduction ("<" < COLON).
+    Conflit entre la règle 171 et le jeton "<=" résolu par réduction ("<=" < COLON).
+    Conflit entre la règle 171 et le jeton ">" résolu par réduction (">" < COLON).
+    Conflit entre la règle 171 et le jeton ">=" résolu par réduction (">=" < COLON).
     Conflit entre la règle 171 et le jeton "&" résolu par réduction ("&" < COLON).
     Conflit entre la règle 171 et le jeton "&&" résolu par réduction ("&&" < COLON).
     Conflit entre la règle 171 et le jeton "|" résolu par réduction ("|" < COLON).
@@ -25553,7 +25547,7 @@ keywords (148)
   168 listableBegin: . ":" variable
   169              | . ":" functionCall
   170 listableEnd: . listableBegin ":" variable
-  170            | listableBegin ":" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  170            | listableBegin ":" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   171            | . listableBegin ":" functionCall
   172            | . listableBegin
   175 variable: variable . "." "identifier"
@@ -25562,32 +25556,26 @@ keywords (148)
   180         | variable . listableEnd
   196         | variable . "(" functionArgs ")"
 
-    "'"         décalage et aller à l'état 150
-    "("         décalage et aller à l'état 166
-    "."         décalage et aller à l'état 167
-    ".'"        décalage et aller à l'état 153
-    "+"         décalage et aller à l'état 119
-    "-"         décalage et aller à l'état 120
-    "*"         décalage et aller à l'état 121
-    ".*"        décalage et aller à l'état 122
-    ".*."       décalage et aller à l'état 123
-    "*."        décalage et aller à l'état 124
-    "/"         décalage et aller à l'état 125
-    "./"        décalage et aller à l'état 126
-    "/."        décalage et aller à l'état 127
-    "./."       décalage et aller à l'état 128
-    "\\"        décalage et aller à l'état 129
-    ".\\"       décalage et aller à l'état 130
-    "\\."       décalage et aller à l'état 131
-    ".\\."      décalage et aller à l'état 132
-    "** or ^"   décalage et aller à l'état 154
-    ".^"        décalage et aller à l'état 155
-    "=="        décalage et aller à l'état 135
-    "<> or ~="  décalage et aller à l'état 136
-    "<"         décalage et aller à l'état 137
-    "<="        décalage et aller à l'état 138
-    ">"         décalage et aller à l'état 139
-    ">="        décalage et aller à l'état 140
+    "'"        décalage et aller à l'état 150
+    "("        décalage et aller à l'état 166
+    "."        décalage et aller à l'état 167
+    ".'"       décalage et aller à l'état 153
+    "+"        décalage et aller à l'état 119
+    "-"        décalage et aller à l'état 120
+    "*"        décalage et aller à l'état 121
+    ".*"       décalage et aller à l'état 122
+    ".*."      décalage et aller à l'état 123
+    "*."       décalage et aller à l'état 124
+    "/"        décalage et aller à l'état 125
+    "./"       décalage et aller à l'état 126
+    "/."       décalage et aller à l'état 127
+    "./."      décalage et aller à l'état 128
+    "\\"       décalage et aller à l'état 129
+    ".\\"      décalage et aller à l'état 130
+    "\\."      décalage et aller à l'état 131
+    ".\\."     décalage et aller à l'état 132
+    "** or ^"  décalage et aller à l'état 154
+    ".^"       décalage et aller à l'état 155
 
     $défaut  réduction par utilisation de la règle 170 (listableEnd)
 
@@ -25617,12 +25605,12 @@ keywords (148)
     Conflit entre la règle 170 et le jeton ".\\." résolu par décalage (COLON < ".\\.").
     Conflit entre la règle 170 et le jeton "** or ^" résolu par décalage (COLON < "** or ^").
     Conflit entre la règle 170 et le jeton ".^" résolu par décalage (COLON < ".^").
-    Conflit entre la règle 170 et le jeton "==" résolu par décalage (COLON < "==").
-    Conflit entre la règle 170 et le jeton "<> or ~=" résolu par décalage (COLON < "<> or ~=").
-    Conflit entre la règle 170 et le jeton "<" résolu par décalage (COLON < "<").
-    Conflit entre la règle 170 et le jeton "<=" résolu par décalage (COLON < "<=").
-    Conflit entre la règle 170 et le jeton ">" résolu par décalage (COLON < ">").
-    Conflit entre la règle 170 et le jeton ">=" résolu par décalage (COLON < ">=").
+    Conflit entre la règle 170 et le jeton "==" résolu par réduction ("==" < COLON).
+    Conflit entre la règle 170 et le jeton "<> or ~=" résolu par réduction ("<> or ~=" < COLON).
+    Conflit entre la règle 170 et le jeton "<" résolu par réduction ("<" < COLON).
+    Conflit entre la règle 170 et le jeton "<=" résolu par réduction ("<=" < COLON).
+    Conflit entre la règle 170 et le jeton ">" résolu par réduction (">" < COLON).
+    Conflit entre la règle 170 et le jeton ">=" résolu par réduction (">=" < COLON).
     Conflit entre la règle 170 et le jeton "&" résolu par réduction ("&" < COLON).
     Conflit entre la règle 170 et le jeton "&&" résolu par réduction ("&&" < COLON).
     Conflit entre la règle 170 et le jeton "|" résolu par réduction ("|" < COLON).
