@@ -17,6 +17,9 @@
 package org.scilab.modules.gui.editor;
 
 
+import org.scilab.modules.renderer.utils.CommonHandler;
+import org.scilab.modules.renderer.utils.EntityPicker;
+import org.scilab.modules.renderer.utils.AxesHandler;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
@@ -30,10 +33,10 @@ import javax.swing.JPopupMenu;
 import org.scilab.modules.gui.datatip.DatatipManager;
 import org.scilab.modules.gui.editor.ScilabClipboard;
 import org.scilab.modules.gui.editor.SystemClipboard;
-import org.scilab.modules.gui.editor.PolylineHandler;
+import org.scilab.modules.renderer.utils.PolylineHandler;
 import org.scilab.modules.gui.editor.GEDPicker;
 import org.scilab.modules.gui.editor.LabelHandler;
-import org.scilab.modules.gui.editor.LegendHandler;
+import org.scilab.modules.renderer.utils.LegendHandler;
 import org.scilab.modules.gui.editor.action.EditorHistory;
 import org.scilab.modules.gui.editor.action.ActionDelete;
 import org.scilab.modules.gui.editor.action.ActionLegend;

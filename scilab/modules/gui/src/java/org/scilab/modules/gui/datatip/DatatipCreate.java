@@ -26,8 +26,8 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.datatip.Datatip;
-import org.scilab.modules.gui.editor.CommonHandler;
-import org.scilab.modules.gui.editor.EntityPicker;
+import org.scilab.modules.renderer.utils.CommonHandler;
+import org.scilab.modules.renderer.utils.EntityPicker;
 import org.scilab.modules.renderer.CallRenderer;
 
 /**

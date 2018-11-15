@@ -18,7 +18,7 @@ package org.scilab.modules.gui.datatip;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.gui.editor.ObjectSearcher;
+import org.scilab.modules.renderer.utils.ObjectSearcher;
 
 /**
  * Delete a datatip

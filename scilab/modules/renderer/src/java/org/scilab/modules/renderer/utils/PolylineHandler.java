@@ -15,14 +15,11 @@
  *
  */
 
-package org.scilab.modules.gui.editor;
+package org.scilab.modules.renderer.utils;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.renderer.CallRenderer;
 
-import org.scilab.modules.gui.editor.ObjectSearcher;
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;

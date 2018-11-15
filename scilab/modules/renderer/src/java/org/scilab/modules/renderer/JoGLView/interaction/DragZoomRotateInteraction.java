@@ -31,6 +31,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
+
 /**
  * This class manage figure interaction.
  *

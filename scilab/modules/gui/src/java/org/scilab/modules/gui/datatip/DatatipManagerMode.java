@@ -40,9 +40,9 @@ import javax.swing.SwingUtilities;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.localization.Messages;
-import org.scilab.modules.gui.editor.AxesHandler;
-import org.scilab.modules.gui.editor.ObjectSearcher;
-import org.scilab.modules.gui.editor.EntityPicker;
+import org.scilab.modules.renderer.utils.AxesHandler;
+import org.scilab.modules.renderer.utils.ObjectSearcher;
+import org.scilab.modules.renderer.utils.EntityPicker;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;

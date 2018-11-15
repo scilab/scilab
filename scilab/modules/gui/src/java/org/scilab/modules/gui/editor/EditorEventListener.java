@@ -32,7 +32,7 @@ import org.scilab.modules.gui.datatip.DatatipManager;
 
 import org.scilab.modules.gui.editor.Editor;
 import org.scilab.modules.gui.editor.EditorManager;
-import org.scilab.modules.gui.editor.EntityPicker;
+import org.scilab.modules.renderer.utils.EntityPicker;
 import org.scilab.modules.gui.events.GlobalEventWatcher;
 
 import org.scilab.modules.gui.ged.Inspector;

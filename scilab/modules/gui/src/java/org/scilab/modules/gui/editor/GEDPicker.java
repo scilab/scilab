@@ -31,8 +31,8 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.SurfaceData;
 import org.scilab.modules.graphic_objects.ObjectData;
-import org.scilab.modules.gui.editor.CommonHandler;
-import org.scilab.modules.gui.editor.AxesHandler;
+import org.scilab.modules.renderer.utils.CommonHandler;
+import org.scilab.modules.renderer.utils.AxesHandler;
 
 import java.lang.Math;
 import java.util.List;
@@ -384,7 +384,7 @@ public class GEDPicker {
         double xr = data[1] / 2.;
         double yr = data[0] / 2.;
 
-        Vector3d center =  new Vector3d(upperLeft[0] + xr , upperLeft[1] - yr , upperLeft[2]);
+        Vector3d center =  new Vector3d(upperLeft[0] + xr, upperLeft[1] - yr, upperLeft[2]);
 
         //checks if the point lies within the ellipse
         double x = point.getX() - center.getX();

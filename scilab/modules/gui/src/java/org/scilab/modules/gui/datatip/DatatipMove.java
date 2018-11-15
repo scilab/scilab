@@ -17,13 +17,13 @@
 package org.scilab.modules.gui.datatip;
 
 import org.scilab.modules.graphic_objects.PolylineData;
-import org.scilab.modules.gui.datatip.DatatipCommon;
+import org.scilab.modules.renderer.utils.DatatipCommon;
 import org.scilab.modules.gui.datatip.DatatipOrientation;
 import org.scilab.modules.renderer.CallRenderer;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
-import org.scilab.modules.gui.editor.CommonHandler;
-import org.scilab.modules.gui.editor.EntityPicker;
+import org.scilab.modules.renderer.utils.CommonHandler;
+import org.scilab.modules.renderer.utils.EntityPicker;
 
 /**
  * Move a datatip along the curve

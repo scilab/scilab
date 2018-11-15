@@ -14,8 +14,10 @@
  *
  */
 
-package org.scilab.modules.gui.editor;
+package org.scilab.modules.renderer.utils;
 
+import org.scilab.modules.renderer.utils.ObjectSearcher;
+import org.scilab.modules.renderer.utils.CommonHandler;
 import java.util.ArrayList;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;

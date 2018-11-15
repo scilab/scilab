@@ -15,11 +15,11 @@
 
 package org.scilab.modules.gui.datatip;
 
-import org.scilab.modules.gui.datatip.DatatipCommon;
+import org.scilab.modules.renderer.utils.DatatipCommon;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
-import org.scilab.modules.gui.editor.AxesHandler;
-import org.scilab.modules.gui.editor.EntityPicker;
+import org.scilab.modules.renderer.utils.AxesHandler;
+import org.scilab.modules.renderer.utils.EntityPicker;
 import org.scilab.modules.renderer.CallRenderer;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
@@ -141,19 +141,19 @@ public class DatatipOrientation {
      */
     private static Integer flipOrientation(Integer orientation) {
         switch (orientation) {
-                /* top left*/
+            /* top left*/
             case 0:
                 return 3;
-                /* top right*/
+            /* top right*/
             case 1:
                 return 2;
-                /* bottom left*/
+            /* bottom left*/
             case 2:
                 return 1;
-                /* bottom right*/
+            /* bottom right*/
             case 3:
                 return 0;
-                /* do nothing*/
+            /* do nothing*/
             default:
                 return orientation;
         }

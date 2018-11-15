@@ -15,24 +15,20 @@
  *
  */
 
-package org.scilab.modules.gui.editor;
+package org.scilab.modules.renderer.utils;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.CallGraphicController;
 import org.scilab.modules.renderer.CallRenderer;
 
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
-import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.SurfaceData;
-import org.scilab.modules.gui.datatip.DatatipCommon;
-import org.scilab.modules.gui.editor.CommonHandler;
-import org.scilab.modules.gui.editor.ObjectSearcher;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 /**
  * Given a (x, y) window coord checks
@@ -602,7 +598,7 @@ public class EntityPicker {
      * @param pos Mouse position (x, y).
      * @return The nearest surface intersected or null otherwise.
      */
-    Integer pickSurface(Integer figure, Integer[] pos) {
+    public Integer pickSurface(Integer figure, Integer[] pos) {
         Integer uid = AxesHandler.clickedAxes(figure, pos);
         Axes curAxes = (Axes)GraphicController.getController().getObjectFromId(uid);
         if (curAxes == null) {
