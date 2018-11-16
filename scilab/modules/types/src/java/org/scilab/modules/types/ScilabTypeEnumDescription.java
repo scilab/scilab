@@ -42,9 +42,8 @@ public class ScilabTypeEnumDescription {
                 case sci_strings:
                     return Messages.gettext("String");
                 case sci_u_function:
-                    return Messages.gettext("User function");
                 case sci_c_function:
-                    return Messages.gettext("Compiled function");
+                    return Messages.gettext("User function");
                 case sci_lib:
                     return Messages.gettext("Function library");
                 case sci_list:
@@ -53,6 +52,10 @@ public class ScilabTypeEnumDescription {
                     return Messages.gettext("Tlist");
                 case sci_mlist:
                     return Messages.gettext("Mlist");
+                case sci_struct:
+                    return Messages.gettext("Struct");
+                case sci_cell:
+                    return Messages.gettext("Cell");
                 case sci_pointer:
                     return Messages.gettext("Pointer");
                 case sci_implicit_poly:

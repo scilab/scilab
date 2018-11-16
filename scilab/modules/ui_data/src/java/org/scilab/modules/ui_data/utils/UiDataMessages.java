@@ -46,8 +46,8 @@ public final class UiDataMessages {
     public static final String INTEGER = Messages.gettext("Integer");
     public static final String GRAPHIC_HANDLES = Messages.gettext("Graphic handles");
     public static final String STRING = Messages.gettext("String");
-    public static final String UNCOMPILED_FUNC = Messages.gettext("Un-compiled function");
-    public static final String COMPILED_FUNC = Messages.gettext("Compiled function");
+    public static final String UNCOMPILED_FUNC = Messages.gettext("User function");
+    public static final String COMPILED_FUNC = Messages.gettext("User function");
     public static final String FUNCTIONLIB = Messages.gettext("Function library");
     public static final String LIST = Messages.gettext("List");
     public static final String TLIST = Messages.gettext("Tlist");

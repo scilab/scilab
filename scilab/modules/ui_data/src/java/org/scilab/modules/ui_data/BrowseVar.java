@@ -68,6 +68,7 @@ public class BrowseVar {
     private static final ImageIcon LIST_ICON = new ImageIcon(FindIconHelper.findIcon("list"));
     private static final ImageIcon TLIST_ICON = new ImageIcon(FindIconHelper.findIcon("tlist"));
     private static final ImageIcon MLIST_ICON = new ImageIcon(FindIconHelper.findIcon("mlist"));
+    private static final ImageIcon CELL_ICON = new ImageIcon(FindIconHelper.findIcon("cell"));
     private static final ImageIcon USER_ICON = new ImageIcon(FindIconHelper.findIcon("user"));
     private static final ImageIcon FPTR_ICON = new ImageIcon(FindIconHelper.findIcon("fptr"));
 
@@ -109,7 +110,10 @@ public class BrowseVar {
             case 16:
                 return TLIST_ICON;
             case 17:
+            case 18:
                 return MLIST_ICON;
+            case 19:
+                return CELL_ICON;
             case 128:
                 return USER_ICON;
             case 130:
