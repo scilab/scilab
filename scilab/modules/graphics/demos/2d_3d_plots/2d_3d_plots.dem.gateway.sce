@@ -7,11 +7,8 @@ demopath = get_absolute_file_path("2d_3d_plots.dem.gateway.sce");
 
 subdemolist = [                                   ..
 "plot2d"         , "plot2d.dem.sce"          ; ..
-"plot2d3"        , "plot2d3.dem.sce"         ; ..
 "plotyy"         , "plotyy.dem.sce"          ; ..
 "plotyyy"        , "plotyyy.dem.sce"         ; ..
-"histplot"       , "histplot.dem.sce"        ; ..
-"hist3d"         , "hist3d.dem.sce"          ; ..
 "fplot2d"        , "fplot2d.dem.sce"         ; ..
 "param3d (1)"    , "param3d_1.dem.sce"       ; ..
 "param3d (2)"    , "param3d_2.dem.sce"       ; ..

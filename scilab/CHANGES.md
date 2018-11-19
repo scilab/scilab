@@ -686,6 +686,7 @@ Known issues
 * [#15867](http://bugzilla.scilab.org/show_bug.cgi?id=15867): For input encoded integers, `setdiff` returned selected elements in decreasing order.
 * [#15878](http://bugzilla.scilab.org/show_bug.cgi?id=15878): `sgrid` and `evans` were broken.
 * [#15880](http://bugzilla.scilab.org/show_bug.cgi?id=15880): `sgrid` needed some improvements: Labeling was sometimes ambiguous ; large circles were not labeled ; data_bounds did not always take the input wn into account ; named and #RRGGBB colors specifications could not be used. `evans` needed some improvements: the block of legends hid data ; asymptotes were too visible.
+* [#15881](http://bugzilla.scilab.org/show_bug.cgi?id=15881): Demos about stems, bars and histograms were spread in several subsections.
 * [#15886](http://bugzilla.scilab.org/show_bug.cgi?id=15886): Display of polynomials was broken.
 * [#15890](http://bugzilla.scilab.org/show_bug.cgi?id=15890): `evstr` sometimes yielded some `+[]` warnings.
 * [#15907](http://bugzilla.scilab.org/show_bug.cgi?id=15907): `filter` was corrupting its input state array

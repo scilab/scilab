@@ -5,21 +5,21 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 
-function demo_basic_function7()
+function demo_custom_bars()
 
     mode(-1);
 
     my_handle             = scf(100001);
     clf(my_handle,"reset");
-    demo_viewCode("basic_functions_7.dem.sce");
+    demo_viewCode("bars_custom.dem.sce");
 
-    my_plot_desc          = "colored histogram";
+    my_plot_desc          = "Custom bars";
     my_handle.figure_name = my_plot_desc;
 
     expr=[
     "plot2d(0,0,[0],''012'',''leg'',[0,0,30,20]);"
     "a=gca(); t=a.title;"
-    "t.text=""colored histogram""; t.font_size=3;"
+    "t.text=""Custom bars""; t.font_size=3;"
     "a.clip_state = ''clipgrf'';"
     "x=[1 3 3 1 1]'';"
     "y=[0 0 1 1 0]'';"
@@ -32,5 +32,5 @@ function demo_basic_function7()
 
 endfunction
 
-demo_basic_function7();
-clear demo_basic_function7;
+demo_custom_bars();
+clear demo_custom_bars;

@@ -32,7 +32,7 @@ function demo_bar()
 
     angle = 295;
 
-    BackgroundColorId = color(205,253,203);
+    BackgroundColorId = color(225,253,223);
     year2005ColorId = color(238,222,12);
     year2006ColorId = color(255,0,0);
     year2007ColorId = color(64,155,59);
@@ -41,14 +41,11 @@ function demo_bar()
 
     drawlater();
     bar(x,y);
+    title("bar(''grouped'')", "fontsize", 3)
     histo = gce();
 
 
     // Adjustements
-    histogramme = gcf();
-    // histogramme.figure_size = [900,600];
-    histogramme.background = BackgroundColorId;
-
     axes = gca();
     axes.background = BackgroundColorId;
     axes.x_ticks.labels = ["Jan";"Feb";"Mar";"Apr";"May";"Jun";"Jul";"Aug";"Sep";"Oct";"Nov";"Dec"];
