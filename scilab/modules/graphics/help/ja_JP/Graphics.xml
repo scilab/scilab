@@ -1142,7 +1142,7 @@
                         <emphasis role="bold">例:</emphasis>
                     </para>
                     <para>
-                        <scilab:image localized="true">sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])</scilab:image>
+                        <scilab:image>sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])</scilab:image>
                     </para>
                 </listitem>
             </varlistentry>

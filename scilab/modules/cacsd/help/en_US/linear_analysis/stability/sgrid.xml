@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,18 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="sgrid">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="sgrid">
     <refnamediv>
         <refname>sgrid</refname>
-        <refpurpose>s-plane grid lines.</refpurpose>
+        <refpurpose>draws a s-plane grid</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
             sgrid()
-            sgrid(zeta,wn [,colors])
-            sgrid(['new',] zeta,wn [,colors])
-            sgrid(zeta,wn [,'new'] [,colors])
+            sgrid(zeta, wn)
+            sgrid(.., colors)
+            sgrid(.., "new")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -34,14 +37,9 @@
                 <term>zeta</term>
                 <listitem>
                     <para>
-                        array of damping factors. Only values in <literal>[0
-                            1]
-                        </literal>
-                        are taken into account. The default value is
-                        <literal>[0 0.16 0.34 0.5 0.64 0.76 0.86 0.94 0.985
-                            1]
-                        </literal>
-                        .
+                        vector of damping factors. Only values in <literal>[0 1]</literal>
+                        are taken into account. The default values are ~ cosd(90:-10:0) =
+                        <literal>[0 0.17 0.34 0.5 0.64 0.77 0.87 0.94 0.985 1]</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -57,7 +55,21 @@
             <varlistentry>
                 <term>colors</term>
                 <listitem>
-                    <para>a scalar or an 2 element array  with integer values (color index).</para>
+                    <para>
+                        a scalar or a vector with 2 elements [circles_col, rays_col], specifying the
+                        color(s) of circles and rays of the frame, and their labels: predefined
+                        colors names (like "red"), or colors hexadecimal codes (like "#34DDFA"),
+                        or colors indices in the current colormap are accepted.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"new"</term>
+                <listitem>
+                    <para>
+                        This option clears all contents of the current axes before plotting the grid.
+                        It may be specified at any position among input arguments.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -65,48 +77,95 @@
     <refsection>
         <title>Description</title>
         <para>
-            Plots selected curves of constant damping ratio (selection given
-            by <literal>zeta</literal>) and constant natural frequency
-            (selection given by <literal>wn</literal>).
-        </para>
-        <para>
-            The <literal>colors</literal> argument may be used to assign a
-            color for constant damping ratio curves
-            (<literal>colors(2)</literal>) and for constant natural
-            frequency curves (<literal>colors(1)</literal>).
-        </para>
-        <para>
             The <literal>sgrid</literal> function is often used to draw a grid
-            for evens root locus of continuous time linear systems. In such a
+            for Evans root locus of continuous time linear systems. In such a
             case the <literal>sgrid</literal> function should be called after
             the call to <link linkend="evans">evans</link>. For discrete time linear
             systems one should use <link linkend="zgrid">zgrid</link> function instead.
         </para>
         <para>
-            The optional argument <literal>'new'</literal> can be used to
-            erase the graphic window before plotting the grid.
+            <literal>sgrid</literal> plots curves of constant damping ratio at values given
+            by <literal>zeta</literal>, and constant natural frequency at values given by
+            <literal>wn</literal>.
+        </para>
+        <para>
+            The <literal>colors</literal> argument may be used to assign a color for constant
+            damping ratio curves (<literal>colors(2)</literal>) and for constant natural
+            frequency curves (<literal>colors(1)</literal>).
+        </para>
+        <para>
+            <literal>sgrid(), sgrid("new"), sgrid(colors)</literal> or
+            <literal>sgrid(colors, "new")</literal> plots a default grid.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-    //sgrid
-    clf();sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])
+clf
+subplot(1,2,1), sgrid([0:0.1:0.9 0.97 1], 0.5:0.5:3)
+subplot(1,2,2), sgrid("grey70")
     ]]></programlisting>
+        <scilab:image>
+            clf
+            subplot(1,2,1), sgrid([0:0.1:0.9 0.97 1], 0.5:0.5:3)
+            subplot(1,2,2), sgrid("grey70")
+        </scilab:image>
         <para>
-            <scilab:image>
-                sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])
-            </scilab:image>
+            Post-tuning graphical elements of the grid:
         </para>
         <programlisting role="example"><![CDATA[
-        H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
-        clf();evans(H,100);sgrid()
+sgrid()
+
+sGrid = gca().children.children.children;
+i = find(sGrid(3:$).type=="Polyline" & sGrid(1:$-2).type=="Polyline",1);
+
+Circles = sGrid(1:i-1);
+Circ_text = Circles(Circles.type=="Text");      // Labels
+Circ_text.font_size = 2;
+Circ_lines = Circles(Circles.type=="Polyline"); // Circles
+Circ_lines.line_style = 8;
+
+Rays = sGrid(i:$);
+Rays(Rays.type=="Text").font_foreground = color("light slate blue");
+Rays_lines = Rays(Rays.type=="Polyline");
+set(Rays_lines, "line_style", 9, "thickness", 1.5);
+        ]]></programlisting>
+            <scilab:image><![CDATA[
+                sgrid()
+
+                // Post-tuning graphical elements
+                // ------------------------------
+                sGrid = gca().children.children.children;
+                i = find(sGrid(3:$).type=="Polyline" & sGrid(1:$-2).type=="Polyline",1);
+
+                Circles = sGrid(1:i-1);
+                Circ_text = Circles(Circles.type=="Text");      // Labels
+                Circ_text.font_size = 2;
+                Circ_lines = Circles(Circles.type=="Polyline"); // Circles
+                Circ_lines.line_style = 8;
+
+                Rays = sGrid(i:$);
+                Rays(Rays.type=="Text").font_foreground = color("light slate blue");
+                Rays_lines = Rays(Rays.type=="Polyline");
+                set(Rays_lines, "line_style", 9, "thickness", 1.5);
+            ]]></scilab:image>
+        <para>
+            Evans plot + a s grid:
+        </para>
+        <programlisting role="example"><![CDATA[
+H = syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+clf
+evans(H,100)
+sgrid()
         ]]></programlisting>
         <para>
-            <scilab:image localized="true">
-                H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
-                clf();evans(H,100);sgrid()
-            </scilab:image>
+            <scilab:image localized="true"><![CDATA[
+                H = syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+                clf
+                gcf().axes_size = [610 470];
+                evans(H,100)
+                sgrid()
+            ]]></scilab:image>
         </para>
     </refsection>
     <refsection role="see also">
@@ -119,8 +178,22 @@
                 <link linkend="zgrid">zgrid</link>
             </member>
             <member>
-                <link linkend="datatips">datatips</link>
+                <link linkend="hallchart">hallchart</link>
+            </member>
+            <member>
+                <link linkend="nicholschart">nicholschart</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    colors can be specified by their names or by their #RRGGBB code
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
