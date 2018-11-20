@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - A. Khorshidi
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -69,11 +69,9 @@ function [cf, ind] = histc(n, data, normalization)
     [ind, cf, info] = dsearch(data, cb); // cf: class frequency, ind: class number of each count
 
     // Normalization
-    if normalization == %t then
-        nd = size(data, "*"); // Number of data values
-        //cw = cb(2:$)-cb(1:$-1); // Bin width
-        //cf = cf./(nd*cw); // Normalization in bin heights
-        cf = cf./nd; // Heights normalization
+    nd = size(data, "*"); // Number of data values
+    if normalization
+        cw = cb(2:$)-cb(1:$-1); // Bins widths
+        cf = cf./(nd*cw)        // ==> Normalized density == Density probability function
     end
-
 endfunction

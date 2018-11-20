@@ -161,11 +161,17 @@ csvWrite ( A , filename );
 edit(filename)
     ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="csvRead">csvRead</link>
+            </member>
+            <member>
+                <link linkend="csvTextscan">csvTextscan</link>
+            </member>
+            <member>
+                <link linkend="csvDefault">csvDefault</link>
             </member>
         </simplelist>
     </refsection>

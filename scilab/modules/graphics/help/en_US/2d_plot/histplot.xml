@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added data output
  * Copyright (C) INRIA - Serge Steer
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,10 @@
  * along with this program.
  *
  --><!-- This document was created with Syntext Serna Free. -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="histplot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="histplot">
     <refnamediv>
         <refname>histplot</refname>
         <refpurpose>plot a histogram</refpurpose>
@@ -22,8 +25,9 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            [cf, ind] = histplot(n, data [,normalization] [,polygon], &lt;opt_args&gt;)
-            [cf, ind] = histplot(x, data [,normalization] [,polygon], &lt;opt_args&gt;)
+            histplot(n, data [,normalization] [,polygon], &lt;opt_args&gt;)
+            histplot(x, data [,normalization] [,polygon], &lt;opt_args&gt;)
+            cf = histplot(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -75,22 +79,7 @@
             <varlistentry>
                 <term>cf</term>
                 <listitem>
-                    <para>
-                        This represents a sequence of statements <literal>key1=value1,key2=value2</literal>
-                        ,... where <literal>key1</literal>,
-                        <literal>key2,...</literal> can be any optional <link linkend="plot2d">plot2d</link> parameter (<literal>style,strf,leg, rect,nax, logflag,frameflag, axesflag </literal>
-                        ).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ind</term>
-                <listitem>
-                    <para>
-                        This represents a sequence of statements <literal>key1=value1,key2=value2</literal>
-                        ,... where <literal>key1</literal>,
-                        <literal>key2,...</literal> can be any optional <link linkend="plot2d">plot2d</link> parameter (<literal>style,strf,leg, rect,nax, logflag,frameflag, axesflag </literal>
-                        ).
+                    <para>Computed frequencies (bins heighs)
                     </para>
                 </listitem>
             </varlistentry>
@@ -140,31 +129,38 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <simplelist>
-            <member> Example #1: variations around a histogram of a gaussian random sample
-                <programlisting role="example"><![CDATA[
-d=rand(1,10000,'normal');  // the gaussian random sample
-clf(); histplot(20,d)
-clf(); histplot(20,d,normalization=%f)
-clf(); histplot(20,d,leg='rand(1,10000,''normal'')',style=5)
+            <para>
+                <emphasis role="bold">Example #1</emphasis>:
+                variations around a histogram of a gaussian random sample
+            </para>
+            <programlisting role="example"><![CDATA[
+d = rand(1,10000,'normal');  // the gaussian random sample
+
+clf(); histplot(20,d);
+clf(); histplot(20,d,normalization=%f);
+clf(); histplot(20,d,leg='rand(1,10000,''normal'')',style=5);
 clf(); histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]);
 ]]></programlisting>
                 <scilab:image>
                     d=rand(1,10000,'normal');
                     clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]);
                 </scilab:image>
-            </member>
-            <member>
-                Example #2: histogram of a binomial (B(6,0.5)) random sample
-                <programlisting role="example"><![CDATA[
+            <para/>
+            <para>
+                <emphasis role="bold">Example #2</emphasis>:
+                histogram of a binomial (B(6,0.5)) random sample
+            </para>
+            <programlisting role="example"><![CDATA[
 d = grand(1000,1,"bin", 6, 0.5);
 c = linspace(-0.5,6.5,8);
+
 clf()
 subplot(2,1,1)
-histplot(c, d, style=2)
+histplot(c, d, style=2);
 xtitle("Normalized histogram")
+
 subplot(2,1,2)
-histplot(c, d, normalization=%f, style=5)
+histplot(c, d, normalization=%f, style=5);
 xtitle("Non normalized histogram")
 ]]></programlisting>
                 <scilab:image localized="true">
@@ -178,46 +174,50 @@ xtitle("Non normalized histogram")
                     histplot(c, d, normalization=%f, style=5)
                     xtitle("non normalized histogram")
                 </scilab:image>
-            </member>
-            <member>
-                Example #3: histogram of an exponential random sample
-                <programlisting role="example"><![CDATA[
+            <para/>
+            <para>
+                <emphasis role="bold">Example #3</emphasis>:
+                histogram of an exponential random sample
+            </para>
+            <programlisting role="example"><![CDATA[
 lambda = 2;
 X = grand(100000,1,"exp", 1/lambda);
 Xmax = max(X);
+
 clf()
-histplot(40, X, style=2)
+histplot(40, X, style=2);
 x = linspace(0,max(Xmax),100)';
 plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
 legend(["exponential random sample histogram" "exact density curve"]);
 ]]></programlisting>
-                <scilab:image localized="true">
-                    lambda = 2;
-                    X = grand(100000,1,"exp", 1/lambda);
-                    Xmax = max(X);
-                    clf()
-                    histplot(40, X, style=2)
-                    x = linspace(0,max(Xmax),100)';
-                    plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
-                    legend(["exponential random sample histogram" "exact density curve"]);
-                </scilab:image>
-            </member>
-            <member>
-                Example #4: the frequency polygon chart and the histogram of a gaussian random sample
-                <programlisting role="example"><![CDATA[
-n=10;
-data=rand(1,1000,"normal");
+            <scilab:image localized="true">
+                lambda = 2;
+                X = grand(100000,1,"exp", 1/lambda);
+                Xmax = max(X);
+                clf()
+                histplot(40, X, style=2)
+                x = linspace(0,max(Xmax),100)';
+                plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
+                legend(["exponential random sample histogram" "exact density curve"]);
+            </scilab:image>
+            <para/>
+            <para>
+                <emphasis role="bold">Example #4</emphasis>:
+                the frequency polygon chart and the histogram of a gaussian random sample
+            </para>
+            <programlisting role="example"><![CDATA[
+n = 10;
+data = rand(1,1000,"normal");
+
 clf(); histplot(n, data, style=12, polygon=%t);
-legend(["normalized histogram" "frequency polygon chart"]);
+legend(["normalized histogram" "frequency polygon chart"],"lower_caption");
 ]]></programlisting>
-                <scilab:image localized="true">
-                    n=10;
-                    data=rand(1,1000,"normal");
-                    clf(); histplot(n,data,style=12,polygon=%t);
-                    legend(["normalized histogram" "frequency polygon chart"]);
-                </scilab:image>
-            </member>
-        </simplelist>
+            <scilab:image localized="true">
+                n=10;
+                data=rand(1,1000,"normal");
+                clf(); histplot(n,data,style=12,polygon=%t);
+                legend(["normalized histogram" "frequency polygon chart"],"lower_caption");
+            </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -238,5 +238,16 @@ legend(["normalized histogram" "frequency polygon chart"]);
                 <link linkend="dsearch">dsearch</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    <literal>polygon</literal> option and <literal>cf</literal> output added.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

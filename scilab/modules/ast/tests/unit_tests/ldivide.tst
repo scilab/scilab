@@ -49,17 +49,6 @@ assert_checkalmostequal(c \ R, R / c);
 assert_checkalmostequal(c \ C, C / c);
 
 
-//DOUBLE \ double
-
-//R \ r
-assert_checkalmostequal(R \ r, [-4,2;3,-1]);
-//R \ c
-assert_checkalmostequal(R \ c, [-2-4*%i , 1+2*%i ; 1.5+3*%i, -0.5-%i]);
-//C \ r
-assert_checkalmostequal(C \ r, [-0.8+1.6*%i,0.4-0.8*%i;0.6-1.2*%i,-0.2+0.4*%i]);
-//C \ c
-assert_checkalmostequal(C \ c, [-2,1;1.5,-0.5]);
-
 
 //DOUBLE \ DOUBLE
 
@@ -70,7 +59,7 @@ assert_checkalmostequal(R \ C, C / R);
 //C \ R
 assert_checkalmostequal(C \ R, R / C, [], %eps);
 //C \ C
-assert_checkalmostequal(C \ C, C / C);
+assert_checkalmostequal(C \ C, C / C, [], %eps);
 
 // dot left division
 //double .\ double

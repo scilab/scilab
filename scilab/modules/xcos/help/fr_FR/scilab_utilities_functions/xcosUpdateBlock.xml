@@ -43,30 +43,21 @@ xcosAddToolsMenu("update block", "myExternalFunction(blk, scs_m)");
 ]]></programlisting>
         </para>
     </refsection>
-    <refsection id="SeeAlso_xcosUpdateBlock">
+    <refsection id="SeeAlso_xcosUpdateBlock" role="see also">
         <title>Voir aussi</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcosAddToolsMenu">xcosAddToolsMenu - Ajoute un menu au menu "Outils" d'Xcos</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="scicos_block">scicos_block - Block type.</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="scicos_diagram">scicos_diagram - Diagram type.</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Authors_xcosUpdateBlock">
-        <title>Authors</title>
-        <para>
-            <emphasis role="bold">Clément David</emphasis> - Scilab Enterprises
-        </para>
+        <simplelist>
+            <member>
+              <link linkend="xcos">xcos</link>
+            </member>
+            <member>
+              <link linkend="xcosAddToolsMenu">xcosAddToolsMenu</link>
+            </member>
+            <member>
+              <link linkend="scicos_block">scicos_block</link>
+            </member>
+            <member>
+              <link linkend="scicos_diagram">scicos_diagram</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

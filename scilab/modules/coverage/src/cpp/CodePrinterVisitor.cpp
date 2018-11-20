@@ -468,7 +468,7 @@ void CodePrinterVisitor::visit(const ast::IfExp & e)
     printer.decIndent();
     printer.handleNewLine();
 
-    if (e.hasElse() && !e.getElse().isCommentExp())
+    if (e.hasElse())
     {
         printer.handleStructureKwds(SCI_ELSE);
         printer.incIndent();

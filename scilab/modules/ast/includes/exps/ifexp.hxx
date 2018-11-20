@@ -59,8 +59,6 @@ public:
 
         _exps.push_back(&test);
         _exps.push_back(t.getAs<Exp>());
-        _exps.push_back(new ast::CommentExp(location, new std::wstring(L"No else !!")));
-        _exps[2]->setParent(this);
     }
 
     virtual ~IfExp()
@@ -69,9 +67,18 @@ public:
 
     virtual IfExp* clone()
     {
-        IfExp* cloned = new IfExp(getLocation(), *getTest().clone(), *getThen().clone()->getAs<SeqExp>(), *getElse().clone()->getAs<SeqExp>());
-        cloned->setVerbose(isVerbose());
-        return cloned;
+        if (hasElse())
+        {
+            IfExp* cloned = new IfExp(getLocation(), *getTest().clone(), *getThen().clone()->getAs<SeqExp>(), *getElse().clone()->getAs<SeqExp>());
+            cloned->setVerbose(isVerbose());
+            return cloned;
+        }
+        else
+        {
+            IfExp* cloned = new IfExp(getLocation(), *getTest().clone(), *getThen().clone()->getAs<SeqExp>());
+            cloned->setVerbose(isVerbose());
+            return cloned;
+        }
     }
 
     // \brief Visitors entry point.

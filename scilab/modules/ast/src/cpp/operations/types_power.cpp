@@ -159,6 +159,12 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
 
     int iComplex = 1;
 
+    if (_pDouble1->isEmpty() || _pDouble2->isEmpty())
+    {
+        *_pDoubleOut = Double::Empty();
+        return 0;
+    }
+
     if (bScalar1)
     {
         if (bScalar2)

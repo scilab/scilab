@@ -76,17 +76,17 @@
             For example, use:
         </para>
         <programlisting role=""><![CDATA[
-      i = 0
-      while i<5
-          disp("i");
-          i = i + 1;
-      end
+i = 0;
+while i<5
+    disp(i);
+    i = i + 1;
+end
 ]]></programlisting>
         <para>
             rather than
         </para>
         <programlisting role=""><![CDATA[
-      i = 0; while i<5 disp("i"); i = i + 1; end
+i = 0; while i<5, disp(i), i = i + 1; end
 ]]></programlisting>
         <warning>
           The number of characters used to define the body of any conditional instruction

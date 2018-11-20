@@ -73,7 +73,7 @@ funcprot(0);
 function y = f(x), y = cos(x); endfunction
 funcprot(prot);
 [i, err, ierr] = intg(0, %pi, f);
-if abs(ierr) <> 2 then pause,end
+if abs(ierr) <> 0 then pause,end
 
 // IEEE compatibility
 // Error 264: "Wrong value for argument #i: Must not contain NaN or Inf."

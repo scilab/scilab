@@ -17,6 +17,11 @@
 
 package org.scilab.modules.gui.editor;
 
+import org.scilab.modules.renderer.utils.PolylineHandler;
+import org.scilab.modules.renderer.utils.ObjectSearcher;
+import org.scilab.modules.renderer.utils.CommonHandler;
+import org.scilab.modules.renderer.utils.EntityPicker;
+import org.scilab.modules.renderer.utils.AxesHandler;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -265,7 +270,7 @@ public class DataEditor {
                 Vector3d pointNew = dir.times(u);
                 pointNew = pointNew.plus(v0);
 
-                PolylineData.translatePoint(curPolyline, picked.point, pointNew.getX() - planePoint.getX(), pointNew.getY() - planePoint.getY(), 0.0 , 0, 0, 0);
+                PolylineData.translatePoint(curPolyline, picked.point, pointNew.getX() - planePoint.getX(), pointNew.getY() - planePoint.getY(), 0.0, 0, 0, 0);
 
             } else {
                 PolylineHandler.getInstance().dragPolyline(curPolyline, lastClick, newClick);

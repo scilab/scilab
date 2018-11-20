@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="loadXcosLibs">
     <refnamediv>
         <refname>loadXcosLibs</refname>
-        <refpurpose>Load most of the Xcos macros</refpurpose>
+        <refpurpose>Loads all native Xcos blocks interfaces functions</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -24,7 +24,7 @@
     </refsynopsisdiv>
     <refsection id="Description_loadXcosLibs">
         <title>Description</title>
-        <para>Import some useful Xcos macros into Scilab.</para>
+        <para>Imports all macros needed to use native Xcos blocks</para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -36,7 +36,7 @@ exists("SUM_f")
 typeof(SUM_f)
 ]]></programlisting>
     </refsection>
-    <refsection id="SeeAlso_loadXcosLibs">
+    <refsection id="SeeAlso_loadXcosLibs" role="see also">
         <title>See Also</title>
         <simplelist type="inline">
             <member>

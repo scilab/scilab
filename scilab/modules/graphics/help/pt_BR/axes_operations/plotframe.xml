@@ -145,7 +145,7 @@ plotframe(rect,flags=[%f,%t],tics=tics,..
 plot2d(x,y,5,"000")
  ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>

@@ -14,19 +14,18 @@
  *
  */
 
-package org.scilab.modules.gui.editor;
+package org.scilab.modules.renderer.utils;
 
 import java.lang.Math;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.graphic_objects.ScilabNativeView;
 
-import org.scilab.modules.gui.editor.ObjectSearcher;
-import org.scilab.modules.gui.editor.PolylineHandler;
+import org.scilab.modules.renderer.utils.ObjectSearcher;
+import org.scilab.modules.renderer.utils.PolylineHandler;
 
 /**
 * Implements all axes manipulation functions for the editor.

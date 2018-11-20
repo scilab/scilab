@@ -368,11 +368,17 @@ header = 2;
 [M, c] = csvRead(filename, ascii(9), ",", "double", [], [], [], header) // Ignore the two first lines (the header)
     ]]></programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="csvTextscan">csvTextscan</link>
+            </member>
+            <member>
                 <link linkend="csvWrite">csvWrite</link>
+            </member>
+            <member>
+                <link linkend="csvDefault">csvDefault</link>
             </member>
         </simplelist>
     </refsection>

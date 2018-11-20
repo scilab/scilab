@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: ajout de la sortie
  * Copyright (C) INRIA - Serge Steer
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,24 +14,29 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="histplot" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="histplot" xml:lang="pt">
     <refnamediv>
         <refname>histplot</refname>
-        <refpurpose>esboça um histograma</refpurpose>
+        <refpurpose>esboÃ§a um histograma</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>histplot(n, data, &lt;opt_args&gt;)
-            histplot(x, data, &lt;opt_args&gt;)
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>
+            histplot(n, data [,normalization] [,polygon], &lt;opt_args&gt;)
+            histplot(x, data [,normalization] [,polygon], &lt;opt_args&gt;)
+            cf = histplot(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>inteiro positivo (número de classes) </para>
+                    <para>inteiro positivo (nÃºmero de classes) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -51,28 +57,35 @@
             <varlistentry>
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
-                    <para>representa uma seqüência de declarações
+                    <para>representa uma seqÃ¼Ãªncia de declaraÃ§Ãµes
                         <literal>key1=value1,key2=value2</literal> ,... onde
                         <literal>key1</literal>, <literal>key2,...</literal> pode ser
-                        qualquer normalização ou parâmetro de <link linkend="plot2d">plot2d</link> opcional (<literal>style,strf,leg,
+                        qualquer normalizaÃ§Ã£o ou parÃ¢metro de <link linkend="plot2d">plot2d</link> opcional (<literal>style,strf,leg,
                             rect,nax, logflag,frameflag, axesflag
                         </literal>
                         )No caso de
-                        normalização, o valor correspondente deve ser um escalar booleano
-                        (valor padrão %t).
+                        normalizaÃ§Ã£o, o valor correspondente deve ser um escalar booleano
+                        (valor padrÃ£o %t).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cf</term>
+                <listitem>
+                    <para>Computed frequencies (bins heighs)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Esta função esboça um histograma do vetor <literal>data</literal>
-            utilizando classes <literal>x</literal>. Quando o número
-            <literal>n</literal> de classes é fornecido ao invés de
-            <literal>x</literal>, as classes são escolhidas de modo igualmente
-            espaçado e <emphasis>x(1) = min(data) &lt; x(2) = x(1) + dx &lt; ... &lt;
+            Esta funÃ§Ã£o esboÃ§a um histograma do vetor <literal>data</literal>
+            utilizando classes <literal>x</literal>. Quando o nÃºmero
+            <literal>n</literal> de classes Ã© fornecido ao invÃ©s de
+            <literal>x</literal>, as classes sÃ£o escolhidas de modo igualmente
+            espaÃ§ado e <emphasis>x(1) = min(data) &lt; x(2) = x(1) + dx &lt; ... &lt;
                 x(n+1) = max(data)
             </emphasis>
             com <emphasis>dx =
@@ -80,13 +93,13 @@
             </emphasis>
             .
         </para>
-        <para>As classes são definidas por C1 = [x(1), x(2)] e Ci = ( x(i),
-            x(i+1)] para i &gt;= 2. Notando Nmax o número total de
-            <literal>data</literal> (Nmax = comprimento de data) e Ni o número de
+        <para>As classes sÃ£o definidas por C1 = [x(1), x(2)] e Ci = ( x(i),
+            x(i+1)] para i &gt;= 2. Notando Nmax o nÃºmero total de
+            <literal>data</literal> (Nmax = comprimento de data) e Ni o nÃºmero de
             componentes de <literal>data</literal> em Ci, o valor do histograma para x
-            em Ci é igual a <emphasis>Ni/(Nmax (x(i+1)-x(i)))</emphasis> quando
-            <literal>normalization</literal> (normalização) for verdadeiro (caso
-            padrão) senão, é simplesmente igual a Ni. Quando a normalização ocorre, o
+            em Ci Ã© igual a <emphasis>Ni/(Nmax (x(i+1)-x(i)))</emphasis> quando
+            <literal>normalization</literal> (normalizaÃ§Ã£o) for verdadeiro (caso
+            padrÃ£o) senÃ£o, Ã© simplesmente igual a Ni. Quando a normalizaÃ§Ã£o ocorre, o
             histograma verifica:
         </para>
         <para>
@@ -98,61 +111,79 @@
             quando <emphasis>x(1)&lt;=min(data)</emphasis> e <emphasis>max(data) &lt;= x(n+1)</emphasis>
         </para>
         <para>
-            Qualquer <link linkend="plot2d">plot2d</link> parâmetro (opcional)
-            pode ser fornecido; por exemplo, para esboçar um histograma com a cor
-            número 2 (azul, se o mapa de cores padrão for utilizado) e para restringir
-            o esboço ao retângulo [-3,3]x[0,0.5], você pode utilizar
+            Qualquer <link linkend="plot2d">plot2d</link> parÃ¢metro (opcional)
+            pode ser fornecido; por exemplo, para esboÃ§ar um histograma com a cor
+            nÃºmero 2 (azul, se o mapa de cores padrÃ£o for utilizado) e para restringir
+            o esboÃ§o ao retÃ¢ngulo [-3,3]x[0,0.5], vocÃª pode utilizar
             <literal>histplot(n,data, style=2, rect=[-3,0,3,0.5])</literal>.
         </para>
         <para>
             Entre com o comando <literal>histplot()</literal> para visualizar
-            uma demonstração.
+            uma demonstraÃ§Ã£o.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <simplelist>
-            <member>
-                Exemplo #1: variações ao redor de um histograma de uma amostra gaussiana aleatória
-                <programlisting role="example"><![CDATA[
-d=rand(1,10000,'normal');  // a amostra gaussiana aleatória
-clf();histplot(20,d)
-clf();histplot(20,d,normalization=%f)
-clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=5)
-clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]);
+            <para>
+                <emphasis role="bold">Exemplo #1</emphasis> :
+                variaÃ§Ãµes ao redor de um histograma de uma amostra gaussiana aleatÃ³ria
+            </para>
+            <programlisting role="example"><![CDATA[
+d = rand(1,10000,'normal');  // a amostra gaussiana aleatÃ³ria
+clf(); histplot(20, d);
+clf(); histplot(20, d, normalization=%f);
+clf(); histplot(20, d, leg='rand(1,10000,''normal'')', style=5);
+clf(); histplot(20, d, leg='rand(1,10000,''normal'')', style=16, rect=[-3,0,3,0.5]);
 ]]></programlisting>
-            </member>
-            <member>
-                Exemplo #2: histograma de uma amsostra binomial (B(6,0.5)) aleatória
+            <para/>
+            <para>
+                <emphasis role="bold">Exemplo #2</emphasis> :
+                histograma de uma amsostra binomial (B(6,0.5)) aleatÃ³ria
+            </para>
                 <programlisting role="example"><![CDATA[
 d = grand(1000,1,"bin", 6, 0.5);
 c = linspace(-0.5,6.5,8);
+
 clf()
 subplot(2,1,1)
-histplot(c, d, style=2)
+histplot(c, d, style=2);
 xtitle("histograma normalizado")
+
 subplot(2,1,2)
-histplot(c, d, normalization=%f, style=5)
-xtitle("histograma não normalizado")
+histplot(c, d, normalization=%f, style=5);
+xtitle("histograma nÃ£o normalizado")
 ]]></programlisting>
-            </member>
-            <member>
-                Exemplo #3: histograma de uma amostra exponencial aleatória
+            <para/>
+            <para>
+                <emphasis role="bold">Exemplo #3</emphasis> :
+                histograma de uma amostra exponencial aleatÃ³ria
+            </para>
                 <programlisting role="example"><![CDATA[
 lambda = 2;
 X = grand(100000,1,"exp", 1/lambda);
 Xmax = max(X);
+
 clf()
-histplot(40, X, style=2)
+histplot(40, X, style=2);
 x = linspace(0,max(Xmax),100)';
 plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
-legend(["histograma de amostra exponencial aleatória" "curva de densidade exata"]);
+legend(["histograma de amostra exponencial aleatÃ³ria" "curva de densidade exata"]);
 ]]></programlisting>
-            </member>
-        </simplelist>
+            <para/>
+            <para>
+                <emphasis role="bold">Exemplo #4</emphasis>:
+                the frequency polygon chart and the histogram of a gaussian random sample
+            </para>
+            <programlisting role="example"><![CDATA[
+n = 10;
+data = rand(1,1000,"normal");
+
+clf(); histplot(n, data, style=12, polygon=%t);
+legend(["histograma normalizado" "frequency polygon chart"],"lower_caption");
+]]></programlisting>
     </refsection>
     <refsection>
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="hist3d">hist3d</link>
@@ -167,5 +198,16 @@ legend(["histograma de amostra exponencial aleatória" "curva de densidade exata"
                 <link linkend="dsearch">dsearch</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    <literal>polygon</literal> option and <literal>cf</literal> output added.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

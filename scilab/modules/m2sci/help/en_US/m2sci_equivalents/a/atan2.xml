@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_atan2">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="m2sci_atan2">
     <refnamediv>
         <refname>atan2 (Matlab function)</refname>
         <refpurpose>Four-quadrant inverse tangent</refpurpose>
@@ -32,21 +35,19 @@
             <tr>
                 <td>
                     <programlisting role="example"><![CDATA[
-atan2(y,x)
+atan2(y, x)
+atan2(y, x)   % x, y complex
+// No equivalent
 ]]></programlisting>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-atan(y,x)
+atan(y, x)
+atan(real(y), real(x))
+atan(y, x)   //  x, y complex
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Matlab <emphasis role="bold">atan2</emphasis> function can work with complexes (in this case, complex part is ignored), what Scilab <emphasis role="bold">atan</emphasis> can not.
-        </para>
     </refsection>
 </refentry>

@@ -680,10 +680,11 @@ h5close(a)
                             de type "simple" homogène est désormais encodée de manière
                             native.
                         </listitem>
-                        <listitem>Ajout des typeof "listdelete" et "void".</listitem>
-                        <listitem>typeof(:) était "constant" et devient "implicitlist". typeof(1:$) était
-                            "size implicit" etdevient "implicitlist".
+                        <listitem>typeof "listdelete" ajouté (tel que retourné pour null()).</listitem>
+                        <listitem>typeof() peut désormais être appliquée aux éléments non définis
+                          des listes. Le nouveau typeof "void" est retourné.
                         </listitem>
+                        <listitem>Ajout des typeof "listdelete" et "void".</listitem>
                         <listitem>Le typeof des T-lists et M-lists était limité à 8 caractères.
                             Les noms de types peuvent maintenant être plus longs.
                         </listitem>

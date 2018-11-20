@@ -18,7 +18,7 @@ package org.scilab.modules.gui.editor.action;
 import org.scilab.modules.gui.editor.action.BaseAction;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.gui.editor.AxesHandler;
+import org.scilab.modules.renderer.utils.AxesHandler;
 
 /**
 * Implements the object to store PasteStyle related actions

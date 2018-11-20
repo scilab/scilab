@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 // Copyright (C) ???? - INRIA - Serge STEER
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,14 +11,14 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function   transorder=translatepaths(Paths,res_path)
+function transorder = translatepaths(Paths, res_path)
     // Perform translation of Matlab M-files to Scilab for all M-files found in Paths
 
     // Output :
     //  -transorder : a vector which contains the files names with a determinated order
     // Input :
     //  -Paths : a vector of strings (paths of Matlab M-files to translate)
-    //  -res_paths : a string (resolution path of translated files)
+    //  -res_paths : a string (results path of translated files)
 
     // M2SCI kernel functions called:
     //  -lst_funcall
@@ -27,9 +27,15 @@ function   transorder=translatepaths(Paths,res_path)
 
     // Get default arguments
 
-    [lhs,rhs]=argn(0)
-    if rhs<2 then res_path="./",end
-    if rhs<1 then m2sci_gui();transorder=[];return;end
+    [lhs,rhs] = argn(0)
+    if rhs<2 then
+        res_path = "."
+    end
+    if rhs<1 then
+        m2sci_gui()
+        transorder = []
+        return
+    end
 
     // Loads libraries related to m2sci
     if exists("m2skernellib")==0 then load("SCI/modules/m2sci/macros/kernel/lib"),end
@@ -37,25 +43,14 @@ function   transorder=translatepaths(Paths,res_path)
     if exists("m2ssci_fileslib")==0 then load("SCI/modules/m2sci/macros/sci_files/lib"),end
 
     // Convert paths so that they can be used according to the platform
-
+    shortTMPDIR = getshortpathname(pathconvert(TMPDIR));
     sep = filesep();
-    if getos() == "Windows" then
-        Paths=strsubst(Paths,"/",sep)
-        res_path=strsubst(res_path,"/",sep)
-    else
-        Paths=strsubst(Paths,"\",sep)
-        res_path=strsubst(res_path,"\",sep)
-    end
-
-    // Close resolution path with a / or a \
-    res_path=stripblanks(res_path)
-    if part(res_path,length(res_path))<>sep then
-        res_path=res_path+sep
-    end
+    Paths = getshortpathname(pathconvert(stripblanks(Paths)));
+    res_path = getshortpathname(pathconvert(stripblanks(res_path)));
 
     // Create a logfile and a whatis file
-    Paths=stripblanks(Paths)
-    [tempfd,ierr]=file("open",pathconvert(TMPDIR)+gettext("unitfile.dat"),"old");
+    File = shortTMPDIR + gettext("unitfile.dat")
+    [tempfd,ierr] = file("open", File, "old");
 
     if ierr==0 then
         load(pathconvert(TMPDIR)+gettext("unitfile.dat"))
@@ -63,21 +58,13 @@ function   transorder=translatepaths(Paths,res_path)
         file("close",tempfd);
         mdelete(pathconvert(TMPDIR)+gettext("unitfile.dat"))
     end
-
-    whsfil_unit=file("open",res_path+"whatis","unknown")
+    whsfil_unit = file("open",res_path+"whatis","unknown")
     save(pathconvert(TMPDIR)+gettext("unitfile.dat"),"whsfil_unit")
-    // Close paths with a / or a \
-    for k=1:size(Paths,"*")
-        if part(Paths(k),length(Paths(k)))<>sep then
-            Paths(k)=Paths(k)+sep,
-        end
-    end
 
     // Find names of files to translate
     // mfiles is a vector which contains the names (and the paths) of files to translate
     mfiles=[]
-    for k=1:size(Paths,"*")
-        path = Paths(k);
+    for path = Paths(:)'
         mfiles = [mfiles; ls(path+"*.m")];
     end
 
@@ -130,7 +117,7 @@ function   transorder=translatepaths(Paths,res_path)
         scepath=res_path+fnam+".sce"
 
         if newest(mpath,scipath,scepath)==1 then
-            [fd,ierr]=file("open",pathconvert(TMPDIR)+fnam+".m","old");
+            [fd,ierr] = file("open", shortTMPDIR + fnam+".m", "old");
             if ierr==0 & strindex(mpath,TMPDIR)==[] then
                 mfile2sci(pathconvert(TMPDIR)+fnam+".m",res_path, %t, %t)
                 file("close",fd)
@@ -140,7 +127,7 @@ function   transorder=translatepaths(Paths,res_path)
                 mfile2sci(funpath(i),res_path, %t, %t)
             end
 
-            tmp_sci_file=pathconvert(TMPDIR)+"tmp_"+fnam+".sci"
+            tmp_sci_file = shortTMPDIR + "tmp_" + fnam + ".sci"
             ierr=execstr("exec(tmp_sci_file)","errcatch");errclear();
             if ierr==0 & strindex(mpath,TMPDIR)==[] then
                 txt=[]
@@ -151,12 +138,12 @@ function   transorder=translatepaths(Paths,res_path)
             end
 
             // LOG
-            tmp_m2sci_file=pathconvert(TMPDIR)+"tmp_m2sci_"+fnam+".log"
-            m2scipath=res_path+"m2sci_"+fnam+".log"
-            logtxt=[logtxt;" ";" ";mgetl(m2scipath)]
+            tmp_m2sci_file = shortTMPDIR + "tmp_m2sci_" + fnam + ".log"
+            m2scipath = res_path + "m2sci_" + fnam + ".log"
+            logtxt = [logtxt ; " " ; " " ; mgetl(m2scipath)]
             mdelete(m2scipath)
 
-            [fd,ierr]=file("open",tmp_m2sci_file,"old");
+            [fd,ierr] = file("open",tmp_m2sci_file, "old");
             if ierr==0 & strindex(mpath,TMPDIR)==[] then
                 logtxt=[logtxt;" ";mgetl(tmp_m2sci_file)]
                 file("close",fd)
@@ -164,7 +151,7 @@ function   transorder=translatepaths(Paths,res_path)
             end
 
             // RESUMELOG
-            tmp_resume_m2sci_file=pathconvert(TMPDIR)+"tmp_resume_m2sci_"+fnam+".log"
+            tmp_resume_m2sci_file = shortTMPDIR + "tmp_resume_m2sci_"+fnam+".log"
             resumem2scipath=res_path+"resume_m2sci_"+fnam+".log"
             if fileinfo(resumem2scipath)<>[] then
                 resumelogtxt=[resumelogtxt;" ";" ";mgetl(resumem2scipath)]
@@ -194,28 +181,22 @@ function   transorder=translatepaths(Paths,res_path)
 
     // create builder.sce and loader.sce files
     // get the directory name where the Scilab functions are written
-    if res_path=="./" then
-        current_path=pathconvert(unix_g("pwd"))
-        index_slash=strindex(current_path,"/")
-        if size(index_slash,"*")==1 then index_slash=[0 index_slash],end
-        namelib=part(current_path,index_slash($-1)+1:index_slash($)-1)
-    else
-        index_slash=strindex(res_path,"/")
-        if size(index_slash,"*")==1 then index_slash=[0 index_slash],end
-        namelib=part(res_path,index_slash($-1)+1:index_slash($)-1)
+    if or(res_path==["./" ".\"]) then
+        res_path = pathconvert(pwd());
     end
+    namelib = basename(pathconvert(res_path, %f)) + "lib"
 
     //builder.sce
     buildertxt=[]
     buildertxt($+1)="path=get_absolute_file_path(""builder.sce"")"
-    buildertxt($+1)="genlib("""+namelib+"lib"",path)"
-    builderfile=res_path+"builder.sce"
+    buildertxt($+1)="genlib("""+namelib+""",path)"
+    builderfile = res_path+"builder.sce"
     mputl(buildertxt,builderfile);
     //loader.sce
     loadertxt=[]
     loadertxt($+1)="path=get_absolute_file_path(""loader.sce"")"
     loadertxt($+1)="load(path+"+"""lib"")"
-    loaderfile=res_path+"loader.sce"
+    loaderfile = res_path+"loader.sce"
     mputl(loadertxt,loaderfile);
 
 endfunction

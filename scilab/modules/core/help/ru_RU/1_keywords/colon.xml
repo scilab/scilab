@@ -25,7 +25,8 @@
         <title>Описание</title>
         <para>
             Символ двоеточие <literal>:</literal> может использоваться для того, чтобы явным
-            образом формировать векторы (см. также <link linkend="linspace">linspace</link>,  <link linkend="logspace">logspace</link>):
+            образом формировать векторы (см. также <link linkend="linspace">linspace</link>,
+            <link linkend="logspace">logspace</link>):
         </para>
         <variablelist>
             <varlistentry>
@@ -192,7 +193,20 @@ A(i)
             <revision>
                 <revnumber>6.0</revnumber>
                 <revdescription>
-                  <literal>%i:10</literal> теперь выдаёт ошибку.
+                  <itemizedlist>
+                    <listitem>
+                        <literal>type(:)</literal> равен 129 (как и у <literal>1:$</literal>)
+                        вместо 1. <literal>size(:)</literal> неопределён
+                        (вместо <literal>[-1,-1]</literal>).
+                    </listitem>
+                    <listitem>
+                        <literal>typeof(:)</literal> теперь <literal>"implicitlist"</literal>,
+                        как и у <literal>1:$</literal>.
+                    </listitem>
+                    <listitem>
+                       <literal>%i:10</literal> теперь выдаёт ошибку.
+                    </listitem>
+                  </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

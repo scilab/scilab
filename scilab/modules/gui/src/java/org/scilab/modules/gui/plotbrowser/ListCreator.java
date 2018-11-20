@@ -24,7 +24,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
-import org.scilab.modules.gui.editor.ObjectSearcher;
+import org.scilab.modules.renderer.utils.ObjectSearcher;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;

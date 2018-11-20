@@ -667,12 +667,12 @@ h5close(a)
                         <listitem>typeof "hypermat" removed. Hypermatrices of any homogeneous type are now
                             natively supported.
                         </listitem>
-                        <listitem>typeof "listdelete" and "void" added.</listitem>
-                        <listitem>typeof(:) was "constant" and becomes "implicitlist". typeof(1:$) was
-                            "size implicit" and become "implicitlist".
+                        <listitem>typeof "listdelete" added (as returned by null()).</listitem>
+                        <listitem>typeof() can now be used for any undefined element of a list.
+                          It then returns the new "void" typeof.
                         </listitem>
-                        <listitem>The typeof of T-lists and M-lists were limited to 8 characters. They may
-                            be longer now.
+                        <listitem>The typeof of T-lists and M-lists were limited to 8 characters.
+                          They may be longer now.
                         </listitem>
                         <listitem>
                             typeof "size implicit" renamed "implicitlist" (<literal>1:$</literal>)

@@ -18,8 +18,11 @@ along with this program.
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[c [,lagindex]] = xcov(x [,maxlags [,scaling]])
-            [c [,lagindex]] = xcov(x,y [,maxlags [,scaling]])
+        <synopsis>
+          [c, lagindex] = xcov(x)
+          [c, lagindex] = xcov(x, y)
+          [c, lagindex] = xcov(.., maxlags)
+          [c, lagindex] = xcov(.., maxlags, scaling)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

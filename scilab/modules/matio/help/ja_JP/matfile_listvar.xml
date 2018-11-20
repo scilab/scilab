@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2008 - INRIA - Vincent COUVERT
-    *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
- *
- * This file is hereby licensed under the terms of the GNU GPL v2.0,
- * pursuant to article 5.3.4 of the CeCILL v.2.1.
- * This file was originally licensed under the terms of the CeCILL v2.1,
- * and continues to be available under such terms.
- * For more information, see the COPYING file which you should have received
- * along with this program.
-    *
-    -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="matfile_listvar">
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2008 - INRIA - Vincent COUVERT
+* Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2018 - Samuel GOUGEON
+*
+* This file is hereby licensed under the terms of the GNU GPL v2.0,
+* pursuant to article 5.3.4 of the CeCILL v.2.1.
+* This file was originally licensed under the terms of the CeCILL v2.1,
+* and continues to be available under such terms.
+* For more information, see the COPYING file which you should have received
+* along with this program.
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ja" xml:id="matfile_listvar">
     <refnamediv>
         <refname>matfile_listvar</refname>
         <refpurpose>Matlab バイナリ MATファイルの中の変数の一覧を得る.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[names[, classes[, types]]] = matfile_listvar(fd)</synopsis>
+        <synopsis>
+            [names, classes, types] = matfile_listvar(fd)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -40,15 +45,40 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>classes</term>
-                <listitem>
-                    <para>実数ベクトル: 変数のクラス.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>types</term>
                 <listitem>
                     <para>実数ベクトル: 変数のデータ型.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>classes</term>
+                <listitem>
+                    <para>実数ベクトル: 変数のクラス.</para>
+                    <para>
+                        <informaltable>
+                            <tr><th>Type name</th>
+                                <th>Matlab class</th>
+                                <th>Matlab type</th>
+                                <th>Scilab type/inttype</th>
+                            </tr>
+                            <tr><td>cell</td>   <td>1</td><td>21</td><td>17</td></tr>
+                            <tr><td>struct</td> <td>2</td><td>22</td><td>17</td></tr>
+                            <tr><td>text</td>   <td>4</td><td></td>  <td>10</td></tr>
+                            <tr><td>sparse</td> <td>5</td><td></td>  <td>5</td></tr>
+                            <tr><td>double real|complex</td>
+                                   <td valign="top">6</td><td>9</td> <td>1</td></tr>
+                            <tr><td>single real|complex</td>
+                                   <td valign="top">7</td><td>7</td><td>NA</td></tr>
+                            <tr><td>int8</td>   <td>8</td><td>1</td><td>8/1</td></tr>
+                            <tr><td>uint8</td>  <td>9</td><td>2</td><td>8/11</td></tr>
+                            <tr><td>int16</td>  <td>10</td><td>3</td><td>8/2</td></tr>
+                            <tr><td>uint16</td> <td>11</td><td>4</td><td>8/12</td></tr>
+                            <tr><td>int32</td>  <td>12</td><td>5</td><td>8/4</td></tr>
+                            <tr><td>uint32</td> <td>13</td><td>6</td><td>8/14</td></tr>
+                            <tr><td>int64</td>  <td>14</td><td>12</td><td>8/8</td></tr>
+                            <tr><td>uint64</td> <td>15</td><td>13</td><td>8/18</td></tr>
+                        </informaltable>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -66,19 +96,48 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-A = rand(10,10);
-B = sprand(100,100,0.1);
-C = "foo";
-D = "bar";
-savematfile('test_matfile.mat','A','B','C','D','-v6');
-clear();
-fd = matfile_open("test_matfile.mat");
-[name, classes, types]=matfile_listvar(fd);
+// Preparing some data:
+H = rand(2,4,2);
+N = complex(rand(2,3), rand(2,3));
+I = int8(grand(4,10,"uin",-100,100));
+T = ["foo" "bar"]';
+S = struct("num",H, "imag",N, "text",T, "int",I);
+C = {"Scilab", rand(2,3); H, S};
+
+// Saving them:
+File = TMPDIR+"/matfile_listvar_example.mat";
+savematfile(File,'-v7.3', 'H','N','I','T','S','C');
+
+// Listing stored variables:
+fd = matfile_open(File);
+[names, classes, types] = matfile_listvar(fd);
 matfile_close(fd);
-for i=1:size(name,"*") do
-disp("The variable " + name(i) + " has type " + string(types(i)) + " and class " + string(classes(i)))
-end
+
+sleep(1000)
+deletefile(File);
+
+names', classes', types'
+mprintf("The variable ""%s"" has type %d and class %d\n", names, types, classes)
  ]]></programlisting>
+ <screen><![CDATA[
+--> names', classes', types'
+ ans  =
+!C  H  I  N  S  T  !
+
+ ans  =
+   1.   6.   8.   6.   2.   4.
+
+ ans  =
+   21.   9.   1.   9.   22.   2.
+
+--> mprintf("The variable ""%s"" has type %d and class %d\n", names, types, classes)
+The variable "C" has type 21 and class 1
+The variable "H" has type 9 and class 6
+The variable "I" has type 1 and class 8
+The variable "N" has type 9 and class 6
+The variable "S" has type 22 and class 2
+The variable "T" has type 2 and class 4
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

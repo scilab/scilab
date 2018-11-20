@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -16,51 +16,74 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="graphics_entities" xml:lang="pt">
     <refnamediv>
         <refname>graphics_entities</refname>
-        <refpurpose>Descrição das estruturas de dados de entidades
-            gráficas
+        <refpurpose>DescriÃ§Ã£o das estruturas de dados de entidades
+            grÃ¡ficas
         </refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
-        <para>No Scilab, uma janela de gráficos e os desenhos contidos nela são
-            representados por entidades hierárquicas. O topo do nível hierárquico é a
+        <title>DescriÃ§Ã£o</title>
+        <para>No Scilab, uma janela de grÃ¡ficos e os desenhos contidos nela sÃ£o
+            representados por entidades hierÃ¡rquicas. O topo do nÃ­vel hierÃ¡rquico Ã© a
             Figure (figura). cada Figure define pelo menos um galho do tipo Axes
-            (eixos). Cada entidade Axes contém um conjunto de folhas que são objetos
-            gráficos básicos como Polylines, Rectangles, Arcs, Segs,... (poligonais,
-            retângulos, arcos e segmentos). Também pode ser do tipo Compound
-            (composto) que são conjuntos recursivos de entidades. O interesse
-            principal no novo modo de gráficos é facilitar a mudança de propriedades.
-            O novo modo de gráficos fornece um conjunto de rotinas gráficas de
-            alto-nível (ver <link linkend="set">set</link>, <link linkend="get">get</link>) utilizadas para controlar propriedades dos
-            objetos como dados, cores, coordenadas e escalas, cores e aparências sem
-            que seja necessário entrar novamente os comandos de gráficos
+            (eixos). Cada entidade Axes contÃ©m um conjunto de folhas que sÃ£o objetos
+            grÃ¡ficos bÃ¡sicos como Polylines, Rectangles, Arcs, Segs,... (poligonais,
+            retÃ¢ngulos, arcos e segmentos). TambÃ©m pode ser do tipo Compound
+            (composto) que sÃ£o conjuntos recursivos de entidades. O interesse
+            principal no novo modo de grÃ¡ficos Ã© facilitar a mudanÃ§a de propriedades.
+            O novo modo de grÃ¡ficos fornece um conjunto de rotinas grÃ¡ficas de
+            alto-nÃ­vel (ver <link linkend="set">set</link>, <link linkend="get">get</link>) utilizadas para controlar propriedades dos
+            objetos como dados, cores, coordenadas e escalas, cores e aparÃªncias sem
+            que seja necessÃ¡rio entrar novamente os comandos de grÃ¡ficos
             iniciais.
         </para>
-        <para>Entidades gráficas do Scilab estão associadas a variáveis do tipo
-            <literal>handle</literal>. (manipuladores). O manipulador é um
-            identificador único que é associado a cada instância de uma entidade
-            gráfica criada. Utilizando-se manipuladores, é possível tanger
-            propriedades de entidades através das rotinas "set" e "get". Os
-            manipuladores também são utilizados para manipular objetos gráficos, para
-            movê-los, para fazer cópias ou deletá-los.
+        <para>Entidades grÃ¡ficas do Scilab estÃ£o associadas a variÃ¡veis do tipo
+            <literal>handle</literal>. (manipuladores). O manipulador Ã© um
+            identificador Ãºnico que Ã© associado a cada instÃ¢ncia de uma entidade
+            grÃ¡fica criada. Utilizando-se manipuladores, Ã© possÃ­vel tanger
+            propriedades de entidades atravÃ©s das rotinas "set" e "get". Os
+            manipuladores tambÃ©m sÃ£o utilizados para manipular objetos grÃ¡ficos, para
+            movÃª-los, para fazer cÃ³pias ou deletÃ¡-los.
         </para>
         <para/>
         <variablelist>
             <varlistentry>
+                <term>Console, root, mouse: </term>
+                <listitem>
+                    <para>
+                        With its menus, the console may be considered as a special graphic windows.
+                        Its menus and some graphical meta options may be addressed through its
+                        handle as returned by <code>c=get(0)</code>.
+                        See <link linkend="console_properties">Console properties</link> for details.
+                    </para>
+                    <para>
+                        The root object is a virtual graphical object used to get the computer
+                        screen properties. Its handle is the same as the console's one:
+                        <code>r=get(0)</code>, but the screen properties can be addressed only
+                        in read-only mode.
+                        See <link linkend="root_properties">Root properties</link> for details.
+                    </para>
+                    <para>
+                        On Windows, some additional screen, windowing and mouse parameters may be
+                        retrieved throught the <link linkend="getsystemmetrics">getsystemmetrics</link>
+                        function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>Figure:</term>
                 <listitem>
-                    <para>a entidade figura é o topo da hierarquia de entidades
-                        gráficas. Esta entidade define os parâmetros para a figura em si
-                        tanto quanto os valores padrões dos parâmetros para criação de
-                        galhos. Os galhos das figuras são as entidades de eixos.
+                    <para>a entidade figura Ã© o topo da hierarquia de entidades
+                        grÃ¡ficas. Esta entidade define os parÃ¢metros para a figura em si
+                        tanto quanto os valores padrÃµes dos parÃ¢metros para criaÃ§Ã£o de
+                        galhos. Os galhos das figuras sÃ£o as entidades de eixos.
                     </para>
                     <para>O manipulador da figura corrente (a figura para onde os
                         desenhos foram enviados) pode ser obtido utilizando-se
                         <literal>get("current_figure")</literal> e pode ser ajustado
                         utilizando-se <literal>set("current_figure",h)</literal>, onde
                         <literal>h</literal> pode ser tanto um manipulador da figura ou um
-                        idenficador da figura <literal>figure_id</literal> neste último
-                        caso, se não existir, um é automaticamente criado.
+                        idenficador da figura <literal>figure_id</literal> neste Ãºltimo
+                        caso, se nÃ£o existir, um Ã© automaticamente criado.
                     </para>
                     <para>
                         Veja <link linkend="figure_properties">figure_properties</link> para
@@ -71,10 +94,10 @@
             <varlistentry>
                 <term>Axes:</term>
                 <listitem>
-                    <para>a entidade de eixos está no segundo nível da hierarquia de
-                        entidades gráficas. Esta entidade define parâmetros para a mudança
+                    <para>a entidade de eixos estÃ¡ no segundo nÃ­vel da hierarquia de
+                        entidades grÃ¡ficas. Esta entidade define parÃ¢metros para a mudanÃ§a
                         de coordenadas dos eixos e o desenho dos eixos tanto quanto os
-                        parâmetros padrões para criação de seus galhos. Ver <link linkend="axes_properties">axes_properties</link> for details. para
+                        parÃ¢metros padrÃµes para criaÃ§Ã£o de seus galhos. Ver <link linkend="axes_properties">axes_properties</link> for details. para
                         detalhes. O manipulador dos eixos correntes pode ser obtido
                         utilizando-se <literal>get("current_axes")</literal>.
                     </para>
@@ -83,21 +106,21 @@
             <varlistentry>
                 <term>Compound:</term>
                 <listitem>
-                    <para>a entidade composta é simplesmente um vetor de galhos com uma
-                        única propriedade (propriedade de visibilidade). É usada para colar
+                    <para>a entidade composta Ã© simplesmente um vetor de galhos com uma
+                        Ãºnica propriedade (propriedade de visibilidade). Ã‰ usada para colar
                         um conjunto de entidades.
                     </para>
                     <para>
-                        Ver as documentações <link linkend="glue">glue</link>, <link linkend="unglue">unglue</link> e <link linkend="Compound_properties">Compound_properties</link>.
+                        Ver as documentaÃ§Ãµes <link linkend="glue">glue</link>, <link linkend="unglue">unglue</link> e <link linkend="Compound_properties">Compound_properties</link>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Axis:</term>
                 <listitem>
-                    <para>a entidade eixo é uma folha da hierarquia de entidades
-                        gráficas. Esta entidade define os parâmetros de escala de um eixo e
-                        aparência.
+                    <para>a entidade eixo Ã© uma folha da hierarquia de entidades
+                        grÃ¡ficas. Esta entidade define os parÃ¢metros de escala de um eixo e
+                        aparÃªncia.
                     </para>
                     <para>
                         Ver <link linkend="axis_properties">axis_properties</link>
@@ -108,8 +131,8 @@
             <varlistentry>
                 <term>Polyline:</term>
                 <listitem>
-                    <para>a entidade poligonal é uma folha na hierarquia de entidades
-                        gráficas. define propriedades de desenho de poligonais e extensões
+                    <para>a entidade poligonal Ã© uma folha na hierarquia de entidades
+                        grÃ¡ficas. define propriedades de desenho de poligonais e extensÃµes
                         poligonais 2d e 3d.
                     </para>
                     <para>
@@ -121,8 +144,8 @@
             <varlistentry>
                 <term>Arc:</term>
                 <listitem>
-                    <para>a entidade arco é uma folha na hierarquia de entidades
-                        gráficas. Esta entidade define parâmetros para elipses e partes de
+                    <para>a entidade arco Ã© uma folha na hierarquia de entidades
+                        grÃ¡ficas. Esta entidade define parÃ¢metros para elipses e partes de
                         elipses.
                     </para>
                     <para>
@@ -134,9 +157,9 @@
             <varlistentry>
                 <term>Rectangle:</term>
                 <listitem>
-                    <para>a entidade retângulo é uma folha na hierarquia de entidades
-                        gráficas. Esta entidade define parâmetros para retângulos e
-                        retângulos preenchidos.
+                    <para>a entidade retÃ¢ngulo Ã© uma folha na hierarquia de entidades
+                        grÃ¡ficas. Esta entidade define parÃ¢metros para retÃ¢ngulos e
+                        retÃ¢ngulos preenchidos.
                     </para>
                     <para>
                         Ver <link linkend="rectangle_properties">rectangle_properties</link> para
@@ -147,10 +170,10 @@
             <varlistentry>
                 <term>Surface:</term>
                 <listitem>
-                    <para>a entidade superfície é uma folha na hierarquia de entidades
-                        gráficas. possui sub-tipos <literal>Fac3d</literal> ou
-                        <literal>Plot3d</literal>. Esta entidade define parâmetros para
-                        esboço de superfícies 3d.
+                    <para>a entidade superfÃ­cie Ã© uma folha na hierarquia de entidades
+                        grÃ¡ficas. possui sub-tipos <literal>Fac3d</literal> ou
+                        <literal>Plot3d</literal>. Esta entidade define parÃ¢metros para
+                        esboÃ§o de superfÃ­cies 3d.
                     </para>
                     <para>
                         Ver <link linkend="surface_properties">surface_properties</link> para
@@ -161,8 +184,8 @@
             <varlistentry>
                 <term>Fec:</term>
                 <listitem>
-                    <para>a entidade Fec é uma folha na hierarquia de entidades
-                        gráficas. Representa esboços de elementos 2d finitos.
+                    <para>a entidade Fec Ã© uma folha na hierarquia de entidades
+                        grÃ¡ficas. Representa esboÃ§os de elementos 2d finitos.
                     </para>
                     <para>
                         Ver <link linkend="fec_properties">fec_properties</link> para
@@ -173,8 +196,8 @@
             <varlistentry>
                 <term>Grayplot:</term>
                 <listitem>
-                    <para>a entidade Grayplot é uma folha na hierarquia de entidades
-                        gráficas. Representa esboços 2d de superfícies utilizando cores e
+                    <para>a entidade Grayplot Ã© uma folha na hierarquia de entidades
+                        grÃ¡ficas. Representa esboÃ§os 2d de superfÃ­cies utilizando cores e
                         imagens.
                     </para>
                     <para>
@@ -186,8 +209,8 @@
             <varlistentry>
                 <term>Matplot:</term>
                 <listitem>
-                    <para>a entidade Matplot é uma folha na hierarquia de entidades
-                        gráficas. Representa esboços 2d utilizando matrizes de
+                    <para>a entidade Matplot Ã© uma folha na hierarquia de entidades
+                        grÃ¡ficas. Representa esboÃ§os 2d utilizando matrizes de
                         inteiros.
                     </para>
                     <para>
@@ -199,8 +222,8 @@
             <varlistentry>
                 <term>Segs:</term>
                 <listitem>
-                    <para> a entidade de segmentos é uma folha na hierarquia de
-                        entidades gráficas. Esta entidade define parâmetros um conjunto de
+                    <para> a entidade de segmentos Ã© uma folha na hierarquia de
+                        entidades grÃ¡ficas. Esta entidade define parÃ¢metros um conjunto de
                         flechas ou segmentos coloridos.
                     </para>
                     <para>
@@ -212,8 +235,8 @@
             <varlistentry>
                 <term>Champ:</term>
                 <listitem>
-                    <para>a entidade Champ é uma folha na hierarquia de entidades
-                        gráficas. Esta entidade define parâmetros para esboços 2d de campos
+                    <para>a entidade Champ Ã© uma folha na hierarquia de entidades
+                        grÃ¡ficas. Esta entidade define parÃ¢metros para esboÃ§os 2d de campos
                         vetoriais.
                     </para>
                     <para>
@@ -225,8 +248,8 @@
             <varlistentry>
                 <term>Text:</term>
                 <listitem>
-                    <para>a entidade texto é uma folha na hierarquia de entidades
-                        gráficas. Esta entidade define parâmetros para impressão de
+                    <para>a entidade texto Ã© uma folha na hierarquia de entidades
+                        grÃ¡ficas. Esta entidade define parÃ¢metros para impressÃ£o de
                         strings.
                     </para>
                     <para>
@@ -238,10 +261,10 @@
             <varlistentry>
                 <term>Label:</term>
                 <listitem>
-                    <para>a entidade rótulo é um galho da entidade gráfica
-                        <literal>Axes</literal> (de eixos). Esta entidade define parâmetros
-                        para os rótulos dos 3 eixos x, y e z desenhados em uma janela de
-                        gráficos.
+                    <para>a entidade rÃ³tulo Ã© um galho da entidade grÃ¡fica
+                        <literal>Axes</literal> (de eixos). Esta entidade define parÃ¢metros
+                        para os rÃ³tulos dos 3 eixos x, y e z desenhados em uma janela de
+                        grÃ¡ficos.
                     </para>
                     <para>
                         Ver <link linkend="label_properties">label_properties</link>
@@ -252,9 +275,9 @@
             <varlistentry>
                 <term>Legend:</term>
                 <listitem>
-                    <para>a legenda é uma folha na hierarquia de entidades gráficas.
-                        Esta entidade define parâmetros para legendas desenhadas impressas
-                        sob gráficos <literal>plot2dx</literal>. Esta entidade requer
+                    <para>a legenda Ã© uma folha na hierarquia de entidades grÃ¡ficas.
+                        Esta entidade define parÃ¢metros para legendas desenhadas impressas
+                        sob grÃ¡ficos <literal>plot2dx</literal>. Esta entidade requer
                         futuros desenvolvimentos.
                     </para>
                     <para>
@@ -264,45 +287,76 @@
                 </listitem>
             </varlistentry>
         </variablelist>
+        <refsect3>
+            <title>Other entities</title>
+            <variablelist>
+                <varlistentry>
+                    <term>Interactive components (uicontrol)</term>
+                    <listitem>
+                        <para>
+                            Scilab allows to create graphical interactive components like sliders,
+                            spinners, editable tables, editable texts on graphics, checkboxes,
+                            groups of radio buttons, listboxes, popup menus, push buttons, etc.
+                            These objects are direct children of the figure where they are defined.
+                            Their properties can be set and tuned through their handles as for
+                            any other graphical objects. Please
+                            see <link linkend="uicontrol_properties">uicontrol properties</link> for
+                            details.
+                        </para>
+                    </listitem>
+                </varlistentry>
+                <varlistentry>
+                    <term>UI menus</term>
+                    <listitem>
+                        <para>
+                            <link linkend="uimenu">uimenu</link>() allows to add and manage some
+                            menus on the menu bar of any graphical figure. <literal>uimenu()</literal>
+                            returns a handle through which the contents and properties of the
+                            created menu can be addressed. Please see
+                            <link linkend="uimenu_properties">uimenus properties</link> for details.
+                        </para>
+                    </listitem>
+                </varlistentry>
+            </variablelist>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 //execute este exemplo linha por linha
 
-scf() //criando figura no modo de entidade
+//criando figura no modo de entidade. obtendo o manipulador da entidade Figure e exibindo suas propriedades
+f = scf()
 
-//obtendo o manipulador da entidade Figure e exibindo suas propriedades
-f=get("current_figure")
-a=f.children // o manipulador da galho Axes
-x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
-e=a.children //Compound de duas poligonais
+a = f.children // o manipulador da galho Axes
+x = (1:10)';  plot2d(x,[x.^2 x.^1.5])
+e = a.children // Compound de duas poligonais
 
-p1=e.children(1) //as propriedades das últimas poligonais desenhadas
+p1 = e.children(1) //as propriedades das Ãºltimas poligonais desenhadas
 
-p1.foreground=5;  // mudando a cor da poligonal
-e.children.thickness=5; // mudando a espessura das poligonais
+p1.foreground = 5;  // mudando a cor da poligonal
+e.children.thickness = 5; // mudando a espessura das poligonais
 
 delete(e.children(2))
 
 move(e.children,[0,30]) //transladando a poligonal
 
-a.axes_bounds=[0 0 0.5 0.5];
+a.axes_bounds = [0 0 0.5 0.5];
 
 subplot(222) //criando uma nova entidade Axes
 plot(1:10);
-a1=f.children(1); //obtendo seu manipulador
-copy(e.children,a1); //copiando a poligonal do primeiro esboço nos novos eixos
+a1 = f.children(1); //obtendo seu manipulador
+copy(e.children,a1); //copiando a poligonal do primeiro esboÃ§o nos novos eixos
 a1.data_bounds=[1 0;10 100]; //mudando os limites dos eixos
 
-set("current_figure",10) //criando uma nova figura com figure_id=10
-plot3d() //os desenhos são enviados à nova figura com figure_id=10
-set("current_figure",f) //torna a figura anterior a corrente
-plot2d(x,x^3)  //os desenhos são enviados à figura inicial
+scf(10);  // criando uma nova figura com figure_id=10
+plot3d()  // os desenhos sÃ£o enviados Ã  nova figura com figure_id=10
+scf(f);   // torna a figura anterior a corrente
+plot2d(x,x^3)  //os desenhos sÃ£o enviados Ã  figura inicial
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>
@@ -317,6 +371,9 @@ plot2d(x,x^3)  //os desenhos são enviados à figura inicial
                 <link linkend="delete">delete</link>
             </member>
             <member>
+                <link linkend="ged">ged</link>
+            </member>
+            <member>
                 <link linkend="object_editor">object_editor</link>
             </member>
             <member>
@@ -324,6 +381,12 @@ plot2d(x,x^3)  //os desenhos são enviados à figura inicial
             </member>
             <member>
                 <link linkend="surf">surf</link>
+            </member>
+            <member>
+                <link linkend="getsystemmetrics">getsystemmetrics</link>
+            </member>
+            <member>
+                <link linkend="setlookandfeel">setlookandfeel</link>
             </member>
         </simplelist>
     </refsection>

@@ -175,6 +175,7 @@ bool Struct::extract(const std::wstring & name, InternalType *& out)
 
 bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e)
 {
+
     if (in.size() == 0)
     {
         out.push_back(this);
@@ -204,15 +205,6 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
             }
 
             _out = extractFields(wstFields);
-            if (_out.size() == 1)
-            {
-                InternalType * pIT = _out[0];
-                if (pIT->isList() && pIT->getAs<List>()->getSize() == 1)
-                {
-                    out.push_back(pIT->getAs<List>()->get(0));
-                    return true;
-                }
-            }
 
             out.swap(_out);
             return true;

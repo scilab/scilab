@@ -16,7 +16,9 @@
     <refnamediv>
         <refname>DDaskr</refname>
         <refpurpose>
-            <emphasis>DDaskr</emphasis> (abréviation de "Double-precision Differential Algebraic equations system Solver with Krylov method and Rootfinding") est un solveur numérique fournissant une méthode efficace et stable pour résoudre des Problèmes à Valeur Initiale d'Equations Différentielles Algebriques (EDAs).
+            "Double-precision Differential Algebraic equations system Solver with Krylov method and
+           Rootfinding" : solveur numérique fournissant une méthode efficace et stable pour résoudre
+          des Problèmes à Valeur Initiale d'Equations Différentielles Algebriques (EDAs).
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -182,7 +184,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>Voir Aussi</title>
         <simplelist type="inline">
             <member>

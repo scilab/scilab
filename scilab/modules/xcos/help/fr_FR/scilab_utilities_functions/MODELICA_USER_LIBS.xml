@@ -59,14 +59,12 @@
 
         </programlisting>
     </refsection>
-    <refsection id="SeeAlso_MODELICA_USER_LIBS">
+    <refsection id="SeeAlso_MODELICA_USER_LIBS" role="see also">
         <title>Voir aussi</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="getModelicaPath">getModelicaPath</link>: obtenir le chemin du dossier Modelica requis par les diagrammes Xcos contenant des blocs Modelica
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist>
+          <member>
+            <link linkend="getModelicaPath">getModelicaPath</link>
+          </member>
+        </simplelist>
     </refsection>
 </refentry>

@@ -26,11 +26,11 @@ along with this program.
     <refsynopsisdiv>
 
         <title>呼び出し手順</title>
-
-        <synopsis>[c [,lagindex]] = xcorr(x [,maxlags [,scaling]])
-
-            [c [,lagindex]] = xcorr(x,y [,maxlags [,scaling]])
-
+        <synopsis>
+          [c, lagindex] = xcorr(x)
+          [c, lagindex] = xcorr(x, y)
+          [c, lagindex] = xcorr(.., maxlags)
+          [c, lagindex] = xcorr(.., maxlags, scaling)
         </synopsis>
 
     </refsynopsisdiv>

@@ -41,7 +41,7 @@
                 <listitem>
                     <para>string, file name of the file to be opened</para>
                     <warning>
-                        This function can not open files whose path or/and name have non-ascii
+                        This function can not open files whose path has non-ascii
                         UTF characters (accented, etc). In this case, mopen() must be used.
                     </warning>
                 </listitem>
@@ -350,5 +350,17 @@ mclose(u2);
                 <link linkend="uigetfile">uigetfile</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    stderr is inserted in the output of file() as units(1)=0, typ(1)="STD" and
+                    nams(1)="stderr".
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

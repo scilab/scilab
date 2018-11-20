@@ -15,24 +15,20 @@
  *
  */
 
-package org.scilab.modules.gui.editor;
+package org.scilab.modules.renderer.utils;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.CallGraphicController;
 import org.scilab.modules.renderer.CallRenderer;
 
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
-import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.SurfaceData;
-import org.scilab.modules.gui.datatip.DatatipCommon;
-import org.scilab.modules.gui.editor.CommonHandler;
-import org.scilab.modules.gui.editor.ObjectSearcher;
+import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 /**
  * Given a (x, y) window coord checks
@@ -595,47 +591,55 @@ public class EntityPicker {
         return newVec;
     }
 
+
+    public class SurfaceInfo {
+        public Integer surface = null;
+        public Vector3d point = null;
+    }
+
     /*
      * Given a figure search for all plot3d's and for each surface
      * test if the ray given by the mouse position intersects any surface
      * @param figure Figure unique identifier.
-     * @param pos Mouse position (x, y).
-     * @return The nearest surface intersected or null otherwise.
+     * @param mousePos Mouse position (x, y).
+     * @return The SurfaceInfo if picked a surface null otherwise.
      */
-    Integer pickSurface(Integer figure, Integer[] pos) {
-        Integer uid = AxesHandler.clickedAxes(figure, pos);
+    public SurfaceInfo pickSurface(Integer figure, Integer[] mousePos) {
+        Integer uid = AxesHandler.clickedAxes(figure, mousePos);
         Axes curAxes = (Axes)GraphicController.getController().getObjectFromId(uid);
         if (curAxes == null) {
             return null;
         }
 
         double[][] factors = curAxes.getScaleTranslateFactors();
-        double[] mat = DrawerVisitor.getVisitor(figure).getAxesDrawer().getProjection(uid).getMatrix();
+        //double[] mat = DrawerVisitor.getVisitor(figure).getAxesDrawer().getProjection(uid).getMatrix();
 
-        Vector3d v0 = AxesDrawer.unProject(curAxes, new Vector3d(1.0f * pos[0], 1.0f * pos[1], 0.0));
-        Vector3d v1 = AxesDrawer.unProject(curAxes, new Vector3d(1.0f * pos[0], 1.0f * pos[1], 1.0));
+        Vector3d v0 = AxesDrawer.unProject(curAxes, new Vector3d(1.0f * mousePos[0], 1.0f * mousePos[1], 0.0));
+        Vector3d v1 = AxesDrawer.unProject(curAxes, new Vector3d(1.0f * mousePos[0], 1.0f * mousePos[1], 1.0));
         v0 = new Vector3d((v0.getX() - factors[1][0]) / factors[0][0], (v0.getY() - factors[1][1]) / factors[0][1], (v0.getZ() - factors[1][2]) / factors[0][2]);
         v1 = new Vector3d((v1.getX() - factors[1][0]) / factors[0][0], (v1.getY() - factors[1][1]) / factors[0][1], (v1.getZ() - factors[1][2]) / factors[0][2]);
 
         Vector3d Dir = v0.minus(v1).getNormalized();
-
-
+        // ray is the parametric cuve t -> v0 + T * Dir
         Integer[] types = {GraphicObjectProperties.__GO_PLOT3D__, GraphicObjectProperties.__GO_FAC3D__, GraphicObjectProperties.__GO_GRAYPLOT__};
         Integer[] objs = (new ObjectSearcher()).searchMultiple(figure, types);
-        double Z = 2.0;
-        Integer picked = null;
+        double T = Double.NEGATIVE_INFINITY;
+        SurfaceInfo info = new SurfaceInfo();
         if (objs != null) {
             for (int i = 0; i < objs.length; ++i) {
-                double curZ = SurfaceData.pickSurface(objs[i], v0.getX(), v0.getY(), v0.getZ(),
-                                                      Dir.getX(), Dir.getY(), Dir.getZ(), mat[2], mat[6], mat[10], mat[14]);
-                if (curZ < Z) {
-                    picked = objs[i];
-                    Z = curZ;
+                double curT = SurfaceData.pickSurface(objs[i], v0.getX(), v0.getY(), v0.getZ(), Dir.getX(), Dir.getY(), Dir.getZ());
+                if (curT > T) {
+                    T = curT;
+                    info.surface = objs[i];
                 }
             }
+            if (info.surface != null) {
+                info.point = new Vector3d(v0.plus(Dir.times(T))); // point = v0 + T * Dir
+            }
+            // if formerly used normalized Z \in [-1,1] is to be computed:
+            // Z = info.point.getX() * mat[2] + info.point.getY() * mat[6] + info.point.getZ() * mat[10] + mat[14];
         }
-
-        return picked;
+        return info;
     }
 
 

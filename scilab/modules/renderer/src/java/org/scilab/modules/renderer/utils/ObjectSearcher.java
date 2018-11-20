@@ -14,7 +14,7 @@
  *
  */
 
-package org.scilab.modules.gui.editor;
+package org.scilab.modules.renderer.utils;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;

@@ -146,9 +146,8 @@ csvTextScan( Atext , ";" , "," )
         </programlisting>
     </refsection>
 
-    <refsection>
+    <refsection role="see also">
         <title>See also</title>
-
         <simplelist type="inline">
             <member>
                 <link linkend="csvRead">csvRead</link>

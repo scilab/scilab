@@ -21,8 +21,11 @@ along with this program.
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[c [,lagindex]] = xcorr(x [,maxlags [,scaling]])
-            [c [,lagindex]] = xcorr(x,y [,maxlags [,scaling]])
+        <synopsis>
+          [c, lagindex] = xcorr(x)
+          [c, lagindex] = xcorr(x, y)
+          [c, lagindex] = xcorr(.., maxlags)
+          [c, lagindex] = xcorr(.., maxlags, scaling)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

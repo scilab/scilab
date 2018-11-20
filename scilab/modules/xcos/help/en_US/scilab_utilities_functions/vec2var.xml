@@ -91,14 +91,12 @@ c(2)
 1.1    2.
  ]]></programlisting>
     </refsection>
-    <refsection id="SeeAlso_vec2var">
+    <refsection id="SeeAlso_vec2var" role="see also">
         <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="var2vec">var2vec - Transform a scilab variable in a vector of double (Scilab Function)</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist>
+          <member>
+            <link linkend="var2vec">var2vec</link>
+          </member>
+        </simplelist>
     </refsection>
 </refentry>

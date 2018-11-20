@@ -41,7 +41,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     double pdA    = 0;
     double pdB    = 0;
     double pdEpsR = 1.0e-8;
-    double pdEpsA = 1.0e-14;
+    double pdEpsA = 1.0e-13;
 
     double result = 0;
     double abserr = 0;
@@ -189,16 +189,16 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        types::Double* pDblEpsR = in[3]->getAs<types::Double>();
+        types::Double* pDblEpsA = in[3]->getAs<types::Double>();
 
-        if (pDblEpsR->isScalar() == false)
+        if (pDblEpsA->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "intg", 4);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
 
-        pdEpsR = pDblEpsR->get(0);
+        pdEpsA = pDblEpsA->get(0);
     }
 
     if (in.size() == 5)
@@ -210,15 +210,15 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
-        types::Double* pDblEpsA = in[4]->getAs<types::Double>();
+        types::Double* pDblEpsR = in[4]->getAs<types::Double>();
 
-        if (pDblEpsA->isScalar() == false)
+        if (pDblEpsR->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "intg", 5);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
         }
-        pdEpsA = pDblEpsA->get(0);
+        pdEpsR = pDblEpsR->get(0);
     }
 
     // *** Create working table. ***

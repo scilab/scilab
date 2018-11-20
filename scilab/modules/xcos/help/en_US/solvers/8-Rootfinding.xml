@@ -16,7 +16,7 @@
     <refnamediv>
         <refname>Rootfinding</refname>
         <refpurpose>
-            This feature finds roots of continuous functions for Zero-crossing Blocks.
+            Finds roots of continuous functions for Zero-crossing Blocks
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -136,7 +136,7 @@ Time without rootfinding:
             Following the number of zero crossings, the aspect of the function near these crossings, the tolerances, ..., the computational overhead ranges between 25% and 45%.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>

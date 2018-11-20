@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
@@ -40,41 +40,11 @@ fgets
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-fgetstr
+// no equivalent
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Input parameter order is inversed in Scilab compared to Matlab.
-        </para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
-        <informaltable border="1" width="100%">
-            <tr>
-                <td align="center">
-                    <emphasis role="bold">Matlab</emphasis>
-                </td>
-                <td align="center">
-                    <emphasis role="bold">Scilab</emphasis>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <programlisting role="example"><![CDATA[
-fgets(fid, n)
-]]></programlisting>
-                </td>
-                <td>
-                    <programlisting role="example"><![CDATA[
-mgetstr(n, fid)
-]]></programlisting>
-                </td>
-            </tr>
-        </informaltable>
+        The closest Scilab work-around may be built using <code>mgetl()</code> or <code>mgetstr()</code>.
     </refsection>
 </refentry>

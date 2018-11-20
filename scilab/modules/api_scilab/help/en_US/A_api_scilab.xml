@@ -33,7 +33,7 @@
             If your code does an important amount of access of variables, in particular in loops, then you may want to compile with the <literal>__API_SCILAB_UNSAFE__</literal> flag defined (through a “#define” positioned before the “#include “api_scilab.h”, or -D in the compiler options). It does not change the API’s behavior but reduces the amount of input and output parameters checked done when you call the APIs, thus may improve the performance.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>

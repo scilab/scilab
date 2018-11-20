@@ -9,163 +9,253 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-
 function surf(varargin)
-    [lhs,rhs]=argn(0);
+    [lhs,rhs] = argn(0);
 
+    // EXAMPLE
+    // -------
     if ~rhs
-        Z= [  0.0001    0.0013    0.0053   -0.0299   -0.1809   -0.2465   -0.1100   -0.0168   -0.0008   -0.0000; ..
-        0.0005    0.0089    0.0259   -0.3673   -1.8670   -2.4736   -1.0866   -0.1602   -0.0067    0.0000; ..
-        0.0004    0.0214    0.1739   -0.3147   -4.0919   -6.4101   -2.7589   -0.2779    0.0131    0.0020; ..
-        -0.0088   -0.0871    0.0364    1.8559    1.4995   -2.2171   -0.2729    0.8368    0.2016    0.0130; ..
-        -0.0308   -0.4313   -1.7334   -0.1148    3.0731    0.4444    2.6145    2.4410    0.4877    0.0301; ..
-        -0.0336   -0.4990   -2.3552   -2.1722    0.8856   -0.0531    2.6416    2.4064    0.4771    0.0294; ..
-        -0.0137   -0.1967   -0.8083    0.2289    3.3983    3.1955    2.4338    1.2129    0.2108    0.0125; ..
-        -0.0014   -0.0017    0.3189    2.7414    7.1622    7.1361    3.1242    0.6633    0.0674    0.0030; ..
-        0.0002    0.0104    0.1733    1.0852    2.6741    2.6725    1.1119    0.1973    0.0152    0.0005; ..
-        0.0000    0.0012    0.0183    0.1099    0.2684    0.2683    0.1107    0.0190    0.0014    0.0000];
-        f=gcf();
-        f.color_map = jetcolormap(64);
+        Z = [
+  0.0001   0.0013   0.0053  -0.0299  -0.1809  -0.2465  -0.1100  -0.0168  -0.0008  -0.0000
+  0.0005   0.0089   0.0259  -0.3673  -1.8670  -2.4736  -1.0866  -0.1602  -0.0067   0.0000
+  0.0004   0.0214   0.1739  -0.3147  -4.0919  -6.4101  -2.7589  -0.2779   0.0131   0.0020
+ -0.0088  -0.0871   0.0364   1.8559   1.4995  -2.2171  -0.2729   0.8368   0.2016   0.0130
+ -0.0308  -0.4313  -1.7334  -0.1148   3.0731   0.4444   2.6145   2.4410   0.4877   0.0301
+ -0.0336  -0.4990  -2.3552  -2.1722   0.8856  -0.0531   2.6416   2.4064   0.4771   0.0294
+ -0.0137  -0.1967  -0.8083   0.2289   3.3983   3.1955   2.4338   1.2129   0.2108   0.0125
+ -0.0014  -0.0017   0.3189   2.7414   7.1622   7.1361   3.1242   0.6633   0.0674   0.0030
+  0.0002   0.0104   0.1733   1.0852   2.6741   2.6725   1.1119   0.1973   0.0152   0.0005
+  0.0000   0.0012   0.0183   0.1099   0.2684   0.2683   0.1107   0.0190   0.0014   0.0000];
+        f = gcf();
+        if size(f.children)==1
+            f.color_map = jetcolormap(64);
+         end
+        s = gca().axes_bounds; delete(gca()); xsetech(s)  // clears the current axes
         surf(Z,"edgeco","b","marker","d","markersiz",9,"markeredg","red","markerfac","k");
-        return;
+        return
     end
 
-    X=[];
-    Y=[];
-    Z=[];
-    C=[];
-
-    CurColor = 0; // current color used if no color specified via LineSpec
-    // nor PropertyName
-
+    // Detects and sets the current axes now
+    // -------------------------------------
     ListArg = varargin;
-
-    //detect and set the current axes now:
+    argShift = 0;            // To correctly address argins # in error messages
     if type(ListArg(1)) == 9
         hdle = ListArg(1);
         if (hdle.type == "Axes")
             sca(ListArg(1));
             ListArg(1) = null(); // remove this parameter from the list
+            argShift = 1;
         else
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"), "surf", 1));
-            return;
+            msg = gettext("%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n")
+            error(msprintf(msg, "surf", 1))
         end
     end
 
+    // Initializations
+    // ---------------
+    X = [];
+    Y = [];
+    Z = [];
+    C = []; // Colors
 
-    nv = size(ListArg)
+    CurColor = 0; // current color used if no color specified via LineSpec
+    // nor PropertyName
+    typeOfPlot = "surf";    // used in called functions ?
+    //d = [];
+    nv = size(ListArg);     // Number of input arguments
 
-
-    T=[];
-    d=[];
-
-    typeOfPlot = "surf";
-    //given_data = 2;
-
-    for k=1:nv
-        T(k,1) = type(ListArg(k))
+    // Types of input arguments
+    T = [];
+    for k = 1:nv
+        T(k) = type(ListArg(k))
     end
+    T = [T' 0 0 0 0]  // Padding to have at least 5 values
 
-    given_data = 0;
-    P1 = 0;
-
-    for i=1:nv
-        if T(i) == 1
-            given_data = given_data +1;
-        else
-            P1 = i;  // Position of the first PropertyName field
-            break;
-        end
-    end
-
-
-    // delay the drawing commands
-    // smart drawlater
-    current_figure=gcf();
+    // delay the drawing commands: smart drawlater
+    current_figure = gcf();
     cur_draw_mode = current_figure.immediate_drawing;
     current_figure.immediate_drawing = "off";
 
     colormap_size = size(current_figure.color_map,1);
 
-    if given_data == 1 //surf(Z) with Z giving us data + color info.
-        // ---------------------------------------------------------- //
+    // PARSING INPUT ARGUMENTS
+    // =======================
+    //surf(Z)
+    //surf(Z,colors)
+    //surf(X,Y,Z)
+    //surf(X,Y,Z,colors)
+    //surf(X,Y,fun)
+    //surf(X,Y,fun, colors)
+    //surf(X,Y,list(fun,params))
+    //surf(X,Y,list(fun,params), colors)
 
-        if or(size(ListArg(1))==1)
+    // Identifying X and Y
+    // -------------------
+    if and(T(1:2)==[1 0]) | and(T(1:2)==[1 10]) | ..        // surf(Z)
+       and(T(1:3)==[1 1 0]) | and(T(1:3)==[1 1 10])then     // surf(Z, colors)
+        Z = ListArg(1)';    // here a transposition is needed
+        X = 1:size(Z, 1);
+        Y = 1:size(Z, 2);
+        if or(size(Z)==1)
             ResetFigureDDM(current_figure, cur_draw_mode);
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-%d expected.\n"), "surf", 1,  2, 2));
-            return;
+            msg = gettext("%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-%d expected.\n")
+            error(msprintf(msg, "surf", 1+argShift,  2, 2));
         end
 
-        X = 1:size(ListArg(1),2);
-        Y = 1:size(ListArg(1),1);
-        Z = ListArg(1)'; // here a transposition is needed
-        C = Z;
+    else                                                    // surf(X,Y, ..)
+        X = ListArg(1)
+        if T(1)~=1 | ~isreal(X) then
+            msg = gettext("%s: Argument #%d: Decimal numbers expected.\n")
+            error(msprintf(msg, "surf", 1+argShift));
+        end
+        if length(X)<2 then
+            msg = gettext("%s: Argument #%d: At least %d components expected.\n")
+            error(msprintf(msg, "surf", 1+argShift, 2));
+        end
+        //
+        Y = ListArg(2)
+        if T(2)~=1 | ~isreal(Y) then
+            msg = gettext("%s: Argument #%d: Decimal numbers expected.\n")
+            error(msprintf(msg, "surf", 2+argShift));
+        end
+        if length(Y)<2 then
+            msg = gettext("%s: Argument #%d: At least %d components expected.\n")
+            error(msprintf(msg, "surf", 2+argShift, 2));
+        end
+        if ~isvector(X) | ~isvector(Y)
+            if or(size(X)~=size(Y))
+                msg = gettext("%s: Arguments #%d and #%d: Incompatible sizes.\n")
+                error(msprintf(msg, "surf", 1+argShift, 2+argShift));
+            end
+        end
+    end
 
+    // Generating Z from fun() or list(fun(), params)
+    // ----------------------------------------------
+    // Separating the function and its parameters
+    withParams = T(3)==15
+    params = list()
+    buildFunc = []
+    if withParams then
+        tmp = ListArg(3)
+        if size(tmp)<2 | and(type(tmp(1))~=[13 130])
+            ResetFigureDDM(current_figure, cur_draw_mode);
+            msg = _("%s: Argument #%d: Wrong list() specification.\n")
+            error(msprintf(msg, "surf", 3))
+        end
+        buildFunc = tmp(1)
+        tmp(1) = null()
+        params = tmp
+        if type(params)~=15
+            params = list(params)
+        end
+    elseif or(T(3)==[13 130])
+        buildFunc = ListArg(3)
+    end
+    // Generating Z. Managing a possible inner error. Checking consistency of Z sizes:
+    if type(buildFunc)~=1 then  // ~=[]
+        if isvector(X) | isvector(Y) then
+            try
+                Z = buildFunc(X,Y,params(:))
+            catch
+                // May be buildFunc() expects X and Y as matrices:
+                [Y, X] = ndgrid(Y,X)
+            end
+        end
+        if Z==[]
+            try
+                Z = buildFunc(X,Y,params(:))
+            catch
+                ResetFigureDDM(current_figure, cur_draw_mode);
+
+                // get error info
+                [err_message, err_number, err_line, err_func] = lasterror(%t);
+
+                // yield it
+                if err_func~="", err_func = """"+err_func+"()""", end
+                msg = gettext("%s: Argument #%d : Unable to evaluate Z: Error %d at line %d in %s: ''%s''")
+                error(msprintf(msg, "surf", 3, err_number, err_line, err_func, err_message));
+            end
+        end
+        // Checking size(Z):
+        if isvector(X) | isvector(Y) then
+            nr = length(Y)
+            nc = length(x)
+        else
+            [nr, nc] = size(X)
+        end
+        if or(size(Z)~=[nr nc])
+            msg = gettext("%s: Argument #%d: Inconsistent size of the result.\n")
+            error(msprintf(msg, "surf", 3));
+        end
+    end
+    clear buildFunc params withParams
+    // Z extraction from  surf(X,Y,Z) and surf(X,Y,Z,colors)
+    if Z==[] &  and(T(2:3)==[1 1]) then
+        Z = ListArg(3)
+    end
+
+    // Colors extraction and checking
+    // ------------------------------
+    if and(T(2:3)==[1 0]) | and(T(2:3)==[1 10]) then  //surf(Z,colors)
+        C = ListArg(2)'
+        i = 2
+    elseif and(T(2:4)==[1 1 1])  | ..    // surf(X, Y, Z, colors)
+           and(T(2:4)==[1 15 1]) | ..    // surf(X, Y, list(fun,params), colors)
+           and(T(2:4)==[1 13 1]) | ..    // surf(X, Y, macro, colors)
+           and(T(2:4)==[1 130 1]) then   // surf(X, Y, builtin, colors)
+        C = ListArg(4)
+        i = 4
+    end
+    if C~=[] then
+        if ((size(Z) <> size(C)) & (size(Z)-1 <> size(C)))
+            ResetFigureDDM(current_figure, cur_draw_mode);
+            msg = gettext("%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix expected.\n")
+            error(msprintf(msg,"surf", i+argShift, size(Z,2), size(Z,1), size(Z,2)-1, size(Z,1)-1))
+        end
+    end
+
+
+    // GENERATING FACETS
+    // =================
+    P1 = 0       // Position of the first PropertyName field
+    // surf(Z)
+    // -------
+    if and(T(1:2)==[1 0]) | and(T(1:2)==[1 10]) then
         [XX,YY,ZZ] = genfac3d(X,Y,Z);
         CC = ZZ; // Add a color matrix based on Z values
-
-    elseif given_data == 2 //surf(Z,COLOR)
-        // ---------------------------------------------------------- //
-        if or(size(ListArg(1))==1)
-            ResetFigureDDM(current_figure, cur_draw_mode);
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-%d expected.\n"), "surf", 1,  2, 2));
-            return;
+        if T(2)==10 then
+            P1 = 2
         end
 
-        if ((size(ListArg(1)) <> size(ListArg(2))) & (size(ListArg(1))-1 <> size(ListArg(2))))
-            ResetFigureDDM(current_figure, cur_draw_mode);
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix expected.\n"),..
-            "surf", 2, size(ListArg(1),1), size(ListArg(1),2), size(ListArg(1),1) - 1, size(ListArg(1),2) -1 ));
-            return;
+    // surf(Z, colors)
+    // ---------------
+    elseif and(T(1:3)==[1 1 0]) | and(T(1:3)==[1 1 10])
+        [XX, YY, ZZ] = genfac3d(X, Y, Z);
+        if (size(C)==size(Z)) // color number == zdata number
+            [XX,YY,CC] = genfac3d(X,Y,C);    // CC must be a color matrix of size nf x n
+        elseif (size(C) == (size(Z)-1))      // color number -1 == zdata number => ONLY flat mode can be enabled
+            Ctmp = []
+            Ctmp = [C [C(:,$)]]
+            Ctmp = [Ctmp; Ctmp($,:)]
+            [XX,YY,CC] = genfac3d(X,Y,Ctmp); // CC must be a color matrix of size nf x n
         end
-
-        X = 1:size(ListArg(1),2);
-        Y = 1:size(ListArg(1),1);
-        Z = ListArg(1)'; // here a transposition is needed
-        C = ListArg(2)';
-
-        [XX,YY,ZZ] = genfac3d(X,Y,Z);
-
-        if (size(ListArg(2)) == size(ListArg(1))) // color number == zdata number
-            [XX,YY,CC] = genfac3d(X,Y,C);     // CC must be a color matrix of size nf x n
-        elseif ((size(ListArg(2))) == size(ListArg(1))-1) // color number -1 == zdata number => ONLY flat mode can be enabled
-            Ctmp=[];
-            Ctmp = [C [C(:,$)]] ;
-            Ctmp = [Ctmp; Ctmp($,:)];
-            [XX,YY,CC] = genfac3d(X,Y,Ctmp);     // CC must be a color matrix of size nf x n
+        if T(3)==10 then
+            P1 = 2
         end
-
-    elseif given_data == 3 //surf(X,Y,Z) with Z giving us data + color info.
-        // ---------------------------------------------------------- //
-
-        X = ListArg(1)
-        Y = ListArg(2);
-        Z = ListArg(3);
-
+    else
         // check if the call is OK
-        err = execstr("[XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode)","errcatch","n");
-
-        if (err <> 0) then
-            // reset data
-            processSurfError(current_figure, cur_draw_mode);
+        if C==[]
+            err = execstr("[XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode)","errcatch","n");
+            if T(4)==10 then
+                P1 = 4
+            end
+        else
+            err = execstr("[XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C,current_figure, cur_draw_mode)","errcatch","n");
+            if T(5)==10 then
+                P1 = 5
+            end
         end
-
-    elseif given_data == 4 //surf(X,Y,Z,COLOR)
-        // ---------------------------------------------------------- //
-        if ((size(ListArg(3)) <> size(ListArg(4))) & (size(ListArg(3))-1 <> size(ListArg(4))))
-            ResetFigureDDM(current_figure, cur_draw_mode);
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix expected.\n"),..
-            "surf", 4, size(ListArg(3),1), size(ListArg(3),2), size(ListArg(3),1) - 1, size(ListArg(3),2) -1 ));
-            return;
-        end
-
-        X = ListArg(1)
-        Y = ListArg(2);
-        Z = ListArg(3);
-        C = ListArg(4);
-
-        // check if the call is OK
-        err = execstr("[XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C,current_figure, cur_draw_mode)","errcatch","n");
         if (err <> 0) then
             // reset data
             processSurfError(current_figure, cur_draw_mode);
@@ -173,6 +263,8 @@ function surf(varargin)
     end
 
 
+    // PARSING THE (PROPERTY - VALUE) SERIES
+    // =====================================
     // P1 is the position of the first PropertyName field.
     Property = P1;
 
@@ -187,7 +279,6 @@ function surf(varargin)
             if (type(PropertyValue)<>1)
                 ResetFigureDDM(current_figure, cur_draw_mode);
                 error(msprintf(gettext("%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"), "surf", "xdata"));
-                return;
             end
 
             X = PropertyValue;
@@ -199,7 +290,6 @@ function surf(varargin)
             if (type(PropertyValue)<>1)
                 ResetFigureDDM(current_figure, cur_draw_mode);
                 error(msprintf(gettext("%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"), "surf", "ydata"));
-                return;
             end
 
             Y = PropertyValue;
@@ -211,12 +301,10 @@ function surf(varargin)
             if (type(PropertyValue)<>1) then
                 ResetFigureDDM(current_figure, cur_draw_mode);
                 error(msprintf(gettext("%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"), "surf", "zdata"));
-                return;
             end
             if (or(size(PropertyValue)==1)) then
                 ResetFigureDDM(current_figure, cur_draw_mode);
                 error(msprintf(gettext("%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-by-%d expected.\n"), "surf", "zdata",  2, 2));
-                return;
             end
 
             Z = PropertyValue;
@@ -233,20 +321,21 @@ function surf(varargin)
     end
 
     // surf is made now !
-    // with default option to simulate the Matlab mode
 
+
+    // PLOTTING THE SURFACE
+    // ====================
     err = execstr("plot3d(XX,YY,list(ZZ,CC))","errcatch","n");
-
     if err <> 0
         processSurfError(current_figure, cur_draw_mode);
     end
-
-    a=gca();
+    // Default options (as Matlab ones)
+    a = gca();
     a.cube_scaling = "on";
     a.rotation_angles = [51 -125];
-    e=gce();
-    e.hiddencolor=0; // to avoid painting the hidden facets
-    e.color_flag=4; // Matlab special flat mode by default (different from mode 2)
+    e = gce();
+    e.hiddencolor = 0; // to avoid painting the hidden facets
+    e.color_flag  = 4; // Matlab special flat mode by default (different from mode 2)
     e.cdata_mapping = "scaled"
 
 
@@ -308,26 +397,15 @@ function surf(varargin)
     //
 
 
-    ///////////////////////////////////
-    //Global Property treatment      //
-    //PropertyName and PropertyValue //
-    ///////////////////////////////////
-
-
-    // P1 is the position of the first PropertyName field.
-    Property = P1;
-
-    current_surface = gce(); // get the newly created fac3d
-    current_surface.mark_size_unit="point";
-
-
-
+    // SETTING SPECIFIED PROPERTIES
+    // ============================
+    current_surface = gce();                // get the newly created fac3d
+    current_surface.mark_size_unit = "point";
+    Property = P1;  // Position of the first PropertyName field.
     while ((Property <> 0) & (Property <= nv-1))
         setSurfProperty(ListArg(Property),ListArg(Property+1),current_surface,X,Y,Z,C,current_figure,cur_draw_mode)
-
         Property = Property+2;
     end
-
 
     //postponed drawings are done now !
     // smart drawnow
@@ -354,12 +432,12 @@ endfunction
 //
 
 
-function k=getIndexInStringTable(pattern,table)
-
-    str =  convstr(pattern);
-    k=find(part(table,1:length(str))==str);
-
-endfunction
+//function k=getIndexInStringTable(pattern,table)
+//
+//    str =  convstr(pattern);
+//    k=find(part(table,1:length(str))==str);
+//
+//endfunction
 
 function [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode)
 

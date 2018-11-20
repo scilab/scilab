@@ -345,4 +345,16 @@ mclose(u2);
             </member>
         </simplelist>
     </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    stderr is inserted in the output of file() as units(1)=0, typ(1)="STD" and
+                    nams(1)="stderr".
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>

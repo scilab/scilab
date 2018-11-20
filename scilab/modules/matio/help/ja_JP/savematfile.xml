@@ -69,6 +69,22 @@
                                 <td>: バイナリMATファイル (デフォルト)</td>
                             </tr>
                             <tr valign="top">
+                                <td align="right"><emphasis role="bold">"-v4"</emphasis></td>
+                                <td>: MATLABバージョン4がオープンできる形式</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">"-v6"</emphasis></td>
+                                <td>: MATLABバージョン6以降がオープンできる形式</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">"-v7"</emphasis></td>
+                                <td>: MATLABバージョン7以降がオープンできる形式 (デフォルト)</td>
+                            </tr>
+                            <tr valign="top">
+                                <td align="right"><emphasis role="bold">"-v7.3"</emphasis></td>
+                                <td>: MATLABバージョン7.3以降がオープンできる形式</td>
+                            </tr>
+                            <tr valign="top">
                                 <td align="right"><emphasis role="bold">"-ascii"</emphasis></td>
                                 <td>: 8ビット ASCII形式</td>
                             </tr>
@@ -89,22 +105,6 @@
                                     <emphasis role="bold">"-ascii" "-double" "-tabs"</emphasis>
                                 </td>
                                 <td>: 16桁アスキー形式, タブ区切り形式</td>
-                            </tr>
-                            <tr valign="top">
-                                <td align="right"><emphasis role="bold">"-v4"</emphasis></td>
-                                <td>: MATLABバージョン4がオープンできる形式</td>
-                            </tr>
-                            <tr valign="top">
-                                <td align="right"><emphasis role="bold">"-v6"</emphasis></td>
-                                <td>: MATLABバージョン6以降がオープンできる形式</td>
-                            </tr>
-                            <tr valign="top">
-                                <td align="right"><emphasis role="bold">"-v7"</emphasis></td>
-                                <td>: MATLABバージョン7以降がオープンできる形式 (デフォルト)</td>
-                            </tr>
-                            <tr valign="top">
-                                <td align="right"><emphasis role="bold">"-v7.3"</emphasis></td>
-                                <td>: MATLABバージョン7.3以降がオープンできる形式</td>
                             </tr>
                         </table>
                     </para>
@@ -136,31 +136,152 @@
         </para>
         <warning>
             <itemizedlist>
-                <listitem>ブール変数は保存できません.</listitem>
-                <listitem>テキスト：同じ長さのテキストの列のみを保存できます.</listitem>
+                <listitem>
+                    <para>
+                    <emphasis role="bold">Unsupported Scilab data types</emphasis>:
+                    polynomials, rationals, lists, all tlists and mlists,
+                    primitives, functions, libraries, graphics, implicit lists (like 2:$)
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                    <emphasis role="bold">v4</emphasis>: For any hypermatrix <literal>h</literal>,
+                    its pages are horizontally concatenated before saving the resulting matrix:
+                    <literal>h = matrix(h, size(h,1), -1)</literal>.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                    <emphasis role="bold">ASCII</emphasis>:
+                        <itemizedlist>
+                            <listitem>
+                                The imaginary part of complex numbers is ignored (dense and sparse).
+                            </listitem>
+                            <listitem>
+                                Booleans are stored as 0.|1. (dense and sparse).
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
             </itemizedlist>
         </warning>
+        <table border="1">
+            <tr>
+            <th>Data type</th>  <th>v4</th><th>v6</th><th>v7</th><th>v7.3</th><th>ASCII</th>
+                <th>Comments</th></tr>
+            <tr valign="top">
+                <td>boolean</td><td>x</td><td>bug</td><td>bug</td><td>bug</td><td>x</td>
+                <td><ulink url="http://bugzilla.scilab.org/15568">Bug 15568</ulink>
+                </td>
+            </tr>
+            <tr valign="top">
+                <td>integer</td><td>x</td><td>X</td><td>X</td><td>X</td><td>no</td>
+                <td>int8 are stored as uint8 if they are all > 0, or as int16 otherwise.<table/>
+                    uint32 are stored as int32 if they are all &lt; 2<superscript>31</superscript>-1,
+                    or as decimal numbers otherwise.<table/>
+                    int64 and uint64 are stored as decimal numbers.
+                </td>
+            </tr>
+            <tr valign="top">
+                <td>real</td><td>x</td><td>X</td><td>X</td><td>X</td><td>x</td>
+                <td></td>
+            </tr>
+            <tr valign="top">
+                <td>complex</td><td>x</td><td>X</td><td>X</td><td>X</td><td>x</td>
+                <td>ASCII: imaginary part ignored.</td>
+            </tr>
+            <tr valign="top">
+                <td>sparse</td>
+                    <td>x</td><td>x</td> <td>x</td> <td>x</td> <td>x</td>
+                <td>Octave 4.4 loads correctly any real or complex sparse array saved from Scilab 6.0.<table/>
+                    But loadmatfile()
+                    <ulink url="http://bugzilla.scilab.org/15731">crashes Scilab</ulink> for
+                    any sparse saved with -v4, and any complex sparse saved with -v6 -v7 or -v7.3.
+                </td>
+            </tr>
+            <tr valign="top">
+                <td>boolean sparse</td><td>x</td><td>no</td><td>no</td><td>no</td><td>x</td>
+                <td>v4: Saved as sparse decimal 0|1. Well read from Octave 4.4</td>
+            </tr>
+            <tr valign="top">
+                <td>Text</td><td>x</td><td></td><td></td><td></td><td>?</td>
+                <td>v4: Any array is saved as a column of texts right-padded with spaces to all
+                    have the same lengths.
+                </td>
+            </tr>
+            <tr valign="top">
+                <td>struct</td><td>no</td><td></td><td>x</td><td>X</td><td>no</td>
+                <td></td>
+            </tr>
+            <tr valign="top">
+                <td>cell</td><td>no</td><td>X</td><td>X</td><td>X</td><td>no</td>
+                <td>Must not contain components of unsupported type or yielding errors/crashs</td>
+            </tr>
+        </table>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-A = rand(10, 10);
-B = sprand(100, 100, 0.1);
-savematfile("test_matfile.mat", "A", "B", "-v6");
-clear;
-loadmatfile("test_matfile.mat");
-disp(A)
-disp(B)
+// Preparing some data:
+H = rand(2,4,2);
+N = complex(rand(2,3), rand(2,3));
+I = int8(grand(4,10,"uin",-100,100));
+T = ["foo" "bar"]';
+S = struct("num",H, "imag",N, "text",T, "int",I);
+C = {"Scilab", rand(2,3); H, S};
 
-// Matlab 7.3ファイル
-A = rand(10, 10);
-B = sprand(100, 100, 0.1);
-savematfile("test_matfile.mat", "A", "B", "-v7.3");
-clear;
-loadmatfile("test_matfile.mat");
-disp(A)
-disp(B)
+// Saving them in v7.3 format:
+File = TMPDIR+"/savematfile_example.mat";
+varnames = ['H','N','I','T','S','C'];
+savematfile(File,'-v7.3', varnames);
+
+clear C H I N S T
+// Recovering data saved in Matlab format:
+loadmatfile(File);
+
+// Displaying them:
+for v = varnames, execstr("mprintf(""\n %s ="",v); disp("+v+")"), end
  ]]></programlisting>
+    <screen><![CDATA[
+--> clear C H I N S T
+--> // Recovering data saved in Matlab format:
+--> loadmatfile(File);
+
+--> // Displaying them:
+--> for v = varnames, execstr("mprintf(""\n %s ="",v); disp("+v+")"), end
+
+ H =
+(:,:,1)
+   0.2113249   0.0002211   0.6653811   0.8497452
+   0.7560439   0.3303271   0.6283918   0.685731
+(:,:,2)
+   0.8782165   0.5608486   0.7263507   0.5442573
+   0.068374    0.6623569   0.1985144   0.2320748
+
+ N =
+   0.2312237 + 0.2146008i   0.8833888 + 0.3616361i   0.3076091 + 0.5664249i
+   0.2164633 + 0.312642i    0.6525135 + 0.2922267i   0.9329616 + 0.4826472i
+
+ I =
+ 100  51 -52  92  17  34 -94 -30  36 -30
+ -70 -72  -9 -19 -78 -15   1 -53 -23  91
+  76 -83  93 -23  63 -80 -69  86  -7  57
+  25  31  58 -64 -96  -9 -70  -4 -66 -34
+
+ T =
+!foo  !
+!bar  !
+
+ S =
+  num: [2x4x2 constant]
+  imag: [2x3 constant]
+  text: [2x1 string]
+  int: [4x10 int8]
+
+ C =
+  [  1x1 string  ]  [2x3 constant]
+  [2x4x2 constant]  [1x1 struct  ]
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

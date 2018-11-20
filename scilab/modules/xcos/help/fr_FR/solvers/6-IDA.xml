@@ -16,7 +16,8 @@
     <refnamediv>
         <refname>IDA</refname>
         <refpurpose>
-            <emphasis>IDA</emphasis> (abréviation de "Implicit Differential Algebraic equations system solver") est un solveur numérique fournissant une méthode efficace et stable pour résoudre des Problèmes à Valeur Initiale d'Equations Différentielles Algebriques (EDAs).
+            "Implicit Differential Algebraic equations system solver" est un solveur numérique
+           fournissant une méthode efficace et stable pour résoudre des Problèmes à Valeur Initiale d'Equations Différentielles Algebriques (EDAs).
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -160,7 +161,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
 ]]></scilab:image>
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>

@@ -73,7 +73,7 @@ along with this program.
             [S, Sn] = arma2ss(Ar)
         </programlisting>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
@@ -85,12 +85,6 @@ along with this program.
             <member>
                 <link linkend="syslin">syslin</link>
             </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>Authors</title>
-        <simplelist type="vert">
-            <member>Serge Steer, INRIA</member>
         </simplelist>
     </refsection>
     <refsection>

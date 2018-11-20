@@ -2,6 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) 2010 - DIGITEO - Manuel Juliachs
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2010, 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,7 +16,8 @@ function polarplot(theta,rho,style,strf,leg,rect)
     if rhs<=0 then
         theta=0:.01:2*%pi;
         rho=sin(2*theta).*cos(2*theta)
-        clf();
+        s = gca().axes_bounds;
+        delete(gca()); xsetech(s) // clears & keeps the current axes area
         polarplot(theta,rho)
         return
     end
@@ -162,7 +164,9 @@ function polarplot(theta,rho,style,strf,leg,rect)
         frameflag=4
         opts=[opts,"frameflag=frameflag"],
     end
-    drawlater()
+
+    initDrawingMode = gcf().immediate_drawing;
+    gcf().immediate_drawing = "off";
     execstr("plot2d(x,y,"+strcat(opts,",")+")")
 
     fcolor=color("grey70");
@@ -237,5 +241,5 @@ function polarplot(theta,rho,style,strf,leg,rect)
     a.data_bounds=[rect(1:2);rect(3:4)]
     a.margins=[0.07 0.07 0.12 0.07]
 
-    drawnow()
+    gcf().immediate_drawing = initDrawingMode;
 endfunction

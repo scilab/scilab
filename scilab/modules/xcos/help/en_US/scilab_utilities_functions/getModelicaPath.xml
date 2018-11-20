@@ -83,14 +83,12 @@
 
         </programlisting>
     </refsection>
-    <refsection id="SeeAlso_getModelicaPath">
+    <refsection id="SeeAlso_getModelicaPath" role="see also">
         <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="MODELICA_USER_LIBS">MODELICA_USER_LIBS</link>: specify the paths of the directories containing the Modelica class definition files
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist>
+          <member>
+              <link linkend="MODELICA_USER_LIBS">MODELICA_USER_LIBS</link>
+          </member>
+        </simplelist>
     </refsection>
 </refentry>

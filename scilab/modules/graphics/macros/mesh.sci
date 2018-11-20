@@ -27,10 +27,13 @@ function mesh(varargin)
     // Copy RHS arguments
     ListArg = varargin;
 
-    drawlater();
+    initDrawingMode = gcf().immediate_drawing;
+    gcf().immediate_drawing = "off";
+
     surf(ListArg(:));
     e = gce();
     e.color_mode = color("white");
     e.color_flag = 0;
-    drawnow();
+
+    gcf().immediate_drawing = initDrawingMode;
 endfunction

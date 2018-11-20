@@ -59,7 +59,9 @@ function paramfplot2d(f,x,theta,flag,rect)
     a.data_bounds=matrix(rect,2,2);
     a.axes_visible="on";
     y=feval(x,theta(1),f);
-    xpoly(x,y(:));p=gce(); //the polyline handle
+    xpoly(x,y(:));
+    p = gce(); //the polyline handle
+    drawnow();
     realtime(0);
     if flag=="no" then
         drawlater();

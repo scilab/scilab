@@ -16,7 +16,7 @@
     <refnamediv>
         <refname>Implicit Runge-Kutta 4(5)</refname>
         <refpurpose>
-            <emphasis>Implicit Runge-Kutta</emphasis> est un solveur numérique fournissant une méthode implicite efficace et stable pour résoudre des Problèmes à Valeur Initiale d'Equations Différentielles Ordinarires (EDOs). Called by <link linkend="xcos">xcos</link>.
+            Solveur numérique fournissant une méthode implicite efficace et stable pour résoudre des Problèmes à Valeur Initiale d'Equations Différentielles Ordinarires (EDOs)
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -259,7 +259,7 @@ Temps pour Runge-Kutta implicite :
             Ces résultats montrent que pour un problème non-raide, pour à peu près la même précision demandée et en forçant la même taille de pas, <emphasis>RK implicite</emphasis> est plus rapide.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>Voir Aussi</title>
         <simplelist type="inline">
             <member>

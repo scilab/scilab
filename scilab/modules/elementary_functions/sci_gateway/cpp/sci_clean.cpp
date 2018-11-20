@@ -92,6 +92,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         pdReal = new double[iSize];
         if (pSparseIn->isComplex())
         {
+            pSparseOut->toComplex();
             pdImg  = new double[iSize];
         }
 

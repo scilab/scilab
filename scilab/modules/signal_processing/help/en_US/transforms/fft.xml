@@ -142,7 +142,8 @@
                                             </para>
                                             <para>
                                                 <latex>
-                                                    $x(k) = \sum_{m=1}^n {a(m)*e^{-\frac{2i*\pi}{n}(m-1) (k-1)}$
+                                                    $x(k) = \sum_{m=1}^n
+                                                    {a(m) \exp\left(-2 i\pi\frac{(m-1)}{n} (k-1)\right)}$
                                                 </latex>
                                             </para>
                                             <para>
@@ -184,7 +185,7 @@
                                             <para>
                                                 <latex>
                                                     $x(k) = \sum_{m=1}^n
-                                                    {a(m)*e^{+\frac{2i*\pi}{n} (m-1) (k-1)}$
+                                                    {a(m) \exp\left(+2 i\pi\frac{(m-1)}{n} (k-1)\right)}$
                                                 </latex>
                                             </para>
                                         </listitem>

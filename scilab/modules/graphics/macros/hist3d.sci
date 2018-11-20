@@ -43,7 +43,8 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
         6.6 6.7 8.6 10.3 13.6 16.2 18.1 18.0 16.0 13.0 9.4 7.0 12.0
         0.6 1.3 3.7 5.5 9.6 13.1 16.2 16.0 12.8 8.8 3.8 1.8 7.8
         ];
-        drawlater
+        initDrawingMode = gcf().immediate_drawing;
+        gcf().immediate_drawing = "off";
         hist3d(T)
         ax = gca()
         ax.y_ticks = tlist(["ticks" "locations" "labels"], (0:12)+0.5, months)
@@ -54,8 +55,8 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
         ax.rotation_angles = [28 19]
         ax.children.color_mode = color("violet")
         // ax.children.color_flag = 1
-        drawnow
-        return;
+        gcf().immediate_drawing = initDrawingMode;
+        return
     end
     if typeof(f)=="list" then
         [f,x,y]=f(1:3);

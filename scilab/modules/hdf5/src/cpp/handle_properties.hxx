@@ -13,9 +13,9 @@
 *
 */
 
+#include <list>
 #include <string>
 #include <unordered_map>
-#include <list>
 #include <vector>
 
 #define SAVE_ONLY 0
@@ -25,6 +25,7 @@ extern "C"
 {
 #include "graphicObjectProperties.h"
 #include "returnType.h"
+#include <hdf5.h>
 }
 
 enum FrameBorderType
@@ -839,5 +840,5 @@ struct UicontrolHandle
 
 void update_link_path(int legend, Links::PathList& paths);
 int import_handle(int dataset, int parent);
-bool export_handle(int parent, const std::string& name, int uid);
+bool export_handle(int parent, const std::string& name, int uid, hid_t xfer_plist_id);
 int add_current_entity(int handle);

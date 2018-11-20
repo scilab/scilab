@@ -85,17 +85,17 @@
             Например, используйте:
         </para>
         <programlisting role=""><![CDATA[
-      i = 0
-      while i<5
-    disp("i");
-    i = i + 1;
-      end
+i = 0;
+while i<5
+   disp(i);
+   i = i + 1;
+end
 ]]></programlisting>
         <para>
             а не:
         </para>
         <programlisting role=""><![CDATA[
-      i = 0; while i<5 disp("i"); i = i + 1; end
+i = 0; while i<5, disp(i), i = i + 1; end
 ]]></programlisting>
         <warning>
             число символов, используемых для определения тела любой инструкции условия
@@ -144,11 +144,11 @@ e,k
                 <revremark>
                     <itemizedlist>
                       <listitem>
-                        The <literal>[,else instructions]</literal> syntax is no longer supported.
+                        Синтаксис <literal>[,else instructions]</literal> более не поддерживается.
                       </listitem>
                       <listitem>
-                        <literal>while</literal> is now protected:
-                        Assignments like <literal>while=1</literal> are no longer possible.
+                        <literal>while</literal> теперь защищено:
+                        Назначения вроде <literal>while=1</literal> более недопустимы.
                       </listitem>
                   </itemizedlist>
                 </revremark>

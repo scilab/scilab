@@ -48,14 +48,7 @@ void InstrumentVisitor::visit(ast::IfExp & e)
     if (e.hasElse())
     {
         ++branchesCount;
-        if (e.getElse().isCommentExp())
-        {
-            cover.add(macro, &e.getElse());
-        }
-        else
-        {
-            e.getElse().accept(*this);
-        }
+        e.getElse().accept(*this);
     }
 }
 

@@ -15,14 +15,12 @@
  *
  */
 
-package org.scilab.modules.gui.datatip;
+package org.scilab.modules.renderer.utils;
 
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 import org.scilab.modules.renderer.CallRenderer;
-import org.scilab.modules.gui.editor.AxesHandler;
-import org.scilab.modules.gui.editor.CommonHandler;
 
 /** Common datatip functions*/
 public class DatatipCommon {

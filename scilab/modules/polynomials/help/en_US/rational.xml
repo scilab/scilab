@@ -1,21 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="rational">
     <refnamediv>
         <refname>rational</refname>
-        <refpurpose>Scilab objects, rational in Scilab</refpurpose>
+        <refpurpose>rational fractions</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
         <para>
-            A rational <literal>r</literal> is a quotient of two polynomials <literal>r=num/den</literal>.
-            The internal representation of a rational is a list.
-            <literal>r=tlist(['r','num','den','dt'],num,den,[])</literal> is the same as <literal>r=num/den</literal>.
-            A rational matrix can be defined with the usual syntax
-            e.g. <literal>[r11,r12;r21,r22]</literal> is a 2x2 matrix where <literal>rij</literal> are
-            1x1 rationals.
-            A rational matrix can also be defined as above as a list
-            <literal>rlist(num,den,[])</literal> with <literal>num</literal> and <literal>den</literal> polynomial matrices.
+            A rational <literal>r</literal> is the quotient of two polynomials <literal>r=num/den</literal>.
         </para>
+        <para>
+            An array <literal>R</literal> of rationals can be directly defined as the elementwise
+            quotient of two polynomials arrays <literal>Num</literal> and <literal>Den</literal> :
+            <literal>R = Num./Den</literal>.
+        </para>
+        <para>
+            The internal representation of a rational is a list of type "r":
+            <literal>R = tlist(['r','num','den','dt'], Num, Den,[])</literal>, or
+            <literal>R = rlist(Num, Den, [])</literal>.
+        </para>
+        <para>
+            All usual operators can be used with arrays of rationals:
+            <literal>'  .'  +  -  *  .*  /  ./  .^  .*.  [,] [;]</literal>,
+        </para>
+        <para>
+            As for polynomials, the <literal>horner()</literal> function allows to compute
+            the value of rationals for some value of their variable.
+        </para>
+        <para>
+            Many other Scilab functions can be used with rationals input : <literal>permute</literal>,
+            <literal>cat</literal>, <literal>real</literal>, <literal>imag</literal>,
+            <literal>conj</literal>, <literal>isreal</literal>, etc.
+        </para>
+        <warning>
+            Addressing some components of an array <literal>R</literal> of rationals with their
+            linearized indices can be done using the syntax <literal>R(k,0)</literal> where
+            <literal>k</literal> is the vector of linearized indices, and 0 is used instead of
+            <literal>j</literal> or higher order indices.
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -30,6 +66,44 @@ syslin('c',Num,Den)
 syslin('c',H)
 [Num1,Den1]=simp(Num,Den)
  ]]></programlisting>
+    <para/>
+    <programlisting role="example"><![CDATA[
+R = (1-%s).^[1 0 2] ./ %s.^[1 2 0]
+horner(R,[-1 0 2 -2]')
+
+R = (1-%s)/(1+%s)
+horner(R, 1-%z^2)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> R = (1-%s).^[1 0 2] ./ %s.^[1 2 0]
+ R  =
+                         2
+   1 - s   1   1 - 2s + s
+   ------  --  -----------
+            2
+     s     s       1
+
+--> horner(R,[-1 0 2 -2]')
+ ans  =
+  -2.    1.     4.
+   Inf   Inf    1.
+  -0.5   0.25   1.
+  -1.5   0.25   9.
+
+--> R = (1-%s)/(1+%s)
+ R  =
+   1 - s
+   ------
+   1 + s
+
+--> horner(R, 1-%z^2)
+ ans  =
+      2
+     z
+   ------
+        2
+   2 - z
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -41,8 +115,23 @@ syslin('c',H)
                 <link linkend="syslin">syslin</link>
             </member>
             <member>
+                <link linkend="horner">horner</link>
+            </member>
+            <member>
                 <link linkend="simp">simp</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    The syntax <literal>R(k,0)</literal> is now available to address components
+                    with their linearized indices k.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

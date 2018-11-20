@@ -63,6 +63,42 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para>
+            According to the Code Conventions for the Scilab Programming Language it is recommended:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Start each statement on a new line.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Write no more than one simple statement per line.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Break compound statements over multiple lines.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            For example, use:
+        </para>
+        <programlisting role=""><![CDATA[
+i = 0;
+while i<5
+    disp(i);
+    i = i + 1;
+end
+]]></programlisting>
+        <para>
+            rather than
+        </para>
+        <programlisting role=""><![CDATA[
+i = 0; while i<5, disp(i), i = i + 1; end
+]]></programlisting>
         <warning>
             O número de caracateres usados para definir o corpo de  qualquer estrutura condicional
             (if while for ou select/case) deve ser  limitado a 16k.
@@ -77,7 +113,6 @@ while norm(a-(a+e),1) > %eps,
     k=k+1;
 end
 e,k
-
  ]]></programlisting>
     </refsection>
     <refsection>

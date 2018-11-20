@@ -117,12 +117,23 @@
             </scilab:image>
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="nyquist">nyquist</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling zpk representation</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

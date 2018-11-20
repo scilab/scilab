@@ -1,6 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -32,12 +31,11 @@ function [r] = horner(p,x)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"horner",2))
     end
 
-    if (size(x, "*") == 0 | size(p, "*") == 0) then
+    tp = type(p)
+    if size(x, "*") == 0 | (tp~=129 & size(p, "*") == 0) then
         r = []
         return
     end
-
-    tp = type(p)
 
     if (tp <= 2) then
         // tp <= 2 <=> matrix of reals, complexes or polynomials
@@ -113,7 +111,7 @@ function [r] = horner(p,x)
 
     elseif (tp == 129) then
         // implicit polynomial for indexing
-        r = horner(p(:),x)
+        r = horner([p(1) p(2) p(3)], x)
         r = r(1) : r(2) : r(3)
 
     else

@@ -252,7 +252,7 @@ Time for Adams / Functional:
             The results show that for a simple nonstiff continuous problem, <emphasis>Adams / Functional</emphasis> is fastest.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
