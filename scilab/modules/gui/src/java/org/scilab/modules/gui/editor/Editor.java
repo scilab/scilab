@@ -820,19 +820,19 @@ public class Editor {
         if (selectedLegend != null) {
             selectedType = SelectionType.LEGEND;
             return selectedLegend.legend;
-        } else {
-            /*try pick a polyline*/
-            Integer picked = entityPicker.pick(figureUid, pos[0], pos[1]);
-            if (picked != null) {
-                selectedType = SelectionType.POLYLINE;
-                return picked;
-            } else {
-                selectedSurface = entityPicker.pickSurface(figureUid, pos);
-                if (selectedSurface.surface != null) {
-                    selectedType = SelectionType.SURFACE;
-                }
-                return selectedSurface.surface;
-            }
         }
+        /*try pick a polyline*/
+        Integer picked = entityPicker.pick(figureUid, pos[0], pos[1]);
+        if (picked != null) {
+            selectedType = SelectionType.POLYLINE;
+            return picked;
+        }
+        /* try pick a surface */
+        selectedSurface = entityPicker.pickSurface(figureUid, pos);
+        if (selectedSurface != null && selectedSurface.surface != null) {
+            selectedType = SelectionType.SURFACE;
+            return selectedSurface.surface;
+        }
+        return null;
     }
 }

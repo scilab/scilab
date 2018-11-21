@@ -220,7 +220,7 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                             dataz[picked.point] > realBounds[4] && dataz[picked.point] < realBounds[5]) {
                         position = new double[] {datax[picked.point], datay[picked.point], dataz[picked.point]};
                     }
-                } else if (surfInfo.surface != null) {
+                } else if (surfInfo != null && surfInfo.point != null) {
                     position = new double[] {surfInfo.point.getX(), surfInfo.point.getY(), surfInfo.point.getZ()};
                 }
                 if (position == null) {

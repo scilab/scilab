@@ -94,7 +94,6 @@ InternalType *GenericLDivide(InternalType *_pLeftOperand, InternalType *_pRightO
 
 int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubleOut)
 {
-    types::Double* pDblTmp = NULL;
     int iErr = 0;
 
     //check finite values of _pDouble1 and _pDouble2
@@ -111,38 +110,6 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
         //x \ Y => Y / x
         return RDivideDoubleByDouble(_pDouble2, _pDouble1, _pDoubleOut);
     }
-
-    /* if (_pDouble2->isScalar())
-    {
-        //X \ y => X \ (eye() * y)
-        pDblTmp = new types::Double(_pDouble1->getRows(), _pDouble1->getRows(), _pDouble2->isComplex());
-        double dblScalarReal = _pDouble2->get(0);
-        double* pdblReal = pDblTmp->get();
-        int iSize = pDblTmp->getSize();
-        int iRowsP1 = pDblTmp->getRows() + 1;
-
-        memset(pdblReal, 0x00, iSize * sizeof(double));
-        if (_pDouble2->isComplex())
-        {
-            double dblScalarImag = _pDouble2->getImg(0);
-            double* pdblImag = pDblTmp->getImg();
-            memset(pdblImag, 0x00, iSize * sizeof(double));
-            for (int i = 0; i < iSize; i += iRowsP1)
-            {
-                pdblReal[i] = dblScalarReal;
-                pdblImag[i] = dblScalarImag;
-            }
-        }
-        else
-        {
-            for (int i = 0; i < iSize; i += iRowsP1)
-            {
-                pdblReal[i] = dblScalarReal;
-            }
-        }
-
-        _pDouble2 = pDblTmp;
-    }*/
 
     if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2)
     {
@@ -172,11 +139,6 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
                    _pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getCols(),
                    _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getCols(),
                    (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getRows(), (*_pDoubleOut)->getCols(), &dblRcond);
-    }
-
-    if (pDblTmp)
-    {
-        delete pDblTmp;
     }
 
     return iErr;

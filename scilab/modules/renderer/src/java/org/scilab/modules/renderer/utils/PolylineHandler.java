@@ -123,7 +123,6 @@ public class PolylineHandler {
             Vector3d vdir = v1.minus(v0);
             //3d old click point and dir
             Vector3d w0 = new Vector3d(c3d3);
-            Vector3d w1 = new Vector3d(c3d4);
             Vector3d wdir = v1.minus(v0);
 
             //if the dir is parallel to the plane there isn't intersection
