@@ -522,7 +522,7 @@ Sparse::Sparse(int rows, int cols, int nonzeros, int* inner, int* outer, double*
 
 bool Sparse::getMemory(int *_piSize, int* _piSizePlusType)
 {
-    *_piSize = nonZeros()*sizeof(double)*(isComplex() ? 2 : 1);
+    *_piSize = nonZeros() * sizeof(double) * (isComplex() ? 2 : 1);
     *_piSizePlusType = *_piSize + sizeof(*this);
     return true;
 }
@@ -613,12 +613,12 @@ void Sparse::fill(Double& dest, int r, int c) SPARSE_CONST
     if (isComplex())
     {
         mycopy_n(makeMatrixIterator<std::complex<double> >(*matrixCplx, RowWiseFullIterator(cthis.getRows(), cthis.getCols())), cthis.getSize()
-        , makeMatrixIterator<std::complex<double> >(dest, RowWiseFullIterator(dest.getRows(), dest.getCols(), r, c)));
+                 , makeMatrixIterator<std::complex<double> >(dest, RowWiseFullIterator(dest.getRows(), dest.getCols(), r, c)));
     }
     else
     {
         mycopy_n(makeMatrixIterator<double>(*matrixReal, RowWiseFullIterator(cthis.getRows(), cthis.getCols())), cthis.getSize()
-        , makeMatrixIterator<double >(dest, RowWiseFullIterator(dest.getRows(), dest.getCols(), r, c)));
+                 , makeMatrixIterator<double >(dest, RowWiseFullIterator(dest.getRows(), dest.getCols(), r, c)));
     }
 }
 
@@ -2162,8 +2162,8 @@ GenericType* Sparse::extract(typed_list* _pArgs)
 Sparse* Sparse::extract(int nbCoords, int SPARSE_CONST* coords, int SPARSE_CONST* maxCoords, int SPARSE_CONST* resSize, bool asVector) SPARSE_CONST
 {
     if ((asVector && maxCoords[0] > getSize()) ||
-    (asVector == false && maxCoords[0] > getRows()) ||
-    (asVector == false && maxCoords[1] > getCols()))
+            (asVector == false && maxCoords[0] > getRows()) ||
+            (asVector == false && maxCoords[1] > getCols()))
     {
         return 0;
     }
@@ -2180,10 +2180,10 @@ Sparse* Sparse::extract(int nbCoords, int SPARSE_CONST* coords, int SPARSE_CONST
     }
     //        std::cerr<<"extracted sparse:"<<pSp->getRows()<<", "<<pSp->getCols()<<"seqCount="<<nbCoords<<"maxDim="<<maxCoords[0] <<","<< maxCoords[1]<<std::endl;
     if (!(asVector
-    ? copyToSparse(*this, Coords<true>(coords, getRows()), nbCoords
-    , *pSp, RowWiseFullIterator(pSp->getRows(), pSp->getCols()))
-    : copyToSparse(*this, Coords<false>(coords), nbCoords
-    , *pSp, RowWiseFullIterator(pSp->getRows(), pSp->getCols()))))
+            ? copyToSparse(*this, Coords<true>(coords, getRows()), nbCoords
+                           , *pSp, RowWiseFullIterator(pSp->getRows(), pSp->getCols()))
+            : copyToSparse(*this, Coords<false>(coords), nbCoords
+                           , *pSp, RowWiseFullIterator(pSp->getRows(), pSp->getCols()))))
     {
         delete pSp;
         pSp = NULL;
@@ -2594,7 +2594,7 @@ template<typename S> struct GetReal : std::unary_function<typename S::InnerItera
     }
 };
 template<> struct GetReal< Eigen::SparseMatrix<std::complex<double >, Eigen::RowMajor > >
-        : std::unary_function<Sparse::CplxSparse_t::InnerIterator, double>
+    : std::unary_function<Sparse::CplxSparse_t::InnerIterator, double>
 {
     double operator()(Sparse::CplxSparse_t::InnerIterator it) const
     {
@@ -3231,7 +3231,7 @@ SparseBool::SparseBool(int rows, int cols, int trues, int* inner, int* outer)
 
 bool SparseBool::getMemory(int *_piSize, int* _piSizePlusType)
 {
-    *_piSize = nbTrue()*sizeof(bool);
+    *_piSize = nbTrue() * sizeof(bool);
     *_piSizePlusType = *_piSize + sizeof(*this);
     return true;
 }
@@ -3974,8 +3974,8 @@ GenericType* SparseBool::insertNew(typed_list* _pArgs)
 SparseBool* SparseBool::extract(int nbCoords, int SPARSE_CONST* coords, int SPARSE_CONST* maxCoords, int SPARSE_CONST* resSize, bool asVector) SPARSE_CONST
 {
     if ((asVector && maxCoords[0] > getSize()) ||
-    (asVector == false && maxCoords[0] > getRows()) ||
-    (asVector == false && maxCoords[1] > getCols()))
+            (asVector == false && maxCoords[0] > getRows()) ||
+            (asVector == false && maxCoords[1] > getCols()))
     {
         return 0;
     }
@@ -3985,13 +3985,13 @@ SparseBool* SparseBool::extract(int nbCoords, int SPARSE_CONST* coords, int SPAR
     {
         pSp = (getRows() == 1) ? new SparseBool(1, resSize[0]) : new SparseBool(resSize[0], 1);
         mycopy_n(makeMatrixIterator<bool>(*this, Coords<true>(coords, getRows())), nbCoords
-        , makeMatrixIterator<bool>(*(pSp->matrixBool), RowWiseFullIterator(pSp->getRows(), pSp->getCols())));
+                 , makeMatrixIterator<bool>(*(pSp->matrixBool), RowWiseFullIterator(pSp->getRows(), pSp->getCols())));
     }
     else
     {
         pSp = new SparseBool(resSize[0], resSize[1]);
         mycopy_n(makeMatrixIterator<bool>(*this, Coords<false>(coords, getRows())), nbCoords
-        , makeMatrixIterator<bool>(*(pSp->matrixBool), RowWiseFullIterator(pSp->getRows(), pSp->getCols())));
+                 , makeMatrixIterator<bool>(*(pSp->matrixBool), RowWiseFullIterator(pSp->getRows(), pSp->getCols())));
 
     }
     return pSp;
@@ -4134,7 +4134,10 @@ GenericType* SparseBool::extract(typed_list* _pArgs)
         }
     }
 
-    pOut->finalize();
+    if (pOut)
+    {
+        pOut->finalize();
+    }
 
     delete[] piMaxDim;
     delete[] piCountDim;
@@ -4289,9 +4292,9 @@ bool SparseBool::operator==(const InternalType& it) SPARSE_CONST
 {
     SparseBool* otherSparse = const_cast<SparseBool*>(dynamic_cast<SparseBool const*>(&it));/* types::GenericType is not const-correct :( */
     return (otherSparse
-    && (otherSparse->getRows() == getRows())
-    && (otherSparse->getCols() == getCols())
-    && equal(*matrixBool, *otherSparse->matrixBool));
+            && (otherSparse->getRows() == getRows())
+            && (otherSparse->getCols() == getCols())
+            && equal(*matrixBool, *otherSparse->matrixBool));
 }
 
 bool SparseBool::operator!=(const InternalType& it) SPARSE_CONST
@@ -4337,7 +4340,7 @@ SparseBool* SparseBool::set(int _iRows, int _iCols, bool _bVal, bool _bFinalize)
 void SparseBool::fill(Bool& dest, int r, int c) SPARSE_CONST
 {
     mycopy_n(makeMatrixIterator<bool >(*matrixBool, RowWiseFullIterator(getRows(), getCols())), getSize()
-    , makeMatrixIterator<bool >(dest, RowWiseFullIterator(dest.getRows(), dest.getCols(), r, c)));
+             , makeMatrixIterator<bool >(dest, RowWiseFullIterator(dest.getRows(), dest.getCols(), r, c)));
 }
 
 Sparse* SparseBool::newOnes() const

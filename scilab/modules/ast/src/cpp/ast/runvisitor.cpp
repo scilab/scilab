@@ -522,9 +522,8 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
         throw;
     }
 
-    if (e.isBreakable()
-        && ((e.hasElse() && (&e.getElse())->isContinue())
-        || (&e.getThen())->isBreak()))
+    bool elseIsContinue = e.hasElse() && (&e.getElse())->isContinue();
+    if (e.isBreakable() && (elseIsContinue || (&e.getThen())->isBreak()))
     {
         const_cast<IfExp*>(&e)->setBreak();
         const_cast<Exp*>(&e.getThen())->resetBreak();
@@ -534,9 +533,7 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
         }
     }
 
-    if (e.isContinuable()
-        && ((e.hasElse() && (&e.getElse())->isContinue())
-        || (&e.getThen())->isContinue()))
+    if (e.isContinuable() && (elseIsContinue || (&e.getThen())->isContinue()))
     {
         const_cast<IfExp*>(&e)->setContinue();
         const_cast<Exp*>(&e.getThen())->resetContinue();
@@ -546,9 +543,9 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
         }
     }
 
+    bool elseIsReturn = e.hasElse() && (&e.getElse())->isReturn();
     if (e.isReturnable()
-        && ((e.hasElse() && (&e.getElse())->isReturn())
-        || (&e.getThen())->isReturn()))
+            && (elseIsReturn || (&e.getThen())->isReturn()))
     {
         const_cast<IfExp*>(&e)->setReturn();
         const_cast<Exp*>(&e.getThen())->resetReturn();
@@ -1470,12 +1467,13 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     types::InternalType* pITStart = getResult();
     types::GenericType* pStart = static_cast<types::GenericType*>(pITStart);
     if (pITStart == NULL ||
-        ((pITStart->isGenericType() == false || pStart->getSize() != 1 || (pStart->isDouble() && pStart->getAs<types::Double>()->isComplex())) &&
-        pStart->isList() == false)) // list case => call overload
+            ((pITStart->isGenericType() == false || pStart->getSize() != 1 || (pStart->isDouble() && pStart->getAs<types::Double>()->isComplex())) &&
+             pStart->isList() == false)) // list case => call overload
     {
         setResult(NULL);
         wchar_t szError[bsiz];
-        if (pITStart && pITStart->isImplicitList()) {
+        if (pITStart && pITStart->isImplicitList())
+        {
             os_swprintf(szError, bsiz, _W("%ls: Too many %ls or wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", L"':'", 1);
         }
         else
@@ -1506,8 +1504,8 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     types::GenericType* pStep = static_cast<types::GenericType*>(pITStep);
     setResult(NULL);
     if (pITStep == NULL ||
-        ((pITStep->isGenericType() == false || pStep->getSize() != 1 || (pStep->isDouble() && pStep->getAs<types::Double>()->isComplex())) &&
-        pStep->isList() == false)) // list case => call overload
+            ((pITStep->isGenericType() == false || pStep->getSize() != 1 || (pStep->isDouble() && pStep->getAs<types::Double>()->isComplex())) &&
+             pStep->isList() == false)) // list case => call overload
     {
         pITStart->killMe();
         if (pITStep)
@@ -1536,8 +1534,8 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     types::GenericType* pEnd = static_cast<types::GenericType*>(pITEnd);
     setResult(NULL);
     if (pITEnd == NULL ||
-        ((pITEnd->isGenericType() == false || pEnd->getSize() != 1 || (pEnd->isDouble() && pEnd->getAs<types::Double>()->isComplex())) &&
-        pEnd->isList() == false)) // list case => call overload
+            ((pITEnd->isGenericType() == false || pEnd->getSize() != 1 || (pEnd->isDouble() && pEnd->getAs<types::Double>()->isComplex())) &&
+             pEnd->isList() == false)) // list case => call overload
     {
         pITStart->killMe();
         pITStep->killMe();
