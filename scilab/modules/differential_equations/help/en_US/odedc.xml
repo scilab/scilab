@@ -14,14 +14,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="odedc" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="odedc" xml:lang="en">
     <refnamediv>
         <refname>odedc</refname>
         <refpurpose>discrete/continuous ode solver</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>yt=odedc(y0,nd,stdel,t0,t,f)</synopsis>
+        <synopsis>yt = odedc(y0, nd, stdel, t0, t, f)</synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
         <title>Arguments</title>
@@ -71,7 +74,7 @@
                 <term>f</term>
                 <listitem>
                     <para>an external i.e. a function or a character string or a list with
-                        syntax: <literal>yp=f(t,yc,yd,flag)</literal>.
+                        syntax: <literal>yp = f(t,yc,yd,flag)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -79,8 +82,9 @@
                 <term>f</term>
                 <listitem>
                     <para>
-                        an <link linkend="external" role="" version="">external</link> i.e. a function or a character string or a list with
-                        syntax: <literal>yp=f(t,yc,yd,flag)</literal>
+                        an <link linkend="external" role="" version="">external</link> i.e. a
+                        function or a character string or a list with
+                        syntax: <literal>yp = f(t,yc,yd,flag)</literal>
                     </para>
                     <variablelist>
                         <varlistentry>
@@ -89,15 +93,15 @@
                                 <para>This form of external is used to pass parameters to the
                                     function. It must be as follows:
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[
+                                <screen><![CDATA[
 list(f, p1, p2,...)
- ]]></programlisting>
+]]></screen>
                                 <para>where the syntax of the function
                                     <literal>f</literal> is now
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[
+                                <screen><![CDATA[
 yp = f(t, yc, yd, flag, p1, p2,...)
- ]]></programlisting>
+]]></screen>
                                 <para>
                                     <literal>f</literal> still returns the function value
                                     as a function of <literal>(t, yc, yd, flag, p1, p2,...)</literal>, and
@@ -162,15 +166,18 @@ yp = f(t, yc, yd, flag, p1, p2,...)
                                     <listitem>
                                         <para>
                                             <literal>y</literal> = <literal>[yc; yd; param]</literal>.
-                                            param may be used to get extra arguments which have been given in
-                                            the odedc call <literal>(y = odedc([y0c; y0d], nd, stdel, t0, t, list('fexcd', param)))</literal>
+                                            param may be used to get extra arguments which have
+                                            been given in  the odedc call
+                                           <literal>(y = odedc([y0c; y0d], nd, stdel, t0, t, list('fexcd', param)))</literal>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            As output <literal>ydp</literal>, the routine must compute
-                                            <literal>ydp[0:nc-1]) = d/dt ( yc(t) )</literal> for <literal>iflag=0</literal> and
-                                            <literal>ydp[0:nd-1] = yd(t+)</literal> for <literal>iflag=1</literal>.
+                                            As output <literal>ydp</literal>, the routine must
+                                            compute <literal>ydp[0:nc-1] = d/dt ( yc(t) )</literal>
+                                            for <literal>iflag=0</literal> and
+                                            <literal>ydp[0:nd-1] = yd(t+)</literal>
+                                            for <literal>iflag=1</literal>.
                                         </para>
                                     </listitem>
                                 </itemizedlist>
@@ -184,45 +191,53 @@ yp = f(t, yc, yd, flag, p1, p2,...)
     <refsection role="description">
         <title>Description</title>
         <para>
-            <literal>y=odedc([y0c;y0d],nd,[h,delta],t0,t,f)</literal> computes
+            <literal>y = odedc([y0c;y0d], nd, [h,delta], t0, t, f)</literal> computes
             the solution of a mixed discrete/continuous system. The discrete system
-            state <literal>yd_k</literal> is embedded into a piecewise constant
+            state <literal>yd<subscript>k</subscript></literal> is embedded into a piecewise constant
             <literal>yd(t)</literal> time function as follows:
+        <literal>yd(t) = yd<subscript>k</subscript></literal> for <literal>t</literal> in
+        <literal>[t<subscript>k</subscript> = h*(delta+k) , t<subscript>k+1</subscript> = h*(delta+k+1) )</literal>.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-yd(t) = yd_k for t in
-[t_k=delay+k*h,t_(k+1)=delay+(k+1)*h] (with delay=h*delta).
- ]]></programlisting>
-        <para>The simulated equations are now:</para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-dyc/dt = f(t,yc(t),yd(t),0),  for t in [t_k,t_(k+1)]
+        <para>
+            The simulated equations are now,
+            for t in [ t<subscript>k</subscript> , t<subscript>k+1</subscript> ):
+        </para>
+        <screen>
+dyc/dt = f(t, yc(t), yd(t), 0)
 yc(t0) = y0c
- ]]></programlisting>
+</screen>
         <para>
-            and at instants <literal>t_k</literal> the discrete variable
-            <literal>yd</literal> is updated by:
+            and at instants <literal>t<subscript>k</subscript></literal> the discrete variable
+            <literal>yd</literal> is updated by
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-yd(t_k+) = f(yc(t_k-),yd(t_k-),1)
- ]]></programlisting>
         <para>
+            <literal>yd(t<subscript>k+</subscript>)
+            = f(yc(t<subscript>k-</subscript>), yd(t<subscript>k-</subscript>), 1)</literal>.
+        </para>
+            <para>
             Note that, using the definition of <literal>yd(t)</literal> the last
             equation gives
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc is time-continuous: yc(t_k-)=yc(tk))
- ]]></programlisting>
+        <para>
+            <literal>yd<subscript>k</subscript>
+            = f(t<subscript>k</subscript>, yc(t<subscript>k-</subscript>), yd(t<subscript>k-1</subscript>), 1)
+            </literal>
+        </para>
+        <para>
+            (<literal>yc</literal> is time-continuous:
+            <literal>yc(t<subscript>k-</subscript>) = yc(t<subscript>k</subscript>)</literal>).
+        </para>
         <para>
             The calling parameters of <literal>f</literal> are fixed:
-            <literal>ycd=f(t,yc,yd,flag)</literal>; this function must return either
+            <literal>ycd = f(t,yc,yd,flag)</literal>; this function must return either
             the derivative of the vector <literal>yc</literal> if
             <literal>flag=0</literal> or the update of <literal>yd</literal> if
             <literal>flag=1</literal>.
         </para>
         <para>
-            <literal>ycd=dot(yc)</literal> must be a vector with same dimension
+            <literal>ycd = dot(yc)</literal> must be a vector with same dimension
             as <literal>yc</literal> if <literal>flag=0</literal> and
-            <literal>ycd=update(yd)</literal> must be a vector with same dimension as
+            <literal>ycd = update(yd)</literal> must be a vector with same dimension as
             <literal>yd</literal> if <literal>flag=1</literal>.
         </para>
         <para>
@@ -231,7 +246,7 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc is time-continuous: yc(t_k-)=yc(tk))
         </para>
         <para>
             <literal>y</literal> is the vector
-            <literal>y=[y(t(1)),y(t(2)),...]</literal>.
+            <literal>y = [y(t(1)), y(t(2)),...]</literal>.
         </para>
         <para>
             This function can be called with the same optional parameters as the <literal>ode</literal>
@@ -240,11 +255,7 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc is time-continuous: yc(t_k-)=yc(tk))
             integration flags, tolerances can be set. Optional parameters can be set
             by the <literal>odeoptions</literal> function.
         </para>
-        <para>An example for calling an external routine is given in
-            <literal>SCIDIR/default/fydot2.f</literal>
-        </para>
-        <para>External routines can be dynamically linked (see
-            <literal>link</literal>).
+        <para>External routines can be dynamically linked (see <link linkend="link">link</link>).
         </para>
     </refsection>
     <refsection role="examples">

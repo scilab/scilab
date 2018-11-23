@@ -14,14 +14,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="odedc" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="odedc" xml:lang="ja">
     <refnamediv>
         <refname>odedc</refname>
         <refpurpose>離散/連続 ODE ソルバ</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>yt=odedc(y0,nd,stdel,t0,t,f)</synopsis>
+        <synopsis>yt = odedc(y0, nd, stdel, t0, t, f)</synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
         <title>引数</title>
@@ -93,15 +96,15 @@
                                     指定する際に使用されます.
                                     以下のようにします:
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[
+                                <screen><![CDATA[
 list(f, p1, p2,...)
- ]]></programlisting>
+]]></screen>
                                 <para>
                                     ただし,関数 <literal>f</literal>の呼び出し手順は,
                                 </para>
-                                <programlisting role="no-scilab-exec"><![CDATA[
+                                <screen><![CDATA[
 yp = f(t, yc, yd, flag, p1, p2,...)
- ]]></programlisting>
+]]></screen>
                                 <para>
                                     <literal>f</literal> はここでも
                                     <literal>(t, yc, yd, flag, p1, p2,...)</literal>
@@ -178,7 +181,7 @@ yp = f(t, yc, yd, flag, p1, p2,...)
                                         <para>
                                             出力 <literal>ydp</literal>と同様に,
                                             このルーチンは
-                                            <literal>ydp[0:nc-1]) = d/dt ( yc(t) )</literal>
+                                            <literal>ydp[0:nc-1] = d/dt ( yc(t) )</literal>
                                             (<literal>iflag=0</literal>の場合) および
                                             <literal>ydp[0:nd-1] = yd(t+)</literal>
                                             (<literal>iflag=1</literal>の場合)
@@ -196,45 +199,52 @@ yp = f(t, yc, yd, flag, p1, p2,...)
     <refsection role="description">
         <title>説明</title>
         <para>
-            <literal>y=odedc([y0c;y0d],nd,[h,delta],t0,t,f)</literal> は,
+            <literal>y = odedc([y0c;y0d], nd, [h,delta], t0, t, f)</literal> は,
             離散/連続混合系の解を計算します.
-            離散系の状態量 <literal>yd_k</literal> は以下のように
+            離散系の状態量 <literal>yd<subscript>k</subscript></literal> は以下のように
             区間内は定数となる時間関数<literal>yd(t)</literal>として
             組み込まれます:
+            以下の <literal>t</literal> について <literal>yd(t) = yd<subscript>k</subscript></literal>
+            <literal>[t<subscript>k</subscript> = h*(delta+k) , t<subscript>k+1</subscript> = h*(delta+k+1) )</literal>.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-以下の t について yd(t) = yd_k
-[t_k=delay+k*h,t_(k+1)=delay+(k+1)*h] (ただし delay=h*delta).
- ]]></programlisting>
-        <para>シミュレーションされる方程式は以下のようになります:</para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-dyc/dt = f(t,yc(t),yd(t),0),  for t in [t_k,t_(k+1)]
+        <para>シミュレーションされる方程式は以下のようになります
+            for t in [ t<subscript>k</subscript> , t<subscript>k+1</subscript> ):
+        </para>
+        <screen>
+dyc/dt = f(t, yc(t), yd(t), 0)
 yc(t0) = y0c
- ]]></programlisting>
+</screen>
         <para>
-            そして, 時刻 <literal>t_k</literal> において
+            そして, 時刻 <literal>t<subscript>k</subscript></literal> において
             離散変数 <literal>yd</literal> が以下のように更新されます:
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-yd(t_k+) = f(yc(t_k-),yd(t_k-),1)
- ]]></programlisting>
+        <para>
+            <literal>yd(t<subscript>k+</subscript>)
+            = f(yc(t<subscript>k-</subscript>), yd(t<subscript>k-</subscript>), 1)</literal>.
+        </para>
         <para>
             <literal>yd(t)</literal>の定義に基づき,
             最後の式から以下が導かれることに注意してください
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc は時間連続: yc(t_k-)=yc(tk))
- ]]></programlisting>
+        <para>
+            <literal>yd<subscript>k</subscript>
+            = f(t<subscript>k</subscript>, yc(t<subscript>k-</subscript>), yd(t<subscript>k-1</subscript>), 1)
+            </literal>
+        </para>
+        <para>
+            (<literal>yc</literal> は時間連続:
+            <literal>yc(t<subscript>k-</subscript>) = yc(t<subscript>k</subscript>)</literal>).
+        </para>
         <para>
             <literal>f</literal>をコールする際のパラメータは以下のように固定されています:
-            <literal>ycd=f(t,yc,yd,flag)</literal>;
+            <literal>ycd = f(t,yc,yd,flag)</literal>;
             この関数は, <literal>flag=0</literal> の場合に
             微係数ベクトル <literal>yc</literal>,
             <literal>flag=1</literal> の場合に
             <literal>yd</literal> の更新値を返す必要があります.
         </para>
         <para>
-            <literal>ycd=dot(yc)</literal> は,
+            <literal>ycd = dot(yc)</literal> は,
             <literal>flag=0</literal>の場合には<literal>yc</literal>と同じ次元の
             ベクトルである必要があり,
             <literal>flag=1</literal>の場合には<literal>yd</literal>と同じ次元の
@@ -246,7 +256,7 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc は時間連続: yc(t_k-)=yc(tk))
         </para>
         <para>
             <literal>y</literal> は
-            ベクトル<literal>y=[y(t(1)),y(t(2)),...]</literal>です.
+            ベクトル<literal>y = [y(t(1)), y(t(2)),...]</literal>です.
         </para>
         <para>
             この関数は <literal>ode</literal> 関数と同じオプションパラメータを指定して
@@ -257,11 +267,8 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc は時間連続: yc(t_k-)=yc(tk))
             オプションのパラメータは <literal>odeoptions</literal> 関数により
             設定できます.
         </para>
-        <para>外部ルーチンをコールする例が
-            <literal>SCIDIR/default/fydot2.f</literal>に提供されています.
-        </para>
         <para>
-            外部ルーチンは動的にリンクすることが可能です (<literal>link</literal>参照).
+            外部ルーチンは動的にリンクすることが可能です (<link linkend="link">link</link>参照).
         </para>
     </refsection>
     <refsection role="examples">

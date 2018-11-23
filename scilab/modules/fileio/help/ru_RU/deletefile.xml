@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="deletefile" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="deletefile" xml:lang="ru">
     <refnamediv>
         <refname>deletefile</refname>
         <refpurpose>удаляет файл</refpurpose>
@@ -44,7 +47,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Эта функция удаляет файл <varname>filename</varname>. Если файл <varname>filename</varname> удалён, то она возвращает
+            Эта функция удаляет файл <varname>filename</varname>.
+            Если файл <varname>filename</varname> удалён, то она возвращает
             <constant>%t</constant>, а иначе <constant>%f</constant>.
         </para>
     </refsection>
@@ -60,6 +64,28 @@ end
 
 deletefile(TMPDIR+'/notexistingfile')
     ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mdelete">mdelete</link>
+            </member>
+            <member>
+                <link linkend="rmdir">rmdir</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                  Управление многомерными аргументами для удаления множества файлов одновременно.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
 

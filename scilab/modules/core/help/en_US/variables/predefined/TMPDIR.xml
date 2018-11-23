@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="TMPDIR" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="TMPDIR" xml:lang="en">
     <refnamediv>
         <refname>TMPDIR</refname>
         <refpurpose>temporary directory path.</refpurpose>
@@ -39,6 +42,10 @@
             temporary directory (usually <literal>/tmp</literal>) can be selected by
             altering the <literal>TMPDIR</literal> system variable.
         </para>
+        <note>
+          <literal>dirname(TMPDIR)</literal> can be used as a general temporary directory,
+          without respect to any Scilab session.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -52,10 +59,11 @@ cd(TMPDIR)
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="home">home</link>
+            </member>
+            <member>
                 <link linkend="SCIHOME">SCIHOME</link>
             </member>
-        </simplelist>
-        <simplelist type="inline">
             <member>
                 <link linkend="SCI">SCI</link>
             </member>

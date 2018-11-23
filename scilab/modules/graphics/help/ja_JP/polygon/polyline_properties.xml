@@ -589,7 +589,7 @@ f.children.y_label.font_size = 3;
                 <revnumber>5.4.0</revnumber>
                 <revremark>line_style = 0 は廃止予定です.代わりに 1 を使用してください
                     (両者は等価で,共に実線を意味します). Scilab 5.4.1以降,値0を使用すると
-                    エラーを発生します.
+                    エラーを発生します. New line_style values 9 and 10 added.
                 </revremark>
             </revision>
             <revision>

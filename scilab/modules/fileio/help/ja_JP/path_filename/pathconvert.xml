@@ -14,14 +14,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="pathconvert">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="pathconvert">
     <refnamediv>
         <refname>pathconvert</refname>
         <refpurpose>POSIXおよびwindowsの間でパス名を変換.  </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>paths=pathconvert(paths [,flagtrail [,flagexpand [,type]]])</synopsis>
+        <synopsis>
+          paths = pathconvert(paths)
+          paths = pathconvert(paths, flagtrail)
+          paths = pathconvert(paths, flagtrail, flagexpand)
+          paths = pathconvert(paths, flagtrail, flagexpand, type)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -111,5 +119,16 @@ pathconvert("/cygdrive/c/tmp",%f,%f,"w")
                 <link linkend="listfiles">listfiles</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.2.0</revnumber>
+                <revdescription>
+                    flagtrail=%f now removes existing trailing "/" or "\" separators.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

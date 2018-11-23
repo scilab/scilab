@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="deletefile" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="deletefile" xml:lang="en">
     <refnamediv>
         <refname>deletefile</refname>
         <refpurpose>deletes a file</refpurpose>
@@ -45,8 +48,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function deletes a file <varname>filename</varname>. If file <varname>filename</varname> has been deleted, it will return <constant>%t</constant> else
-            <constant>%f</constant>.
+            This function deletes a file <varname>filename</varname>.
+            If file <varname>filename</varname> has been deleted,
+            it will return <constant>%t</constant> else <constant>%f</constant>.
         </para>
     </refsection>
     <refsection>
@@ -63,6 +67,17 @@ deletefile(TMPDIR+'/notexistingfile')
 
 deletefile(TMPDIR+['/notexistingfile' '/notexistingsecondfile'])
     ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mdelete">mdelete</link>
+            </member>
+            <member>
+                <link linkend="rmdir">rmdir</link>
+            </member>
+        </simplelist>
     </refsection>
     <refsection>
         <title>History</title>

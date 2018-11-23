@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="root_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="root_properties">
     <refnamediv>
         <refname>root_properties</refname>
         <refpurpose>ルートオブジェクトプロパティの説明.</refpurpose>
@@ -91,8 +94,26 @@ get(0, "screendepth")
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="get">get</link>
+                <link linkend="getsystemmetrics">getsystemmetrics</link>
             </member>
-        </simplelist>
+            <member>
+                <link linkend="system_getproperty">system_getproperty</link>
+            </member>
+            <member>
+                <link linkend="console_properties">console_properties</link>
+            </member>
+            <member>
+                <link linkend="usecanvas">usecanvas</link>
+            </member>
+            <member>
+                <link linkend="getlookandfeel">getlookandfeel</link>
+            </member>
+            <member>
+                <link linkend="preferences">preferences</link>
+            </member>
+            <member>
+                <link linkend="printsetupbox">printsetupbox</link>
+            </member>
+      </simplelist>
     </refsection>
 </refentry>

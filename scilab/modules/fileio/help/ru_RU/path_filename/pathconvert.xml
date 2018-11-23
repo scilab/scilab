@@ -14,14 +14,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="pathconvert">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="pathconvert">
     <refnamediv>
         <refname>pathconvert</refname>
         <refpurpose>преобразование имён путей между POSIX и Windows.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>paths = pathconvert(paths [,flagtrail [,flagexpand [,type]]])</synopsis>
+        <synopsis>
+          paths = pathconvert(paths)
+          paths = pathconvert(paths, flagtrail)
+          paths = pathconvert(paths, flagtrail, flagexpand)
+          paths = pathconvert(paths, flagtrail, flagexpand, type)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -148,6 +156,17 @@ pathconvert("/cygdrive/c/tmp", %f, %f, "w")
                 <link linkend="dirname">dirname</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.2.0</revnumber>
+                <revdescription>
+                  <literal>flagtrail=%f</literal> теперь удаляет имеющиеся разделители "/" или "\" в конце строк.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
 

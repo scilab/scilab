@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002 - INRIA
-    *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2002 - INRIA
+ * Copyright (C) 2012 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +14,18 @@
  * along with this program.
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="lines">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="lines">
     <refnamediv>
         <refname>lines</refname>
         <refpurpose>表示に使用される行および列</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>lines(nl)
+        <synopsis>
+            lines(nl)
             lines(nl, nc)
             lines(ncl)
             ncl = lines()
@@ -88,14 +93,51 @@
             自動的に修正されます.
         </para>
     </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+lines(0,100)
+rand(2,8)
+
+lines(0,65)
+rand(2,8)
+   ]]></programlisting>
+      <screen><![CDATA[
+--> lines(0,100)
+--> rand(2,8)
+ ans  =
+   0.2113249   0.0002211   0.6653811   0.8497452   0.8782165   0.5608486   0.7263507   0.5442573
+   0.7560439   0.3303271   0.6283918   0.685731    0.068374    0.6623569   0.1985144   0.2320748
+
+--> lines(0,65)
+--> rand(2,8)
+ ans  =
+         column 1 to 5
+   0.2312237   0.8833888   0.3076091   0.2146008   0.3616361
+   0.2164633   0.6525135   0.9329616   0.312642    0.2922267
+
+         column 6 to 8
+   0.5664249   0.3321719   0.5015342
+   0.4826472   0.5935095   0.4368588
+]]></screen>
+    </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="mode">mode</link>
+            </member>
+            <member>
+                <link linkend="format">format</link>
+            </member>
             <member>
                 <link linkend="disp">disp</link>
             </member>
             <member>
                 <link linkend="print">print</link>
+            </member>
+            <member>
+                <link linkend="clc">clc</link>
             </member>
         </simplelist>
     </refsection>

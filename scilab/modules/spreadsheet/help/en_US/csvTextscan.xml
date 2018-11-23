@@ -14,7 +14,7 @@
     <refnamediv>
         <refname>csvTextScan</refname>
 
-        <refpurpose>Convert a comma-separated value to a matrix</refpurpose>
+        <refpurpose>Converts into a matrix texts representing separated values</refpurpose>
     </refnamediv>
 
     <refsynopsisdiv>
@@ -37,7 +37,7 @@
                 <term>M</term>
 
                 <listitem>
-                    <para>a m-by-1 or 1-by-m matrix of strings.</para>
+                    <para>vector of strings. UTF-8 strings are supported.</para>
                 </listitem>
             </varlistentry>
 
@@ -45,7 +45,7 @@
                 <term>separator</term>
 
                 <listitem>
-                    <para>a 1-by-1 matrix of strings, the column separator mark.</para>
+                    <para>a string: the column separator mark.</para>
                 </listitem>
             </varlistentry>
 
@@ -53,31 +53,39 @@
                 <term>decimal</term>
 
                 <listitem>
-                    <para>a 1-by-1 matrix of strings, the decimal mark. The available
-                        values are "." or ",".
+                    <para>a string: the decimal mark. The available values are "." or ",".
                     </para>
                     <para>
-                        If <literal>decimal</literal> is different of <literal>[]</literal> and <literal>conversion</literal> is set to <literal>string</literal>, the decimal conversion will be done.
+                        If <literal>decimal</literal> is not <literal>[]</literal> and
+                        <literal>conversion</literal> is set to <literal>string</literal>,
+                        the decimal conversion will be done.
                     </para>
                 </listitem>
             </varlistentry>
 
             <varlistentry>
                 <term>conversion</term>
-
                 <listitem>
-                    <para>a 1-by-1 matrix of strings, the type of the output
-                        <literal>A</literal>. Available values are "string" or
-                        "double".
+                    <para>
+                        "string" or "double": type of the expected output <literal>A</literal>.
+                         With "double",
+                        <itemizedlist>
+                            <listitem>
+                                any input that can't be parsed as a literal number is converted to
+                                <literal>%nan</literal>.
+                            </listitem>
+                            <listitem>
+                                literal complex numbers are supported.
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
 
             <varlistentry>
                 <term>range</term>
-
                 <listitem>
-                    <para>a 1-by-4 or 4-by-1 matrix of floating point integers, the
+                    <para>vector of 4 decimal integers: the
                         range of rows and columns which must be read (default range=[],
                         meaning that all the rows and columns). Specify range using the
                         format <literal>[R1 C1 R2 C2]</literal> where (R1,C1) is the upper
@@ -89,9 +97,12 @@
 
             <varlistentry>
                 <term>A</term>
-
                 <listitem>
-                    <para>a m-by-n matrix of strings or double.</para>
+                  <para>
+                    matrix of strings or double, with as many rows as <literal>M</literal> has
+                    components: <literal>A(i,:)</literal> is the conversion result of
+                    <literal>M(i)</literal>.
+                  </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -99,29 +110,22 @@
 
     <refsection>
         <title>Description</title>
-
-        <para>Given an ascii file with delimited fields, this function returns the
-            corresponding Scilab matrix of strings or doubles.
-        </para>
-
         <para>
-            The <literal>csvTextScan</literal> function has the same purpose as
-            <literal>csvRead</literal>, except that <literal>csvTextScan</literal>
-            reads in a string, while <literal>csvRead</literal> reads in a
-            file.
+            Given a text matrix with delimited fields, this function returns the
+            corresponding Scilab matrix of strings or of decimal or complex numbers.
         </para>
-
-        <para>The default value of the optional input arguments are defined by the
+        <para>
+            To skip an input argument and use its default value, specify [].
+        </para>
+        <para>
+            The default values of optional input arguments are defined by the
             <literal>csvDefault</literal> function.
         </para>
-
-        <para>Any optional input argument equal to the empty matrix
-            <literal>[]</literal> is set to its default value.
-        </para>
-
-        <para>When input argument "conversion" is equal to "double", strings are
-            converted as NaN.
-        </para>
+        <note>
+            The <literal>csvTextScan</literal> and <literal>csvRead</literal> functions have the
+            same purpose. <literal>csvTextScan</literal> input are strings,
+            while <literal>csvRead</literal> reads from a file.
+        </note>
     </refsection>
 
     <refsection>
@@ -164,7 +168,9 @@ csvTextScan( Atext , ";" , "," )
             <revision>
                 <revnumber>5.4.1</revnumber>
                 <revremark>
-                    If <literal>decimal</literal> is different of <literal>[]</literal> and <literal>conversion</literal> is set to <literal>string</literal>, the decimal conversion will be done.
+                    If <literal>decimal</literal> is not <literal>[]</literal> and
+                    <literal>conversion</literal> is set to <literal>string</literal>,
+                    the decimal conversion will be done.
                 </revremark>
             </revision>
         </revhistory>

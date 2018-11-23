@@ -14,14 +14,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="pathconvert">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="pathconvert">
     <refnamediv>
         <refname>pathconvert</refname>
         <refpurpose>converts a path to an OS path format.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>paths = pathconvert(paths [,flagtrail [,flagexpand [,type]]])</synopsis>
+        <synopsis>
+          paths = pathconvert(paths)
+          paths = pathconvert(paths, flagtrail)
+          paths = pathconvert(paths, flagtrail, flagexpand)
+          paths = pathconvert(paths, flagtrail, flagexpand, type)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -56,7 +64,9 @@
                 <term>type</term>
                 <listitem>
                     <para>
-                        optional string, used to specify the target path format: <literal>'u'</literal> for POSIX path format (GNU/Linux,...), and <literal>'w'</literal> for Windows path format.
+                        optional string, used to specify the target path format: <literal>'u'</literal>
+                        for POSIX path format (GNU/Linux,...), and <literal>'w'</literal> for
+                        Windows path format.
                     </para>
                 </listitem>
             </varlistentry>
@@ -66,18 +76,20 @@
         <title>Description</title>
         <para>
             <function>pathconvert</function> is used to convert a set of paths,
-            to be compatible with an OS (Operating System) path format. For example Windows path style uses <literal>/</literal> for file separator, while it is <literal>\</literal> on other OS.
+            to be compatible with an OS (Operating System) path format.
+            For example Windows path style uses <literal>/</literal> for file separator,
+            while it is <literal>\</literal> on other OS.
         </para>
         <para>
-            By default, the paths are converted to the current OS path format (but another path format can be specified with argument <varname>type</varname>).
+            By default, the paths are converted to the current OS path format (but another path
+            format can be specified with argument <varname>type</varname>).
         </para>
-        <para>
-            <note>
-                Note: Windows paths starting with a drive letter prefix are converted to
-                the POSIX paths using the cygwin convention (with <literal>/cygdrive</literal>).
-                For example: <literal>C:\tmp</literal> will be converted to <literal>/cygdrive/C/tmp</literal>.
-            </note>
-        </para>
+        <note>
+            When some Windows-like paths starting with a drive letter like "C:" are converted
+            to a non-Windows format, the drive letter is then converted using the
+            cygwin convention,  with the <literal>/cygdrive/</literal> header.
+            For example, <literal>C:\tmp</literal> will be converted to <literal>/cygdrive/C/tmp</literal>.
+        </note>
         <para>
             <varname>flagtrail</varname> is used to add or remove a file
             separator (depending on the target path format) to the end
@@ -137,5 +149,16 @@ pathconvert("/cygdrive/c/tmp", %f, %f, "w")
                 <link linkend="dirname">dirname</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.2.0</revnumber>
+                <revdescription>
+                    flagtrail=%f now removes existing trailing "/" or "\" separators.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -15,7 +15,10 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rand" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="rand" xml:lang="ja">
 
     <refnamediv>
 
@@ -277,7 +280,7 @@
 
                         乱数生成器が一様分布の乱数生成器に
 
-                        設定されます.乱数は(0,1)の範囲の一様分布となります.
+                        設定されます.乱数は[0,1)の範囲の一様分布となります.
 
                     </para>
 
@@ -469,7 +472,7 @@ r=rand(2,2,2)
 
             "uniform" 擬似乱数生成器は,
 
-            範囲(0,1)において独立して一様分布する
+            範囲[0,1)において独立して一様分布する
 
             数を再現することを目的とする決定論的数列です.
 
@@ -533,42 +536,24 @@ rand("seed",n);
         </para>
 
         <para>
-
-            <latex>
-
-                $$
-
-                x = (a x + c) \textrm{mod} M
-
-                $$
-
-            </latex>
-
+             x = (a x + c) mod M
         </para>
 
         <para>
 
             ただし,定数を以下に示します
-
-        </para>
-
-        <para>
-
-            <latex><![CDATA[
-	  \begin{eqnarray}
-      a &=& 843314861\\
-      c &=& 453816693\\
-      M &=& 2^{31}
-	  \end{eqnarray}
- ]]></latex>
-
+          <table border="0" cellpadding="0">
+             <tr><td>a = 843314861</td></tr>
+             <tr><td>c = 453816693</td></tr>
+             <tr><td>M = 2<superscript>31</superscript></td></tr>
+          </table>
         </para>
 
         <para>
 
             著者によれば,この生成器はフルレングス生成器であり,
 
-            つまり,周期は<latex>M=2^{31}=2147483648</latex>です.
+            つまり,周期はM=2<superscript>31</superscript>=2147483648です.
 
         </para>
 
