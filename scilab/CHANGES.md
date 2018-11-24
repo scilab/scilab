@@ -693,6 +693,7 @@ Known issues
 * [#15878](http://bugzilla.scilab.org/show_bug.cgi?id=15878): `sgrid` and `evans` were broken.
 * [#15880](http://bugzilla.scilab.org/show_bug.cgi?id=15880): `sgrid` needed some improvements: Labeling was sometimes ambiguous ; large circles were not labeled ; data_bounds did not always take the input wn into account ; named and #RRGGBB colors specifications could not be used. `evans` needed some improvements: the block of legends hid data ; asymptotes were too visible.
 * [#15881](http://bugzilla.scilab.org/show_bug.cgi?id=15881): Demos about stems, bars and histograms were spread in several subsections.
+* [#15884](http://bugzilla.scilab.org/show_bug.cgi?id=15884): `bode` frequencies ticking and grid style were poor. With legends, the phase plot was vertically shrunk and some graphical space was lost below it.
 * [#15886](http://bugzilla.scilab.org/show_bug.cgi?id=15886): Display of polynomials was broken.
 * [#15890](http://bugzilla.scilab.org/show_bug.cgi?id=15890): `evstr` sometimes yielded some `+[]` warnings.
 * [#15891](http://bugzilla.scilab.org/show_bug.cgi?id=15891): Help pages of matrix-wise trigonometrical functions deserved a dedicated subsection.

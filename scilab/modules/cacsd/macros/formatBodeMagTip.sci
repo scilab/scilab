@@ -17,8 +17,9 @@ function str = formatBodeMagTip(datatipHandle)
     unit = gettext("Hz")
     a = datatipHandle.parent.parent;
     while a.type~="Axes", a = a.parent, end
-    if grep(a.x_label.text,"rad/s")~=[] then
-        unit = gettext("rad/s")
+    unit2 = gettext("rad/s")
+    if grep(a.x_label.text, unit2)~=[] then
+        unit = unit2
     end
 
     pt = datatipHandle.data(1:2);

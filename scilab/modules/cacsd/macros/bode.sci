@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1985 - 2016 - INRIA - Serge Steer
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -103,14 +104,9 @@ function [] = bode(varargin)
     phi = phi';
     [n, mn] = size(d);
 
-    if comments == [] then
-        hx = 0.48;
-    else
-        if size(comments, "*") <> mn then
-            error(mprintf(_("%s: Incompatible input arguments #%d and #%d: Same number of elements expected.\n"), ...
-            fname, refdim, rhs+1))
-        end
-        hx = 0.43;
+    if comments <> [] & size(comments, "*") <> mn then
+        msg = _("%s: Incompatible input arguments #%d and #%d: Same number of elements expected.\n")
+        error(mprintf(msg, fname, refdim, rhs+1))
     end
 
     fig = gcf();
@@ -121,12 +117,14 @@ function [] = bode(varargin)
     axes = sciCurAxes;
     wrect = axes.axes_bounds;
 
-
-    // Magnitude
-    axes.axes_bounds = [wrect(1)+0, wrect(2)+0, wrect(3)*1.0, wrect(4)*hx*0.95];
+    // Magnitude plot
+    // --------------
+    axes.axes_bounds = [wrect(1), wrect(2), wrect(3), wrect(4)*0.5];
     axes.data_bounds = [min(frq), min(d); max(frq), max(d)];
     axes.log_flags = "lnn";
     axes.grid = color("lightgrey")*ones(1, 3);
+    axes.grid_style = [8 8];
+    axes.sub_ticks(1) = 8;
     axes.axes_visible = "on";
     axes.clip_state = "clipgrf";
     if size(d, 2) > 1 & size(frq, 2) == 1 then
@@ -148,12 +146,15 @@ function [] = bode(varargin)
     end
     xtitle("", _("Frequency (Hz)"), _("Magnitude (dB)"));
 
-    // Phase
+    // Phase plot
+    // ----------
     axes = newaxes();
-    axes.axes_bounds = [wrect(1)+0, wrect(2)+wrect(4)*hx, wrect(3)*1.0, wrect(4)*hx*0.95];
+    axes.axes_bounds = [wrect(1), wrect(2)+wrect(4)*0.5, wrect(3), wrect(4)*0.5];
     axes.data_bounds = [min(frq), min(phi); max(frq), max(phi)];
     axes.log_flags = "lnn";
     axes.grid = color("lightgrey")*ones(1, 3);
+    axes.grid_style = [8 8];
+    axes.sub_ticks(1) = 8;
     axes.axes_visible = "on";
     axes.clip_state = "clipgrf";
     if size(phi, 2) > 1 & size(frq, 2) == 1 then
@@ -173,15 +174,34 @@ function [] = bode(varargin)
         e.foreground = 5;
     end
     xtitle("", _("Frequency (Hz)"), _("Phase (degree)"));
+
     // Create legend
+    // -------------
     if comments <> [] then
         c = captions(ephi.children, comments, "lower_caption");
         c.background = get(gcf(), "background");
     end
+
+    // Rendering
     fig.immediate_drawing = immediate_drawing;
-    // Return to the previous scale
+
+    // Post-tuning the vertical distribution of Bode plots
+    // ---------------------------------------------------
+    // (only after rendering, otherwise the legend position is [0 0] (bug))
+    if comments <> [] then
+        LgH = (1-c.position(2))*wrect(4)*0.5; // Legend height
+        // Ah = Magnitude axes height.
+        // Ah + Ah+LgH*Ah/0.5 = wrect(4)  => Ah (1 + 1 + 2*LgH) = wrect(4)
+        Ah = wrect(4)/(2+2*LgH);
+        axes.axes_bounds([2 4]) = [wrect(2)+Ah, wrect(4)-Ah];
+        gcf().children(2).axes_bounds(4) = Ah*1.05;  // Magnitude plot
+    end
+
+    // Returns to the initial axes
     set("current_axes", sciCurAxes);
 
+    // rad/s mode
+    // ----------
     if rad == %t then
         // This function modifies the Bode diagrams for a rad/s display instead of Hz.
         // h is a hanlde of a figure containing Bode diagrams.

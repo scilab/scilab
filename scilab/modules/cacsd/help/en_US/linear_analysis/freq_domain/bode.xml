@@ -31,7 +31,7 @@
             bode(frq, db, phi)
             bode(frq, repf)
             bode(.., Captions)
-            bode(.., Captions, "rad")
+            bode(.., "rad")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -98,7 +98,8 @@
             <varlistentry>
                 <term>"rad"</term>
                 <listitem>
-                    <para>converts the frequency from Hz into rad/s (multiplies by 2π),
+                    <para>as last optional argument: displays the Bode plot versus Angular frequencies
+                      in rad/s, instead of versus frequencies in Hz.
                     </para>
                 </listitem>
             </varlistentry>
