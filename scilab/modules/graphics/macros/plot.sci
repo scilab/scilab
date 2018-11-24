@@ -72,7 +72,7 @@ function plot(varargin)
         acceptedTypes=[];
         // double, macro function or primitive,
         //    or list(macro|primitive, params) accepted as second argument
-        acceptedTypes=find(Ttmp(i,1)==1 & or(Ttmp(i+1,1)==[1,13,130,15])) 
+        acceptedTypes=find(Ttmp(i,1)==1 & or(Ttmp(i+1,1)==[1,13,130,15]))
         if (acceptedTypes<>[]) then
             couple=[couple i];
             Ttmp(i,1)  = 99; // Replace a known type by 99 (no meaning) to count it once only!
@@ -230,7 +230,7 @@ function plot(varargin)
                     s1 = min(3,sizefirstarg(1,1))
                     s2 = min(3,sizefirstarg(1,2))
                     tmp = buildFunc(firstarg(1:s1,1:s2), params(:))
-                    isvectorized = and(size(tmp)==[s1 s2]);
+                    isvectorized = and(size(tmp)==[s1 s2])  | size(tmp,1)==s1*s2;;
                 catch
                     isvectorized = %f;
                 end
