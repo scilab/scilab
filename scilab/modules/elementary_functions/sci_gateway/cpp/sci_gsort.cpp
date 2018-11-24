@@ -30,6 +30,14 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    // In all cases, to later test in[0]:
+    if (in.size() < 1)
+    {
+        Scierror(77, _("%s: Wrong number of input argument(s): At least %d expected.\n"), "gsort", 1);
+        return types::Function::Error;
+    }
+    // The maximal number of input args may depend on the input data type, due to specific options
+
     //
     // Special cases
     //
@@ -62,7 +70,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     // Common case
     //
 
-    if (in.size() < 1 || in.size() > 3)
+    if (in.size() > 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "gsort", 1, 3);
         return types::Function::Error;
