@@ -470,6 +470,7 @@ Known issues
 * [#12275](http://bugzilla.scilab.org/show_bug.cgi?id=12275): `msprintf("%s",ascii(97*ones(1,4097)))` produced "An error occurred: Buffer too small."
 * [#12345](http://bugzilla.scilab.org/show_bug.cgi?id=12345): `tree_show` is a list-specific function. Its page was expected in the data_structures chapter rather than in the general GUI chapter. It is moved.
 * [#12402](http://bugzilla.scilab.org/show_bug.cgi?id=12402): The menu `Applications => Scinotes` could launch the external editor instead of Scinotes.
+* [#12477](http://bugzilla.scilab.org/show_bug.cgi?id=12477): Any `atomsRemove` error in `scilab.start` made any forthcoming session unusable.
 * [#12520](http://bugzilla.scilab.org/show_bug.cgi?id=12520): Variable browser did not display the size of the variables.
 * [#12529](http://bugzilla.scilab.org/show_bug.cgi?id=12529): The `listvarinfile` help page needed to be updated.
 * [#12534](http://bugzilla.scilab.org/show_bug.cgi?id=12534): Variable browser did not display the size of the variables.

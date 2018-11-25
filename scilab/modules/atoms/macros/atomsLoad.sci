@@ -54,11 +54,11 @@ function result = atomsLoad(packages)
     // Complete packages matrix with empty columns
     // =========================================================================
 
-    if size(packages(1,:),"*") == 1 then
-        packages = [ packages emptystr(size(packages(:,1),"*"),1) emptystr(size(packages(:,1),"*"),1) ];
+    if size(packages, 2) == 1 then
+        packages = [ packages emptystr(size(packages,1), 2) ];
 
-    elseif size(packages(1,:),"*") == 2 then
-        packages = [ packages emptystr(size(packages(:,1),"*"),1) ];
+    elseif size(packages, 2) == 2 then
+        packages = [ packages emptystr(packages(:,1)) ];
 
     end
 
@@ -87,8 +87,8 @@ function result = atomsLoad(packages)
 
     // Loop on input parameter
     // =========================================================================
-
-    for i=1:size(packages(:,1),"*")
+    i_ignore = [];
+    for i = 1:size(packages, 1)
 
         // The module's installed version hasn't been specified or is empty
         // → Set the MRV available
@@ -108,9 +108,15 @@ function result = atomsLoad(packages)
 
             if isempty(this_module_versions) then
                 if section == "all" then
-                    error(msprintf(gettext("%s: Module ''%s'' is not installed.\n"),"atomsLoad",packages(i,1)));
+                    msg = gettext("%s: Module ''%s'' is not installed.\n")
+                    warning(msprintf(msg, "atomsLoad", packages(i,1)));
+                    i_ignore = [i_ignore i];
+                    continue
                 else
-                    error(msprintf(gettext("%s: Module ''%s'' is not installed (''%s'' section).\n"),"atomsLoad",packages(i,1),section));
+                    msg = gettext("%s: Module ''%s'' is not installed (''%s'' section).\n")
+                    warning(msprintf(msg, "atomsLoad", packages(i,1), section));
+                    i_ignore = [i_ignore i];
+                    continue
                 end
             else
                 packages(i,2) = this_module_versions(1);
@@ -119,7 +125,10 @@ function result = atomsLoad(packages)
         else
 
             if ~atomsIsInstalled([packages(i,1) packages(i,2)]) then
-                error(msprintf(gettext("%s: Module ''%s - %s'' is not installed.\n"),"atomsLoad",packages(i,1),packages(i,2)));
+                msg = gettext("%s: Module ''%s - %s'' is not installed.\n")
+                warning(msprintf(msg, "atomsLoad", packages(i,1), packages(i,2)));
+                i_ignore = [i_ignore i];
+                continue
             end
 
             // If the packaging version is not mentioned, define it
@@ -152,7 +161,8 @@ function result = atomsLoad(packages)
             if ~ atomsIsInstalled([packages(i,1) packages(i,2)],packages(i,3)) then
                 mprintf(gettext("%s: The following modules are not installed:\n"),"atomsAutoloadAdd");
                 mprintf("\t - ''%s - %s'' (''%s'' section)\n",packages(i,1),packages(i,2),packages(i,3));
-                error("");
+                i_ignore = [i_ignore i];
+                continue
             end
 
         end
@@ -162,6 +172,7 @@ function result = atomsLoad(packages)
         packages(i,4) = atomsGetInstalledPath([packages(i,1) packages(i,2) packages(i,3)]);
 
     end
+    packages(i_ignore,:) = []
 
     // Loop on packages gived by the user
     // =========================================================================
@@ -170,7 +181,7 @@ function result = atomsLoad(packages)
     mandatory_packages_name = struct();
     mandatory_packages_mat  = [];
 
-    for i=1:size(packages(:,1),"*")
+    for i = 1:size(packages,1)
 
         this_package_name    = packages(i,1);
         this_package_version = packages(i,2);
