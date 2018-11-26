@@ -480,6 +480,7 @@ Known issues
 * [#13915](http://bugzilla.scilab.org/show_bug.cgi?id=13915): On Windows, reinstalling an ATOMS toolbox with an archive already present failed.
 * [#13936](http://bugzilla.scilab.org/show_bug.cgi?id=13936): The exponentiation of a matrix was much slower than its multiple products.
 * [#14010](http://bugzilla.scilab.org/show_bug.cgi?id=14010): Browsevar was not displaying dimensions > 2 of hypermatrix
+* [#14122](http://bugzilla.scilab.org/show_bug.cgi?id=14122): Some SCI/.atoms/tmp_<unix_timestamp> could be created instead of in TMPDIR, and remained in case of installation error.
 * [#14218](http://bugzilla.scilab.org/show_bug.cgi?id=14218): Karmarkar post-process fails on some problems.
 * [#14282](http://bugzilla.scilab.org/show_bug.cgi?id=14282): `listvarinfile(fn)` and `load(fn)` yielded some memory leak.
 * [#14296](http://bugzilla.scilab.org/show_bug.cgi?id=14296): Xcos labels moving after creating blocks using scripts crashed Scilab.
