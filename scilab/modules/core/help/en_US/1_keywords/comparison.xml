@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="comparison">
+<!--
+ *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) - INRIA
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="comparison">
     <refnamediv>
         <refname>comparison</refname>
         <refpurpose>comparison, relational operators</refpurpose>
@@ -51,7 +68,8 @@
                 <term>The equality and inequality comparisons: </term>
                 <listitem>
                     <para>
-                        <literal>a==b</literal>, <literal>a~=b</literal> (or equivalently <literal>a&lt;&gt;b</literal>).
+                        <literal>a==b</literal>, <literal>a~=b</literal>
+                        (or equivalently <literal>a&lt;&gt;b</literal>).
                         These operators apply to any type of operands.
                     </para>
                 </listitem>
@@ -62,31 +80,31 @@
                     <para>
                         <literal>a&lt;b</literal>, <literal>a&lt;=b</literal>,
                         <literal>a&gt;b</literal>, <literal>a&gt;=b</literal>. These operators apply
-                        only to real floating point and integer arrays.
+                        only to integer and real numbers.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>The semantics of the comparison operators also depend on the operands types:</para>
+        <para>The result of the comparison operators also depends on the operands types:</para>
         <variablelist>
             <varlistentry>
                 <term>With array variables </term>
                 <listitem>
-                    <para> like floating point and integer arrays, logical arrays,
-                        string arrays, polynomial and rational arrays, handle arrays, lists... the following rules apply:
+                    <para>arrays of numbers, boolean arrays, string arrays, polynomial and rational
+                      arrays, handle arrays, lists... the following rules apply:
                     </para>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                If <literal>a</literal> and <literal>b</literal> evaluates as arrays with same types
-                                and identical dimensions, the comparison is performed element by
-                                element and the result is an array of booleans of the same size.
+                                If <literal>a</literal> and <literal>b</literal> are arrays with same
+                                types and sizes, the comparison is performed element by
+                                element and the result is an array of booleans of the same sizes.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                If <literal>a</literal> and <literal>b</literal> evaluates as arrays
-                                with same types, but <literal>a</literal> or <literal>b</literal> is a scalar,
+                                If <literal>a</literal> and <literal>b</literal> have the same type
+                                and <literal>a</literal> or <literal>b</literal> is a scalar,
                                 then the scalar is compared with each element of the
                                 other array. The result is an array of booleans of the size of
                                 the non scalar operand.
@@ -94,20 +112,19 @@
                         </listitem>
                         <listitem>
                             <para>
-                                If <literal>a</literal> or <literal>b</literal> are arrays, but one of them
-                                is empty, then an equality or an inequality comparison is possible. In this case,
-                                the result is a scalar boolean.
+                                If <literal>a</literal> or <literal>b</literal> is an array while
+                                the other one is empty, then the result is a scalar boolean.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                In the others cases the result is the boolean <literal>%f</literal>
+                                In all other cases, the result is <literal>%F</literal>
                             </para>
                         </listitem>
                         <listitem>
                             <para>If the operand data types are different but "compatible" like
-                                floating points and integers, then a type conversion is performed before
-                                the comparison.
+                                decimal numbers and encoded integers, then a type conversion is
+                                performed before the comparison.
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -129,6 +146,44 @@
                 </listitem>
             </varlistentry>
         </variablelist>
+        <warning>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Polynomials</emphasis>:
+                        <literal>%s==%z</literal> returns <literal>%F</literal> :
+                        Two polynomials can't be considered as equal if they are not about the
+                        same variable.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Rationals</emphasis>:
+                        <literal>1/%s == 1/%z</literal> returns <literal>%F</literal> :
+                        Two rationals can't be equal if they are not about the same variable.
+                        In addition, the same rational may have different unnormalized forms
+                        that won't be considered as equal.
+                        For instance, <literal>2/(2*%z) == 1/%z</literal> returns <literal>%F</literal>,
+                        even in <literal>simp_mode(%T)</literal> simplification mode.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Sparse numerical matrix</emphasis>: any element-wise
+                        comparison with a full-encoded numerical array always returns a
+                        boolean sparse array. See examples.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        <emphasis role="bold">Graphics identifiers</emphasis>: A graphic handle
+                        <literal>h1</literal> and its copy <literal>h2=h1</literal> will always
+                        stay equal, even if the graphics is changed through one of them.
+                        See examples.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -150,15 +205,192 @@ list(1,2,3)==1
 
 isequal(list(1,2,3),1)
 isequal(1:10,1)
-
-//comparison with type conversion
-int32(1)==1
-int32(1)<1.5
-int32(1:5)<int8(3)
-p=poly(0,'s','c')
-p==0
-p/poly(1,'s','c')==0
  ]]></programlisting>
+        <para/>
+        <para>
+            Comparisons with implicit conversion of type or encoding:
+        </para>
+        <programlisting role="example"><![CDATA[
+int32(1) == 1
+int32(1) < 1.5
+int32(1:5) < int8(3)
+1 == complex(1,0)
+1 > complex(1,0)  // still OK, but..
+1 > complex(1,1)  // => error: complex numbers not orderable
+ ]]></programlisting>
+    <screen><![CDATA[
+--> int32(1) == 1
+ ans  =
+  T
+
+--> int32(1) < 1.5
+ ans  =
+  T
+
+--> int32(1:5) < int8(3)
+ ans  =
+  T T F F F
+
+--> 1 == complex(1,0)
+ ans  =
+  T
+
+--> 1 > complex(1,0)  // still OK, but..
+ ans  =
+  F
+
+--> 1 > complex(1,1)  // => error: complex numbers not orderable
+at line    11 of function %s_2_s ( SCI\modules\overloading\macros\%s_2_s.sci line 23 )
+Complex comparison not supported. Please define %s_2_s_custom() or check your code.
+]]></screen>
+        <para/>
+        <para>
+            Comparisons with polynomials and rationals:
+        </para>
+        <programlisting role="example"><![CDATA[
+p = 0*%s
+p == 0
+r = p/(1+0*%s)
+r == 0
+r == p
+ps = (1-%s)^2, pz = (1-%z)^2
+ps == pz  // => %F : same variable required
+ ]]></programlisting>
+    <screen><![CDATA[
+--> p = 0*%s
+ p  =
+   0
+
+--> p == 0
+ ans  =
+  T
+
+--> r = p/(1+0*%s)
+ r  =
+   0
+   --
+   1
+
+--> r == 0
+ ans  =
+  T
+
+--> r == p
+ ans  =
+  T
+
+--> ps = (1-%s)^2, pz = (1-%z)^2
+ ps  =
+             2
+   1  -2s +s
+ pz  =
+             2
+   1  -2z +z
+
+--> ps == pz  // => %F : same variable required
+ ans  =
+  F
+]]></screen>
+        <para/>
+        <para>
+            Comparisons with a sparse numerical matrix: All element-wise comparisons yield
+            a sparse-encoded result, <literal>%F</literal> otherwise.
+        </para>
+        <programlisting role="example"><![CDATA[
+sp = sparse([0 1 0 0 -2 0 4 0 0])
+sp < 0
+sp == 1
+sp >=       [2 3 -1 2 -4 0 3 1 0]
+sp == %i
+sp == list(3) // => %F
+ ]]></programlisting>
+    <screen><![CDATA[
+--> sp = sparse([0 1 0 0 -2 0 4 0 0])
+ sp  =
+(  1,  9) sparse matrix
+(  1,  2)     1.
+(  1,  5)    -2.
+(  1,  7)     4.
+
+--> sp < 0
+ ans  =
+(  1,  9) sparse matrix
+(  1,  5)   T
+
+--> sp == 1
+ ans  =
+(  1,  9) sparse matrix
+(  1,  2)   T
+
+--> sp >= [2 3 -1 2 -4 0 3 1 0]
+ ans  =
+(  1,  9) sparse matrix
+(  1,  3)   T
+(  1,  5)   T
+(  1,  6)   T
+(  1,  7)   T
+(  1,  9)   T
+
+--> sp == %i
+ ans  =
+(  1,  9)False sparse matrix
+
+--> sp == list(3)  // object comparison => dense %F
+ ans  =
+  F
+]]></screen>
+        <para/>
+        <para>
+            Comparisons between graphics identifiers:
+        </para>
+        <programlisting role="example"><![CDATA[
+plot2d()
+e1 = gce();
+e2 = e1;    // e1 and e2 point to the same graphical object
+e2.tag
+e1.tag = "3 curves";
+e1 == e2
+e2.tag
+ ]]></programlisting>
+    <screen><![CDATA[
+--> e2.tag
+ ans  =
+
+--> e1.tag = "3 curves";
+--> e1 == e2
+ ans  =
+  T
+
+--> e2.tag
+ ans  =
+ 3 curves
+]]></screen>
+        <para/>
+        <para>
+            Comparisons between functions aliases are possible:
+        </para>
+        <programlisting role="example"><![CDATA[
+sine = sin ;
+sine == sin
+sinus = sind ;
+sinus == sind
+sinus(0:90:360)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> sine = sin ;
+--> sine == sin
+ ans  =
+  T
+
+--> sinus = sind ;
+--> sinus == sind
+ ans  =
+  T
+
+--> sinus(0:90:360)
+ ans  =
+   0.   1.   0.  -1.   0.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -170,10 +402,13 @@ p/poly(1,'s','c')==0
                 <link linkend="greater">greater</link>
             </member>
             <member>
-                <link linkend="boolean">boolean</link>
+                <link linkend="equal">equal</link>
             </member>
             <member>
                 <link linkend="isequal">isequal</link>
+            </member>
+            <member>
+                <link linkend="boolean">boolean</link>
             </member>
         </simplelist>
     </refsection>
@@ -183,8 +418,16 @@ p/poly(1,'s','c')==0
             <revision>
                 <revnumber>6.0</revnumber>
                 <revdescription>
-                    <literal>~</literal> (not) priority is now higher than the comparisons one
-                    (<literal>==  ~=  &lt;  &lt;=  >=  ></literal>).
+                    <itemizedlist>
+                        <listitem>
+                            <literal>~</literal> (not) priority is now higher than the comparisons
+                            one (<literal>==  ~=  &lt;  &lt;=  >=  ></literal>).
+                        </listitem>
+                        <listitem>
+                            Complex numbers with a null imaginary part are now compared as real
+                            numbers.
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>
