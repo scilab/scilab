@@ -85,7 +85,7 @@ static types::Function::ReturnValue isdef(types::typed_list& in, int _iRetCount,
 
     types::InternalType *pIT;
     types::Bool* pBOut = new types::Bool(pStrIn->getDims(), pStrIn->getDimsArray());
-    
+
     switch (getScopeFromOption(psScope))
     {
         case All:
@@ -137,6 +137,7 @@ types::Function::ReturnValue sci_exists(types::typed_list &in, int _iRetCount, t
             pDblOut->set(i, (double) pBOut->get(i));
         }
         out.pop_back();
+        pBOut->killMe();
         out.push_back(pDblOut);
     }
 
