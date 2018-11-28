@@ -32,7 +32,7 @@ function [%val, %ierr] = evstr(%str)
         vars = ["Nan"  "NaN"  "Inf"  "INF"]
         vals = ["%nan" "%nan" "%inf" "%inf"]
         tmp = ~isdef(vars)
-        if tmp~=[]
+        if or(tmp)
             execstr(vars(tmp)+"="+vals(tmp))
         end
 
@@ -57,7 +57,7 @@ function [%val, %ierr] = evstr(%str)
         %t1 = strcat(%str, ",", "c")+";"
         %t1(1) = "%val=[" + %t1(1);
         %t1($) = part(%t1($), 1:length(%t1($)) - 1)+";";
-        %t1($+1)="]";
+        %t1($+1) = "]";
         %ierr = execstr(%t1, "errcatch");
         if lhs == 1 & %ierr~=0 then
             msg = _("%s: Argument #%d: Some expression can''t be evaluated (%s).\n")
