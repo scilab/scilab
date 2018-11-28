@@ -408,7 +408,7 @@ Known issues
 
 
 ### Bugs fixed in 6.0.2:
-* [#2247](http://bugzilla.scilab.org/show_bug.cgi?id=2247): The axes_properties page did not show how to yield vertical x-tick labels. `.grid_style`, `.grid_thickness`, and `.axes_bounds` inside a uicontrol frame were not documented. 
+* [#2247](http://bugzilla.scilab.org/show_bug.cgi?id=2247): The axes_properties page did not show how to yield vertical x-tick labels. `.grid_style`, `.grid_thickness`, and `.axes_bounds` inside a uicontrol frame were not documented.
 * [#2464](http://bugzilla.scilab.org/show_bug.cgi?id=2464): `null()` was poorly documented.
 * [#4050](http://bugzilla.scilab.org/show_bug.cgi?id=4050): `ged()` did not support graphical texts with a font size > 5.
 * [#4953](http://bugzilla.scilab.org/show_bug.cgi?id=4953): The `clean` function does not work when the matrix contains %inf.
@@ -652,10 +652,11 @@ Known issues
 * [#15818](http://bugzilla.scilab.org/show_bug.cgi?id=15818): `polarplot()` example could not be subplotted. `polarplot`'s demo did not display 'View code' and too often prompted the user.
 * [#15827](http://bugzilla.scilab.org/show_bug.cgi?id=15828): After `bode(..'rad')`, abscissae were titled 'Fréquence' instead of 'Pulsation' in french, and datatips still shew 'Hz' instead of 'rad/s'.
 * [#15847](http://bugzilla.scilab.org/show_bug.cgi?id=15847): Scilab crashed at startup.
-* [#15850](http://bugzilla.scilab.org/show_bug.cgi?id=15850): Adding a space after a string increases its size. 
+* [#15850](http://bugzilla.scilab.org/show_bug.cgi?id=15850): Adding a space after a string increases its size.
 * [#15854](http://bugzilla.scilab.org/show_bug.cgi?id=15854): `horner(1:$,4)` yielded an error. Extractions from `cblock` tables were impacted.
 * [#15878](http://bugzilla.scilab.org/show_bug.cgi?id=15878): `sgrid` and `evans` were broken.
 * [#15880](http://bugzilla.scilab.org/show_bug.cgi?id=15880): `sgrid` needed some improvements: Labeling was sometimes ambiguous ; large circles were not labeled ; data_bounds did not always take the input wn into account ; named and #RRGGBB colors specifications could not be used. `evans` needed some improvements: the block of legends hid data ; asymptotes were too visible.
+* [#15886](http://bugzilla.scilab.org/show_bug.cgi?id=15886): Display of polynomials was broken.
 * [#15890](http://bugzilla.scilab.org/show_bug.cgi?id=15890): `evstr` sometimes yielded some `+[]` warnings.
 * [#15907](http://bugzilla.scilab.org/show_bug.cgi?id=15907): `filter` was corrupting its input state array
 * [#15920](http://bugzilla.scilab.org/show_bug.cgi?id=15920): genlib() did not regenerate a missing .bin if the .sci was unchanged (Scilab 6 regression)
