@@ -522,8 +522,8 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
         throw;
     }
 
-    bool elseIsContinue = e.hasElse() && (&e.getElse())->isContinue();
-    if (e.isBreakable() && (elseIsContinue || (&e.getThen())->isBreak()))
+    bool elseIsBreak = e.hasElse() && (&e.getElse())->isBreak();
+    if (e.isBreakable() && (elseIsBreak || (&e.getThen())->isBreak()))
     {
         const_cast<IfExp*>(&e)->setBreak();
         const_cast<Exp*>(&e.getThen())->resetBreak();
@@ -533,6 +533,7 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
         }
     }
 
+    bool elseIsContinue = e.hasElse() && (&e.getElse())->isContinue();
     if (e.isContinuable() && (elseIsContinue || (&e.getThen())->isContinue()))
     {
         const_cast<IfExp*>(&e)->setContinue();
@@ -544,8 +545,7 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
     }
 
     bool elseIsReturn = e.hasElse() && (&e.getElse())->isReturn();
-    if (e.isReturnable()
-            && (elseIsReturn || (&e.getThen())->isReturn()))
+    if (e.isReturnable() && (elseIsReturn || (&e.getThen())->isReturn()))
     {
         const_cast<IfExp*>(&e)->setReturn();
         const_cast<Exp*>(&e.getThen())->resetReturn();
