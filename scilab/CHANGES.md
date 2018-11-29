@@ -691,6 +691,7 @@ Known issues
 * [#15881](http://bugzilla.scilab.org/show_bug.cgi?id=15881): Demos about stems, bars and histograms were spread in several subsections.
 * [#15886](http://bugzilla.scilab.org/show_bug.cgi?id=15886): Display of polynomials was broken.
 * [#15890](http://bugzilla.scilab.org/show_bug.cgi?id=15890): `evstr` sometimes yielded some `+[]` warnings.
+* [#15891](http://bugzilla.scilab.org/show_bug.cgi?id=15891): Help pages of matrix-wise trigonometrical functions deserved a dedicated subsection.
 * [#15907](http://bugzilla.scilab.org/show_bug.cgi?id=15907): `filter` was corrupting its input state array
 * [#15920](http://bugzilla.scilab.org/show_bug.cgi?id=15920): genlib() did not regenerate a missing .bin if the .sci was unchanged (Scilab 6 regression)
 * [#15924](http://bugzilla.scilab.org/show_bug.cgi?id=15924): sparse inequality to 0 yielded a wrong result.
