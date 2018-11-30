@@ -929,7 +929,7 @@ int getIndexWithDims(int* _piIndexes, const int* _piDims, int _iDims)
 
 types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
 {
-    if (pIT->hasToString() == false)
+    if (pIT->hasToString() == false || pIT->isStruct())
     {
         types::Function::ReturnValue ret = types::Function::Error;
         //call overload %type_p
