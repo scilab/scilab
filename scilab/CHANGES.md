@@ -165,7 +165,7 @@ The previous behavior can be recalled by simply calling: `ieee(0)`.
 * Datatips:
   - The property `z_component = 'on|off'` is renamed to `display_components = 'xyz'`.
   It is now possible to choose which components to display, and in which order.
-  The `.z_component` property will be ignored in former `*.scg` files.
+  The `.z_component` property will be ignored in former `SCG` files.
   - A new `detached_position` property is available to display the datatip away from but linked to its anchor on the curve.
   - A new `Polyline.datatip_display_mode` property now allows to display each datatip of the curve only on `mouseover` its anchor or only on `mouseclick`.
 * Valgrind error detection added to `test_run` (on Linux only).
@@ -637,6 +637,7 @@ Known issues
 * [#15818](http://bugzilla.scilab.org/show_bug.cgi?id=15818): `polarplot()` example could not be subplotted. `polarplot`'s demo did not display 'View code' and too often prompted the user.
 * [#15827](http://bugzilla.scilab.org/show_bug.cgi?id=15828): After `bode(..'rad')`, abscissae were titled 'Fréquence' instead of 'Pulsation' in french, and datatips still shew 'Hz' instead of 'rad/s'.
 * [#15847](http://bugzilla.scilab.org/show_bug.cgi?id=15847): Scilab crashed at startup.
+* [#15850](http://bugzilla.scilab.org/show_bug.cgi?id=15850): Adding a space after a string increases its size. 
 * [#15854](http://bugzilla.scilab.org/show_bug.cgi?id=15854): `horner(1:$,4)` yielded an error. Extractions from `cblock` tables were impacted.
 
 

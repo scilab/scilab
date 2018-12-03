@@ -158,6 +158,7 @@ std::wstring Overload::getNameFromOper(const int _oper)
     {
         /* standard operators */
         case ast::OpExp::plus :
+        case ast::OpExp::unaryPlus :
             return std::wstring(L"a");
         case ast::OpExp::unaryMinus :
         case ast::OpExp::minus :

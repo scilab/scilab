@@ -378,7 +378,7 @@ static void print_rules(const std::string& _parent, const double _value)
 %left EQ NE LT LE GT GE
 %left MINUS PLUS
 %left TIMES DOTTIMES KRONTIMES CONTROLTIMES RDIVIDE DOTRDIVIDE KRONRDIVIDE CONTROLRDIVIDE LDIVIDE DOTLDIVIDE KRONLDIVIDE CONTROLLDIVIDE
-%left UMINUS
+%left UMINUS UPLUS
 %right POWER DOTPOWER
 
 %left QUOTE DOTQUOTE
@@ -935,8 +935,8 @@ variable rightOperand            {
                     }
 | MINUS variable        %prec UMINUS    { if ($2->isDoubleExp()) { $$ = $2->getAs<ast::DoubleExp>()->neg();  $2->setLocation(@$);} else { $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryMinus, *$2); } print_rules("operation", "MINUS variable");}
 | MINUS functionCall    %prec UMINUS    { $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryMinus, *$2); print_rules("operation", "MINUS functionCall");}
-| PLUS variable                         { $$ = $2; print_rules("operation", "PLUS variable");}
-| PLUS functionCall                     { $$ = $2; print_rules("operation", "PLUS functionCall");}
+| PLUS variable         %prec UPLUS     { if ($2->isDoubleExp()) { $$ = $2;} else { $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryPlus, *$2); } print_rules("operation", "PLUS variable");}
+| PLUS functionCall     %prec UPLUS     { $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryPlus, *$2); print_rules("operation", "PLUS functionCall");}
 | variable POWER variable               { $$ = new ast::OpExp(@$, *$1, ast::OpExp::power, *$3); print_rules("operation", "variable POWER variable");}
 | variable POWER functionCall           { $$ = new ast::OpExp(@$, *$1, ast::OpExp::power, *$3); print_rules("operation", "variable POWER functionCall");}
 | functionCall POWER variable           { $$ = new ast::OpExp(@$, *$1, ast::OpExp::power, *$3); print_rules("operation", "functionCall POWER variable");}

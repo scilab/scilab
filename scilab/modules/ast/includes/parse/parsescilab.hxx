@@ -126,7 +126,8 @@ extern int yydebug;
     LISTABLE = 335,
     CONTROLBREAK = 336,
     UMINUS = 337,
-    FUNCTIONCALL = 338
+    UPLUS = 338,
+    FUNCTIONCALL = 339
   };
 #endif
 /* Tokens.  */
@@ -211,7 +212,8 @@ extern int yydebug;
 #define LISTABLE 335
 #define CONTROLBREAK 336
 #define UMINUS 337
-#define FUNCTIONCALL 338
+#define UPLUS 338
+#define FUNCTIONCALL 339
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
