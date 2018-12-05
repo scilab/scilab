@@ -26,7 +26,7 @@ For a high-level description of the main new features of this release, please co
 
 In summary, the main new features are:
 * Webtools utilities added for HTTP protocol, JSON data usage
-
+* Profiled values are available as Scilab values 
 
 Installation
 ------------
@@ -87,6 +87,7 @@ Feature changes and additions
   - For decimal numbers `x > 2^52`, querried bits below `%eps` (indices < log2(x)-52) now return `Nan` instead of 0.
   - Several bits can now be retrieved from each component of an input array.
 * `edit` now accepts a line number as text (like "23").
+* `profileEnable`, `profileDisable`, `profileGetInfo` could be used to instrument functions and gather execution information within Scilab.
 
 
 Help pages:

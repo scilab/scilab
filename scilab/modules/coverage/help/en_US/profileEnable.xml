@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="profileEnable">
+    <refnamediv>
+        <refname>profileEnable</refname>
+        <refpurpose>Add instrumentation to a function, a library or all available functions</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+          profileEnable(function)
+          profileEnable(library)
+          profileEnable()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>function</term>
+                <listitem>
+                    <para>A Scilab function.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>library</term>
+                <listitem>
+                    <para>A Scilab library.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This command is used to add instrumentation to functions with execution counters incremented on a future function call. Each Scilab statement is instrumented independently by both an independent counter and a timer.
+        </para>
+        <para>
+            A library could also be instrumented to handle all of its functions.
+        </para>
+        <para>
+            Without argument, this command instrument all loaded libraries.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="profile">profile</link>
+            </member>
+            <member>
+                <link linkend="profileDisable">profileDisable</link>
+            </member>
+            <member>
+                <link linkend="profileGetInfo">profileGetInfo</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

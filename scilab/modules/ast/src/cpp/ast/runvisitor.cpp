@@ -1423,6 +1423,10 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     types::Macro *pMacro = new types::Macro(e.getSymbol().getName(), *pVarList, *pRetList,
                                             const_cast<SeqExp&>(static_cast<const SeqExp&>(e.getBody())), L"script");
     pMacro->setLines(e.getLocation().first_line, e.getLocation().last_line);
+    if (e.getMacro())
+    {
+        pMacro->setFileName(e.getMacro()->getFileName());
+    }
 
     if (ctx->isprotected(symbol::Symbol(pMacro->getName())))
     {

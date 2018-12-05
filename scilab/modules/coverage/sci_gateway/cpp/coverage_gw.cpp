@@ -21,9 +21,19 @@
 
 int CoverageModule::Load()
 {
+    // Coverage functionality
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"covStart", &sci_covStart, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"covWrite", &sci_covWrite, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(
+                L"covWrite", &sci_covWrite, NULL, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"covStop", &sci_covStop, NULL, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"covMerge", &sci_covMerge, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(
+                L"covMerge", &sci_covMerge, NULL, MODULE_NAME));
+
+    // Profiling functionnality
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"profileEnable", &sci_profileEnable, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"profileDisable", &sci_profileDisable, NULL, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(
+        L"profileGetInfo", &sci_profileGetInfo, NULL, MODULE_NAME));
+
     return 1;
 }

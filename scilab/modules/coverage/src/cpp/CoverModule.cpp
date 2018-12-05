@@ -17,27 +17,27 @@
 #pragma comment(lib, "../../bin/libxml2.lib")
 #endif
 
-#include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
+#include <libxml/xpath.h>
 
-#include "CoverModule.hxx"
 #include "CovHTMLCodePrinter.hxx"
-#include "cover_tools.hxx"
+#include "CoverModule.hxx"
 #include "allexp.hxx"
-#include "allvar.hxx"
 #include "alltypes.hxx"
+#include "allvar.hxx"
+#include "cover_tools.hxx"
 #include "coverage_instance.hxx"
 
 extern "C"
 {
-#include "sci_malloc.h"
-#include "os_string.h"
-#include "expandPathVariable.h"
-#include "createdirectory.h"
 #include "copyfile.h"
-#include "isdir.h"
+#include "createdirectory.h"
+#include "expandPathVariable.h"
 #include "findfiles.h"
 #include "freeArrayOfString.h"
+#include "isdir.h"
+#include "os_string.h"
+#include "sci_malloc.h"
 }
 
 #ifdef _MSC_VER
@@ -49,16 +49,16 @@ extern "C"
 namespace coverage
 {
 
-CoverModule * CoverModule::instance = nullptr;
+CoverModule* CoverModule::instance = nullptr;
 
-CoverModule::CoverModule(const std::vector<std::pair<std::wstring, std::wstring>> & paths_mods) : visitor(*this)
+CoverModule::CoverModule(const std::vector<std::pair<std::wstring, std::wstring>>& paths_mods) : visitor(*this)
 {
     getMacros(paths_mods);
     getBuiltins(paths_mods);
     ast::CoverageInstance::setCoverage(this);
 }
 
-CoverModule::CoverModule(const std::vector<std::wstring> & moduleNames) : CoverModule(getModule(moduleNames))
+CoverModule::CoverModule(const std::vector<std::wstring>& moduleNames) : CoverModule(getModule(moduleNames))
 {
     ast::CoverageInstance::setCoverage(this);
 }
@@ -70,11 +70,11 @@ CoverModule::CoverModule() : visitor(*this)
 
 CoverModule::~CoverModule()
 {
-    for (auto & counter : counters)
+    for (auto& counter : counters)
     {
         counter.getExp()->setCoverId(0);
     }
-    for (auto & p : callCounters)
+    for (auto& p : callCounters)
     {
         p.first->DecreaseRef();
         //p.first->killMe();
@@ -83,17 +83,17 @@ CoverModule::~CoverModule()
     ast::CoverageInstance::setCoverage(nullptr);
 }
 
-const std::vector<std::pair<std::wstring, std::wstring>> CoverModule::getModule(const std::vector<std::wstring> & moduleNames)
+const std::vector<std::pair<std::wstring, std::wstring>> CoverModule::getModule(const std::vector<std::wstring>& moduleNames)
 {
     const std::wstring _path = std::wstring(L"SCI") + DIR_SEPARATORW + L"modules" + DIR_SEPARATORW;
-    wchar_t * __path = expandPathVariableW((wchar_t *)_path.c_str());
+    wchar_t* __path = expandPathVariableW((wchar_t*)_path.c_str());
     const std::wstring path(__path);
     FREE(__path);
 
     if (moduleNames.size() == 1 && moduleNames.back() == L"all")
     {
         int size = -1;
-        wchar_t ** files = findfilesW(path.c_str(), DEFAULT_FILESPEC, &size, FALSE);
+        wchar_t** files = findfilesW(path.c_str(), DEFAULT_FILESPEC, &size, FALSE);
         if (size > 0 && files)
         {
             std::vector<std::pair<std::wstring, std::wstring>> paths;
@@ -109,12 +109,12 @@ const std::vector<std::pair<std::wstring, std::wstring>> CoverModule::getModule(
             return paths;
         }
 
-        return{};
+        return {};
     }
     else
     {
         std::vector<std::pair<std::wstring, std::wstring>> paths;
-        for (const auto & name : moduleNames)
+        for (const auto& name : moduleNames)
         {
             paths.emplace_back(path + name, name);
         }
@@ -122,16 +122,16 @@ const std::vector<std::pair<std::wstring, std::wstring>> CoverModule::getModule(
     }
 }
 
-void CoverModule::getMacros(const std::vector<std::pair<std::wstring, std::wstring>> & paths_mods)
+void CoverModule::getMacros(const std::vector<std::pair<std::wstring, std::wstring>>& paths_mods)
 {
-    for (const auto & p : paths_mods)
+    for (const auto& p : paths_mods)
     {
         std::wstring _path = p.first + DIR_SEPARATORW + L"macros";
         getMacrosFromDir(_path, p.second);
     }
 }
 
-void CoverModule::getMacrosFromDir(const std::wstring & path, const std::wstring & module)
+void CoverModule::getMacrosFromDir(const std::wstring& path, const std::wstring& module)
 {
     std::wstring _path = path + DIR_SEPARATORW + L"lib";
     getMacros(_path, module);
@@ -139,7 +139,7 @@ void CoverModule::getMacrosFromDir(const std::wstring & path, const std::wstring
     int size = -1;
     _path = path + DIR_SEPARATORW;
 
-    wchar_t ** files = findfilesW(_path.c_str(), DEFAULT_FILESPEC, &size, FALSE);
+    wchar_t** files = findfilesW(_path.c_str(), DEFAULT_FILESPEC, &size, FALSE);
     if (size > 0 && files)
     {
         for (int i = 0; i < size; ++i)
@@ -154,26 +154,26 @@ void CoverModule::getMacrosFromDir(const std::wstring & path, const std::wstring
     }
 }
 
-void CoverModule::getMacros(const std::wstring & path, const std::wstring & module)
+void CoverModule::getMacros(const std::wstring& path, const std::wstring& module)
 {
     std::unordered_set<std::wstring> _macros;
-    wchar_t * pwstPathLib = expandPathVariableW((wchar_t *)path.c_str());
+    wchar_t* pwstPathLib = expandPathVariableW((wchar_t*)path.c_str());
     std::wstring libPath(pwstPathLib);
     FREE(pwstPathLib);
 
-    char * libFile = wide_string_to_UTF8(libPath.c_str());
+    char* libFile = wide_string_to_UTF8(libPath.c_str());
 
     if (getStringFromXPath(libFile, "//scilablib/macro/@name", _macros))
     {
-        for (const auto & name : _macros)
+        for (const auto& name : _macros)
         {
-            types::InternalType * pIT = symbol::Context::getInstance()->get(symbol::Symbol(name));
+            types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(name));
             if (pIT && pIT->isMacroFile())
             {
-                types::MacroFile * pMF = static_cast<types::MacroFile *>(pIT);
-                if (types::Macro * macro = pMF->getMacro())
+                types::MacroFile* pMF = static_cast<types::MacroFile*>(pIT);
+                if (types::Macro* macro = pMF->getMacro())
                 {
-                    const std::wstring & file = pMF->getPath();
+                    const std::wstring& file = pMF->getPath();
                     std::size_t pos = file.find_last_of(L'.');
                     if (pos != std::string::npos)
                     {
@@ -190,11 +190,11 @@ void CoverModule::getMacros(const std::wstring & path, const std::wstring & modu
     FREE(libFile);
 }
 
-void CoverModule::getBuiltins(const std::vector<std::pair<std::wstring, std::wstring>> & paths_mods)
+void CoverModule::getBuiltins(const std::vector<std::pair<std::wstring, std::wstring>>& paths_mods)
 {
-    for (const auto & p : paths_mods)
+    for (const auto& p : paths_mods)
     {
-        std::list<types::Callable *> lst;
+        std::list<types::Callable*> lst;
         if (symbol::Context::getInstance()->getFunctionList(lst, p.second))
         {
             for (auto pCall : lst)
@@ -202,7 +202,7 @@ void CoverModule::getBuiltins(const std::vector<std::pair<std::wstring, std::wst
                 if (pCall->isFunction())
                 {
                     pCall->IncreaseRef();
-                    functions.emplace(p.second, static_cast<types::Function *>(pCall));
+                    functions.emplace(p.second, static_cast<types::Function*>(pCall));
                     callCounters.emplace(pCall, CallCounter());
                 }
             }
@@ -210,10 +210,10 @@ void CoverModule::getBuiltins(const std::vector<std::pair<std::wstring, std::wst
     }
 }
 
-void CoverModule::instrumentMacro(const std::wstring & module, const std::wstring & path, types::Macro * macro)
+void CoverModule::instrumentMacro(const std::wstring& module, const std::wstring& path, types::Macro* macro)
 {
-    const std::map<symbol::Variable *, types::Macro *> & submacros = macro->getSubMacros();
-    for (const auto & p : submacros)
+    const std::map<symbol::Variable*, types::Macro*>& submacros = macro->getSubMacros();
+    for (const auto& p : submacros)
     {
         instrumentSingleMacro(module, path, p.second, true);
     }
@@ -221,19 +221,19 @@ void CoverModule::instrumentMacro(const std::wstring & module, const std::wstrin
     instrumentSingleMacro(module, path, macro, true);
 }
 
-void CoverModule::instrumentSingleMacro(const std::wstring & module, const std::wstring & path, types::Macro * macro, bool instrumentInners)
+void CoverModule::instrumentSingleMacro(const std::wstring& module, const std::wstring& path, types::Macro* macro, bool instrumentInners)
 {
     macro->IncreaseRef();
     visitor.setMacro(macro);
     macro->getBody()->accept(visitor);
     macros.emplace(macro, CoverMacroInfo(module, path, visitor.getInstrsCount(), visitor.getBranchesCount(), visitor.getPathsCount()));
-    callCounters.emplace(static_cast<types::Callable *>(macro), CallCounter());
-    functions.emplace(module, static_cast<types::Callable *>(macro));
+    callCounters.emplace(static_cast<types::Callable*>(macro), CallCounter());
+    functions.emplace(module, static_cast<types::Callable*>(macro));
 
     if (instrumentInners)
     {
         // We make a copy since the call to instrumentSingleMacro will modify visitor.getInnerMacros()
-        const std::vector<types::Macro *> inners = visitor.getInnerMacros();
+        const std::vector<types::Macro*> inners = visitor.getInnerMacros();
         for (auto inner : inners)
         {
             instrumentSingleMacro(module, path, inner, true);
@@ -241,7 +241,7 @@ void CoverModule::instrumentSingleMacro(const std::wstring & module, const std::
     }
 }
 
-void CoverModule::add(types::Macro * macro, ast::Exp * e)
+void CoverModule::add(types::Macro* macro, ast::Exp* e)
 {
     if (e)
     {
@@ -251,11 +251,11 @@ void CoverModule::add(types::Macro * macro, ast::Exp * e)
     }
 }
 
-void CoverModule::invoke(types::Callable * f)
+void CoverModule::invoke(types::Callable* f)
 {
     if (f->isMacroFile())
     {
-        f = static_cast<types::MacroFile *>(f)->getMacro();
+        f = static_cast<types::MacroFile*>(f)->getMacro();
     }
     auto i = callCounters.find(f);
     if (i != callCounters.end())
@@ -269,7 +269,7 @@ void CoverModule::invoke(const uint64_t id)
     counters[id - 2].inc();
 }
 
-bool CoverModule::getStringFromXPath(char * filePath, const char * xpquery, std::unordered_set<std::wstring> & set)
+bool CoverModule::getStringFromXPath(char* filePath, const char* xpquery, std::unordered_set<std::wstring>& set)
 {
     xmlDocPtr doc = xmlReadFile(filePath, "utf-8", XML_PARSE_NOWARNING);
     if (!doc)
@@ -277,23 +277,23 @@ bool CoverModule::getStringFromXPath(char * filePath, const char * xpquery, std:
         return false;
     }
 
-    if (!doc->encoding || stricmp((const char *)doc->encoding, "utf-8") != 0)
+    if (!doc->encoding || stricmp((const char*)doc->encoding, "utf-8") != 0)
     {
         xmlFreeDoc(doc);
         return false;
     }
 
     xmlXPathContextPtr ctxt = xmlXPathNewContext(doc);
-    xmlXPathObjectPtr xp = xmlXPathEval((const xmlChar *)xpquery, ctxt);
+    xmlXPathObjectPtr xp = xmlXPathEval((const xmlChar*)xpquery, ctxt);
     xmlNodeSetPtr nodeSet = xp->nodesetval;
 
     if (nodeSet)
     {
         for (unsigned int i = 0; i < nodeSet->nodeNr; ++i)
         {
-            const char * content = (const char *)xmlNodeGetContent(nodeSet->nodeTab[i]);
-            wchar_t * ws = to_wide_string(content);
-            xmlFree(const_cast<char *>(content));
+            const char* content = (const char*)xmlNodeGetContent(nodeSet->nodeTab[i]);
+            wchar_t* ws = to_wide_string(content);
+            xmlFree(const_cast<char*>(content));
             set.emplace(ws);
             FREE(ws);
         }
@@ -306,44 +306,45 @@ bool CoverModule::getStringFromXPath(char * filePath, const char * xpquery, std:
     return nodeSet;
 }
 
+std::vector<Counter>::const_iterator CoverModule::lower_bound(const std::vector<Counter>::const_iterator& first, const std::vector<Counter>::const_iterator& last, types::Macro* value)
+{
+    // binary search could not be performed as the counters are not sorted, linear lookup is OK
+    for (auto it = first; it < last; it++)
+    {
+        if (it->getMacro() == value)
+            return it;
+    }
+
+    return last;
+}
+
+std::vector<Counter>::const_iterator CoverModule::upper_bound(const std::vector<Counter>::const_iterator& first, const std::vector<Counter>::const_iterator& last, types::Macro* value)
+{
+    // binary search could not be performed as the counters are not sorted, linear lookup is OK
+    for (auto it = lower_bound(first, last, value); it < last; it++)
+    {
+        if (it->getMacro() != value)
+            return it;
+    }
+
+    return last;
+}
+
 void CoverModule::collect()
 {
     if (!counters.empty())
     {
-        std::vector<Counter>::const_iterator b = counters.begin();
-        types::Macro * current = counters.front().getMacro();
-        for (std::vector<Counter>::const_iterator i = b, e = counters.end(); i != e; ++i)
+        std::vector<Counter>::const_iterator first = counters.begin();
+        std::vector<Counter>::const_iterator last = upper_bound(first, counters.end(), first->getMacro());
+        collect(first, last);
+        while (last != counters.end())
         {
-            if (i->getMacro() != current || std::next(i) == e)
-            {
-                const std::wstring & name = current->getName();
-                CoverMacroInfo & info = macros.find(current)->second;
-                const uint64_t counter = callCounters[current].get();
-                auto & map1 = results[info.macroModule];
-                auto & map2 = map1[info.macroFilePath];
-                MacroLoc ml(name, current->getBody()->getLocation());
-                auto j = map2.find(ml);
-                if (j == map2.end())
-                {
-                    CoverResult & result = map2.emplace(ml, CoverResult(name, info)).first->second;
-                    result.setCounter(counter);
-
-                    if (std::next(i) == e)
-                    {
-                        result.populate(b, e);
-                    }
-                    else
-                    {
-                        result.populate(b, i);
-                        b = i;
-                        current = i->getMacro();
-                    }
-                }
-                allCounters[info.macroModule][name] = std::pair<bool, uint64_t>(true, counter);
-            }
+            first = last;
+            last = upper_bound(first, counters.end(), first->getMacro());
+            collect(first, last);
         }
 
-        for (const auto & p : functions)
+        for (const auto& p : functions)
         {
             if (p.second->isFunction())
             {
@@ -351,6 +352,27 @@ void CoverModule::collect()
             }
         }
     }
+}
+
+void CoverModule::collect(const std::vector<Counter>::const_iterator& first, const std::vector<Counter>::const_iterator& last)
+{
+    types::Macro* current = first->getMacro();
+
+    const std::wstring& name = current->getName();
+    CoverMacroInfo& info = macros.find(current)->second;
+    const uint64_t counter = callCounters[current].get();
+    auto& map1 = results[info.macroModule];
+    auto& map2 = map1[info.macroFilePath];
+    MacroLoc ml(name, current->getBody()->getLocation());
+    auto j = map2.find(ml);
+    if (j == map2.end())
+    {
+        CoverResult& result = map2.emplace(ml, CoverResult(name, info)).first->second;
+        result.setCounter(counter);
+
+        result.populate(first, last);
+    }
+    allCounters[info.macroModule][name] = std::pair<bool, uint64_t>(true, counter);
 }
 
 void CoverModule::print()
@@ -383,15 +405,15 @@ void CoverModule::print()
     //collect();
 }
 
-void CoverModule::toHTML(const std::wstring & outputDir)
+void CoverModule::toHTML(const std::wstring& outputDir)
 {
     bool nomodules = false;
-    wchar_t * _outputDir = expandPathVariableW((wchar_t *)outputDir.c_str());
+    wchar_t* _outputDir = expandPathVariableW((wchar_t*)outputDir.c_str());
     createdirectoryW(_outputDir);
 
     if (results.size() == 1 && results.begin()->first == L"" && results.begin()->second.size() == 1 && results.begin()->second.begin()->first == L"")
     {
-        for (const auto & p : macros)
+        for (const auto& p : macros)
         {
             writeMacroHTMLReport(p.first, results.begin()->second.begin()->second, _outputDir);
         }
@@ -403,16 +425,16 @@ void CoverModule::toHTML(const std::wstring & outputDir)
         std::map<std::wstring, std::pair<uint64_t, double>> modulesStats;
 
         // We make all the reports for the macros
-        for (auto & p1 : results)
+        for (auto& p1 : results)
         {
-            const std::wstring & moduleName = p1.first;
+            const std::wstring& moduleName = p1.first;
             const std::wstring __outputDir = std::wstring(_outputDir) + DIR_SEPARATORW + moduleName;
-            createdirectoryW((wchar_t *)__outputDir.c_str());
+            createdirectoryW((wchar_t*)__outputDir.c_str());
             uint64_t totalCalls = 0;
             uint64_t totalInstrs = 0;
             uint64_t uncoveredInstrs = 0;
 
-            for (auto & p2 : p1.second)
+            for (auto& p2 : p1.second)
             {
                 writeMacroHTMLReport(p2.first, moduleName, p2.second, __outputDir);
             }
@@ -442,11 +464,11 @@ void CoverModule::toHTML(const std::wstring & outputDir)
                 << L"<div class=\'macros_cell\'><table id=\'table" << tableid << L"\'>\n"
                 << L"<tr class=\'col_name\'><td>Name&nbsp;" << CovHTMLCodePrinter::getOrderButton(tableid, buttonid, 0, false) << L"</td><td>File</td><td>Calls&nbsp;" << CovHTMLCodePrinter::getOrderButton(tableid, buttonid + 1, 2, true) << L"</td><td>Covered&nbsp" << CovHTMLCodePrinter::getOrderButton(tableid, buttonid + 2, 3, false) << L"</td></tr>\n";
 
-            for (const auto & t : getOrderedResults(moduleName))
+            for (const auto& t : getOrderedResults(moduleName))
             {
-                const CoverResult & res = *std::get<0>(t);
-                const std::wstring & macroFilename = *std::get<1>(t);
-                const std::wstring & macroName = *std::get<2>(t);
+                const CoverResult& res = *std::get<0>(t);
+                const std::wstring& macroFilename = *std::get<1>(t);
+                const std::wstring& macroName = *std::get<2>(t);
 
                 totalInstrs += res.getInfo().instrsCount;
                 uncoveredInstrs += res.getUncInstrs();
@@ -489,7 +511,7 @@ void CoverModule::toHTML(const std::wstring & outputDir)
                 << L"<div class=\'builtins_cell\'><table id=\'table" << tableid << L"\'>\n"
                 << L"<tr class=\'col_name\'><td>Name&nbsp;" << CovHTMLCodePrinter::getOrderButton(tableid, buttonid, 0, false) << L"</td><td class=\'col_name\'>Calls&nbsp;" << CovHTMLCodePrinter::getOrderButton(tableid, buttonid + 1, 1, true) << L"</td></tr>\n";
 
-            for (const auto & p : getBuiltinStats(moduleName))
+            for (const auto& p : getBuiltinStats(moduleName))
             {
                 const std::wstring countercls = p.second == 0 ? L"null_stats" : L"stats";
                 const std::wstring trcls = altern ? L"altern1" : L"altern2";
@@ -537,9 +559,9 @@ void CoverModule::toHTML(const std::wstring & outputDir)
             << L"<div class=\'macros_cell\'><table id=\'table" << tableid << L"\'>\n"
             << L"<tr class=\'col_name\'><td>Name&nbsp;" << CovHTMLCodePrinter::getOrderButton(tableid, buttonid, 0, false) << L"</td><td>Builtin calls&nbsp;" << CovHTMLCodePrinter::getOrderButton(tableid, buttonid + 1, 1, true) << L"</td><td>Covered&nbsp" << CovHTMLCodePrinter::getOrderButton(tableid, buttonid + 2, 2, false) << L"</td></tr>\n";
 
-        for (const auto & p : modulesStats)
+        for (const auto& p : modulesStats)
         {
-            const std::wstring & moduleName = p.first;
+            const std::wstring& moduleName = p.first;
             const uint64_t builtinCalls = p.second.first;
             const double percent = p.second.second;
             const std::wstring countercls = builtinCalls ? L"stats" : L"null_stats";
@@ -568,7 +590,7 @@ void CoverModule::toHTML(const std::wstring & outputDir)
     copyDataFiles(outputDir);
 }
 
-void CoverModule::copyDataFiles(const std::wstring & outputDir)
+void CoverModule::copyDataFiles(const std::wstring& outputDir)
 {
     const std::wstring _outputDir = outputDir + DIR_SEPARATORW;
     const std::wstring _inputDir = std::wstring(L"SCI") + DIR_SEPARATORW + L"modules" + DIR_SEPARATORW + L"coverage" + DIR_SEPARATORW + L"data";
@@ -579,18 +601,18 @@ void CoverModule::copyDataFiles(const std::wstring & outputDir)
     copyFile(_inputDir, _outputDir, L"module.js");
 }
 
-void CoverModule::copyFile(const std::wstring & inDir, const std::wstring & outDir, const std::wstring & filename)
+void CoverModule::copyFile(const std::wstring& inDir, const std::wstring& outDir, const std::wstring& filename)
 {
     const std::wstring in = inDir + DIR_SEPARATORW + filename;
     const std::wstring out = outDir + DIR_SEPARATORW + filename;
-    wchar_t * _input = expandPathVariableW((wchar_t *)in.c_str());
-    wchar_t * _output = expandPathVariableW((wchar_t *)out.c_str());
+    wchar_t* _input = expandPathVariableW((wchar_t*)in.c_str());
+    wchar_t* _output = expandPathVariableW((wchar_t*)out.c_str());
     CopyFileFunction(_output, _input);
     FREE(_input);
     FREE(_output);
 }
 
-void CoverModule::writeFile(const std::wostringstream & out, const std::wstring & outputDir, const std::wstring & filename)
+void CoverModule::writeFile(const std::wostringstream& out, const std::wstring& outputDir, const std::wstring& filename)
 {
     const std::string code = scilab::UTF8::toUTF8(out.str().c_str());
     const std::string _filename = scilab::UTF8::toUTF8(outputDir + DIR_SEPARATORW + filename);
@@ -599,20 +621,20 @@ void CoverModule::writeFile(const std::wostringstream & out, const std::wstring 
     file.close();
 }
 
-std::set<CoverModule::__Res1, CoverModule::__Compare1> CoverModule::getOrderedResults(const std::wstring & moduleName) const
+std::set<CoverModule::__Res1, CoverModule::__Compare1> CoverModule::getOrderedResults(const std::wstring& moduleName) const
 {
     std::set<__Res1, __Compare1> set;
     auto i = results.find(moduleName);
     if (i != results.end())
     {
-        for (const auto & p : i->second)
+        for (const auto& p : i->second)
         {
-            const std::wstring & macroFilename = p.first;
-            for (const auto & pp : p.second)
+            const std::wstring& macroFilename = p.first;
+            for (const auto& pp : p.second)
             {
-                const std::wstring & macroName = pp.first.name;
-                const Location & macroLoc = pp.first.loc;
-                const CoverResult & res = pp.second;
+                const std::wstring& macroName = pp.first.name;
+                const Location& macroLoc = pp.first.loc;
+                const CoverResult& res = pp.second;
                 set.emplace(__Res1(&res, &macroFilename, &macroName, &macroLoc));
             }
         }
@@ -621,13 +643,13 @@ std::set<CoverModule::__Res1, CoverModule::__Compare1> CoverModule::getOrderedRe
     return set;
 }
 
-std::set<CoverModule::__Res2, CoverModule::__Compare2> CoverModule::getBuiltinStats(const std::wstring & moduleName) const
+std::set<CoverModule::__Res2, CoverModule::__Compare2> CoverModule::getBuiltinStats(const std::wstring& moduleName) const
 {
     std::set<__Res2, __Compare2> set;
     auto i = allCounters.find(moduleName);
     if (i != allCounters.end())
     {
-        for (const auto & p : i->second)
+        for (const auto& p : i->second)
         {
             if (!p.second.first)
             {
@@ -639,27 +661,27 @@ std::set<CoverModule::__Res2, CoverModule::__Compare2> CoverModule::getBuiltinSt
     return set;
 }
 
-std::vector<std::pair<types::Callable *, uint64_t>> CoverModule::getFunctionCalls(const std::wstring & moduleName, const bool builtin) const
+std::vector<std::pair<types::Callable*, uint64_t>> CoverModule::getFunctionCalls(const std::wstring& moduleName, const bool builtin) const
 {
     struct _Res
     {
-        types::Callable * const fptr;
+        types::Callable* const fptr;
         const uint64_t counter;
 
-        _Res(types::Callable * const _fptr, const uint64_t _counter) : fptr(_fptr), counter(_counter) { }
-        inline bool operator<(const _Res & res) const
+        _Res(types::Callable* const _fptr, const uint64_t _counter) : fptr(_fptr), counter(_counter) {}
+        inline bool operator<(const _Res& res) const
         {
             return (counter < res.counter) || (counter == res.counter && fptr->getName() < res.fptr->getName());
         }
     };
     std::set<_Res> set;
-    std::vector<std::pair<types::Callable *, uint64_t>> calls;
+    std::vector<std::pair<types::Callable*, uint64_t>> calls;
     auto range = functions.equal_range(moduleName);
     for (auto fptr = range.first; fptr != range.second; ++fptr)
     {
         if ((builtin && fptr->second->isFunction()) || (!builtin && fptr->second->isMacro()))
         {
-            auto i = callCounters.find(static_cast<types::Callable *>(fptr->second));
+            auto i = callCounters.find(static_cast<types::Callable*>(fptr->second));
             if (i != callCounters.end())
             {
                 set.emplace(fptr->second, i->second.get());
@@ -676,7 +698,7 @@ std::vector<std::pair<types::Callable *, uint64_t>> CoverModule::getFunctionCall
     return calls;
 }
 
-ast::Exp * CoverModule::getTree(const std::wstring & path)
+ast::Exp* CoverModule::getTree(const std::wstring& path)
 {
     if (!path.empty())
     {
@@ -686,12 +708,12 @@ ast::Exp * CoverModule::getTree(const std::wstring & path)
             src.seekg(0, src.end);
             int len = src.tellg();
             src.seekg(0, src.beg);
-            char * buffer = new char[len + 1];
+            char* buffer = new char[len + 1];
             buffer[len] = '\0';
             src.read(buffer, len);
             src.close();
 
-            wchar_t * _wstr = to_wide_string(buffer);
+            wchar_t* _wstr = to_wide_string(buffer);
             delete[] buffer;
             Parser parser;
             parser.parse(_wstr);
@@ -703,7 +725,7 @@ ast::Exp * CoverModule::getTree(const std::wstring & path)
     return nullptr;
 }
 
-const std::wstring CoverModule::getName(const std::wstring & path)
+const std::wstring CoverModule::getName(const std::wstring& path)
 {
     std::size_t pos = path.find_last_of(L'.');
     std::wstring name = path.substr(0, pos);
@@ -715,14 +737,14 @@ const std::wstring CoverModule::getName(const std::wstring & path)
     return name;
 }
 
-void CoverModule::writeMacroHTMLReport(types::Macro * macro, std::map<MacroLoc, CoverResult> & results, const std::wstring & outputDir)
+void CoverModule::writeMacroHTMLReport(types::Macro* macro, std::map<MacroLoc, CoverResult>& results, const std::wstring& outputDir)
 {
-    std::list<symbol::Variable *> * in = macro->getInputs();
-    std::list<symbol::Variable *> * out = macro->getOutputs();
-    ast::SeqExp & body = *macro->getBody()->clone();
+    std::list<symbol::Variable*>* in = macro->getInputs();
+    std::list<symbol::Variable*>* out = macro->getOutputs();
+    ast::SeqExp& body = *macro->getBody()->clone();
 
-    ast::exps_t & _in = *new ast::exps_t();
-    ast::exps_t & _out = *new ast::exps_t();
+    ast::exps_t& _in = *new ast::exps_t();
+    ast::exps_t& _out = *new ast::exps_t();
     for (const auto i : *in)
     {
         _in.emplace_back(new ast::SimpleVar(Location(), i->getSymbol()));
@@ -731,12 +753,12 @@ void CoverModule::writeMacroHTMLReport(types::Macro * macro, std::map<MacroLoc, 
     {
         _out.emplace_back(new ast::SimpleVar(Location(), o->getSymbol()));
     }
-    ast::FunctionDec * fdec = new ast::FunctionDec(Location(), symbol::Symbol(macro->getName()), *new ast::ArrayListVar(Location(), _in), *new ast::ArrayListVar(Location(), _out), body);
+    ast::FunctionDec* fdec = new ast::FunctionDec(Location(), symbol::Symbol(macro->getName()), *new ast::ArrayListVar(Location(), _in), *new ast::ArrayListVar(Location(), _out), body);
 
     writeMacroHTMLReport(fdec, macro->getName() + L".html", L"", L"", results, outputDir);
 }
 
-void CoverModule::writeMacroHTMLReport(ast::Exp * tree, const std::wstring & filename, const std::wstring & path, const std::wstring & moduleName, std::map<MacroLoc, CoverResult> & results, const std::wstring & outputDir)
+void CoverModule::writeMacroHTMLReport(ast::Exp* tree, const std::wstring& filename, const std::wstring& path, const std::wstring& moduleName, std::map<MacroLoc, CoverResult>& results, const std::wstring& outputDir)
 {
     std::wostringstream out;
     std::wstring mod, prev;
@@ -785,7 +807,7 @@ void CoverModule::writeMacroHTMLReport(ast::Exp * tree, const std::wstring & fil
     }
     if (!results.empty())
     {
-        for (const auto & p : results)
+        for (const auto& p : results)
         {
             out << L"<tr><td><div class=\'allmacstats\'>\n";
             CovHTMLCodePrinter::getFunctionStats(out, p.first, p.second);
@@ -812,9 +834,9 @@ void CoverModule::writeMacroHTMLReport(ast::Exp * tree, const std::wstring & fil
     writeFile(out, outputDir, filename);
 }
 
-bool CoverModule::writeMacroHTMLReport(const std::wstring & path, const std::wstring & moduleName, std::map<MacroLoc, CoverResult> & results, const std::wstring & outputDir)
+bool CoverModule::writeMacroHTMLReport(const std::wstring& path, const std::wstring& moduleName, std::map<MacroLoc, CoverResult>& results, const std::wstring& outputDir)
 {
-    if (ast::Exp * tree = getTree(path))
+    if (ast::Exp* tree = getTree(path))
     {
         writeMacroHTMLReport(tree, getName(path) + L".html", path, moduleName, results, outputDir);
         return true;
@@ -823,7 +845,7 @@ bool CoverModule::writeMacroHTMLReport(const std::wstring & path, const std::wst
     return false;
 }
 
-std::wstring CoverModule::encodeFilename(const std::wstring & name)
+std::wstring CoverModule::encodeFilename(const std::wstring& name)
 {
     std::wostringstream wos;
     for (const auto c : name)
@@ -833,7 +855,7 @@ std::wstring CoverModule::encodeFilename(const std::wstring & name)
     return wos.str();
 }
 
-void CoverModule::merge(const std::vector<std::wstring> & paths, const std::wstring & out)
+void CoverModule::merge(const std::vector<std::wstring>& paths, const std::wstring& out)
 {
     CoverModule cm;
     for (const auto path : paths)
@@ -843,14 +865,14 @@ void CoverModule::merge(const std::vector<std::wstring> & paths, const std::wstr
     cm.save(out);
 }
 
-void CoverModule::toHTML(const std::wstring & inBin, const std::wstring & outDir)
+void CoverModule::toHTML(const std::wstring& inBin, const std::wstring& outDir)
 {
     CoverModule cm;
     cm.load(inBin);
     cm.toHTML(outDir);
 }
 
-void CoverModule::save(const std::wstring & path) const
+void CoverModule::save(const std::wstring& path) const
 {
     if (!path.empty())
     {
@@ -863,7 +885,7 @@ void CoverModule::save(const std::wstring & path) const
     }
 }
 
-void CoverModule::load(const std::wstring & path)
+void CoverModule::load(const std::wstring& path)
 {
     if (!path.empty())
     {
@@ -876,19 +898,19 @@ void CoverModule::load(const std::wstring & path)
     }
 }
 
-void CoverModule::toBin(std::fstream & out) const
+void CoverModule::toBin(std::fstream& out) const
 {
     // Save results
     CoverModule::write(out, (uint64_t)results.size());
-    for (const auto & p : results)
+    for (const auto& p : results)
     {
         CoverModule::write(out, p.first);
         CoverModule::write(out, (uint64_t)p.second.size());
-        for (const auto & pp : p.second)
+        for (const auto& pp : p.second)
         {
             CoverModule::write(out, pp.first);
             CoverModule::write(out, (uint64_t)pp.second.size());
-            for (const auto & ppp : pp.second)
+            for (const auto& ppp : pp.second)
             {
                 CoverModule::write(out, ppp.first.name);
                 CoverModule::write(out, ppp.first.loc);
@@ -899,11 +921,11 @@ void CoverModule::toBin(std::fstream & out) const
 
     // Save allcounters
     CoverModule::write(out, (uint64_t)allCounters.size());
-    for (const auto & p : allCounters)
+    for (const auto& p : allCounters)
     {
         CoverModule::write(out, p.first);
         CoverModule::write(out, (uint64_t)p.second.size());
-        for (const auto & pp : p.second)
+        for (const auto& pp : p.second)
         {
             CoverModule::write(out, pp.first);
             CoverModule::write(out, pp.second.first);
@@ -912,12 +934,12 @@ void CoverModule::toBin(std::fstream & out) const
     }
 }
 
-void CoverModule::fromBin(std::fstream & in)
+void CoverModule::fromBin(std::fstream& in)
 {
     fromBin(*this, in);
 }
 
-void CoverModule::fromBin(CoverModule & cm, std::fstream & in)
+void CoverModule::fromBin(CoverModule& cm, std::fstream& in)
 {
     // Load results
     uint64_t size = CoverModule::readUint64_t(in);
@@ -930,7 +952,7 @@ void CoverModule::fromBin(CoverModule & cm, std::fstream & in)
         {
             it = cm.results.emplace(moduleName, std::unordered_map<std::wstring, std::map<MacroLoc, CoverResult>>()).first;
         }
-        auto & map = it->second;
+        auto& map = it->second;
         for (uint64_t j = 0; j < sizee; ++j)
         {
             const std::wstring macroFilename = CoverModule::readWstring(in);
@@ -940,7 +962,7 @@ void CoverModule::fromBin(CoverModule & cm, std::fstream & in)
             {
                 it = map.emplace(macroFilename, std::map<MacroLoc, CoverResult>()).first;
             }
-            auto & mapp = it->second;
+            auto& mapp = it->second;
             for (uint64_t k = 0; k < sizeee; ++k)
             {
                 const std::wstring macroName = CoverModule::readWstring(in);
@@ -970,7 +992,7 @@ void CoverModule::fromBin(CoverModule & cm, std::fstream & in)
         {
             it = cm.allCounters.emplace(moduleName, std::unordered_map<std::wstring, std::pair<bool, uint64_t>>()).first;
         }
-        auto & map = it->second;
+        auto& map = it->second;
         for (uint64_t j = 0; j < sizee; ++j)
         {
             const std::wstring funName = CoverModule::readWstring(in);
@@ -983,7 +1005,7 @@ void CoverModule::fromBin(CoverModule & cm, std::fstream & in)
             }
             else
             {
-                auto & p = it->second;
+                auto& p = it->second;
                 if (p.first == ismacro)
                 {
                     p.second += counter;
@@ -993,4 +1015,4 @@ void CoverModule::fromBin(CoverModule & cm, std::fstream & in)
     }
 }
 
-}
+} // namespace coverage

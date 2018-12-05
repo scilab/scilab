@@ -8,5 +8,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Scilab code coverage",SCI+"/modules/coverage/help/en_US",%T);
+add_help_chapter("Scilab code instrumentation",SCI+"/modules/coverage/help/en_US",%T);
 

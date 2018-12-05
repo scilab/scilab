@@ -199,6 +199,9 @@ am__objects_2 = sci_gateway/cpp/libscicoverage_la-sci_covStart.lo \
 	sci_gateway/cpp/libscicoverage_la-sci_covWrite.lo \
 	sci_gateway/cpp/libscicoverage_la-sci_covStop.lo \
 	sci_gateway/cpp/libscicoverage_la-sci_covMerge.lo \
+	sci_gateway/cpp/libscicoverage_la-sci_profileGetInfo.lo \
+	sci_gateway/cpp/libscicoverage_la-sci_profileEnable.lo \
+	sci_gateway/cpp/libscicoverage_la-sci_profileDisable.lo \
 	sci_gateway/cpp/libscicoverage_la-coverage_gw.lo
 am_libscicoverage_la_OBJECTS = $(am__objects_2)
 libscicoverage_la_OBJECTS = $(am_libscicoverage_la_OBJECTS)
@@ -664,6 +667,9 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_covWrite.cpp \
     sci_gateway/cpp/sci_covStop.cpp \
     sci_gateway/cpp/sci_covMerge.cpp \
+    sci_gateway/cpp/sci_profileGetInfo.cpp \
+    sci_gateway/cpp/sci_profileEnable.cpp \
+    sci_gateway/cpp/sci_profileDisable.cpp \
     sci_gateway/cpp/coverage_gw.cpp
 
 libscicoverage_la_CPPFLAGS = \
@@ -832,6 +838,15 @@ sci_gateway/cpp/libscicoverage_la-sci_covStop.lo:  \
 sci_gateway/cpp/libscicoverage_la-sci_covMerge.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscicoverage_la-sci_profileGetInfo.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscicoverage_la-sci_profileEnable.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscicoverage_la-sci_profileDisable.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscicoverage_la-coverage_gw.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -854,6 +869,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_covStart.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_covStop.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_covWrite.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_profileDisable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_profileEnable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_profileGetInfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicoverage_algo_la-CodePrinterVisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicoverage_algo_la-CovHTMLCodePrinter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicoverage_algo_la-CoverMacroInfo.Plo@am__quote@
@@ -970,6 +988,27 @@ sci_gateway/cpp/libscicoverage_la-sci_covMerge.lo: sci_gateway/cpp/sci_covMerge.
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_covMerge.cpp' object='sci_gateway/cpp/libscicoverage_la-sci_covMerge.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicoverage_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicoverage_la-sci_covMerge.lo `test -f 'sci_gateway/cpp/sci_covMerge.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_covMerge.cpp
+
+sci_gateway/cpp/libscicoverage_la-sci_profileGetInfo.lo: sci_gateway/cpp/sci_profileGetInfo.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicoverage_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicoverage_la-sci_profileGetInfo.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_profileGetInfo.Tpo -c -o sci_gateway/cpp/libscicoverage_la-sci_profileGetInfo.lo `test -f 'sci_gateway/cpp/sci_profileGetInfo.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_profileGetInfo.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_profileGetInfo.Tpo sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_profileGetInfo.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_profileGetInfo.cpp' object='sci_gateway/cpp/libscicoverage_la-sci_profileGetInfo.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicoverage_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicoverage_la-sci_profileGetInfo.lo `test -f 'sci_gateway/cpp/sci_profileGetInfo.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_profileGetInfo.cpp
+
+sci_gateway/cpp/libscicoverage_la-sci_profileEnable.lo: sci_gateway/cpp/sci_profileEnable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicoverage_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicoverage_la-sci_profileEnable.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_profileEnable.Tpo -c -o sci_gateway/cpp/libscicoverage_la-sci_profileEnable.lo `test -f 'sci_gateway/cpp/sci_profileEnable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_profileEnable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_profileEnable.Tpo sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_profileEnable.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_profileEnable.cpp' object='sci_gateway/cpp/libscicoverage_la-sci_profileEnable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicoverage_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicoverage_la-sci_profileEnable.lo `test -f 'sci_gateway/cpp/sci_profileEnable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_profileEnable.cpp
+
+sci_gateway/cpp/libscicoverage_la-sci_profileDisable.lo: sci_gateway/cpp/sci_profileDisable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicoverage_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicoverage_la-sci_profileDisable.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_profileDisable.Tpo -c -o sci_gateway/cpp/libscicoverage_la-sci_profileDisable.lo `test -f 'sci_gateway/cpp/sci_profileDisable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_profileDisable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_profileDisable.Tpo sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-sci_profileDisable.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_profileDisable.cpp' object='sci_gateway/cpp/libscicoverage_la-sci_profileDisable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicoverage_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicoverage_la-sci_profileDisable.lo `test -f 'sci_gateway/cpp/sci_profileDisable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_profileDisable.cpp
 
 sci_gateway/cpp/libscicoverage_la-coverage_gw.lo: sci_gateway/cpp/coverage_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicoverage_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicoverage_la-coverage_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicoverage_la-coverage_gw.Tpo -c -o sci_gateway/cpp/libscicoverage_la-coverage_gw.lo `test -f 'sci_gateway/cpp/coverage_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/coverage_gw.cpp

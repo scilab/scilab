@@ -40,6 +40,9 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_covWrite.cpp \
     sci_gateway/cpp/sci_covStop.cpp \
     sci_gateway/cpp/sci_covMerge.cpp \
+    sci_gateway/cpp/sci_profileGetInfo.cpp \
+    sci_gateway/cpp/sci_profileEnable.cpp \
+    sci_gateway/cpp/sci_profileDisable.cpp \
     sci_gateway/cpp/coverage_gw.cpp
 
 libscicoverage_la_CPPFLAGS = \

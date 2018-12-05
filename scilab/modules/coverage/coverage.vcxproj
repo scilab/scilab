@@ -225,6 +225,9 @@
     <ClCompile Include="sci_gateway\cpp\sci_covStart.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_covStop.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_covWrite.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_profileDisable.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_profileEnable.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_profileGetInfo.cpp" />
     <ClCompile Include="src\cpp\CodePrinterVisitor.cpp" />
     <ClCompile Include="src\cpp\CoverMacroInfo.cpp" />
     <ClCompile Include="src\cpp\CoverModule.cpp" />
@@ -254,6 +257,7 @@
     <ClInclude Include="includes\InstrumentVisitor.hxx" />
     <ClInclude Include="includes\MacroLoc.hxx" />
     <ClInclude Include="includes\URLEncoder.hxx" />
+    <ClInclude Include="sci_gateway\cpp\sci_profile.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ast\ast.vcxproj">

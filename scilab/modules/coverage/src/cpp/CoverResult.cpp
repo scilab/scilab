@@ -52,7 +52,7 @@ void CoverResult::populate(const std::vector<Counter>::const_iterator pos, const
             auto j = branches.find(parent->getLocation());
             if (j == branches.end())
             {
-                branches.emplace(parent->getLocation(), std::vector<uint64_t>(1, i->get()));
+                branches.emplace(parent->getLocation(), std::vector<uint64_t>({i->get(), 0}));
             }
             else
             {

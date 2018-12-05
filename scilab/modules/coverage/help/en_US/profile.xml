@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="profile">
+    <refnamediv>
+        <refname>profile</refname>
+        <refpurpose>General information about instrumentation capabilities</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+          profileEnable(function)
+          profileDisable(function)
+          prof = profileGetInfo()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>function</term>
+                <listitem>
+                    <para>A Scilab function.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prof</term>
+                <listitem>
+                    <para>The execution information of <literal>function</literal>.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            These commands are used to profile a specific function within Scilab and get some execution information as Scilab values for further manipulation. Any Scilab function could be instrumented and function informations (static and after execution) are generated for each instrumented function independently. For more information on the <literal>prof</literal> value, see <link linkend="profileGetInfo">profileGetInfo</link>.
+        </para>
+        <para>
+            The commands are used to setup and retrieve execution information. As the instrumentation information are accessible within Scilab you could define specific computation to report these numbers.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Basic example</title>
+        <programlisting role="example"><![CDATA[
+// Function to be profiled
+function x=foo(n)
+  if n > 0 then
+    x = 0;
+    for k = 1:n
+      s = svd(rand(n, n));
+      x = x + s(1);
+    end
+  else
+    x = [];
+  end
+endfunction
+
+// Enables the profiling of the function
+profileEnable(foo)
+
+// Executes the function
+foo(200);
+
+// Returns the function profiling results
+prof = profileGetInfo()
+    ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Basic example with a Scilab function</title>
+        <programlisting role="example"><![CDATA[
+profileEnable(isempty)                 // instrument isempty()
+
+isempty(1)                             // execute the function
+
+prof = profileGetInfo()                // retrieve execution information
+
+profileDisable(isempty)                // de-instrument isempty()
+    ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Display the 5th most executed lines</title>
+        <programlisting role="example"><![CDATA[
+// instrument and execute as before
+profileEnable(isempty);
+for i=1:1e5; isempty(i); end
+prof = profileGetInfo();
+profileDisable(isempty);
+
+// retrieve the function text
+txt = mgetl(part(prof.FunctionTable.FileName, 1:($-3)) + "sci");
+txt = txt(prof.FunctionTable.FirstLine:$);
+
+// sort per execution time and display the corresponding lines
+[B, k] = gsort(prof.LineCoverage(1)(:,2));
+[string(k(1:5)) string(prof.LineCoverage(1)(k(1:5),2)), txt(k(1:5))]
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="profileEnable">profileEnable</link>
+            </member>
+            <member>
+                <link linkend="profileDisable">profileDisable</link>
+            </member>
+            <member>
+                <link linkend="profileGetInfo">profileGetInfo</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
+

@@ -148,6 +148,11 @@ public:
         return std::round(x * 1000.) / 1000.;
     }
 
+    inline const std::wstring& getName() const
+    {
+        return name;
+    }
+
     inline const CoverMacroInfo & getInfo() const
     {
         return info;
@@ -155,12 +160,12 @@ public:
 
     inline unsigned int getCovInstrsPercent() const
     {
-        return info.instrsCount ? std::round(100. * (1. - (double)uncoveredInstrs / (double)info.instrsCount)) : 100.;
+        return info.instrsCount ? static_cast<unsigned int>(std::round(100. * (1. - (double)uncoveredInstrs / (double)info.instrsCount))) : 100;
     }
 
     inline unsigned int getCovBranchesPercent() const
     {
-        return info.branchesCount ? std::round(100. * (1. - (double)uncoveredBranches / (double)info.branchesCount)) : 100.;
+        return info.branchesCount ? static_cast<unsigned int>(std::round(100. * (1. - (double)uncoveredBranches / (double)info.branchesCount))) : 100;
     }
 
     inline uint64_t getUncInstrs() const
