@@ -97,6 +97,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"dgettext", L"gettext");
     map.emplace(L"datatipToggle", L"datatipManagerMode");
     map.emplace(L"denom", L".den");
+    map.emplace(L"hypermat", L"zeros|matrix");
     map.emplace(L"lstsize", L"size");
     map.emplace(L"nanmin", L"min");
     map.emplace(L"nanmax", L"max");
@@ -189,7 +190,9 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"dft", L"fft");
     map.emplace(L"sscanf", L"msscanf");
     map.emplace(L"fscanf", L"mfscanf");
+    map.emplace(L"printf", L"mprintf");
     map.emplace(L"fprintf", L"mfprintf");
+    map.emplace(L"sprintf", L"msprintf");
     map.emplace(L"demo_message", L"");
     map.emplace(L"demo_mdialog", L"");
     map.emplace(L"draw", L"");
