@@ -692,6 +692,7 @@ Known issues
 * [#15886](http://bugzilla.scilab.org/show_bug.cgi?id=15886): Display of polynomials was broken.
 * [#15890](http://bugzilla.scilab.org/show_bug.cgi?id=15890): `evstr` sometimes yielded some `+[]` warnings.
 * [#15891](http://bugzilla.scilab.org/show_bug.cgi?id=15891): Help pages of matrix-wise trigonometrical functions deserved a dedicated subsection.
+* [#15898](http://bugzilla.scilab.org/show_bug.cgi?id=15898): `edit` failed 1) for any user-defined macro  2) for a native macro recompiled from Scinotes  3) for a native macro addressed through an alias (as sine=sind)
 * [#15899](http://bugzilla.scilab.org/show_bug.cgi?id=15899): `tree2code(tree, prettyprint=%t)` ignored the indentation width declared in Scinotes preferences.
 * [#15907](http://bugzilla.scilab.org/show_bug.cgi?id=15907): `filter` was corrupting its input state array
 * [#15920](http://bugzilla.scilab.org/show_bug.cgi?id=15920): genlib() did not regenerate a missing .bin if the .sci was unchanged (Scilab 6 regression)
