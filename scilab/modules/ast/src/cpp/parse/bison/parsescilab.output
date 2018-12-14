@@ -560,12 +560,17 @@ UPLEVEL (334)
 LISTABLE (335)
 CONTROLBREAK (336)
 UMINUS (337)
+<<<<<<< HEAD
 UPLUS (338)
 FUNCTIONCALL (339)
+=======
+FUNCTIONCALL (338)
+>>>>>>> 256a6183f83... * Bug 15808 fixed: [5i] was parsed as [5,i]
 
 
 Non-terminaux, suivis des règles où ils apparaissent
 
+<<<<<<< HEAD
 $accept (85)
     à gauche: 0
 program (86)
@@ -585,11 +590,33 @@ implicitFunctionCall (91)
 implicitCallable (92)
     à gauche: 37 38 39 40 41 42 43 44 45 46, à droite: 35 36 45
 functionCall (93)
+=======
+$accept (84)
+    à gauche: 0
+program (85)
+    à gauche: 1 2 3 4, à droite: 0
+expressions (86)
+    à gauche: 5 6 7 8 9, à droite: 1 2 86 260 262 310 336 339 361
+    362 363 364
+recursiveExpression (87)
+    à gauche: 10 11 12 13, à droite: 5 6 7 10 11
+expressionLineBreak (88)
+    à gauche: 14 15 16 17 18 19, à droite: 3 10 11 12 13 17 18 19
+expression (89)
+    à gauche: 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34, à droite:
+    6 7 8 9 10 11 12 13
+implicitFunctionCall (90)
+    à gauche: 35 36, à droite: 29 35
+implicitCallable (91)
+    à gauche: 37 38 39 40 41 42 43 44 45 46, à droite: 35 36 45
+functionCall (92)
+>>>>>>> 256a6183f83... * Bug 15808 fixed: [5i] was parsed as [5,i]
     à gauche: 47 48, à droite: 21 48 54 59 64 88 91 93 96 99 102
     105 108 111 114 117 120 123 125 127 129 130 131 133 134 135 138
     139 141 143 145 147 149 151 153 155 157 159 161 163 165 167 169
     171 174 177 178 179 181 197 199 201 202 203 229 231 235 240 241
     242 244 246 249 250 251 255 298 305 307 309 326 369
+<<<<<<< HEAD
 simpleFunctionCall (94)
     à gauche: 49 50 51 52, à droite: 47
 functionArgs (95)
@@ -627,6 +654,45 @@ listableBegin (107)
 listableEnd (108)
     à gauche: 170 171 172, à droite: 180 181
 variable (109)
+=======
+simpleFunctionCall (93)
+    à gauche: 49 50 51 52, à droite: 47
+functionArgs (94)
+    à gauche: 53 54 55 56 57 58 59 60 61 62 63 64 65 66, à droite:
+    49 50 62 63 64 65 66 196 197 254 255
+functionDeclaration (95)
+    à gauche: 67 68 69 70 71 72 73 74, à droite: 20
+functionDeclarationReturns (96)
+    à gauche: 75, à droite: 68 72
+functionDeclarationArguments (97)
+    à gauche: 76 77 78, à droite: 67 68 69 70 71 72 73 74
+idList (98)
+    à gauche: 79 80, à droite: 75 76 79
+functionDeclarationBreak (99)
+    à gauche: 81 82 83 84 85, à droite: 67 68 69 70 71 72 73 74
+functionBody (100)
+    à gauche: 86 87, à droite: 67 68 69 70 71 72 73 74
+condition (101)
+    à gauche: 88 89, à droite: 257 258 259 281 282 283 338
+comparison (102)
+    à gauche: 90 91, à droite: 195
+rightComparable (103)
+    à gauche: 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106
+    107 108 109 110 111 112 113 114 115 116 117 118 119 120 121, à droite:
+    90 91
+operation (104)
+    à gauche: 122 123 124 125 126 127 128 129 130 131 132 133 134
+    135 136 137 138 139, à droite: 184
+rightOperand (105)
+    à gauche: 140 141 142 143 144 145 146 147 148 149 150 151 152
+    153 154 155 156 157 158 159 160 161 162 163 164 165 166 167, à droite:
+    122 123
+listableBegin (106)
+    à gauche: 168 169, à droite: 170 171 172
+listableEnd (107)
+    à gauche: 170 171 172, à droite: 180 181
+variable (108)
+>>>>>>> 256a6183f83... * Bug 15808 fixed: [5i] was parsed as [5,i]
     à gauche: 173 174 175 176 177 178 179 180 181 182 183 184 185
     186 187 188 189 190 191 192 193 194 195 196 197, à droite: 28
     53 58 63 89 90 92 95 98 101 104 107 110 113 116 119 122 124 126
@@ -634,6 +700,7 @@ variable (109)
     156 158 160 162 164 166 168 170 173 175 176 177 180 193 196 198
     200 202 203 228 230 234 239 241 247 248 249 254 297 304 306 308
     327 368
+<<<<<<< HEAD
 variableFields (110)
     à gauche: 198 199 200 201 202 203, à droite: 194 198 199
 cell (111)
@@ -719,6 +786,93 @@ comments (146)
 lineEnd (147)
     à gauche: 372 373, à droite: 81
 keywords (148)
+=======
+variableFields (109)
+    à gauche: 198 199 200 201 202 203, à droite: 194 198 199
+cell (110)
+    à gauche: 204 205 206 207 208 209 210 211, à droite: 183
+matrix (111)
+    à gauche: 212 213 214 215 216 217 218 219, à droite: 182
+matrixOrCellLines (112)
+    à gauche: 220 221, à droite: 204 205 206 207 212 213 214 215
+    220
+matrixOrCellLineBreak (113)
+    à gauche: 222 223 224 225, à droite: 224 225 226 227
+matrixOrCellLine (114)
+    à gauche: 226 227, à droite: 220 221
+matrixOrCellColumns (115)
+    à gauche: 228 229 230 231 232 233 234 235 236, à droite: 206
+    207 208 209 214 215 216 217 226 227 228 229 230 231 232 233 256
+matrixOrCellColumnsBreak (116)
+    à gauche: 237 238, à droite: 227 228 229 233 237
+variableDeclaration (117)
+    à gauche: 239 240 241 242 243 244 245 246, à droite: 22 56 61
+    66
+assignable (118)
+    à gauche: 247 248 249 250 251 252 253 254 255, à droite: 239
+    240 243 245
+multipleResults (119)
+    à gauche: 256, à droite: 253
+ifControl (120)
+    à gauche: 257 258 259, à droite: 23
+thenBody (121)
+    à gauche: 260 261, à droite: 257 258 259 281 282 283
+elseBody (122)
+    à gauche: 262 263, à droite: 258 282 285 287
+ifConditionBreak (123)
+    à gauche: 264 265 266 267 268, à droite: 270 271 272 273
+then (124)
+    à gauche: 269 270 271 272 273 274, à droite: 257 258 259 281
+    282 283
+else (125)
+    à gauche: 275 276 277 278 279 280, à droite: 258 282 290
+elseIfControl (126)
+    à gauche: 281 282 283, à droite: 259 283
+selectControl (127)
+    à gauche: 284 285 286 287, à droite: 24
+select (128)
+    à gauche: 288 289, à droite: 284 285 286 287
+defaultCase (129)
+    à gauche: 290 291 292 293 294 295 296, à droite: 285 287
+selectable (130)
+    à gauche: 297 298, à droite: 284 285 286 287
+selectConditionBreak (131)
+    à gauche: 299 300 301 302 303, à droite: 284 285 286 287
+casesControl (132)
+    à gauche: 304 305 306 307 308 309, à droite: 284 285 286 287
+    308 309
+caseBody (133)
+    à gauche: 310 311, à droite: 304 305 306 307 308 309
+caseControlBreak (134)
+    à gauche: 312 313 314 315 316 317 318 319 320 321 322 323, à droite:
+    304 305 306 307 308 309
+forControl (135)
+    à gauche: 324 325, à droite: 25
+forIterator (136)
+    à gauche: 326 327, à droite: 324 325
+forConditionBreak (137)
+    à gauche: 328 329 330 331 332 333 334 335, à droite: 324 325
+forBody (138)
+    à gauche: 336 337, à droite: 324 325
+whileControl (139)
+    à gauche: 338, à droite: 26
+whileBody (140)
+    à gauche: 339 340, à droite: 338
+whileConditionBreak (141)
+    à gauche: 341 342 343 344 345 346 347 348 349 350 351 352 353
+    354 355 356 357 358, à droite: 338
+tryControl (142)
+    à gauche: 359 360, à droite: 27
+catchBody (143)
+    à gauche: 361 362 363 364 365 366, à droite: 359 360
+returnControl (144)
+    à gauche: 367 368 369, à droite: 32 245 246
+comments (145)
+    à gauche: 370 371, à droite: 306 307 371
+lineEnd (146)
+    à gauche: 372 373, à droite: 81
+keywords (147)
+>>>>>>> 256a6183f83... * Bug 15808 fixed: [5i] was parsed as [5,i]
     à gauche: 374 375 376 377 378 379 380 381 382 383 384 385 386
     387 388 389 390 391, à droite: 176 179 248 251
 
@@ -4858,6 +5012,21 @@ keywords (148)
     "("        décalage et aller à l'état 164
     "."        décalage et aller à l'état 165
     ".'"       décalage et aller à l'état 118
+<<<<<<< HEAD
+=======
+    "*"        décalage et aller à l'état 121
+    ".*"       décalage et aller à l'état 122
+    ".*."      décalage et aller à l'état 123
+    "*."       décalage et aller à l'état 124
+    "/"        décalage et aller à l'état 125
+    "./"       décalage et aller à l'état 126
+    "/."       décalage et aller à l'état 127
+    "./."      décalage et aller à l'état 128
+    "\\"       décalage et aller à l'état 129
+    ".\\"      décalage et aller à l'état 130
+    "\\."      décalage et aller à l'état 131
+    ".\\."     décalage et aller à l'état 132
+>>>>>>> 256a6183f83... * Bug 15808 fixed: [5i] was parsed as [5,i]
     "** or ^"  décalage et aller à l'état 133
     ".^"       décalage et aller à l'état 134
 
@@ -4868,6 +5037,7 @@ keywords (148)
     listableBegin    aller à l'état 148
     listableEnd      aller à l'état 149
 
+<<<<<<< HEAD
     Conflit entre la règle 127 et le jeton "'" résolu par décalage (UPLUS < "'").
     Conflit entre la règle 127 et le jeton ":" résolu par réduction (":" < UPLUS).
     Conflit entre la règle 127 et le jeton "(" résolu par décalage (UPLUS < "(").
@@ -4899,6 +5069,39 @@ keywords (148)
     Conflit entre la règle 127 et le jeton "&&" résolu par réduction ("&&" < UPLUS).
     Conflit entre la règle 127 et le jeton "|" résolu par réduction ("|" < UPLUS).
     Conflit entre la règle 127 et le jeton "||" résolu par réduction ("||" < UPLUS).
+=======
+    Conflit entre la règle 127 et le jeton "'" résolu par décalage (PLUS < "'").
+    Conflit entre la règle 127 et le jeton ":" résolu par réduction (":" < PLUS).
+    Conflit entre la règle 127 et le jeton "(" résolu par décalage (PLUS < "(").
+    Conflit entre la règle 127 et le jeton "." résolu par décalage (PLUS < ".").
+    Conflit entre la règle 127 et le jeton ".'" résolu par décalage (PLUS < ".'").
+    Conflit entre la règle 127 et le jeton "+" résolu par réduction (%left "+").
+    Conflit entre la règle 127 et le jeton "-" résolu par réduction (%left "-").
+    Conflit entre la règle 127 et le jeton "*" résolu par décalage (PLUS < "*").
+    Conflit entre la règle 127 et le jeton ".*" résolu par décalage (PLUS < ".*").
+    Conflit entre la règle 127 et le jeton ".*." résolu par décalage (PLUS < ".*.").
+    Conflit entre la règle 127 et le jeton "*." résolu par décalage (PLUS < "*.").
+    Conflit entre la règle 127 et le jeton "/" résolu par décalage (PLUS < "/").
+    Conflit entre la règle 127 et le jeton "./" résolu par décalage (PLUS < "./").
+    Conflit entre la règle 127 et le jeton "/." résolu par décalage (PLUS < "/.").
+    Conflit entre la règle 127 et le jeton "./." résolu par décalage (PLUS < "./.").
+    Conflit entre la règle 127 et le jeton "\\" résolu par décalage (PLUS < "\\").
+    Conflit entre la règle 127 et le jeton ".\\" résolu par décalage (PLUS < ".\\").
+    Conflit entre la règle 127 et le jeton "\\." résolu par décalage (PLUS < "\\.").
+    Conflit entre la règle 127 et le jeton ".\\." résolu par décalage (PLUS < ".\\.").
+    Conflit entre la règle 127 et le jeton "** or ^" résolu par décalage (PLUS < "** or ^").
+    Conflit entre la règle 127 et le jeton ".^" résolu par décalage (PLUS < ".^").
+    Conflit entre la règle 127 et le jeton "==" résolu par réduction ("==" < PLUS).
+    Conflit entre la règle 127 et le jeton "<> or ~=" résolu par réduction ("<> or ~=" < PLUS).
+    Conflit entre la règle 127 et le jeton "<" résolu par réduction ("<" < PLUS).
+    Conflit entre la règle 127 et le jeton "<=" résolu par réduction ("<=" < PLUS).
+    Conflit entre la règle 127 et le jeton ">" résolu par réduction (">" < PLUS).
+    Conflit entre la règle 127 et le jeton ">=" résolu par réduction (">=" < PLUS).
+    Conflit entre la règle 127 et le jeton "&" résolu par réduction ("&" < PLUS).
+    Conflit entre la règle 127 et le jeton "&&" résolu par réduction ("&&" < PLUS).
+    Conflit entre la règle 127 et le jeton "|" résolu par réduction ("|" < PLUS).
+    Conflit entre la règle 127 et le jeton "||" résolu par réduction ("||" < PLUS).
+>>>>>>> 256a6183f83... * Bug 15808 fixed: [5i] was parsed as [5,i]
 
 
 État 75
@@ -4985,6 +5188,21 @@ keywords (148)
     "("        décalage et aller à l'état 166
     "."        décalage et aller à l'état 167
     ".'"       décalage et aller à l'état 153
+<<<<<<< HEAD
+=======
+    "*"        décalage et aller à l'état 121
+    ".*"       décalage et aller à l'état 122
+    ".*."      décalage et aller à l'état 123
+    "*."       décalage et aller à l'état 124
+    "/"        décalage et aller à l'état 125
+    "./"       décalage et aller à l'état 126
+    "/."       décalage et aller à l'état 127
+    "./."      décalage et aller à l'état 128
+    "\\"       décalage et aller à l'état 129
+    ".\\"      décalage et aller à l'état 130
+    "\\."      décalage et aller à l'état 131
+    ".\\."     décalage et aller à l'état 132
+>>>>>>> 256a6183f83... * Bug 15808 fixed: [5i] was parsed as [5,i]
     "** or ^"  décalage et aller à l'état 154
     ".^"       décalage et aller à l'état 155
 
@@ -4995,6 +5213,7 @@ keywords (148)
     listableBegin    aller à l'état 148
     listableEnd      aller à l'état 158
 
+<<<<<<< HEAD
     Conflit entre la règle 126 et le jeton "'" résolu par décalage (UPLUS < "'").
     Conflit entre la règle 126 et le jeton ":" résolu par réduction (":" < UPLUS).
     Conflit entre la règle 126 et le jeton "(" résolu par décalage (UPLUS < "(").
@@ -5026,6 +5245,39 @@ keywords (148)
     Conflit entre la règle 126 et le jeton "&&" résolu par réduction ("&&" < UPLUS).
     Conflit entre la règle 126 et le jeton "|" résolu par réduction ("|" < UPLUS).
     Conflit entre la règle 126 et le jeton "||" résolu par réduction ("||" < UPLUS).
+=======
+    Conflit entre la règle 126 et le jeton "'" résolu par décalage (PLUS < "'").
+    Conflit entre la règle 126 et le jeton ":" résolu par réduction (":" < PLUS).
+    Conflit entre la règle 126 et le jeton "(" résolu par décalage (PLUS < "(").
+    Conflit entre la règle 126 et le jeton "." résolu par décalage (PLUS < ".").
+    Conflit entre la règle 126 et le jeton ".'" résolu par décalage (PLUS < ".'").
+    Conflit entre la règle 126 et le jeton "+" résolu par réduction (%left "+").
+    Conflit entre la règle 126 et le jeton "-" résolu par réduction (%left "-").
+    Conflit entre la règle 126 et le jeton "*" résolu par décalage (PLUS < "*").
+    Conflit entre la règle 126 et le jeton ".*" résolu par décalage (PLUS < ".*").
+    Conflit entre la règle 126 et le jeton ".*." résolu par décalage (PLUS < ".*.").
+    Conflit entre la règle 126 et le jeton "*." résolu par décalage (PLUS < "*.").
+    Conflit entre la règle 126 et le jeton "/" résolu par décalage (PLUS < "/").
+    Conflit entre la règle 126 et le jeton "./" résolu par décalage (PLUS < "./").
+    Conflit entre la règle 126 et le jeton "/." résolu par décalage (PLUS < "/.").
+    Conflit entre la règle 126 et le jeton "./." résolu par décalage (PLUS < "./.").
+    Conflit entre la règle 126 et le jeton "\\" résolu par décalage (PLUS < "\\").
+    Conflit entre la règle 126 et le jeton ".\\" résolu par décalage (PLUS < ".\\").
+    Conflit entre la règle 126 et le jeton "\\." résolu par décalage (PLUS < "\\.").
+    Conflit entre la règle 126 et le jeton ".\\." résolu par décalage (PLUS < ".\\.").
+    Conflit entre la règle 126 et le jeton "** or ^" résolu par décalage (PLUS < "** or ^").
+    Conflit entre la règle 126 et le jeton ".^" résolu par décalage (PLUS < ".^").
+    Conflit entre la règle 126 et le jeton "==" résolu par réduction ("==" < PLUS).
+    Conflit entre la règle 126 et le jeton "<> or ~=" résolu par réduction ("<> or ~=" < PLUS).
+    Conflit entre la règle 126 et le jeton "<" résolu par réduction ("<" < PLUS).
+    Conflit entre la règle 126 et le jeton "<=" résolu par réduction ("<=" < PLUS).
+    Conflit entre la règle 126 et le jeton ">" résolu par réduction (">" < PLUS).
+    Conflit entre la règle 126 et le jeton ">=" résolu par réduction (">=" < PLUS).
+    Conflit entre la règle 126 et le jeton "&" résolu par réduction ("&" < PLUS).
+    Conflit entre la règle 126 et le jeton "&&" résolu par réduction ("&&" < PLUS).
+    Conflit entre la règle 126 et le jeton "|" résolu par réduction ("|" < PLUS).
+    Conflit entre la règle 126 et le jeton "||" résolu par réduction ("||" < PLUS).
+>>>>>>> 256a6183f83... * Bug 15808 fixed: [5i] was parsed as [5,i]
 
 
 État 76
