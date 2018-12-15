@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="figure_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="figure_properties">
     <refnamediv>
         <refname>figure properties</refname>
         <refpurpose>description of the graphics
@@ -144,11 +147,18 @@
                         <varlistentry>
                             <term>anti_aliasing: </term>
                             <listitem>
-                                <para>This property controls the anti-aliasing level used to improve graphic quality.
-                                    If the property is set to "off", anti-aliasing is disable. To enable anti-aliasing
-                                    the property must set to either "2x", "4x", "8x" or "16x". In this case, it stands for the anti-aliasing level.
-                                    For example, "16x" is a higher quality level than "2x".
-                                    Specifying a higher anti-aliasing level improves image quality but also decreases graphic performances.
+                                <para>
+                                  This property controls the anti-aliasing level used to improve
+                                  graphic quality.
+                                  If the property is set to "off", anti-aliasing is disable.
+                                  To enable anti-aliasing, the property must set to either
+                                  "2x", "4x", "8x" or "16x". In this case, it stands for the
+                                  anti-aliasing level.
+                                  For example, "16x" is a higher quality level than "2x".
+                                  Specifying a higher anti-aliasing level improves image quality
+                                  but also decreases graphic performances.
+                                  Please visit the <link linkend="anti_aliasing">dedicated page</link>
+                                  to see specific examples.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -467,6 +477,9 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
             </member>
             <member>
                 <link linkend="pixel_drawing_mode">pixel_drawing_mode</link>
+            </member>
+            <member>
+                <link linkend="anti_aliasing">anti_aliasing</link>
             </member>
             <member>
                 <link linkend="colormap">colormap</link>

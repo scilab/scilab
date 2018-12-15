@@ -204,6 +204,9 @@ xdel(w($-15:$));
                 <link linkend="figure_properties">figure_properties</link>
             </member>
             <member>
+                <link linkend="anti_aliasing">anti_aliasing</link>
+            </member>
+            <member>
                 <link linkend="colordef">colordef</link>
             </member>
             <member>

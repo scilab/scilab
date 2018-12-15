@@ -423,6 +423,7 @@ Known issues
 * [#6548](http://bugzilla.scilab.org/show_bug.cgi?id=6548): `gamma` did not accept an hypermatrix and could not be overloaded for complex numbers.
 * [#6729](http://bugzilla.scilab.org/show_bug.cgi?id=6729): The compatibility functions `mtlb_int8`, `mtlb_int16`, `mtlb_int32`, `mtlb_uint8`, `mtlb_uint16` and `mtlb_uint32` were not actually Matlab-like. Their documentation was neither correct nor up-to-date. `mtlb_int64` and `mtlb_int64` were missing.
 * [#6737](http://bugzilla.scilab.org/show_bug.cgi?id=6737): mouse events were not correctly reported to an event handler function.
+* [#6777](http://bugzilla.scilab.org/show_bug.cgi?id=6777): `gcf().anti_aliasing` was poorly documented and was not illustrated.
 * [#6939](http://bugzilla.scilab.org/show_bug.cgi?id=6939): `nearfloat("succ",rand(2,2,2))` returned a (2,2) matrix with no error.
 * [#6990](http://bugzilla.scilab.org/show_bug.cgi?id=6990): `or(hm,"r")`, `or(hm,"c")`, `and(hm,"r")` and `and(hm,"c")` generated an error for any hypermatrix hm of booleans, encoded integers, or doubles.
 * [#7107](http://bugzilla.scilab.org/show_bug.cgi?id=7107): The `graphics_entities` page missed listing the console_properties, root_properties, uicontrol_properties, and uimenu_properties. References to `getsystemmetrics` and to `setlookandfeel` were missing in the `See also` section.

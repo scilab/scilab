@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - Jean-Baptiste SILVY
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+    xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+    xml:lang="en" xml:id="anti_aliasing">
+    <refnamediv>
+        <refname>anti_aliasing</refname>
+        <refpurpose>Figure's property smoothing the stair-like aspect when rendering curves</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            When some curves or parts of curves have a small slope with respect to the horizontal
+            or vertical direction of ranges of screen pixels, their raw rendering shows a
+            stair-like aspect.
+        </para>
+        <para>
+            Figures have an <literal>.anti_aliasing</literal> property that can be used to smooth
+            this rendering effect. Possible values are <literal>'off'</literal>,
+            <literal>'2x'</literal>, <literal>'4x'</literal>, <literal>'8x'</literal>, or
+            <literal>'16x'</literal>.
+        </para>
+        <warning>
+            Enabling the anti-aliasing decreases the rendering speed of graphics. In average,
+            the time spent to build and display graphics varies approximately according to the
+            following factors:
+            <table>
+                <tr>
+                    <th>.anti_aliasing</th><td>off</td><td>2x</td><td>4x</td><td>8x</td><td>16x</td>
+                </tr>
+                <tr>
+                    <th>time spent</th><td>1</td><td>1.4</td><td>2.1</td><td>3.6</td><td>6.6</td>
+                </tr>
+            </table>
+        </warning>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x = [0 1];
+y = (0:0.025:1)';
+y = [y y+0.02]';
+
+th = 0:2:360;
+xe = 4*cosd(th); xe = (0.1:0.05:1)' * xe;
+ye = sind(th);   ye = (0.1:0.05:1)' * ye;
+
+usecanvas(%t);
+
+i = 0;
+for aa = ['off' '4x' '16x']
+    f = scf(i);
+    f.axes_size = [300 600];
+    f.figure_position(1) = 100+300*i;
+    f.anti_aliasing = aa;  // <<<<<<<<
+    clf
+    subplot(2,1,1)
+    plot2d(x,y)
+    subplot(2,1,2)
+    plot2d(xe',ye')
+    title(".anti_aliasing = ''"+aa+"''", "fontsize",4);
+    i = i+1;
+end
+    ]]></programlisting>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../images/anti_aliasing.png" />
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="figure_properties">Figure properties</link>
+            </member>
+            <member>
+                <link linkend="usecanvas">usecanvas</link>
+            </member>
+            <member>
+                <link linkend="lighting">lighting</link>
+            </member>
+            <member>
+                <link linkend="pixel_drawing_mode">pixel_drawing_mode</link>
+            </member>
+            <member>
+                <link linkend="system_setproperty">system_setproperty</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
