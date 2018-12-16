@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - DIGITEO - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,181 +13,351 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" scilab:needs-examples="no" xml:id="console" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"
+          xml:id="console" xml:lang="en">
+    <refnamediv xml:id="shortcuts"></refnamediv>
     <refnamediv>
         <refname>console</refname>
-        <refpurpose>Keyboard Shortcuts in the Console Window</refpurpose>
+        <refpurpose>Keyboard shortcuts predefined in the console window</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
+        For the three <literal>STD</literal>, <literal>NW</literal> and <literal>NWNI</literal>
+        Scilab running modes, some keyboard shortcuts are available when the console has the focus.
+        The predefined default ones are listed in the following table. They can be redefined
+        through the Scilab <link linkend="preferences">preferences</link> (General/shortcuts).
+        <para/>
+        <warning>
+            <para>
+            A given key combination may have distinct actions according to the component having the
+            focus: The console, a graphic figure, the history browser, etc.
+            Herebelow, only shortcuts defined for the console's panel are considered.
+            </para>
+        </warning>
+        <para>
         <informaltable border="1">
             <tr>
-                <td>UP or Ctrl+P</td>
-                <td>recall previous line.</td>
+                <td><emphasis role="bold">Shortcut</emphasis></td>
+                <th>STD</th>
+                <th>NW</th>
+                <th>NWNI</th>
+                <td><emphasis role="bold">Action</emphasis></td>
+            </tr>
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <tr>
+                <td colspan="5"><refsect3><title>Main actions</title></refsect3></td>
             </tr>
             <tr>
-                <td>DOWN or Ctrl+N</td>
-                <td>recall next line.</td>
-            </tr>
-            <tr>
-                <td>F1</td>
-                <td>call help.</td>
-            </tr>
-            <tr>
-                <td>F2</td>
-                <td>clear console.</td>
-            </tr>
-            <tr>
-                <td>F12</td>
-                <td>open console box only on Windows.</td>
+                <td>ALT</td>
+                <td align="center">x</td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td>Sets / unsets the focus to the console menus. Then arrows or/and underlined
+                activation keys of menus items allow to browse the menus.
+                </td>
             </tr>
             <tr>
                 <td>Ctrl+space or TAB</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
                 <td>completion : Scilab displays a list of all names that start with
                     somes characters.
+                    <para/>
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../images/completion_listbox.png" />
+                        </imageobject>
+                    </inlinemediaobject>
                 </td>
             </tr>
             <tr>
-                <td>Ctrl + A or HOME</td>
-                <td>move to beginning of current line.</td>
+                <td>F1</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td></td>
+                <td>opens the help browser or brings it to the foreground</td>
             </tr>
             <tr>
-                <td>Ctrl + B or LEFT</td>
-                <td>moves the cursor one character to the left.</td>
+                <td>F12</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>opens the console box terminal (Windows only)</td>
+            </tr>
+            <tr>
+                <td>F3 or Ctrl + F</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>Opens the search/Find dialog for the console's content</td>
             </tr>
             <tr>
                 <td>Ctrl + C</td>
-                <td>interrupts Scilab if nothing selected in the console, else text
-                    selected is sent to clipboard.
-                </td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>Copies the selection to the clipboard</td>
             </tr>
             <tr>
-                <td>Ctrl + D or DELETE</td>
-                <td>deletes the current character.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + E or END</td>
-                <td>moves the cursor to the end of command line.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + F or RIGHT</td>
-                <td>moves the cursor one character to the right.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + H or BACKSPACE</td>
-                <td>deletes the previous character.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + K</td>
-                <td>kills command line from cursor to the end.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + S</td>
-                <td>select all.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + U</td>
-                <td>delete the whole command line.</td>
+                <td>Ctrl + C</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>Interrupts a running execution</td>
             </tr>
             <tr>
                 <td>Ctrl + V</td>
-                <td>do a paste from clipboard.</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>Inserts the clipboard's content</td>
             </tr>
             <tr>
-                <td>Ctrl + W</td>
-                <td>delete the last word of the command line.</td>
+                <td>Ctrl + V</td>
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>Replaces the line's tail with the clipboard's content</td>
             </tr>
             <tr>
                 <td>Ctrl + X</td>
-                <td>Interrupt Scilab</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>(Interrupts Scilab)</td>
+            </tr>
+<!--
+                <td>Ctrl + F</td><td>Opens the search/Find dialog for the Console content</td>
+                <td>Ctrl + U</td><td>kills command line from cursor to beginning.</td>
+-->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <tr>
+                <td colspan="5"><refsect3><title>History</title></refsect3></td>
             </tr>
             <tr>
-                <td>Ctrl + LEFT</td>
-                <td>move left one word.</td>
+                <td>UP</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>recalls the previous command line</td>
             </tr>
             <tr>
-                <td>Ctrl + RIGHT</td>
-                <td>move right one word.</td>
+                <td>Ctrl + P</td>
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>recalls the Previous command line</td>
+            </tr>
+            <tr>
+                <td>DOWN</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>recalls the next command line</td>
+            </tr>
+            <tr>
+                <td>Ctrl + N</td>
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>recalls the Next command line</td>
+            </tr>
+            <tr>
+                <td valign='top'>!abc&lt;enter></td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>
+                    recalls the last command line starting with 'abc' ('!' must be the very first
+                    character of the line)
+                </td>
+            </tr>
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <tr>
+                <td colspan="5"><refsect3><title>Selection</title></refsect3></td>
+            </tr>
+            <tr>
+                <td>Ctrl + S</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>Selects all the console's content</td>
             </tr>
             <tr>
                 <td>Shift + HOME</td>
-                <td>select from cursor to beginning of statement.</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>selects from cursor to the line's head</td>
             </tr>
             <tr>
                 <td>Shift + END</td>
-                <td>select from cursor to end of statement.</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>selects from cursor to the line's end</td>
             </tr>
             <tr>
                 <td>Double-click</td>
-                <td>select current word.</td>
+                <td align="center">x</td>
+                <td></td>
+                <td align="center">x</td>
+                <td>selects the current word</td>
             </tr>
-        </informaltable>
-    </refsection>
-    <refnamediv>
-        <refname>console cli</refname>
-        <refpurpose>Keyboard Shortcuts in NW/NWNI mode</refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <informaltable border="1">
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <tr>
-                <td>UP or Ctrl+P</td>
-                <td>recall previous line.</td>
+                <td colspan="5"><refsect3><title>Deletion</title></refsect3></td>
             </tr>
             <tr>
-                <td>DOWN or Ctrl+N</td>
-                <td>recall next line.</td>
-            </tr>
-            <tr>
-                <td>TAB</td>
-                <td>completion : Scilab displays a list of all names that start with
-                    somes characters.
-                </td>
-            </tr>
-            <tr>
-                <td>Ctrl + A or HOME</td>
-                <td>move to beginning of current line.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + B or LEFT</td>
-                <td>moves the cursor one character to the left.</td>
+                <td>F2</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>clears the console, like <link linkend="clc">clc</link></td>
             </tr>
             <tr>
                 <td>Ctrl + D or DELETE</td>
-                <td>deletes the current character.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + E or END</td>
-                <td>moves the cursor to the end of command line.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + F or RIGHT</td>
-                <td>moves the cursor one character to the right.</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>Deletes the current character (or on the right)</td>
             </tr>
             <tr>
                 <td>Ctrl + H or BACKSPACE</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
                 <td>deletes the previous character.</td>
             </tr>
             <tr>
                 <td>Ctrl + K</td>
-                <td>kills command line from cursor to the end.</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>Kills the line's tail, from cursor to the end</td>
             </tr>
             <tr>
                 <td>Ctrl + U</td>
-                <td>kills command line from cursor to beginning.</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>deletes the whole command line</td>
             </tr>
             <tr>
                 <td>Ctrl + W</td>
-                <td>delete the previous word from the cursor.</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>deletes the last space-separated Word of the line.</td>
             </tr>
             <tr>
-                <td>Alt+B or Ctrl+LEFT</td>
+                <td>Ctrl + W</td>
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>deletes the Word the cursor is on, and the line's tail</td>
+            </tr>
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <tr>
+                <td colspan="5"><refsect3><title>Cursor movements</title></refsect3></td>
+            </tr>
+            <tr>
+                <td>Ctrl + A or HOME</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>moves the cursor to the head of current line</td>
+            </tr>
+            <tr>
+                <td>Ctrl + B or LEFT</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>moves the cursor one character Backward, to the left</td>
+            </tr>
+            <tr>
+                <td>Ctrl + LEFT</td>
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>moves the cursor to the beginning of the current or previous word</td>
+            </tr>
+            <!--
+            <tr>
+                <td>Alt+B</td>
                 <td>move left one word.</td>
             </tr>
+            -->
             <tr>
-                <td>Alt+F or Ctrl+RIGHT</td>
-                <td>move right one word.</td>
+                <td>Ctrl + E or END</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>moves the cursor to the End of command line</td>
+            </tr>
+            <tr>
+                <td>Ctrl + F</td>
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>moves the cursor one character Forward, to the right</td>
+            </tr>
+            <tr>
+                <td>RIGHT</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>moves the cursor one character to the right</td>
+            </tr>
+            <tr>
+                <td>Ctrl + RIGHT</td> <!-- or alt+F: not on Windows, in none mode -->
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>moves the cursor to the next word on the right.</td>
             </tr>
         </informaltable>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+jdeff org.scilab.modules.preferences.XConfigManager openPreferences prefs;
+prefs general/shortcuts;
+   ]]></programlisting>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../images/preferences_shortcuts.png" />
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="preferences">preferences</link>
+            </member>
+            <member>
+                <link linkend="consolebox">consolebox</link>
+            </member>
+            <member>
+                <link linkend="completion">completion</link>
+            </member>
+            <member>
+                <link linkend="browsehistory">history</link>
+            </member>
+            <member>
+                <link linkend="getscilabmode">getscilabmode</link>
+            </member>
+            <member>
+                <link linkend="scilab">scilab</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>
