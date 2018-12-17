@@ -67,7 +67,6 @@ public :
     MacroFile* get(const std::wstring& _wstName);
     int getMacrosName(std::list<std::wstring>& lst);
     std::wstring getPath();
-    bool getMemory(int* _piSize, int* _piSizePlusType);
 private:
     std::wstring m_wstPath;
     typedef std::unordered_map<std::wstring, MacroFile*> MacroMap;

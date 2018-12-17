@@ -208,11 +208,6 @@ void MacroFile::setLines(int _iFirstLine, int _iLastLine)
     getMacro()->setLines(_iFirstLine, _iLastLine);
 }
 
-bool MacroFile::getMemory(int* _piSize, int* _piSizePlusType)
-{
-    return this->getMacro()->getMemory(_piSize, _piSizePlusType);
-}
-
 bool MacroFile::operator==(const InternalType& it)
 {
     if (const_cast<InternalType &>(it).isMacro() == false && const_cast<InternalType &>(it).isMacroFile() == false)

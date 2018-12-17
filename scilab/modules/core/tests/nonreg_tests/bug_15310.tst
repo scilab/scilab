@@ -12,7 +12,7 @@
 // <-- Non-regression test for bug 15310 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=15310 
+// http://bugzilla.scilab.org/show_bug.cgi?id=15310
 //
 // <-- Short Description -->
 // unlike isdef(varargin(k),"l"), isdef(argin,"l") now always returns %t even for unpassed arguments (REGRESSION)

@@ -27,7 +27,6 @@
 #include "core_math.h"
 #include "list.hxx"
 #include "configvariable.hxx"
-#include "types_tools.hxx"
 
 namespace types
 {
@@ -49,24 +48,6 @@ Cell::Cell(int _iRows, int _iCols, InternalType** data)
 Cell::Cell(int _iDims, const int* _piDims, InternalType** data)
 {
     createCell(_iDims, _piDims, data);
-}
-
-bool Cell::getMemory(int* _piSize, int* _piSizePlusType)
-{
-    *_piSize = 0;
-    *_piSizePlusType = 0;
-    InternalType** p = get();
-    for (int i = 0; i < getSize(); i++)
-    {
-        int piS, piSPT;
-        if (p[i]->getMemory(&piS, &piSPT))
-        {
-            *_piSize += piS;
-            *_piSizePlusType += piSPT;
-        }
-    }
-    *_piSizePlusType += sizeof(Cell);
-    return true;
 }
 
 void Cell::createCell(int _iDims, const int* _piDims, InternalType** data)

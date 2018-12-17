@@ -85,8 +85,6 @@ public :
         return L"sst";
     }
 
-    bool                                    getMemory(int* _piSize, int* _piSizePlusType);
-
 private :
 
     std::unordered_map<std::wstring, int> m_wstFields;

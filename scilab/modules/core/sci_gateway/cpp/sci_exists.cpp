@@ -81,35 +81,35 @@ static types::Function::ReturnValue isdef(types::typed_list& in, int _iRetCount,
         psScope = in[1]->getAs<types::String>()->get(0);
     }
 
-    pStrIn  = in[0]->getAs<types::String>();
+    pStrIn = in[0]->getAs<types::String>();
 
     types::InternalType *pIT;
     types::Bool* pBOut = new types::Bool(pStrIn->getDims(), pStrIn->getDimsArray());
-    
+
     switch (getScopeFromOption(psScope))
     {
         case All:
             for (int i = 0; i < pStrIn->getSize(); i++)
             {
                 pIT = symbol::Context::getInstance()->get(symbol::Symbol(pStrIn->get(i)));
-                pBOut->set(i, pIT != NULL && !pIT->isVoid());
+                pBOut->set(i, pIT != NULL && pIT->getType() != types::InternalType::ScilabVoid);
             }
             break;
         case Local:
             for (int i = 0; i < pStrIn->getSize(); i++)
             {
                 pIT = symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(pStrIn->get(i)));
-                pBOut->set(i, pIT != NULL && !pIT->isVoid());
+                pBOut->set(i, pIT != NULL && pIT->getType() != types::InternalType::ScilabVoid);
             }
             break;
         case NoLocal:
             for (int i = 0; i < pStrIn->getSize(); i++)
             {
                 pIT = symbol::Context::getInstance()->getAllButCurrentLevel(symbol::Symbol(pStrIn->get(i)));
-                pBOut->set(i, pIT != NULL && !pIT->isVoid());
+                pBOut->set(i, pIT != NULL && pIT->getType() != types::InternalType::ScilabVoid);
             }
             break;
-        default :
+        default:
             Scierror(36, _("%s: Wrong input argument %d.\n"), fname, 2);
             return types::Function::Error;
     }
@@ -130,16 +130,17 @@ types::Function::ReturnValue sci_exists(types::typed_list &in, int _iRetCount, t
 
     if (retVal == types::Function::OK)
     {
-        types::Bool* pBOut     = out[0]->getAs<types::Bool>();
+        types::Bool* pBOut = out[0]->getAs<types::Bool>();
         types::Double* pDblOut = new types::Double(pBOut->getDims(), pBOut->getDimsArray());
         for (int i = 0; i < pBOut->getSize(); i++)
         {
-            pDblOut->set(i, (double) pBOut->get(i));
+            pDblOut->set(i, (double)pBOut->get(i));
         }
+
+        pBOut->killMe();
         out.pop_back();
         out.push_back(pDblOut);
     }
 
     return retVal;
 }
-

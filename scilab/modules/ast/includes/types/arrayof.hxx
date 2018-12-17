@@ -500,8 +500,6 @@ public :
 
     void getIndexes(int _iIndex, int* _piIndexes);
 
-    virtual bool getMemory(int* _piSize, int* _piSizePlusType);
-
     ArrayOf<T>* getColumnValues(int _iPos)
     {
         ArrayOf<T>* pOut = NULL;

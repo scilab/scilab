@@ -26,11 +26,11 @@
         </para>
         <para>
             <code>who('local')</code> or <code>who('get')</code> returns current
-            variable names and memory used in bytes.
+            variable names and memory used in double precision words.
         </para>
         <para>
             <code>who('global')</code> returns global variable names and memory
-            used in bytes.
+            used in double precision words.
         </para>
         <para>
             <code>who('sorted')</code> displays in alphabetical order all variables.

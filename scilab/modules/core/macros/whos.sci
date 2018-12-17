@@ -21,7 +21,8 @@ function whos(%_opt,%_sel)
     // Gathering locals + globals
     %_nams_all = [%_nams ; %_nams_global];
     %_vol_all  = [%_vol ; %_vol_global];
-    %_LG_all   = [asciimat(76*ones(%_vol(:))) ; asciimat(71*ones(%_vol_global(:)))];
+    %_LG_all   = [emptystr(size(%_vol,1),1)+"L" ; ..
+    emptystr(size(%_vol_global,1),1)+"G"];
 
     // Sorting the whole set w/o.r.t. the case
     [trash, k] = gsort(convstr(%_nams_all,"l"),"g","i");
@@ -33,16 +34,16 @@ function whos(%_opt,%_sel)
     // getSizeAsString, writeWhosLine, doDisplayWhosLine defined only in whos
     // to remove some tmp variables defined on stack
     //=============================================================================
-    function sz = getSizeAsString(_varname, _type, _typn)
+    function sz = getSizeAsString(_varname, _type)
         sz = " ";
         if _type == 0 then
             sz = "?";
-        elseif _type <= 10 | _type == 15 | _typn== 'st' | _typn== 'ce' then
+        elseif _type <= 10 then
             execstr("sz = size(" + _varname + ");")
         elseif _type == 17 | _type == 16 then
             execstr("%_tt = getfield(1," + _varname + ")");
             %_tt = %_tt(1);
-            if execstr("sz = %" + %_tt + "_size(" + _varname + ")", "errcatch") <> 0 then
+            if execstr("sz = %" + %_tt + "size(" + _varname + ")", "errcatch") <> 0 then
                 sz = "?";
             end
         end
@@ -123,11 +124,11 @@ function whos(%_opt,%_sel)
         b_ok = doDisplayWhosLine(%_rhs, %_opt, %_nams_all(%_k), %_typn, %_sel);
 
         if b_ok then
-            %_sz = getSizeAsString(%_nams_all(%_k), %_typ, %_typn);
+            %_sz = getSizeAsString(%_nams_all(%_k), %_typ);
             if %_LG_all(%_k) == "G"
                 %_typn = %_typn + "*";
             end
-            writeWhosLine(%_nams_all(%_k), %_typn, %_sz, %_vol_all(%_k));
+            writeWhosLine(%_nams_all(%_k), %_typn, %_sz, %_vol_all(%_k)*8);
         end
         if  %_LG_all(%_k) == "G" then
             execstr("clear " + %_nams_all(%_k));

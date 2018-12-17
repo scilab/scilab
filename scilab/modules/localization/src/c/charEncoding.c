@@ -113,86 +113,7 @@ int wcstat(char* filename, struct _stat *st)
     return stat_result;
 }
 /*--------------------------------------------------------------------------*/
-#else
-/*--------------------------------------------------------------------------*/
-#ifdef __APPLE__ // Mac OS X
-/*--------------------------------------------------------------------------*/
-char *wide_string_to_UTF8(const wchar_t *_wide)
-{
-    size_t iCharLen = 0;
-    wchar_t *pwstr = _wide;
-    char* pchar = NULL;
-    /* The value of MB_CUR_MAX is the maximum number of bytes
-    in a multibyte character for the current locale. */
-    int iMaxLen =  0;
-
-    if (_wide == NULL)
-    {
-        return NULL;
-    }
-
-    iMaxLen =  (int)wcslen(_wide) * MB_CUR_MAX ;
-
-    pchar = (char*) MALLOC(( iMaxLen + 1) * sizeof(char));
-    if (pchar == NULL)
-    {
-        return NULL;
-    }
-    iCharLen = wcstombs (pchar, pwstr, iMaxLen);
-    if ( iCharLen == (size_t)(-1) )
-    {
-        if (pchar)
-        {
-            FREE(pchar);
-            pchar = NULL;
-        }
-        return NULL;
-    }
-    pchar[iCharLen] = '\0';
-    return pchar;
-}
-/*--------------------------------------------------------------------------*/
-wchar_t *to_wide_string(const char *_UTFStr)
-{
-    wchar_t *_buf = NULL;
-    size_t pszLen = 0;
-    char *psz = _UTFStr;
-    mbstate_t ps;
-
-    if (_UTFStr == NULL)
-    {
-        return NULL;
-    }
-
-    memset (&ps, 0x00, sizeof(ps));
-    pszLen = mbsrtowcs(NULL, (const char**)&psz, 0, &ps);
-
-    if ( pszLen == (size_t)(-1) )
-    {
-        return NULL;
-    }
-
-    _buf = (wchar_t*)MALLOC((pszLen + 1) * sizeof(wchar_t));
-    if (_buf == NULL)
-    {
-        return NULL;
-    }
-
-    pszLen = mbsrtowcs(_buf, (const char**)&psz, (int)strlen(psz), &ps);
-
-    if ( pszLen == (size_t)(-1) )
-    {
-        FREE(_buf);
-        return NULL;
-    }
-    else
-    {
-        _buf[pszLen] = L'\0';
-    }
-    return _buf;
-}
-/*--------------------------------------------------------------------------*/
-#else // Linux
+#else // Linux or Mac OS X
 /*--------------------------------------------------------------------------*/
 char *wide_string_to_UTF8(const wchar_t *_wide)
 {
@@ -279,8 +200,6 @@ wchar_t *to_wide_string(const char *_UTFStr)
     }
     return pOutSave;
 }
-/*--------------------------------------------------------------------------*/
-#endif
 /*--------------------------------------------------------------------------*/
 int wcstat(char* filename, struct stat *st)
 {

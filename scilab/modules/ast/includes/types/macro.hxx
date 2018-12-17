@@ -66,8 +66,6 @@ public :
 
     ast::SeqExp*                getBody();
 
-    bool                        getMemory(int* _piSize, int* _piSizePlusType);
-
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring        getTypeStr() const
     {

@@ -37,7 +37,7 @@ public :
         return IdVoid;
     }
 
-    bool isVoid() override
+    bool                    isVoid()
     {
         return true;
     }

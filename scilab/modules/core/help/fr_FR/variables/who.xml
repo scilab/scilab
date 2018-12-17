@@ -27,12 +27,12 @@
         <para>
             <literal>who('local')</literal> ou <literal>who('get')</literal>
             renvoie les noms des variables courantes et l'occupation mémoire en
-            nombre d'octets.
+            nombre de flottants double précision.
         </para>
         <para>
             <literal>who('global')</literal> renvoie les noms des variables
             <literal>globales</literal> courantes et l'occupation mémoire en nombre
-            d'octets.
+            de flottants double précision.
         </para>
         <para>
             <literal>who('sorted')</literal> affiche les noms des variables courantes triees par ordre alphabetique.

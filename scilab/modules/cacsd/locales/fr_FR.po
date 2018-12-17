@@ -847,7 +847,7 @@ msgid "Phase (degree)"
 msgstr "Phase (degré)"
 
 msgid "Frequency (rad/s)"
-msgstr "Fréquence (rad/s)"
+msgstr "Pulsation (rad/s)"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Evaluation failed.\n"

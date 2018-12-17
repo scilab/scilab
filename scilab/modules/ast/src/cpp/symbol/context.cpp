@@ -308,17 +308,17 @@ int Context::getFunctionsName(std::list<std::wstring>& lst)
     return variables.getFunctionsName(lst);
 }
 
-int Context::getVarsInfoForWho(std::list<std::pair<std::wstring,int>>& lst, bool bSorted)
+int Context::getVarsNameForWho(std::list<std::wstring>& lst, bool bSorted)
 {
     int iZero = 0;
-    variables.getVarsInfoForWho(lst, &iZero, bSorted);
+    variables.getVarsNameForWho(lst, &iZero, bSorted);
     return static_cast<int>(lst.size());
 }
 
-int Context::getGlobalInfoForWho(std::list<std::pair<std::wstring,int>>& lst, bool bSorted)
+int Context::getGlobalNameForWho(std::list<std::wstring>& lst, bool bSorted)
 {
     int iZero = 0;
-    variables.getGlobalInfoForWho(lst, &iZero, bSorted);
+    variables.getGlobalNameForWho(lst, &iZero, bSorted);
     return static_cast<int>(lst.size());
 }
 
@@ -499,20 +499,19 @@ void Context::removeGlobalAll()
 
 void Context::print(std::wostream& ostr, bool sorted) const
 {
-    std::list<std::pair<std::wstring,int>> lstVar;
-    std::list<std::pair<std::wstring,int>> lstGlobal;
+    std::list<std::wstring> lstVar;
+    std::list<std::wstring> lstGlobal;
     int iVarLenMax = 10; // initialise to the minimal value of padding
     int iGlobalLenMax = 10; // initialise to the minimal value of padding
-    variables.getVarsInfoForWho(lstVar, &iVarLenMax);
-    variables.getGlobalInfoForWho(lstGlobal, &iGlobalLenMax);
-    //libraries.getVarsNameForWho(&lstVar, &iVarLenMax);
+    variables.getVarsNameForWho(lstVar, &iVarLenMax);
+    variables.getGlobalNameForWho(lstGlobal, &iGlobalLenMax);
+    libraries.getVarsNameForWho(&lstVar, &iVarLenMax);
 
     if (sorted)
     {
         lstVar.sort();
         lstGlobal.sort();
     }
-
 
 #define strSize 64
     wchar_t wcsVarElem[strSize];
@@ -534,7 +533,7 @@ void Context::print(std::wostream& ostr, bool sorted) const
 #endif
 
     ostr << _W("Your variables are:") << std::endl << std::endl;
-    std::list<std::pair<std::wstring,int>>::const_iterator it = lstVar.begin();
+    std::list<std::wstring>::const_iterator it = lstVar.begin();
     int iWidth = ConfigVariable::getConsoleWidth();
     int iCurrentWidth = 0;
     for (int i = 1; it != lstVar.end(); ++it, i++)
@@ -544,7 +543,7 @@ void Context::print(std::wostream& ostr, bool sorted) const
             ostr << std::endl;
             iCurrentWidth = 0;
         }
-        ostr << std::setw(iVarLenMax + 1) << it->first;
+        ostr << std::setw(iVarLenMax + 1) << *it;
         iCurrentWidth += iVarLenMax + 1;
     }
 
@@ -558,7 +557,7 @@ void Context::print(std::wostream& ostr, bool sorted) const
     it = lstGlobal.begin();
     for (int i = 1; it != lstGlobal.end(); ++it, i++)
     {
-        ostr << std::setw(iGlobalLenMax + 1) << it->first;
+        ostr << std::setw(iGlobalLenMax + 1) << *it;
         if (i % 4 == 0)
         {
             ostr << std::endl;
