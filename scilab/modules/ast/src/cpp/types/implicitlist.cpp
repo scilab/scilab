@@ -720,13 +720,6 @@ bool ImplicitList::isTrue()
     return false;
 }
 
-bool ImplicitList::getMemory(int* _piSize, int* _piSizePlusType)
-{
-    *_piSize = sizeof(ImplicitList);
-    *_piSizePlusType = *_piSize;
-    return true;
-}
-
 }
 
 std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar)

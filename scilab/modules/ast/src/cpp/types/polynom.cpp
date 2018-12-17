@@ -63,20 +63,6 @@ Polynom::~Polynom()
 #endif
 }
 
-bool Polynom::getMemory(int* _piSize, int* _piSizePlusType)
-{
-    *_piSize = 0;
-    for (int i = 0; i<getSize(); i++)
-    {
-        *_piSize += (get(i)->getRank()+1)*sizeof(double);
-    }
-    
-    *_piSize = *_piSize * (isComplex() ? 2 : 1);
-    *_piSizePlusType = *_piSize + getSize()*sizeof(SinglePoly *) + sizeof(*this);
-    return true;
-}
-
-
 void Polynom::createPoly(const std::wstring& _szVarName, int _iDims, const int* _piDims, const int *_piRank)
 {
     m_szVarName = _szVarName;

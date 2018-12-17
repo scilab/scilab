@@ -109,8 +109,6 @@ public :
 
     virtual bool transpose(InternalType *& out);
 
-    bool getMemory(int* _piSize, int* _piSizePlusType);
-
 private :
     virtual InternalType*   getNullValue();
     virtual Cell*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

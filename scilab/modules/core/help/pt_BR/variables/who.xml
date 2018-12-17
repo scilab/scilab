@@ -26,11 +26,12 @@
         </para>
         <para>
             <literal>who('local')</literal> ou <literal>who('get')</literal>
-            retorna os nomes das variáveis atuais e a memória usada em bytes.
+            retorna os nomes de variáveis correntes e a memória utilizada em palavras
+            de dupla precisão.
         </para>
         <para>
-            <literal>who('global')</literal>retorna os nomes de variáveis globais
-             e a memória utilizada em bytes.
+            <literal>who('global')</literal> retorna os nomes de variáveis
+            globais e a memória utilizada em palavras de dupla precisão.
         </para>
         <para>
             <literal>who('sorted')</literal> exibe todas as variáveis em ordem

@@ -106,25 +106,6 @@ Struct::Struct(Struct *_oStructCopyMe)
 #endif
 }
 
-bool Struct::getMemory(int* _piSize, int* _piSizePlusType)
-{
-    *_piSize = 0;
-    *_piSizePlusType = 0;
-    SingleStruct** p = get();
-    for (int i = 0; i < getSize(); i++)
-    {
-        int piS, piSPT;
-        if (p[i]->getMemory(&piS, &piSPT))
-        {
-            *_piSize += piS;
-            *_piSizePlusType += piSPT;
-        }
-    }
-
-    *_piSizePlusType += sizeof(Struct);
-    return true;
-}
-
 Struct* Struct::clone()
 {
     return new Struct(this);

@@ -19,7 +19,6 @@
 #include "overload.hxx"
 #include "configvariable.hxx"
 #include "exp.hxx"
-#include "types_tools.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -27,24 +26,6 @@
 
 namespace types
 {
-bool MList::getMemory(int* _piSize, int* _piSizePlusType)
-{
-    *_piSize = 0;
-    *_piSizePlusType = 0;
-    for (auto pData : *m_plData)
-    {
-        int piS, piSPT;
-        if (pData->getMemory(&piS, &piSPT))
-        {
-            *_piSize += piS;
-            *_piSizePlusType += piSPT;
-        }
-    }
-
-    *_piSizePlusType += sizeof(MList);
-    return true;
-}
-
 bool MList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typed_list & out, const ast::Exp & e)
 {
     if (in.size() == 0)

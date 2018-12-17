@@ -167,13 +167,6 @@ public :
     }
 
     //load must be done by overload %yourtype_load and must returns a pointer on your UserType
-
-    bool getMemory(int* _piSize, int* _piSizePlusType)
-    {
-        *_piSize = sizeof(UserType);
-        *_piSizePlusType = *_piSize;
-        return true;
-    }
 };
 }
 

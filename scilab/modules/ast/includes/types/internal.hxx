@@ -337,14 +337,6 @@ public :
     virtual bool hasInvokeOption() const;
     virtual int getInvokeNbIn();
     virtual int getInvokeNbOut();
-
-    virtual bool getMemory(int* _piSize, int* _piSizePlusType)
-    {
-        *_piSize = 0;
-        *_piSizePlusType = 0;
-        return false;
-    }
-
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring            getTypeStr() const = 0;
     /* return type as short string ( s, i, ce, l, ... )*/

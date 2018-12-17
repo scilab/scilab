@@ -86,24 +86,6 @@ std::vector<InternalType *> *List::getData()
     return m_plData;
 }
 
-bool List::getMemory(int* _piSize, int* _piSizePlusType)
-{
-    *_piSize = 0;
-    *_piSizePlusType = 0;
-    for (auto pData : *m_plData)
-    {
-        int piS, piSPT;
-        if (pData->getMemory(&piS, &piSPT))
-        {
-            *_piSize += piS;
-            *_piSizePlusType += piSPT;
-        }
-    }
-
-    *_piSizePlusType += sizeof(List);
-    return true;
-}
-
 /**
 ** size_get
 ** Return the number of elements in list

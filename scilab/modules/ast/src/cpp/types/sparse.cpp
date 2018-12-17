@@ -519,14 +519,6 @@ Sparse::Sparse(int rows, int cols, int nonzeros, int* inner, int* outer, double*
     //finalize();
 }
 
-
-bool Sparse::getMemory(int *_piSize, int* _piSizePlusType)
-{
-    *_piSize = nonZeros() * sizeof(double) * (isComplex() ? 2 : 1);
-    *_piSizePlusType = *_piSize + sizeof(*this);
-    return true;
-}
-
 template<typename DestIter>
 void Sparse::create(int rows, int cols, Double SPARSE_CONST& src, DestIter o, std::size_t n)
 {
@@ -3227,13 +3219,6 @@ SparseBool::SparseBool(int rows, int cols, int trues, int* inner, int* outer)
     m_piDims[1] = m_iCols;
 
     matrixBool->resizeNonZeros(trues);
-}
-
-bool SparseBool::getMemory(int *_piSize, int* _piSizePlusType)
-{
-    *_piSize = nbTrue() * sizeof(bool);
-    *_piSizePlusType = *_piSize + sizeof(*this);
-    return true;
 }
 
 void SparseBool::create2(int rows, int cols, Bool SPARSE_CONST& src, Double SPARSE_CONST& idx)

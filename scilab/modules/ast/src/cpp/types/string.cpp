@@ -102,17 +102,6 @@ String::String(int _iRows, int _iCols, wchar_t const* const* _pstData)
 #endif
 }
 
-bool String::getMemory(int* _piSize, int* _piSizePlusType)
-{
-    *_piSize = getSize()*sizeof(wchar_t*);
-    for (int i = 0; i < getSize(); i++)
-    {
-        *_piSize += wcslen(get(i))*sizeof(wchar_t);
-    }
-    *_piSizePlusType = *_piSize + sizeof(*this);
-    return true;
-}
-
 String* String::clone()
 {
     String *pstClone = new String(getDims(), getDimsArray());

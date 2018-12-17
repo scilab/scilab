@@ -26,7 +26,6 @@ extern "C"
 #include "elem_common.h"
 #include "os_string.h"
 #include "more.h"
-#include "sciprint.h"
 }
 
 namespace types
@@ -144,7 +143,7 @@ bool getArgsDims(typed_list* _pArgsIn, std::vector<int>& dims)
                 return false;
             }
 
-            int size = (int)pIL->getSize();
+            int size = pIL->getSize();
             if (size <= 0)
             {
                 return false;
@@ -156,11 +155,11 @@ bool getArgsDims(typed_list* _pArgsIn, std::vector<int>& dims)
             if (step > 0)
             {
                 double real_end = start + step * (size - 1);
-                dims.push_back((int)real_end);
+                dims.push_back(real_end);
             }
             else if (step < 0)
             {
-                dims.push_back((int)start);
+                dims.push_back(start);
             }
             else
             {
@@ -290,7 +289,7 @@ bool getScalarImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vecto
         double step = evalute(pIL->getStep(), sizeRef);
         double end = evalute(pIL->getEnd(), sizeRef);
 
-        if (start < 1 && step > 0 || end < 1 && step < 0)
+        if ((start < 1 && step > 0) || (end < 1 & step < 0))
         {
             wchar_t szError[bsiz];
             os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
@@ -378,7 +377,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 double step = evalute(pIL->getStep(), sizeRef);
                 double end = evalute(pIL->getEnd(), sizeRef);
 
-                int size = (int)((end - start) / step + 1);
+                int size = (end - start) / step + 1;
                 if (size <= 0)
                 {
                     //manage implicit that return []
@@ -388,7 +387,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
 
                 std::vector<int> idx(size);
 
-                if (start < 1 && step > 0 || end < 1 && step < 0)
+                if ((start < 1 && step > 0) || (end < 1 & step < 0))
                 {
                     wchar_t szError[bsiz];
                     os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
@@ -618,7 +617,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 double step = getIndex(pIL->getStep());
                 double end = getIndex(pIL->getEnd());
 
-                pCurrentArg = (start < 1 && step > 0 || end < 1 && step < 0) ? NULL : pIL->extractFullMatrix()->getAs<Double>();
+                pCurrentArg = ((start < 1 && step > 0) || (end < 1 & step < 0)) ? NULL : pIL->extractFullMatrix()->getAs<Double>();
             }
 
             pIL->killMe();
