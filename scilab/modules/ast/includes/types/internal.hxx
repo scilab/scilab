@@ -407,7 +407,6 @@ public :
     virtual bool isPointer(void);
     virtual bool isLibrary(void);
     virtual bool isUserType(void);
-    virtual bool isVoid(void);
 
     void clearPrintState();
 
