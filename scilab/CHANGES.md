@@ -656,6 +656,7 @@ Known issues
 * [#15878](http://bugzilla.scilab.org/show_bug.cgi?id=15878): `sgrid` and `evans` were broken.
 * [#15880](http://bugzilla.scilab.org/show_bug.cgi?id=15880): `sgrid` needed some improvements: Labeling was sometimes ambiguous ; large circles were not labeled ; data_bounds did not always take the input wn into account ; named and #RRGGBB colors specifications could not be used. `evans` needed some improvements: the block of legends hid data ; asymptotes were too visible.
 * [#15890](http://bugzilla.scilab.org/show_bug.cgi?id=15890): `evstr` sometimes yielded some `+[]` warnings.
+* [#15907](http://bugzilla.scilab.org/show_bug.cgi?id=15907): `filter` was corrupting its input state array
 * [#15920](http://bugzilla.scilab.org/show_bug.cgi?id=15920): genlib() did not regenerate a missing .bin if the .sci was unchanged (Scilab 6 regression)
 
 
