@@ -512,6 +512,7 @@ Known issues
 * [#14840](http://bugzilla.scilab.org/show_bug.cgi?id=14840): `load()` is unable to load old data files saved with Scilab < 5.4.0 out of the SOD format.
 * [#14854](http://bugzilla.scilab.org/show_bug.cgi?id=14854): The `error_table` page needed to be updated.
 * [#14897](http://bugzilla.scilab.org/show_bug.cgi?id=14897): `xinfo` is poor and useless. It is declared obsolete.
+* [#14902](http://bugzilla.scilab.org/show_bug.cgi?id=14902): `array[k] = []` dit not work for handles (Regression)
 * [#14906](http://bugzilla.scilab.org/show_bug.cgi?id=14906): The `histplot` normalization was broken.
 * [#14915](http://bugzilla.scilab.org/show_bug.cgi?id=14915): `ascii(10)` makes `mprintf()` stop printing (REGRESSION).
 * [#14988](http://bugzilla.scilab.org/show_bug.cgi?id=14988): The example of Xcos diagram on the DERIV help page was distorted.
