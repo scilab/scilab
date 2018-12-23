@@ -22,8 +22,7 @@
     <refnamediv>
         <refname>axes properties</refname>
         <refpurpose>
-            description of the axes entity
-            properties
+            description of the axes entity properties
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -112,25 +111,42 @@
                             <term>grid: </term>
                             <listitem>
                                 <para>
-                                    The field value is a vector
-                                    <literal>[x-grid,y-grid,z-grid]</literal> where <literal>x-grid</literal>
-                                    controls a grid drawning for the x-axis and <literal>
-                                        y-grid,
-                                        z-grid
-                                    </literal>
-                                    respecting to the y-axis, z-axis. The default values
-                                    is <literal>-1</literal> grids are not drawn, else the grids are drawn
-                                    using the color given indexed by the grid value.
+                                    vector of 3 colors indices <literal>[xCol, yCol, zCol]</literal>
+                                    used to draw the grid along respective directions.
+                                    To cancel the grid in a direction, use <literal>-1</literal>
+                                    as index. Default = <literal>[-1 -1 -1]</literal> (no grid).
                                 </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>grid_style: </term>
+                            <listitem>
+                                <para>
+                                    vector <literal>[xLineStyle, yLineStyle, zLineStyle]</literal>
+                                    of 2 or 3 line styles ids from 1 to 10 (solid, dashes, dots, etc)
+                                    used to draw the grid along respective directions (in 2D or 3D).
+                                    Available line styles are described
+                                    <link linkend="polyline_properties">there</link>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>grid_thickness: </term>
+                            <listitem>
+                                <para>
+                                    vector <literal>[xLineThick, yLineThick, zLineThick]</literal>
+                                    of 2 or 3 positive decimal numbers setting the thickness of
+                                    the grid lines along respective directions (in 2D or 3D).
+                               </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>grid_position: </term>
                             <listitem>
                                 <para>
-                                    This character string specifies the grid position compared with other graphic entities.
-                                    Its value can be either <literal>"foreground"</literal>
-                                    to draw the grid ahead other graphic entities or <literal>"background"</literal> to draw the grid behind.
+                                    <literal>"background"</literal> (default): the grid is drawn
+                                    behind all other graphical components ;
+                                    or <literal>"foreground</literal>: the grid is drawn on the top.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -303,7 +319,14 @@
                                                 in front of each related graduation. As for Locations
                                                 of ticks, Labels can be addressed with (e.g. along y)
                                                 <literal>Haxes.y_ticks.labels = Labels</literal> or
-                                                <literal>Haxes.y_ticks.labels(j) = newLabelJ</literal>
+                                                <literal>Haxes.y_ticks.labels(j) = newLabelJ</literal>.
+                                                <para>
+                                                Vertical or tilted ticks labels can be yielded using
+                                                LaTeX formating with
+                                                <literal>\rotatebox{angle}{text}</literal>. See the
+                                                <link linkend="axes_properties_vertical_xticks">example</link>
+                                                below.
+                                                </para>
                                             </listitem>
                                         </varlistentry>
                                     </variablelist>
@@ -615,13 +638,29 @@
                             <term>axes_bounds: </term>
                             <listitem>
                                 <para>
-                                    A vector <literal>[x_left,y_up,width,height]</literal> specifying
-                                    the portion of figure used by this axes. Where
-                                    <literal>x_left</literal>, <literal>y_up</literal>, <literal>width</literal> and
-                                    <literal>height</literal> are numbers in [0 1] give respectively the
-                                    position of the upper-left corner and the dimension of the axes
-                                    (these numbers are ratio relative to the corresponding figure
-                                    <literal>figure_size</literal> property values).
+                                    Vector <literal>[x_left, y_top, width, height]</literal> of
+                                    four decimal numbers in [0, 1] specifying the portion of figure
+                                    or frame used by this axes:
+                                    <itemizedlist>
+                                        <listitem>
+                                            <literal>x_left</literal> and <literal>y_top</literal>
+                                            set the position of the top-left corner of the axes area,
+                                            with respect to the top-left corner of the embedding
+                                            figure or frame.
+                                        </listitem>
+                                        <listitem>
+                                            <literal>width</literal> and <literal>height</literal>
+                                            set the dimensions of the axes area. 1 stands for the
+                                            full width or height of the embedding figure or frame.
+                                        </listitem>
+                                    </itemizedlist>
+                                </para>
+                                <para>
+                                    These numbers are relative to the
+                                    <literal>gca().parent.figure_size(3:4)</literal>
+                                    or to the <literal>gca().parent.position(3:4)</literal>
+                                    dimensions of the figure or of the Uicontrol frame
+                                    embedding the axes.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -1040,8 +1079,8 @@ sda() // back to default axes model
 plot2d();
 a=gca();
 
-mathml="<mrow><mfrac><mrow><mi>d</mi>  <mi>y</mi></mrow><mrow>  <mi>d</mi>  <mi>x</mi></mrow></mfrac> <mo>=</mo>..
-<mfrac><mn>1</mn><msup> <mi>y</mi>  <mn>2</mn></msup> </mfrac> </mrow>";
+mathml = "<mrow><mfrac><mrow><mi>d</mi>  <mi>y</mi></mrow><mrow>  <mi>d</mi>  <mi>x</mi></mrow></mfrac> <mo>=</mo>" + ...
+    "<mfrac><mn>1</mn><msup> <mi>y</mi>  <mn>2</mn></msup> </mfrac> </mrow>";
 // Only LaTeX expression
 a.x_ticks = tlist(["ticks", "locations", "labels"], (0:6)', [mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6"]);
 
@@ -1051,15 +1090,40 @@ a.y_ticks = tlist(["ticks", "locations", "labels"], (-2:0.5:2)', ["0";"1";"2";"3
  ]]>
         </programlisting>
         <para/>
-        <programlisting role="example">
-            <![CDATA[
-m=[66.425514; 66.425513];
+        <programlisting role="example"><![CDATA[
+m = [66.425514; 66.425513];
 plot([69;70], m);
-a=gca();
-a.ticks_format=["" sprintf("%.2f", m(2))+"%+.1e"];
-a.ticks_st=[1 1;0 m(2)];
- ]]>
-        </programlisting>
+a = gca();
+a.ticks_format = ["" sprintf("%.2f", m(2))+"%+.1e"];
+a.ticks_st = [1 1;0 m(2)];
+]]></programlisting>
+        <para>
+            Example with vertical x_ticks labels:
+        </para>
+        <programlisting role="example" id="axes_properties_vertical_xticks"><![CDATA[
+rain_Nice  = [51  45  39 69 45 34 12 18 73 133 104 93 ];
+months = _(["January" "Febuary" "March" "April" "May" "June" "July" ...
+            "August" "September" "October" "November" "December"]);
+clf
+bar(rain_Nice,1,"cyan");
+title(_("Rain - Nice (France)"), "fontsize",3)
+ylabel("[mm]")
+gca().x_ticks.labels = "$\rotatebox{90}{\mathsf{"+months'+"}}$";
+set(gca(), "tight_limits", "on", "font_size", 2);
+gcf().axes_size = [460 320];
+]]></programlisting>
+    <scilab:image localized="true">
+rain_Nice  = [51  45  39 69 45 34 12 18 73 133 104 93 ];
+months = _(["January" "Febuary" "March" "April" "May" "June" "July" ..
+            "August" "September" "October" "November" "December"]);
+clf
+bar(rain_Nice, 1, "cyan")
+title(_("Rain - Nice (France)"), "fontsize",3);
+ylabel("[mm]");
+gca().x_ticks.labels = "$\rotatebox{90}{\mathsf{"+months'+"}}$";
+set(gca(), "tight_limits", "on", "font_size", 2);
+gcf().axes_size = [420 320];
+    </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -1068,7 +1132,7 @@ a.ticks_st=[1 1;0 m(2)];
                 <link linkend="axis_properties">axis_properties</link>
             </member>
             <member>
-                <link linkend="lines">lines</link>
+                <link linkend="drawaxis">drawaxis</link>
             </member>
             <member>
                 <link linkend="set">set</link>
@@ -1083,16 +1147,10 @@ a.ticks_st=[1 1;0 m(2)];
                 <link linkend="gda">gda</link>
             </member>
             <member>
-                <link linkend="gcf">gcf</link>
-            </member>
-            <member>
                 <link linkend="sda">sda</link>
             </member>
             <member>
-                <link linkend="sdf">sdf</link>
-            </member>
-            <member>
-                <link linkend="scf">scf</link>
+                <link linkend="polyline_properties">polyline_properties</link>
             </member>
             <member>
                 <link linkend="graphics_entities">graphics_entities</link>
@@ -1104,23 +1162,38 @@ a.ticks_st=[1 1;0 m(2)];
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>line_style value 0 is obsolete, use 1 instead (both are equivalent for SOLID).
-                  Using value 0 will produce an error in Scilab 5.4.1.</revremark>
+                <revremark>.line_style value 0 is replaced with 1 (for solid line).</revremark>
             </revision>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
                     <itemizedlist>
-                        <listitem>.grid_style property added.</listitem>
-                        <listitem>.line_style values 9 and 10 can be used to have respectively long blank dot and bigblank dot styles.</listitem>
-                        <listitem>.auto_margins property added to allow automatic computation of the margins.</listitem>
-                        <listitem>.ticks_format and .ticks_st properties added to improve ticks labels display.</listitem>
+                        <listitem>.grid_style and .grid_thickness properties added.</listitem>
+                        <listitem>
+                            .line_style values 9 and 10 can be used to have respectively longblank
+                            dot and bigblank dot styles.
+                        </listitem>
+                        <listitem>
+                            .auto_margins property added to allow automatic computation of the margins.
+                        </listitem>
+                        <listitem>
+                            .ticks_format and .ticks_st properties added to improve ticks labels
+                            display.
+                        </listitem>
+                        <listitem>
+                            For an axes drawn in a uicontrol frame, .axes_bounds now refers to
+                            the frame area instead of the figure area.
+                        </listitem>
                     </itemizedlist>
                 </revremark>
             </revision>
             <revision>
                 <revnumber>5.5.2</revnumber>
-                <revremark>tight_limits property can now manage X, Y and Z axis separately.</revremark>
+                <revremark>.tight_limits property can now manage X, Y and Z axis separately.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revremark>Default .grid_style is now [7 7] instead of [3 3].</revremark>
             </revision>
         </revhistory>
     </refsection>

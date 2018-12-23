@@ -402,6 +402,7 @@ Known issues
 
 
 ### Bugs fixed in 6.0.2:
+* [#2247](http://bugzilla.scilab.org/show_bug.cgi?id=2247): The axes_properties page did not show how to yield vertical x-tick labels. `.grid_style`, `.grid_thickness`, and `.axes_bounds` inside a uicontrol frame were not documented. 
 * [#2464](http://bugzilla.scilab.org/show_bug.cgi?id=2464): `null()` was poorly documented.
 * [#4050](http://bugzilla.scilab.org/show_bug.cgi?id=4050): `ged()` did not support graphical texts with a font size > 5.
 * [#4953](http://bugzilla.scilab.org/show_bug.cgi?id=4953): The `clean` function does not work when the matrix contains %inf.

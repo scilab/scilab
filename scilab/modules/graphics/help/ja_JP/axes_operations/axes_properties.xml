@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2013, 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -113,6 +113,28 @@
                                     デフォルト値は <literal>-1</literal>で,グリッドは描画されません.
                                     それ以外の場合, grid の値により指定された色添字により
                                 </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>grid_style: </term>
+                            <listitem>
+                                <para>
+                                    vector <literal>[xLineStyle, yLineStyle, zLineStyle]</literal>
+                                    of 2 or 3 line styles ids from 1 to 10 (solid, dashes, dots, etc)
+                                    used to draw the grid along respective directions (in 2D or 3D).
+                                    Available line styles are described
+                                    <link linkend="polyline_properties">there</link>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>grid_thickness: </term>
+                            <listitem>
+                                <para>
+                                    vector <literal>[xLineThick, yLineThick, zLineThick]</literal>
+                                    of 2 or 3 positive decimal numbers setting the thickness of
+                                    the grid lines along respective directions (in 2D or 3D).
+                               </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -275,6 +297,13 @@
                                                 <literal>Haxes.y_ticks.labels = Labels</literal> または
                                                 <literal>Haxes.y_ticks.labels(j) = newLabelJ</literal>のように
                                                 (y軸に関して)変更できます.
+                                                <para>
+                                                Vertical or tilted ticks labels can be yielded using
+                                                LaTeX formating with
+                                                <literal>\rotatebox{angle}{text}</literal>. See the
+                                                <link linkend="axes_properties_vertical_xticks">example</link>
+                                                below.
+                                                </para>
                                             </listitem>
                                         </varlistentry>
                                     </variablelist>
@@ -577,13 +606,29 @@
                             <term>axes_bounds: </term>
                             <listitem>
                                 <para>
-                                    ベクトル <literal>[x_left,y_up,width,height]</literal> はこの軸で
-                                    使用される図の部分を指定します.
-                                    ただし, <literal>x_left</literal>, <literal>y_up</literal>, <literal>width</literal>
-                                    および<literal>height</literal>は[0 1]の範囲の数値で,
-                                    それぞれ左上隅の位置と軸の寸法を指定します.
-                                    (これらの数値は対応する図<literal>figure_size</literal>プロパティの値
-                                    に対する比です.)
+                                    Vector <literal>[x_left, y_top, width, height]</literal> of
+                                    four decimal numbers in [0, 1] specifying the portion of figure
+                                    or frame used by this axes:
+                                    <itemizedlist>
+                                        <listitem>
+                                            <literal>x_left</literal> and <literal>y_top</literal>
+                                            set the position of the top-left corner of the axes area,
+                                            with respect to the top-left corner of the embedding
+                                            figure or frame.
+                                        </listitem>
+                                        <listitem>
+                                            <literal>width</literal> and <literal>height</literal>
+                                            set the dimensions of the axes area. 1 stands for the
+                                            full width or height of the embedding figure or frame.
+                                        </listitem>
+                                    </itemizedlist>
+                                </para>
+                                <para>
+                                    These numbers are relative to the
+                                    <literal>gca().parent.figure_size(3:4)</literal>
+                                    or to the <literal>gca().parent.position(3:4)</literal>
+                                    dimensions of the figure or of the Uicontrol frame
+                                    embedding the axes.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -1019,8 +1064,8 @@ sda() // デフォルトの軸モデルに戻す
 plot2d();
 a=gca();
 
-mathml="<mrow><mfrac><mrow><mi>d</mi>  <mi>y</mi></mrow><mrow>  <mi>d</mi>  <mi>x</mi></mrow></mfrac> <mo>=</mo>..
-<mfrac><mn>1</mn><msup> <mi>y</mi>  <mn>2</mn></msup> </mfrac> </mrow>";
+mathml = "<mrow><mfrac><mrow><mi>d</mi>  <mi>y</mi></mrow><mrow>  <mi>d</mi>  <mi>x</mi></mrow></mfrac> <mo>=</mo>" + ...
+    "<mfrac><mn>1</mn><msup> <mi>y</mi>  <mn>2</mn></msup> </mfrac> </mrow>";
 // LaTeX 式のみ
 a.x_ticks = tlist(["ticks", "locations", "labels"], (0:6)', [mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6"]);
 // 式の混用: MathML と LaTex
@@ -1037,6 +1082,32 @@ a.ticks_format=["" sprintf("%.2f", m(2))+"%+.1e"];
 a.ticks_st=[1 1;0 m(2)];
  ]]>
         </programlisting>
+        <para>
+            Example with vertical x_ticks labels:
+        </para>
+        <programlisting role="example" id="axes_properties_vertical_xticks"><![CDATA[
+rain_Nice  = [51  45  39 69 45 34 12 18 73 133 104 93 ];
+months = _(["January" "Febuary" "March" "April" "May" "June" "July" ..
+            "August" "September" "October" "November" "December"]);
+clf
+bar(rain_Nice,1,"cyan");
+title(_("Rain - Nice (France)"), "fontsize",3)
+ylabel("[mm]")
+gca().x_ticks.labels = "$\rotatebox{90}{\mathsf{"+months'+"}}$";
+set(gca(), "tight_limits", "on", "font_size", 2);
+]]></programlisting>
+    <scilab:image localized="true">
+rain_Nice  = [51  45  39 69 45 34 12 18 73 133 104 93 ];
+months = _(["January" "Febuary" "March" "April" "May" "June" "July" ..
+            "August" "September" "October" "November" "December"]);
+clf
+bar(rain_Nice, 1, "cyan")
+title(_("Rain - Nice (France)"), "fontsize",3);
+ylabel("[mm]");
+gca().x_ticks.labels = "$\rotatebox{90}{\mathsf{"+months'+"}}$";
+set(gca(), "tight_limits", "on", "font_size", 2);
+gcf().axes_size = [420 320];
+    </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -1045,7 +1116,7 @@ a.ticks_st=[1 1;0 m(2)];
                 <link linkend="axis_properties">axis_properties</link>
             </member>
             <member>
-                <link linkend="lines">lines</link>
+                <link linkend="drawaxis">drawaxis</link>
             </member>
             <member>
                 <link linkend="set">set</link>
@@ -1060,16 +1131,10 @@ a.ticks_st=[1 1;0 m(2)];
                 <link linkend="gda">gda</link>
             </member>
             <member>
-                <link linkend="gcf">gcf</link>
-            </member>
-            <member>
                 <link linkend="sda">sda</link>
             </member>
             <member>
-                <link linkend="sdf">sdf</link>
-            </member>
-            <member>
-                <link linkend="scf">scf</link>
+                <link linkend="polyline_properties">polyline_properties</link>
             </member>
             <member>
                 <link linkend="graphics_entities">graphics_entities</link>
@@ -1081,7 +1146,7 @@ a.ticks_st=[1 1;0 m(2)];
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>line_style の値 0 が廃止対象となりましたので,代わりに1を使用してください
+                <revremark>.line_style の値 0 が廃止対象となりましたので,代わりに1を使用してください
                     (両者は共に実線であり,等価です).
                     値0は Scilab 5.4.1でエラーとなります.
                 </revremark>
@@ -1090,7 +1155,7 @@ a.ticks_st=[1 1;0 m(2)];
                 <revnumber>5.5.0</revnumber>
                 <revremark>
                     <itemizedlist>
-                        <listitem>.grid_style property added.</listitem>
+                        <listitem>.grid_style and .grid_thickness properties added.</listitem>
                         <listitem>.line_style の値 9 と 10 を使用でき,
                             それぞれlongblank dot および bigblank dot 形式を意味します.
                         </listitem>
@@ -1100,8 +1165,20 @@ a.ticks_st=[1 1;0 m(2)];
                         <listitem>.ticks_format と .ticks_st プロパティが追加され,
                             目盛ラベルの表示が改善されました.
                         </listitem>
+                        <listitem>
+                            For an axes drawn in a uicontrol frame, .axes_bounds now refers to
+                            the frame area instead of the figure area.
+                        </listitem>
                     </itemizedlist>
                 </revremark>
+            </revision>
+            <revision>
+                <revnumber>5.5.2</revnumber>
+                <revremark>.tight_limits property can now manage X, Y and Z axis separately.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revremark>Default .grid_style is now [7 7] instead of [3 3].</revremark>
             </revision>
         </revhistory>
     </refsection>
