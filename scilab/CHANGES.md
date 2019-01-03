@@ -256,6 +256,8 @@ input and output arguments.
    - Encoded integers can now be saved in `-v4` format.
 * `sci2exp` now uses `%s` or `%z` in literal expressions of polynomials in `s` or `z`.
 * `min` and `max` hardly worked with sparse-encoded inputs. They are now fully enabled.
+* `cond([])` now yields 0 as `cond([],2)`, instead of 1.
+* `rcond([])` now yields `Inf` instead of `[]`, consistently with `cond([])==0`.
 
 Help pages:
 -----------
@@ -698,6 +700,7 @@ Known issues
 * [#15899](http://bugzilla.scilab.org/show_bug.cgi?id=15899): `tree2code(tree, prettyprint=%t)` ignored the indentation width declared in Scinotes preferences.
 * [#15907](http://bugzilla.scilab.org/show_bug.cgi?id=15907): `filter` was corrupting its input state array
 * [#15920](http://bugzilla.scilab.org/show_bug.cgi?id=15920): genlib() did not regenerate a missing .bin if the .sci was unchanged (Scilab 6 regression)
+* [#15922](http://bugzilla.scilab.org/show_bug.cgi?id=15922): `rcond([])` returned `[]` instead of `Inf` consistently with `cond([])==0`.
 * [#15924](http://bugzilla.scilab.org/show_bug.cgi?id=15924): sparse inequality to 0 yielded a wrong result.
 
 

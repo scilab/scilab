@@ -2,7 +2,6 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,7 +12,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="rcond">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="rcond">
     <refnamediv>
         <refname>rcond</refname>
         <refpurpose>条件数の逆数</refpurpose>
@@ -62,7 +64,7 @@
             最後に条件をLapack/DGECONで推定します.
         </para>
         <para>
-          <literal>rcond([])</literal> returns <literal>[]</literal>.
+          <literal>rcond([])</literal> yields <literal>%inf</literal>.
         </para>
 
     </refsection>
@@ -94,5 +96,16 @@ rcond(A)
                 <link linkend="inv">inv</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    rcond([]) now yields %inf = 1/cond([]) instead of [].
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

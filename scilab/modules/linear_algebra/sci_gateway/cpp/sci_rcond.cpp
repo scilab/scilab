@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_rcond(types::typed_list &in, int _iRetCount, ty
 
     if (pDbl->getRows() == 0)
     {
-        out.push_back(types::Double::Empty());
+        out.push_back(new types::Double(INFINITY));
         return types::Function::OK;
     }
     else if (pDbl->getRows() == -1) // manage eye case

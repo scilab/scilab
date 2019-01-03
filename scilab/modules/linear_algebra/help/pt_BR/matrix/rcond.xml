@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rcond" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="rcond" xml:lang="pt">
     <refnamediv>
         <refname>rcond</refname>
         <refpurpose>número de condicionamento inverso</refpurpose>
@@ -64,6 +67,9 @@
             de LU é calculada com Lapack / DGETRF. Finalmente, a condição é avaliada com
             Lapack / DGECON.
         </para>
+        <para>
+          <literal>rcond([])</literal> produz <literal>%inf</literal>.
+        </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -93,5 +99,16 @@ rcond(A)
                 <link linkend="inv">inv</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    rcond([]) now yields %inf = 1/cond([]) instead of [].
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

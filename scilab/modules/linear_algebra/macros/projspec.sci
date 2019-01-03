@@ -27,16 +27,16 @@ function [S,P,D,index]=projspec(A,tol)
         P=eye(A),D=A,S=0*P;index=1;
     end
     //     nonsingular A:  index 0
-    if rcond(A) > tol
+    if rcond(A) > tol & A<>[]
         S=inv(A),P=0*eye(A);D=P;index=0;return;
     end;
     //write(%io(2),'    rank A^k    rcond')
     //                    index 1
     index=1;
     [B,C,dim]=fullrf(A);
-    if dim==0
+    if dim==0   // includes the A==[] case
         P=eye(n,n);S=0*P;D=A;return
-    end;
+    end
     Ck=C;Bk=B;//write(%io(2),[dim,rcond(C*B)],'(7x,f3.0,6x,e9.3)');
     tst=rcond(Ck*Bk);
     if size(Ck,1)==1 then tst=norm(Ck*Bk,1);end
