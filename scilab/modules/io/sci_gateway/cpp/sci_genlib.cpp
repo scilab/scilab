@@ -264,7 +264,7 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
             {
                 //check if is exist in old file
                 MacroInfoList::iterator it = lstOld.find(pstPathBin);
-                if (it != lstOld.end())
+                if (it != lstOld.end() && FileExistW(stFullPathBin.data()))
                 {
                     if (wide_md5 == (*it).second.md5)
                     {

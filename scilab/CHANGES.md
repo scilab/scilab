@@ -653,6 +653,7 @@ Known issues
 * [#15850](http://bugzilla.scilab.org/show_bug.cgi?id=15850): Adding a space after a string increases its size. 
 * [#15854](http://bugzilla.scilab.org/show_bug.cgi?id=15854): `horner(1:$,4)` yielded an error. Extractions from `cblock` tables were impacted.
 * [#15890](http://bugzilla.scilab.org/show_bug.cgi?id=15890): `evstr` sometimes yielded some `+[]` warnings.
+* [#15920](http://bugzilla.scilab.org/show_bug.cgi?id=15920): genlib() did not regenerate a missing .bin if the .sci was unchanged (Scilab 6 regression)
 
 
 ### Bugs fixed in 6.0.1:
