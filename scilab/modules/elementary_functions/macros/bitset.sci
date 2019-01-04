@@ -1,7 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Pierre MARECHAL
-//
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,146 +8,141 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function y = bitset(x,pos,v)
+function y = bitset(x, pos, v)
+    fname = "bitset"
+    rhs = argn(2)
 
-    // INRIA 2008 - Pierre MARECHAL
-    //
-    // BITSET function
-    // Set bit at specified position
-
-    // Check input arguments
-    // =========================================================================
-
-    // check number input argument
-
-    rhs = argn(2);
-
-    if rhs < 2 then
-        msg = _("%s: Wrong number of input argument(s): At least %d expected.\n")
-        error(msprintf(msg, "bitset", 2));
+    // CHECKING AND FORMATTING INPUT ARGUMENTS
+    // =======================================
+    if rhs < 2 | rhs > 3 then
+        msg = _("%s: Wrong number of input arguments: %d or %d expected.\n")
+        error(msprintf(msg, fname, 2, 3))
     end
 
-    // case empty matrix
-    if isempty(x)
-        if ~isempty(pos) & prod(size(pos))<>1
-            msg = _("%s: Wrong size for input arguments: Same sizes expected.\n")
-            error(msprintf(msg, "bitset"));
-        else
-            y=[]
-            return
-        end
+    // Check x
+    // -------
+    if x==[]
+        y = []
+        return
+    end
+    if  and(type(x)<>[1 8]) | (type(x)==1 & (~isreal(x)|or((x-floor(x))<>0))) | or(x<0)
+        msg = gettext("%s: Argument #%d: Non-negative real integers expected.\n")
+        error(msprintf(msg, fname, 1))
     end
 
-    // check v value
-    if rhs == 3 & or(v <> 0 & v <> 1) then
-        msg = _("%s: Wrong value for input argument #%d: 0 or 1 expected.\n")
-        error(msprintf(msg, "bitset",3));
-    elseif rhs == 2 then
-        v = ones(x);
+    // Check pos
+    // ---------
+    if ~isdef("pos","l") | pos==[] then     // do nothing, keep it as is
+        y = x
+        return
     end
-
-    // check size
-    if or(size(x) <> size(pos)) | or(size(v) <> size(x)) then
-        msg = _("%s: Wrong size for input arguments: Same sizes expected.\n")
-        error(msprintf(msg, "bitset"));
-    end
-
-    // check type
-    if (type(x) == 1  & (or(x-floor(x) <> 0) | or(x < 0))) ..
-        | (type(x) == 8  & (inttype(x) < 10)) ..
-        | (typeof(x) == "hypermat" & (or(x-floor(x) <> 0) | or(x < 0))) ..
-        | (type(x) <> 1 & type(x) <> 8 & typeof(x) <> "hypermat") then
-        msg = _("%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n")
-        error(msprintf(msg, "bitset",1));
-    end
-
-    if (type(pos) == 1  & (or(pos-floor(pos) <> 0) | or(pos < 0))) ..
-        | (type(pos) == 8  & (inttype(pos) < 10)) ..
-        | (typeof(pos) == "hypermat" & (or(pos-floor(pos) <> 0) | or(pos < 0))) ..
-        | (type(pos) <> 1 & type(pos) <> 8 & typeof(pos) <> "hypermat") then
-        msg = _("%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n")
-        error(msprintf(msg, "bitset",2));
-    end
-
-    // check pos value
-    select inttype(x(1))
-    case 0  then posmax = 52;
-    case 11 then posmax = 8;
-    case 12 then posmax = 16;
-    case 14 then posmax = 32;
-    end
-
-    if or(pos > posmax) | or(pos < 1) then
-        msg = _("%s: Wrong value for input argument #%d: Must be between %d and %d.\n")
-        error(msprintf(msg, "bitset", 2, 1, posmax));
-    end
-
-    // Algorithm
-    // =========================================================================
-
-    if size(pos,"*") == 1;
-        pos  = ones(x)*pos;
-    end
-
-    if size(x,"*") == 1;
-        x    = ones(pos)*x;
-    end
-
-    vZero = find(v == 0);
-    vOne = find(v == 1);
-    sz = size(x);
-
-    if type(x(1)) == 8 then
-
-        select inttype(x(1))
-        case 11 then mask = 2^uint8((pos(:)-1));
-        case 12 then mask = 2^uint16((pos(:)-1));
-        case 14 then mask = 2^uint32((pos(:)-1));
-        end
-        mask = matrix(mask, sz);
-        y(vZero) = x(vZero) & (~mask(vZero));
-        y(vOne) = x(vOne) | mask(vOne);
-        y = matrix(y, sz);
-
-        return;
-
+    if  (type(pos)<>1  & type(pos)<>8) |  ..
+        (type(pos)==1  & (or((pos-floor(pos))<>0) | ~isreal(pos))) | or(pos<1)
+        msg = gettext("%s: Argument #%d: integers > 0 expected.\n")
+        error(msprintf(msg, fname, 2))
     else
-        // type == 1
-        a     = 2^32;
-        mask  = uint32(zeros(pos));
-
-        y_MSB  = uint32(zeros(pos));
-        y_LSB  = uint32(zeros(pos));
-
-        y_LSB = uint32( x - double(uint32(x/a)) * a ); // LSB Less Significant Bits
-        y_MSB = uint32( x/a );                         // MSB Most Significant Bits
-        yMSB  = y_MSB;
-        yLSB  = y_LSB;
-
-        if or(pos<=32) then
-            mask(pos<=32) = uint32(2^(pos(pos<=32) -1));
-            yLSB = y_LSB(pos<=32);
-            ymask = mask(pos<=32);
-            // v == 0
-            yLSB(vZero) = yLSB(vZero) & (~ymask(vZero));
-            // v == 1
-            yLSB(vOne) = yLSB(vOne) | ymask(vOne);
-            yLSB = matrix(yLSB, sz);
+        // max value
+        icode = inttype(x)
+        select modulo(icode,10)
+        case 0  then posmax = 1024  // log2(number_properties("huge"))
+        case 1 then posmax = 8
+        case 2 then posmax = 16
+        case 4 then posmax = 32
+        case 8 then posmax = 64
         end
-
-        if or(pos>32) then
-            mask(pos>32) = uint32(2^(pos(pos>32) -32 -1));
-            yMSB = y_MSB(pos>32);
-            ymask = mask(pos>32);
-            yMSB(vZero) = yMSB(vZero) & (~ymask(vZero));
-            yMSB(vOne) = yMSB(vOne) | ymask(vOne);
-            // v == 0
-            yMSB(vZero) = yMSB(vZero) & (~ymask(vZero));
-            // v == 1
-            yMSB(vOne) = yMSB(vOne) | ymask(vOne);
-            yMSB = matrix(yMSB, sz);
+        if icode>0 & icode<10      // Signed integers
+            posmax = posmax-1      // => sign bit reserved
         end
-        y = double(a * yMSB + yLSB);
+        if or(pos > posmax)
+            msg = gettext("%s: Argument #%d: Integers <= %d expected.\n")
+            error(msprintf(msg, fname, 2, posmax))
+        end
+    end
+    // Check consistency between x and pos sizes
+    sx = size(x)
+    ndx = ndims(x)
+    sp = size(pos)
+    ndp = ndims(pos)
+    sameBits = ndp<ndx | ~and(sx(1:ndx)==sp(1:ndx)) // Same bits for all x components
+    if sameBits then
+        if ~isscalar(pos) & ~isvector(pos)
+            msg = gettext("%s: Arguments #%d and #%d: Incompatible sizes.\n")
+            error(msprintf(msg, fname, 1, 2))
+        end
+        if ~isdef("v","l") | size(v,"*")==1
+            pos = unique(pos)
+            // we can't do that if an array v is provided, because then
+            // its length must match the pos one.
+        else
+            if length(pos)>posmax
+                msg = gettext("%s: Argument #%d is longer than %d. Please check against duplicate values.\n")
+                error(msprintf(msg, fname, 2, posmax))
+            end
+        end
+    else // ndp>=ndx & and(sx(1:ndx)==sp(1:ndx))
+        pos = matrix(pos,[sx -1])
+        // duplicate values along a range can't be removed nor easily canceled.
+        // So, no check. Never mind.
     end
 
+    // Check v
+    // -------
+    // At the end, v must be either a vector with the pos's length (sameBits case)
+    // or an array with same sizes as pos (element-wise case)
+    if ~isdef("v","l") || v==[] then
+        v = ones(pos)
+    else
+        if  (type(v)<>1  & type(v)<>8) || or(v~=0 & v~=1)
+            msg = _("%s: Argument #%d: Must be in the set {%s}.\n")
+            error(msprintf(msg, fname, 3, "0,1"))
+        end
+        if prod(size(v)(1:min(ndims(v),ndims(pos)))) == 1 // scalar or hypercolumn cases
+            v = v .*. ones(pos)
+        elseif prod(size(v)(1:ndims(pos))) ~= length(pos)
+            msg = gettext("%s: Arguments #%d and #%d: Incompatible sizes.\n")
+            error(msprintf(msg, fname, 2, 3))
+        end
+    end
+
+    // PROCESSING
+    // ==========
+    if sameBits then
+        nBitLayers = length(pos)
+        template = ones(x)
+    else
+        nBitLayers = size(pos,ndx+1)
+        // Extraction mask:
+        str = strcat(emptystr(1,ndx)+":,")+"iL"
+    end
+    Pos = pos
+    V = v
+    y = x
+    //
+    for iL = 1:nBitLayers
+        if sameBits
+            pos = template*Pos(iL)
+            v   = template*V(iL)
+        else
+            execstr("pos = Pos("+str+"); v = V("+str+")")
+        end
+        vZero = (v == 0)
+        vOne  = (v == 1)
+        x = y
+        if type(x)==8 then
+            mask =  2 .^ iconvert((pos-1), inttype(x))
+            y(vZero) = x(vZero) & (~mask(vZero))
+            y(vOne) = x(vOne) | mask(vOne)
+            y = matrix(y,sx)
+        else
+            b = bitget(x, pos)
+            tmp = vOne & b==0
+            if or(tmp)
+                y(tmp) = y(tmp) + 2 .^(pos(tmp)-1)
+            end
+            tmp = vZero & b==1
+            if or(tmp)
+                y(tmp) = y(tmp) - 2 .^(pos(tmp)-1)
+            end
+        end
+    end
 endfunction

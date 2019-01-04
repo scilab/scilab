@@ -77,6 +77,15 @@
                     <li>Several bits can now be retrieved from each component of an input array.</li>
                 </ul>
             </li>
+            <li><code>bitset</code> is upgraded:
+                <ul>
+                    <li>It now accepts positive Signed encoded integers.</li>
+                    <li>It now supports the new uint64 and int64 types of encoded integers.</li>
+                    <li>For decimal numbers: bits with indices > 32 can now be set (up to #1024).</li>
+                    <li>Several bits can now be set for each input component.</li>
+                    <li>Distributive scalar inputs are now accepted.</li>
+                </ul>
+            </li>
             <li><code>edit</code> now accepts a line number as text (like "23").</li>
             <li><code>profileEnable, profileDisable, profileGetInfo</code> could be used to instrument functions and gather execution information within Scilab.</li>
             <li><code>prettyprint</code> is upgraded:

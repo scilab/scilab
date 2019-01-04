@@ -104,6 +104,12 @@ Feature changes and additions
   - For decimal numbers: bits with indices > 52 can now be retrieved (up to `log2(number_properties("huge"))` = 1024).
   - For decimal numbers `x > 2^52`, queried bits below `%eps` (indices < log2(x)-52) now return `Nan` instead of 0.
   - Several bits can now be retrieved from each component of an input array.
+* `bitset` is upgraded:
+  - It now accepts positive Signed encoded integers.
+  - It now supports the new uint64 and int64 types of encoded integers.
+  - For decimal numbers: bits with indices > 32 can now be set (up to #1024).
+  - Several bits can now be set for each input component.
+  - Distributive scalar inputs are now accepted.
 * `bitstring` function added.
 * `edit` now accepts a line number as text (like "23").
 * `profileEnable`, `profileDisable`, `profileGetInfo` could be used to instrument functions and gather execution information within Scilab.
@@ -251,6 +257,7 @@ Bug Fixes
 ---------
 
 ### Bugs fixed in 6.1.0:
+<<<<<<< HEAD
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
 * [#5824](https://bugzilla.scilab.org/5824): The `datafit` algorithm was not documented.
 * [#6070](https://bugzilla.scilab.org/6070): How to make multiscaled plots was not documented.
@@ -461,3 +468,20 @@ Bug Fixes
 * [#16321](https://bugzilla.scilab.org/16321): There were typo errors in the documentation.
 * [#16323](https://bugzilla.scilab.org/16323): `conj(sparse(x))` was complex when x is real.
 * [#16325](https://bugzilla.scilab.org/16325): `mgetl` could not read single line data which is greater than ~260,000 characters.
+=======
+* [#2694](http://bugzilla.scilab.org/show_bug.cgi?id=2694): `bitget` did not accept positive integers of types int8, int16 or int32.
+* [#8784](http://bugzilla.scilab.org/show_bug.cgi?id=8784): Automatic self-adjusting blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` in Xcos.
+* [#12013](http://bugzilla.scilab.org/show_bug.cgi?id=12013): `bitset` did not work for numbers greater than 2^32-1.
+* [#14655](http://bugzilla.scilab.org/show_bug.cgi?id=14655): `bitset` worked only element-wise, without accepting mixed scalar and array inputs.
+* [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
+* [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
+* [#14812](http://bugzilla.scilab.org/show_bug.cgi?id=14812): Minor typos in messages.
+* [#14863](http://bugzilla.scilab.org/show_bug.cgi?id=14863): In Xcos, the default ending time was unhandily high (100000), reduced it to 30.
+* [#14982](http://bugzilla.scilab.org/show_bug.cgi?id=14982): `msprintf` segmentation fault was caught due to wrong size
+* [#15269](http://bugzilla.scilab.org/show_bug.cgi?id=15269): `xgetech` was poor and stiff compared to any combination of `gca()` properties `.axes_bounds`, `.data_bounds`, `.log_flags`, and `.margins`. It is removed.
+* [#15271](http://bugzilla.scilab.org/show_bug.cgi?id=15271): `bitget` needed to be upgraded.
+* [#15425](http://bugzilla.scilab.org/show_bug.cgi?id=15425): The Kronecker product `a.*.b` failed when `a` or `b` or both are hypermatrices, with one or both being polynomials or rationals.
+* [#15523](http://bugzilla.scilab.org/show_bug.cgi?id=15523): `%ODEOPTIONS(1)=2` didn't work with solvers 'rk' and 'rkf' 
+* [#15577](http://bugzilla.scilab.org/show_bug.cgi?id=15577): `edit` did not accept a line number as text, as with `edit linspace 21`.
+
+>>>>>>> a82a833092d... * Bugs 12013 & 14655 fixed: bitset() upgraded

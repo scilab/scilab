@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- *
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,63 +13,97 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bitset" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="bitset" xml:lang="en">
     <refnamediv>
         <refname>bitset</refname>
-        <refpurpose>set bit at specified position</refpurpose>
+        <refpurpose>Sets bits of given indices in some integers</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            y = bitset(x, pos)
-            y = bitset(x, pos, v)
+            y = bitset(x, bitInd)
+            y = bitset(x, bitInd, bitVal)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
             <varlistentry>
-                <term>x :</term>
+                <term>x</term>
                 <listitem>
                     <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
-                        Must contain positive integer values.
+                        positive decimal or encoded integers (all inttypes supported), whose bits
+                        must be set. Supported sizes: scalar, vector, matrix, hypermatrix.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>pos :</term>
+                <term>bitInd</term>
                 <listitem>
                     <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>).
-                        Must contain positive integer values.
-                        The input <literal>pos</literal> must be in the range 1,2,...,<literal>bitmax</literal>
-                        where <literal>bitmax</literal> is the maximum number of bits in <varname>x</varname>.
+                        Indices of bits to be set: Array of positive decimal or encoded integers
+                        (all inttypes supported), whose values are in the interval
+                        <literal>[1 bitmax]</literal> where <varname>bitmax</varname> is the
+                        maximal index of bits for the type of <varname>x</varname>.
+                        The bit #1 is the lightest one (2<superscript>0</superscript>).
+            <table style="padding:0px">
+                <tr><th>typeof(x)</th><th>bitmax</th><td>..</td><th>typeof(x)</th><th>bitmax</th></tr>
+                <tr align="center"><td>int8  </td><td>7</td> <td>  </td><td>uint8</td><td>8</td></tr>
+                <tr align="center"><td>int16 </td><td>15</td><td>  </td><td>uint16</td><td>16</td></tr>
+                <tr align="center"><td>int32 </td><td>31</td><td>  </td><td>uint32</td><td>32</td></tr>
+                <tr align="center"><td>int64 </td><td>63</td><td>  </td><td>uint16</td><td>64</td></tr>
+                <tr align="center"><td>decimal</td><td>1024</td><td>  </td><td></td><td></td></tr>
+            </table>
+                    </para>
+                    <para>
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                If the size of <varname>bitInd</varname> matches <varname>x</varname>'s
+                                one, the processing is performed element-wise: For every
+                                index i in x, the bit #bitInd(i) is set in x(i).
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                If <varname>x</varname> has N dimensions and the N first sizes of
+                                <varname>bitInd</varname> match <varname>x</varname> ones, and
+                                <varname>bitInd</varname> has N+1 dimensions, then for each
+                                <literal>x(i1,i2,..iN)</literal>, all its bits
+                                <literal>#bitInd(i1,i2,..iN, :)</literal> are set.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                Otherwise: <varname>bitInd</varname> must be a vector of length&lt;=
+                                <varname>bitmax</varname>. Then, all the bits listed in
+                                <varname>bitInd</varname> are set in all <varname>x</varname> components.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>v :</term>
+                <term>bitVal</term>
                 <listitem>
                     <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers (<literal>uint8</literal>, <literal>uint16</literal> or <literal>uint32</literal>). Default <varname>v</varname><literal>=1</literal>.
-                        Must contain positive integer values.
+                        Array of values 0 or 1 as decimal or encoded integers (all inttypes supported)
+                        : values to which respective bits must be set. <varname>bitVal</varname>
+                        has either the size of <varname>bitInd</varname>, or it is scalar
+                        (then the same value is used for all bits).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>y :</term>
+                <term>y</term>
                 <listitem>
                     <para>
-                        a <literal>m</literal>-by-<literal>n</literal> matrix of doubles
-                        or a <literal>m1</literal>-by-<literal>m2</literal>-by-...-by-<literal>mm</literal> hypermatrix of doubles
-                        or a <literal>m</literal>-by-<literal>n</literal> matrix of unsigned integers.
+                        Processed <varname>x</varname>, with the same size and data type
+                        (and integer type) as <varname>x</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -79,25 +112,296 @@
     <refsection>
         <title>Description</title>
         <para>
-            Set the bit at specified position <varname>pos</varname>.
+            Sets the bits of <varname>x</varname> indicated by <varname>bitInd</varname>,
+            either to 1 or to the given values <varname>bitVal</varname>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+         Setting one or several bits in a scalar:
+        </para>
         <programlisting role="example"><![CDATA[
-// 9 is (01001)_2
-// We set the 5th bit to 1, which gives
-//      (11001)_2 producing 25
-bitset(uint8(9), 5)
-expected = 25
+n = int8(20);
+ns = bitset(n, [1 3 6]) // setting bits #1 #3 #6 (to 1 by default)
+bitget([n ns], 1:7)     // bits content before / after setting
 
-// Set the 5th bit of 25 to 0.
-bitset(uint8(25), 5, 0)
-expected = 9
-
-// The input can be a positive double
-bitset(25, 5, 0)
-expected = 9
+ns = bitset(n, [1 3 6], [1 0 1]) // to explicit bits values
+bitget([n ns], 1:7)
    ]]></programlisting>
+   <screen><![CDATA[
+--> n = int8(20);
+--> ns = bitset(n, [1 3 6]) // setting bits #1 #3 #6 (to 1 by default)
+ ns  =
+  53
+
+--> bitget([n ns], 1:7)     // bits content before / after setting
+ ans  =
+  0  0  1  0  1  0  0
+  1  0  1  0  1  1  0
+
+--> ns = bitset(n, [1 3 6], [1 0 1]) // to explicit bits values
+ ns  =
+  49
+
+--> bitget([n ns], 1:7)
+ ans  =
+  0  0  1  0  1  0  0
+  1  0  0  0  1  1  0
+]]></screen>
+        <para>
+        Setting the same bits to the same respective values for all input elements:
+        </para>
+        <programlisting role="example"><![CDATA[
+n = uint16([28  59; 23  19])
+ns = bitset(n, [3 5], [1 0])
+bitget(n, 1:8)
+bitget(ns,1:8)
+   ]]></programlisting>
+   <screen><![CDATA[
+--> n = uint16([28  59; 23  19])
+ n  =
+  28  59
+  23  19
+
+--> ns = bitset(n, [3 5], [1 0])
+ ns  =
+  12  47
+   7   7
+
+--> bitget(n, 1:8)
+ ans  =
+  0  0  1  1  1  0  0  0
+  1  1  1  0  1  0  0  0
+  1  1  0  1  1  1  0  0
+  1  1  0  0  1  0  0  0
+
+--> bitget(ns,1:8)
+ ans  =
+  0  0  1  1  0  0  0  0
+  1  1  1  0  0  0  0  0
+  1  1  1  1  0  1  0  0
+  1  1  1  0  0  0  0  0
+]]></screen>
+        <para>
+        Setting a single bit of each element of an array, at a bit index depending
+        on the element, in an element-wise way:
+        </para>
+        <programlisting role="example"><![CDATA[
+n = uint16([94 78 ; 6 19])
+ns = bitset(n, [2 4 ; 3 5], 0)            // To the same bit value 0
+ns2 = bitset(n, [1 3 ; 2 4], [1 0 ; 0 1]) // To respective bits values
+// Analysis:
+bitget(ns, 1:8)  // #[2 3 4 5] set to 0
+bitget(n, 1:8)   // input
+bitget(ns2, 1:8) // #[1 2 3 4] set to [1 0 0 1]
+   ]]></programlisting>
+   <screen><![CDATA[
+--> n = uint16([94 78 ; 6 19])
+ n  =
+  94  78
+   6  19
+
+--> ns = bitset(n, [2 4 ; 3 5], 0)            // To the same bit value 0
+ ns  =
+  92  70
+   2   3
+
+--> ns2 = bitset(n, [1 3 ; 2 4], [1 0 ; 0 1]) // To respective bits values
+ ns2  =
+  95  74
+   4  27
+
+--> // Analysis:
+--> bitget(ns, 1:8)    // #[2 3 4 5] set to 0
+ ans  =
+  0  0  1  1  1  0  1  0
+  0  1  0  0  0  0  0  0
+  0  1  1  0  0  0  1  0
+  1  1  0  0  0  0  0  0
+
+--> bitget(n, 1:8)     // input
+ ans  =
+  0  1  1  1  1  0  1  0
+  0  1  1  0  0  0  0  0
+  0  1  1  1  0  0  1  0
+  1  1  0  0  1  0  0  0
+
+--> bitget(ns2, 1:8)    // #[1 2 3 4] set to [1 0 0 1]
+ ans  =
+  1  1  1  1  1  0  1  0
+  0  0  1  0  0  0  0  0
+  0  1  0  1  0  0  1  0
+  1  1  0  1  1  0  0  0
+]]></screen>
+        <para>
+        Setting several bits in each input element, in an element-wise way:
+        </para>
+        <programlisting role="example"><![CDATA[
+// Bits set to 1:
+n = int64([6 49 71]);
+bitInd = cat(3, [1 3 5], [2 4 6])
+ns = bitset(n, bitInd)
+bitget(n, 1:8)
+bitget(ns, 1:8)
+   ]]></programlisting>
+   <screen><![CDATA[
+--> n = int64([6 49 71]);
+--> bitInd = cat(3, [1 3 5], [2 4 6])
+ bitInd  =
+(:,:,1)
+   1.   3.   5.
+(:,:,2)
+   2.   4.   6.
+
+--> ns = bitset(n, bitInd)
+ ns  =
+  7  61  119
+
+--> bitget(n, 1:8)
+ ans  =
+  0  1  1  0  0  0  0  0
+  1  0  0  0  1  1  0  0
+  1  1  1  0  0  0  1  0
+
+--> bitget(ns, 1:8)
+ ans  =
+  1  1  1  0  0  0  0  0
+  1  0  1  1  1  1  0  0
+  1  1  1  0  1  1  1  0
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
+// Bits set to respective values:
+n = uint64([6 49 71]);
+bitInd = cat(3, [1 3 5], [2 4 6])
+bitVal = cat(3, [1 1 1], [0 0 0])
+n
+ns = bitset(n, bitInd, bitVal)
+bitget(n, 1:8)
+bitget(ns, 1:8)
+   ]]></programlisting>
+   <screen><![CDATA[
+--> bitInd = cat(3, [1 3 5], [2 4 6])
+ bitInd  =
+(:,:,1)
+   1.   3.   5.
+(:,:,2)
+   2.   4.   6.
+
+--> bitVal = cat(3, [1 1 1], [0 0 0])
+ bitVal  =
+(:,:,1)
+   1.   1.   1.
+(:,:,2)
+   0.   0.   0.
+
+--> n
+ n  =
+  6  49  71
+
+--> ns = bitset(n, bitInd, bitVal)
+ ns  =
+  5  53  87
+
+--> bitget(n, 1:8)
+ ans  =
+  0  1  1  0  0  0  0  0
+  1  0  0  0  1  1  0  0
+  1  1  1  0  0  0  1  0
+
+--> bitget(ns, 1:8)
+ ans  =
+  1  0  1  0  0  0  0  0
+  1  0  1  0  1  1  0  0
+  1  1  1  0  1  0  1  0
+]]></screen>
+        <para>
+        Setting bits in decimal numbers, even for big numbers:
+        </para>
+        <programlisting role="example"><![CDATA[
+n = [0 1.2345e20];
+showBits =     [1 10 40 50 60 61 62 63 64 65 66];
+ns = bitset(n, [  10 40       61    63 64 65   ], ..
+               [   1  0        1     1  0  1   ])
+[bitget(n, showBits); showBits ; bitget(ns, showBits)] // [before ; bits # ; after]
+// bits at #<(65|66 - 53) are unknown
+   ]]></programlisting>
+   <screen><![CDATA[
+--> ns = bitset(n, [  10 40       61    63 64 65   ], ..
+  >                [   1  0        1     1  0  1   ])
+ ns  =
+   2.421D+19   1.373D+20
+
+--> [bitget(n, showBits); showBits ; bitget(ns, showBits)] // [before ; bits # ; after]
+ ans  =
+   0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+   Nan   Nan   1.    1.    0.    1.    1.    0.    1.    0.    1.
+   1.    10.   40.   50.   60.   61.   62.   63.   64.   65.   66.
+   Nan   Nan   0.    0.    0.    1.    0.    1.    0.    1.    0.
+   Nan   Nan   0.    1.    0.    1.    1.    1.    0.    1.    1.
+
+--> // bits at #<(65|66 - 53) are unknown
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bitget">bitget</link>
+            </member>
+            <member>
+                <link linkend="or_op">|, ||</link>
+            </member>
+            <member>
+                <link linkend="and_op">&amp;, &amp;&amp;</link>
+            </member>
+            <member>
+                <link linkend="or">or</link>
+            </member>
+            <member>
+                <link linkend="and">and</link>
+            </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.0</revnumber>
+                <revdescription>
+                    Function introduced
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            64-bit integers now supported.
+                        </listitem>
+                        <listitem>
+                            Support to positive signed integers added.
+                        </listitem>
+                        <listitem>
+                            With decimal numbers, bits #53 to #1024 can now be properly set.
+                        </listitem>
+                        <listitem>
+                            For each input element, several bits can now be set at the same time.
+                        </listitem>
+                        <listitem>
+                            Input arguments can now mixed arrays and scalars, instead of mandatory
+                            element-wise arrays.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
