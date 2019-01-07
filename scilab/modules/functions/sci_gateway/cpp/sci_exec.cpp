@@ -328,6 +328,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     catch (const ast::InternalAbort& ia)
     {
         closeFile(file, iID, wstFile, pExp);
+        ConfigVariable::setPromptMode(oldVal);
         throw ia;
     }
     catch (const ast::InternalError& ie)
