@@ -349,6 +349,8 @@ bool TList::toString(std::wostringstream& ostr)
 
         // avoid error message about undefined overload %type_p
         ConfigVariable::resetError();
+        // reset where error filled by generateNameAndCall
+        ConfigVariable::resetWhereError();
     }
 
     DecreaseRef();

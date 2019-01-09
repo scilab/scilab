@@ -26,15 +26,16 @@
         <synopsis>
             clear a b c
             clear('a','b','c')
+            clear(['a' 'b' 'c'])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>a,b,c...</term>
+                <term>a, b, c...</term>
                 <listitem>
-                    <para>переменные любого типа и размера, но не защищённые</para>
+                    <para>переменные любого типа и размера, но не защищённые.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -60,22 +61,42 @@
             </note>
         </para>
         <para>
-            Команда <code>clear</code> может работать с несуществующими переменными, т. е.
-            <code>clear</code> уничтожает несуществующие переменные как если бы они существовали.
+            Если имя <emphasis>Var</emphasis> не совпадает ни с одной из переменных, то
+             <literal>clear Var</literal> тихо ничего не делает.
         </para>
+      <note>
+        <literal>clear()</literal> может быть перегружена для любого типа <literal>mlist("foo")</literal>,
+        с помощью определения макроса <literal>%foo_clear()</literal>. Он вызывается либо когда
+        <literal>clear</literal> напрямую применяется к любому mlist-списку этого типа, либо неявно,
+        когда любой mlist-список этого типа удалён при выходе из окружения, в котором он был определён.
+      </note>
     </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-a=2;
-b=3;
-c=4;
+a = 2;
+b = 3;
+c = 4;
 clear a
 isdef("a") // F
 isdef("b") // T
 clear("b");
 isdef("b") // F
-        ]]></programlisting>
+
+a = 2;
+b = 3;
+c = 4;
+clear(['a' 'b' 'c'])
+isdef("a") | isdef("b") | isdef("c") // F
+     ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+function %foo_clear(o)
+    disp("deleted");
+endfunction
+
+value = mlist("foo");
+clear value // будет напечатано "deleted"
+]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
@@ -84,10 +105,16 @@ isdef("b") // F
                 <link linkend="predef">predef</link>
             </member>
             <member>
+                <link linkend="clearglobal">clearglobal</link>
+            </member>
+            <member>
                 <link linkend="funcprot">funcprot</link>
             </member>
             <member>
                 <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="xmlDelete">xmlDelete</link>
             </member>
         </simplelist>
     </refsection>
@@ -96,13 +123,20 @@ isdef("b") // F
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revdescription>Argument can now be a matrix of strings</revdescription>
+                <revdescription>Теперь аргумент может быть матрицей строк</revdescription>
             </revision>
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revdescription>
-                  <literal>clear</literal> is now protected:
-                  Assignments like <literal>clear=1</literal> are no longer possible.
+                  Теперь <literal>clear</literal> защищена:
+                  такие присвоения, как <literal>clear=1</literal>, более невозможны.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <literal>clear</literal> становится перегружаемой для любого
+                    <literal>mlist("foo")</literal> с помощью <literal>%foo_clear()</literal>.
                 </revdescription>
             </revision>
         </revhistory>

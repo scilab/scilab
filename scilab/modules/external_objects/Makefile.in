@@ -204,6 +204,7 @@ am__objects_2 =  \
 	src/cpp/libsciexternal_objects_algo_la-convMatrixMethod.lo \
 	src/cpp/libsciexternal_objects_algo_la-deff.lo \
 	src/cpp/libsciexternal_objects_algo_la-display.lo \
+	src/cpp/libsciexternal_objects_algo_la-clear.lo \
 	src/cpp/libsciexternal_objects_algo_la-doubleExclam_invoke.lo \
 	src/cpp/libsciexternal_objects_algo_la-classExtract.lo \
 	src/cpp/libsciexternal_objects_algo_la-objectExtract.lo \
@@ -280,7 +281,8 @@ am__objects_3 = sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_e.lo 
 	sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_t.lo \
 	sci_gateway/cpp/libsciexternal_objects_la-sci_doubleExclam_invoke_.lo \
 	sci_gateway/cpp/libsciexternal_objects_la-sci_invoke_lu.lo \
-	sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_disp.lo
+	sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_disp.lo \
+	sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_clear.lo
 am_libsciexternal_objects_la_OBJECTS = $(am__objects_3)
 libsciexternal_objects_la_OBJECTS =  \
 	$(am_libsciexternal_objects_la_OBJECTS)
@@ -313,6 +315,7 @@ am__depfiles_remade = sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_do
 	sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_4_foo.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_5.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_a_foo.Plo \
+	sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_clear.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_d_foo.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_disp.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_e.Plo \
@@ -346,6 +349,7 @@ am__depfiles_remade = sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_do
 	src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-array.Plo \
 	src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-cast.Plo \
 	src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-classExtract.Plo \
+	src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-clear.Plo \
 	src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-compile.Plo \
 	src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-convMatrixMethod.Plo \
 	src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-deff.Plo \
@@ -833,6 +837,7 @@ EXTERNAL_OBJECTS_CPP_SOURCES = \
     src/cpp/convMatrixMethod.cpp \
     src/cpp/deff.cpp \
     src/cpp/display.cpp \
+    src/cpp/clear.cpp \
     src/cpp/doubleExclam_invoke.cpp \
     src/cpp/classExtract.cpp \
     src/cpp/objectExtract.cpp \
@@ -899,7 +904,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_percent_EObj_t.cpp \
 	sci_gateway/cpp/sci_doubleExclam_invoke_.cpp \
 	sci_gateway/cpp/sci_invoke_lu.cpp \
-	sci_gateway/cpp/sci_percent_EObj_disp.cpp
+	sci_gateway/cpp/sci_percent_EObj_disp.cpp \
+	sci_gateway/cpp/sci_percent_EObj_clear.cpp
 
 libsciexternal_objects_la_CFLAGS = \
     -I$(srcdir)/includes/ \
@@ -1080,6 +1086,8 @@ src/cpp/libsciexternal_objects_algo_la-deff.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libsciexternal_objects_algo_la-display.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciexternal_objects_algo_la-clear.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libsciexternal_objects_algo_la-doubleExclam_invoke.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libsciexternal_objects_algo_la-classExtract.lo:  \
@@ -1250,6 +1258,9 @@ sci_gateway/cpp/libsciexternal_objects_la-sci_invoke_lu.lo:  \
 sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_disp.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_clear.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libsciexternal_objects.la: $(libsciexternal_objects_la_OBJECTS) $(libsciexternal_objects_la_DEPENDENCIES) $(EXTRA_libsciexternal_objects_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libsciexternal_objects_la_LINK) -rpath $(pkglibdir) $(libsciexternal_objects_la_OBJECTS) $(libsciexternal_objects_la_LIBADD) $(LIBS)
@@ -1274,6 +1285,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_4_foo.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_5.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_a_foo.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_clear.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_d_foo.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_disp.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_e.Plo@am__quote@ # am--include-marker
@@ -1307,6 +1319,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-array.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-cast.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-classExtract.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-clear.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-compile.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-convMatrixMethod.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-deff.Plo@am__quote@ # am--include-marker
@@ -1471,6 +1484,13 @@ src/cpp/libsciexternal_objects_algo_la-display.lo: src/cpp/display.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/display.cpp' object='src/cpp/libsciexternal_objects_algo_la-display.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciexternal_objects_algo_la-display.lo `test -f 'src/cpp/display.cpp' || echo '$(srcdir)/'`src/cpp/display.cpp
+
+src/cpp/libsciexternal_objects_algo_la-clear.lo: src/cpp/clear.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciexternal_objects_algo_la-clear.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-clear.Tpo -c -o src/cpp/libsciexternal_objects_algo_la-clear.lo `test -f 'src/cpp/clear.cpp' || echo '$(srcdir)/'`src/cpp/clear.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-clear.Tpo src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-clear.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/clear.cpp' object='src/cpp/libsciexternal_objects_algo_la-clear.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciexternal_objects_algo_la-clear.lo `test -f 'src/cpp/clear.cpp' || echo '$(srcdir)/'`src/cpp/clear.cpp
 
 src/cpp/libsciexternal_objects_algo_la-doubleExclam_invoke.lo: src/cpp/doubleExclam_invoke.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciexternal_objects_algo_la-doubleExclam_invoke.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-doubleExclam_invoke.Tpo -c -o src/cpp/libsciexternal_objects_algo_la-doubleExclam_invoke.lo `test -f 'src/cpp/doubleExclam_invoke.cpp' || echo '$(srcdir)/'`src/cpp/doubleExclam_invoke.cpp
@@ -1927,6 +1947,13 @@ sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_disp.lo: sci_gateway/
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_disp.lo `test -f 'sci_gateway/cpp/sci_percent_EObj_disp.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_EObj_disp.cpp
 
+sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_clear.lo: sci_gateway/cpp/sci_percent_EObj_clear.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_clear.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_clear.Tpo -c -o sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_clear.lo `test -f 'sci_gateway/cpp/sci_percent_EObj_clear.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_EObj_clear.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_clear.Tpo sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_clear.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_EObj_clear.cpp' object='sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_clear.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_clear.lo `test -f 'sci_gateway/cpp/sci_percent_EObj_clear.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_EObj_clear.cpp
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -2162,6 +2189,7 @@ distclean: distclean-am
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_4_foo.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_5.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_a_foo.Plo
+	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_clear.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_d_foo.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_disp.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_e.Plo
@@ -2195,6 +2223,7 @@ distclean: distclean-am
 	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-array.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-cast.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-classExtract.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-clear.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-compile.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-convMatrixMethod.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-deff.Plo
@@ -2290,6 +2319,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_4_foo.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_5.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_a_foo.Plo
+	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_clear.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_d_foo.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_disp.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EObj_e.Plo
@@ -2323,6 +2353,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-array.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-cast.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-classExtract.Plo
+	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-clear.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-compile.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-convMatrixMethod.Plo
 	-rm -f src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-deff.Plo

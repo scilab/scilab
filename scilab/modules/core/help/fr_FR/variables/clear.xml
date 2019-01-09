@@ -50,8 +50,20 @@
             Habituellement, les variables protégées sont les bibliothèques standard et les variables dont le nom commence par le caractère "%".
         </para>
         <para>
-            Notez la syntaxe particulière :  <literal>clear a</literal> et non <literal>clear(a)</literal>. Notez aussi que <literal>a=[]</literal> ne supprime pas <literal>a</literal> mais affecte à <literal>a</literal> une matrice vide.
+            Notez la syntaxe particulière :  <literal>clear a</literal> et non <literal>clear(a)</literal>.
+            Notez aussi que <literal>a=[]</literal> ne supprime pas <literal>a</literal>
+            mais affecte à <literal>a</literal> une matrice vide.
         </para>
+        <para>
+            Si un nom <emphasis>Var</emphasis> ne correspond à aucune variable,
+            <literal>clear Var</literal> sera simplement ignoré.
+        </para>
+    <note>
+       <literal>clear</literal> peut être surchargée pour toute <literal>mlist("foo")</literal>,
+       en définissant la fonction <literal>%foo_clear()</literal>. Celle-ci sera appelée autant
+       lors des appels explicites à <literal>clear</literal>, qu'en quittant l'environnement
+       où la mlist a été définie.
+    </note>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -71,6 +83,14 @@ c = 4;
 clear(['a' 'b' 'c'])
 isdef("a") | isdef("b") | isdef("c") // F
         ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+function %foo_clear(o)
+    disp("deleted");
+endfunction
+
+value = mlist("foo");
+clear value // will print "deleted"
+]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
@@ -79,10 +99,16 @@ isdef("a") | isdef("b") | isdef("c") // F
                 <link linkend="predef">predef</link>
             </member>
             <member>
+                <link linkend="clearglobal">clearglobal</link>
+            </member>
+            <member>
                 <link linkend="funcprot">funcprot</link>
             </member>
             <member>
                 <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="xmlDelete">xmlDelete</link>
             </member>
         </simplelist>
     </refsection>
@@ -98,6 +124,13 @@ isdef("a") | isdef("b") | isdef("c") // F
                 <revdescription>
                   <literal>clear</literal> est désormais protégé. Les affectations telles que
                   <literal>clear=1</literal> ne sont plus possibles.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <literal>clear</literal> devient surchargeable pour toute
+                    <literal>mlist("foo")</literal>, avec <literal>%foo_clear</literal>.
                 </revdescription>
             </revision>
         </revhistory>

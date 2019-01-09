@@ -13,13 +13,14 @@
  *
  */
 
-#include <sstream>
 #include "mlist.hxx"
 #include "callable.hxx"
-#include "overload.hxx"
 #include "configvariable.hxx"
+#include "context.hxx"
 #include "exp.hxx"
+#include "overload.hxx"
 #include "types_tools.hxx"
+#include <sstream>
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -27,6 +28,30 @@
 
 namespace types
 {
+
+MList::~MList()
+{
+    typed_list in;
+    typed_list out;
+    optional_list opt;
+    IncreaseRef();
+    in.push_back(this);
+
+    try
+    {
+        Overload::generateNameAndCall(L"clear", in, 0, out);
+    }
+    catch (ast::InternalError& /*se*/)
+    {
+        // avoid error message about undefined overload %type_clear
+        ConfigVariable::resetError();
+        // reset where error filled by generateNameAndCall
+        ConfigVariable::resetWhereError();
+    }
+
+    DecreaseRef();
+}
+
 bool MList::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     *_piSize = 0;

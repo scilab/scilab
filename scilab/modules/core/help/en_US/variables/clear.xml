@@ -35,7 +35,7 @@
             <varlistentry>
                 <term>a, b, c...</term>
                 <listitem>
-                    <para>variables of any type and size, but not protected</para>
+                    <para>names of variables of any type and size, but not protected</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -50,8 +50,7 @@
             remove all the variables.
         </para>
         <para>
-            Normally, protected variables are standard libraries and variables with
-            the percent prefix.
+            Normally, protected variables are standard libraries and variables with the percent prefix.
         </para>
         <para>
             <note>
@@ -61,9 +60,16 @@
             </note>
         </para>
         <para>
-            The command <code>clear</code> can kill nonexistent variables, i. e.
-            <code>clear</code> kills nonexistent variables as if they exist.
+            If a name <emphasis>Var</emphasis> matches no variable, <literal>clear Var</literal>
+            does nothing silently.
         </para>
+      <note>
+        <literal>clear()</literal> can be overloaded for any <literal>mlist("foo")</literal> type,
+        by defining a <literal>%foo_clear()</literal> macro. It will be called either when
+        <literal>clear</literal> is explicitly applied to any mlist of this type, or implicitly
+        when any mlist of this type is deleted when leaving the environment where it has been
+        defined.
+      </note>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -82,7 +88,15 @@ b = 3;
 c = 4;
 clear(['a' 'b' 'c'])
 isdef("a") | isdef("b") | isdef("c") // F
-        ]]></programlisting>
+     ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+function %foo_clear(o)
+    disp("deleted");
+endfunction
+
+value = mlist("foo");
+clear value // will print "deleted"
+]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -91,10 +105,16 @@ isdef("a") | isdef("b") | isdef("c") // F
                 <link linkend="predef">predef</link>
             </member>
             <member>
+                <link linkend="clearglobal">clearglobal</link>
+            </member>
+            <member>
                 <link linkend="funcprot">funcprot</link>
             </member>
             <member>
                 <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="xmlDelete">xmlDelete</link>
             </member>
         </simplelist>
     </refsection>
@@ -110,6 +130,13 @@ isdef("a") | isdef("b") | isdef("c") // F
                 <revdescription>
                   <literal>clear</literal> is now protected:
                   Assignments like <literal>clear=1</literal> are no longer possible.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <literal>clear</literal> becomes overloadable for any
+                    <literal>mlist("foo")</literal>, with <literal>%foo_clear()</literal>.
                 </revdescription>
             </revision>
         </revhistory>

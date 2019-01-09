@@ -107,6 +107,9 @@
     <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_a_foo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_clear.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_d_foo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -192,6 +195,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\convMatrixMethod.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\clear.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\deff.cpp">

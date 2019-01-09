@@ -1,0 +1,71 @@
+= SEP: add a `%foo_clear` overloading =
+
+= Abstract =
+
+Some Scilab features are implemented through a `mlist` object and using the overloading mechanism to call a generic gateway on an operation. This is the case for the `external_object` (and JIMS), `xml` and `hdf5` functionalities. To correctly call a destructor (to release resources, free mapping tables, etc...) a specific gateway is implemented and should be called to avoid memory leaks. This SEP propose to add an overloading `%foo_clear` called on `foo mlist` destruction to avoid the specific gateway thus let the mlist behave as other Scilab values.
+
+= Requirements =
+
+A `%foo_clear` function should be called on `foo mlist` destruction by the interpreter. If not defined, no error is produced and nothing is performed instead. This function will take an argument representing the deleted mlist value;  
+
+Atop of this deletion management, Scilab functionalities could be improved to handle this new behavior. For example, `jremove` (from external_object_java), `xmlDelete` (from xml) and `h5close` (from hdf5) could be called on deletion to avoid resource leaks and let the user `clear` the associated mlist. 
+
+== Bugzilla links ==
+
+The following bugs have been entered on Bugzilla to track similar or related problems/wishlist:
+
+ * [[https://bugzilla.scilab.org/show_bug.cgi?id=10277]] bug report on clear() overloading
+ * [[https://bugzilla.scilab.org/show_bug.cgi?id=10258]] related issue with xmlDelete
+ * [[https://bugzilla.scilab.org/show_bug.cgi?id=13398]] original clear() vs xmlDelete report
+
+== Mailing list threads ==
+
+http://mailinglists.scilab.org/SEP-add-a-foo-delete-overloading-td4038898.html
+
+== Other software ==
+
+
+= Examples =
+
+== Explicit call ==
+
+{{{#!highlight scilab
+
+function %foo_clear(o)
+	disp("resource deleted")
+endfunction
+
+value = mlist("foo");
+clear value
+
+}}}
+
+== Implicit call ==
+
+{{{#!highlight scilab
+function %foo_clear(o)
+    disp("clear foo");
+endfunction
+
+function do_someting()
+    value = mlist("foo");
+endfunction
+
+do_someting(); // %foo_clear will be call at the end of do_something
+}}}
+
+{{{#!highlight scilab
+function %foo_clear(o)
+    disp("clear foo");
+endfunction
+
+function value = do_someting_and_return()
+    value = mlist("foo");
+endfunction
+
+x = do_someting_and_return();
+x = 1; //call %foo_clear overload before replace
+}}}
+
+----
+CategorySep

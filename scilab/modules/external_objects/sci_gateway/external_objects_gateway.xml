@@ -225,4 +225,5 @@ Don't touch if you do not know what you are doing
     <gateway name="sci_invoke_lu"            function="invoke_lu" type="0"/>
     <gateway name="sci_doubleExclam_invoke_" function="!!_invoke_" type="0"/>
     <gateway name="sci_percent_EObj_disp"    function="%_EObj_disp" type="0"/>
+    <gateway name="sci_percent_EObj_clear"   function="%_EObj_clear" type="0"/>
 </module>

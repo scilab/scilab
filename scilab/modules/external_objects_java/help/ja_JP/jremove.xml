@@ -32,15 +32,10 @@
         <title>呼び出し手順</title>
 
         <synopsis>
-
             jremove()
-
-            jremove(varName_1 [, varName_2, ...])
-
-            jremove varName_1 [varName_2 ...]
-
-            jremove(object_1 [, object_2 ...])
-
+            jremove(varName_1, varName_2, ...)
+            jremove varName_1  varName_2 ...
+            jremove(object_1 , object_2, ...)
         </synopsis>
 
     </refsynopsisdiv>
@@ -109,7 +104,13 @@
                s = String.new("Hello world");
                jremove s;
       ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
+               jimport java.lang.String;
 
+               s = String.new("Hello world");
+               clear s;
+      ]]></programlisting>
     </refsection>
 
     <refsection role="see also">
@@ -150,6 +151,13 @@
 
                 </revremark>
 
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revremark>
+                    This function is optional, as <link linkend="clear">clear</link> or scope
+                    closing will now release the associated Java object.
+                </revremark>
             </revision>
 
         </revhistory>

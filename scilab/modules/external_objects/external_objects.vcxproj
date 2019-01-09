@@ -224,6 +224,7 @@
     <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_4_foo.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_5.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_a_foo.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_clear.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_disp.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_d_foo.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_e.cpp" />
@@ -250,6 +251,7 @@
     <ClCompile Include="src\cpp\array.cpp" />
     <ClCompile Include="src\cpp\cast.cpp" />
     <ClCompile Include="src\cpp\classExtract.cpp" />
+    <ClCompile Include="src\cpp\clear.cpp" />
     <ClCompile Include="src\cpp\compile.cpp" />
     <ClCompile Include="src\cpp\convMatrixMethod.cpp" />
     <ClCompile Include="src\cpp\deff.cpp" />

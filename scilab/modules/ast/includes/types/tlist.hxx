@@ -27,8 +27,9 @@ class EXTERN_AST TList : public List
 {
 public :
     TList();
-    ~TList();
-protected :
+    virtual ~TList();
+
+protected:
     TList(TList *_oTListCopyMe) : List(_oTListCopyMe) {}
 
 public :

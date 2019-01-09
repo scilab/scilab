@@ -48,6 +48,7 @@ EXTERNAL_OBJECTS_CPP_SOURCES = \
     src/cpp/convMatrixMethod.cpp \
     src/cpp/deff.cpp \
     src/cpp/display.cpp \
+    src/cpp/clear.cpp \
     src/cpp/doubleExclam_invoke.cpp \
     src/cpp/classExtract.cpp \
     src/cpp/objectExtract.cpp \
@@ -114,7 +115,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_percent_EObj_t.cpp \
 	sci_gateway/cpp/sci_doubleExclam_invoke_.cpp \
 	sci_gateway/cpp/sci_invoke_lu.cpp \
-	sci_gateway/cpp/sci_percent_EObj_disp.cpp
+	sci_gateway/cpp/sci_percent_EObj_disp.cpp \
+	sci_gateway/cpp/sci_percent_EObj_clear.cpp
 
 libsciexternal_objects_la_CFLAGS= \
     -I$(srcdir)/includes/ \
