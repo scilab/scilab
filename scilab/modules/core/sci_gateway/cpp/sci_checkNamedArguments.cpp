@@ -73,17 +73,18 @@ types::Function::ReturnValue sci_checkNamedArguments(types::typed_list &in, int 
         size = (int)proto.size();
     }
 
-    std::list<std::pair<std::wstring, int>> lst;
+    typedef std::pair<std::wstring, int> lst_entry_t;
+    std::list<lst_entry_t> lst;
     int count = ctx->getCurrentScope(lst, true);
 
     // remove nargin/nargout//varargin
-    lst.remove_if([](const auto & p) -> bool { return p.first == L"nargin"; });
-    lst.remove_if([](const auto & p) -> bool { return p.first == L"nargout"; });
-    lst.remove_if([](const auto & p) -> bool { return p.first == L"varargin"; });
+    lst.remove_if([](const lst_entry_t& p) -> bool { return p.first == L"nargin"; });
+    lst.remove_if([](const lst_entry_t& p) -> bool { return p.first == L"nargout"; });
+    lst.remove_if([](const lst_entry_t& p) -> bool { return p.first == L"varargin"; });
 
     for (int i = 0; i < size; ++i)
     {
-        lst.remove_if([&](const auto & p) -> bool { return p.first == proto[i]; });
+        lst.remove_if([&](const lst_entry_t& p) -> bool { return p.first == proto[i]; });
     }
 
     count = (int)lst.size();
