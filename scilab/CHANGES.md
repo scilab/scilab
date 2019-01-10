@@ -811,6 +811,7 @@ Known issues
 * [#15188](http://bugzilla.scilab.org/show_bug.cgi?id=15188): `sci_hdf5_is_file` was wrongly named in the hdf5 DLL.
 * [#15199](http://bugzilla.scilab.org/show_bug.cgi?id=15199): Scilab crashed when using `fsolve` for functions containing other functions.
 * [#15205](http://bugzilla.scilab.org/show_bug.cgi?id=15205): `get_scicos_version` returned the previous version.
+* [#15206](http://bugzilla.scilab.org/show_bug.cgi?id=15206): Windows default `mopen` read/write mode was text instead of binary.
 * [#15207](http://bugzilla.scilab.org/show_bug.cgi?id=15207): `xcos(scs_m)` did not work for sub-systems.
 * [#15215](http://bugzilla.scilab.org/show_bug.cgi?id=15215): `strcat` did not work correctly with empty strings.
 * [#15223](http://bugzilla.scilab.org/show_bug.cgi?id=15223): `call` crashed in some cases.
