@@ -7,6 +7,7 @@
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 
 // =============================================================================
 // Unitary tests for mkdir function
@@ -79,9 +80,9 @@ if status_7 <> 1 then pause,end
 removedir(test_1_dir);
 removedir(test_2_dir);
 removedir(test_3_dir);
-removedir(test_4_dir);
-removedir(test_5_dir);
-removedir(test_6_dir);
+assert_checkfalse(removedir(test_4_dir));
+assert_checkfalse(removedir(test_5_dir));
+assert_checkfalse(removedir(test_6_dir));
 removedir(test_7_dir);
 
 // TEST : error messages
