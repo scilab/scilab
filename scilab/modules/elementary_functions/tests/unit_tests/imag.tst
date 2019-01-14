@@ -5,6 +5,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // Unit test for imag
 assert_checkequal(imag([]),[]);
@@ -38,7 +39,8 @@ assert_checkequal(imag(s),i);
 // With a scalar polynomial
 r = rand(1, 10) - 0.5;
 p = poly(r, "x", "coeff");
-assert_checkequal(imag(p), 0*%z);
+assert_checkfalse(imag(p) == 0*%z);
+assert_checkequal(imag(p), poly(0,"x","coeff"));
 pc = poly(complex(r,-r), "x", "coeff");
 assert_checkequal(imag(pc), -p);
 // With a matrix of real and complex polynomials
