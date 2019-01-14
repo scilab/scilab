@@ -670,6 +670,7 @@ Known issues
 * [#15890](http://bugzilla.scilab.org/show_bug.cgi?id=15890): `evstr` sometimes yielded some `+[]` warnings.
 * [#15907](http://bugzilla.scilab.org/show_bug.cgi?id=15907): `filter` was corrupting its input state array
 * [#15920](http://bugzilla.scilab.org/show_bug.cgi?id=15920): genlib() did not regenerate a missing .bin if the .sci was unchanged (Scilab 6 regression)
+* [#15924](http://bugzilla.scilab.org/show_bug.cgi?id=15924): sparse inequality to 0 yielded a wrong result.
 
 
 ### Bugs fixed in 6.0.1:
