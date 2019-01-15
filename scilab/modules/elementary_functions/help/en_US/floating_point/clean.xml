@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="clean">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="clean">
     <refnamediv>
         <refname>clean</refname>
-        <refpurpose>cleans matrices (round to zero small entries)    </refpurpose>
+        <refpurpose>cleans matrices (round to zero small entries)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>B=clean(A [,epsa [,epsr]])</synopsis>
+        <synopsis>
+          B = clean(A)
+          B = clean(A, epsa)
+          B = clean(A, epsa, epsr)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,14 +35,19 @@
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>a numerical matrix (scalar, polynomial, sparse, ...).</para>
+                    <para>
+                      scalar, vector, matrix or hypermatrix of decimal numbers or of
+                      complex numbers, in dense or sparse encoding, or of polynomials or
+                      rationals with real or complex coefficients.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>epsa, epsr</term>
                 <listitem>
                     <para>
-                        real numbers. Cleaning tolerances (default values resp. <literal>1.d-10</literal> and <literal>1.d-10</literal>).
+                        positive real numbers: Cleaning tolerances. Both default values are
+                       10<superscript>-10</superscript>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -44,27 +56,96 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function eliminates (i.e. set to zero) all the coefficients
+            This function sets to 0 all the elements of <varname>A</varname>
             with absolute value &lt; <varname>epsa</varname> or relative value &lt; <varname>epsr</varname>
-            (relative means relative w.r.t. <literal>1-norm</literal> of coefficients)
-            in a polynomial (possibly matrix polynomial or rational
-            matrix).
+            (relative w.r.t. to max(abs(A)), ignoring %inf and %nan values of <varname>A</varname>).
         </para>
         <para>
-            Default  values are <varname>epsa</varname><literal>=1.d-10</literal> and <varname>epsr</varname><literal>=1.d-10;</literal>
-        </para>
-        <para>
-            For a constant (non-polynomial) matrix <code>clean(A,epsa)</code> sets to zero all
-            entries of <literal>A</literal> smaller than <varname>epsa</varname>.
+            For an array of polynomials or of rationals, clean() applies in the same way to the
+            whole set of their coefficients.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-x=poly(0,'x');
-w=[x,1,2+x;3+x,2-x,x^2;1,2,3+x]/3;
-w*inv(w)
-clean(w*inv(w))
- ]]></programlisting>
+m = grand(3,5,"uin",1,9) .* 10.^grand(3,5,"uin",-16,1)
+clean(m)
+clean(m, 1e-7)
+     ]]></programlisting>
+   <screen><![CDATA[
+--> m = grand(3,5,"uin",1,9) .* 10.^grand(3,5,"uin",-16,1)
+ m  =
+   5.000D-08   5.          0.8         7.000D-08   4.000D-11
+   0.00007     7.          4.000D-09   6.000D-13   2.000D-16
+   2.000D-08   1.000D-14   1.          8.          0.7
+
+--> clean(m)
+ ans  =
+   5.000D-08   5.   0.8         7.000D-08   0.
+   0.00007     7.   4.000D-09   0.          0.
+   2.000D-08   0.   1.          8.          0.7
+
+--> clean(m, 1e-7)
+ ans  =
+   0.        5.   0.8   0.   0.
+   0.00007   7.   0.    0.   0.
+   0.        0.   1.    8.   0.7
+]]></screen>
+        <para/>
+        <para>
+            <emphasis role="bold">For rationals:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+x = poly(0,'x');
+w = [3+2*x, 2+x; 3+x, 2-x]/5
+r = w * inv(w)
+clean(r)
+     ]]></programlisting>
+   <screen><![CDATA[
+--> w = [3+2*x, 2+x; 3+x, 2-x]/5
+ w  =
+   0.6 +0.4x   0.4 +0.2x
+   0.6 +0.2x   0.4 -0.2x
+
+--> r = w * inv(w)
+ r  =
+                                                                2
+   -3.140D-16 + x                        -1.110D-15 + 3.331D-16x
+   ---------------                       ------------------------
+                                                           2
+         x                                   1.3333333x + x
+                                      2                             2
+   1.110D-15 - 2.220D-16x - 5.551D-17x   -1.110D-15 + 1.3333333x + x
+   ------------------------------------  ----------------------------
+                           2                                 2
+             1.3333333x + x                    1.3333333x + x
+
+--> clean(r)
+ ans  =
+   1   0
+   --  --
+   1   1
+
+   0   1
+   --  --
+   1   1
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="percenteps">%eps</link>
+            </member>
+            <member>
+                <link linkend="cond">cond</link>
+            </member>
+            <member>
+                <link linkend="nearfloat">nearfloat</link>
+            </member>
+            <member>
+                <link linkend="number_properties">number_properties</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

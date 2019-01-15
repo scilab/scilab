@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="TMPDIR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="TMPDIR">
     <refnamediv>
         <refname>TMPDIR</refname>
         <refpurpose>chemin du répertoire temporaire</refpurpose>
@@ -43,15 +46,20 @@
             <literal>/tmp</literal>) peut-être sélectionné en modifiant la
             variable système <literal>TMPDIR</literal>.
         </para>
+        <note>
+          <literal>dirname(TMPDIR)</literal> peut être utilisé comme dossier temporaire général,
+          toutes sessions Scilab confondues.
+        </note>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
+                <link linkend="home">home</link>
+            </member>
+            <member>
                 <link linkend="SCIHOME">SCIHOME</link>
             </member>
-        </simplelist>
-        <simplelist type="inline">
             <member>
                 <link linkend="SCI">SCI</link>
             </member>

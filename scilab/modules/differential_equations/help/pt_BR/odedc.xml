@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -14,14 +13,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="odedc" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="odedc" xml:lang="pt">
     <refnamediv>
         <refname>odedc</refname>
         <refpurpose>solucionador de EDOs contínuas/discretas</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>yt=odedc(y0,nd,stdel,t0,t,f)</synopsis>
+        <synopsis>yt = odedc(y0, nd, stdel, t0, t, f)</synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
         <title>Parâmetros</title>
@@ -83,44 +85,50 @@
     <refsection role="description">
         <title>Descrição</title>
         <para>
-            <literal>y=odedc([y0c;y0d],nd,[h,delta],t0,t,f)</literal> computa a
+            <literal>y = odedc([y0c;y0d], nd, [h,delta], t0, t, f)</literal> computa a
             solução de um sistema misto contínuo/discreto. O estado de sistema
-            discreto <literal>yd_k</literal> é embutido em uma função de tempo
+            discreto <literal>yd<subscript>k</subscript></literal> é embutido em uma função de tempo
             seccional constante <literal>yd(t)</literal> como segue:
+            <literal>yd(t) = yd<subscript>k</subscript></literal> para <literal>t</literal> em
+            <literal>[t<subscript>k</subscript> = h*(delta+k) , t<subscript>k+1</subscript> = h*(delta+k+1) )</literal>.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-yd(t)=yd_k para t em
-[t_k=atraso+k*h,t_(k+1)=delay+(k+1)*h] (com atraso=h*delta).
- ]]></programlisting>
-        <para>As equações simuladas são agora:</para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-dyc/dt=f(t,yc(t),yd(t),0),  para t em [t_k,t_(k+1)]
-yc(t0)=y0c
- ]]></programlisting>
+        <para>As equações simuladas são agora
+            para t em [ t<subscript>k</subscript> , t<subscript>k+1</subscript> ):
+        </para>
+        <screen>
+dyc/dt = f(t, yc(t), yd(t), 0)
+yc(t0) = y0c
+</screen>
         <para>
-            e nos instantes <literal>t_k</literal> a variável discreta
-            <literal>yd</literal> é atualizada por:
+            e nos instantes <literal>td<subscript>k</subscript></literal> a variável discreta
+            <literal>yd</literal> é atualizada por
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-yd(t_k+)=f(yc(t_k-),yd(t_k-),1)
- ]]></programlisting>
         <para>
-            Note que, utilizando a definição de <literal>yd(t)</literal>, a
-            última equação fornece
+            <literal>yd(t<subscript>k+</subscript>)
+            = f(yc(t<subscript>k-</subscript>), yd(t<subscript>k-</subscript>), 1)</literal>.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc é de tempo contínuo: yc(t_k-)=yc(tk))
- ]]></programlisting>
+        <para>
+            Note que, utilizando a definição de <literal>yd(t)</literal>, a última equação fornece
+        </para>
+        <para>
+            <literal>yd<subscript>k</subscript>
+            = f(t<subscript>k</subscript>, yc(t<subscript>k-</subscript>), yd(t<subscript>k-1</subscript>), 1)
+            </literal>
+        </para>
+        <para>
+            (<literal>yc</literal> é de tempo contínuo :
+            <literal>yc(t<subscript>k-</subscript>) = yc(t<subscript>k</subscript>)</literal>).
+        </para>
         <para>
             Os parâmetros de chamada de <literal>f</literal> são fixados:
-            <literal>ycd=f(t,yc,yd,flag)</literal>; esta função deve retornar a
+            <literal>ycd = f(t,yc,yd,flag)</literal>; esta função deve retornar a
             derivada do vetor <literal>yc</literal> se <literal>flag=0</literal> ou a
             atualização de <literal>yd</literal> se <literal>flag=1</literal>.
         </para>
         <para>
-            <literal>ycd=dot(yc)</literal> deve ser um vetor de mesma dimensão
+            <literal>ycd = dot(yc)</literal> deve ser um vetor de mesma dimensão
             que <literal>yc</literal> se <literal>flag=0</literal> e
-            <literal>ycd=update(yd)</literal> deve ser um vetor com a mesma dimensão
+            <literal>ycd = update(yd)</literal> deve ser um vetor com a mesma dimensão
             que <literal>yd</literal> se <literal>flag=1</literal>.
         </para>
         <para>
@@ -129,7 +137,7 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc é de tempo contínuo: yc(t_k-)=yc(tk
         </para>
         <para>
             <literal>y</literal> é o vetor
-            <literal>y=[y(t(1)),y(t(2)),...]</literal>.
+            <literal>y = [y(t(1)), y(t(2)),...]</literal>.
         </para>
         <para>
             Esta função pode ser chamada
@@ -140,11 +148,8 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc é de tempo contínuo: yc(t_k-)=yc(tk
             Parâmetros opcionais podem ser ajustados pela função
             <literal>odeoptions</literal>.
         </para>
-        <para>Um exemplo para chamada de rotina externa é encontrado em
-            <literal>SCIDIR/default/fydot2.f</literal>
-        </para>
         <para>Rotinas externas podem ser ligadas dinamicamente (ver
-            <literal>link</literal>).
+            <link linkend="link">link</link>).
         </para>
     </refsection>
     <refsection role="examples">

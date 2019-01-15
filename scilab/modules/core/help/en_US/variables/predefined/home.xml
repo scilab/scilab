@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="home" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="home" xml:lang="en">
     <refnamediv>
         <refname>home</refname>
         <refpurpose>Gives the user directory.</refpurpose>
@@ -25,7 +28,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>home</literal> gives the user directory.
+            <literal>home</literal> gives the main user's directory.
         </para>
     </refsection>
     <refsection>
@@ -46,6 +49,9 @@
             </member>
             <member>
                 <link linkend="SCI">SCI</link>
+            </member>
+            <member>
+                <link linkend="TMPDIR">TMPDIR</link>
             </member>
         </simplelist>
     </refsection>

@@ -14,14 +14,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="odedc" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="odedc" xml:lang="ru">
     <refnamediv>
         <refname>odedc</refname>
         <refpurpose>программа решения дискретно-непрерывных  ОДУ</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>yt=odedc(y0,nd,stdel,t0,t,f)</synopsis>
+        <synopsis>yt = odedc(y0, nd, stdel, t0, t, f)</synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
         <title>Аргументы</title>
@@ -31,7 +34,8 @@
                 <listitem>
                     <para>
                         вещественный вектор-столбец (начальные условия),
-                        <literal>y0=[y0c;y0d]</literal>, где <literal>y0d</literal> имеет <literal>nd</literal> элементов.
+                        <literal>y0=[y0c;y0d]</literal>, где <literal>y0d</literal>
+                        имеет <literal>nd</literal> элементов.
                     </para>
                 </listitem>
             </varlistentry>
@@ -47,7 +51,9 @@
                 <term>stdel</term>
                 <listitem>
                     <para>
-                        вещественный вектор с одним или двумя элементами <literal>stdel=[h, delta]</literal> (с <literal>delta=0</literal> в качестве значения по умолчанию).
+                        вещественный вектор с одним или двумя элементами
+                        <literal>stdel=[h, delta]</literal> (с <literal>delta=0</literal>
+                        в качестве значения по умолчанию).
                     </para>
                 </listitem>
             </varlistentry>
@@ -61,7 +67,8 @@
                 <term>t</term>
                 <listitem>
                     <para>
-                        вещественный вектор-(строка), моменты времени, в которые вычислено <literal>yt</literal>.
+                        вещественный вектор-(строка), моменты времени, в которые вычислено
+                        <literal>yt</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -69,8 +76,111 @@
                 <term>f</term>
                 <listitem>
                     <para>
-                        внешняя функция, то есть функция или символьная строка или список с последовательностью вызова: <literal>yp=f(t,yc,yd,flag)</literal>.
+                        внешняя функция, то есть функция или символьная строка или список
+                        с последовательностью вызова: <literal>yp = f(t,yc,yd,flag)</literal>.
                     </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>a list</term>
+                            <listitem>
+                                <para>
+                                    Эта форма внешней функции используется для передачи параметров в функцию.
+                                    Она должна быть в следующем виде:
+                                </para>
+                                <screen><![CDATA[
+list(f, p1, p2,...)
+]]></screen>
+                                <para>
+                                     где синтаксис функции <literal>f</literal> теперь
+                                </para>
+                                <screen><![CDATA[
+yp = f(t, yc, yd, flag, p1, p2,...)
+]]></screen>
+                                <para>
+                                    <literal>f</literal> по-прежнему возвращает значение функции в
+                                    виде функции <literal>(t, yc, yd, flag, p1, p2,...)</literal>,
+                                    а <literal>p1, p2,...</literal> являются параметрами функции.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>символьная строка</term>
+                            <listitem>
+                                <para>
+                                    она должна ссылаться на имя модуля C или fortran, в
+                                    предположении, что &lt;<literal>f_name</literal>&gt; является указанным именем.
+                                </para>
+                                <itemizedlist>
+                                    <listitem>
+                                        <para>
+                                            Последовательность вызова Fortran должна быть
+                                        </para>
+                                        <para>
+                                            <literal>&lt;f_name&gt;(iflag, nc, nd, t, y, ydp)</literal>
+                                        </para>
+                                        <para>
+                                            <literal>double precision t, y(*), ydp(*)
+                                            </literal>
+                                        </para>
+                                        <para>
+                                            <literal>integer iflag, nc, nd</literal>
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para>C-синтаксис должен быть</para>
+                                        <para>
+                                            <literal>void &lt;f_name&gt; (int *iflag, int *nc,
+                                                int *nd, double *t, double *y, double *ydp)
+                                            </literal>
+                                        </para>
+                                    </listitem>
+                                </itemizedlist>
+                                <para>Как в случае Fortran, так и в случае C входными аргументами являются:</para>
+                                <itemizedlist>
+                                    <listitem>
+                                        <para>
+                                            <literal>iflag</literal> = <literal>0</literal> или
+                                            <literal>1</literal>
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para>
+                                            <literal>nc</literal> = число непрерывных состояний
+                                            <literal>yc</literal>
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para>
+                                            <literal>nd</literal> = число дискретных состояний
+                                            <literal>yd</literal>
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para>
+                                            <literal>t</literal> = время
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para>
+                                            <literal>y</literal> = <literal>[yc; yd; param]</literal>.
+                                            <literal>param</literal> может быть использован для получения дополнительных
+                                            аргументов, которые были указаны при вызове <literal>odedc</literal>
+                                            <literal>(y = odedc([y0c; y0d], nd, stdel, t0, t, list('fexcd', param)))</literal>
+                                        </para>
+                                    </listitem>
+                                    <listitem>
+                                        <para>
+                                            В качестве выходного аргумента <literal>ydp</literal>, процедура должна вычислять
+                                            <literal>ydp[0:nc-1] = d/dt ( yc(t) )</literal>
+                                            для <literal>iflag=0</literal> и
+                                            <literal>ydp[0:nd-1] = yd(t+)</literal>
+                                            для <literal>iflag=1</literal>.
+                                        </para>
+                                    </listitem>
+                                </itemizedlist>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -78,39 +188,50 @@
     <refsection role="description">
         <title>Описание</title>
         <para>
-            <literal>y=odedc([y0c;y0d],nd,[h,delta],t0,t,f)</literal> вычисляет решение смешанной дискретно-непрерывной системы. Состояние дискретной системы <literal>yd_k</literal> вложено в кусочно-постоянную функцию времени <literal>yd(t)</literal> в виде:
+            <literal>y = odedc([y0c;y0d], nd, [h,delta], t0, t, f)</literal> вычисляет решение
+            смешанной дискретно-непрерывной системы.
+            Состояние дискретной системы <literal>yd<subscript>k</subscript></literal>
+            вложено в кусочно-постоянную функцию времени <literal>yd(t)</literal> в виде:
+            <literal>yd(t) = yd<subscript>k</subscript></literal> для <literal>t</literal> в
+            <literal>[t<subscript>k</subscript> = h*(delta+k) ,
+            t<subscript>k+1</subscript> = h*(delta+k+1) )</literal>.
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-yd(t) = yd_k для t в
-[t_k=delay+k*h, t_(k+1)=delay+(k+1)*h] (с задержкой delay=h*delta).
- ]]></programlisting>
-        <para>Теперь моделируемые уравнения имеют вид:</para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-dyc/dt = f(t,yc(t),yd(t),0),  для t в [t_k,t_(k+1)]
+        <para>Теперь моделируемые уравнения имеют вид,
+            для t в [ t<subscript>k</subscript> , t<subscript>k+1</subscript> ):
+        </para>
+        <screen>
+dyc/dt = f(t, yc(t), yd(t), 0)
 yc(t0) = y0c
- ]]></programlisting>
+</screen>
         <para>
-            и в моменты времени <literal>t_k</literal> дискретная переменная
-            <literal>yd</literal> обновляется как:
+            и в моменты времени <literal>t<subscript>k</subscript></literal> дискретная переменная
+            <literal>yd</literal> обновляется как
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-yd(t_k+) = f(yc(t_k-),yd(t_k-),1)
- ]]></programlisting>
+        <para>
+            <literal>yd(t<subscript>k+</subscript>)
+            = f(yc(t<subscript>k-</subscript>), yd(t<subscript>k-</subscript>), 1)</literal>.
+        </para>
         <para>
             Заметьте, что, используя определение <literal>yd(t)</literal>, последнее уравнение даёт
         </para>
-        <programlisting role="no-scilab-exec"><![CDATA[
-yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc непрерывно во времени: yc(t_k-)=yc(tk))
- ]]></programlisting>
+        <para>
+            <literal>yd<subscript>k</subscript>
+            = f(t<subscript>k</subscript>, yc(t<subscript>k-</subscript>), yd(t<subscript>k-1</subscript>), 1)
+            </literal>
+        </para>
+        <para>
+            (<literal>yc</literal> непрерывно во времени :
+            <literal>yc(t<subscript>k-</subscript>) = yc(t<subscript>k</subscript>)</literal>).
+        </para>
         <para>
             Параметры вызова <literal>f</literal> фиксированы:
-            <literal>ycd=f(t,yc,yd,flag)</literal>; эта функция должно возвращать либо производную
+            <literal>ycd = f(t,yc,yd,flag)</literal>; эта функция должно возвращать либо производную
             вектора <literal>yc</literal>, если <literal>flag=0</literal>, либо обновлять
             <literal>yd</literal>, если <literal>flag=1</literal>.
         </para>
         <para>
-            <literal>ycd=dot(yc)</literal> должна быть вектором того же размера, что и
-            <literal>yc</literal>, если <literal>flag=0</literal> и <literal>ycd=update(yd)</literal>
+            <literal>ycd = dot(yc)</literal> должна быть вектором того же размера, что и
+            <literal>yc</literal>, если <literal>flag=0</literal> и <literal>ycd = update(yd)</literal>
             должна быть вектором того же размера, что и <literal>yd</literal>, если
             <literal>flag=1</literal>.
         </para>
@@ -119,22 +240,19 @@ yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc непрерывно во време�
             <literal>y</literal>.
         </para>
         <para>
-            <literal>y</literal> -- это вектор <literal>y=[y(t(1)),y(t(2)),...]</literal>.
+            <literal>y</literal> -- это вектор <literal>y = [y(t(1)), y(t(2)),...]</literal>.
         </para>
         <para>
-            Эта функция может быть вызвана с теми же самыми необязательными параметрами, что и функция <literal>ode</literal>
+            Эта функция может быть вызвана с теми же самыми необязательными параметрами,
+            что и функция <literal>ode</literal>
             (указанные <literal>nd</literal> и <literal>stdel</literal> даны в последовательности
             вызова как второй и третий параметры). В частности, могут быть установлены флаги
             интегрирования, допуски. Необязательные параметры могут быть установлены с помощью
             функции <literal>odeoptions</literal>.
         </para>
         <para>
-            Пример вызова внешней процедуры предоставлен в
-            <literal>SCIDIR/default/fydot2.f</literal>
-        </para>
-        <para>
-            Внешние процедуры могут быть динамически скомпонованы (см.
-            <link linkend="link">link</link>).
+            Внешние процедуры могут быть динамически скомпонованы
+            (см. <link linkend="link">link</link>).
         </para>
     </refsection>
     <refsection role="examples">

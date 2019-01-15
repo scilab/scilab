@@ -102,9 +102,6 @@ a = 3;
                 <link linkend="genlib">genlib</link>
             </member>
             <member>
-                <link linkend="quote">quote</link>
-            </member>
-            <member>
                 <link linkend="jdeff">jdeff</link>
             </member>
             <member>
@@ -120,13 +117,13 @@ a = 3;
                 <revdescription>
                    <itemizedlist>
                      <listitem>
-                       The input option
+                       Входная опция
                        <ulink url="https://help.scilab.org/docs/5.5.2/ru_RU/deff.html">
                          <varname>opt="c"|"p"|"n"</varname>
-                       </ulink> is no longer available.
+                       </ulink> более не доступна.
                      </listitem>
                      <listitem>
-                        The defined <varname>newfunction</varname> is now of type 13 (instead of 11).
+                        Определённая новая функция <varname>newfunction</varname> теперь имеет тип 13 (вместо 11).
                      </listitem>
                   </itemizedlist>
                 </revdescription>

@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rand" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="rand" xml:lang="fr">
     <refnamediv>
         <refname>rand</refname>
         <refpurpose>Générateur de nombres pseudo-aléatoires</refpurpose>
@@ -57,8 +60,9 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        une matrice, dont uniquement le contenu réel ou complexe et
-                        les dimensions sont prises en compte.
+                        tableau (vecteur, matrice, hypermatrice) de booléens, nombres, ou polynomes,
+                        dont uniquement les dimensions et le caractère réel ou complexes sont pris
+                        en compte.
                     </para>
                 </listitem>
             </varlistentry>
@@ -66,7 +70,8 @@
                 <term>r</term>
                 <listitem>
                     <para>
-                        une matrice de doubles de taille m1-par-m2-par-... avec des valeurs aléatoires.
+                        tableau de nombres décimaux ou complexes, de taille m1-par-m2-par-...
+                        avec des valeurs aléatoires.
                     </para>
                 </listitem>
             </varlistentry>
@@ -83,9 +88,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            Le but de cette fonction est de retourner un tableau
-            de doubles dont les valeurs sont des nombres aléatoires
-            réels ou complexes.
+            Le but de cette fonction est de retourner un tableau de nombres dont les valeurs sont
+            des nombres aléatoires réels ou complexes.
             En fonction des arguments d'entrée, la fonction peut renvoyer une
             matrice de doubles aléatoires or peut configurer ou récupérer la distribution des nombres
             aléatoires ou peut configurer ou récupérer la graine du générateur
@@ -213,7 +217,7 @@ r=rand(2,2,2)
  ]]></programlisting>
         <para>
             Dans l'exemple suivant, nous changeons la distribution des nombres générés par <literal>rand</literal>.
-            Nous produisons d'abord des nombres normaux centrés réduits, puis des nombres uniformes dans [0,1).
+            Nous produisons d'abord des nombres normaux centrés réduits, puis des nombres uniformes dans [0,1[.
         </para>
         <programlisting role="example"><![CDATA[
     // Configure le générateur sur la loi normale
@@ -263,7 +267,7 @@ r=rand(2,2,2)
         <para>
             Le générateur pseudo-aléatoire "uniform" est une séquence déterministe
             dont le but est de reproduire une séquence de nombres aléatoire, indépendents
-            et identiquement distribués dans l'intervalle (0,1).
+            et identiquement distribués dans l'intervalle [0,1[.
         </para>
         <para>
             Dans le but de pouvoir obtenir des simulations reproductibles,
@@ -296,27 +300,19 @@ rand("seed",n);
             C'est un générateur linéaire à congruence de la forme :
         </para>
         <para>
-            <latex>
-                $$
-                x = (a x + c) \textrm{mod} M
-                $$
-            </latex>
+             x = (a x + c) mod M
         </para>
         <para>
             pour lequel les constantes sont :
-        </para>
-        <para>
-            <latex><![CDATA[
-	  \begin{eqnarray}
-      a &=& 843314861\\
-      c &=& 453816693\\
-      M &=& 2^{31}
-	  \end{eqnarray}
- ]]></latex>
+          <table border="0" cellpadding="0">
+             <tr><td>a = 843314861</td></tr>
+             <tr><td>c = 453816693</td></tr>
+             <tr><td>M = 2<superscript>31</superscript></td></tr>
+          </table>
         </para>
         <para>
             D'après les auteurs, ce générateur est de longueur complète, c'est à dire
-            que sa période est <latex>M=2^{31}=2147483648</latex>.
+            que sa période est M = 2<superscript>31</superscript> = 2147483648.
         </para>
         <para>
             Le générateur de nombres aléatoires <literal>"normal"</literal>

@@ -724,32 +724,6 @@ msgstr "%s : %s est une fonction non modifiable programmée en dur.\n"
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s : Nombre erroné d'argument d'entrée.\n"
 
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s : Impossible de trouver le fichier Perl : %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Des chaînes de caractères "
-"attendues.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s : Commande perl non fournie."
-
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s : Impossible de trouver Perl dans '%s"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s : Impossible de trouver Perl.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s : Erreur système : Commande exécutée : %s."
-
 msgid "Scilab Version: "
 msgstr "Version de Scilab : "
 

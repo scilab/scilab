@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getsystemmetrics" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="getsystemmetrics" xml:lang="en">
     <refnamediv>
         <refname>getsystemmetrics</refname>
         <refpurpose>Retrieves the specified system metric or system configuration
@@ -642,5 +645,28 @@ getsystemmetrics('SM_MOUSEPRESENT')
 getsystemmetrics('SM_SLOWMACHINE')
 getsystemmetrics('SM_REMOTESESSION');
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="root_properties">root_properties</link>
+            </member>
+            <member>
+                <link linkend="system_getproperty">system_getproperty</link>
+            </member>
+            <member>
+                <link linkend="getlookandfeel">getlookandfeel</link>
+            </member>
+            <member>
+                <link linkend="printsetupbox">printsetupbox</link>
+            </member>
+            <member>
+                <link linkend="preferences">preferences</link>
+            </member>
+            <member>
+                <link linkend="usecanvas">usecanvas</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

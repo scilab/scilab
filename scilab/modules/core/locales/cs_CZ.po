@@ -645,30 +645,6 @@ msgstr ""
 msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s. Nelze najít soubor Perl: %s"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávány řetězce.\n"
-
-#, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: Nebyl zadán žádný příkaz perl."
-
-#, c-format
-msgid "%s: Unable to find Perl in '%s"
-msgstr "%s: Nelze nalézt Perl v '%s"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: Nelze najít Perl.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: Systémová chyba: Provedený příkaz: %s"
-
 msgid "Scilab Version: "
 msgstr "Verze Scilab: "
 

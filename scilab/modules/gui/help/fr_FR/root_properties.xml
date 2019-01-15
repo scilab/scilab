@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="root_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="root_properties">
     <refnamediv>
         <refname>root_properties</refname>
         <refpurpose>Description des propriétés de l'objet root.</refpurpose>
@@ -21,7 +24,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            L'objet root est un objet virtuel utilisé pour obtenir les propriétés de l'écran de l'ordinateur. Utilisez la fonction <literal>get</literal> avec <emphasis>0</emphasis> comme premier paramétre pour accéder à ses propriétés.
+            L'objet root est un objet virtuel utilisé pour obtenir les propriétés de l'écran de
+            l'ordinateur. Utilisez la fonction <literal>get</literal> avec <emphasis>0</emphasis>
+            comme premier paramétre pour accéder à ses propriétés.
         </para>
         <variablelist>
             <varlistentry>
@@ -86,7 +91,25 @@ get(0, "screendepth")
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="get">get</link>
+                <link linkend="getsystemmetrics">getsystemmetrics</link>
+            </member>
+            <member>
+                <link linkend="system_getproperty">system_getproperty</link>
+            </member>
+            <member>
+                <link linkend="console_properties">console_properties</link>
+            </member>
+            <member>
+                <link linkend="usecanvas">usecanvas</link>
+            </member>
+            <member>
+                <link linkend="getlookandfeel">getlookandfeel</link>
+            </member>
+            <member>
+                <link linkend="preferences">preferences</link>
+            </member>
+            <member>
+                <link linkend="printsetupbox">printsetupbox</link>
             </member>
         </simplelist>
     </refsection>

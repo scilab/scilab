@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="TMPDIR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="TMPDIR">
     <refnamediv>
         <refname>TMPDIR</refname>
         <refpurpose>テンポラリディレクトリのパス</refpurpose>
@@ -44,5 +47,31 @@
             システム変数<literal>TMPDIR</literal>を変更することにより,
             選択することができます.
         </para>
+        <note>
+          <literal>dirname(TMPDIR)</literal> can be used as a general temporary directory,
+          without respect to any Scilab session.
+        </note>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+ls TMPDIR
+ls(TMPDIR)
+cd(TMPDIR)
+        ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="home">home</link>
+            </member>
+            <member>
+                <link linkend="SCIHOME">SCIHOME</link>
+            </member>
+            <member>
+                <link linkend="SCI">SCI</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>
