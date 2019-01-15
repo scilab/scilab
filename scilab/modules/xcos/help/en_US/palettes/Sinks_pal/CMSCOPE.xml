@@ -289,16 +289,9 @@
             <member>
                 <link linkend="CSCOPXY3D">CSCOPXY3D</link>
             </member>
+            <member>
+                <link linkend="SCALE_CMSCOPE">SCALE_CMSCOPE</link>
+            </member>
         </simplelist>
-    </refsection>
-    <refsection id="Seealso_CMSCOPE">
-        <title>See also</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="SCALE_CMSCOPE">SCALE_CMSCOPE - Multi display scope with autoscale feature of graph</link>
-                </para>
-            </listitem>
-        </itemizedlist>
     </refsection>
 </refentry>
