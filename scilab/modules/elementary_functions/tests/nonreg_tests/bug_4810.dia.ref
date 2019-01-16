@@ -17,5 +17,5 @@ ref = sparse([10,5,4,3,2,1]);
 A = gsort(sp);
 if and(ref == A) <> %t then bugmes();quit;end
 sp = sparse([1,2;4,5;3,10]);
-ierr = execstr('A = gsort(sp);','errcatch');
+ierr = execstr("A = gsort(sp);","errcatch");
 if ierr <> 10000 then bugmes();quit;end

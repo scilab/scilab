@@ -18,7 +18,7 @@
 whos -name %modalWarning
 Name                     Type           Size           Bytes        
  
-%modalWarning            boolean*       1 by 1         0            
+%modalWarning            boolean*       1x1            0            
 whos -name corel
 Name                     Type           Size           Bytes        
  
@@ -26,5 +26,5 @@ corelib                  library                       0
 whos -type polynomial
 Name                     Type           Size           Bytes        
  
-%s                       polynomial     1 by 1         0            
-%z                       polynomial     1 by 1         0            
+%s                       polynomial     1x1            0            
+%z                       polynomial     1x1            0            
