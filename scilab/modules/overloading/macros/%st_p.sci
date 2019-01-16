@@ -72,6 +72,6 @@ function %st_p(s)
         t = [t; txt]
     end
 
-    mprintf("%s", t);
+    mprintf("%s\n", t);
 
 endfunction
