@@ -58,7 +58,7 @@ import java.util.List;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
-import org.scilab.modules.xcos.VectorOfDouble;
+import org.scilab.modules.xcos.VectorOfInt;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.io.ContextUpdate;
@@ -347,7 +347,7 @@ public final class EditFormatAction extends DefaultAction {
         if (fontSize != mxConstants.DEFAULT_FONTSIZE) {
             identifierStyle.put(mxConstants.STYLE_FONTSIZE, Integer.toString(fontSize));
         } else {
-            identifierStyle.remove(mxConstants.DEFAULT_FONTSIZE);
+            identifierStyle.remove(mxConstants.STYLE_FONTSIZE);
         }
 
         if (!textColor.equals(DEFAULT_BORDERCOLOR)) {
@@ -394,9 +394,9 @@ public final class EditFormatAction extends DefaultAction {
         if (cell instanceof ContextUpdate) {
             JavaController controller = new JavaController();
 
-            VectorOfDouble ipar = new VectorOfDouble();
+            VectorOfInt ipar = new VectorOfInt();
             controller.getObjectProperty(((ContextUpdate) cell).getUID(), Kind.BLOCK, ObjectProperties.IPAR, ipar);
-            int portNumber = (int) (ipar.size() > 0 ? ipar.get(0) : 1);
+            int portNumber = ipar.size() > 0 ? ipar.get(0) : 1;
 
             XcosCell parent = (XcosCell) graph.getDefaultParent();
             XcosDiagram parentGraph = Xcos.findParent(controller, parent.getUID(), parent.getKind());
