@@ -224,7 +224,7 @@ function updateDescFrame()
 
     authorHTML = txt2title(_("Author(s)")) ..
     + "<div>" ..
-    + authorHTML
+    + authorHTML ..
     + "</div>";
 
     // URLs (See also)
