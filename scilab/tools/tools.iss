@@ -11,4 +11,5 @@ Source: tools\zip\*.*; DestDir: {app}\tools\zip; Flags: recursesubdirs; Componen
 Source: tools\gzip\*.*; DestDir: {app}\tools\gzip; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: tools\diff\*.*; DestDir: {app}\tools\diff; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: tools\gettext\*.*; DestDir: {app}\tools\gettext; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: tools\vswhere\*.*; DestDir: {app}\tools\vswhere; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

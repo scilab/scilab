@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) Scilab Enterprises - 2015 - Antoine ELIAS
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -11,23 +11,19 @@
 // along with this program.
 
 //=============================================================================
-function vcPath = dlwGetVc80ProPath()
-    vcPath = [];
-    try
-        vcPath = winqueryreg("HKEY_LOCAL_MACHINE", ..
-        "Software\Microsoft\VisualStudio\8.0\Setup\VS\Pro", ..
-        "ProductDir");
-    catch
-        // remove last error on 'winqueryreg' fails
-        lasterror();
+function bOK = dlwIsVc142Pro()
+    bOK = %f;
+    vers = getVsWhereInformation();
+    if isempty(vers) then
         return;
     end
-
-    // remove last file separator if it exists
-    if vcPath <> [] then
-        vcPath = pathconvert(vcPath, %f, %t);
+    
+    x = fieldnames(vers);
+    x = find(x == "msvc142pro");
+    if isempty(x) then
+        return;
     end
-
+    
+    bOK = %t;
 endfunction
 //=============================================================================
-

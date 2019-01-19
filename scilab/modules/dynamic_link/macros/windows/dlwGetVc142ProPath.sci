@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) Scilab Enterprises - 2014 - Antoine ELIAS
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -11,7 +11,15 @@
 // along with this program.
 
 //=============================================================================
-function bOK = dlwIsVc90Express()
-    bOK = (dlwGetVc90ExpressPath() <> []);
+function vcPath = dlwGetVc142ProPath()
+    vcPath = [];
+    try
+        vcPath = getVsWhereInformation()("msvc142pro");
+    catch
+        lasterror();
+        return;
+    end
+
+    vcPath = vcPath + "\VC\Auxiliary\Build";
 endfunction
 //=============================================================================

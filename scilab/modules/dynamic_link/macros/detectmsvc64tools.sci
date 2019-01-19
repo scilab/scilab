@@ -48,6 +48,10 @@ function bOK = detectmsvc64tools()
     if win64() then
         compiler = findmsvccompiler();
         supported_compiler = [ ...
+        "msvc142pro", ..
+        "msvc142express", ..
+        "msvc141pro", ..
+        "msvc141express", ..
         "msvc140pro", ..
         "msvc140express", ..
         "msvc120pro", ..
@@ -62,7 +66,9 @@ function bOK = detectmsvc64tools()
 
         if (find(supported_compiler == compiler) <> []) then
             MSVCBIN64PATH = dlwGet64BitPath();
-            if dlwIsVc11Express() | dlwIsVc12Express() | dlwIsVc14Express() then
+            if dlwIsVc141Express() ||dlwIsVc141Pro() ||dlwIsVc142Express() ||dlwIsVc142Pro() then
+                MSVCBIN64PATH = MSVCBIN64PATH + filesep() + "VC\Auxiliary\Build";
+            elseif dlwIsVc11Express() | dlwIsVc12Express() | dlwIsVc140Express() then
                 MSVCBIN64PATH = MSVCBIN64PATH + filesep() + "VC\bin";
             else
                 MSVCBIN64PATH = MSVCBIN64PATH + filesep() + "VC\bin\amd64";

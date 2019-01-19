@@ -15,7 +15,10 @@ function vcPath64 = dlwGet64BitPath();
     vcPath64 = [];
     if win64() then
         MSCompiler = findmsvccompiler();
-        if find(MSCompiler == ["msvc140express";"msvc120express";"msvc110express";"msvc100express";"msvc90express"]) then
+        if find(MSCompiler == ["msvc142express";"msvc142pro";"msvc141express";"msvc141pro"]) then
+            vers = getVsWhereInformation();
+            vcPath64 = vers(MSCompiler);
+        elseif find(MSCompiler == ["msvc140express";"msvc120express";"msvc110express";"msvc100express";"msvc90express"]) then
             programFilesx86Path = getenv("ProgramFiles(x86)", "");
             if (programFilesx86Path <> "") then
                 if isfile(programFilesx86Path + "\Microsoft Visual Studio 14.0\VC\bin\cl.exe") then

@@ -15,8 +15,8 @@ function vcPath = dlwGetVc14ProPath()
     vcPath = [];
     try
         vcPath = winqueryreg("HKEY_LOCAL_MACHINE", ..
-        "Software\Microsoft\VisualStudio\14.0\Setup\VS", ..
-        "ProductDir");
+            "Software\Microsoft\VisualStudio\14.0\Setup\VS", ..
+            "ProductDir");
     catch
         // remove last error on 'winqueryreg' fails
         lasterror();
@@ -25,7 +25,7 @@ function vcPath = dlwGetVc14ProPath()
 
     // remove last file separator if it exists
     if vcPath <> [] then
-        vcPath = pathconvert(vcPath, %f, %t);
+        vcPath = pathconvert(vcPath, %f, %t) + "\VC";
     end
 
 endfunction

@@ -23,5 +23,5 @@ function cmd = dlwGetEnvCmd()
     end
 
     path = dlwGetVisualStudioPath();
-    cmd = """" + path + "\VC\vcvarsall.bat"" " + arch;
+    cmd = """" + path + "\vcvarsall.bat"" " + arch;
 endfunction

@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) Scilab Enterprises - 2014 - Antoine ELIAS
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -11,14 +11,15 @@
 // along with this program.
 
 //=============================================================================
-function bOK = dlwIsVc11Pro()
-    bOK = %f;
+function vcPath = dlwGetVc141ExpressPath()
+    vcPath = [];
     try
-        if winqueryreg('HKLM', 'Software\Microsoft\DevDiv\vs\Servicing\11.0\devenv', "install") == 1  & ...
-                dlwIsVc11Express() == %f then
-            bOK = %t;
-        end
+        vcPath = getVsWhereInformation()("msvc141express");
     catch
+        lasterror();
+        return;
     end
+
+    vcPath = vcPath + "\VC\Auxiliary\Build";
 endfunction
 //=============================================================================

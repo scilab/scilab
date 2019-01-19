@@ -67,7 +67,7 @@ function filename = writeBatchFile(cmd)
     path = dlwGetVisualStudioPath();
 
     scibuild = [ ...
-    "@call """ + path + "\VC\vcvarsall.bat"" " + arch;
+    "@call """ + path + "\vcvarsall.bat"" " + arch;
     "set DEBUG_SCILAB_DYNAMIC_LINK=" + val;
     cmd
     ];

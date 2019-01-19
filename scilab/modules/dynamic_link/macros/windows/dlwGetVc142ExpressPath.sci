@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) Scilab Enterprises - 2012 - Antoine ELIAS
+// Copyright (C) Scilab Enterprises - 2014 - Antoine ELIAS
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -11,21 +11,15 @@
 // along with this program.
 
 //=============================================================================
-function vcPath = dlwGetVc11ExpressPath()
-  vcPath = [];
-  try
-    vcPath = winqueryreg('HKEY_LOCAL_MACHINE', ..
-                     'Software\Microsoft\VisualStudio\11.0\Setup\VS', ..
-                     'ProductDir');
-  catch
-    // remove last error on 'winqueryreg' fails
-    lasterror();
-    return;
-  end
+function vcPath = dlwGetVc142ExpressPath()
+    vcPath = [];
+    try
+        vcPath = getVsWhereInformation()("msvc142express");
+    catch
+        lasterror();
+        return;
+    end
 
-  // remove last file separator if it exists
-  if vcPath <> [] then
-    vcPath = pathconvert(vcPath, %f, %t);
-  end
+    vcPath = vcPath + "\VC\Auxiliary\Build";
 endfunction
 //=============================================================================

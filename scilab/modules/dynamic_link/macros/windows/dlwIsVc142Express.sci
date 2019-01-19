@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) Scilab Enterprises - 2015 - Antoine ELIAS
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -11,7 +11,19 @@
 // along with this program.
 
 //=============================================================================
-function bOK = dlwIsVc90Std()
-    bOK = (dlwGetVc90StdPath() <> []);
+function bOK = dlwIsVc142Express()
+    bOK = %f;
+    vers = getVsWhereInformation();
+    if isempty(vers) then
+        return;
+    end
+
+    x = fieldnames(vers);
+    x = find(x == "msvc142express");
+    if isempty(x) then
+        return;
+    end
+
+    bOK = %t;
 endfunction
 //=============================================================================

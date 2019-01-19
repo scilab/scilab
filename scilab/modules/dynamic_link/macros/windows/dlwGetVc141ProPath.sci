@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) Scilab Enterprises - 2014 - Antoine ELIAS
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -11,22 +11,15 @@
 // along with this program.
 
 //=============================================================================
-function vcPath = dlwGetVc10ProPath()
+function vcPath = dlwGetVc141ProPath()
     vcPath = [];
     try
-        vcPath = winqueryreg("HKEY_LOCAL_MACHINE", ..
-        "Software\Microsoft\VisualStudio\10.0\Setup\VS", ..
-        "ProductDir");
+        vcPath = getVsWhereInformation()("msvc141pro");
     catch
-        // remove last error on 'winqueryreg' fails
         lasterror();
         return;
     end
 
-    // remove last file separator if it exists
-    if vcPath <> [] then
-        vcPath = pathconvert(vcPath, %f, %t);
-    end
-
+    vcPath = vcPath + "\VC\Auxiliary\Build";
 endfunction
 //=============================================================================

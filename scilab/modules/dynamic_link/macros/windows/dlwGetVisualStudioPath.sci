@@ -16,10 +16,22 @@ function VSPath = dlwGetVisualStudioPath()
 
     VSPath = "";
     select msvc
+        // Microsoft Visual 2019 Studio Professional
+    case  "msvc142pro" then
+        VSPath = dlwGetVc142ProPath();
+        // Microsoft Visual 2019 Studio Express
+    case  "msvc142express" then
+        VSPath = dlwGetVc142ExpressPath();
+        // Microsoft Visual 2017 Studio Professional
+    case  "msvc141pro" then
+        VSPath = dlwGetVc141ProPath();
+        // Microsoft Visual 2017 Studio Express
+    case  "msvc141express" then
+        VSPath = dlwGetVc141ExpressPath();
         // Microsoft Visual 2015 Studio Professional
     case  "msvc140pro" then
         VSPath = dlwGetVc14ProPath();
-        // Microsoft Visual 2015 Express
+        // Microsoft Visual 2015 Studio Express
     case  "msvc140express" then
         VSPath = dlwGetVc14ExpressPath();
         // Microsoft Visual 2013 Studio Professional
@@ -28,27 +40,6 @@ function VSPath = dlwGetVisualStudioPath()
         // Microsoft Visual 2013 Express
     case  "msvc120express" then
         VSPath = dlwGetVc12ExpressPath();
-        // Microsoft Visual 2012 Studio Professional
-    case  "msvc110pro" then
-        VSPath = dlwGetVc11ProPath();
-        // Microsoft Visual 2012 Express
-    case  "msvc110express" then
-        VSPath = dlwGetVc11ExpressPath();
-        // Microsoft Visual 2010 Studio Professional
-    case  "msvc100pro" then
-        VSPath = dlwGetVc10ProPath();
-        // Microsoft Visual 2010 Express
-    case  "msvc100express" then
-        VSPath = dlwGetVc10ExpressPath();
-        // Microsoft Visual 2008 Studio Professional
-    case  "msvc90pro" then
-        VSPath = dlwGetVc90ProPath();
-        // Microsoft Visual 2008 Studio Standard
-    case  "msvc90std" then
-        VSPath = dlwGetVc90StdPath();
-        // Microsoft Visual 2008 Express
-    case  "msvc90express" then
-        VSPath = dlwGetVc90ExpressPath();
     else
     end
 endfunction

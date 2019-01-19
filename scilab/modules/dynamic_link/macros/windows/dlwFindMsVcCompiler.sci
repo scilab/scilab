@@ -19,14 +19,14 @@ function MSCompiler = dlwFindMsVcCompiler()
     val = getenv("SCILAB_PREFERED_MSVC", "");
     if val <> "" then
         funcs = struct(...
+            "msvc142express", dlwIsVc142Express, ...
+            "msvc142pro", dlwIsVc142Pro, ...
+            "msvc141express", dlwIsVc141Express, ...
+            "msvc141pro", dlwIsVc141Pro, ...
             "msvc140express", dlwIsVc14Express, ...
             "msvc140pro", dlwIsVc14Pro, ...
             "msvc120express", dlwIsVc12Express, ...
-            "msvc120pro", dlwIsVc12Pro, ...
-            "msvc110express", dlwIsVc11Express, ...
-            "msvc110pro", dlwIsVc11Pro, ...
-            "msvc100express", dlwIsVc10Express, ...
-            "msvc100pro", dlwIsVc10Pro);
+            "msvc120pro", dlwIsVc12Pro);
 
         try
             func = funcs(val);
@@ -35,10 +35,31 @@ function MSCompiler = dlwFindMsVcCompiler()
             end
         catch
         end
-        
+
         if MSCompiler <> "unknown" then
             return;
         end
+    end
+
+    //Try to find fisrt the same compilator that which use to build Scilab
+    if dlwIsVc141Express() then
+        MSCompiler = "msvc141express";     // Microsoft Visual 2017 Express/Community
+        return;
+    end
+
+    if dlwIsVc141Pro() then
+        MSCompiler = "msvc141pro";       // Microsoft Visual 2017 Professional (or more)
+        return;
+    end
+
+    if dlwIsVc142Express() then
+        MSCompiler = "msvc142express";     // Microsoft Visual 2019 Express/Community
+        return;
+    end
+
+    if dlwIsVc142Pro() then
+        MSCompiler = "msvc142pro";       // Microsoft Visual 2019 Professional (or more)
+        return;
     end
 
     if dlwIsVc12Express() then
@@ -58,71 +79,6 @@ function MSCompiler = dlwFindMsVcCompiler()
 
     if dlwIsVc14Pro() then
         MSCompiler = "msvc140pro";       // Microsoft Visual 2015 Professional / Community (or more)
-        return;
-    end
-
-    if dlwIsVc11Express() then
-        MSCompiler = "msvc110express";     // Microsoft Visual 2012 Express
-        return;
-    end
-
-    if dlwIsVc11Pro() then
-        MSCompiler = "msvc110pro";       // Microsoft Visual 2012 Professional (or more)
-        return;
-    end
-
-    if dlwIsVc10Pro() & dlwIsVc10Express() then
-        MSCompiler = "msvc100express";     // Microsoft Visual 2010 Express with SDK extension
-        return;
-    end
-
-    if dlwIsVc10Express() then
-        MSCompiler = "msvc100express";     // Microsoft Visual 2010 Express
-        return;
-    end
-
-    if dlwIsVc10Pro() then
-        MSCompiler = "msvc100pro";       // Microsoft Visual 2010 Professional (or more)
-        return;
-    end
-
-    if dlwIsVc90Pro() then
-        MSCompiler = "msvc90pro";      // Microsoft Visual 2008 Studio Professional
-        return;
-    end
-
-    if dlwIsVc90Std() then
-        MSCompiler = "msvc90std";      // Microsoft Visual 2008 Studio Standard
-        return;
-    end
-
-    if dlwIsVc90Express() then
-        MSCompiler = "msvc90express";    // Microsoft Visual 2008 Express
-        return;
-    end
-
-    if dlwIsVc80Pro() then
-        MSCompiler = "msvc80pro";      // Microsoft Visual 2005 Studio Professional
-        return;
-    end
-
-    if dlwIsVc80Std() then
-        MSCompiler = "msvc80std";      // Microsoft Visual 2005 Studio Standard
-        return;
-    end
-
-    if dlwIsVc80Express() then
-        MSCompiler = "msvc80express";    // Microsoft Visual 2005 Express
-        return;
-    end
-
-    if dlwIsVc71() then
-        MSCompiler = "msvc71";         // Microsoft Visual Studio .NET 2003
-        return;
-    end
-
-    if dlwIsVc70() then
-        MSCompiler = "msvc70";         // Microsoft Visual Studio .NET 2002
         return;
     end
 endfunction

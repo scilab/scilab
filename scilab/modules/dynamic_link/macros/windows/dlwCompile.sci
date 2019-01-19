@@ -67,7 +67,7 @@ function filename = writeBatchFile(cmd)
             val = "NO";
         end
     end
-    
+
     if win64() then
         if dlwIsExpress() then
             arch = "x86_amd64";
@@ -81,11 +81,12 @@ function filename = writeBatchFile(cmd)
     path = dlwGetVisualStudioPath();
 
     scibuild = [ ...
-    "@call """ + path + "\VC\vcvarsall.bat"" " + arch;
+    "@call """ + path + "\vcvarsall.bat"" " + arch;
     "set DEBUG_SCILAB_DYNAMIC_LINK=" + val;
     cmd
     ];
 
+    //disp(scibuild);
     filename = TMPDIR + "/scibuild.bat";
     mputl(scibuild, filename);
     //filename = "call " + filename;
