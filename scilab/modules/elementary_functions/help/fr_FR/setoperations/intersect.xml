@@ -39,22 +39,20 @@
             <varlistentry>
                 <term>a, b</term>
                 <listitem>
-                    <para>
-                        vecteurs, matrices ou hypermatrices d'entiers encodés, de nombres décimaux
-                        réels, ou de texte. <varname>a</varname> et <varname>b</varname> doivent
-                        être du même type de données, mais ont des tailles indépendantes.
-                        Pour les données texte, les caractères UTF sont admis.
-                    </para>
+                    vecteurs, matrices ou hypermatrices d'entiers encodés, de nombres réels ou
+                    complexes, ou de texte. <varname>a</varname> et <varname>b</varname> doivent
+                    être du même type de données, mais ont des tailles indépendantes.
+                    Pour les données texte, les caractères UTF sont admis.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orient</term>
                 <listitem>
-                    <para>
-                        indicateur de traitement par colonnes ou lignes. Valeurs possibles :
-                        1 ou "r", 2 ou "c". Ne peut pas être utilisé lorsque <varname>a</varname>
-                        ou/et <varname>b</varname> est une hypermatrice.
-                    </para>
+                    indicateur de traitement par colonnes ou lignes. Valeurs possibles :
+                    1 ou "r", 2 ou "c". Ne peut pas être utilisé lorsque <varname>a</varname>
+                    ou/et <varname>b</varname> est une hypermatrice.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -84,17 +82,15 @@
             <varlistentry>
                 <term>ka</term>
                 <listitem>
-                    <para>
-                        Vecteur ligne d'indices dans <varname>a</varname>.
-                    </para>
+                    Vecteur ligne d'indices dans <varname>a</varname>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>kb</term>
                 <listitem>
-                    <para>
-                        Vecteur lignes d'indices dans <varname>b</varname>.
-                    </para>
+                    Vecteur lignes d'indices dans <varname>b</varname>.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -104,7 +100,15 @@
         <para>
             <literal>intersect(a,b)</literal> produit un vecteur ligne des éléments dédoublonnés
             présents à la fois dans les tableaux <literal>a</literal> et <literal>b</literal>,
-            triés en ordre croissant.
+            triés en ordre croissant
+            <itemizedlist>
+                <listitem>
+                    pour les nombres complexes : par modules croissants, puis par phases croissantes.
+                </listitem>
+                <listitem>
+                    pour le texte : par ordre alphabétique.
+                </listitem>
+            </itemizedlist>
         </para>
         <warning>
             Deux éléments NaN étant toujours considérés comme différents, NaN ou les lignes ou
@@ -273,5 +277,16 @@ M, ka, kb
                 <link linkend="union">union</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Les nombres complexes sont désormais acceptés.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

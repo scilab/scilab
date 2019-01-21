@@ -142,6 +142,7 @@ Feature changes and additions
 * Booleans and encoded integers can now be concatenated together, as in `[%f int8(-5)]`.
 * `gsort` can now perform multilevel sorting. This noticeably allows to sort completely complex numbers.
 * `factorial(n)` can be used now from n=171 up to n=10^14.
+* `intersect()` now supports complex numbers.
 
 
 Help pages:
@@ -281,6 +282,7 @@ Bug Fixes
 * [#15595](http://bugzilla.scilab.org/show_bug.cgi?id=15595): `unique()` was not able to return distinct values in their original order, without sorting them. A `keepOrder` option now allows it.
 * [#15668](http://bugzilla.scilab.org/show_bug.cgi?id=15668): `save(filename)` saved all predefined Scilab constants %e %pi etc.. (regression)
 * [#15715](http://bugzilla.scilab.org/show_bug.cgi?id=15715): `%nan` indices crashed Scilab.
+* [#15734](http://bugzilla.scilab.org/show_bug.cgi?id=15734): `intersect()` did not support complex numbers.
 * [#15742](http://bugzilla.scilab.org/show_bug.cgi?id=15742): The `compatibility_functions` module should be merged in the `m2sci` one.
 * [#15581](http://bugzilla.scilab.org/show_bug.cgi?id=15581): display of complex matrix was ugly.
 * [#15628](http://bugzilla.scilab.org/show_bug.cgi?id=15628): `with_tk` was a duplicate of `with_module('tclsci')`. It is removed.

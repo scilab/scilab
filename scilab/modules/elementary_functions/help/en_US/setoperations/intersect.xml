@@ -39,21 +39,19 @@
             <varlistentry>
                 <term>a, b</term>
                 <listitem>
-                    <para>
-                        vectors, matrices or hypermatrices of encoded integers, decimal real
-                        numbers, or text. <varname>a</varname> and <varname>b</varname> must have
-                        the same datatype, but have independent sizes.
-                        For text inputs, UTF characters are accepted.
-                    </para>
+                    vectors, matrices or hypermatrices of encoded integers, real or complex
+                    numbers, or text. <varname>a</varname> and <varname>b</varname> must have
+                    the same datatype, but have independent sizes.
+                    For text inputs, UTF characters are accepted.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orient</term>
                 <listitem>
-                    <para>
-                        flag with possible values : 1 or "r", 2 or "c". Can't be used if
-                        <varname>a</varname> or/and <varname>b</varname> is an hypermatrix.
-                    </para>
+                    flag with possible values : 1 or "r", 2 or "c". Can't be used if
+                    <varname>a</varname> or/and <varname>b</varname> is an hypermatrix.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -82,17 +80,15 @@
             <varlistentry>
                 <term>ka</term>
                 <listitem>
-                    <para>
-                        row vector of indices in <varname>a</varname>.
-                    </para>
+                    row vector of indices in <varname>a</varname>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>kb</term>
                 <listitem>
-                    <para>
-                        row vector of indices in <varname>b</varname>.
-                    </para>
+                    row vector of indices in <varname>b</varname>.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -100,8 +96,17 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>intersect(a,b)</literal> returns a row vector of unduplicated sorted values
-            present in both <literal>a</literal> and <literal>b</literal> arrays.
+            <literal>intersect(a,b)</literal> returns a row vector of unduplicated values
+            present in both <literal>a</literal> and <literal>b</literal> arrays. Values are
+            sorted in increasing order
+            <itemizedlist>
+                <listitem>
+                    for complex numbers : par increasing magnitudes, then by increasing phases
+                </listitem>
+                <listitem>
+                    for text : in alphabetical order.
+                </listitem>
+            </itemizedlist>
         </para>
         <warning>
             Two NaN elements are always considered as different. So NaN or rows or columns having
@@ -270,5 +275,16 @@ M, ka, kb
                 <link linkend="union">union</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    complex numbers are now accepted.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
