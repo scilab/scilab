@@ -5,7 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
-
+// <-- NO CHECK REF -->
+//
 
 s=poly(0,"s");
 z = s^0;
@@ -333,6 +334,18 @@ assert_checkequal(H, [(h+1)/h ((h+1)*(h-1))/h]);
 
 H=[3 h;s 2]./[3 h;s 2];
 assert_checkequal(coeff(H.num)./coeff(H.den), ones(2,2));
+
+//comparison
+//---------------
+assert_checktrue(rlist(1,0)==%inf)
+assert_checktrue(%inf==rlist(1,0))
+assert_checktrue(poly(%inf,"x","coeff")==rlist(1,0))
+assert_checktrue(rlist(1,0)==poly(%inf,"x","coeff"))
+assert_checkfalse(rlist(1,0)<>%inf)
+assert_checkfalse(%inf<>rlist(1,0))
+assert_checkfalse(poly(%inf,"x","coeff")<>rlist(1,0))
+assert_checkfalse(rlist(1,0)<>poly(%inf,"x","coeff"))
+
 
 // hypermatrices of rationnals
 
