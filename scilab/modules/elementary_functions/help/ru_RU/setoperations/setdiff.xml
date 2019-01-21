@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Samuel GOUGEON
+ * Copyright (C) 2018 - 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,9 +38,9 @@
                 <term>a, b</term>
                 <listitem>
                     <para>
-                        векторы, матрицы или гиперматрицы вещественных чисел или кодированных
-                        целых чисел или строк. Оба должны иметь одинаковые типы данных (или типы
-                        целых чисел).
+                        векторы, матрицы или гиперматрицы действительных или комплексных чисел,
+                        или закодированные целые числа, или строки.
+                        Оба должны иметь одинаковые типы данных (или типы целых чисел).
                     </para>
                     <para>
                         Если используется опция <literal>orien="r"</literal>, то
@@ -56,7 +56,8 @@
                     направленная обработка:
                     <itemizedlist>
                         <listitem>
-                            <literal>"r"</literal>: строки из <literal>a</literal> ищутся среди строк в <literal>b</literal>.
+                            <literal>"r"</literal>: строки из <literal>a</literal> ищутся среди
+                            строк в <literal>b</literal>.
                         </listitem>
                         <listitem>
                             <literal>"c"</literal>: столбцы из <literal>a</literal> ищутся среди
@@ -132,7 +133,8 @@
         </para>
         <para>
             Формат результатов представлен в следующей таблице, в соответствии с формой
-            <literal>a</literal> и опцией <literal>orien</literal>. Во всех случаях, если все элементы <literal>a</literal> находятся в <literal>b</literal>, возвращается
+            <literal>a</literal> и опцией <literal>orien</literal>. Во всех случаях, если все
+            элементы <literal>a</literal> находятся в <literal>b</literal>, возвращается
             <literal>[]</literal> для <literal>v</literal> как для <literal>ka</literal>:
             <table>
                 <tr>
@@ -194,7 +196,8 @@
         </para>
         <para>
             <literal>v</literal> и <literal>ka</literal> становятся пустыми
-            <literal>[]</literal>, если <literal>a</literal> пуста (либо <literal>b</literal>), или все элементы <literal>a</literal> находятся в <literal>b</literal>.
+            <literal>[]</literal>, если <literal>a</literal> пуста (либо <literal>b</literal>),
+            или все элементы <literal>a</literal> находятся в <literal>b</literal>.
         </para>
     </refsection>
     <refsection>
@@ -303,6 +306,12 @@ r, k
                 <revnumber>6.0.2</revnumber>
                 <revdescription>
                     Добавлены опции "r" | "c", включая гиперматрицы.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Теперь допускаются комплексные числа.
                 </revdescription>
             </revision>
         </revhistory>

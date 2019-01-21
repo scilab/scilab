@@ -143,6 +143,7 @@ Feature changes and additions
 * `gsort` can now perform multilevel sorting. This noticeably allows to sort completely complex numbers.
 * `factorial(n)` can be used now from n=171 up to n=10^14.
 * `intersect()` now supports complex numbers.
+* `setdiff()` now supports complex numbers.
 
 
 Help pages:
@@ -278,6 +279,7 @@ Bug Fixes
 * [#15534](http://bugzilla.scilab.org/show_bug.cgi?id=15534): Booleans and encoded integers could not be concatenated together.
 * [#15577](http://bugzilla.scilab.org/show_bug.cgi?id=15577): `edit` did not accept a line number as text, as with `edit linspace 21`.
 * [#15580](http://bugzilla.scilab.org/show_bug.cgi?id=15580): `det(sparse([],[]))` yielded an error.
+* [#15737](http://bugzilla.scilab.org/show_bug.cgi?id=15737): `setdiff` was wrong with complex numbers.
 * [#15981](http://bugzilla.scilab.org/show_bug.cgi?id=15981): `wavread()` kept the wav file open and locked when returning on errors. It weakly managed the input file name. It claimed for invalid data formats instead of unsupported ones, with poor information about the current format vs the supported ones. Several error messages refered to a wrong function.
 * [#15595](http://bugzilla.scilab.org/show_bug.cgi?id=15595): `unique()` was not able to return distinct values in their original order, without sorting them. A `keepOrder` option now allows it.
 * [#15668](http://bugzilla.scilab.org/show_bug.cgi?id=15668): `save(filename)` saved all predefined Scilab constants %e %pi etc.. (regression)

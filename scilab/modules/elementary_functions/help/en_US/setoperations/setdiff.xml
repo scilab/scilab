@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2018 - Samuel GOUGEON
+ * Copyright (C) 2018 - 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,8 +38,8 @@
                 <term>a, b</term>
                 <listitem>
                     <para>
-                        vectors, matrices or hypermatrices of real numbers or encoded integers or
-                        strings. Both must have the same data types (and integer types).
+                        vectors, matrices or hypermatrices of real or complex numbers, or encoded
+                        integers, or strings. Both must have the same data types (and integer types).
                     </para>
                     <para>
                         If the option <literal>orien="r"</literal> is used, <literal>a</literal>
@@ -312,6 +312,12 @@ r, k
                 <revnumber>6.0.2</revnumber>
                 <revdescription>
                     Option "r" | "c" added, including for hypermatrices.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Complex numbers are now accepted.
                 </revdescription>
             </revision>
         </revhistory>
