@@ -17,6 +17,7 @@ function demo_zgrid()
     my_handle.figure_name = my_plot_desc;
 
     zgrid();
+    isoview
     xtitle(my_plot_desc," "," "," ");
     // DEMO END
 

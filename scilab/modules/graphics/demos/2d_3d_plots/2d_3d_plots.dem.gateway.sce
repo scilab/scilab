@@ -25,9 +25,7 @@ subdemolist = [                                   ..
 "fgrayplot"      , "fgrayplot.dem.sce"       ; ..
 "polarplot"      , "polarplot.dem.sce"       ; ..
 "errbar"         , "errbar.dem.sce"          ; ..
-"abaque"         , "abaque.dem.sce"          ; ..
-"zgrid"          , "zgrid.dem.sce"           ; ..
-"geom3d"          , "geom3d.dem.sce"           ; ..
+"geom3d"          , "geom3d.dem.sce"         ; ..
 "contour (3d) 2" , "contour_3d_2.dem.sce"    ; ..
 "contour (3d) 3" , "contour_3d_3.dem.sce"    ; ..
 "contour (3d) 4" , "contour_3d_4.dem.sce"    ; ..

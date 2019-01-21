@@ -4,23 +4,22 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-function demo_abaque()
+function demo_nicholschart()
 
     my_handle             = scf(100001);
     clf(my_handle,"reset");
     // DEMO START
-    my_plot_desc          = "chart";
+    my_plot_desc          = "nicholschart";
     if is_handle_valid(my_handle) then
         my_handle.figure_name = my_plot_desc;
         nicholschart();
         xtitle(my_plot_desc," "," "," ");
     end
-    demo_viewCode("abaque.dem.sce");
+    demo_viewCode("nicholschart.dem.sce");
     // DEMO END
 
 endfunction
 
-
-demo_abaque();
+demo_nicholschart();
 clear demo_abaque;
 
