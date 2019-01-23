@@ -228,29 +228,25 @@ SciErr createCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRo
 {
     SciErr sciErr = sciErrInit();
 
-    if (_iRows == 0 && _iCols == 0)
-    {
-        double dblReal = 0;
-        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
-        if (sciErr.iErr)
-        {
-            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
-        }
-        return sciErr;
-    }
-
     types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
     types::InternalType** out = pStr->m_pOut;
-
-    int iTotalSize = 0;
     types::Sparse* pSparse = NULL;
-    sciErr = fillCommonSparseMatrix(_pvCtx, (int**)&pSparse, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
-    if (pSparse == NULL)
-    {
-        addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SPARSE, _("%s: Unable to create variable in Scilab memory"), _iComplex ? "createComplexSparseMatrix" : "createSparseMatrix");
-        return sciErr;
-    }
 
+    if (_iRows == 0 && _iCols == 0)
+    {
+        pSparse = new types::Sparse(0,0,false);
+    }
+    else
+    {
+        int iTotalSize = 0;
+        sciErr = fillCommonSparseMatrix(_pvCtx, (int**)&pSparse, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
+        if (pSparse == NULL)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SPARSE, _("%s: Unable to create variable in Scilab memory"), _iComplex ? "createComplexSparseMatrix" : "createSparseMatrix");
+            return sciErr;
+        }
+    }
+    
     int rhs = _iVar - *getNbInputArgument(_pvCtx);
     out[rhs - 1] = pSparse;
 

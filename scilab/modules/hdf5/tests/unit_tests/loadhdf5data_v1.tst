@@ -54,7 +54,7 @@ load(SCI+"/modules/hdf5/tests/sample_scilab_data/sparsematrix_v1.sod");
 assert_checkequal(sp,sparse([1,2;4,5;3,10],[1,2,3]));
 
 load(SCI+"/modules/hdf5/tests/sample_scilab_data/emptysparse_v1.sod");
-assert_checkequal(emptysparse,sparse([]));
+assert_checkequal(emptysparse,[]);
 
 // boolean sparse
 dense=[%F, %F, %T, %F, %F

@@ -136,8 +136,8 @@ for formatIndex = 1:size(binFormats, "*")
     // TESTS FOR SPARSE MATRICES
     //
 
-    if binFormats(formatIndex) <> "-v4" then // Integers can not be stored in Matlab 4 binary files
-        assert_checkequal(emptysparse , []);
+    if binFormats(formatIndex) <> "-v4" then // Sparse can not be stored in Matlab 4 binary files
+        assert_checkequal(emptysparse , sparse([]));
 
         assert_checkequal(realscalarsparse , sparse(1.23));
         //assert_checkequal(cplxscalarsparse , sparse(1.23 + 4.56i));

@@ -190,7 +190,7 @@ function mat = resize_matrix(mat, varargin)
     // TRIMMING
     // --------
     if or(newsizes==0) then
-        mat = []
+        mat(:) = []
         return
     end
     k = (newsizes>0 & newsizes<oldsizes)
