@@ -126,6 +126,7 @@ function [m, k] = %sp_min(varargin)
             k = ones(m)
         end
         [m1, n1] = size(m)
+
         // Loop on the number of input arguments
         for i = 2:rhs
             An = elements(i)
@@ -145,11 +146,7 @@ function [m, k] = %sp_min(varargin)
                 msg = _("%s: Wrong size of input argument #%d%s: Same size as input argument #%d expected.\n")
                 error(msprintf(msg, "%sp_min", i, error_list, 1))
             end
-            // If An is a scalar: check that it is positive
-            if and([m2 n2]==[1 1]) & An<0 then
-                msg = _("%s: Argument #%d: the scalar must be positive.\n")
-                error(msprintf(msg, "%sp_max", i))
-            end
+
             // Processing:
             mNan = isnan(m);
             newNan = isnan(An);

@@ -44,7 +44,7 @@
                         одинаковые размеры или быть смешанными со скалярами (скаляры,
                         следовательно, неявно расширяются  до размеров массивов).
                         Разрежённые массивы не могут смешиваться с полными массивами, за
-                        исключением <emphasis>положительных</emphasis> скаляров.
+                        исключением скаляров.
                     </para>
                 </listitem>
             </varlistentry>
@@ -169,6 +169,11 @@
                 </listitem>
              </itemizedlist>
         </note>
+        <warning>
+          If <literal>min(A1, A2,..., An)</literal> is used with a huge input sparse matrix of
+          low density, together with a strictly negative scalar input, the sparse result will no longer
+          have any 0 value: It will be a sparse array with density=1, that may lead to a memory failure.
+        </warning>
     </refsection>
     <refsection>
         <title>Примеры</title>
@@ -185,11 +190,13 @@
     []
  k  =
     []
+
 --> [m, k] = min([5 3 ; 2 %nan])
  m  =
    2.
  k  =
    2.   1.
+
 --> [m, k] = min([5 3 ; 2 %nan], 4)
  m  =
    4.   3.
@@ -197,6 +204,7 @@
  k  =
    2.   1.
    1.   2.
+
 --> [m, k] = min([5 -1 2], [1 5 1], [0 1 3])
  m  =
    0.  -1.   1.
@@ -218,11 +226,13 @@ A = grand(4,6,"uin",0,30); A(3,4) = %nan
    23.   25.   29.   6.    19.   5.
    30.   2.    20.   Nan    6.   6.
    20.   8.    13.   14.   16.   3.
+
 --> [Row, K] = min(A, "r")
  Row  =
    20.   2.   13.   4.   6.   3.
  K  =
    4.   3.   4.   1.   1.   4.
+
 --> [Col, K] = min(A, "c")
  Col  =
    4.
@@ -234,7 +244,7 @@ A = grand(4,6,"uin",0,30); A(3,4) = %nan
    6.
    2.
    6.
- ]]></screen>
+]]></screen>
         <para>
             <emphasis role="bold">С разрежёнными входными данными</emphasis>:
         </para>
@@ -266,6 +276,7 @@ K
    3.  -1.   3.   4.
    0.   0.   0.   0.
    0.   0.   4.  -5.
+
 --> [Row, K] = min(s, "r")
  Row  =
 (  1,  4) sparse matrix
@@ -275,6 +286,7 @@ K
 (  1,  4)    -5.
  K  =
    2.   3.   2.   5.
+
 --> [Col, K] = min(s, "c")
  Col  =
 (  5,  1) sparse matrix
@@ -288,6 +300,7 @@ K
    2.
    1.
    4.
+
 --> [M, K] = min(s,1);   [full(s)  ones(s(:,1))*%nan  full(M)]
  ans  =
    0.   0.   5.  -2.   Nan   0.   0.   1.  -2.
@@ -295,6 +308,7 @@ K
    3.  -1.   3.   4.   Nan   1.  -1.   1.   1.
    0.   0.   0.   0.   Nan   0.   0.   0.   0.
    0.   0.   4.  -5.   Nan   0.   0.   1.  -5.
+
 --> issparse(M)
  ans  =
    1.
@@ -305,7 +319,7 @@ K
    2.   1.   2.   2.
    1.   1.   1.   1.
    1.   1.   2.   1.
-]]> </screen>
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

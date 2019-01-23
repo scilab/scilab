@@ -42,8 +42,7 @@
                         scalars, vectors, matrices or hypermatrices of encoded integers or of real
                         numbers, in dense or sparse format. They must have the same sizes, or be
                         mixed with scalars (scalars are then implicitly expanded to the arrays sizes).
-                        Sparse arrays can't be mixed with dense ones, except with dense
-                        <emphasis>negative</emphasis> scalars.
+                        Sparse arrays can't be mixed with dense ones, except with dense scalars.
                     </para>
                 </listitem>
             </varlistentry>
@@ -163,6 +162,11 @@
                 </listitem>
             </itemizedlist>
         </note>
+        <warning>
+          If <literal>max(A1, A2,..., An)</literal> is used with a huge input sparse matrix of
+          low density, together with a strictly positive scalar input, the sparse result will no longer
+          have any 0 value: It will be a sparse array with density=1, that may lead to a memory failure.
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -238,7 +242,7 @@ A = grand(4,6,"uin",0,30); A(3,4) = %nan
    3.
    2.
    6.
- ]]></screen>
+]]></screen>
         <para>
             <emphasis role="bold">With sparse inputs</emphasis>:
         </para>
@@ -318,7 +322,7 @@ K
    1.   2.   2.   1.
    1.   1.   1.   1.
    1.   2.   1.   2.
-]]> </screen>
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
