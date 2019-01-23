@@ -7,6 +7,7 @@
 //
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
+// <-- ENGLISH IMPOSED -->
 //
 // <-- Non-regression test for bug 15850 -->
 //

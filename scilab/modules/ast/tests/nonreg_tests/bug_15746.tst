@@ -7,7 +7,6 @@
 //
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-// <- ENGLISH IMPOSED -->
 //
 // <-- Non-regression test for bug 15746 -->
 //
@@ -19,10 +18,10 @@
 
 B=1;
 A=[1 2 3];
-assert_checkerror("B/A","Inconsistent row/column dimensions.");
+assert_checkerror("B/A", sprintf(_("Inconsistent row/column dimensions.\n")));
 A=A';
 assert_checkalmostequal((B/A)*A,B);
-assert_checkerror("A\B","Inconsistent row/column dimensions.");
+assert_checkerror("A\B", sprintf(_("Inconsistent row/column dimensions.\n")));
 A=A';
 assert_checkalmostequal(A*(A\B),B);
 
