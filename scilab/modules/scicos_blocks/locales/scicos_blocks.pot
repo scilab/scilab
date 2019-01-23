@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2019-01-23 12:14+0100\n"
 
 # File: modules/scicos_blocks/src/c/convert.c, line: 1214
 # File: modules/scicos_blocks/src/c/convert.c, line: 1239
@@ -267,7 +267,7 @@ msgstr ""
 #
 # File: modules/scicos_blocks/macros/IntegerOp/BITCLEAR.sci, line: 35
 # File: modules/scicos_blocks/macros/IntegerOp/BITSET.sci, line: 33
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 34
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 35
 # File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 34
 # File: modules/scicos_blocks/macros/IntegerOp/INTMUL.sci, line: 35
 # File: modules/scicos_blocks/macros/IntegerOp/JKFLIPFLOP.sci, line: 45
@@ -345,9 +345,9 @@ msgstr ""
 # File: modules/scicos_blocks/macros/IntegerOp/BITSET.sci, line: 59
 # File: modules/scicos_blocks/macros/IntegerOp/BITSET.sci, line: 70
 # File: modules/scicos_blocks/macros/IntegerOp/BITSET.sci, line: 79
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 56
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 60
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 64
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 57
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 61
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 65
 # File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 49
 # File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 53
 # File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 235
@@ -383,9 +383,9 @@ msgstr ""
 # File: modules/scicos_blocks/macros/IntegerOp/BITSET.sci, line: 60
 # File: modules/scicos_blocks/macros/IntegerOp/BITSET.sci, line: 71
 # File: modules/scicos_blocks/macros/IntegerOp/BITSET.sci, line: 80
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 57
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 61
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 65
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 58
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 62
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 66
 # File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 50
 # File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 54
 # File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 236
@@ -421,43 +421,43 @@ msgid "Set a bit"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 36
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 37
 msgid "Type conversion"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 39
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 40
 msgid "(b) 0:Nothing, 1:Saturate, 2:Error"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 40
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 41
 msgid "Input type (a)"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 41
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 42
 msgid "Output type (a)"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 42
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 43
 msgid "Do on overflow (b)"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 56
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 57
 # File: modules/scicos_blocks/macros/IntegerOp/INTMUL.sci, line: 45
 msgid "Do on Overflow"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 60
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 61
 msgid "Input Type"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 64
+# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 65
 msgid "Output Type"
 msgstr ""
 

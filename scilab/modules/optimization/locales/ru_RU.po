@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-12-14 15:52+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2018-08-26 15:24+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -147,10 +147,6 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
 
 #, c-format
-msgid "%s: exception caught in '%s' subroutine.\n"
-msgstr "%s: перехвачено исключение в подпрограмме '%s'.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A real Scalar expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался вещественный скаляр.\n"
@@ -187,6 +183,10 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидался строго положительный "
 "вектор.\n"
+
+#, c-format
+msgid "%s: exception caught in '%s' subroutine.\n"
+msgstr "%s: перехвачено исключение в подпрограмме '%s'.\n"
 
 #, c-format
 msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
@@ -494,8 +494,8 @@ msgstr "%s: Конец оптимизации (линейный поиск не 
 msgid "Undefined function '%ls'.\n"
 msgstr "Неопределённая функция '%ls'.\n"
 
-#, fuzzy, c-format
-msgid "User function '%s' have not been setted.\n"
+#, c-format
+msgid "User function '%s' have not been set.\n"
 msgstr "Пользовательская функция '%s' не установлена.\n"
 
 #, c-format
@@ -510,7 +510,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for output argument #%d: %d element(s) expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер выходного аргумента №%d: ожидалось %d элементов.\n"
 
 #, c-format
 msgid ""
@@ -804,7 +804,7 @@ msgid ""
 msgstr ""
 
 msgid "Defining quadratic function ...\n"
-msgstr ""
+msgstr "Определение квадратичной функции...\n"
 
 msgid ""
 "Illustrates that the fixed-shape Spendley et al. algorithm performs badly on "
@@ -812,7 +812,7 @@ msgid ""
 msgstr ""
 
 msgid "Defining quadratic function...\n"
-msgstr ""
+msgstr "Определение квадратичной функции...\n"
 
 msgid ""
 "Illustrates that the variable-shape Nelder-Mead algorithm performs well on a "
@@ -830,10 +830,10 @@ msgid ""
 msgstr ""
 
 msgid "Defining Rosenbrock function...\n"
-msgstr ""
+msgstr "Определение функции Розенброка...\n"
 
 msgid "Rosenbrock"
-msgstr ""
+msgstr "Розенброк"
 
 msgid "Output"
 msgstr ""

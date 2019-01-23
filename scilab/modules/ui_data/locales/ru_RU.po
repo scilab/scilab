@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -147,11 +147,9 @@ msgstr "Graphic handles"
 msgid "String"
 msgstr "String"
 
-msgid "Un-compiled function"
+#, fuzzy
+msgid "User function"
 msgstr "Un-compiled function"
-
-msgid "Compiled function"
-msgstr "Compiled function"
 
 msgid "Function library"
 msgstr "Function library"
@@ -391,3 +389,6 @@ msgstr "&Справка"
 
 msgid "&About Scilab..."
 msgstr "&О Scilab"
+
+#~ msgid "Compiled function"
+#~ msgstr "Compiled function"

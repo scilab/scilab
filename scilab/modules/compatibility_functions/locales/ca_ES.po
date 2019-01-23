@@ -15,7 +15,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
+
+# File: modules/compatibility_functions/macros/%msp_i_s.sci, line: 34
+#, c-format
+msgid ""
+"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -233,9 +239,15 @@ msgstr "%s: Estil de línia desconegut a '%s' -> S'ha deixat com a 6.\n"
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
 msgstr "%s: Color desconegut a '%s' -> S'ha posat a negre.\n"
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
 
 #, c-format
 msgid "%s: pencil is not diagonalizable.\n"
@@ -281,3 +293,6 @@ msgstr "%s: El factor de normalització m - 1 és zero.\n"
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
 msgstr "%s: El factor de normalització n - 1 és zero.\n"
+
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"

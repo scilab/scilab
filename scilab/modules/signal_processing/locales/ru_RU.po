@@ -15,7 +15,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: оно должно быть на интервале "
+"%s.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -172,8 +178,8 @@ msgstr "%s: ошибка в функции syredi.\n"
 msgid "Undefined function '%ls'.\n"
 msgstr "Неопределённая функция '%ls'.\n"
 
-#, fuzzy, c-format
-msgid "User function '%s' have not been setted.\n"
+#, c-format
+msgid "User function '%s' have not been set.\n"
 msgstr "Пользовательская функция '%s' не установлена.\n"
 
 msgid "An error occurred while getting Signalprocessingfunctions object.\n"
@@ -439,6 +445,12 @@ msgstr "%s: Неверное количество входных парамет�
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Неверные значения входного параметра №%d: степень должна принадлежать "
+"множеству {%s}.\n"
 
 #, c-format
 msgid "%s: Filter order too small.\n"

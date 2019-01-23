@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -125,9 +125,11 @@ msgid ""
 "scilab.org."
 msgstr ""
 
+#
+# File: modules/graphic_export/src/java/org/scilab/modules/graphic_export/FileExporter.java, line: 61
 msgid ""
-"Unable to create export file, the file cannot be created or is locked by an "
-"other process."
+"Unable to create export file, the file cannot be created or is locked by "
+"another process."
 msgstr ""
 
 #, c-format

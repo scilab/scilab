@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2019-01-23 12:14+0100\n"
 
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 109
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 127
@@ -310,24 +310,24 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 153
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 204
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 246
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 256
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 275
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 285
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 305
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 315
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 332
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 342
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 360
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 155
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 206
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 248
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 258
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 277
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 287
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 307
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 317
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 334
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 344
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 362
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 162
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 213
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 164
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 215
 #, c-format
 msgid "%s: Wrong type of input arguments #%d: A real scalar expected.\n"
 msgstr ""

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
@@ -702,6 +702,14 @@ msgstr ""
 msgid "Save file"
 msgstr ""
 
+#
+# File: modules/console/src/console_fake_xml.c, line: 794
+# File: modules/console/src/console_fake_xml.c, line: 1061
+# File: modules/console/src/console_fake_xml.c, line: 1372
+# File: modules/console/src/console_fake_xml.c, line: 1694
+msgid "Demos"
+msgstr ""
+
 msgid "Environment"
 msgstr ""
 
@@ -781,6 +789,12 @@ msgid "Action name"
 msgstr ""
 
 msgid "Key binding"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1379
+# File: modules/console/src/console_fake_xml.c, line: 1701
+msgid "The demo interface is dockable"
 msgstr ""
 
 #, c-format

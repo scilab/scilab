@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -289,9 +289,9 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: The order should be at most %d.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be < %d.\n"
+msgstr "%s: L'argument d'entrada #%d ha de ser un nombre real.\n"
 
 #, c-format
 msgid ""
@@ -487,11 +487,8 @@ msgstr ""
 msgid "%s: Uncontrollable system.\n"
 msgstr ""
 
-#
-# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 152
-# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 195
 #, c-format
-msgid "%s: An error occured in '%s'.\n"
+msgid "%s: An error occurred in '%s'.\n"
 msgstr ""
 
 #, c-format
@@ -1027,7 +1024,8 @@ msgstr "Eix real"
 msgid "Imaginary axis"
 msgstr "Eix imaginari"
 
-msgid "open loop zeroes"
+#, fuzzy
+msgid "open loop zeros"
 msgstr "zeros d'enllaç obert"
 
 msgid "open loop poles"
@@ -1080,6 +1078,16 @@ msgid "Hz"
 msgstr "Hz"
 
 msgid "dB"
+msgstr "dB"
+
+#
+# File: modules/cacsd/macros/formatBodeMagTip.sci, line: 21
+# File: modules/cacsd/macros/formatBodePhaseTip.sci, line: 21
+msgid "rad/s"
+msgstr ""
+
+#, fuzzy
+msgid " dB"
 msgstr "dB"
 
 #, c-format
@@ -1526,6 +1534,18 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
+"longitud %d.\n"
+
+#
+# File: modules/cacsd/macros/sgrid.sci, line: 84
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
 msgstr ""
 
 #, c-format

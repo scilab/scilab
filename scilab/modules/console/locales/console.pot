@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2019-01-23 12:13+0100\n"
 
 # File: modules/console/sci_gateway/c/sci_tohome.c, line: 32
 # File: modules/console/sci_gateway/cpp/sci_clc.cpp, line: 62
@@ -197,191 +197,191 @@ msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 534
-# File: modules/console/src/console_fake_xml.c, line: 796
+# File: modules/console/src/console_fake_xml.c, line: 801
 msgid "General"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 537
-# File: modules/console/src/console_fake_xml.c, line: 799
+# File: modules/console/src/console_fake_xml.c, line: 804
 msgid "Produces an error"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 538
-# File: modules/console/src/console_fake_xml.c, line: 800
+# File: modules/console/src/console_fake_xml.c, line: 805
 msgid "Produces a warning"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 539
-# File: modules/console/src/console_fake_xml.c, line: 801
+# File: modules/console/src/console_fake_xml.c, line: 806
 msgid "Produces Inf or NaN"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 540
-# File: modules/console/src/console_fake_xml.c, line: 802
+# File: modules/console/src/console_fake_xml.c, line: 807
 msgid "Variable format"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 541
-# File: modules/console/src/console_fake_xml.c, line: 803
+# File: modules/console/src/console_fake_xml.c, line: 808
 msgid "Scientific format"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 544
-# File: modules/console/src/console_fake_xml.c, line: 806
+# File: modules/console/src/console_fake_xml.c, line: 811
 msgid "English"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 545
-# File: modules/console/src/console_fake_xml.c, line: 807
+# File: modules/console/src/console_fake_xml.c, line: 812
 msgid "French"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 546
-# File: modules/console/src/console_fake_xml.c, line: 808
+# File: modules/console/src/console_fake_xml.c, line: 813
 msgid "Portugese (Brazil)"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 547
-# File: modules/console/src/console_fake_xml.c, line: 809
+# File: modules/console/src/console_fake_xml.c, line: 814
 msgid "Catalan"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 548
-# File: modules/console/src/console_fake_xml.c, line: 810
+# File: modules/console/src/console_fake_xml.c, line: 815
 msgid "Czech"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 549
-# File: modules/console/src/console_fake_xml.c, line: 811
+# File: modules/console/src/console_fake_xml.c, line: 816
 msgid "Spanish"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 550
-# File: modules/console/src/console_fake_xml.c, line: 812
+# File: modules/console/src/console_fake_xml.c, line: 817
 msgid "Italian"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 551
-# File: modules/console/src/console_fake_xml.c, line: 813
+# File: modules/console/src/console_fake_xml.c, line: 818
 msgid "Polish"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 552
-# File: modules/console/src/console_fake_xml.c, line: 814
+# File: modules/console/src/console_fake_xml.c, line: 819
 msgid "Russian"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 553
-# File: modules/console/src/console_fake_xml.c, line: 815
+# File: modules/console/src/console_fake_xml.c, line: 820
 msgid "Chinese (Simplified)"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 554
-# File: modules/console/src/console_fake_xml.c, line: 816
+# File: modules/console/src/console_fake_xml.c, line: 821
 msgid "Chinese (Traditional)"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 555
-# File: modules/console/src/console_fake_xml.c, line: 817
+# File: modules/console/src/console_fake_xml.c, line: 822
 msgid "German"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 556
-# File: modules/console/src/console_fake_xml.c, line: 818
+# File: modules/console/src/console_fake_xml.c, line: 823
 msgid "Japanese"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 557
-# File: modules/console/src/console_fake_xml.c, line: 819
+# File: modules/console/src/console_fake_xml.c, line: 824
 msgid "Ukrainian"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 560
-# File: modules/console/src/console_fake_xml.c, line: 822
-# File: modules/console/src/console_fake_xml.c, line: 1181
-# File: modules/console/src/console_fake_xml.c, line: 1485
+# File: modules/console/src/console_fake_xml.c, line: 827
+# File: modules/console/src/console_fake_xml.c, line: 1191
+# File: modules/console/src/console_fake_xml.c, line: 1513
 msgid "Start-up directory"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 562
-# File: modules/console/src/console_fake_xml.c, line: 824
-# File: modules/console/src/console_fake_xml.c, line: 1221
-# File: modules/console/src/console_fake_xml.c, line: 1525
+# File: modules/console/src/console_fake_xml.c, line: 829
+# File: modules/console/src/console_fake_xml.c, line: 1231
+# File: modules/console/src/console_fake_xml.c, line: 1553
 msgid "Confirmation dialogs"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 565
-# File: modules/console/src/console_fake_xml.c, line: 827
+# File: modules/console/src/console_fake_xml.c, line: 832
 msgid "Warn before exiting Scilab"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 566
-# File: modules/console/src/console_fake_xml.c, line: 828
+# File: modules/console/src/console_fake_xml.c, line: 833
 msgid "Warn before deleting Command History items"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 567
-# File: modules/console/src/console_fake_xml.c, line: 829
+# File: modules/console/src/console_fake_xml.c, line: 834
 msgid "Warn before clearing the Console"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 571
-# File: modules/console/src/console_fake_xml.c, line: 833
+# File: modules/console/src/console_fake_xml.c, line: 838
 msgid "Desktop layout"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 574
-# File: modules/console/src/console_fake_xml.c, line: 836
+# File: modules/console/src/console_fake_xml.c, line: 841
 msgid "Integrated"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 575
-# File: modules/console/src/console_fake_xml.c, line: 837
+# File: modules/console/src/console_fake_xml.c, line: 842
 msgid "Simple"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 579
-# File: modules/console/src/console_fake_xml.c, line: 841
+# File: modules/console/src/console_fake_xml.c, line: 846
 msgid "Shortcuts"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 583
-# File: modules/console/src/console_fake_xml.c, line: 845
+# File: modules/console/src/console_fake_xml.c, line: 850
 msgid "Cut or interrupt"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 584
-# File: modules/console/src/console_fake_xml.c, line: 846
+# File: modules/console/src/console_fake_xml.c, line: 851
 msgid "Copy or interrupt"
 msgstr ""
 
@@ -389,127 +389,127 @@ msgstr ""
 # File: modules/console/src/console_fake_xml.c, line: 585
 # File: modules/console/src/console_fake_xml.c, line: 654
 # File: modules/console/src/console_fake_xml.c, line: 733
-# File: modules/console/src/console_fake_xml.c, line: 847
-# File: modules/console/src/console_fake_xml.c, line: 916
-# File: modules/console/src/console_fake_xml.c, line: 995
+# File: modules/console/src/console_fake_xml.c, line: 852
+# File: modules/console/src/console_fake_xml.c, line: 921
+# File: modules/console/src/console_fake_xml.c, line: 1000
 msgid "Select all"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 586
-# File: modules/console/src/console_fake_xml.c, line: 848
+# File: modules/console/src/console_fake_xml.c, line: 853
 msgid "Line beginning"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 587
-# File: modules/console/src/console_fake_xml.c, line: 849
+# File: modules/console/src/console_fake_xml.c, line: 854
 msgid "Line end"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 588
-# File: modules/console/src/console_fake_xml.c, line: 850
+# File: modules/console/src/console_fake_xml.c, line: 855
 msgid "Previous char"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 589
-# File: modules/console/src/console_fake_xml.c, line: 851
+# File: modules/console/src/console_fake_xml.c, line: 856
 msgid "Delete next char"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 590
-# File: modules/console/src/console_fake_xml.c, line: 852
+# File: modules/console/src/console_fake_xml.c, line: 857
 msgid "Delete previous char"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 591
-# File: modules/console/src/console_fake_xml.c, line: 853
+# File: modules/console/src/console_fake_xml.c, line: 858
 msgid "Delete end of line"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 592
 # File: modules/console/src/console_fake_xml.c, line: 593
-# File: modules/console/src/console_fake_xml.c, line: 854
-# File: modules/console/src/console_fake_xml.c, line: 855
+# File: modules/console/src/console_fake_xml.c, line: 859
+# File: modules/console/src/console_fake_xml.c, line: 860
 msgid "Delete whole line"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 594
-# File: modules/console/src/console_fake_xml.c, line: 856
+# File: modules/console/src/console_fake_xml.c, line: 861
 msgid "Delete last word"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 595
-# File: modules/console/src/console_fake_xml.c, line: 857
+# File: modules/console/src/console_fake_xml.c, line: 862
 msgid "Previous console page"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 596
-# File: modules/console/src/console_fake_xml.c, line: 858
+# File: modules/console/src/console_fake_xml.c, line: 863
 msgid "Next console page"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 597
-# File: modules/console/src/console_fake_xml.c, line: 859
+# File: modules/console/src/console_fake_xml.c, line: 864
 msgid "Validate input"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 598
-# File: modules/console/src/console_fake_xml.c, line: 860
+# File: modules/console/src/console_fake_xml.c, line: 865
 msgid "Clear console"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 599
-# File: modules/console/src/console_fake_xml.c, line: 861
+# File: modules/console/src/console_fake_xml.c, line: 866
 msgid "Console box"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 600
 # File: modules/console/src/console_fake_xml.c, line: 601
-# File: modules/console/src/console_fake_xml.c, line: 862
-# File: modules/console/src/console_fake_xml.c, line: 863
+# File: modules/console/src/console_fake_xml.c, line: 867
+# File: modules/console/src/console_fake_xml.c, line: 868
 msgid "Completion"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 602
 # File: modules/console/src/console_fake_xml.c, line: 604
-# File: modules/console/src/console_fake_xml.c, line: 864
-# File: modules/console/src/console_fake_xml.c, line: 866
+# File: modules/console/src/console_fake_xml.c, line: 869
+# File: modules/console/src/console_fake_xml.c, line: 871
 msgid "Previous history line"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 603
 # File: modules/console/src/console_fake_xml.c, line: 605
-# File: modules/console/src/console_fake_xml.c, line: 865
-# File: modules/console/src/console_fake_xml.c, line: 867
+# File: modules/console/src/console_fake_xml.c, line: 870
+# File: modules/console/src/console_fake_xml.c, line: 872
 msgid "Next history line"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 606
-# File: modules/console/src/console_fake_xml.c, line: 868
+# File: modules/console/src/console_fake_xml.c, line: 873
 msgid "Help Browser"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 607
 # File: modules/console/src/console_fake_xml.c, line: 608
-# File: modules/console/src/console_fake_xml.c, line: 869
-# File: modules/console/src/console_fake_xml.c, line: 870
+# File: modules/console/src/console_fake_xml.c, line: 874
+# File: modules/console/src/console_fake_xml.c, line: 875
 msgid "Console Search Field"
 msgstr ""
 
@@ -517,65 +517,65 @@ msgstr ""
 # File: modules/console/src/console_fake_xml.c, line: 609
 # File: modules/console/src/console_fake_xml.c, line: 660
 # File: modules/console/src/console_fake_xml.c, line: 731
-# File: modules/console/src/console_fake_xml.c, line: 871
-# File: modules/console/src/console_fake_xml.c, line: 922
-# File: modules/console/src/console_fake_xml.c, line: 993
+# File: modules/console/src/console_fake_xml.c, line: 876
+# File: modules/console/src/console_fake_xml.c, line: 927
+# File: modules/console/src/console_fake_xml.c, line: 998
 msgid "Paste"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 610
-# File: modules/console/src/console_fake_xml.c, line: 872
+# File: modules/console/src/console_fake_xml.c, line: 877
 msgid "Open a file"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 611
-# File: modules/console/src/console_fake_xml.c, line: 873
+# File: modules/console/src/console_fake_xml.c, line: 878
 msgid "Load environment"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 612
-# File: modules/console/src/console_fake_xml.c, line: 874
+# File: modules/console/src/console_fake_xml.c, line: 879
 msgid "Save environment"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 613
-# File: modules/console/src/console_fake_xml.c, line: 875
+# File: modules/console/src/console_fake_xml.c, line: 880
 msgid "Quit"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 614
-# File: modules/console/src/console_fake_xml.c, line: 876
+# File: modules/console/src/console_fake_xml.c, line: 881
 msgid "Execute"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 615
-# File: modules/console/src/console_fake_xml.c, line: 877
+# File: modules/console/src/console_fake_xml.c, line: 882
 msgid "Empty clipboard"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 616
-# File: modules/console/src/console_fake_xml.c, line: 878
+# File: modules/console/src/console_fake_xml.c, line: 883
 msgid "Change current directory"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 617
-# File: modules/console/src/console_fake_xml.c, line: 879
+# File: modules/console/src/console_fake_xml.c, line: 884
 msgid "Display current directory"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 618
 # File: modules/console/src/console_fake_xml.c, line: 707
-# File: modules/console/src/console_fake_xml.c, line: 880
-# File: modules/console/src/console_fake_xml.c, line: 969
+# File: modules/console/src/console_fake_xml.c, line: 885
+# File: modules/console/src/console_fake_xml.c, line: 974
 msgid "Page setup"
 msgstr ""
 
@@ -583,295 +583,295 @@ msgstr ""
 # File: modules/console/src/console_fake_xml.c, line: 619
 # File: modules/console/src/console_fake_xml.c, line: 674
 # File: modules/console/src/console_fake_xml.c, line: 723
-# File: modules/console/src/console_fake_xml.c, line: 881
-# File: modules/console/src/console_fake_xml.c, line: 936
-# File: modules/console/src/console_fake_xml.c, line: 985
+# File: modules/console/src/console_fake_xml.c, line: 886
+# File: modules/console/src/console_fake_xml.c, line: 941
+# File: modules/console/src/console_fake_xml.c, line: 990
 msgid "Print"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 620
-# File: modules/console/src/console_fake_xml.c, line: 882
+# File: modules/console/src/console_fake_xml.c, line: 887
 msgid "Preferences"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 621
-# File: modules/console/src/console_fake_xml.c, line: 883
+# File: modules/console/src/console_fake_xml.c, line: 888
 msgid "Show/Hide toolbar"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 622
-# File: modules/console/src/console_fake_xml.c, line: 884
+# File: modules/console/src/console_fake_xml.c, line: 889
 msgid "Clear history"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 623
-# File: modules/console/src/console_fake_xml.c, line: 885
+# File: modules/console/src/console_fake_xml.c, line: 890
 msgid "Resume"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 624
-# File: modules/console/src/console_fake_xml.c, line: 886
+# File: modules/console/src/console_fake_xml.c, line: 891
 msgid "Abort"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 625
-# File: modules/console/src/console_fake_xml.c, line: 887
+# File: modules/console/src/console_fake_xml.c, line: 892
 msgid "Interrupt"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 626
-# File: modules/console/src/console_fake_xml.c, line: 888
+# File: modules/console/src/console_fake_xml.c, line: 893
 msgid "Launch SciNotes"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 627
-# File: modules/console/src/console_fake_xml.c, line: 889
+# File: modules/console/src/console_fake_xml.c, line: 894
 msgid "Launch Xcos"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 628
-# File: modules/console/src/console_fake_xml.c, line: 890
+# File: modules/console/src/console_fake_xml.c, line: 895
 msgid "Matlab to Scilab Translator"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 629
-# File: modules/console/src/console_fake_xml.c, line: 891
+# File: modules/console/src/console_fake_xml.c, line: 896
 msgid "Module manager"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 630
-# File: modules/console/src/console_fake_xml.c, line: 892
+# File: modules/console/src/console_fake_xml.c, line: 897
 msgid "Variable Browser"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 631
-# File: modules/console/src/console_fake_xml.c, line: 893
+# File: modules/console/src/console_fake_xml.c, line: 898
 msgid "Command History"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 632
-# File: modules/console/src/console_fake_xml.c, line: 894
+# File: modules/console/src/console_fake_xml.c, line: 899
 msgid "File Browser"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 633
-# File: modules/console/src/console_fake_xml.c, line: 895
+# File: modules/console/src/console_fake_xml.c, line: 900
 msgid "Demonstrations"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 634
-# File: modules/console/src/console_fake_xml.c, line: 896
+# File: modules/console/src/console_fake_xml.c, line: 901
 msgid "Open Scilab website"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 635
-# File: modules/console/src/console_fake_xml.c, line: 897
+# File: modules/console/src/console_fake_xml.c, line: 902
 msgid "Open Online Help"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 636
-# File: modules/console/src/console_fake_xml.c, line: 898
+# File: modules/console/src/console_fake_xml.c, line: 903
 msgid "Open Scilab wiki"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 637
-# File: modules/console/src/console_fake_xml.c, line: 899
+# File: modules/console/src/console_fake_xml.c, line: 904
 msgid "Open ATOMS website"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 638
-# File: modules/console/src/console_fake_xml.c, line: 900
+# File: modules/console/src/console_fake_xml.c, line: 905
 msgid "Open File Exchange website"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 639
-# File: modules/console/src/console_fake_xml.c, line: 901
+# File: modules/console/src/console_fake_xml.c, line: 906
 msgid "Open Mailing lists"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 640
-# File: modules/console/src/console_fake_xml.c, line: 902
+# File: modules/console/src/console_fake_xml.c, line: 907
 msgid "Open Forge website"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 641
-# File: modules/console/src/console_fake_xml.c, line: 903
+# File: modules/console/src/console_fake_xml.c, line: 908
 msgid "Open Bugzilla"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 642
-# File: modules/console/src/console_fake_xml.c, line: 904
+# File: modules/console/src/console_fake_xml.c, line: 909
 msgid "About Scilab"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 645
-# File: modules/console/src/console_fake_xml.c, line: 907
+# File: modules/console/src/console_fake_xml.c, line: 912
 msgid "Auto complete (, [,..."
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 646
-# File: modules/console/src/console_fake_xml.c, line: 908
+# File: modules/console/src/console_fake_xml.c, line: 913
 msgid "Auto complete keyword"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 647
-# File: modules/console/src/console_fake_xml.c, line: 909
+# File: modules/console/src/console_fake_xml.c, line: 914
 msgid "Generate Help prototype"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 648
-# File: modules/console/src/console_fake_xml.c, line: 910
+# File: modules/console/src/console_fake_xml.c, line: 915
 msgid "Tabify"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 649
-# File: modules/console/src/console_fake_xml.c, line: 911
+# File: modules/console/src/console_fake_xml.c, line: 916
 msgid "Untabify"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 650
-# File: modules/console/src/console_fake_xml.c, line: 912
+# File: modules/console/src/console_fake_xml.c, line: 917
 msgid "Indent"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 651
-# File: modules/console/src/console_fake_xml.c, line: 913
+# File: modules/console/src/console_fake_xml.c, line: 918
 msgid "Comment"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 652
-# File: modules/console/src/console_fake_xml.c, line: 914
+# File: modules/console/src/console_fake_xml.c, line: 919
 msgid "Uncomment"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 653
-# File: modules/console/src/console_fake_xml.c, line: 915
+# File: modules/console/src/console_fake_xml.c, line: 920
 msgid "Remove trailing whites"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 655
-# File: modules/console/src/console_fake_xml.c, line: 917
+# File: modules/console/src/console_fake_xml.c, line: 922
 msgid "Select block"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 656
-# File: modules/console/src/console_fake_xml.c, line: 918
+# File: modules/console/src/console_fake_xml.c, line: 923
 msgid "Open current tab in a new window"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 657
-# File: modules/console/src/console_fake_xml.c, line: 919
+# File: modules/console/src/console_fake_xml.c, line: 924
 msgid "Export current tab in a new window"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 658
 # File: modules/console/src/console_fake_xml.c, line: 730
-# File: modules/console/src/console_fake_xml.c, line: 920
-# File: modules/console/src/console_fake_xml.c, line: 992
+# File: modules/console/src/console_fake_xml.c, line: 925
+# File: modules/console/src/console_fake_xml.c, line: 997
 msgid "Copy"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 659
 # File: modules/console/src/console_fake_xml.c, line: 729
-# File: modules/console/src/console_fake_xml.c, line: 921
-# File: modules/console/src/console_fake_xml.c, line: 991
+# File: modules/console/src/console_fake_xml.c, line: 926
+# File: modules/console/src/console_fake_xml.c, line: 996
 msgid "Cut"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 661
-# File: modules/console/src/console_fake_xml.c, line: 923
+# File: modules/console/src/console_fake_xml.c, line: 928
 msgid "Paste a column"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 662
-# File: modules/console/src/console_fake_xml.c, line: 924
+# File: modules/console/src/console_fake_xml.c, line: 929
 msgid "Repeat selection on column"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 663
 # File: modules/console/src/console_fake_xml.c, line: 727
-# File: modules/console/src/console_fake_xml.c, line: 925
-# File: modules/console/src/console_fake_xml.c, line: 989
+# File: modules/console/src/console_fake_xml.c, line: 930
+# File: modules/console/src/console_fake_xml.c, line: 994
 msgid "Undo"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 664
 # File: modules/console/src/console_fake_xml.c, line: 728
-# File: modules/console/src/console_fake_xml.c, line: 926
-# File: modules/console/src/console_fake_xml.c, line: 990
+# File: modules/console/src/console_fake_xml.c, line: 931
+# File: modules/console/src/console_fake_xml.c, line: 995
 msgid "Redo"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 665
-# File: modules/console/src/console_fake_xml.c, line: 927
+# File: modules/console/src/console_fake_xml.c, line: 932
 msgid "Copy as HTML with line number"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 666
-# File: modules/console/src/console_fake_xml.c, line: 928
+# File: modules/console/src/console_fake_xml.c, line: 933
 msgid "New"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 667
 # File: modules/console/src/console_fake_xml.c, line: 718
-# File: modules/console/src/console_fake_xml.c, line: 929
-# File: modules/console/src/console_fake_xml.c, line: 980
+# File: modules/console/src/console_fake_xml.c, line: 934
+# File: modules/console/src/console_fake_xml.c, line: 985
 msgid "Open"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 668
-# File: modules/console/src/console_fake_xml.c, line: 930
+# File: modules/console/src/console_fake_xml.c, line: 935
 msgid "Open URL"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 669
-# File: modules/console/src/console_fake_xml.c, line: 931
+# File: modules/console/src/console_fake_xml.c, line: 936
 msgid "Open source"
 msgstr ""
 
@@ -879,702 +879,716 @@ msgstr ""
 # File: modules/console/src/console_fake_xml.c, line: 670
 # File: modules/console/src/console_fake_xml.c, line: 720
 # File: modules/console/src/console_fake_xml.c, line: 780
-# File: modules/console/src/console_fake_xml.c, line: 932
-# File: modules/console/src/console_fake_xml.c, line: 982
-# File: modules/console/src/console_fake_xml.c, line: 1042
+# File: modules/console/src/console_fake_xml.c, line: 937
+# File: modules/console/src/console_fake_xml.c, line: 987
+# File: modules/console/src/console_fake_xml.c, line: 1047
 msgid "Save"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 671
 # File: modules/console/src/console_fake_xml.c, line: 721
-# File: modules/console/src/console_fake_xml.c, line: 933
-# File: modules/console/src/console_fake_xml.c, line: 983
+# File: modules/console/src/console_fake_xml.c, line: 938
+# File: modules/console/src/console_fake_xml.c, line: 988
 msgid "Save as"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 672
-# File: modules/console/src/console_fake_xml.c, line: 934
+# File: modules/console/src/console_fake_xml.c, line: 939
 msgid "Reload"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 673
-# File: modules/console/src/console_fake_xml.c, line: 935
+# File: modules/console/src/console_fake_xml.c, line: 940
 msgid "Print preview"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 675
 # File: modules/console/src/console_fake_xml.c, line: 724
-# File: modules/console/src/console_fake_xml.c, line: 937
-# File: modules/console/src/console_fake_xml.c, line: 986
+# File: modules/console/src/console_fake_xml.c, line: 942
+# File: modules/console/src/console_fake_xml.c, line: 991
 msgid "Close"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 676
-# File: modules/console/src/console_fake_xml.c, line: 938
+# File: modules/console/src/console_fake_xml.c, line: 943
 msgid "Exit"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 677
-# File: modules/console/src/console_fake_xml.c, line: 939
+# File: modules/console/src/console_fake_xml.c, line: 944
 msgid "To lower case"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 678
-# File: modules/console/src/console_fake_xml.c, line: 940
+# File: modules/console/src/console_fake_xml.c, line: 945
 msgid "To upper case"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 679
-# File: modules/console/src/console_fake_xml.c, line: 941
+# File: modules/console/src/console_fake_xml.c, line: 946
 msgid "Capitalize"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 680
-# File: modules/console/src/console_fake_xml.c, line: 942
+# File: modules/console/src/console_fake_xml.c, line: 947
 msgid "Help on keyword"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 681
-# File: modules/console/src/console_fake_xml.c, line: 943
+# File: modules/console/src/console_fake_xml.c, line: 948
 msgid "Load in Scilab"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 682
-# File: modules/console/src/console_fake_xml.c, line: 944
+# File: modules/console/src/console_fake_xml.c, line: 949
 msgid "Execute in Scilab"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 683
-# File: modules/console/src/console_fake_xml.c, line: 945
+# File: modules/console/src/console_fake_xml.c, line: 950
 msgid "Evaluate selection"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 684
-# File: modules/console/src/console_fake_xml.c, line: 946
+# File: modules/console/src/console_fake_xml.c, line: 951
 msgid "Save and execute"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 685
-# File: modules/console/src/console_fake_xml.c, line: 947
+# File: modules/console/src/console_fake_xml.c, line: 952
 msgid "Save and execute all"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 686
-# File: modules/console/src/console_fake_xml.c, line: 948
+# File: modules/console/src/console_fake_xml.c, line: 953
 msgid "Find"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 687
-# File: modules/console/src/console_fake_xml.c, line: 949
+# File: modules/console/src/console_fake_xml.c, line: 954
 msgid "Find next"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 688
-# File: modules/console/src/console_fake_xml.c, line: 950
+# File: modules/console/src/console_fake_xml.c, line: 955
 msgid "Find previous"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 689
-# File: modules/console/src/console_fake_xml.c, line: 951
+# File: modules/console/src/console_fake_xml.c, line: 956
 msgid "Incremental search"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 690
-# File: modules/console/src/console_fake_xml.c, line: 952
+# File: modules/console/src/console_fake_xml.c, line: 957
 msgid "Set anchor"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 691
-# File: modules/console/src/console_fake_xml.c, line: 953
+# File: modules/console/src/console_fake_xml.c, line: 958
 msgid "Remove anchor"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 692
-# File: modules/console/src/console_fake_xml.c, line: 954
+# File: modules/console/src/console_fake_xml.c, line: 959
 msgid "Go to next anchor"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 693
-# File: modules/console/src/console_fake_xml.c, line: 955
+# File: modules/console/src/console_fake_xml.c, line: 960
 msgid "Go to previous anchor"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 694
-# File: modules/console/src/console_fake_xml.c, line: 956
+# File: modules/console/src/console_fake_xml.c, line: 961
 msgid "Start Code Navigator"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 695
-# File: modules/console/src/console_fake_xml.c, line: 957
+# File: modules/console/src/console_fake_xml.c, line: 962
 msgid "Search word in file"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 696
-# File: modules/console/src/console_fake_xml.c, line: 958
+# File: modules/console/src/console_fake_xml.c, line: 963
 msgid "Search files"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 697
-# File: modules/console/src/console_fake_xml.c, line: 959
+# File: modules/console/src/console_fake_xml.c, line: 964
 msgid "Keyword completion"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 698
-# File: modules/console/src/console_fake_xml.c, line: 960
+# File: modules/console/src/console_fake_xml.c, line: 965
 msgid "Help"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 699
-# File: modules/console/src/console_fake_xml.c, line: 961
+# File: modules/console/src/console_fake_xml.c, line: 966
 msgid "About"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 700
-# File: modules/console/src/console_fake_xml.c, line: 962
+# File: modules/console/src/console_fake_xml.c, line: 967
 msgid "Next tab"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 701
-# File: modules/console/src/console_fake_xml.c, line: 963
+# File: modules/console/src/console_fake_xml.c, line: 968
 msgid "Previous tab"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 702
 # File: modules/console/src/console_fake_xml.c, line: 732
-# File: modules/console/src/console_fake_xml.c, line: 964
-# File: modules/console/src/console_fake_xml.c, line: 994
+# File: modules/console/src/console_fake_xml.c, line: 969
+# File: modules/console/src/console_fake_xml.c, line: 999
 msgid "Delete"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 703
-# File: modules/console/src/console_fake_xml.c, line: 965
+# File: modules/console/src/console_fake_xml.c, line: 970
 msgid "Next paragraph"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 704
-# File: modules/console/src/console_fake_xml.c, line: 966
+# File: modules/console/src/console_fake_xml.c, line: 971
 msgid "Previous paragraph"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 705
-# File: modules/console/src/console_fake_xml.c, line: 967
+# File: modules/console/src/console_fake_xml.c, line: 972
 msgid "Save all"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 706
-# File: modules/console/src/console_fake_xml.c, line: 968
+# File: modules/console/src/console_fake_xml.c, line: 973
 msgid "Overwrite"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 708
-# File: modules/console/src/console_fake_xml.c, line: 970
+# File: modules/console/src/console_fake_xml.c, line: 975
 msgid "Close all"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 709
-# File: modules/console/src/console_fake_xml.c, line: 971
+# File: modules/console/src/console_fake_xml.c, line: 976
 msgid "Close all but this"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 710
-# File: modules/console/src/console_fake_xml.c, line: 972
+# File: modules/console/src/console_fake_xml.c, line: 977
 msgid "Convert quote to double quote"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 711
-# File: modules/console/src/console_fake_xml.c, line: 973
+# File: modules/console/src/console_fake_xml.c, line: 978
 msgid "Line numbering"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 712
-# File: modules/console/src/console_fake_xml.c, line: 974
+# File: modules/console/src/console_fake_xml.c, line: 979
 msgid "Set the SciNotes font"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 713
-# File: modules/console/src/console_fake_xml.c, line: 975
+# File: modules/console/src/console_fake_xml.c, line: 980
 msgid "Set the SciNotes colors"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 717
-# File: modules/console/src/console_fake_xml.c, line: 979
+# File: modules/console/src/console_fake_xml.c, line: 984
 msgid "New diagram"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 719
-# File: modules/console/src/console_fake_xml.c, line: 981
+# File: modules/console/src/console_fake_xml.c, line: 986
 msgid "Open file in Scilab current directory"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 722
-# File: modules/console/src/console_fake_xml.c, line: 984
+# File: modules/console/src/console_fake_xml.c, line: 989
 msgid "Export"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 725
-# File: modules/console/src/console_fake_xml.c, line: 987
+# File: modules/console/src/console_fake_xml.c, line: 992
 msgid "Quit Xcos"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 734
-# File: modules/console/src/console_fake_xml.c, line: 996
+# File: modules/console/src/console_fake_xml.c, line: 1001
 msgid "Invert selection"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 735
-# File: modules/console/src/console_fake_xml.c, line: 997
+# File: modules/console/src/console_fake_xml.c, line: 1002
 msgid "Block Parameters"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 736
-# File: modules/console/src/console_fake_xml.c, line: 998
+# File: modules/console/src/console_fake_xml.c, line: 1003
 msgid "Region to superblock"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 738
-# File: modules/console/src/console_fake_xml.c, line: 1000
+# File: modules/console/src/console_fake_xml.c, line: 1005
 msgid "Zoom In"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 739
-# File: modules/console/src/console_fake_xml.c, line: 1001
+# File: modules/console/src/console_fake_xml.c, line: 1006
 msgid "Zoom Out"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 740
-# File: modules/console/src/console_fake_xml.c, line: 1002
+# File: modules/console/src/console_fake_xml.c, line: 1007
 msgid "Fit diagram to view"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 741
-# File: modules/console/src/console_fake_xml.c, line: 1003
+# File: modules/console/src/console_fake_xml.c, line: 1008
 msgid "Normal 100%"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 742
-# File: modules/console/src/console_fake_xml.c, line: 1004
+# File: modules/console/src/console_fake_xml.c, line: 1009
 msgid "Palette browser"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 743
-# File: modules/console/src/console_fake_xml.c, line: 1005
+# File: modules/console/src/console_fake_xml.c, line: 1010
 msgid "Diagram browser"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 744
-# File: modules/console/src/console_fake_xml.c, line: 1006
+# File: modules/console/src/console_fake_xml.c, line: 1011
 msgid "Viewport"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 745
-# File: modules/console/src/console_fake_xml.c, line: 1007
+# File: modules/console/src/console_fake_xml.c, line: 1012
 msgid "Details"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 747
-# File: modules/console/src/console_fake_xml.c, line: 1009
+# File: modules/console/src/console_fake_xml.c, line: 1014
 msgid "Setup"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 748
-# File: modules/console/src/console_fake_xml.c, line: 1010
+# File: modules/console/src/console_fake_xml.c, line: 1015
 msgid "Execution trace and Debug"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 749
-# File: modules/console/src/console_fake_xml.c, line: 1011
+# File: modules/console/src/console_fake_xml.c, line: 1016
 msgid "Set Context"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 750
-# File: modules/console/src/console_fake_xml.c, line: 1012
+# File: modules/console/src/console_fake_xml.c, line: 1017
 msgid "Compile"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 751
-# File: modules/console/src/console_fake_xml.c, line: 1013
+# File: modules/console/src/console_fake_xml.c, line: 1018
 msgid "Start"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 752
-# File: modules/console/src/console_fake_xml.c, line: 1014
+# File: modules/console/src/console_fake_xml.c, line: 1019
 msgid "Stop"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 754
-# File: modules/console/src/console_fake_xml.c, line: 1016
+# File: modules/console/src/console_fake_xml.c, line: 1021
 msgid "Rotate"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 755
-# File: modules/console/src/console_fake_xml.c, line: 1017
+# File: modules/console/src/console_fake_xml.c, line: 1022
 msgid "Flip"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 756
-# File: modules/console/src/console_fake_xml.c, line: 1018
+# File: modules/console/src/console_fake_xml.c, line: 1023
 msgid "Mirror"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 757
-# File: modules/console/src/console_fake_xml.c, line: 1019
+# File: modules/console/src/console_fake_xml.c, line: 1024
 msgid "Show/Hide shadow"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 758
-# File: modules/console/src/console_fake_xml.c, line: 1020
+# File: modules/console/src/console_fake_xml.c, line: 1025
 msgid "Left"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 759
-# File: modules/console/src/console_fake_xml.c, line: 1021
+# File: modules/console/src/console_fake_xml.c, line: 1026
 msgid "Center"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 760
-# File: modules/console/src/console_fake_xml.c, line: 1022
+# File: modules/console/src/console_fake_xml.c, line: 1027
 msgid "Right"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 761
-# File: modules/console/src/console_fake_xml.c, line: 1023
+# File: modules/console/src/console_fake_xml.c, line: 1028
 msgid "Top"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 762
-# File: modules/console/src/console_fake_xml.c, line: 1024
+# File: modules/console/src/console_fake_xml.c, line: 1029
 msgid "Middle"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 763
-# File: modules/console/src/console_fake_xml.c, line: 1025
+# File: modules/console/src/console_fake_xml.c, line: 1030
 msgid "Bottom"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 764
-# File: modules/console/src/console_fake_xml.c, line: 1026
+# File: modules/console/src/console_fake_xml.c, line: 1031
 msgid "Border Color"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 765
-# File: modules/console/src/console_fake_xml.c, line: 1027
+# File: modules/console/src/console_fake_xml.c, line: 1032
 msgid "Fill Color"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 766
-# File: modules/console/src/console_fake_xml.c, line: 1028
+# File: modules/console/src/console_fake_xml.c, line: 1033
 msgid "Horizontal"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 767
-# File: modules/console/src/console_fake_xml.c, line: 1029
+# File: modules/console/src/console_fake_xml.c, line: 1034
 msgid "Straight"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 768
-# File: modules/console/src/console_fake_xml.c, line: 1030
+# File: modules/console/src/console_fake_xml.c, line: 1035
 msgid "Vertical"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 769
-# File: modules/console/src/console_fake_xml.c, line: 1031
+# File: modules/console/src/console_fake_xml.c, line: 1036
 msgid "Diagram background"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 770
-# File: modules/console/src/console_fake_xml.c, line: 1032
+# File: modules/console/src/console_fake_xml.c, line: 1037
 msgid "Grid"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 772
-# File: modules/console/src/console_fake_xml.c, line: 1034
+# File: modules/console/src/console_fake_xml.c, line: 1039
 msgid "Code generation"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 774
-# File: modules/console/src/console_fake_xml.c, line: 1036
+# File: modules/console/src/console_fake_xml.c, line: 1041
 msgid "Xcos Help"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 775
-# File: modules/console/src/console_fake_xml.c, line: 1037
+# File: modules/console/src/console_fake_xml.c, line: 1042
 msgid "Block Help"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 776
-# File: modules/console/src/console_fake_xml.c, line: 1038
+# File: modules/console/src/console_fake_xml.c, line: 1043
 msgid "Xcos Demonstrations"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 777
-# File: modules/console/src/console_fake_xml.c, line: 1039
+# File: modules/console/src/console_fake_xml.c, line: 1044
 msgid "About Xcos"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 783
-# File: modules/console/src/console_fake_xml.c, line: 1045
+# File: modules/console/src/console_fake_xml.c, line: 1050
 msgid "Save variable"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 786
-# File: modules/console/src/console_fake_xml.c, line: 1048
+# File: modules/console/src/console_fake_xml.c, line: 1053
 msgid "Save history"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 789
-# File: modules/console/src/console_fake_xml.c, line: 1051
+# File: modules/console/src/console_fake_xml.c, line: 1056
 msgid "Save file"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1068
+# File: modules/console/src/console_fake_xml.c, line: 794
+# File: modules/console/src/console_fake_xml.c, line: 1061
 # File: modules/console/src/console_fake_xml.c, line: 1372
+# File: modules/console/src/console_fake_xml.c, line: 1694
+msgid "Demos"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1078
+# File: modules/console/src/console_fake_xml.c, line: 1400
 msgid "Environment"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1070
-# File: modules/console/src/console_fake_xml.c, line: 1374
+# File: modules/console/src/console_fake_xml.c, line: 1080
+# File: modules/console/src/console_fake_xml.c, line: 1402
 msgid "Floating point exception (ieee): "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1086
-# File: modules/console/src/console_fake_xml.c, line: 1390
+# File: modules/console/src/console_fake_xml.c, line: 1096
+# File: modules/console/src/console_fake_xml.c, line: 1418
 msgid "Printing format: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1100
-# File: modules/console/src/console_fake_xml.c, line: 1404
+# File: modules/console/src/console_fake_xml.c, line: 1110
+# File: modules/console/src/console_fake_xml.c, line: 1432
 msgid "Width: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1114
-# File: modules/console/src/console_fake_xml.c, line: 1418
+# File: modules/console/src/console_fake_xml.c, line: 1124
+# File: modules/console/src/console_fake_xml.c, line: 1446
 msgid "Recursion limit: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1132
-# File: modules/console/src/console_fake_xml.c, line: 1436
+# File: modules/console/src/console_fake_xml.c, line: 1142
+# File: modules/console/src/console_fake_xml.c, line: 1464
 msgid "Language setting"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1134
-# File: modules/console/src/console_fake_xml.c, line: 1438
+# File: modules/console/src/console_fake_xml.c, line: 1144
+# File: modules/console/src/console_fake_xml.c, line: 1466
 msgid "Default language: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1149
-# File: modules/console/src/console_fake_xml.c, line: 1173
-# File: modules/console/src/console_fake_xml.c, line: 1453
-# File: modules/console/src/console_fake_xml.c, line: 1477
+# File: modules/console/src/console_fake_xml.c, line: 1159
+# File: modules/console/src/console_fake_xml.c, line: 1183
+# File: modules/console/src/console_fake_xml.c, line: 1481
+# File: modules/console/src/console_fake_xml.c, line: 1505
 msgid "(This requires a restart of Scilab)"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1159
-# File: modules/console/src/console_fake_xml.c, line: 1463
+# File: modules/console/src/console_fake_xml.c, line: 1169
+# File: modules/console/src/console_fake_xml.c, line: 1491
 msgid "Java Heap Memory"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1161
-# File: modules/console/src/console_fake_xml.c, line: 1465
+# File: modules/console/src/console_fake_xml.c, line: 1171
+# File: modules/console/src/console_fake_xml.c, line: 1493
 msgid "Select the memory (in MB) available in Java: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1183
-# File: modules/console/src/console_fake_xml.c, line: 1487
+# File: modules/console/src/console_fake_xml.c, line: 1193
+# File: modules/console/src/console_fake_xml.c, line: 1515
 msgid "Use current working directory"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1189
-# File: modules/console/src/console_fake_xml.c, line: 1493
+# File: modules/console/src/console_fake_xml.c, line: 1199
+# File: modules/console/src/console_fake_xml.c, line: 1521
 msgid "Use previous working directory"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1195
-# File: modules/console/src/console_fake_xml.c, line: 1499
+# File: modules/console/src/console_fake_xml.c, line: 1205
+# File: modules/console/src/console_fake_xml.c, line: 1527
 msgid "Use default directory"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1204
-# File: modules/console/src/console_fake_xml.c, line: 1508
+# File: modules/console/src/console_fake_xml.c, line: 1214
+# File: modules/console/src/console_fake_xml.c, line: 1536
 msgid "Default startup directory"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1241
-# File: modules/console/src/console_fake_xml.c, line: 1545
+# File: modules/console/src/console_fake_xml.c, line: 1251
+# File: modules/console/src/console_fake_xml.c, line: 1573
 msgid "Desktop Layout"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1243
-# File: modules/console/src/console_fake_xml.c, line: 1547
+# File: modules/console/src/console_fake_xml.c, line: 1253
+# File: modules/console/src/console_fake_xml.c, line: 1575
 msgid "Select a layout"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1257
-# File: modules/console/src/console_fake_xml.c, line: 1561
+# File: modules/console/src/console_fake_xml.c, line: 1267
+# File: modules/console/src/console_fake_xml.c, line: 1589
 msgid "(Modify the layout requires to restart Scilab)"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1269
-# File: modules/console/src/console_fake_xml.c, line: 1573
+# File: modules/console/src/console_fake_xml.c, line: 1279
+# File: modules/console/src/console_fake_xml.c, line: 1601
 msgid "Save layout on exiting"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1274
-# File: modules/console/src/console_fake_xml.c, line: 1578
+# File: modules/console/src/console_fake_xml.c, line: 1284
+# File: modules/console/src/console_fake_xml.c, line: 1606
 msgid "Reset layout"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1284
-# File: modules/console/src/console_fake_xml.c, line: 1588
+# File: modules/console/src/console_fake_xml.c, line: 1294
+# File: modules/console/src/console_fake_xml.c, line: 1616
 msgid "Keys binding"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1287
-# File: modules/console/src/console_fake_xml.c, line: 1591
+# File: modules/console/src/console_fake_xml.c, line: 1297
+# File: modules/console/src/console_fake_xml.c, line: 1619
 msgid "Filter on action name: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1297
-# File: modules/console/src/console_fake_xml.c, line: 1601
+# File: modules/console/src/console_fake_xml.c, line: 1307
+# File: modules/console/src/console_fake_xml.c, line: 1629
 msgid "Component"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1309
-# File: modules/console/src/console_fake_xml.c, line: 1613
+# File: modules/console/src/console_fake_xml.c, line: 1319
+# File: modules/console/src/console_fake_xml.c, line: 1641
 msgid "Name: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1315
-# File: modules/console/src/console_fake_xml.c, line: 1619
+# File: modules/console/src/console_fake_xml.c, line: 1325
+# File: modules/console/src/console_fake_xml.c, line: 1647
 msgid "Description: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1321
-# File: modules/console/src/console_fake_xml.c, line: 1625
+# File: modules/console/src/console_fake_xml.c, line: 1331
+# File: modules/console/src/console_fake_xml.c, line: 1653
 msgid "Binding: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1353
-# File: modules/console/src/console_fake_xml.c, line: 1657
+# File: modules/console/src/console_fake_xml.c, line: 1363
+# File: modules/console/src/console_fake_xml.c, line: 1685
 msgid "Action name"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1354
-# File: modules/console/src/console_fake_xml.c, line: 1658
+# File: modules/console/src/console_fake_xml.c, line: 1364
+# File: modules/console/src/console_fake_xml.c, line: 1686
 msgid "Key binding"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1379
+# File: modules/console/src/console_fake_xml.c, line: 1701
+msgid "The demo interface is dockable"
 msgstr ""
 
 #

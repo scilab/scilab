@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:01+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2018-10-26 21:09+0000\n"
+"Last-Translator: Stephan Woidowski <swoidowski@t-online.de>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s: falsche Anzahl von Eingangsargumenten: %d nach %d erwartet."
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s: Falsche Anzahl von Ausgabeargumenten: %d nach %d erwartet."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -36,7 +36,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr ""
+msgstr "%s: Falsche Anzahl von Ausgabeargumenten: %d erwartet."
 
 #, c-format
 msgid ""
@@ -47,10 +47,10 @@ msgstr ""
 "'%s' erwartet.\n"
 
 msgid "Directory"
-msgstr ""
+msgstr "Verzeichnis"
 
 msgid "File"
-msgstr ""
+msgstr "Datei"
 
 msgid "Scilab completion module not installed.\n"
 msgstr "Scilab Vervollständigungsmodul nicht installiert.\n"

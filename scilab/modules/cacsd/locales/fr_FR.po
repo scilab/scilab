@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -331,9 +331,9 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Un scalaire entier positif "
 "attendu.\n"
 
-#, c-format
-msgid "%s: The order should be at most %d.\n"
-msgstr "%s : L'ordre doit être au plus %d.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be < %d.\n"
+msgstr "%s : Argument #%d : %s attendu.\n"
 
 #, c-format
 msgid ""
@@ -572,8 +572,8 @@ msgstr "%s : Dimension erronée pour l'argument n°%d.\n"
 msgid "%s: Uncontrollable system.\n"
 msgstr "%s : Système incontrôlable.\n"
 
-#, fuzzy, c-format
-msgid "%s: An error occured in '%s'.\n"
+#, c-format
+msgid "%s: An error occurred in '%s'.\n"
 msgstr "%s : Une erreur s'est produite dans '%s'.\n"
 
 #, c-format
@@ -847,7 +847,7 @@ msgid "Phase (degree)"
 msgstr "Phase (degré)"
 
 msgid "Frequency (rad/s)"
-msgstr "Pulsation (rad/s)"
+msgstr "Fréquence (rad/s)"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Evaluation failed.\n"
@@ -1125,7 +1125,8 @@ msgstr "Axe réel"
 msgid "Imaginary axis"
 msgstr "Axe des imaginaires"
 
-msgid "open loop zeroes"
+#, fuzzy
+msgid "open loop zeros"
 msgstr "Zéro de la boucle ouverte"
 
 msgid "open loop poles"
@@ -1178,6 +1179,14 @@ msgid "Hz"
 msgstr "Hz"
 
 msgid "dB"
+msgstr "dB"
+
+#, fuzzy
+msgid "rad/s"
+msgstr "rad/sec"
+
+#, fuzzy
+msgid " dB"
 msgstr "dB"
 
 #, c-format
@@ -1666,6 +1675,14 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une liste de réels attendue\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr "%s : Argument #%d : nombre(s) réel(s) ou complexe(s) attendu(s).\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr "%s : Argument #%d : %s attendu.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : au plus %d attendu.\n"
@@ -1938,3 +1955,6 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument d'entrée #%d : représentation \"pôle de gain "
 "nul\" attendue.\n"
+
+#~ msgid "%s: The order should be at most %d.\n"
+#~ msgstr "%s : L'ordre doit être au plus %d.\n"

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -368,13 +368,37 @@ msgstr ""
 "%s: Valores incorretos para o argumento de entrada #%d: esperava-se números "
 "inteiros não negativos.\n"
 
+#
+# File: modules/string/macros/evstr.sci, line: 65
 #, c-format
+msgid "%s: Argument #%d: Some expression can't be evaluated (%s).\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: %d-element list expected.\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: esperava-se textos "
+"não-vazios.\n"
+
+#
+# File: modules/string/macros/evstr.sci, line: 76
+#, c-format
+msgid "%s: Argument #%d: Both list components must be of text type.\n"
+msgstr ""
+
+#
+# File: modules/string/macros/evstr.sci, line: 89
+#, c-format
+msgid "%s: Argument #1(2): The expression #%d = %s can't be evaluated (%s).\n"
+msgstr ""
+
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
-"character strings or list expected.\n"
+"%s: Wrong type for input argument #%d: Matrix of character strings or list "
+"expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais ou complexos, de textos, ou uma lista.\n"
+"de textos.\n"
 
 #, c-format
 msgid "%s: Given expression has no value.\n"
@@ -431,3 +455,10 @@ msgid ""
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
 "caractere ou um vetor de caracteres.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
+#~ "character strings or list expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma "
+#~ "matriz de números reais ou complexos, de textos, ou uma lista.\n"

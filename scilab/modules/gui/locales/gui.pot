@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2019-01-23 12:13+0100\n"
 
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 55
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 49
@@ -40,12 +40,12 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 122
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 142
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 227
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 431
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 480
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 513
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 530
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 633
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 646
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 433
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 482
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 515
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 532
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 635
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 648
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 166
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 217
 # File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 71
@@ -94,8 +94,8 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 160
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 198
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 253
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 326
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 618
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 328
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 620
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 204
 # File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 95
 # File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 159
@@ -150,8 +150,8 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 122
 # File: modules/gui/sci_gateway/c/sci_toolbar.c, line: 125
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 230
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 363
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 664
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 365
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 666
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 235
 # File: modules/gui/sci_gateway/c/sci_uiwait.c, line: 58
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 204
@@ -201,7 +201,7 @@ msgstr ""
 # File: modules/gui/sci_gateway/cpp/sci_datatip_set_interp.cpp, line: 83
 # File: modules/gui/sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 61
 # File: modules/gui/sci_gateway/cpp/sci_datatip_set_style.cpp, line: 64
-# File: modules/gui/sci_gateway/cpp/sci_datatip_toggle.cpp, line: 65
+# File: modules/gui/sci_gateway/cpp/sci_datatip_toggle.cpp, line: 69
 # File: modules/gui/sci_gateway/cpp/sci_datatipcreate.cpp, line: 64
 # File: modules/gui/sci_gateway/cpp/sci_datatipcreate.cpp, line: 71
 # File: modules/gui/sci_gateway/cpp/sci_datatipmove.cpp, line: 61
@@ -233,7 +233,7 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 111
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 160
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 183
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 284
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 286
 # File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 249
 # File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 266
 # File: modules/gui/sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 86
@@ -313,7 +313,7 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_toolbar.c, line: 220
 # File: modules/gui/sci_gateway/c/sci_uicontextmenu.c, line: 54
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 202
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 735
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 737
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 285
 # File: modules/gui/sci_gateway/c/sci_uiwait.c, line: 93
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 398
@@ -410,14 +410,17 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_mpopup.c, line: 53
 # File: modules/gui/sci_gateway/c/sci_mpopup.c, line: 54
 # File: modules/gui/sci_gateway/c/sci_mpopup.c, line: 55
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 586
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 792
+# File: modules/gui/sci_gateway/cpp/sci_datatip_toggle.cpp, line: 34
+# File: modules/gui/sci_gateway/cpp/sci_datatip_toggle.cpp, line: 35
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 590
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 796
 # File: modules/gui/src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 91
 msgid "Warning"
 msgstr ""
 
 #
 # File: modules/gui/sci_gateway/c/sci_mpopup.c, line: 54
+# File: modules/gui/sci_gateway/cpp/sci_datatip_toggle.cpp, line: 35
 #, c-format
 msgid "%s: Please use %s instead.\n"
 msgstr ""
@@ -447,7 +450,7 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 128
 # File: modules/gui/sci_gateway/c/sci_toolbar.c, line: 131
 # File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 224
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 319
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 321
 # File: modules/gui/sci_gateway/c/sci_uiwait.c, line: 64
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -510,16 +513,16 @@ msgid "%s: can not read file %s.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 254
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 678
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 256
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 680
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 259
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 260
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 267
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 262
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 269
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
@@ -527,35 +530,35 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 335
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 373
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 386
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 337
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 375
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 388
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 355
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 357
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 456
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 458
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 503
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 505
 #, c-format
 msgid "%s: Wrong type for argument #%d: string or boolean expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 560
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 562
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr ""
@@ -591,7 +594,7 @@ msgstr ""
 # File: modules/gui/sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 202
 # File: modules/gui/sci_gateway/cpp/sci_datatip_set_orient.cpp, line: 208
 # File: modules/gui/sci_gateway/cpp/sci_datatip_set_style.cpp, line: 298
-# File: modules/gui/sci_gateway/cpp/sci_datatip_toggle.cpp, line: 77
+# File: modules/gui/sci_gateway/cpp/sci_datatip_toggle.cpp, line: 81
 # File: modules/gui/sci_gateway/cpp/sci_datatipcreate.cpp, line: 127
 # File: modules/gui/sci_gateway/cpp/sci_datatipcreate.cpp, line: 133
 # File: modules/gui/sci_gateway/cpp/sci_datatipmove.cpp, line: 82
@@ -753,7 +756,13 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_datatip_toggle.cpp, line: 83
+# File: modules/gui/sci_gateway/cpp/sci_datatip_toggle.cpp, line: 34
+#, c-format
+msgid "%s: %s is obsolete and will be removed from Scilab %s\n"
+msgstr ""
+
+#
+# File: modules/gui/sci_gateway/cpp/sci_datatip_toggle.cpp, line: 87
 # File: modules/gui/sci_gateway/cpp/sci_datatipremove.cpp, line: 166
 #, c-format
 msgid "%s: Wrong number for input argument: %d or %d expected.\n"
@@ -2065,7 +2074,8 @@ msgstr ""
 # File: modules/gui/src/gui_fake_xml.c, line: 210
 # File: modules/gui/src/gui_fake_xml.c, line: 222
 # File: modules/gui/src/gui_fake_xml.c, line: 234
-# File: modules/gui/src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 94
+# File: modules/gui/src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 95
+# File: modules/gui/src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 177
 msgid "Help Browser"
 msgstr ""
 
@@ -2085,7 +2095,7 @@ msgstr ""
 # File: modules/gui/src/gui_fake_xml.c, line: 213
 # File: modules/gui/src/gui_fake_xml.c, line: 225
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 95
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 301
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 305
 msgid "Cut"
 msgstr ""
 
@@ -2094,7 +2104,7 @@ msgstr ""
 # File: modules/gui/src/gui_fake_xml.c, line: 226
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 102
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 605
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 299
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 303
 msgid "Copy"
 msgstr ""
 
@@ -2102,7 +2112,7 @@ msgstr ""
 # File: modules/gui/src/gui_fake_xml.c, line: 215
 # File: modules/gui/src/gui_fake_xml.c, line: 227
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 109
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 303
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 307
 msgid "Paste"
 msgstr ""
 
@@ -2665,7 +2675,7 @@ msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 108
-# File: modules/gui/src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 168
+# File: modules/gui/src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 169
 msgid "Loading help browser..."
 msgstr ""
 
@@ -2762,235 +2772,235 @@ msgid "Display function name"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 155
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 323
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 160
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 327
 msgid "Insert"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 156
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 161
 msgid "Insert a new point here"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 157
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 325
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 162
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 329
 msgid "Remove"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 158
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 163
 msgid "Remove this point"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 159
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 164
 # File: modules/gui/src/java/org/scilab/modules/gui/utils/ClosingOperationsManager.java, line: 63
 msgid "Exit"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 160
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/DataEditor.java, line: 165
 msgid "Leave data editor mode"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 296
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 300
 # File: modules/gui/src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 230
 msgid "Label"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 297
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 301
 # File: modules/gui/src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 40
 msgid "Legend"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 300
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 304
 msgid "Copy selected object"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 302
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 306
 msgid "Cut selected object"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 304
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 308
 msgid "Paste copied object on this figure"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 305
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 309
 # File: modules/gui/src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 187
 msgid "Delete"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 306
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 310
 msgid "Delete selected object"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 307
-msgid "Clear"
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 311
+msgid "Clear axes"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 308
-msgid "Clears the figure"
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 312
+msgid "Delete axes contents and labels"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 309
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 313
 # File: modules/gui/src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 31
 msgid "Hide"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 310
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 314
 msgid "Hide selected object"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 311
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 315
 msgid "Unhide all"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 312
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 316
 msgid "Unhide all objects"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 313
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 317
 msgid "Copy to Clipboard"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 314
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 318
 msgid "Copy figure to system clipboard"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 316
-msgid "Insert a title"
-msgstr ""
-
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 317
-msgid "Label X"
-msgstr ""
-
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 318
-msgid "Insert a label in X axis"
-msgstr ""
-
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 319
-msgid "Label Y"
-msgstr ""
-
-#
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 320
-msgid "Insert a label in Y axis"
+msgid "Set the axes main title"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 321
-msgid "Label Z"
+msgid "Label X"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 322
-msgid "Insert a label in Z axis"
+msgid "Set the X axis label"
+msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 323
+msgid "Label Y"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 324
-msgid "Insert a legend into the selected curve"
+msgid "Set the Y axis label"
+msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 325
+msgid "Label Z"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 326
-msgid "Remove the legend from the selected curve"
-msgstr ""
-
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 327
-msgid "Open Quick Editor"
+msgid "Set the Z axis label"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 328
-msgid "Initialize the graphics editor"
-msgstr ""
-
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 329
-msgid "Edit curve data"
+msgid "Insert a legend into the selected curve"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 330
-msgid "Enables curve data modification"
+msgid "Remove the legend from the selected curve"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 331
-msgid "Undo"
+msgid "Open Quick Editor"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 332
-msgid "Undo last action"
+msgid "Initialize the graphics editor"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 333
-msgid "Redo"
+msgid "Edit curve data"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 334
-msgid "Redo last undo action"
+msgid "Enables curve data modification"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 335
-msgid "Copy style"
+msgid "Undo"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 336
-msgid "Copy the style of the axes"
+msgid "Undo last action"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 337
-msgid "Paste style"
+msgid "Redo"
 msgstr ""
 
 #
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 338
+msgid "Redo last undo action"
+msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 339
+msgid "Copy style"
+msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 340
+msgid "Copy the style of the axes"
+msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 341
+msgid "Paste style"
+msgstr ""
+
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 342
 msgid "Paste the copied style on these axes"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 672
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 697
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 676
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 701
 msgid "Enter the text"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 673
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 677
 msgid "Set label text"
 msgstr ""
 
 #
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 698
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 702
 msgid "Set legend text"
 msgstr ""
 
@@ -4697,7 +4707,6 @@ msgstr ""
 
 #
 # File: modules/gui/macros/getvalue.sci, line: 78
-# File: modules/gui/macros/tree_show.sci, line: 25
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""

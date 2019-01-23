@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -60,8 +60,10 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
 msgstr ""
 
+#
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 483
 #, c-format
-msgid "%s: Wrong value for input argument #%d : At least %lf expected.\n"
+msgid "%s: Wrong value for input argument #%d : At least %.0E expected.\n"
 msgstr ""
 
 #, c-format
@@ -112,8 +114,10 @@ msgstr ""
 msgid "%s: setgmn return with state %d.\n"
 msgstr ""
 
+#
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 823
 #, c-format
-msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
+msgid "%s: Wrong value for input argument #%d : Must be between %.1E and %d.\n"
 msgstr ""
 
 #, c-format
@@ -201,8 +205,10 @@ msgstr ""
 msgid "The %s option affects only the %s generator\n"
 msgstr "Die %s Option beeinflußt nut den %s Generator\n"
 
+#
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1454
 #, c-format
-msgid "%s: Wrong value for input argument #%d : Must be between %d and %d.\n"
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 
 #, c-format

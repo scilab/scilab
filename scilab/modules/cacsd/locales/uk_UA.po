@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -339,9 +339,9 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати додатне "
 "ціле значення.\n"
 
-#, c-format
-msgid "%s: The order should be at most %d.\n"
-msgstr "%s: порядок не повинен перевищувати %d.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be < %d.\n"
+msgstr "%s: параметр №%d: мало бути %s.\n"
 
 #, c-format
 msgid ""
@@ -581,8 +581,8 @@ msgstr "%s: помилкова розмірність параметра №%d.\
 msgid "%s: Uncontrollable system.\n"
 msgstr "%s: некерована система.\n"
 
-#, fuzzy, c-format
-msgid "%s: An error occured in '%s'.\n"
+#, c-format
+msgid "%s: An error occurred in '%s'.\n"
 msgstr "%s: сталася помилка у «%s».\n"
 
 #, c-format
@@ -1145,7 +1145,8 @@ msgstr "Вісь дійсних значень"
 msgid "Imaginary axis"
 msgstr "Вісь уявних значень"
 
-msgid "open loop zeroes"
+#, fuzzy
+msgid "open loop zeros"
 msgstr "нулі розімкненої системи"
 
 msgid "open loop poles"
@@ -1204,6 +1205,14 @@ msgid "Hz"
 msgstr "Гц"
 
 msgid "dB"
+msgstr "дБ"
+
+#, fuzzy
+msgid "rad/s"
+msgstr "рад/с"
+
+#, fuzzy
+msgid " dB"
 msgstr "дБ"
 
 #, c-format
@@ -1699,6 +1708,16 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано масив "
 "дійсних значень з плаваючою крапкою\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr ""
+"%s: параметр №%d: мало бути вказано десяткове або комплексне число або "
+"числа.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr "%s: параметр №%d: мало бути %s.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути не більше %d.\n"
@@ -1977,3 +1996,6 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути представлення у форматі "
 "моделі з нулями, полюсами і масштабним коефіцієнтом передавальної функції.\n"
+
+#~ msgid "%s: The order should be at most %d.\n"
+#~ msgstr "%s: порядок не повинен перевищувати %d.\n"

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2015-08-17 11:20+0100\n"
-"PO-Revision-Date: 2017-05-01 12:32+0000\n"
+"PO-Revision-Date: 2018-07-25 11:21+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 msgid "Warning :\n"
 msgstr "警告:\n"
@@ -92,6 +92,13 @@ msgstr ""
 "%s プリミティブをこの方法で再定義することはできません (clearfun 参照).\n"
 
 #, c-format
+msgid ""
+"%ls: Too many %ls or wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+"%ls: %ls が多いまたは引数 %d の型が間違っています: 実スカラーを指定してくださ"
+"い.\n"
+
+#, c-format
 msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
 msgstr "%ls: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
 
@@ -149,9 +156,6 @@ msgid ""
 "empty matrix result.\n"
 msgstr "+ 演算子 : 警告: 行列に空行列を加算すると, 空行列となります.\n"
 
-msgid "variables don't have the same formal variable"
-msgstr "変数は同じ形式の変数を有しません."
-
 #, c-format
 msgid ""
 "Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"
@@ -199,7 +203,8 @@ msgstr "警告: ゼロによる左割り算...\n"
 msgid "Operator \\ : Error %d not yet managed.\n"
 msgstr "\\ 演算子: エラー %d は未管理です.\n"
 
-msgid "Invalid exponent: expected real exponents.\n"
+#, fuzzy
+msgid "Invalid exponent: expected finite integer exponents.\n"
 msgstr "指数が誤っています: 実数を指定してください.\n"
 
 msgid "Invalid exponent.\n"
@@ -330,7 +335,7 @@ msgstr "未定義の変数 '%s' が関数 '%s' にあります.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A list expected.\n"
-msgstr ""
+msgstr "%s: %s の型が間違っています: リストを指定してください.\n"
 
 #, c-format
 msgid "List element number %d is Undefined.\n"
@@ -389,55 +394,52 @@ msgstr "フィールド \"%ls\" は存在しません.\n"
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr "変数の大きさを超えました: %d 未満にしてください.\n"
 
-#, c-format
-msgid "%s: Could not find '%s': Please check that macros have been built.\n"
-msgstr ""
-"%s:  '%s' が見つかりませんでした: 構築されたマクロをチェックしてください.\n"
+#~ msgid "variables don't have the same formal variable"
+#~ msgstr "変数は同じ形式の変数を有しません."
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数行列を指定してください.\n"
+#~ msgid "%s: Could not find '%s': Please check that macros have been built.\n"
+#~ msgstr ""
+#~ "%s:  '%s' が見つかりませんでした: 構築されたマクロをチェックしてくださ"
+#~ "い.\n"
 
-#, c-format
-msgid "%s: Division by zero..."
-msgstr ""
+#~ msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の型が間違っています: 整数行列を指定してください.\n"
 
-#, c-format
-msgid "%s: Argument #%d: Square matrix expected.\n"
-msgstr "%s: 引数 #%d: 正方行列を指定してください.\n"
+#~ msgid "%s: Division by zero..."
+#~ msgstr "%s: ゼロ割です..."
 
-#, c-format
-msgid "%s: Non implemented feature.\n"
-msgstr ""
+#~ msgid "%s: Argument #%d: Square matrix expected.\n"
+#~ msgstr "%s: 引数 #%d: 正方行列を指定してください.\n"
 
-msgid "Invalid exponent: expected real exponents."
-msgstr "指数が間違っています: 実数の指数を指定してください."
+#~ msgid "%s: Non implemented feature.\n"
+#~ msgstr "%s: 機能が未実装です.\n"
 
-msgid "Division by zero"
-msgstr "ゼロ割"
+#~ msgid "Invalid exponent: expected real exponents."
+#~ msgstr "指数が間違っています: 実数の指数を指定してください."
 
-msgid "Not implemented"
-msgstr "実装されていません"
+#~ msgid "Division by zero"
+#~ msgstr "ゼロ割"
 
-msgid "Invalid exponent"
-msgstr "指数が間違っています"
+#~ msgid "Not implemented"
+#~ msgstr "実装されていません"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 正方行列を指定してください.\n"
+#~ msgid "Invalid exponent"
+#~ msgstr "指数が間違っています"
 
-#, c-format
-msgid "%s: Unable to diagonalize.\n"
-msgstr "%s: 対角化できません。\n"
+#~ msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の大きさが間違っています: 正方行列を指定してください.\n"
 
-msgid "Not implemented in scilab...\n"
-msgstr "scilabでは実装されていません...\n"
+#~ msgid "%s: Unable to diagonalize.\n"
+#~ msgstr "%s: 対角化できません。\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+#~ msgid "Not implemented in scilab...\n"
+#~ msgstr "scilabでは実装されていません...\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
+#~ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"

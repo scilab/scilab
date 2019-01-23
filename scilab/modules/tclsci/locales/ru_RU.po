@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-03-09 15:54+0000\n"
+"PO-Revision-Date: 2018-06-30 13:12+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
 msgstr "Предупреждение: Проблемы с интерфейсом TCL/TK. Интерфейс не включён.\n"
@@ -206,15 +206,15 @@ msgstr "Масштаб"
 
 #, c-format
 msgid "%s: Argument #%d: Text(s) expected.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: ожидался текст.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Variable undefined.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d:  ожидалась переменная.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Name of a variable of type 1, 4 or 10 expected.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: ожидалось имя переменной типа 1, 4 или 10.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-12-14 15:52+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2018-07-25 11:25+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -198,8 +198,8 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
-#, fuzzy, c-format
-msgid "%s: The config file ('%s') is not well formated at line %d\n"
+#, c-format
+msgid "%s: The config file ('%s') is not well formatted at line %d\n"
 msgstr "%s: 設定ファイル('%s')の%d行目は整形式ではありません.\n"
 
 #, c-format
@@ -266,6 +266,16 @@ msgid ""
 msgstr ""
 "ATOMSの設定のofflineオプションがTrueに設定されています. atomsSystemUpdate は"
 "利用可能な最新のモジュールをチェックしません."
+
+#, fuzzy, c-format
+msgid "\t%s (%s) will be installed in the '%s' section"
+msgstr "%s: モジュール '%s' はインストールされていません('%s' セクション)\n"
+
+#
+# File: modules/atoms/macros/atomsInstall.sci, line: 259
+#, c-format
+msgid "\t%s (%s) is already installed in the '%s' section and up-to-date"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -375,10 +385,35 @@ msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr "%s: パッケージ  %s のどんなバージョンも取り除く権限を持ちません。\n"
 
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 217
 #, c-format
 msgid ""
-"Removing %s (%s)(%s).\n"
-"\n"
+"\t%s (%s) will be removed from the '%s' section and its package fully deleted"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 219
+#, c-format
+msgid "\t%s (%s) will be removed from the '%s' section"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 222
+#, c-format
+msgid "\t%s (%s) cannot be removed from the '%s' section and will be broken"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 247
+#, c-format
+msgid ""
+"\tthe package %s (%s) is currently loaded, It will be removed at next Scilab "
+"start\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "\tRemoving %s (%s)(%s)... "
 msgstr ""
 "%s (%s)(%s) を削除中.\n"
 "\n"
@@ -742,9 +777,9 @@ msgstr "%s: ファイル %s は空です。\n"
 msgid "Updating Atoms modules database..."
 msgstr "Atomsモジュールデータベースを更新中..."
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
+"%s: The file %s is not well formatted, the toolbox %s - %s does not contain "
 "the %s field\n"
 msgstr ""
 "%s: ファイル %s が整形型でないか, ツールボックス %s - %s が %s フィールドを有"
@@ -754,8 +789,8 @@ msgstr ""
 msgid "%s: name and version are not both defined\n"
 msgstr "%s: name および version が定義されていません.\n"
 
-#, fuzzy, c-format
-msgid "%s: The file '%s' is not well formated at line %d\n"
+#, c-format
+msgid "%s: The file '%s' is not well formatted at line %d\n"
 msgstr "%s: ファイル '%s' の %d 行目は整形式ではありません.\n"
 
 #, c-format
@@ -1026,6 +1061,10 @@ msgid ""
 "If it is, run atomsSystemUpdate() before trying atomsInstall(..) again.\n"
 "\n"
 msgstr ""
+"%s: パッケージ %s は登録されていません.\n"
+" Scilab %d.%d  ( %s)  で用の ATOMSレポジトリを確認してください.\n"
+"atomsInstall(..) を再度試す前に atomsSystemUpdate() を実行してください.\n"
+"\n"
 
 #, c-format
 msgid "%s: The dependency tree cannot be resolved.\n"
@@ -1073,8 +1112,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: mlistを指定してください.\n"
 
-#, fuzzy, c-format
-msgid "%s: The description is not well formated at line %d\n"
+#, c-format
+msgid "%s: The description is not well formatted at line %d\n"
 msgstr "%s: descriptionの %d 行目は整形式ではありません.\n"
 
 #, c-format

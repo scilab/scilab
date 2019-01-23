@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2019-01-23 12:14+0100\n"
 
 # File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 54
 #, c-format
@@ -686,15 +686,15 @@ msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 121
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1863
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2011
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1867
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2015
 msgid "Grid"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 122
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1857
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2005
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1861
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2009
 msgid "Diagram background"
 msgstr ""
 
@@ -1094,29 +1094,29 @@ msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 225
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1843
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1991
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1847
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1995
 msgid "Link Style"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 226
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1734
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1776
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1738
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1780
 msgid "Straight"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 227
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1735
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1777
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1739
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1781
 msgid "Horizontal"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 228
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1736
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1778
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1740
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1782
 msgid "Vertical"
 msgstr ""
 
@@ -1132,57 +1132,57 @@ msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 234
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1879
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2027
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1883
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2031
 msgid "Final integration time"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 235
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1885
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2033
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1889
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2037
 msgid "Real time scaling"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 236
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1891
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2039
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1895
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2043
 msgid "Integrator absolute tolerance"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 237
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1897
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2045
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1901
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2049
 msgid "Integrator relative tolerance"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 238
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1903
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2051
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1907
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2055
 msgid "Tolerance on time"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 239
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1909
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2057
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1913
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2061
 msgid "Max integration time interval"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 240
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1915
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2063
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1919
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2067
 msgid "Solver kind"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 241
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1929
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2077
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1933
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2081
 msgid "Maximum step size (0 means no limit)"
 msgstr ""
 
@@ -1253,29 +1253,29 @@ msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 263
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1756
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1798
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1760
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1802
 msgid "No trace nor debug printing"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 264
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1757
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1799
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1761
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1803
 msgid "Light Simulation trace (Discrete and Continuous part switches)"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 265
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1758
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1800
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1762
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1804
 msgid "Per block execution trace and Debug block calls"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 266
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1759
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1801
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1763
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1805
 msgid "Debug block calls without trace"
 msgstr ""
 
@@ -1536,26 +1536,26 @@ msgid "Scilab '%s' module not installed.\n"
 msgstr ""
 
 #
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1812
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1960
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1816
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1964
 msgid "Number of recently opened files to display: "
 msgstr ""
 
 #
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1824
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1972
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1828
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1976
 msgid "Default file format"
 msgstr ""
 
 #
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1877
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2025
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1881
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2029
 msgid "Default simulation settings"
 msgstr ""
 
 #
-# File: modules/xcos/src/xcos_fake_xml.c, line: 1938
-# File: modules/xcos/src/xcos_fake_xml.c, line: 2086
+# File: modules/xcos/src/xcos_fake_xml.c, line: 1942
+# File: modules/xcos/src/xcos_fake_xml.c, line: 2090
 msgid "Default trace settings"
 msgstr ""
 
@@ -1935,7 +1935,7 @@ msgid "%s: Not supported format %s.\n"
 msgstr ""
 
 #
-# File: modules/xcos/macros/loadXcosLibs.sci, line: 56
+# File: modules/xcos/macros/loadXcosLibs.sci, line: 48
 #, c-format
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
@@ -1949,13 +1949,13 @@ msgid "%s is not a valid name, please change the title of the diagram."
 msgstr ""
 
 #
-# File: modules/xcos/macros/xcosPal.sci, line: 77
+# File: modules/xcos/macros/xcosPal.sci, line: 76
 #, c-format
 msgid "%s: Wrong type for input argument %s: string type expected.\n"
 msgstr ""
 
 #
-# File: modules/xcos/macros/xcosPal.sci, line: 81
+# File: modules/xcos/macros/xcosPal.sci, line: 80
 #, c-format
 msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
 msgstr ""
@@ -1994,13 +1994,13 @@ msgid "%s: Wrong type for input argument %s: palette type expected.\n"
 msgstr ""
 
 #
-# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 93
+# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 96
 #, c-format
 msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
 msgstr ""
 
 #
-# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 97
+# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 99
 #, c-format
 msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
 msgstr ""
@@ -2008,31 +2008,37 @@ msgstr ""
 #
 # File: modules/xcos/macros/xcosPalAddBlock.sci, line: 102
 #, c-format
+msgid "%s: Unable to load block from %s: Missing file.\n"
+msgstr ""
+
+#
+# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 106
+#, c-format
 msgid ""
 "%s: Wrong type for input argument %s: function as string or Block type or "
 "full path string expected.\n"
 msgstr ""
 
 #
-# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 113
+# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 117
 #, c-format
 msgid "%s: Unable to generate the palette icon : %s already exists.\n"
 msgstr ""
 
 #
-# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 118
+# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 122
 #, c-format
 msgid "%s: Wrong type for input argument %s: path string expected.\n"
 msgstr ""
 
 #
-# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 122
+# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 126
 #, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr ""
 
 #
-# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 128
+# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 132
 #, c-format
 msgid ""
 "%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
@@ -2040,13 +2046,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 147
+# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 151
 #, c-format
 msgid "%s: Unable to generate the image %s.\n"
 msgstr ""
 
 #
-# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 152
+# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 156
 #, c-format
 msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
 msgstr ""
@@ -2327,7 +2333,7 @@ msgid "Simulation problem"
 msgstr ""
 
 #
-# File: modules/xcos/macros/xcos_simulate.sci, line: 428
+# File: modules/xcos/macros/xcos_simulate.sci, line: 432
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr ""
 

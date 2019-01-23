@@ -15,14 +15,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d.\n"
 
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format

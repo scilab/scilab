@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-05-02 05:41+0000\n"
+"PO-Revision-Date: 2018-07-25 11:55+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -129,6 +129,12 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: 入力引数の大きさが間違っています: 大きさに互換性がありません.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+"%s: 入力引数#%dの大きさが間違っています: %d,または%d 個の要素を指定してくださ"
+"い.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr "%s: 入力引数#%dの型が間違っています: 文字列を指定してください.\n"
@@ -137,10 +143,9 @@ msgstr "%s: 入力引数#%dの型が間違っています: 文字列を指定し
 msgid "%s: Wrong value for input argument #%d: A known color expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 既存の色を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A number expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -524,6 +529,11 @@ msgstr ""
 "%s: 入力引数#%dの値が間違っています: 負ではない整数を指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
 msgstr ""
 "%s: 入力引数#%dの型が間違っています: 負ではない整数を指定してください.\n"
@@ -610,11 +620,12 @@ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: A real scalar expected.\n"
-msgstr ""
+msgstr "%s: 引数 #%dの大きさが間違っています: 実スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: scalar string expected.\n"
 msgstr ""
+"%s: 入力引数 #%dの大きさが間違っています: スカラー文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
@@ -623,6 +634,7 @@ msgstr "%s: ルートオブジェクトのプロパティ '%s' を読み込め�
 #, c-format
 msgid "%s: Wrong size for argument #%d: scalar string expected.\n"
 msgstr ""
+"%s: 引数 #%dの大きさが間違っています: スカラー文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
@@ -651,9 +663,11 @@ msgid ""
 "%s: This feature will be permanently removed in Scilab %s\n"
 "\n"
 msgstr ""
+"%s: この機能は Scilab %s 以降廃止されます\n"
+"\n"
 
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
@@ -684,16 +698,15 @@ msgstr "%s: ウインドウの大きさが 2^16 より小さく設定されて�
 msgid "The parent has to be a SUBWIN\n"
 msgstr "親は、SUBWINである必要があります\n"
 
-#, fuzzy, c-format
-msgid "%s: Could not retrive bounding box.\n"
+#, c-format
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr "%s: バウンディングボックスを取得できません.\n"
 
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr "%s はレベル曲線の計算にのみ使用され,表示しません.\n"
 
-#, fuzzy
-msgid "Could not retrive bounds.\n"
+msgid "Could not retrieve bounds.\n"
 msgstr "境界を取得できません.\n"
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
@@ -1721,35 +1734,25 @@ msgstr ""
 msgid "Press enter to go on..."
 msgstr "進めるには,リターンキーを押してください..."
 
-msgid "polarplot(): Only quadrant(s) reached by data are displayed"
-msgstr "polarplot(): データが存在する象限のみが表示されます"
-
-msgid "Still a single quadrant..."
-msgstr "まだ1つの象限のみ..."
-
-msgid "on 2 quadrants..."
+#, fuzzy
+msgid "Data on 3 or 4 quadrants"
 msgstr "2つの象限..."
 
-msgid "Data on the full circle ..."
-msgstr "完全な円上にデータが存在 ..."
-
-msgid "A partial viewport may be set with clipping"
-msgstr "部分的なビューポートがクリッピング付きで設定できます"
-
-msgid "Negative radii are supported:"
-msgstr "負の radii がサポートされています:"
+msgid "Several curves may be plotted at the same time"
+msgstr "複数の曲線を同時にプロットできます"
 
 msgid "Big radii are supported..."
 msgstr "大きな半径がサポートされています..."
 
+#, fuzzy
+msgid "... as well as very tiny ones"
+msgstr "... 非常に小さな半径も"
+
 msgid "even huge radii, with properly formatted labels..."
 msgstr "非常に大きな半径も, 適当に整形されたラベルを指定して..."
 
-msgid "... as well as very tiny radii"
-msgstr "... 非常に小さな半径も"
-
-msgid "Several curves may be plotted at the same time"
-msgstr "複数の曲線を同時にプロットできます"
+msgid "A partial viewport may be set with clipping"
+msgstr "部分的なビューポートがクリッピング付きで設定できます"
 
 msgid "Customize your complex function"
 msgstr "複素関数をカスタマイズ"
@@ -1814,6 +1817,10 @@ msgstr "アニメーション"
 msgid "Finite Elements"
 msgstr "有限要素"
 
+#, fuzzy
+msgid "Stems bars histograms"
+msgstr "棒ヒストグラム"
+
 msgid "Bezier curves and surfaces"
 msgstr "ベジエ曲線/面"
 
@@ -1823,8 +1830,10 @@ msgstr "その他の面"
 msgid "Complex elementary functions"
 msgstr "複合要素関数"
 
-msgid "bar histogram"
-msgstr "棒ヒストグラム"
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 24
+msgid "Technical plots"
+msgstr ""
 
 msgid "Datatips"
 msgstr "datatips"
@@ -1840,6 +1849,30 @@ msgstr "カラーマップ"
 
 msgid "Matplot"
 msgstr "Matplot"
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 14
+msgid "Stems (plot2d3)"
+msgstr ""
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 15
+msgid "Bars (custom)"
+msgstr ""
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 16
+msgid "Bars (grouped)"
+msgstr ""
+
+#, fuzzy
+msgid "histplot"
+msgstr "Matplot"
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 18
+msgid "hist3d"
+msgstr ""
 
 msgid "Classical Matplot"
 msgstr "以前の Matplot"
@@ -1889,6 +1922,10 @@ msgstr "%s: ハンドルは有効ではありません, 無視しました.\n"
 #, c-format
 msgid "%s : Invalid entity %s\n"
 msgstr "%s 無効なエンティティ %s\n"
+
+#, fuzzy, c-format
+msgid "%s: Unsupported assignment for property '%s'.\n"
+msgstr "プロパティ \"%s\" の型に互換性がありません.\n"
 
 #, c-format
 msgid ""
@@ -1954,13 +1991,43 @@ msgid "%s: Wrong size for input argument #%d: a real scalar expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 実数スカラーを指定してください.\n"
 
-#, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Graphic handle of type '%s' expected.\n"
 msgstr ""
+"%s: 入力引数#%d の型が間違っています: グラフィックハンドルまたは文字列を指定"
+"してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s: 引数 #%d: 10進数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments #%d: string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています:  文字列を指定してください.\n"
+msgid "%s: Argument #%d: Decimal number(s) expected.\n"
+msgstr "%s: 引数 #%d: 10進数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-empty matrix expected.\n"
+msgstr "%s: 引数 #%d: テキストを指定してください.\n"
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
+msgstr "%s: 引数 #%d および #%d: 大きさに互換性がありません.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Inf and Nan values forbidden.\n"
+msgstr "%s: 引数 #%d および #%d: 大きさに互換性がありません.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-negative values expected.\n"
+msgstr "%s: 引数 #%d: 10進数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval %s.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 範囲 %s とする必要があります.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr "%s: 引数 #%d: 色の指定が間違っています.\n"
 
 #, c-format
 msgid ""
@@ -1977,8 +2044,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: A scalar or a row vector expected.\n"
+"%s: Wrong size for input arguments #%d: A scalar or a column vector "
+"expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています:  スカラーまたは列ベクトルを指定し"
+"てください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
@@ -1989,18 +2059,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d: A scalar or a column vector "
-"expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  スカラーまたは列ベクトルを指定し"
-"てください.\n"
-
-#, c-format
-msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -2087,10 +2145,18 @@ msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 'Figure'または'Frame'ハンドルのベクト"
 "ルを指定してください."
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が正しくありません: %s データ構造を指定してください.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Vector with %d elements expected.\n"
+msgstr "%s: 引数 #%d: 4または6個の列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Argument #%d: Can't retrieve a default value: Decimal number expected.\n"
+msgstr "%s: 引数 #%d: 10進数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_set.c, line: 198
@@ -2505,15 +2571,11 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定し�
 
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: Decimal number(s) expected.\n"
-msgstr ""
+msgstr "%s: 引数 #%d: 数値または文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Text(s) expected.\n"
-msgstr ""
+msgstr "%s: 引数 #%d: テキストを指定してください.\n"
 
 #, c-format
 msgid ""
@@ -2591,19 +2653,21 @@ msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 文字列のベクトルを指定してくださ"
 "い.\n"
 
-#, c-format
-msgid "%s: Error : unable to evaluate input function '%s'."
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Graphic handle(s) of type %s expected.\n"
+msgstr "%s: 引数 #%d: 数値または文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: wrong list() specification for the curve #%d.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています.\n"
+
+#, fuzzy, c-format
+msgid "%s: Error : unable to evaluate input function %s."
 msgstr "%s: エラー : 入力引数 '%s' を評価できません."
 
 #, c-format
 msgid "Error %d at line %d of the function: '%s"
 msgstr "エラー %d (関数の %d 行目) : '%s"
-
-#
-# File: macros/plot.sci, line: 219
-#, c-format
-msgid "%s: Error : unable to evaluate input function."
-msgstr "%s: エラー : 入力関数を評価できません。"
 
 #, c-format
 msgid ""
@@ -2710,9 +2774,19 @@ msgstr ""
 "%s: 入力引数 #%d の大きさまたは型が間違っています: 列または行ベクトルを指定し"
 "てください.\n"
 
+#, fuzzy, c-format
+msgid "%s: Bad value for property %s\n"
+msgstr "%s: strf オプションの値が間違っています: %s.\n"
+
 #, c-format
 msgid "%s: Ambiguous MarkStyle value.\n"
 msgstr "%s MarkStyleの値が間違っています.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A marker style expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  マーカーのスタイルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
@@ -2764,6 +2838,28 @@ msgstr ""
 "%s: 入力引数 #%d の大きさが正しくありません: %d 行 %d 列より大きい行列を指定"
 "してください.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal numbers expected.\n"
+msgstr "%s: 引数 #%d: 10進数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: At least %d components expected.\n"
+msgstr "%s: 引数 #%d: 数値または文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong list() specification.\n"
+msgstr "%s: 引数 #%d: 色の指定が間違っています.\n"
+
+#
+# File: modules/graphics/macros/surf.sci, line: 176
+#, c-format
+msgid "%s: Argument #%d : Unable to evaluate Z: Error %d at line %d in %s: '%s"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Inconsistent size of the result.\n"
+msgstr "%s: 引数 #%d および #%d: 大きさに互換性がありません.\n"
+
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix "
@@ -2806,6 +2902,11 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 正の整数を指�
 msgid "%s: file %s does not exist.\n"
 msgstr "%s: ファイル %s は存在しません。\n"
 
+#
+# File: modules/graphics/macros/xload.sci, line: 100
+msgid "xload: Given file is not a graphic one."
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで指定してください.\n"
@@ -2813,3 +2914,35 @@ msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: %s に指定された値が間違っています."
+
+#~ msgid "polarplot(): Only quadrant(s) reached by data are displayed"
+#~ msgstr "polarplot(): データが存在する象限のみが表示されます"
+
+#~ msgid "Still a single quadrant..."
+#~ msgstr "まだ1つの象限のみ..."
+
+#~ msgid "Data on the full circle ..."
+#~ msgstr "完全な円上にデータが存在 ..."
+
+#~ msgid "Negative radii are supported:"
+#~ msgstr "負の radii がサポートされています:"
+
+#~ msgid "%s: Wrong type for input arguments #%d: string expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています:  文字列を指定してください.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: A scalar or a row vector "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%dの大きさが間違っています: スカラーまたは行ベクトルを指定し"
+#~ "てください.\n"
+
+#~ msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の型が正しくありません: %s データ構造を指定してくださ"
+#~ "い.\n"
+
+#
+# File: macros/plot.sci, line: 219
+#~ msgid "%s: Error : unable to evaluate input function."
+#~ msgstr "%s: エラー : 入力関数を評価できません。"

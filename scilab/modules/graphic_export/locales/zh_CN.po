@@ -9,13 +9,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2017-11-02 12:52+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -121,9 +121,10 @@ msgid ""
 "scilab.org."
 msgstr "无法导出文件，请提交缺陷报告到http://bugzilla.scilab.org。"
 
+#, fuzzy
 msgid ""
-"Unable to create export file, the file cannot be created or is locked by an "
-"other process."
+"Unable to create export file, the file cannot be created or is locked by "
+"another process."
 msgstr "无法导出文件，文件被其它进程 锁定。"
 
 #, c-format

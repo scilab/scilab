@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-05-01 15:39+0000\n"
+"PO-Revision-Date: 2018-07-25 12:51+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -236,6 +236,8 @@ msgid ""
 "%s: Function not defined for given argument #%d type.\n"
 "Check arguments or define function %s for overloading.\n"
 msgstr ""
+"%s: 指定した引数 #%d 型に関する関数が未定義です.\n"
+"引数を確認するか、オーバーロード用関数 %s を定義してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
@@ -391,7 +393,7 @@ msgstr "固有値"
 
 #, c-format
 msgid "%s: Argument #%d: Array of real numbers expected.\n"
-msgstr ""
+msgstr "%s: 引数 #%d: 実数の配列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"

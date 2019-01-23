@@ -17,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -226,6 +226,14 @@ msgstr "%s: Неверный входной аргумент %d.\n"
 #, c-format
 msgid "End of file at line %d.\n"
 msgstr "Конец файла на строке %d.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : A real matrix or column vector "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d : ожидался вещественный скаляр или "
+"дескриптор файла.\n"
 
 #, c-format
 msgid "Undefined environment variable %s.\n"

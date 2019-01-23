@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -144,9 +144,10 @@ msgstr ""
 "Impossible de créer le fichier d'export, veuillez signaler un bug sur http://"
 "bugzilla.scilab.org."
 
+#, fuzzy
 msgid ""
-"Unable to create export file, the file cannot be created or is locked by an "
-"other process."
+"Unable to create export file, the file cannot be created or is locked by "
+"another process."
 msgstr ""
 "Impossible de créer le fichier d'exportation, le fichier ne peut être créé "
 "ou est verrouillé par un autre processus."

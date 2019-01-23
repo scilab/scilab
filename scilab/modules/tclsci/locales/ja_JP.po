@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-05-01 15:58+0000\n"
+"PO-Revision-Date: 2018-07-25 12:55+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -235,15 +235,15 @@ msgstr "拡大縮小"
 
 #, c-format
 msgid "%s: Argument #%d: Text(s) expected.\n"
-msgstr ""
+msgstr "%s: 引数 #%d: テキストを指定してください.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Variable undefined.\n"
-msgstr ""
+msgstr "%s: 引数 #%d: 変数が未定義です.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Name of a variable of type 1, 4 or 10 expected.\n"
-msgstr ""
+msgstr "%s: 引数 #%d: タイプ1,4または10の変数名を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"

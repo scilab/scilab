@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -121,10 +121,6 @@ msgstr "%s: No s'ha pogut trobar cap fitxer amb l'extensió %s a %s\n"
 #, c-format
 msgid "%s: Incorrect function in file %s.\n"
 msgstr "%s: Hi ha una funció incorrecta al fitxer %s.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"

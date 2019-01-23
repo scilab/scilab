@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
@@ -169,8 +169,39 @@ msgstr ""
 "%s: No se pudo leer la variable del archivo '%s'. Revise si su archivo no "
 "está corrupto.\n"
 
-msgid "All inputs must be character strings."
-msgstr "Todas las entradas deben ser caracteres string."
+#
+# File: modules/matio/macros/matfile2sci.sci, line: 24
+#, c-format
+msgid "%s: %s module is not installed.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el segundo argumento de entrada: Se esperaba 'r' o "
+"'w'.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el primer argumento de entrada: Se esperaba una "
+"matriz de doubles.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
+"strings.\n"
+
+#, fuzzy, c-format
+msgid "%s: Could not read variables in %s"
+msgstr "%s: No se pudo rebobinar el archivo %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
+"strings.\n"
 
 #, c-format
 msgid "Option %s not implemented: IGNORED."
@@ -179,28 +210,41 @@ msgstr "Opción %s no implementada: IGNORADA."
 msgid "Option -v7 added."
 msgstr "Se agregó la opción -v7"
 
-#, c-format
-msgid "Variable %s can not be saved in level 4 MAT-file: IGNORED."
-msgstr ""
-"La variable %s no puede ser almacenada en un archivo Mat de nivel 4: "
-"IGNORADA."
-
-#, c-format
-msgid "Name conflict: it is not possible to save variable with name %s."
+#, fuzzy, c-format
+msgid ""
+"%s: Name conflict: it is not possible to save variable with name %s "
+"(ignored)."
 msgstr ""
 "Conflicto de nombrado: no es posible guardar la variable con el nombre %s."
 
-msgid "Attempt to write an unsupported data type to an ASCII file."
+#, fuzzy
+msgid "Attempt to write an unsupported data type to a binary file."
 msgstr "Se intentó escribir un tipo de datos no soportado en un archivo ASCII."
+
+#
+# File: modules/matio/macros/savematfile.sci, line: 301
+msgid "savematfile: No variable to save => No file written."
+msgstr ""
 
 #, c-format
 msgid "%s: Could not open file '%s'.\n"
 msgstr "%s: No pudo abrirse el archivo '%s'.\n"
 
-#, c-format
-msgid "savematfile: could not save variable named %s.\n"
+#, fuzzy, c-format
+msgid "savematfile: could not write variable %s.\n"
 msgstr "savematfile: no se pudo guardar la variable llamada %s.\n"
 
-#, c-format
-msgid "Variable %s can not be saved in ASCII file: IGNORED."
-msgstr "La variable %s no puede ser almacenada en un archivo ASCII: IGNORADA."
+#, fuzzy, c-format
+msgid ""
+"%s: Variable %s can not be saved in MAT-file version %s (type %d "
+"unsupported): IGNORED.\n"
+msgstr ""
+"La variable %s no puede ser almacenada en un archivo Mat de nivel 4: "
+"IGNORADA."
+
+#~ msgid "All inputs must be character strings."
+#~ msgstr "Todas las entradas deben ser caracteres string."
+
+#~ msgid "Variable %s can not be saved in ASCII file: IGNORED."
+#~ msgstr ""
+#~ "La variable %s no puede ser almacenada en un archivo ASCII: IGNORADA."

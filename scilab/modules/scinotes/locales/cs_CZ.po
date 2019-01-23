@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -68,8 +68,8 @@ msgstr "Soubor nenalezen: %s"
 msgid "I/O error: %s"
 msgstr "Chyba I/O: %s"
 
-#, fuzzy, c-format
-msgid "The file %s has been modified by an other program. Reload it ?"
+#, c-format
+msgid "The file %s has been modified by another program. Reload it ?"
 msgstr "Soubor %s byl změněn jiným programem. Chcete ho znovu načíst ?"
 
 msgid "File"
@@ -1108,6 +1108,40 @@ msgstr "Výchozí hlavička"
 
 msgid "Add a default header to new file"
 msgstr "Přidat výchozí hlavičku do nového souboru"
+
+#
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1474
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 2038
+msgid "Available variables: {{$current-date}}, {{$current-year}}"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupních argumentů #%d a #%d: Očekávány stejné "
+"rozměry.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekávána řetězcová matice.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekávána řetězcová matice.\n"
+
+#
+# File: modules/scinotes/macros/edit.sci, line: 51
+#, c-format
+msgid ""
+"edit: %s is an alias of %s => editing %s()\n"
+"      Please reset %s=%s if %s() is recompiled.\n"
+msgstr ""
+
+#
+# File: modules/scinotes/macros/edit.sci, line: 92
+#, c-format
+msgid "%s: %s() is an uneditable hard coded function.\n"
+msgstr ""
 
 msgid "The last error did not occur inside a Scilab macro."
 msgstr ""

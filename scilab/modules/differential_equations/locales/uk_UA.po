@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-02-19 19:14+0000\n"
+"PO-Revision-Date: 2018-03-28 15:26+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -155,8 +155,8 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: першим параметром у списку має "
 "бути функція Scilab.\n"
 
-#, fuzzy, c-format
-msgid "%s: An error occured in '%s' subroutine.\n"
+#, c-format
+msgid "%s: An error occurred in '%s' subroutine.\n"
 msgstr "%s: сталася помилка у підпрограмі «%s».\n"
 
 #, c-format
@@ -283,8 +283,8 @@ msgstr "%s: помилкова розмірність вхідних парам�
 msgid "%s: %s return with state %d.\n"
 msgstr "%s: %s завершила роботу із станом %d.\n"
 
-#, fuzzy, c-format
-msgid "%ls: An error occured in '%ls' subroutine.\n"
+#, c-format
+msgid "%ls: An error occurred in '%ls' subroutine.\n"
 msgstr "%ls: сталася помилка у підпрограмі «%ls».\n"
 
 #, c-format
@@ -689,9 +689,9 @@ msgid "Excessive work done on this call (perhaps wrong jacobian type).\n"
 msgstr ""
 "Надмірна робота за цим викликом (ймовірно, помилковий тип за якобіаном).\n"
 
-#, fuzzy
 msgid "Excessive accuracy requested (tolerances too small).\n"
-msgstr "Надіслано запит на надмірну точність (похибки є надто малими).\n"
+msgstr ""
+"Надіслано запит щодо надто високої точності (надто вузькі межі похибки).\n"
 
 msgid "Illegal input detected (see printed message).\n"
 msgstr "Виявлено некоректні вхідні дані (див. виведене повідомлення).\n"
@@ -829,8 +829,8 @@ msgstr "У %s виникли проблеми.\n"
 msgid "Undefined function '%ls'.\n"
 msgstr "Невизначене функція «%ls».\n"
 
-#, fuzzy, c-format
-msgid "User function '%s' have not been setted.\n"
+#, c-format
+msgid "User function '%s' have not been set.\n"
 msgstr "Функцію користувача «%s» не встановлено.\n"
 
 #, c-format

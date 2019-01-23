@@ -9,13 +9,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2018-01-04 13:08+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -287,9 +287,9 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: The order should be at most %d.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be < %d.\n"
+msgstr "%s：输入参数#%d必须为实数。\n"
 
 #, c-format
 msgid ""
@@ -485,11 +485,8 @@ msgstr ""
 msgid "%s: Uncontrollable system.\n"
 msgstr ""
 
-#
-# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 152
-# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 195
 #, c-format
-msgid "%s: An error occured in '%s'.\n"
+msgid "%s: An error occurred in '%s'.\n"
 msgstr ""
 
 #, c-format
@@ -954,7 +951,8 @@ msgstr "实轴"
 msgid "Imaginary axis"
 msgstr "虚轴"
 
-msgid "open loop zeroes"
+#, fuzzy
+msgid "open loop zeros"
 msgstr "开环零"
 
 msgid "open loop poles"
@@ -1004,6 +1002,17 @@ msgid "Hz"
 msgstr ""
 
 msgid "dB"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/formatBodeMagTip.sci, line: 21
+# File: modules/cacsd/macros/formatBodePhaseTip.sci, line: 21
+msgid "rad/s"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/formatBodeMagTip.sci, line: 25
+msgid " dB"
 msgstr ""
 
 #, c-format
@@ -1420,6 +1429,16 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个多项式。\n"
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为长度大于%d的一个行向量。\n"
+
+#
+# File: modules/cacsd/macros/sgrid.sci, line: 84
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
 msgstr ""
 
 #, c-format
