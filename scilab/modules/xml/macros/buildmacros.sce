@@ -11,9 +11,4 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-if (isdef("genlib") == %f) then
-    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
-end
-
-// genlib("hdf5lib","SCI/modules/hdf5/macros",%f,%t);
-
+genlib("xmllib","SCI/modules/xml/macros",%f,%t);
