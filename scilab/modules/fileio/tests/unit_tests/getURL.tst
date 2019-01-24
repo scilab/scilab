@@ -1,4 +1,3 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - Sylvestre LEDRU
@@ -6,6 +5,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//<-- CLI SHELL MODE -->
+//<-- NO CHECK REF -->
 
 function checkFile(filePath, expectedFilePath, minimalFileSize)
     assert_checkequal(filePath, expectedFilePath)
@@ -72,7 +73,7 @@ checkContent(filePath, content, 1000, "html");
 checkContent(filePath, content, 1000, "html");
 
 [filePath, content] = getURL("http://www.scilab.org/aze");
-checkContent(filePath, content, 100, "aze");
+checkContent(filePath, content, 100, "ESI");
 
 [filePath, content] = getURL("http://www.scilab.org");
 checkContent(filePath, content, 1000, "html");

@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //<-- CLI SHELL MODE -->
-//<-- NOT FIXED --> 6.0.0
+//<-- NO CHECK REF -->
 
 funcprot(0);
 
