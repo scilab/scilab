@@ -276,6 +276,7 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\cpp\var2vec.cpp" />
     <ClCompile Include="..\..\cpp\vec2var.cpp" />
     <ClCompile Include="..\..\cpp\view_scilab\Adapters.cpp" />
+    <ClCompile Include="..\..\cpp\view_scilab\AdapterView.cpp" />
     <ClCompile Include="..\..\cpp\view_scilab\BlockAdapter.cpp" />
     <ClCompile Include="..\..\cpp\view_scilab\CprAdapter.cpp" />
     <ClCompile Include="..\..\cpp\view_scilab\DiagramAdapter.cpp" />
@@ -311,6 +312,7 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClInclude Include="..\..\..\includes\Model.hxx" />
     <ClInclude Include="..\..\..\includes\model\BaseObject.hxx" />
     <ClInclude Include="..\..\..\includes\View.hxx" />
+    <ClInclude Include="..\..\..\includes\view_scilab\AdapterView.hxx" />
     <ClInclude Include="..\..\..\includes\XMIResource.hxx" />
     <ClInclude Include="..\..\..\includes\view_scilab\Adapters.hxx" />
     <ClInclude Include="..\..\cpp\controller_helpers.hxx" />

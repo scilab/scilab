@@ -31,6 +31,7 @@ src/cpp/Model.cpp \
 src/cpp/Model_getObjectProperties.cpp \
 src/cpp/Model_setObjectProperties.cpp \
 src/cpp/view_scilab/Adapters.cpp \
+src/cpp/view_scilab/AdapterView.cpp \
 src/cpp/view_scilab/BlockAdapter.cpp \
 src/cpp/view_scilab/CprAdapter.cpp \
 src/cpp/view_scilab/DiagramAdapter.cpp \

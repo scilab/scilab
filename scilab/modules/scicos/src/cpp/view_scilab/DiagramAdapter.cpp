@@ -36,6 +36,7 @@
 #include "controller_helpers.hxx"
 
 #include "view_scilab/Adapters.hxx"
+#include "view_scilab/AdapterView.hxx"
 #include "DiagramAdapter.hxx"
 #include "ParamsAdapter.hxx"
 #include "BlockAdapter.hxx"
@@ -238,6 +239,7 @@ struct objs
 
         model::BaseObject* adaptee = adaptor.getAdaptee();
         types::List* argumentList = v->getAs<types::List>();
+        AdapterView update_partial_information;
 
         // retrieve the current children to update
         std::vector<ScicosID> children;
@@ -411,16 +413,6 @@ struct objs
                 model::Link* adaptee = static_cast<model::Link*>(it->adaptee);
                 LinkAdapter::relink(controller, adaptee, children);
                 GraphicsAdapter::reverse_relink(controller, adaptee, it->index, children);
-            }
-        }
-
-        // unref the Adapters as the ownership has been transfered to the Model
-        for (const auto & update : childrenToUpdate)
-        {
-            if (update.adapter != nullptr)
-            {
-                update.adapter->DecreaseRef();
-                update.adapter->killMe();
             }
         }
 

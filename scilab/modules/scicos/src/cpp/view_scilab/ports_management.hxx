@@ -255,7 +255,6 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
                 if (id == ScicosID())
                 {
                     // Unconnected port, no need to search in 'children'
-                    std::cerr << "unconnected port " << id << std::endl;
                     v[i] = 0;
                 }
                 else
@@ -269,7 +268,6 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
                     {
                         // connected link not found ; discard it !
                         v[i] = 0;
-                        std::cerr << "connected port out of hierarchy " << id << std::endl;
                     }
                 }
             }
@@ -516,6 +514,8 @@ inline bool updateNewPort(model::Port* oldPortObject, int newPort, Controller& c
             datatype[datatypeIndex] = newPort;
             return controller.setObjectProperty(oldPortObject, DATATYPE, datatype) != FAIL;
         }
+        case CONNECTED_SIGNALS:
+            return controller.setObjectProperty(oldPortObject, p, (ScicosID) newPort) != FAIL;
         default:
             return controller.setObjectProperty(oldPortObject, p, newPort) != FAIL;
     }
@@ -550,6 +550,8 @@ inline bool addNewPort(model::Port* newPortObject, int newPort, Controller& cont
             datatype[datatypeIndex] = newPort;
             return controller.setObjectProperty(newPortObject, DATATYPE, datatype) != FAIL;
         }
+        case CONNECTED_SIGNALS:
+            return controller.setObjectProperty(newPortObject, p, (ScicosID) newPort) != FAIL;
         default:
             return controller.setObjectProperty(newPortObject, p, newPort) != FAIL;
     }

@@ -40,6 +40,7 @@
 #include "types_comparison_eq.hxx"
 
 #include "view_scilab/Adapters.hxx"
+#include "view_scilab/AdapterView.hxx"
 #include "controller_helpers.hxx"
 #include "utilities.hxx"
 #include "Controller.hxx"
@@ -171,6 +172,7 @@ public:
     {
         if (adapter.getAdaptee() != nullptr)
         {
+            AdapterView update_partial_information;
             Controller controller;
 
             Controller::cloned_t mapped;
@@ -183,6 +185,8 @@ public:
     {
         if (m_adaptee != nullptr)
         {
+            AdapterView update_partial_information;
+
             Controller controller;
             controller.deleteObject(m_adaptee->id());
         }

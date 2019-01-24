@@ -692,21 +692,6 @@ GraphicsAdapter::GraphicsAdapter(const Controller& c, model::Block* adaptee) : B
     gr_i_content(reference_value(types::Double::Empty()))
 {
     initialize_fields();
-
-    auto it = partial_ports.find(adaptee->id());
-    if (it == partial_ports.end())
-    {
-        Controller controller;
-
-        // if already present, do not allocate it  !
-        partial_port_t partial;
-        cached_ports_init(partial.pin, adaptee, INPUTS, controller);
-        cached_ports_init(partial.pout, adaptee, OUTPUTS, controller);
-        cached_ports_init(partial.pein, adaptee, EVENT_INPUTS, controller);
-        cached_ports_init(partial.peout, adaptee, EVENT_OUTPUTS, controller);
-
-        partial_ports.insert(std::make_pair(adaptee->id(), partial));
-    }
 }
 
 GraphicsAdapter::~GraphicsAdapter()

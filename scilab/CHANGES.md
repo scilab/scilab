@@ -489,6 +489,7 @@ Known issues
 * [#13480](http://bugzilla.scilab.org/show_bug.cgi?id=13480): The default k value of `eigs` was wrong and made `eigs` failing for small full matrices.
 * [#13490](http://bugzilla.scilab.org/show_bug.cgi?id=13490): `histc` normalization was wrong. In the help, its description was wrong and inconsistent.
 * [#13522](http://bugzilla.scilab.org/show_bug.cgi?id=13522): `savematfile` failed saving numerical hypermatrices.
+* [#13612](http://bugzilla.scilab.org/show_bug.cgi?id=13612): Xcos "Selection to superblock" did not assing I/O blocks correctly.
 * [#13632](http://bugzilla.scilab.org/show_bug.cgi?id=13632): The syntax `savematfile(filename, varnames)` was not documented. Other information was missing in the page.
 * [#13778](http://bugzilla.scilab.org/show_bug.cgi?id=13778): The size of `repmat([], [1 1 3])` was [0 0 3] instead of [0 0].
 * [#13785](http://bugzilla.scilab.org/show_bug.cgi?id=13785): `gettext` was poorly documented.
@@ -531,11 +532,13 @@ Known issues
 * [#14995](http://bugzilla.scilab.org/show_bug.cgi?id=14995): savematfile crashes Scilab
 * [#15024](http://bugzilla.scilab.org/show_bug.cgi?id=15024): `A=10; A{1}=2` corrupted A and silently failed
 * [#15033](http://bugzilla.scilab.org/show_bug.cgi?id=15033): `fileinfo` gave negative size if filesize bigger than 2^31
+* [#15050](http://bugzilla.scilab.org/show_bug.cgi?id=15050): Xcos "Selection to superblock" did not relink the diagram after sub-system modification. 
 * [#15091](http://bugzilla.scilab.org/show_bug.cgi?id=15091): `translatepaths()` was KO.
 * [#15092](http://bugzilla.scilab.org/show_bug.cgi?id=15092): Scalar variable was resized as a column vector instead of row.
 * [#15095](http://bugzilla.scilab.org/show_bug.cgi?id=15095): The Matlab=>Scilab translator failed when working with non-ASCII paths.
 * [#15017](http://bugzilla.scilab.org/show_bug.cgi?id=15017): `lcm` did not support int64 and uint64 input integers. Input integers had to be in a row instead of any matrix. For input decimal integers, results were int32 encoded.
 * [#15115](http://bugzilla.scilab.org/show_bug.cgi?id=15115): Tabs order in SciNotes was incorrect when opening file and restoring session.
+* [#15122](http://bugzilla.scilab.org/show_bug.cgi?id=15122): Xcos "Selection to superblock" modified the rendering and labeling of blocks. 
 * [#15157](http://bugzilla.scilab.org/show_bug.cgi?id=15157): min/max on tlist or mlist did not call good overload.
 * [#15182](http://bugzilla.scilab.org/show_bug.cgi?id=15182): The result of `a.*.b` with mixed integer/decimal operands introduced in Scilab 6 returned some doubles instead of integers, inconsistently wrt the `*` and `.*` products.
 * [#15187](http://bugzilla.scilab.org/show_bug.cgi?id=15187): Super block diagram title (on the window bar) was not set.
@@ -551,6 +554,7 @@ Known issues
 * [#15423](http://bugzilla.scilab.org/show_bug.cgi?id=15423): `tbx_make(myModule,sections)` executed the existing builder (if any), instead of targeting only selected module sections. Otherwise, tbx_make(myModule, "help"|"macros") yielded an error, and tbx_make(myModule,"localization") never built it.
 * [#15430](http://bugzilla.scilab.org/show_bug.cgi?id=15430): 47 `Scierror()` errors messages had mismatching input data.
 * [#15433](http://bugzilla.scilab.org/show_bug.cgi?id=15433): `getPreferencesValue` is a general xml utility function and should be renamed and moved to the XML module.
+* [#15434](http://bugzilla.scilab.org/show_bug.cgi?id=15434): Xcos "Selection to superblock" failed the simulation.
 * [#15440](http://bugzilla.scilab.org/show_bug.cgi?id=15440): Scilab debug help page linked to Xcos debug.
 * [#15441](http://bugzilla.scilab.org/show_bug.cgi?id=15441): `mprintf("%%")` crashed Scilab
 * [#15442](http://bugzilla.scilab.org/show_bug.cgi?id=15442): `printf` could not handle uint64 integers greater than 2^32-1.
