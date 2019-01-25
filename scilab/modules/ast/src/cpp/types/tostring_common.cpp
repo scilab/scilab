@@ -28,6 +28,7 @@ extern "C"
 #include "os_string.h"
 #include "dtoa.h"
 #include "charEncoding.h"
+#include "sciprint.h"
 }
 
 #define BLANK_SIZE 1
@@ -314,15 +315,28 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
             str.insert(str.begin(), 1 - iDecpt, '0');
             str.insert(1, ".");
         }
-        else if (_pDF->bPrintPoint || iDecpt < str.length())
+        else if (_pDF->bPrintPoint || iDecpt < (int)str.length())
         {
-            str.append(std::max(0, (int)(iDecpt - str.length())), '0');
+            str.append(std::max(0, (iDecpt - (int)str.length())), '0');
             str.insert(iDecpt, ".");
         }
-        else 
+        else
         {
-            str.append(std::max(0, (int)(iDecpt - str.length())), '0');
+            str.append(std::max(0, (iDecpt - (int)str.length())), '0');
             iWidth--;
+        }
+
+        // append trailing zeros, if applicable
+        if (std::atof(str.data()) != fabs(_dblVal))
+        {
+            if (_pDF->bPrintPoint)
+            {
+                str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()))-1, '0');
+            }
+            else
+            {
+                iWidth = 1+str.length();
+            }
         }
 
         wchar_t* pwstData = to_wide_string(str.data());
