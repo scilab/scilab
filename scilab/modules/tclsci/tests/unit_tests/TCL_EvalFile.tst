@@ -6,6 +6,8 @@
 // =============================================================================
 // <-- INTERACTIVE TEST -->
 
+// Check support to UTF-8 file names
+// ---------------------------------
 tab_ref = [ ..
 "世界您好", ..
 "азеазея", ..
@@ -23,9 +25,11 @@ cd TCL_tests;
 origfile = SCI + "/modules/tclsci/demos/tk/puzzle";
 
 for i = 1 : size(tab_ref, "*")
-	newfile = tab_ref(i);
-	copyfile(origfile, newfile);
-	TCL_EvalFile(newfile);
+    newfile = tab_ref(i);
+    copyfile(origfile, newfile);
+    TCL_EvalFile(newfile);
+    sleep(3)
+    // the puzzle must be displayed correctly for any source filename
 end
 
 cd TMPDIR
