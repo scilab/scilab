@@ -15,6 +15,7 @@
 
 #include <errno.h>
 #include <stdlib.h>
+#include <limits.h>
 #include <time.h>
 #ifdef _MSC_VER
 #include <process.h>
@@ -245,8 +246,16 @@ char* computeTMPDIR()
         fprintf(stderr, _("Error: Could not create %s: %s\n"), env_dir, strerror(errno));
     }
 
+#if defined(__APPLE__)
+    // realpath should not complain as env_dir has been successfully created above
+    char *real_env_dir = realpath(env_dir, NULL);
+    FREE(env_dir);
+    setenvc("TMPDIR", real_env_dir);
+    return real_env_dir;
+#else
     setenvc("TMPDIR", env_dir);
-    return env_dir;
+    return env_dir;    
+#endif
 #endif
 }
 /*--------------------------------------------------------------------------*/
