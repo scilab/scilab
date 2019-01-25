@@ -378,7 +378,7 @@ public:
         {
             types::InternalType* ith_prop1 = p.get(*static_cast<Adaptor*>(this), controller);
             types::InternalType* ith_prop2 = p.get(*static_cast<Adaptor*>(ut), controller);
-            ret->set(p.original_index, *ith_prop1 == *ith_prop2);
+            ret->set(p.original_index + 1, *ith_prop1 == *ith_prop2);
 
             // Getting a property allocates data, so free them
             ith_prop1->killMe();
