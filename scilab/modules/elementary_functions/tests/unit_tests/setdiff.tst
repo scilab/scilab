@@ -109,3 +109,8 @@ for f = list(double, int8, uint8, int16, uint16, int32, uint32, int64, uint64)
                              3  2]));
     assert_checkequal(k,    [7 11]');
 end
+
+// =============================================================================
+// Error messages
+msg = "%s: Wrong number of input argument(s): %d or %d expected.\n";
+assert_checkerror("setdiff()", msg , [], "setdiff", 2, 3);

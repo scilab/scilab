@@ -15,8 +15,8 @@
 // <-- Short Description -->
 // There was an error with browsevar when deleting a global var
 
-// Be sure thre browsevar is opened
-
+browsevar();
+clear a
 global a
 clearglobal a
 b=2
