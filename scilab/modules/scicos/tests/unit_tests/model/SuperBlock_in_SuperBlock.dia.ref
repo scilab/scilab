@@ -41,9 +41,8 @@ Xcos trace:   objectReferenced( 3 , LINK ) : 1
 Xcos trace:   objectReferenced( 3 , LINK ) : 2
 Xcos debug:   propertyUpdated( 3 , LINK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 3 , LINK , PARENT_BLOCK ) : NO_CHANGES
-Xcos trace:   objectUnreferenced( 3 , LINK ) : 1
 Xcos debug:   propertyUpdated( 2 , DIAGRAM , CHILDREN ) : SUCCESS
-Xcos trace:   objectUnreferenced( 3 , LINK ) : 0
+Xcos trace:   objectUnreferenced( 3 , LINK ) : 1
 Xcos debug:   propertyUpdated( 2 , DIAGRAM , VERSION_NUMBER ) : SUCCESS
 Super1 = scicos_block(,..
 model=scicos_model(sim="super",in=[],in2=[],intyp=1,out=[],out2=[],outtyp=[],evtin=[],evtout=[],state=[],dstate=[],odstate=list(),..
@@ -55,10 +54,6 @@ Xcos trace:   objectReferenced( 4 , BLOCK ) : 1
 Xcos trace:   propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 4 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 4 , BLOCK , INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 4 , BLOCK , OUTPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 4 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 4 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 4 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 4 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 4 , BLOCK ) : 0
@@ -69,7 +64,7 @@ Xcos trace:   propertyUpdated( 4 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 4 , BLOCK , DSTATE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 4 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace:   objectReferenced( 4 , BLOCK ) : 2
-Xcos trace:   objectReferenced( 3 , LINK ) : 1
+Xcos trace:   objectReferenced( 3 , LINK ) : 2
 Xcos info:    objectCreated( 5 , LINK )
 Xcos info:    objectCloned( 3 , 5 , LINK )
 Xcos trace:   propertyUpdated( 5 , LINK , COLOR ) : NO_CHANGES
@@ -87,10 +82,9 @@ Xcos trace:   objectReferenced( 5 , LINK ) : 1
 Xcos trace:   objectReferenced( 5 , LINK ) : 2
 Xcos trace:   propertyUpdated( 5 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 5 , LINK , PARENT_BLOCK ) : SUCCESS
-Xcos trace:   objectUnreferenced( 5 , LINK ) : 1
 Xcos debug:   propertyUpdated( 4 , BLOCK , CHILDREN ) : SUCCESS
-Xcos trace:   objectUnreferenced( 5 , LINK ) : 0
-Xcos trace:   objectUnreferenced( 3 , LINK ) : 0
+Xcos trace:   objectUnreferenced( 5 , LINK ) : 1
+Xcos trace:   objectUnreferenced( 3 , LINK ) : 1
 Xcos trace:   objectReferenced( 2 , DIAGRAM ) : 1
 Xcos trace:   objectUnreferenced( 2 , DIAGRAM ) : 0
 Xcos trace:   objectReferenced( 4 , BLOCK ) : 3
@@ -170,18 +164,17 @@ Xcos trace:   objectReferenced( 7 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 7 , BLOCK ) : 2
 Xcos debug:   propertyUpdated( 7 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 7 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
-Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 6 , DIAGRAM , CHILDREN ) : SUCCESS
-Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 0
+Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 1
 diag.objs(1)
-Xcos trace:   objectReferenced( 7 , BLOCK ) : 1
+Xcos trace:   objectReferenced( 7 , BLOCK ) : 2
  ans  =
 GUI     : 
 Graphics: 
-Xcos trace:   objectReferenced( 7 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 1
+Xcos trace:   objectReferenced( 7 , BLOCK ) : 3
+Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 2
           orig = [0,0]
-          sz = [2,2]
+          sz = [20,20]
           exprs = []
           pin = []
           pout = []
@@ -197,10 +190,10 @@ Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 1
           out_label = ""
           style = ""
 Model   : 
-Xcos trace:   objectReferenced( 7 , BLOCK ) : 2
 Xcos trace:   objectReferenced( 7 , BLOCK ) : 3
+Xcos trace:   objectReferenced( 7 , BLOCK ) : 4
+Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 3
 Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 1
           super type: 0
           in = []
           in2 = []
@@ -225,16 +218,16 @@ Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 1
           equations = list()
           uid = ""
 diag.objs(1).model
-Xcos trace:   objectReferenced( 7 , BLOCK ) : 2
 Xcos trace:   objectReferenced( 7 , BLOCK ) : 3
 Xcos trace:   objectReferenced( 7 , BLOCK ) : 4
+Xcos trace:   objectReferenced( 7 , BLOCK ) : 5
+Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 4
 Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 3
 Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 1
  ans  =
 super type: 0
-Xcos trace:   objectReferenced( 7 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 1
+Xcos trace:   objectReferenced( 7 , BLOCK ) : 3
+Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 2
 Xcos trace:   objectReferenced( 8 , LINK ) : 1
 Xcos trace:   objectUnreferenced( 8 , LINK ) : 0
 in = []
@@ -248,7 +241,7 @@ evtout = []
 state = []
 dstate = []
 odstate = list()
-rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[6,45,0,0,6,45],["Quat_Conj";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],1,[],[],tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8]),[],[],list()),list(mlist(["Link","xx","yy","id","thick","ct","from","to"],[],[],"",[0,0],[1,1],[2,1,0],[3,1,1])),"",list())
+rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[600,450,0,0,600,450],["Quat_Conj";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],100000,[],[],tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8]),[],[],list()),list(mlist(["Link","xx","yy","id","thick","ct","from","to"],[],[],"",[0,0],[1,1],[2,1,0],[3,1,1])),"",list())
 ipar = []
 opar = list()
 blocktype = "h"
@@ -260,14 +253,14 @@ nmode = 0
 equations = list()
 uid = ""
 diag.objs(1).model.rpar.objs(1)
-Xcos trace:   objectReferenced( 7 , BLOCK ) : 2
 Xcos trace:   objectReferenced( 7 , BLOCK ) : 3
 Xcos trace:   objectReferenced( 7 , BLOCK ) : 4
+Xcos trace:   objectReferenced( 7 , BLOCK ) : 5
+Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 4
 Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 3
-Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 2
 Xcos trace:   objectReferenced( 8 , LINK ) : 1
+Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 1
-Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 0
  ans  =
 Link    :
           xx: []
@@ -287,10 +280,6 @@ Xcos trace:   objectReferenced( 9 , BLOCK ) : 1
 Xcos trace:   propertyUpdated( 9 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 9 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 9 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 9 , BLOCK , INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 9 , BLOCK , OUTPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 9 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 9 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 9 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 9 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 0
@@ -301,7 +290,7 @@ Xcos trace:   propertyUpdated( 9 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 9 , BLOCK , DSTATE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 9 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 2
-Xcos trace:   objectReferenced( 7 , BLOCK ) : 1
+Xcos trace:   objectReferenced( 7 , BLOCK ) : 2
 Xcos info:    objectCreated( 10 , BLOCK )
 Xcos info:    objectCloned( 7 , 10 , BLOCK )
 Xcos trace:   propertyUpdated( 10 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
@@ -351,10 +340,9 @@ Xcos trace:   objectReferenced( 10 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
 Xcos trace:   propertyUpdated( 10 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 10 , BLOCK , PARENT_BLOCK ) : SUCCESS
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 9 , BLOCK , CHILDREN ) : SUCCESS
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 0
-Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 0
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
+Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 6 , DIAGRAM ) : 1
 Xcos trace:   objectUnreferenced( 6 , DIAGRAM ) : 0
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 3
@@ -382,18 +370,18 @@ Xcos trace:   objectUnreferenced( 8 , LINK ) : 0
 super type: 0
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 3
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 3
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 4
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 3
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 2
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 3
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 2
 Xcos trace:   objectReferenced( 11 , LINK ) : 1
 Xcos trace:   objectUnreferenced( 11 , LINK ) : 0
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 0
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
 in = []
 in2 = []
 intyp = 1
@@ -405,7 +393,7 @@ evtout = []
 state = []
 dstate = []
 odstate = list()
-rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[6,45,0,0,6,45],["Quat_Conj";""],[],[],[],[],tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8]),[],[],list()),list(mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[0,0],[2,2],[],[],[],[],[],[],"Quat_Conj",[],[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"super",[],[],1,[],[],1,[],[],[],[],list(),mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[6,45,0,0,6,45],["Quat_Conj";""],[],[],[],[],tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8]),[],[],list()),list(mlist(["Link","xx","yy","id","thick","ct","from","to"],[],[],"",[0,0],[1,1],[2,1,0],[3,1,1])),"",list()),[],list(),"h",[],[%f,%f],"Quat_Conj",0,0,list(),""),"",list())),"",list())
+rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[600,450,0,0,600,450],["Quat_Conj";""],[],[],[],[],tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8]),[],[],list()),list(mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[0,0],[20,20],[],[],[],[],[],[],"Quat_Conj",[],[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"super",[],[],1,[],[],1,[],[],[],[],list(),mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[600,450,0,0,600,450],["Quat_Conj";""],[],[],[],[],tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8]),[],[],list()),list(mlist(["Link","xx","yy","id","thick","ct","from","to"],[],[],"",[0,0],[1,1],[2,1,0],[3,1,1])),"",list()),[],list(),"h",[],[%f,%f],"Quat_Conj",0,0,list(),""),"",list())),"",list())
 ipar = []
 opar = list()
 blocktype = "h"
@@ -424,33 +412,33 @@ Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 1
  ans  =
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 1
-wpar = [6,45,0,0,6,45]
+wpar = [600,450,0,0,600,450]
 title = ["Quat_Conj";""]
 tol = []
 tf = []
 context = []
 void1 = []
-options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8])
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 1
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
 1     
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 0
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
 Super2.model.rpar.objs(1)
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 2
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 3
 Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 2
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 1
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 0
  ans  =
 GUI     : 
 Graphics: 
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 3
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 2
           orig = [0,0]
-          sz = [2,2]
+          sz = [20,20]
           exprs = []
           pin = []
           pout = []
@@ -466,10 +454,10 @@ Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
           out_label = ""
           style = ""
 Model   : 
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 3
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 4
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 3
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
           super type: 0
           in = []
           in2 = []
@@ -497,17 +485,17 @@ Super2.model.rpar.objs(1).model
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 3
+Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 4
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 5
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 4
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 3
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
  ans  =
 super type: 0
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 3
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 2
 Xcos trace:   objectReferenced( 11 , LINK ) : 1
 Xcos trace:   objectUnreferenced( 11 , LINK ) : 0
 in = []
@@ -521,7 +509,7 @@ evtout = []
 state = []
 dstate = []
 odstate = list()
-rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[6,45,0,0,6,45],["Quat_Conj";""],[],[],[],[],tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8]),[],[],list()),list(mlist(["Link","xx","yy","id","thick","ct","from","to"],[],[],"",[0,0],[1,1],[2,1,0],[3,1,1])),"",list())
+rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[600,450,0,0,600,450],["Quat_Conj";""],[],[],[],[],tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8]),[],[],list()),list(mlist(["Link","xx","yy","id","thick","ct","from","to"],[],[],"",[0,0],[1,1],[2,1,0],[3,1,1])),"",list())
 ipar = []
 opar = list()
 blocktype = "h"
@@ -536,23 +524,23 @@ Super2.model.rpar.objs(1).model.rpar
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 3
+Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 4
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 5
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 4
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 3
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
  ans  =
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
-wpar = [6,45,0,0,6,45]
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 3
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 2
+wpar = [600,450,0,0,600,450]
 title = ["Quat_Conj";""]
 tol = []
 tf = []
 context = []
 void1 = []
-options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8])
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -562,15 +550,15 @@ Super2.model.rpar.objs(1).model.rpar.objs(1)
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 3
+Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 4
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 5
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 4
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 3
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 2
 Xcos trace:   objectReferenced( 11 , LINK ) : 1
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 0
  ans  =
 Link    :
           xx: []
@@ -584,45 +572,39 @@ assert_checkequal(Super2.model.rpar.objs(1).model.rpar.objs(1).from, [2 1 0]);
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 1
-Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
+Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 3
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 4
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 3
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 11 , LINK ) : 2
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 0
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 11 , LINK ) : 1
 Xcos trace:   objectUnreferenced( 11 , LINK ) : 0
 assert_checkequal(Super2.model.rpar.objs(1).model.rpar.objs(1).to,   [3 1 1]);
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 9 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 10 , BLOCK ) : 1
-Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
+Xcos trace:   objectUnreferenced( 9 , BLOCK ) : 0
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 3
+Xcos trace:   objectReferenced( 10 , BLOCK ) : 4
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 3
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 2
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 11 , LINK ) : 1
-Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 0
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 11 , LINK ) : 0
 // Check that all the model items are freed
 clear
-Xcos debug:   propertyUpdated( 4 , BLOCK , CHILDREN ) : SUCCESS
-Xcos info:    objectDeleted( 5 , LINK )
+Xcos trace:   objectUnreferenced( 5 , LINK ) : 0
 Xcos info:    objectDeleted( 4 , BLOCK )
-Xcos debug:   propertyUpdated( 9 , BLOCK , CHILDREN ) : SUCCESS
-Xcos debug:   propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
-Xcos info:    objectDeleted( 11 , LINK )
-Xcos info:    objectDeleted( 10 , BLOCK )
+Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 0
 Xcos info:    objectDeleted( 9 , BLOCK )
 Xcos debug:   propertyUpdated( 7 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-Xcos debug:   propertyUpdated( 7 , BLOCK , CHILDREN ) : SUCCESS
-Xcos info:    objectDeleted( 8 , LINK )
-Xcos info:    objectDeleted( 7 , BLOCK )
+Xcos trace:   objectUnreferenced( 7 , BLOCK ) : 0
 Xcos info:    objectDeleted( 6 , DIAGRAM )
 Xcos info:    objectDeleted( 1 , LINK )
 Xcos debug:   propertyUpdated( 3 , LINK , PARENT_DIAGRAM ) : SUCCESS
-Xcos info:    objectDeleted( 3 , LINK )
+Xcos trace:   objectUnreferenced( 3 , LINK ) : 0
 Xcos info:    objectDeleted( 2 , DIAGRAM )

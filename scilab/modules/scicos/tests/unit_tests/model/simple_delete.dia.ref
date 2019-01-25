@@ -14,10 +14,6 @@ Xcos trace:   objectReferenced( 1 , BLOCK ) : 1
 Xcos trace:   propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , OUTPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 0
@@ -54,10 +50,9 @@ Xcos trace:   propertyUpdated( 1 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 2 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 2 , DIAGRAM , VERSION_NUMBER ) : SUCCESS
-Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 0
 clear scs_m
 Xcos debug:   propertyUpdated( 1 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-Xcos info:    objectDeleted( 1 , BLOCK )
+Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 0
 Xcos info:    objectDeleted( 2 , DIAGRAM )
 // Test #2: the block is deleted after the diagram
 blk = scicos_block();
@@ -66,10 +61,6 @@ Xcos trace:   objectReferenced( 3 , BLOCK ) : 1
 Xcos trace:   propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , OUTPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 3 , BLOCK ) : 0
@@ -134,13 +125,12 @@ Xcos trace:   objectReferenced( 5 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 5 , BLOCK ) : 2
 Xcos debug:   propertyUpdated( 5 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 5 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
-Xcos trace:   objectUnreferenced( 5 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 4 , DIAGRAM , CHILDREN ) : SUCCESS
-Xcos trace:   objectUnreferenced( 5 , BLOCK ) : 0
+Xcos trace:   objectUnreferenced( 5 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 4 , DIAGRAM , VERSION_NUMBER ) : SUCCESS
 clear scs_m
 Xcos debug:   propertyUpdated( 5 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-Xcos info:    objectDeleted( 5 , BLOCK )
+Xcos trace:   objectUnreferenced( 5 , BLOCK ) : 0
 Xcos info:    objectDeleted( 4 , DIAGRAM )
 clear blk
 Xcos info:    objectDeleted( 3 , BLOCK )

@@ -14,10 +14,6 @@ Xcos trace:   objectReferenced( 1 , BLOCK ) : 1
 Xcos trace:   propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , OUTPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 0
@@ -54,7 +50,6 @@ Xcos trace:   propertyUpdated( 1 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 2 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 2 , DIAGRAM , VERSION_NUMBER ) : SUCCESS
-Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 0
 scs_m.props.context = ["My context"; "with two lines"];
 Xcos trace:   objectReferenced( 2 , DIAGRAM ) : 1
 Xcos trace:   objectUnreferenced( 2 , DIAGRAM ) : 0
@@ -74,10 +69,6 @@ Xcos trace:   objectReferenced( 3 , BLOCK ) : 1
 Xcos trace:   propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , EXPRS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , OUTPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 3 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , STYLE ) : NO_CHANGES
 Xcos trace:   objectUnreferenced( 3 , BLOCK ) : 0
@@ -109,7 +100,7 @@ Xcos trace:   propertyUpdated( 3 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , DSTATE ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace:   objectReferenced( 3 , BLOCK ) : 2
-Xcos trace:   objectReferenced( 1 , BLOCK ) : 1
+Xcos trace:   objectReferenced( 1 , BLOCK ) : 2
 Xcos info:    objectCreated( 4 , BLOCK )
 Xcos info:    objectCloned( 1 , 4 , BLOCK )
 Xcos trace:   propertyUpdated( 4 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
@@ -144,10 +135,9 @@ Xcos trace:   objectReferenced( 4 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 4 , BLOCK ) : 2
 Xcos trace:   propertyUpdated( 4 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 4 , BLOCK , PARENT_BLOCK ) : SUCCESS
-Xcos trace:   objectUnreferenced( 4 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 3 , BLOCK , CHILDREN ) : SUCCESS
-Xcos trace:   objectUnreferenced( 4 , BLOCK ) : 0
-Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 0
+Xcos trace:   objectUnreferenced( 4 , BLOCK ) : 1
+Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 2 , DIAGRAM ) : 1
 Xcos trace:   objectUnreferenced( 2 , DIAGRAM ) : 0
 Xcos trace:   objectReferenced( 3 , BLOCK ) : 3
@@ -178,8 +168,7 @@ Xcos trace:   objectUnreferenced( 2 , DIAGRAM ) : 0
 // Check that all the model items are freed
 clear
 Xcos debug:   propertyUpdated( 1 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-Xcos info:    objectDeleted( 1 , BLOCK )
+Xcos trace:   objectUnreferenced( 1 , BLOCK ) : 0
 Xcos info:    objectDeleted( 2 , DIAGRAM )
-Xcos debug:   propertyUpdated( 3 , BLOCK , CHILDREN ) : SUCCESS
-Xcos info:    objectDeleted( 4 , BLOCK )
+Xcos trace:   objectUnreferenced( 4 , BLOCK ) : 0
 Xcos info:    objectDeleted( 3 , BLOCK )
