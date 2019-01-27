@@ -21,82 +21,50 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="DELAY_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="DELAY_f" xml:lang="en_US">
     <refnamediv>
         <refname>DELAY_f</refname>
         <refpurpose>Discrete time delay</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/DELAY_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/DELAY_f.png" align="center" valign="middle"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_DELAY_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="DELAY_f">Discrete time delay</link>
-                </para>
+                <xref linkend="Description_DELAY_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_DELAY_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_DELAY_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_DELAY_f">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_DELAY_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_DELAY_f">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_DELAY_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_DELAY_f">Parameters</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_DELAY_f">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Discrete_pal">Discrete time systems palette</link>
-                </para>
+                <xref linkend="Defaultproperties_DELAY_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_DELAY_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_DELAY_f">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Description_DELAY_f">
         <title>Description</title>
         <para>
-            This compiled super-block implements a discretized delay. It is built with a shift register and a clock. The value of the delay is given by the discretization time step multiplied by the number-1 of state of the register.
+            This compiled super-block implements a discretized delay. It is built with a shift
+            register and a clock. The value of the delay is given by the discretization time
+            step multiplied by the number-1 of state of the register.
         </para>
-        <para>
-            <latex><![CDATA[
+		<latex><![CDATA[
 \left\{
     \begin{array}{l l}
         T_0=length(Register)                                                  \\
@@ -105,20 +73,16 @@
     \end{array}
 \right.
 ]]></latex>
-        </para>
+		<para>.</para>
     </refsection>
     <refsection id="Dialogbox_DELAY_f">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/discrete_pal/en_US/DELAY_f_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/discrete_pal/en_US/DELAY_f_gui.png" align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -207,6 +171,17 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
+    </refsection>
+    <refsection id="Interfacingfunction_DELAY_f">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Linear/DELAY_f.sci">SCI/modules/scicos_blocks/macros/Linear/DELAY_f.sci</link>
+                </para>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection id="Example_DELAY_f">
         <title>Example</title>
@@ -237,15 +212,5 @@ importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
         </para>
-    </refsection>
-    <refsection id="Interfacingfunction_DELAY_f">
-        <title>Interfacing function</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Linear/DELAY_f.sci">SCI/modules/scicos_blocks/macros/Linear/DELAY_f.sci</link>
-                </para>
-            </listitem>
-        </itemizedlist>
     </refsection>
 </refentry>

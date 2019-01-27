@@ -21,98 +21,62 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="INVBLK">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="INVBLK" xml:lang="en_US">
     <refnamediv>
         <refname>INVBLK</refname>
         <refpurpose>Inverse</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/INVBLK.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/INVBLK.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_INVBLK">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="INVBLK">Inverse</link>
-                </para>
+                <xref linkend="Description_INVBLK">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_INVBLK">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_INVBLK">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_INVBLK">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_INVBLK">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_INVBLK">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_INVBLK">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_INVBLK">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_INVBLK">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_INVBLK">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_INVBLK">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_INVBLK">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_INVBLK">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_INVBLK">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Mathoperations_pal">Math operations palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_INVBLK">
         <title>Description</title>
         <para>
-            This block computes the output vector y with y[i]=1/u[i] where u is the input vector.The input and output sizes are determined by the context.
+            This block computes the output vector y with y[i]=1/u[i] where u is the input vector.
+            The input and output sizes are determined by the context.
         </para>
     </refsection>
     <refsection id="Dialogbox_INVBLK">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/INVBLK_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-            
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/INVBLK_gui.png" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -194,6 +158,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_INVBLK">
         <title>Interfacing function</title>
@@ -211,23 +176,17 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_INVBLK">
+    <refsection id="Seealso_INVBLK" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="GAINBLK_f">GAINBLK_f- Gain (Xcos block)</link>
-                </para>
+                <link linkend="GAINBLK_f">GAINBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PROD_f">PROD_f - Element-wise Product (Xcos block)</link>
-                </para>
+                <link linkend="PROD_f">PROD_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PRODUCT">PRODUCT - Element-wise vectors Multiplication/Division (Xcos block)</link>
-                </para>
+                <link linkend="PRODUCT">PRODUCT</link>
             </listitem>
         </itemizedlist>
     </refsection>

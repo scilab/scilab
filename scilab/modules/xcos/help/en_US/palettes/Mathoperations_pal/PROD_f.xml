@@ -21,81 +21,51 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="PROD_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="PROD_f" xml:lang="en_US">
     <refnamediv>
         <refname>PROD_f</refname>
         <refpurpose>Element-wise product</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/PROD_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/PROD_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_PROD_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="PROD_f">Element-wise product</link>
-                </para>
+                <xref linkend="Description_PROD_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_PROD_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_PROD_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_PROD_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_PROD_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_PROD_f">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_PROD_f">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_PROD_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_PROD_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_PROD_f">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_PROD_f">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_PROD_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Mathoperations_pal">Math operations palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_PROD_f">
         <title>Description</title>
         <para>
             The output of that block is the element-wise product of its two input vectors.
         </para>
     </refsection>
+
     <refsection id="Defaultproperties_PROD_f">
         <title>Default properties</title>
         <itemizedlist>
@@ -170,6 +140,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_PROD_f">
         <title>Interfacing function</title>
@@ -187,23 +158,17 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_PROD_f">
-        <title>Voir aussi</title>
+    <refsection id="Seealso_PROD_f" role="see also">
+        <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="GAINBLK_f">GAINBLK_f - Gain (Xcos block)</link>
-                </para>
+                <link linkend="GAINBLK_f">GAINBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INVBLK">INVBLK - Invert (Xcos block)</link>
-                </para>
+                <link linkend="INVBLK">INVBLK</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PRODUCT">PRODUCT - Element-wise vectors Multiplication/Division (Xcos block)</link>
-                </para>
+                <link linkend="PRODUCT">PRODUCT</link>
             </listitem>
         </itemizedlist>
     </refsection>

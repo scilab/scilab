@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,89 +13,50 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="LOGIC" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" 
+		  xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" 
+		  xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" 
+		  xml:id="LOGIC" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
     <refnamediv>
         <refname>LOGIC</refname>
         <refpurpose>Logique combinatoire</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/LOGIC.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata fileref="../../../../images/palettes/LOGIC.png" align="center"/>
+			</imageobject>
+		</inlinemediaobject>
     </refsection>
     <refsection id="Contents_LOGIC">
         <title>Contenu</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="LOGIC">Logique combinatoire</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_LOGIC">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_LOGIC">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Data_Type_LOGIC">Types de données</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_LOGIC">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_LOGIC">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="Examples_LOGIC">Exemples</link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_LOGIC">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_LOGIC">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_LOGIC">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_LOGIC">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Integer_pal">Palette Entier</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+		<itemizedlist>
+			<listitem>
+				<xref linkend="Description_LOGIC">Description</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Data_Type_LOGIC">Types de données</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Dialogbox_LOGIC">Paramètres</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Defaultproperties_LOGIC">Propriétés par défaut</xref>
+			</listitem>
+			<listitem>
+				<link linkend="Examples_LOGIC">Exemples</link>
+			</listitem>
+			<listitem>
+				<xref linkend="Interfacingfunction_LOGIC">Fonction d'interfaçage</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Computationalfunction_LOGIC">Fonction de calcul</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Seealso_LOGIC">Voir aussi</xref>
+			</listitem>
+		</itemizedlist>
     </refsection>
     <refsection id="Description_LOGIC">
         <title>Description</title>
@@ -120,7 +81,8 @@
                 </para>
                 <para/>
                 <para>
-                    <latex scilab:localized="true"><![CDATA[Nombre\,de\,lignes = 2^{(Nombre\,d'entrées)}]]></latex>
+					<emphasis>Nombre de lignes =
+					2<superscript>(nombre d'entrées)</superscript></emphasis>
                 </para>
                 <para/>
             </listitem>
@@ -158,17 +120,14 @@
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_LOGIC">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/integer_pal/fr_FR/LOGIC_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Paramètres</title>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata fileref="../../../gui/integer_pal/fr_FR/LOGIC_gui.png"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+			</imageobject>
+		</inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -262,6 +221,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
     <refsection id="Examples_LOGIC">
         <title>Exemples</title>
@@ -344,51 +304,11 @@
           <emphasis role="bold">Q3</emphasis>
         </td>
       </tr>
-      <tr>
-        <td>0</td>
-        <td>X</td>
-        <td>X</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>0</td>
-        <td>0</td>
-        <td>1</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>0</td>
-        <td>1</td>
-        <td>0</td>
-        <td>1</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>1</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>1</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>1</td>
-        <td>1</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>1</td>
-      </tr>
+      <tr><td>0</td><td>X</td><td>X</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+      <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
     </informaltable>
     <para>où <emphasis><literal>X</literal></emphasis> signifie "indifférent".</para>
     <para>
@@ -398,39 +318,26 @@
     <programlisting role="example"><![CDATA[
       [zeros(4,4) ; eye(4,4)]
     ]]></programlisting>
-            <para/>
-            <para>
-                La figure suivante montre les sorties
-                <emphasis><literal>
-                        Q<subscript>0</subscript>
-                    </literal>
-                </emphasis>
-                à
-                <emphasis><literal>
-                        Q<subscript>3</subscript>
-                    </literal>
-                </emphasis>
-                obtenues pendant la simulation quand les entrées
-                <emphasis>
-                    <literal>a</literal>
-                </emphasis>
-                et
-                <emphasis>
-                    <literal>b</literal>
-                </emphasis>
-                de sélection du bloc sont générées par
-                un compteur binaire.
-            </para>
-            <para>
-                <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.zcos">
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../examples/integer_pal/fr_FR/LOGIC_fr_FR.zcos" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                </link>
-            </para>
-            <scilab:image localized="true"><![CDATA[
+		<para/>
+		<para>
+			La figure suivante montre les sorties
+			<emphasis><literal>Q<subscript>0</subscript></literal></emphasis>
+			à <emphasis><literal>Q<subscript>3</subscript></literal></emphasis>
+			obtenues pendant la simulation quand les entrées
+			<emphasis><literal>a</literal></emphasis>
+			et <emphasis><literal>b</literal></emphasis>
+			de sélection du bloc sont générées par un compteur binaire.
+		</para>
+		<para>
+			<link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.zcos">
+				<inlinemediaobject>
+					<imageobject>
+						<imagedata fileref="../../../../examples/integer_pal/fr_FR/LOGIC_fr_FR.zcos" align="center" valign="middle"/>
+					</imageobject>
+				</inlinemediaobject>
+			</link>
+		</para>
+		<scilab:image localized="true"><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>

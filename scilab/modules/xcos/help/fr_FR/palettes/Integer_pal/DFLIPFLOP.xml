@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,86 +13,52 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="DFLIPFLOP" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" 
+		  xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" 
+		  xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" 
+		  xml:id="DFLIPFLOP" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
     <refnamediv>
         <refname>DFLIPFLOP</refname>
         <refpurpose>Bascule D</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/DFLIPFLOP.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata fileref="../../../../images/palettes/DFLIPFLOP.png" align="center"/>
+			</imageobject>
+		</inlinemediaobject>
     </refsection>
     <refsection id="Contents_DFLIPFLOP">
         <title>Contenu</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="DFLIPFLOP">Bascule D</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_DFLIPFLOP">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_DFLIPFLOP">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Data_Type_DFLIPFLOP">Types de données</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_DFLIPFLOP">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <!--      TODO wait for the bug 8900 resolution http://bugzilla.scilab.org/show_bug.cgi?id=8900
-          <listitem>
-            <para>
-              <xref linkend="Example_DFLIPFLOP">Exemple</xref>
-            </para>
-          </listitem>
+		<itemizedlist>
+			<listitem>
+				<xref linkend="Description_DFLIPFLOP">Description</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Data_Type_DFLIPFLOP">Types de données</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Defaultproperties_DFLIPFLOP">Propriétés par défaut</xref>
+			</listitem>
+			<!--      TODO wait for the bug 8900 resolution http://bugzilla.scilab.org/show_bug.cgi?id=8900
+  <listitem>
+	<xref linkend="Example_DFLIPFLOP">Exemple</xref>
+  </listitem>
 -->
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_DFLIPFLOP">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_DFLIPFLOP">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_DFLIPFLOP">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Integer_pal">Palette Entier</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+			<listitem>
+				<xref linkend="Interfacingfunction_DFLIPFLOP">Fonction d'interfaçage</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Seealso_DFLIPFLOP">Voir aussi</xref>
+			</listitem>
+		</itemizedlist>
     </refsection>
     <refsection id="Description_DFLIPFLOP">
         <title>Description</title>
         <para>
-            Ce bloc sort son état d'entrée (<emphasis role="bold">D</emphasis>) quand l'entrée de validation (<emphasis role="bold">en</emphasis>) est à 1 sur le front montant de l'horloge
+            Ce bloc sort son état d'entrée (<emphasis role="bold">D</emphasis>) quand l'entrée de
+			validation (<emphasis role="bold">en</emphasis>) est à 1 sur le front montant de l'horloge
             <emphasis role="bold">clk</emphasis>. La sortie <emphasis role="bold">!Q</emphasis> est la
             négation logique de <emphasis role="bold">Q</emphasis>.
             Cette bascule est aussi connue comme une bascule de retard puisque l'état de l'entrée n'est
@@ -102,107 +68,48 @@
         <para>
             La table de vérité de ce bloc est la suivante :
         </para>
-        <para/>
-        <informaltable border="1" cellpadding="3">
+        <informaltable border="1" cellpadding="3" align="center">
             <tr>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{clk}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{en}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{D}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{Q_n}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{!Q_n}]]></latex>
-                </td>
+                <th>clk</th>
+                <th>en</th>
+                <th>D</th>
+                <th>Q<subscript>n</subscript></th>
+                <th>!Q<subscript>n</subscript></th>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[\uparrow]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[X]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[Q_{n-1}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[!Q_{n-1}]]></latex>
-                </td>
+                <td>↑</td>
+                <td>0</td>
+                <td>X</td>
+                <td>Q<subscript>n-1</subscript></td>
+                <td>!Q<subscript>n-1</subscript></td>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[\uparrow]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
+                <td>↑</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[\uparrow]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
+                <td>↑</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
             </tr>
             <tr>
-                <td align="left">Pas de front</td>
-                <td align="left">
-                    <latex><![CDATA[X]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[X]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[Q_{n-1}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[!Q_{n-1}]]></latex>
-                </td>
+                <td>Pas de front</td>
+                <td>X</td>
+                <td>X</td>
+                <td>Q<subscript>n-1</subscript></td>
+                <td>!Q<subscript>n-1</subscript></td>
             </tr>
         </informaltable>
         <para>
-            où
-            <emphasis>
-                <literal>X</literal>
-            </emphasis>
-            signifie "indifférent" et
-            <emphasis><literal>
-                    Q<subscript>n-1</subscript>
-                </literal>
-            </emphasis>
+            où <emphasis><literal>X</literal></emphasis> signifie "indifférent" et
+            <emphasis><literal>Q<subscript>n-1</subscript></literal></emphasis>
             est l'état de sortie antérieur de
-            <emphasis><literal>
-                    Q<subscript>n</subscript>
-                </literal>
-            </emphasis>
+            <emphasis><literal>Q<subscript>n</subscript></literal></emphasis>
         </para>
     </refsection>
     <refsection id="Data_Type_DFLIPFLOP">
@@ -324,6 +231,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
     <!--  TODO wait for the bug 8900 resolution http://bugzilla.scilab.org/show_bug.cgi?id=8900
 <refsection id="Example_DFLIPFLOP">

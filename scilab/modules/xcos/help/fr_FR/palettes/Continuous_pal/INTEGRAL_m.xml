@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,82 +13,50 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="INTEGRAL_m" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+		  xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+		  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+		  xmlns:scilab="http://www.scilab.org" xml:id="INTEGRAL_m" xml:lang="fr">
     <refnamediv>
         <refname>INTEGRAL_m</refname>
         <refpurpose>Intégration</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/INTEGRAL_m.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata align="center" fileref="../../../../images/palettes/INTEGRAL_m.png"/>
+			</imageobject>
+		</inlinemediaobject>
     </refsection>
     <refsection id="Contents_INTEGRAL_m">
         <title>Contenu</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="INTEGRAL_m">Intégration</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_INTEGRAL_m">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_INTEGRAL_m">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_INTEGRAL_m">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_INTEGRAL_m">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_INTEGRAL_m">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_INTEGRAL_m">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Examples_INTEGRAL_m">Exemple</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_INTEGRAL_m">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Continuous_pal">Palette Systèmes à temps continu</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+		<itemizedlist>
+			<listitem>
+				<xref linkend="Description_INTEGRAL_m">Description</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Dialogbox_INTEGRAL_m">Paramètres</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Defaultproperties_INTEGRAL_m">Propriétés par défaut</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Interfacingfunction_INTEGRAL_m">Fonction d'interfaçage</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Computationalfunction_INTEGRAL_m">Fonction de calcul</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Examples_INTEGRAL_m">Exemple</xref>
+			</listitem>
+		</itemizedlist>
     </refsection>
     <refsection id="Description_INTEGRAL_m">
-        <title>Description</title><para>Ce bloc est un intégrateur. La sortie y est l'intégrale de l'entrée u à l'instant courant t.</para>
+        <title>Description</title>
+		<para>
+			Ce bloc est un intégrateur. La sortie y est l'intégrale de l'entrée u à l'instant courant t.
+		</para>
         <informalequation>
             <mediaobject>
                 <imageobject>
@@ -96,11 +64,10 @@
                 </imageobject>
             </mediaobject>
         </informalequation>
-
         où y0 est une condition initiale et t0 est le temps correspondant à cette condition.
     </refsection>
     <refsection id="Dialogbox_INTEGRAL_m">
-        <title>Boîte de dialogue</title>
+        <title>Paramètres</title>
         <para>La boîte de dialogue des paramètres vous permet de définir :</para>
         <itemizedlist>
             <listitem>
@@ -117,18 +84,17 @@
         </para>
         <para>Dans ce cas, la valeur du signal de réinitialisation dépend d'un signal extèrieur.</para>
         <para/>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/INTEGRAL_m_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata fileref="../../../../images/gui/INTEGRAL_m_gui.gif"
+						   align="center" style="float:right"/>
+				<!-- align => Javahelp, style => Online -->
+			</imageobject>
+		</inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">Initial Condition</emphasis>
+                    <emphasis role="bold">Condition initiale</emphasis>
                 </para>
                 <para>Un vecteur/scalaire : les conditions  initiales .</para>
                 <para>Avec ce paramètre, on peut définir le type de données des entrées/sorties.
@@ -199,9 +165,7 @@
                     <emphasis role="bold">regular inputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -209,9 +173,7 @@
                     <emphasis role="bold">regular outputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -246,6 +208,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
     <refsection id="Interfacingfunction_INTEGRAL_m">
         <title>Fonction d'interfaçage</title>
@@ -285,7 +248,6 @@ importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_1_Exam
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-
         </refsection>
         <refsection id="Example_INTEGRAL_m_2">
             <title>Exemple 2</title>

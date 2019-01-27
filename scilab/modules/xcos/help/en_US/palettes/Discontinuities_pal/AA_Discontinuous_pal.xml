@@ -31,125 +31,99 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <link linkend="BACKLASH">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="BACKLASH" fileref="../../../../images/palettes/BACKLASH.png"
-                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
-                </imageobject>
-            </inlinemediaobject>
-            </link>.
+        <link linkend="BACKLASH">
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata linkend="BACKLASH" fileref="../../../../images/palettes/BACKLASH.png"
+                 style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+            </imageobject>
+        </inlinemediaobject>
+        </link>.
 
-            <link linkend="DEADBAND">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="DEADBAND" fileref="../../../../images/palettes/DEADBAND.png"
-                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
-                </imageobject>
-            </inlinemediaobject>
-            </link>.
+        <link linkend="DEADBAND">
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata linkend="DEADBAND" fileref="../../../../images/palettes/DEADBAND.png"
+                 style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+            </imageobject>
+        </inlinemediaobject>
+        </link>.
 
-            <link linkend="DELAYV_f">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="DELAYV_f" fileref="../../../../images/palettes/DELAYV_f.png"
-                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
-                </imageobject>
-            </inlinemediaobject>
-            </link>.
+        <link linkend="DELAYV_f">
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata linkend="DELAYV_f" fileref="../../../../images/palettes/DELAYV_f.png"
+                 style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+            </imageobject>
+        </inlinemediaobject>
+        </link>.
 
-            <link linkend="HYSTHERESIS">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="HYSTHERESIS" fileref="../../../../images/palettes/HYSTHERESIS.png"
-                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
-                </imageobject>
-            </inlinemediaobject>
-            </link>.
+        <link linkend="HYSTHERESIS">
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata linkend="HYSTHERESIS" fileref="../../../../images/palettes/HYSTHERESIS.png"
+                 style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+            </imageobject>
+        </inlinemediaobject>
+        </link>.
 
-            <link linkend="RATELIMITER">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="RATELIMITER" fileref="../../../../images/palettes/RATELIMITER.png"
-                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
-                </imageobject>
-            </inlinemediaobject>
-            </link>.
+        <link linkend="RATELIMITER">
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata linkend="RATELIMITER" fileref="../../../../images/palettes/RATELIMITER.png"
+                 style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+            </imageobject>
+        </inlinemediaobject>
+        </link>.
 
-            <link linkend="QUANT_f">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="QUANT_f" fileref="../../../../images/palettes/QUANT_f.png"
-                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
-                </imageobject>
-            </inlinemediaobject>
-            </link>.
+        <link linkend="QUANT_f">
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata linkend="QUANT_f" fileref="../../../../images/palettes/QUANT_f.png"
+                 style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+            </imageobject>
+        </inlinemediaobject>
+        </link>.
 
-            <link linkend="SATURATION">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="SATURATION" fileref="../../../../images/palettes/SATURATION.png"
-                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
-                </imageobject>
-            </inlinemediaobject>
-            </link>.
-
-        </para>
-    </refsection>
-    <refsection id="Module_discontinuities_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <link linkend="SATURATION">
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata linkend="SATURATION" fileref="../../../../images/palettes/SATURATION.png"
+                 style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+            </imageobject>
+        </inlinemediaobject>
+        </link>.
     </refsection>
     <refsection id="Description_discontinuities_pal">
         <title>Description</title>
-        <para>discontinuities palette includes blocks whose outputs are
-            discontinuities functions of their inputs.
+        <para>
+            discontinuities palette includes blocks whose outputs are discontinuities functions
+            of their inputs.
         </para>
     </refsection>
-    <refsection id="Blocks_discontinuities_pal">
+    <refsection id="Blocks_discontinuities_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="BACKLASH">BACKLASH - Backlash</link>
-                </para>
+                <link linkend="BACKLASH">BACKLASH</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DEADBAND">DEADBAND - Deadband</link>
-                </para>
+                <link linkend="DEADBAND">DEADBAND</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DELAYV_f">DELAYV_f — Variable time delay</link>
-                </para>
+                <link linkend="DELAYV_f">DELAYV_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="HYSTHERESIS">HYSTHERESIS — Hystheresis</link>
-                </para>
+                <link linkend="HYSTHERESIS">HYSTHERESIS</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="RATELIMITER">RATELIMITER - Rate limiter</link>
-                </para>
+                <link linkend="RATELIMITER">RATELIMITER</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="QUANT_f">QUANT_f - Quantization</link>
-                </para>
+                <link linkend="QUANT_f">QUANT_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SATURATION">SATURATION — Saturation</link>
-                </para>
+                <link linkend="SATURATION">SATURATION</link>
             </listitem>
         </itemizedlist>
     </refsection>

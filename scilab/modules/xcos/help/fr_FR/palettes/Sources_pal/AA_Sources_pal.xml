@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -232,16 +232,6 @@
             </link>.
         </para>
     </refsection>
-    <refsection id="Module_Sources_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Sources_pal">
         <title>Description</title>
         <para>
@@ -251,123 +241,77 @@
         </para>
         <para>Les blocs de cette palette n'ont pas de port d'entrée régulier.</para>
     </refsection>
-    <refsection id="Blocks_Sources_pal">
+    <refsection id="Blocks_Sources_pal" role="see also">
         <title>Blocs</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLKINV_f">CLKINV_f - Port d'entrée d'activation</link>
-                </para>
+                <link linkend="CLKINV_f">CLKINV_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLOCK_c">CLOCK_c - Horloge d'activation</link>
-                </para>
+                <link linkend="CLOCK_c">CLOCK_c</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CONST_m">CONST_m - Constante</link>
-                </para>
+                <link linkend="CONST_m">CONST_m</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Counter">Counter - Compteur</link>
-                </para>
+                <link linkend="Counter">Counter</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CURV_f">CURV_f - Générateur de signal (défini par une courbe)</link>
-                </para>
+                <link linkend="CURV_f">CURV_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="FROMWSB">FROMWSB - Données de l'espace de travail Scilab vers  Xcos</link>
-                </para>
+                <link linkend="FROMWSB">FROMWSB</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="GENSIN_f">GENSIN_f - Générateur sinusoïdal</link>
-                </para>
+                <link linkend="GENSIN_f">GENSIN_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="GENSQR_f">GENSQR_f - Générateur d'onde carrée</link>
-                </para>
+                <link linkend="GENSQR_f">GENSQR_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="IN_f">IN_f - Port d'entrée régulier</link>
-                </para>
+                <link linkend="IN_f">IN_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INIMPL_f">INIMPL_f - Port d'entrée implicite</link>
-                </para>
+                <link linkend="INIMPL_f">INIMPL_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Modulo_Count">Modulo_Count - Compteur Modulo</link>
-                </para>
+                <link linkend="Modulo_Count">Modulo_Count</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PULSE_SC">PULSE_SC - Pulse generator</link>
-                </para>
+                <link linkend="PULSE_SC">PULSE_SC</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="RAMP">RAMP - Fonction Rampe</link>
-                </para>
+                <link linkend="RAMP">RAMP</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="RAND_m">RAND_m - Générateur aléatoire</link>
-                </para>
+                <link linkend="RAND_m">RAND_m</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="READAU_f">READAU_f - Lit un fichier son</link>
-                </para>
+                <link linkend="READAU_f">READAU_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="READC_f">READC_f - Lire des données binaires</link>
-                </para>
+                <link linkend="READC_f">READC_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="RFILE_f">RFILE_f - Lire à partir d'un fichier</link>
-                </para>
+                <link linkend="RFILE_f">RFILE_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SampleCLK">SampleCLK - Horloge d'échantillonage</link>
-                </para>
+                <link linkend="SampleCLK">SampleCLK</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SAWTOOTH_f">SAWTOOTH_f - Générateur de dents de scie</link>
-                </para>
+                <link linkend="SAWTOOTH_f">SAWTOOTH_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Sigbuilder">Sigbuilder - Créateur/Générateur de signal</link>
-                </para>
+                <link linkend="Sigbuilder">Sigbuilder</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="STEP_FUNCTION">STEP_FUNCTION - Fonction échelon</link>
-                </para>
+                <link linkend="STEP_FUNCTION">STEP_FUNCTION</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TIME_f">TIME_f - Temps de simulation</link>
-                </para>
+                <link linkend="TIME_f">TIME_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TKSCALE">TKSCALE - Constante réglable par un composant graphique</link>
-                </para>
+                <link linkend="TKSCALE">TKSCALE</link>
             </listitem>
         </itemizedlist>
     </refsection>

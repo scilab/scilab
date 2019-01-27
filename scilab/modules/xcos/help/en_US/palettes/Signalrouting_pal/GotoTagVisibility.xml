@@ -21,95 +21,63 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="GotoTagVisibility">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="GotoTagVisibility" xml:lang="en_US">
     <refnamediv>
         <refname>GotoTagVisibility</refname>
         <refpurpose>Define Scope of GOTO tag visibility</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/GotoTagVisibility.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/GotoTagVisibility.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_GotoTagVisibility">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="GotoTagVisibility">Define Scope of GOTO tag visibility</link>
-                </para>
+                <xref linkend="Description_GotoTagVisibility">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_GotoTagVisibility">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_GotoTagVisibility">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_GotoTagVisibility">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_GotoTagVisibility">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_GotoTagVisibility">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_GotoTagVisibility">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_GotoTagVisibility">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_GotoTagVisibility">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_GotoTagVisibility">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_GotoTagVisibility">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_GotoTagVisibility">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Signalrouting_pal">Signal routing palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_GotoTagVisibility">
         <title>Description</title>
         <para>
-            This block defines the accessibility of the GOTO block when it is configure as "scoped". The FROM block corresponding to that GOTO must be in the same subsystem of the GotoTagVisibility or in subsystems below it in the model hierarchy.
+            This block defines the accessibility of the GOTO block when it is configure as "scoped".
+            The FROM block corresponding to that GOTO must be in the same subsystem of the
+            GotoTagVisibility or in subsystems below it in the model hierarchy.
         </para>
         <para>
         </para>
     </refsection>
     <refsection id="Dialogbox_GotoTagVisibility">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/GotoTagVisibility_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/GotoTagVisibility_gui.gif"
+                        align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -175,6 +143,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_GotoTagVisibility">
         <title>Interfacing function</title>
@@ -184,18 +153,14 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_GotoTagVisibility">
+    <refsection id="Seealso_GotoTagVisibility" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="GOTO">GOTO - GOTO Pass block input to From block</link>
-                </para>
+                <link linkend="GOTO">GOTO</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="FROM">FROM - FROM Receives data from a corresponding GOTO</link>
-                </para>
+                <link linkend="FROM">FROM</link>
             </listitem>
         </itemizedlist>
     </refsection>

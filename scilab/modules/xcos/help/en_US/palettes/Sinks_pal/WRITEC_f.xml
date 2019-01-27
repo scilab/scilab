@@ -50,31 +50,31 @@
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-              <xref linkend="Description_WRITEC_f">Description</xref>
+                <xref linkend="Description_WRITEC_f">Description</xref>
             </listitem>
             <listitem>
-              <xref linkend="Datatype_WRITEC_f">Data types</xref>
+                <xref linkend="Datatype_WRITEC_f">Data types</xref>
             </listitem>
             <listitem>
-              <xref linkend="Dialogbox_WRITEC_f">Parameters</xref>
+                <xref linkend="Dialogbox_WRITEC_f">Parameters</xref>
             </listitem>
             <listitem>
-              <xref linkend="Defaultproperties_WRITEC_f">Default properties</xref>
+                <xref linkend="Defaultproperties_WRITEC_f">Default properties</xref>
             </listitem>
             <listitem>
-              <xref linkend="Interfacingfunction_WRITEC_f">Interfacing function</xref>
+                <xref linkend="Example_WRITEC_f">Example</xref>
             </listitem>
             <listitem>
-              <xref linkend="Computationalfunction_WRITEC_f">Computational function</xref>
+                <xref linkend="Interfacingfunction_WRITEC_f">Interfacing function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Example_WRITEC_f">Example</xref>
+                <xref linkend="Computationalfunction_WRITEC_f">Computational function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Seealso_WRITEC_f">See also</xref>
+                <xref linkend="Seealso_WRITEC_f">See also</xref>
             </listitem>
         </itemizedlist>
-        <para/>
+		<para/>
     </refsection>
 
     <refsection id="Description_WRITEC_f">
@@ -126,7 +126,7 @@ box "Field #N";
         <title>Parameters</title>
         <inlinemediaobject>
             <imageobject>
-                <imagedata fileref="../../../gui/sinks_pal/en_US/WRITEC_f_gui.gif" align="center" style="float:right"/>
+                <imagedata fileref="../../../gui/sinks_pal/en_US/WRITEC_f_gui.png" align="center" style="float:right"/>
                 <!-- align => Javahelp, style => Online -->
             </imageobject>
         </inlinemediaobject>
@@ -263,26 +263,6 @@ box "Field #N";
 		<para/>
     </refsection>
 
-    <refsection id="Interfacingfunction_WRITEC_f">
-        <title>Interfacing function</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/WRITEC_f.sci">SCI/modules/scicos_blocks/macros/Sinks/WRITEC_f.sci</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-
-    <refsection id="Computationalfunction_WRITEC_f">
-        <title>Computational function</title>
-        <itemizedlist>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/writec.c (Type 2)</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-
     <refsection id="Example_WRITEC_f">
         <title>Example</title>
         <para>
@@ -301,6 +281,26 @@ box "Field #N";
             </link>
         </para>
 		<para/>
+    </refsection>
+
+    <refsection id="Interfacingfunction_WRITEC_f">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/WRITEC_f.sci">SCI/modules/scicos_blocks/macros/Sinks/WRITEC_f.sci</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+
+    <refsection id="Computationalfunction_WRITEC_f">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/src/c/writec.c (Type 2)</para>
+            </listitem>
+        </itemizedlist>
     </refsection>
 
     <refsection id="Seealso_WRITEC_f" role="see also" >

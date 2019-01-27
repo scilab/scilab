@@ -31,7 +31,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="CBLOCK">
             <inlinemediaobject>
                 <imageobject>
@@ -121,19 +120,8 @@
                 </imageobject>
             </inlinemediaobject>
             </link>.
+    </refsection>
 
-        </para>
-    </refsection>
-    <refsection id="Module_Userdefinedfunctions_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Userdefinedfunctions_pal">
         <title>Description</title>
         <para>The user defined function contains blocks that allow you to model
@@ -141,62 +129,38 @@
             input.
         </para>
     </refsection>
-    <refsection id="Blocks_Userdefinedfunctions_pal">
+    <refsection id="Blocks_Userdefinedfunctions_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="c_block">c_block — C file function</link>
-                </para>
+                <link linkend="c_block">c_block</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CBLOCK">CBLOCK — New C</link>
-                </para>
+                <link linkend="CBLOCK">CBLOCK</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="EXPRESSION">EXPRESSION — Mathematical
-                        expression
-                    </link>
-                </para>
+                <link linkend="EXPRESSION">EXPRESSION</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="fortran_block">fortran_block — Fortran</link>
-                </para>
+                <link linkend="fortran_block">fortran_block</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="generic_block3">generic_block3 — Generic block</link>
-                </para>
+                <link linkend="generic_block3">generic_block3</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MBLOCK">MBLOCK — Modelica generic block</link>
-                </para>
+                <link linkend="MBLOCK">MBLOCK</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PDE">PDE — 1D PDE block</link>
-                </para>
+                <link linkend="PDE">PDE</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="scifunc_block_m">scifunc_block_m — Scilab function
-                        block
-                    </link>
-                </para>
+                <link linkend="scifunc_block_m">scifunc_block_m</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SUPER_f">SUPER_f — Super block</link>
-                </para>
+                <link linkend="SUPER_f">SUPER_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TEXT_f">TEXT_f — Text</link>
-                </para>
+                <link linkend="TEXT_f">TEXT_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

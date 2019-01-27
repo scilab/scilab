@@ -21,84 +21,60 @@
 *
 * See the file ./license.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="DERIV" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="DERIV" xml:lang="ja">
     <refnamediv>
         <refname>DERIV</refname>
         <refpurpose>微分</refpurpose>
     </refnamediv>
     <refsection>
         <title>ブロックのスクリーンショット</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/DERIV.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/DERIV.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_DERIV">
         <title>内容</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="DERIV">微分</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_DERIV">パレット</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_DERIV">説明</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_DERIV">デフォルトプロパティ</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_DERIV">例</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_DERIV">インターフェイス用関数</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_DERIV">計算用関数</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_DERIV">
-        <title>パレット</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Continuous_pal">連続時間システムパレット
-                    </link>
-                </para>
-            </listitem>
-        </itemizedlist>
+		<itemizedlist>
+			<listitem>
+				<para>
+					<xref linkend="Description_DERIV">説明</xref>
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					<xref linkend="Defaultproperties_DERIV">デフォルトプロパティ</xref>
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					<xref linkend="Example_DERIV">例</xref>
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					<xref linkend="Interfacingfunction_DERIV">インターフェイス用関数</xref>
+				</para>
+			</listitem>
+			<listitem>
+				<para>
+					<xref linkend="Computationalfunction_DERIV">計算用関数</xref>
+				</para>
+			</listitem>
+		</itemizedlist>
     </refsection>
     <refsection id="Description_DERIV">
         <title>説明</title>
         <para>
             微分ブロックは入力の時間tに関する微分を計算します.
         </para>
-        <latex>
+        <latex alt="y(t) = (u(t) - u(t-h)) / h">
             $$
-            y(t) = {u(t) - u(t-h)} over h
+            y(t) = \frac{u(t) - u(t-h)}{h}
             $$
         </latex>
         <para>
@@ -133,9 +109,7 @@
                     <emphasis role="bold">標準入力:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- ポート 1 : 大きさ [-1,1] /
-                        1型
-                    </emphasis>
+                    <emphasis role="bold">- ポート 1 : 大きさ [-1,1] / 1型</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -143,29 +117,22 @@
                     <emphasis role="bold">標準出力:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- ポート 1 : 大きさ [-1,1] /
-                        1型
-                    </emphasis>
+                    <emphasis role="bold">- ポート 1 : 大きさ [-1,1] / 1型</emphasis>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">アクティベーション入力の数/大きさ:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">アクティベーション入力の数/大きさ:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">アクティベーション出力の数/大きさ:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">アクティベーション出力の数/大きさ:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">連続時間状態量:</emphasis>
-                    no
+                    <emphasis role="bold">連続時間状態量:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -175,8 +142,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis>
-                    no
+                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -186,6 +152,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_DERIV">
         <title>例</title>

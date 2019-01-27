@@ -21,84 +21,53 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="PRODUCT">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="PRODUCT" xml:lang="en">
     <refnamediv>
         <refname>PRODUCT</refname>
         <refpurpose>Element-wise vector multiplication/division</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/PRODUCT.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/PRODUCT.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_PRODUCT">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="PRODUCT">Element-wise vector multiplication/division</link>
-                </para>
+                <xref linkend="Description_PRODUCT">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_PRODUCT">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_PRODUCT">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_PRODUCT">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_PRODUCT">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_PRODUCT">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_PRODUCT">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_PRODUCT">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_PRODUCT">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_PRODUCT">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_PRODUCT">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_PRODUCT">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_PRODUCT">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_PRODUCT">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Mathoperations_pal">Math operations palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_PRODUCT">
         <title>Description</title>
         <para>
-            That bloc computes element-wise multiplication or division of its vector inputs. The number of inputs and operation are specified with the <emphasis role="bold">Number of inputs or sign vector</emphasis> parameter.
+            That bloc computes element-wise multiplication or division of its vector inputs.
+            The number of inputs and operation are specified with the
+            <emphasis role="bold">Number of inputs or sign vector</emphasis> parameter.
         </para>
         <itemizedlist>
             <listitem>
@@ -115,17 +84,13 @@
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_PRODUCT">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/PRODUCT_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/PRODUCT_gui.png" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -217,6 +182,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_PRODUCT">
         <title>Interfacing function</title>
@@ -234,23 +200,17 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_PRODUCT">
-        <title>Voir aussi</title>
+    <refsection id="Seealso_PRODUCT" role="see also">
+        <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="GAINBLK_f">GAINBLK_f- Gain (Xcos block)</link>
-                </para>
+                <link linkend="GAINBLK_f">GAINBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INVBLK">INVBLK - Invert (Xcos block)</link>
-                </para>
+                <link linkend="INVBLK">INVBLK</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PROD_f">PROD_f - Element-wise product (Xcos block)</link>
-                </para>
+                <link linkend="PROD_f">PROD_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

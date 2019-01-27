@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,90 +13,54 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="JKFLIPFLOP" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="JKFLIPFLOP" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
     <refnamediv>
         <refname>JKFLIPFLOP</refname>
         <refpurpose>Bascule JK</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/JKFLIPFLOP.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/JKFLIPFLOP.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_JKFLIPFLOP">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="JKFLIPFLOP">Bascule JK</link>
-                </para>
+                <xref linkend="Description_JKFLIPFLOP">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_JKFLIPFLOP">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_JKFLIPFLOP">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Data_Type_JKFLIPFLOP">Types de données</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_JKFLIPFLOP">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_JKFLIPFLOP">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_JKFLIPFLOP">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_JKFLIPFLOP">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_JKFLIPFLOP">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Data_Type_JKFLIPFLOP">Types de données</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_JKFLIPFLOP">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Integer_pal">Palette Entier</link>
-                </para>
+                <xref linkend="Dialogbox_JKFLIPFLOP">Paramètres</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_JKFLIPFLOP">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_JKFLIPFLOP">Exemple</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_JKFLIPFLOP">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_JKFLIPFLOP">Voir aussi</xref>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Description_JKFLIPFLOP">
         <title>Description</title>
         <para>
-            La bascule JK est la plus versatile des bascules de base. Elle a deux entrées étiquetées traditionnellement
-            <emphasis role="bold">J</emphasis> (mise à 1) et <emphasis role="bold">K</emphasis> (remise à 0).
+            La bascule JK est la plus versatile des bascules de base. Elle a deux entrées
+            étiquetées traditionnellement <emphasis role="bold">J</emphasis> (mise à 1) et
+            <emphasis role="bold">K</emphasis> (remise à 0).
         </para>
         <itemizedlist>
             <listitem>
@@ -116,8 +80,10 @@
             </listitem>
             <listitem>
                 <para>
-                    Quand les entrées sont simultanément à l'état haut la sortie <emphasis role="bold">Q</emphasis>
-                    bascule d'un état à l'autre. Elle peut effectuer les fonctions de la bascule set/reset (SR) et a l'avantage de ne pas comporter d'états ambigus.
+                    Quand les entrées sont simultanément à l'état haut la sortie
+                    <emphasis role="bold">Q</emphasis> bascule d'un état à l'autre. Elle peut
+                    effectuer les fonctions de la bascule set/reset (SR) et a l'avantage de ne pas
+                    comporter d'états ambigus.
                 </para>
             </listitem>
         </itemizedlist>
@@ -131,7 +97,8 @@
             Cette application de commutation trouve une utilisation extensive dans les compteurs binaires.
         </para>
         <para>
-            L'utilisateur peut donner la valeur initiale de l'état de sortie avec le paramètre <emphasis role="bold">Initial Value</emphasis>.
+            L'utilisateur peut donner la valeur initiale de l'état de sortie avec le paramètre
+            <emphasis role="bold">Initial Value</emphasis>.
         </para>
         <para>
             La table de vérité de ce bloc est :
@@ -139,93 +106,45 @@
         <para/>
         <informaltable border="1" cellpadding="3">
             <tr>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{J}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{K}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{Q_n}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{!Q_n}]]></latex>
-                </td>
-                <td align="left"/>
+                <th><emphasis>J</emphasis></th>
+                <th><emphasis>K</emphasis></th>
+                <th><emphasis>Q<subscript>n</subscript></emphasis></th>
+                <th><emphasis>!Q<subscript>n</subscript></emphasis></th>
+                <td/>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[Q_{n-1}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[!Q_{n-1}]]></latex>
-                </td>
-                <td align="left">Maintien</td>
+                <td><emphasis>0</emphasis></td>
+                <td><emphasis>0</emphasis></td>
+                <td><emphasis>Q<subscript>n-1</subscript></emphasis></td>
+                <td><emphasis>!Q<subscript>n-1</subscript></emphasis></td>
+                <td>Maintien</td>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">Remise à 0</td>
+                <td><emphasis>0</emphasis></td>
+                <td><emphasis>1</emphasis></td>
+                <td><emphasis>0</emphasis></td>
+                <td><emphasis>1</emphasis></td>
+                <td>Remise à 0</td>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">Mise à 1</td>
+                <td><emphasis>1</emphasis></td>
+                <td><emphasis>0</emphasis></td>
+                <td><emphasis>1</emphasis></td>
+                <td><emphasis>0</emphasis></td>
+                <td>Mise à 1</td>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[!Q_{n-1}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[Q_{n-1}]]></latex>
-                </td>
-                <td align="left">Basculement</td>
+                <td><emphasis>1</emphasis></td>
+                <td><emphasis>1</emphasis></td>
+                <td><emphasis>!Q<subscript>n-1</subscript></emphasis></td>
+                <td><emphasis>Q<subscript>n-1</subscript></emphasis></td>
+                <td>Basculement</td>
             </tr>
         </informaltable>
         <para>
-            où
-            <emphasis><literal>
-                    Q<subscript>n-1</subscript>
-                </literal>
-            </emphasis>
+            où <emphasis><literal>Q<subscript>n-1</subscript></literal></emphasis>
             est l'état antérieur de
-            <emphasis><literal>
-                    Q<subscript>n</subscript>
-                </literal>
-            </emphasis>
-            .
+            <emphasis><literal>Q<subscript>n</subscript></literal></emphasis>.
         </para>
     </refsection>
     <refsection id="Data_Type_JKFLIPFLOP">
@@ -268,15 +187,14 @@
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_JKFLIPFLOP">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/integer_pal/fr_FR/JKFLIPFLOP_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/integer_pal/fr_FR/JKFLIPFLOP_gui.png"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -369,22 +287,15 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_JKFLIPFLOP">
         <title>Exemple</title>
         <para>
             L'exemple qui suit construit un compteur 3 bits asynchrone avec des bascules JK cablées en bascule T. Vous pouvez voir
             sur la droite le chronogramme des sorties
-            <emphasis><literal>
-                    Q<subscript>0</subscript>
-                </literal>
-            </emphasis>
-            à
-            <emphasis><literal>
-                    Q<subscript>2</subscript>
-                </literal>
-            </emphasis>
-            du compteur.
+            <emphasis><literal>Q<subscript>0</subscript></literal></emphasis>
+            à <emphasis><literal>Q<subscript>2</subscript></literal></emphasis> du compteur.
         </para>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/JKFLIPFLOP_fr_FR.zcos">
@@ -396,9 +307,9 @@
             </link>
         </para>
         <scilab:image localized="true"><![CDATA[
-			importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/JKFLIPFLOP_fr_FR.zcos");
-			xcos_simulate(scs_m, 4);
-		]]></scilab:image>
+            importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/JKFLIPFLOP_fr_FR.zcos");
+            xcos_simulate(scs_m, 4);
+        ]]></scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_JKFLIPFLOP">
         <title>Fonction d'interfaçage</title>

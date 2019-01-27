@@ -21,7 +21,10 @@
 *
 * See the file ./license.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Continuous_pal" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="Continuous_pal" xml:lang="ja">
     <refnamediv>
         <refname>Continuous_pal</refname>
         <refpurpose>連続時間システムパレット</refpurpose>
@@ -129,16 +132,6 @@
             </link>.
         </para>
     </refsection>
-    <refsection id="Module_Continuous_pal">
-        <title>モジュール</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Continuous_pal">
         <title>説明</title>
         <para>
@@ -146,59 +139,38 @@
         </para>
     </refsection>
     <refsection id="Blocks_Continuous_pal">
+        <!-- role="see also" expected after actual pages translation -->
         <title>ブロック</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLINDUMMY_f">CLINDUMMY_f — Dummy</link>
-                </para>
+                <link linkend="CLINDUMMY_f">CLINDUMMY_f — Dummy</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLR">CLR — 連続系伝達関数</link>
-                </para>
+                <link linkend="CLR">CLR — 連続系伝達関数</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLSS">CLSS - 連続系状態空間システム</link>
-                </para>
+                <link linkend="CLSS">CLSS - 連続系状態空間システム</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DERIV">DERIV - 微係数</link>
-                </para>
+                <link linkend="DERIV">DERIV - 微係数</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INTEGRAL_f">INTEGRAL_f - 積分</link>
-                </para>
+                <link linkend="INTEGRAL_f">INTEGRAL_f - 積分</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INTEGRAL_m">INTEGRAL_m — 積分</link>
-                </para>
+                <link linkend="INTEGRAL_m">INTEGRAL_m — 積分</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PID">PID - PID レギュレータ</link>
-                </para>
+                <link linkend="PID">PID - PID レギュレータ</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TCLSS">TCLSS — ジャンプを有する連続系線形システム
-                    </link>
-                </para>
+                <link linkend="TCLSS">TCLSS — ジャンプを有する連続系線形システム</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TIME_DELAY">TIME_DELAY - 時間遅延</link>
-                </para>
+                <link linkend="TIME_DELAY">TIME_DELAY - 時間遅延</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="VARIABLE_DELAY">VARIABLE_DELAY — 可変遅延
-                    </link>
-                </para>
+                <link linkend="VARIABLE_DELAY">VARIABLE_DELAY — 可変遅延</link>
             </listitem>
         </itemizedlist>
     </refsection>

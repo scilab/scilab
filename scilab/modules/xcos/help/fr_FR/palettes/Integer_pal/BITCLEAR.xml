@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,89 +13,50 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="BITCLEAR" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+		  xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" 
+		  xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" 
+		  xml:id="BITCLEAR" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
     <refnamediv>
         <refname>BITCLEAR</refname>
         <refpurpose>Positionne un bit à 0</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/BITCLEAR.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata align="center" fileref="../../../../images/palettes/BITCLEAR.png"/>
+			</imageobject>
+		</inlinemediaobject>
     </refsection>
     <refsection id="Contents_BITCLEAR">
         <title>Contenu</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="BITCLEAR">Positionne un bit à 0</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_BITCLEAR">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_BITCLEAR">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Data Type_BITCLEAR">Types de données</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_BITCLEAR">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_BITCLEAR">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_BITCLEAR">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_BITCLEAR">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_BITCLEAR">Fonctions de calcul</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_BITCLEAR">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_BITCLEAR">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Integer_pal">Palette Entier</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+		<itemizedlist>
+			<listitem>
+				<xref linkend="Description_BITCLEAR">Description</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Data Type_BITCLEAR">Types de données</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Dialogbox_BITCLEAR">Paramètres</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Defaultproperties_BITCLEAR">Propriétés par défaut</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Example_BITCLEAR">Exemple</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Interfacingfunction_BITCLEAR">Fonction d'interfaçage</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Computationalfunction_BITCLEAR">Fonctions de calcul</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Seealso_BITCLEAR">Voir aussi</xref>
+			</listitem>
+		</itemizedlist>
     </refsection>
     <refsection id="Description_BITCLEAR">
         <title>Description</title>
@@ -106,7 +67,7 @@
             peut être résumée par cette expression
         </para>
         <para>
-            <latex scilab:localized="true"><![CDATA[ Sortie=Entrée \wedge Masque]]></latex>
+            <emphasis>Sortie = Entrée ∧ Masque</emphasis>
         </para>
         <para>
             i.e. un <literal>ET</literal> bit à bit entre <literal>Entrée</literal> et
@@ -134,15 +95,14 @@
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_BITCLEAR">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../gui/integer_pal/fr_FR/BITCLEAR_gui.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Paramètres</title>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata fileref="../../../gui/integer_pal/fr_FR/BITCLEAR_gui.png"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+			</imageobject>
+		</inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -252,21 +212,20 @@
                 </para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
     <refsection id="Example_BITCLEAR">
         <title>Exemple</title>
         <para>
             Ci-dessous un cas simple d'utilisation du bloc.
         </para>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/BITCLEAR_fr_FR.zcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/integer_pal/fr_FR/BITCLEAR_fr_FR.zcos" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
+		<link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/BITCLEAR_fr_FR.zcos">
+			<inlinemediaobject>
+				<imageobject>
+					<imagedata align="center" fileref="../../../../examples/integer_pal/fr_FR/BITCLEAR_fr_FR.zcos" valign="middle"/>
+				</imageobject>
+			</inlinemediaobject>
+		</link>
     </refsection>
     <refsection id="Interfacingfunction_BITCLEAR">
         <title>Fonction d'interfaçage</title>
@@ -282,28 +241,28 @@
         <title>Fonctions de calcul</title>
         <itemizedlist>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/bit_clear_32.c</para>
+                SCI/modules/scicos_blocks/src/c/bit_clear_32.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/bit_clear_16.c</para>
+                SCI/modules/scicos_blocks/src/c/bit_clear_16.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/bit_clear_8.c</para>
+                SCI/modules/scicos_blocks/src/c/bit_clear_8.c
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection role="see also" id="Seealso_BITCLEAR">
         <title>Voir aussi</title>
-        <itemizedlist>
-            <listitem>
+        <simplelist>
+            <member>
                 <link linkend="BITSET">BITSET</link>
-            </listitem>
-            <listitem>
+            </member>
+            <member>
                 <link linkend="EXTRACTBITS">EXTRACTBITS</link>
-            </listitem>
-            <listitem>
+            </member>
+            <member>
                 <link linkend="LOGICAL_OP">LOGICAL_OP</link>
-            </listitem>
-        </itemizedlist>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

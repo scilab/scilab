@@ -22,85 +22,46 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="INIMPL_f" xml:lang="en_US">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="INIMPL_f" xml:lang="en_US">
     <refnamediv>
         <refname>INIMPL_f</refname>
         <refpurpose>Implicit Input port</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/INIMPL_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/INIMPL_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_INIMPL_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="INIMPL_f">Implicit Input port</link>
-                </para>
+                <xref linkend="Description_INIMPL_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_INIMPL_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_INIMPL_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_INIMPL_f">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_INIMPL_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_INIMPL_f">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_INIMPL_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_INIMPL_f">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_INIMPL_f">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_INIMPL_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_INIMPL_f">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_INIMPL_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_INIMPL_f">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_INIMPL_f">
-        <title>Palettes</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Portaction_pal">Port &amp; Subsystem</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="Sources_pal">Sources</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_INIMPL_f">
         <title>Description</title>
         <para>
@@ -108,20 +69,19 @@
             and be connected to an implicit input in the subsystem.
         </para>
         <para>
-            This block is a signal link from outside of a system into a sub-system. In a Super Block, the implicit's input ports must be numbered from 1 to the total number of implicit's input ports.
-            You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
+            This block is a signal link from outside of a system into a sub-system. In a Super Block,
+            the implicit's input ports must be numbered from 1 to the total number of implicit's
+            input ports. You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
         </para>
     </refsection>
     <refsection id="Dialogbox_INIMPL_f">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/portaction_pal/en_US/INIMPL_f_gui.png" align="center"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/portaction_pal/en_US/INIMPL_f_gui.png" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -195,6 +155,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_INIMPL_f">
         <title>Example</title>
@@ -218,7 +179,7 @@
         <scilab:image><![CDATA[
 // overload messagebox to avoid the "modelica compiler" message
 function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
-	btn=1;
+    btn=1;
 endfunction
 
 importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/INIMPL_f_en_US.zcos");
@@ -235,7 +196,7 @@ xcos_simulate(scs_m, 4);
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_INIMPL_f">
+    <refsection id="Seealso_INIMPL_f" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>

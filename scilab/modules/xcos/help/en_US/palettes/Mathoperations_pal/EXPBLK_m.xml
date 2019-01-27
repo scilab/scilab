@@ -21,86 +21,46 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="EXPBLK_m">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="EXPBLK_m" xml:lang="en">
     <refnamediv>
         <refname>EXPBLK_m</refname>
         <refpurpose>Exponential of a scalar</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/EXPBLK_m.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/EXPBLK_m.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_EXPBLK_m">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="EXPBLK_m">Exponential of a scalar</link>
-                </para>
+                <xref linkend="Description_EXPBLK_m">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_EXPBLK_m">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_EXPBLK_m">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_EXPBLK_m">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_EXPBLK_m">Default
-                                properties
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_EXPBLK_m">Interfacing
-                                function
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_EXPBLK_m">Computational
-                                function
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_EXPBLK_m">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_EXPBLK_m">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_EXPBLK_m">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_EXPBLK_m">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_EXPBLK_m">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_EXPBLK_m">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_EXPBLK_m">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Mathoperations_pal">Math operations palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_EXPBLK_m">
         <title>Description</title>
         <para>
@@ -109,15 +69,13 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_EXPBLK_m">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/EXPBLK_m_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/gui/EXPBLK_m_gui.gif" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -169,24 +127,17 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        inputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        outputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation outputs: </emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">continuous-time state:</emphasis>
-                    no
+                    <emphasis role="bold">continuous-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -196,8 +147,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis>
-                    no
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -207,6 +157,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_EXPBLK_m">
         <title>Interfacing function</title>
@@ -224,23 +175,17 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_EXPBLK_m">
+    <refsection id="Seealso_EXPBLK_m" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="POWBLK_f">POWBLK_f - Array power (Bloc Xcos)</link>
-                </para>
+                <link linkend="POWBLK_f">POWBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="LOGBLK_f">LOGBLK_f - Logarithm (Bloc Xcos)</link>
-                </para>
+                <link linkend="LOGBLK_f">LOGBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SQRT">SQRT - Square root (Bloc Xcos)</link>
-                </para>
+                <link linkend="SQRT">SQRT</link>
             </listitem>
         </itemizedlist>
     </refsection>

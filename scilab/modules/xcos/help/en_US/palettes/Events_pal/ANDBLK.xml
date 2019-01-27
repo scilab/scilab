@@ -21,70 +21,41 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ANDBLK">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="ANDBLK" xml:lang="en_US">
     <refnamediv>
         <refname>ANDBLK</refname>
         <refpurpose>Activation and</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/ANDBLK.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/ANDBLK.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_ANDBLK">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="ANDBLK">Activation and</link>
-                </para>
+                <xref linkend="Description_ANDBLK">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_ANDBLK">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_ANDBLK">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_ANDBLK">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_ANDBLK">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="ANDBLK">Compiled Super Block content</link>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_ANDBLK">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_ANDBLK">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_ANDBLK">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_ANDBLK">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Events_pal">Event handling palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_ANDBLK">
         <title>Description</title>
         <para>
@@ -93,7 +64,6 @@
             allows you to reduce the number of lines required to route signals
             from one part of a diagram to another. This makes your diagram easier to
             understand.
-
         </para>
     </refsection>
     <refsection id="Defaultproperties_ANDBLK">
@@ -161,11 +131,11 @@
         </itemizedlist>
     </refsection>
     <refsection id="Example_ANDBLK">
-        <title>And example</title>
+        <title>Example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/ANDBLK_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/events_pal/ANDBLK_Example.zcos" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/events_pal/ANDBLK_Example.zcos"/>
                 </imageobject>
             </inlinemediaobject>
         </link>

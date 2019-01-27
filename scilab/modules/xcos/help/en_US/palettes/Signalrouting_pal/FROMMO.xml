@@ -21,95 +21,60 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="FROMMO">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="FROMMO" xml:lang="en_US">
     <refnamediv>
         <refname>FROMMO</refname>
         <refpurpose>Receives data from a corresponding GOTOMO</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/FROMMO.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/FROMMO.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_FROMMO">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="FROMMO">Receives data from a corresponding GOTOMO</link>
-                </para>
+                <xref linkend="Description_FROMMO">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_FROMMO">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_FROMMO">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_FROMMO">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_FROMMO">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_FROMMO">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_FROMMO">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_FROMMO">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_FROMMO">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_FROMMO">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_FROMMO">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_FROMMO">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Signalrouting_pal">Signal Routing palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_FROMMO">
         <title>Description</title>
         <para>
-            This block is used to connect Modelica blocks. For more information on how it works please refer to the documentation of the FROM block by clicking on the link in the "See also" field.
-        </para>
-        <para>
+            This block is used to connect Modelica blocks. For more information on how it works
+            please refer to the documentation of the FROM block by clicking on the link in the
+            "See also" field.
         </para>
     </refsection>
     <refsection id="Dialogbox_FROMMO">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/FROMMO_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/FROMMO_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -183,6 +148,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_FROMMO">
         <title>Interfacing function</title>
@@ -192,13 +158,11 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_FROMMO">
+    <refsection id="Seealso_FROMMO" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="FROM">FROM - FROM Receives data from a corresponding GOTO (xcos Block)</link>
-                </para>
+                <link linkend="FROM">FROM</link>
             </listitem>
         </itemizedlist>
     </refsection>

@@ -32,6 +32,15 @@
     <refsection>
         <title>Block Screenshot</title>
         <para>
+            <link linkend="AUTOMAT">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="AUTOMAT" fileref="../../../../images/palettes/AUTOMAT.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                </imageobject>
+            </inlinemediaobject>
+            </link>.
+
             <link linkend="BOUNCE">
             <inlinemediaobject>
                 <imageobject>
@@ -59,53 +68,40 @@
             </inlinemediaobject>
             </link>.
 
+            <link linkend="PDE">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="PDE" fileref="../../../../images/palettes/PDE.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                </imageobject>
+            </inlinemediaobject>
+            </link>.
+
         </para>
-    </refsection>
-    <refsection id="Module_Demonstrationsblocks_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
     </refsection>
     <refsection id="Description_Demonstrationsblocks_pal">
         <title>Description</title>
-        <para>The Demonstrations blocks palette contains blocks used in some Xcos
-            demonstration diagrams.
+        <para>
+            The Demonstrations blocks palette contains blocks used in some Xcos demonstration diagrams.
         </para>
     </refsection>
-    <refsection id="Blocks_Demonstrationsblocks_pal">
+    <refsection id="Blocks_Demonstrationsblocks_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="AUTOMAT">AUTOMAT — hybrid automata</link>
-                </para>
+                <link linkend="AUTOMAT">AUTOMAT</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="BOUNCE">BOUNCE - Balls coordinates generator</link>
-                </para>
+                <link linkend="BOUNCE">BOUNCE</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="BOUNCEXY">BOUNCEXY — Balls viewer</link>
-                </para>
+                <link linkend="BOUNCEXY">BOUNCEXY</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="BPLATFORM">BPLATFORM — Balls under a platform
-                        viewer
-                    </link>
-                </para>
+                <link linkend="BPLATFORM">BPLATFORM</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PDE">PDE — 1D PDE block</link>
-                </para>
+                <link linkend="PDE">PDE</link>
             </listitem>
         </itemizedlist>
     </refsection>

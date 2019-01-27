@@ -21,98 +21,64 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="POWBLK_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="POWBLK_f" xml:lang="en">
     <refnamediv>
         <refname>POWBLK_f</refname>
         <refpurpose>Array power</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/POWBLK_f.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/POWBLK_f.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_POWBLK_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="POWBLK_f">Array Power</link>
-                </para>
+                <xref linkend="Description_POWBLK_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_POWBLK_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_POWBLK_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_POWBLK_f">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_POWBLK_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_POWBLK_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_POWBLK_f">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_POWBLK_f">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_POWBLK_f">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_POWBLK_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_POWBLK_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_POWBLK_f">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_POWBLK_f">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_POWBLK_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Mathoperations_pal">Math operations palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_POWBLK_f">
         <title>Description</title>
         <para>
-            This block computes an output vector y with y[i]= u[i]^a where a is the real scalar given by the parameter
-            <emphasis role="bold">to the power of</emphasis> and u the input. The input and output port sizes are
-            determined by the compiler according to the connected blocks port sizes.
+            This block computes an output vector y with y[i]= u[i]^a where a is the real scalar
+            given by the parameter <emphasis role="bold">to the power of</emphasis> and u the input.
+            The input and output port sizes are determined by the compiler according to the
+            connected blocks port sizes.
         </para>
     </refsection>
     <refsection id="Dialogbox_POWBLK_f">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/POWBLK_f_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/gui/POWBLK_f_gui.gif" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -164,24 +130,17 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        inputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        outputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">continuous-time state:</emphasis>
-                    no
+                    <emphasis role="bold">continuous-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -191,8 +150,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis>
-                    no
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -202,6 +160,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_POWBLK_f">
         <title>Interfacing function</title>
@@ -219,23 +178,17 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_POWBLK_f">
+    <refsection id="Seealso_POWBLK_f" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="LOGBLK_f">LOGBLK_f - Logarithm (Bloc Xcos)</link>
-                </para>
+                <link linkend="LOGBLK_f">LOGBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="EXPBLK_m">EXPBLK_m - Exponential of a scalar (Bloc Xcos)</link>
-                </para>
+                <link linkend="EXPBLK_m">EXPBLK_m</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SQRT">SQRT - Square root (Bloc Xcos)</link>
-                </para>
+                <link linkend="SQRT">SQRT</link>
             </listitem>
         </itemizedlist>
     </refsection>

@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -89,16 +89,6 @@
 
         </para>
     </refsection>
-    <refsection id="Module_discontinuities_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_discontinuities_pal">
         <title>Description</title>
         <para>
@@ -106,44 +96,30 @@
             discontinues de leurs entrées.
         </para>
     </refsection>
-    <refsection id="Blocks_discontinuities_pal">
+    <refsection id="Blocks_discontinuities_pal" role="see also">
         <title>Blocs</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="BACKLASH">BACKLASH - Backlash (Jeu)</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="DEADBAND">DEADBAND - Zone morte</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="DELAYV_f">DELAYV_f — Délai variable</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="HYSTHERESIS">HYSTHERESIS — Hystérésis (relais)</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="RATELIMITER">RATELIMITER - Limitation de vitesse</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="QUANT_f">QUANT_f - Quantifization</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="SATURATION">SATURATION — Saturation</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist>
+            <member>
+                <link linkend="BACKLASH">BACKLASH</link>
+            </member>
+            <member>
+                <link linkend="DEADBAND">DEADBAND</link>
+            </member>
+            <member>
+                <link linkend="DELAYV_f">DELAYV_f</link>
+            </member>
+            <member>
+                <link linkend="HYSTHERESIS">HYSTHERESIS</link>
+            </member>
+            <member>
+                <link linkend="RATELIMITER">RATELIMITER</link>
+            </member>
+            <member>
+                <link linkend="QUANT_f">QUANT_f</link>
+            </member>
+            <member>
+                <link linkend="SATURATION">SATURATION</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

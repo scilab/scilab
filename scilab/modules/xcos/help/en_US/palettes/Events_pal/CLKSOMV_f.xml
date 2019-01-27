@@ -21,78 +21,51 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CLKSOMV_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="CLKSOMV_f" xml:lang="en_US">
     <refnamediv>
         <refname>CLKSOMV_f</refname>
         <refpurpose>Activation union</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CLKSOMV_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CLKSOMV_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_CLKSOMV_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLKSOMV_f">Activation union</link>
-                </para>
+                <xref linkend="Description_CLKSOMV_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CLKSOMV_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CLKSOMV_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CLKSOMV_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CLKSOMV_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_CLKSOMV_f">Computational function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_CLKSOMV_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_CLKSOMV_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_CLKSOMV_f">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_CLKSOMV_f">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_CLKSOMV_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Events_pal">Event handling palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_CLKSOMV_f">
         <title>Description</title>
         <para>
-            This block is an event addition block with up to three inputs. The
-            output reproduces the events on all the input ports. Strictly
-            speaking, CLKSOMV is not a Xcos block because it is discarded at the
-            compilation phase. The inputs and output of CLKSOMV are synchronized.
-
+            This block is an event addition block with up to three inputs. The output reproduces
+            the events on all the input ports. Strictly speaking, CLKSOMV is not a Xcos block
+            because it is discarded at the compilation phase. The inputs and output of CLKSOMV
+            are synchronized.
         </para>
     </refsection>
     <refsection id="Defaultproperties_CLKSOMV_f">
@@ -150,7 +123,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Interfacingfunction_CLKSOMV_f">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -168,11 +143,11 @@
         </itemizedlist>
     </refsection>
     <refsection id="Example_CLKSOMV_f">
-        <title>Sum example</title>
+        <title>Example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/CLKSOMV_f_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/events_pal/CLKSOMV_f_Example.zcos" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/events_pal/CLKSOMV_f_Example.zcos"/>
                 </imageobject>
             </inlinemediaobject>
         </link>

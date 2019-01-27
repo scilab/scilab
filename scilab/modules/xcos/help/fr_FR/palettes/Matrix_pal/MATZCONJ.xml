@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,77 +13,42 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATZCONJ" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="MATZCONJ" xml:lang="fr_FR">
     <refnamediv>
         <refname>MATZCONJ</refname>
-        <refpurpose>Conjuguée des éléments d'une matrice</refpurpose>
+        <refpurpose>Conjugués des éléments d'une matrice</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/MATZCONJ.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/MATZCONJ.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_MATZCONJ">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATZCONJ">Conjuguée des éléments d'une matrice</link>
-                </para>
+                <xref linkend="Description_MATZCONJ">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MATZCONJ">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MATZCONJ">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="MATZCONJ">Exemple</link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MATZCONJ">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MATZCONJ">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_MATZCONJ">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_MATZCONJ">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <link linkend="MATZCONJ">Exemple</link>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_MATZCONJ">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Matrix_pal">Palette Opérations matricielles</link>
-                </para>
+                <xref linkend="Defaultproperties_MATZCONJ">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_MATZCONJ">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_MATZCONJ">Fonction de calcul</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_MATZCONJ">Voir aussi</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -178,6 +143,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_MATZCONJ">
         <title>Fonction d'interfaçage</title>
@@ -195,18 +161,14 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_MATZCONJ">
+    <refsection id="Seealso_MATZCONJ" role="see also">
         <title>Voir aussi</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATTRAN">MATTRAN - Transposée de matrice (xcos Block)</link>
-                </para>
+                <link linkend="MATTRAN">MATTRAN</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="conj">conj (Fonction Scilab)</link>
-                </para>
+                <link linkend="conj">conj (Fonction Scilab)</link>
             </listitem>
         </itemizedlist>
     </refsection>

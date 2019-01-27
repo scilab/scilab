@@ -21,63 +21,34 @@
 *
 * See the file ./license.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CLINDUMMY_f" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="CLINDUMMY_f" xml:lang="ja">
     <refnamediv>
         <refname>CLINDUMMY_f</refname>
         <refpurpose>ダミー</refpurpose>
     </refnamediv>
     <refsection>
         <title>ブロックのスクリーンショット</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CLINDUMMY_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CLINDUMMY_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_CLINDUMMY_f">
         <title>内容</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLINDUMMY_f">ダミー</link>
-                </para>
+                <xref linkend="Description_CLINDUMMY_f">説明</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CLINDUMMY_f">パレット</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CLINDUMMY_f">説明</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CLINDUMMY_f">デフォルトプロパティ</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CLINDUMMY_f">インターフェイス用関数
-                            </xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_CLINDUMMY_f">デフォルトプロパティ</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_CLINDUMMY_f">
-        <title>パレット</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">連続時間システムパレット</link>
-                </para>
+                <xref linkend="Interfacingfunction_CLINDUMMY_f">インターフェイス用関数
+                    </xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -145,6 +116,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_CLINDUMMY_f">
         <title>インターフェイス用関数</title>

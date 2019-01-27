@@ -22,90 +22,53 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="GENSIN_f" xml:lang="en_US">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="GENSIN_f" xml:lang="en_US">
     <refnamediv>
         <refname>GENSIN_f</refname>
         <refpurpose>Sine wave generator</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/GENSIN_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/GENSIN_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_GENSIN_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="GENSIN_f">Sine wave generator</link>
-                </para>
+                <xref linkend="Description_GENSIN_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_GENSIN_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_GENSIN_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Datatype_GENSIN_f">Data types</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_GENSIN_f">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_GENSIN_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_GENSIN_f">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_GENSIN_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_GENSIN_f">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_GENSIN_f">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Datatype_GENSIN_f">Data types</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_GENSIN_f">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_GENSIN_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_GENSIN_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_GENSIN_f">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_GENSIN_f">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_GENSIN_f">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_GENSIN_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Sources_pal">Sources palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_GENSIN_f">
         <title>Description</title>
         <para>
@@ -120,35 +83,25 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    The magnitude
-                    <emphasis>
-                        <literal>M</literal>
-                    </emphasis>
+                    The magnitude <emphasis><literal>M</literal></emphasis>
                     with the <emphasis role="bold">Magnitude</emphasis> parameter.
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
-                    The frequency
-                    <emphasis>
-                        <literal>F</literal>
-                    </emphasis>
+                    The frequency <emphasis><literal>F</literal></emphasis>
                     in radians/second with the <emphasis role="bold">Frequency</emphasis> parameter.
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
-                    The initial phase
-                    <emphasis>
-                        <literal>P</literal>
-                    </emphasis>
+                    The initial phase <emphasis><literal>P</literal></emphasis>
                     in radians with the <emphasis role="bold">Phase</emphasis> parameter.
                 </para>
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Datatype_GENSIN_f">
         <title>Data types</title>
         <itemizedlist>
@@ -159,16 +112,16 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Dialogbox_GENSIN_f">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/sources_pal/en_US/GENSIN_f_gui.png" align="center"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/sources_pal/en_US/GENSIN_f_gui.png"
+                        align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -193,6 +146,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Defaultproperties_GENSIN_f">
         <title>Default properties</title>
         <itemizedlist>
@@ -256,6 +210,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_GENSIN_f">
         <title>Example</title>
@@ -267,7 +222,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/gensin_f_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/sources_pal/en_US/gensin_f_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/sources_pal/en_US/gensin_f_en_US.zcos" align="center"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -277,6 +232,7 @@ importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/gensin_f_en_US
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
     </refsection>
+
     <refsection id="Interfacingfunction_GENSIN_f">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -295,7 +251,8 @@ xcos_simulate(scs_m, 4);
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_GENSIN_f">
+
+    <refsection id="Seealso_GENSIN_f" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>

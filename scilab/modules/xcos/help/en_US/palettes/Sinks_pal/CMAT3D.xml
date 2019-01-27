@@ -25,7 +25,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
         xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-        xml:id="CMAT3D">
+        xml:id="CMAT3D" xml:lang="en_US">
     <refnamediv>
         <refname>CMAT3D</refname>
         <refpurpose>Matrix z values 3D viewer</refpurpose>
@@ -42,25 +42,25 @@
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-              <xref linkend="Description_CMAT3D">Description</xref>
+                <xref linkend="Description_CMAT3D">Description</xref>
             </listitem>
             <listitem>
-              <xref linkend="Dialogbox_CMAT3D">Parameter</xref>
+                <xref linkend="Dialogbox_CMAT3D">Parameter</xref>
             </listitem>
             <listitem>
-              <xref linkend="Defaultproperties_CMAT3D">Default properties</xref>
+                <xref linkend="Defaultproperties_CMAT3D">Default properties</xref>
             </listitem>
             <listitem>
-              <xref linkend="Interfacingfunction_CMAT3D">Interfacing function</xref>
+                <xref linkend="Interfacingfunction_CMAT3D">Interfacing function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Computationalfunction_CMAT3D">Computational function</xref>
+                <xref linkend="Computationalfunction_CMAT3D">Computational function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Example_CMAT3D">Example</xref>
+                <xref linkend="Example_CMAT3D">Example</xref>
             </listitem>
             <listitem>
-              <xref linkend="Seealso_CMAT3D">See also</xref>
+                <xref linkend="Seealso_CMAT3D">See also</xref>
             </listitem>
         </itemizedlist>
         <para/>
@@ -120,7 +120,7 @@
                 <para> Properties: Type 'vec' of size 1.</para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
 
     <refsection id="Defaultproperties_CMAT3D">
@@ -186,7 +186,20 @@
                 </para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
+    </refsection>
+
+    <refsection id="Example_CMAT3D">
+        <title>Example</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/CMAT3D_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/sinks_pal/CMAT3D_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
     </refsection>
 
     <refsection id="Interfacingfunction_CMAT3D">
@@ -204,21 +217,9 @@
                 <para> SCI/modules/scicos_blocks/src/c/cmat3d.c (Type 4)</para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
 
-    <refsection id="Example_CMAT3D">
-        <title>Example</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/CMAT3D_Example.zcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/sinks_pal/CMAT3D_Example.zcos" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
-    </refsection>
     <refsection id="Seealso_CMAT3D" role="see also">
         <title>See also</title>
         <simplelist type="inline">

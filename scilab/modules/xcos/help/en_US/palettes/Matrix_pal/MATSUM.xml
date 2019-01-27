@@ -21,80 +21,47 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATSUM">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="MATSUM" xml:lang="en_US">
     <refnamediv>
         <refname>MATSUM</refname>
         <refpurpose>Sum of Matrix's Elements</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/MATSUM.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/MATSUM.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_MATSUM">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATSUM">Sum of Matrix's Elements</link>
-                </para>
+                <xref linkend="Description_MATSUM">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MATSUM">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MATSUM">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_MATSUM">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MATSUM">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MATSUM">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_MATSUM">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_MATSUM">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_MATSUM">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_MATSUM">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_MATSUM">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_MATSUM">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_MATSUM">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_MATSUM">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Matrix_pal">Matrix operation palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_MATSUM">
         <title>Description</title>
         <para>
@@ -106,40 +73,36 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">0</emphasis> (all) the block outputs the sum of all the elements of the matrix.
-                    The output is then a scalar.
+                    <emphasis role="bold">0</emphasis> (all) the block outputs the sum of all the
+                    elements of the matrix. The output is then a scalar.
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">1</emphasis> (lines) the block is a row-wise sum. The output is a row vector.
+                    <emphasis role="bold">1</emphasis> (lines) the block is a row-wise sum.
+                    The output is a row vector.
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">2</emphasis> (Columns) the block is a column-wise sum. The output is a column vector.
+                    <emphasis role="bold">2</emphasis> (Columns) the block is a column-wise sum.
+                    The output is a column vector.
                 </para>
             </listitem>
         </itemizedlist>
         <para>
             The equivalent function of this block in Scilab is <link linkend="sum">sum</link>.
         </para>
-        <para/>
     </refsection>
-    <refsection id="Dialogbox_MATSUM">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/MATSUM_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
 
-        </para>
+    <refsection id="Dialogbox_MATSUM">
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/MATSUM_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -231,6 +194,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_MATSUM">
         <title>Interfacing function</title>
@@ -244,42 +208,36 @@
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/mat_sum.c</para>
+                 SCI/modules/scicos_blocks/src/c/mat_sum.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/mat_suml.c</para>
+                 SCI/modules/scicos_blocks/src/c/mat_suml.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/mat_sumc.c</para>
+                 SCI/modules/scicos_blocks/src/c/mat_sumc.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/matz_sum.c</para>
+                 SCI/modules/scicos_blocks/src/c/matz_sum.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/matz_suml.c</para>
+                 SCI/modules/scicos_blocks/src/c/matz_suml.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/matz_sumc.c</para>
+                 SCI/modules/scicos_blocks/src/c/matz_sumc.c
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_MATSUM">
+    <refsection id="Seealso_MATSUM" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="SUBMAT">SUBMAT - Sub-matrix extraction (xcos Block)</link>
-                </para>
+                <link linkend="SUBMAT">SUBMAT</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SUMMATION">SUMMATION - Matrix Summation (xcos Block)</link>
-                </para>
+                <link linkend="SUMMATION">SUMMATION</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="sum">sum (Scilab function)</link>
-                </para>
+                <link linkend="sum">sum</link>
             </listitem>
         </itemizedlist>
     </refsection>

@@ -31,7 +31,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="INTRP2BLK_f">
             <inlinemediaobject>
                 <imageobject>
@@ -58,42 +57,24 @@
                 </imageobject>
             </inlinemediaobject>
             </link>.
-
-        </para>
-    </refsection>
-    <refsection id="Module_Lookuptables_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
     </refsection>
     <refsection id="Description_Lookuptables_pal">
         <title>Description</title>
-        <para>The lookup tables palette includes blocks that compute output
-            approximations from inputs.
+        <para>
+            The lookup tables palette includes blocks that compute output approximations from inputs.
         </para>
     </refsection>
-    <refsection id="Blocks_Lookuptables_pal">
+    <refsection id="Blocks_Lookuptables_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="INTRP2BLK_f">INTRP2BLK_f — 2D interpolation</link>
-                </para>
+                <link linkend="INTRP2BLK_f">INTRP2BLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INTRPLBLK_f">INTRPLBLK_f — Linear interpolation</link>
-                </para>
+                <link linkend="INTRPLBLK_f">INTRPLBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="LOOKUP_f">LOOKUP_f — Lookup table</link>
-                </para>
+                <link linkend="LOOKUP_f">LOOKUP_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

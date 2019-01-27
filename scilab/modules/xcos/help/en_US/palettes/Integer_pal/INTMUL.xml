@@ -23,90 +23,53 @@
  * See the file ./license.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="INTMUL" xmln.mml="http://www.w3.org/1998/Math/MathML">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="INTMUL" xmln.mml="http://www.w3.org/1998/Math/MathML" xml:lang="en_US">
     <refnamediv>
         <refname>INTMUL</refname>
         <refpurpose>Integer matrix multiplication</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/INTMUL.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/INTMUL.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_INTMUL">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="INTMUL">Integer matrix multiplication</link>
-                </para>
+                <xref linkend="Description_INTMUL">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_INTMUL">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_INTMUL">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Data_Type_INTMUL">Data types</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_INTMUL">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_INTMUL">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_INTMUL">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_INTMUL">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_INTMUL">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_INTMUL">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Data_Type_INTMUL">Data types</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_INTMUL">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_INTMUL">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_INTMUL">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_INTMUL">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_INTMUL">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_INTMUL">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_INTMUL">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Integer_pal">Integer palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_INTMUL">
         <title>Description</title>
         <para>
@@ -137,8 +100,7 @@
         </orderedlist>
         <para>
             The user can select one of these three forms by setting the
-            <emphasis role="bold">Do on Overflow</emphasis>
-            field to 0, 1 or 2.
+            <emphasis role="bold">Do on Overflow</emphasis> field to 0, 1 or 2.
         </para>
     </refsection>
     <refsection id="Data_Type_INTMUL">
@@ -151,7 +113,6 @@
                 <para>
                     Input : matrices, vectors or scalars. Scilab's integer data types (<emphasis role="bold">Data Type</emphasis> parameter).
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
@@ -160,16 +121,15 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Dialogbox_INTMUL">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../gui/integer_pal/en_US/INTMUL_gui.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../gui/integer_pal/en_US/INTMUL_gui.png" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -282,7 +242,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Example_INTMUL">
         <title>Example</title>
         <para>
@@ -293,12 +255,13 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/INTMUL_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/integer_pal/en_US/INTMUL_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/integer_pal/en_US/INTMUL_en_US.zcos" align="center"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
         </para>
     </refsection>
+
     <refsection id="Interfacingfunction_INTMUL">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -313,61 +276,62 @@
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_i32n.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_i32n.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_i16n.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_i16n.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_i8n.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_i8n.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_ui32n.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_ui32n.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_ui16n.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_ui16n.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_ui8n.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_ui8n.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_i32s.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_i32s.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_i16s.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_i16s.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_i8s.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_i8s.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_ui32s.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_ui32s.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_ui16s.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_ui16s.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_ui8s.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_ui8s.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_i32e.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_i32e.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_i16e.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_i16e.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_i8e.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_i8e.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_ui32e.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_ui32e.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_ui16e.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_ui16e.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matmul_ui8e.c</para>
+                SCI/modules/scicos_blocks/src/c/matmul_ui8e.c
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection role="see also" id="Seealso_INTMUL">
         <title>See also</title>
         <itemizedlist>

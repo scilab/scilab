@@ -31,7 +31,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="QUANT_f">
             <inlinemediaobject>
                 <imageobject>
@@ -49,18 +48,6 @@
                 </imageobject>
             </inlinemediaobject>
             </link>.
-
-        </para>
-    </refsection>
-    <refsection id="Module_Signalprocessing_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
     </refsection>
     <refsection id="Description_Signalprocessing_pal">
         <title>Description</title>
@@ -68,28 +55,20 @@
             for signal processing applications.
         </para>
     </refsection>
-    <refsection id="Blocks_Signalprocessing_pal">
+    <refsection id="Blocks_Signalprocessing_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MCLOCK_f">MCLOCK_f</link>
-                </para>
+                <link linkend="MCLOCK_f">MCLOCK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MFCLCK_f">MFCLCK_f</link>
-                </para>
+                <link linkend="MFCLCK_f">MFCLCK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLKGotoTagVisibility">QUANT_f — Quantization</link>
-                </para>
+                <link linkend="CLKGotoTagVisibility">QUANT_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SAMPHOLD_m">SAMPHOLD_m — Sample and hold</link>
-                </para>
+                <link linkend="SAMPHOLD_m">SAMPHOLD_m</link>
             </listitem>
         </itemizedlist>
     </refsection>

@@ -31,7 +31,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="Bache">
             <inlinemediaobject>
                 <imageobject>
@@ -85,67 +84,35 @@
                 </imageobject>
             </inlinemediaobject>
             </link>.
+    </refsection>
 
-        </para>
-    </refsection>
-    <refsection id="Module_ThermoHydraulics_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_ThermoHydraulics_pal">
         <title>Description</title>
         <para>Thermal-Hydraulics toolbox contains some basic thermal-hydraulic
             components such as pressure source, pipe, control valves, etc.
         </para>
     </refsection>
-    <refsection id="Blocks_ThermoHydraulics_pal">
+
+    <refsection id="Blocks_ThermoHydraulics_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Bache">Bache - Thermal-hydraulic tank
-                        (reservoir)
-                    </link>
-                </para>
+                <link linkend="Bache">Bache</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PerteDP">PerteDP - Thermal-hydraulic pipe</link>
-                </para>
+                <link linkend="PerteDP">PerteDP</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PuitsP">PuitsP - Thermal-hydraulic drain
-                        (well)
-                    </link>
-                </para>
+                <link linkend="PuitsP">PuitsP</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SourceP">SourceP - Thermal-hydraulic constant
-                        pressure source
-                    </link>
-                </para>
+                <link linkend="SourceP">SourceP</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="VanneReglante">VanneReglante - Thermal-hydraulic
-                        control valve
-                    </link>
-                </para>
+                <link linkend="VanneReglante">VanneReglante</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Flowmeter">Flowmeter - Thermal-hydraulic
-                        flow sensor
-                    </link>
-                </para>
+                <link linkend="Flowmeter">Flowmeter</link>
             </listitem>
         </itemizedlist>
     </refsection>

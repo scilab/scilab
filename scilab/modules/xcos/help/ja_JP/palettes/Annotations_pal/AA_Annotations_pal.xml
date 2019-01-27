@@ -43,29 +43,17 @@
             </link>
         </para>
     </refsection>
-    <refsection id="Module_Annotations_pal">
-        <title>モジュール</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Annotations_pal">
         <title>説明</title>
         <para>このパレットは
             アノテーションで使用されるブロックを有します.
         </para>
     </refsection>
-    <refsection id="Blocks_Annotations_pal">
+    <refsection id="Blocks_Annotations_pal" role="see also">
         <title>ブロック</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="TEXT_f">TEXT_f - フリーアノテーション</link>
-                </para>
+                <link linkend="TEXT_f">TEXT_f - フリーアノテーション</link>
             </listitem>
         </itemizedlist>
     </refsection>

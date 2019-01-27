@@ -21,75 +21,47 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scifunc_block_m">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="scifunc_block_m" xml:lang="en_US">
     <refnamediv>
         <refname>scifunc_block_m</refname>
         <refpurpose>Scilab function block</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/scifunc_block_m.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/scifunc_block_m.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_scifunc_block_m">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="scifunc_block_m">Scilab function block</link>
-                </para>
+                <xref linkend="Description_scifunc_block_m">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_scifunc_block_m">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_scifunc_block_m">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_scifunc_block_m">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_scifunc_block_m">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_scifunc_block_m">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_scifunc_block_m">Computational function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_scifunc_block_m">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_scifunc_block_m">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_scifunc_block_m">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_scifunc_block_m">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_scifunc_block_m">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_scifunc_block_m">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Userdefinedfunctions_pal">User defined functions palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_scifunc_block_m">
         <title>Description</title>
         <para>
@@ -101,17 +73,14 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_scifunc_block_m">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/scifunc_block_m_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/scifunc_block_m_gui.gif"
+                            align="center" style="float:right" />
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -119,7 +88,10 @@
                 </para>
                 <para> a matrix. Number of regular input ports </para>
                 <para> Properties : Type 'mat' of size [-1 2] </para>
-                <para> Example : [1,1] for one input of size 1x1; [1,1;2,3] for two inputs of size 1x1 and 2x3 </para>
+                <para>
+                    Example : [1,1] for one input of size 1x1; [1,1;2,3] for two inputs of size
+                    1x1 and 2x3
+                </para>
             </listitem>
             <listitem>
                 <para>
@@ -127,7 +99,9 @@
                 </para>
                 <para> a matrix. Number of regular output ports </para>
                 <para> Properties : Type 'mat' of size [-2 2] </para>
-                <para> Example : [1,1] for one output of size 1x1; [1,1;2,3] for two outputs of size 1x1 and 2x3 </para>
+                <para> Example : [1,1] for one output of size 1x1; [1,1;2,3] for two outputs
+                    of size 1x1 and 2x3
+                </para>
             </listitem>
             <listitem>
                 <para>
@@ -173,9 +147,16 @@
                 <para>
                     <emphasis role="bold">initial firing vector </emphasis>
                 </para>
-                <para> a column vector. Size of this vector corresponds to the number of event outputs. The value of the i-th entry specifies the time of the preprogrammed event firing on the i-th output event port. If less than zero, no event is preprogrammed. </para>
+                <para>
+                    a column vector. Size of this vector corresponds to the number of event
+                    outputs. The value of the i-th entry specifies the time of the preprogrammed
+                    event firing on the i-th output event port. If less than zero, no event is
+                    preprogrammed.
+                </para>
                 <para> Properties : Type 'vec' of size sum(Number of output event ports) </para>
-                <para> Example : [1;2] 1 and 2 are the preprogrammed events firing that correspond to the first output event port and to the second output event port respectively </para>
+                <para> Example : [1;2] 1 and 2 are the preprogrammed events firing that correspond
+                    to the first output event port and to the second output event port respectively
+                </para>
             </listitem>
             <listitem>
                 <para>
@@ -185,10 +166,15 @@
                 <para> Example : 1 the block is always active; 0 the block is not always active </para>
             </listitem>
             <listitem>
-                <para> Other dialogues are opened consecutively where the user may write Scilab code associated with the computations needed (block initialization, outputs, continuous and discrete state, output events date, block ending). </para>
+                <para>
+                    Other dialogues are opened consecutively where the user may write Scilab
+                    code associated with the computations needed (block initialization, outputs,
+                    continuous and discrete state, output events date, block ending).
+                </para>
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Defaultproperties_scifunc_block_m">
         <title>Default properties</title>
         <itemizedlist>
@@ -260,14 +246,16 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Example_scifunc_block_m">
         <title>Example</title>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/userdefinedfunctions_pal/en_US/scifunc_block_m_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/userdefinedfunctions_pal/en_US/scifunc_block_m_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/userdefinedfunctions_pal/en_US/scifunc_block_m_en_US.zcos" align="center"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -277,6 +265,7 @@ importXcosDiagram(SCI + "/modules/xcos/examples/userdefinedfunctions_pal/en_US/s
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
     </refsection>
+
     <refsection id="Interfacingfunction_scifunc_block_m">
         <title>Interfacing function</title>
         <itemizedlist>

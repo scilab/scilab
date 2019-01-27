@@ -21,80 +21,49 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="EVTDLY_c">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="EVTDLY_c" xml:lang="en_US">
     <refnamediv>
         <refname>EVTDLY_c</refname>
         <refpurpose>Event delay</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/EVTDLY_c.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/EVTDLY_c.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_EVTDLY_c">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="EVTDLY_c">Event delay</link>
-                </para>
+                <xref linkend="Description_EVTDLY_c">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_EVTDLY_c">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_EVTDLY_c">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_EVTDLY_c">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_EVTDLY_c">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_EVTDLY_c">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_EVTDLY_c">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_EVTDLY_c">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_EVTDLY_c">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_EVTDLY_c">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_EVTDLY_c">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_EVTDLY_c">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_EVTDLY_c">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_EVTDLY_c">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_EVTDLY_c">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Events_pal">Event handling palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_EVTDLY_c">
         <title>Description</title>
         <para>
@@ -103,24 +72,26 @@
             The event date of that block is computed by the formula :
         </para>
         <para>
-            <latex>t_i = t_{init} + i * T_{delay}</latex>
+            <emphasis><literal>
+            t<subscript>i</subscript> = t<subscript>init</subscript> + i * T<subscript>delay</subscript>
+            </literal></emphasis>
         </para>
         <para>
-            where <latex>t_{init}</latex>is the date of initial output event, <latex>T_{delay}</latex>
-            the delay and <latex>i</latex> the event occurrence.
+            where
+            <emphasis>t<subscript>init</subscript></emphasis> is the date of initial output event,
+            <emphasis>T<subscript>delay</subscript></emphasis> the delay and
+            <emphasis>i</emphasis> the event occurrence.
         </para>
     </refsection>
     <refsection id="Dialogbox_EVTDLY_c">
-        <title>Dialog box</title>
+        <title>Parameters</title>
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../images/gui/EVTDLY_c_gui.gif" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/gui/EVTDLY_c_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
                 </imageobject>
             </inlinemediaobject>
-        </para>
-        <para>
-
         </para>
         <itemizedlist>
             <listitem>
@@ -197,16 +168,18 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Example_EVTDLY_c">
         <title>Example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/EVTDLY_c_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/events_pal/EVTDLY_c_Example.zcos" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/events_pal/EVTDLY_c_Example.zcos"/>
                 </imageobject>
             </inlinemediaobject>
         </link>
     </refsection>
+
     <refsection id="Interfacingfunction_EVTDLY_c">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -223,13 +196,11 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_EVTDLY_c">
+    <refsection id="Seealso_EVTDLY_c" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLOCK_c">CLOCK_c - Activation clock</link>
-                </para>
+                <link linkend="CLOCK_c">CLOCK_c</link>
             </listitem>
         </itemizedlist>
     </refsection>

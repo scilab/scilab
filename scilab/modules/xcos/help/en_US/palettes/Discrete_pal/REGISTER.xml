@@ -21,100 +21,60 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="REGISTER">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="REGISTER" xml:lang="en_US">
     <refnamediv>
         <refname>REGISTER</refname>
         <refpurpose>Shift Register</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/REGISTER.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/REGISTER.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_REGISTER">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="REGISTER">Shift Register</link>
-                </para>
+                <xref linkend="Description_REGISTER">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_REGISTER">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_REGISTER">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_REGISTER">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_REGISTER">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_REGISTER">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_REGISTER">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_REGISTER">Computational function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_REGISTER">Parameters</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_REGISTER">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Discrete_pal">Discrete time systems palette</link>
-                </para>
+                <xref linkend="Defaultproperties_REGISTER">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_REGISTER">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_REGISTER">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_REGISTER">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Description_REGISTER">
         <title>Description</title>
         <para>
-            This block realizes a shift register. At every input event, the
-            register is shifted one step.
-
+            This block realizes a shift register. At every input event, the  register is shifted
+            one step.
         </para>
     </refsection>
     <refsection id="Dialogbox_REGISTER">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/REGISTER_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/REGISTER_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -203,6 +163,38 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
+    </refsection>
+    <refsection id="Interfacingfunction_REGISTER">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/Linear/REGISTER.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_REGISTER">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                 SCI/modules/scicos_blocks/src/c/delay4_i32.c
+            </listitem>
+            <listitem>
+                 SCI/modules/scicos_blocks/src/c/delay4_i16.c
+            </listitem>
+            <listitem>
+                 SCI/modules/scicos_blocks/src/c/delay4_i8.c
+            </listitem>
+            <listitem>
+                 SCI/modules/scicos_blocks/src/c/delay4_ui32.c
+            </listitem>
+            <listitem>
+                 SCI/modules/scicos_blocks/src/c/delay4_ui16.c
+            </listitem>
+            <listitem>
+                 SCI/modules/scicos_blocks/src/c/delay4_ui8.c
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection id="Example_REGISTER">
         <title>Example</title>
@@ -219,36 +211,5 @@ importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
         </para>
-    </refsection>
-    <refsection id="Interfacingfunction_REGISTER">
-        <title>Interfacing function</title>
-        <itemizedlist>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/macros/Linear/REGISTER.sci</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Computationalfunction_REGISTER">
-        <title>Computational function</title>
-        <itemizedlist>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/delay4_i32.c</para>
-            </listitem>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/delay4_i16.c</para>
-            </listitem>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/delay4_i8.c</para>
-            </listitem>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/delay4_ui32.c</para>
-            </listitem>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/delay4_ui16.c</para>
-            </listitem>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/delay4_ui8.c</para>
-            </listitem>
-        </itemizedlist>
     </refsection>
 </refentry>

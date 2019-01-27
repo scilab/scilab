@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,82 +13,45 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SRFLIPFLOP" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="SRFLIPFLOP" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
     <refnamediv>
         <refname>SRFLIPFLOP</refname>
         <refpurpose>Bascule SR</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/SRFLIPFLOP.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/SRFLIPFLOP.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_SRFLIPFLOP">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="SRFLIPFLOP">Bascule SR</link>
-                </para>
+                <xref linkend="Description_SRFLIPFLOP">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_SRFLIPFLOP">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_SRFLIPFLOP">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Data_Type_SRFLIPFLOP">Types de données</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_SRFLIPFLOP">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_SRFLIPFLOP">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_SRFLIPFLOP">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_SRFLIPFLOP">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_SRFLIPFLOP">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Data_Type_SRFLIPFLOP">Types de données</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_SRFLIPFLOP">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Integer_pal">Palette Entier</link>
-                </para>
+                <xref linkend="Dialogbox_SRFLIPFLOP">Paramètres</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_SRFLIPFLOP">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_SRFLIPFLOP">Exemple</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_SRFLIPFLOP">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_SRFLIPFLOP">Voir aussi</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -96,7 +59,8 @@
         <title>Description</title>
         <para>
             Ce bloc définit la mémoire la plus simple et la plus fondamentale, la bascule SR.
-            La sortie <emphasis role="bold">Q</emphasis> dépend de l'état des entrées <emphasis role="bold">S</emphasis> et <emphasis role="bold">R</emphasis> :
+            La sortie <emphasis role="bold">Q</emphasis> dépend de l'état des entrées
+            <emphasis role="bold">S</emphasis> et <emphasis role="bold">R</emphasis> :
         </para>
         <itemizedlist>
             <listitem>
@@ -111,7 +75,8 @@
             <listitem>
                 <para>
                     Si <emphasis role="bold">R</emphasis> (Reset) est pulsée à l'état haut alors
-                    que <emphasis role="bold">S</emphasis> est gardé à l'état bas, la sortie <emphasis role="bold">Q</emphasis> est forcée à l'état bas, et le reste quand
+                    que <emphasis role="bold">S</emphasis> est gardé à l'état bas, la sortie
+                    <emphasis role="bold">Q</emphasis> est forcée à l'état bas, et le reste quand
                     <emphasis role="bold">R</emphasis> retourne à l'état bas.
                 </para>
                 <para/>
@@ -137,96 +102,52 @@
             <emphasis role="bold">Q</emphasis>.
         </para>
         <para>
-            L'utilisateur peut donner la valeur initiale de l'état de sortie avec le paramètre <emphasis role="bold">Initial Value</emphasis>.
+            L'utilisateur peut donner la valeur initiale de l'état de sortie avec le paramètre
+            <emphasis role="bold">Initial Value</emphasis>.
         </para>
         <para>Ce bloc est souvent utilisé comme une mémoire.</para>
         <para>
             La table de vérité de ce bloc est :
         </para>
-        <para/>
         <informaltable border="1" cellpadding="3">
             <tr>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{S}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{R}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{Q_n}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{!Q_n}]]></latex>
-                </td>
-                <td align="left"/>
+                <th>S</th>
+                <th>R</th>
+                <th>Q<subscript>n</subscript></th>
+                <th>!Q<subscript>n</subscript></th>
+                <th/>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[Q_n]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[!Q_n]]></latex>
-                </td>
-                <td align="left">Maintien</td>
+                <td>0</td>
+                <td>0</td>
+                <td>Q<subscript>n</subscript></td>
+                <td>!Q<subscript>n</subscript></td>
+                <td>Maintien</td>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">Remise à 0</td>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>Remise à 0</td>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">Mise à 1</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>Mise à 1</td>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex scilab:localized="true"><![CDATA[I]]></latex>
-                </td>
-                <td align="left">
-                    <latex scilab:localized="true"><![CDATA[I]]></latex>
-                </td>
-                <td align="left">Etat interdit</td>
+                <td>1</td>
+                <td>1</td>
+                <td>I</td>  <!-- localized -->
+                <td>I</td>  <!-- localized -->
+                <td>Etat interdit</td>
             </tr>
         </informaltable>
         <para>
-            où
-            <emphasis>
-                <literal>I</literal>
-            </emphasis>
-            signifie "Inconnu".
+            où <emphasis><literal>I</literal></emphasis> signifie "Inconnu".
         </para>
     </refsection>
     <refsection id="Data_Type_SRFLIPFLOP">
@@ -265,15 +186,14 @@
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_SRFLIPFLOP">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/integer_pal/fr_FR/SRFLIPFLOP_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/integer_pal/fr_FR/SRFLIPFLOP_gui.png"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -361,6 +281,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_SRFLIPFLOP">
         <title>Exemple</title>

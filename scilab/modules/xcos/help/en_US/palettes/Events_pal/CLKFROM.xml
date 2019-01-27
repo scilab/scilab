@@ -21,95 +21,62 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CLKFROM">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="CLKFROM" xml:lang="en_US">
     <refnamediv>
         <refname>CLKFROM</refname>
         <refpurpose>Receives data from a corresponding CLKGOTO</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CLKFROM.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CLKFROM.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_CLKFROM">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLKFROM">Receives data from a corresponding CLKGOTO</link>
-                </para>
+                <xref linkend="Description_CLKFROM">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CLKFROM">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CLKFROM">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_CLKFROM">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CLKFROM">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CLKFROM">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_CLKFROM">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_CLKFROM">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_CLKFROM">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_CLKFROM">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_CLKFROM">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_CLKFROM">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Events_pal">Event handling palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_CLKFROM">
         <title>Description</title>
         <para>
-            This block is used to connect events ports. For more information on how it works please refer to the documentation of the FROM block by clicking on the link in the "See also" field.
+            This block is used to connect events ports. For more information on how it works please
+            refer to the documentation of the FROM block by clicking on the link in the "See also"
+            field.
         </para>
         <para>
         </para>
     </refsection>
     <refsection id="Dialogbox_CLKFROM">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/CLKFROM_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/CLKFROM_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -184,13 +151,11 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_CLKFROM">
+    <refsection id="Seealso_CLKFROM" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="FROM">FROM - FROM Receives data from a corresponding GOTO</link>
-                </para>
+                <link linkend="FROM">FROM</link>
             </listitem>
         </itemizedlist>
     </refsection>

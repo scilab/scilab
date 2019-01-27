@@ -21,81 +21,48 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Sigbuilder">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="Sigbuilder" xml:lang="en_US">
     <refnamediv>
         <refname>Sigbuilder</refname>
         <refpurpose>Signal creator/generator</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/Sigbuilder.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/Sigbuilder.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_Sigbuilder">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Sigbuilder">Signal creator/generator</link>
-                </para>
+                <xref linkend="Description_Sigbuilder">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_Sigbuilder">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_Sigbuilder">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_Sigbuilder">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_Sigbuilder">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_Sigbuilder">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="Sigbuilder">Compiled Super Block content</link>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_Sigbuilder">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_Sigbuilder">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_Sigbuilder">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Sigbuilder">Compiled Super Block content</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_Sigbuilder">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Sources_pal">Sources palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_Sigbuilder">
         <title>Description</title>
         <para>
-            The Signal Builder block is a superblock containing a
-
-            block whose output event
+            The Signal Builder block is a superblock containing a block whose output event
             port is connected to its input event port. This event feedback gives
             the possibility to generate events at discontinuous point of the
             signal. The generated events automatically restart the numerical
@@ -103,25 +70,23 @@
             available to the user for possible use. Remind that if higher
             interpolation methods are used, the events are generated only at the
             beginning and at the end of the signal.
-
         </para>
     </refsection>
+
     <refsection id="Dialogbox_Sigbuilder">
-        <title>Dialog box</title>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/Sigbuilder_gui.gif"
+                           align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/Sigbuilder_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-            The parameters of  Sigbuilder block is the same as
-            that of
-            block.
-
+            The parameters of  Sigbuilder block is the same as that of block.
         </para>
     </refsection>
+
     <refsection id="Defaultproperties_Sigbuilder">
         <title>Default properties</title>
         <itemizedlist>
@@ -185,7 +150,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Interfacingfunction_Sigbuilder">
         <title>Interfacing function</title>
         <itemizedlist>

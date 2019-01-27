@@ -21,89 +21,55 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CUMSUM">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="CUMSUM" xml:lang="en_US">
     <refnamediv>
         <refname>CUMSUM</refname>
         <refpurpose>Cumulative Sum</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/CUMSUM.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/CUMSUM.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_CUMSUM">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CUMSUM">Cumulative Sum</link>
-                </para>
+                <xref linkend="Description_CUMSUM">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CUMSUM">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CUMSUM">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_CUMSUM">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="Example_CUMSUM">Example</link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CUMSUM">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CUMSUM">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_CUMSUM">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_CUMSUM">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_CUMSUM">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_CUMSUM">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_CUMSUM">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_CUMSUM">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_CUMSUM">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_CUMSUM">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_CUMSUM">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Matrix_pal">Matrix operation palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_CUMSUM">
         <title>Description</title>
         <para>
-            The CUMSUM block cumulatively sums the element of an input MxN matrix U along either the rows, the columns or the first non singleton dimension.
+            The CUMSUM block cumulatively sums the element of an input MxN matrix U along either
+            the rows, the columns or the first non singleton dimension.
             The size of the output is also MxN.
         </para>
         <para>
@@ -114,13 +80,11 @@
                 <para>
                     <emphasis role="bold">1</emphasis>: the block progressively sums across the elements of each row.
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">2</emphasis>: the block progressively sums across the elements of each column.
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
@@ -133,15 +97,13 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_CUMSUM">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/CUMSUM_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/gui/CUMSUM_gui.gif" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -164,14 +126,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_CUMSUM">
-        <title>Example</title>
-        <programlisting role="example">
-            A = [1 2 3 ; 4 5 6 ; 7 8 9]
-            If the sum is along the row the result will be:
-            B = [1 2 3 ; 5 7 9 ; 12 15 18]
-        </programlisting>
-    </refsection>
+
     <refsection id="Defaultproperties_CUMSUM">
         <title>Default properties</title>
         <itemizedlist>
@@ -243,6 +198,25 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
+    </refsection>
+    <refsection id="Example_CUMSUM">
+        <title>Example</title>
+        <programlisting role="example">
+            A = [1 2 3 ; 4 5 6 ; 7 8 9]
+            If the sum is along the row the result will be:
+            B = [1 2 3 ; 5 7 9 ; 12 15 18]
+        </programlisting>
+        <para>
+            <emphasis role="bold">Cumulative Sum example</emphasis>
+        </para>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/CUMSUM_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/CUMSUM_Example.zcos"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Interfacingfunction_CUMSUM">
         <title>Interfacing function</title>
@@ -256,47 +230,33 @@
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/cumsum_m.c</para>
+                SCI/modules/scicos_blocks/src/c/cumsum_m.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/cumsum_r.c</para>
+                SCI/modules/scicos_blocks/src/c/cumsum_r.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/cumsum_c.c</para>
+                SCI/modules/scicos_blocks/src/c/cumsum_c.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/cumsumz_m.c</para>
+                SCI/modules/scicos_blocks/src/c/cumsumz_m.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/cumsumz_r.c</para>
+                SCI/modules/scicos_blocks/src/c/cumsumz_r.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/cumsumz_c.c</para>
+                SCI/modules/scicos_blocks/src/c/cumsumz_c.c
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_CUMSUM2">
-        <title>Cumulative Sum example</title>
-        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/CUMSUM_Example.zcos">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/matrix_pal/CUMSUM_Example.zcos" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </link>
-    </refsection>
-    <refsection id="Seealso_CUMSUM">
+    <refsection id="Seealso_CUMSUM" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATSUM">MATSUM - Sum of Matrix's Elements (xcos Block)</link>
-                </para>
+                <link linkend="MATSUM">MATSUM</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="cumsum">cumsum (Scilab function)</link>
-                </para>
+                <link linkend="cumsum">cumsum</link>
             </listitem>
         </itemizedlist>
     </refsection>

@@ -25,7 +25,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
         xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-        xmlns:scilab="http://www.scilab.org" xml:id="TOWS_c">
+        xmlns:scilab="http://www.scilab.org" xml:id="TOWS_c" xml:lang="en_US">
     <refnamediv>
         <refname>TOWS_c</refname>
         <refpurpose>Data to Scilab workspace</refpurpose>
@@ -42,25 +42,24 @@
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-              <xref linkend="Description_TOWS_c">Description</xref>
+                <xref linkend="Description_TOWS_c">Description</xref>
             </listitem>
             <listitem>
-              <xref linkend="Dialogbox_TOWS_c">Parameters</xref>
+                <xref linkend="Dialogbox_TOWS_c">Parameters</xref>
             </listitem>
             <listitem>
-              <xref linkend="Defaultproperties_TOWS_c">Default properties</xref>
+                <xref linkend="Defaultproperties_TOWS_c">Default properties</xref>
             </listitem>
             <listitem>
-              <xref linkend="Interfacingfunction_TOWS_c">Interfacing function</xref>
+                <xref linkend="Interfacingfunction_TOWS_c">Interfacing function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Computationalfunction_TOWS_c">Computational function</xref>
+                <xref linkend="Computationalfunction_TOWS_c">Computational function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Example_TOWS_c">Example</xref>
+                <xref linkend="Example_TOWS_c">Example</xref>
             </listitem>
         </itemizedlist>
-        <para/>
     </refsection>
 
     <refsection id="Description_TOWS_c">
@@ -119,7 +118,7 @@
                 <para>Properties : Type 'vec' of size 1.</para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
     <refsection id="Defaultproperties_TOWS_c">
         <title>Default properties</title>
@@ -184,7 +183,7 @@
                 </para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_TOWS_c">
         <title>Interfacing function</title>
@@ -201,7 +200,7 @@
                 <para>SCI/modules/scicos_blocks/src/c/tows_c.c (Type 4)</para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
 
     <refsection id="Example_TOWS_c">

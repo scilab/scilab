@@ -25,10 +25,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
         xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-        xml:id="CSCOPXY">
+        xml:id="CSCOPXY" xml:lang="en_US">
     <refnamediv>
         <refname>CSCOPXY</refname>
-        <refpurpose>y=f(x) permanent viewer</refpurpose>
+        <refpurpose>y = f(x) permanent viewer</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
@@ -42,25 +42,25 @@
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-              <xref linkend="Description_CSCOPXY">Description</xref>
+                <xref linkend="Description_CSCOPXY">Description</xref>
             </listitem>
             <listitem>
-              <xref linkend="Dialogbox_CSCOPXY">Parameters</xref>
+                <xref linkend="Dialogbox_CSCOPXY">Parameters</xref>
             </listitem>
             <listitem>
-              <xref linkend="Defaultproperties_CSCOPXY">Default properties</xref>
+                <xref linkend="Defaultproperties_CSCOPXY">Default properties</xref>
             </listitem>
             <listitem>
-              <xref linkend="Interfacingfunction_CSCOPXY">Interfacing function</xref>
+                <xref linkend="Interfacingfunction_CSCOPXY">Interfacing function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Computationalfunction_CSCOPXY">Computational function</xref>
+                <xref linkend="Computationalfunction_CSCOPXY">Computational function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Example_CSCOPXY">Example</xref>
+                <xref linkend="Example_CSCOPXY">Example</xref>
             </listitem>
             <listitem>
-              <xref linkend="Seealso_CSCOPXY">See also</xref>
+                <xref linkend="Seealso_CSCOPXY">See also</xref>
             </listitem>
         </itemizedlist>
         <para/>
@@ -95,7 +95,9 @@
                     <emphasis role="bold">color </emphasis>
                 </para>
                 <para>
-                    an integer. It is the color number (≥ 0) or marker type (&lt; 0) used to draw the evolution of the input port signal. See<emphasis role="bold">plot2d</emphasis> for color (dash type) definitions.
+                    an integer. It is the color number (≥ 0) or marker type (&lt; 0) used to draw
+                    the evolution of the input port signal. See<emphasis role="bold">plot2d</emphasis>
+                    for color (dash type) definitions.
                 </para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
@@ -110,60 +112,86 @@
                 <para>
                     <emphasis role="bold">Output window number</emphasis>
                 </para>
-                <para> The number of graphic window used for the display. It is often good to use high values to avoid conflict with palettes and Super Block windows. If you have more than one scope, make sure they do not have the same window numbers (unless superposition of the curves is desired).</para>
+                <para>
+                    The number of graphic window used for the display. It is often good to use
+                    high values to avoid conflict with palettes and Super Block windows.
+                    If you have more than one scope, make sure they do not have the same window
+                    numbers (unless superposition of the curves is desired).
+                </para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Output window position</emphasis>
                 </para>
-                <para> a 2 vector specifying the coordinates of the upper left corner of the graphic window. Answer [] for default window position.</para>
+                <para>
+                    a 2 vector specifying the coordinates of the upper left corner of the
+                    graphic window. Answer [] for default window position.
+                </para>
                 <para> Properties : Type 'vec' of size -1 </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Output window sizes</emphasis>
                 </para>
-                <para> a 2 vector specifying the width and height of the graphic window. Answer [] for default window dimensions.</para>
+                <para>
+                    a 2 vector specifying the width and height of the graphic window.
+                    Answer [] for default window dimensions.
+                </para>
                 <para> Properties : Type 'vec' of size -1 </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Xmin</emphasis>
                 </para>
-                <para> Minimum values of the first input; used to set up the X-axis of the plot in the graphics window.</para>
+                <para>
+                    Minimum values of the first input; used to set up the X-axis of the plot
+                    in the graphics window.
+                </para>
                 <para> Properties : Type '' of size </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Xmax</emphasis>
                 </para>
-                <para> Maximum values of the first input; used to set up the X-axis of the plot in the graphics window.</para>
+                <para>
+                    Maximum values of the first input; used to set up the X-axis of the plot
+                    in the graphics window.
+                </para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Ymin</emphasis>
                 </para>
-                <para> Minimum values of the second input; used to set up the Y-axis of the plot in the graphics window.</para>
+                <para>
+                    Minimum values of the second input; used to set up the Y-axis of the plot
+                    in the graphics window.
+                </para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Ymax</emphasis>
                 </para>
-                <para> Maximum values of the second input; used to set up the Y-axis of the plot in the graphics window.</para>
+                <para>
+                    Maximum values of the second input; used to set up the Y-axis of the plot
+                    in the graphics window.
+                </para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Buffer size</emphasis>
                 </para>
-                <para> To improve efficiency it is possible to buffer the input data. The drawing is only done after each Buffer size call to the block.</para>
+                <para>
+                    To improve efficiency it is possible to buffer the input data.
+                    The drawing is only done after each Buffer size call to the block.
+                </para>
                 <para> Properties : Type 'vec' of size 1</para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
 
     <refsection id="Defaultproperties_CSCOPXY">
@@ -232,7 +260,18 @@
                 </para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
+    </refsection>
+
+    <refsection id="Example_CSCOPXY">
+        <title>Example</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/tests/unit_tests/cscopxy.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../tests/unit_tests/cscopxy.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
 
     <refsection id="Interfacingfunction_CSCOPXY">
@@ -250,18 +289,7 @@
                 <para> SCI/modules/scicos_blocks/src/c/cscopxy.c (Type 4)</para>
             </listitem>
         </itemizedlist>
-		<para/>
-    </refsection>
-
-    <refsection id="Example_CSCOPXY">
-        <title>Example</title>
-        <link type="scilab" linkend="scilab.xcos/xcos/tests/unit_tests/cscopxy.zcos">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../tests/unit_tests/cscopxy.zcos" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </link>
+        <para/>
     </refsection>
     <refsection id="Seealso_CSCOPXY" role="see also">
         <title>See also</title>

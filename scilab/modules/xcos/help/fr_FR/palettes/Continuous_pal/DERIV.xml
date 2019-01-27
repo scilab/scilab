@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,72 +13,39 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="DERIV" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="DERIV" xml:lang="fr">
     <refnamediv>
         <refname>DERIV</refname>
         <refpurpose>Dérivée</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/DERIV.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/DERIV.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_DERIV">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="DERIV">Dérivée</link>
-                </para>
+                <xref linkend="Description_DERIV">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_DERIV">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_DERIV">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_DERIV">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_DERIV">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_DERIV">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_DERIV">Exemple</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_DERIV">Propriétés par défaut</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_DERIV">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">Palette Systèmes à temps continu</link>
-                </para>
+                <xref linkend="Interfacingfunction_DERIV">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_DERIV">Fonction de calcul</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_DERIV">Exemple</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -86,9 +53,9 @@
         <title>Description</title>
         <para>Le bloc dérivée approxime la dérivée instantanée de son entrée par rapport au temps t.</para>
         <para>Il mesure la variation de la sortie en fonction de la variation de l'entée Δu. La dérivée est donnée par :</para>
-        <latex>
+        <latex alt="y(t) = (u(t) - u(t-h)) / h">
             $$
-            y(t) = {u(t) - u(t-h)} over h
+            y(t) = \frac{u(t) - u(t-h)}{h}
             $$
         </latex>
         <para>Le bloc dérivée n'a pas de paramètres et la valeur initiale de la sortie pour le bloc est zéro.</para>
@@ -129,31 +96,22 @@
                     <emphasis role="bold">regular outputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [-1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        inputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        outputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">continuous-time state:</emphasis>
-                    non
+                    <emphasis role="bold">continuous-time state:</emphasis> non
                 </para>
             </listitem>
             <listitem>
@@ -163,8 +121,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis>
-                    non
+                    <emphasis role="bold">object discrete-time state:</emphasis> non
                 </para>
             </listitem>
             <listitem>
@@ -174,6 +131,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_DERIV">
         <title>Exemple</title>

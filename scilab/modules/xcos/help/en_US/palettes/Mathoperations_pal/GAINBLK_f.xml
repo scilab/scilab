@@ -21,75 +21,44 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="GAINBLK_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="GAINBLK_f" xml:lang="en">
     <refnamediv>
         <refname>GAINBLK_f</refname>
         <refpurpose>Gain</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/GAINBLK_f.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/GAINBLK_f.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_GAINBLK_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="GAINBLK_f">Gain</link>
-                </para>
+                <xref linkend="Description_GAINBLK_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_GAINBLK_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_GAINBLK_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_GAINBLK_f">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_GAINBLK_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_GAINBLK_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_GAINBLK_f">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_GAINBLK_f">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_GAINBLK_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_GAINBLK_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_GAINBLK_f">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_GAINBLK_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Mathoperations_pal">Math operations palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_GAINBLK_f">
         <title>Description</title>
         <para>
@@ -99,15 +68,13 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_GAINBLK_f">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/GAINBLK_f_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/gui/GAINBLK_f_gui.gif" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -189,6 +156,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
     <refsection id="Interfacingfunction_GAINBLK_f">
         <title>Interfacing function</title>
@@ -198,23 +166,17 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_GAINBLK_f">
-        <title>Voir aussi</title>
+    <refsection id="Seealso_GAINBLK_f" role="see also">
+        <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="PROD_f">PROD_f - Element-wise product (Xcos block)</link>
-                </para>
+                <link linkend="PROD_f">PROD_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INVBLK">INVBLK - Inversion (Xcos block)</link>
-                </para>
+                <link linkend="INVBLK">INVBLK</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PRODUCT">PRODUCT - Multiplication/Division of vectors by elements (Xcos block)</link>
-                </para>
+                <link linkend="PRODUCT">PRODUCT</link>
             </listitem>
         </itemizedlist>
     </refsection>

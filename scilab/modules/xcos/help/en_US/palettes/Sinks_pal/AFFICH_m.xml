@@ -25,7 +25,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
         xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-        xml:id="AFFICH_m">
+        xml:id="AFFICH_m" xml:lang="en_US">
     <refnamediv>
         <refname>AFFICH_m</refname>
         <refpurpose>Display input numbers on the block's icon</refpurpose>
@@ -42,28 +42,28 @@
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-              <xref linkend="Description_AFFICH_m">Description</xref>
+                    <xref linkend="Description_AFFICH_m">Description</xref>
             </listitem>
             <listitem>
-              <xref linkend="Dialogbox_AFFICH_m">Parameters</xref>
+                    <xref linkend="Dialogbox_AFFICH_m">Parameters</xref>
             </listitem>
             <listitem>
-              <xref linkend="Defaultproperties_AFFICH_m">Default properties</xref>
+                    <xref linkend="Defaultproperties_AFFICH_m">Default properties</xref>
             </listitem>
             <listitem>
-              <xref linkend="Interfacingfunction_AFFICH_m">Interfacing function</xref>
+                    <xref linkend="Interfacingfunction_AFFICH_m">Interfacing function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Computationalfunction_AFFICH_m">Computational function</xref>
+                    <xref linkend="Computationalfunction_AFFICH_m">Computational function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Example_AFFICH_m">Example</xref>
+                    <xref linkend="Example_AFFICH_m">Example</xref>
             </listitem>
             <listitem>
-              <xref linkend="Seealso_AFFICH_m">See also</xref>
+                    <xref linkend="Seealso_AFFICH_m">See also</xref>
             </listitem>
         </itemizedlist>
-        <para/>
+		<para/>
     </refsection>
 
     <refsection id="Description_AFFICH_m">

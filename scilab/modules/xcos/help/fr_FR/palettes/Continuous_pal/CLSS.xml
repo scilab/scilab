@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,79 +13,42 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CLSS" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="CLSS" xml:lang="fr">
     <refnamediv>
         <refname>CLSS</refname>
         <refpurpose>Représentation d'état en temps continu</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/CLSS.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/CLSS.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_CLSS">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLSS">Représentation d'état en temps continu</link>
-                </para>
+                <xref linkend="Description_CLSS">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CLSS">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CLSS">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_CLSS">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CLSS">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CLSS">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_CLSS">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_CLSS">Exemple</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_CLSS">Paramètres</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_CLSS">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">Palette Systèmes à temps continu
-                        palette
-                    </link>
-                </para>
+                <xref linkend="Defaultproperties_CLSS">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_CLSS">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_CLSS">Fonction de calcul</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_CLSS">Exemple</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -111,14 +74,13 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_CLSS">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/CLSS_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/gui/CLSS_gui.gif" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -193,9 +155,7 @@
                     <emphasis role="bold">regular inputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -203,9 +163,7 @@
                     <emphasis role="bold">regular outputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -240,6 +198,23 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
+    </refsection>
+    <refsection id="Interfacingfunction_CLSS">
+        <title>Fonction d'interfaçage</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/Linear/CLSS.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_CLSS">
+        <title>Fonction de calcul</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/csslti4.c (Type 4)</para>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection id="Example_CLSS">
         <title>Exemple</title>
@@ -262,7 +237,7 @@
 i = i_L = i_C = C \frac{\mathrm{d} v_C }{\mathrm{d} t} \\
 Ri_L + L \frac{\mathrm{d} i_L }{\mathrm{d} t} + v_C = u_0(t)
 \end{matrix}
-      ]]></latex>
+]]></latex>
         </para>
         <para>R, L et C sont les résistance, inductance et capacité du système.</para>
         <para>
@@ -285,7 +260,7 @@ then
 \end{array}
       ]]></latex>
         </para>
-        <para>thus</para>
+        <para>d'où</para>
         <para>
             <latex>x_1 = i_L = C\frac{\mathrm{d} v_C }{\mathrm{d} t} = C\dot{x_2}</latex>
         </para>
@@ -320,7 +295,7 @@ u_0(t)
       ]]></latex>
         </para>
         <para>Le schéma suivant montre ces équations modéllisées dans Xcos où
-            R=10Ω, L=5 mΗ et C=0,1µF; Les états initiaux  sont x1=0 et x2=0,5.
+            R= 10 Ω, L= 5 mΗ et C= 0,1 µF; Les états initiaux  sont x1=0 et x2=0,5.
         </para>
         <para>Pour obtenir la sortie Vc(t) on utilise le bloc CLSS de la palette Systèmes à temps continu.</para>
         <para>
@@ -331,22 +306,10 @@ u_0(t)
                     </imageobject>
                 </inlinemediaobject>
             </link>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/CLSS_Example.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
         </para>
-    </refsection>
-    <refsection id="Interfacingfunction_CLSS">
-        <title>Fonction d'interfaçage</title>
-        <itemizedlist>
-            <listitem>
-                <para>SCI/modules/scicos_blocks/macros/Linear/CLSS.sci</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Computationalfunction_CLSS">
-        <title>Fonction de calcul</title>
-        <itemizedlist>
-            <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/csslti4.c (Type 4)</para>
-            </listitem>
-        </itemizedlist>
     </refsection>
 </refentry>

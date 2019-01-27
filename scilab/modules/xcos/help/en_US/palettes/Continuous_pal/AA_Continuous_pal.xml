@@ -31,7 +31,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="CLINDUMMY_f">
             <inlinemediaobject>
                 <imageobject>
@@ -130,79 +129,43 @@
                 </imageobject>
             </inlinemediaobject>
             </link>.
-
-        </para>
-    </refsection>
-    <refsection id="Module_Continuous_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
     </refsection>
     <refsection id="Description_Continuous_pal">
         <title>Description</title>
         <para>The Continuous time systems palette includes basic linear blocks .</para>
     </refsection>
-    <refsection id="Blocks_Continuous_pal">
+    <refsection id="Blocks_Continuous_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLINDUMMY_f">CLINDUMMY_f — Dummy</link>
-                </para>
+                <link linkend="CLINDUMMY_f">CLINDUMMY_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLR">CLR — Continuous transfer function</link>
-                </para>
+                <link linkend="CLR">CLR</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLSS">CLSS - Continuous state-space system</link>
-                </para>
+                <link linkend="CLSS">CLSS</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DERIV">DERIV - Derivative</link>
-                </para>
+                <link linkend="DERIV">DERIV</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INTEGRAL_f">INTEGRAL_f - Integration</link>
-                </para>
+                <link linkend="INTEGRAL_f">INTEGRAL_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INTEGRAL_m">INTEGRAL_m — Integration</link>
-                </para>
+                <link linkend="INTEGRAL_m">INTEGRAL_m</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PID">PID - PID regulator</link>
-                </para>
+                <link linkend="PID">PID</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TCLSS">TCLSS — Continuous linear system with
-                        jump
-                    </link>
-                </para>
+                <link linkend="TCLSS">TCLSS</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TIME_DELAY">TIME_DELAY - Time delay</link>
-                </para>
+                <link linkend="TIME_DELAY">TIME_DELAY</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="VARIABLE_DELAY">VARIABLE_DELAY — Variable
-                        delay
-                    </link>
-                </para>
+                <link linkend="VARIABLE_DELAY">VARIABLE_DELAY</link>
             </listitem>
         </itemizedlist>
     </refsection>

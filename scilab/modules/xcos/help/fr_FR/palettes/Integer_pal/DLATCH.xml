@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,90 +13,57 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="DLATCH" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" 
+		  xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" 
+		  xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" 
+		  xml:id="DLATCH" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
     <refnamediv>
         <refname>DLATCH</refname>
         <refpurpose>Bascule D transparente</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/DLATCH.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata fileref="../../../../images/palettes/DLATCH.png" align="center"/>
+			</imageobject>
+		</inlinemediaobject>
     </refsection>
     <refsection id="Contents_DLATCH">
         <title>Contenu</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="DLATCH">Bascule D transparente</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_DLATCH">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_DLATCH">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Data_Type_DLATCH">Types de données</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_DLATCH">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_DLATCH">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_DLATCH">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_DLATCH">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_DLATCH">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Integer_pal">Palette Entier</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+		<itemizedlist>
+			<listitem>
+				<xref linkend="Description_DLATCH">Description</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Data_Type_DLATCH">Types de données</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Defaultproperties_DLATCH">Propriétés par défaut</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Example_DLATCH">Exemple</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Interfacingfunction_DLATCH">Fonction d'interfaçage</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Seealso_DLATCH">Voir aussi</xref>
+			</listitem>
+		</itemizedlist>
     </refsection>
     <refsection id="Description_DLATCH">
         <title>Description</title>
         <para>
             Ce bloc copie son état d'entrée (<emphasis role="bold">D</emphasis>) sur la sortie
             (<emphasis role="bold">Q</emphasis>) quand l'entrée de validation
-            (<emphasis role="bold">C</emphasis>) est haute et dans cette configuration, il apparaît comme transparent. La sortie <emphasis role="bold">!Q</emphasis> est la négation logique de
-            <emphasis role="bold">Q</emphasis>.
+            (<emphasis role="bold">C</emphasis>) est haute et dans cette configuration,
+			il apparaît comme transparent. La sortie <emphasis role="bold">!Q</emphasis> est
+			la négation logique de <emphasis role="bold">Q</emphasis>.
         </para>
         <para>
-            Quand l'entrée de validation devient basse, la sortie garde son état antérieur et agit comme une mémoire.
+            Quand l'entrée de validation devient basse, la sortie garde son état antérieur et
+			agit comme une mémoire.
         </para>
         <para>
             Ce bloc peut être typiquement utilisé dans les ports d'entrée/sortie.
@@ -104,85 +71,33 @@
         <para>
             La table de vérité du bloc est la suivante :
         </para>
-        <para/>
         <informaltable border="1" cellpadding="3">
             <tr>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{C}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{D}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{Q_n}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{!Q_n}]]></latex>
-                </td>
-                <td align="left"/>
+                <th>C</th>
+                <th>D</th>
+                <th>Q<subscript>n</subscript></th>
+                <th>!Q<subscript>n</subscript></th>
+                <td/>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[X]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[Q_{n-1}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[!Q_{n-1}]]></latex>
-                </td>
-                <td align="left">Sans changements</td>
+                <td>0</td>
+                <td>x</td>
+                <td>Q<subscript>n-1</subscript></td>
+                <td>!Q<subscript>n-1</subscript></td>
+                <td align="left">inchangé</td>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">Remise à 0</td>
+                <td>1</td><td>0</td><td>0</td><td>1</td><td>Remise à 0</td>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">Mise à 1</td>
+                <td>1</td><td>1</td><td>1</td><td>0</td><td>Mise à 1</td>
             </tr>
         </informaltable>
         <para>
-            où
-            <emphasis>
-                <literal>X</literal>
-            </emphasis>
-            signifie "indifférent" et
-            <emphasis><literal>
-                    Q<subscript>n-1</subscript>
-                </literal>
-            </emphasis>
+            où <emphasis><literal>X</literal></emphasis> signifie "indifférent" et
+            <emphasis><literal>Q<subscript>n-1</subscript></literal></emphasis>
             l'état antérieur de
-            <emphasis><literal>
-                    Q<subscript>n</subscript>
-                </literal>
-            </emphasis>
-            .
+            <emphasis><literal>Q<subscript>n</subscript></literal></emphasis>.
         </para>
     </refsection>
     <refsection id="Data_Type_DLATCH">
@@ -295,6 +210,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
     <refsection id="Example_DLATCH">
         <title>Exemple</title>

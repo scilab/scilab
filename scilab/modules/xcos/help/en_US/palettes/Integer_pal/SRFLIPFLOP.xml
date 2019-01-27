@@ -23,85 +23,50 @@
  * See the file ./license.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SRFLIPFLOP" xmln.mml="http://www.w3.org/1998/Math/MathML">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xmln.mml="http://www.w3.org/1998/Math/MathML" xml:id="SRFLIPFLOP" xml:lang="en_US">
     <refnamediv>
         <refname>SRFLIPFLOP</refname>
         <refpurpose>SR flip-flop</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/SRFLIPFLOP.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/SRFLIPFLOP.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_SRFLIPFLOP">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="SRFLIPFLOP">SR flip-flop</link>
-                </para>
+                <xref linkend="Description_SRFLIPFLOP">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_SRFLIPFLOP">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_SRFLIPFLOP">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Data_Type_BITCLEAR">Data types</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_SRFLIPFLOP">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_SRFLIPFLOP">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_SRFLIPFLOP">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_SRFLIPFLOP">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_SRFLIPFLOP">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Data_Type_BITCLEAR">Data types</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_SRFLIPFLOP">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_SRFLIPFLOP">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_SRFLIPFLOP">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_SRFLIPFLOP">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_SRFLIPFLOP">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_SRFLIPFLOP">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Integer_pal">Integer palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_SRFLIPFLOP">
         <title>Description</title>
         <para>
@@ -119,7 +84,6 @@
                     <emphasis role="bold">Q</emphasis> output is forced high, and stays high when
                     <emphasis role="bold">S</emphasis> returns low.
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
@@ -128,7 +92,6 @@
                     <emphasis role="bold">Q</emphasis> output is forced low, and stays low when
                     <emphasis role="bold">R</emphasis> returns low.
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
@@ -136,7 +99,6 @@
                     <emphasis role="bold">Q(t)</emphasis> takes the value of the previous output state
                     <emphasis role="bold">Q(t-1)</emphasis>.
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
@@ -154,89 +116,46 @@
         <para>
             The truth table of this block is:
         </para>
-        <para/>
         <informaltable border="1" cellpadding="3">
             <tr>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{S}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{R}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{Q_n}]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[\boldsymbol{!Q_n}]]></latex>
-                </td>
-                <td align="left"/>
+                <th>S</th>
+                <th>R</th>
+                <th>Q<subscript>n</subscript></th>
+                <th>!Q<subscript>n</subscript></th>
+                <th/>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[Q_n]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[!Q_n]]></latex>
-                </td>
-                <td align="left">Hold</td>
+                <td>0</td>
+                <td>0</td>
+                <td>Q<subscript>n</subscript></td>
+                <td>!Q<subscript>n</subscript></td>
+                <td>Hold</td>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">Reset</td>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>Reset</td>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[0]]></latex>
-                </td>
-                <td align="left">Set</td>
+                <td>1</td>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>Set</td>
             </tr>
             <tr>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[1]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[U]]></latex>
-                </td>
-                <td align="left">
-                    <latex><![CDATA[U]]></latex>
-                </td>
-                <td align="left">Forbidden state</td>
+                <td>1</td>
+                <td>1</td>
+                <td>U</td>
+                <td>U</td>
+                <td>Forbidden state</td>
             </tr>
         </informaltable>
         <para>
             where
-            <emphasis>
-                <literal>U</literal>
-            </emphasis>
+            <emphasis><literal>U</literal></emphasis>
             stands for "Unknown".
         </para>
     </refsection>
@@ -265,7 +184,6 @@
                 <para>
                     A positive input is considered as logical 1, a negative or a null input as logical 0.
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
@@ -274,16 +192,15 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Dialogbox_SRFLIPFLOP">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/integer_pal/en_US/SRFLIPFLOP_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/integer_pal/en_US/SRFLIPFLOP_gui.png" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -371,7 +288,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Example_SRFLIPFLOP">
         <title>Example</title>
         <para>
@@ -382,7 +301,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/SRFLIPFLOP_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/integer_pal/en_US/SRFLIPFLOP_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/integer_pal/en_US/SRFLIPFLOP_en_US.zcos" align="center"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -392,6 +311,7 @@ importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/en_US/SRFLIPFLOP_en_
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
     </refsection>
+
     <refsection id="Interfacingfunction_SRFLIPFLOP">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -402,6 +322,7 @@ xcos_simulate(scs_m, 4);
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection role="see also" id="Seealso_SRFLIPFLOP">
         <title>See also</title>
         <itemizedlist>

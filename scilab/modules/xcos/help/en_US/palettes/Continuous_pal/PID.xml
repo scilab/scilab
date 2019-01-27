@@ -21,100 +21,61 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="PID">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="PID" xml:lang="en_US">
     <refnamediv>
         <refname>PID</refname>
         <refpurpose>PID regulator</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/PID.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/PID.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_PID">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="PID">PID regulator</link>
-                </para>
+                <xref linkend="Description_PID">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_PID">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_PID">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_PID">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_PID">Default
-                                properties
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_PID">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="CompiledSuperBlockcontent_PID">Compiled Super Block content</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Examples_PID">Examples</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_PID">Parameters</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_PID">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">Continuous time systems
-                        palette
-                    </link>
-                </para>
+                <xref linkend="Defaultproperties_PID">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_PID">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="CompiledSuperBlockcontent_PID">Compiled Super Block content</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Examples_PID">Examples</xref>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Description_PID">
         <title>Description</title>
         <para>This block implements a PID (Proportional-Integral-Differential)
-            controller. It calculates an "error" value Ue as the difference between a
-            measured process variable Upr and a desired setpoint Ur.
+            controller. It calculates an "error" value <emphasis>U<subscript>e</subscript></emphasis>
+            as the difference between a measured process variable
+            <emphasis>U<subscript>pr</subscript></emphasis> and a desired setpoint
+            <emphasis>U<subscript>r</subscript></emphasis>.
         </para>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/pid_error.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <emphasis>U<subscript>e</subscript> = U<subscript>r</subscript> -
+                                                  U<subscript>pr</subscript></emphasis>
         </para>
-        <para>The purpose is to make the process variable Up follow the setpoint
-            value Ur. The PID controller is widely used in feedback control of
-            industrial processes.
+        <para>The purpose is to make the process variable <emphasis>U<subscript>p</subscript></emphasis>
+            follow the setpoint
+            value <emphasis>U<subscript>r</subscript></emphasis>.
+            The PID controller is widely used in feedback control of industrial processes.
         </para>
         <para>The PID controller calculation (algorithm) involves three separate
             parameters; the Proportional Kp, the Integral Ki and Derivative Kd values.
@@ -136,9 +97,12 @@
                 </imageobject>
             </inlinemediaobject>
         </para>
-        <para>PID law is a linear combination of an input variable Up(t), its time
-            integral Ui(t) and its first derivative Ud(t). The control law Ucon(t) has
-            the form:
+        <para>
+            PID law is a linear combination of an input variable
+            <emphasis>U<subscript>p</subscript>(t)</emphasis>, its time
+            integral <emphasis>U<subscript>i</subscript>(t)</emphasis> and its first derivative
+            <emphasis>U<subscript>d</subscript>(t)</emphasis>. The control law
+            <emphasis>U<subscript>con</subscript>(t)</emphasis> has the form:
         </para>
         <para>
             <inlinemediaobject>
@@ -149,15 +113,13 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_PID">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/PID_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/PID_gui.gif" align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -210,9 +172,7 @@
                     <emphasis role="bold">regular inputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [-1,-2] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [-1,-2] / type  1</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -220,31 +180,22 @@
                     <emphasis role="bold">regular outputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [-1,-2] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        inputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        outputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">continuous-time state:</emphasis>
-                    no
+                    <emphasis role="bold">continuous-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -254,8 +205,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis>
-                    no
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -265,6 +215,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_PID">
         <title>Interfacing function</title>
@@ -286,11 +237,11 @@
     </refsection>
     <refsection id="Examples_PID">
         <title>Examples</title>
-        <refsection id="Example_1_PID">
+        <refsect2 id="Example_1_PID">
             <title>Example 1</title>
             <para>This example illustrates the usage of PID regulator. It enables you
-                to fit the output signal Upr(t) to the required signal Ur(t)
-                easily.
+                to fit the output signal <emphasis>U<subscript>pr</subscript>(t)</emphasis>
+                to the required signal <emphasis>U<subscript>r</subscript>(t)</emphasis> easily.
             </para>
             <para>In this example the control system is a second-order unity-gain
                 low-pass filter with damping ratio ξ=0.5 and cutoff frequency fc= 100 Hz.
@@ -314,10 +265,12 @@
                     </imageobject>
                 </inlinemediaobject>
             </para>
-            <para>The scope displays the waveforms of system error Ue (black),
-                reference signal Ur (blue) and process signal Upr(red). It shows how
-                initially the process signal Upr(t) does not follow the reference signal
-                Ur(t).
+            <para>The scope displays the waveforms of system error
+                <emphasis>U<subscript>e</subscript></emphasis> (black),
+                reference signal <emphasis>U<subscript>r</subscript></emphasis> (blue) and process
+                signal <emphasis>U<subscript>pr</subscript></emphasis> (red). It shows how
+                initially the process signal <emphasis>U<subscript>pr</subscript>(t)</emphasis>
+                does not follow the reference signal <emphasis>U<subscript>r</subscript>(t)</emphasis>.
             </para>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_1_Example.zcos">
@@ -332,8 +285,8 @@ importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_1_Example.zco
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
-        <refsection id="Example_2_PID">
+        </refsect2>
+        <refsect2 id="Example_2_PID">
             <title>Example 2</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_2_Example.zcos">
@@ -348,8 +301,8 @@ importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_2_Example.zco
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
-        <refsection id="Example_3_PID">
+        </refsect2>
+        <refsect2 id="Example_3_PID">
             <title>Example 3</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_3_Example.zcos">
@@ -364,6 +317,6 @@ importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_3_Example.zco
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
+        </refsect2>
     </refsection>
 </refentry>

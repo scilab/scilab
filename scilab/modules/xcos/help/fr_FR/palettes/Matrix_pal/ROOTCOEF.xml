@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,71 +13,48 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ROOTCOEF" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="ROOTCOEF" xml:lang="fr_FR">
     <refnamediv>
         <refname>ROOTCOEF</refname>
-        <refpurpose>Calcul des coefficients d'un polynôme</refpurpose>
+        <refpurpose>Coefficients d'un polynôme de racines données</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/ROOTCOEF.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/ROOTCOEF.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_ROOTCOEF">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
                 <para>
-                    <link linkend="ROOTCOEF">Calcul des coefficients d'un polynôme</link>
+                    <xref linkend="Description_ROOTCOEF">Description</xref>
                 </para>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_ROOTCOEF">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_ROOTCOEF">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_ROOTCOEF">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_ROOTCOEF">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_ROOTCOEF">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_ROOTCOEF">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <para>
+                    <xref linkend="Dialogbox_ROOTCOEF">Paramètres</xref>
+                </para>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_ROOTCOEF">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
                 <para>
-                    <link linkend="Matrix_pal">Palette Opérations matricielles</link>
+                    <xref linkend="Defaultproperties_ROOTCOEF">Propriétés par défaut</xref>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <xref linkend="Interfacingfunction_ROOTCOEF">Fonction d'interfaçage</xref>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <xref linkend="Computationalfunction_ROOTCOEF">Fonction de calcul</xref>
                 </para>
             </listitem>
         </itemizedlist>
@@ -85,21 +62,21 @@
     <refsection id="Description_ROOTCOEF">
         <title>Description</title>
         <para>
-            Ce bloc calcule les coefficients d'un polynôme donné par ses racines. Ces racines sont données sur l'entrée
-            sous la forme d'un veceur colonne. La longueur du vecteur de coefficients doit être spécifiée dans le
+            Ce bloc calcule les coefficients d'un polynôme donné par ses racines.
+            Ces racines sont données sur l'entrée sous la forme d'un veceur colonne.
+            La longueur du vecteur de coefficients doit être spécifiée dans le
             paramètre <emphasis role="bold">input row size</emphasis>.
         </para>
     </refsection>
     <refsection id="Dialogbox_ROOTCOEF">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/ROOTCOEF_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/ROOTCOEF_gui.gif"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -191,6 +168,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_ROOTCOEF">
         <title>Fonction d'interfaçage</title>
@@ -204,10 +182,10 @@
         <title>Fonction de calcul</title>
         <itemizedlist>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/root_coef.c</para>
+                 SCI/modules/scicos_blocks/src/c/root_coef.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/rootz_coef.c</para>
+                 SCI/modules/scicos_blocks/src/c/rootz_coef.c
             </listitem>
         </itemizedlist>
     </refsection>

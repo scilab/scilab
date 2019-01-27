@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,78 +13,45 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="COSBLK_f" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="COSBLK_f" xml:lang="fr_FR">
     <refnamediv>
         <refname>COSBLK_f</refname>
         <refpurpose>Cosinus</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/COSBLK_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/COSBLK_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_COSBLK_f">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="COSBLK_f">Cosinus</link>
-                </para>
+                <xref linkend="Description_COSBLK_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_COSBLK_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_COSBLK_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_COSBLK_f">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_COSBLK_f">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_COSBLK_f">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_COSBLK_f">Propriétés par défaut</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_COSBLK_f">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Mathoperations_pal">Palette Opérations mathématiques</link>
-                </para>
+                <xref linkend="Interfacingfunction_COSBLK_f">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_COSBLK_f">Voir aussi</xref>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Description_COSBLK_f">
         <title>Description</title>
         <para>
-            Ce bloc calcule le cosinus des éléments du vecteur d'entrée.
-        </para>
-        <para>
+            Ce bloc calcule le cosinus des éléments du vecteur d'entrée :
             <link linkend="cos">
-                <latex>$y = \cos(u)$</latex>
+				<emphasis>y = cos(u)</emphasis>
             </link>
         </para>
     </refsection>
@@ -159,6 +126,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_COSBLK_f">
         <title>Fonction d'interfaçage</title>
@@ -168,23 +136,17 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_COSBLK_f">
+    <refsection id="Seealso_COSBLK_f" role="see also">
         <title>Voir aussi</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="TrigFun">TrigFun - Fonction trigonométrique (Bloc Xcos)</link>
-                </para>
+                <link linkend="TrigFun">TrigFun</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SINBLK_f">SINBLK_f - Sinus (Bloc Xcos)</link>
-                </para>
+                <link linkend="SINBLK_f">SINBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TANBLK_f">TANBLK_f - Tangente (Bloc Xcos)</link>
-                </para>
+                <link linkend="TANBLK_f">TANBLK_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

@@ -21,88 +21,53 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="BOUNCEXY">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="BOUNCEXY" xml:lang="en_US">
     <refnamediv>
         <refname>BOUNCEXY</refname>
         <refpurpose>Balls viewer</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/BOUNCEXY.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/BOUNCEXY.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_BOUNCEXY">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="BOUNCEXY">Balls viewer</link>
-                </para>
+                <xref linkend="Dialogbox_BOUNCEXY">Parameters</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_BOUNCEXY">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_BOUNCEXY">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_BOUNCEXY">Default
-                                properties
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_BOUNCEXY">Interfacing
-                                function
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_BOUNCEXY">Computational
-                                function
-                            </xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_BOUNCEXY">Default properties</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_BOUNCEXY">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Demonstrationsblocks_pal">Demonstrations blocks
-                        palette
-                    </link>
-                </para>
+                <xref linkend="Interfacingfunction_BOUNCEXY">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_BOUNCEXY">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_BOUNCEXY">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="See_also_BOUNCEXY">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_BOUNCEXY">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/BOUNCEXY_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/BOUNCEXY_gui.gif" align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -161,6 +126,7 @@
                 <para>Properties : Type 'vec' of size 1.</para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Defaultproperties_BOUNCEXY">
         <title>Default properties</title>
@@ -198,24 +164,17 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        inputs:
-                    </emphasis>
-                    1
+                    <emphasis role="bold">number/sizes of activation inputs: </emphasis>1
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        outputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">continuous-time state:</emphasis>
-                    no
+                    <emphasis role="bold">continuous-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -225,8 +184,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis>
-                    no
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -236,7 +194,20 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
+    <refsection id="Example_BOUNCEXY">
+        <title>Example</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/demos/bounce.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../demos/bounce.zcos"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
+    </refsection>
+
     <refsection id="Interfacingfunction_BOUNCEXY">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -253,17 +224,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_BOUNCEXY">
-        <title>BOUNCEXY example:</title>
-        <link type="scilab" linkend="scilab.xcos/xcos/demos/bounce.zcos">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../demos/bounce.zcos" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </link>
-    </refsection>
-    <refsection>
+    <refsection role="see also" id="See_also_BOUNCEXY">
         <title>See also</title>
         <simplelist type="inline">
             <member>

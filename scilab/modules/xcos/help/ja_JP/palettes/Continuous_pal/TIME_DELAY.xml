@@ -21,77 +21,42 @@
 *
 * See the file ./license.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="TIME_DELAY" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="TIME_DELAY" xml:lang="ja">
     <refnamediv>
         <refname>TIME_DELAY</refname>
         <refpurpose>時間遅延</refpurpose>
     </refnamediv>
     <refsection>
         <title>ブロックのスクリーンショット</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/TIME_DELAY.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/TIME_DELAY.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_TIME_DELAY">
         <title>内容</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="TIME_DELAY">時間遅延</link>
-                </para>
+                <xref linkend="Description_TIME_DELAY">説明</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_TIME_DELAY">パレット</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_TIME_DELAY">説明</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_TIME_DELAY">ダイアログボックス</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_TIME_DELAY">デフォルトプロパティ</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_TIME_DELAY">インターフェイス用関数</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_TIME_DELAY">計算用関数</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_TIME_DELAY">例</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_TIME_DELAY">ダイアログボックス</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_TIME_DELAY">
-        <title>パレット</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">連続時間システムパレット</link>
-                </para>
+                <xref linkend="Defaultproperties_TIME_DELAY">デフォルトプロパティ</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_TIME_DELAY">インターフェイス用関数</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_TIME_DELAY">計算用関数</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_TIME_DELAY">例</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -111,15 +76,13 @@
     </refsection>
     <refsection id="Dialogbox_TIME_DELAY">
         <title>ダイアログボックス</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/TIME_DELAY_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/TIME_DELAY_gui.gif"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -222,6 +185,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_TIME_DELAY">
         <title>インターフェイス用関数</title>

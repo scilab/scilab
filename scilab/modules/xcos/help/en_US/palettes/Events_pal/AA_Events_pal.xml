@@ -31,7 +31,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="ANDBLK">
             <inlinemediaobject>
                 <imageobject>
@@ -247,18 +246,6 @@
                 </imageobject>
             </inlinemediaobject>
             </link>.
-
-        </para>
-    </refsection>
-    <refsection id="Module_Events_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
     </refsection>
     <refsection id="Description_Events_pal">
         <title>Description</title>
@@ -267,138 +254,80 @@
             gather events in a single link.
         </para>
     </refsection>
-    <refsection id="Blocks_Events_pal">
+    <refsection id="Blocks_Events_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="ANDBLK">ANDBLK - Activation and</link>
-                </para>
+                <link linkend="ANDBLK">ANDBLK</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="ANDLOG_f">ANDLOG_f - Logical and</link>
-                </para>
+                <link linkend="ANDLOG_f">ANDLOG_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CEVENTSCOPE">CEVENTSCOPE — Activation scope</link>
-                </para>
+                <link linkend="CEVENTSCOPE">CEVENTSCOPE</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLKFROM">CLKFROM — Receives data from a corresponding
-                        CLKGOTO
-                    </link>
-                </para>
+                <link linkend="CLKFROM">CLKFROM</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLKGOTO">CLKGOTO — Pass block input to CLKFROM
-                        block
-                    </link>
-                </para>
+                <link linkend="CLKGOTO">CLKGOTO</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLKGotoTagVisibility">CLKGotoTagVisibility — Define
-                        Scope of CLKGOTO tag visibility
-                    </link>
-                </para>
+                <link linkend="CLKGotoTagVisibility">CLKGotoTagVisibility</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLKOUTV_f">CLKOUTV_f — Output activation port</link>
-                </para>
+                <link linkend="CLKOUTV_f">CLKOUTV_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLKSOMV_f">CLKSOMV_f — Activation union</link>
-                </para>
+                <link linkend="CLKSOMV_f">CLKSOMV_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLOCK_c">CLOCK_c — Activation clock</link>
-                </para>
+                <link linkend="CLOCK_c">CLOCK_c</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="EDGE_TRIGGER">EDGE_TRIGGER —  EDGE_TRIGGER block</link>
-                </para>
+                <link linkend="EDGE_TRIGGER">EDGE_TRIGGER</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="ENDBLK">ENDBLK —  END block</link>
-                </para>
+                <link linkend="ENDBLK">ENDBLK</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="END_c">END_c —  END_c block</link>
-                </para>
+                <link linkend="END_c">END_c</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="ESELECT_f">ESELECT_f — Synchronous block
-                        Event-Select
-                    </link>
-                </para>
+                <link linkend="ESELECT_f">ESELECT_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="EVTDLY_c">EVTDLY_c — Event delay</link>
-                </para>
+                <link linkend="EVTDLY_c">EVTDLY_c</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="EVTGEN_f">EVTGEN_f — Event generator</link>
-                </para>
+                <link linkend="EVTGEN_f">EVTGEN_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="EVTVARDLY">EVTVARDLY — Event variable delay</link>
-                </para>
+                <link linkend="EVTVARDLY">EVTVARDLY</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Extract_Activation">Extract_Activation — Extract_Activation block</link>
-                </para>
+                <link linkend="Extract_Activation">Extract_Activation</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="HALT_f">HALT_f — Stop simulation</link>
-                </para>
+                <link linkend="HALT_f">HALT_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="IFTHEL_f">IFTHEL_f — Synchronous block
-                        If-Then-Else
-                    </link>
-                </para>
+                <link linkend="IFTHEL_f">IFTHEL_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="M_freq">M_freq — Multiple Frequencies</link>
-                </para>
+                <link linkend="M_freq">M_freq</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MCLOCK_f">MCLOCK_f — Clock Frequency division</link>
-                </para>
+                <link linkend="MCLOCK_f">MCLOCK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MFCLCK_f">MFCLCK_f — Clock Multiple Frequencies</link>
-                </para>
+                <link linkend="MFCLCK_f">MFCLCK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SampleCLK">SampleCLK — Sample Time Clock</link>
-                </para>
+                <link linkend="SampleCLK">SampleCLK</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="freq_div">freq_div — Frequency division</link>
-                </para>
+                <link linkend="freq_div">freq_div</link>
             </listitem>
         </itemizedlist>
     </refsection>

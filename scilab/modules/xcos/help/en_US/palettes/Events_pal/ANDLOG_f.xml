@@ -21,73 +21,46 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ANDLOG_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="ANDLOG_f" xml:lang="en_US">
     <refnamediv>
         <refname>ANDLOG_f</refname>
-        <refpurpose>Logical and</refpurpose>
+        <refpurpose>Logical AND</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/ANDLOG_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/ANDLOG_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_ANDLOG_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="ANDLOG_f">Logical and</link>
-                </para>
+                <xref linkend="Description_ANDLOG_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_ANDLOG_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_ANDLOG_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_ANDLOG_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_ANDLOG_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_ANDLOG_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_ANDLOG_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_ANDLOG_f">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_ANDLOG_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Events_pal">Event handling palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_ANDLOG_f">
         <title>Description</title>
         <para>
             This block, with two event inputs and a regular output, outputs <emphasis role="bold">+1</emphasis> or
             <emphasis role="bold">-1</emphasis> on its regular output depending on input events.
-        </para>
-        <para>
-
         </para>
         <itemizedlist>
             <listitem>
@@ -166,20 +139,22 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Interfacingfunction_ANDLOG_f">
         <title>Interfacing function</title>
         <itemizedlist>
             <listitem>
-                <para> SCI/modules/scicos_blocks/macros/Events/ANDLOG_f.sci</para>
+                <para>SCI/modules/scicos_blocks/macros/Events/ANDLOG_f.sci</para>
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Example_ANDLOG_f">
-        <title>Logical And example</title>
+        <title>Example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/ANDLOG_f_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/events_pal/ANDLOG_f_Example.zcos" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/events_pal/ANDLOG_f_Example.zcos"/>
                 </imageobject>
             </inlinemediaobject>
         </link>

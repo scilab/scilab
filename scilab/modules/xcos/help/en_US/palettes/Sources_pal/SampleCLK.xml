@@ -21,91 +21,65 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SampleCLK">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="SampleCLK" xml:lang="en_US">
     <refnamediv>
         <refname>SampleCLK</refname>
         <refpurpose>Sample Time Clock</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/SampleCLK.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/SampleCLK.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_SampleCLK">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="SampleCLK">Sample Time Clock</link>
-                </para>
+                <xref linkend="Description_SampleCLK">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_SampleCLK">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_SampleCLK">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_SampleCLK">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_SampleCLK">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_SampleCLK">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_SampleCLK">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_SampleCLK">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_SampleCLK">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_SampleCLK">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_SampleCLK">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_SampleCLK">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Sources_pal">Sources palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_SampleCLK">
         <title>Description</title>
         <para>
-            The difference between the SampleCLK and the CLOCK_c is that all the SampleCLK blocks in our diagram are synchronous. The synchronism is done due to two different methods of computation in the compilation phase.
+            The difference between the SampleCLK and the CLOCK_c is that all the SampleCLK blocks
+            in our diagram are synchronous. The synchronism is done due to two different methods
+            of computation in the compilation phase.
         </para>
         <para>
-            The first method consists of computing a clock that is faster than all the SampleCLK connected to a counter which activate the event select block.
+            The first method consists of computing a clock that is faster than all the SampleCLK
+            connected to a counter which activate the event select block.
         </para>
         <para>
             The clock is calculated due to the following rule.
         </para>
         <para>
-            If all the blocks have the same offset then the frequency of the clock is the gcd of the sample time, and the offset of the clock is equal to the offset.
+            If all the blocks have the same offset then the frequency of the clock is the gcd of
+            the sample time, and the offset of the clock is equal to the offset.
         </para>
         <para>
-            If the offsets are different, then the frequency of the clock is the gcd of the sample time and the offset, and the offset of the clock is equal to 0.
+            If the offsets are different, then the frequency of the clock is the gcd of the
+            sample time and the offset, and the offset of the clock is equal to 0.
         </para>
         <para>
             The Counter counts from one to the least common multiple of the sample time (lcm).
@@ -114,23 +88,22 @@
             The number of outputs of the ESELECT_f block is equal to the lcm.
         </para>
         <para>
-            The second method uses the Multifrequency block it generates events only for specific time. Events in this method are not periodically generated as in the first one.
+            The second method uses the Multifrequency block it generates events only for
+            specific time. Events in this method are not periodically generated as in the first one.
         </para>
         <para>
         </para>
     </refsection>
-    <refsection id="Dialogbox_SampleCLK">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/SampleCLK_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
 
-        </para>
+    <refsection id="Dialogbox_SampleCLK">
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/SampleCLK_gui.gif"
+                        align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -148,6 +121,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Defaultproperties_SampleCLK">
         <title>Default properties</title>
         <itemizedlist>
@@ -203,7 +177,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Interfacingfunction_SampleCLK">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -212,28 +188,21 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_SampleCLK">
+
+    <refsection id="Seealso_SampleCLK" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLOCK_c">CLOCK_c - Activation clock</link>
-                </para>
+                <link linkend="CLOCK_c">CLOCK_c</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Counter">Counter - Counter</link>
-                </para>
+                <link linkend="Counter">Counter</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="ESELECT_f">ESELECT_f - Synchronous block Event-Select</link>
-                </para>
+                <link linkend="ESELECT_f">ESELECT_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="M_freq">M_freq - Multiple Frequencies</link>
-                </para>
+                <link linkend="M_freq">M_freq</link>
             </listitem>
         </itemizedlist>
     </refsection>

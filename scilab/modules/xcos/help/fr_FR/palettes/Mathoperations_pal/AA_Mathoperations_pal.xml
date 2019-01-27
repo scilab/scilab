@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -224,132 +224,81 @@
 
         </para>
     </refsection>
-    <refsection id="Module_Mathoperations_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Mathoperations_pal">
         <title>Description</title>
-        <para> La palette Opérations mathématiques contient les blocs de modélisation des fonctions mathématiques générales.</para>
+        <para>
+            La palette Opérations mathématiques contient les blocs de modélisation des fonctions
+            mathématiques générales.
+        </para>
     </refsection>
-    <refsection id="Blocks_Mathoperations_pal">
+    <refsection id="Blocks_Mathoperations_pal" role="see also">
         <title>Blocs</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="ABS_VALUE">ABS_VALUE — Valeur absolue</link>
-                </para>
+                <link linkend="ABS_VALUE">ABS_VALUE</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="BIGSOM_f">BIGSOM_f — Addition/Soustraction de scalaires ou vecteurs</link>
-                </para>
+                <link linkend="BIGSOM_f">BIGSOM_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="COSBLK_f">COSBLK_f — Cosinus</link>
-                </para>
+                <link linkend="COSBLK_f">COSBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="EXPBLK_m">EXPBLK_m — Exponentielle d'un scalaire</link>
-                </para>
+                <link linkend="EXPBLK_m">EXPBLK_m</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="GAINBLK_f">GAINBLK_f — Gain</link>
-                </para>
+                <link linkend="GAINBLK_f">GAINBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INVBLK">INVBLK — Inverse</link>
-                </para>
+                <link linkend="INVBLK">INVBLK</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="LOGBLK_f">LOGBLK_f — Logarithme Commun</link>
-                </para>
+                <link linkend="LOGBLK_f">LOGBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATMAGPHI">MATMAGPHI — Complexe à partir de/vers module et phase</link>
-                </para>
+                <link linkend="MATMAGPHI">MATMAGPHI</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATZREIM">MATZREIM — Composition/décomposition complexe</link>
-                </para>
+                <link linkend="MATZREIM">MATZREIM</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MAX_f">MAX_f — Valeur maximale des éléments d'un vecteur</link>
-                </para>
+                <link linkend="MAX_f">MAX_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MAXMIN">MAXMIN — Valeur maximale ou minimale des éléments de vecteurs</link>
-                </para>
+                <link linkend="MAXMIN">MAXMIN</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MIN_f">MIN_f — Valeur minimale des éléments d'un vecteur</link>
-                </para>
+                <link linkend="MIN_f">MIN_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="POWBLK_f">POWBLK_f — Puissance</link>
-                </para>
+                <link linkend="POWBLK_f">POWBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PROD_f">PROD_f — Produit de vecteurs élément par élément</link>
-                </para>
+                <link linkend="PROD_f">PROD_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PRODUCT">PRODUCT — Multiplication/Division de vecteurs élément par élément</link>
-                </para>
+                <link linkend="PRODUCT">PRODUCT</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SIGNUM">SIGNUM — Signe</link>
-                </para>
+                <link linkend="SIGNUM">SIGNUM</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SINBLK_f">SINBLK_f — Sinus</link>
-                </para>
+                <link linkend="SINBLK_f">SINBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SQRT">SQRT — Racine carrée</link>
-                </para>
+                <link linkend="SQRT">SQRT</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SUM_f">SUM_f — Addition</link>
-                </para>
+                <link linkend="SUM_f">SUM_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SUMMATION">SUMMATION — Addition/Soustraction de matrices</link>
-                </para>
+                <link linkend="SUMMATION">SUMMATION</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TANBLK_f">TANBLK_f — Tangente</link>
-                </para>
+                <link linkend="TANBLK_f">TANBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TrigFun">TrigFun — Fonction trigonométrique</link>
-                </para>
+                <link linkend="TrigFun">TrigFun</link>
             </listitem>
         </itemizedlist>
     </refsection>

@@ -21,83 +21,50 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="TANBLK_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="TANBLK_f" xml:lang="en">
     <refnamediv>
         <refname>TANBLK_f</refname>
         <refpurpose>Tangent</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/TANBLK_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/TANBLK_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_TANBLK_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="TANBLK_f">Tangent</link>
-                </para>
+                <xref linkend="Description_TANBLK_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_TANBLK_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_TANBLK_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_TANBLK_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_TANBLK_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_TANBLK_f">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_TANBLK_f">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_TANBLK_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_TANBLK_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_TANBLK_f">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_TANBLK_f">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_TANBLK_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Mathoperations_pal">Math operations palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_TANBLK_f">
         <title>Description</title>
         <para>
-            That block computes the tangent of the elements of the input vector.
-        </para>
-        <para>
+            That block computes the tangent of the elements of the input vector: 
             <link linkend="tan">
-                <latex>$y = \tan(u)$</latex>
+				<emphasis>y = tan(u)</emphasis>
             </link>
         </para>
     </refsection>
@@ -172,6 +139,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
     <refsection id="Interfacingfunction_TANBLK_f">
         <title>Interfacing function</title>
@@ -189,23 +157,17 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_TANBLK_f">
+    <refsection id="Seealso_TANBLK_f" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="TrigFun">TrigFun - Trigonometric function (Bloc Xcos)</link>
-                </para>
+                <link linkend="TrigFun">TrigFun</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="COSBLK_f">COSBLK_f - Cosine (Bloc Xcos)</link>
-                </para>
+                <link linkend="COSBLK_f">COSBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SINBLK_f">SINBLK_f - Sine (Bloc Xcos)</link>
-                </para>
+                <link linkend="SINBLK_f">SINBLK_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

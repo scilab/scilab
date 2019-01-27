@@ -32,7 +32,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="CLKINV_f">
             <inlinemediaobject>
                 <imageobject>
@@ -127,15 +126,6 @@
             <inlinemediaobject>
                 <imageobject>
                     <imagedata linkend="Modulo_Count" fileref="../../../../images/palettes/Modulo_Count.png"
-                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
-                </imageobject>
-            </inlinemediaobject>
-            </link>.
-
-            <link linkend="PULSE_SC">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="PULSE_SC" fileref="../../../../images/palettes/PULSE_SC.png"
                      style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
@@ -239,144 +229,85 @@
                 </imageobject>
             </inlinemediaobject>
             </link>.
+    </refsection>
 
-        </para>
-    </refsection>
-    <refsection id="Module_Sources_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Sources_pal">
         <title>Description</title>
-        <para>Most of blocks of the Source palette can be viewed as data
-            generators. That palette also contains blocks to read data from files and
-            input ports used in superblocks.
+        <para>
+            Most of blocks of the Source palette can be viewed as data generators. That palette
+            also contains blocks to read data from files and input ports used in superblocks.
         </para>
         <para>The blocks of that palette does not have regular input ports.</para>
     </refsection>
-    <refsection id="Blocks_Sources_pal">
+
+    <refsection id="Blocks_Sources_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLKINV_f">CLKINV_f -  Activation Input Port</link>
-                </para>
+                <link linkend="CLKINV_f">CLKINV_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLOCK_c">CLOCK_c - Activation Clock</link>
-                </para>
+                <link linkend="CLOCK_c">CLOCK_c</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CONST_m">CONST_m - Constant</link>
-                </para>
+                <link linkend="CONST_m">CONST_m</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Counter">Counter - Counter</link>
-                </para>
+                <link linkend="Counter">Counter</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CURV_f">CURV_f - Signal Generator (defined by a curve)</link>
-                </para>
+                <link linkend="CURV_f">CURV_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="FROMWSB">FROMWSB - Data from Scilab Workspace to Xcos</link>
-                </para>
+                <link linkend="FROMWSB">FROMWSB</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="GENSIN_f">GENSIN_f - Sine wave generator</link>
-                </para>
+                <link linkend="GENSIN_f">GENSIN_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="GENSQR_f">GENSQR_f - Square Wave Generator</link>
-                </para>
+                <link linkend="GENSQR_f">GENSQR_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="IN_f">IN_f - Regular Input Port</link>
-                </para>
+                <link linkend="IN_f">IN_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INIMPL_f">INIMPL_f - Implicit Input Port</link>
-                </para>
+                <link linkend="INIMPL_f">INIMPL_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Modulo_Count">Modulo_Count - Modulo Counter</link>
-                </para>
+                <link linkend="Modulo_Count">Modulo_Count</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PULSE_SC">PULSE_SC - Pulse generator</link>
-                </para>
+                <link linkend="RAMP">RAMP</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="RAMP">RAMP - Ramp Function</link>
-                </para>
+                <link linkend="RAND_m">RAND_m</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="RAND_m">RAND_m - Random Generator</link>
-                </para>
+                <link linkend="READAU_f">READAU_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="READAU_f">READAU_f - Read AU Sound File</link>
-                </para>
+                <link linkend="READC_f">READC_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="READC_f">READC_f - Read Binary Data</link>
-                </para>
+                <link linkend="RFILE_f">RFILE_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="RFILE_f">RFILE_f - Read From File</link>
-                </para>
+                <link linkend="SampleCLK">SampleCLK</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SampleCLK">SampleCLK - Sample Time Clock</link>
-                </para>
+                <link linkend="SAWTOOTH_f">SAWTOOTH_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SAWTOOTH_f">SAWTOOTH_f - Sawtooth Generator</link>
-                </para>
+                <link linkend="Sigbuilder">Sigbuilder</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Sigbuilder">Sigbuilder - Signal Creator/Generator</link>
-                </para>
+                <link linkend="STEP_FUNCTION">STEP_FUNCTION</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="STEP_FUNCTION">STEP_FUNCTION - Step Function </link>
-                </para>
+                <link linkend="TIME_f">TIME_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TIME_f">TIME_f - Simulation Time</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="TKSCALE">TKSCALE - Adjust constant value with a tk widget</link>
-                </para>
+                <link linkend="TKSCALE">TKSCALE</link>
             </listitem>
         </itemizedlist>
     </refsection>

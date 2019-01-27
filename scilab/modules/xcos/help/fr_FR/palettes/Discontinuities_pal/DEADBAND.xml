@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,79 +13,42 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="DEADBAND" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="DEADBAND" xml:lang="fr">
     <refnamediv>
         <refname>DEADBAND</refname>
         <refpurpose>Zone morte</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/DEADBAND.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/DEADBAND.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_DEADBAND">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="DEADBAND">Zone morte</link>
-                </para>
+                <xref linkend="Description_DEADBAND">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_DEADBAND">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_DEADBAND">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_DEADBAND">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_DEADBAND">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_DEADBAND">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_DEADBAND">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_DEADBAND">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_DEADBAND">Paramètres</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_DEADBAND">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="discontinuities_pal">Discontinuities
-                        palette
-                    </link>
-                </para>
+                <xref linkend="Defaultproperties_DEADBAND">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_DEADBAND">Exemple</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_DEADBAND">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_DEADBAND">Fonction de calcul</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -114,28 +77,29 @@
         \end{cases}
       ]]></latex>
         </para>
-        <para>Avec </para>
+        <para>avec </para>
         <para>
-            <latex><![CDATA[c_{E}>c_{S}]]></latex>
+            c<subscript>E</subscript> > c<subscript>S</subscript>
         </para>
         <para>
-            Quand l'entrée u(k) est entre Cs et CE, la sortie v(k) est zéro.
-            Quand l'entrée est supérieure ou égale à la limite haute CE, la sortie
+            Quand l'entrée u(k) est entre <emphasis>C<subscript>s</subscript></emphasis> et
+            <emphasis>C<subscript>E</subscript></emphasis>, la sortie v(k) est zéro.
+            Quand l'entrée est supérieure ou égale à la limite haute
+            <emphasis>C<subscript>E</subscript></emphasis>, la sortie
             est égale à l'entrée moins la limite haute. Quand l'entrée est inférieure
-            ou égale à la limite inférieure Cs, la sortie est égale à l'entrée moins
-            la limite inférieure.
+            ou égale à la limite inférieure <emphasis>C<subscript>s</subscript></emphasis>,
+            la sortie est égale à l'entrée moins la limite inférieure.
         </para>
     </refsection>
     <refsection id="Dialogbox_DEADBAND">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../gui/discontinuities_pal/fr_FR/DEADBAND_gui.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/discontinuities_pal/fr_FR/DEADBAND_gui.png"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -188,9 +152,7 @@
                     <emphasis role="bold">regular inputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -198,31 +160,22 @@
                     <emphasis role="bold">regular outputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        inputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        outputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">continuous-time state:</emphasis>
-                    non
+                    <emphasis role="bold">continuous-time state:</emphasis> non
                 </para>
             </listitem>
             <listitem>
@@ -232,8 +185,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis>
-                    non
+                    <emphasis role="bold">object discrete-time state:</emphasis> non
                 </para>
             </listitem>
             <listitem>
@@ -243,6 +195,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_DEADBAND">
         <title>Exemple</title>

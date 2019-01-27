@@ -21,108 +21,70 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATBKSL">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="MATBKSL" xml:lang="en_US">
     <refnamediv>
         <refname>MATBKSL</refname>
         <refpurpose>Left matrix division</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/MATBKSL.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/MATBKSL.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_MATBKSL">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATBKSL">Left matrix division</link>
-                </para>
+                <xref linkend="Description_MATBKSL">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MATBKSL">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MATBKSL">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_MATBKSL">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="MATBKSL">Example</link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MATBKSL">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MATBKSL">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_MATBKSL">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_MATBKSL">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_MATBKSL">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_MATBKSL">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="MATBKSL">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_MATBKSL">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_MATBKSL">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_MATBKSL">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_MATBKSL">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Matrix_pal">Matrix operation palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_MATBKSL">
         <title>Description</title>
         <para>
-            The MATBKSL block outputs the left matrix division. It is a solution to A*x=B. The higher input is the A matrix,
-            the lower one is the B matrix, and the output is x.
-            If A is an MxN1 matrix, B must be a MxN2 matrix where N1 and N2 can be different or equal. The output x
-            is a N1xN2 matrix.
+            The MATBKSL block outputs the left matrix division. It is a solution to A*x=B.
+            The higher input is the A matrix, the lower one is the B matrix, and the output is x.
+            If A is an MxN1 matrix, B must be a MxN2 matrix where N1 and N2 can be different or equal.
+            The output x is a N1xN2 matrix.
         </para>
         <para>
-            The equivalent of MATBKSL is <link linkend="backslash">backslash (\)</link> ïn Scilab.
+            The equivalent of MATBKSL is <link linkend="backslash">backslash (\)</link> in Scilab.
         </para>
-        <para/>
     </refsection>
     <refsection id="Dialogbox_MATBKSL">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/MATBKSL_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/gui/MATBKSL_gui.gif" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -135,15 +97,6 @@
                 <para>Properties : Type 'vec' of size 1.</para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection id="Example_MATBKSL">
-        <title>Example</title>
-        <programlisting role="example">
-            A=[1 7 3;23 32 29]
-            B=[21 18;13 10]
-            then the result of the A*x=B equation is (A\B):
-            x=[-4.504 -3.922;3.643 3.132;0.000 0.000]
-        </programlisting>
     </refsection>
     <refsection id="Defaultproperties_MATBKSL">
         <title>Default properties</title>
@@ -219,7 +172,26 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+    <refsection id="Example_MATBKSL">
+        <title>Example</title>
+        <screen><![CDATA[
+A = [1 7 3;23 32 29]
+B = [21 18;13 10]
+then the result of the A*x=B equation is (A\B):
+x = [-4.504 -3.922;3.643 3.132;0.000 0.000]
+]]></screen>
+        <para><emphasis role="bold">Example of left division: tan(x) = sin(x)/cos(x)</emphasis></para>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATBKSL_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATBKSL_Example.zcos"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
+    </refsection>
+
     <refsection id="Interfacingfunction_MATBKSL">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -228,39 +200,27 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Computationalfunction_MATBKSL">
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/mat_bksl.c</para>
+                SCI/modules/scicos_blocks/src/c/mat_bksl.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matz_bksl.c</para>
+                SCI/modules/scicos_blocks/src/c/matz_bksl.c
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_MATBKSL2">
-        <title>Example of left division: tan(x) = sin(x)/cos(x)</title>
-        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATBKSL_Example.zcos">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATBKSL_Example.zcos" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </link>
-    </refsection>
-    <refsection id="Seealso_MATBKSL">
+
+    <refsection id="Seealso_MATBKSL" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATDIV">MATDIV - Matrix division (xcos Block)</link>
-                </para>
+                <link linkend="MATDIV">MATDIV</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATMUL">MATMUL - Matrix Multiplication (xcos Block)</link>
-                </para>
+                <link linkend="MATMUL">MATMUL</link>
             </listitem>
         </itemizedlist>
     </refsection>

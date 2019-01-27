@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,77 +13,42 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="REGISTER" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="REGISTER" xml:lang="fr">
     <refnamediv>
         <refname>REGISTER</refname>
         <refpurpose>Registre à décalage</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/REGISTER.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/REGISTER.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_REGISTER">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="REGISTER">Registre à décalage</link>
-                </para>
+                <xref linkend="Description_REGISTER">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_REGISTER">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_REGISTER">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_REGISTER">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_REGISTER">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_REGISTER">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_REGISTER">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_REGISTER">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_REGISTER">Paramètres</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_REGISTER">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Discrete_pal">Palette Systèmes à temps discret</link>
-                </para>
+                <xref linkend="Defaultproperties_REGISTER">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_REGISTER">Exemple</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_REGISTER">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_REGISTER">Fonction de calcul</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -94,17 +59,14 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_REGISTER">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/REGISTER_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/REGISTER_gui.gif"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -193,6 +155,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_REGISTER">
         <title>Exemple</title>
@@ -222,22 +185,22 @@ xcos_simulate(scs_m, 4);
         <title>Fonctions de calcul</title>
         <itemizedlist>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/delay4_i32.c</para>
+                 SCI/modules/scicos_blocks/src/c/delay4_i32.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/delay4_i16.c</para>
+                 SCI/modules/scicos_blocks/src/c/delay4_i16.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/delay4_i8.c</para>
+                 SCI/modules/scicos_blocks/src/c/delay4_i8.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/delay4_ui32.c</para>
+                 SCI/modules/scicos_blocks/src/c/delay4_ui32.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/delay4_ui16.c</para>
+                 SCI/modules/scicos_blocks/src/c/delay4_ui16.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/delay4_ui8.c</para>
+                 SCI/modules/scicos_blocks/src/c/delay4_ui8.c
             </listitem>
         </itemizedlist>
     </refsection>

@@ -21,62 +21,33 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="AUTOMAT">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="AUTOMAT" xml:lang="en_US">
     <refnamediv>
         <refname>AUTOMAT</refname>
         <refpurpose>automata (finite state machine)</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/AUTOMAT.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/AUTOMAT.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_AUTOMAT">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="AUTOMAT">automata (finite state machine)</link>
-                </para>
+                <xref linkend="Description_AUTOMAT">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_AUTOMAT">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_AUTOMAT">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_AUTOMAT">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_AUTOMAT">Default properties</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_AUTOMAT">Parameters</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_AUTOMAT">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Demonstrationsblocks_pal">Demonstrations blocks palette</link>
-                </para>
+                <xref linkend="Defaultproperties_AUTOMAT">Default properties</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -98,25 +69,28 @@
         </para>
         <para>
             Suppose that a hybrid automaton consists of <literal>M</literal>
-            control
-            modes. The continuous-time dynamics in mode  is defined with DAE
+            control modes. The continuous-time dynamics in mode  is defined with DAE
             (<latex>$0 = F_i(\dot{x}, x, u)$</latex>
             ) where <literal>i</literal> is in <literal>[1 .. M]</literal>
-            and the dimension
-            of <literal>x</literal> is <literal>N</literal> (<literal>N</literal> ≥ 0) for any <literal>i</literal> in <literal>[1 .. M]</literal>. Suppose that in
-            control mode <literal>i</literal>, there are <latex>$Z_i$</latex> jump conditions indicating jumps toward other modes. The jump conditions are defined by
+            and the dimension of <literal>x</literal> is <literal>N</literal>
+            (<literal>N</literal> ≥ 0) for any <literal>i</literal> in <literal>[1 .. M]</literal>.
+            Suppose that in control mode <literal>i</literal>, there are
+            <literal>Z<subscript>i</subscript></literal> jump conditions indicating jumps toward
+            other modes. The jump conditions are defined by
             functions <latex>$\mathrm{Jump}_{i,j}(\dot{x}, x, u)$</latex> where
-            <literal>j</literal> is in <literal>[1 .. </literal><latex>$Z_i$</latex><literal>]</literal>.
+            <literal>j</literal> is in <literal>[1 .. Z<subscript>i</subscript>]</literal>.
         </para>
         <para>
-            When a jump function changes sign and becomes positive, a mode
-            transition will happen. When <literal>k</literal>-th transition function becomes positive, a transition to mode <literal>k</literal> happens and state vector <literal>x</literal> is reset to : <latex>$\mathrm{Reset}_{k}(\dot{x}, x, u)$</latex> for i.e., <latex>$x_l = \mathrm{Reset}_{k,l}(\dot{x}, x, u) \mathrm{for} l \in \{1...N\} $</latex>.
+            When a jump function changes sign and becomes positive, a mode transition will happen.
+            When <literal>k</literal>-th transition function becomes positive, a transition to mode
+            <literal>k</literal> happens and state vector <literal>x</literal> is reset to :
+            <latex>$\mathrm{Reset}_{k}(\dot{x}, x, u)$</latex> for i.e.,
+            <latex>$x_l = \mathrm{Reset}_{k,l}(\dot{x}, x, u) \text{ for l } \in\; \{1...N\} $</latex>.
         </para>
         <para>
-            In order to develop an automaton containing a mode with multiple
-            reset functions, the value of the current and previous active modes
-            should be used. These values are available at the first output port
-            of the block.
+            In order to develop an automaton containing a mode with multiple reset functions,
+            the value of the current and previous active modes should be used. These values are
+            available at the first output port of the block.
         </para>
         <para>
             The automaton block has the following input/output ports.
@@ -124,17 +98,29 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">Output 1:</emphasis> The first output port is a vector of size two consisting of the current and the previous active control modes, i.e., <latex>$\mathrm{out}_1 = [\mathrm{current mode}, \mathrm{previous mode}]^t$</latex>.
+                    <emphasis role="bold">Output 1:</emphasis> The first output port is a vector
+                    of size two consisting of the current and the previous active control modes, i.e.,
+                    <literal>out<subscript>1</subscript> = [current_mode,
+                    previous mode]<superscript>t</superscript></literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Output 2:</emphasis> The second output port is a vector of size <literal>2N</literal> providing the state vector and its first time derivative, <latex>$[x,\dot{x}]^t$</latex>.
+                    <emphasis role="bold">Output 2:</emphasis> The second output port is a vector
+                    of size <literal>2N</literal> providing the state vector and its first time
+                    derivative, <latex>$[x,\dot{x}]^t$</latex>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Inputs:</emphasis> The automaton block has <literal>M</literal> vector input ports corresponding to <literal>M</literal> modes or subsystems of the automaton. Each input defines the dynamic behavior in the control each mode as well as the reset functions and the transition functions. The input port <literal>i</literal> which is the output of the <literal>i</literal>-th subsystem is a vector of size <literal>2N+</literal><latex>$Z_i$</latex>. Each input is composed of the following vector.
+                    <emphasis role="bold">Inputs:</emphasis> The automaton block has
+                    <literal>M</literal> vector input ports corresponding to <literal>M</literal>
+                    modes or subsystems of the automaton. Each input defines the dynamic behavior
+                    in the control each mode as well as the reset functions and the transition
+                    functions. The input port <literal>i</literal> which is the output of the
+                    <literal>i</literal>-th subsystem is a vector of size
+                    <literal>2N+Z<subscript>i</subscript></literal>. Each input is composed of
+                    the following vector.
                 </para>
                 <latex>$$
                     \mathrm{Input}_i = [F_i(\dot{x}, x, u), \mathrm{Reset}_i(\dot{x}, x, u), \mathrm{Jump}_i(\dot{x}, x, u)] ^ t
@@ -143,27 +129,25 @@
                 <itemizedlist>
                     <listitem>
                         <para>
-                            The first <literal>N</literal> elements of the <literal>Input_i</literal> are the continuous-time dynamics.  The dynamics of the system in the control mode <literal>i</literal> is described by a smooth index-1 DAE <latex>$0 = F_i(\dot{x}, x, u, t)$</latex>.
-
-
+                            The first <literal>N</literal> elements of the
+                            <literal>Input_i</literal> are the continuous-time dynamics.
+                            The dynamics of the system in the control mode <literal>i</literal> is
+                            described by a smooth index-1 DAE <latex>$0 = F_i(\dot{x}, x, u, t)$</latex>.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            The next <literal>N</literal> elements of <literal>Input_i</literal> are the values used to
-                            reset the continuous-time state when a transition to
-                            control mode <literal>i</literal>
-                            is activated.
+                            The next <literal>N</literal> elements of <literal>Input_i</literal>
+                            are the values used to reset the continuous-time state when a
+                            transition to control mode <literal>i</literal> is activated.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            The next <literal>Z_i</literal> elements of <literal>Input_i</literal> are the jump or
-                            zero-crossing functions. If the <literal>j</literal>-th
-                            zero-crossing function of
-                            mode <literal>i</literal>
-                            crosses zero with negative to positive direction, a
-                            transition to <literal>j</literal>-th
+                            The next <literal>Z_i</literal> elements of <literal>Input_i</literal>
+                            are the jump or zero-crossing functions. If the <literal>j</literal>-th
+                            zero-crossing function of mode <literal>i</literal> crosses zero with
+                            negative to positive direction, a transition to <literal>j</literal>-th
                             destination mode happens.
                         </para>
                     </listitem>
@@ -171,28 +155,27 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Event Output:</emphasis> This is an event output port, which is activated whenever a mode transition happens. This event is useful when an event is needed to activate or initialize a part of the subsystem not included in the internal dynamics of the automaton block.
+                    <emphasis role="bold">Event Output:</emphasis> This is an event output port,
+                    which is activated whenever a mode transition happens. This event is useful
+                    when an event is needed to activate or initialize a part of the subsystem not
+                    included in the internal dynamics of the automaton block.
                 </para>
             </listitem>
         </itemizedlist>
         <para>
-            In the interface window, the number of control modes, the initial
-            control mode and the initial value of continuous-time state at the
-            beginning of the simulation should be given.
+            In the interface window, the number of control modes, the initial control mode and the
+            initial value of continuous-time state at the beginning of the simulation should be given.
         </para>
+        <para/>
     </refsection>
     <refsection id="Dialogbox_AUTOMAT">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/AUTOMAT_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/AUTOMAT_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -210,7 +193,9 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Number of continuous-time states</emphasis> Number of continuous-time states at modes. Note that the number of continuous-time states is the same in all modes.
+                    <emphasis role="bold">Number of continuous-time states</emphasis> Number of
+                    continuous-time states at modes. Note that the number of continuous-time states
+                    is the same in all modes.
                 </para>
                 <para> Properties : Type 'vec' of size [-1,1]. </para>
             </listitem>
@@ -226,7 +211,15 @@
                     <emphasis role="bold">Xproperties of continuous-time states in each Mode</emphasis>
                 </para>
                 <para>
-                    In this field the state types in mode are given. A state in an index 1 DAE can be either differential state or algebraic state. vector is coded in an M*N matrix, where M is the number of modes and N is the number of states. This matrices indicates whether a continuous-time state is algebraic or differential in each control mode. If in the <literal>i</literal>-th mode,<literal>j</literal>-th state is differential, the <literal>(i,j)</literal>-th element of the Xproperty matrix should set to "+1", otherwise it should set to "-1". Xproperty can be given as a 1*N vector if type of states remain the same in all modes.
+                    In this field the state types in mode are given. A state in an index 1 DAE can
+                    be either differential state or algebraic state. vector is coded in an M*N
+                    matrix, where M is the number of modes and N is the number of states.
+                    This matrices indicates whether a continuous-time state is algebraic or
+                    differential in each control mode. If in the <literal>i</literal>-th mode,
+                    <literal>j</literal>-th state is differential, the <literal>(i,j)</literal>-th
+                    element of the Xproperty matrix should set to "+1", otherwise it should set
+                    to "-1". Xproperty can be given as a 1*N vector if type of states remain the
+                    same in all modes.
                 </para>
                 <para> Properties : Type 'mat' of size [-1,-1]. </para>
             </listitem>
@@ -235,14 +228,24 @@
                     <emphasis role="bold">Jump from Mode 1:[..;M_final(Guard=In(1).i);..]</emphasis>
                 </para>
                 <para>
-                    The fields express the mode transition information. Suppose that all control modes are labeled from 1 to M. Then, in the field corresponding to control mode<emphasis role="bold">i</emphasis> , destination modes of mode<emphasis role="bold">i</emphasis> are defined in a vector.<emphasis role="bold">j-th</emphasis> element of this vector gives the destination mode when<emphasis role="bold">j-th</emphasis> jump function :
+                    The fields express the mode transition information. Suppose that all control
+                    modes are labeled from 1 to M. Then, in the field corresponding to control
+                    mode<emphasis role="bold">i</emphasis> , destination modes of mode
+                    <emphasis role="bold">i</emphasis> are defined in a vector.
+                    <emphasis role="bold">j-th</emphasis> element of this vector gives the
+                    destination mode when<emphasis role="bold">j-th</emphasis> jump function :
                 </para>
                 <para>
-                    becomes positive. For example, if in the field of the mode<emphasis role="bold">2</emphasis> , the user defines [1;3;4], it means that in mode<emphasis role="bold">2</emphasis> , there are three active jump functions. When, for example, the third jump function becomes positive, a mode transition to mode<emphasis role="bold">4</emphasis> will be activated.
+                    becomes positive. For example, if in the field of the
+                    mode<emphasis role="bold">2</emphasis> , the user defines [1;3;4], it means that in
+                    mode<emphasis role="bold">2</emphasis> , there are three active jump functions.
+                    When, for example, the third jump function becomes positive, a mode transition
+                    to mode<emphasis role="bold">4</emphasis> will be activated.
                 </para>
                 <para> Properties : Type 'vec' of size [-1,1].</para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Defaultproperties_AUTOMAT">
         <title>Default properties</title>
@@ -321,6 +324,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_AUTOMAT">
         <title>Interfacing function</title>
@@ -338,7 +342,6 @@
             </listitem>
         </itemizedlist>
     </refsection>
-
     <refsection>
         <title>References</title>
         <simplelist type="vert">

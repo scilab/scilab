@@ -22,111 +22,69 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CLKOUTV_f" xml:lang="en_US">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="CLKOUTV_f" xml:lang="en_US">
     <refnamediv>
         <refname>CLKOUTV_f</refname>
         <refpurpose>Output activation port</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CLKOUTV_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CLKOUTV_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_CLKOUTV_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLKOUTV_f">Output activation port</link>
-                </para>
+                <xref linkend="Description_CLKOUTV_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CLKOUTV_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CLKOUTV_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_CLKOUTV_f">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CLKOUTV_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_CLKOUTV_f">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CLKOUTV_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_CLKOUTV_f">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_CLKOUTV_f">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_CLKOUTV_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_CLKOUTV_f">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_CLKOUTV_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_CLKOUTV_f">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_CLKOUTV_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Portaction_pal">Port &amp; Subsystem palette</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="Sinks_pal">Sinks palette</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="Events_pal">Event handling palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_CLKOUTV_f">
         <title>Description</title>
         <para>
-            This block represent an activation output port. It must only be used inside a Xcos Super Blockand be connected
-            to an activation output on an internal activation output in the subsystem.
+            This block represent an activation output port. It must only be used inside a Xcos
+            Super Blockand be connected to an activation output on an internal activation output
+            in the subsystem.
         </para>
         <para>
-            This block is an event link from outside of a system into a sub-system. In a Super Block, the activation's output
-            ports must be numbered from 1 to the total number of activation's output ports. You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
+            This block is an event link from outside of a system into a sub-system. In a Super Block,
+            the activation's output ports must be numbered from 1 to the total number of
+            activation's output ports. You can set it with the
+            <emphasis role="bold">Port number</emphasis> parameter.
         </para>
     </refsection>
     <refsection id="Dialogbox_CLKOUTV_f">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/portaction_pal/en_US/CLKOUTV_f_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/portaction_pal/en_US/CLKOUTV_f_gui.png" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -192,6 +150,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_CLKOUTV_f">
         <title>Example</title>
@@ -200,13 +159,12 @@
             <emphasis>
                 <literal>t = 3 s</literal>
             </emphasis>
-            .
         </para>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/CLKOUTV_f_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/portaction_pal/en_US/CLKOUTV_f_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/portaction_pal/en_US/CLKOUTV_f_en_US.zcos" align="center"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,7 +25,7 @@
         <title>Aperçu</title>
         <inlinemediaobject>
             <imageobject>
-                <imagedata align="center" fileref="../../../../images/palettes/CONVERT.png" valign="middle"/>
+                <imagedata align="center" fileref="../../../../images/palettes/CONVERT.png"/>
             </imageobject>
         </inlinemediaobject>
     </refsection>
@@ -39,7 +39,7 @@
                 <xref linkend="Data_Type_CONVERT">Types de données</xref>
             </listitem>
             <listitem>
-                <xref linkend="Dialogbox_CONVERT">Boîte de dialogue</xref>
+                <xref linkend="Dialogbox_CONVERT">Paramètres</xref>
             </listitem>
             <listitem>
                 <xref linkend="Defaultproperties_CONVERT">Propriétés par défaut</xref>
@@ -292,10 +292,10 @@
     </refsection>
     <refsection role="see also" id="Seealso_CONVERT">
         <title>Voir aussi</title>
-        <itemizedlist>
-            <listitem>
+        <simplelist>
+            <member>
                 <link linkend="EXTRACTBITS">EXTRACTBITS</link>
-            </listitem>
-        </itemizedlist>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

@@ -21,80 +21,46 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATSING">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="MATSING" xml:lang="en_US">
     <refnamediv>
         <refname>MATSING</refname>
         <refpurpose>SVD Decomposition</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/MATSING.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/MATSING.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_MATSING">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATSING">SVD Decomposition</link>
-                </para>
+                <xref linkend="Description_MATSING">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MATSING">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MATSING">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_MATSING">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MATSING">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MATSING">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_MATSING">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_MATSING">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_MATSING">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_MATSING">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_MATSING">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_MATSING">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_MATSING">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_MATSING">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Matrix_pal">Matrix operation palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_MATSING">
         <title>Description</title>
         <para>
@@ -109,7 +75,6 @@
                 <para>
                     <emphasis role="bold">1</emphasis> : the output is a vector composed by the singular values.
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
@@ -121,18 +86,16 @@
         <para>
             The equivalent function of this block in Scilab is <link linkend="svd">svd(A,"e")</link>.
         </para>
-        <para/>
     </refsection>
+
     <refsection id="Dialogbox_MATSING">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/MATSING_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/gui/MATSING_gui.gif" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -229,6 +192,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_MATSING">
         <title>Interfacing function</title>
@@ -242,36 +206,30 @@
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/mat_sing.c</para>
+                SCI/modules/scicos_blocks/src/c/mat_sing.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/mat_svd.c</para>
+                SCI/modules/scicos_blocks/src/c/mat_svd.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matz_sing.c</para>
+                SCI/modules/scicos_blocks/src/c/matz_sing.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matz_svd.c</para>
+                SCI/modules/scicos_blocks/src/c/matz_svd.c
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_MATSING">
+    <refsection id="Seealso_MATSING" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATEIG">MATEIG - Matrix Eigenvalues (xcos Block)</link>
-                </para>
+                <link linkend="MATEIG">MATEIG</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATLU">MATLU - LU Factorization (xcos Block)</link>
-                </para>
+                <link linkend="MATLU">MATLU</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="svd">svd (Scilab function)</link>
-                </para>
+                <link linkend="svd">svd</link>
             </listitem>
         </itemizedlist>
     </refsection>

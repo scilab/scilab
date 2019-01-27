@@ -21,75 +21,39 @@
 *
 * See the file ./license.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="INTEGRAL_f" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="INTEGRAL_f" xml:lang="ja">
     <refnamediv>
         <refname>INTEGRAL_f</refname>
         <refpurpose>積分</refpurpose>
     </refnamediv>
     <refsection>
         <title>ブロックのスクリーンショット</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/INTEGRAL_f.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/INTEGRAL_f.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_INTEGRAL_f">
         <title>内容</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="INTEGRAL_f">積分</link>
-                </para>
+                <xref linkend="Description_INTEGRAL_f">説明</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_INTEGRAL_f">パレット</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_INTEGRAL_f">説明</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_INTEGRAL_f">ダイアログボックス</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_INTEGRAL_f">デフォルトプロパティ
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_INTEGRAL_f">インターフェイス用関数
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_INTEGRAL_f">計算用関数
-                            </xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_INTEGRAL_f">ダイアログボックス</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_INTEGRAL_f">
-        <title>パレット</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">連続時間系パレット</link>
-                </para>
+                <xref linkend="Defaultproperties_INTEGRAL_f">デフォルトプロパティ</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_INTEGRAL_f">インターフェイス用関数</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_INTEGRAL_f">計算用関数</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -100,14 +64,13 @@
     </refsection>
     <refsection id="Dialogbox_INTEGRAL_f">
         <title>ダイアログボックス</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/INTEGRAL_f_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/INTEGRAL_f_gui.gif"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -159,22 +122,17 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">アクティベーション入力の数/大きさ:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">アクティベーション入力の数/大きさ:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">アクティベーション出力の数/大きさ:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">アクティベーション出力の数/大きさ:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">連続時間状態量:</emphasis>
-                    yes
+                    <emphasis role="bold">連続時間状態量:</emphasis> yes
                 </para>
             </listitem>
             <listitem>
@@ -184,8 +142,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis>
-                    no
+                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -195,6 +152,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_INTEGRAL_f">
         <title>インターフェイス用関数</title>

@@ -31,7 +31,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="ABS_VALUE">
             <inlinemediaobject>
                 <imageobject>
@@ -229,137 +228,82 @@
                 </imageobject>
             </inlinemediaobject>
             </link>.
+    </refsection>
 
-        </para>
-    </refsection>
-    <refsection id="Module_Mathoperations_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Mathoperations_pal">
         <title>Description</title>
         <para>
             The Math operations palette contains blocks that model general mathematical functions.
         </para>
     </refsection>
-    <refsection id="Blocks_Mathoperations_pal">
+    <refsection id="Blocks_Mathoperations_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="ABS_VALUE">ABS_VALUE — Absolute value</link>
-                </para>
+                <link linkend="ABS_VALUE">ABS_VALUE</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="BIGSOM_f">BIGSOM_f — Scalar/Vector Addition/Subtraction</link>
-                </para>
+                <link linkend="BIGSOM_f">BIGSOM_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="COSBLK_f">COSBLK_f — Cosine</link>
-                </para>
+                <link linkend="COSBLK_f">COSBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="EXPBLK_m">EXPBLK_m — Exponential of a scalar</link>
-                </para>
+                <link linkend="EXPBLK_m">EXPBLK_m</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="GAINBLK_f">GAINBLK_f — Gain</link>
-                </para>
+                <link linkend="GAINBLK_f">GAINBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INVBLK">INVBLK — Inverse</link>
-                </para>
+                <link linkend="INVBLK">INVBLK</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="LOGBLK_f">LOGBLK_f — Logarithm</link>
-                </para>
+                <link linkend="LOGBLK_f">LOGBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATMAGPHI">MATMAGPHI — Complex from/to Magnitude and Angle Conversion</link>
-                </para>
+                <link linkend="MATMAGPHI">MATMAGPHI</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATZREIM">MATZREIM — Complex decomposition/composition</link>
-                </para>
+                <link linkend="MATZREIM">MATZREIM</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MAX_f">MAX_f — Maximum value of a vector's elements</link>
-                </para>
+                <link linkend="MAX_f">MAX_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MAXMIN">MAXMIN — Maximum or minimum value of vectors's elements</link>
-                </para>
+                <link linkend="MAXMIN">MAXMIN</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MIN_f">MIN_f — Minimum value of a vector's elements</link>
-                </para>
+                <link linkend="MIN_f">MIN_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="POWBLK_f">POWBLK_f — Array power</link>
-                </para>
+                <link linkend="POWBLK_f">POWBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PROD_f">PROD_f — Element-wise vector product</link>
-                </para>
+                <link linkend="PROD_f">PROD_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PRODUCT">PRODUCT — Element-wise vector multiplication/division</link>
-                </para>
+                <link linkend="PRODUCT">PRODUCT</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SIGNUM">SIGNUM — Signum</link>
-                </para>
+                <link linkend="SIGNUM">SIGNUM</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SINBLK_f">SINBLK_f — Sine</link>
-                </para>
+                <link linkend="SINBLK_f">SINBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SQRT">SQRT — Square root</link>
-                </para>
+                <link linkend="SQRT">SQRT</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SUM_f">SUM_f — Addition</link>
-                </para>
+                <link linkend="SUM_f">SUM_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SUMMATION">SUMMATION — Matrix Addition/Subtraction</link>
-                </para>
+                <link linkend="SUMMATION">SUMMATION</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TANBLK_f">TANBLK_f — Tangent</link>
-                </para>
+                <link linkend="TANBLK_f">TANBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TrigFun">TrigFun — Trigonometric function</link>
-                </para>
+                <link linkend="TrigFun">TrigFun</link>
             </listitem>
         </itemizedlist>
     </refsection>

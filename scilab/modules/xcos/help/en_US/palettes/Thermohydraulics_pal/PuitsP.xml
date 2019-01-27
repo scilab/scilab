@@ -21,81 +21,44 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="PuitsP">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="PuitsP" xml:lang="en_US">
     <refnamediv>
         <refname>PuitsP</refname>
         <refpurpose>Thermal-hydraulic drain (well)</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/PuitsP.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/PuitsP.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_PuitsP">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="PuitsP">Thermal-hydraulic drain (well)</link>
-                </para>
+                <xref linkend="Description_PuitsP">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_PuitsP">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_PuitsP">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_PuitsP">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_PuitsP">Default
-                                properties
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_PuitsP">Interfacing
-                                function
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="PuitsP">Modelica model</link>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_PuitsP">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_PuitsP">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_PuitsP">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="PuitsP">Modelica model</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_PuitsP">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="ThermoHydraulics_pal">Thermal-Hydraulics
-                        palette
-                    </link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_PuitsP">
         <title>Description</title>
         <para>This thermal-hydraulic component represents a thermal-hydraulic
@@ -104,16 +67,15 @@
             flows into the block.
         </para>
     </refsection>
+
     <refsection id="Dialogbox_PuitsP">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/PuitsP_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/gui/PuitsP_gui.gif" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->/>
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -161,8 +123,7 @@
                 <itemizedlist>
                     <listitem>
                         <para>
-                            <emphasis role="bold">Modelica variable name :</emphasis>
-                            'C'
+                            <emphasis role="bold">Modelica variable name :</emphasis> 'C'
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
@@ -177,43 +138,35 @@
                 <itemizedlist>
                     <listitem>
                         <para>
-                            <emphasis role="bold">Modelica parameter name :</emphasis>
-                            'P0'
+                            <emphasis role="bold">Modelica parameter name :</emphasis> 'P0'
                         </para>
                         <para>
-                            <emphasis role="bold">Default value :</emphasis>
-                            100000
+                            <emphasis role="bold">Default value :</emphasis> 100000
                         </para>
                         <para>
-                            <emphasis role="bold">Is a state variable :</emphasis>
-                            no.
+                            <emphasis role="bold">Is a state variable :</emphasis> no.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis role="bold">Modelica parameter name :</emphasis>
-                            'T0'
+                            <emphasis role="bold">Modelica parameter name :</emphasis> 'T0'
                         </para>
                         <para>
                             <emphasis role="bold">Default value :</emphasis> 290
                         </para>
                         <para>
-                            <emphasis role="bold">Is a state variable :</emphasis>
-                            no.
+                            <emphasis role="bold">Is a state variable :</emphasis>  no.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis role="bold">Modelica parameter name :</emphasis>
-                            'H0'
+                            <emphasis role="bold">Modelica parameter name :</emphasis> 'H0'
                         </para>
                         <para>
-                            <emphasis role="bold">Default value :</emphasis>
-                            100000
+                            <emphasis role="bold">Default value :</emphasis> 100000
                         </para>
                         <para>
-                            <emphasis role="bold">Is a state variable :</emphasis>
-                            no.
+                            <emphasis role="bold">Is a state variable :</emphasis> no.
                         </para>
                     </listitem>
                     <listitem>
@@ -225,20 +178,20 @@
                             <emphasis role="bold">Default value :</emphasis> 1
                         </para>
                         <para>
-                            <emphasis role="bold">Is a state variable :</emphasis>
-                            no.
+                            <emphasis role="bold">Is a state variable :</emphasis> no.
                         </para>
                     </listitem>
                 </itemizedlist>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">File name of the model :</emphasis>
-                    Puits
+                    <emphasis role="bold">File name of the model :</emphasis> Puits
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Interfacingfunction_PuitsP">
         <title>Interfacing function</title>
         <itemizedlist>
