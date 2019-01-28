@@ -13,6 +13,6 @@
 // http://bugzilla.scilab.org/15753
 //
 // <-- Short Description -->
-// issparse(sparseBoolean) returned 0 instead of 1
+// issparse(sparseBoolean) returned %F instead of %T
 
-assert_checkequal(issparse(sparse([1 2 3])<2), 1);
+assert_checktrue(issparse(sparse([1 2 3])<2));
