@@ -26,7 +26,7 @@ endfunction
 // go to the path of the created directory
 // execute in scilab
 
-genlib("dir_genlib", "genlibtest", %t ,%t)
+genlib("genlibtest", "dir_genlib", %t ,%t)
 
 // this execution have to return an error : genlib: Cannot open file ''mylib//.#mylib.sci''.
 // instead of crash
