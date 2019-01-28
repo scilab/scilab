@@ -6,11 +6,12 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 10450 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=10450
+// http://bugzilla.scilab.org/10450
 //
 // Allows overloading for gamma, dlgamma and gammaln functions for list, tlist, 
 // mlist and hypermatrices types. 
@@ -35,7 +36,6 @@ assert_checkerror("gamma(ml)", [msgerr; msprintf(gettext("  check arguments or d
 n(1, 1, 1, 1:2) = [1 2];
 assert_checkerror("dlgamma(n)", [msgerr; msprintf(gettext("  check arguments or define function %s for overloading.\n"), "%hm_dlgamma")]);
 assert_checkerror("gammaln(n)", [msgerr; msprintf(gettext("  check arguments or define function %s for overloading.\n"), "%hm_gammaln")]);
-assert_checkerror("gamma(n)", [msgerr; msprintf(gettext("  check arguments or define function %s for overloading.\n"), "%hm_gamma")]);
 
 function Y = %l_dlgamma(X),  Y = %T; endfunction
 function Y = %l_gammaln(X),  Y = %T; endfunction
@@ -63,8 +63,6 @@ assert_checkequal(gamma(ml), %T);
 
 function Y = %hm_dlgamma(X),   Y = %T; endfunction
 function Y = %hm_gammaln(X),   Y = %T; endfunction
-function Y = %hm_gamma(X),   Y = %T; endfunction
 n(1, 1, 1, 1:2) = [1 2];
 assert_checkequal(dlgamma(n), %T);
 assert_checkequal(gammaln(n), %T);
-assert_checkequal(gamma(n), %T);
