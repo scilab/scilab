@@ -74,7 +74,15 @@ static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL s
         {
             FREE(pointerOnFindCopy);
             pointerOnFindCopy = NULL;
-            return (int)(pointerOnString - string);
+
+            if (pointerOnString)
+            {
+                return (int)(pointerOnString - string);
+            }
+            else
+            {
+                return stringLength;
+            }
         }
         //Check if the cutted tmpfind match with the suffix of string that has adequat length
         pointerOnString = (char*)(string + stringLength - 1 - strlen(pointerOnFindCopy));
