@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 13511 -->
 //
@@ -16,7 +17,7 @@
 // lcm used with doubles returned wrong type values,
 // bezout help did not mention doubles.
 
-assert_checkequal(lcm([96 6250 10000 18700]), int32(56100000));
+assert_checkequal(lcm([96 6250 10000 18700]), 56100000);
 
 [P, U] = bezout(3.5, 4.2);
 assert_checkequal(coeff(P), 1);
