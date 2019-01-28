@@ -62,7 +62,7 @@ assert_checktrue(importXcosDiagram("SCI/modules/xcos/demos/ModelicaBlocks/Hydrau
 !                                                                     !
 !messagebox:                                                          !
 !                                                                     !
-!messagebox: Generated files path: TMPDIR/         !
+!messagebox: Generated files path: TMPDIR/          !
 !                                                                     !
 !messagebox:                                                          !
 WARNING: Diagram contains implicit blocks, compiling for implicit Solver.

@@ -44,7 +44,7 @@ xcos_simulate(scs_m, 4);
 !                                                                     !
 !messagebox:                                                          !
 !                                                                     !
-!messagebox: Generated files path: TMPDIR/          !
+!messagebox: Generated files path: TMPDIR/           !
 !                                                                     !
 !messagebox:                                                          !
 WARNING: Diagram contains implicit blocks, compiling for implicit Solver.
