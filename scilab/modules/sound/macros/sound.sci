@@ -35,7 +35,13 @@ function []=sound(y,fs,bits,aplay)
     if nargin<3 then
         bits = 16;
     end
-    if nargin < 4 aplay="aplay"; end
+    if nargin < 4 then
+        if getos() == "Darwin" then
+            aplay = "afplay"
+        else
+            aplay = "aplay";
+        end
+    end
     // Make sure y is in the range +/- 1
     y = max(-1,min(y,1));
     // Make sure that there's one column
