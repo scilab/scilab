@@ -6,7 +6,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-//<-- NOT FIXED --> 6.0.0
 // <-- TEST WITH GRAPHIC -->
 //
 
