@@ -20,8 +20,6 @@ data_ref = [49 44 49];
 
 if getos() == "Windows" then
     eol = [13 10]; //CRLF
-elseif getos()=="Darwin" then
-    eol = [13]; //CR
 else
     eol = [10]; //LF
 end
