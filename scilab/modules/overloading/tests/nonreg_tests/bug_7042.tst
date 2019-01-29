@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 7042 -->
 //
 // <-- CLI SHELL MODE -->
-// <-- NOT FIXED --> 6.0.0
+// <-- NOT FIXED --> 6.0.2
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id= 7042
