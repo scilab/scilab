@@ -44,7 +44,7 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() < 1 || in.size() > 2)
     {
-        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mgetl" , 1, 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mgetl", 1, 2);
         return types::Function::OK;
     }
 
@@ -151,9 +151,13 @@ types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, ty
     if (wcReadedStrings && iLinesRead > 0)
     {
         types::String *pS = new types::String(iLinesRead, 1);
-        pS->set(wcReadedStrings);
+        wchar_t** w = pS->get();
+        for (int i = 0; i < iLinesRead; ++i)
+        {
+            w[i] = wcReadedStrings[i];
+        }
         out.push_back(pS);
-        freeArrayOfWideString(wcReadedStrings, iLinesRead);
+        FREE(wcReadedStrings);
     }
     else
     {

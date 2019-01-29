@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+//
 // =============================================================================
 // Unitary tests for mgetl function
 //==============================================================================
@@ -121,5 +123,24 @@ assert_checkequal(ierr, 999);
 ierr = execstr("mgetl(TMPDIR + ""notfound.txt"",1)", "errcatch");
 assert_checkequal(ierr, 999);
 
+//test long file with CRLF
+tmp = tempname();
+fd = mopen(tmp, "wb");
+txt = "a":"z"
+for i = 1:10000;
+    mfprintf(fd, "%s %s %s %s %s %s %s %s %s %s" + ascii(13) + ascii(10), txt, txt, txt, txt, txt, txt, txt, txt, txt, txt);
+end
+mclose(fd);
+x = mgetl(tmp);
+assert_checktrue(length(x) == 27 * 10 - 1);
 
-
+//test long file with LF
+tmp = tempname();
+fd = mopen(tmp, "wb");
+txt = "a":"z"
+for i = 1:10000;
+    mfprintf(fd, "%s %s %s %s %s %s %s %s %s %s" + ascii(10), txt, txt, txt, txt, txt, txt, txt, txt, txt, txt);
+end
+mclose(fd);
+x = mgetl(tmp);
+assert_checktrue(length(x) == 27 * 10 - 1);
