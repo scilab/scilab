@@ -4,13 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- CLI SHELL MODE -->
-// <-- NOT FIXED --> 6.0.0
-
+// <-- NOT FIXED --> 6.0.2
 // <-- Non-regression test for bug 4084 -->
 //
-
 // <-- Short Description -->
 //
 //
