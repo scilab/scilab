@@ -72,7 +72,6 @@ static int Mytridiagldltsolve(double* &dA, double* &lA, double* &B, int N)
 
     return 0;
 }
-
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos_block;
 
@@ -307,7 +306,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
 
             /* Allocation of the work structure of that block */
 
-            *work = new fromwork_struct[sizeof(fromwork_struct)];
+            *work = new fromwork_struct();
             ptr = *work;
             ptr->D = nullptr;
             ptr->workt = nullptr;
@@ -319,12 +318,12 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
                 switch (xSubType)
                 {
                     case 0 : /* Real */
-                        ptr->work = new double[nPoints * mX * nX];
+                        ptr->work = new double[(nPoints + 1) * mX * nX];
                         ptr_d = (double*) ptr->work;
                         ierr = readDoubleMatrix(xSetId, ptr_d);
                         break;
                     case 1 :  /* Complex */
-                        ptr->work = new double[nPoints * mX * nX];
+                        ptr->work = new double[(nPoints + 1) * mX * nX];
                         ptr_d = (double*) ptr->work;
                         ierr = readDoubleComplexMatrix(xSetId, ptr_d, ptr_d + nPoints * mX * nX);
                         break;
@@ -336,32 +335,32 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
                 switch (xSubType)
                 {
                     case SCI_INT8 :
-                        ptr->work = new char[nPoints * mX * nX];
-                        ptr_c = (char*) ptr->work;
+                        ptr->work = new char[(nPoints + 1) * mX * nX];
+                        ptr_c = (char*)ptr->work;
                         ierr = readInteger8Matrix(xSetId, ptr_c);
                         break;
                     case SCI_INT16 :
-                        ptr->work = new short int[nPoints * mX * nX];
+                        ptr->work = new short int[(nPoints + 1) * mX * nX];
                         ptr_s = (short int*) ptr->work;
                         ierr = readInteger16Matrix(xSetId, ptr_s);
                         break;
                     case SCI_INT32 :
-                        ptr->work = new int[nPoints * mX * nX];
+                        ptr->work = new int[(nPoints + 1) * mX * nX];
                         ptr_l = (int*) ptr->work;
                         ierr = readInteger32Matrix(xSetId, ptr_l);
                         break;
                     case SCI_UINT8 :
-                        ptr->work = new unsigned char[nPoints * mX * nX];
+                        ptr->work = new unsigned char[(nPoints + 1) * mX * nX];
                         ptr_uc = (unsigned char*) ptr->work;
                         ierr = readUnsignedInteger8Matrix(xSetId, ptr_uc);
                         break;
                     case SCI_UINT16 :
-                        ptr->work = new unsigned short int[nPoints * mX * nX];
+                        ptr->work = new unsigned short int[(nPoints + 1) * mX * nX];
                         ptr_us = (unsigned short int*) ptr->work;
                         ierr = readUnsignedInteger16Matrix(xSetId, ptr_us);
                         break;
                     case SCI_UINT32 :
-                        ptr->work = new unsigned int[nPoints * mX * nX];
+                        ptr->work = new unsigned int[(nPoints + 1) * mX * nX];
                         ptr_ul = (unsigned int*) ptr->work;
                         ierr = readUnsignedInteger32Matrix(xSetId, ptr_ul);
                         break;
@@ -428,7 +427,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
             }
             delete[] ptDims;
 
-            ptr->workt = new double[nPoints];
+            ptr->workt = new double[nPoints + 1];
             ptr_T = (double*) ptr->workt;
             ierr = readDoubleMatrix(tSetId, ptr_T); /* Read t data */
             if (ierr != 0)
@@ -993,6 +992,10 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
                             }
                             else if (Method >= 2)
                             {
+                                if (inow < 0)
+                                {
+                                    inow = 0;
+                                }
                                 t1 = ptr->workt[inow];
                                 t2 = ptr->workt[inow + 1];
                                 y1 = ptr_d[inow + j * nPoints];
@@ -1034,7 +1037,8 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
                                 if (inow < 0)
                                 {
                                     inow = 0;
-                                } /* Extrapolation for 0<t<X(0) */
+                                }
+                                /* Extrapolation for 0<t<X(0) */
                                 t1 = ptr->workt[inow];
                                 t2 = ptr->workt[inow + 1];
                                 y1 = ptr_d[nPoints * my + inow + j * nPoints];
@@ -1043,6 +1047,10 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
                             }
                             else if (Method >= 2)
                             {
+                                if (inow < 0)
+                                {
+                                    inow = 0;
+                                }
                                 t1 = ptr->workt[inow];
                                 t2 = ptr->workt[inow + 1];
                                 y1 = ptr_d[inow + j * nPoints + nPoints];
@@ -1404,7 +1412,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
                 {
                     delete[] ptr->workt;
                 }
-                delete[] ptr;
+                delete ptr;
             }
             break;
             /***********************************************************************/
