@@ -489,8 +489,10 @@ void TreeVisitor::visit(const AssignExp &e)
     if (e.getRightExp().isCallExp())
     {
         types::TList* tl = getList()->getAs<types::TList>();
-        types::Double* lhsnb = tl->get(tl->getSize() - 1)->getAs<types::Double>();
-        dlhs = lhsnb->get();
+        if(tl->get(tl->getSize() - 1)->isDouble())
+        {
+            dlhs = tl->get(tl->getSize() - 1)->getAs<types::Double>()->get();
+        }
     }
 
     tmp->killMe();
@@ -619,49 +621,49 @@ void TreeVisitor::visit(const AssignExp &e)
 
 void TreeVisitor::visit(const CallExp &e)
 {
+    const ast::SimpleVar & var = static_cast<const ast::SimpleVar &>(e.getName());
+    types::TList* call = new types::TList();
+
+    //header
+    types::String* varstr = new types::String(1, 4);
+    varstr->set(0, L"funcall");
+    varstr->set(1, L"rhs");
+    varstr->set(2, L"name");
+    varstr->set(3, L"lhsnb");
+    call->append(varstr);
+
+    //rhs
+    types::List* rhs = new types::List();
+    ast::exps_t args = e.getArgs();
+    for (auto arg : args)
+    {
+        arg->accept(*this);
+        types::List* tmp = getList();
+        rhs->append(tmp);
+        tmp->killMe();
+    }
+
+    call->append(rhs);
+    rhs->killMe();
+
     if (e.getName().isSimpleVar())
     {
-        const ast::SimpleVar & var = static_cast<const ast::SimpleVar &>(e.getName());
-
-        types::TList* call = new types::TList();
-
-        //header
-        types::String* varstr = new types::String(1, 4);
-        varstr->set(0, L"funcall");
-        varstr->set(1, L"rhs");
-        varstr->set(2, L"name");
-        varstr->set(3, L"lhsnb");
-        call->append(varstr);
-
-        //rhs
-        types::List* rhs = new types::List();
-        ast::exps_t args = e.getArgs();
-        for (auto arg : args)
-        {
-            arg->accept(*this);
-            types::List* tmp = getList();
-            rhs->append(tmp);
-            tmp->killMe();
-        }
-
-        call->append(rhs);
-        rhs->killMe();
-
-        //name
+        // name
         const std::wstring & name = var.getSymbol().getName();
         call->append(new types::String(name.c_str()));
-
-        //lhsnb
-        //use default value 1
-        //parent exp like assign can adapt it.
-        call->append(new types::Double(1));
-
-        l = call;
     }
     else
     {
-        //not yet managed
+        // ie: a()()
+        call->append(new types::String(L""));
     }
+
+    //lhsnb
+    //use default value 1
+    //parent exp like assign can adapt it.
+    call->append(new types::Double(1));
+
+    l = call;
 }
 
 void TreeVisitor::visit(const ForExp &e)
