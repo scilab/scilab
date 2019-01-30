@@ -4,7 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
+//
 // <-- Non-regression test for bug 12150 -->
 //
 // <-- Bugzilla URL -->
@@ -22,5 +25,5 @@ e=gce();
 p=e.children(1);
 t=datatipCreate(p,1);
 assert_checkequal(p.datatips(1).data, [20 190 0]);
-assert_checkequal(p.datatips(1).text, ["X:20.0000";"Y:190.000"]);
+assert_checkequal(p.datatips(1).text, ["X:20";"Y:190"]);
 close

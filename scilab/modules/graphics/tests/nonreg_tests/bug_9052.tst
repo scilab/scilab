@@ -4,7 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
+//
 // <-- Non-regression test for bug 9052 -->
 //
 // <-- Bugzilla URL -->
@@ -50,4 +53,4 @@ xdel(winsid());
 path_demo = fullfile(SCI,"modules","graphics","demos","anim","bubbleSort","bubbleSort.sci");
 exec(path_demo,-1);
 demo_bubbleSort();
-assert_checkequal(winsid(), 0);
+assert_checkequal(winsid(), 100001);

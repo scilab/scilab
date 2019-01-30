@@ -4,9 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- TEST WITH GRAPHIC -->
-
+// <-- NO CHECK REF -->
+//
 // test plot2d()
 
 // Check each default property
@@ -88,7 +89,7 @@ assert_checkequal(a.user_data, []);
 
 // Check Compound Object
 assert_checkequal(c.parent.type, "Axes");
-assert_checkequal(c.children(:).type, ["Polyline", "Polyline", "Polyline"]);
+assert_checkequal(c.children(:).type, ["Polyline"; "Polyline"; "Polyline"]);
 assert_checkequal(c.visible, "on");
 assert_checkequal(c.user_data, []);
 

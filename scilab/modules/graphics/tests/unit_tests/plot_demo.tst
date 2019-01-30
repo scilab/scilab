@@ -4,9 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- TEST WITH GRAPHIC -->
-
+// <-- NO CHECK REF -->
+//
 // test plot()
 
 // Check each default property
@@ -178,80 +179,80 @@ assert_checkequal(a2.user_data, []);
 
 // Compound 1
 assert_checkequal(c1.parent.type, "Axes");
-assert_checkequal(c1.children(:).type, emptystr(1,41) + "Polyline");
+assert_checkequal(c1.children(:).type, emptystr(41,1) + "Polyline");
 assert_checkequal(c1.visible, "on");
 assert_checkequal(c1.user_data, []);
 
 // Compount 2
 assert_checkequal(c2.parent.type, "Axes");
-assert_checkequal(c2.children(:).type, emptystr(1,3) + "Polyline");
+assert_checkequal(c2.children(:).type, emptystr(3,1) + "Polyline");
 assert_checkequal(c2.visible, "on");
 assert_checkequal(c2.user_data, []);
 
 // Check Polylines in Compound 1
-assert_checkequal(p1(:).parent.type, emptystr(1,41) + "Compound");
+assert_checkequal(p1(:).parent.type, emptystr(41,1) + "Compound");
 assert_checkequal(p1(:).children, []);
-assert_checkequal(p1(:).visible, emptystr(1,41) + "on");
+assert_checkequal(p1(:).visible, emptystr(41,1) + "on");
 // Don't know how to check those data's
 //assert_checkequal(p1.data, [demoData, sin(3 * demoData)]);
-assert_checkequal(p1(:).closed, emptystr(1,41) + "off");
-assert_checkequal(p1(:).line_mode, emptystr(1,41) + "on");
-assert_checkequal(p1(:).fill_mode, emptystr(1,41) + "off");
-assert_checkequal(p1(:).line_style, ones(1,41));
-assert_checkequal(p1(:).thickness, ones(1,41));
-assert_checkequal(p1(:).arrow_size_factor, ones(1,41));
-assert_checkequal(p1(:).polyline_style, ones(1,41));
+assert_checkequal(p1(:).closed, emptystr(41,1) + "off");
+assert_checkequal(p1(:).line_mode, emptystr(41,1) + "on");
+assert_checkequal(p1(:).fill_mode, emptystr(41,1) + "off");
+assert_checkequal(p1(:).line_style, ones(41,1));
+assert_checkequal(p1(:).thickness, ones(41,1));
+assert_checkequal(p1(:).arrow_size_factor, ones(41,1));
+assert_checkequal(p1(:).polyline_style, ones(41,1));
 fg_colors = [36 , 35 , 34 , 5 , 33 , 2 , 37 , 36 , 35 , 34 , 5 , 33 ,...
 2 , 37 , 36 , 35 , 34 , 5 , 33 , 2 , 37 , 36 , 35 , 34 ,...
 5 , 33 , 2 , 37 , 36 , 35 , 34 , 5 , 33 , 2 , 37 , 36 ,...
-35 , 34 , 5 , 33 , 2];
+35 , 34 , 5 , 33 , 2]';
 assert_checkequal(p1(:).foreground, fg_colors);
-assert_checkequal(p1(:).background, -2 * ones(1,41));
+assert_checkequal(p1(:).background, -2 * ones(41,1));
 assert_checkequal(p1(:).interp_color_vector, []);
-assert_checkequal(p1(:).interp_color_mode, emptystr(1,41) + "off");
-assert_checkequal(p1(:).mark_mode, emptystr(1,41) + "off");
-assert_checkequal(p1(:).mark_style, zeros(1,41));
-assert_checkequal(p1(:).mark_size_unit, emptystr(1,41) + "point");
-assert_checkequal(p1(:).mark_size, zeros(1,41));
-assert_checkequal(p1(:).mark_foreground, -1 * ones(1,41));
-assert_checkequal(p1(:).mark_background, -2 * ones(1,41));
+assert_checkequal(p1(:).interp_color_mode, emptystr(41,1) + "off");
+assert_checkequal(p1(:).mark_mode, emptystr(41,1) + "off");
+assert_checkequal(p1(:).mark_style, zeros(41,1));
+assert_checkequal(p1(:).mark_size_unit, emptystr(41,1) + "point");
+assert_checkequal(p1(:).mark_size, zeros(41,1));
+assert_checkequal(p1(:).mark_foreground, -1 * ones(41,1));
+assert_checkequal(p1(:).mark_background, -2 * ones(41,1));
 assert_checkequal(p1(:).x_shift, []);
 assert_checkequal(p1(:).y_shift, []);
 assert_checkequal(p1(:).z_shift, []);
-assert_checkequal(p1(:).bar_width, zeros(1,41));
-assert_checkequal(p1(:).clip_state, emptystr(1,41) + "clipgrf");
+assert_checkequal(p1(:).bar_width, zeros(41,1));
+assert_checkequal(p1(:).clip_state, emptystr(41,1) + "clipgrf");
 assert_checkequal(p1(:).clip_box, []);
 assert_checkequal(p1(:).user_data, []);
 
 // Check Polylines in Compound 2
 demoData = [0:%pi/20:2*%pi]';
-assert_checkequal(p2(:).parent.type, emptystr(1,3) + "Compound");
+assert_checkequal(p2(:).parent.type, emptystr(3,1) + "Compound");
 assert_checkequal(p2(:).children, []);
-assert_checkequal(p2(:).visible, emptystr(1,3) + "on");
+assert_checkequal(p2(:).visible, emptystr(3,1) + "on");
 assert_checkequal(p2(1).data, [demoData, abs(sin(demoData))]);
 assert_checkequal(p2(2).data, [demoData, cos(demoData)]);
 assert_checkequal(p2(3).data, [demoData, sin(demoData)]);
-assert_checkequal(p2(:).closed, emptystr(1,3) + "off");
-assert_checkequal(p2(:).line_mode, ["on" , "off" , "on"]);
-assert_checkequal(p2(:).fill_mode, emptystr(1,3) + "off");
-assert_checkequal(p2(:).line_style, [2 , 1 , 4]);
-assert_checkequal(p2(:).thickness, ones(1,3));
-assert_checkequal(p2(:).arrow_size_factor, ones(1,3));
-assert_checkequal(p2(:).polyline_style, ones(1,3));
-assert_checkequal(p2(:).foreground, [6 , 1 , 5]);
-assert_checkequal(p2(:).background, -2 * ones(1,3));
+assert_checkequal(p2(:).closed, emptystr(3,1) + "off");
+assert_checkequal(p2(:).line_mode, ["on" ; "off" ; "on"]);
+assert_checkequal(p2(:).fill_mode, emptystr(3,1) + "off");
+assert_checkequal(p2(:).line_style, [2 ; 1 ; 4]);
+assert_checkequal(p2(:).thickness, ones(3,1));
+assert_checkequal(p2(:).arrow_size_factor, ones(3,1));
+assert_checkequal(p2(:).polyline_style, ones(3,1));
+assert_checkequal(p2(:).foreground, [6 ; 1 ; 5]);
+assert_checkequal(p2(:).background, -2 * ones(3,1));
 assert_checkequal(p2(:).interp_color_vector, []);
-assert_checkequal(p2(:).interp_color_mode, emptystr(1,3) + "off");
-assert_checkequal(p2(:).mark_mode, emptystr(1,3) + "on");
-assert_checkequal(p2(:).mark_style, [9 , 1 , 9]);
-assert_checkequal(p2(:).mark_size_unit, emptystr(1,3) + "point");
-assert_checkequal(p2(:).mark_size, 6 * ones(1,3));
-assert_checkequal(p2(:).mark_foreground, [6 , 4 , 5]);
-assert_checkequal(p2(:).mark_background, -2 * ones(1,3));
+assert_checkequal(p2(:).interp_color_mode, emptystr(3,1) + "off");
+assert_checkequal(p2(:).mark_mode, emptystr(3,1) + "on");
+assert_checkequal(p2(:).mark_style, [9 ; 1 ; 9]);
+assert_checkequal(p2(:).mark_size_unit, emptystr(3,1) + "point");
+assert_checkequal(p2(:).mark_size, 6 * ones(3,1));
+assert_checkequal(p2(:).mark_foreground, [6 ; 4 ; 5]);
+assert_checkequal(p2(:).mark_background, -2 * ones(3,1));
 assert_checkequal(p2(:).x_shift, []);
 assert_checkequal(p2(:).y_shift, []);
 assert_checkequal(p2(:).z_shift, []);
-assert_checkequal(p2(:).bar_width, zeros(1,3));
-assert_checkequal(p2(:).clip_state, emptystr(1,3) + "clipgrf");
+assert_checkequal(p2(:).bar_width, zeros(3,1));
+assert_checkequal(p2(:).clip_state, emptystr(3,1) + "clipgrf");
 assert_checkequal(p2(:).clip_box, []);
 assert_checkequal(p2(:).user_data, []);

@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- TEST WITH GRAPHIC -->
+// <-- NOT FIXED -->  6.0.0 -> 6.0.2
 //
 // <-- Non-regression test for bug 10121 -->
 //
@@ -21,7 +22,7 @@ e.interp_color_vector=[1:4];
 xsave("TMPDIR/inter_file.scg");
 delete(gcf())
 xload("TMPDIR/inter_file.scg");
-ef=gce(); ef=ef.children(1);
+ef=gce(); ef=ef.children(1).children;
 assert_checkequal(ef.interp_color_vector,[1:4]);
 delete(gcf())
 
