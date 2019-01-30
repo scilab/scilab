@@ -85,7 +85,7 @@ function %h_p(h)
             "children: "+fmtchildren(h.children)
             "datatips: "+fmtchildren(h.datatips)
             "datatip_display_mode: "+sci2exp(h.datatip_display_mode)
-            "display_function = "++sci2exp(h.display_function)
+            "display_function = "+sci2exp(h.display_function)
             "display_function_data = "+fmtuser_data(h.display_function_data)
             "visible = "+sci2exp(h.visible)
             "data = "+d

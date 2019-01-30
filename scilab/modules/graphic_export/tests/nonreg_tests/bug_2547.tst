@@ -5,8 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- NOT FIXED -->
-
+// <-- INTERACTIVE TEST -->
 // <-- TEST WITH GRAPHIC -->
 
 // <-- Non-regression test for bug 2547 -->
@@ -18,9 +17,10 @@
 // export of very circle marks of very small size in postcript are not displayed
 
 plot(1:10,'.')
-e=gce();e=e.children;
-e.mark_size_unit = "point"
-e.mark_style=0;e.mark_size=1;
+e = gce().children;
+e.mark_size_unit = "point";
+e.mark_style = 0;
+e.mark_size = 1;
 
 fig = gcf();
 xs2eps(fig.figure_id, TMPDIR+"/test.eps");
