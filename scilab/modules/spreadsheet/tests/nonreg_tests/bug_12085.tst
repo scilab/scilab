@@ -6,6 +6,8 @@
 // This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
+// <-- NO CHECK REF -->
+//
 // <-- Non-regression test for bug 12085 -->
 //
 // <-- Bugzilla URL -->
