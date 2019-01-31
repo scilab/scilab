@@ -129,7 +129,7 @@ function createTestsFromHelp(baseDirectory, outputDirectory, helpFile)
 
         if ~ignoreExample then
             functionName = fileparts(helpFile, "fname");
-            relPath = dirname(getrelativefilename(baseDirectory, helpFile));
+            relPath = fileparts(getrelativefilename(baseDirectory, helpFile));
 
             mkdir(fullfile(outputDirectory,relPath))
 

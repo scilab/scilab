@@ -370,7 +370,8 @@ Obsolete functions or features
 * `numer` is obsolete and will be removed in Scilab 6.1. Please use the `.num` rational attribute instead.
 * `with_tk` is obsolete and will be removed in Scilab 6.1. Please use the `with_module` instead.
 * `datatipToggle` is obsolete and will be removed in Scilab 6.1. Please use the `datatipManagerMode` instead.
-* `getPreferencesValue` is obsolete and will be removed in Scilab 6.2. Please use `xmlGetValues` instead.
+* `getPreferencesValue` is obsolete and will be removed in Scilab 6.1. Please use `xmlGetValues` instead.
+* `dirname` is obsolete and will be removed in Scilab 6.1. Please use `fileparts` instead.
 
 
 Removed Functions
@@ -533,13 +534,13 @@ Known issues
 * [#14995](http://bugzilla.scilab.org/show_bug.cgi?id=14995): savematfile crashes Scilab
 * [#15024](http://bugzilla.scilab.org/show_bug.cgi?id=15024): `A=10; A{1}=2` corrupted A and silently failed
 * [#15033](http://bugzilla.scilab.org/show_bug.cgi?id=15033): `fileinfo` gave negative size if filesize bigger than 2^31
-* [#15050](http://bugzilla.scilab.org/show_bug.cgi?id=15050): Xcos "Selection to superblock" did not relink the diagram after sub-system modification. 
+* [#15050](http://bugzilla.scilab.org/show_bug.cgi?id=15050): Xcos "Selection to superblock" did not relink the diagram after sub-system modification.
 * [#15091](http://bugzilla.scilab.org/show_bug.cgi?id=15091): `translatepaths()` was KO.
 * [#15092](http://bugzilla.scilab.org/show_bug.cgi?id=15092): Scalar variable was resized as a column vector instead of row.
 * [#15095](http://bugzilla.scilab.org/show_bug.cgi?id=15095): The Matlab=>Scilab translator failed when working with non-ASCII paths.
 * [#15017](http://bugzilla.scilab.org/show_bug.cgi?id=15017): `lcm` did not support int64 and uint64 input integers. Input integers had to be in a row instead of any matrix. For input decimal integers, results were int32 encoded.
 * [#15115](http://bugzilla.scilab.org/show_bug.cgi?id=15115): Tabs order in SciNotes was incorrect when opening file and restoring session.
-* [#15122](http://bugzilla.scilab.org/show_bug.cgi?id=15122): Xcos "Selection to superblock" modified the rendering and labeling of blocks. 
+* [#15122](http://bugzilla.scilab.org/show_bug.cgi?id=15122): Xcos "Selection to superblock" modified the rendering and labeling of blocks.
 * [#15157](http://bugzilla.scilab.org/show_bug.cgi?id=15157): min/max on tlist or mlist did not call good overload.
 * [#15182](http://bugzilla.scilab.org/show_bug.cgi?id=15182): The result of `a.*.b` with mixed integer/decimal operands introduced in Scilab 6 returned some doubles instead of integers, inconsistently wrt the `*` and `.*` products.
 * [#15187](http://bugzilla.scilab.org/show_bug.cgi?id=15187): Super block diagram title (on the window bar) was not set.
@@ -570,7 +571,7 @@ Known issues
 * [#15458](http://bugzilla.scilab.org/show_bug.cgi?id=15458): `hist3d` rendering was wrong.
 * [#15464](http://bugzilla.scilab.org/show_bug.cgi?id=15464): Xcos C-blocks could not link dlls on Windows.
 * [#15468](http://bugzilla.scilab.org/show_bug.cgi?id=15468): Xcos saved file used non UTF-8 characters which lead to invalid file loading later.
-* [#15472](http://bugzilla.scilab.org/show_bug.cgi?id=15472): mdelete("test") worked like mdelete("test.*") under Windows 
+* [#15472](http://bugzilla.scilab.org/show_bug.cgi?id=15472): mdelete("test") worked like mdelete("test.*") under Windows
 * [#15476](http://bugzilla.scilab.org/show_bug.cgi?id=15476): In the Electrical palette, the Resistor, Inductor, Capacitor, and ConstantVoltage icons did not show the parameter's value.
 * [#15484](http://bugzilla.scilab.org/show_bug.cgi?id=15484): On Windows, `isdir("w:")`, `isdir("w:/")`, and `isdir("w:\")` returned %T whenever the W: drive does not exist.
 * [#15489](http://bugzilla.scilab.org/show_bug.cgi?id=15489): Help pages of `covStart`, `covStop`, `covWrite` and `covMerge` were not built for the fr, ja, pt and ru languages, and were unreachable from a session in non `en_US` language.
