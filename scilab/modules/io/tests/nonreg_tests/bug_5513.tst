@@ -7,7 +7,7 @@
 //
 // <-- Non-regression test for bug 5513 -->
 // <-- INTERACTIVE TEST -->
-// <-- NOT FIXED --> 6.0.2
+// <-- NOT FIXED -->  6.0.2 -> 6.0.2
 //
 // <-- Short Description -->
 // input("message") did not restore the original prompt after the input job is done.

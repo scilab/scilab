@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- INTERACTIVE TEST -->
-// <-- NOT FIXED --> 6.0.2
+// <-- NOT FIXED -->  6.0.0 -> 6.0.2
 // <-- Non-regression test for bug 3666 -->
 //
 // <-- Bugzilla URL -->

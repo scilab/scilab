@@ -5,12 +5,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-
 // <-- INTERACTIVE TEST -->
-// <-- NOT FIXED -->
 
 result = read(5,2,2);
-1 2                         <<<< <enter> => crash, since 6.0.0, still in 6.0.2- 2019-01-24
+1 2
 3 4
 assert_checkequal(result,[1, 2; 3, 4]);
 
