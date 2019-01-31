@@ -33,10 +33,9 @@ Source: modules\{#XML}\etc\{#XML}.start; DestDir: {app}\modules\{#XML}\etc; Comp
 Source: modules\{#XML}\macros\buildmacros.sce; DestDir: {app}\modules\{#xml}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#XML}\macros\buildmacros.bat; DestDir: {app}\modules\{#xml}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#XML}\macros\cleanmacros.bat; DestDir: {app}\modules\{#xml}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#XML}\macros\*.bin; DestDir: {app}\modules\{#XML}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#XML}\macros\*.sci; DestDir: {app}\modules\{#XML}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#XML}\macros\lib; DestDir: {app}\modules\{#XML}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#XML}\macros\names; DestDir: {app}\modules\{#XML}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#XML}\macros\*.bin; DestDir: {app}\modules\{#XML}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#XML}\macros\*.sci; DestDir: {app}\modules\{#XML}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#XML}\macros\lib; DestDir: {app}\modules\{#XML}\macros; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#XML}\tests\*.*; DestDir: {app}\modules\{#XML}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
