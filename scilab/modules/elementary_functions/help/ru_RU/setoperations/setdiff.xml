@@ -38,14 +38,14 @@
                 <term>a, b</term>
                 <listitem>
                     <para>
-                        векторы, матрицы или гиперматрицы вещественных чисел или кодированных 
-                        целых чисел или строк. Оба должны иметь одинаковые типы данных (или типы 
+                        векторы, матрицы или гиперматрицы вещественных чисел или кодированных
+                        целых чисел или строк. Оба должны иметь одинаковые типы данных (или типы
                         целых чисел).
                     </para>
                     <para>
-                        Если используется опция <literal>orien="r"</literal>, то 
-                        <literal>a</literal> и <literal>b</literal> должны иметь одинаковое 
-                        количество столбцов. Если используется <literal>orien="c"</literal>, то 
+                        Если используется опция <literal>orien="r"</literal>, то
+                        <literal>a</literal> и <literal>b</literal> должны иметь одинаковое
+                        количество столбцов. Если используется <literal>orien="c"</literal>, то
                         они должны иметь одинаковое количество строк.
                     </para>
                 </listitem>
@@ -63,7 +63,7 @@
                             столбцов в <literal>b</literal>.
                         </listitem>
                         <listitem>
-                            <varname>orien</varname> не указано: элементы из <literal>a</literal> 
+                            <varname>orien</varname> не указано: элементы из <literal>a</literal>
                             ищутся среди элементов <literal>b</literal>.
                         </listitem>
                     </itemizedlist>
@@ -74,17 +74,17 @@
                 <listitem>
                     <itemizedlist>
                         <listitem>
-                            сортированный вектор из компонентов <literal>a</literal>, которые 
+                            сортированный вектор из компонентов <literal>a</literal>, которые
                             отсутствуют в <literal>b</literal>.
                         </listitem>
                         <listitem>
                             <literal>orien="r"</literal>: матрица строк из <literal>a</literal>,
-                            которые отсутствуют в <literal>b</literal>, отсортированный в 
+                            которые отсутствуют в <literal>b</literal>, отсортированный в
                             лексикографическом порядке.
                         </listitem>
                         <listitem>
-                            <literal>orien="c"</literal>: матрица столбцов из 
-                            <literal>a</literal>, которые отсутствуют в <literal>b</literal>, 
+                            <literal>orien="c"</literal>: матрица столбцов из
+                            <literal>a</literal>, которые отсутствуют в <literal>b</literal>,
                             отсортированный в лексикографическом порядке.
                         </listitem>
                     </itemizedlist>
@@ -94,7 +94,7 @@
                 <term>ka</term>
                 <listitem>
                     <para>
-                        вектор линейный индексов выбранных элементов, строк, столбцов из 
+                        вектор линейный индексов выбранных элементов, строк, столбцов из
                         <literal>a</literal> таких, что
                         <itemizedlist>
                             <listitem>
@@ -115,7 +115,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>setdiff(a, b,..)</literal> вычисляет и возвращает элементы либо строк либо 
+            <literal>setdiff(a, b,..)</literal> вычисляет и возвращает элементы либо строк либо
             столбцов из <literal>a</literal> которые ОТСУТСТВУЮТ в <literal>b</literal>.
         </para>
         <para>
@@ -123,11 +123,11 @@
             из <literal>b</literal> перед обработкой.
         </para>
         <para>
-            Если <literal>a</literal> - гиперматрица и используется опция <literal>"r"</literal>, 
-            то перед обработкой <literal>a</literal> заменяется матрицей, состоящией из строк по 
-            всем своим более высоким размерностям. То же самое и в случае, если 
-            <literal>b</literal> является гиперматрицей. Если исползуется опция 
-            <literal>"c"</literal>, то <literal>a</literal> или/и <literal>"b"</literal> 
+            Если <literal>a</literal> - гиперматрица и используется опция <literal>"r"</literal>,
+            то перед обработкой <literal>a</literal> заменяется матрицей, состоящией из строк по
+            всем своим более высоким размерностям. То же самое и в случае, если
+            <literal>b</literal> является гиперматрицей. Если исползуется опция
+            <literal>"c"</literal>, то <literal>a</literal> или/и <literal>"b"</literal>
             заменяются соответствующими матрицами, состоящими из всех своих столбцов.
         </para>
         <para>
@@ -137,39 +137,55 @@
             <table>
                 <tr>
                     <th align="right">orien →</th>
-                    <td colspan="2" align="center"><emphasis role="bold">отсутствует</emphasis></td>
-                    <td colspan="2" align="center"><emphasis role="bold">"r"</emphasis></td>
-                    <td colspan="2" align="center"><emphasis role="bold">"c"</emphasis></td>
+                    <td colspan="2" align="center">
+                        <emphasis role="bold">отсутствует</emphasis>
+                    </td>
+                    <td colspan="2" align="center">
+                        <emphasis role="bold">"r"</emphasis>
+                    </td>
+                    <td colspan="2" align="center">
+                        <emphasis role="bold">"c"</emphasis>
+                    </td>
                 </tr>
                 <tr>
                     <th>a ↓</th><th>v</th><th>ka</th><th>v</th><th>ka</th><th>v</th><th>ka</th>
                 </tr>
                 <tr>
-                    <td align="right"><emphasis role="bold">строка</emphasis></td>
+                    <td align="right">
+                        <emphasis role="bold">строка</emphasis>
+                    </td>
                     <td>cтр</td><td>cтр</td>
                     <td>cтр</td><td>скал</td>
                     <td>cтр</td><td>cтр</td>
                 </tr>
                 <tr>
-                    <td align="right"><emphasis role="bold">столбец</emphasis></td>
+                    <td align="right">
+                        <emphasis role="bold">столбец</emphasis>
+                    </td>
                     <td>cтлб</td><td>cтлб</td>
                     <td>cтлб</td><td>cтлб</td>
                     <td>cтлб</td><td>скал</td>
                 </tr>
                 <tr>
-                    <td align="right"><emphasis role="bold">матрица</emphasis></td>
+                    <td align="right">
+                        <emphasis role="bold">матрица</emphasis>
+                    </td>
                     <td>cтлб</td><td>cтлб</td>
                     <td>матр</td><td>cтлб</td>
                     <td>матр</td><td>cтр</td>
                 </tr>
                 <tr>
-                    <td align="right"><emphasis role="bold">гиперматрица</emphasis></td>
+                    <td align="right">
+                        <emphasis role="bold">гиперматрица</emphasis>
+                    </td>
                     <td>cтлб</td><td>cтлб</td>
                     <td>матр</td><td>cтлб</td>
                     <td>матр</td><td>cтр</td>
                 </tr>
                 <tr align="center">
-                    <td align="right"><emphasis role="bold">скаляр</emphasis></td>
+                    <td align="right">
+                        <emphasis role="bold">скаляр</emphasis>
+                    </td>
                     <td>скал</td><td>скал</td>
                     <td>скал</td><td>скал</td>
                     <td>скал</td><td>скал</td>
@@ -177,7 +193,7 @@
             </table>
         </para>
         <para>
-            <literal>v</literal> и <literal>ka</literal> становятся пустыми 
+            <literal>v</literal> и <literal>ka</literal> становятся пустыми
             <literal>[]</literal>, если <literal>a</literal> пуста (либо <literal>b</literal>), или все элементы <literal>a</literal> находятся в <literal>b</literal>.
         </para>
     </refsection>
@@ -192,7 +208,7 @@ b = grand(2, 4, "uin", 0, 9)
 [d, k] = setdiff(a, b);
 d, k
  ]]></programlisting>
-    <screen><![CDATA[
+        <screen><![CDATA[
 --> a = grand(1, 10,"uin", 0, 9)
  a  =
    2.   2.   4.   5.   4.   1.   9.   5.   8.   3.
@@ -216,7 +232,7 @@ b = grand(2, 10, "uin", 0, 3)
 [d, k] = setdiff(a, b, "c");
 d, k
  ]]></programlisting>
-    <screen><![CDATA[
+        <screen><![CDATA[
 --> a = grand(2, 7,"uin", 0, 3)
  a  =
    0.   1.   0.   2.   3.   0.   2.
@@ -242,7 +258,7 @@ v2 = tokens("cc  ac  ca  bb  ac  bc  ab")'
 [r, k] = setdiff(v1, v2);
 r, k
 ]]></programlisting>
-    <screen><![CDATA[
+        <screen><![CDATA[
 --> v1 = tokens("ab  ca  ba  bb  ca  cb  ba  aa  cc  bc  ac  aa")'
  v1  =
 !ab  ca  ac  bb  ca  cb  ba  aa  cc  bc  ac  aa  !
@@ -270,7 +286,7 @@ r, k
                 <link linkend="members">members</link>
             </member>
             <member>
-                <link linkend="vertorfind">vectorfind</link>
+                <link linkend="vectorfind">vectorfind</link>
             </member>
         </simplelist>
     </refsection>

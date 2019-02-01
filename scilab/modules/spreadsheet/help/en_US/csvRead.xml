@@ -372,7 +372,7 @@ header = 2;
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="csvTextscan">csvTextscan</link>
+                <link linkend="csvTextScan">csvTextScan</link>
             </member>
             <member>
                 <link linkend="csvWrite">csvWrite</link>

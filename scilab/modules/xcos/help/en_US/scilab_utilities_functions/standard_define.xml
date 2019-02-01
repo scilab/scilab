@@ -30,7 +30,8 @@
                 <term>model</term>
                 <listitem>
                     <para>
-                        The <link linkend="scicos_model"/> part of the block that define its simulation interface.
+                      The <link linkend="scicos_model">part of the block</link> that define its
+                      simulation interface.
                     </para>
                 </listitem>
             </varlistentry>

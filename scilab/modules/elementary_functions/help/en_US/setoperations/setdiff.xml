@@ -136,39 +136,55 @@
             <table>
                 <tr>
                     <th align="right">orien →</th>
-                    <td colspan="2" align="center"><emphasis role="bold">none</emphasis></td>
-                    <td colspan="2" align="center"><emphasis role="bold">"r"</emphasis></td>
-                    <td colspan="2" align="center"><emphasis role="bold">"c"</emphasis></td>
+                    <td colspan="2" align="center">
+                        <emphasis role="bold">none</emphasis>
+                    </td>
+                    <td colspan="2" align="center">
+                        <emphasis role="bold">"r"</emphasis>
+                    </td>
+                    <td colspan="2" align="center">
+                        <emphasis role="bold">"c"</emphasis>
+                    </td>
                 </tr>
                 <tr>
                     <th>a ↓</th><th>v</th><th>ka</th><th>v</th><th>ka</th><th>v</th><th>ka</th>
                 </tr>
                 <tr>
-                    <td align="right"><emphasis role="bold">row</emphasis></td>
+                    <td align="right">
+                        <emphasis role="bold">row</emphasis>
+                    </td>
                     <td>row</td><td>row</td>
                     <td>row</td><td>scal</td>
                     <td>row</td><td>row</td>
                 </tr>
                 <tr>
-                    <td align="right"><emphasis role="bold">column</emphasis></td>
+                    <td align="right">
+                        <emphasis role="bold">column</emphasis>
+                    </td>
                     <td>col</td><td>col</td>
                     <td>col</td><td>col</td>
                     <td>col</td><td>scal</td>
                 </tr>
                 <tr>
-                    <td align="right"><emphasis role="bold">matrix</emphasis></td>
+                    <td align="right">
+                        <emphasis role="bold">matrix</emphasis>
+                    </td>
                     <td>col</td><td>col</td>
                     <td>mat</td><td>col</td>
                     <td>mat</td><td>row</td>
                 </tr>
                 <tr>
-                    <td align="right"><emphasis role="bold">hypermatrix</emphasis></td>
+                    <td align="right">
+                        <emphasis role="bold">hypermatrix</emphasis>
+                    </td>
                     <td>col</td><td>col</td>
                     <td>mat</td><td>col</td>
                     <td>mat</td><td>row</td>
                 </tr>
                 <tr align="center">
-                    <td align="right"><emphasis role="bold">scalar</emphasis></td>
+                    <td align="right">
+                        <emphasis role="bold">scalar</emphasis>
+                    </td>
                     <td>scal</td><td>scal</td>
                     <td>scal</td><td>scal</td>
                     <td>scal</td><td>scal</td>
@@ -192,7 +208,7 @@ b = grand(2, 4, "uin", 0, 9)
 [d, k] = setdiff(a, b);
 d, k
  ]]></programlisting>
-    <screen><![CDATA[
+        <screen><![CDATA[
 --> a = grand(1, 10,"uin", 0, 9)
  a  =
    2.   2.   4.   5.   4.   1.   9.   5.   8.   3.
@@ -219,7 +235,7 @@ b = grand(2, 10, "uin", 0, 3)
 [d, k] = setdiff(a, b, "c");
 d, k
  ]]></programlisting>
-    <screen><![CDATA[
+        <screen><![CDATA[
 --> a = grand(2, 7,"uin", 0, 3)
  a  =
    0.   1.   0.   2.   3.   0.   2.
@@ -248,7 +264,7 @@ v2 = tokens("cc  ac  ca  bb  ac  bc  ab")'
 [r, k] = setdiff(v1, v2);
 r, k
 ]]></programlisting>
-    <screen><![CDATA[
+        <screen><![CDATA[
 --> v1 = tokens("ab  ca  ba  bb  ca  cb  ba  aa  cc  bc  ac  aa")'
  v1  =
 !ab  ca  ac  bb  ca  cb  ba  aa  cc  bc  ac  aa  !
@@ -279,7 +295,7 @@ r, k
                 <link linkend="members">members</link>
             </member>
             <member>
-                <link linkend="vertorfind">vectorfind</link>
+                <link linkend="vectorfind">vectorfind</link>
             </member>
         </simplelist>
     </refsection>
