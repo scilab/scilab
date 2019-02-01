@@ -3649,9 +3649,9 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     //sciprint("callf type=%d flag=%d\n",block->type,flagi);
     switch (block->type)
     {
-            /*******************/
-            /* function type 0 */
-            /*******************/
+        /*******************/
+        /* function type 0 */
+        /*******************/
         case 0 :
         {
             /* This is for compatibility */
@@ -4047,6 +4047,8 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
             /*call_debug_scicos(flag,kf,flagi,debug_block);*/
         }
     }
+
+    block_error = NULL;
 } /* callf */
 /*--------------------------------------------------------------------------*/
 /* call_debug_scicos */
@@ -6257,7 +6259,10 @@ void Coserror(const char *fmt, ...)
     va_end(ap);
 
     /* coserror use error number 10 */
-    *block_error = -5;
+    if (block_error)
+    {
+        *block_error = -5;
+    }
 }
 /*--------------------------------------------------------------------------*/
 /* SundialsErrHandler: in case of a Sundials error,
@@ -6534,9 +6539,12 @@ static int Jacobians(long int Neq, realtype tt, realtype cj, N_Vector yy,
     }
     /*----------------------------------------------*/
     job = 1; /* read jacobian through flag=10; */
-    *block_error = 0;
+    if (block_error)
+    {
+        *block_error = 0;
+    }
     Jdoit(&ttx, xc, xcdot, &Fx[-m], &job);/* Filling up the FX:Fu:Gx:Gu*/
-    if (*block_error != 0)
+    if (block_error && *block_error != 0)
     {
         sciprint(_("\n error in Jacobian"));
     }
@@ -6923,7 +6931,7 @@ int C2F(hfjac)(double *x, double *jac, int *col)
 /*--------------------------------------------------------------------------*/
 int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
 {
-    double t = 0., *xc = NULL , *xcdot = NULL, *residual = NULL;
+    double t = 0., *xc = NULL, *xcdot = NULL, *residual = NULL;
     UserData data;
     int jj = 0, nantest = 0, N = 0;
     N = *neq;
