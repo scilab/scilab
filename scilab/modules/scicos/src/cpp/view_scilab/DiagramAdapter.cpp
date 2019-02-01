@@ -206,7 +206,11 @@ struct objs
         {
             std::for_each(childrenToUpdate.begin(), childrenToUpdate.end(), [&controller] (const update_t & u)
             {
-                if (u.adaptee != nullptr)
+                if (u.adapter != nullptr)
+                {
+                    u.adapter->IncreaseRef();
+                }
+                else if (u.adaptee != nullptr)
                 {
                     controller.referenceBaseObject(u.adaptee);
                 }
@@ -217,7 +221,12 @@ struct objs
         {
             std::for_each(childrenToUpdate.begin(), childrenToUpdate.end(), [this] (const update_t & u)
             {
-                if (u.adaptee != nullptr)
+                if (u.adapter != nullptr)
+                {
+                    u.adapter->DecreaseRef();
+                    u.adapter->killMe();
+                }
+                else if (u.adaptee != nullptr)
                 {
                     controller.deleteBaseObject(u.adaptee);
                 }
@@ -283,18 +292,17 @@ struct objs
                     }
 
                     // clone if the adapter is used somewhere else (eg. not owned by the list)
-                    if (pIT->getRef() > 1 || o->refCount() > 0) // over-clone some elements but PASS the tests
-                        //                     if (pIT->getRef() > 1) // TODO: investigate why this expression is not enough
+                    // TODO add a insertionCall depth counter to use there, this will avoid extra copy on o.model.rpar.objs(1) modification
+                    if (!deletion && (pIT->getRef() > 1 || o->refCount() > 0))
                     {
-                        model::BaseObject* cloned = controller.cloneBaseObject(mapped, o, true, true);
-                        types::InternalType* clonedAdapter = Adapters::instance().allocate_view(controller, cloned);
+                        model::BaseObject *cloned = controller.cloneBaseObject(mapped, o, true, true);
+                        types::InternalType *clonedAdapter = Adapters::instance().allocate_view(controller, cloned);
 
                         childrenToUpdate.emplace_back(i, cloned, clonedAdapter);
                         break;
                     }
 
                     // o have been edited in place, refresh partial information
-                    pIT->IncreaseRef();
                     childrenToUpdate.emplace_back(i, o, pIT);
                     break;
                 }
@@ -350,20 +358,22 @@ struct objs
             }
             else
             {
-                controller.referenceBaseObject(update.adaptee);
                 if (deletion && children[update.index] == ScicosID())
                 {
                     // This object is the one being deleted in the diagram:
                     //  - we are in effective delete mode
-                    //  - the old object is a "Deleted" mlist (deletion in two steps)
-                    //  - the new object is not a "Deleted" mlist (just replacing the old one)
+                    //  - the old object is a "Deleted" mlist (deletion in two  steps)
+                    //  - the new object is not a "Deleted" mlist (just replacing  the old one)
                     // Then 'offset' will skip the mlist so all the old children are deleted
                     ++offset;
                 }
 
-                LinkAdapter::store_partial_links_information(controller, update.adaptee, update.index + offset, children);
-                GraphicsAdapter::store_partial_links_information(controller, update.adaptee, update.index + offset, children);
-                controller.deleteObject(children[update.index + offset]);
+                ScicosID deleted = children[update.index + offset];
+                if (deleted)
+                {
+                    LinkAdapter::store_partial_links_information(controller, update.adaptee, update.index + offset, children);
+                    GraphicsAdapter::store_partial_links_information(controller, update.adaptee, update.index + offset, children);
+                }
             }
 
             // manage insertion and field update
@@ -373,6 +383,11 @@ struct objs
             }
             else
             {
+                controller.referenceBaseObject(update.adaptee);
+                if (children[update.index] != ScicosID())
+                {
+                    controller.deleteObject(children[update.index]);
+                }
                 children[update.index] = update.adaptee->id();
 
                 if (adaptee->kind() == BLOCK)
@@ -439,7 +454,7 @@ struct version
         }
         else
         {
-            model::Diagram* adaptee = static_cast<model::Diagram*>(adaptor.getAdaptee());
+            model::Diagram *adaptee = static_cast<model::Diagram *>(adaptor.getAdaptee());
             controller.getObjectProperty(adaptee, VERSION_NUMBER, version);
         }
 
