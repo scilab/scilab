@@ -4,13 +4,14 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
-// <-- Non-regression test for bug 612 -->
-// <-- NOT FIXED -->
+//
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
+//
+// <-- Non-regression test for bug 612 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=612
+// http://bugzilla.scilab.org/612
 //
 // <-- Short Description -->
 //    under unix the dimension of graphic window is limited to
