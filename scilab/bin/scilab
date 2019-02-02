@@ -185,7 +185,7 @@ detect_scilab_path() {
 
     # If the script is a symlink, it might be a symlink to the Scilab binary
     # We could run into the bug #9125
-    if test -h $progname; then
+    if test -h "$progname"; then
         while test -h "$progname"; do
             bn=$(basename "$progname")
             cd $(dirname "$progname")
@@ -201,7 +201,7 @@ detect_scilab_path() {
         curdir=$(pwd)
     fi
 
-    if test -d $curdir/../thirdparty/ -a -d $curdir/../share/scilab; then
+    if test -d "$curdir/../thirdparty/" -a -d "$curdir/../share/scilab"; then
         # We are in the Scilab binary
         IS_SCILAB_BINARY=1
         # export the bin directory to the PATH first (avoid to take the packaged version)
@@ -356,14 +356,14 @@ check_and_disable_selinux() {
             fi
 
             JVMLIB_32=$SCIBINARYBASE/java/lib/i386/server/libjvm.so
-            if test -f $JVMLIB_32; then
+            if test -f "$JVMLIB_32"; then
                 /usr/bin/chcon -t textrel_shlib_t "$JVMLIB_32"
                 if test $? != 0; then
                     echo "Error: Cannot chcon $JVMLIB_32"
                 fi
             fi
             JVMLIB_64=$SCIBINARYBASE/java/lib/amd64/server/libjvm.so
-            if test -f $JVMLIB_64; then
+            if test -f "$JVMLIB_64"; then
                 /usr/bin/chcon -t textrel_shlib_t "$JVMLIB_64"
                 if test $? != 0; then
                     echo "Error: Cannot chcon $JVMLIB_64"
@@ -467,7 +467,7 @@ detect_java_vm() {
                     echo "Look for the java binary in the PATH. If it is a symlink, try to resolve it"
                 fi
                 for DIR in $PATH; do
-                    if test -f $DIR/java; then
+                    if test -f "$DIR/java"; then
 
                         _cur=$DIR/java
                 # resolve symlink
@@ -493,7 +493,7 @@ detect_java_vm() {
                 echo "JAVA_HOME : $JAVA_HOME"
             fi
 # Manage JRE & JDK because libjava.so and others are stored in the JRE
-            if test -d $JAVA_HOME/jre; then
+            if test -d "$JAVA_HOME/jre"; then
                 JRE_HOME=$JAVA_HOME/jre
             else
                 JRE_HOME=$JAVA_HOME
@@ -508,7 +508,7 @@ detect_java_vm() {
                             ;;
                         i?86)
 
-                            if test -d ${JRE_HOME}/lib/$(uname -m) ; then
+                            if test -d "${JRE_HOME}/lib/$(uname -m)" ; then
                                 proc=$(uname -m)
                             else
                                 proc="i386"
@@ -529,7 +529,7 @@ detect_java_vm() {
                         mips*) # under mipsel, uname -m is
                     # usually returning mips or mips64...
                     # but binary are in mipsel
-                            if test -d ${JRE_HOME}/lib/mipsel ; then
+                            if test -d "${JRE_HOME}/lib/mipsel" ; then
                                 proc="mipsel"
                             else
                                 proc="mips"
@@ -670,7 +670,7 @@ if test $IS_SCILAB_BINARY -eq 1; then
 
 else
     # Scilab compiled using prerequirements
-    if test -d $curdir/../usr; then
+    if test -d "$curdir/../usr"; then
         TCL_LIBRARY="$SCI/usr/lib/tcl8.5"
         TK_LIBRARY="$SCI/usr/lib/tk8.5"
         export TCL_LIBRARY
@@ -826,11 +826,11 @@ check_macosx_version()
 
 # . is used by the dynamic link. The build lib are copied into the PWD
 SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/:.
-if test -d $SCI/lib/thirdparty; then
+if test -d "$SCI/lib/thirdparty"; then
     SCILIB=$SCI/lib/thirdparty:$SCILIB;
 fi
 LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-if test -d $SCI/lib/thirdparty/redist; then
+if test -d "$SCI/lib/thirdparty/redist"; then
     LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SCI/lib/thirdparty/redist;
 fi
 
