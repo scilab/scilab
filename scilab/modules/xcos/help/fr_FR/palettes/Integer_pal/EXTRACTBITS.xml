@@ -79,13 +79,13 @@
         <informaltable border="1" cellpadding="2">
             <tr>
                 <td align="left">
-                    <emphasis role="bold">Bits to Extract</emphasis>
+                    <emphasis role="bold">Bits à extraire</emphasis>
                 </td>
                 <td align="left">
-                    <emphasis role="bold">Output</emphasis>
+                    <emphasis role="bold">Sortie</emphasis>
                 </td>
                 <td align="left">
-                    <emphasis role="bold">Number of Bits or Index of Bit</emphasis>
+                    <emphasis role="bold">Nombre de bits ou n° de bit</emphasis>
                 </td>
             </tr>
             <tr>
@@ -350,19 +350,19 @@
         <informaltable border="1" cellpadding="3">
             <tr>
                 <td>
-                    <emphasis role="bold">Input</emphasis>
+                    <emphasis role="bold">Entrée</emphasis>
                 </td>
                 <td>
-                    <emphasis role="bold">Bits to Extract</emphasis>
+                    <emphasis role="bold">Bits à extraire</emphasis>
                 </td>
                 <td>
-                    <emphasis role="bold">Number of Bits or Index of Bit</emphasis>
+                    <emphasis role="bold">Nombre de bits ou n° de bit</emphasis>
                 </td>
                 <td>
                     <emphasis role="bold">Treat Bit Field as an Integer</emphasis>
                 </td>
                 <td>
-                    <emphasis role="bold">Output</emphasis>
+                    <emphasis role="bold">Sortie</emphasis>
                 </td>
             </tr>
             <tr>

@@ -69,7 +69,7 @@
         <title>Description</title>
         <para>
             This blocks generates events at specific sample time of the simulation time. The sample time is given in the "Sample Time" field and the offset is given in the "Offset" field. This block has one event input, the number of event outputs depends on the number of different sample time. For example if the vector of sample time is [1 1 2] and the vector of offset is [0 .5 0] then the block has 7 outputs.
-            <itemizedlist>
+            <orderedlist>
                 <listitem>
                     <para>
                         The first output is activated when the simulation time is equal to a
@@ -96,7 +96,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        The fifth output is activated when we have both cases, first case and 
+                        The fifth output is activated when we have both cases, first case and
                         forth case.
                     </para>
                 </listitem>
@@ -114,7 +114,7 @@
                 <listitem>
                     <para>etc...</para>
                 </listitem>
-            </itemizedlist>
+            </orderedlist>
         </para>
         <para>
             So the number of outputs is equal to 2**number of different time values. Each of these

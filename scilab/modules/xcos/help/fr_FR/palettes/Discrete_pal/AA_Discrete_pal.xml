@@ -121,7 +121,7 @@
         <para>La palette Systèmes à temps discret contient les blocs de modélisation en temps discret.</para>
     </refsection>
     <refsection id="Blocks_Discrete_pal" role="see also">
-        <title>Blocks</title>
+        <title>Blocs</title>
         <simplelist>
             <member>
                 <link linkend="DELAY_f">DELAY_f</link>

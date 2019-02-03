@@ -14,40 +14,40 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-		  xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
-		  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-		  xmlns:scilab="http://www.scilab.org" xml:id="INTEGRAL_f" xml:lang="fr">
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="INTEGRAL_f" xml:lang="fr">
     <refnamediv>
         <refname>INTEGRAL_f</refname>
         <refpurpose>Intégration</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-		<inlinemediaobject>
-			<imageobject>
-				<imagedata align="center" fileref="../../../../images/palettes/INTEGRAL_f.png"/>
-			</imageobject>
-		</inlinemediaobject>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/INTEGRAL_f.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_INTEGRAL_f">
         <title>Contenu</title>
-		<itemizedlist>
-			<listitem>
-				<xref linkend="Description_INTEGRAL_f">Description</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Dialogbox_INTEGRAL_f">Paramètres</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Defaultproperties_INTEGRAL_f">Propriétés par défaut</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Interfacingfunction_INTEGRAL_f">Fonction d'interfaçage</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Computationalfunction_INTEGRAL_f">Fonction de calcul</xref>
-			</listitem>
-		</itemizedlist>
+        <itemizedlist>
+            <listitem>
+                <xref linkend="Description_INTEGRAL_f">Description</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_INTEGRAL_f">Paramètres</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_INTEGRAL_f">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_INTEGRAL_f">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_INTEGRAL_f">Fonction de calcul</xref>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection id="Description_INTEGRAL_f">
         <title>Description</title>
@@ -55,13 +55,13 @@
     </refsection>
     <refsection id="Dialogbox_INTEGRAL_f">
         <title>Paramètres</title>
-		<inlinemediaobject>
-			<imageobject>
-				<imagedata fileref="../../../../images/gui/INTEGRAL_f_gui.gif"
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/INTEGRAL_f_gui.gif"
                             align="center" style="float:right"/>
                 <!-- align => Javahelp, style => Online -->
-			</imageobject>
-		</inlinemediaobject>
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -143,7 +143,7 @@
                 </para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_INTEGRAL_f">
         <title>Fonction d'interfaçage</title>

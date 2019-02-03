@@ -130,21 +130,23 @@
                     <listitem>
                         <para>
                             The first <literal>N</literal> elements of the
-                            <literal>Input_i</literal> are the continuous-time dynamics.
+                            <literal>Input<subscript>i</subscript></literal> are the continuous-time dynamics.
                             The dynamics of the system in the control mode <literal>i</literal> is
                             described by a smooth index-1 DAE <latex>$0 = F_i(\dot{x}, x, u, t)$</latex>.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            The next <literal>N</literal> elements of <literal>Input_i</literal>
+                            The next <literal>N</literal> elements of
+                            <literal>Input<subscript>i</subscript></literal>
                             are the values used to reset the continuous-time state when a
                             transition to control mode <literal>i</literal> is activated.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            The next <literal>Z_i</literal> elements of <literal>Input_i</literal>
+                            The next <literal>Z<subscript>i</subscript></literal> elements of
+                            <literal>Input<subscript>i</subscript></literal>
                             are the jump or zero-crossing functions. If the <literal>j</literal>-th
                             zero-crossing function of mode <literal>i</literal> crosses zero with
                             negative to positive direction, a transition to <literal>j</literal>-th

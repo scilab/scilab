@@ -27,7 +27,7 @@
         xml:id="INTRPLBLK_f" xml:lang="en_US">
     <refnamediv>
         <refname>INTRPLBLK_f</refname>
-        <refpurpose>Interpolation</refpurpose>
+        <refpurpose>Linear interpolation</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>

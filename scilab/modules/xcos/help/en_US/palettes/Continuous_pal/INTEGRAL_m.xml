@@ -72,7 +72,8 @@
             </mediaobject>
         </informalequation>
 
-        Where y0 is an initial condition and t0 is its corresponding time.
+      where y<subscript>0</subscript> is an initial condition and t<subscript>0</subscript> is
+      its corresponding time.
     </refsection>
     <refsection id="Dialogbox_INTEGRAL_m">
         <title>Parameters</title>
@@ -234,7 +235,6 @@
                 </para>
             </listitem>
         </itemizedlist>
-        <para/>
     </refsection>
 
     <refsection id="Interfacingfunction_INTEGRAL_m">
@@ -258,7 +258,7 @@
     </refsection>
     <refsection id="Examples_INTEGRAL_m">
         <title>Examples</title>
-        <refsect2 id="Example_INTEGRAL_m_1">
+        <refsect3 id="Example_INTEGRAL_m_1">
             <title>Example 1</title>
             <para>This sample model demonstrates how to use the integrator's state
                 port.
@@ -280,8 +280,8 @@ xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
 
-        </refsect2>
-        <refsect2 id="Example_INTEGRAL_m_2">
+        </refsect3>
+        <refsect3 id="Example_INTEGRAL_m_2">
             <title>Example 2</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.zcos">
@@ -296,6 +296,6 @@ importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_2_Exam
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsect2>
+        </refsect3>
     </refsection>
 </refentry>

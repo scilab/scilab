@@ -122,7 +122,7 @@
         <title>Description</title>
         <warning>
             <literal>getPreferencesValue()</literal> is obsolete. It is cloned into
-            <code>xmlGetValues()</code>. It will be removed from Scilab 6.2.
+            <code>xmlGetValues()</code>. It will be removed from Scilab 6.1.x
         </warning>
         <para>
             When an XML handle returned by <code>xmlRead(..)</code> is provided as
@@ -276,7 +276,7 @@ C:\Path\to\another\working\dir2\clf.sci
             <revision>
                 <revnumber>6.0.2</revnumber>
                 <revdescription>getPreferencesValue() is cloned into xmlGetValues(). It is
-                    declared obsolete and will be removed from Scilab 6.2.
+                    declared obsolete and will be removed from Scilab 6.1.x
                 </revdescription>
             </revision>
         </revhistory>

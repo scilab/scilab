@@ -64,11 +64,8 @@
             A capacitor is an electrical component that can store energy in
             electrical circuits. The relationship between the voltage  across a
             capacitor with capacitance  and the current  passing through it
-            is given by the equation:
+            is given by the equation: <emphasis>I = C.dV / dt</emphasis>
         </para>
-		<para>
-			<emphasis>I = C.dV / dt</emphasis>
-		</para>
         <para>
             Capacitors can also be used to differentiate between high-frequency
             and low-frequency signals and this makes them useful in electronic

@@ -57,7 +57,7 @@
         <title>説明</title>
         <warning>
             <literal>getPreferencesValue()</literal> is obsolete. It is cloned into
-            <code>xmlGetValues()</code>. It will be removed from Scilab 6.2.
+            <code>xmlGetValues()</code>. It will be removed from Scilab 6.1.x
         </warning>
         <para>
             設定ファイル(<literal>SCIHOME+'/XConfiguration.xml'</literal>)の
@@ -146,7 +146,7 @@ getPreferencesValue("//web/body/proxy", ["enabled", "host", "port"]);
             <revision>
                 <revnumber>6.0.2</revnumber>
                 <revdescription>getPreferencesValue() is cloned into xmlGetValues(). It is
-                    declared obsolete and will be removed from Scilab 6.2.
+                    declared obsolete and will be removed from Scilab 6.1.x
                 </revdescription>
             </revision>
         </revhistory>

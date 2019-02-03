@@ -13,49 +13,49 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" 
-		  xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" 
-		  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" 
-		  xmlns:scilab="http://www.scilab.org" xml:id="Capacitor" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="Capacitor" xml:lang="fr">
     <refnamediv>
         <refname>Capacitor</refname>
         <refpurpose>Capacité électrique</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-		<inlinemediaobject>
-			<imageobject>
-				<imagedata fileref="../../../../images/palettes/Capacitor.png" align="center"/>
-			</imageobject>
-		</inlinemediaobject>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/Capacitor.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_Capacitor">
         <title>Contenu</title>
-		<itemizedlist>
-			<listitem>
-				<xref linkend="Description_Capacitor">Description</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Dialogbox_Capacitor">Paramètres</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Defaultproperties_Capacitor">Propriétés par défaut</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Interfacingfunction_Capacitor">Fonction d'interfaçage</xref>
-			</listitem>
-			<listitem>
-				<link linkend="Capacitor">Modèle Modelica</link>
-			</listitem>
-		</itemizedlist>
+        <itemizedlist>
+            <listitem>
+                <xref linkend="Description_Capacitor">Description</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_Capacitor">Paramètres</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_Capacitor">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_Capacitor">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <link linkend="Capacitor">Modèle Modelica</link>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection id="Description_Capacitor">
         <title>Description</title>
         <para>
             Une capacité est un composant qui dans un circuit électrique peut stocker de l'énergie.
             La relation entre la tension aux bornes de la capacité et le courant la traversant est donnée par :
+            <emphasis>I = C.dV / dt</emphasis>
         </para>
-			<emphasis>I = C.dV / dt</emphasis>
         <para>
             Les capacités peuvent aussi être utilisées pour discriminer les signaux de haute et basse fréquences,
             ce qui les rend utiles dans les filtres électroniques. Une capacité a une grande impédance pour les signaux de
@@ -64,13 +64,13 @@
     </refsection>
     <refsection id="Dialogbox_Capacitor">
         <title>Paramètres</title>
-		<inlinemediaobject>
-			<imageobject>
-				<imagedata fileref="../../../../images/gui/Capacitor_gui.gif"
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/Capacitor_gui.gif"
                             align="center" style="float:right"/>
                 <!-- align => Javahelp, style => Online -->
-			</imageobject>
-		</inlinemediaobject>
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -156,7 +156,7 @@
                 </para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_Capacitor">
         <title>Fonction d'interfaçage</title>

@@ -30,7 +30,7 @@
         <refpurpose>Retard en temps discret</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Block Screenshot</title>
+        <title>Aperçu</title>
         <inlinemediaobject>
             <imageobject>
                 <imagedata fileref="../../../../images/palettes/DELAY_f.png" align="center"/>
@@ -38,7 +38,7 @@
         </inlinemediaobject>
     </refsection>
     <refsection id="Contents_DELAY_f">
-        <title>Contents</title>
+        <title>Contenu</title>
         <itemizedlist>
             <listitem>
                 <xref linkend="Description_DELAY_f">Description</xref>

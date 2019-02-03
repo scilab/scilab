@@ -237,7 +237,7 @@
     </refsection>
     <refsection id="Examples_PID">
         <title>Examples</title>
-        <refsect2 id="Example_1_PID">
+        <refsect3 id="Example_1_PID">
             <title>Example 1</title>
             <para>This example illustrates the usage of PID regulator. It enables you
                 to fit the output signal <emphasis>U<subscript>pr</subscript>(t)</emphasis>
@@ -280,13 +280,15 @@
                         </imageobject>
                     </inlinemediaobject>
                 </link>
+            </para>
+            <para>
                 <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_1_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsect2>
-        <refsect2 id="Example_2_PID">
+        </refsect3>
+        <refsect3 id="Example_2_PID">
             <title>Example 2</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_2_Example.zcos">
@@ -296,13 +298,15 @@ xcos_simulate(scs_m, 4);
                         </imageobject>
                     </inlinemediaobject>
                 </link>
+            </para>
+            <para>
                 <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_2_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsect2>
-        <refsect2 id="Example_3_PID">
+        </refsect3>
+        <refsect3 id="Example_3_PID">
             <title>Example 3</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_3_Example.zcos">
@@ -312,11 +316,13 @@ xcos_simulate(scs_m, 4);
                         </imageobject>
                     </inlinemediaobject>
                 </link>
+            </para>
+            <para>
                 <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_3_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsect2>
+        </refsect3>
     </refsection>
 </refentry>

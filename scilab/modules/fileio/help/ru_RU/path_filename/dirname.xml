@@ -14,10 +14,15 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="dirname">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="dirname">
     <refnamediv>
         <refname>dirname</refname>
-        <refpurpose>получает имя директории из имён файлов</refpurpose>
+        <refpurpose>
+           получает имя директории из имён файлов <emphasis role="bold">(obsolete)</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
@@ -65,6 +70,10 @@
     </refsection>
     <refsection>
         <title>Описание</title>
+        <warning>
+          <literal>dirname(…)</literal> is obsolete and will be removed from Scilab 6.1.x.
+          Please use <literal>fileparts(…)</literal> instead.
+        </warning>
         <para>
             Функция <function>dirname</function> возвращает путь директории, составленный
             из файлов, указанных в <varname>files</varname>.
@@ -104,6 +113,9 @@ dirs=dirname(['SCI/etc/scilab.start', 'SCI/etc/scilab.quit'])
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
+                <link linkend="fileparts">fileparts</link>
+            </member>
+            <member>
                 <link linkend="basename">basename</link>
             </member>
             <member>
@@ -113,6 +125,18 @@ dirs=dirname(['SCI/etc/scilab.start', 'SCI/etc/scilab.quit'])
                 <link linkend="pathconvert">pathconvert</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    dirname() is tagged obsolete, to be removed from Scilab 6.1.x.
+                    fileparts() replaces it.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
 

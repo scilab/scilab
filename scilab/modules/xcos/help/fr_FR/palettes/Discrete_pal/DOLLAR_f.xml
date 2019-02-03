@@ -14,43 +14,43 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-		  xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" 
-		  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" 
-		  xmlns:scilab="http://www.scilab.org" xml:id="DOLLAR_f" xml:lang="fr">
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="DOLLAR_f" xml:lang="fr">
     <refnamediv>
         <refname>DOLLAR_f</refname>
         <refpurpose>Opérateur Retard</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-		<inlinemediaobject>
-			<imageobject>
-				<imagedata align="center" fileref="../../../../images/palettes/DOLLAR_f.png"/>
-			</imageobject>
-		</inlinemediaobject>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/DOLLAR_f.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_DOLLAR_f">
         <title>Contenu</title>
-		<itemizedlist>
-			<listitem>
-				<xref linkend="Description_DOLLAR_f">Description</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Dialogbox_DOLLAR_f">Paramètres</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Defaultproperties_DOLLAR_f">Propriétés par défaut</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Example_DOLLAR_f">Exemple</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Interfacingfunction_DOLLAR_f">Fonction d'interfaçage</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Computationalfunction_DOLLAR_f">Fonction de calcul</xref>
-			</listitem>
-		</itemizedlist>
+        <itemizedlist>
+            <listitem>
+                <xref linkend="Description_DOLLAR_f">Description</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_DOLLAR_f">Paramètres</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_DOLLAR_f">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_DOLLAR_f">Exemple</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_DOLLAR_f">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_DOLLAR_f">Fonction de calcul</xref>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection id="Description_DOLLAR_f">
         <title>Description</title>
@@ -62,13 +62,13 @@
     </refsection>
     <refsection id="Dialogbox_DOLLAR_f">
         <title>Paramètres</title>
-		<inlinemediaobject>
-			<imageobject>
-				<imagedata fileref="../../../../images/gui/DOLLAR_f_gui.gif"
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/DOLLAR_f_gui.gif"
                             align="center" style="float:right"/>
                 <!-- align => Javahelp, style => Online -->
-			</imageobject>
-		</inlinemediaobject>
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -159,7 +159,7 @@
                 </para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
     <refsection id="Example_DOLLAR_f">
         <title>Exemple</title>
@@ -171,6 +171,8 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
+        </para>
+        <para>
             <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.zcos");
 xcos_simulate(scs_m, 4);

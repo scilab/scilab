@@ -19,7 +19,7 @@
           xmlns:scilab="http://www.scilab.org" xml:id="DELAYV_f" xml:lang="fr">
     <refnamediv>
         <refname>DELAYV_f</refname>
-        <refpurpose>Délai variable</refpurpose>
+        <refpurpose>Retard variable</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
@@ -199,7 +199,7 @@
         </itemizedlist>
     </refsection>
     <refsection id="Example_DELAYV_f">
-        <title>Exemple de délai variable</title>
+        <title>Exemple de retard variable</title>
         <para>
             Dans cet exemple, la fonction sinus (en noir) est retardée alternativement de 0 et 1 seconde.
             L'amplitude du bloc GENSQR_f est fixée à 2, mais le paramètre "Max delay" du bloc DELAVV_f

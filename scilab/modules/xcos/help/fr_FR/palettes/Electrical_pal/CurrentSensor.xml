@@ -18,8 +18,8 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
           xmlns:scilab="http://www.scilab.org" xml:id="CurrentSensor" xml:lang="fr">
     <refnamediv>
-        <refname>Ampèremètre</refname>
-        <refpurpose>Mesure d'intensité de courant électrique</refpurpose>
+        <refname>CurrentSensor</refname>
+        <refpurpose>Ampèremètre idéal</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>

@@ -38,6 +38,15 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>along</term>
+                <listitem>
+                    <para>
+                        1 | "r" | 2 | "c" | 0&lt;along&lt;=ndims(x): direction selon laquelle
+                        les moitiés sont commutées.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

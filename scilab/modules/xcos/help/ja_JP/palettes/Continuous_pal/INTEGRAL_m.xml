@@ -73,7 +73,7 @@
                 </imageobject>
             </mediaobject>
         </informalequation>
-        ただし, y0 は初期条件, t0 は対応する時間です.
+        ただし, y<subscript>0</subscript> は初期条件, t<subscript>0</subscript> は対応する時間です.
     </refsection>
     <refsection id="Dialogbox_INTEGRAL_m">
         <title>ダイアログボックス</title>
@@ -243,7 +243,6 @@
                 </para>
             </listitem>
         </itemizedlist>
-        <para/>
     </refsection>
     <refsection id="Interfacingfunction_INTEGRAL_m">
         <title>インターフェイス用関数</title>
@@ -266,7 +265,7 @@
     </refsection>
     <refsection id="Examples_INTEGRAL_m">
         <title>例</title>
-        <refsection id="Example_INTEGRAL_m_1">
+        <refsect3 id="Example_INTEGRAL_m_1">
             <title>例1</title>
             <para>この例のモデルは積分器の状態ポートの使用例を示します.
             </para>
@@ -286,8 +285,8 @@ importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_1_Exam
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
-        <refsection id="Example_INTEGRAL_m_2">
+        </refsect3>
+        <refsect3 id="Example_INTEGRAL_m_2">
             <title>例2</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.zcos">
@@ -302,6 +301,6 @@ importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_2_Exam
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
+        </refsect3>
     </refsection>
 </refentry>

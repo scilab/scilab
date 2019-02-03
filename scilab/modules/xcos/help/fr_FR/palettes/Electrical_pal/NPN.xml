@@ -69,6 +69,7 @@
                 <!-- align => Javahelp, style => Online -->
             </imageobject>
         </inlinemediaobject>
+        <para/>
         <informaltable border="1" cellpadding="3">
             <tr>
                 <td align="left">Parameter</td>

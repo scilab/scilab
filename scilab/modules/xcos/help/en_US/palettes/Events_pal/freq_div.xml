@@ -170,10 +170,10 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-        </para>
-        <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/events_pal/en_US/freq_div_en_US.zcos");
-xcos_simulate(scs_m, 4);
+          <scilab:image><![CDATA[
+  importXcosDiagram(SCI + "/modules/xcos/examples/events_pal/en_US/freq_div_en_US.zcos");
+  xcos_simulate(scs_m, 4);
 ]]></scilab:image>
+        </para>
     </refsection>
 </refentry>

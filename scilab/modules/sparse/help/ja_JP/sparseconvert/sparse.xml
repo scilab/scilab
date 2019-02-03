@@ -88,8 +88,17 @@
             <literal>ij(:,1)</literal> および <literal>ij(:,2)</literal>の
             最大値となります.
         </para>
-        <warning>For the building syntaxes, if several values are given for a same
-            <varname>ij</varname> position, the sum of theses values is assigned.
+        <warning>
+            <itemizedlist>
+              <listitem>
+                  For the building syntaxes, if several values are given for a same
+                  <varname>ij</varname> position, the sum of theses values is assigned.
+              </listitem>
+              <listitem>
+                <literal>sparse([],[])</literal> yields the <literal>(0, 0) zero sparse matrix</literal>,
+                with <literal>sparse([],[]) ~= []</literal>.
+              </listitem>
+            </itemizedlist>
         </warning>
       <refsect3>
         <title>Operating sparse matrices</title>
@@ -98,26 +107,29 @@
             行ないます.
         </para>
         <para>
-            基本的な関数(<literal>abs,maxi,sum,diag,...</literal>)は疎行列でも
+            基本的な関数(<literal>abs, min, max, sum, diag,...</literal>)は疎行列でも
             利用可能です.
         </para>
         <para>
             (通常の行列と疎行列の)混用も可能です.
             結果は処理に応じて通常または疎行列となります.
         </para>
-        <para>
-            注意 :
-            同じ大きさの通常の行列を含む任意の演算は,
-            引数(例: <literal>sp=sparse(d)</literal>),
-            または,結果(例  <literal>d= sp + 1.</literal>) のどちら
-            についても利便性のために提供されていますが,当然避けるべきです.
-            更に,要素(<literal>sp(r,c)</literal>)へのランダムアクセス,
-            特に挿入,は効率的ではありません.
-            このため,性能面の制約があるアクセスでは,
-            読込みアクセスは<link linkend="spget">spget</link>,
-            書込みアクセスは<literal>sp=sparse(ij, v, mn)</literal>による
-            バッチ処理により行う必要があります.
-        </para>
+        <note>
+          <para>
+              同じ大きさの通常の行列を含む任意の演算は,
+              引数(例: <literal>sp=sparse(d)</literal>),
+              または,結果(例  <literal>d= sp + 1.</literal>) のどちら
+              についても利便性のために提供されていますが,当然避けるべきです.
+          </para>
+          <para>
+              更に,要素(<literal>sp(r,c)</literal>)へのランダムアクセス,
+              特に挿入,は効率的ではありません.
+              このため,性能面の制約があるアクセスでは,
+              読込みアクセスは<link linkend="spget">spget</link>,
+              書込みアクセスは<literal>sp=sparse(ij, v, mn)</literal>による
+              バッチ処理により行う必要があります.
+          </para>
+        </note>
       </refsect3>
     </refsection>
     <refsection>
@@ -171,5 +183,16 @@ sp=sparse(dense)
                 <link linkend="toeplitz">toeplitz</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    sparse([],[]) now yields the "(0,0) zero sparse matrix" instead of [].
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

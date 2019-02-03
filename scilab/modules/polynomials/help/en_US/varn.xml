@@ -2,9 +2,8 @@
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) - INRIA
-* Copyright (C) 2018 - Samuel GOUGEON
-*
 * Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2018 - Samuel GOUGEON
 *
 * This file is hereby licensed under the terms of the GNU GPL v2.0,
 * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -70,6 +69,9 @@
         <para>
             <literal>varn(p,'s')</literal> returns a polynomial matrix with same coefficients
             as <literal>p</literal> but with <literal>'s'</literal> as symbolic variable (change of variable name).
+        </para>
+        <para>
+            <literal>varn([])</literal> yields [].
         </para>
     </refsection>
     <refsection>
@@ -164,10 +166,15 @@ fx == f
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revremark>
-                    <para>
-                        The name of the symbolic variable is no longer limited to 4 characters.
-                        It can now include extended UTF-8 characters.
-                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            The name of the symbolic variable is no longer limited to 4 characters.
+                            It can now include extended UTF-8 characters.
+                        </listitem>
+                        <listitem>
+                            varn([]) now returns [] instead of routing to %s_varn().
+                        </listitem>
+                    </itemizedlist>
                 </revremark>
             </revision>
         </revhistory>

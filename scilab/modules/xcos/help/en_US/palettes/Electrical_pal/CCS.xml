@@ -65,7 +65,6 @@
             Xcos blocks). The voltage across the block is independent of the current
             value.
         </para>
-        <para/>
     </refsection>
     <refsection id="Defaultproperties_CCS">
         <title>Default properties</title>
@@ -114,7 +113,6 @@
                 </para>
             </listitem>
         </itemizedlist>
-        <para/>
     </refsection>
     <refsection id="Interfacingfunction_CCS">
         <title>Interfacing function</title>

@@ -160,7 +160,7 @@
     <refsection id="Example_CLKOUTV_f">
         <title>Exemple</title>
         <para>
-            Le Super block ci-dessous est principalement un diviseur de fréquence par 4, associé à une génération d'événement à l'instant
+            Le Super-bloc ci-dessous est principalement un diviseur de fréquence par 4, associé à une génération d'événement à l'instant
             <emphasis>
                 <literal>t = 3 s</literal>
             </emphasis>

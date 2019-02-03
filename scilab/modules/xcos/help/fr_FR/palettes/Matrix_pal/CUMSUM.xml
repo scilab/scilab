@@ -249,7 +249,7 @@
         <title>Voir aussi</title>
         <itemizedlist>
             <listitem>
-                <link linkend="MATSUM">MATSUM - Somme des éléments d'une matrice (Block Xcos)</link>
+                <link linkend="MATSUM">MATSUM</link>
             </listitem>
             <listitem>
                 <link linkend="cumsum">cumsum (Fonction Scilab)</link>

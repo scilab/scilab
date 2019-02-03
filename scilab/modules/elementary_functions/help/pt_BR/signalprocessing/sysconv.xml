@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -13,17 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sysconv" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="sysconv" xml:lang="pt">
     <refnamediv>
         <refname>sysconv</refname>
-        <refpurpose>conversão de sistema</refpurpose>
+        <refpurpose>conversÃ£o de sistema</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[s1,s2]=sysconv(s1,s2)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>s1,s2</term>
@@ -36,95 +39,86 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             Converte <literal>s1</literal> e <literal>s2</literal> para
-            representação comum a fim de que operações de interconexão de sistemas
-            possam ser aplicadas. Função utilitária para peritos. A regra de conversão
-            é dada na seguinte tabela.
+            representaÃ§Ã£o comum a fim de que operaÃ§Ãµes de interconexÃ£o de sistemas
+            possam ser aplicadas. FunÃ§Ã£o utilitÃ¡ria para peritos. A regra de conversÃ£o
+            Ã© dada na seguinte tabela.
         </para>
-        <variablelist>
-            <varlistentry>
-                <term>"c"</term>
-                <listitem>
-                    <para>sistema de tempo contínuo</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"d"</term>
-                <listitem>
-                    <para>sistema de tempo discreto </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>n</term>
-                <listitem>
-                    <para>sistema amostrado com período de amostragem n </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>[]</term>
-                <listitem>
-                    <para>sistema com domínio de tempo indefinido. Para sistemas mistos,
-                        s1 e s2 são postos em representação de estado-espaço.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-        <programlisting><![CDATA[
- s1\s2  |   "c"     |     "d"     |      n2        |     []     |
- ---------------------------------------------------------------
- "c"   | nada       |incompatível | c2e(s1,n2)     |  c(s2)     |
- ---------------------------------------------------------------
- "d"   |incompatível| nada        | e(s1,n2)       |  d(s2)     |
- ---------------------------------------------------------------
- n1    | c2e(s2,n1) | e(s2,n1)    | n1<>n2 incomp  |  e(s2,n1)  |
-       |            |             | n1=n2  nada    |            |
- ---------------------------------------------------------------
- []    | c(s1)      | d(s1)       | e(s1,n2)       |  nada      |
- ---------------------------------------------------------------
- ]]></programlisting>
+        <table>
+            <tr><th>"c"</th><td>: sistema de tempo contÃ­nuo.</td></tr>
+            <tr><th>"d"</th><td>: sistema de tempo discreto.</td></tr>
+            <tr><th>n</th><td>: sistema amostrado com perÃ­odo de amostragem n.</td></tr>
+            <tr valign="top">
+                <th>[ ]</th>
+                <td>: sistema com domÃ­nio de tempo indefinido. Para sistemas mistos,
+                      s1 e s2 sÃ£o postos em representaÃ§Ã£o de estado-espaÃ§o.
+                </td>
+            </tr>
+        </table>
+        <para/>
+        <table border="1">
+            <tr>
+                <th>s1\s2</th><th>"c"</th><th>"d"</th><th>n2</th><th>[ ]</th>
+            </tr>
+            <tr>
+                <th>"c"</th>
+                <td>nada</td>
+                <td>incompatÃ­vel</td>
+                <td>c2e(s1,n2)</td>
+                <td>c(s2)</td>
+            </tr>
+            <tr>
+                <th>"d"</th>
+                <td>incompatÃ­vel</td>
+                <td>nada</td>
+                <td>e(s1,n2)</td>
+                <td>d(s2)</td>
+            </tr>
+            <tr>
+                <th>n1</th>
+                <td>c2e(s2,n1)</td>
+                <td>e(s2,n1)</td>
+                <td>n1&lt;>n2 incomp<table/>n1=n2  nada</td>
+                <td>e(s2,n1)</td>
+            </tr>
+            <tr>
+                <th>[ ]</th>
+                <td>c(s1)</td>
+                <td>d(s1)</td>
+                <td>e(s1,n2)</td>
+                <td>nada</td>
+            </tr>
+        </table>
         <para>Com o seguinte significado: </para>
-        <variablelist>
-            <varlistentry>
-                <term>n1,n2</term>
-                <listitem>
-                    <para>período de amostragem </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>c2e(s,n)</term>
-                <listitem>
-                    <para>o sistema de tempo contínuo s é transformado em um sistema
-                        amostrado com período de amostragem n.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>c(s)</term>
-                <listitem>
-                    <para>conversão para tempo contínuo (domínio de tempo é
-                        <literal>"c"</literal>)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>d(s)</term>
-                <listitem>
-                    <para>conversão para tempo discreto (domínio de tempo é
-                        <literal>"d"</literal>)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>e(s,n)</term>
-                <listitem>
-                    <para>conversão para sistema amostrado com período
-                        <literal>n</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
+        <table>
+            <tr valign="top">
+                <th align="left">n1, n2</th>
+                <td>: perÃ­odo de amostragem.</td>
+            </tr>
+            <tr valign="top">
+                <th align="left">c2e(s,n)</th>
+                <td>: o sistema de tempo contÃ­nuo s Ã© transformado em um sistema
+                        amostrado com perÃ­odo de amostragem n.
+                </td>
+            </tr>
+            <tr valign="top">
+                <th align="left">c(s)</th>
+                <td>: conversÃ£o para tempo contÃ­nuo (domÃ­nio de tempo Ã© <literal>"c"</literal>)
+                </td>
+            </tr>
+            <tr valign="top">
+                <th align="left">d(s)</th>
+                <td>: conversÃ£o para tempo discreto (domÃ­nio de tempo Ã© <literal>"d"</literal>)
+                </td>
+            </tr>
+            <tr valign="top">
+                <th align="left">e(s,n)</th>
+                <td>: conversÃ£o para sistema amostrado com perÃ­odo <literal>n</literal>.
+                </td>
+            </tr>
+        </table>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -135,7 +129,7 @@ s2=ss2tf(s1);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="syslin">syslin</link>

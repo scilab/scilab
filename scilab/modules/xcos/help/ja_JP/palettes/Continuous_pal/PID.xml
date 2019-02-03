@@ -236,7 +236,7 @@
     </refsection>
     <refsection id="Examples_PID">
         <title>例</title>
-        <refsection id="Example_1_PID">
+        <refsect3 id="Example_1_PID">
             <title>例1</title>
             <para>
                 この例は,PIDレギュレータの使用例を示します.
@@ -284,13 +284,15 @@
                         </imageobject>
                     </inlinemediaobject>
                 </link>
+            </para>
+            <para>
                 <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_1_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
-        <refsection id="Example_2_PID">
+        </refsect3>
+        <refsect3 id="Example_2_PID">
             <title>例2</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_2_Example.zcos">
@@ -300,13 +302,15 @@ xcos_simulate(scs_m, 4);
                         </imageobject>
                     </inlinemediaobject>
                 </link>
+            </para>
+            <para>
                 <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_2_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
-        <refsection id="Example_3_PID">
+        </refsect3>
+        <refsect3 id="Example_3_PID">
             <title>例3</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_3_Example.zcos">
@@ -316,11 +320,13 @@ xcos_simulate(scs_m, 4);
                         </imageobject>
                     </inlinemediaobject>
                 </link>
+            </para>
+            <para>
                 <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_3_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
+        </refsect3>
     </refsection>
 </refentry>

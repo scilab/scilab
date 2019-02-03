@@ -88,7 +88,7 @@ box "Champ #N";
         <para>
             Le paramètre <emphasis role="bold">Time record Selection</emphasis> permet à
             l'utilisateur de sélectionner un champ de l'enregistrement qui représente des événements
-            temporels. Quand ce paramètre est fourni, une sortie d'activation est ajoutée au block
+            temporels. Quand ce paramètre est fourni, une sortie d'activation est ajoutée au bloc
             qui renvoie ces événements à l'utilisateur. Vous pouvez effectuer un bouclage
             de la sortie d'activation sur l'entrée d'événement du bloc pour lire les
             enregistrements en séquence jusqu'à la fin du fichier comme dans l'exemple ci-dessous.

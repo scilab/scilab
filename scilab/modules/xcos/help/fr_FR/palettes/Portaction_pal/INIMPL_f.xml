@@ -69,11 +69,13 @@
     <refsection id="Description_INIMPL_f">
         <title>Description</title>
         <para>
-            Ce bloc représente une port d'entrée implicite. Il doit être utilisé uniquement à l'intérieur d'un Super bloc Xcos et être connecté une entrée implicite dans le sous-système.
+            Ce bloc représente une port d'entrée implicite. Il doit être utilisé uniquement à
+            l'intérieur d'un Super-bloc Xcos et être connecté une entrée implicite dans le sous-système.
         </para>
         <para>
-            Ce bloc est une liaison de signal d'un système dans un sous-système. Dans un Super bloc, les ports d'entrée implicites
-            doivent être numérotés de 1 au nombre total d'entrées implicites du Super bloc. Chaque numéro d'entrée implicite doit être
+            Ce bloc est une liaison de signal d'un système dans un sous-système.
+            Dans un Super-bloc, les ports d'entrée implicites doivent être numérotés de 1 au nombre
+            total d'entrées implicites du Super bloc. Chaque numéro d'entrée implicite doit être
             unique et défini avec le paramètre <emphasis role="bold">Port number</emphasis>.
         </para>
     </refsection>
@@ -164,10 +166,10 @@
     <refsection id="Example_INIMPL_f">
         <title>Exemple</title>
         <para>
-            L'exemple suivant montre l'utilisation du bloc INIMPL_f. Le Super bloc contient un
+            L'exemple suivant montre l'utilisation du bloc INIMPL_f. Le Super-bloc contient un
             circuit électrique simple avec deux entrées, une sur la résistance, l'autre pour la masse.
             Ces entrées sont connectées à l'environnement extérieur du bloc à travers deux blocs
-            INIMPL_f numérotés 1 et 2. La sortie du Super block est connectée via le bloc
+            INIMPL_f numérotés 1 et 2. La sortie du Super-bloc est connectée via le bloc
             <link linkend="OUTIMPL_f">OUTIMPL_f</link>.
         </para>
         <para>
