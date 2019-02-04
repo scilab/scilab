@@ -1079,6 +1079,13 @@ do_help()
     exit
 }
 
+# under MacOS X LANG is not set when launching Scilab from its icon 
+if test "$OS" = "Darwin"; then
+    if test -z "$LANG"; then
+        export LANG=`defaults read -g AppleLocale`.UTF-8
+    fi
+fi
+
 MORE_OPT=""
 if test "$SCILAB_MODE" = "nw"; then
     MORE_OPT="-nw"
