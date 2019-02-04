@@ -29,7 +29,7 @@ fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
 
-mfile2sci(MFILE,TMPDIR);
+mfile2sci(MFILE,TMPDIR,,%T);
 
 fd=mopen(SCIFILE,"r");
 SCIFILECONTENTS=mgetl(fd,-1);

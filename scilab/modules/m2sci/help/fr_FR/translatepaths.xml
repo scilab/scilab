@@ -14,14 +14,21 @@
  * along with this program.
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="translatepaths">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="translatepaths">
     <refnamediv>
         <refname>translatepaths</refname>
         <refpurpose>convertit un ensemble de répertoires contenant des M-files vers Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>translatepaths(dirs_path [,res_path])</synopsis>
+        <synopsis>
+          translatepaths()  // GUI
+          translatepaths(dirs_path)
+          translatepaths(dirs_path, res_path)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -29,13 +36,19 @@
             <varlistentry>
                 <term>dirs_path</term>
                 <listitem>
-                    <para>un vecteur de chaînes de caractères qui donne les chemins des répertoires à convertir</para>
+                    <para>
+                      un vecteur de chaînes de caractères qui donne les chemins des répertoires
+                      à convertir.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>res_path</term>
                 <listitem>
-                    <para>une chaîne de caractère qui donne le chemin du répertoire où les fonctions Scilab seront écrites. Valeur par défaut : répertoire courant.</para>
+                    <para>
+                      une chaîne de caractère qui donne le chemin du répertoire où les
+                      fonctions Scilab seront écrites. Valeur par défaut : répertoire courant.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -43,15 +56,17 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>translatepaths</literal>, convertit tous les M-files contenus dans un ensemble de répertoires
-            en fonctions Scilab. Chaque fonction est convertie par <literal>mfile2sci</literal>.
+            <literal>translatepaths</literal>, convertit tous les M-files contenus dans un
+            ensemble de répertoires en fonctions Scilab. Chaque fonction est convertie par
+            <literal>mfile2sci</literal>.
         </para>
         <para>
-            Toutes les informations de traduction sont stockées dans un fichier nommé <literal>"log"</literal> dans
-            le répertoire <literal>res_path</literal>.
+            Toutes les informations de traduction sont stockées dans un fichier nommé
+            <literal>"log"</literal> dans le répertoire <literal>res_path</literal>.
         </para>
         <para>
-            Un appel à <literal>translatepaths()</literal> sans rhs lance une interface graphique pour aider à la sélection d'un fichier/répertoire et des options.
+            Un appel à <literal>translatepaths()</literal> sans rhs lance une interface graphique
+            pour aider à la sélection d'un fichier/répertoire et des options.
         </para>
     </refsection>
     <refsection role="see also">

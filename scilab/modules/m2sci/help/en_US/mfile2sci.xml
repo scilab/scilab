@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) ???? - INRIA - Serge STEER
-* Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-*
-* Copyright (C) 2012 - 2016 - Scilab Enterprises
-*
-* This file is hereby licensed under the terms of the GNU GPL v2.0,
-* pursuant to article 5.3.4 of the CeCILL v.2.1.
-* This file was originally licensed under the terms of the CeCILL v2.1,
-* and continues to be available under such terms.
-* For more information, see the COPYING file which you should have received
-* along with this program.
-*
--->
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ???? - INRIA - Serge STEER
+ * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
+ * Copyright (C) 2018 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+    *
+    -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-          xml:lang="en" xml:id="mfile2sci">
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="mfile2sci">
     <refnamediv>
         <refname>mfile2sci</refname>
         <refpurpose>Matlab M-file to Scilab conversion function</refpurpose>
@@ -25,14 +26,13 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-          mfile2sci()
-          mfile2sci(M-file-path)
-          mfile2sci(M-file-path, results_path)
-          mfile2sci(M-file-path, results_path, Recmode)
-          mfile2sci(M-file-path, results_path, Recmode, only_double)
-          mfile2sci(M-file-path, results_path, Recmode, only_double, verbose_mode)
-          mfile2sci(M-file-path, results_path, Recmode, only_double, verbose_mode, prettyprintoutput)
-          mfile2sci(M-file-path, verbose_mode=.., ..)
+            mfile2sci()  // interactive GUI
+            mfile2sci(M_file_path)
+            mfile2sci(M_file_path, result_path )
+            mfile2sci(M_file_path, result_path, Recmode)
+            mfile2sci(M_file_path, result_path, Recmode, only_double)
+            mfile2sci(M_file_path, result_path, Recmode, only_double, verbose_mode)
+            mfile2sci(M_file_path, result_path, Recmode, only_double, verbose_mode, prettyprintoutput)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -45,11 +45,11 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>results_path</term>
+                <term>result_path</term>
                 <listitem>
                     <para>
-                      a character string which gives the directory where the result has to be written.
-                      Default value is current directory.
+                        a character string which gives the directory where the result has to be
+                        written. Default value is current directory.
                     </para>
                 </listitem>
             </varlistentry>
@@ -57,8 +57,8 @@
                 <term>Recmode</term>
                 <listitem>
                     <para>
-                      Boolean flag, used by translatepaths function for recursive conversion.
-                      Must be %F to convert a single mfile. Default value : %f
+                        Boolean flag, used by <literal>translatepaths()</literal> function for
+                        recursive conversion. Must be %F to convert a single mfile. Default value: %F
                     </para>
                 </listitem>
             </varlistentry>
@@ -66,9 +66,14 @@
                 <term>only_double</term>
                 <listitem>
                     <para>
-                       Boolean flag, if %T mfile2sci considers that numerical function have been
-                       used only with numerical data (no Scilab overloading function is needed).
-                       Default value: %T
+                        Boolean: If %T, mfile2sci() considers that numerical functions and operators
+                        (like "+") are used only with numerical data. This excludes for instance
+                        instructions like <literal>"ab" + "cd"</literal> (that then will be
+                        kept as is instead of being converted into
+                        <literal>asciimat("ab") + asciimat("cd")</literal>).
+                    </para>
+                    <para>
+                        Default value: %F: All possible conversions are done.
                     </para>
                 </listitem>
             </varlistentry>
@@ -76,37 +81,32 @@
                 <term>verbose_mode</term>
                 <listitem>
                     <para> display information mode</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>0</term>
-                            <listitem>
-                                <para>no information displayed</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>1</term>
-                            <listitem>
-                                <para>information written as comment is resulting SCI-file</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>2</term>
-                            <listitem>
-                                <para>
-                                  information written as comment is resulting SCI-file and in logfile
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>3</term>
-                            <listitem>
-                                <para>
-                                  information written as comment is resulting SCI-file,
-                                  in logfile and displayed in Scilab window
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <table border="0">
+                        <tr valign="top">
+                            <th>0 : </th>
+                            <td>no information displayed</td>
+                        </tr>
+                        <tr valign="top">
+                            <th>1 : </th>
+                            <td>
+                                information is written as comments in resulting SCI-file.
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th>2 : </th>
+                            <td>
+                                information is written as comments in resulting SCI-file
+                                and in logfile.
+                            </td>
+                        </tr>
+                        <tr valign="top">
+                            <th>[3] : </th>
+                            <td>
+                                information is written as comments in resulting SCI-file,
+                                in logfile and displayed in Scilab window. (Default value)
+                            </td>
+                        </tr>
+                    </table>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -121,8 +121,8 @@
         <title>Description</title>
         <para>
             M2SCI (and particularly mfile2sci) is Matlab M-file to Scilab function conversion tools.
-            It tries whenever possible to replace call to Matlab functions by the
-            equivalent Scilab primitives and functions.
+            It tries whenever possible to replace call to Matlab functions by the equivalent
+            Scilab primitives and functions.
         </para>
         <para>
             To convert a Matlab M-file just enter the Scilab instruction:
@@ -131,30 +131,6 @@
         <para>
             where file is a character string giving the path name of the M-file.
         </para>
-        <variablelist>
-            <varlistentry>
-                <term>&lt;function-name&gt;.sci</term>
-                <listitem>
-                    <para>the Scilab equivalent of the M-file</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>&lt;function-name&gt;.cat</term>
-                <listitem>
-                    <para>the Scilab help file associated to the function</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>sci_&lt;function-name&gt;.sci</term>
-                <listitem>
-                    <para>
-                      the Scilab function required to convert the calls to this Matlab M-file
-                      in other Matlab M-files. This function may be improved "by hand".
-                      This function is only useful for conversion not for use of translated functions.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
         <para>
             <literal>mfile2sci(..)</literal> will then generate three files in the same directory:
         </para>
@@ -180,12 +156,18 @@
             </table>
         </para>
         <para>
-            When translation may be incorrect or may be improved mfile2sci adds a
-            comment which begins by "//!" (according to verbose_mode)
+            Some functions like eye, ones, size, sum,... behave differently according to the
+            dimension of their arguments. When mfile2sci cannot infer dimensions it replaces
+            these function call by a call to an emulation function named mtlb_&lt;function_name>.
+            For efficiency, these functions may be replaced by the proper scilab equivalent
+            instructions.
+            To get information about replacement, enter:
+            <literal>help mtlb_&lt;function_name></literal> in Scilab command window
         </para>
         <para>
-            When called without rhs, <literal>mfile2sci()</literal> launches a GUI to help
-            to select a file/directory and options.
+            Some other functions like plot, has no straightforward equivalent in scilab.
+            They are also replaced by an emulation function named
+            <literal>mtlb_&lt;function_name></literal>.
         </para>
         <para>
             When translation may be incorrect or may be improved mfile2sci adds a

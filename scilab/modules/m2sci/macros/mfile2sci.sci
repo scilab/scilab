@@ -21,7 +21,7 @@ function res = mfile2sci(fil, results_path, Recmode, only_double, verbose_mode, 
     [lhs,rhs]=argn(0)
     if ~isdef("prettyprintoutput","l"), prettyprintoutput = %F, end
     if ~isdef("verbose_mode","l"),      verbose_mode = 3,       end
-    if ~isdef("only_double","l"),       only_double = %T,       end
+    if ~isdef("only_double","l"),       only_double = %F,       end
     if ~isdef("Recmode","l"),           Recmode = %F,           end
     if ~isdef("results_path","l"),      results_path = ".",     end
     if rhs<1 then
@@ -32,6 +32,7 @@ function res = mfile2sci(fil, results_path, Recmode, only_double, verbose_mode, 
     fil = strsubst(fil,filesep(),"/")
     results_path = getshortpathname(pathconvert(results_path));
     results_path = strsubst(results_path,"\","/")
+    res_path = results_path  // res_path: environment variable in some called functions
 
     // Loads libraries related to m2sci
     if exists("m2scikernellib")==0 then load("SCI/modules/m2sci/macros/kernel/lib"),end
