@@ -271,6 +271,7 @@ function  bar(varargin)
         ei.background=ei.foreground
         ei.foreground = -1; // black by default
         ei.line_mode="off";
+        ei.mark_foreground = -1; // black by default
     end
 
     // drawnow
