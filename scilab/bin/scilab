@@ -176,6 +176,7 @@ detect_type_of_scilab $@
 
 detect_os
 
+
 detect_scilab_path() {
 
     LOCALOLDPWD=$(pwd)
@@ -604,7 +605,7 @@ detect_java_vm() {
 
     # Check if the lib exists
     LIBJAVA="$JRE_HOME/lib/$proc/$JAVA_SHLIB"
-    if test ! -f $LIBJAVA; then
+    if test ! -f "$LIBJAVA"; then
         if test $SCIVERBOSE -ne 0; then
             echo "Cannot find $LIBJAVA"
         fi
