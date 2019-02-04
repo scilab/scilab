@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [] = bode(varargin)
+function bode(varargin)
     rhs = size(varargin)
 
     if rhs == 0 then
@@ -145,6 +145,7 @@ function [] = bode(varargin)
         e.foreground = 5;
     end
     xtitle("", _("Frequency (Hz)"), _("Magnitude (dB)"));
+    axesM = axes;
 
     // Phase plot
     // ----------
@@ -194,11 +195,11 @@ function [] = bode(varargin)
         // Ah + Ah+LgH*Ah/0.5 = wrect(4)  => Ah (1 + 1 + 2*LgH) = wrect(4)
         Ah = wrect(4)/(2+2*LgH);
         axes.axes_bounds([2 4]) = [wrect(2)+Ah, wrect(4)-Ah];
-        gcf().children(2).axes_bounds(4) = Ah*1.05;  // Magnitude plot
+        axesM.axes_bounds(4) = Ah*1.05;  // Magnitude plot
     end
 
     // Returns to the initial axes
-    set("current_axes", sciCurAxes);
+    sca(sciCurAxes);
 
     // rad/s mode
     // ----------
