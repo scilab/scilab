@@ -331,7 +331,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         {
             if (_pDF->bPrintPoint)
             {
-                str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()))-1, '0');
+                /* str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()))-1, '0'); */
             }
             else
             {
