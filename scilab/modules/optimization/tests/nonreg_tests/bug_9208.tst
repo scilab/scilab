@@ -7,6 +7,7 @@
 //
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 9208 -->
 //
@@ -52,7 +53,10 @@ function [f, g, ind] = rosenbrockCost2FixedStep(x, ind)
 endfunction
 
 [fopt, xopt, w, g, iters, evals, err] = optim ( rosenbrockCost2FixedStep , x0 );
-assert_checkequal([iters evals err], [37 50 9]);
+
+assert_checkalmostequal(xopt,[1,1])
+assert_checktrue([iters, evals] <= [38, 51]);
+assert_checkequal(err,9);
 
 [fopt, xopt, w, g, iters, evals, err] = optim ( rosenbrockCost2FixedStep , x0 , "ar",nap=10 );
 assert_checkequal([iters evals err], [8 10 4]);

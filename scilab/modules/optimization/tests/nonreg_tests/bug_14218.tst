@@ -21,4 +21,4 @@ c     = [0;1];
 
 xopt  = karmarkar([],[],c,[],[],[],[],[],A,b,lb,ub)
 
-assert_checkequal(xopt, [0.75000162298698814; 0.7500048689416393]);
+assert_checkalmostequal(xopt, [0.75000162298698814; 0.7500048689416393]);

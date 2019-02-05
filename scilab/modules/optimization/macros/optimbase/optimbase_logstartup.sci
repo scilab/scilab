@@ -27,7 +27,7 @@ function this = optimbase_logstartup ( this )
             if ( this.logfilehandle <> 0 ) then
                 error ( gettext ( "%s: Log file handle non zero while starting up the logging." , "optimbase_logstartup" ) )
             end
-            this.logfilehandle = mopen( this.logfile , "a" );
+            this.logfilehandle = mopen( this.logfile , "at" );
             c = clock();
             year = c(1);
             month = c(2);
