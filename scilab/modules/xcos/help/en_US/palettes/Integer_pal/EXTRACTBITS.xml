@@ -393,11 +393,11 @@
                 </td>
             </tr>
             <tr>
-                <td>11010111 (215)</td>
+                <td style="white-space:nowrap">11010111 (215)</td>
                 <td>Upper Half</td>
                 <td>Ignored</td>
                 <td>no</td>
-                <td>01100000 (208)</td>
+                <td style="white-space:nowrap">01100000 (208)</td>
             </tr>
             <tr>
                 <td>11010111 (215)</td>

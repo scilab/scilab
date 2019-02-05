@@ -55,7 +55,7 @@
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_BPLATFORM">
-        <title>Dialog box</title>
+        <title>Parameters</title>
         <inlinemediaobject>
             <imageobject>
                 <imagedata fileref="../../../../images/gui/BPLATFORM_gui.gif" align="center" style="float:right"/>
