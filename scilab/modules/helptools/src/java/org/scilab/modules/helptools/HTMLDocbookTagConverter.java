@@ -658,12 +658,19 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         } else {
             div = "span";
         }
+        String alt = attrs.get("alt");
+        if (alt == null) {
+            alt = "";
+        }
+        else {
+            alt = " alt=\'" + alt + "\'";
+        }
 
         if (getGenerationType() == Backend.JAVAHELP && isLinkedImage()) {
             // Java HTML renderer is not good... so when  the image is linked, we remove the div
-            return "<img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'/>>";
+            return "<img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'" + alt + "/>>";
         } else {
-            return "<" + div + align + "><img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'/></" + div + ">";
+            return "<" + div + align + "><img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'" + alt + "/></" + div + ">";
         }
     }
 
