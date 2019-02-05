@@ -86,9 +86,9 @@
         <programlisting role="example"><![CDATA[
 if ~isempty(ls("SCI/modules/xml/help/en_US/*.xml")) then // この例のXMLソースが存在する必要があります
     example_run("xml")
-    example_run("core", "insertion")
-    example_run("core", ["insertion"; "extraction"])
-    example_run("core", "insertion", "en_US")
+    example_run("elementary_functions", "insertion")
+    example_run("elementary_functions", ["insertion"; "extraction"])
+    example_run("elementary_functions", "insertion", "en_US")
 end
  ]]></programlisting>
     </refsection>
