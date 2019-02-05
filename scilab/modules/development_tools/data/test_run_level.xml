@@ -83,11 +83,11 @@
 
         <module name="polynomials">
             <test>polops</test>
+            <test>rational</test>
         </module>
 
         <module name="overloading">
             <test>sparse</test>
-            <test>rational</test>
         </module>
 
         <module name="hdf5">
