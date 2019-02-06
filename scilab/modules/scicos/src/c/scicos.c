@@ -6054,73 +6054,37 @@ static void FREE_blocks()
         {
             FREE(Blocks[kf].insz);
         }
-        else
-        {
-            break;
-        }
         if (Blocks[kf].inptr != NULL)
         {
             FREE(Blocks[kf].inptr);
-        }
-        else
-        {
-            break;
         }
         if (Blocks[kf].outsz != NULL)
         {
             FREE(Blocks[kf].outsz);
         }
-        else
-        {
-            break;
-        }
         if (Blocks[kf].outptr != NULL)
         {
             FREE(Blocks[kf].outptr);
-        }
-        else
-        {
-            break;
         }
         if (Blocks[kf].oparsz != NULL)
         {
             FREE(Blocks[kf].oparsz);
         }
-        else
-        {
-            break;
-        }
         if (Blocks[kf].ozsz != NULL)
         {
             FREE(Blocks[kf].ozsz);
-        }
-        else
-        {
-            break;
         }
         if (Blocks[kf].label != NULL)
         {
             FREE(Blocks[kf].label);
         }
-        else
-        {
-            break;
-        }
         if (Blocks[kf].uid != NULL)
         {
             FREE(Blocks[kf].uid);
         }
-        else
-        {
-            break;
-        }
         if (Blocks[kf].evout != NULL)
         {
             FREE(Blocks[kf].evout);
-        }
-        else
-        {
-            break;
         }
     }
     FREE(Blocks);
