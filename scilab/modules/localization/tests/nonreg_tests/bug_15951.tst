@@ -6,7 +6,7 @@
 // =============================================================================
 // <-- MACOSX ONLY -->
 // <-- CLI SHELL MODE -->
-// <-- NO CHECK REF-->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 15951 -->
 //
