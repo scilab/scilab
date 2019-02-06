@@ -18,10 +18,10 @@
 
 B=1;
 A=[1 2 3];
-assert_checkerror("B/A", sprintf(_("Inconsistent row/column dimensions.\n")));
+assert_checkerror("B/A", msprintf(_("Inconsistent row/column dimensions.\n")));
 A=A';
 assert_checkalmostequal((B/A)*A,B);
-assert_checkerror("A\B", sprintf(_("Inconsistent row/column dimensions.\n")));
+assert_checkerror("A\B", msprintf(_("Inconsistent row/column dimensions.\n")));
 A=A';
 assert_checkalmostequal(A*(A\B),B);
 
