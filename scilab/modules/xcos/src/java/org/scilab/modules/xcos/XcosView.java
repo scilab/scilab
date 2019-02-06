@@ -25,7 +25,7 @@ import javax.swing.SwingUtilities;
 /**
  * Generic view to dispatch common GUI update to the right JGraphX component
  */
-public class XcosView extends View {
+public final class XcosView extends View {
 
     private final static class Entry {
         XcosViewListener listener;
@@ -50,7 +50,7 @@ public class XcosView extends View {
         visibleObjects = new HashMap<Long, Object>();
 
 
-        addXcosViewListener(new UpdateStyleFromInterfunctionAdapter());
+        addXcosViewListener(new UpdateStyleFromInterfunctionAdapter(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION);
     }
 
     /**
