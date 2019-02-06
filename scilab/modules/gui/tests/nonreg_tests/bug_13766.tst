@@ -4,8 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 13766 -->
 //
@@ -16,5 +17,5 @@
 // Setting figure_size property lead to wrong display and figure properties values.
 
 fg = figure();
-fg.figure_size = [100,100];
-assert_checkequal(fg.figure_size, [100,100]);
+fg.figure_size = [200,200];
+assert_checkequal(fg.figure_size, [200,200]);

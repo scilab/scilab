@@ -45,7 +45,7 @@ assert_checkerror("myNode = uiCreateNode(''My Node'', ''callback of My Node'', 1
 
 
 
-refMsg =  msprintf(_("Wrong number of input arguments."));
+refMsg =  msprintf(_("Wrong number of input arguments.\n"));
 assert_checkerror("myNode = uiCreateNode(''My Node'', ''icon of My Node'', ''callback of My Node'', ''test'')", refMsg);
 assert_checkerror("myNode = uiCreateNode(''My Node'', ''icon of My Node'', ''callback of My Node'', 123)", refMsg);
 

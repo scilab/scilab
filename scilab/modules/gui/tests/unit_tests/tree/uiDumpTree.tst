@@ -21,7 +21,7 @@ assert_checkerror("uiDumpTree(123, 123)", refMsg);
 assert_checkerror("uiDumpTree(123, %F)", refMsg);
 assert_checkerror("uiDumpTree(123, %T)", refMsg);
 
-refMsg = msprintf(_("Wrong number of input arguments."));
+refMsg = msprintf(_("Wrong number of input arguments.\n"));
 assert_checkerror("uiDumpTree(123, 123, 123)", refMsg);
 
 // node creation
@@ -73,7 +73,7 @@ assert_checkerror("myErrorNode6 = uiCreateNode(''My Node'', 123, ''callback of M
 refMsg = msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "uiCreateNode",3);
 assert_checkerror("myErrorNode6 = uiCreateNode(''My Node'', ''icon of My Node'', 123)", refMsg);
 
-refMsg = msprintf(_("Wrong number of input arguments."));
+refMsg = msprintf(_("Wrong number of input arguments.\n"));
 assert_checkerror("myErrorNode8 = uiCreateNode(''My Node'', ''icon of My Node'', ''callback of My Node'', ''test'')", refMsg);
 assert_checkerror("myErrorNode9 = uiCreateNode(''My Node'', ''icon of My Node'', ''callback of My Node'', 123)", refMsg);
 
