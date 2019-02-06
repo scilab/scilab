@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 // <-- Non-regression test for bug 14099 -->
 //
 // <-- Bugzilla URL -->
@@ -83,10 +84,10 @@ assert_checktrue(and(string(p)==refS));
 
 p = p/3+p*%i/4;
 format(5);
-refS = ["                                            2               3               4"
-        "(21.6+16.2i) + (13.0+9.74i)x - (12.2+9.14i)x + (30.0+22.5i)x - (31.0+23.3i)x"
-        "                                            2               3               4"
-        "(21.5+16.1i) - (25.0+18.7i)x + (17.6+13.2i)x - (0.63+0.47i)x + (10.9+8.18i)x"
+refS = ["                                          2             3             4"
+        "(21.6+16.2i) + (13+9.74i)x - (12.2+9.14i)x + (30+22.5i)x - (31+23.3i)x"
+        "                                          2               3               4"
+        "(21.5+16.1i) - (25+18.7i)x + (17.6+13.2i)x - (0.63+0.47i)x + (10.9+8.18i)x"
         ];
 assert_checktrue(and(string(p)==refS));
 
