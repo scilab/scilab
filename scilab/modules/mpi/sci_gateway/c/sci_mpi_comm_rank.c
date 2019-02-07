@@ -25,13 +25,14 @@
 int sci_mpi_comm_rank(char *fname, void* pvApiCtx)
 {
     int comm_rank = -1;
+    MPI_Comm comm = NULL;
 
     CheckInputArgument(pvApiCtx, 0, 1); // Check the parameters of the function ... Here 0 or 1
     CheckOutputArgument(pvApiCtx, 1, 1); // The output of the function (1 parameter)
 
     // return the communicator from optional argument "comm"
     // if no optional "comm" is given, return MPI_COMM_WORLD
-    MPI_Comm comm = getOptionalComm(pvApiCtx);
+    comm = getOptionalComm(pvApiCtx);
     if (comm == NULL)
     {
         Scierror(999, _("%s: Wrong type for input argument #%s: An MPI communicator expected.\n"), fname, "comm");

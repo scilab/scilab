@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- MPI TEST -->
+// <-- MPI TEST 4 -->
 //
 
 MPI_Init();
