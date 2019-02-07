@@ -1964,10 +1964,11 @@ fi
 
 
 #########
-## Make sure that the libstdc++ libgcc and libgfortran can be compiled as
-## static if requested
+## Check extra CC / CXX compiler flags to ease runtime behaviors
 #########
 AC_CHECK_STDCPP_STATIC()
+AC_CHECK_ADDRESS_SANTIZER()
+
 
 #################
 ## stop on warning

@@ -2,6 +2,7 @@ dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 dnl Copyright (C) S/E - 2013/2013 - Sylvestre Ledru
 dnl Copyright (C) Scilab Enterprises - 2014 - Clement DAVID
+dnl Copyright (C) ESI Group - 2018 - Clement DAVID
 dnl
 dnl Copyright (C) 2012 - 2016 - Scilab Enterprises
 dnl
@@ -72,5 +73,40 @@ if test "x$compiler_manage_static_libs" == "xno"; then
 fi
 
 AM_CONDITIONAL(USE_STATIC_SYSTEM_LIB, test "$USE_STATIC_SYSTEM_LIB" == yes)
+
+])
+
+AC_DEFUN([AC_CHECK_ADDRESS_SANTIZER],[
+
+AC_ARG_ENABLE(address-sanitizer,
+    AS_HELP_STRING([--enable-address-sanitizer], [Enable AddressSanitizer instrumentation]))
+
+# Check if -fsanitize=address is supported at compile time and link time
+saved_LDFLAGS="$LDFLAGS"
+asan_supported=no
+
+CFLAGS="$CFLAGS -fsanitize=address"
+LDFLAGS="$LDFLAGS -fsanitize=address"
+AC_MSG_CHECKING([whether the C compiler accepts -fsanitize=address])
+AC_LANG_PUSH(C)
+AC_RUN_IFELSE([AC_LANG_PROGRAM([[const char hw[] = "Hello, World\n";]], [])], [AC_MSG_RESULT([yes]); asan_supported=yes], [AC_MSG_RESULT([no])])
+AC_LANG_POP(C)
+
+LDFLAGS="$saved_LDFLAGS"
+if test "x$asan_supported" == "xno" -a "x$enable_address_sanitizer" == "xyes";
+  then
+    AC_MSG_ERROR([The $CC compiler does not support the options -fsanitize=address . Update your compiler and/or install the AddressSanitizer runtime library.])
+fi
+
+if test "x$asan_supported" == "xno";
+  then
+    echo "fsanitize=address not supported, AddressSanitizer disabled"
+  else
+    COMPILER_CFLAGS="$COMPILER_CFLAGS -fsanitize=address"
+    COMPILER_CXXFLAGS="$COMPILER_CXXFLAGS -fsanitize=address"
+    COMPILER_LDFLAGS="$COMPILER_LDFLAGS -fsanitize=address"
+fi
+
+AM_CONDITIONAL(USE_ADDRESS_SANITIZER, test "x$enable_address_sanitizer" == "xyes")
 
 ])

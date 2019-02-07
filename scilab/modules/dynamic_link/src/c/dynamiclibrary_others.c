@@ -45,6 +45,13 @@ BOOL FreeDynLibrary(DynLibHandle hInstance)
             return TRUE;
         }
 #endif
+
+#if __SANITIZE_ADDRESS__
+        // While using AddressSanitizer, closing dl libraries will discard
+        // correct symbol resolution (for symbols within a dlopen-ed library)
+        return TRUE;
+#endif
+
         if (dlclose( hInstance) == 0)
         {
             return TRUE;
