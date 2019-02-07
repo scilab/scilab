@@ -1215,10 +1215,10 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if ( low  != vectpDblInput[0]->get(0) ||
                     high != vectpDblInput[1]->get(0) ||
-                    (high - low + 1) > 2147483561)
+                    (high - low + 1) > 2147483647)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low and High must be integers and (high - low + 1) <=  2147483561.\n"), "grand", iPos + 1, iPos + 2);
+                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low and High must be integers and (high - low + 1) <=  2147483647.\n"), "grand", iPos + 1, iPos + 2);
                 return types::Function::Error;
             }
 

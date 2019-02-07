@@ -22,5 +22,4 @@ s.age = 25;
 s.address = "TOWN";
 ierr = execstr("savematfile(TMPDIR + filesep() + ""bug_4926.tst"", ""s"")", "errcatch");
 WARNING: Option -v7 added.
-WARNING: Variable s can not be saved in ASCII file: IGNORED.
 if ierr <> 0 then bugmes();quit;end
