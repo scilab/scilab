@@ -45,6 +45,6 @@ Info = scicos_simulate(scs_m,list());
 !                                                                     !
 !messagebox:                                                          !
 !                                                                     !
-!messagebox: Generated files path: TMPDIR/          !
+!messagebox: Generated files path: TMPDIR/         !
 !                                                                     !
 !messagebox:                                                          !
