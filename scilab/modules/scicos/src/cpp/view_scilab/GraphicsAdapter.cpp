@@ -299,7 +299,16 @@ bool cached_ports_set(GraphicsAdapter& adaptor, const object_properties_t port_k
     auto it = partial_ports.find(adaptor.getAdaptee()->id());
     if (it == partial_ports.end())
     {
-        return update_ports_property<GraphicsAdapter, CONNECTED_SIGNALS>(adaptor, port_kind, controller, v);
+        bool status = update_ports_property<GraphicsAdapter, CONNECTED_SIGNALS>(adaptor, port_kind, controller, v);
+        if (status)
+        {
+            return status;
+        }
+        else
+        {
+            // allocate partial information and continue
+            it = partial_ports.insert({adaptor.getAdaptee()->id(), {}}).first;
+        }
     }
 
     if (v->getType() != types::InternalType::ScilabDouble)

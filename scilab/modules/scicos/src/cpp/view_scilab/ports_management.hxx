@@ -455,7 +455,7 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
                 // firing=%f is interpreted as "no initial event on the corresponding port", so set a negative value.
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it)
                 {
-                    controller.setObjectProperty(*it, PORT, p, -1);
+                    controller.setObjectProperty(*it, PORT, p, -1.);
                 }
                 return true;
             default:
@@ -494,7 +494,7 @@ inline void fillNewPorts(std::deque<int>& newPorts, const double* d)
  * \param children all object in the current layer (diagram or superblock)
  */
 template<object_properties_t p>
-inline bool updateNewPort(model::Port* oldPortObject, int newPort, Controller& controller)
+inline bool updateNewPort(model::Port* oldPortObject, int newPort, Controller& controller, const std::vector<ScicosID>& children)
 {
     // update the p property, using newPort as a value
     int datatypeIndex = -1;
@@ -515,7 +515,15 @@ inline bool updateNewPort(model::Port* oldPortObject, int newPort, Controller& c
             return controller.setObjectProperty(oldPortObject, DATATYPE, datatype) != FAIL;
         }
         case CONNECTED_SIGNALS:
-            return controller.setObjectProperty(oldPortObject, p, (ScicosID) newPort) != FAIL;
+            if (0 <= newPort && newPort < children.size())
+            {
+                return controller.setObjectProperty(oldPortObject, p,
+                                                    children[newPort]) != FAIL;
+            }
+            else
+            {
+                return false;
+            }
         default:
             return controller.setObjectProperty(oldPortObject, p, newPort) != FAIL;
     }
@@ -617,11 +625,8 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
         int newPort = newPorts.front();
         newPorts.pop_front();
 
-        if (!updateNewPort<p>(oldPort, newPort, controller))
+        if (!updateNewPort<p>(oldPort, newPort, controller, children))
         {
-            std::string adapter = adapterName<p>(port_kind);
-            std::string field = adapterFieldName<p>(port_kind);
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s: FIXME port has not been updated.\n"), adapter.data(), field.data(), 1, children.size());
             return false;
         }
     }
