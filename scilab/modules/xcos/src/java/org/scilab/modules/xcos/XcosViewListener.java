@@ -14,6 +14,8 @@
  */
 package org.scilab.modules.xcos;
 
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
+
 /**
  * Dummy abstract implementation of an XcosView listener.
  */
@@ -22,5 +24,5 @@ public abstract class XcosViewListener {
     public void objectDeleted(long uid, Kind kind) {};
     public void objectReferenced(long uid, Kind kind, long refCount) {};
     public void objectUnreferenced(long uid, Kind kind, long refCount) {};
-    public void propertyUpdated(long uid, Kind kind, ObjectProperties property, UpdateStatus status) {};
+    public void propertyUpdated(ScicosObjectOwner owner, ObjectProperties property, UpdateStatus status) {};
 }

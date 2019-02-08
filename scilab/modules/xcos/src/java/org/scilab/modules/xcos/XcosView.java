@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2018 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -21,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 
 /**
  * Generic view to dispatch common GUI update to the right JGraphX component
@@ -63,32 +65,24 @@ public final class XcosView extends View {
     /*
      * Implement the MVC View interface by dispatch-ing to the listeners
      */
-
+    
     @Override
     public final void objectCreated(long uid, Kind kind) {
         List<Entry> listeners = registeredListeners.get(kind);
         if (listeners == null) {
             return;
         }
-
+        
         for (Entry e : listeners) {
             if (e.onCallerThread) {
                 e.listener.objectCreated(uid, kind);
             } else {
-                // reference the object on the caller thread to avoid premature deletion
-                new JavaController().referenceObject(uid);
-
                 SwingUtilities.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
+                        @Override
+                        public void run() {
                             e.listener.objectCreated(uid, kind);
-                        } finally {
-                            // unreference the object on the EDT
-                            new JavaController().deleteObject(uid);
                         }
-                    }
-                });
+                    });
             }
         }
     }
@@ -160,34 +154,42 @@ public final class XcosView extends View {
     public void objectCloned(long uid, long cloned, Kind kind) {
     }
 
+    // ensure ownership through different threads (Scilab, EDT, GC)
+    private static final class PropertyUpdatedRunnable implements Runnable {
+        private final Entry e;
+        private final ScicosObjectOwner owner;
+        private final ObjectProperties property;
+        private final UpdateStatus status;
+        
+        public PropertyUpdatedRunnable(Entry e, ScicosObjectOwner owner, ObjectProperties property, UpdateStatus status) {
+            this.e = e;
+            this.owner = owner;
+            this.property = property;
+            this.status = status;
+        }
+
+        @Override
+        public void run() {
+            e.listener.propertyUpdated(owner, property, status);
+        }
+    }
+    
     @Override
     public final void propertyUpdated(long uid, Kind kind, ObjectProperties property, UpdateStatus status) {
         List<Entry> listeners = registeredListeners.get(kind);
         if (listeners == null) {
             return;
         }
-
+        
+        final ScicosObjectOwner owner = new ScicosObjectOwner(uid, kind);
         for (Entry e : listeners) {
             if (e.onCallerThread) {
                 if (e.listenedProperties.contains(property)) {
-                    e.listener.propertyUpdated(uid, kind, property, status);
+                    e.listener.propertyUpdated(owner, property, status);
                 }
             } else {
                 if (e.listenedProperties.contains(property)) {
-                    // reference the object on the caller thread to avoid premature deletion
-                    new JavaController().referenceObject(uid);
-
-                    SwingUtilities.invokeLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                e.listener.propertyUpdated(uid, kind, property, status);
-                            } finally {
-                                // unreference the object on the EDT
-                                new JavaController().deleteObject(uid);
-                            }
-                        }
-                    });
+                    SwingUtilities.invokeLater(new PropertyUpdatedRunnable(e, owner, property, status));
                 }
             }
         }
