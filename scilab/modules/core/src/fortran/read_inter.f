@@ -117,7 +117,7 @@ c along with this program.
       integer siz,ierr
 
       string=' '
-      call scilabread(string,len(string))
+      call scilabread(string)
       read(string,form,end=10,err=20) dat
       mn = lch
 128   mn=mn-1
