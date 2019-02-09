@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:13+0100\n"
+"Revision-Date: 2018-03-26 10:40+0100\n"
 
 # File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 88
 # File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 127
@@ -62,10 +62,10 @@ msgid "Version"
 msgstr ""
 
 # File: modules/helptools/macros/add_help_chapter.sci, line: 41
-# File: modules/helptools/macros/xmltoformat.sci, line: 1083
-# File: modules/helptools/macros/xmltoformat.sci, line: 1172
-# File: modules/helptools/macros/xmltoformat.sci, line: 1240
-# File: modules/helptools/macros/xmltoformat.sci, line: 1311
+# File: modules/helptools/macros/xmltoformat.sci, line: 1008
+# File: modules/helptools/macros/xmltoformat.sci, line: 1097
+# File: modules/helptools/macros/xmltoformat.sci, line: 1165
+# File: modules/helptools/macros/xmltoformat.sci, line: 1236
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
 msgstr ""
@@ -73,7 +73,7 @@ msgstr ""
 #
 # File: modules/helptools/macros/add_help_chapter.sci, line: 48
 # File: modules/helptools/macros/add_help_chapter.sci, line: 52
-# File: modules/helptools/macros/xmltoformat.sci, line: 1783
+# File: modules/helptools/macros/xmltoformat.sci, line: 1708
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
@@ -119,9 +119,9 @@ msgstr ""
 # File: modules/helptools/macros/xmltoformat.sci, line: 240
 # File: modules/helptools/macros/xmltoformat.sci, line: 516
 # File: modules/helptools/macros/xmltoformat.sci, line: 593
-# File: modules/helptools/macros/xmltoformat.sci, line: 662
-# File: modules/helptools/macros/xmltoformat.sci, line: 706
-# File: modules/helptools/macros/xmltoformat.sci, line: 829
+# File: modules/helptools/macros/xmltoformat.sci, line: 650
+# File: modules/helptools/macros/xmltoformat.sci, line: 694
+# File: modules/helptools/macros/xmltoformat.sci, line: 754
 #, c-format
 msgid "%s: Directory %s does not exist or read access denied."
 msgstr ""
@@ -157,9 +157,9 @@ msgstr ""
 
 #
 # File: modules/helptools/macros/help_from_sci.sci, line: 167
-# File: modules/helptools/macros/xmltoformat.sci, line: 992
-# File: modules/helptools/macros/xmltoformat.sci, line: 1104
-# File: modules/helptools/macros/xmltoformat.sci, line: 1193
+# File: modules/helptools/macros/xmltoformat.sci, line: 917
+# File: modules/helptools/macros/xmltoformat.sci, line: 1029
+# File: modules/helptools/macros/xmltoformat.sci, line: 1118
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid existing directory is "
@@ -212,9 +212,9 @@ msgstr ""
 
 #
 # File: modules/helptools/macros/help_skeleton.sci, line: 29
-# File: modules/helptools/macros/xmltoformat.sci, line: 981
-# File: modules/helptools/macros/xmltoformat.sci, line: 1097
-# File: modules/helptools/macros/xmltoformat.sci, line: 1186
+# File: modules/helptools/macros/xmltoformat.sci, line: 906
+# File: modules/helptools/macros/xmltoformat.sci, line: 1022
+# File: modules/helptools/macros/xmltoformat.sci, line: 1111
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
@@ -340,13 +340,13 @@ msgstr ""
 
 #
 # File: modules/helptools/macros/manedit.sci, line: 19
-# File: modules/helptools/macros/xmltoformat.sci, line: 963
-# File: modules/helptools/macros/xmltoformat.sci, line: 1377
-# File: modules/helptools/macros/xmltoformat.sci, line: 1422
-# File: modules/helptools/macros/xmltoformat.sci, line: 1567
-# File: modules/helptools/macros/xmltoformat.sci, line: 1685
-# File: modules/helptools/macros/xmltoformat.sci, line: 1772
-# File: modules/helptools/macros/xmltoformat.sci, line: 1908
+# File: modules/helptools/macros/xmltoformat.sci, line: 888
+# File: modules/helptools/macros/xmltoformat.sci, line: 1302
+# File: modules/helptools/macros/xmltoformat.sci, line: 1347
+# File: modules/helptools/macros/xmltoformat.sci, line: 1492
+# File: modules/helptools/macros/xmltoformat.sci, line: 1610
+# File: modules/helptools/macros/xmltoformat.sci, line: 1697
+# File: modules/helptools/macros/xmltoformat.sci, line: 1833
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
@@ -388,7 +388,7 @@ msgstr ""
 #
 # File: modules/helptools/macros/xmltoformat.sci, line: 376
 # File: modules/helptools/macros/xmltoformat.sci, line: 398
-# File: modules/helptools/macros/xmltoformat.sci, line: 647
+# File: modules/helptools/macros/xmltoformat.sci, line: 635
 #, c-format
 msgid "\t%s\n"
 msgstr ""
@@ -401,7 +401,7 @@ msgstr ""
 
 #
 # File: modules/helptools/macros/xmltoformat.sci, line: 541
-# File: modules/helptools/macros/xmltoformat.sci, line: 649
+# File: modules/helptools/macros/xmltoformat.sci, line: 637
 #, c-format
 msgid ""
 "\n"
@@ -409,7 +409,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/helptools/macros/xmltoformat.sci, line: 644
+# File: modules/helptools/macros/xmltoformat.sci, line: 632
 #, c-format
 msgid ""
 "\n"
@@ -417,44 +417,38 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/helptools/macros/xmltoformat.sci, line: 754
-#, c-format
-msgid "Post-processing Right-to-Left pages in %s...\n"
-msgstr ""
-
-#
-# File: modules/helptools/macros/xmltoformat.sci, line: 807
+# File: modules/helptools/macros/xmltoformat.sci, line: 732
 #, c-format
 msgid "%s: %s has not been generated."
 msgstr ""
 
 #
-# File: modules/helptools/macros/xmltoformat.sci, line: 818
+# File: modules/helptools/macros/xmltoformat.sci, line: 743
 #, c-format
 msgid "%s: %s file hasn't been moved in the %s directory."
 msgstr ""
 
 #
-# File: modules/helptools/macros/xmltoformat.sci, line: 902
+# File: modules/helptools/macros/xmltoformat.sci, line: 827
 #, c-format
 msgid "%s: Please check %s, number of modules is invalid.\n"
 msgstr ""
 
 #
-# File: modules/helptools/macros/xmltoformat.sci, line: 974
-# File: modules/helptools/macros/xmltoformat.sci, line: 1578
+# File: modules/helptools/macros/xmltoformat.sci, line: 899
+# File: modules/helptools/macros/xmltoformat.sci, line: 1503
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: modules/helptools/macros/xmltoformat.sci, line: 985
+# File: modules/helptools/macros/xmltoformat.sci, line: 910
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: modules/helptools/macros/xmltoformat.sci, line: 1247
+# File: modules/helptools/macros/xmltoformat.sci, line: 1172
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A string that end with CHAPTER "
@@ -462,21 +456,21 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/helptools/macros/xmltoformat.sci, line: 1254
-# File: modules/helptools/macros/xmltoformat.sci, line: 1325
+# File: modules/helptools/macros/xmltoformat.sci, line: 1179
+# File: modules/helptools/macros/xmltoformat.sci, line: 1250
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
 msgstr ""
 
 #
-# File: modules/helptools/macros/xmltoformat.sci, line: 1289
+# File: modules/helptools/macros/xmltoformat.sci, line: 1214
 #, c-format
 msgid "%s: The CHAPTER file is not well formatted at line %d\n"
 msgstr ""
 
 #
-# File: modules/helptools/macros/xmltoformat.sci, line: 1318
+# File: modules/helptools/macros/xmltoformat.sci, line: 1243
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A string that end with ."
@@ -484,28 +478,28 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/helptools/macros/xmltoformat.sci, line: 1342
-# File: modules/helptools/macros/xmltoformat.sci, line: 1355
+# File: modules/helptools/macros/xmltoformat.sci, line: 1267
+# File: modules/helptools/macros/xmltoformat.sci, line: 1280
 #, c-format
 msgid "%s: The last_successful_build file is not well formatted at line %d\n"
 msgstr ""
 
 #
-# File: modules/helptools/macros/xmltoformat.sci, line: 1384
-# File: modules/helptools/macros/xmltoformat.sci, line: 1388
-# File: modules/helptools/macros/xmltoformat.sci, line: 1429
-# File: modules/helptools/macros/xmltoformat.sci, line: 1574
-# File: modules/helptools/macros/xmltoformat.sci, line: 1692
-# File: modules/helptools/macros/xmltoformat.sci, line: 1696
-# File: modules/helptools/macros/xmltoformat.sci, line: 1779
-# File: modules/helptools/macros/xmltoformat.sci, line: 1915
+# File: modules/helptools/macros/xmltoformat.sci, line: 1309
+# File: modules/helptools/macros/xmltoformat.sci, line: 1313
+# File: modules/helptools/macros/xmltoformat.sci, line: 1354
+# File: modules/helptools/macros/xmltoformat.sci, line: 1499
+# File: modules/helptools/macros/xmltoformat.sci, line: 1617
+# File: modules/helptools/macros/xmltoformat.sci, line: 1621
+# File: modules/helptools/macros/xmltoformat.sci, line: 1704
+# File: modules/helptools/macros/xmltoformat.sci, line: 1840
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
 msgstr ""
 
 #
-# File: modules/helptools/macros/xmltoformat.sci, line: 1397
+# File: modules/helptools/macros/xmltoformat.sci, line: 1322
 #, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr ""

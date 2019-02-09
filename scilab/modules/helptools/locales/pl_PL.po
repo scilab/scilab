@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -271,12 +271,6 @@ msgid ""
 "Building the manual file [%s].\n"
 msgstr ""
 
-#
-# File: modules/helptools/macros/xmltoformat.sci, line: 754
-#, c-format
-msgid "Post-processing Right-to-Left pages in %s...\n"
-msgstr ""
-
 #, c-format
 msgid "%s: %s has not been generated."
 msgstr "%s: %s nie zostały wygenerowane."
@@ -316,8 +310,8 @@ msgstr ""
 "%s: Nieprawidłowa wartości argumentu wejściowego nr %d: oczekiwana poprawna "
 "nazwa pliku.\n"
 
-#, c-format
-msgid "%s: The CHAPTER file is not well formatted at line %d\n"
+#, fuzzy, c-format
+msgid "%s: The CHAPTER file is not well formated at line %d\n"
 msgstr "%s: Plik CHAPTER nie jest dobrze sformatowany w wierszu %d\n"
 
 #, c-format
@@ -328,8 +322,8 @@ msgstr ""
 "%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: Oczekiwano "
 "łancuchu, zakończonego .last_successful_build.\n"
 
-#, c-format
-msgid "%s: The last_successful_build file is not well formatted at line %d\n"
+#, fuzzy, c-format
+msgid "%s: The last_successful_build file is not well formated at line %d\n"
 msgstr ""
 "%s: Plik last_successful_build nie jest dobrze sformatowany w wierszu %d\n"
 

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:13+0100\n"
+"Revision-Date: 2018-03-26 10:40+0100\n"
 
 # File: modules/hdf5/sci_gateway/cpp/sci_h5attr.cpp, line: 56
 # File: modules/hdf5/sci_gateway/cpp/sci_h5attr.cpp, line: 91
@@ -528,7 +528,7 @@ msgstr ""
 # File: modules/hdf5/sci_gateway/cpp/sci_hdf5_listvar.cpp, line: 39
 # File: modules/hdf5/sci_gateway/cpp/sci_hdf5_load.cpp, line: 43
 # File: modules/hdf5/sci_gateway/cpp/sci_hdf5_load_v3.cpp, line: 86
-# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 116
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 89
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr ""
@@ -560,7 +560,7 @@ msgstr ""
 #
 # File: modules/hdf5/sci_gateway/cpp/sci_hdf5_listvar_v2.cpp, line: 322
 # File: modules/hdf5/sci_gateway/cpp/sci_hdf5_listvar_v3.cpp, line: 313
-# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_listvar_v3.cpp, line: 426
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_listvar_v3.cpp, line: 425
 # File: modules/hdf5/sci_gateway/cpp/sci_hdf5_load_v1.cpp, line: 275
 # File: modules/hdf5/sci_gateway/cpp/sci_hdf5_load_v2.cpp, line: 299
 # File: modules/hdf5/src/cpp/listvar_in_hdf5_v1.cpp, line: 293
@@ -599,7 +599,7 @@ msgstr ""
 
 #
 # File: modules/hdf5/sci_gateway/cpp/sci_hdf5_load_v3.cpp, line: 116
-# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 215
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 183
 #, c-format
 msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
 msgstr ""
@@ -612,38 +612,38 @@ msgid "%s: Unable to load '%s'.\n"
 msgstr ""
 
 #
-# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 122
-# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 168
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 95
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 141
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #
-# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 185
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 155
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 
 #
-# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 230
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 198
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
 msgstr ""
 
 #
-# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 234
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 202
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 253
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 218
 #, c-format
 msgid "%s: Unable to delete existing variable \"%s\".\n"
 msgstr ""
 
 #
-# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 260
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 225
 #, c-format
 msgid ""
 "%s: Variable '%s' already exists in file '%s'\n"
@@ -651,19 +651,19 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 273
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 235
 #, c-format
 msgid "%s: Unable to export variable '%s' in file '%s'.\n"
 msgstr ""
 
 #
-# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 282
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 244
 #, c-format
 msgid "%s: Unable to update Scilab version in \"%s\"."
 msgstr ""
 
 #
-# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 289
+# File: modules/hdf5/sci_gateway/cpp/sci_hdf5_save.cpp, line: 251
 #, c-format
 msgid "%s: Unable to update HDF5 format version in \"%s\"."
 msgstr ""
@@ -709,7 +709,7 @@ msgstr ""
 #
 # File: modules/hdf5/src/cpp/H5ArrayData.cpp, line: 68
 # File: modules/hdf5/src/cpp/H5CompoundData.cpp, line: 107
-# File: modules/hdf5/src/cpp/H5ReferenceData.cpp, line: 84
+# File: modules/hdf5/src/cpp/H5ReferenceData.cpp, line: 80
 # File: modules/hdf5/src/cpp/H5VlenData.cpp, line: 57
 msgid "Invalid index.\n"
 msgstr ""
@@ -718,7 +718,7 @@ msgstr ""
 # File: modules/hdf5/src/cpp/H5ArrayData.cpp, line: 80
 # File: modules/hdf5/src/cpp/H5CompoundData.cpp, line: 134
 # File: modules/hdf5/src/cpp/H5Dataspace.cpp, line: 254
-# File: modules/hdf5/src/cpp/H5ReferenceData.cpp, line: 164
+# File: modules/hdf5/src/cpp/H5ReferenceData.cpp, line: 152
 # File: modules/hdf5/src/cpp/H5VlenData.cpp, line: 73
 msgid "Dimensions"
 msgstr ""
@@ -1361,8 +1361,8 @@ msgstr ""
 
 #
 # File: modules/hdf5/src/cpp/H5Object.cpp, line: 261
-# File: modules/hdf5/src/cpp/H5ReferenceData.cpp, line: 122
-# File: modules/hdf5/src/cpp/H5ReferenceData.cpp, line: 238
+# File: modules/hdf5/src/cpp/H5ReferenceData.cpp, line: 114
+# File: modules/hdf5/src/cpp/H5ReferenceData.cpp, line: 222
 msgid "Unknown HDF5 object"
 msgstr ""
 
@@ -1378,7 +1378,7 @@ msgid "Invalid option: must be C or FORTRAN."
 msgstr ""
 
 #
-# File: modules/hdf5/src/cpp/H5ReferenceData.cpp, line: 98
+# File: modules/hdf5/src/cpp/H5ReferenceData.cpp, line: 90
 msgid "Cannot open object at the given position."
 msgstr ""
 

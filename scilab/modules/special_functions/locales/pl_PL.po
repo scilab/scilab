@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -77,23 +77,6 @@ msgstr "%s: Nie można wczytać argumentu wejściowego nr%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany typ real.\n"
-
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Decimal number(s) expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany typ real.\n"
-
-# File: modules/special_functions/macros/%s_gamma.sci, line: 21
-#, c-format
-msgid ""
-"%s: Function not defined for the given argument type.\n"
-"  Check arguments or define function %s for overloading.\n"
 msgstr ""
 
 #, c-format

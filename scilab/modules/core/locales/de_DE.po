@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -399,10 +399,6 @@ msgstr ""
 msgid "%s: Arguments must be scalar or must have same dimensions.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: falsche Anzahl von Eingangsargumenten: mindestens %d erwartet.\n"
-
 #, c-format
 msgid "%s: Can not create a %s with input argument #%d.\n"
 msgstr ""
@@ -530,9 +526,7 @@ msgstr ""
 msgid "ESI Group\n"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/banner.cpp, line: 41
-msgid "Copyright (c) 2017-2019 (ESI Group)\n"
+msgid "Copyright (c) 2017-2018 (ESI Group)\n"
 msgstr ""
 
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
@@ -633,6 +627,18 @@ msgid "%s: File doesn't exist: %s"
 msgstr "%s: Datei existiert nicht: %s"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: falsche Anzahl von Eingangsargumenten: mindestens %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr "%s: Falscher Typ für Eingangargument #%d: Typ double erwartet.\n"
+
+#, c-format
+msgid "%s: %s is an uneditable hard coded function.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 
@@ -677,6 +683,9 @@ msgstr "Benutzervariablen:"
 msgid "Using %s elements"
 msgstr ""
 
+msgid " by "
+msgstr " von "
+
 msgid "Name"
 msgstr "Name"
 
@@ -688,27 +697,3 @@ msgstr "Größe"
 
 msgid "Bytes"
 msgstr "Bytes"
-
-#~ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-#~ msgstr "%s: Falscher Typ für Eingangargument #%d: Typ double erwartet.\n"
-
-#~ msgid "%s: Unable to find Perl file: %s"
-#~ msgstr "%s: Kann Perl Datei nicht finden: %s"
-
-#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-#~ msgstr "%s: unerwarteter Eingansargumentstyp  #%d: Zeichenkette erwartet\n"
-
-#~ msgid "%s: No perl command specified."
-#~ msgstr "%s: Kein Perl Befehl angegeben."
-
-#~ msgid "%s: Unable to find Perl in '%s"
-#~ msgstr "%s: Perl in '%s' nicht auffindbar"
-
-#~ msgid "%s: Unable to find Perl.\n"
-#~ msgstr "%s: Kann Perl nicht finden.\n"
-
-#~ msgid "%s: System error: Command executed: %s"
-#~ msgstr "%s: Systemfehler: Befehl ausgeführt: %s"
-
-#~ msgid " by "
-#~ msgstr " von "

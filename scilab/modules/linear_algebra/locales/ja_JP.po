@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-07-25 12:24+0000\n"
+"PO-Revision-Date: 2017-05-02 08:45+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -304,7 +304,7 @@ msgstr "ZTGSENにおいて順序変更に失敗しました。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
-msgstr "%s: 引数 #%d: 10進数または複素数を指定してください.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected."
@@ -397,7 +397,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Square matrix expected.\n"
-msgstr "%s: 引数 #%d: 正方行列を指定してください.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"

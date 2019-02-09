@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -346,34 +346,13 @@ msgid ""
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno nezáporné celé číslo.\n"
 
-#
-# File: modules/string/macros/evstr.sci, line: 65
 #, c-format
-msgid "%s: Argument #%d: Some expression can't be evaluated (%s).\n"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Argument #%d: %d-element list expected.\n"
-msgstr ""
-"%s: Špatné hodnoty vstupního argumentu #%d: Očekávány neprázdné řetězce.\n"
-
-#
-# File: modules/string/macros/evstr.sci, line: 76
-#, c-format
-msgid "%s: Argument #%d: Both list components must be of text type.\n"
-msgstr ""
-
-#
-# File: modules/string/macros/evstr.sci, line: 89
-#, c-format
-msgid "%s: Argument #1(2): The expression #%d = %s can't be evaluated (%s).\n"
-msgstr ""
-
-#, fuzzy, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Matrix of character strings or list "
-"expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
+"%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
+"character strings or list expected.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána reálná nebo komplexní "
+"matice řetězců znaků nebo seznam.\n"
 
 #, c-format
 msgid "%s: Given expression has no value.\n"
@@ -425,10 +404,3 @@ msgid ""
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván znak, nebo vektor "
 "znaků.\n"
-
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
-#~ "character strings or list expected.\n"
-#~ msgstr ""
-#~ "%s: Špatný typ vstupního argumentu #%d: Očekávána reálná nebo komplexní "
-#~ "matice řetězců znaků nebo seznam.\n"

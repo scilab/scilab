@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-10-29 22:10+0000\n"
-"Last-Translator: Stephan Woidowski <swoidowski@t-online.de>\n"
+"PO-Revision-Date: 2010-10-23 16:38+0000\n"
+"Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
-msgstr "%s: Falscher Typ für Argument #%d: Eine Realzahl erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: the computation is already terminated\n"
@@ -39,21 +39,20 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
-msgstr "%s: Falscher Typ für Argument #%d: String erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: internal error, info=%d.\n"
-msgstr "%s: Interner Fehler, Info=%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Kann Eingabeargument #%d nicht lesen.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: k must be in the range 1 to N.\n"
 msgstr ""
-"%s: Falscher Wert für Eingabeargument #%d: k muss im Bereich 1 zu N liegen.\n"
 
 #, c-format
 msgid ""
@@ -61,242 +60,187 @@ msgid ""
 " Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n"
 " "
 msgstr ""
-"%s: Falscher Wert für das Eingangsargument #%d: Nicht erkannter Sigma-Wert.\n"
-" Sigma muss eines von '%s', '%s', '%s', '%s', '%s' oder '%s' sein.\n"
-" "
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
 msgstr ""
-"%s: Falscher Typ für das Eingabeargument #%d: sigma muss eine Realzahl sein\n"
 
 #, c-format
 msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
-"%s: B ist nicht eindeutig positiv. Versuchen Sie es mit sigma='SM' oder "
-"sigma=scalar.\n"
 
 #, c-format
 msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
-msgstr "%s: Wenn opts.cholB wahr ist, sollte B das obere Dreieck sein.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
-"%s: Falscher Typ für das Eingabeargument #%d: Eine ganze Zahl wird "
-"erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
 "must be k + 2 < NCV <= N.\n"
 msgstr ""
-"%s: Falscher Wert für das Eingangsargument #%d: Für echte unsymmetrische "
-"Probleme muss der NCV k + 2 < NCV <= N sein.\n"
 
 #, c-format
 msgid ""
 "%s: Error with input argument #%d: B is not positive definite. Try with "
 "sigma='SM' or sigma=scalar.\n"
 msgstr ""
-"%s: Fehler beim Eingabeargument #%d: B ist nicht eindeutig positiv. "
-"Versuchen Sie es mit sigma='SM' oder sigma=scalar.\n"
 
 #, c-format
 msgid "%s: Error with %s: info = %d \n"
-msgstr "%s: Fehler mit %s: info = %d \n"
+msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr "%s: Speicherzuordnungsfehler.\n"
+msgstr ""
 
 #, c-format
 msgid "%s : Wrong number of input arguments : %d to %d expected.\n"
-msgstr "%s : Falsche Anzahl von Eingabeargumenten : %d bis %d erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A full or sparse square matrix or a "
 "function expected"
 msgstr ""
-"%s: Falscher Typ für das Eingabeargument #%d: Eine vollständige oder grobe "
-"quadratische Matrix oder eine Funktion erwartet."
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A positive integer expected if the "
 "first input argument is a function."
 msgstr ""
-"%s: Falscher Typ für das Eingabeargument #%d: Eine positive ganze Zahl wird "
-"erwartet, wenn das erste Eingangsargument eine Funktion ist."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A structure expected"
-msgstr "%s: Falscher Typ für Eingabeargument #%d: Eine Struktur erwartet"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: If A is a matrix, use opts with tol, "
 "maxiter, ncv, resid, cholB"
 msgstr ""
-"%s: Falscher Typ für das Eingabeargument: Wenn A eine Matrix ist, wähen Sie "
-"tol, maxiter, ncv, resid, cholB, ncv."
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: If A is a function, use opts with tol, "
 "maxiter, ncv, resid, cholB, issym"
 msgstr ""
-"%s: Falscher Typ für das Eingabeargument: Wenn A eine Funktion ist, wählen "
-"Sie tol, maxiter, ncv, resid, cholB, issym."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: Falscher Typ für das Eingabeargument #%d: Zeichenkette erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of '%s', '%s', '%s', '%s', '%s' or '%s'.\n"
 msgstr ""
-"%s: Falscher Wert für das Eingangsargument #%d: Nicht erkannter Sigma-Wert.\n"
-" Sigma muss einer von '%s', '%s', '%s', '%s', '%s' oder '%s' sein.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: a real scalar or a string expected.\n"
 msgstr ""
-"%s: Falscher Typ für das Eingabeargument #%d: ein echter Skalar oder eine "
-"Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: %s must be 1 by 1 size.\n"
 msgstr ""
-"%s: Falsche Dimension für das Eingabeargument #%d: %s muss Größe 1 zu 1  "
-"haben.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric problems, NCV "
 "must be k + 2 < NCV < N.\n"
 msgstr ""
-"%s: Falscher Wert für das Eingangsargument #%d: Für echte unsymmetrische "
-"Probleme muss der NCV k + 2 < NCV < N sein.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector %s must be complex for "
 "complex problems.\n"
 msgstr ""
-"%s: Falscher Typ für das Eingabeargument #%d: Der Startvektor %s muss bei "
-"komplexen Problemen komplex sein.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: if opts.cholB is true, B must be "
 "upper triangular.\n"
 msgstr ""
-"%s: Falscher Typ für das Eingabeargument #%d: Wenn opts.cholB wahr ist, muss "
-"B das obere Dreieck sein.\n"
 
 #, c-format
 msgid ""
 "%s: Impossible to use the Cholesky factorization with complex sparse "
 "matrices.\n"
 msgstr ""
-"%s: Unmöglich, die Cholesky-Faktorisierung mit komplexen dünnen Matrizen zu "
-"verwenden.\n"
 
 #, c-format
 msgid "%s: Error with %s: info = %d.\n"
-msgstr "%s: Fehler bei %s: info = %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
-"%s: Falscher Typ für das Eingabeargument #%d: n muss eine positive ganze "
-"Zahl sein.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real symmetric problems, k must "
 "be in the range 1 to N - 1.\n"
 msgstr ""
-"%s: Falscher Wert für das Eingangsargument #%d: Für echte symmetrische "
-"Probleme muss k im Bereich von 1 bis N - 1 liegen.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: For real non symmetric or complex "
 "problems, k must be in the range 1 to N - 2.\n"
 msgstr ""
-"%s: Falscher Wert für das Eingangsargument #%d: Für echte unsymmetrische "
-"oder komplexe Probleme muss k im Bereich von 1 bis N - 2 liegen.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
-msgstr "%s: Falscher Typ für das Eingabeargument #%d: ein Skalar erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
 msgstr ""
-"%s: Falscher Typ für das Eingabeargument #%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of %s, %s, %s, %s or %s.\n"
 msgstr ""
-"%s: Falscher Wert für das Eingangsargument #%d: Nicht erkannter Sigma-Wert.\n"
-" Sigma muss eines von %s, %s, %s, %s oder %s sein.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
 " Sigma must be one of %s, %s, %s, %s, %s or %s.\n"
 msgstr ""
-"%s: Falscher Wert für das Eingangsargument #%d: Nicht erkannter Sigma-Wert.\n"
-" Sigma muss eines von %s, %s, %s, %s, %s oder %s sein.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
-"%s: Falsche Dimension für das Eingabeargument #%d: %s muss eine ganze Zahl "
-"sein, die skalar ist.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
 "N by 1.\n"
 msgstr ""
-"%s: Falsche Dimension für das Eingabeargument #%d: Der Startvektor opts."
-"resid muss N x 1 sein.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be real "
 "for real problems.\n"
 msgstr ""
-"%s: Falscher Typ für das Eingabeargument #%d: Startvektor opts.resid muss "
-"real sein, um real-Probleme zu lösen.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be "
 "complex for complex problems.\n"
 msgstr ""
-"%s: Falscher Typ für das Eingabeargument #%d: Startvektor opts.resid muss "
-"komplex sein, um komplex-Probleme zu lösen.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: n does not match rows number of "
 "matrix A.\n"
 msgstr ""
-"%s: Falscher Wert für das Eingabeargument #%d: n stimmt nicht mit der "
-"Zeilennummer der Matrix A überein.\n"
 
 #, c-format
 msgid "%s: Wrong type or value for input arguments.\n"
-msgstr "%s: Falscher Typ oder Wert für Eingabeargumente.\n"
+msgstr ""

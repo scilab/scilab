@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -229,9 +229,9 @@ msgstr "%s: Неверное количество выходных аргуме�
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d : ожидался тип string.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: %s expected.\n"
-msgstr "%s: Неверное значение входного аргумента №%d: ожидался 0 или 1.\n"
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"
+msgstr "%s: Неверное значение входного аргумента №%d: ожидалось ['i' 'd'].\n"
 
 #, c-format
 msgid ""
@@ -307,10 +307,6 @@ msgstr ""
 "%s: Неверный размер входного аргумента №%d: все аргументы должны быть "
 "одинакового размера.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A constant scalar expected.\n"
 msgstr ""
@@ -365,53 +361,55 @@ msgstr ""
 msgid "%s: Wrong size of input argument: %d expected.\n"
 msgstr "%s: Неверный размер входного аргумента: ожидалось %d.\n"
 
-#
-# File: modules/elementary_functions/macros/%sp_max.sci, line: 29
-# File: modules/elementary_functions/macros/%sp_min.sci, line: 29
-msgid " (in list)"
-msgstr ""
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась разрежённая матрица.\n"
 
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Complex numbers not supported.\n"
-msgstr "%s: Аргумент №%d: ожидался столбец.\n"
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ['r' 'c' 'm'] expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось ['r' 'c' 'm'].\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
-"%s: Wrong type for input argument #%d%s: A sparse matrix or a scalar "
-"expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась разрежённая матрица или "
-"символ.\n"
-
-#, fuzzy, c-format
-msgid "%s: Argument #%d%s: Complex numbers not supported.\n"
-msgstr "%s: Аргумент №%d: ожидался столбец.\n"
-
-#, fuzzy, c-format
-msgid ""
-"%s: Wrong size of input argument #%d%s: Same size as input argument #%d "
+"%s: Wrong size of input argument #%d: Same size as input argument #%d "
 "expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: Ожидался тот же размер, что и у  "
 "входного аргумента №%d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Argument #%d: the scalar must be negative.\n"
-msgstr "%s: Аргумент №%d: ожидалось целочисленное значение.\n"
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A sparse matrix or a character "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась разрежённая матрица или "
+"символ.\n"
 
-#, fuzzy, c-format
-msgid "%s: Argument #%d: the scalar must be positive.\n"
-msgstr "%s: Аргумент №%d: ожидалось целочисленное значение.\n"
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d (List element: %d): A sparse matrix "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d (Элемент списка: %d): ожидалась "
+"разрежённая матрица.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d (List element: %d): Same size as input "
+"argument #%d expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d (Элемент списка: %d): ожидался "
+"тот  же размер, что и у входного аргумента №%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d"
 
 #, c-format
 msgid ""
@@ -633,10 +631,6 @@ msgstr "%s: Аргумент №%d: ожидался столбец.\n"
 msgid "%s: Argument #%d: Number(s) expected.\n"
 msgstr "%s: Аргумент №%d: ожидалось число (числа).\n"
 
-#, fuzzy, c-format
-msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
-msgstr "%s: Аргументы №%d и №%d: ожидались одинаковые размеры.\n"
-
 #, c-format
 msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
 msgstr "%s: Аргумент №%d: значения %%nan и %%inf запрещены.\n"
@@ -773,6 +767,14 @@ msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
+"%d] integers.\n"
+msgstr ""
+"%s: Неверное значение для входного аргумента №%d: должна быть корректная "
+"целых чисел в интервале [1..n>%d].\n"
+
+#, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
 msgstr "%s: Несовместимые входные аргументы: ожидались одинаковые типы.\n"
 
@@ -865,22 +867,6 @@ msgstr "%s: преобразование полиномов не поддерж�
 msgid "%s: conversion into %s is not supported\n"
 msgstr "%s: преобразование в %s не поддерживается\n"
 
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: Неверное значение входного параметра #%d: должно входить в множество "
-"{%s}.\n"
-
-#, fuzzy, c-format
-msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
-msgstr ""
-"%s: Несовместимые входные аргументы №%d и №%d: ожидалось одинаковое "
-"количество столбцов.\n"
-
-#, fuzzy, c-format
-msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
-msgstr "%s: Аргументы №%d и №%d: ожидались одинаковые размеры.\n"
-
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
 msgstr "%s: Неверное значение входного параметра №%d: матрица не эрмитова.\n"
@@ -942,31 +928,3 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: Неверный размер входных параметров: ожидался совместимый размер.\n"
-
-#~ msgid "%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение входного аргумента №%d: ожидалось ['i' 'd'].\n"
-
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d (List element: %d): A sparse matrix "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного аргумента №%d (Элемент списка: %d): ожидалась "
-#~ "разрежённая матрица.\n"
-
-#~ msgid ""
-#~ "%s: Wrong size of input argument #%d (List element: %d): Same size as "
-#~ "input argument #%d expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный размер входного аргумента №%d (Элемент списка: %d): ожидался "
-#~ "тот  же размер, что и у входного аргумента №%d.\n"
-
-#~ msgid "%s: Wrong number of output argument: %d expected"
-#~ msgstr "%s: Неверное количество выходных аргументов: ожидалось %d"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Must be a valid permutation of "
-#~ "[1..n>%d] integers.\n"
-#~ msgstr ""
-#~ "%s: Неверное значение для входного аргумента №%d: должна быть корректная "
-#~ "целых чисел в интервале [1..n>%d].\n"

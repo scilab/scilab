@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -193,8 +193,8 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"
 
-#, c-format
-msgid "%s: The config file ('%s') is not well formatted at line %d\n"
+#, fuzzy, c-format
+msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr "%s: Soubor s nastavením ('%s') není na řádku %d dobře formátován\n"
 
 #, c-format
@@ -260,16 +260,6 @@ msgid ""
 msgstr ""
 "Možnost offline nastavení ATOMS je nastavena na True. atomsSystemUpdate "
 "nezkontroloval nejnovější aktualizace modulů."
-
-#, fuzzy, c-format
-msgid "\t%s (%s) will be installed in the '%s' section"
-msgstr "%s: Modul '%s' není nainstalován (sekce '%s').\n"
-
-#
-# File: modules/atoms/macros/atomsInstall.sci, line: 259
-#, c-format
-msgid "\t%s (%s) is already installed in the '%s' section and up-to-date"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -376,35 +366,10 @@ msgid ""
 msgstr ""
 "%s: Nemáte dostatečná práva k odstranění jakékoliv verze v baličku %s.\n"
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 217
 #, c-format
 msgid ""
-"\t%s (%s) will be removed from the '%s' section and its package fully deleted"
-msgstr ""
-
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 219
-#, c-format
-msgid "\t%s (%s) will be removed from the '%s' section"
-msgstr ""
-
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 222
-#, c-format
-msgid "\t%s (%s) cannot be removed from the '%s' section and will be broken"
-msgstr ""
-
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 247
-#, c-format
-msgid ""
-"\tthe package %s (%s) is currently loaded, It will be removed at next Scilab "
-"start\n"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "\tRemoving %s (%s)(%s)... "
+"Removing %s (%s)(%s).\n"
+"\n"
 msgstr ""
 "Odstraňování %s (%s)(%s).\n"
 "\n"
@@ -769,18 +734,18 @@ msgstr "%s: Soubor %s je prázdný.\n"
 msgid "Updating Atoms modules database..."
 msgstr "Aktualizace databáze modulů ATOMS..."
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: The file %s is not well formatted, the toolbox %s - %s does not contain "
+"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
 "the %s field\n"
-msgstr ""
+msgstr "%s: Soubor '%s' není na řádku %d dobře zformátován\n"
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
 msgstr "%s: jméno a verze nejsou určeny\n"
 
-#, c-format
-msgid "%s: The file '%s' is not well formatted at line %d\n"
+#, fuzzy, c-format
+msgid "%s: The file '%s' is not well formated at line %d\n"
 msgstr "%s: Soubor '%s' není na řádku %d dobře zformátován\n"
 
 #, c-format
@@ -1093,8 +1058,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván mlist.\n"
 
-#, c-format
-msgid "%s: The description is not well formatted at line %d\n"
+#, fuzzy, c-format
+msgid "%s: The description is not well formated at line %d\n"
 msgstr "%s: Popis není na řádku %d dobře formátován\n"
 
 #, c-format

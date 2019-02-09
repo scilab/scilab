@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:13+0100\n"
+"Revision-Date: 2018-03-26 10:40+0100\n"
 
 # File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 34
 # File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 61
@@ -631,7 +631,7 @@ msgstr ""
 #
 # File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 267
 #, c-format
-msgid "%s: Argument #%d: Must be < %d.\n"
+msgid "%s: The order should be at most %d.\n"
 msgstr ""
 
 #
@@ -701,7 +701,9 @@ msgstr ""
 
 #
 # File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 60
+# File: modules/cacsd/sci_gateway/cpp/sci_ereduc.cpp, line: 39
 # File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 44
+# File: modules/cacsd/sci_gateway/cpp/sci_fstair.cpp, line: 45
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 47
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -1085,7 +1087,7 @@ msgstr ""
 # File: modules/cacsd/macros/csim.sci, line: 55
 # File: modules/cacsd/macros/ctr_gram.sci, line: 73
 # File: modules/cacsd/macros/dscr.sci, line: 19
-# File: modules/cacsd/macros/flts.sci, line: 114
+# File: modules/cacsd/macros/flts.sci, line: 115
 # File: modules/cacsd/macros/h_norm.sci, line: 37
 # File: modules/cacsd/macros/krac2.sci, line: 23
 # File: modules/cacsd/macros/obsv_mat.sci, line: 37
@@ -1262,7 +1264,6 @@ msgstr ""
 # File: modules/cacsd/macros/phaseplot.sci, line: 37
 # File: modules/cacsd/macros/phaseplot.sci, line: 63
 # File: modules/cacsd/macros/repfreq.sci, line: 58
-# File: modules/cacsd/macros/sgrid.sci, line: 26
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -1292,6 +1293,8 @@ msgstr ""
 #
 # File: modules/cacsd/macros/augment.sci, line: 51
 # File: modules/cacsd/macros/augment.sci, line: 185
+# File: modules/cacsd/macros/sgrid.sci, line: 23
+# File: modules/cacsd/macros/sgrid.sci, line: 33
 # File: modules/cacsd/macros/ss2des.sci, line: 21
 # File: modules/cacsd/macros/tf2des.sci, line: 23
 # File: modules/cacsd/macros/zgrid.sci, line: 23
@@ -1344,8 +1347,8 @@ msgstr ""
 # File: modules/cacsd/macros/phaseplot.sci, line: 59
 # File: modules/cacsd/macros/syslin.sci, line: 100
 # File: modules/cacsd/macros/syslin.sci, line: 126
-# File: modules/cacsd/macros/zp2ss.sci, line: 34
-# File: modules/cacsd/macros/zp2tf.sci, line: 34
+# File: modules/cacsd/macros/zp2ss.sci, line: 37
+# File: modules/cacsd/macros/zp2tf.sci, line: 37
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same column dimensions "
@@ -1636,9 +1639,9 @@ msgstr ""
 #
 # File: modules/cacsd/macros/cont_mat.sci, line: 33
 # File: modules/cacsd/macros/ctr_gram.sci, line: 39
-# File: modules/cacsd/macros/flts.sci, line: 35
-# File: modules/cacsd/macros/flts.sci, line: 62
-# File: modules/cacsd/macros/flts.sci, line: 87
+# File: modules/cacsd/macros/flts.sci, line: 36
+# File: modules/cacsd/macros/flts.sci, line: 63
+# File: modules/cacsd/macros/flts.sci, line: 88
 # File: modules/cacsd/macros/obs_gram.sci, line: 34
 #, c-format
 msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
@@ -1805,7 +1808,7 @@ msgstr ""
 
 #
 # File: modules/cacsd/macros/damp.sci, line: 16
-# File: modules/cacsd/macros/flts.sci, line: 21
+# File: modules/cacsd/macros/flts.sci, line: 22
 # File: modules/cacsd/macros/minreal.sci, line: 30
 # File: modules/cacsd/macros/minreal.sci, line: 51
 # File: modules/cacsd/macros/obsvss.sci, line: 26
@@ -1904,7 +1907,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/macros/evans.sci, line: 43
+# File: modules/cacsd/macros/evans.sci, line: 40
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A linear dynamical system or a "
@@ -1912,7 +1915,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/macros/evans.sci, line: 46
+# File: modules/cacsd/macros/evans.sci, line: 43
 # File: modules/cacsd/macros/rlocus.sci, line: 23
 #, c-format
 msgid ""
@@ -1921,18 +1924,18 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/macros/evans.sci, line: 49
+# File: modules/cacsd/macros/evans.sci, line: 46
 #, c-format
 msgid "%s: The given system has no poles and no zeros.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/evans.sci, line: 139
+# File: modules/cacsd/macros/evans.sci, line: 135
 msgid "Evans root locus"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/evans.sci, line: 140
+# File: modules/cacsd/macros/evans.sci, line: 136
 # File: modules/cacsd/macros/hallchart.sci, line: 53
 # File: modules/cacsd/macros/plzr.sci, line: 112
 # File: modules/cacsd/macros/plzr.sci, line: 120
@@ -1940,7 +1943,7 @@ msgid "Real axis"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/evans.sci, line: 141
+# File: modules/cacsd/macros/evans.sci, line: 137
 # File: modules/cacsd/macros/hallchart.sci, line: 54
 # File: modules/cacsd/macros/plzr.sci, line: 113
 # File: modules/cacsd/macros/plzr.sci, line: 121
@@ -1948,22 +1951,22 @@ msgid "Imaginary axis"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/evans.sci, line: 154
-msgid "open loop zeros"
+# File: modules/cacsd/macros/evans.sci, line: 148
+msgid "open loop zeroes"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/evans.sci, line: 165
+# File: modules/cacsd/macros/evans.sci, line: 155
 msgid "open loop poles"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/evans.sci, line: 195
+# File: modules/cacsd/macros/evans.sci, line: 182
 msgid "asymptotic directions"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/evans.sci, line: 236
+# File: modules/cacsd/macros/evans.sci, line: 219
 # File: modules/cacsd/macros/rlocus.sci, line: 228
 #, c-format
 msgid "%s: Curve truncated to the first %d discretization points.\n"
@@ -1997,35 +2000,35 @@ msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/flts.sci, line: 17
+# File: modules/cacsd/macros/flts.sci, line: 18
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/flts.sci, line: 39
-# File: modules/cacsd/macros/flts.sci, line: 58
+# File: modules/cacsd/macros/flts.sci, line: 40
+# File: modules/cacsd/macros/flts.sci, line: 59
 #, c-format
 msgid "%s: Wrong type for argument #%d: In discrete time expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/flts.sci, line: 52
+# File: modules/cacsd/macros/flts.sci, line: 53
 # File: modules/cacsd/macros/simplify_zp.sci, line: 25
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/flts.sci, line: 83
+# File: modules/cacsd/macros/flts.sci, line: 84
 #, c-format
 msgid "%s: At least %s past values needed.\n"
 msgstr ""
 
 #
 # File: modules/cacsd/macros/formatBlackTip.sci, line: 21
-# File: modules/cacsd/macros/formatBodeMagTip.sci, line: 17
-# File: modules/cacsd/macros/formatBodePhaseTip.sci, line: 17
+# File: modules/cacsd/macros/formatBodeMagTip.sci, line: 16
+# File: modules/cacsd/macros/formatBodePhaseTip.sci, line: 16
 # File: modules/cacsd/macros/formatGainplotTip.sci, line: 16
 # File: modules/cacsd/macros/formatNyquistTip.sci, line: 19
 # File: modules/cacsd/macros/formatPhaseplotTip.sci, line: 16
@@ -2034,22 +2037,12 @@ msgstr ""
 
 #
 # File: modules/cacsd/macros/formatBlackTip.sci, line: 21
+# File: modules/cacsd/macros/formatBodeMagTip.sci, line: 16
 # File: modules/cacsd/macros/formatGainplotTip.sci, line: 16
 # File: modules/cacsd/macros/formatHallModuleTip.sci, line: 15
 # File: modules/cacsd/macros/formatNicholsGainTip.sci, line: 15
 # File: modules/cacsd/macros/hallchart.sci, line: 91
 msgid "dB"
-msgstr ""
-
-#
-# File: modules/cacsd/macros/formatBodeMagTip.sci, line: 21
-# File: modules/cacsd/macros/formatBodePhaseTip.sci, line: 21
-msgid "rad/s"
-msgstr ""
-
-#
-# File: modules/cacsd/macros/formatBodeMagTip.sci, line: 25
-msgid " dB"
 msgstr ""
 
 #
@@ -2751,8 +2744,11 @@ msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
 
 #
+# File: modules/cacsd/macros/sgrid.sci, line: 52
 # File: modules/cacsd/macros/sgrid.sci, line: 56
-# File: modules/cacsd/macros/sgrid.sci, line: 65
+# File: modules/cacsd/macros/sgrid.sci, line: 62
+# File: modules/cacsd/macros/sgrid.sci, line: 66
+# File: modules/cacsd/macros/sgrid.sci, line: 70
 # File: modules/cacsd/macros/zgrid.sci, line: 52
 # File: modules/cacsd/macros/zgrid.sci, line: 59
 # File: modules/cacsd/macros/zgrid.sci, line: 69
@@ -2761,18 +2757,6 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
-msgstr ""
-
-#
-# File: modules/cacsd/macros/sgrid.sci, line: 80
-#, c-format
-msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
-msgstr ""
-
-#
-# File: modules/cacsd/macros/sgrid.sci, line: 84
-#, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
 msgstr ""
 
 #
@@ -3011,8 +2995,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/macros/zp2ss.sci, line: 19
-# File: modules/cacsd/macros/zp2tf.sci, line: 19
+# File: modules/cacsd/macros/zp2ss.sci, line: 21
+# File: modules/cacsd/macros/zp2tf.sci, line: 21
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex zeros  must appear in "
@@ -3020,16 +3004,16 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/macros/zp2ss.sci, line: 24
-# File: modules/cacsd/macros/zp2tf.sci, line: 24
+# File: modules/cacsd/macros/zp2ss.sci, line: 26
+# File: modules/cacsd/macros/zp2tf.sci, line: 26
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/zp2ss.sci, line: 27
-# File: modules/cacsd/macros/zp2tf.sci, line: 27
+# File: modules/cacsd/macros/zp2ss.sci, line: 30
+# File: modules/cacsd/macros/zp2tf.sci, line: 30
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: complex poles  must appear in "
@@ -3037,16 +3021,16 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/macros/zp2ss.sci, line: 31
-# File: modules/cacsd/macros/zp2tf.sci, line: 31
+# File: modules/cacsd/macros/zp2ss.sci, line: 34
+# File: modules/cacsd/macros/zp2tf.sci, line: 34
 # File: modules/cacsd/macros/zpk.sci, line: 52
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/zp2ss.sci, line: 37
-# File: modules/cacsd/macros/zp2tf.sci, line: 37
+# File: modules/cacsd/macros/zp2ss.sci, line: 40
+# File: modules/cacsd/macros/zp2tf.sci, line: 40
 # File: modules/cacsd/macros/zpk.sci, line: 45
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"

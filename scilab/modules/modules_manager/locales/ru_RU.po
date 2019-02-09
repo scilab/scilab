@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -119,24 +119,6 @@ msgstr "Формирование loader.sce...\n"
 msgid "Generating unloader.sce...\n"
 msgstr "Формирование unloader.sce...\n"
 
-#
-# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 70
-#, c-format
-msgid "%s: The module '%s' has no entry to be localized.\n"
-msgstr ""
-
-#
-# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 74
-#, c-format
-msgid ""
-"%s: \n"
-"   '%s' has been generated in the module.\n"
-"   Please\n"
-"   - clone it into la_LA.po (ex: pt_BR.po) in the same directory\n"
-"   - translate the copies\n"
-"   - rerun the build\n"
-msgstr ""
-
 msgid "Generating localization\n"
 msgstr "Формирование локализации\n"
 
@@ -176,18 +158,18 @@ msgstr "Сборка справки...\n"
 msgid "Building macros...\n"
 msgstr "Сборка макросов...\n"
 
-msgid "Building sources...\n"
-msgstr "Сборка исходных текстов...\n"
-
-msgid "No builder file found, nothing to be done"
-msgstr "Сборочный файл не найден, нечего делать"
-
 #, c-format
 msgid ""
 "%s: This module requires a C or Fortran compiler and it has not been found.\n"
 msgstr ""
 "%s: Компилятор C или Fortran требуется для данного модуля, но он не был "
 "найден.\n"
+
+msgid "Building sources...\n"
+msgstr "Сборка исходных текстов...\n"
+
+msgid "No builder file found, nothing to be done"
+msgstr "Сборочный файл не найден, нечего делать"
 
 msgid "No builder file found, nothing to be done."
 msgstr "Сборочный файл не найден, нечего делать."

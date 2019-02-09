@@ -17,7 +17,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -75,8 +75,8 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути вказано додатне "
 "скалярне значення.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d : At least %.0E expected.\n"
+#, c-format
+msgid "%s: Wrong value for input argument #%d : At least %lf expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути вказано не менше за "
 "%lf.\n"
@@ -147,11 +147,11 @@ msgstr ""
 msgid "%s: setgmn return with state %d.\n"
 msgstr "%s: функція setgmn завершила роботу зі станом %d.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d : Must be between %.1E and %d.\n"
+#, c-format
+msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
-"між %d та %d.\n"
+"між %lf та %d.\n"
 
 #, c-format
 msgid ""
@@ -264,9 +264,11 @@ msgstr ""
 msgid "The %s option affects only the %s generator\n"
 msgstr "Параметр %s стосується лише генератора %s\n"
 
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
-msgstr "%s: X0(%d) має належати діапазону [1,%d[.\n"
+#, c-format
+msgid "%s: Wrong value for input argument #%d : Must be between %d and %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"між %d та %d.\n"
 
 #, c-format
 msgid ""
@@ -418,9 +420,3 @@ msgstr "випадкова змінна із розподілом Ерланга
 
 msgid "Simulation of a Weibull random variable"
 msgstr "Моделювання випадкової величини із розподілом Вейбулла"
-
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати "
-#~ "значення між %lf та %d.\n"

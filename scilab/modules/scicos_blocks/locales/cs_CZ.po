@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 msgid "overflow error"
 msgstr "chyba přetečení"
@@ -170,17 +170,21 @@ msgstr "Nastavit bit"
 msgid "Type conversion"
 msgstr "Převody typu"
 
+#, fuzzy
 msgid "(b) 0:Nothing, 1:Saturate, 2:Error"
-msgstr ""
+msgstr "Provést při Přetečení (0:Nic, 1:Nasytit, 2:Chyba)"
 
+#, fuzzy
 msgid "Input type (a)"
-msgstr ""
+msgstr "Vstupní Typ"
 
+#, fuzzy
 msgid "Output type (a)"
-msgstr ""
+msgstr "Typ výstupu"
 
+#, fuzzy
 msgid "Do on overflow (b)"
-msgstr ""
+msgstr "Provést při Přetečení"
 
 msgid "Do on Overflow"
 msgstr "Provést při Přetečení"
@@ -818,3 +822,9 @@ msgstr "Očekávány stejné velikosti"
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
+
+#~ msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+#~ msgstr "Vstupní Typ (1:dvoj.přes., 3:cel.č.32,4:cel.č.16, 5:cel.č.8, ...)"
+
+#~ msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+#~ msgstr "Typ výstupu (1:dvoj.přes., 3:cel.č.32,4:cel.č.16, 5:cel.č.8, ...)"

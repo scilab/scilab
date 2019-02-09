@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:13+0100\n"
+"Revision-Date: 2018-03-26 10:40+0100\n"
 
 # File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 98
 # File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 18
@@ -220,16 +220,17 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkfalse.sci, line: 25
-# File: modules/development_tools/macros/assert/assert_checktrue.sci, line: 25
+# File: modules/development_tools/macros/assert/assert_checkfalse.sci, line: 24
+# File: modules/development_tools/macros/assert/assert_checktrue.sci, line: 24
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/assert/assert_checkfalse.sci, line: 36
+# File: modules/development_tools/macros/assert/assert_checkfalse.sci, line: 38
+# File: modules/development_tools/macros/assert/assert_checktrue.sci, line: 38
 #, c-format
-msgid "%s: Assertion failed: Entry %%T found in condition(%d).\n"
+msgid "%s: Assertion failed: found false entry in condition = %s"
 msgstr ""
 
 #
@@ -266,12 +267,6 @@ msgstr ""
 # File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 136
 #, c-format
 msgid "%s: Cannot close file %s.\n"
-msgstr ""
-
-#
-# File: modules/development_tools/macros/assert/assert_checktrue.sci, line: 58
-#, c-format
-msgid "%s: Assertion failed: Entry %%F found in condition(%d).\n"
 msgstr ""
 
 #
@@ -442,7 +437,7 @@ msgstr ""
 
 #
 # File: modules/development_tools/macros/test_clean.sci, line: 138
-# File: modules/development_tools/macros/test_run.sci, line: 394
+# File: modules/development_tools/macros/test_run.sci, line: 392
 #, c-format
 msgid "The test %s is not available from the %s module"
 msgstr ""
@@ -461,19 +456,19 @@ msgid "%s is not an installed module or toolbox"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/test_run.sci, line: 668
+# File: modules/development_tools/macros/test_run.sci, line: 666
 msgid ""
 "option JVM NOT MANDATORY is deprecated, please use CLI SHELL MODE instead"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/test_run.sci, line: 1193
+# File: modules/development_tools/macros/test_run.sci, line: 1191
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/test_run.sci, line: 1340
+# File: modules/development_tools/macros/test_run.sci, line: 1338
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "

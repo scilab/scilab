@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 msgid "Double"
 msgstr "Подвійний"
@@ -47,6 +47,9 @@ msgstr "Рядок"
 msgid "User function"
 msgstr "Функція користувача"
 
+msgid "Compiled function"
+msgstr "Компільована функція"
+
 msgid "Function library"
 msgstr "Бібліотека функцій"
 
@@ -59,16 +62,6 @@ msgstr "T-список"
 msgid "Mlist"
 msgstr "M-список"
 
-#
-# File: modules/types/src/java/org/scilab/modules/types/ScilabTypeEnumDescription.java, line: 56
-msgid "Struct"
-msgstr ""
-
-#
-# File: modules/types/src/java/org/scilab/modules/types/ScilabTypeEnumDescription.java, line: 58
-msgid "Cell"
-msgstr ""
-
 msgid "Pointer"
 msgstr "Вказівник"
 
@@ -80,6 +73,3 @@ msgstr "Вбудована функція"
 
 msgid "Unknown datatype"
 msgstr "Невідомий тип даних"
-
-#~ msgid "Compiled function"
-#~ msgstr "Компільована функція"

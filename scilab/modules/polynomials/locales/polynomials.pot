@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:14+0100\n"
+"Revision-Date: 2018-03-26 10:40+0100\n"
 
 #
 # File: modules/polynomials/sci_gateway/cpp/sci_bezout.cpp, line: 47
@@ -122,7 +122,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 186
+# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 180
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A vector expected.\n"
 msgstr ""
@@ -261,7 +261,7 @@ msgstr ""
 # File: modules/polynomials/macros/derivat.sci, line: 62
 # File: modules/polynomials/macros/determ.sci, line: 25
 # File: modules/polynomials/macros/detr.sci, line: 38
-# File: modules/polynomials/macros/invr.sci, line: 140
+# File: modules/polynomials/macros/invr.sci, line: 139
 # File: modules/polynomials/macros/numer.sci, line: 27
 #, c-format
 msgid ""
@@ -329,7 +329,6 @@ msgstr ""
 
 #
 # File: modules/polynomials/macros/gcd.sci, line: 34
-# File: modules/polynomials/macros/lcm.sci, line: 29
 #, c-format
 msgid "%s: Wrong values for argument #%d: Integer values expected.\n"
 msgstr ""
@@ -343,7 +342,7 @@ msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/macros/horner.sci, line: 118
+# File: modules/polynomials/macros/horner.sci, line: 120
 #, c-format
 msgid "%s: Unexpected type for input argument #%d.\n"
 msgstr ""
@@ -361,23 +360,24 @@ msgid "%s: incompatible input arguments %d and %d\n"
 msgstr ""
 
 #
-# File: modules/polynomials/macros/invr.sci, line: 22
+# File: modules/polynomials/macros/invr.sci, line: 21
 #, c-format
 msgid "%s: Argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/macros/invr.sci, line: 80
-# File: modules/polynomials/macros/invr.sci, line: 136
+# File: modules/polynomials/macros/invr.sci, line: 79
+# File: modules/polynomials/macros/invr.sci, line: 135
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/macros/lcm.sci, line: 21
+# File: modules/polynomials/macros/lcm.sci, line: 22
+# File: modules/polynomials/macros/lcm.sci, line: 28
 #, c-format
 msgid ""
-"%s: Wrong type for argument #%d: Array of integers or polynomials expected.\n"
+"%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
 msgstr ""
 
 #

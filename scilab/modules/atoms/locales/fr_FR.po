@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -204,8 +204,8 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée n°%d.\n"
 
-#, c-format
-msgid "%s: The config file ('%s') is not well formatted at line %d\n"
+#, fuzzy, c-format
+msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr ""
 "%s : Le fichier de configuration ('%s') n'est pas correctement formaté à la "
 "ligne %d\n"
@@ -275,16 +275,6 @@ msgid ""
 msgstr ""
 "ATOMS est configuré en mode hors ligne. atomsSystemUpdate n'a pas pu "
 "vérifier les derniers modules disponibles."
-
-#, fuzzy, c-format
-msgid "\t%s (%s) will be installed in the '%s' section"
-msgstr "%s : Le module '%s' n'est pas installé (section '%s').\n"
-
-#
-# File: modules/atoms/macros/atomsInstall.sci, line: 259
-#, c-format
-msgid "\t%s (%s) is already installed in the '%s' section and up-to-date"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -400,35 +390,10 @@ msgstr ""
 "%s : Vous ne disposez pas des droits nécessaires pour supprimer une version "
 "du package %s.\n"
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 217
 #, c-format
 msgid ""
-"\t%s (%s) will be removed from the '%s' section and its package fully deleted"
-msgstr ""
-
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 219
-#, c-format
-msgid "\t%s (%s) will be removed from the '%s' section"
-msgstr ""
-
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 222
-#, c-format
-msgid "\t%s (%s) cannot be removed from the '%s' section and will be broken"
-msgstr ""
-
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 247
-#, c-format
-msgid ""
-"\tthe package %s (%s) is currently loaded, It will be removed at next Scilab "
-"start\n"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "\tRemoving %s (%s)(%s)... "
+"Removing %s (%s)(%s).\n"
+"\n"
 msgstr ""
 "Suppression de  %s (%s)(%s).\n"
 "\n"
@@ -807,9 +772,9 @@ msgstr "%s : Le fichier %s est vide.\n"
 msgid "Updating Atoms modules database..."
 msgstr "Mise à jour de la base de données ATOMS en cours..."
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: The file %s is not well formatted, the toolbox %s - %s does not contain "
+"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
 "the %s field\n"
 msgstr ""
 "%s : Le fichier %s n'est pas bien formaté. Le module %s - %s ne contient pas "
@@ -819,8 +784,8 @@ msgstr ""
 msgid "%s: name and version are not both defined\n"
 msgstr "%s : Le nom et la version ne sont pas définis.\n"
 
-#, c-format
-msgid "%s: The file '%s' is not well formatted at line %d\n"
+#, fuzzy, c-format
+msgid "%s: The file '%s' is not well formated at line %d\n"
 msgstr ""
 "%s : Le fichier '%s' n'est pas pas correctement formaté à la ligne %d\n"
 
@@ -1150,8 +1115,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : mlist attendue.\n"
 
-#, c-format
-msgid "%s: The description is not well formatted at line %d\n"
+#, fuzzy, c-format
+msgid "%s: The description is not well formated at line %d\n"
 msgstr "%s : La description n'est pas bien formatée à la ligne %d\n"
 
 #, c-format

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -1229,10 +1229,6 @@ msgstr "%s: Не удалось загрузить блок из %s: ожида�
 #, c-format
 msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
 msgstr "%s: Не удалось загрузить блок из %s: переменной «scs_m» не найдено.\n"
-
-#, fuzzy, c-format
-msgid "%s: Unable to load block from %s: Missing file.\n"
-msgstr "%s: Не удалось загрузить блок из %s: ожидался файл hdf5.\n"
 
 #, c-format
 msgid ""

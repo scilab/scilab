@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:13+0100\n"
+"Revision-Date: 2018-03-26 10:40+0100\n"
 
 # File: modules/core/sci_gateway/c/sci_debug.c, line: 43
 #, c-format
@@ -96,7 +96,7 @@ msgstr ""
 #
 # File: modules/core/sci_gateway/cpp/sci_analyzeroptions.cpp, line: 43
 # File: modules/core/sci_gateway/cpp/sci_errclear.cpp, line: 39
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 40
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 37
 # File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 39
 # File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 82
 # File: modules/core/sci_gateway/cpp/sci_ieee.cpp, line: 42
@@ -223,7 +223,7 @@ msgstr ""
 
 #
 # File: modules/core/sci_gateway/cpp/sci_clearglobal.cpp, line: 45
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 55
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 52
 # File: modules/core/sci_gateway/cpp/sci_global.cpp, line: 42
 # File: modules/core/sci_gateway/cpp/sci_isfield.cpp, line: 55
 # File: modules/core/sci_gateway/cpp/sci_isglobal.cpp, line: 43
@@ -407,7 +407,7 @@ msgid "  for more details, show help page.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 46
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 43
 # File: modules/core/sci_gateway/cpp/sci_getmd5.cpp, line: 45
 # File: modules/core/sci_gateway/cpp/sci_getversion.cpp, line: 44
 # File: modules/core/sci_gateway/cpp/sci_ieee.cpp, line: 35
@@ -418,23 +418,24 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 69
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 75
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 82
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 101
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 81
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 87
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 94
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 113
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 107
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 119
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 125
 # File: modules/core/sci_gateway/cpp/sci_format.cpp, line: 133
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 113
+# File: modules/core/sci_gateway/cpp/sci_error.cpp, line: 131
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
@@ -455,7 +456,8 @@ msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 113
+# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 109
+# File: modules/core/sci_gateway/cpp/sci_exists.cpp, line: 139
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
 msgstr ""
@@ -728,12 +730,6 @@ msgid "%s: Arguments must be scalar or must have same dimensions.\n"
 msgstr ""
 
 #
-# File: modules/core/sci_gateway/cpp/sci_tlist_or_mlist.hxx, line: 41
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-
-#
 # File: modules/core/sci_gateway/cpp/sci_tlist_or_mlist.hxx, line: 59
 #, c-format
 msgid "%s: Can not create a %s with input argument #%d.\n"
@@ -903,7 +899,7 @@ msgstr ""
 
 #
 # File: modules/core/src/cpp/banner.cpp, line: 41
-msgid "Copyright (c) 2017-2019 (ESI Group)\n"
+msgid "Copyright (c) 2017-2018 (ESI Group)\n"
 msgstr ""
 
 #
@@ -945,58 +941,58 @@ msgstr ""
 msgid "Scilab %s Console"
 msgstr ""
 
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 39
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 39
 msgid "Startup execution:"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 40
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 40
 #, c-format
 msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 56
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 56
 #, c-format
 msgid "Failed to execute %s:"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 139
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 138
 msgid "&File"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 140
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 139
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 141
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 140
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 142
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 141
 msgid "&Control"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 143
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 145
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 148
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 151
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 154
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 142
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 144
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 147
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 150
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 153
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 156
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 155
 msgid "&?"
 msgstr ""
 
 #
-# File: /home/davidcl/work/branches/6.0-review/scilab/etc/scilab.start, line: 157
+# File: /home/bignier/scilab2/scilab//etc/scilab.start, line: 156
 # File: modules/core/macros/toolboxes.sci, line: 69
 # File: modules/core/macros/toolboxes.sci, line: 70
 # File: modules/core/macros/toolboxes.sci, line: 79
@@ -1068,6 +1064,24 @@ msgid "%s: File doesn't exist: %s"
 msgstr ""
 
 #
+# File: modules/core/macros/edit.sci, line: 21
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#
+# File: modules/core/macros/edit.sci, line: 29
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+
+#
+# File: modules/core/macros/edit.sci, line: 44
+#, c-format
+msgid "%s: %s is an uneditable hard coded function.\n"
+msgstr ""
+
+#
 # File: modules/core/macros/halt.sci, line: 25
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
@@ -1128,32 +1142,37 @@ msgid "%s called at line %s of macro %s"
 msgstr ""
 
 #
-# File: modules/core/macros/who_user.sci, line: 66
+# File: modules/core/macros/who_user.sci, line: 69
 msgid "User variables are:"
 msgstr ""
 
 #
-# File: modules/core/macros/who_user.sci, line: 70
+# File: modules/core/macros/who_user.sci, line: 73
 #, c-format
 msgid "Using %s elements"
 msgstr ""
 
 #
-# File: modules/core/macros/whos.sci, line: 102
+# File: modules/core/macros/whos.sci, line: 56
+msgid " by "
+msgstr ""
+
+#
+# File: modules/core/macros/whos.sci, line: 98
 msgid "Name"
 msgstr ""
 
 #
-# File: modules/core/macros/whos.sci, line: 103
+# File: modules/core/macros/whos.sci, line: 99
 msgid "Type"
 msgstr ""
 
 #
-# File: modules/core/macros/whos.sci, line: 104
+# File: modules/core/macros/whos.sci, line: 100
 msgid "Size"
 msgstr ""
 
 #
-# File: modules/core/macros/whos.sci, line: 105
+# File: modules/core/macros/whos.sci, line: 101
 msgid "Bytes"
 msgstr ""

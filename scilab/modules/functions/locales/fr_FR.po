@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -134,6 +134,10 @@ msgid "%s: Incorrect function in file %s.\n"
 msgstr "%s : Fonction incorrecte dans le fichier %s.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un caractère attendu.\n"
 
@@ -171,6 +175,3 @@ msgstr "Veuillez utiliser %s à la place."
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Cette fonctionnalité va être définitivement supprimée dans Scilab %s"
-
-#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-#~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -288,9 +288,9 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Must be < %d.\n"
-msgstr "%s: El argumento de entrada #%d debe ser real.\n"
+#, c-format
+msgid "%s: The order should be at most %d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -486,8 +486,11 @@ msgstr ""
 msgid "%s: Uncontrollable system.\n"
 msgstr ""
 
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 152
+# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 195
 #, c-format
-msgid "%s: An error occurred in '%s'.\n"
+msgid "%s: An error occured in '%s'.\n"
 msgstr ""
 
 #, c-format
@@ -1038,8 +1041,7 @@ msgstr "Eje Real"
 msgid "Imaginary axis"
 msgstr "Eje Imaginario"
 
-#, fuzzy
-msgid "open loop zeros"
+msgid "open loop zeroes"
 msgstr "ceros de loop abiertos"
 
 msgid "open loop poles"
@@ -1091,14 +1093,6 @@ msgid "Hz"
 msgstr "Hz"
 
 msgid "dB"
-msgstr "dB"
-
-#, fuzzy
-msgid "rad/s"
-msgstr "rad/seg"
-
-#, fuzzy
-msgid " dB"
 msgstr "dB"
 
 #, c-format
@@ -1563,18 +1557,6 @@ msgid ""
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d : se esperaba un arreglo de "
 "reales flotantes\n"
-
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un vector "
-"fila de longitud > %d.\n"
-
-#
-# File: modules/cacsd/macros/sgrid.sci, line: 84
-#, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"

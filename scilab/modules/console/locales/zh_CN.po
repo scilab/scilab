@@ -9,13 +9,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2018-01-10 15:21+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
@@ -697,14 +697,6 @@ msgstr "保存历史"
 msgid "Save file"
 msgstr "保存文件"
 
-#
-# File: modules/console/src/console_fake_xml.c, line: 794
-# File: modules/console/src/console_fake_xml.c, line: 1061
-# File: modules/console/src/console_fake_xml.c, line: 1372
-# File: modules/console/src/console_fake_xml.c, line: 1694
-msgid "Demos"
-msgstr ""
-
 msgid "Environment"
 msgstr "环境设置"
 
@@ -785,12 +777,6 @@ msgstr "操作名"
 
 msgid "Key binding"
 msgstr "快捷键绑定"
-
-#
-# File: modules/console/src/console_fake_xml.c, line: 1379
-# File: modules/console/src/console_fake_xml.c, line: 1701
-msgid "The demo interface is dockable"
-msgstr ""
 
 #, c-format
 msgid ""

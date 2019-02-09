@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
@@ -144,31 +144,8 @@ msgid ""
 "%s: No variable read in file '%s'. Check if your file is not corrupted.\n"
 msgstr ""
 
-#
-# File: modules/matio/macros/matfile2sci.sci, line: 24
-#, c-format
-msgid "%s: %s module is not installed.\n"
+msgid "All inputs must be character strings."
 msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr "%s: #%d 的輸入參數型態錯誤: 應該是字串型態.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
-
-#, fuzzy, c-format
-msgid "%s: Could not read variables in %s"
-msgstr "%s: %s檔案無法回轉.\n"
-
-#, fuzzy, c-format
-msgid "%s: Argument #%d: String expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
 
 #, c-format
 msgid "Option %s not implemented: IGNORED."
@@ -177,36 +154,25 @@ msgstr ""
 msgid "Option -v7 added."
 msgstr ""
 
-#
-# File: modules/matio/macros/savematfile.sci, line: 144
 #, c-format
-msgid ""
-"%s: Name conflict: it is not possible to save variable with name %s "
-"(ignored)."
+msgid "Variable %s can not be saved in level 4 MAT-file: IGNORED."
 msgstr ""
 
-#
-# File: modules/matio/macros/savematfile.sci, line: 262
-msgid "Attempt to write an unsupported data type to a binary file."
+#, c-format
+msgid "Name conflict: it is not possible to save variable with name %s."
 msgstr ""
 
-#
-# File: modules/matio/macros/savematfile.sci, line: 301
-msgid "savematfile: No variable to save => No file written."
+msgid "Attempt to write an unsupported data type to an ASCII file."
 msgstr ""
 
 #, c-format
 msgid "%s: Could not open file '%s'.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "savematfile: could not write variable %s.\n"
-msgstr "%s: %s檔案無法回轉.\n"
-
-#
-# File: modules/matio/macros/savematfile.sci, line: 397
 #, c-format
-msgid ""
-"%s: Variable %s can not be saved in MAT-file version %s (type %d "
-"unsupported): IGNORED.\n"
+msgid "savematfile: could not save variable named %s.\n"
+msgstr ""
+
+#, c-format
+msgid "Variable %s can not be saved in ASCII file: IGNORED."
 msgstr ""

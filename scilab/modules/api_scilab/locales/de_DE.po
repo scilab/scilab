@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-11-12 16:21+0000\n"
-"Last-Translator: Stephan Woidowski <swoidowski@t-online.de>\n"
+"PO-Revision-Date: 2015-10-08 22:05+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Invalid argument address"
@@ -30,11 +30,11 @@ msgstr "Boolesche Matrix"
 
 #, c-format
 msgid "%s: Unable to get argument #%d"
-msgstr "%s: Argument #%d konnte nicht gefunden werden."
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory to allocated variable"
-msgstr "%s: Kein Speicher mehr für die zugewiesene Variable"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to create variable in Scilab memory"
@@ -42,17 +42,17 @@ msgstr "%s: Kann Variable nicht im Scilab-Speicher anlegen"
 
 #, c-format
 msgid "%s: Invalid variable name: %s."
-msgstr "%s: Ungültiger Variablenname: %s."
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to create %s named \"%s\""
-msgstr "%s: Es ist nicht möglich, %s mit dem Namen \"%s\" zu erstellen."
+msgstr ""
 
 msgid "matrix of boolean"
 msgstr "Matrix boolescher Werte"
 
 msgid "Redefining permanent variable.\n"
-msgstr "Neudefinition der permanenten Variablen.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to get variable \"%s\""
@@ -68,84 +68,84 @@ msgstr "%s: Argument »%s« kann nicht abgerufen werden"
 
 #, c-format
 msgid "%s: Wrong type for input argument \"%s\": A scalar expected.\n"
-msgstr "%s: Falscher Typ für Eingabeargument \"%s\": Ein Skalar erwartet.\n"
+msgstr ""
 
 msgid "boolean sparse matrix"
 msgstr "dünnbesetzte Boolesche Matrix"
 
 msgid "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
-msgstr "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Falsche Anzahl an Eingabeargumenten: %d erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Falsche Anzahl an Eingabeargumenten: %d bis %d erwartet.\n"
+msgstr ""
 
 msgid "matrix"
-msgstr "Matrix"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr "%s: Falsche Anzahl an Eingabeargumenten: mindestens %d erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
-msgstr "%s: Falsche Anzahl an Eingabeargumenten: Höchstens %d erwartet\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: Falsche Anzahl an Ausgabeargumenten: %d erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: Falsche Anzahl an Ausgabeargumenten: %d bis %d erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
-msgstr "%s: Falsche Anzahl an Ausgabeargumenten: Mindestens %d erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
-msgstr "%s: Falsche Anzahl an Ausgabeargumenten: Höchstens %d erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: matrix argument expected"
-msgstr "%s: Matrix-Argument erwartet"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to get dimension of variable \"%s\""
-msgstr "%s: Die Dimension der Variablen \"%s\" konnte nicht ermittelt werden."
+msgstr ""
 
 #, c-format
 msgid "%s: bad call to %s! (1rst argument).\n"
-msgstr "%s: Schlechter Aufruf an %s! (1rstes Argument).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to get address of variable \"%s\""
-msgstr "%s: Die Adresse der Variablen \"%s\" konnte nicht ermittelt werden."
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to get type of variable \"%s\""
-msgstr "%s: Der Typ der Variablen \"%s\" konnte nicht ermittelt werden"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to get argument dimension"
-msgstr "%s: Argumentationsdimension kann nicht ermittelt werden"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to get variable address"
-msgstr "%s: Adresse der Variablen kann nicht ermittelt werden"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to get argument type"
-msgstr "%s: Argumententyp kann nicht ermittelt werden"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to get argument data"
-msgstr "%s: Argumentendaten konnten nicht erhalten werden"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
@@ -166,7 +166,7 @@ msgstr "%s: Falscher Typ für Argument #%d: Reelle Matrix erwartet.\n"
 
 #, c-format
 msgid "%s: Unable to get argument precision"
-msgstr "%s: unfähig, die Argumentpräzision zu erhalten"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -178,57 +178,54 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unable to get dimension from variable \"%s\""
-msgstr "%s: Die Dimension der Variablen \"%s\" konnte nicht ermittelt werden."
+msgstr ""
 
 #, c-format
 msgid "Invalid type pointer in '%s'\n"
-msgstr "Ungültiger Typzeiger in '%s'.\n"
+msgstr ""
 
 msgid "double matrix"
-msgstr "Doppelmatrix"
+msgstr ""
 
 #, c-format
 msgid "%s: %ls"
-msgstr "%s: %ls"
+msgstr ""
 
 #, c-format
 msgid "%s: No more memory to allocate variable"
-msgstr "%s: Kein Speicher mehr für die Zuweisung von Variablen"
+msgstr ""
 
 msgid "API Error:\n"
-msgstr "API-Fehler:\n"
+msgstr ""
 
 #, c-format
 msgid "\tin %s\n"
 msgstr "\tin %s\n"
 
 msgid "handle matrix"
-msgstr "verarbeite Matrix"
+msgstr ""
 
 #, c-format
 msgid "%s: Bad call to get a non complex matrix"
 msgstr "%s: Falscher Aufruf um eine nicht komplexe Matrix zu erhalten"
 
 msgid "int matrix"
-msgstr "initialisiere Matrix"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to get precision of variable \"%s\""
 msgstr ""
-"%s: Die Genauigkeit der Variablen \"%s\" konnte nicht ermittelt werden."
 
 #, c-format
 msgid "%s: Unable to get item number of list"
-msgstr "%s: Die Teilenummer der Liste konnte nicht ermittelt werden."
+msgstr ""
 
 msgid "list"
-msgstr "Liste"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to get address of item #%d in argument #%d"
 msgstr ""
-"%s: Die Adresse des Elements #%d im Argument #%d konnte nicht ermittelt "
-"werden."
 
 #, c-format
 msgid "%s: Unable to create list item #%d in Scilab memory"
@@ -237,37 +234,35 @@ msgstr "%s: Listenelement #%d konnte nicht im Scilab Speicher erzeugt werden"
 #, c-format
 msgid "%s: Unable to get address of item #%d in variable \"%s\""
 msgstr ""
-"%s: Die Adresse des Elements #%d in Variabler \"%s\" konnte nicht ermittelt "
-"werden."
 
 msgid "API_ERROR_GET_POLY_IN_LIST"
-msgstr "API_ERROR_GET_POLY_IN_LIST"
+msgstr ""
 
 #, c-format
 msgid "%ls: Unrecognized optional arguments %ls.\n"
-msgstr "%ls: Nicht erkannte optionale Argumente %ls.\n"
+msgstr ""
 
 msgid "Optional argument list is empty.\n"
-msgstr "Die optionale Argumentenliste ist leer.\n"
+msgstr ""
 
 msgid "Optional arguments list: \n"
-msgstr "Optionale Argumentenliste: \n"
+msgstr ""
 
 #, c-format
 msgid "and %s.\n"
-msgstr "und %s.\n"
+msgstr ""
 
 msgid "pointer"
-msgstr "Zeiger"
+msgstr ""
 
 msgid "polynomial matrix"
-msgstr "Polynommatrix"
+msgstr ""
 
 msgid "sparse matrix"
 msgstr "Dünnbesetzte Matrix"
 
 msgid "string matrix"
-msgstr "Zeichenkettenmatrix"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"

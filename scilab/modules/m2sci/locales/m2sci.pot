@@ -15,10 +15,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:14+0100\n"
+"Revision-Date: 2018-03-26 10:40+0100\n"
 
 # File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 34
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 283
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 282
 msgid "Input file"
 msgstr ""
 
@@ -380,14 +380,14 @@ msgid " -- File %s contains more than one function -- "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/lst_funcall.sci, line: 102
+# File: modules/m2sci/macros/kernel/lst_funcall.sci, line: 97
 # File: modules/m2sci/macros/kernel/multi_fun_file.sci, line: 101
 #, c-format
 msgid " -- Each function converted separately: %s -- "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/lst_funcall.sci, line: 103
+# File: modules/m2sci/macros/kernel/lst_funcall.sci, line: 98
 # File: modules/m2sci/macros/kernel/multi_fun_file.sci, line: 102
 #, c-format
 msgid " -- Temporary files put in: %s -- "
@@ -462,7 +462,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/m2sci/macros/kernel/m2sci_syntax.sci, line: 221
+# File: modules/m2sci/macros/kernel/m2sci_syntax.sci, line: 217
 msgid "m2sciassume is obsolete, used m2scideclare instead."
 msgstr ""
 
@@ -594,238 +594,263 @@ msgid "Matlab to Scilab conversion tool"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 33
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 32
 msgid "File"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 34
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 33
 msgid "Close"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 36
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 35
 msgid "?"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 37
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 36
 msgid "Mfile2sci help page"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 38
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 37
 msgid "Translatepaths help page"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 39
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 38
 msgid "About M2SCI tools..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 52
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 51
 msgid "Convert"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 61
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 60
 msgid "Cancel"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 75
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 74
 msgid "Options"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 81
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 80
 msgid "Generate pretty printed code: "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 88
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 180
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 214
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 87
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 179
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 213
 msgid "Yes"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 100
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 192
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 226
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 99
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 191
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 225
 msgid "No"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 115
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 114
 msgid "Verbose mode: "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 122
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 121
 msgid "0"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 134
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 133
 msgid "1"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 146
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 145
 msgid "2"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 158
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 157
 msgid "3"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 173
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 172
 msgid "Only double values used: "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 207
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 206
 msgid "Recursive conversion: "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 246
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 245
 msgid "Output directory"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 250
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 289
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 249
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 288
 msgid "Directory name: "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 266
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 307
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 334
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 265
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 306
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 333
 msgid "Browse"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 317
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 316
 msgid "File name: "
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 326
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 325
 msgid "<enter a file name>"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 349
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 348
 msgid "Conversion mode"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 353
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 352
 msgid "Convert a single file"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/m2sci_gui.sci, line: 365
+# File: modules/m2sci/macros/m2sci_gui.sci, line: 364
 msgid "Convert a whole directory"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 71
+# File: modules/m2sci/macros/matfile2sci.sci, line: 24
+#, c-format
+msgid "%s: %s module is not installed.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/matfile2sci.sci, line: 29
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/matfile2sci.sci, line: 39
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/matfile2sci.sci, line: 43
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/matfile2sci.sci, line: 61
+# File: modules/m2sci/macros/matfile2sci.sci, line: 65
+#, c-format
+msgid "%s: Could not read variables in %s"
+msgstr ""
+
+#
+# File: modules/m2sci/macros/mfile2sci.sci, line: 70
 msgid "OFF"
 msgstr ""
 
 #
+# File: modules/m2sci/macros/mfile2sci.sci, line: 71
 # File: modules/m2sci/macros/mfile2sci.sci, line: 72
-# File: modules/m2sci/macros/mfile2sci.sci, line: 73
 msgid "NO"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 74
-# File: modules/m2sci/macros/mfile2sci.sci, line: 76
+# File: modules/m2sci/macros/mfile2sci.sci, line: 73
+# File: modules/m2sci/macros/mfile2sci.sci, line: 75
 msgid "YES"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 75
+# File: modules/m2sci/macros/mfile2sci.sci, line: 74
 msgid "ON"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 132
+# File: modules/m2sci/macros/mfile2sci.sci, line: 126
 msgid "****** Beginning of mfile2sci() session ******"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 133
+# File: modules/m2sci/macros/mfile2sci.sci, line: 127
 msgid "File to convert:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 134
+# File: modules/m2sci/macros/mfile2sci.sci, line: 128
 msgid "Result file path:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 135
+# File: modules/m2sci/macros/mfile2sci.sci, line: 129
 msgid "Recursive mode:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 136
+# File: modules/m2sci/macros/mfile2sci.sci, line: 130
 msgid "Only double values used in M-file:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 137
+# File: modules/m2sci/macros/mfile2sci.sci, line: 131
 msgid "Verbose mode:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 138
+# File: modules/m2sci/macros/mfile2sci.sci, line: 132
 msgid "Generate formatted code:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 142
+# File: modules/m2sci/macros/mfile2sci.sci, line: 136
 msgid "M-file reading..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 144
+# File: modules/m2sci/macros/mfile2sci.sci, line: 138
 msgid "M-file reading: Done"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 150
+# File: modules/m2sci/macros/mfile2sci.sci, line: 144
 #, c-format
 msgid "File %s is an empty file.\n"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 156
+# File: modules/m2sci/macros/mfile2sci.sci, line: 150
 msgid "Syntax modification..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 165
+# File: modules/m2sci/macros/mfile2sci.sci, line: 158
 msgid "Syntax modification: Done"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 212
-#, c-format
-msgid "%s: %s does not exist or is not the macro name.\n"
-msgstr ""
-
-#
-# File: modules/m2sci/macros/mfile2sci.sci, line: 218
+# File: modules/m2sci/macros/mfile2sci.sci, line: 213
 #, c-format
 msgid ""
 "Warning: file %s defines function %s instead of %s\n"
@@ -833,56 +858,56 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 244
+# File: modules/m2sci/macros/mfile2sci.sci, line: 226
 msgid "Macro to tree conversion..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 270
-# File: modules/m2sci/macros/mfile2sci.sci, line: 273
-# File: modules/m2sci/macros/mfile2sci.sci, line: 276
-# File: modules/m2sci/macros/mfile2sci.sci, line: 280
-# File: modules/m2sci/macros/mfile2sci.sci, line: 321
+# File: modules/m2sci/macros/mfile2sci.sci, line: 252
+# File: modules/m2sci/macros/mfile2sci.sci, line: 254
+# File: modules/m2sci/macros/mfile2sci.sci, line: 257
+# File: modules/m2sci/macros/mfile2sci.sci, line: 260
+# File: modules/m2sci/macros/mfile2sci.sci, line: 301
 msgid "resumelogfile.dat"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 278
+# File: modules/m2sci/macros/mfile2sci.sci, line: 259
 msgid "resume"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 307
+# File: modules/m2sci/macros/mfile2sci.sci, line: 287
 #, c-format
 msgid "****** %s: Functions of mfile2sci() session ******"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 309
+# File: modules/m2sci/macros/mfile2sci.sci, line: 289
 #, c-format
 msgid ""
 "%d Matlab Function(s) not yet converted, original calling sequence used:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 312
+# File: modules/m2sci/macros/mfile2sci.sci, line: 292
 #, c-format
 msgid "%d Matlab Toolbox(es) Functions, original calling sequence used :"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 315
+# File: modules/m2sci/macros/mfile2sci.sci, line: 295
 #, c-format
 msgid "%d Unknown Function(s), original calling sequence used :"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 324
+# File: modules/m2sci/macros/mfile2sci.sci, line: 304
 msgid "Macro to tree conversion: Done"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 359
+# File: modules/m2sci/macros/mfile2sci.sci, line: 339
 msgid ""
 "Translation may be improved: see the //! comments and for all mtlb_<funname> "
 "function call\n"
@@ -891,17 +916,17 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 362
+# File: modules/m2sci/macros/mfile2sci.sci, line: 342
 msgid "Translation may be wrong (see the //!! comments)."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 368
+# File: modules/m2sci/macros/mfile2sci.sci, line: 348
 msgid "File contains no instruction, no translation made..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 372
+# File: modules/m2sci/macros/mfile2sci.sci, line: 352
 msgid "****** End of mfile2sci() session ******"
 msgstr ""
 
@@ -981,14 +1006,12 @@ msgstr ""
 # File: modules/m2sci/macros/sci_files/sci_find.sci, line: 61
 # File: modules/m2sci/macros/sci_files/sci_int16.sci, line: 45
 # File: modules/m2sci/macros/sci_files/sci_int32.sci, line: 45
-# File: modules/m2sci/macros/sci_files/sci_int64.sci, line: 45
 # File: modules/m2sci/macros/sci_files/sci_int8.sci, line: 45
 # File: modules/m2sci/macros/sci_files/sci_log2.sci, line: 33
 # File: modules/m2sci/macros/sci_files/sci_pow2.sci, line: 38
 # File: modules/m2sci/macros/sci_files/sci_pow2.sci, line: 45
 # File: modules/m2sci/macros/sci_files/sci_uint16.sci, line: 45
 # File: modules/m2sci/macros/sci_files/sci_uint32.sci, line: 45
-# File: modules/m2sci/macros/sci_files/sci_uint64.sci, line: 45
 # File: modules/m2sci/macros/sci_files/sci_uint8.sci, line: 45
 msgid "is Real."
 msgstr ""
@@ -1193,16 +1216,12 @@ msgstr ""
 # File: modules/m2sci/macros/sci_files/sci_int16.sci, line: 44
 # File: modules/m2sci/macros/sci_files/sci_int32.sci, line: 36
 # File: modules/m2sci/macros/sci_files/sci_int32.sci, line: 44
-# File: modules/m2sci/macros/sci_files/sci_int64.sci, line: 36
-# File: modules/m2sci/macros/sci_files/sci_int64.sci, line: 44
 # File: modules/m2sci/macros/sci_files/sci_int8.sci, line: 36
 # File: modules/m2sci/macros/sci_files/sci_int8.sci, line: 44
 # File: modules/m2sci/macros/sci_files/sci_uint16.sci, line: 36
 # File: modules/m2sci/macros/sci_files/sci_uint16.sci, line: 44
 # File: modules/m2sci/macros/sci_files/sci_uint32.sci, line: 36
 # File: modules/m2sci/macros/sci_files/sci_uint32.sci, line: 44
-# File: modules/m2sci/macros/sci_files/sci_uint64.sci, line: 36
-# File: modules/m2sci/macros/sci_files/sci_uint64.sci, line: 44
 # File: modules/m2sci/macros/sci_files/sci_uint8.sci, line: 36
 # File: modules/m2sci/macros/sci_files/sci_uint8.sci, line: 44
 #, c-format
@@ -1335,10 +1354,10 @@ msgid "%s: Output value set to 'on'."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/translatepaths.sci, line: 52
-# File: modules/m2sci/macros/translatepaths.sci, line: 56
-# File: modules/m2sci/macros/translatepaths.sci, line: 59
-# File: modules/m2sci/macros/translatepaths.sci, line: 62
-# File: modules/m2sci/macros/translatepaths.sci, line: 180
+# File: modules/m2sci/macros/translatepaths.sci, line: 58
+# File: modules/m2sci/macros/translatepaths.sci, line: 61
+# File: modules/m2sci/macros/translatepaths.sci, line: 64
+# File: modules/m2sci/macros/translatepaths.sci, line: 68
+# File: modules/m2sci/macros/translatepaths.sci, line: 193
 msgid "unitfile.dat"
 msgstr ""

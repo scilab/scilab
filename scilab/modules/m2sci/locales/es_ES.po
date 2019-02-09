@@ -9,13 +9,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2017-12-14 15:53+0000\n"
-"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
+"Last-Translator: Adolfo Jayme <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 msgid "Input file"
 msgstr "Archivo de entrada"
@@ -482,6 +482,26 @@ msgstr "Convertir un solo archivo"
 msgid "Convert a whole directory"
 msgstr "Convertir todo el directorio"
 
+#, c-format
+msgid "%s: %s module is not installed.\n"
+msgstr "%s: El módulo %s no está instalado.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not read variables in %s"
+msgstr ""
+
 msgid "OFF"
 msgstr "○"
 
@@ -512,7 +532,8 @@ msgstr "Solo se usan valores de doble precisión en archivos M:"
 msgid "Verbose mode:"
 msgstr "Modo de texto completo (verbose):"
 
-msgid "Generate formatted code:"
+#, fuzzy
+msgid "Generate formated code:"
 msgstr "Generar código con formato:"
 
 msgid "M-file reading..."
@@ -530,12 +551,6 @@ msgstr "Modificación de sintaxis..."
 
 msgid "Syntax modification: Done"
 msgstr "Modificación de sintaxis: Hecho"
-
-#
-# File: modules/m2sci/macros/mfile2sci.sci, line: 212
-#, c-format
-msgid "%s: %s does not exist or is not the macro name.\n"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -875,6 +890,3 @@ msgstr "%s: Valor de salida fue asumido como 'on'."
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
-
-#~ msgid "%s: %s module is not installed.\n"
-#~ msgstr "%s: El módulo %s no está instalado.\n"

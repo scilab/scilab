@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-07-25 12:25+0000\n"
+"PO-Revision-Date: 2017-05-02 10:19+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -162,6 +162,10 @@ msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
 #, c-format
+msgid "%s: exception caught in '%s' subroutine.\n"
+msgstr "%s: 例外がサブルーチン '%s' でキャッチされました.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real Scalar expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 実数スカラーを指定してください.\n"
@@ -198,10 +202,6 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 厳密に正のベクトルを指定してくださ"
 "い.\n"
-
-#, c-format
-msgid "%s: exception caught in '%s' subroutine.\n"
-msgstr "%s: 例外がサブルーチン '%s' でキャッチされました.\n"
 
 #, c-format
 msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
@@ -539,9 +539,15 @@ msgstr "%s: 最適化の終了 (線形探索が失敗しました).\n"
 msgid "Undefined function '%ls'.\n"
 msgstr "未定義の関数 '%ls'.\n"
 
+#
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 130
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 159
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 188
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 217
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 246
 #, c-format
-msgid "User function '%s' have not been set.\n"
-msgstr "ユーザ関数 '%s' が未指定です.\n"
+msgid "User function '%s' have not been setted.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real scalar expected.\n"
@@ -555,7 +561,6 @@ msgstr "%s: 出力引数 #%d の型が間違っています: 実数行列を指�
 #, c-format
 msgid "%s: Wrong size for output argument #%d: %d element(s) expected.\n"
 msgstr ""
-"%s: 出力引数#%d の大きさが間違っています: %d 個の要素を指定してください.\n"
 
 #, c-format
 msgid ""

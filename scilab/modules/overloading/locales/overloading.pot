@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:14+0100\n"
+"Revision-Date: 2018-03-26 10:40+0100\n"
 
 # File: modules/overloading/macros/%0_i_st.sci, line: 22
 # File: modules/overloading/macros/%b_e.sci, line: 26
@@ -70,8 +70,6 @@ msgstr ""
 #
 # File: modules/overloading/macros/%c_b_c.sci, line: 23
 # File: modules/overloading/macros/%c_b_s.sci, line: 19
-# File: modules/overloading/macros/%p_p_s.sci, line: 51
-# File: modules/overloading/macros/%p_p_s.sci, line: 67
 # File: modules/overloading/macros/%r_l_r.sci, line: 19
 # File: modules/overloading/macros/%r_r_r.sci, line: 20
 # File: modules/overloading/macros/%s_i_c.sci, line: 18
@@ -107,9 +105,8 @@ msgstr ""
 
 #
 # File: modules/overloading/macros/%cblock_c_cblock.sci, line: 21
-# File: modules/overloading/macros/%cblock_c_generic.sci, line: 19
+# File: modules/overloading/macros/%cblock_c_s.sci, line: 18
 # File: modules/overloading/macros/%cblock_f_cblock.sci, line: 18
-# File: modules/overloading/macros/%generic_c_cblock.sci, line: 19
 # File: modules/overloading/macros/%p_j_s.sci, line: 59
 # File: modules/overloading/macros/%r_m_r.sci, line: 61
 # File: modules/overloading/macros/%s_m_r.sci, line: 64
@@ -121,11 +118,6 @@ msgstr ""
 # File: modules/overloading/macros/%cblock_e.sci, line: 34
 #, c-format
 msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%cblock_p.sci, line: 16
-msgid "  (empty table)\n"
 msgstr ""
 
 #
@@ -263,14 +255,14 @@ msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%ip_a_s.sci, line: 17
+# File: modules/overloading/macros/%ip_a_s.sci, line: 16
 # File: modules/overloading/macros/%ip_m_s.sci, line: 16
 # File: modules/overloading/macros/%r_diag.sci, line: 25
 # File: modules/overloading/macros/%r_tril.sci, line: 23
 # File: modules/overloading/macros/%r_triu.sci, line: 25
-# File: modules/overloading/macros/%s_a_ip.sci, line: 17
+# File: modules/overloading/macros/%s_a_ip.sci, line: 16
 # File: modules/overloading/macros/%s_m_ip.sci, line: 16
-# File: modules/overloading/macros/%s_s_ip.sci, line: 17
+# File: modules/overloading/macros/%s_s_ip.sci, line: 16
 #, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
@@ -349,6 +341,14 @@ msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
 msgstr ""
 
 #
+# File: modules/overloading/macros/%msp_i_s.sci, line: 34
+# File: modules/overloading/macros/%sp_i_s.sci, line: 34
+#, c-format
+msgid ""
+"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
+msgstr ""
+
+#
 # File: modules/overloading/macros/%p_a_r.sci, line: 36
 # File: modules/overloading/macros/%r_a_p.sci, line: 37
 # File: modules/overloading/macros/%r_a_r.sci, line: 38
@@ -360,7 +360,6 @@ msgstr ""
 
 #
 # File: modules/overloading/macros/%p_j_s.sci, line: 19
-# File: modules/overloading/macros/%p_p_s.sci, line: 20
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
 msgstr ""
@@ -373,21 +372,6 @@ msgstr ""
 # File: modules/overloading/macros/%sp_z_sp.sci, line: 19
 #, c-format
 msgid "%s: Division by 0...\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%p_p_s.sci, line: 29
-# File: modules/overloading/macros/%p_p_s.sci, line: 61
-#, c-format
-msgid "%s: Division by zero..."
-msgstr ""
-
-#
-# File: modules/overloading/macros/%p_p_s.sci, line: 46
-# File: modules/overloading/macros/%r_p_s.sci, line: 39
-# File: modules/overloading/macros/%sp_inv.sci, line: 18
-#, c-format
-msgid "%s: Argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #
@@ -488,15 +472,12 @@ msgstr ""
 
 #
 # File: modules/overloading/macros/%r_j_s.sci, line: 17
-# File: modules/overloading/macros/%r_p_s.sci, line: 18
 msgid "Invalid exponent: expected real exponents."
 msgstr ""
 
 #
 # File: modules/overloading/macros/%r_j_s.sci, line: 25
 # File: modules/overloading/macros/%r_j_s.sci, line: 53
-# File: modules/overloading/macros/%r_p_s.sci, line: 27
-# File: modules/overloading/macros/%r_p_s.sci, line: 51
 msgid "Division by zero"
 msgstr ""
 
@@ -517,16 +498,6 @@ msgstr ""
 # File: modules/overloading/macros/%r_m_s.sci, line: 59
 #, c-format
 msgid "%s: Inconsistent multiplication.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%r_p_s.sci, line: 43
-msgid "Not implemented"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%r_p_s.sci, line: 68
-msgid "Invalid exponent"
 msgstr ""
 
 #
@@ -582,6 +553,14 @@ msgid "%s: Not yet implemented.\n"
 msgstr ""
 
 #
+# File: modules/overloading/macros/%s_c_cblock.sci, line: 18
+# File: modules/overloading/macros/%sp_l_s.sci, line: 22
+# File: modules/overloading/macros/%sp_l_sp.sci, line: 19
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
+msgstr ""
+
+#
 # File: modules/overloading/macros/%s_f_cblock.sci, line: 15
 #, c-format
 msgid "%s: Wrong argument #%d.\n"
@@ -609,53 +588,15 @@ msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%s_pow.sci, line: 29
-# File: modules/overloading/macros/%s_pow.sci, line: 32
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%s_pow.sci, line: 66
-#, c-format
-msgid "%s: Unable to diagonalize.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%s_pow.sci, line: 74
-msgid "Not implemented in scilab...\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%sp_i_s.sci, line: 34
-#, c-format
-msgid ""
-"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
-msgstr ""
-
-#
 # File: modules/overloading/macros/%sp_i_sp.sci, line: 36
 #, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/%sp_l_s.sci, line: 22
-# File: modules/overloading/macros/%sp_l_sp.sci, line: 19
+# File: modules/overloading/macros/%sp_inv.sci, line: 18
 #, c-format
-msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%sp_p_s.sci, line: 17
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#
-# File: modules/overloading/macros/%sp_p_s.sci, line: 20
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgid "%s: Argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #
@@ -732,8 +673,8 @@ msgid "%s: Wrong number of output argument: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/overloading/macros/createstruct.sci, line: 167
-# File: modules/overloading/macros/createstruct.sci, line: 179
+# File: modules/overloading/macros/createstruct.sci, line: 165
+# File: modules/overloading/macros/createstruct.sci, line: 177
 #, c-format
 msgid "%s: Not implemented.\n"
 msgstr ""

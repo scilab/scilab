@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -326,9 +326,9 @@ msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось целое положительное "
 "число.\n"
 
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Must be < %d.\n"
-msgstr "%s: Аргумент №%d: ожидался %s.\n"
+#, c-format
+msgid "%s: The order should be at most %d.\n"
+msgstr "%s: Порядок должен быть не более %d.\n"
 
 #, c-format
 msgid ""
@@ -550,8 +550,8 @@ msgstr "%s: Неверный размер аргумента №%d.\n"
 msgid "%s: Uncontrollable system.\n"
 msgstr "%s: Неуправляемая система.\n"
 
-#, c-format
-msgid "%s: An error occurred in '%s'.\n"
+#, fuzzy, c-format
+msgid "%s: An error occured in '%s'.\n"
 msgstr "%s: В '%s' произошла ошибка.\n"
 
 #, c-format
@@ -1092,8 +1092,7 @@ msgstr "Вещественная ось"
 msgid "Imaginary axis"
 msgstr "Мнимая ось"
 
-#, fuzzy
-msgid "open loop zeros"
+msgid "open loop zeroes"
 msgstr "нули разомкнутой системы"
 
 msgid "open loop poles"
@@ -1147,14 +1146,6 @@ msgid "Hz"
 msgstr "Гц"
 
 msgid "dB"
-msgstr "дБ"
-
-#, fuzzy
-msgid "rad/s"
-msgstr "рад/с"
-
-#, fuzzy
-msgid " dB"
 msgstr "дБ"
 
 #, c-format
@@ -1626,15 +1617,6 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался массив действительных "
 "чисел с плавающей точкой\n"
 
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
-msgstr ""
-"%s: Аргумент №%d: ожидалось десятичное или комплексное число (числа).\n"
-
-#, fuzzy, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
-msgstr "%s: Аргумент №%d: ожидался %s.\n"
-
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось не более %d.\n"
@@ -1905,6 +1887,3 @@ msgid ""
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалось представление нулей, "
 "полюсов и коэффициентов усиления.\n"
-
-#~ msgid "%s: The order should be at most %d.\n"
-#~ msgstr "%s: Порядок должен быть не более %d.\n"

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 18573)\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
@@ -157,32 +157,8 @@ msgstr ""
 "%s: ファイル '%s'から変数を読込めません. ファイルが壊れていないか確認してくだ"
 "さい.\n"
 
-#
-# File: modules/matio/macros/matfile2sci.sci, line: 24
-#, c-format
-msgid "%s: %s module is not installed.\n"
-msgstr ""
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr ""
-"%s: 入力必要 #%d の型が間違っています: 整数の行列をを指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
-
-#, fuzzy, c-format
-msgid "%s: Could not read variables in %s"
-msgstr "%s: ファイル ''%s''の巻き戻しができません.\n"
-
-#, fuzzy, c-format
-msgid "%s: Argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+msgid "All inputs must be character strings."
+msgstr "全ての入力は文字列とする必要があります."
 
 #, c-format
 msgid "Option %s not implemented: IGNORED."
@@ -191,37 +167,25 @@ msgstr "オプション %s は実装されていません: 無視されます."
 msgid "Option -v7 added."
 msgstr "オプション -v7 が追加されました."
 
-#, fuzzy, c-format
-msgid ""
-"%s: Name conflict: it is not possible to save variable with name %s "
-"(ignored)."
+#, c-format
+msgid "Variable %s can not be saved in level 4 MAT-file: IGNORED."
+msgstr "変数 %s をレベル4 MATファイブに保存できません: 無視されます."
+
+#, c-format
+msgid "Name conflict: it is not possible to save variable with name %s."
 msgstr "名前が衝突しています: 名前%sの同じ変数に保存することはできません."
 
-#, fuzzy
-msgid "Attempt to write an unsupported data type to a binary file."
+msgid "Attempt to write an unsupported data type to an ASCII file."
 msgstr "ASCIIファイルに未サポートのデータ型を書きこもうとしました."
-
-#
-# File: modules/matio/macros/savematfile.sci, line: 301
-msgid "savematfile: No variable to save => No file written."
-msgstr ""
 
 #, c-format
 msgid "%s: Could not open file '%s'.\n"
 msgstr "%s: ファイル '%s'をオープンできません.\n"
 
-#, fuzzy, c-format
-msgid "savematfile: could not write variable %s.\n"
+#, c-format
+msgid "savematfile: could not save variable named %s.\n"
 msgstr "svematfile: %sという名前の変数を保存できません.\n"
 
-#, fuzzy, c-format
-msgid ""
-"%s: Variable %s can not be saved in MAT-file version %s (type %d "
-"unsupported): IGNORED.\n"
-msgstr "変数 %s をレベル4 MATファイブに保存できません: 無視されます."
-
-#~ msgid "All inputs must be character strings."
-#~ msgstr "全ての入力は文字列とする必要があります."
-
-#~ msgid "Variable %s can not be saved in ASCII file: IGNORED."
-#~ msgstr "変数 %s をASCIIファイルに保存できません: 無視されます."
+#, c-format
+msgid "Variable %s can not be saved in ASCII file: IGNORED."
+msgstr "変数 %s をASCIIファイルに保存できません: 無視されます."
