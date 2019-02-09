@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-07 22:12+0000\n"
+"PO-Revision-Date: 2019-02-12 22:12+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -431,7 +431,7 @@ msgstr ""
 msgid "     norm of the residual    = "
 msgstr "     норма нев’язки    = "
 
-#, fuzzy, c-format
+#, c-format
 msgid "     same but with refinment = "
 msgstr "     те саме, але з уточненням = "
 

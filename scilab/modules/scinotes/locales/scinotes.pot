@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2019-01-23 12:14+0100\n"
 
 # File: modules/scinotes/sci_gateway/cpp/sci_scinotes.cpp, line: 71
 # File: modules/scinotes/sci_gateway/cpp/sci_scinotes.cpp, line: 79
@@ -1245,14 +1245,14 @@ msgstr ""
 #
 # File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 313
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1281
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1844
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1845
 msgid "Horizontal rule"
 msgstr ""
 
 #
 # File: modules/scinotes/src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 314
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1287
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1850
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1851
 msgid "Vertical rule"
 msgstr ""
 
@@ -1592,7 +1592,7 @@ msgstr ""
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 68
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 172
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 992
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1555
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1556
 msgid "Scinotes General settings"
 msgstr ""
 
@@ -1720,339 +1720,377 @@ msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 919
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1482
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1483
 msgid "Editor"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 922
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1485
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1486
 msgid "Use Scinotes"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 942
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1505
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1506
 msgid "External editor: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 961
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1524
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1525
 msgid "(Don't forget to quote path containing white spaces)"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 971
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1534
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1535
 msgid "Scilab command: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 997
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1560
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1561
 msgid "Restore previous session on start-up"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1004
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1567
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1568
 msgid "Add carriage return at the end of the file."
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1008
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1571
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1572
 msgid "Number of recently opened files to display: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1023
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1586
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1587
 msgid "Default file encoding: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1035
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1598
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1599
 msgid "Default End-Of-Line: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1072
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1635
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1636
 msgid "Completion"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1073
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1636
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1637
 msgid "Auto-complete brackets when cursor is at the end of a line"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1083
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1646
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1647
 msgid "General display options"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1085
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1648
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1649
 msgid "Highlight current line: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1098
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1661
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1662
 msgid "Show line numbers: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1104
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1667
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1668
 msgid "Local numbering"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1110
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1673
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1674
 msgid "Normal"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1116
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1679
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1680
 msgid "Wrap lines"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1122
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1685
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1686
 msgid "Background color: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1129
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1692
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1693
 msgid "Cursor color: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1140
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1703
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1704
 msgid "Keywords"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1142
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1705
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1706
 msgid "Enable keywords colorization"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1149
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1712
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1713
 msgid "Set syntax Colors"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1152
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1715
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1716
 msgid "Highlight corresponding brackets"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1158
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1202
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1721
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1765
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1722
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1766
 msgid "Color: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1165
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1209
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1728
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1772
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1729
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1773
 msgid "Highlight on mouse over"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1171
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1215
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1734
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1778
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1735
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1779
 msgid "Style: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1177
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1221
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1740
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1784
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1741
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1785
 msgid "Filled"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1182
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1226
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1745
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1789
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1746
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1790
 msgid "Framed"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1187
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1750
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1751
 msgid "Underlined"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1195
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1758
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1759
 msgid "Highlight corresponding keywords (e.g. if ... end)"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1238
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1801
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1802
 msgid "Tabulation and Indentation"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1240
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1803
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1804
 msgid "Tabulation size: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1256
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1819
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1820
 msgid "Use space"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1273
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1836
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1837
 msgid "Representation: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1275
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1838
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1839
 msgid "Chevrons"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1293
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1856
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1857
 msgid "Enable auto indentation"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1299
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1862
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1863
 msgid "Indent size: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1321
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1884
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1885
 msgid "Enable autosave in Scinotes"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1329
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1892
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1893
 msgid "Save options"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1331
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1894
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1895
 msgid "Save every "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1346
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1909
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1910
 msgid " minutes "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1354
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1917
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1918
 msgid "Close options"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1355
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1918
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1919
 msgid "Delete automatically saved files"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1365
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1928
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1929
 msgid "Filename"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1367
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1930
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1931
 msgid "Append filename with: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1385
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1948
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1949
 #, c-format
 msgid "(%date can be used to be replaced by the current date)"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1393
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1956
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1957
 msgid "Replace extension with: "
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1416
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1979
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1980
 msgid "Location"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1418
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1981
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1982
 msgid "Source file directory"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1424
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1987
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1988
 msgid "Single directory"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1433
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1996
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1997
 msgid "Choose an autosave directory"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1451
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 2014
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 2015
 msgid "Default header"
 msgstr ""
 
 #
 # File: modules/scinotes/src/scinotes_fake_xml.c, line: 1453
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 2016
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 2017
 msgid "Add a default header to new file"
 msgstr ""
 
+#
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1474
+# File: modules/scinotes/src/scinotes_fake_xml.c, line: 2038
+msgid "Available variables: {{$current-date}}, {{$current-year}}"
+msgstr ""
+
+# File: modules/scinotes/macros/edit.sci, line: 21
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#
+# File: modules/scinotes/macros/edit.sci, line: 25
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#
+# File: modules/scinotes/macros/edit.sci, line: 29
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+
+#
+# File: modules/scinotes/macros/edit.sci, line: 51
+#, c-format
+msgid ""
+"edit: %s is an alias of %s => editing %s()\n"
+"      Please reset %s=%s if %s() is recompiled.\n"
+msgstr ""
+
+#
+# File: modules/scinotes/macros/edit.sci, line: 92
+#, c-format
+msgid "%s: %s() is an uneditable hard coded function.\n"
+msgstr ""
+
+#
 # File: modules/scinotes/macros/edit_error.sci, line: 22
 msgid "The last error did not occur inside a Scilab macro."
 msgstr ""

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-05-01 15:01+0000\n"
+"PO-Revision-Date: 2019-02-12 11:44+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -150,19 +150,9 @@ msgstr ""
 "%s: 入力引数 #%d の型が間違っています: リストの最初の引数は Scilab関数である"
 "必要があります.\n"
 
-#
-# File: modules/differential_equations/sci_gateway/cpp/sci_bvode.cpp, line: 578
-# File: modules/differential_equations/sci_gateway/cpp/sci_feval.cpp, line: 196
-# File: modules/differential_equations/sci_gateway/cpp/sci_impl.cpp, line: 693
-# File: modules/differential_equations/sci_gateway/cpp/sci_int2d.cpp, line: 261
-# File: modules/differential_equations/sci_gateway/cpp/sci_int3d.cpp, line: 339
-# File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1140
-# File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1257
-# File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1452
-# File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1506
 #, c-format
-msgid "%s: An error occured in '%s' subroutine.\n"
-msgstr ""
+msgid "%s: An error occurred in '%s' subroutine.\n"
+msgstr "%s:  サブルーチン'%s' でエラーが発生しました.\n"
 
 #, c-format
 msgid "%s: The collocation matrix is singular.\n"
@@ -283,16 +273,9 @@ msgstr "%s: 入力引数 %d の大きさが間違っています: %d を指定�
 msgid "%s: %s return with state %d.\n"
 msgstr "%s: %s は %d 個の状態量を返します.\n"
 
-#
-# File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 1112
-# File: modules/differential_equations/sci_gateway/cpp/sci_dasrt.cpp, line: 790
-# File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 724
-# File: modules/differential_equations/sci_gateway/cpp/sci_intg.cpp, line: 257
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1152
-# File: modules/differential_equations/sci_gateway/cpp/sci_ode.cpp, line: 1376
 #, c-format
-msgid "%ls: An error occured in '%ls' subroutine.\n"
-msgstr ""
+msgid "%ls: An error occurred in '%ls' subroutine.\n"
+msgstr "%ls:  サブルーチン'%ls' でエラーが発生しました.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
@@ -525,14 +508,14 @@ msgstr "%s: 収束の問題があります...\n"
 
 #, c-format
 msgid "%s: Feature %s is obsolete.\n"
-msgstr ""
+msgstr "%s:  %s 機能は廃止されています.\n"
 
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #, c-format
 msgid "%s: Please use %s instead.\n"
-msgstr ""
+msgstr "%s: 代わりに %s を使用してください.\n"
 
 #, c-format
 msgid ""
@@ -674,9 +657,8 @@ msgstr ""
 "このコールで過剰な処理が発生しました(ヤコビアンの型が間違っている可能性があり"
 "ます).\n"
 
-#, fuzzy
 msgid "Excessive accuracy requested (tolerances too small).\n"
-msgstr "過剰な精度が要求されました(許容誤差が小さすぎます).\n"
+msgstr "過剰な精度が要求されました (許容誤差が小さすぎます).\n"
 
 msgid "Illegal input detected (see printed message).\n"
 msgstr "不正な入力が検出されました(出力されたメッセージを参照).\n"
@@ -809,30 +791,9 @@ msgstr "%s に問題が発生しました.\n"
 msgid "Undefined function '%ls'.\n"
 msgstr "未定義の関数 '%ls'.\n"
 
-#
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 233
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 261
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 289
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 322
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 355
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 383
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 411
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 439
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 467
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 495
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 523
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 551
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 579
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 608
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 636
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 664
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 692
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 735
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 763
-# File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 791
 #, c-format
-msgid "User function '%s' have not been setted.\n"
-msgstr ""
+msgid "User function '%s' have not been set.\n"
+msgstr "ユーザ関数 '%s' が未指定です.\n"
 
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
@@ -1018,67 +979,81 @@ msgstr "%s: 入力引数 の大きさが間違っています: 同じ大きさ�
 
 #, c-format
 msgid "%s: Argument #%d: Real number(s) expected.\n"
-msgstr ""
+msgstr "%s: 引数 #%d: 実数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
+"%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
 msgstr ""
+"%s: 引数 #%d の型が間違っています: 関数またはリストを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Function expected in first element of "
 "list.\n"
 msgstr ""
+"%s: 引数 #%d の型が間違っています: リストの最初の要素に関数を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong number of elements in input argument #%d: At least %d elements "
 "expected, but current number is %d.\n"
 msgstr ""
+"%s:入力引数#%dの数が間違っています:  %d 個以上の要素が必要ですが, 現在 %d 個"
+"が指定されています.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
-msgstr ""
+msgstr "%s: 引数 %d の型が間違っています:　行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
+"%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: {%s} の範囲で設定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の配列を指定してください.\n"
 
 #, c-format
 msgid "%s: Q must be orthogonal.\n"
-msgstr ""
+msgstr "%s: Q に直交行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Unknown value %s for option %s.\n"
-msgstr ""
+msgstr "%s:  %s の値が未定義です (オプション %s).\n"
 
 #
 # File: macros/odeoptions.sci, line: 50

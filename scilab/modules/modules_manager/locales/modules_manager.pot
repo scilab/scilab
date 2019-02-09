@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2019-01-23 12:14+0100\n"
 
 # File: modules/modules_manager/macros/tbx_build_blocks.sci, line: 24
 # File: modules/modules_manager/macros/tbx_build_pal_loader.sci, line: 16
@@ -94,7 +94,7 @@ msgstr ""
 # File: modules/modules_manager/macros/tbx_build_help.sci, line: 53
 # File: modules/modules_manager/macros/tbx_build_help_loader.sci, line: 53
 # File: modules/modules_manager/macros/tbx_build_loader.sci, line: 55
-# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 49
+# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 50
 # File: modules/modules_manager/macros/tbx_build_macros.sci, line: 52
 # File: modules/modules_manager/macros/tbx_build_pal_loader.sci, line: 34
 # File: modules/modules_manager/macros/tbx_build_pal_loader.sci, line: 54
@@ -102,7 +102,7 @@ msgstr ""
 # File: modules/modules_manager/macros/tbx_builder_gateway.sci, line: 37
 # File: modules/modules_manager/macros/tbx_builder_gateway_lang.sci, line: 59
 # File: modules/modules_manager/macros/tbx_builder_gateway_lang.sci, line: 69
-# File: modules/modules_manager/macros/tbx_builder_help.sci, line: 35
+# File: modules/modules_manager/macros/tbx_builder_help.sci, line: 36
 # File: modules/modules_manager/macros/tbx_builder_help_lang.sci, line: 49
 # File: modules/modules_manager/macros/tbx_builder_help_lang.sci, line: 59
 # File: modules/modules_manager/macros/tbx_builder_macros.sci, line: 31
@@ -111,7 +111,7 @@ msgstr ""
 # File: modules/modules_manager/macros/tbx_builder_src_lang.sci, line: 59
 # File: modules/modules_manager/macros/tbx_generate_pofile.sci, line: 50
 # File: modules/modules_manager/macros/tbx_get_name_from_path.sci, line: 20
-# File: modules/modules_manager/macros/tbx_make.sci, line: 70
+# File: modules/modules_manager/macros/tbx_make.sci, line: 71
 #, c-format
 msgid "%s: The directory '%s' doesn't exist or is not read accessible.\n"
 msgstr ""
@@ -141,7 +141,7 @@ msgstr ""
 # File: modules/modules_manager/macros/tbx_build_help.sci, line: 24
 # File: modules/modules_manager/macros/tbx_build_help_loader.sci, line: 23
 # File: modules/modules_manager/macros/tbx_build_loader.sci, line: 31
-# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 25
+# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 26
 # File: modules/modules_manager/macros/tbx_build_macros.sci, line: 22
 # File: modules/modules_manager/macros/tbx_build_src_clean.sci, line: 23
 # File: modules/modules_manager/macros/tbx_builder_gateway_lang.sci, line: 33
@@ -155,11 +155,11 @@ msgstr ""
 #
 # File: modules/modules_manager/macros/tbx_build_cleaner.sci, line: 43
 # File: modules/modules_manager/macros/tbx_build_loader.sci, line: 44
-# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 38
-# File: modules/modules_manager/macros/tbx_builder_help.sci, line: 29
+# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 39
+# File: modules/modules_manager/macros/tbx_builder_help.sci, line: 30
 # File: modules/modules_manager/macros/tbx_builder_macros.sci, line: 25
 # File: modules/modules_manager/macros/tbx_generate_pofile.sci, line: 39
-# File: modules/modules_manager/macros/tbx_make.sci, line: 58
+# File: modules/modules_manager/macros/tbx_make.sci, line: 59
 #, c-format
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr ""
@@ -255,7 +255,25 @@ msgid "Generating unloader.sce...\n"
 msgstr ""
 
 #
-# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 76
+# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 70
+#, c-format
+msgid "%s: The module '%s' has no entry to be localized.\n"
+msgstr ""
+
+#
+# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 74
+#, c-format
+msgid ""
+"%s: \n"
+"   '%s' has been generated in the module.\n"
+"   Please\n"
+"   - clone it into la_LA.po (ex: pt_BR.po) in the same directory\n"
+"   - translate the copies\n"
+"   - rerun the build\n"
+msgstr ""
+
+#
+# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 90
 msgid "Generating localization\n"
 msgstr ""
 
@@ -282,7 +300,7 @@ msgstr ""
 
 #
 # File: modules/modules_manager/macros/tbx_builder_gateway.sci, line: 22
-# File: modules/modules_manager/macros/tbx_builder_help.sci, line: 25
+# File: modules/modules_manager/macros/tbx_builder_help.sci, line: 26
 # File: modules/modules_manager/macros/tbx_builder_macros.sci, line: 21
 # File: modules/modules_manager/macros/tbx_builder_src.sci, line: 23
 #, c-format
@@ -313,30 +331,30 @@ msgid "No builder script found in %s."
 msgstr ""
 
 #
-# File: modules/modules_manager/macros/tbx_builder_help.sci, line: 41
+# File: modules/modules_manager/macros/tbx_builder_help.sci, line: 42
 msgid "Building help...\n"
 msgstr ""
 
 #
-# File: modules/modules_manager/macros/tbx_builder_macros.sci, line: 39
+# File: modules/modules_manager/macros/tbx_builder_macros.sci, line: 43
 msgid "Building macros...\n"
 msgstr ""
 
 #
 # File: modules/modules_manager/macros/tbx_builder_src.sci, line: 44
-#, c-format
-msgid ""
-"%s: This module requires a C or Fortran compiler and it has not been found.\n"
-msgstr ""
-
-#
-# File: modules/modules_manager/macros/tbx_builder_src.sci, line: 50
 msgid "Building sources...\n"
 msgstr ""
 
 #
-# File: modules/modules_manager/macros/tbx_builder_src.sci, line: 56
+# File: modules/modules_manager/macros/tbx_builder_src.sci, line: 50
 msgid "No builder file found, nothing to be done"
+msgstr ""
+
+#
+# File: modules/modules_manager/macros/tbx_builder_src.sci, line: 56
+#, c-format
+msgid ""
+"%s: This module requires a C or Fortran compiler and it has not been found.\n"
 msgstr ""
 
 #
@@ -345,7 +363,7 @@ msgid "No builder file found, nothing to be done."
 msgstr ""
 
 #
-# File: modules/modules_manager/macros/tbx_make.sci, line: 66
+# File: modules/modules_manager/macros/tbx_make.sci, line: 67
 #, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""

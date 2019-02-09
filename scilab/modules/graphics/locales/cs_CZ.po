@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-07 22:12+0000\n"
+"PO-Revision-Date: 2019-02-12 22:12+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -114,6 +114,10 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: Špatná velikost vstupních argumentů: Nekompatibilní velikosti.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
@@ -122,8 +126,8 @@ msgid "%s: Wrong value for input argument #%d: A known color expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
+msgid "%s: Wrong type for input argument #%d: A number expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -165,8 +169,8 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: očekáváno %d.\n"
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný skalár.\n"
 
-msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
-msgstr "%: Špatná hodnota pro %s '%c': Očekáváno '%s' a '%s'.\n"
+msgid "%s: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
+msgstr "%s: Špatná hodnota pro %s '%c': Očekáváno '%s', '%s' a '%s'.\n"
 
 #, c-format
 msgid ""
@@ -479,6 +483,10 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno nezáporné celé číslo.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno nezáporné celé číslo.\n"
@@ -624,19 +632,15 @@ msgstr ""
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Nadřazena musí být PODOKNO\n"
 
-#
-# File: modules/graphics/src/c/Champ.c, line: 147
 #, c-format
-msgid "%s: Could not retrive bounding box.\n"
+msgid "%s: Could not retrieve bounding box.\n"
 msgstr ""
 
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
 msgstr "%s je vytvořena pouze pro výpočet křivek, ne pro jejich zobrazení.\n"
 
-#
-# File: modules/graphics/src/c/DrawObjects.c, line: 88
-msgid "Could not retrive bounds.\n"
+msgid "Could not retrieve bounds.\n"
 msgstr ""
 
 msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
@@ -1240,34 +1244,26 @@ msgstr ""
 msgid "Press enter to go on..."
 msgstr ""
 
-msgid "polarplot(): Only quadrant(s) reached by data are displayed"
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 56
+msgid "Data on 3 or 4 quadrants"
 msgstr ""
 
-msgid "Still a single quadrant..."
-msgstr ""
-
-msgid "on 2 quadrants..."
-msgstr ""
-
-msgid "Data on the full circle ..."
-msgstr ""
-
-msgid "A partial viewport may be set with clipping"
-msgstr ""
-
-msgid "Negative radii are supported:"
+msgid "Several curves may be plotted at the same time"
 msgstr ""
 
 msgid "Big radii are supported..."
 msgstr ""
 
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 76
+msgid "... as well as very tiny ones"
+msgstr ""
+
 msgid "even huge radii, with properly formatted labels..."
 msgstr ""
 
-msgid "... as well as very tiny radii"
-msgstr ""
-
-msgid "Several curves may be plotted at the same time"
+msgid "A partial viewport may be set with clipping"
 msgstr ""
 
 msgid "Customize your complex function"
@@ -1333,6 +1329,11 @@ msgstr ""
 msgid "Finite Elements"
 msgstr ""
 
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 20
+msgid "Stems bars histograms"
+msgstr ""
+
 msgid "Bezier curves and surfaces"
 msgstr ""
 
@@ -1342,7 +1343,9 @@ msgstr ""
 msgid "Complex elementary functions"
 msgstr ""
 
-msgid "bar histogram"
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 24
+msgid "Technical plots"
 msgstr ""
 
 msgid "Datatips"
@@ -1358,6 +1361,31 @@ msgid "Colormap"
 msgstr ""
 
 msgid "Matplot"
+msgstr ""
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 14
+msgid "Stems (plot2d3)"
+msgstr ""
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 15
+msgid "Bars (custom)"
+msgstr ""
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 16
+msgid "Bars (grouped)"
+msgstr ""
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 17
+msgid "histplot"
+msgstr ""
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 18
+msgid "hist3d"
 msgstr ""
 
 msgid "Classical Matplot"
@@ -1411,6 +1439,12 @@ msgstr "%s: obslužná rutina již není platná, ignorováno.\n"
 msgid "%s : Invalid entity %s\n"
 msgstr "%s: Neplatný objekt %s\n"
 
+#
+# File: modules/graphics/macros/%h_set.sci, line: 57
+#, c-format
+msgid "%s: Unsupported assignment for property '%s'.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: figure graphic handle expected.\n"
@@ -1463,11 +1497,42 @@ msgid "%s: Wrong size for input argument #%d: a real scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
+msgid "%s: Argument #%d: Graphic handle of type '%s' expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input arguments #%d: string expected.\n"
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Decimal number(s) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Non-empty matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar.sci, line: 125
+# File: modules/graphics/macros/bar.sci, line: 130
+#, c-format
+msgid "%s: Argument #%d: Inf and Nan values forbidden.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Non-negative values expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Must be in the interval %s.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
 msgstr ""
 
 #, c-format
@@ -1481,7 +1546,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: A scalar or a row vector expected.\n"
+"%s: Wrong size for input arguments #%d: A scalar or a column vector "
+"expected.\n"
 msgstr ""
 
 #, c-format
@@ -1491,16 +1557,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d: A scalar or a column vector "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -1573,9 +1629,19 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgid "%s: Argument #%d: Vector with %d elements expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: očekávána datová struktura %s.\n"
+#
+# File: modules/graphics/macros/colorbar.sci, line: 178
+# File: modules/graphics/macros/colorbar.sci, line: 217
+#, c-format
+msgid ""
+"%s: Argument #%d: Can't retrieve a default value: Decimal number expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
@@ -1949,10 +2015,6 @@ msgid "%s: Argument #%d: Numbers or text expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Argument #%d: Decimal number(s) expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr ""
 
@@ -2021,16 +2083,22 @@ msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor řetězců.\n"
 
 #, c-format
-msgid "%s: Error : unable to evaluate input function '%s'."
+msgid "%s: Argument #%d: Graphic handle(s) of type %s expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plot.sci, line: 217
+#, c-format
+msgid "%s: wrong list() specification for the curve #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error : unable to evaluate input function %s."
 msgstr "%s: Chyba : nelze vyhodnotit vstupní funkci '%s'."
 
 #, c-format
 msgid "Error %d at line %d of the function: '%s"
 msgstr "Chyba %d na řádku %d ve funkci: '%s"
-
-#, c-format
-msgid "%s: Error : unable to evaluate input function."
-msgstr "%s: Chyba : nelze vyhodnotit vstupní funkci."
 
 #, c-format
 msgid ""
@@ -2125,7 +2193,15 @@ msgid ""
 msgstr ""
 
 #, c-format
+msgid "%s: Bad value for property %s\n"
+msgstr "%s: Špatný hodnota vlastnosti '%s'.\n"
+
+#, c-format
 msgid "%s: Ambiguous MarkStyle value.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A marker style expected.\n"
 msgstr ""
 
 #, c-format
@@ -2172,6 +2248,32 @@ msgstr ""
 "větší než %d-krát-%d.\n"
 
 #, c-format
+msgid "%s: Argument #%d: Decimal numbers expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: At least %d components expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/surf.sci, line: 143
+#, c-format
+msgid "%s: Argument #%d: Wrong list() specification.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/surf.sci, line: 176
+#, c-format
+msgid "%s: Argument #%d : Unable to evaluate Z: Error %d at line %d in %s: '%s"
+msgstr ""
+
+#
+# File: modules/graphics/macros/surf.sci, line: 188
+#, c-format
+msgid "%s: Argument #%d: Inconsistent size of the result.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix "
 "expected.\n"
@@ -2213,6 +2315,11 @@ msgstr ""
 msgid "%s: file %s does not exist.\n"
 msgstr "%s: soubor %s neexistuje.\n"
 
+#
+# File: modules/graphics/macros/xload.sci, line: 100
+msgid "xload: Given file is not a graphic one."
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr "%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
@@ -2220,3 +2327,10 @@ msgstr "%s: Špatná velikost vstupních argumentů: Očekávány stejné veliko
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: Zadána špatná hodnota pro %s."
+
+#~ msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+#~ msgstr ""
+#~ "%s: Špatný typ vstupního argumentu #%d: očekávána datová struktura %s.\n"
+
+#~ msgid "%s: Error : unable to evaluate input function."
+#~ msgstr "%s: Chyba : nelze vyhodnotit vstupní funkci."

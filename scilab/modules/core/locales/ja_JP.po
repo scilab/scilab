@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-05-01 13:16+0000\n"
+"PO-Revision-Date: 2019-02-12 11:34+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -423,6 +423,12 @@ msgstr "%s: フィールド名には文字列を指定してください.\n"
 msgid "%s: Arguments must be scalar or must have same dimensions.\n"
 msgstr "%s: 引数はスカラーまたは同じ次元とする必要があります.\n"
 
+#
+# File: macros/edit.sci, line: 24
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: 入力引数の数が違います: 少なくとも %d が予想されます。\n"
+
 #, c-format
 msgid "%s: Can not create a %s with input argument #%d.\n"
 msgstr "%s: %s を入力引数 #%d を指定して作成できません.\n"
@@ -575,10 +581,10 @@ msgstr ""
 "\n"
 
 msgid "ESI Group\n"
-msgstr ""
+msgstr "ESIグループ\n"
 
-msgid "Copyright (c) 2017-2018 (ESI Group)\n"
-msgstr ""
+msgid "Copyright (c) 2017-2019 (ESI Group)\n"
+msgstr "Copyright (c) 2017-2019 (ESI Group)\n"
 
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
 msgstr "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
@@ -704,20 +710,6 @@ msgstr "%s: %s を確認してください.\n"
 msgid "%s: File doesn't exist: %s"
 msgstr "%s: ファイルは存在しません: %s"
 
-#
-# File: macros/edit.sci, line: 24
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 入力引数の数が違います: 少なくとも %d が予想されます。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: double を指定してください.\n"
-
-#, c-format
-msgid "%s: %s is an uneditable hard coded function.\n"
-msgstr "%s: %s は編集不可のハードコードされた関数です.\n"
-
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: 入力引数の数が間違っています.\n"
@@ -763,9 +755,6 @@ msgstr "ユーザー変数:"
 msgid "Using %s elements"
 msgstr "%s 個の要素を使用"
 
-msgid " by "
-msgstr " by "
-
 msgid "Name"
 msgstr "名前"
 
@@ -777,3 +766,36 @@ msgstr "サイズ"
 
 msgid "Bytes"
 msgstr "バイト"
+
+#~ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: double を指定してください.\n"
+
+#~ msgid "%s: %s is an uneditable hard coded function.\n"
+#~ msgstr "%s: %s は編集不可のハードコードされた関数です.\n"
+
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s: Perlファイルが見つかりません: %s"
+
+#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s: Perl コマンドが指定されていません."
+
+#
+# File: macros/perl.sci, line: 47
+#~ msgid "%s: Unable to find Perl in '%s"
+#~ msgstr "%s: '%s' でPerlを見つけられません"
+
+#
+# File: macros/perl.sci, line: 63
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s: Perlを見つけられません。\n"
+
+#
+# File: macros/perl.sci, line: 68
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s: システム・エラー: コマンドは実行されました: %s"
+
+#~ msgid " by "
+#~ msgstr " by "

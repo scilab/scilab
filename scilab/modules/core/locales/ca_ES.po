@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 13:00+0000\n"
+"PO-Revision-Date: 2019-02-12 13:00+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -416,6 +416,11 @@ msgid "%s: Arguments must be scalar or must have same dimensions.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
+
+#, c-format
 msgid "%s: Can not create a %s with input argument #%d.\n"
 msgstr ""
 
@@ -540,7 +545,9 @@ msgstr ""
 msgid "ESI Group\n"
 msgstr ""
 
-msgid "Copyright (c) 2017-2018 (ESI Group)\n"
+#
+# File: modules/core/src/cpp/banner.cpp, line: 41
+msgid "Copyright (c) 2017-2019 (ESI Group)\n"
 msgstr ""
 
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
@@ -641,19 +648,6 @@ msgid "%s: File doesn't exist: %s"
 msgstr "%s: No existeix el fitxer: %s"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: %s is an uneditable hard coded function.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 
@@ -698,9 +692,6 @@ msgstr "Les variables d'usuari són:"
 msgid "Using %s elements"
 msgstr ""
 
-msgid " by "
-msgstr ""
-
 msgid "Name"
 msgstr ""
 
@@ -712,3 +703,23 @@ msgstr ""
 
 msgid "Bytes"
 msgstr ""
+
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s: No es pot trobar el fitxer Perl: %s"
+
+#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
+#~ "cadena de text.\n"
+
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s: No s'ha especificat cap comanda perl."
+
+#~ msgid "%s: Unable to find Perl in '%s"
+#~ msgstr "%s: No s'ha trobat el Perl a '%s"
+
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s: No s'ha trobat el Perl.\n"
+
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s: Error de sistema: Ordre executada: %s"

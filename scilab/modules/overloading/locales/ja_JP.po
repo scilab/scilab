@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-05-01 23:16+0000\n"
+"PO-Revision-Date: 2019-02-12 12:34+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -37,7 +37,7 @@ msgstr "%s: 多次元疎行列は処理できません.\n"
 
 #, c-format
 msgid "%s: Non implemented feature.\n"
-msgstr ""
+msgstr "%s: 機能が未実装です.\n"
 
 #, c-format
 msgid "%c: input argument #%d has duplicates\n"
@@ -60,11 +60,16 @@ msgstr "%s: 数値行列に文字列を指定することはできません.\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
-msgstr ""
+msgstr "%s: 引数 #%d および #%d: 大きさに互換性がありません.\n"
 
 #, c-format
 msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
 msgstr "%s: 構文 x(i) は cblockの行でのみ使用可能です.\n"
+
+#
+# File: modules/overloading/macros/%cblock_p.sci, line: 16
+msgid "  (empty table)\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Invalid field name.\n"
@@ -99,7 +104,7 @@ msgstr "%s: 入力引数 #%d と入力引数 #%d は次元に互換性があり�
 
 #, c-format
 msgid "%s: Implicit size not supported.\n"
-msgstr ""
+msgstr "%s: 暗黙の大きさはサポートされていません.\n"
 
 #, c-format
 msgid ""
@@ -146,7 +151,7 @@ msgstr "%s: 入力引数 #%d の型は間違っています: 整数値を指定�
 
 #, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr ""
+msgstr "%s: 引数 #%d: スカラー (要素数1)を指定してください.\n"
 
 #, c-format
 msgid "%s: time domains are not compatible.\n"
@@ -172,7 +177,7 @@ msgstr "%s: MIMOシステムの構文が不正です.\n"
 
 #, c-format
 msgid "%s: The problem is singular.\n"
-msgstr ""
+msgstr "%s: この問題は特異です.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
@@ -180,13 +185,8 @@ msgstr ""
 "%s: 入力引数 #%d の値が間違っています: %d または %s を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
-msgstr "%s: 数値行列への疎行列の挿入は定義されていません.\n"
-
-#, c-format
 msgid "%s: Inconsistent addition.\n"
-msgstr ""
+msgstr "%s: 加算に整合性がありません.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
@@ -194,11 +194,19 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 整数行列を指�
 
 #, c-format
 msgid "%s: Division by 0...\n"
-msgstr ""
+msgstr "%s: ゼロ割...\n"
+
+#, c-format
+msgid "%s: Division by zero..."
+msgstr "%s: ゼロ割..."
+
+#, c-format
+msgid "%s: Argument #%d: Square matrix expected.\n"
+msgstr "%s: 引数 #%d: 正方行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Eye variable undefined in this context.\n"
-msgstr ""
+msgstr "%s: eye変数がこのコンテキストで未定義です.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments.\n"
@@ -241,7 +249,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Decimal number(s) expected.\n"
-msgstr ""
+msgstr "%s: 引数 #%d: 10進数を指定してください.\n"
 
 msgid "Invalid exponent: expected real exponents."
 msgstr "指数が間違っています: 実数の指数を指定してください."
@@ -254,39 +262,54 @@ msgstr "指数が間違っています"
 
 #, c-format
 msgid "%s: Hypermatrix not supported.\n"
-msgstr ""
+msgstr "%s: ハイパー行列は未サポートです.\n"
 
 #, c-format
 msgid "%s: Inconsistent multiplication.\n"
+msgstr "%s: 乗算が不整合です.\n"
+
+#
+msgid "Not implemented"
+msgstr "実装されていません"
+
+msgid "Invalid exponent"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "Complex comparison not supported. Please define %s_1_s_custom() or check "
 "your code."
 msgstr ""
+"複素数の比較はサポートされていません. %s_1_s_custom() を定義するか, コードを"
+"確認してください."
 
 #, c-format
 msgid ""
 "Complex comparison not supported. Please define %s_2_s_custom() or check "
 "your code."
 msgstr ""
+"複素数の比較はサポートされていません. %s_2_s_custom() を定義するか, コードを"
+"確認してください."
 
 #, c-format
 msgid ""
 "Complex comparison not supported. Please define %s_3_s_custom() or check "
 "your code."
 msgstr ""
+"複素数の比較はサポートされていません. %s_3_s_custom() を定義するか, コードを"
+"確認してください."
 
 #, c-format
 msgid ""
 "Complex comparison not supported. Please define %s_4_s_custom() or check "
 "your code."
 msgstr ""
+"複素数の比較はサポートされていません. %s_4_s_custom() を定義するか, コードを"
+"確認してください."
 
 #, c-format
 msgid ""
@@ -300,12 +323,8 @@ msgid "%s: Not yet implemented.\n"
 msgstr "%s: まだ実装されていません.\n"
 
 #, c-format
-msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong argument #%d.\n"
-msgstr ""
+msgstr "%s: 引数 #%d が間違っています.\n"
 
 #, c-format
 msgid "%s: A null assignment can have only one non-colon index.\n"
@@ -313,18 +332,46 @@ msgstr "%s: ヌル値代入時,  コロン以下の添字を指定できるの�
 
 #, c-format
 msgid "%s: Invalid index\n"
-msgstr ""
+msgstr "%s: 添え字が間違っています\n"
 
 #, c-format
 msgid "%s: not implemented for argin#1 matrix and argin#2 hypermatrix\n"
 msgstr "%s: argin#1 行列および argin#2 ハイパー行列は実装されていません\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%s_pow.sci, line: 66
+#, c-format
+msgid "%s: Unable to diagonalize.\n"
+msgstr ""
+
+#
+msgid "Not implemented in scilab...\n"
+msgstr "実装されていません.\n"
+
+#, c-format
+msgid ""
+"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
+msgstr "%s: 数値行列への疎行列の挿入は定義されていません.\n"
+
+#, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr "%s: 疎行列の挿入は実装されていません.\n"
 
 #, c-format
-msgid "%s: Argument #%d: Square matrix expected.\n"
+msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
+msgstr "%s: 引数 #%d と #%d: 同じ数の行を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -400,4 +447,4 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Incorrect assignment.\n"
-msgstr ""
+msgstr "%s: 代入が不整合です.\n"

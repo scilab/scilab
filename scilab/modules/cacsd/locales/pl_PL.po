@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-06 17:01+0000\n"
+"PO-Revision-Date: 2019-02-12 17:01+0000\n"
 "Last-Translator: konrad509 <konrad509@op.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -290,7 +290,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: The order should be at most %d.\n"
+msgid "%s: Argument #%d: Must be < %d.\n"
 msgstr ""
 
 #, c-format
@@ -487,11 +487,8 @@ msgstr ""
 msgid "%s: Uncontrollable system.\n"
 msgstr ""
 
-#
-# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 152
-# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 195
 #, c-format
-msgid "%s: An error occured in '%s'.\n"
+msgid "%s: An error occurred in '%s'.\n"
 msgstr ""
 
 #, c-format
@@ -1025,7 +1022,7 @@ msgstr "Oś rzeczywista"
 msgid "Imaginary axis"
 msgstr "Oś urojona"
 
-msgid "open loop zeroes"
+msgid "open loop zeros"
 msgstr "zera otwartej pętli"
 
 msgid "open loop poles"
@@ -1077,6 +1074,15 @@ msgstr "Hz"
 
 msgid "dB"
 msgstr "dB"
+
+#
+# File: modules/cacsd/macros/formatBodeMagTip.sci, line: 21
+# File: modules/cacsd/macros/formatBodePhaseTip.sci, line: 21
+msgid "rad/s"
+msgstr ""
+
+msgid " dB"
+msgstr " dB"
 
 #, c-format
 msgid ""
@@ -1463,10 +1469,9 @@ msgstr "Bieguny"
 msgid "Transmission zeros and poles"
 msgstr "Przekazanie zer i biegunów"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: Oczekiwano listy.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
@@ -1517,6 +1522,16 @@ msgstr "%s: Zły rozmiar parametru wejściowego #%d: Oczekiwano wielomian.\n"
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/sgrid.sci, line: 84
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
 msgstr ""
 
 #, c-format

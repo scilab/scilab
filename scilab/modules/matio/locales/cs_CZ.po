@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:04+0000\n"
+"PO-Revision-Date: 2019-02-12 22:04+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
@@ -156,8 +156,31 @@ msgstr ""
 "%s: V souboru '%s' není žádná proměnná read, Zkontrolujte, zda není Váš "
 "soubor poškozen.\n"
 
-msgid "All inputs must be character strings."
-msgstr "Všechny vstupy musí být řetězce znaků."
+#
+# File: modules/matio/macros/matfile2sci.sci, line: 24
+#, c-format
+msgid "%s: %s module is not installed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not read variables in %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
 #, c-format
 msgid "Option %s not implemented: IGNORED."
@@ -167,24 +190,36 @@ msgid "Option -v7 added."
 msgstr "Přidána možnost -v7."
 
 #, c-format
-msgid "Variable %s can not be saved in level 4 MAT-file: IGNORED."
-msgstr "Proměnná %s nemůže být uložena v MAT souboru 4. úrovně: IGNOROVÁNO."
+msgid ""
+"%s: Name conflict: it is not possible to save variable with name %s "
+"(ignored)."
+msgstr "%s : Konflikt v názvu: není možné uložit proměnnou %s (ignorováno)."
 
-#, c-format
-msgid "Name conflict: it is not possible to save variable with name %s."
-msgstr "Konflikt v názvu: není možné uložit proměnnou s názvem %s."
+#,
+msgid "Attempt to write an unsupported data type to a binary file."
+msgstr "Pokus o zápis nepodporovaného typu dat do souboru binárního."
 
-msgid "Attempt to write an unsupported data type to an ASCII file."
-msgstr "Pokus o zápis nepodporovaného typu dat do souboru ASCII."
+#
+# File: modules/matio/macros/savematfile.sci, line: 301
+msgid "savematfile: No variable to save => No file written."
+msgstr ""
 
 #, c-format
 msgid "%s: Could not open file '%s'.\n"
 msgstr "%s: Nelze otevřít soubor '%s'.\n"
 
 #, c-format
-msgid "savematfile: could not save variable named %s.\n"
+msgid "savematfile: could not write variable %s.\n"
 msgstr "savematfile: nelze uložit proměnnou s názvem %s.\n"
 
 #, c-format
-msgid "Variable %s can not be saved in ASCII file: IGNORED."
-msgstr "Proměnná %s nemůže být uložena v souboru ASCII: IGNOROVÁNO."
+msgid ""
+"%s: Variable %s can not be saved in MAT-file version %s (type %d "
+"unsupported): IGNORED.\n"
+msgstr ""
+
+#~ msgid "All inputs must be character strings."
+#~ msgstr "Všechny vstupy musí být řetězce znaků."
+
+#~ msgid "Variable %s can not be saved in ASCII file: IGNORED."
+#~ msgstr "Proměnná %s nemůže být uložena v souboru ASCII: IGNOROVÁNO."

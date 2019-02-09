@@ -1,0 +1,84 @@
+# German translation for scilab
+# Copyright (c) 2018 Rosetta Contributors and Canonical Ltd 2018
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2019-02-12 17:28+0000\n"
+"Last-Translator: Stephan Woidowski <swoidowski@t-online.de>\n"
+"Language-Team: German <de@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 18857)\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: string expected.\n"
+msgstr "%s: Falscher Typ für Argument #%d: String erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: Falscher Typ für das Eingabeargument #%d: Zeichenketten-Array erwartet.\n"
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr ""
+"Ungültige Dimension für Argument #%d: Eine Zeile oder eine Spalte wird "
+"erwartet."
+
+msgid "Invalid operation"
+msgstr "Ungültige Operation"
+
+msgid "Invalid field name"
+msgstr "Ungültiger Feldname"
+
+#, c-format
+msgid "Cannot set the field: %s"
+msgstr "Das Feld kann nicht gesetzt werden: %s"
+
+#, c-format
+msgid ""
+"Cannot compile the code:\n"
+"%s"
+msgstr ""
+"Der Code kann nicht kompiliert werden:\n"
+"%s"
+
+msgid "Invalid operator: '"
+msgstr "Ungültiger Operator: '"
+
+msgid "Invalid operator: .*"
+msgstr "Ungültiger Operator:.*"
+
+msgid "Invalid operator: ./"
+msgstr "Ungültiger Operator: ./"
+
+msgid "Invalid operator: .\\"
+msgstr "Ungültiger Operator: .\\"
+
+msgid "Invalid operator: .*."
+msgstr "Ungültiger Operator: .*."
+
+msgid "Invalid operator: ./."
+msgstr "Ungültiger Operator: ./."
+
+msgid "Invalid operator: .\\."
+msgstr "Ungültiger Operator: .\\."
+
+msgid "Invalid operator: .^"
+msgstr "Ungültiger Operator: .^"
+
+msgid "Invalid operator: .'"
+msgstr "Ungültiger Operator: .'"
+
+msgid "Exception thrown in file"
+msgstr "Ausnahme in Datei geworfen"
+
+msgid "at line"
+msgstr "in Zeile"

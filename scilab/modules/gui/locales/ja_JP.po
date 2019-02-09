@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-05-02 07:30+0000\n"
+"PO-Revision-Date: 2019-02-12 12:21+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -347,6 +347,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: %s is obsolete and will be removed from Scilab %s\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number for input argument: %d or %d expected.\n"
@@ -1041,7 +1045,7 @@ msgid "&Save environment..."
 msgstr "環境を保存(&S)..."
 
 msgid "&Current Working Directory"
-msgstr ""
+msgstr "カレントのディレクトリ(&C)"
 
 msgid "    &Browse for new"
 msgstr "    新規ブラウズ(&B)"
@@ -1650,11 +1654,13 @@ msgstr "削除"
 msgid "Delete selected object"
 msgstr "選択したオブジェクトを削除"
 
-msgid "Clear"
-msgstr "消去"
+msgid "Clear axes"
+msgstr ""
 
-msgid "Clears the figure"
-msgstr "図をクリア"
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 312
+msgid "Delete axes contents and labels"
+msgstr ""
 
 msgid "Hide"
 msgstr "非表示"
@@ -1674,26 +1680,34 @@ msgstr "クリップボードへコピー"
 msgid "Copy figure to system clipboard"
 msgstr "図をシステムクリップボードにコピー"
 
-msgid "Insert a title"
-msgstr "タイトルを挿入"
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 320
+msgid "Set the axes main title"
+msgstr ""
 
 msgid "Label X"
 msgstr "ラベルX"
 
-msgid "Insert a label in X axis"
-msgstr "X軸にラベルを挿入"
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 322
+msgid "Set the X axis label"
+msgstr ""
 
 msgid "Label Y"
 msgstr "ラベルY"
 
-msgid "Insert a label in Y axis"
-msgstr "Y軸にラベルを挿入"
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 324
+msgid "Set the Y axis label"
+msgstr ""
 
 msgid "Label Z"
 msgstr "ラベルZ"
 
-msgid "Insert a label in Z axis"
-msgstr "Z軸にラベルを挿入"
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 326
+msgid "Set the Z axis label"
+msgstr ""
 
 msgid "Insert a legend into the selected curve"
 msgstr "選択された曲線に判例を挿入"
@@ -2789,6 +2803,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
+"%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
@@ -2820,19 +2835,19 @@ msgstr ""
 "間違っています: %s.\n"
 
 msgid "Select a file to open"
-msgstr ""
+msgstr "開くファイルを選択"
 
 msgid "Scilab scripts"
-msgstr ""
+msgstr "Scilabスクリプト"
 
 msgid "Xcos diagrams"
-msgstr ""
+msgstr "Xcosダイアグラム"
 
 msgid "Scilab Tests"
-msgstr ""
+msgstr "Scilabテスト"
 
 msgid "Scilab Library"
-msgstr ""
+msgstr "Scilabライブラリ"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
@@ -2931,3 +2946,18 @@ msgstr "%s: %s の型が間違っています: 実数を指定してください
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: %sの大きさが間違っています: 実数を指定してください.\n"
+
+#~ msgid "Clears the figure"
+#~ msgstr "図をクリア"
+
+#~ msgid "Insert a title"
+#~ msgstr "タイトルを挿入"
+
+#~ msgid "Insert a label in X axis"
+#~ msgstr "X軸にラベルを挿入"
+
+#~ msgid "Insert a label in Y axis"
+#~ msgstr "Y軸にラベルを挿入"
+
+#~ msgid "Insert a label in Z axis"
+#~ msgstr "Z軸にラベルを挿入"

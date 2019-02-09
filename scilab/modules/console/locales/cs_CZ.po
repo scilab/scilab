@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:03+0000\n"
+"PO-Revision-Date: 2019-02-12 22:03+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
@@ -699,6 +699,14 @@ msgstr "Uložit historii"
 msgid "Save file"
 msgstr "Uložit soubor"
 
+#
+# File: modules/console/src/console_fake_xml.c, line: 794
+# File: modules/console/src/console_fake_xml.c, line: 1061
+# File: modules/console/src/console_fake_xml.c, line: 1372
+# File: modules/console/src/console_fake_xml.c, line: 1694
+msgid "Demos"
+msgstr ""
+
 msgid "Environment"
 msgstr "Prostředí"
 
@@ -779,6 +787,12 @@ msgstr "Název činnosti"
 
 msgid "Key binding"
 msgstr "Přidělení klávesy"
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1379
+# File: modules/console/src/console_fake_xml.c, line: 1701
+msgid "The demo interface is dockable"
+msgstr ""
 
 #, c-format
 msgid ""

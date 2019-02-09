@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-02-19 19:12+0000\n"
+"PO-Revision-Date: 2019-02-12 19:12+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -471,6 +471,12 @@ msgstr ""
 "%s: параметрами мають бути числа або узгоджені за розмірностями об’єкти.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+"%d.\n"
+
+#, c-format
 msgid "%s: Can not create a %s with input argument #%d.\n"
 msgstr "%s: не вдалося створити %s із вхідним параметром №%d.\n"
 
@@ -614,8 +620,8 @@ msgstr ""
 msgid "ESI Group\n"
 msgstr "Група ESI\n"
 
-msgid "Copyright (c) 2017-2018 (ESI Group)\n"
-msgstr "© ESI Group, 2017–2018\n"
+msgid "Copyright (c) 2017-2019 (ESI Group)\n"
+msgstr "© ESI Group, 2017–2019\n"
 
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
 msgstr "© Scilab Enterprises, 2011–2017\n"
@@ -717,22 +723,6 @@ msgid "%s: File doesn't exist: %s"
 msgstr "%s: файла не існує: %s"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано тип "
-"double.\n"
-
-#, c-format
-msgid "%s: %s is an uneditable hard coded function.\n"
-msgstr "%s: %s є непридатною до редагування вбудованою функцією.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s: помилкова кількість вхідних параметрів.\n"
 
@@ -777,9 +767,6 @@ msgstr "Змінними користувача є:"
 msgid "Using %s elements"
 msgstr "Використовуємо елементи %s"
 
-msgid " by "
-msgstr " Автор — "
-
 msgid "Name"
 msgstr "Назва"
 
@@ -791,3 +778,34 @@ msgstr "Розмір"
 
 msgid "Bytes"
 msgstr "Байти"
+
+#~ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: мало бути використано тип "
+#~ "double.\n"
+
+#~ msgid "%s: %s is an uneditable hard coded function.\n"
+#~ msgstr "%s: %s є непридатною до редагування вбудованою функцією.\n"
+
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s: не вдалося знайти файл Perl: %s"
+
+#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати рядковий "
+#~ "тип.\n"
+
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s: не вказано команди perl."
+
+#~ msgid "%s: Unable to find Perl in '%s"
+#~ msgstr "%s: не вдалося знайти інтерпретатор Perl у «%s»"
+
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s: не вдалося знайти інтерпретатор Perl.\n"
+
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s: помилка системи: виконувалася команда: %s"
+
+#~ msgid " by "
+#~ msgstr " Автор — "

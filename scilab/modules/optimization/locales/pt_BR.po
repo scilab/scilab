@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-03-09 19:23+0000\n"
+"PO-Revision-Date: 2019-02-12 19:23+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -131,10 +131,6 @@ msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: exception caught in '%s' subroutine.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A real Scalar expected.\n"
 msgstr ""
 
@@ -163,6 +159,10 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: A strictly positive vector "
 "expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: exception caught in '%s' subroutine.\n"
 msgstr ""
 
 #, c-format
@@ -448,14 +448,8 @@ msgstr ""
 msgid "Undefined function '%ls'.\n"
 msgstr ""
 
-#
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 130
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 159
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 188
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 217
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 246
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 #, c-format

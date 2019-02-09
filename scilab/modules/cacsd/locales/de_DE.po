@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-06 16:47+0000\n"
+"PO-Revision-Date: 2019-02-12 16:47+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -289,7 +289,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: The order should be at most %d.\n"
+msgid "%s: Argument #%d: Must be < %d.\n"
 msgstr ""
 
 #, c-format
@@ -486,11 +486,8 @@ msgstr ""
 msgid "%s: Uncontrollable system.\n"
 msgstr ""
 
-#
-# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 152
-# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 195
 #, c-format
-msgid "%s: An error occured in '%s'.\n"
+msgid "%s: An error occurred in '%s'.\n"
 msgstr ""
 
 #, c-format
@@ -1005,7 +1002,7 @@ msgstr "Reelle Achse"
 msgid "Imaginary axis"
 msgstr "Imaginäre Achse"
 
-msgid "open loop zeroes"
+msgid "open loop zeros"
 msgstr "Nullstellen des offenen Kreises"
 
 msgid "open loop poles"
@@ -1057,6 +1054,12 @@ msgstr "Hz"
 
 msgid "dB"
 msgstr "dB"
+
+msgid "rad/s"
+msgstr "rad/s"
+
+msgid " dB"
+msgstr " dB"
 
 #, c-format
 msgid ""
@@ -1448,9 +1451,9 @@ msgstr "Pole"
 msgid "Transmission zeros and poles"
 msgstr "transmissions Nullen und Pole"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: eine Liste erwartet.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
@@ -1501,6 +1504,16 @@ msgid ""
 msgstr ""
 "%s: Falscher Typ für das Eingabe-Argument #%d : Array aus reellen "
 "Gleitkommazahlen wird erwartet.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/sgrid.sci, line: 84
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"

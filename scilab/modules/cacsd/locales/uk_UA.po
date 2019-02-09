@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-02-19 19:11+0000\n"
+"PO-Revision-Date: 2019-02-12 19:11+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -340,8 +340,8 @@ msgstr ""
 "ціле значення.\n"
 
 #, c-format
-msgid "%s: The order should be at most %d.\n"
-msgstr "%s: порядок не повинен перевищувати %d.\n"
+msgid "%s: Argument #%d: Must be < %d.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -581,8 +581,8 @@ msgstr "%s: помилкова розмірність параметра №%d.\
 msgid "%s: Uncontrollable system.\n"
 msgstr "%s: некерована система.\n"
 
-#, fuzzy, c-format
-msgid "%s: An error occured in '%s'.\n"
+#, c-format
+msgid "%s: An error occurred in '%s'.\n"
 msgstr "%s: сталася помилка у «%s».\n"
 
 #, c-format
@@ -1145,7 +1145,7 @@ msgstr "Вісь дійсних значень"
 msgid "Imaginary axis"
 msgstr "Вісь уявних значень"
 
-msgid "open loop zeroes"
+msgid "open loop zeros"
 msgstr "нулі розімкненої системи"
 
 msgid "open loop poles"
@@ -1205,6 +1205,12 @@ msgstr "Гц"
 
 msgid "dB"
 msgstr "дБ"
+
+msgid "rad/s"
+msgstr "рад/с"
+
+msgid " dB"
+msgstr " дБ"
 
 #, c-format
 msgid ""
@@ -1633,11 +1639,9 @@ msgstr "Полюси"
 msgid "Transmission zeros and poles"
 msgstr "Перехід нулів і полюсів"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мала бути матриця із дійсних "
-"значень.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
@@ -1698,6 +1702,14 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано масив "
 "дійсних значень з плаваючою крапкою\n"
+
+#, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
@@ -1977,3 +1989,6 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути представлення у форматі "
 "моделі з нулями, полюсами і масштабним коефіцієнтом передавальної функції.\n"
+
+#~ msgid "%s: The order should be at most %d.\n"
+#~ msgstr "%s: порядок не повинен перевищувати %d.\n"

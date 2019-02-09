@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-02-20 00:31+0000\n"
+"PO-Revision-Date: 2019-02-12 00:31+0000\n"
 "Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -332,8 +332,8 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: The order should be at most %d.\n"
-msgstr "%s : L'ordre doit être au plus %d.\n"
+msgid "%s: Argument #%d: Must be < %d.\n"
+msgstr "%s : Argument n°%d : valeur < %d attendue.\n"
 
 #, c-format
 msgid ""
@@ -572,8 +572,8 @@ msgstr "%s : Dimension erronée pour l'argument n°%d.\n"
 msgid "%s: Uncontrollable system.\n"
 msgstr "%s : Système incontrôlable.\n"
 
-#, fuzzy, c-format
-msgid "%s: An error occured in '%s'.\n"
+#, c-format
+msgid "%s: An error occurred in '%s'.\n"
 msgstr "%s : Une erreur s'est produite dans '%s'.\n"
 
 #, c-format
@@ -791,7 +791,7 @@ msgstr ""
 "attendu.\n"
 
 msgid "Phase (deg)"
-msgstr "Phase (deg)"
+msgstr "Phase (°)"
 
 msgid "Magnitude (dB)"
 msgstr "Magnitude (dB)"
@@ -826,25 +826,25 @@ msgstr "%s : Type '%s' non défini.\n"
 
 #, c-format
 msgid "%s: No output found.\n"
-msgstr "%s : Pas de sortie trouvée.\n"
+msgstr "%s : aucune sortie trouvée.\n"
 
 #, c-format
 msgid "%s: No input found.\n"
-msgstr "%s : Pas d'entrée trouvée.\n"
+msgstr "%s : aucune entrée trouvée.\n"
 
 #, c-format
 msgid "%s: Some output(s) are undefined.\n"
-msgstr "%s : Quelque(s) sortie(s) ne sont pas définies.\n"
+msgstr "%s : certaines sorties ne sont pas définies.\n"
 
 #, c-format
 msgid "%s: Some input(s) are undefined.\n"
-msgstr "%s : Quelque(s) entrée(s) ne sont pas définies.\n"
+msgstr "%s : certaines entrées ne sont pas définies.\n"
 
 msgid "Frequency (Hz)"
 msgstr "Fréquence (Hz)"
 
 msgid "Phase (degree)"
-msgstr "Phase (degré)"
+msgstr "Phase (°)"
 
 msgid "Frequency (rad/s)"
 msgstr "Pulsation (rad/s)"
@@ -1125,8 +1125,8 @@ msgstr "Axe réel"
 msgid "Imaginary axis"
 msgstr "Axe des imaginaires"
 
-msgid "open loop zeroes"
-msgstr "Zéro de la boucle ouverte"
+msgid "open loop zeros"
+msgstr "Zéros de la boucle ouverte"
 
 msgid "open loop poles"
 msgstr "Pôles de la boucle ouverte"
@@ -1180,6 +1180,12 @@ msgstr "Hz"
 msgid "dB"
 msgstr "dB"
 
+msgid "rad/s"
+msgstr "rad/s"
+
+msgid " dB"
+msgstr " dB"
+
 #, c-format
 msgid ""
 "Pole: %.4g %+.4g i\n"
@@ -1189,7 +1195,7 @@ msgstr ""
 "Gain du retour : %.4g"
 
 msgid "rad/sec"
-msgstr "rad/sec"
+msgstr "rad/s"
 
 #, c-format
 msgid "%s: Iteration %s, error=%s.\n"
@@ -1608,10 +1614,10 @@ msgstr "Pôles"
 msgid "Transmission zeros and poles"
 msgstr "Zéros et pôles de transmission"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée #%d : matrice réelle attendue.\n"
+"%s : Argument n°%d : matrice réelle attendue.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
@@ -1665,6 +1671,14 @@ msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une liste de réels attendue\n"
+
+#, c-format
+msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
+msgstr "%s : Argument n°%d : scalaire ou vecteur à %d éléments attendu.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr "%s : Argument n°%d : indication erronée de couleur.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
@@ -1938,3 +1952,6 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument d'entrée #%d : représentation \"pôle de gain "
 "nul\" attendue.\n"
+
+#~ msgid "%s: The order should be at most %d.\n"
+#~ msgstr "%s : L'ordre doit être au plus %d.\n"

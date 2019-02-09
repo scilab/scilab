@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:09+0000\n"
+"PO-Revision-Date: 2019-02-12 22:09+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected."
@@ -154,10 +154,8 @@ msgstr ""
 "di booleani.\n"
 
 #, c-format
-msgid "%s: Assertion failed: found false entry in condition = %s"
+msgid "%s: Assertion failed: Entry %%T found in condition(%d).\n"
 msgstr ""
-"%s: Affermazione fallita: è stata trovata una voce falsa nella condizione = "
-"%s."
 
 #, c-format
 msgid ""
@@ -185,6 +183,10 @@ msgstr ""
 #, c-format
 msgid "%s: Cannot close file %s.\n"
 msgstr "%s: Impossibile chiudere il file %s.\n"
+
+#, c-format
+msgid "%s: Assertion failed: Entry %%F found in condition(%d).\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
