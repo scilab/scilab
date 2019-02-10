@@ -4,8 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 function layer = create_layer(count)
     c = get(0);c.usedeprecatedskin = "off"
@@ -43,10 +44,10 @@ assert_checkequal(layer.children.visible, visible1);
 delete(gcf());
 layer = create_layer(4);
 
-visible1 = ['on' 'off' 'off' 'off'];
-visible2 = ['off' 'on' 'off' 'off'];
-visible3 = ['off' 'off' 'on' 'off'];
-visible4 = ['off' 'off' 'off' 'on'];
+visible1 = ['on';'off';'off';'off'];
+visible2 = ['off';'on';'off';'off'];
+visible3 = ['off';'off';'on';'off'];
+visible4 = ['off';'off';'off';'on'];
 
 assert_checkequal(layer.value, 1);
 assert_checkequal(layer.children.visible, visible1);

@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 4574 -->
 //
@@ -37,5 +38,4 @@ mputl(i,'intfun2.c');
 
 cmdstr = "ilib_build(''foo'',[''scifun1'',''intfun2''],''intfun2.c'',[]);"
 ierr = execstr(cmdstr, 'errcatch');
-if ierr <> 999 then pause,end
-
+assert_checktrue(ierr <> 0);
