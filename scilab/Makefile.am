@@ -220,7 +220,7 @@ endif
 check-libstdcpp-dep:
 if USE_STATIC_SYSTEM_LIB
 # Check that scilab-cli does not have a dependency on libstdc++ (should be static)
-	@ldd .libs/scilab-bin .libs/scilab-cli-bin modules/.libs/libscilab*0 |grep libstdc++ > /dev/null; \
+	@readelf -d .libs/scilab-bin .libs/scilab-cli-bin modules/.libs/libscilab*so* |grep libstdc++ > /dev/null; \
 	if test $$? == 0; then \
 		echo "Found dependency from scilab-cli-bin to libstdc++ found"; exit 2;\
 	fi
