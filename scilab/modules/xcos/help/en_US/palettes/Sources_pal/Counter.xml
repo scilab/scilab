@@ -22,98 +22,64 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Counter" xml:lang="en_US">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="Counter" xml:lang="en_US">
     <refnamediv>
         <refname>Counter</refname>
         <refpurpose>Counter</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/Counter.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/Counter.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_Counter">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Counter">Counter</link>
-                </para>
+                <xref linkend="Description_Counter">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_Counter">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_Counter">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Datatypes_Counter">Data types</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_Counter">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_Counter">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_Counter">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_Counter">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_Counter">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_Counter">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Datatypes_Counter">Data types</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_Counter">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_Counter">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_Counter">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_Counter">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_Counter">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_Counter">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_Counter">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Sources_pal">Sources palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_Counter">
         <title>Description</title>
         <para>
-            This block counts with an increment/decrement value equal to one from <emphasis role="bold">Minimum</emphasis> to <emphasis role="bold">Maximum</emphasis>
-            or from <emphasis role="bold">Maximum</emphasis> to <emphasis role="bold">Minimum</emphasis> depending
-            on the choice of the <emphasis role="bold">Rule</emphasis> parameter.
+            This block counts with an increment/decrement value equal to one from
+            <emphasis role="bold">Minimum</emphasis> to <emphasis role="bold">Maximum</emphasis>
+            or from <emphasis role="bold">Maximum</emphasis> to
+            <emphasis role="bold">Minimum</emphasis> depending on the choice of the
+            <emphasis role="bold">Rule</emphasis> parameter.
         </para>
     </refsection>
+
     <refsection id="Datatypes_Counter">
         <title>Data types</title>
         <itemizedlist>
@@ -124,16 +90,16 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Dialogbox_Counter">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/sources_pal/en_US/Counter_gui.png" align="center"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/sources_pal/en_US/Counter_gui.png"
+                    align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -157,12 +123,14 @@
                 <itemizedlist>
                     <listitem>
                         <para>
-                            <emphasis role="bold">1</emphasis>: Counts from the lowest number to the highest number. The count is increasing.
+                            <emphasis role="bold">1</emphasis>: Counts from the lowest number to
+                            the highest number. The count is increasing.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                            <emphasis role="bold">2</emphasis>: Counts from the highest number to the lowest number. The count is decreasing.
+                            <emphasis role="bold">2</emphasis>: Counts from the highest number to
+                            the lowest number. The count is decreasing.
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -233,18 +201,19 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Example_Counter">
         <title>Example</title>
         <para>
             This diagram shows the Counter block output versus time.
         </para>
-        <para/>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/counter_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/sources_pal/en_US/counter_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/sources_pal/en_US/counter_en_US.zcos" align="center"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -254,6 +223,7 @@ xcos_simulate(scs_m, 4);
 ]]></scilab:image>
         </para>
     </refsection>
+
     <refsection id="Interfacingfunction_Counter">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -272,7 +242,7 @@ xcos_simulate(scs_m, 4);
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_Counter">
+    <refsection id="Seealso_Counter" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>

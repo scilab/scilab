@@ -473,14 +473,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 if (vectpDblInput[i]->isScalar() == false)
                 {
                     delete pDblOut;
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 4);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + i + 1);
                     return types::Function::Error;
                 }
 
                 if (vectpDblInput[i]->get(0) < minlog)
                 {
                     delete pDblOut;
-                    Scierror(999, _("%s: Wrong value for input argument #%d : At least %lf expected.\n"), "grand", iPos + 1, minlog);
+                    Scierror(999, _("%s: Wrong value for input argument #%d : At least %.0E expected.\n"), "grand", iPos + i + 1, minlog);
                     return types::Function::Error;
                 }
             }
@@ -501,7 +501,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 if (vectpDblInput[i]->isScalar() == false)
                 {
                     delete pDblOut;
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 4);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + i + 1);
                     return types::Function::Error;
                 }
             }
@@ -509,14 +509,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[0]->get(0) < 0.0) // N
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : Positive integer expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong value for input argument #%d : Positive integer expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[1]->get(0) < 0.0 || vectpDblInput[1]->get(0) > 1.0) // p
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : A value expected.\n"), "grand", 5);
+                Scierror(999, _("%s: Wrong value for input argument #%d : A value expected.\n"), "grand", iPos + 2);
                 return types::Function::Error;
             }
 
@@ -544,14 +544,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[0]->isScalar() == false)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[0]->get(0) <= 0.0) // Df
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : Positive no null value expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong value for input argument #%d : Positive no null value expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
@@ -570,7 +570,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 if (vectpDblInput[i]->isScalar() == false)
                 {
                     delete pDblOut;
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 4);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + i + 1);
                     return types::Function::Error;
                 }
             }
@@ -578,14 +578,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[0]->get(0) < 1.0) // Df
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : value > 1.0 expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong value for input argument #%d : value > 1.0 expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[1]->get(0) < 0.0) // Xnon
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : Positive value expected.\n"), "grand", 5);
+                Scierror(999, _("%s: Wrong value for input argument #%d : Positive value expected.\n"), "grand", iPos + 2);
                 return types::Function::Error;
             }
 
@@ -602,14 +602,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[0]->isScalar() == false)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[0]->get(0) < 0.0) // Av
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : Positive value expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong value for input argument #%d : Positive value expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
@@ -628,14 +628,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 if (vectpDblInput[i]->isScalar() == false)
                 {
                     delete pDblOut;
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 4);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + i + 1);
                     return types::Function::Error;
                 }
 
                 if (vectpDblInput[i]->get(0) <= 0.0) // Dfn Dfd
                 {
                     delete pDblOut;
-                    Scierror(999, _("%s: Wrong value for input argument #%d : Positive no null value expected.\n"), "grand", i + 4);
+                    Scierror(999, _("%s: Wrong value for input argument #%d : Positive no null value expected.\n"), "grand", iPos + i + 1);
                     return types::Function::Error;
                 }
             }
@@ -655,7 +655,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 if (vectpDblInput[i]->isScalar() == false)
                 {
                     delete pDblOut;
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 4);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + i + 1);
                     return types::Function::Error;
                 }
             }
@@ -663,21 +663,21 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[0]->get(0) < 1.0) // Dfn
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : value > 1.0 expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong value for input argument #%d : value > 1.0 expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[1]->get(0) <= 0.0) // Dfd
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : Positive non null value expected.\n"), "grand", 5);
+                Scierror(999, _("%s: Wrong value for input argument #%d : Positive non null value expected.\n"), "grand", iPos + 2);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[2]->get(0) < 0.0) // Xnon
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : Positive value expected.\n"), "grand", 6);
+                Scierror(999, _("%s: Wrong value for input argument #%d : Positive value expected.\n"), "grand", iPos + 3);
                 return types::Function::Error;
             }
 
@@ -696,14 +696,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 if (vectpDblInput[i]->isScalar() == false)
                 {
                     delete pDblOut;
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 4);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + i + 1);
                     return types::Function::Error;
                 }
 
                 if (vectpDblInput[i]->get(0) <= 0.0)
                 {
                     delete pDblOut;
-                    Scierror(999, _("%s: Wrong value for input argument #%d : Positive non null value expected.\n"), "grand", i + 4);
+                    Scierror(999, _("%s: Wrong value for input argument #%d : Positive non null value expected.\n"), "grand", iPos + i + 1);
                     return types::Function::Error;
                 }
             }
@@ -726,7 +726,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 if (vectpDblInput[i]->isScalar() == false)
                 {
                     delete pDblOut;
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 4);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + i + 1);
                     return types::Function::Error;
                 }
             }
@@ -734,7 +734,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[1]->get(0) < 0.0)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : Positive value expected.\n"), "grand", 5);
+                Scierror(999, _("%s: Wrong value for input argument #%d : Positive value expected.\n"), "grand", iPos + 2);
                 return types::Function::Error;
             }
 
@@ -751,21 +751,21 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[0]->getCols() != 1 || vectpDblInput[0]->getSize() == 0)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong size for input argument #%d : A matrix of size m x 1 expected.(m > 0)\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong size for input argument #%d : A matrix of size m x 1 expected.(m > 0)\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[0]->getRows() != vectpDblInput[1]->getRows())
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Mean and Cov have incompatible dimensions.\n"), "grand", 4, 5);
+                Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Mean and Cov have incompatible dimensions.\n"), "grand", iPos + 1, iPos + 2);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[1]->getRows() != vectpDblInput[1]->getCols())
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong size for input argument #%d : A square symmetric positive definite matrix expected.\n"), "grand", 5);
+                Scierror(999, _("%s: Wrong size for input argument #%d : A square symmetric positive definite matrix expected.\n"), "grand", iPos + 2);
                 return types::Function::Error;
             }
 
@@ -813,14 +813,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[0]->isScalar() == false)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[0]->get(0) < pmin || vectpDblInput[0]->get(0) > 1.0)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"), "grand", 4, pmin, 1);
+                Scierror(999, _("%s: Wrong value for input argument #%d : Must be between %.1E and %d.\n"), "grand", iPos + 1, pmin, 1);
                 return types::Function::Error;
             }
 
@@ -838,14 +838,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     vectpDblInput[0]->getRows() != 1)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong size for input argument #%d : A square matrix or a row vector expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong size for input argument #%d : A square matrix or a row vector expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[1]->getSize() == 0)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong size for input argument #%d: No empty matrix expected.\n"), "grand", 5);
+                Scierror(999, _("%s: Wrong size for input argument #%d: No empty matrix expected.\n"), "grand", iPos + 2);
                 return types::Function::Error;
             }
 
@@ -937,21 +937,21 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[0]->isScalar() == false)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[0]->get(0) < 0)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[1]->getCols() != 1 || vectpDblInput[1]->getRows() <= 0)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong size for input argument #%d: A column vector expected.\n"), "grand", 5);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A column vector expected.\n"), "grand", iPos + 2);
                 return types::Function::Error;
             }
 
@@ -963,7 +963,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 if (vectpDblInput[1]->get(i) < 0.0 || vectpDblInput[1]->get(i) > 1.0)
                 {
                     delete pDblOut;
-                    Scierror(999, _("%s: Wrong value for input argument #%d: P(%d) must be in the range [0 1].\n"), "grand", 5, i + 1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d: P(%d) must be in the range [0 1].\n"), "grand", iPos + 2, i + 1);
                     return types::Function::Error;
                 }
                 ptot += vectpDblInput[1]->get(i);
@@ -972,7 +972,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (ptot > 1.0)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d: Sum of P(i) > 1.\n"), "grand", 5);
+                Scierror(999, _("%s: Wrong value for input argument #%d: Sum of P(i) > 1.\n"), "grand", iPos + 2);
                 return types::Function::Error;
             }
 
@@ -1005,14 +1005,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[0]->isScalar() == false)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[0]->get(0) < 0.0)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : Positive value expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong value for input argument #%d : Positive value expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
@@ -1168,7 +1168,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 if (vectpDblInput[i]->isScalar() == false)
                 {
                     delete pDblOut;
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 4);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + i + 1);
                     return types::Function::Error;
                 }
             }
@@ -1179,7 +1179,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (low > high)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"), "grand", 4, 5);
+                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"), "grand", iPos + 1, iPos + 2);
                 return types::Function::Error;
             }
 
@@ -1198,27 +1198,27 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 if (vectpDblInput[i]->isScalar() == false)
                 {
                     delete pDblOut;
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 4);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + i + 1);
                     return types::Function::Error;
                 }
             }
 
-            int low  = static_cast<int>(vectpDblInput[0]->get(0));
-            int high = static_cast<int>(vectpDblInput[1]->get(0));
+            long long int low  = static_cast<long long int>(vectpDblInput[0]->get(0));
+            long long int high = static_cast<long long int>(vectpDblInput[1]->get(0));
 
             if (low > high)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"), "grand", 4, 5);
+                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"), "grand", iPos + 1, iPos + 2);
                 return types::Function::Error;
             }
 
             if ( low  != vectpDblInput[0]->get(0) ||
                     high != vectpDblInput[1]->get(0) ||
-                    (high - low + 1) > 2147483561)
+                    (high - low + 1) > 2147483647)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low and High must be integers and (high - low + 1) <=  2147483561.\n"), "grand", 4, 5);
+                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low and High must be integers and (high - low + 1) <=  2147483647.\n"), "grand", iPos + 1, iPos + 2);
                 return types::Function::Error;
             }
 
@@ -1354,7 +1354,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     {
                         if (vectpDblInput[i]->isScalar() == false)
                         {
-                            Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 2);
+                            Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + i + 1);
                             return types::Function::Error;
                         }
                     }
@@ -1383,7 +1383,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     {
                         if (vectpDblInput[i]->isScalar() == false)
                         {
-                            Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 2);
+                            Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + i + 1);
                             return types::Function::Error;
                         }
                     }
@@ -1395,7 +1395,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 {
                     if (vectpDblInput[0]->isScalar() == false)
                     {
-                        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", 2);
+                        Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + 1);
                         return types::Function::Error;
                     }
 
@@ -1445,13 +1445,13 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if (vectpDblInput[0]->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[0]->get(0) < 0 || vectpDblInput[0]->get(0) > Maxgen)
             {
-                Scierror(999, _("%s: Argument #%d: Must be in the interval [%d, %d].\n"), "grand", 2, 0, Maxgen);
+                Scierror(999, _("%s: Argument #%d: Must be in the interval [%d, %d].\n"), "grand", iPos + 1, 0, Maxgen);
                 return types::Function::Error;
             }
 
@@ -1478,7 +1478,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if (vectpDblInput[0]->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
@@ -1486,7 +1486,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     vectpDblInput[0]->get(0) != -1 &&
                     vectpDblInput[0]->get(0) != 1)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d : Must be between %d, %d or %d.\n"), "grand", 2, -1, 0, 1);
+                Scierror(999, _("%s: Wrong value for input argument #%d : Must be between %d, %d or %d.\n"), "grand", iPos + 1, -1, 0, 1);
                 return types::Function::Error;
             }
 
@@ -1507,7 +1507,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             {
                 if (vectpDblInput[i]->isScalar() == false)
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + i + 1);
                     return types::Function::Error;
                 }
             }
@@ -1535,7 +1535,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if (vectpDblInput[0]->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", iPos + 1);
                 return types::Function::Error;
             }
 
@@ -1543,7 +1543,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if (k < 1)
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d : Must be > %d.\n"), "grand", 2, 0);
+                Scierror(999, _("%s: Wrong value for input argument #%d : Must be > %d.\n"), "grand", iPos + 1, 0);
                 return types::Function::Error;
             }
 

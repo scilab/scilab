@@ -466,28 +466,31 @@ static sco_data *reallocHistoryBuffer(scicos_block * block, int numberOfPoints)
         }
     }
 
-    for (i = 0; i < block->insz[0]; i++)
+    if (allocatedNumberOfPoints > 0)
     {
-        ptr = (double *)MALLOC(3 * allocatedNumberOfPoints * sizeof(double));
-        if (ptr == NULL)
+        for (i = 0; i < block->insz[0]; i++)
         {
-            goto error_handler;
+            ptr = (double *)MALLOC(3 * allocatedNumberOfPoints * sizeof(double));
+            if (ptr == NULL)
+            {
+                goto error_handler;
+            }
+
+            // memcpy existing X-axis values from the history
+            memcpy(ptr, sco->internal.historyCoordinates[0][i], previousNumberOfPoints * sizeof(double));
+            // memcpy existing Y-axis values from the history
+            memcpy(ptr + allocatedNumberOfPoints, sco->internal.historyCoordinates[0][i] + previousNumberOfPoints, previousNumberOfPoints * sizeof(double));
+            // clear the last points, the Z-axis values
+            memset(ptr + 2 * allocatedNumberOfPoints, 0, allocatedNumberOfPoints * sizeof(double));
+
+            // then set the last points to the last values for X-axis and Y-axis values from the buffer points
+            buffer = sco->internal.bufferCoordinates[0][i];
+            memcpy(ptr + previousNumberOfPoints, buffer + bufferNewPointInc, (numberOfCopiedPoints - bufferNewPointInc) * sizeof(double));
+            memcpy(ptr + allocatedNumberOfPoints + previousNumberOfPoints, buffer + bufferNumberOfPoints + bufferNewPointInc, (numberOfCopiedPoints - bufferNewPointInc) * sizeof(double));
+
+            FREE(sco->internal.historyCoordinates[0][i]);
+            sco->internal.historyCoordinates[0][i] = ptr;
         }
-
-        // memcpy existing X-axis values from the history
-        memcpy(ptr, sco->internal.historyCoordinates[0][i], previousNumberOfPoints * sizeof(double));
-        // memcpy existing Y-axis values from the history
-        memcpy(ptr + allocatedNumberOfPoints, sco->internal.historyCoordinates[0][i] + previousNumberOfPoints, previousNumberOfPoints * sizeof(double));
-        // clear the last points, the Z-axis values
-        memset(ptr + 2 * allocatedNumberOfPoints, 0, allocatedNumberOfPoints * sizeof(double));
-
-        // then set the last points to the last values for X-axis and Y-axis values from the buffer points
-        buffer = sco->internal.bufferCoordinates[0][i];
-        memcpy(ptr + previousNumberOfPoints, buffer + bufferNewPointInc, (numberOfCopiedPoints - bufferNewPointInc) * sizeof(double));
-        memcpy(ptr + allocatedNumberOfPoints + previousNumberOfPoints, buffer + bufferNumberOfPoints + bufferNewPointInc, (numberOfCopiedPoints - bufferNewPointInc) * sizeof(double));
-
-        FREE(sco->internal.historyCoordinates[0][i]);
-        sco->internal.historyCoordinates[0][i] = ptr;
     }
 
     sco->internal.maxNumberOfPoints = allocatedNumberOfPoints;

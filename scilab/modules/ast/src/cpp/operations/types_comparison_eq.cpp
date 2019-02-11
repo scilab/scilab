@@ -3671,36 +3671,7 @@ InternalType* compequal_LT_LT(T *_pL, U *_pR)
 template<>
 types::InternalType* compequal_M_M<Cell, Cell, Bool>(types::Cell* _pL, types::Cell* _pR)
 {
-    /* check dimension*/
-    if (_pL->getDims() != _pR->getDims())
-    {
-        return new Bool(false);
-    }
-
-    int* piDimsL = _pL->getDimsArray();
-    int* piDimsR = _pR->getDimsArray();
-
-    for (int i = 0; i < _pL->getDims(); i++)
-    {
-        if (piDimsL[i] != piDimsR[i])
-        {
-            return new Bool(false);
-        }
-    }
-
-    if (_pL->getSize() == 0)
-    {
-        //{} == {} -> return true
-        return new Bool(true);
-    }
-
-    Bool *pB = new Bool(_pL->getDims(), piDimsL);
-    for (int i = 0; i < _pL->getSize(); i++)
-    {
-        pB->set(i, *_pL->get(i) == *_pR->get(i));
-    }
-
-    return pB;
+    return new Bool(*_pL == *_pR);
 }
 
 template<>

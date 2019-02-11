@@ -658,12 +658,19 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         } else {
             div = "span";
         }
+        String alt = attrs.get("alt");
+        if (alt == null) {
+            alt = "";
+        }
+        else {
+            alt = " alt=\'" + alt + "\'";
+        }
 
         if (getGenerationType() == Backend.JAVAHELP && isLinkedImage()) {
             // Java HTML renderer is not good... so when  the image is linked, we remove the div
-            return "<img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'/>>";
+            return "<img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'" + alt + "/>>";
         } else {
-            return "<" + div + align + "><img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'/></" + div + ">";
+            return "<" + div + align + "><img src=\'" + fileName + "\' style=\'position:relative;" + top  + "width:" + img.width + "px;height:" + img.height + "px\'" + alt + "/></" + div + ">";
         }
     }
 
@@ -672,8 +679,9 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         String idAttr    = attrs.get("id");
         String alignAttr = attrs.get("align");   // mixes align and valign imagedata attributes
         String widthAttr = attrs.get("width");
-        String heightAttr= attrs.get("height"); // officially named "depth" as imagedata attribute
+        String heightAttr= attrs.get("height");  // officially named "depth" as imagedata attribute
         String styleAttr = attrs.get("style");
+        String altAttr = attrs.get("alt");       // for example: LaTeX content as text
         boolean addDiv = getGenerationType() != Backend.JAVAHELP || !isLinkedImage();
         final StringBuilder buffer = new StringBuilder(128);
         if (addDiv && alignAttr != null) {
@@ -695,7 +703,11 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             }
         }
         if (styleAttr != null) {
-            buffer.append("style=\'").append(styleAttr).append("\'");
+            buffer.append("style=\'").append(styleAttr).append("\' ");
+        }
+        if (altAttr != null) {
+            altAttr = altAttr.replaceAll("\'", "&apos;").replaceAll("\"", "&quot;");
+            buffer.append("alt=\'").append(altAttr).append("\'");
         }
         buffer.append("/>\n");
         if (addDiv && alignAttr != null) {

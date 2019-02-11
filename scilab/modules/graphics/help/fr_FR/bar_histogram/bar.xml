@@ -9,9 +9,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>bar(y)
+        <synopsis>
+            bar(y)
             bar(x, y)
-            bar(x, y [,width [,color [,style]]])
+            bar(x, y, width, colors, style)
+            bar(x, y [,width] [,colors] [,style])
             bar(h, x, y ..)
         </synopsis>
     </refsynopsisdiv>
@@ -28,17 +30,32 @@
                 <term>y</term>
                 <listitem>
                     <para>
-                      un scalaire, un vecteur de taille N, ou une matrice de taille N*M
+                       scalaire, vecteur de taille N, ou matrice (N_lignes * M_colonnes) de nombres
+                       réels ou d'entiers encodés, avec
+                      <itemizedlist>
+                        <listitem>
+                          N : nombre de groupes de barres. Chaque groupe est rassemblé à (proximité
+                          de) la position x dédiée.
+                        </listitem>
+                        <listitem>
+                          M : nombre de catégories = nombre de barres dans chaque groupe.
+                        </listitem>
+                      </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>
-                      un scalaire ou un vecteur de taille N, (si y est un vecteur alors x doit
-                      etre de meme longeur que y. Si y est une matrice alors x doit etre un vecteur
-                      de longeur egale au nombre de lignes de y).
+                    <para>scalaire, ou vecteur de taille N. Par défaut,
+                      <itemizedlist>
+                        <listitem>
+                          Si <varname>y</varname> est un vecteur : <literal>x=1:length(y)</literal>
+                        </listitem>
+                        <listitem>
+                          Si <varname>y</varname> est une matrice : <literal>x=1:size(y,"r")</literal>
+                        </listitem>
+                      </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
@@ -53,20 +70,22 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>color</term>
+                <term>colors</term>
                 <listitem>
                     <para>
-                        (optionnel) couleur de remplissage des barres, indiquée par son nom
-                        littéral choisi dans la liste des couleurs Scilab prédéfinies, ou par
-                        son code hexadécimal littéral du type "#RRGGBB".  Par défaut: "blue"
+                        (option) String unique (commune), ou vecteur de M strings : noms des
+                        couleurs des M catégories (choisis dans la liste Scilab des noms prédéfinis),
+                        ou codes hexadécimaux de celles-ci (du type "#RRGGBB"). Par défaut, la
+                        série de couleurs utilisées par défaut par plot() est utilisée, commençant
+                        par "blue".
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>style:</term>
+                <term>style</term>
                 <listitem>
                     <para>
-                      (optionel), une chaine, 'grouped' or 'stacked' (par défaut: 'grouped').
+                      (option) 'grouped' (par défaut), ou 'stacked'.
                     </para>
                 </listitem>
             </varlistentry>
@@ -75,27 +94,23 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>bar(y,...) :</literal> si y est un vecteur alors la fonction bar
-            dessine une polyline de type <literal>polyline_style</literal> égale à 6, dans
-            ce cas x =1 : length(y). Si y est une matrice de taille N*M, alors la
-            fonction bar dessine M polylines de (type 6), chaque polyline correspond à
-            une colonne de y est au vecteur x=1:size(y,1).
+            <literal>bar(y,...) :</literal> si y est un vecteur, alors bar()
+            dessine une polyline unique de type <literal>polyline_style=6</literal>, avec
+            <literal>x=1:length(y)</literal>. Si y est une matrice de taille N*M, alors bar()
+            dessine M polylines de (type 6), avec x=1:size(y,1) ; chaque polyline correspond alors
+            à une colonne de y, et à une catégorie, avec sa propre couleur .
         </para>
         <para>
-            <literal>bar(x,y,...) :</literal> si y est un vecteur alors la fonction bar
-            dessine une polyline de type <literal>polyline_style</literal> égale à 6,
-            vérifiant: longeur de x = longeur de y .Si y est une matrice de taille
-            N*M, alors la fonction bar dessine M polylines de (type 6), chaque
-            polyline correspond à une colonne de y est au vecteur x vérifiant longueur
-            de x=size(y,1) (i.e longueur de x = nombre de ligne de y).
+            <literal>bar(x,y,...) :</literal> comme <literal>bar(y,...) :</literal>, mais en
+            indiquant explicitement les N positions x des groupes.
         </para>
         <para>
             <literal>bar(h,...) :</literal> definit les axes courants ou le dessin est
             réalisé.
         </para>
         <para>
-            <literal>bar(...,width,...) :</literal> definit l'épaisseur des barres en
-            pourcentage (générallement: 0&lt;width&lt;=1).
+            <literal>bar(...,width,...) :</literal> definit la largeur relative des barres :
+            0&lt;width&lt;=1.
         </para>
         <para>
             <literal>bar(...,style,...) :</literal> dans le cas ou y est une matrice
@@ -107,7 +122,8 @@
             'stacked' permet de les empiler.
         </para>
         <para>
-            <literal>bar(...,color,...) : </literal> definit la couleur des barres.
+            <literal>bar(...,colors,...) : </literal> definit les couleurs des catégories de barres.
+            Toutes les barres d'une même catégorie sont remplies avec la même couleur.
         </para>
         <para>S'il y a plusieurs appels à la fonction bar(), la fonction
             <literal>barhomogenize</literal> permet d'homogénéiser l'épaisseur et le style
@@ -119,7 +135,7 @@
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 // Premier exemple : dessine une barre, avec les paramètres width=0.5
-// et color='yellow' et par défaut x=1:length(y), style = 'grouped'.
+// et colors='yellow' et par défaut x=1:length(y), style = 'grouped'.
 scf(0);
 y=[1 -3 5];
 bar(y,0.5,'yellow');
@@ -155,7 +171,7 @@ bar(x,y,'stacked');
             bar(x,y,'stacked');
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// Quatrième exemple; width=0.2;color='green'; par défaut style='grouped'
+// Quatrième exemple; width=0.2;colors='green'; par défaut style='grouped'
 scf(3);
 x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
 bar(x,y,0.2,'green');
@@ -187,6 +203,9 @@ bar(x,y,0.2,'green');
             <member>
                 <link linkend="polyline_properties">polyline_properties</link>
             </member>
+            <member>
+                <link linkend="hist3d">hist3d</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection role="history">
@@ -195,10 +214,21 @@ bar(x,y,0.2,'green');
             <revision>
                 <revnumber>6.0.1</revnumber>
                 <revdescription>
-                    La valeur de color n'est plus restreinte aux 10 principales couleurs : elle
-                    peut désormais être toute couleur parmi celles -- nombreuses -- prédéfinies
-                    dans Scilab. En outre, color peut maintenant être indiquée par son code
-                    hexadécimal "#RRGGBB".
+                    <itemizedlist>
+                      <listitem>
+                        Un vecteur de M couleurs peut désormais être fourni, une couleur pour
+                        chaque catégorie.
+                      </listitem>
+                      <listitem>
+                        Les couleurs utilisables ne sont plus restreintes à la liste des 10 couleurs
+                        majeures utilisées par plot(). Toutes les couleurs nommées prédéfinies
+                        dans Scilab sont utilisables.
+                      </listitem>
+                      <listitem>
+                        Les couleurs peuvent désormais être indiquées également par leur code
+                        hexadécimal "#RRGGBB".
+                      </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

@@ -12,13 +12,40 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=12384
 //
 // <-- Short Description -->
-// Algebraic loop error while compiling a diagram with a modelica part linked 
+// Algebraic loop error while compiling a diagram with a modelica part linked
 // to another modelica part with an explicit link (using a sensor).
 ilib_verbose(0);
 importXcosDiagram(SCI+"/modules/xcos/tests/nonreg_tests/bug_12384.zcos");
 Info = scicos_simulate(scs_m,list());
 --------------------------------------------\
  Main Modelica : TMPDIR\Loop_im.mo
-
  Flat Modelica : TMPDIR\Loop_imf.mo
  Simulation C code :TMPDIR\Loop_im.c
+!messagebox: Modelica blocks are reduced to a block with:              !
+!                                                                      !
+!messagebox: Number of differential states: 0                          !
+!                                                                      !
+!messagebox: Number of algebraic states: 1                             !
+!                                                                      !
+!messagebox: Number of discrete time states  : 0                       !
+!                                                                      !
+!messagebox: Number of zero-crossing surfaces: 0                       !
+!                                                                      !
+!messagebox: Number of modes  : 0                                      !
+!                                                                      !
+!messagebox: Number of inputs : 0                                      !
+!                                                                      !
+!messagebox: Number of outputs: 1                                      !
+!                                                                      !
+!messagebox: Input/output dependency:[T]                               !
+!                                                                      !
+!messagebox: Analytical Jacobian: enabled  (%Jacobian=%t)              !
+!                                                                      !
+!messagebox: Parameter embedding mode: enabled (%Modelica_ParEmb=%t)   !
+!                                                                      !
+!messagebox:                                                           !
+!                                                                      !
+!messagebox: Generated files path: C:\Users\cdd\AppData\Local\Temp\SCI_!
+!TMP_28512_3135\                                                       !
+!                                                                      !
+!messagebox:                                                           !

@@ -21,109 +21,72 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATCATH">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="MATCATH" xml:lang="en_US">
     <refnamediv>
         <refname>MATCATH</refname>
         <refpurpose>Horizontal Concatenation</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/MATCATH.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/MATCATH.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_MATCATH">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATCATH">Horizontal Concatenation</link>
-                </para>
+                <xref linkend="Description_MATCATH">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MATCATH">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MATCATH">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_MATCATH">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="MATCATH">Example</link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MATCATH">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MATCATH">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_MATCATH">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_MATCATH">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_MATCATH">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_MATCATH">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_MATCATH">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_MATCATH">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_MATCATH">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_MATCATH">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_MATCATH">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Matrix_pal">Matrix operation palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_MATCATH">
         <title>Description</title>
         <para>
-            The MATCATH Block outputs the horizontal concatenation of multiple matrices. It is also called concatenation
-            according to the columns. The inputs U1,U2,...,Un must have the same number of rows. The user must set the
+            The MATCATH Block outputs the horizontal concatenation of multiple matrices.
+            It is also called concatenation according to the columns. The inputs U1,U2,...,Un
+            must have the same number of rows. The user must set the
             number of input matrices in the <emphasis role="bold">Number of input</emphasis> parameter.
         </para>
         <para>
-            The output is a M-by-(N1+N2+...+Nn) matrix, where N1,N2,...,Nn are the numbers of columns of the inputs
-            matrices, and M is the number of rows.
+            The output is a M-by-(N1+N2+...+Nn) matrix, where N1,N2,...,Nn are the numbers of
+            columns of the inputs matrices, and M is the number of rows.
         </para>
         <para>The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].</para>
-        <para/>
     </refsection>
     <refsection id="Dialogbox_MATCATH">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/MATCATH_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/gui/MATCATH_gui.gif" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -135,15 +98,6 @@
                 <para>Properties : Type 'vec' of size 1.</para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection id="Example_MATCATH">
-        <title>Example</title>
-        <programlisting role="example">
-            A = [1 2 3; 4 5 6]
-            B = [7 8; 9 10]
-            The result of the horizontal concatenation is:
-            C = [1 2 3 7 8; 4 5 6 9 10]
-        </programlisting>
     </refsection>
     <refsection id="Defaultproperties_MATCATH">
         <title>Default properties</title>
@@ -219,7 +173,27 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
+    <refsection id="Example_MATCATH">
+        <title>Examples</title>
+        <screen><![CDATA[
+A = [1 2 3; 4 5 6]
+B = [7 8; 9 10]
+The result of the horizontal concatenation is:
+C = [1 2 3 7 8; 4 5 6 9 10]
+]]></screen>
+        <para><emphasis role="bold">Example of Horizontal Concatenation</emphasis></para>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATCATH_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATCATH_Example.zcos"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
+    </refsection>
+
     <refsection id="Interfacingfunction_MATCATH">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -232,23 +206,14 @@
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/mat_cath.c</para>
+                SCI/modules/scicos_blocks/src/c/mat_cath.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matz_cath.c</para>
+                SCI/modules/scicos_blocks/src/c/matz_cath.c
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_MATCATH2">
-        <title>Example of Horizontal Concatenation</title>
-        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATCATH_Example.zcos">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATCATH_Example.zcos" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </link>
-    </refsection>
+
     <refsection id="Seealso_MATCATH">
         <title>See also</title>
         <itemizedlist>

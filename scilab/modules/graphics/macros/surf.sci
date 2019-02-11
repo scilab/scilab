@@ -108,10 +108,6 @@ function surf(varargin)
             msg = gettext("%s: Argument #%d: Decimal numbers expected.\n")
             error(msprintf(msg, "surf", 1+argShift));
         end
-        if length(X)<2 then
-            msg = gettext("%s: Argument #%d: At least %d components expected.\n")
-            error(msprintf(msg, "surf", 1+argShift, 2));
-        end
         //
         Y = ListArg(2)
         if T(2)~=1 | ~isreal(Y) then
@@ -122,7 +118,7 @@ function surf(varargin)
             msg = gettext("%s: Argument #%d: At least %d components expected.\n")
             error(msprintf(msg, "surf", 2+argShift, 2));
         end
-        if ~isvector(X) | ~isvector(Y)
+        if (~isvector(X) & ~isscalar(X)) | (~isvector(Y) & ~isscalar(Y))
             if or(size(X)~=size(Y))
                 msg = gettext("%s: Arguments #%d and #%d: Incompatible sizes.\n")
                 error(msprintf(msg, "surf", 1+argShift, 2+argShift));

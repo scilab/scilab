@@ -38,12 +38,13 @@ int sci_mpi_irecv(char *fname, void* pvApiCtx)
     int iRequestID = 0;
     double dblRequestID = 0;
     MPI_Status status;
+    MPI_Comm comm = NULL;
 
     CheckInputArgument(pvApiCtx, 3, 4);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
     // if no optional "comm" is given, return MPI_COMM_WORLD
-    MPI_Comm comm = getOptionalComm(pvApiCtx);
+    comm = getOptionalComm(pvApiCtx);
     if (comm == NULL)
     {
         Scierror(999, _("%s: Wrong type for input argument #%s: An MPI communicator expected.\n"), fname, "comm");

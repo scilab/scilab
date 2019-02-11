@@ -7,6 +7,7 @@
 
 // <-- TEST WITH GRAPHIC -->
 // <-- INTERACTIVE TEST -->
+// <-- NOT FIXED -->  5.4.0 -> 6.0.2
 //
 // <-- Non-regression test for bug 6558 -->
 //

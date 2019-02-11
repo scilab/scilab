@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,97 +13,61 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="RFILE_f" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="RFILE_f" xml:lang="fr_FR">
     <refnamediv>
         <refname>RFILE_f</refname>
         <refpurpose>Lecture dans un fichier</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/RFILE_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/RFILE_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_RFILE_f">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="RFILE_f">Lecture dans un fichier</link>
-                </para>
+                <xref linkend="Description_RFILE_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_RFILE_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_RFILE_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Datatype_RFILE_f">Types de données</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_RFILE_f">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_RFILE_f">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_RFILE_f">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_RFILE_f">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_RFILE_f">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_RFILE_f">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Datatype_RFILE_f">Types de données</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_RFILE_f">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Sources_pal">Sources </link>
-                </para>
+                <xref linkend="Dialogbox_RFILE_f">Paramètres</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_RFILE_f">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_RFILE_f">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_RFILE_f">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_RFILE_f">Fonction de calcul</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_RFILE_f">Voir aussi</xref>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Description_RFILE_f">
         <title>Description</title>
         <para>
-            Ce bloc permet à l'utilisateur de lire des données dans un fichier avec le nom défini par la chaîne <emphasis role="bold">Input File Name</emphasis> en mode texte formatté ou en mode binaire.
+            Ce bloc permet à l'utilisateur de lire des données dans un fichier avec le nom défini
+            par la chaîne <emphasis role="bold">Input File Name</emphasis> en mode texte
+            formatté ou en mode binaire.
         </para>
         <para>
-            Le fichier est une séquence d'enregistrements. Chaque enregistrement a une longueur <emphasis role="bold">Record Size</emphasis> et la structure ci-dessous :
+            Le fichier est une séquence d'enregistrements. Chaque enregistrement a une longueur
+            <emphasis role="bold">Record Size</emphasis> et la structure ci-dessous :
         </para>
         <mediaobject>
             <imageobject>
@@ -122,12 +86,16 @@ box "Champ #N";
             </textobject>
         </mediaobject>
         <para>
-            Le paramètre <emphasis role="bold">Time record Selection</emphasis> permet à l'utilisateur de sélectionner un champ de l'enregistrement qui représente des événements
-            temporels. Quand ce paramètre est fourni, une sortie d'activation est ajoutée au block qui renvoie ces événements à l'utilisateur. Vous pouvez effectuer un bouclage
-            de la sortie d'activation sur l'entrée d'événement du bloc pour lire les enregistrements en séquence jusqu'à la fin du fichier comme dans l'exemple ci-dessous.
+            Le paramètre <emphasis role="bold">Time record Selection</emphasis> permet à
+            l'utilisateur de sélectionner un champ de l'enregistrement qui représente des événements
+            temporels. Quand ce paramètre est fourni, une sortie d'activation est ajoutée au bloc
+            qui renvoie ces événements à l'utilisateur. Vous pouvez effectuer un bouclage
+            de la sortie d'activation sur l'entrée d'événement du bloc pour lire les
+            enregistrements en séquence jusqu'à la fin du fichier comme dans l'exemple ci-dessous.
         </para>
         <para>
-            Le paramètre  <emphasis role="bold">Output record selection</emphasis> est utilisé pour sélectionner les champs de l'enregistrement qui sont inclus dans la sortie régulière.
+            Le paramètre  <emphasis role="bold">Output record selection</emphasis> est utilisé pour
+            sélectionner les champs de l'enregistrement qui sont inclus dans la sortie régulière.
         </para>
         <para>
             Le paramètre <emphasis role="bold">Output Format</emphasis> donne le format d'un enregistrement.
@@ -137,7 +105,10 @@ box "Champ #N";
                 <para>Pour un fichier binaire, ce paramètre est vide.</para>
             </listitem>
             <listitem>
-                <para>Pour un fichier texte, ce paramètre est une chaîne de format (syntaxe Fortran) entre parenthèses.</para>
+                <para>
+                    Pour un fichier texte, ce paramètre est une chaîne de format (syntaxe Fortran)
+                    entre parenthèses.
+                </para>
             </listitem>
         </itemizedlist>
         <para>Chaque appel au bloc avance d'un enregistrement dans le fichier.</para>
@@ -154,16 +125,14 @@ box "Champ #N";
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_RFILE_f">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/sources_pal/fr_FR/RFILE_f_gui.png" align="center"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-        </para>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/sources_pal/fr_FR/RFILE_f_gui.png"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -171,20 +140,13 @@ box "Champ #N";
                 </para>
                 <para> Une matrice vide ou un entier positif.</para>
                 <para>
-                    Si un entier
-                    <emphasis>
-                        <literal>i</literal>
-                    </emphasis>
-                    est donné, le
-                    <emphasis><literal>
-                            i<superscript>ième</superscript>
-                        </literal>
-                    </emphasis>
-                    élément de l'enregistrement lu
-                    est supposée être la date de l'événement de sortie.
+                    Si un entier  <emphasis><literal>i</literal></emphasis> est donné, le
+                    <emphasis><literal>i<superscript>ième</superscript></literal></emphasis>
+                    élément de l'enregistrement lu est supposée être la date de l'événement de
+                    sortie.
                 </para>
                 <para>Si c'est une matrice vide, il n'existe aucun évènement de sortie.</para>
-                <para> Propriétés : Type 'vec' de taille -1. </para>
+                <para> Propriétés : Type 'vec' de taille -1.</para>
             </listitem>
             <listitem>
                 <para>
@@ -311,15 +273,20 @@ box "Champ #N";
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_RFILE_f">
         <title>Exemple</title>
         <para>
-            Cet exemple lit le fichier : <emphasis>"SCI/modules/xcos/examples/sources_pal/fr_FR/rfile_f.txt"</emphasis> qui contient un jeu de données généré.
+            Cet exemple lit le fichier :
+            <emphasis>"SCI/modules/xcos/examples/sources_pal/fr_FR/rfile_f.txt"</emphasis>
+            qui contient un jeu de données généré.
         </para>
         <para>
-            Il utilise sa sortie d'activation comme entrée de CSCOPE. Dans le fichier, le premier champ de l'enregistrement est le temps, les deux autres sont des données régulières.
-            Le bouclage de la sortie d'activation sur l'entrée d'activation assure la lecture séquentielle du fichier.
+            Il utilise sa sortie d'activation comme entrée de CSCOPE. Dans le fichier, le premier
+            champ de l'enregistrement est le temps, les deux autres sont des données régulières.
+            Le bouclage de la sortie d'activation sur l'entrée d'activation assure la lecture
+            séquentielle du fichier.
         </para>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/fr_FR/rfile_f_fr_FR.zcos">

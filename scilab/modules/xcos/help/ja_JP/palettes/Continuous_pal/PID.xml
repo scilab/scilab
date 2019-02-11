@@ -21,79 +21,42 @@
 *
 * See the file ./license.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="PID" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="PID" xml:lang="ja">
     <refnamediv>
         <refname>PID</refname>
         <refpurpose>PID レギュレータ</refpurpose>
     </refnamediv>
     <refsection>
         <title>ブロックのスクリーンショット</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/PID.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/PID.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_PID">
         <title>内容</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="PID">PID レギュレータ</link>
-                </para>
+                <xref linkend="Description_PID">説明</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_PID">パレット</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_PID">説明</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_PID">ダイアログボックス</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_PID">デフォルトプロパティ
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_PID">インターフェイス用関数</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="CompiledSuperBlockcontent_PID">コンパイル済みのスーパーブロックの内容</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Examples_PID">例</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_PID">ダイアログボックス</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_PID">
-        <title>パレット</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">連続時間システムパレット
-                    </link>
-                </para>
+                <xref linkend="Defaultproperties_PID">デフォルトプロパティ</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_PID">インターフェイス用関数</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="CompiledSuperBlockcontent_PID">コンパイル済みのスーパーブロックの内容</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Examples_PID">例</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -101,15 +64,12 @@
         <title>説明</title>
         <para>
             このブロックは PID (比例-積分-微分)制御器を実装します.
-            "誤差"の値 Ue は,観測されたプロセス変数 Upr とセットポイント指令値 Ur
-            の差から計算します.
+            "誤差"の値 U<subscript>e</subscript> は,観測されたプロセス変数 U<subscript>pr</subscript>
+            とセットポイント指令値 U<subscript>r</subscript> の差から計算します.
         </para>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/pid_error.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
+            <emphasis>U<subscript>e</subscript> = U<subscript>r</subscript> -
+                                                  U<subscript>pr</subscript></emphasis>
         </para>
         <para>
             制御目的は,プロセス変数 Up をセットポイント値 Urに追従させることです.
@@ -152,14 +112,13 @@
     </refsection>
     <refsection id="Dialogbox_PID">
         <title>ダイアログボックス</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/PID_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/PID_gui.gif"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -212,8 +171,7 @@
                     <emphasis role="bold">標準入力:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- ポート 1 : 大きさ [-1,-2] / 1型
-                    </emphasis>
+                    <emphasis role="bold">- ポート 1 : 大きさ [-1,-2] / 1型</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -221,28 +179,22 @@
                     <emphasis role="bold">標準出力:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- ポート 1 : 大きさ [-1,-2] / 1型
-                    </emphasis>
+                    <emphasis role="bold">- ポート 1 : 大きさ [-1,-2] / 1型</emphasis>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">アクティベーション入力の数/大きさ:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">アクティベーション入力の数/大きさ:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">アクティベーション出力の数/大きさ:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">アクティベーション出力の数/大きさ:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">連続時間状態量:</emphasis>
-                    no
+                    <emphasis role="bold">連続時間状態量:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -252,8 +204,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis>
-                    no
+                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -263,6 +214,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_PID">
         <title>インターフェイス用関数</title>
@@ -284,11 +236,12 @@
     </refsection>
     <refsection id="Examples_PID">
         <title>例</title>
-        <refsection id="Example_1_PID">
+        <refsect3 id="Example_1_PID">
             <title>例1</title>
             <para>
                 この例は,PIDレギュレータの使用例を示します.
-                この制御は,簡単に出力信号 Upr(t) を指令信号 Ur(t) に一致させます.
+                この制御は,簡単に出力信号 <emphasis>U<subscript>pr</subscript>(t)</emphasis> を指令信号
+                <emphasis>U<subscript>r</subscript>(t)</emphasis> に一致させます.
             </para>
             <para>
                 この例では,制御系は,
@@ -319,7 +272,8 @@
                 スコープはシステム誤差 Ue (黒),
                 基準信号 Ur (青) およびプロセス信号 Upr(赤)
                 の波形を表示します.
-                最初,プロセス信号 Upr(t) が基準信号 Ur(t) に追従していないことが
+                最初,プロセス信号 <emphasis>U<subscript>pr</subscript>(t)</emphasis> が基準信号
+                <emphasis>U<subscript>r</subscript>(t)</emphasis> に追従していないことが
                 わかります.
             </para>
             <para>
@@ -330,13 +284,15 @@
                         </imageobject>
                     </inlinemediaobject>
                 </link>
+            </para>
+            <para>
                 <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_1_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
-        <refsection id="Example_2_PID">
+        </refsect3>
+        <refsect3 id="Example_2_PID">
             <title>例2</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_2_Example.zcos">
@@ -346,13 +302,15 @@ xcos_simulate(scs_m, 4);
                         </imageobject>
                     </inlinemediaobject>
                 </link>
+            </para>
+            <para>
                 <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_2_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
-        <refsection id="Example_3_PID">
+        </refsect3>
+        <refsect3 id="Example_3_PID">
             <title>例3</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_3_Example.zcos">
@@ -362,11 +320,13 @@ xcos_simulate(scs_m, 4);
                         </imageobject>
                     </inlinemediaobject>
                 </link>
+            </para>
+            <para>
                 <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_3_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
+        </refsect3>
     </refsection>
 </refentry>

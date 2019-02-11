@@ -912,7 +912,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     {
         phase = 1;
         idoit(t0);
-        if (*ierr == 0)
+        if (*ierr == 0 && Max(nx, ng) > 0)
         {
             if ((W = MALLOC(sizeof(double) * (Max(nx, ng)))) == NULL )
             {
@@ -4047,6 +4047,8 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
             /*call_debug_scicos(flag,kf,flagi,debug_block);*/
         }
     }
+
+    block_error = NULL;
 } /* callf */
 /*--------------------------------------------------------------------------*/
 /* call_debug_scicos */
@@ -6052,73 +6054,37 @@ static void FREE_blocks()
         {
             FREE(Blocks[kf].insz);
         }
-        else
-        {
-            break;
-        }
         if (Blocks[kf].inptr != NULL)
         {
             FREE(Blocks[kf].inptr);
-        }
-        else
-        {
-            break;
         }
         if (Blocks[kf].outsz != NULL)
         {
             FREE(Blocks[kf].outsz);
         }
-        else
-        {
-            break;
-        }
         if (Blocks[kf].outptr != NULL)
         {
             FREE(Blocks[kf].outptr);
-        }
-        else
-        {
-            break;
         }
         if (Blocks[kf].oparsz != NULL)
         {
             FREE(Blocks[kf].oparsz);
         }
-        else
-        {
-            break;
-        }
         if (Blocks[kf].ozsz != NULL)
         {
             FREE(Blocks[kf].ozsz);
-        }
-        else
-        {
-            break;
         }
         if (Blocks[kf].label != NULL)
         {
             FREE(Blocks[kf].label);
         }
-        else
-        {
-            break;
-        }
         if (Blocks[kf].uid != NULL)
         {
             FREE(Blocks[kf].uid);
         }
-        else
-        {
-            break;
-        }
         if (Blocks[kf].evout != NULL)
         {
             FREE(Blocks[kf].evout);
-        }
-        else
-        {
-            break;
         }
     }
     FREE(Blocks);
@@ -6234,7 +6200,10 @@ void Coserror(const char *fmt, ...)
     va_end(ap);
 
     /* coserror use error number 10 */
-    *block_error = -5;
+    if (block_error)
+    {
+        *block_error = -5;
+    }
 }
 /*--------------------------------------------------------------------------*/
 /* SundialsErrHandler: in case of a Sundials error,
@@ -6511,9 +6480,12 @@ static int Jacobians(long int Neq, realtype tt, realtype cj, N_Vector yy,
     }
     /*----------------------------------------------*/
     job = 1; /* read jacobian through flag=10; */
-    *block_error = 0;
+    if (block_error)
+    {
+        *block_error = 0;
+    }
     Jdoit(&ttx, xc, xcdot, &Fx[-m], &job);/* Filling up the FX:Fu:Gx:Gu*/
-    if (*block_error != 0)
+    if (block_error && *block_error != 0)
     {
         sciprint(_("\n error in Jacobian"));
     }

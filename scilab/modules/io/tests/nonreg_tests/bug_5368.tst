@@ -1,4 +1,4 @@
-/ =============================================================================
+// =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
 //
@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=5368
 //
 // <-- Short Description -->
-// 
+//
 
 v = [];
 for i = 1:20

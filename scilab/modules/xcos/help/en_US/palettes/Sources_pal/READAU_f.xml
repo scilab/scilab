@@ -21,75 +21,44 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="READAU_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="READAU_f" xml:lang="en_US">
     <refnamediv>
         <refname>READAU_f</refname>
         <refpurpose>Read AU sound file</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/READAU_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/READAU_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_READAU_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="READAU_f">Read AU sound file</link>
-                </para>
+                <xref linkend="Description_READAU_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_READAU_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_READAU_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_READAU_f">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_READAU_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_READAU_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_READAU_f">Computational function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_READAU_f">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_READAU_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_READAU_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_READAU_f">Computational function</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_READAU_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Sources_pal">Sources palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_READAU_f">
         <title>Description</title>
         <para>
@@ -97,7 +66,6 @@
             sampled data in y. The .au extension is appended if no extension is
             given. Amplitude values are in the range [-1,+1]. auread supports
             multichannel data in the following formats:
-
         </para>
         <itemizedlist>
             <listitem>
@@ -111,18 +79,16 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Dialogbox_READAU_f">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/READAU_f_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
 
-        </para>
+    <refsection id="Dialogbox_READAU_f">
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/READAU_f_gui.gif"
+                            align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -135,7 +101,9 @@
                 <para>
                     <emphasis role="bold">Buffer size</emphasis>
                 </para>
-                <para> To improve efficiency it is possible to buffer the input data. Read on the file is only done after each Buffer size call to the block.</para>
+                <para> To improve efficiency it is possible to buffer the input data.
+                        Read on the file is only done after each Buffer size call to the block.
+                </para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
             <listitem>
@@ -143,12 +111,16 @@
                     <emphasis role="bold">Swap mode 0/1</emphasis>
                 </para>
                 <para>
-                    With<emphasis role="bold">Swap mode=1</emphasis> the file is supposed to be coded in "little endian IEEE format" and data are swaped if necessary to match the IEEE format of the processor. If<emphasis role="bold">Swap mode=0</emphasis> then automatic bytes swap is disabled.
+                    With<emphasis role="bold">Swap mode=1</emphasis> the file is supposed to be
+                    coded in "little endian IEEE format" and data are swaped if necessary to match
+                    the IEEE format of the processor. If<emphasis role="bold">Swap mode=0</emphasis>
+                    then automatic bytes swap is disabled.
                 </para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Defaultproperties_READAU_f">
         <title>Default properties</title>
         <itemizedlist>
@@ -212,7 +184,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Interfacingfunction_READAU_f">
         <title>Interfacing function</title>
         <itemizedlist>

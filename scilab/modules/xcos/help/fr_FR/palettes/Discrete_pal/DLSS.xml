@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,72 +13,39 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="DLSS" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="DLSS" xml:lang="fr">
     <refnamediv>
         <refname>DLSS</refname>
         <refpurpose>Représentation d'état en temps discret</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/DLSS.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/DLSS.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_DLSS">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="DLSS">Représentation d'état en temps discret</link>
-                </para>
+                <xref linkend="Description_DLSS">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_DLSS">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_DLSS">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_DLSS">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_DLSS">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_DLSS">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_DLSS">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_DLSS">Paramètres</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_DLSS">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Discrete_pal">Palette Systèmes à temps discret</link>
-                </para>
+                <xref linkend="Defaultproperties_DLSS">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_DLSS">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_DLSS">Fonction de calcul</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -91,24 +58,21 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_DLSS">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/DLSS_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/DLSS_gui.gif"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
                     <emphasis role="bold">A matrix</emphasis>
                 </para>
                 <para>
-                    La matrice carrée <latex>$A$</latex>
+                    Matrice carrée.
                 </para>
                 <para> Propriétés : Type 'mat' de taille [-1,-1]. </para>
             </listitem>
@@ -117,8 +81,8 @@
                     <emphasis role="bold">B matrix</emphasis>
                 </para>
                 <para>
-                    La matrice <latex>$B$</latex>
-                    ,[] si le système n'a pas d'entrées.
+                    La matrice <emphasis>B</emphasis>.
+                     [] si le système n'a pas d'entrées.
                 </para>
                 <para> Propriétés : Type 'mat' de taille ["size(%1,2)","-1"]. </para>
             </listitem>
@@ -127,8 +91,8 @@
                     <emphasis role="bold">C matrix</emphasis>
                 </para>
                 <para>
-                    La matrice <latex>$C$</latex>
-                    ,[] si le système n'a pas de sorties.
+                    La matrice <emphasis>C</emphasis>. 
+                    [] si le système n'a pas de sorties.
                 </para>
                 <para> Propriétés : Type 'mat' de taille ["-1","size(%1,2)"]. </para>
             </listitem>
@@ -137,8 +101,8 @@
                     <emphasis role="bold">D matrix</emphasis>
                 </para>
                 <para>
-                    La matrice <latex>$D$</latex>
-                    matrix, [] si le système n'a pas de terme D.
+                    La matrice <emphasis>D</emphasis>.
+                    [] si le système n'a pas de terme D.
                 </para>
                 <para> Propriétés : Type 'mat' de taille [-1,-1]. </para>
             </listitem>
@@ -222,6 +186,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_DLSS">
         <title>Fonction d'interfaçage</title>

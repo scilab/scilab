@@ -4,15 +4,15 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
-// <-- NOT FIXED -->
-
+//
 // <-- TEST WITH GRAPHIC -->
-
+// <-- NO CHECK REF -->
+// <-- NOT FIXED -->   5.1.0  ->  6.0.2
+//
 // <-- Non-regression test for bug 3250 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=3250
+// http://bugzilla.scilab.org/3250
 //
 // <-- Short Description -->
 // Creates more 40 graphic windows crashs scilab.
@@ -40,5 +40,3 @@ if ((freeMemInit - freeMemEnd) > 1.0e5) then pause; end
 for i=1:300,
  execstr("scf()","errcatch");
 end
-
-

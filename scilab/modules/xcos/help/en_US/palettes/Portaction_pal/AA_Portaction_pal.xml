@@ -32,7 +32,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="CLKINV_f">
             <inlinemediaobject>
                 <imageobject>
@@ -95,60 +94,34 @@
                 </imageobject>
             </inlinemediaobject>
             </link>.
-
-        </para>
-    </refsection>
-    <refsection id="Module_Portaction_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
     </refsection>
     <refsection id="Description_Portaction_pal">
         <title>Description</title>
         <para>The Port &amp; Subsystem palette includes blocks for creating subsystems.</para>
     </refsection>
-    <refsection id="Blocks_Portaction_pal">
+    <refsection id="Blocks_Portaction_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLKINV_f">CLKINV_f — Input activation port Event-Select</link>
-                </para>
+                <link linkend="CLKINV_f">CLKINV_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLKOUTV_f">CLKOUTV_f — Output activation port Event-Select</link>
-                </para>
+                <link linkend="CLKOUTV_f">CLKOUTV_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="IN_f">IN_f - Regular Input Port</link>
-                </para>
+                <link linkend="IN_f">IN_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INIMPL_f">INIMPL_f — Input implicit port</link>
-                </para>
+                <link linkend="INIMPL_f">INIMPL_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="OUTIMPL_f">OUTIMPL_f — Output implicit port</link>
-                </para>
+                <link linkend="OUTIMPL_f">OUTIMPL_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="OUT_f">OUT_f - Regular Output Port</link>
-                </para>
+                <link linkend="OUT_f">OUT_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SUPER_f">SUPER_f — Super block</link>
-                </para>
+                <link linkend="SUPER_f">SUPER_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

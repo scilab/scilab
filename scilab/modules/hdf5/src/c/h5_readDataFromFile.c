@@ -440,7 +440,18 @@ void closeDataSet(int _id)
 {
     if (_id > 0)
     {
-        herr_t status = H5Dclose(_id);
+        H5O_info_t info;
+        herr_t status;
+        H5Oget_info(_id, &info);
+        if (info.type == H5O_TYPE_GROUP)
+        {
+            status = H5Gclose(_id);
+        }
+        else
+        {
+            status = H5Dclose(_id);
+        }
+
         if (status < 0)
         {
             return;

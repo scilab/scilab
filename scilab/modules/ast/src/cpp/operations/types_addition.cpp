@@ -795,6 +795,25 @@ void fillAddFunction()
 #undef scilab_fill_add
 }
 
+
+types::InternalType* GenericUnaryPlus(types::InternalType* _pL)
+{
+    /*
+    ** Convention: unary plus has a sense and returns operanf unchanged 
+    ** if operand is not a string and if binary plus with same operand is defined
+    */
+    add_function add = pAddfunction[_pL->getId()][_pL->getId()];
+    
+    if (!_pL->isString() && add != NULL)
+    {
+        return _pL;        
+    }
+    else
+    {
+        return NULL;
+    }
+}
+
 InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult = NULL;

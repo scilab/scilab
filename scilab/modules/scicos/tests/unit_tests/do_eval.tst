@@ -7,6 +7,7 @@
 //
 // <-- CLI SHELL MODE -->
 
+scicos_log("INFO")
 loadXcosLibs();
 
 // check contained blocks interfaces
@@ -100,4 +101,4 @@ assert_checkequal(scs_m.objs(3).model.rpar.objs(2).graphics.pout, []);
 assert_checkequal(scs_m.objs(3).model.rpar.objs(2).graphics.pein, 6);
 assert_checkequal(scs_m.objs(3).model.rpar.objs(2).graphics.peout, 3);
 
-
+clear scs_m

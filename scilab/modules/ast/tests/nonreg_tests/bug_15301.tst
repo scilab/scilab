@@ -15,5 +15,5 @@
 // <-- Short Description -->
 // Sequence constructor ':' failed when a bound was an outputless funtion call
 
-errmsg = sprintf(_("%ls: Wrong type for argument %d: Real scalar expected.\n"), "'':''",3);
+errmsg = sprintf(_("%ls: Wrong type for argument %d: Real scalar expected.\n"), "'':''",2);
 assert_checkerror("1:disp(""ok"")", errmsg);

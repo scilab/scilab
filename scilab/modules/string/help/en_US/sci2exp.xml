@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
+ * Copyright (C) 2017 - Samuel GOUGEON
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,14 +14,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:lang="en" xml:id="sci2exp">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xml:lang="en" xml:id="sci2exp">
     <refnamediv>
         <refname>sci2exp</refname>
-        <refpurpose> converts an expression to a string</refpurpose>
+        <refpurpose>returns a string able to generate a given Scilab object</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>t = sci2exp(a [,nam] [,lmax])</synopsis>
+        <synopsis>
+            t = sci2exp(a)
+            t = sci2exp(a, LHSname)
+            t = sci2exp(a, LHSname, lmax)
+            t = sci2exp(a, lmax)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,58 +36,51 @@
             <varlistentry>
                 <term>a</term>
                 <listitem>
-                    <para>a scilab expression, may be:</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>-    </term>
-                            <listitem>
-                                <para>a constant;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>-    </term>
-                            <listitem>
-                                <para>a polynomial;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>-    </term>
-                            <listitem>
-                                <para>a string matrix;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>-    </term>
-                            <listitem>
-                                <para>a list;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>-    </term>
-                            <listitem>
-                                <para>a boolean matrix;</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>-    </term>
-                            <listitem>
-                                <para>a handle (only figure and uicontrol).</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <para>a scilab object. The supported types are:
+                    </para>
+                    <itemizedlist>
+                        <listitem>booleans</listitem>
+                        <listitem>
+                            encoded integers of any <link linkend="inttype">inttype</link>
+                        </listitem>
+                        <listitem>real or complex numbers</listitem>
+                        <listitem>sparse matrices</listitem>
+                        <listitem>polynomials</listitem>
+                        <listitem>strings, that may include some NewLine (ascii(10)) sequences</listitem>
+                        <listitem>a structures array or cells array with any number of dimensions</listitem>
+                        <listitem>a simple list whose components types are supported by
+                            <literal>sci2exp</literal>
+                        </listitem>
+                        <listitem>a typed list tlist() and mlist()</listitem>
+                        <listitem>a single graphic handle (only of figure or uicontrol).</listitem>
+                    </itemizedlist>
+                    <para>
+                        For booleans, encoded integers, real or complex numbers, polynomials and
+                        strings, any of a single element or a vector or a matrix or an hypermatrix
+                        is accepted.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>nam</term>
+                <term>LHSname</term>
                 <listitem>
-                    <para>a character string.</para>
+                    <para>
+                    Optional string: The name of the variable building the assignment prefix
+                    <literal>LHSname+" = "</literal>. When it is provided, <literal>LHSname+" = "</literal>
+                    is prepended to the raw expression yielded from the <varname>a</varname> object.
+                    Then, the result string <literal>t</literal> can no longer be evaluated with
+                    <literal>evstr()</literal> but with <literal>execstr()</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
                     <para>
-                        a vector of strings, contains the expression or the affectation instruction.
+                        Column of strings. A single whole string is returned when <varname>lmax</varname>
+                        is not used or is set to 0: The Scilab literal expression, with possibly
+                        the left-hand affectation part on the first line when <varname>LHSname</varname>
+                        is provided.
                     </para>
                 </listitem>
             </varlistentry>
@@ -87,11 +88,18 @@
                 <term>lmax</term>
                 <listitem>
                     <para>
-                        an integer, contains the maximum line length. Default
-                        value is <literal>0</literal>,
-                        which indicates no line length
-                        control; a single string is returned.
+                        Positive integer setting the maximal length of the <varname>t</varname>
+                        components. The default value <literal>0</literal> ignores such a constrain
+                        and returns <varname>t</varname> as a single (long) string. Otherwise,
+                        some continuation marks <literal>..</literal> are used to break too long
+                        rows.
                     </para>
+                    <warning>
+                       Since continuation marks <literal>..</literal> prevent using
+                       <literal>evstr()</literal> and <literal>execstr()</literal>, using this
+                       <varname>lmax</varname> option mostly cancels the main <literal>sci2exp()</literal>
+                       purpose.
+                    </warning>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -99,52 +107,227 @@
     <refsection>
         <title>Description</title>
         <para>
-            <function>sci2exp</function> converts expression to an instruction string if <varname>nam</varname> is
-            given or to an expression string.
+            "sci2exp" stands for the conversion of a <emphasis role="bold">sci</emphasis>lab
+            object into a literal executable <emphasis role="bold">exp</emphasis>ression.
         </para>
-    </refsection>
-    <refsection>
-        <title>Remarks</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    If <varname>a</varname> is a handle, <function>sci2exp</function> gives a result which has no hierarchical links,
-                    that is, with empty fields for parent and children.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <varname>t</varname> can be impacted by <link linkend="format">format</link>.
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+        <important>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Literal values of decimal real or complex numbers or coefficients are output
+                        in <varname>t</varname> according to the current
+                        <link linkend="format">format</link> setting. So, they may be truncated
+                        with respect to the full numerical accuracy.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                    When <varname>a</varname> are polynomials, the resulting expression
+                    <varname>t</varname> can be executed to regenerate <varname>a</varname> ONLY if
+                    the formal variable of the polynomials is defined in the current scope:
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                            For polynomials in <literal>s</literal> or <literal>z</literal>, the
+                            predefined Scilab variables <literal>%s</literal> or <literal>%z</literal>
+                            are used, and the regeneration can be straightforward:
+                            </para>
+                            <screen><![CDATA[
+--> p = [1+%z 1-%z^2];
 
+--> tp = pol2str(p)
+ tp  =
+!1+z  1-z^2  !
+
+--> evstr(tp)
+at line     1 of executed string
+at line    38 of function        evstr ( SCI\modules\string\macros\evstr.sci line 52 )
+Undefined variable: z
+
+--> tp = sci2exp(p)
+ tp  =
+ [1+%z,1-%z^2]        <<< sci2exp() uses the variable %z as predefined "z" generator
+
+--> t = evstr(tp)     // .. straigntforward regeneration
+ t  =
+              2
+   1 +z   1 -z
+
+--> typeof(t)
+ ans  =
+ polynomial
+]]></screen>
+                        </listitem>
+                        <listitem>
+                            <para>
+                            Otherwise: The formal variable of <varname>a</varname> -- say
+                            <literal>"x"</literal> -- must be explicitly defined with (say)
+                            <literal>x = poly(0,"x")</literal>:
+                            </para>
+                            <screen><![CDATA[
+--> p = poly([1 2 3], "x")
+ p  =
+             2   3
+  -6 +11x -6x  +x
+
+--> tp = sci2exp(p)
+ tp  =
+ -6+11*x-6*x^2+x^3
+
+--> // Evaluating tp now would yield an error: x is not yet defined. We must prioly do:
+
+--> x = poly(0,"x")  // Defines the symbolic variable "x" in the actual variable with the SAME name
+ x  =
+   x
+
+--> // Then evaluating tp to regenerate p is OK:
+--> rp = evstr(tp)
+ rp  =
+             2   3
+  -6 +11x -6x  +x
+
+--> rp==p
+ ans  =
+  T
+]]></screen>
+                        </listitem>
+                    </itemizedlist>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                    When <varname>a</varname> is a graphic handle, <function>sci2exp</function>
+                    ignores its parent (empty) and its children.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </important>
+    </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            <emphasis role="bold">With a numerical matrix:</emphasis>
+        </para>
         <programlisting role="example"><![CDATA[
-a=[1 2;3 4]
-sci2exp(a,'aa')
-sci2exp(a,'aa',10)
-sci2exp(ssrand(2,2,2))
-sci2exp(poly([1 0 3 4],'s'),'fi')
-sci2exp(figure("figure_name","figure1"))
-b=0.123456789;
-format(5);
-c=sci2exp(b)
-format(10);
-d=sci2exp(b)
+a = [%i 2 ; 3 4-2*%i]
+sci2exp(a)
+sci2exp(a, 'aa')
+sci2exp(a, 'aa', 10)
     ]]></programlisting>
+        <screen><![CDATA[
+--> a = [%i 2 ; 3 4-2*%i]
+ a  =
+   i      2.
+   3.     4. - 2.i
+
+--> sci2exp(a)
+ ans  =
+ [%i,2;3,4-%i*2]
+
+--> sci2exp(a, 'aa')
+ ans  =
+ aa = [%i,2;3,4-%i*2]
+
+--> sci2exp(a, 'aa', 10)
+ ans  =
+!aa = [     !
+!%i,2;      !
+!3,4-%i*2]  !
+]]></screen>
+        <para>
+            <emphasis role="bold">With some other types of objects:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+sci2exp(ssrand(2,2,2))                      // a typed list created with tlist()
+
+sci2exp(figure("figure_name","figure1"))    // a graphic handle
+    ]]></programlisting>
+        <para>
+        <emphasis role="bold">Impact of format()</emphasis> on literal output numbers:
+        </para>
+        <programlisting role="example"><![CDATA[
+p = [0.123456789, %z-%pi*%i];
+pol2str(p)                      // also impacted by format()
+format(20);
+Lp = sci2exp(p)                 // Literal encoding
+Rp = evstr(Lp); pol2str(Rp)     // Regenerated from literal
+Rp == p
+format(10);                     // Let's truncate the literal output before calling sci2exp()
+Lp = sci2exp(p)
+Rp = evstr(Lp); format(20); pol2str(Rp)
+Rp == p
+    ]]></programlisting>
+    <screen><![CDATA[
+--> p = [0.123456789, %z-%pi*%i];
+
+--> pol2str(p)
+ ans  =
+!0.1234568  -%i*3.1415927+z  !
+
+--> format(20)
+
+--> Lp = sci2exp(p)
+ Lp  =
+ [0.12345678900000000,-%i*3.14159265358979310+%z]
+
+--> Rp = evstr(Lp); pol2str(Rp)
+ ans  =
+!0.12345678900000000  -%i*3.14159265358979310+z  !
+
+--> Rp == p
+ ans  =
+  T T
+
+
+--> format(10)          // Let's truncate the literal output before calling sci2exp()
+
+--> Lp = sci2exp(p)
+ Lp  =
+ [0.1234568,-%i*3.1415927+%z]
+
+--> Rp = evstr(Lp); format(20); pol2str(Rp)
+ ans  =
+!0.12345680000000001  -%i*3.14159269999999990+z  !
+
+--> Rp == p
+ ans  =
+  F F
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="string">string</link>
+            </member>
             <member>
                 <link linkend="prettyprint">prettyprint</link>
             </member>
             <member>
                 <link linkend="format">format</link>
             </member>
+            <member>
+                <link linkend="pol2str">pol2str</link>
+            </member>
+            <member>
+                <link linkend="evstr">evstr</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revremark>
+                    The name of the predefined variables <literal>%s</literal> and
+                    <literal>%z</literal> is now used as literal generator for input polynomials in
+                    <literal>s</literal> or <literal>z</literal>.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

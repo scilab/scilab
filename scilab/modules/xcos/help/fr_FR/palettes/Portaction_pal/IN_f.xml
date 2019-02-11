@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,67 +13,45 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="IN_f" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="IN_f" xml:lang="fr_FR">
     <refnamediv>
         <refname>IN_f</refname>
         <refpurpose>Port d'entrée régulier</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/IN_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/IN_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_IN_f">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="IN_f">Port d'entrée régulier</link>
-                </para>
+                <xref linkend="Palette_IN_f">Palette</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_IN_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_IN_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Datatype_IN_f">Type de données</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_IN_f">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_IN_f">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_IN_f">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_IN_f">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Description_IN_f">Description</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Datatype_IN_f">Type de données</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_IN_f">Paramètres</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_IN_f">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_IN_f">Exemple</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_IN_f">Fonction d'interfaçage</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -81,14 +59,10 @@
         <title>Palettes</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Portaction_pal">Palette Port &amp; Sous-systèmes</link>
-                </para>
+                <link linkend="Portaction_pal">Palette Port &amp; Sous-systèmes</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Sources_pal">Palette Sources</link>
-                </para>
+                <link linkend="Sources_pal">Palette Sources</link>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -115,15 +89,14 @@
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_IN_f">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/portaction_pal/fr_FR/IN_f_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/portaction_pal/fr_FR/IN_f_gui.png"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -227,6 +200,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_IN_f">
         <title>Exemple</title>
@@ -246,8 +220,8 @@
         </para>
         <scilab:image localized="true">
             <![CDATA[
-			importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/fr_FR/IN_f_fr_FR.zcos");
-			xcos_simulate(scs_m, 4);]]>
+            importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/fr_FR/IN_f_fr_FR.zcos");
+            xcos_simulate(scs_m, 4);]]>
         </scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_IN_f">

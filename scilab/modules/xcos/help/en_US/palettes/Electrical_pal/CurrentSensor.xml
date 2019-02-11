@@ -21,70 +21,40 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CurrentSensor">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" 
+          xml:id="CurrentSensor" xml:lang="en_US">
     <refnamediv>
         <refname>CurrentSensor</refname>
         <refpurpose>Electrical current sensor</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CurrentSensor.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CurrentSensor.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_CurrentSensor">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CurrentSensor">Electrical current sensor</link>
-                </para>
+                <xref linkend="Description_CurrentSensor">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CurrentSensor">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CurrentSensor">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CurrentSensor">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CurrentSensor">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="CurrentSensor">Modelica model</link>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_CurrentSensor">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_CurrentSensor">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="CurrentSensor">Modelica model</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_CurrentSensor">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Electrical_pal">Electrical.cosf - Electrical toolbox</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_CurrentSensor">
         <title>Description</title>
         <para>
@@ -93,7 +63,6 @@
             explicit part of the model via an explicit pout. Conventionally,
             current flowing into the black port is considered positive. The ohmic
             resistance of this block is zero.
-
         </para>
     </refsection>
     <refsection id="Defaultproperties_CurrentSensor">
@@ -110,8 +79,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -127,8 +94,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -137,8 +102,6 @@
                         </para>
                         <para>
                             Explicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -149,6 +112,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_CurrentSensor">
         <title>Interfacing function</title>

@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 8356 -->
 //
@@ -22,14 +23,14 @@ m = mlist(["test","a","b","c"], , 3.1415927, , ,"Hello");
 t = tlist(["test" "a" "b" "c"], %pi, , %z);
 assert_checkequal(sci2exp(L), "list(3.1415927,,""Hello"")");
 assert_checkequal(sci2exp(L,15), ["list(3.1415927,,..";"""Hello"")"]);
-assert_checkequal(sci2exp(t), "tlist([""test"",""a"",""b"",""c""],3.1415927,,z)");
-assert_checkequal(sci2exp(t,20), ["tlist(..";"[""test"",""a"",""b"",""c""],..";"3.1415927,,z)"]);
+assert_checkequal(sci2exp(t), "tlist([""test"",""a"",""b"",""c""],3.1415927,,%z)");
+assert_checkequal(sci2exp(t,20), ["tlist(..";"[""test"",""a"",""b"",""c""],..";"3.1415927,,%z)"]);
 assert_checkequal(sci2exp(m), "mlist([""test"",""a"",""b"",""c""],,3.1415927,,,""Hello"")");
 assert_checkequal(sci2exp(m, 30), ["mlist([""test"",""a"",""b"",""c""],,.."; "3.1415927,,,""Hello"")"]);
 
 c = tlist(["test","b","u","t","L"],%t,,"It works",list(%z,,%i));
-assert_checkequal(sci2exp(c), "tlist([""test"",""b"",""u"",""t"",""L""],%t,,""It works"",list(z,,%i))");
+assert_checkequal(sci2exp(c), "tlist([""test"",""b"",""u"",""t"",""L""],%t,,""It works"",list(%z,,%i))");
 r = ["tlist([""test"",""b"",""u"",""t"",""L""],%t,,.."
-     """It works"",list(z,,%i))"
+     """It works"",list(%z,,%i))"
      ];
 assert_checkequal(sci2exp(c,40),r);

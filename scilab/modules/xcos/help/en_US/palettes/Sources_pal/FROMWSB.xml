@@ -21,105 +21,62 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="FROMWSB">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="FROMWSB" xml:lang="en_US">
     <refnamediv>
         <refname>FROMWSB</refname>
         <refpurpose>Data from Scilab workspace to Xcos</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/FROMWSB.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/FROMWSB.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_FROMWSB">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="FROMWSB">Data from Scilab workspace to
-                        Xcos
-                    </link>
-                </para>
+                <xref linkend="Description_FROMWSB">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_FROMWSB">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_FROMWSB">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_FROMWSB">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_FROMWSB">Default
-                                properties
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_FROMWSB">Interfacing
-                                function
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="FROMWSB">Compiled Super Block
-                                content
-                            </link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_FROMWSB">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_FROMWSB">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_FROMWSB">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_FROMWSB">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="FROMWSB">Compiled Super Block content</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_FROMWSB">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_FROMWSB">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Sources_pal">Sources palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_FROMWSB">
         <title>Description</title>
         <para>That block is used to get data defined in the Scilab workspace and
             use them in Xcos. Data should have "time" and "values" fields.
         </para>
-        <para/>
     </refsection>
+
     <refsection id="Dialogbox_FROMWSB">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/FROMWSB_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/gui/FROMWSB_gui.gif" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -143,13 +100,21 @@
                     <listitem>
                         <para>
                             <emphasis role="bold">0: "Zero order method"</emphasis>.
-                            This method generates a piecewise constant signal. i.e., for <latex><![CDATA[$t_i \leq t < t_{i+1} $]]></latex>, <latex><![CDATA[$y(t) = y_i$]]></latex>. This method is available for all data types.
+                            This method generates a piecewise constant signal. i.e., for
+                            <latex><![CDATA[$t_i \leq t < t_{i+1} $]]></latex>,
+                            <latex><![CDATA[$y(t) = y_i$]]></latex>.
+                            This method is available for all data types.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
                             <emphasis role="bold">1: "Linear method"</emphasis>. This
-                            method generates a piecewise linear signal, i.e., for <latex><![CDATA[$t_i \leq t < t_{i+1} $]]></latex>, <latex><![CDATA[$y(t) = y_i + (t - t_i) \times {y_{i+1} - y_i} over {t_{i+1} - t_i}$]]></latex>. For data types other than double and complex, the linear interpolation can be used, but the final output will be computed by casting interpolation result into the original data type.
+                            method generates a piecewise linear signal, i.e., for
+                            <latex><![CDATA[$t_i \leq t < t_{i+1} $]]></latex>,
+                            <latex><![CDATA[$y(t) = y_i + (t - t_i) \times {y_{i+1} - y_i} over {t_{i+1} - t_i}$]]></latex>.
+                            For data types other than double and complex, the linear interpolation
+                            can be used, but the final output will be computed by casting
+                            interpolation result into the original data type.
                         </para>
                     </listitem>
                     <listitem>
@@ -234,6 +199,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Defaultproperties_FROMWSB">
         <title>Default properties</title>
         <itemizedlist>
@@ -262,31 +228,22 @@
                     <emphasis role="bold">regular outputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [-1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [-1,1] / type  1</emphasis>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        inputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        outputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">continuous-time state:</emphasis>
-                    no
+                    <emphasis role="bold">continuous-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -296,8 +253,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis>
-                    no
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -307,15 +263,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
-    <refsection id="Interfacingfunction_FROMWSB">
-        <title>Interfacing function</title>
-        <itemizedlist>
-            <listitem>
-                <para>SCI/modules/scicos_blocks/macros/Sources/FROMWSB.sci</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Example_FROMWSB">
         <title>Example</title>
         <programlisting role="example"><![CDATA[
@@ -327,21 +277,27 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/FROMWSB_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/sources_pal/en_US/FROMWSB_en_US.zcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/sources_pal/en_US/FROMWSB_en_US.zcos"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
         </para>
     </refsection>
-    <refsection id="Seealso_FROMWSB">
+
+    <refsection id="Interfacingfunction_FROMWSB">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/Sources/FROMWSB.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+
+    <refsection id="Seealso_FROMWSB" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="TOWS_c">TOWS_c - Data to Scilab
-                        workspace
-                    </link>
-                </para>
+                <link linkend="TOWS_c">TOWS_c</link>
             </listitem>
         </itemizedlist>
     </refsection>

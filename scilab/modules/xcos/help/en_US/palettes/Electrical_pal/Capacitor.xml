@@ -21,84 +21,51 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Capacitor">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="Capacitor" xml:lang="en_US">
     <refnamediv>
         <refname>Capacitor</refname>
         <refpurpose>Electrical capacitor</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/Capacitor.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/Capacitor.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_Capacitor">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Capacitor">Electrical capacitor</link>
-                </para>
+                <xref linkend="Description_Capacitor">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_Capacitor">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_Capacitor">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_Capacitor">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_Capacitor">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_Capacitor">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="Capacitor">Modelica model</link>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_Capacitor">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_Capacitor">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_Capacitor">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Capacitor">Modelica model</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_Capacitor">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Electrical_pal">Electrical.cosf - Electrical toolbox</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_Capacitor">
         <title>Description</title>
         <para>
             A capacitor is an electrical component that can store energy in
             electrical circuits. The relationship between the voltage  across a
             capacitor with capacitance  and the current  passing through it
-            is given by the:
+            is given by the equation: <emphasis>I = C.dV / dt</emphasis>
         </para>
-        <latex>$ I = C \mathrm{d}V \ over \mathrm{d}t $</latex>
         <para>
             Capacitors can also be used to differentiate between high-frequency
             and low-frequency signals and this makes them useful in electronic
@@ -108,17 +75,13 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_Capacitor">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/Capacitor_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/Capacitor_gui.gif" align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -150,8 +113,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -200,8 +161,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> yes.
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -212,6 +171,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_Capacitor">
         <title>Interfacing function</title>

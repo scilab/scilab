@@ -2,9 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2016 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2016, 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -38,7 +37,7 @@
                 <term>x1, x2</term>
                 <listitem>
                     <para>
-                        Nombres réels ou complexes scalaires : bornes entre
+                        Nombres réels ou complexes ou entiers encodés scalaires : bornes entre
                         lesquelles les valeurs doivent être générées.
                     </para>
                 </listitem>
@@ -47,8 +46,8 @@
                 <term>Col1, Col2</term>
                 <listitem>
                     <para>
-                        Vecteurs colonne de nombres réels ou complexes de même
-                        taille.
+                        Vecteurs colonne de nombres réels ou complexes ou entiers encodés, de mêmes
+                        tailles.
                     </para>
                 </listitem>
             </varlistentry>
@@ -56,8 +55,8 @@
                 <term>n</term>
                 <listitem>
                     <para>
-                        Nombre entier. Il précise le nombre de valeurs ou de colonnes à générer entre les deux extrémités (extrémités comprises).
-                        100 par défaut.
+                        Nombre entier positif. Il précise le nombre de valeurs ou de colonnes à
+                        générer entre les deux extrémités (extrémités comprises). 100 par défaut.
                     </para>
                 </listitem>
             </varlistentry>
@@ -119,6 +118,10 @@
             et <literal>n</literal> colonnes, avec
             <literal>Matrix(i,:) = linspace(Col1(i), Col2(i), n)</literal>.
         </para>
+        <warning>
+            Lorsque les bornes fournies sont des entiers encodés, le pas effectif observable
+            peut varier d'une unité le long de la série générée. Voir l'exemple ci-dessous.
+        </warning>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -151,6 +154,26 @@ linspace([1:4]', [5:8]', 10)   // avec des colonnes de bornes
    2.   2.444   2.889   3.333   3.778   4.222   4.667   5.111   5.556   6.
    3.   3.444   3.889   4.333   4.778   5.222   5.667   6.111   6.556   7.
    4.   4.444   4.889   5.333   5.778   6.222   6.667   7.111   7.556   8.
+]]></screen>
+    <para/>
+    <para>
+        <emphasis role="bold">With encoded integers:</emphasis>
+        The step may vary by one unit along the series:
+    </para>
+        <programlisting role="example"><![CDATA[
+x = linspace(int8([5;127]), int8([127;5]), 10)
+x(:,1:$-1) - x(:,2:$)
+ ]]></programlisting>
+        <screen><![CDATA[
+--> x = linspace(int8([5;127]), int8([127;5]), 10)
+ ans  =
+    5   18   32  45  59  72  86  99  113  127
+  127  114  100  87  73  60  46  33   19    5
+
+--> x(:,1:$-1) - x(:,2:$)
+ ans  =
+ -13 -14 -13 -14 -13 -14 -13 -14 -14
+  13  14  13  14  13  14  13  14  14
 ]]></screen>
     </refsection>
     <refsection role="see also">
@@ -191,6 +214,12 @@ linspace([1:4]', [5:8]', 10)   // avec des colonnes de bornes
                         <listitem>Toute borne %inf ou %nan est détectée et rejetée.
                         </listitem>
                     </itemizedlist>
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revremark>
+                    linspace() génère désormais de manière fiable les séries d'entiers encodés.
                 </revremark>
             </revision>
         </revhistory>

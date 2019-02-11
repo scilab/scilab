@@ -48,7 +48,7 @@ function demo_gui()
     // =========================================================================
     // We get the user Preferences for the GUI: dockable / not dockable
     File = SCIHOME + "/XConfiguration.xml";
-    r = getPreferencesValue("//general/demonstrations/body/demos","demoGUIisDockable", File);
+    r = xmlGetValues("//general/demonstrations/body/demos","demoGUIisDockable", File);
 
     // We tune accordingly the predefined demo GUI
     File = SCI + "/modules/demo_tools/gui/demo_gui.xml";

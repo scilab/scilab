@@ -12,9 +12,9 @@ MPI_Init();
 if MPI_Comm_rank() <> 0 & MPI_Comm_rank() <> 1 then pause, end
 assert_checkequal(MPI_Comm_size(), 2);
 
-if execstr("MPI_Init(1);", "errcatch") <> 77 then pause,end
-if execstr("MPI_Comm_rank(1);", "errcatch") <> 77 then pause,end
-// if execstr("MPI_Comm_size(1,2);", "errcatch") <> 77 then pause,end
+assert_checkerror("MPI_Init(1);", msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "MPI_Init", 0));
+assert_checkerror("MPI_Comm_rank(1,2);", msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "MPI_Comm_rank", 0, 1));
+assert_checkerror("MPI_Comm_size(1,2)", msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "MPI_Comm_size", 0, 1));
 
 MPI_Finalize();
 exit()

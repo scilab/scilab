@@ -106,6 +106,7 @@ utf4            ({utf41}|{utf42}|{utf43})
 utf             ({utf2}|{utf3}|{utf4})
 id              ((([a-zA-Z_%!#?]|{utf})([a-zA-Z_0-9!#?$]|{utf})*)|([$]([a-zA-Z_0-9!#?$]|{utf})+))
 
+incorrect_number     ({integer}|{number}|{floating_D}|{floating_E}){id}
 
 newline			("\r"|"\n"|"\r\n")
 blankline		{spaces}+{newline}
@@ -641,6 +642,10 @@ assign			"="
   return scan_throw(ID);
 }
 
+<INITIAL,MATRIX>{incorrect_number}		{
+    yyerror("syntax error, unexpected identifier, expecting end of file");
+    return scan_throw(FLEX_ERROR);
+}
 
 <INITIAL,MATRIX,SHELLMODE,BEGINID>{startblockcomment}	{
   yylval.comment = new std::wstring();
@@ -841,17 +846,12 @@ assign			"="
     // Examples
     // ========
     // [a + b] == [(a + b)]
-    // but [a +b] == [a, b] and plus here is unary
-    // the space is non coding:
-    // * after any other binary operator __op__
-    //   Example : [a __op__ +b]
-    // * after brackets or parentheses delimiters
-    //   Example : [(1*2*a) +3]
-    // * at the beginning of a line
-    //   Example : [3 ...
-    //              _+2]
+    // but [a +b] == [a, +b] and plus here is unary and is not removed, as unary plus
+    // is not necessary defined for all data types (http://bugzilla.scilab.org/show_bug.cgi?id=15850)
+    // A priori, the space *is* coding
 
-    // no need to unput the '+'
+    unput('+');
+    yylloc.last_column--;
     if (last_token != LBRACK
        && last_token != EOL
        && last_token != SEMI
@@ -878,11 +878,6 @@ assign			"="
       && paren_levels.top() == 0)
    {
        return scan_throw(COMMA);
-   }
-   else
-   {
-       unput('+');
-       yylloc.last_column--;
    }
   }
 

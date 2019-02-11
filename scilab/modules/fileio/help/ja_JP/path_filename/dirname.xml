@@ -14,10 +14,13 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="dirname">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="dirname">
     <refnamediv>
         <refname>dirname</refname>
-        <refpurpose>ファイル名からディレクトリを得る</refpurpose>
+        <refpurpose>ファイル名からディレクトリを得る <emphasis role="bold">(obsolete)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
@@ -50,6 +53,10 @@
     </refsection>
     <refsection>
         <title>説明</title>
+        <warning>
+          <literal>dirname(…)</literal> is obsolete and will be removed from Scilab 6.1.x.
+          Please use <literal>fileparts(…)</literal> instead.
+        </warning>
         <para>
             <literal>dirname</literal> は <literal>files</literal> で指定したファイルエントリの
             ディレクトリ名を返します.
@@ -81,6 +88,9 @@ dirs=dirname('SCI/modules\fileio/macros/poo.sci.k')
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="fileparts">fileparts</link>
+            </member>
+            <member>
                 <link linkend="basename">basename</link>
             </member>
             <member>
@@ -90,5 +100,17 @@ dirs=dirname('SCI/modules\fileio/macros/poo.sci.k')
                 <link linkend="pathconvert">pathconvert</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    dirname() is tagged obsolete, to be removed from Scilab 6.1.x.
+                    fileparts() replaces it.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

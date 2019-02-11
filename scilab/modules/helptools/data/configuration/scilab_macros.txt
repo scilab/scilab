@@ -39,6 +39,7 @@ xmltojar
 xmltopdf
 xmltops
 xmltoweb
+xmlGetValues
 edit_error
 editor
 %Block_xcosUpdateBlock
@@ -2009,7 +2010,6 @@ link_olibs
 lnkptrcomp
 loadpallibs
 mark_prt
-message
 mfrequ_clk
 modelica
 modelicac

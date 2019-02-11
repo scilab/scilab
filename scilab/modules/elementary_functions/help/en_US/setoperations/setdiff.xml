@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,47 +13,98 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="setdiff" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="setdiff" xml:lang="en">
     <refnamediv>
         <refname>setdiff</refname>
-        <refpurpose>returns components of a vector which do not belong to another
-            one
+        <refpurpose>
+            returns elements or rows or columns of an array that do not belong to another one
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>v=setdiff(a,b)
-            [v,ka]=setdiff(a,b)
+        <synopsis>
+            v = setdiff(a, b)
+            v = setdiff(a, b, orien)
+            [v, ka] = setdiff(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>a</term>
+                <term>a, b</term>
                 <listitem>
-                    <para>vector of real numbers or strings</para>
+                    <para>
+                        vectors, matrices or hypermatrices of real numbers or encoded integers or
+                        strings. Both must have the same data types (and integer types).
+                    </para>
+                    <para>
+                        If the option <literal>orien="r"</literal> is used, <literal>a</literal>
+                        and <literal>b</literal> must have the same number of columns.
+                        If the <literal>orien="c"</literal> is used, they must have the same
+                        number of rows.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>b</term>
+                <term>orien</term>
                 <listitem>
-                    <para>vector of real numbers or strings</para>
+                    oriented processing:
+                    <itemizedlist>
+                        <listitem>
+                            <literal>"r"</literal>: rows of
+                            <literal>a</literal> are searched among <literal>b</literal> ones.
+                        </listitem>
+                        <listitem>
+                            <literal>"c"</literal>: columns of
+                            <literal>a</literal> are searched among <literal>b</literal> ones.
+                        </listitem>
+                        <listitem>
+                            no orien: elements of <literal>a</literal> are searched among
+                            <literal>b</literal> ones.
+                        </listitem>
+                    </itemizedlist>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>vector of real numbers or strings with same orientation than
-                        <literal>a</literal>
-                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            sorted vector of <literal>a</literal>'s components that are not in
+                            <literal>b</literal>.
+                        </listitem>
+                        <listitem>
+                            <literal>orien="r"</literal>: matrix of rows of <literal>a</literal>
+                            that are not in <literal>b</literal>, sorted in lexicographic order.
+                        </listitem>
+                        <listitem>
+                            <literal>orien="c"</literal>: matrix of columns of <literal>a</literal>
+                            that are not in <literal>b</literal>, sorted in lexicographic order.
+                        </listitem>
+                    </itemizedlist>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ka</term>
                 <listitem>
-                    <para>row vector of integers, ka(i) is the location of v(i) in
-                        a
+                    <para>
+                        vector of linear indices of selected  <literal>a</literal>'s components,
+                        rows, or columns, such that
+                        <itemizedlist>
+                            <listitem>
+                                <literal>v = a(ka)</literal>, or
+                            </listitem>
+                            <listitem>
+                                <literal>v = a(ka,:)</literal> (<literal>orien="r"</literal>), or
+                            </listitem>
+                            <listitem>
+                                <literal>v = a(:,ka)</literal> (<literal>orien="c"</literal>)
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
@@ -62,24 +113,174 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>setdiff(a,b)</literal> returns a sorted vector which
-            retains the <literal>a</literal> entries which are not in
-            <literal>b</literal>
+            <literal>setdiff(a, b,..)</literal> computes and returns the elements or rows or columns
+            of <literal>a</literal> that are NOT in <literal>b</literal>.
         </para>
         <para>
-            <literal>[v,ka]=setdiff(a,b)</literal> returns a sorted vector which
-            retains the <literal>a</literal> entries which are not in
-            <literal>b</literal> and the location of these entries in a.
+            All duplicates (elements or rows or columns) are removed from <literal>a</literal> and
+            from <literal>b</literal> before processing.
+        </para>
+        <para>
+            If <literal>a</literal> is an hypermatrix and the <literal>"r"</literal> option is used,
+            <literal>a</literal> is replaced with the matrix of all its rows over all its higher
+            dimensions, before processing.
+            Same thing if <literal>b</literal> is an hypermatrix.
+            If the <literal>"c"</literal> option is used, <literal>a</literal> or/and
+            <literal>"b"</literal> are replaced with the respective matrices of all their columns.
+        </para>
+        <para>
+            The format of results is presented in the following table, according to the shape of
+            <literal>a</literal> and the <literal>orien</literal> option. In all cases, if all
+            entities of <literal>a</literal> are in <literal>b</literal>,
+            <literal>[]</literal> is returned for <literal>v</literal> as for <literal>ka</literal>:
+            <table>
+                <tr>
+                    <th align="right">orien →</th>
+                    <td colspan="2" align="center">
+                        <emphasis role="bold">none</emphasis>
+                    </td>
+                    <td colspan="2" align="center">
+                        <emphasis role="bold">"r"</emphasis>
+                    </td>
+                    <td colspan="2" align="center">
+                        <emphasis role="bold">"c"</emphasis>
+                    </td>
+                </tr>
+                <tr>
+                    <th>a ↓</th><th>v</th><th>ka</th><th>v</th><th>ka</th><th>v</th><th>ka</th>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <emphasis role="bold">row</emphasis>
+                    </td>
+                    <td>row</td><td>row</td>
+                    <td>row</td><td>scal</td>
+                    <td>row</td><td>row</td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <emphasis role="bold">column</emphasis>
+                    </td>
+                    <td>col</td><td>col</td>
+                    <td>col</td><td>col</td>
+                    <td>col</td><td>scal</td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <emphasis role="bold">matrix</emphasis>
+                    </td>
+                    <td>col</td><td>col</td>
+                    <td>mat</td><td>col</td>
+                    <td>mat</td><td>row</td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <emphasis role="bold">hypermatrix</emphasis>
+                    </td>
+                    <td>col</td><td>col</td>
+                    <td>mat</td><td>col</td>
+                    <td>mat</td><td>row</td>
+                </tr>
+                <tr align="center">
+                    <td align="right">
+                        <emphasis role="bold">scalar</emphasis>
+                    </td>
+                    <td>scal</td><td>scal</td>
+                    <td>scal</td><td>scal</td>
+                    <td>scal</td><td>scal</td>
+                </tr>
+            </table>
+        </para>
+        <para>
+            <literal>v</literal> and <literal>ka</literal> become empty <literal>[]</literal>
+            if <literal>a</literal> is empty (whatever is <literal>b</literal>), or if all
+            <literal>a</literal> elements are in <literal>b</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            <emphasis role="bold">Example #1:</emphasis>
+        </para>
         <programlisting role="example"><![CDATA[
-a = [223;111;2;4;2;2];
-b = [2;3;21;223;123;22];
-setdiff(a,b)
-[v,k]=setdiff(string(a),string(b))
+a = grand(1, 10,"uin", 0, 9)
+b = grand(2, 4, "uin", 0, 9)
+[d, k] = setdiff(a, b);
+d, k
  ]]></programlisting>
+        <screen><![CDATA[
+--> a = grand(1, 10,"uin", 0, 9)
+ a  =
+   2.   2.   4.   5.   4.   1.   9.   5.   8.   3.
+
+--> b = grand(2, 4, "uin", 0, 9)
+ b  =
+   5.   0.   9.   9.
+   5.   6.   0.   4.
+
+--> [d, k] = setdiff(a, b);
+--> d, k
+ d  =
+   1.   2.   3.   8.
+
+ k  =
+   6.   1.   10.   9.
+ ]]></screen>
+        <para>
+            <emphasis role="bold">Example #2: column-wise processing</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+a = grand(2, 7,"uin", 0, 3)
+b = grand(2, 10, "uin", 0, 3)
+[d, k] = setdiff(a, b, "c");
+d, k
+ ]]></programlisting>
+        <screen><![CDATA[
+--> a = grand(2, 7,"uin", 0, 3)
+ a  =
+   0.   1.   0.   2.   3.   0.   2.
+   2.   2.   2.   1.   0.   1.   2.
+
+--> b = grand(2, 10, "uin", 0, 3)
+ b  =
+   1.   1.   3.   1.   1.   1.   3.   0.   2.   0.
+   3.   3.   2.   2.   0.   0.   1.   0.   1.   0.
+
+--> [d, k] = setdiff(a, b, "c");
+--> d, k
+ d  =
+   0.   0.   2.   3.
+   1.   2.   2.   0.
+
+ k  =
+   6.   1.   7.   5.
+ ]]></screen>
+        <para>
+            <emphasis role="bold">Example #3: with some text</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+v1 = tokens("ab  ca  ba  bb  ca  cb  ba  aa  cc  bc  ac  aa")'
+v2 = tokens("cc  ac  ca  bb  ac  bc  ab")'
+[r, k] = setdiff(v1, v2);
+r, k
+]]></programlisting>
+        <screen><![CDATA[
+--> v1 = tokens("ab  ca  ba  bb  ca  cb  ba  aa  cc  bc  ac  aa")'
+ v1  =
+!ab  ca  ac  bb  ca  cb  ba  aa  cc  bc  ac  aa  !
+
+--> v2 = tokens("cc  ac  ca  bb  ac  bc  ab")'
+ v2  =
+!cc  ac  ca  bb  ac  bc  ab  !
+
+--> [r, k] = setdiff(v1, v2);
+--> r, k
+ r  =
+!aa  ba  cb  !
+
+ k  =
+   8.   3.   6.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -88,11 +289,31 @@ setdiff(a,b)
                 <link linkend="unique">unique</link>
             </member>
             <member>
-                <link linkend="gsort">gsort</link>
-            </member>
-            <member>
                 <link linkend="union">union</link>
             </member>
+            <member>
+                <link linkend="members">members</link>
+            </member>
+            <member>
+                <link linkend="vectorfind">vectorfind</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>&lt; 5.0</revnumber>
+                <revdescription>
+                    Function introduced.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    Option "r" | "c" added, including for hypermatrices.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

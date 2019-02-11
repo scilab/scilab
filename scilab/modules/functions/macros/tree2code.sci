@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Vincent Couvert
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -65,7 +65,14 @@ function C = tree2code(P, bprettyprintformat)
     // For each statement, generate corresponding code
     header = ""
     if bprettyprintformat then
-        header = "  "
+        File = "SCIHOME/XConfiguration.xml"
+        if isfile(File)
+            path = "//interface/scinotes/display/body/scinotes-display"
+            tmp = evstr(xmlGetValues(path, "indent-size", File))
+        else
+            tmp = 4
+        end
+        header = blanks(tmp)
     end
     for i = 1:size(I)-2 // -2 to ignore last return+EOL
         C = cat_code(C, header + instruction2code(I(i), bprettyprintformat));
@@ -77,4 +84,3 @@ function C = tree2code(P, bprettyprintformat)
         C = cat_code(C, "");
     end
 endfunction
-

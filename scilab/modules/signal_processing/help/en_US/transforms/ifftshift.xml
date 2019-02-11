@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,14 +12,20 @@
  * For more information, see the COPYING file which you should have received
  * along with this program.
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ifftshift">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="ifftshift">
     <refnamediv>
         <refname>ifftshift</refname>
         <refpurpose>inverse of fftshift</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>y=ifftshift(x)</synopsis>
+        <synopsis>
+            y = ifftshift(x)
+            y = ifftshift(x, along)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -27,7 +33,16 @@
             <varlistentry>
                 <term>x, y</term>
                 <listitem>
-                    <para>real or complex vector or matrix.</para>
+                    <para>vectors, matrices or hypermatrices of same sizes and types.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>along</term>
+                <listitem>
+                    <para>
+                        1 | "r" | 2 | "c" | 0&lt;along&lt;=ndims(x): dimension along which
+                        halves are switched.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -35,25 +50,78 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>ifftshift(x)</literal> swaps the left and right halves of the vector <literal>x</literal>.
+            <literal>ifftshift(x)</literal> swaps the left and right halves of the vector
+            <literal>x</literal>.
         </para>
         <para>
-            For matrices, <literal>ifftshift(x)</literal> swaps the first quadrant with the third and the second quadrant with the fourth.
+            For matrices, <literal>ifftshift(x)</literal> swaps the first quadrant with the third,
+            and the second quadrant with the fourth.
         </para>
         <para>
             If <literal>x</literal> is a multidimensional array,
-            <literal>ifftshift(x)</literal> swaps "half-spaces" of <literal>x</literal> along each dimension.
+            <literal>ifftshift(x)</literal> swaps "half-spaces" of <literal>x</literal>
+            along each dimension, for all of them.
         </para>
+        <para>
+            <literal>y = ifftshift(x,n)</literal> makes the swap only along the
+            <literal>n</literal>th dimension.
+        </para>
+        <note>
+            <literal>ifftshift()</literal> is designed in such a way that whatever is
+            <literal>x</literal> with even or/and odd sizes,
+            <literal>ifftshift(fftshift(x))</literal> and <literal>fftshift(ifftshift(x))</literal>
+            are always equal to <literal>x</literal>.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
         <para>
             Example #1:
         </para>
+        <para>
+            When the size of a vector (or of a dimension>1) is even, <literal>fftshift()</literal> and
+            <literal>ifftshift()</literal> are equivalent. It is no longer the case when a size
+            is odd:
+        </para>
+        <programlisting role="example"><![CDATA[
+even = [1 2 3 4 5 6];
+odd  = [1 2 3 4 5 6 7];
+[fftshift(even) ; ifftshift(even)]
+[fftshift(odd)  ; ifftshift(odd)]
+
+// Both are always reciprocal:
+ifftshift(fftshift(odd))
+fftshift(ifftshift(odd))
+ ]]></programlisting>
+    <screen><![CDATA[
+--> even = [1 2 3 4 5 6];
+--> odd  = [1 2 3 4 5 6 7];
+--> [fftshift(even) ; ifftshift(even)]
+ ans  =
+   4.   5.   6.   1.   2.   3.
+   4.   5.   6.   1.   2.   3.
+
+--> [fftshift(odd)  ; ifftshift(odd)]
+ ans  =
+   5.   6.   7.   1.   2.   3.   4.
+   4.   5.   6.   7.   1.   2.   3.
+
+--> // Both are always reciprocal:
+--> ifftshift(fftshift(odd))
+ ans  =
+   1.   2.   3.   4.   5.   6.   7.
+
+--> fftshift(ifftshift(odd))
+ ans  =
+   1.   2.   3.   4.   5.   6.   7.
+]]></screen>
+        <para>
+            Example #2:
+        </para>
         <programlisting role="example"><![CDATA[
 // Make a signal
 t = 0:0.1:1000;
-x = 3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
+x = 3*sin(t) + 8*sin(3*t) + 0.5*sin(5*t) + 3*rand(t);
 // Compute the fft
 y = fft(x, -1);
 // Invert the result
@@ -64,13 +132,13 @@ invShift = ifftshift(shift);
 and(y == invShift)
  ]]></programlisting>
         <para>
-            Example #2:
+            Example #3:
         </para>
         <programlisting role="example"><![CDATA[
 // Make a 2D image
 t = 0:0.1:30;
-x = 3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
-  0.5*sin(5*t')*sin(5*t)+3*rand(t')*rand(t);
+x = 3*sin(t')*cos(2*t) + 8*sin(3*t')*sin(5*t) + ..
+  0.5*sin(5*t')*sin(5*t) + 3*rand(t')*rand(t);
 // Compute the fft
 y = fft(x,-1);
 
@@ -91,6 +159,20 @@ and(y == invShift)
             <member>
                 <link linkend="fft">fft</link>
             </member>
+            <member>
+                <link linkend="flipdim">flipdim</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    Option <literal>along</literal> added.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

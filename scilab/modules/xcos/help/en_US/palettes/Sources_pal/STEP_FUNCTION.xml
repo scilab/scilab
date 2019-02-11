@@ -22,89 +22,56 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="STEP_FUNCTION" xml:lang="en_US">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="STEP_FUNCTION" xml:lang="en_US">
     <refnamediv>
         <refname>STEP_FUNCTION</refname>
         <refpurpose>Step Function</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/STEP_FUNCTION.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/STEP_FUNCTION.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_STEP_FUNCTION">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="STEP_FUNCTION">Step Function</link>
-                </para>
+                <xref linkend="Description_STEP_FUNCTION">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_STEP_FUNCTION">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_STEP_FUNCTION">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Datatype_STEP_FUNCTION">Data types</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_STEP_FUNCTION">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_STEP_FUNCTION">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Examples_STEP_FUNCTION">Examples</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_STEP_FUNCTION">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_STEP_FUNCTION">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Datatype_STEP_FUNCTION">Data types</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_STEP_FUNCTION">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_STEP_FUNCTION">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_STEP_FUNCTION">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Examples_STEP_FUNCTION">Examples</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_STEP_FUNCTION">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_STEP_FUNCTION">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Sources_pal">Sources palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_STEP_FUNCTION">
         <title>Description</title>
         <para>
-            In its simpler use this block output a step signal between two definable levels <emphasis role="bold">Initial Value</emphasis> and <emphasis role="bold">Final Value</emphasis>
+            In its simpler use this block output a step signal between two definable levels
+            <emphasis role="bold">Initial Value</emphasis> and
+            <emphasis role="bold">Final Value</emphasis>
             starting at a specified time <emphasis role="bold">Step Time</emphasis>.
         </para>
         <para>
@@ -117,29 +84,23 @@
         </para>
         <para>
             where
-            <emphasis><literal>
-                    t<subscript>0</subscript>
-                </literal>
-            </emphasis>
+            <emphasis><literal>t<subscript>0</subscript></literal></emphasis>
             is the <emphasis role="bold">Start Time</emphasis>,
-            <emphasis><literal>
-                    s<subscript>0</subscript>
-                </literal>
-            </emphasis>
+            <emphasis><literal>s<subscript>0</subscript></literal></emphasis>
             the <emphasis role="bold">Initial Value</emphasis> and
-            <emphasis><literal>
-                    s<subscript>f</subscript>
-                </literal>
-            </emphasis>
+            <emphasis><literal>s<subscript>f</subscript></literal></emphasis>
             the <emphasis role="bold">Final Value</emphasis>.
         </para>
         <para>
-            You can also specify vector or matrice values, for the parameters <emphasis role="bold">Initial Value</emphasis> and <emphasis role="bold">Final Value</emphasis>. The parameters are expanded to column vectors. and in this case, you obtain multiples output that start at the same <emphasis role="bold">Step Time</emphasis>.
+            You can also specify vector or matrice values, for the parameters
+            <emphasis role="bold">Initial Value</emphasis> and
+            <emphasis role="bold">Final Value</emphasis>.
+            The parameters are expanded to column vectors. and in this case, you obtain multiples
+            output that start at the same <emphasis role="bold">Step Time</emphasis>.
         </para>
         <para>
             The table below shows different combinations
         </para>
-        <para/>
         <informaltable border="1" cellpadding="3">
             <tr>
                 <td>
@@ -156,73 +117,38 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    <latex><![CDATA[1 \times 1]]></latex>
-                </td>
-                <td>
-                    <latex><![CDATA[1 \times 1]]></latex>
-                </td>
-                <td>
-                    <latex><![CDATA[1 \times 1]]></latex>
-                </td>
+                <td>1 × 1</td>
+                <td>1 × 1</td>
+                <td>1 × 1</td>
                 <td/>
             </tr>
             <tr>
-                <td>
-                    <latex><![CDATA[1 \times 1]]></latex>
-                </td>
-                <td>
-                    <latex><![CDATA[1 \times N]]></latex>
-                </td>
-                <td>
-                    <latex><![CDATA[N \times 1]]></latex>
-                </td>
+                <td>1 × 1</td>
+                <td>1 × N</td>
+                <td>1 × 1</td>
                 <td/>
             </tr>
             <tr>
-                <td>
-                    <latex><![CDATA[1 \times N]]></latex>
-                </td>
-                <td>
-                    <latex><![CDATA[L \times M]]></latex>
-                </td>
-                <td>
-                    <latex><![CDATA[N \times 1]]></latex>
-                </td>
-                <td>
-                    <latex><![CDATA[N = L \times M]]></latex>
-                </td>
+                <td>1 × N</td>
+                <td>L × M</td>
+                <td>N × 1</td>
+                <td>N = L × M</td>
             </tr>
             <tr>
-                <td>
-                    <latex><![CDATA[L \times M]]></latex>
-                </td>
-                <td>
-                    <latex><![CDATA[1 \times N]]></latex>
-                </td>
-                <td>
-                    <latex><![CDATA[N \times 1]]></latex>
-                </td>
-                <td>
-                    <latex><![CDATA[N = L \times M]]></latex>
-                </td>
+                <td>L × M</td>
+                <td>1 × N</td>
+                <td>N × 1</td>
+                <td>N = L × M</td>
             </tr>
             <tr>
-                <td>
-                    <latex><![CDATA[1 \times N]]></latex>
-                </td>
-                <td>
-                    <latex><![CDATA[L \times M]]></latex>
-                </td>
-                <td>
-                    <latex><![CDATA[N \times 1]]></latex>
-                </td>
-                <td>
-                    <latex><![CDATA[N = L \times M]]></latex>
-                </td>
+                <td>1 × N</td>
+                <td>L × M</td>
+                <td>N × 1</td>
+                <td>N = L × M</td>
             </tr>
         </informaltable>
     </refsection>
+
     <refsection id="Datatype_STEP_FUNCTION">
         <title>Data types</title>
         <itemizedlist>
@@ -234,23 +160,25 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Dialogbox_STEP_FUNCTION">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/sources_pal/en_US/STEP_FUNCTION_gui.png" align="center"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/sources_pal/en_US/STEP_FUNCTION_gui.png"
+                        align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
                     <emphasis role="bold">Step Time</emphasis>
                 </para>
                 <para>
-                    The time, in seconds, when the output jumps from the <emphasis role="bold">Initial Value</emphasis> parameter to the <emphasis role="bold">Final value</emphasis> parameter.
+                    The time, in seconds, when the output jumps from the
+                    <emphasis role="bold">Initial Value</emphasis> parameter to the
+                    <emphasis role="bold">Final value</emphasis> parameter.
                 </para>
                 <para> Properties : Type 'vec' of size 1. </para>
             </listitem>
@@ -284,6 +212,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Defaultproperties_STEP_FUNCTION">
         <title>Default properties</title>
         <itemizedlist>
@@ -347,20 +276,22 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Examples_STEP_FUNCTION">
         <title>Examples</title>
-        <refsection id="Example_1_STEP_FUNCTION">
+        <refsect2 id="Example_1_STEP_FUNCTION">
             <title>Example 1</title>
             <para>
-                This diagram shows the use of the STEP_FUNCTION block to obtain the response to a step signal of
-                a first order's system defined by a transfer function.
+                This diagram shows the use of the STEP_FUNCTION block to obtain the response to
+                a step signal of a first order's system defined by a transfer function.
             </para>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/step_function_1_en_US.zcos">
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../../examples/sources_pal/en_US/step_function_1_en_US.zcos" align="center" valign="middle"/>
+                            <imagedata fileref="../../../../examples/sources_pal/en_US/step_function_1_en_US.zcos" align="center"/>
                         </imageobject>
                     </inlinemediaobject>
                 </link>
@@ -369,8 +300,8 @@
 importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/step_function_1_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </refsection>
-        <refsection id="Example_2_STEP_FUNCTION">
+        </refsect2>
+        <refsect2 id="Example_2_STEP_FUNCTION">
             <title>Example 2</title>
             <para>
                 This diagram shows the use of STEP_FUNCTION to obtain four step signals.
@@ -379,7 +310,7 @@ xcos_simulate(scs_m, 4);
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/step_function_2_en_US.zcos">
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../../examples/sources_pal/en_US/step_function_2_en_US.zcos" align="center" valign="middle"/>
+                            <imagedata fileref="../../../../examples/sources_pal/en_US/step_function_2_en_US.zcos" align="center"/>
                         </imageobject>
                     </inlinemediaobject>
                 </link>
@@ -388,8 +319,9 @@ xcos_simulate(scs_m, 4);
 importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/step_function_2_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </refsection>
+        </refsect2>
     </refsection>
+
     <refsection id="Interfacingfunction_STEP_FUNCTION">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -400,6 +332,8 @@ xcos_simulate(scs_m, 4);
             </listitem>
         </itemizedlist>
     </refsection>
+
+
     <refsection role="see also" id="Seealso_STEP_FUNCTION">
         <title>See also</title>
         <itemizedlist>

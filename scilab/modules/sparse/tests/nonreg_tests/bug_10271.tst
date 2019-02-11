@@ -6,11 +6,13 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 10271 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=10271
+// http://bugzilla.scilab.org/10271
 //
 // <-- Short Description -->
 // ordmmd now checks the consistency of the third input argument with the
@@ -21,5 +23,5 @@ A = ReadHBSparse(SCI+"/modules/umfpack/demos/ex14.rua");
 [xadj, iadj, val] = sp2adj(A);
 n = floor(size(A, "r")/2);
 
-refMsg = msprintf(_(" The provided ""n"" does not correspond to the matrix defined by xadj and iadj"));
+refMsg = " The provided ""n"" does not correspond to the matrix defined by xadj and iadj";
 assert_checkerror("[perm, invp, nofsub] = ordmmd(xadj, iadj, n);", refMsg);

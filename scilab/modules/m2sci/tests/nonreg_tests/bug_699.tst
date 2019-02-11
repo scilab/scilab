@@ -5,10 +5,12 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
-
+// <-- NO CHECK REF -->
+// <-- NOT FIXED -->    6.0.0 -> 6.0.2
+//
 // <-- Non-regression test for bug 699 -->
 //
 // <-- Bugzilla URL -->
@@ -17,13 +19,13 @@
 // <-- Short Description -->
 //    m2sci crashes for a very simple input file
 //
-//    The content of the offending file a_test.m is a single 
+//    The content of the offending file a_test.m is a single
 //    line :
 //
 //    M(1,1) = -sin(0.1);
 //
-//    When I try to convert this Matlab file to Scilab using the 
-//    m2sci application (menu option in the main Scilab window), 
+//    When I try to convert this Matlab file to Scilab using the
+//    m2sci application (menu option in the main Scilab window),
 //    the reported error message displays.
 
 MFILECONTENTS=["M(1,1) = -sin(0.1);";"M(1,1) = sin(0.1);"];
@@ -35,15 +37,16 @@ mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
-SCIFILECONTENTSREF=["";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
-		"";
-		"M(1,1) = -sin(0.1);";
-		"M(1,1) = sin(0.1);"];
+SCIFILECONTENTSREF = [
+    "";
+    "// Display mode";
+    "mode(0);";
+    "";
+    "// Display warning for floating point exception";
+    "ieee(1);";
+    "";
+    "M(1,1) = -sin(0.1);";
+    "M(1,1) = sin(0.1);"];
 
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

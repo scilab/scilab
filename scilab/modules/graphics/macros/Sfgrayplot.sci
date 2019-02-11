@@ -1,4 +1,16 @@
-function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colout)
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) Bruno Pincon
+// Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
+//
+// This file is hereby licensed under the terms of the GNU GPL v2.0,
+// pursuant to article 5.3.4 of the CeCILL v.2.1.
+// This file was originally licensed under the terms of the CeCILL v2.1,
+// and continues to be available under such terms.
+// For more information, see the COPYING file which you should have received
+// along with this program.
+
+function Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colout)
 
     // PURPOSE
     //    Like fgrayplot but the function fec is used to smooth the
@@ -39,7 +51,20 @@ function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colou
         error(msprintf(gettext("%s: Wrong type for input argument #%d: function expected.\n"), "Sfgrayplot", 3));
     end
 
-    p = length(x); q = length(y);
+    p = length(x);
+    q = length(y);
+    z = feval(x,y,f);
+
+    // http://bugzilla.scilab.org/15638 :
+    if ~isdef("colminmax","l")
+        colminmax = [1, size(gcf().color_map,1)]
+    end
+    nbc = colminmax(2)-colminmax(1)+1
+    if ~isdef("zminmax","l") then
+        zminmax = [min(z), max(z)]
+    end
+    dz = (zminmax(2) - zminmax(1))/nbc/2
+    zminmax = zminmax + [dz -dz]
 
     // parsing the optional args
     opt_arg_list = ["strf", "rect","nax","zminmax", "colminmax", "mesh", "colout"];
@@ -51,7 +76,6 @@ function []=Sfgrayplot(x, y, f, strf, rect, nax, zminmax, colminmax, mesh, colou
     end
 
     // build the data for fec
-    z = feval(x,y,f);
     [noe_x,noe_y] = ndgrid(x,y)
     nbtri = 2*(p-1)*(q-1)
     num = (1:p*(q-1))'; num(p*(1:q-1)) = []; num1 = num+1

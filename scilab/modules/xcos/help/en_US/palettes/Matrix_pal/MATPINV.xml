@@ -21,80 +21,47 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATPINV">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="MATPINV" xml:lang="en_US">
     <refnamediv>
         <refname>MATPINV</refname>
         <refpurpose>Matrix PseudoInverse</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/MATPINV.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/MATPINV.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_MATPINV">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATPINV">Matrix PseudoInverse</link>
-                </para>
+                <xref linkend="Description_MATPINV">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MATPINV">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MATPINV">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_MATPINV">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MATPINV">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MATPINV">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_MATPINV">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_MATPINV">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_MATPINV">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_MATPINV">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_MATPINV">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_MATPINV">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_MATPINV">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_MATPINV">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Matrix_pal">Matrix operation palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_MATPINV">
         <title>Description</title>
         <para>
@@ -116,18 +83,15 @@
         <para>
             The equivalent function of this block in Scilab is <link linkend="pinv">pinv</link>.
         </para>
-        <para/>
     </refsection>
     <refsection id="Dialogbox_MATPINV">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/MATPINV_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/gui/MATPINV_gui.gif" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -212,6 +176,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_MATPINV">
         <title>Interfacing function</title>
@@ -225,30 +190,24 @@
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/mat_pinv.c</para>
+                SCI/modules/scicos_blocks/src/c/mat_pinv.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matz_pinv.c</para>
+                SCI/modules/scicos_blocks/src/c/matz_pinv.c
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_MATPINV">
+    <refsection id="Seealso_MATPINV" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATINV">MATINV - Matrix Inverse (xcos Block)</link>
-                </para>
+                <link linkend="MATINV">MATINV</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATSING">MATSING - SVD Decomposition (xcos Block)</link>
-                </para>
+                <link linkend="MATSING">MATSING</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="pinv">pinv (Scilab function)</link>
-                </para>
+                <link linkend="pinv">pinv</link>
             </listitem>
         </itemizedlist>
     </refsection>

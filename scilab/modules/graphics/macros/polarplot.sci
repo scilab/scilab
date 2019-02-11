@@ -194,6 +194,12 @@ function polarplot(theta,rho,style,strf,leg,rect)
     fcolor = color("grey60");
     txtColor = color("grey30");
 
+    // Default Datatip function for curves
+    a = gca();
+    curves = a.children(1).children;
+    curves.display_function = "polarplot_datatip_display";
+    curves.display_function_data = Amin;    // for theta on [0,360] | [-90,90]
+
     // CIRCULAR FRAME AT SET OF RADII:
     // ------------------------------
     // Radial values for the frame:

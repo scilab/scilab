@@ -21,75 +21,43 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Inductor">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="Inductor" xml:lang="en_US">
     <refnamediv>
         <refname>Inductor</refname>
         <refpurpose>Electrical inductor</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/Inductor.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/Inductor.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_Inductor">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Inductor">Electrical inductor</link>
-                </para>
+                <xref linkend="Description_Inductor">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_Inductor">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_Inductor">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_Inductor">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_Inductor">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_Inductor">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="Inductor">Modelica model</link>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_Inductor">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_Inductor">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_Inductor">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Inductor">Modelica model</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_Inductor">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Electrical_pal">Electrical.cosf - Electrical toolbox</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_Inductor">
         <title>Description</title>
         <para>
@@ -98,7 +66,7 @@
             the ports of an inductor of inductance  and the current  passing
             through it is given by:
         </para>
-        <latex><![CDATA[$$
+        <latex align="center" alt="v = L.dI/dt"><![CDATA[$$
         v = L \times \frac{\mathrm d I}{\mathrm d t}
         $$]]></latex>
         <para>
@@ -109,17 +77,13 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_Inductor">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/Inductor_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/Inductor_gui.gif" align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -144,8 +108,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -161,8 +123,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -181,8 +141,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -193,6 +151,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_Inductor">
         <title>Interfacing function</title>

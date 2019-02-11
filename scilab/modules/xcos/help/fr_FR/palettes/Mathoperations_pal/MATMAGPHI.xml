@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,85 +13,52 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATMAGPHI" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="MATMAGPHI" xml:lang="fr_FR">
     <refnamediv>
         <refname>MATMAGPHI</refname>
         <refpurpose>Complexe à partir de/vers module et phase</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/MATMAGPHI.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/MATMAGPHI.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_MATMAGPHI">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATMAGPHI">Complexe à partir de/vers module et phase</link>
-                </para>
+                <xref linkend="Description_MATMAGPHI">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MATMAGPHI">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MATMAGPHI">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_MATMAGPHI">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MATMAGPHI">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MATMAGPHI">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_MATMAGPHI">Fonctions de calcul</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_MATMAGPHI">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_MATMAGPHI">Paramètres</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_MATMAGPHI">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Mathoperations_pal">Palette Opérations mathématiques</link>
-                </para>
+                <xref linkend="Defaultproperties_MATMAGPHI">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_MATMAGPHI">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_MATMAGPHI">Fonctions de calcul</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_MATMAGPHI">Voir aussi</xref>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Description_MATMAGPHI">
         <title>Description</title>
         <para>
-            Ce bloc calcule le module et l'argument d'une matrice de nombres complexes ou construit une matrice de nombres complexes
-            à partir d'une matrice de modules et d'une matrice d'arguments en fonction de la valeur du paramètre <emphasis role="bold">decomposition type</emphasis>.
+            Ce bloc calcule le module et l'argument d'une matrice de nombres complexes ou
+            construit une matrice de nombres complexes à partir d'une matrice de modules et d'une
+            matrice d'arguments en fonction de la valeur du paramètre
+            <emphasis role="bold">decomposition type</emphasis>.
             Le tableau suivant résume le comportement du bloc :
         </para>
         <para/>
@@ -137,15 +104,14 @@
         <para/>
     </refsection>
     <refsection id="Dialogbox_MATMAGPHI">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/MATMAGPHI_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/MATMAGPHI_gui.gif"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -230,6 +196,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_MATMAGPHI">
         <title>Fonction d'interfaçage</title>
@@ -250,13 +217,11 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_MATMAGPHI">
+    <refsection id="Seealso_MATMAGPHI" role="see also">
         <title>Voir aussi</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATZREIM">MATZREIM - Décomposition complexe</link>
-                </para>
+                <link linkend="MATZREIM">MATZREIM</link>
             </listitem>
         </itemizedlist>
     </refsection>

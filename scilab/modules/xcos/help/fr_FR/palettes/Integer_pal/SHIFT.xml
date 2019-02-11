@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,87 +13,48 @@
  * along with this program.
  *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SHIFT" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="SHIFT" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
     <refnamediv>
         <refname>SHIFT</refname>
         <refpurpose>Décalage/Rotation de bits</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/SHIFT.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/SHIFT.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_SHIFT">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="SHIFT">Décalage/Rotation de bits</link>
-                </para>
+                <xref linkend="Description_SHIFT">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_SHIFT">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_SHIFT">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Data_Type_SHIFT">Types de données</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_SHIFT">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_SHIFT">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_SHIFT">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_SHIFT">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_SHIFT">Fonctions de calcul</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_SHIFT">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Data_Type_SHIFT">Types de données</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_SHIFT">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Integer_pal">Palette Entier</link>
-                </para>
+                <xref linkend="Dialogbox_SHIFT">Paramètres</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_SHIFT">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_SHIFT">Exemple</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_SHIFT">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_SHIFT">Fonctions de calcul</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_SHIFT">Voir aussi</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -190,15 +151,14 @@
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_SHIFT">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../gui/integer_pal/fr_FR/SHIFT_gui.png"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/integer_pal/fr_FR/SHIFT_gui.png"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -214,7 +174,9 @@
                     <emphasis role="bold">Number of Bits to Shift Left (Negative number to shift right)</emphasis>
                 </para>
                 <para>
-                    Indique le nombre de bits du signal d'entrée à décaler. Une valeur positive indique un décalage à gauche, une valeur négative un décalage à droite. L'indice doit être, quand le type est :
+                    Indique le nombre de bits du signal d'entrée à décaler. Une valeur positive
+                    indique un décalage à gauche, une valeur négative un décalage à droite.
+                    L'indice doit être, quand le type est :
                 </para>
                 <itemizedlist>
                     <listitem>
@@ -339,27 +301,16 @@
         <para>
             Dans cet exemple le Super bloc est un compteur binaire 3 bits. De façon à obtenir les données décimales correspondantes,
             les sorties
-            <emphasis><literal>
-                    Q<subscript>1</subscript>
-                </literal>
-            </emphasis>
-            et
-            <emphasis><literal>
-                    Q<subscript>2</subscript>
-                </literal>
-            </emphasis>
+            <emphasis><literal>Q<subscript>1</subscript></literal></emphasis>
+            et <emphasis><literal>Q<subscript>2</subscript></literal></emphasis>
             du compteur sont respectivement
             décalées à gauche de un et de deux bits. Finalement la sortie
-            <emphasis><literal>
-                    Q<subscript>0</subscript>
-                </literal>
-            </emphasis>
-
+            <emphasis><literal>Q<subscript>0</subscript></literal></emphasis>
             et les sorties décalées sont additionnées.
         </para>
         <para>
-            Pour bien voir l'évolution, mettre le paramètre <emphasis>Mise à l'échelle temps réel
-            </emphasis>
+            Pour bien voir l'évolution, mettre le paramètre
+            <emphasis>Mise à l'échelle temps réel</emphasis>
             à 0.5 s dans le sous-menu <emphasis>Configurer</emphasis> du menu
             <emphasis>Simulation</emphasis>.
         </para>
@@ -397,49 +348,49 @@
         <title>Fonctions de calcul</title>
         <itemizedlist>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_32_LA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_32_LA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_32_LC.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_32_LC.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_32_RA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_32_RA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_u32_RA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_u32_RA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_32_RC.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_32_RC.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_16_LA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_16_LA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_16_LC.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_16_LC.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_16_RA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_16_RA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_u16_RA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_u16_RA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_16_RC.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_16_RC.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_8_LA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_8_LA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_8_LC.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_8_LC.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_8_RA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_8_RA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_u8_RA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_u8_RA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_8_RC.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_8_RC.c
             </listitem>
         </itemizedlist>
     </refsection>

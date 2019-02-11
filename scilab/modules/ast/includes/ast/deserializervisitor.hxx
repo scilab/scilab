@@ -171,6 +171,10 @@ private :
                 return  OpExp::logicalShortCutAnd;
             case 27 :
                 return  OpExp::logicalShortCutOr;
+
+            case 28 :
+               return  OpExp::unaryPlus;
+
         }
         std::cerr << "Unknown get_OpExp_Oper code " << code << std::endl;
         exit(2);

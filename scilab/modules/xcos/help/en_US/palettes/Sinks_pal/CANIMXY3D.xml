@@ -25,7 +25,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
         xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-        xml:id="CANIMXY3D">
+        xml:id="CANIMXY3D" xml:lang="en_US">
     <refnamediv>
         <refname>CANIMXY3D</refname>
         <refpurpose>z=f(x,y) animated viewer</refpurpose>
@@ -42,28 +42,28 @@
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-              <xref linkend="Description_CANIMXY3D">Description</xref>
+                <xref linkend="Description_CANIMXY3D">Description</xref>
             </listitem>
             <listitem>
-              <xref linkend="Dialogbox_CANIMXY3D">Parameters</xref>
+                <xref linkend="Dialogbox_CANIMXY3D">Parameters</xref>
             </listitem>
             <listitem>
-              <xref linkend="Defaultproperties_CANIMXY3D">Default properties</xref>
+                <xref linkend="Defaultproperties_CANIMXY3D">Default properties</xref>
             </listitem>
             <listitem>
-              <xref linkend="Interfacingfunction_CANIMXY3D">Interfacing function</xref>
+                <xref linkend="Interfacingfunction_CANIMXY3D">Interfacing function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Computationalfunction_CANIMXY3D">Computational function</xref>
+                <xref linkend="Computationalfunction_CANIMXY3D">Computational function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Example_CANIMXY3D">Example</xref>
+                <xref linkend="Example_CANIMXY3D">Example</xref>
             </listitem>
             <listitem>
-              <xref linkend="Seealso_CANIMXY3D">See also</xref>
+                <xref linkend="Seealso_CANIMXY3D">See also</xref>
             </listitem>
         </itemizedlist>
-        <para/>
+		<para/>
     </refsection>
 
     <refsection id="Description_CANIMXY3D">

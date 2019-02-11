@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,87 +13,59 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CLKOUTV_f" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="CLKOUTV_f" xml:lang="fr_FR">
     <refnamediv>
         <refname>CLKOUTV_f</refname>
         <refpurpose>Port de sortie d'activation</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CLKOUTV_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CLKOUTV_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_CLKOUTV_f">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLKOUTV_f">Port de sortie d'activation port</link>
-                </para>
+                <xref linkend="Palette_CLKOUTV_f">Palettes</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CLKOUTV_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CLKOUTV_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_CLKOUTV_f">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CLKOUTV_f">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_CLKOUTV_f">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CLKOUTV_f">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_CLKOUTV_f">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Description_CLKOUTV_f">Description</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_CLKOUTV_f">Paramètres</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_CLKOUTV_f">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_CLKOUTV_f">Exemple</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_CLKOUTV_f">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_CLKOUTV_f">Voir aussi</xref>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Palette_CLKOUTV_f">
-        <title>Palette</title>
+        <title>Palettes</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Portaction_pal">Palette Ports &amp; Sous-systèmes</link>
-                </para>
+                <link linkend="Portaction_pal">Palette Ports &amp; Sous-systèmes</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Sinks_pal">Palette Sinks</link>
-                </para>
+                <link linkend="Sinks_pal">Palette Sinks</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Events_pal">Palette gestion d'événements</link>
-                </para>
+                <link linkend="Events_pal">Palette gestion d'événements</link>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -110,15 +82,14 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_CLKOUTV_f">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/portaction_pal/fr_FR/CLKOUTV_f_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/portaction_pal/fr_FR/CLKOUTV_f_gui.png"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -184,11 +155,12 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_CLKOUTV_f">
         <title>Exemple</title>
         <para>
-            Le Super block ci-dessous est principalement un diviseur de fréquence par 4, associé à une génération d'événement à l'instant
+            Le Super-bloc ci-dessous est principalement un diviseur de fréquence par 4, associé à une génération d'événement à l'instant
             <emphasis>
                 <literal>t = 3 s</literal>
             </emphasis>

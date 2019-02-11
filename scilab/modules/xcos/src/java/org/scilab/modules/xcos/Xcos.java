@@ -3,6 +3,7 @@
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2017-2018 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -22,7 +23,6 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -54,7 +54,6 @@ import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
-import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.actions.ExternalAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
@@ -69,14 +68,13 @@ import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
-import com.mxgraph.model.mxGraphModel;
-import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.view.mxStylesheet;
 import javax.swing.Timer;
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
+import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.model.XcosGraphModel;
 
 /**
@@ -1030,21 +1028,53 @@ public final class Xcos {
     }
 
     /**
-     * Look for the parent diagram of the cell in the diagram hierarchy.
-     *
-     * @param cell
-     *            the cell to search for
+     * Look for the diagram that match the model object in the diagram hierarchy.
+     * @param uid
+     *            the UID to search for
      * @return the associated diagram
      */
-    public static XcosDiagram findParent(Object cell) {
+    public static XcosDiagram findDiagram(long uid) {
         final Xcos instance = getInstance();
 
         for (Collection<XcosDiagram> diags : instance.diagrams.values()) {
             for (XcosDiagram diag : diags) {
-                final mxGraphModel model = (mxGraphModel) diag.getModel();
+                final Object defaultParent = diag.getDefaultParent();
 
-                // use the O(1) lookup
-                if (cell instanceof mxICell && model.getCell(((mxICell) cell).getId()) != null) {
+                if (defaultParent instanceof XcosCell && ((XcosCell) defaultParent).getUID() == uid) {
+                    return diag;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Look for the parent diagram of the cell in the diagram hierarchy.
+     * @param controller
+     *            the shared controller
+     * @param uid
+     *            the cell UID to search for
+     * @param kind
+     *            the cell Kind to search for
+     * @return the associated diagram
+     */
+    public static XcosDiagram findParent(JavaController controller, long uid, Kind kind) {
+        final Xcos instance = getInstance();
+
+        long[] parent = {0};
+
+        // use parent / children model property
+        controller.getObjectProperty(uid, kind, ObjectProperties.PARENT_BLOCK, parent);
+        if (parent[0] == 0) {
+            controller.getObjectProperty(uid, kind, ObjectProperties.PARENT_DIAGRAM, parent);
+        }
+
+        for (Collection<XcosDiagram> diags : instance.diagrams.values()) {
+            for (XcosDiagram diag : diags) {
+                final Object defaultParent = diag.getDefaultParent();
+
+                if (defaultParent instanceof XcosCell && ((XcosCell) defaultParent).getUID() == parent[0]) {
                     return diag;
                 }
             }

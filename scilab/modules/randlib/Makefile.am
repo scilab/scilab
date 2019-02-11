@@ -73,7 +73,7 @@ libscirandlib_algo_la_CPPFLAGS = $(libscirandlib_la_CPPFLAGS)
 CHECK_SRC= $(RANDLIB_CPP_SOURCES) $(RANDLIB_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscirandlib_la_CPPFLAGS)
 
-libscirandlib_la_LIBADD =  libscirandlib-algo.la
+libscirandlib_la_LIBADD =  libscirandlib-algo.la $(FLIBS)
 
 
 

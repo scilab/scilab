@@ -21,89 +21,55 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATZREIM">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="MATZREIM" xml:lang="en_US">
     <refnamediv>
         <refname>MATZREIM</refname>
         <refpurpose>Complex decomposition/composition</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/MATZREIM.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/MATZREIM.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_MATZREIM">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATZREIM">Complex decomposition/composition</link>
-                </para>
+                <xref linkend="Description_MATZREIM">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MATZREIM">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MATZREIM">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_MATZREIM">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MATZREIM">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MATZREIM">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_MATZREIM">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_MATZREIM">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_MATZREIM">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_MATZREIM">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_MATZREIM">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_MATZREIM">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_MATZREIM">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_MATZREIM">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Mathoperations_pal">Math operations palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_MATZREIM">
         <title>Description</title>
         <para>
-            This block decomposes a matrix of complex numbers by separating the real and imaginary parts or composes a
-            matrix of complex numbers by joining the two parts with respect to the value of
-            <emphasis role="bold">decomposition type</emphasis> parameter.
+            This block decomposes a matrix of complex numbers by separating the real and imaginary
+            parts or composes a matrix of complex numbers by joining the two parts with respect to
+            the value of <emphasis role="bold">decomposition type</emphasis> parameter.
             The following table summarize the bloc behaviour :
         </para>
-        <para/>
         <informaltable border="1" cellpadding="2">
             <tr>
                 <td align="left" width="18%">
@@ -142,20 +108,15 @@
                 </td>
             </tr>
         </informaltable>
-        <para/>
     </refsection>
     <refsection id="Dialogbox_MATZREIM">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/MATZREIM_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/MATZREIM_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -240,6 +201,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_MATZREIM">
         <title>Interfacing function</title>
@@ -260,13 +222,11 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_MATZREIM">
+    <refsection id="Seealso_MATZREIM" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATMAGPHI">MATMAGPHI - MATMAGPHI Complex to Magnitude and Angle Conversion</link>
-                </para>
+                <link linkend="MATMAGPHI">MATMAGPHI</link>
             </listitem>
         </itemizedlist>
     </refsection>

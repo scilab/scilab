@@ -25,9 +25,6 @@ function str = x_mdialog(desc, labels, ini)
 endfunction
 funcprot(prot);
 [ok, XX] = do_compile_superblock42(scs_m.objs(1), [], [], %f);
-operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.
-operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.
-operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.
    Generate a loader file
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR

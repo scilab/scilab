@@ -2,6 +2,7 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010 - DIGITEO - Allan CORNET
 * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
+* Copyright (C) 2019 - ESI - Antoine ELIAS
 *
 * Copyright (C) 2012 - 2016 - Scilab Enterprises
 *
@@ -13,23 +14,22 @@
 * along with this program.
 *
 */
-/*--------------------------------------------------------------------------*/
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 extern "C"
 {
-#include "mgetl.h"
-#include "freeArrayOfString.h"
 #include "charEncoding.h"
+#include "freeArrayOfString.h"
+#include "mgetl.h"
 #include "sci_malloc.h"
 #include "sciprint.h"
 }
 #include "filemanager.hxx"
 
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 
 #ifdef _MSC_VER
 #include <Windows.h>
@@ -37,13 +37,23 @@ extern "C"
 
 static const unsigned char UTF8_BOM[] = {0xEF, 0xBB, 0xBF, 0x00};
 
-int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
+//remove \r
+inline void rtrim(char* s)
+{
+    size_t n = strlen(s);
+    if (n && s[n - 1] == '\r')
+    {
+        s[n - 1] = 0;
+    }
+}
+
+int mgetl(int iFileID, int iLineCount, wchar_t*** pwstLines)
 {
     *pwstLines = NULL;
 
     // get file descriptor
     types::File* pFile = FileManager::getFile(iFileID);
-    FILE *fd;
+    FILE* fd;
     if (pFile != NULL)
     {
         fd = pFile->getFiledesc();
@@ -86,113 +96,14 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
     //seek to same position
     ifs.seekg(orig);
 
-    std::list<std::string> lst;
-
-    bool lineReach = false;
-    std::string previous;
-    size_t offset = 0;
-    while (lst.size() < iLineCount && ifs.eof() == false)
-    {
-        int delimiter_size = 1;
-        size_t sp = previous.size();
 #define MAX_READ_LEN 262144
-        char buf[MAX_READ_LEN + 1] = {0};
-        ifs.read(buf, MAX_READ_LEN);
-        size_t s = strlen(buf);
-        //extract lines
-        char* ptr = buf;
-        for (int i = 0; i < s; ++i)
-        {
-            if (buf[i] == '\n')
-            {
-                //delimit line
-                buf[i] = '\0';
-                if (i > 0 && buf[i - 1] == '\r')
-                {
-                    buf[i - 1] = '\0';
-                    delimiter_size = 2;
-                }
+    char str[MAX_READ_LEN];
+    std::vector<wchar_t*> lst;
 
-                //add line to list
-                if (sp)
-                {
-                    previous += ptr;
-                    lst.push_back(previous);
-#ifdef _MSC_VER
-                    offset += previous.size() + 2;
-#else
-                    offset += previous.size() + delimiter_size;
-#endif
-                    previous.clear();
-                }
-                else
-                {
-                    lst.emplace_back(ptr);
-#ifdef _MSC_VER
-                    offset += strlen(ptr) + 2;
-#else
-                    offset += strlen(ptr) + delimiter_size;
-#endif
-                }
-
-                //move ptr to first next line char
-                ptr = buf + i + 1;
-
-                if (iLineCount != -1 && lst.size() >= iLineCount)
-                {
-                    //rewind
-#ifndef _MSC_VER
-                    auto t = ifs.tellg();
-#else
-                    std::fpos_t t = ifs.tellg().seekpos();
-#endif
-                    if (t <= 0)
-                    {
-                        //reset error flags
-                        ifs.clear();
-                    }
-
-                    ifs.seekg(orig + offset, std::ios::beg);
-                    lineReach = true;
-                    break;
-                }
-            }
-        }
-
-        if (ptr == buf)
-        {
-            //long line
-            previous += buf;
-        }
-        else if (lineReach == false)
-        {
-            int offset = (int)(buf + s - ptr);
-            if (offset)
-            {
-                if (!ifs.eof())
-                {
-                    //some data stay in buf, rewind file to begin of this data and read it again
-#ifndef _MSC_VER
-                    auto cur1 = ifs.tellg();
-#else
-                    std::fpos_t cur1 = ifs.tellg().seekpos();
-#endif
-                    ifs.seekg((std::streamoff)cur1 - offset, std::ios::beg);
-                }
-                else
-                {
-                    //some data stay in buf but oef is reached, add ptr data in list
-                    std::string str(ptr);
-                    lst.push_back(str);
-                }
-            }
-        }
-    }
-
-    if (previous.size())
+    while ((iLineCount == -1 || lst.size() < iLineCount) && ifs.getline(str, MAX_READ_LEN))
     {
-        lst.push_back(previous);
-        previous.clear();
+        rtrim(str);
+        lst.push_back(to_wide_string(str));
     }
 
     int nbLinesOut = (int)lst.size();
@@ -209,9 +120,7 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
 
     for (int i = 0; i < nbLinesOut; ++i)
     {
-        std::string s = lst.front();
-        (*pwstLines)[i] = to_wide_string(s.data());
-        lst.pop_front();
+        (*pwstLines)[i] = lst[i];
     }
 
 #ifndef _MSC_VER
@@ -224,6 +133,7 @@ int mgetl(int iFileID, int iLineCount, wchar_t ***pwstLines)
     {
         fseek(fd, pos, SEEK_SET);
     }
+
     ifs.close();
 #endif
 

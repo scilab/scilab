@@ -2,12 +2,16 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Michael Baudin
 // Copyright (C) 2012 - Scilab Enterprises - Sylvestre Ledru
-// Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2016, 2018 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
+// Perform a check on the size of the input arguments
+assert_checktrue(execstr('linspace(2,[2,2])','errcatch')<>0);
 
 // Basic use
 assert_checkequal(linspace(1,2,-1),[]);
@@ -36,5 +40,13 @@ assert_checkequal(linspace(3-3*%i,0,7), (3:-0.5:0)*(1-%i));
 expected = complex([1;1]*(1:-0.25:0), [0:0.5:2 ; 2:0.5:4]);
 assert_checkequal(linspace(1+%i*[0;2],[2;4]*%i,5),expected);
 
-// Perform a check on the size of the input arguments
-assert_checktrue(execstr('linspace(2,[2,2])','errcatch')<>0);
+// With encoded integers
+a = linspace(uint8(5), uint8(127), 10);
+e = uint8([5  18  32  45  59  72  86  99  113  127]);
+assert_checkequal(a, e);
+a = linspace(uint8(127), uint8(5), 10);
+e2 = uint8([127  114  100  87  73  60  46  33  19  5]);
+assert_checkequal(a, e2);
+a = linspace(uint8([5;127]), uint8([127;5]), 10);
+assert_checkequal(a, [e ; e2]);
+   // tests with int64 and uint64 in the dedicated linspace_uint64.tst

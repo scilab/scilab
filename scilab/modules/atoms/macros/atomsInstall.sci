@@ -115,7 +115,7 @@ function result = atomsInstall(packages,section)
     atoms_system_directory  = atomsPath("system" ,section);
     atoms_install_directory = atomsPath("install",section);
     atoms_session_directory = atomsPath("system","session");
-    atoms_tmp_directory     = pathconvert( atomsPath("system" ,section) + "tmp_" + sprintf("%d\n",getdate("s")) );
+    atoms_tmp_directory     = pathconvert("TMPDIR\.atoms\tmp_" + sprintf("%d\n",getdate("s")) );
 
     directories2create = [  atoms_system_directory ;   ..
     atoms_install_directory ;  ..

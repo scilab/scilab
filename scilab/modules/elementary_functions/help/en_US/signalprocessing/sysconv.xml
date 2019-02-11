@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sysconv" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="sysconv" xml:lang="en">
     <refnamediv>
         <refname>sysconv</refname>
         <refpurpose>system conversion</refpurpose>
@@ -43,89 +46,80 @@
             applied. Utility function for experts. The conversion rules in given in
             the following table.
         </para>
-        <variablelist>
-            <varlistentry>
-                <term>"c"</term>
-                <listitem>
-                    <para>continuous time system</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"d"</term>
-                <listitem>
-                    <para>discrete time system</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>n</term>
-                <listitem>
-                    <para>sampled system with sampling period n</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>[]</term>
-                <listitem>
-                    <para>system with undefined time domain For mixed systems
-                        <literal>s1</literal> and <literal>s2</literal> are put in
-                        state-space representation.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-        <programlisting><![CDATA[
- s1\s2 |    "c"     |     "d"     |      n2        |     []     |
- ---------------------------------------------------------------
- "c"   | nothing    |uncompatible | c2e(s1,n2)     |  c(s2)     |
- ---------------------------------------------------------------
- "d"   |uncompatible| nothing     | e(s1,n2)       |  d(s2)     |
- ---------------------------------------------------------------
- n1    | c2e(s2,n1) | e(s2,n1)    | n1<>n2 uncomp  |  e(s2,n1)  |
-       |            |             | n1=n2  nothing |            |
- ---------------------------------------------------------------
- []    | c(s1)      | d(s1)       | e(s1,n2)       |  nothing   |
- ---------------------------------------------------------------
-  ]]></programlisting>
+        <table>
+            <tr><th>"c"</th><td>: continuous time system.</td></tr>
+            <tr><th>"d"</th><td>: discrete time system.</td></tr>
+            <tr><th>n</th><td>: sampled system with sampling period n.</td></tr>
+            <tr valign="top">
+                <th>[ ]</th>
+                <td>: system with undefined time domain For mixed systems
+                      <literal>s1</literal> and <literal>s2</literal> are put in
+                      state-space representation.
+                </td>
+            </tr>
+        </table>
+        <para/>
+        <table border="1">
+            <tr>
+                <th>s1\s2</th><th>"c"</th><th>"d"</th><th>n2</th><th>[ ]</th>
+            </tr>
+            <tr>
+                <th>"c"</th>
+                <td>nothing</td>
+                <td>uncompatible</td>
+                <td>c2e(s1,n2)</td>
+                <td>c(s2)</td>
+            </tr>
+            <tr>
+                <th>"d"</th>
+                <td>uncompatible</td>
+                <td>nothing</td>
+                <td>e(s1,n2)</td>
+                <td>d(s2)</td>
+            </tr>
+            <tr>
+                <th>n1</th>
+                <td>c2e(s2,n1)</td>
+                <td>e(s2,n1)</td>
+                <td>n1&lt;>n2 uncomp<table/>n1=n2  nothing</td>
+                <td>e(s2,n1)</td>
+            </tr>
+            <tr>
+                <th>[ ]</th>
+                <td>c(s1)</td>
+                <td>d(s1)</td>
+                <td>e(s1,n2)</td>
+                <td>nothing</td>
+            </tr>
+        </table>
         <para>With the following meaning:</para>
-        <variablelist>
-            <varlistentry>
-                <term>n1,n2</term>
-                <listitem>
-                    <para>sampling period</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>c2e(s,n)</term>
-                <listitem>
-                    <para>the continuous-time system s is transformed into a sampled
-                        system with sampling period n.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>c(s)</term>
-                <listitem>
-                    <para>conversion to continuous (time domain is
-                        <literal>"c"</literal>)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>d(s)</term>
-                <listitem>
-                    <para>conversion to discrete (time domain is
-                        <literal>"d"</literal>)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>e(s,n)</term>
-                <listitem>
-                    <para>conversion to samples system with period
-                        <literal>n</literal>
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
+        <table>
+            <tr valign="top">
+                <th align="left">n1, n2</th>
+                <td>: sampling periods</td>
+            </tr>
+            <tr valign="top">
+                <th align="left">c2e(s,n)</th>
+                <td>: the continuous-time system s is transformed into a sampled
+                    system with sampling period n.
+                </td>
+            </tr>
+            <tr valign="top">
+                <th align="left">c(s)</th>
+                <td>: conversion to continuous (time domain is <literal>"c"</literal>)
+                </td>
+            </tr>
+            <tr valign="top">
+                <th align="left">d(s)</th>
+                <td>: conversion to discrete (time domain is <literal>"d"</literal>)
+                </td>
+            </tr>
+            <tr valign="top">
+                <th align="left">e(s,n)</th>
+                <td>: conversion to samples system with period <literal>n</literal>
+                </td>
+            </tr>
+        </table>
     </refsection>
     <refsection>
         <title>Examples</title>

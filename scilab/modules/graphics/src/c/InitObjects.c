@@ -703,7 +703,7 @@ default:
 /* allocate and set a new label to default values */
 int initLabel(int iParentObjUID)
 {
-    int iNewLabel = NULL;
+    int iNewLabel = 0;
     int iHidden = 1;
     int autoPosition = 1;
 

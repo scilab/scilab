@@ -266,6 +266,9 @@
     <ClCompile Include="DllmainScicos-cli.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\cpp\view_scilab\AdapterView.cpp">
+      <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\dynlib_scicos.h">
@@ -414,6 +417,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\includes\XMIResource.hxx">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\includes\view_scilab\AdapterView.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

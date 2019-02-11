@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,72 +13,39 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="LOGICAL_OP" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="LOGICAL_OP" xml:lang="fr">
     <refnamediv>
         <refname>LOGICAL_OP</refname>
         <refpurpose>Opération logique</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/LOGICAL_OP.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/LOGICAL_OP.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_LOGICAL_OP">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="LOGICAL_OP">Opération logique</link>
-                </para>
+                <xref linkend="Description_LOGICAL_OP">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_LOGICAL_OP">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_LOGICAL_OP">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_LOGICAL_OP">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_LOGICAL_OP">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_LOGICAL_OP">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_LOGICAL_OP">Fonctions de calcul</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_LOGICAL_OP">Paramètres</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_LOGICAL_OP">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Commonlyusedblocks_pal">Palette Blocs couramment utilisés</link>
-                </para>
+                <xref linkend="Defaultproperties_LOGICAL_OP">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_LOGICAL_OP">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_LOGICAL_OP">Fonctions de calcul</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -91,17 +58,14 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_LOGICAL_OP">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/LOGICAL_OP_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/LOGICAL_OP_gui.gif"
+                    align="center" style="float:right"/>
+            <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -193,6 +157,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_LOGICAL_OP">
         <title>Fonction d'interfaçage</title>
@@ -206,25 +171,25 @@
         <title>Fonctions de calcul</title>
         <itemizedlist>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/logicalop.c</para>
+                 SCI/modules/scicos_blocks/src/c/logicalop.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/logicalop_i32.c</para>
+                 SCI/modules/scicos_blocks/src/c/logicalop_i32.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/logicalop_i16.c</para>
+                 SCI/modules/scicos_blocks/src/c/logicalop_i16.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/logicalop_i8.c</para>
+                 SCI/modules/scicos_blocks/src/c/logicalop_i8.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/logicalop_ui32.c</para>
+                 SCI/modules/scicos_blocks/src/c/logicalop_ui32.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/logicalop_ui16.c</para>
+                 SCI/modules/scicos_blocks/src/c/logicalop_ui16.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/logicalop_ui8.c</para>
+                 SCI/modules/scicos_blocks/src/c/logicalop_ui8.c
             </listitem>
         </itemizedlist>
     </refsection>

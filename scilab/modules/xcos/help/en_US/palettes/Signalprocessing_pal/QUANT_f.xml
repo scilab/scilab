@@ -21,80 +21,52 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="QUANT_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="QUANT_f" xml:lang="en_US">
     <refnamediv>
         <refname>QUANT_f</refname>
         <refpurpose>Quantization</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/QUANT_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/QUANT_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_QUANT_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="QUANT_f">Quantization</link>
-                </para>
+                <xref linkend="Description_QUANT_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_QUANT_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_QUANT_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_QUANT_f">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_QUANT_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_QUANT_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_QUANT_f">Computational function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_QUANT_f">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_QUANT_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_QUANT_f">Examples</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_QUANT_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_QUANT_f">Computational function</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_QUANT_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Signalprocessing_pal">Signal processing palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_QUANT_f">
         <title>Description</title>
         <para>
-            This block outputs the quantization of the input according to a choice
-            of methods (quantization types):
+            This block outputs the quantization of the input according to a choice of methods
+            (quantization types):
         </para>
         <itemizedlist>
             <listitem>
@@ -128,17 +100,13 @@
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_QUANT_f">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/QUANT_f_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/QUANT_f_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -227,6 +195,47 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
+    </refsection>
+    <refsection id="Example_QUANT_f">
+        <title>Examples</title>
+        <para>
+            Example of a sine quantized every 0.2 step with the Ceil method (using the ceil value
+            between two steps):
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalprocessing_pal/QUANT_f_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/signalprocessing_pal/QUANT_f_Example.zcos"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+        <para>
+            <scilab:image><![CDATA[
+            importXcosDiagram(SCI + "/modules/xcos/examples/signalprocessing_pal/QUANT_f_Example.zcos");
+            xcos_simulate(scs_m, 4);
+            title("Quantization of a sine","fontsize",3)
+            ]]></scilab:image>
+        </para>
+        <para>Comparison of the different quantization modes:</para>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+        <para>
+            <scilab:image><![CDATA[
+            importXcosDiagram(SCI + "/modules/xcos/examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos");
+            xcos_simulate(scs_m, 4);
+            title("Rounding strategy for the quantization type","fontsize",3)
+            ]]></scilab:image>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_QUANT_f">
         <title>Interfacing function</title>
@@ -240,55 +249,17 @@
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/fortran/qzrnd.f</para>
+                 SCI/modules/scicos_blocks/src/fortran/qzrnd.f
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/fortran/qztrn.f</para>
+                 SCI/modules/scicos_blocks/src/fortran/qztrn.f
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/fortran/qzflr.f</para>
+                 SCI/modules/scicos_blocks/src/fortran/qzflr.f
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/fortran/qzcel.f</para>
+                 SCI/modules/scicos_blocks/src/fortran/qzcel.f
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection id="Example_QUANT_f">
-        <title>Example of a sine quantized every 0.2 step with the Ceil method (using the ceil value between two steps):</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalprocessing_pal/QUANT_f_Example.zcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/signalprocessing_pal/QUANT_f_Example.zcos" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
-        <para>
-            <scilab:image><![CDATA[
-			importXcosDiagram(SCI + "/modules/xcos/examples/signalprocessing_pal/QUANT_f_Example.zcos");
-			xcos_simulate(scs_m, 4);
-			title("Quantization of a sine","fontsize",3)
-			]]></scilab:image>
-        </para>
-    </refsection>
-    <refsection id="Example_QUANT_f_Quantization_mode">
-        <title>Comparison of the different quantization modes:</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
-        <para>
-            <scilab:image><![CDATA[
-			importXcosDiagram(SCI + "/modules/xcos/examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos");
-			xcos_simulate(scs_m, 4);
-			title("Rounding strategy for the quantization type","fontsize",3)
-			]]></scilab:image>
-        </para>
     </refsection>
 </refentry>

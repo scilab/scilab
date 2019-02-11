@@ -249,6 +249,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
         wchar_t* w_str = funStr->get(0);
         char* c_str = wide_string_to_UTF8(w_str);
         void* f = funnum2(c_str); // Search associated function number of function name
+        FREE(c_str);
         // Block is defined by a C or Fortran function
         if (f != nullptr)
         {

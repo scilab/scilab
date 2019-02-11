@@ -460,7 +460,7 @@ bool Cell::operator==(const InternalType& it)
 
     for (int i = 0 ; i < getSize() ; i++)
     {
-        if (get(i) != pC->get(i))
+        if (*get(i) != *pC->get(i))
         {
             return false;
         }

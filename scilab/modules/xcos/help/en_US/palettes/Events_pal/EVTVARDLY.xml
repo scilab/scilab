@@ -21,75 +21,47 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="EVTVARDLY">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="EVTVARDLY" xml:lang="en_US">
     <refnamediv>
         <refname>EVTVARDLY</refname>
         <refpurpose>Event variable delay</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/EVTVARDLY.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/EVTVARDLY.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_EVTVARDLY">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="EVTVARDLY">Event variable delay</link>
-                </para>
+                <xref linkend="Description_EVTVARDLY">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_EVTVARDLY">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_EVTVARDLY">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_EVTVARDLY">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_EVTVARDLY">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_EVTVARDLY">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_EVTVARDLY">Computational function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_EVTVARDLY">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_EVTVARDLY">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_EVTVARDLY">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_EVTVARDLY">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_EVTVARDLY">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_EVTVARDLY">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Events_pal">Event handling palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_EVTVARDLY">
         <title>Description</title>
         <para>
@@ -97,27 +69,27 @@
             event port.
             The value of the delay is read from the regular input port.
             Block may also generate an initial output event.
-
         </para>
     </refsection>
     <refsection id="Dialogbox_EVTVARDLY">
-        <title>Dialog box</title>
+        <title>Parameters</title>
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../images/gui/EVTVARDLY_gui.gif" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/gui/EVTVARDLY_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
                 </imageobject>
             </inlinemediaobject>
-        </para>
-        <para>
-
         </para>
         <itemizedlist>
             <listitem>
                 <para>
                     <emphasis role="bold">Initial event firing time </emphasis>
                 </para>
-                <para> One event is generated on the unique output event port if Event time is larger than equal to zero, if not, no event is generated.</para>
+                <para>
+                    One event is generated on the unique output event port if Event time is
+                    larger than equal to zero, if not, no event is generated.
+                </para>
                 <para> Properties : Type 'vec' of size 1</para>
             </listitem>
         </itemizedlist>
@@ -203,11 +175,11 @@
         </itemizedlist>
     </refsection>
     <refsection id="Example_EVTVARDLY">
-        <title>Event Variable Delay example</title>
+        <title>Example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/EVTVARDLY_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/events_pal/EVTVARDLY_Example.zcos" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/events_pal/EVTVARDLY_Example.zcos"/>
                 </imageobject>
             </inlinemediaobject>
         </link>

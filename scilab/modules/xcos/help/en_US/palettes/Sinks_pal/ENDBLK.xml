@@ -25,10 +25,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
         xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-        xmlns:scilab="http://www.scilab.org" xml:id="ENDBLK">
+        xmlns:scilab="http://www.scilab.org" xml:id="ENDBLK" xml:lang="en_US">
     <refnamediv>
         <refname>ENDBLK</refname>
-        <refpurpose>Stop the simulation when the given duration is reached</refpurpose>
+        <refpurpose>END block</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
@@ -42,25 +42,25 @@
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-              <xref linkend="Description_ENDBLK">Description</xref>
+                <xref linkend="Description_ENDBLK">Description</xref>
             </listitem>
             <listitem>
-              <xref linkend="Dialogbox_ENDBLK">Parameters</xref>
+                <xref linkend="Dialogbox_ENDBLK">Parameters</xref>
             </listitem>
             <listitem>
-              <xref linkend="Defaultproperties_ENDBLK">Default properties</xref>
+                <xref linkend="Defaultproperties_ENDBLK">Default properties</xref>
             </listitem>
             <listitem>
-              <xref linkend="Interfacingfunction_ENDBLK">Interfacing function</xref>
+                <xref linkend="Interfacingfunction_ENDBLK">Interfacing function
+                    </xref>
             </listitem>
             <listitem>
-              <xref linkend="Example_ENDBLK">Example</xref>
+                <xref linkend="Example_ENDBLK">Example</xref>
             </listitem>
             <listitem>
-              <xref linkend="Seealso_ENDBLK">See also</xref>
+                <xref linkend="Seealso_ENDBLK">See also</xref>
             </listitem>
         </itemizedlist>
-        <para/>
     </refsection>
 
     <refsection id="Description_ENDBLK">
@@ -157,15 +157,7 @@
         </itemizedlist>
 		<para/>
     </refsection>
-    <refsection id="Interfacingfunction_ENDBLK">
-        <title>Interfacing function</title>
-        <itemizedlist>
-            <listitem>
-                <para>SCI/modules/scicos_blocks/macros/Misc/ENDBLK.sci</para>
-            </listitem>
-        </itemizedlist>
-		<para/>
-    </refsection>
+
     <refsection id="Example_ENDBLK">
         <title>Example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/ENDBLK_Example.zcos">
@@ -176,6 +168,17 @@
             </inlinemediaobject>
         </link>
     </refsection>
+
+    <refsection id="Interfacingfunction_ENDBLK">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/Misc/ENDBLK.sci</para>
+            </listitem>
+        </itemizedlist>
+		<para/>
+    </refsection>
+
     <refsection id="Seealso_ENDBLK" role="see also">
         <title>See also</title>
         <simplelist type="inline">

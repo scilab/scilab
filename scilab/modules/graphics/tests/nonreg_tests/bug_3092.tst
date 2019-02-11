@@ -4,13 +4,13 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- TEST WITH GRAPHIC -->
-
+// <-- NOT FIXED -->   6.0.0  ->  6.0.2
+//
 // <-- Non-regression test for bug 3092 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=3092
+// http://bugzilla.scilab.org/3092
 //
 // <-- Short Description -->
 // clf(<handle>,"reset") doesn't reset the figure size to the default value.

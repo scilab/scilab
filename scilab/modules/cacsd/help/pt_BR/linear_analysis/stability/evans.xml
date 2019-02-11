@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="evans" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="evans" xml:lang="pt">
     <refnamediv>
         <refname>evans</refname>
         <refpurpose>lugar geométrico das raízes Evans</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>evans(H [,kmax])</synopsis>
+        <synopsis>
+            evans(H)
+            evans(H, kmax)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -65,27 +71,59 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-    H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
-    clf();evans(H,100);sgrid()
-    [Ki,s]=kpure(H) // Gains that give pure imaginary closed loop poles
-    plot([real(s) real(s)],[imag(s) -imag(s)],'*r')
+H = syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+clf();
+evans(H,100);
+sgrid()
 
-    [Kr,s]=krac2(H)
+// Post-tuning graphical elements
+ch = gca().children;
+curves = ch(2).children;
+curves.thickness = 2;
+asymptotes = ch(ch.type=="Segs");
+asymptotes.segs_color = color("grey70");
+
+// Completing Evans plot:
+[Ki,s] = kpure(H) // Gains that give pure imaginary closed loop poles
+plot([real(s) real(s)],[imag(s) -imag(s)],'*r')
+
+[Kr,s] = krac2(H)
     ]]></programlisting>
         <para>
-            <scilab:image localized="true">
-                H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
-                clf();evans(H,100);sgrid()
-                [Ki,s]=kpure(H)
+            <scilab:image localized="true"><![CDATA[
+                H = syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+                clf();
+                gcf().axes_size = [610 470];
+                evans(H,100);
+                sgrid()
+
+                // Post-tuning graphical elements
+                ch = gca().children;
+                curves = ch(2).children;
+                curves.thickness = 2;
+                asymptotes = ch(ch.type=="Segs");
+                asymptotes.segs_color = color("grey70");
+
+                // Completing Evans plot:
+                [Ki,s] = kpure(H) // Gains that give pure imaginary closed loop poles
                 plot([real(s) real(s)],[imag(s) -imag(s)],'*r')
 
-                [Kr,s]=krac2(H)
-            </scilab:image>
+                [Kr,s] = krac2(H)
+        ]]></scilab:image>
         </para>
     </refsection>
     <refsection>
         <title>Ver Também </title>
         <simplelist type="inline">
+            <member>
+                <link linkend="sgrid">sgrid</link>
+            </member>
+            <member>
+                <link linkend="zgrid">zgrid</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
             <member>
                 <link linkend="kpure">kpure</link>
             </member>
@@ -93,7 +131,7 @@
                 <link linkend="krac2">krac2</link>
             </member>
             <member>
-                <link linkend="locate">locate</link>
+                <link linkend="datatips">datatips</link>
             </member>
         </simplelist>
     </refsection>

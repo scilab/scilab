@@ -36,44 +36,6 @@ namespace org_scilab_modules_scicos
 namespace view_scilab
 {
 
-struct AdapterView : public View
-{
-    void objectCreated(const ScicosID& uid, kind_t kind) override {};
-    void objectReferenced(const ScicosID& uid, kind_t kind, unsigned refCount) override {};
-    void objectUnreferenced(const ScicosID& uid, kind_t kind, unsigned refCount) override {};
-    void objectDeleted(const ScicosID& uid, kind_t kind) override
-    {
-        switch (kind)
-        {
-            case BLOCK:
-                GraphicsAdapter::remove_partial_links_information(uid);
-                break;
-            case LINK:
-                LinkAdapter::remove_partial_links_information(uid);
-                break;
-            default:
-                break;
-        }
-    };
-    void objectCloned(const ScicosID& uid, const ScicosID& cloned, kind_t kind) override
-    {
-        Controller controller;
-
-        switch (kind)
-        {
-            case BLOCK:
-                GraphicsAdapter::add_partial_links_information(controller, uid, cloned);
-                break;
-            case LINK:
-                LinkAdapter::add_partial_links_information(controller, uid, cloned);
-                break;
-            default:
-                break;
-        }
-    };
-    void propertyUpdated(const ScicosID& uid, kind_t kind, object_properties_t property, update_status_t status) override {};
-};
-
 Adapters Adapters::m_instance;
 
 Adapters& Adapters::instance()
@@ -81,12 +43,11 @@ Adapters& Adapters::instance()
     return m_instance;
 }
 
-Adapters::Adapters()
+Adapters::Adapters() : adapters()
 {
     /*
      * Create the supported data types list
      */
-    adapters = adapters_t();
     // we assume that the INVALID_ADAPTER is set at end of the enum
     adapters.reserve(INVALID_ADAPTER);
 
@@ -102,9 +63,6 @@ Adapters::Adapters()
     adapters.push_back(adapter_t(view_scilab::TextAdapter::getSharedTypeStr(), TEXT_ADAPTER));
 
     std::sort(adapters.begin(), adapters.end());
-
-    Controller controller;
-    controller.register_view("Adapters", new AdapterView());
 }
 
 Adapters::~Adapters()

@@ -4,7 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+// <-- INTERACTIVE TEST -->
+// <-- NOT FIXED -->  6.0.0 -> 6.0.2
 // <-- Non-regression test for bug 3666 -->
 //
 // <-- Bugzilla URL -->
@@ -13,17 +14,14 @@
 // <-- Short Description -->
 //    char encoding with length and input
 
-// <-- INTERACTIVE TEST -->
-
 // -- 1 --
 
-S = 'ôpéra';
+S = 'Ã´pÃ©ra';
 if length(S) <> 5 then pause,end
 
 // -- 2 --
 x = input('Your name ?', 'string')
 
-// Please type : Gaëlle
-// and check that x == Gaëlle
-if x <> 'Gaëlle' then pause,end
-
+// Please type : GaÃ«lle
+// and check that x == GaÃ«lle
+if x <> 'GaÃ«lle' then pause,end

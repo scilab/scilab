@@ -21,79 +21,48 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="DELAY_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="DELAY_f">
     <refnamediv>
         <refname>DELAY_f</refname>
         <refpurpose>Retard en temps discret</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/DELAY_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <title>Aperçu</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/DELAY_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_DELAY_f">
-        <title>Contents</title>
+        <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="DELAY_f">Retard en temps discret</link>
-                </para>
+                <xref linkend="Description_DELAY_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_DELAY_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_DELAY_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_DELAY_f">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_DELAY_f">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_DELAY_f">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_DELAY_f">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_DELAY_f">Paramètres</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_DELAY_f">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Discrete_pal">Palette Systèmes à temps discret</link>
-                </para>
+                <xref linkend="Defaultproperties_DELAY_f">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_DELAY_f">Exemple</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_DELAY_f">Fonction d'interfaçage</xref>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Description_DELAY_f">
         <title>Description</title>
         <para>
-            Ce bloc implémente un retard à temps discret. Il est construit avec un registre à décalage et une horloge. Le retard est donnée par la pas de temps discret multiplié par le nombre d'états du registre moins un.
+            Ce bloc implémente un retard à temps discret. Il est construit avec un registre à
+            décalage et une horloge. Le retard est donnée par la pas de temps discret multiplié
+            par le nombre d'états du registre moins un.
         </para>
         <para>
             <latex><![CDATA[
@@ -108,17 +77,14 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_DELAY_f">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/discrete_pal/fr_FR/DELAY_f_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/discrete_pal/fr_FR/DELAY_f_gui.png"
+                           align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -207,6 +173,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_DELAY_f">
         <title>Exemple</title>

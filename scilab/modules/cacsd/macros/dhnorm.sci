@@ -48,10 +48,11 @@ function ok=dhtest(Sl,gama)
     ws=w(:,1:n);
     x12=ws(1:n,:);
     phi12=ws(n+1:2*n,:);
-    if rcond(x12) > 1.d-6 then
-        X=phi12/x12;
-        z=eye()-B'*X*B
-        ok= min(real(spec(z))) > -%eps
+    if rcond(x12) > 1.d-6 & x12<>[] then
+        X = phi12/x12;
+        z = eye()-B'*X*B
+        ok = min(real(spec(z))) > -%eps
     else
-    ok=%t;end
+        ok = %t;
+    end
 endfunction

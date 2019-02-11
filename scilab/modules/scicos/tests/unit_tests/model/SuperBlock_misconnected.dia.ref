@@ -21,13 +21,13 @@ void2=[],..
 void3=[],..
 doc=list()))
  scs_m  = 
-wpar = [6,45,0,0,6,45]
+wpar = [600,450,0,0,600,450]
 title = ["Test";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
-tf = 2
+tf = 20
 context = []
 void1 = []
-options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8])
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -46,13 +46,13 @@ void2=[],..
 void3=[],..
 doc=list()))
  scs_m_1  = 
-wpar = [6,45,0,0,6,45]
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,0,0]
-tf = 1
+tf = 100000
 context = ""
 void1 = []
-options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8])
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -103,13 +103,13 @@ equations=list(),..
 uid="4512295e:12c22db13e9:-6683"),..
 doc=list("4512295e:12c22db13e9:-6683"))
  scs_m_1  = 
-wpar = [6,45,0,0,6,45]
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,0,0]
-tf = 1
+tf = 100000
 context = ""
 void1 = []
-options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8])
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -161,13 +161,13 @@ equations=list(),..
 uid="4512295e:12c22db13e9:-667f"),..
 doc=list("4512295e:12c22db13e9:-667f"))
  scs_m_1  = 
-wpar = [6,45,0,0,6,45]
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,0,0]
-tf = 1
+tf = 100000
 context = ""
 void1 = []
-options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8])
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -220,13 +220,13 @@ equations=list(),..
 uid="4512295e:12c22db13e9:-667a"),..
 doc=list("4512295e:12c22db13e9:-667a"))
  scs_m_1  = 
-wpar = [6,45,0,0,6,45]
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,0,0]
-tf = 1
+tf = 100000
 context = ""
 void1 = []
-options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8])
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -239,11 +239,11 @@ scs_m_1.objs, 1;
 GUI     : CLKOUT_f
 Graphics: 
           orig = [99,-136]
-          sz = [2,2]
+          sz = [20,20]
           exprs = "1"
           pin = []
           pout = []
-          pein = 5
+          pein = 1
           peout = []
           gr_i = []
           id = ""
@@ -282,12 +282,12 @@ Model   :
 GUI     : EVTDLY_c
 Graphics: 
           orig = [0,-46]
-          sz = [4,4]
+          sz = [40,40]
           exprs = ["0.1";"0.1"]
           pin = []
           pout = []
-          pein = 4
-          peout = 6
+          pein = 1
+          peout = 1
           gr_i = []
           id = ""
           in_implicit = []
@@ -329,8 +329,8 @@ Graphics:
           exprs = []
           pin = []
           pout = []
-          pein = 5
-          peout = [4;6]
+          pein = 1
+          peout = [1;1]
           gr_i = []
           id = ""
           in_implicit = []
@@ -373,13 +373,13 @@ ct=[5,-1],..
 from=[2,1,1],..
 to=[3,1,0])
  scs_m_1  = 
-wpar = [6,45,0,0,6,45]
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,0,0]
-tf = 1
+tf = 100000
 context = ""
 void1 = []
-options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8])
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -392,11 +392,11 @@ scs_m_1.objs, 1;
 GUI     : CLKOUT_f
 Graphics: 
           orig = [99,-136]
-          sz = [2,2]
+          sz = [20,20]
           exprs = "1"
           pin = []
           pout = []
-          pein = 5
+          pein = 1
           peout = []
           gr_i = []
           id = ""
@@ -435,12 +435,12 @@ Model   :
 GUI     : EVTDLY_c
 Graphics: 
           orig = [0,-46]
-          sz = [4,4]
+          sz = [40,40]
           exprs = ["0.1";"0.1"]
           pin = []
           pout = []
-          pein = 4
-          peout = 6
+          pein = 1
+          peout = 1
           gr_i = []
           id = ""
           in_implicit = []
@@ -482,8 +482,8 @@ Graphics:
           exprs = []
           pin = []
           pout = []
-          pein = 5
-          peout = [4;6]
+          pein = 1
+          peout = [1;1]
           gr_i = []
           id = ""
           in_implicit = []
@@ -519,7 +519,7 @@ Model   :
           uid = "4512295e:12c22db13e9:-667a"
        ans(4)
 Link    :
-          xx: 6 78 103.37733
+          xx: 60 78 103.37733
           yy: -2 -202 -142
           id: drawlink
           thick: 0 0
@@ -535,13 +535,13 @@ ct=[5,-1],..
 from=[3,1,1],..
 to=[1,1,1])
  scs_m_1  = 
-wpar = [6,45,0,0,6,45]
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,0,0]
-tf = 1
+tf = 100000
 context = ""
 void1 = []
-options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8])
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -554,7 +554,7 @@ scs_m_1.objs, 1;
 GUI     : CLKOUT_f
 Graphics: 
           orig = [99,-136]
-          sz = [2,2]
+          sz = [20,20]
           exprs = "1"
           pin = []
           pout = []
@@ -597,12 +597,12 @@ Model   :
 GUI     : EVTDLY_c
 Graphics: 
           orig = [0,-46]
-          sz = [4,4]
+          sz = [40,40]
           exprs = ["0.1";"0.1"]
           pin = []
           pout = []
-          pein = 4
-          peout = 6
+          pein = 1
+          peout = 1
           gr_i = []
           id = ""
           in_implicit = []
@@ -644,8 +644,8 @@ Graphics:
           exprs = []
           pin = []
           pout = []
-          pein = 5
-          peout = [4;6]
+          pein = 1
+          peout = [1;1]
           gr_i = []
           id = ""
           in_implicit = []
@@ -681,7 +681,7 @@ Model   :
           uid = "4512295e:12c22db13e9:-667a"
        ans(4)
 Link    :
-          xx: 6 78 103.37733
+          xx: 60 78 103.37733
           yy: -2 -202 -142
           id: drawlink
           thick: 0 0
@@ -706,13 +706,13 @@ ct=[5,-1],..
 from=[3,2,0],..
 to=[2,1,0])
  scs_m_1  = 
-wpar = [6,45,0,0,6,45]
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,0,0]
-tf = 1
+tf = 100000
 context = ""
 void1 = []
-options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8])
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -725,7 +725,7 @@ scs_m_1.objs, 1;
 GUI     : CLKOUT_f
 Graphics: 
           orig = [99,-136]
-          sz = [2,2]
+          sz = [20,20]
           exprs = "1"
           pin = []
           pout = []
@@ -768,12 +768,12 @@ Model   :
 GUI     : EVTDLY_c
 Graphics: 
           orig = [0,-46]
-          sz = [4,4]
+          sz = [40,40]
           exprs = ["0.1";"0.1"]
           pin = []
           pout = []
-          pein = 4
-          peout = 6
+          pein = 1
+          peout = 1
           gr_i = []
           id = ""
           in_implicit = []
@@ -815,8 +815,8 @@ Graphics:
           exprs = []
           pin = []
           pout = []
-          pein = 5
-          peout = [4;6]
+          pein = 1
+          peout = [1;6]
           gr_i = []
           id = ""
           in_implicit = []
@@ -852,7 +852,7 @@ Model   :
           uid = "4512295e:12c22db13e9:-667a"
        ans(4)
 Link    :
-          xx: 6 78 103.37733
+          xx: 60 78 103.37733
           yy: -2 -202 -142
           id: drawlink
           thick: 0 0
@@ -870,8 +870,8 @@ Link    :
           to: 1 1 1
        ans(6)
 Link    :
-          xx: 106.04399 133.71 93 6
-          yy: -142 -4 -4 -5
+          xx: 106.04399 133.71 93 60
+          yy: -142 -40 -40 -50
           id: drawlink
           thick: 0 0
           ct: 5 -1
@@ -924,13 +924,13 @@ equations=list(),..
 uid="-38f07e57:12bd41b596e:-7f20"),..
 doc=list("-38f07e57:12bd41b596e:-7f20"))
  scs_m  = 
-wpar = [6,45,0,0,6,45]
+wpar = [600,450,0,0,600,450]
 title = ["Test";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
-tf = 2
+tf = 20
 context = []
 void1 = []
-options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8])
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -938,13 +938,13 @@ doc = list()
 clear scs_m_1
 scs_m_1 = scs_m.objs(1).model.rpar, 1;
  scs_m_1  = 
-wpar = [6,45,0,0,6,45]
+wpar = [600,450,0,0,600,450]
 title = ["";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
-tf = 2
+tf = 20
 context = ""
 void1 = []
-options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8])
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -957,7 +957,7 @@ scs_m_1.objs, 1;
 GUI     : CLKOUT_f
 Graphics: 
           orig = [99,-136]
-          sz = [2,2]
+          sz = [20,20]
           exprs = "1"
           pin = []
           pout = []
@@ -1000,12 +1000,12 @@ Model   :
 GUI     : EVTDLY_c
 Graphics: 
           orig = [0,-46]
-          sz = [4,4]
+          sz = [40,40]
           exprs = ["0.1";"0.1"]
           pin = []
           pout = []
-          pein = 4
-          peout = 6
+          pein = 1
+          peout = 1
           gr_i = []
           id = ""
           in_implicit = []
@@ -1047,8 +1047,8 @@ Graphics:
           exprs = []
           pin = []
           pout = []
-          pein = 5
-          peout = [4;6]
+          pein = 1
+          peout = [1;6]
           gr_i = []
           id = ""
           in_implicit = []
@@ -1084,7 +1084,7 @@ Model   :
           uid = "4512295e:12c22db13e9:-667a"
        ans(4)
 Link    :
-          xx: 6 78 103.37733
+          xx: 60 78 103.37733
           yy: -2 -202 -142
           id: drawlink
           thick: 0 0
@@ -1102,8 +1102,8 @@ Link    :
           to: 1 1 1
        ans(6)
 Link    :
-          xx: 106.04399 133.71 93 6
-          yy: -142 -4 -4 -5
+          xx: 106.04399 133.71 93 60
+          yy: -142 -40 -40 -50
           id: drawlink
           thick: 0 0
           ct: 5 -1

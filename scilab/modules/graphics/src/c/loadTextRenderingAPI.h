@@ -24,6 +24,6 @@
  * @param nbRow the number of row
  * @param nbCol  the number of col
  */
-void loadTextRenderingAPI(char const* const* text, int nbRow, int nbCol);
+void loadTextRenderingAPI(char** text, int nbRow, int nbCol);
 
 #endif /* _LOADTEXTRENDERINGAPI_H_ */

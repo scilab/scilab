@@ -11,17 +11,19 @@
 // along with this program.
 
 function [flag,errmsg] = assert_checkfalse ( condition )
-    //   Check that condition is false.
+    //   Check that condition is false. All its components must be False.
 
     [lhs,rhs]=argn()
     if ( rhs <> 1 ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d expected.\n") , "assert_checkfalse" , 1 )
+        errmsg = gettext("%s: Wrong number of input arguments: %d expected.\n")
+        errmsg = msprintf(errmsg, "assert_checkfalse", 1)
         error(errmsg)
     end
     //
     // Check types of variables
-    if ( typeof(condition) <> "boolean" ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong type for input argument #%d: Boolean matrix expected.\n") , "assert_checkfalse" , 1 )
+    if and(typeof(condition) <> ["boolean" "boolean sparse"]) then
+        errmsg = gettext("%s: Wrong type for input argument #%d: Boolean matrix expected.\n")
+        errmsg = sprintf(errmsg, "assert_checkfalse", 1)
         error(errmsg)
     end
     //
@@ -30,13 +32,9 @@ function [flag,errmsg] = assert_checkfalse ( condition )
         errmsg = ""
     else
         flag = %f
-        if ( size(condition,"*") == 1 ) then
-            cstr = string(condition)
-        else
-            cstr = "[" + string(condition(1)) + " ...]"
-        end
-        errmsg = msprintf(gettext("%s: Assertion failed: found false entry in condition = %s"), ..
-        "assert_checkfalse",cstr)
+        k = find(condition, 1);
+        errmsg = gettext("%s: Assertion failed: Entry %%T found in condition(%d).\n")
+        errmsg = msprintf(errmsg, "assert_checkfalse", k)
         if ( lhs < 2 ) then
             // If no output variable is given, generate an error
             assert_generror ( errmsg )

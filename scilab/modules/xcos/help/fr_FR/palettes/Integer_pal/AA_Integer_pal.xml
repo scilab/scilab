@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -125,16 +125,6 @@
 
         </para>
     </refsection>
-    <refsection id="Module_Integer_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Integer_pal">
         <title>Description</title>
         <para>
@@ -143,64 +133,42 @@
             communément rencontrées dans les circuits digitaux.
         </para>
     </refsection>
-    <refsection id="Blocks_Integer_pal">
+    <refsection id="Blocks_Integer_pal" role="see also">
         <title>Blocs</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="BITCLEAR">BITCLEAR - Positionne un bit à 0</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="BITSET">BITSET - Positionne un bit à 1</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="CONVERT">CONVERT - Conversion de type de données</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="DFLIPFLOP">DFLIPFLOP - Bascule D</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="DLATCH">DLATCH - Bascule D transparente</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="EXTRACTBITS">EXTRACTBITS - Extraction de bits</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="INTMUL">INTMUL - Multiplication de matrices entières</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="JKFLIPFLOP">JKFLIPFLOP - Bascule JK</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="LOGIC">LOGIC - Logique combinatoire</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="SHIFT">SHIFT - Décalage/Rotation de bits</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="SRFLIPFLOP">SRFLIPFLOP - Bascule SR</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist>
+            <member>
+                <link linkend="BITCLEAR">BITCLEAR</link>
+            </member>
+            <member>
+                <link linkend="BITSET">BITSET</link>
+            </member>
+            <member>
+                <link linkend="CONVERT">CONVERT</link>
+            </member>
+            <member>
+                <link linkend="DFLIPFLOP">DFLIPFLOP</link>
+            </member>
+            <member>
+                <link linkend="DLATCH">DLATCH</link>
+            </member>
+            <member>
+                <link linkend="EXTRACTBITS">EXTRACTBITS</link>
+            </member>
+            <member>
+                <link linkend="INTMUL">INTMUL</link>
+            </member>
+            <member>
+                <link linkend="JKFLIPFLOP">JKFLIPFLOP </link>
+            </member>
+            <member>
+                <link linkend="LOGIC">LOGIC</link>
+            </member>
+            <member>
+                <link linkend="SHIFT">SHIFT</link>
+            </member>
+            <member>
+                <link linkend="SRFLIPFLOP">SRFLIPFLOP</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

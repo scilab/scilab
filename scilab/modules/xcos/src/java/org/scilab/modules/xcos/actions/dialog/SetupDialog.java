@@ -443,6 +443,9 @@ public class SetupDialog extends JDialog {
 
         // at the end, update the enable status of some components
         current.applyModifiers(integrator, integratorRel, toleranceOnTime, maxIntegrationTime, maxStepSize);
+        
+        // setup a OK as the default button (ENTER on the panel)
+        getRootPane().setDefaultButton(okButton);
     }
 
     // CSON: JavaNCSS

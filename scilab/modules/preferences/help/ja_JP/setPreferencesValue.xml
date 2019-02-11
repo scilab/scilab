@@ -109,20 +109,20 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[
 // カレントの値を取得
-prev = getPreferencesValue("//web/body/proxy", ["enabled", "host", "port"]);
+prev = xmlGetValues("//web/body/proxy", ["enabled", "host", "port"]);
 setPreferencesValue("//web/body/proxy", ["enabled", "host", "port"; "true", "my.proxy.org", "1234"]);
 // 確認します
-getPreferencesValue("//web/body/proxy", ["enabled", "host", "port"])
+xmlGetValues("//web/body/proxy", ["enabled", "host", "port"])
 // 前の値に戻します
 setPreferencesValue("//web/body/proxy", ["enabled", "host", "port" ; prev]);
-getPreferencesValue("//web/body/proxy", ["enabled", "host", "port"])
+xmlGetValues("//web/body/proxy", ["enabled", "host", "port"])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="getPreferencesValue">getPreferencesValue</link>
+                <link linkend="xmlGetValues">xmlGetValues</link>
             </member>
         </simplelist>
     </refsection>

@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,35 +13,121 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="max" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="max" xml:lang="ru">
     <refnamediv>
         <refname>max</refname>
         <refpurpose>максимум</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>[m [,k]]=max(A)
-            [m [,k]]=max(A,'c')
-            [m [,k]]=max(A,'r')
-            [m [,k]]=max(A,'m')
-            [m [,k]]=max(A1,A2,...,An)
-            [m [,k]]=max(list(A1,A2,...,An))
+        <synopsis>
+            m = max(A)
+            Col = max(A, 'c')
+            Row = max(A, 'r'|'m')
+            M = max(A1, A2,..., An)
+            M = max(list(A1, A2,..., An))
+            [.., K] = max(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>A</term>
+                <term>A, A1, ..., An</term>
                 <listitem>
-                    <para>вещественный вектор или матрица</para>
+                    <para>
+                        скаляры, векторы, матрицы или гиперматрицы кодированных целых чисел или
+                        вещественных чисел в полном или разрежённом формате. Они должны иметь
+                        одинаковые размеры или быть смешанными со скалярами (скаляры,
+                        следовательно, неявно расширяются  до размеров массивов).
+                        Разрежённые массивы не могут смешиваться с полными массивами, за
+                        исключением скаляров.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>A1,...,An</term>
+                <term>m</term>
                 <listitem>
                     <para>
-                        набор скаляров или вещественных векторов или матриц одного размера
+                        одиночное число = максимум из всех значений элементов <varname>A</varname>.
+                        Всегда в полном формате, даже если <varname>A</varname> является разряжённой.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Col</term>
+                <listitem>
+                    <para>
+                        вектор-столбец, если <varname>A</varname> является двумерной матрицей или
+                        гиперматрицей размерами <literal>size(A)</literal> с размером
+                        <literal>size(A,2)</literal> равным 1: максимумы по столбцам (для каждой
+                        строки).
+                        Если <varname>A</varname> - разрежённая матрица, то <varname>Col</varname>
+                        тоже разрежённый.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Row</term>
+                <listitem>
+                    <para>
+                        вектор-строка, если <varname>A</varname>  является двумерной матрицей или
+                        гиперматрицей размерами <literal>size(A)</literal> с размером
+                        <literal>size(A,2)</literal> равным 1: максимумы по строкам (для каждого
+                        стролбца).
+                        Если <varname>A</varname> - разрежённая матрица, то <varname>Row</varname>
+                        тоже разрежённый.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>
+                        Массив размером = <literal>size(A1)</literal>, такой, что для каждого
+                        <literal>q</literal> <literal>M(q) = max(A1(q),A2(q),..An(q))</literal>.
+                        Если <varname>A</varname>,..,<varname>An</varname> - разрежённые матрицы, то
+                        <varname>M</varname> тоже разрежённый.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>K</term>
+                <listitem>
+                    <para>
+                        Указывает в <varname>A</varname> (первый) найденный максимум.
+                        Когда используется <literal>[m,K]=max(A)</literal>, то
+                        <itemizedlist>
+                            <listitem>
+                                Если <literal>A</literal> вектор, то <varname>K</varname> - скаляр.
+                            </listitem>
+                            <listitem>
+                                В противном случае <varname>K</varname> является вектор-строкой
+                                <literal>[i,j,..]</literal> индексов.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        Для других синтаксисов <varname>K</varname> имеет форму и размеры, соответствующие
+                        <varname>Col</varname>, <varname>Row</varname> и <varname>M</varname>.
+                    </para>
+                    <para>
+                        Для синтаксиса <literal>[M,K] = max(A1,A2,..,An)</literal> имеем для каждого линейного
+                        индекса <literal>q</literal>:
+                        <literal>[M(q),K(q)] = max([A1(q) A2(q) .. An(q)])</literal>.
+                    </para>
+                    <para>
+                        <warning>
+                            <varname>K</varname> всегда в полном формате, даже когда
+                            <varname>A, A1,..,An</varname> в разрежённом виде. Следовательно, когда
+                            используется синтаксис <literal>[M,K]=max(A1,A2,..)</literal> с огромными,
+                            но разрежёнными матрицами, то это приводит к огромной <emphasis>полной</emphasis>
+                            матрице <varname>K</varname>. Пользователь должен проверить достаточно ли памяти
+                            имеется для этого.
+                        </warning>
                     </para>
                 </listitem>
             </varlistentry>
@@ -50,47 +136,205 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Для <literal>A</literal>, вещественного вектора или матрицы,
-            <literal>max(A)</literal> возвращает элементом  <literal>A</literal>
-            с наибольшим значением. <literal>[m,k]=max(A)</literal> выдаёт дополнительно
-            индекс максимального элемента. Может использоваться второй аргумент:
-            <literal>'r'</literal> или <literal>'c'</literal>. <literal>'r'</literal>
-            используется для получения вектора-строки <literal>m</literal> такого,
-            что <literal>m(j)</literal> содержит максимум <literal>j</literal>-того столбца
-            <literal>A</literal> (<literal>A(:,j)</literal>), <literal>k(j)</literal>
-            даёт индекс строки, которая содержит максимум для столбца <literal>j</literal>.
-            <literal>'c'</literal> используется для аналогичной операции по строкам
-            <literal>A</literal>. <literal>'m'</literal> используется для совместимости
-            с Matlab.
+            Для <literal>A</literal> вещественного вектора или матрицы <literal>max(A)</literal> даёт
+            наибольший элемент в <literal>A</literal>.
         </para>
         <para>
-            <literal>m=max(A1,A2,...,An)</literal>, где все <literal>Aj</literal>
-            являются матрицами одинакового размера, возвращает вектор или матрицу
-            <literal>m</literal> размером <literal>size(m)=size(A1)</literal>
-            такую, что <literal>m(i)= max(Aj(i)), j=1,...,n</literal>.
-            <literal>[m,k]=max(A1,A2,...,An)</literal> даёт дополнительно вектор или матрицу
-            <literal>k</literal>. Для фиксированного <literal>i</literal>,
-            <literal>k(i)</literal> является номером первого
-            <literal>Aj(i)</literal>, достигнувшего максимума.
+            <literal>[m,K]=max(A)</literal> даёт дополнительно индексы первого максимума.
         </para>
         <para>
-            <literal>[m,k]=max(list(A1,...,An))</literal> является эквивалентным
-            синтаксисом для <literal>[m,k]=max(A1,A2,...,An)</literal>.
+            Может быть использован второй строковый аргумент <literal>'r'</literal> или
+            <literal>'c'</literal>: <literal>'r'</literal> используется для получения
+            вектор-строки <literal>Row</literal> такой что <literal>Row(j)</literal>
+            содержит максимум <literal>j</literal>-го столбца <literal>A(:,j)</literal>,
+            <literal>K(j)</literal> даёт индекс строки, которая содержит максимум
+            столбца №<literal>j</literal>.
         </para>
+        <para>
+            <literal>'c'</literal> используется для парной операции по строкам <literal>A</literal>.
+            <literal>'m'</literal> используется для совместимости с Matlab.
+        </para>
+        <para>
+            <literal>[M,K]=max(list(A1,...,An))</literal> является эквивалентным для
+            <literal>[M,K]=max(A1,A2,...,An)</literal>.
+        </para>
+        <note>
+            <itemizedlist>
+                <listitem>
+                    <literal>max()</literal> игнорирует значения <literal>NaN</literal> (если есть не
+                    только значения <literal>NaN</literal>).
+                </listitem>
+                <listitem>
+                    <literal>max([])</literal> возвращает <literal>[]</literal> для значений и индексов.
+                </listitem>
+            </itemizedlist>
+        </note>
+        <warning>
+          If <literal>max(A1, A2,..., An)</literal> is used with a huge input sparse matrix of
+          low density, together with a strictly positive scalar input, the sparse result will no longer
+          have any 0 value: It will be a sparse array with density=1, that may lead to a memory failure.
+        </warning>
     </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-[m,n]=max([1,3,1])
-[m,n]=max([3,1,1],[1,3,1],[1,1,3])
-[m,n]=max([3,-2,1],1)
-[m,n]=max(list([3,1,1],[1,3,1],[1,1,3]))
-[m,n]=max(list(1,3,1))
+[m, k] = max([])
+[m, k] = max([1 5 ; 3 %nan])
+[m, k] = max([1 5 ; 3 %nan], 2.5)
+[m, k] = max([5 -1 1], [1 0 3], [2 1 3])
+[m, k] = max(list([5 -1 1], [1 0 3], [2 1 3]))
  ]]></programlisting>
+    <screen><![CDATA[
+--> [m, k] = max([])
+ m  =
+    []
+ k  =
+    []
+
+--> [m, k] = max([1 5 ; 3 %nan])
+ m  =
+   5.
+ k  =
+   1.   2.
+
+--> [m, k] = max([1 5 ; 3 %nan], 2.5)
+ m  =
+   2.5   5.
+   3.    2.5
+ k  =
+   2.   1.
+   1.   2.
+
+--> [m, k] = max([5 -1 1], [1 0 3], [2 1 3])
+ m  =
+   5.   1.   3.
+ k  =
+   1.   3.   2.
+]]></screen>
+        <para>
+            <emphasis role="bold">С опциями "r" или "c"</emphasis>:
+        </para>
+        <programlisting role="example"><![CDATA[
+A = grand(4,6,"uin",0,30); A(3,4) = %nan
+[Row, K] = max(A, "r")
+[Col, K] = max(A, "c")
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = grand(4,6,"uin",0,30); A(3,4) = %nan
+ A  =
+   18.   3.    22.   0.    13.   28.
+   16.   20.   25.   6.    10.   1.
+   25.   26.   20.   Nan   2.    21.
+   5.    9.    16.   15.   24.   25.
+
+--> [Row, K] = max(A, "r")
+ Row  =
+   25.   26.   25.   15.   24.   28.
+ K  =
+   3.   3.   2.   4.   4.   1.
+
+--> [Col, K] = max(A, "c")
+ Col  =
+   28.
+   25.
+   26.
+   25.
+ K  =
+   6.
+   3.
+   2.
+   6.
+]]></screen>
+        <para>
+            <emphasis role="bold">С разрежёнными входными данными</emphasis>:
+        </para>
+        <programlisting role="example"><![CDATA[
+s = sprand(5,4,0.5); k = s~=0; s(k) = round((s(k)-0.5)*10), full(s)
+[Row, K] = max(s, "r")
+[Col, K] = max(s, "c")
+[M, K] = max(s, -1);   [full(s)  ones(s(:,1))*%nan  full(M)]
+issparse(M)
+K
+ ]]></programlisting>
+    <screen><![CDATA[
+--> s = sprand(5,4,0.5); k = s~=0; s(k) = round((s(k)-0.5)*10), full(s)
+ s  =
+(  5,  4) sparse matrix
+(  1,  2)    -2.
+(  1,  3)    -4.
+(  1,  4)     3.
+(  2,  1)    -5.
+(  2,  4)     3.
+(  3,  2)    -2.
+(  3,  3)    -4.
+(  4,  2)     4.
+(  4,  4)     2.
+(  5,  2)    -5.
+(  5,  3)     5.
+(  5,  4)    -4.
+ ans  =
+   0.  -2.  -4.   3.
+  -5.   0.   0.   3.
+   0.  -2.  -4.   0.
+   0.   4.   0.   2.
+   0.  -5.   5.  -4.
+
+--> [Row, K] = max(s, "r")
+ Row  =
+(  1,  4) sparse matrix
+(  1,  2)     4.
+(  1,  3)     5.
+(  1,  4)     3.
+ K  =
+   1.   4.   5.   1.
+
+--> [Col, K] = max(s, "c")
+ Col  =
+(  5,  1) sparse matrix
+(  1,  1)     3.
+(  2,  1)     3.
+(  4,  1)     4.
+(  5,  1)     5.
+ K  =
+   4.
+   4.
+   1.
+   2.
+   3.
+
+--> [M, K] = max(s, -1);   [full(s)  ones(s(:,1))*%nan  full(M)]
+ ans  =
+   0.  -2.  -4.   3.   Nan   0.  -1.  -1.   3.
+  -5.   0.   0.   3.   Nan  -1.   0.   0.   3.
+   0.  -2.  -4.   0.   Nan   0.  -1.  -1.   0.
+   0.   4.   0.   2.   Nan   0.   4.   0.   2.
+   0.  -5.   5.  -4.   Nan   0.  -1.   5.  -1.
+
+--> issparse(M)
+ ans  =
+   1.
+
+--> K
+ K  =
+   1.   2.   2.   1.
+   2.   1.   1.   1.
+   1.   2.   2.   1.
+   1.   1.   1.   1.
+   1.   2.   1.   2.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="min">min</link>
+            </member>
+            <member>
+                <link linkend="strange">strange</link>
+            </member>
+            <member>
+                <link linkend="mean">mean</link>
+            </member>
             <member>
                 <link linkend="gsort">gsort</link>
             </member>
@@ -98,8 +342,19 @@
                 <link linkend="find">find</link>
             </member>
             <member>
-                <link linkend="min">min</link>
+                <link linkend="full">full</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    Теперь max() действительно работает с разрежёнными матрицами
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

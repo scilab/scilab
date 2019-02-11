@@ -21,12 +21,12 @@ MFILECONTENTS=["structure.field = 2;"
 MFILE=TMPDIR+"/bug1082.m";
 SCIFILE=TMPDIR+"/bug1082.sci";
 mputl(MFILECONTENTS,MFILE);
-mfile2sci(MFILE,TMPDIR);
+mfile2sci(MFILE,TMPDIR,,%T);
   ****** Beginning of mfile2sci() session ******
   File to convert: TMPDIR/bug1082.m
   Result file path: TMPDIR/
   Recursive mode: OFF
-  Only double values used in M-file: NO
+  Only double values used in M-file: YES
   Verbose mode: 3
   Generate formatted code: NO
   M-file reading...

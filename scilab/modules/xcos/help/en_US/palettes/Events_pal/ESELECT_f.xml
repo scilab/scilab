@@ -21,70 +21,44 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ESELECT_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="ESELECT_f" xml:lang="en_US">
     <refnamediv>
         <refname>ESELECT_f</refname>
         <refpurpose>Synchronous block Event-Select</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/ESELECT_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/ESELECT_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_ESELECT_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="ESELECT_f">Synchronous block Event-Select</link>
-                </para>
+                <xref linkend="Description_ESELECT_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_ESELECT_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_ESELECT_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_ESELECT_f">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_ESELECT_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_ESELECT_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_ESELECT_f">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_ESELECT_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_ESELECT_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_ESELECT_f">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_ESELECT_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Events_pal">Event handling palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_ESELECT_f">
         <title>Description</title>
         <para>
@@ -93,21 +67,19 @@
             on the value of the regular input.
         </para>
         <para>
-            For example, when the input value is between 0 and 1, the control input is redirected to the first command output; when the input value is between 1 and 2, the control input is redirected to the second command output; et cætera...
+            For example, when the input value is between 0 and 1, the control input is redirected
+            to the first command output; when the input value is between 1 and 2, the control
+            input is redirected to the second command output; et cætera...
         </para>
     </refsection>
     <refsection id="Dialogbox_ESELECT_f">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/ESELECT_f_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/ESELECT_f_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -132,6 +104,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Defaultproperties_ESELECT_f">
         <title>Default properties</title>
         <itemizedlist>
@@ -195,6 +168,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_ESELECT_f">
         <title>Interfacing function</title>
@@ -205,11 +179,11 @@
         </itemizedlist>
     </refsection>
     <refsection id="Example_ESELECT_f">
-        <title>ESelect example</title>
+        <title>Example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/ESELECT_f_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/events_pal/ESELECT_f_Example.zcos" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/events_pal/ESELECT_f_Example.zcos"/>
                 </imageobject>
             </inlinemediaobject>
         </link>

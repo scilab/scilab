@@ -20,5 +20,4 @@ t = tlist("test")
 function %s_x_test(a,b)
     disp("%s_x_test")
 endfunction
-msg = sprintf(_("%s: Wrong number of arguments: %d expected while %d given.\n"), "%s_x_test", 0, 1);
-assert_checkerror("2.*t", msg);
+2.*t

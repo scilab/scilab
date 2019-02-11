@@ -28,10 +28,13 @@ std::unordered_set<std::wstring> SLintChecker::init()
     _constants.emplace(L"%i");
     _constants.emplace(L"%nan");
     _constants.emplace(L"%inf");
+    _constants.emplace(L"%s");
+    _constants.emplace(L"%z");
     _constants.emplace(L"%t");
     _constants.emplace(L"%f");
     _constants.emplace(L"%T");
     _constants.emplace(L"%F");
+    _constants.emplace(L"home");
     _constants.emplace(L"SCI");
     _constants.emplace(L"WSCI");
     _constants.emplace(L"SCIHOME");

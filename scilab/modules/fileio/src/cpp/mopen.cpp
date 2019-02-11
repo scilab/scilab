@@ -68,9 +68,29 @@ int mopen(const wchar_t* _pstFilename, const wchar_t* _pstMode, int _iSwap, int*
         return MOPEN_INVALID_STATUS;
     }
 
+    // Bug #15206, default binary mode has to be enforced in write mode under Windows
+    wchar_t _pstFinalMode[4] = {_pstMode[0], L'b', L'\0', L'\0'};
+    bool bModeSet = false;
+
     for ( testRep = 1; testRep < lenChar ; testRep++ )
     {
-        if (( _pstMode[testRep] != '+' ) && ( _pstMode[testRep] != 'b' ) && ( _pstMode[testRep] != 't' ))
+        if (_pstMode[testRep] == L'b' || _pstMode[testRep] == L't')
+        {
+            if (bModeSet == false)
+            {
+                _pstFinalMode[1] = _pstMode[testRep];
+                bModeSet = true;
+            }
+            else
+            {
+                return MOPEN_INVALID_STATUS;
+            }
+        }
+        else if (_pstMode[testRep] == L'+')
+        {
+            _pstFinalMode[2] = L'+';
+        }
+        else
         {
             return MOPEN_INVALID_STATUS;
         }
@@ -81,7 +101,7 @@ int mopen(const wchar_t* _pstFilename, const wchar_t* _pstMode, int _iSwap, int*
         return MOPEN_CAN_NOT_OPEN_FILE;
     }
 
-    FILE* pF = os_wfopen(_pstFilename, _pstMode);
+    FILE* pF = os_wfopen(_pstFilename, _pstFinalMode);
     if (pF == NULL)
     {
         return MOPEN_CAN_NOT_OPEN_FILE;
@@ -92,7 +112,7 @@ int mopen(const wchar_t* _pstFilename, const wchar_t* _pstMode, int _iSwap, int*
     pFile->setFileDesc(pF);
     pFile->setFilename(_pstFilename);
     pFile->setFileType(2); //hard coded value for file opened by C/C++ fopen functions
-    pFile->setFileMode(_pstMode);
+    pFile->setFileMode(_pstFinalMode);
     pFile->setFileSwap(_iSwap);
 
     *_piID = FileManager::addFile(pFile);

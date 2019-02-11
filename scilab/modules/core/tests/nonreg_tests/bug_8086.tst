@@ -8,6 +8,7 @@
 // <-- Non-regression test for bug 8086 -->
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=8086
@@ -64,7 +65,6 @@ macros_error_type_1 = ["isscalar"; ..
 "squarewave"; ..
 "sub2ind"; ..
 "tand"; ..
-"toeplitz"; ..
 ];
 msg_error_ref_1 = _("%s: Wrong number of input argument(s): %d expected.\n");
 for i=1:size(macros_error_type_1, "*")
@@ -79,7 +79,6 @@ macros_error_type_2 = ["base2dec"; ..
 "modulo"; ..
 "permute"; ..
 "pmodulo"; ..
-"setdiff"; ..
 "union"; ..
 ];
 msg_error_ref_2 = _("%s: Wrong number of input argument(s): %d expected.\n");
@@ -91,6 +90,12 @@ macros_error_type_3 = ["complex"];
 msg_error_ref_3 = _("%s: Wrong number of input arguments: %d to %d expected.\n");
 for i=1:size(macros_error_type_3, "*")
     assert_checkerror (macros_error_type_3(i) + "()" , msg_error_ref_3 , [] , macros_error_type_3(i) , 1, 2);
+end
+// =============================================================================
+macros_error_type_3_1 = ["toeplitz"];
+msg_error_ref_3_1 = _("%s: Wrong number of input argument(s): %d to %d expected.\n");
+for i=1:size(macros_error_type_3_1, "*")
+    assert_checkerror (macros_error_type_3_1(i) + "()" , msg_error_ref_3_1 , [] , macros_error_type_3_1(i) , 1, 2);
 end
 // =============================================================================
 macros_error_type_4 = ["system"];

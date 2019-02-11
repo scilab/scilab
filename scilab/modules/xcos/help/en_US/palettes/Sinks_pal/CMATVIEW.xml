@@ -25,7 +25,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
         xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-        xml:id="CMATVIEW">
+        xml:id="CMATVIEW" xml:lang="en_US">
     <refnamediv>
         <refname>CMATVIEW</refname>
         <refpurpose>Matrix Colormapped viewer</refpurpose>
@@ -43,25 +43,25 @@
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-              <xref linkend="Description_CMATVIEW">Description</xref>
+                <xref linkend="Description_CMATVIEW">Description</xref>
             </listitem>
             <listitem>
-              <xref linkend="Dialogbox_CMATVIEW">Parameters</xref>
+                <xref linkend="Dialogbox_CMATVIEW">Parameters</xref>
             </listitem>
             <listitem>
-              <xref linkend="Defaultproperties_CMATVIEW">Default properties</xref>
+                <xref linkend="Defaultproperties_CMATVIEW">Default properties</xref>
             </listitem>
             <listitem>
-              <xref linkend="Interfacingfunction_CMATVIEW">Interfacing function</xref>
+                <xref linkend="Interfacingfunction_CMATVIEW">Interfacing function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Computationalfunction_CMATVIEW">Computational function</xref>
+                <xref linkend="Computationalfunction_CMATVIEW">Computational function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Example_CMATVIEW">Example</xref>
+                <xref linkend="Example_CMATVIEW">Example</xref>
             </listitem>
             <listitem>
-              <xref linkend="Seealso_CMATVIEW">See also</xref>
+                <xref linkend="Seealso_CMATVIEW">See also</xref>
             </listitem>
         </itemizedlist>
         <para/>
@@ -86,7 +86,11 @@
                 <para>
                     <emphasis role="bold">ColorMap</emphasis>
                 </para>
-                <para> The colormap is a range color linked to the window output of the scope. You can put a jetcolormap or hotcolormap or graycolormap or your own (see colormap help).</para>
+                <para>
+                    The colormap is a range color linked to the window output of the scope.
+                    You can put a jetcolormap or hotcolormap or graycolormap or your own
+                    (see colormap help).
+                </para>
                 <para>
                     Properties: Must be a mx3 matrix and m ≥ 3
                 </para>
@@ -95,18 +99,24 @@
                 <para>
                     <emphasis role="bold">Minimum level range</emphasis>
                 </para>
-                <para> The minimum level range is the minimum value who comes in the regular input port. It would be linked to the 'cold value' of the colormap.</para>
+                <para>
+                    The minimum level range is the minimum value who comes in the regular input
+                    port. It would be linked to the 'cold value' of the colormap.
+                </para>
                 <para> Properties: A scalar </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Maximum level range</emphasis>
                 </para>
-                <para> The maximum level range is the maximum value who comes in the regular input port. It would be linked to the 'hot value' of the colormap.</para>
+                <para>
+                    The maximum level range is the maximum value who comes in the regular input
+                    port. It would be linked to the 'hot value' of the colormap.
+                </para>
                 <para> Properties: A scalar</para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
 
     <refsection id="Defaultproperties_CMATVIEW">
@@ -172,7 +182,20 @@
                 </para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
+    </refsection>
+
+    <refsection id="Example_CMATVIEW">
+        <title>Example</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/CMATVIEW_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/sinks_pal/CMATVIEW_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
     </refsection>
 
     <refsection id="Interfacingfunction_CMATVIEW">
@@ -190,20 +213,7 @@
                 <para> SCI/modules/scicos_blocks/src/c/cmatview.c (Type 4)</para>
             </listitem>
         </itemizedlist>
-		<para/>
-    </refsection>
-
-    <refsection id="Example_CMATVIEW">
-        <title>Example</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/CMATVIEW_Example.zcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/sinks_pal/CMATVIEW_Example.zcos" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
+        <para/>
     </refsection>
 
     <refsection id="Seealso_CMATVIEW" role="see also">

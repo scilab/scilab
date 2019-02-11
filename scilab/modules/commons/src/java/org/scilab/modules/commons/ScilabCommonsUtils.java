@@ -72,7 +72,7 @@ public final class ScilabCommonsUtils {
 
         try {
             byte[] bytes = MD5.digest(str.getBytes("UTF-8"));
-            return new BigInteger(1, bytes).toString(16);
+            return String.format("%032x", new BigInteger(1, bytes));
         } catch (Exception e) {
             return null;
         }

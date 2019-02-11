@@ -21,62 +21,33 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CLINDUMMY_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="CLINDUMMY_f" xml:lang="en_US">
     <refnamediv>
         <refname>CLINDUMMY_f</refname>
         <refpurpose>Dummy</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CLINDUMMY_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CLINDUMMY_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_CLINDUMMY_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLINDUMMY_f">Dummy</link>
-                </para>
+                <xref linkend="Description_CLINDUMMY_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CLINDUMMY_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CLINDUMMY_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CLINDUMMY_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CLINDUMMY_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_CLINDUMMY_f">Default properties</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_CLINDUMMY_f">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">Continuous time systems palette</link>
-                </para>
+                <xref linkend="Interfacingfunction_CLINDUMMY_f">Interfacing function</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -87,7 +58,6 @@
             zero-crossing block but no system with continuous state. The reason
             for that is that it is the ode solver that find zero crossing
             surfaces.
-
         </para>
     </refsection>
     <refsection id="Defaultproperties_CLINDUMMY_f">
@@ -145,6 +115,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_CLINDUMMY_f">
         <title>Interfacing function</title>

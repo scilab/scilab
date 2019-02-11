@@ -111,22 +111,33 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
             BlockInterFunction func = XcosCellFactory.lookForInterfunction(interfaceFunction[0]);
             if (func.equals(BlockInterFunction.SUPER_f)) {
                 // this is a super-block, open it
-                XcosDiagram sub = new XcosDiagram(controller, cell.getUID(), cell.getKind(), cell.getId());
-                XcosCellFactory.insertChildren(controller, sub);
 
-                ScicosObjectOwner root = Xcos.findRoot(graph);
-                Xcos.getInstance().addDiagram(root, sub);
+                XcosDiagram sub = Xcos.findDiagram(cell.getUID());
+                if (sub == null) {
+                    sub = new XcosDiagram(controller, cell.getUID(), cell.getKind(), cell.getId());
+                    XcosCellFactory.insertChildren(controller, sub);
 
-                // propagate the modified status after discarding modification
-                // done on children insertion
-                sub.setModified(false);
-                sub.setModified(Xcos.getInstance().isModified(root));
+                    ScicosObjectOwner root = Xcos.findRoot(graph);
+                    Xcos.getInstance().addDiagram(root, sub);
 
-                // setup graphical interface
-                sub.getUndoManager().clear();
-                sub.installListeners();
+                    // propagate the modified status after discarding modification
+                    // done on children insertion
+                    sub.setModified(false);
+                    sub.setModified(Xcos.getInstance().isModified(root));
 
-                XcosTab.restore(sub, true);
+                    // setup graphical interface
+                    sub.getUndoManager().clear();
+                    sub.installListeners();
+                }
+
+                // restore the parent graph tab
+                final XcosTab tab = XcosTab.get(sub);
+                if (tab == null) {
+                    XcosTab.restore(sub);
+                } else {
+                    tab.setCurrent();
+                    tab.requestFocus();
+                }
             } else {
                 BasicBlock block = (BasicBlock) cell;
                 // prevent to open twice

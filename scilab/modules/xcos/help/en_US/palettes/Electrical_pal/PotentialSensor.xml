@@ -21,70 +21,40 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="PotentialSensor">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="PotentialSensor" xml:lang="en_US">
     <refnamediv>
         <refname>PotentialSensor</refname>
         <refpurpose>Potential sensor</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/PotentialSensor.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/PotentialSensor.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_PotentialSensor">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="PotentialSensor">Potential sensor</link>
-                </para>
+                <xref linkend="Description_PotentialSensor">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_PotentialSensor">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_PotentialSensor">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_PotentialSensor">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_PotentialSensor">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="PotentialSensor">Modelica model</link>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_PotentialSensor">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_PotentialSensor">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="PotentialSensor">Modelica model</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_PotentialSensor">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Electrical_pal">Electrical.cosf - Electrical toolbox</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_PotentialSensor">
         <title>Description</title>
         <para>
@@ -109,8 +79,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -126,8 +94,6 @@
                         </para>
                         <para>
                             Explicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -138,6 +104,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_PotentialSensor">
         <title>Interfacing function</title>

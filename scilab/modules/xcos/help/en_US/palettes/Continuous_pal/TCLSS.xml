@@ -21,77 +21,42 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="TCLSS">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="TCLSS" xml:lang="en_US">
     <refnamediv>
         <refname>TCLSS</refname>
         <refpurpose>Continuous linear system with jump</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/TCLSS.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/TCLSS.png" align="center" valign="middle"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_TCLSS">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="TCLSS">Continuous linear system with jump</link>
-                </para>
+                <xref linkend="Description_TCLSS">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_TCLSS">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_TCLSS">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_TCLSS">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_TCLSS">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_TCLSS">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_TCLSS">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_TCLSS">Example</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_TCLSS">Parameters</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_TCLSS">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">Continuous time systems palette</link>
-                </para>
+                <xref linkend="Defaultproperties_TCLSS">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_TCLSS">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_TCLSS">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_TCLSS">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -102,17 +67,13 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_TCLSS">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/TCLSS_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/TCLSS_gui.gif" align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -158,6 +119,7 @@
                 <para> Properties : Type 'vec' of size "size(%1,2)". </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Defaultproperties_TCLSS">
         <title>Default properties</title>
@@ -233,6 +195,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_TCLSS">
         <title>Interfacing function</title>
@@ -252,14 +215,12 @@
     </refsection>
     <refsection id="Example_TCLSS">
         <title>Example</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/TCLSS_Example.zcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/continuous_pal/TCLSS_Example.zcos" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/TCLSS_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../examples/continuous_pal/TCLSS_Example.zcos" align="center"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
 </refentry>

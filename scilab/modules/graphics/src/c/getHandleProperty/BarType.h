@@ -13,9 +13,9 @@
  *
  */
 
-typedef enum BarType
+typedef enum __BARTYPE__
 {
     NONE = 0,
     FIGURE
-};
+}BarType;
 

@@ -621,7 +621,9 @@ void Controller::sortAndFillKind(std::vector<ScicosID>& uids, std::vector<int>& 
     {
         // if something went wrong on the adapters, clean the invalid children
         if (uid == ScicosID())
-	        continue;
+        {
+            continue;
+        }
 
         container.push_back({ uid, m_instance.model.getKind(uid) });
     }

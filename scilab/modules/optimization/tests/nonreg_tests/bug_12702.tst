@@ -7,7 +7,8 @@
 // =============================================================================
 //
 // <-- ENGLISH IMPOSED -->
-//
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 // <-- Non-regression test for bug 12702 -->
 //
 // <-- Bugzilla URL -->

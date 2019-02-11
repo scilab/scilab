@@ -34,13 +34,14 @@ int sci_mpi_bcast(char *fname, void* pvApiCtx)
     int iBufferSize = 0;
     double rootID = 0;
     int rank = 0;
+    MPI_Comm comm = NULL;
 
     CheckInputArgument(pvApiCtx, 2, 3);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
     // return the communicator from optional argument "comm"
     // if no optional "comm" is given, return MPI_COMM_WORLD
-    MPI_Comm comm = getOptionalComm(pvApiCtx);
+    comm = getOptionalComm(pvApiCtx);
     if (comm == NULL)
     {
         Scierror(999, _("%s: Wrong type for input argument #%s: An MPI communicator expected.\n"), fname, "comm");

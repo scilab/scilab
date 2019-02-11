@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,100 +13,69 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="PID" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="PID" xml:lang="fr">
     <refnamediv>
         <refname>PID</refname>
         <refpurpose>Régulateur PID</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/PID.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/PID.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_PID">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="PID">Régulateur PID</link>
-                </para>
+                <xref linkend="Description_PID">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_PID">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_PID">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_PID">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_PID">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_PID">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="CompiledSuperBlockcontent_PID">Contenu du Superbloc compilé</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="Examples_PID">Exemples</link>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_PID">Paramètres</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_PID">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">Palette Systèmes à temps continu</link>
-                </para>
+                <xref linkend="Defaultproperties_PID">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_PID">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="CompiledSuperBlockcontent_PID">Contenu du Superbloc compilé</xref>
+            </listitem>
+            <listitem>
+                <link linkend="Examples_PID">Exemples</link>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Description_PID">
         <title>Description</title>
         <para>
-            Ce bloc implante un régulateur PID. Le calcul (algorithme) du régulateur PID invoque trois paramètres séparés; Les coefficients d'action Proportionnelle, Intégrale et Dérivée. Le coefficient d'action Proportionnelle détermine la réaction à l'erreur courante, l'Intégrale détermine la réaction à la somme des erreurs récentes et la Dérivée détermine la réaction à la vitesse à laquelle l'erreur est modifiée. La somme pondérée de ces trois actions est utilisée pour ajuster le processus à travers un élément de contrôle tel que la position d'une vanne de régulation ou l'alimentation de puissance d'un élément chauffant.
+            Ce bloc implante un régulateur PID. Le calcul (algorithme) du régulateur PID invoque
+            trois paramètres séparés; Les coefficients d'action Proportionnelle, Intégrale et Dérivée.
+            Le coefficient d'action Proportionnelle détermine la réaction à l'erreur courante.
+            L'intégrale détermine la réaction à la somme des erreurs récentes. Et la Dérivée
+            détermine la réaction à la vitesse à laquelle l'erreur est modifiée.
+            La somme pondérée de ces trois actions est utilisée pour ajuster le processus à
+            travers un élément de contrôle tel que la position d'une vanne de régulation
+            ou l'alimentation de puissance d'un élément chauffant.
         </para>
         <para>
         </para>
     </refsection>
     <refsection id="Dialogbox_PID">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/PID_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/PID_gui.gif"
+                           align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -202,6 +171,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_PID">
         <title>Fonction d'interfaçage</title>
@@ -223,8 +193,42 @@
     </refsection>
     <refsection id="Examples_PID">
         <title>Exemples</title>
-        <refsection id="Example_1_PID">
+        <refsect3 id="Example_1_PID">
             <title>Exemple 1</title>
+            <para>Cet exemple illustre l'utilisation d'une régulation PID. Il permet
+                de faire converger aisément le signal de sortie
+                <emphasis>U<subscript>pr</subscript>(t)</emphasis>
+                vers le signal requis <emphasis>U<subscript>r</subscript>(t)</emphasis>.
+            </para>
+            <para>Dans cet exemple, le régulateur est un filtre passe-bas d'ordre 2 et de gain
+                unité, avec un taux d'amortissement ξ=0.5 et une fréquence de coupure fc= 100 Hz.
+                Sa fonction de transfert H(s) est :
+            </para>
+            <para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../examples/pid_filter.gif" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </para>
+            <para>Pour modéliser ce filtre, nous utilisons le bloc de Fonction de transfert continue
+              (CLR) proposé dans la palette <emphasis>Systèmes à temps continu</emphasis>.
+            </para>
+            <para>Les paramètres PID  Kp, Ki et Kd sont respectivement établis à 100, 0.1 et 0.</para>
+            <para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../examples/pid_filter_parameters.png" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </para>
+            <para>L'oscilloscope affiche la courbe d'erreur (écart à la consigne),
+                <emphasis>U<subscript>e</subscript></emphasis> (black), le signal de consigne
+                (référence) <emphasis>U<subscript>r</subscript></emphasis> (bleu), et le signal
+                effectif <emphasis>U<subscript>pr</subscript></emphasis> (rouge). Il montre
+                l'écart initial entre le signal effectif <emphasis>U<subscript>pr</subscript>(t)</emphasis>
+                et le signal de consigne <emphasis>U<subscript>r</subscript>(t)</emphasis>.
+            </para>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_1_Example.zcos">
                     <inlinemediaobject>
@@ -234,8 +238,14 @@
                     </inlinemediaobject>
                 </link>
             </para>
-        </refsection>
-        <refsection id="Example_2_PID">
+            <para>
+                <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_1_Example.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+            </para>
+        </refsect3>
+        <refsect3 id="Example_2_PID">
             <title>Exemple 2</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_2_Example.zcos">
@@ -246,8 +256,14 @@
                     </inlinemediaobject>
                 </link>
             </para>
-        </refsection>
-        <refsection id="Example_3_PID">
+            <para>
+                <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_2_Example.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+            </para>
+        </refsect3>
+        <refsect3 id="Example_3_PID">
             <title>Exemple 3</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/PID_3_Example.zcos">
@@ -258,6 +274,12 @@
                     </inlinemediaobject>
                 </link>
             </para>
-        </refsection>
+            <para>
+                <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/PID_3_Example.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+            </para>
+        </refsect3>
     </refsection>
 </refentry>

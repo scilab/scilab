@@ -21,74 +21,39 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="DERIV">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="DERIV" xml:lang="en_US">
     <refnamediv>
         <refname>DERIV</refname>
         <refpurpose>Derivative</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/DERIV.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/DERIV.png" valign="middle"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_DERIV">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="DERIV">Derivative</link>
-                </para>
+                <xref linkend="Description_DERIV">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_DERIV">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_DERIV">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_DERIV">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_DERIV">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_DERIV">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_DERIV">Computational function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_DERIV">Default properties</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_DERIV">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">Continuous time systems
-                        palette
-                    </link>
-                </para>
+                <xref linkend="Interfacingfunction_DERIV">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_DERIV">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_DERIV">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -97,9 +62,9 @@
         <para>The Derivative block approximates the instantaneous derivative of
             its input with respect to time t.
         </para>
-        <latex>
+        <latex alt="y(t) = (u(t) - u(t-h)) / h">
             $$
-            y(t) = {u(t) - u(t-h)} over h
+            y(t) = \frac{u(t) - u(t-h)}{h}
             $$
         </latex>
         <para>The derivative block has no setting and the initial output for the
@@ -134,9 +99,7 @@
                     <emphasis role="bold">regular inputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [-1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -144,31 +107,22 @@
                     <emphasis role="bold">regular outputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [-1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        inputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        outputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation outputs: </emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">continuous-time state:</emphasis>
-                    no
+                    <emphasis role="bold">continuous-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -178,8 +132,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis>
-                    no
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -189,7 +142,26 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
+    <refsection id="Interfacingfunction_DERIV">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/Linear/DERIV.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_DERIV">
+        <title>Computational function</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/deriv.c (Type 4)</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+
     <refsection id="Example_DERIV">
         <title>Example</title>
         <para>In this example, we compute and display the derivative waveform of a
@@ -212,20 +184,5 @@ xcos_simulate(scs_m, 4);
 ]]></scilab:image>
         </para>
     </refsection>
-    <refsection id="Interfacingfunction_DERIV">
-        <title>Interfacing function</title>
-        <itemizedlist>
-            <listitem>
-                <para>SCI/modules/scicos_blocks/macros/Linear/DERIV.sci</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Computationalfunction_DERIV">
-        <title>Computational function</title>
-        <itemizedlist>
-            <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/deriv.c (Type 4)</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
 </refentry>

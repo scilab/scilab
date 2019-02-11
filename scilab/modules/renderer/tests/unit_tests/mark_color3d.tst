@@ -14,6 +14,7 @@
 
 
 function newH = fall(h, v, t)
+    newH = h;
     i = find(h ~= 0);
     newH(i) = h(i)+v(i)*t-0.5*9.81*t^2
     j = find(newH < 0);
@@ -29,7 +30,7 @@ p.mark_background=-3;
 p.mark_size=1;
 p.mark_mode="on";
 p.surface_mode="off";
-p.data.z = p.data.z + 10; 
+p.data.z = p.data.z + 10;
 a.data_bounds=[-%pi -%pi 9; %pi %pi 11];
 drawnow();
 

@@ -21,78 +21,42 @@
 *
 * See the file ./license.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="INTEGRAL_m" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="INTEGRAL_m" xml:lang="ja">
     <refnamediv>
         <refname>INTEGRAL_m</refname>
         <refpurpose>積分</refpurpose>
     </refnamediv>
     <refsection>
         <title>ブロックのスクリーンショット</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/INTEGRAL_m.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/INTEGRAL_m.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_INTEGRAL_m">
         <title>内容</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="INTEGRAL_m">積分</link>
-                </para>
+                <xref linkend="Description_INTEGRAL_m">説明</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_INTEGRAL_m">パレット</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_INTEGRAL_m">説明</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_INTEGRAL_m">ダイアログボックス</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_INTEGRAL_m">デフォルトプロパティ</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_INTEGRAL_m">インターフェイス用関数</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_INTEGRAL_m">計算用関数</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Examples_INTEGRAL_m">例</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_INTEGRAL_m">ダイアログボックス</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_INTEGRAL_m">
-        <title>パレット</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">連続時間システムパレット
-                    </link>
-                </para>
+                <xref linkend="Defaultproperties_INTEGRAL_m">デフォルトプロパティ</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_INTEGRAL_m">インターフェイス用関数</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_INTEGRAL_m">計算用関数</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Examples_INTEGRAL_m">例</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -109,10 +73,17 @@
                 </imageobject>
             </mediaobject>
         </informalequation>
-        ただし, y0 は初期条件, t0 は対応する時間です.
+        ただし, y<subscript>0</subscript> は初期条件, t<subscript>0</subscript> は対応する時間です.
     </refsection>
     <refsection id="Dialogbox_INTEGRAL_m">
         <title>ダイアログボックス</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/INTEGRAL_m_gui.gif"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <para>
             パラメータダイアログボックスにより以下を定義します:
         </para>
@@ -151,15 +122,6 @@
                 </para>
             </listitem>
         </itemizedlist>
-        <para/>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/INTEGRAL_m_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
         <itemizedlist>
             <listitem>
                 <para>
@@ -238,8 +200,7 @@
                     <emphasis role="bold">標準入力:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- ポート 1 : 大きさ [1,1] / 1型
-                    </emphasis>
+                    <emphasis role="bold">- ポート 1 : 大きさ [1,1] / 1型</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -247,28 +208,22 @@
                     <emphasis role="bold">標準出力:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- ポート 1 : 大きさ [1,1] / 1型
-                    </emphasis>
+                    <emphasis role="bold">- ポート 1 : 大きさ [1,1] / 1型</emphasis>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">アクティベーション入力の数/大きさ:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">アクティベーション入力の数/大きさ:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">アクティベーション出力の数/大きさ:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">アクティベーション出力の数/大きさ:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">連続時間状態量:</emphasis>
-                    yes
+                    <emphasis role="bold">連続時間状態量:</emphasis> yes
                 </para>
             </listitem>
             <listitem>
@@ -278,8 +233,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis>
-                    no
+                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -302,16 +256,16 @@
         <title>計算用関数</title>
         <itemizedlist>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/integral_func.c</para>
+                SCI/modules/scicos_blocks/src/c/integral_func.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/integralz_func.c</para>
+                SCI/modules/scicos_blocks/src/c/integralz_func.c
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Examples_INTEGRAL_m">
         <title>例</title>
-        <refsection id="Example_INTEGRAL_m_1">
+        <refsect3 id="Example_INTEGRAL_m_1">
             <title>例1</title>
             <para>この例のモデルは積分器の状態ポートの使用例を示します.
             </para>
@@ -331,8 +285,8 @@ importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_1_Exam
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
-        <refsection id="Example_INTEGRAL_m_2">
+        </refsect3>
+        <refsect3 id="Example_INTEGRAL_m_2">
             <title>例2</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.zcos">
@@ -347,6 +301,6 @@ importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_2_Exam
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
+        </refsect3>
     </refsection>
 </refentry>

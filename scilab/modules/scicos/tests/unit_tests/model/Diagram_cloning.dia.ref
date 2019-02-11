@@ -27,16 +27,17 @@ Xcos debug:   propertyUpdated( 2 , BLOCK , EXPRS ) : SUCCESS
 Xcos info:    objectCreated( 3 , PORT )
 Xcos debug:   propertyUpdated( 3 , PORT , SOURCE_BLOCK ) : SUCCESS
 Xcos debug:   propertyUpdated( 3 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace:   propertyUpdated( 3 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos info:    objectCreated( 4 , PORT )
 Xcos debug:   propertyUpdated( 4 , PORT , SOURCE_BLOCK ) : SUCCESS
 Xcos debug:   propertyUpdated( 4 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace:   propertyUpdated( 4 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 2 , BLOCK , INPUTS ) : SUCCESS
 Xcos info:    objectCreated( 5 , PORT )
 Xcos debug:   propertyUpdated( 5 , PORT , SOURCE_BLOCK ) : SUCCESS
 Xcos debug:   propertyUpdated( 5 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace:   propertyUpdated( 5 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 2 , BLOCK , OUTPUTS ) : SUCCESS
-Xcos trace:   propertyUpdated( 2 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 2 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 2 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 4 , PORT , IMPLICIT ) : NO_CHANGES
@@ -137,10 +138,8 @@ Xcos trace:   propertyUpdated( 8 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 7 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 6 , BLOCK , CHILDREN ) : NO_CHANGES
 Xcos trace:   objectReferenced( 6 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 6 , BLOCK ) : 2
 Xcos debug:   propertyUpdated( 6 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 6 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
-Xcos trace:   objectUnreferenced( 6 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 6 , BLOCK ) : 0
 Xcos debug:   propertyUpdated( 2 , BLOCK , INPUTS ) : SUCCESS
@@ -168,16 +167,17 @@ Xcos debug:   propertyUpdated( 10 , BLOCK , EXPRS ) : SUCCESS
 Xcos info:    objectCreated( 11 , PORT )
 Xcos debug:   propertyUpdated( 11 , PORT , SOURCE_BLOCK ) : SUCCESS
 Xcos debug:   propertyUpdated( 11 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace:   propertyUpdated( 11 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos info:    objectCreated( 12 , PORT )
 Xcos debug:   propertyUpdated( 12 , PORT , SOURCE_BLOCK ) : SUCCESS
 Xcos debug:   propertyUpdated( 12 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace:   propertyUpdated( 12 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 10 , BLOCK , INPUTS ) : SUCCESS
 Xcos info:    objectCreated( 13 , PORT )
 Xcos debug:   propertyUpdated( 13 , PORT , SOURCE_BLOCK ) : SUCCESS
 Xcos debug:   propertyUpdated( 13 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace:   propertyUpdated( 13 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 10 , BLOCK , OUTPUTS ) : SUCCESS
-Xcos trace:   propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-Xcos trace:   propertyUpdated( 10 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 10 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 11 , PORT , IMPLICIT ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 12 , PORT , IMPLICIT ) : NO_CHANGES
@@ -279,10 +279,8 @@ Xcos trace:   propertyUpdated( 16 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 15 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 14 , BLOCK , CHILDREN ) : NO_CHANGES
 Xcos trace:   objectReferenced( 14 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 14 , BLOCK ) : 2
 Xcos debug:   propertyUpdated( 14 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 14 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
-Xcos trace:   objectUnreferenced( 14 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 14 , BLOCK ) : 0
 Xcos trace:   objectUnreferenced( 6 , BLOCK ) : 0
@@ -326,7 +324,6 @@ Xcos trace:   propertyUpdated( 19 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 19 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 19 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace:   objectReferenced( 19 , LINK ) : 1
-Xcos trace:   objectReferenced( 19 , LINK ) : 2
 Xcos debug:   propertyUpdated( 19 , LINK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 19 , LINK , PARENT_BLOCK ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 17 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
@@ -335,7 +332,6 @@ Xcos debug:   propertyUpdated( 19 , LINK , SOURCE_PORT ) : SUCCESS
 Xcos trace:   propertyUpdated( 15 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos debug:   propertyUpdated( 15 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 Xcos debug:   propertyUpdated( 19 , LINK , DESTINATION_PORT ) : SUCCESS
-Xcos trace:   objectUnreferenced( 19 , LINK ) : 1
 Xcos debug:   propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 19 , LINK ) : 0
 Xcos trace:   objectUnreferenced( 6 , BLOCK ) : 0
@@ -585,7 +581,6 @@ Xcos trace:   propertyUpdated( 32 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 31 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
 Xcos trace:   propertyUpdated( 30 , BLOCK , CHILDREN ) : NO_CHANGES
 Xcos trace:   objectReferenced( 30 , BLOCK ) : 1
-Xcos trace:   objectReferenced( 30 , BLOCK ) : 2
 Xcos debug:   propertyUpdated( 20 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos debug:   propertyUpdated( 21 , BLOCK , INPUTS ) : SUCCESS
 Xcos trace:   propertyUpdated( 21 , BLOCK , OUTPUTS ) : NO_CHANGES
@@ -605,7 +600,6 @@ Xcos info:    objectDeleted( 24 , PORT )
 Xcos info:    objectDeleted( 21 , BLOCK )
 Xcos debug:   propertyUpdated( 30 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace:   propertyUpdated( 30 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
-Xcos trace:   objectUnreferenced( 30 , BLOCK ) : 1
 Xcos debug:   propertyUpdated( 20 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace:   objectUnreferenced( 30 , BLOCK ) : 0
 Xcos trace:   objectUnreferenced( 25 , BLOCK ) : 0

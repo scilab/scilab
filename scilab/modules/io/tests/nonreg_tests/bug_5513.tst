@@ -4,16 +4,17 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- Non-regression test for bug 5513 -->
 // <-- INTERACTIVE TEST -->
-
+// <-- NOT FIXED -->  6.0.2 -> 6.0.2
+//
 // <-- Short Description -->
 // input("message") did not restore the original prompt after the input job is done.
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=5513
-// 
+//
 
 a = rand(2,2)
 
@@ -37,11 +38,8 @@ d = input("Give a value : ")
 
 e = input("Give a string : ","string")
 // and press enter
-// e must be equal to ' '
+// e must be equal to ''
 
 f = input("Give a value : ")
 // and press enter
 // f must be equal to []
-
-
-

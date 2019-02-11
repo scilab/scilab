@@ -31,7 +31,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="GENERAL_f">
             <inlinemediaobject>
                 <imageobject>
@@ -67,19 +66,8 @@
                 </imageobject>
             </inlinemediaobject>
             </link>.
+    </refsection>
 
-        </para>
-    </refsection>
-    <refsection id="Module_Zerocrossingdetection_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Zerocrossingdetection_pal">
         <title>Description</title>
         <para>Zero crossing detection blocks are used to detect values crossing of state
@@ -87,39 +75,24 @@
             to do that operation.
         </para>
     </refsection>
-    <refsection id="Blocks_Zerocrossingdetection_pal">
+
+    <refsection id="Blocks_Zerocrossingdetection_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLINDUMMY_f">CLINDUMMY_f — Dummy</link>
-                </para>
+                <link linkend="CLINDUMMY_f">CLINDUMMY_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="GENERAL_f">GENERAL_f — Zero crossing</link>
-                </para>
+                <link linkend="GENERAL_f">GENERAL_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="NEGTOPOS_f">NEGTOPOS_f - Threshold negative to
-                        positive
-                    </link>
-                </para>
+                <link linkend="NEGTOPOS_f">NEGTOPOS_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="POSTONEG_f">POSTONEG_f - Threshold positive to
-                        negative
-                    </link>
-                </para>
+                <link linkend="POSTONEG_f">POSTONEG_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="ZCROSS_f">ZCROSS_f - Threshold detection at
-                        zero
-                    </link>
-                </para>
+                <link linkend="ZCROSS_f">ZCROSS_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

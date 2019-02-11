@@ -233,16 +233,7 @@
 
         </para>
     </refsection>
-    <refsection id="Module_Sinks_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_Sinks_pal">
         <title>Description</title>
         <para>In Sinks palette, you can find a variety of blocks used to display

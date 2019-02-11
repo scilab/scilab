@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,77 +13,42 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="LOGBLK_f" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="LOGBLK_f" xml:lang="fr_FR">
     <refnamediv>
         <refname>LOGBLK_f</refname>
         <refpurpose>Logarithme commun</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/LOGBLK_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/LOGBLK_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_LOGBLK_f">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="LOGBLK_f">Logarithme commun</link>
-                </para>
+                <xref linkend="Description_LOGBLK_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_LOGBLK_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_LOGBLK_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_LOGBLK_f">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_LOGBLK_f">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_LOGBLK_f">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_LOGBLK_f">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_LOGBLK_f">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_LOGBLK_f">Paramètres</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_LOGBLK_f">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Mathoperations_pal">Palette Opérations mathématiques</link>
-                </para>
+                <xref linkend="Defaultproperties_LOGBLK_f">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_LOGBLK_f">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_LOGBLK_f">Fonction de calcul</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_LOGBLK_f">Voir aussi</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -96,16 +61,14 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_LOGBLK_f">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/LOGBLK_f_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-        </para>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/LOGBLK_f_gui.gif"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -187,6 +150,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_LOGBLK_f">
         <title>Fonction d'interfaçage</title>
@@ -204,23 +168,17 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_LOGBLK_f">
+    <refsection id="Seealso_LOGBLK_f" role="see also">
         <title>Voir aussi</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="POWBLK_f">POWBLK_f - Puissance (Bloc Xcos)</link>
-                </para>
+                <link linkend="POWBLK_f">POWBLK_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="EXPBLK_m">EXPBLK_m - Exponentielle d'un scalaire (Bloc Xcos)</link>
-                </para>
+                <link linkend="EXPBLK_m">EXPBLK_m</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SQRT">SQRT - Racine carrée (Bloc Xcos)</link>
-                </para>
+                <link linkend="SQRT">SQRT</link>
             </listitem>
         </itemizedlist>
     </refsection>

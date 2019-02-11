@@ -21,74 +21,47 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="BPLATFORM">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="BPLATFORM" xml:lang="en_US">
     <refnamediv>
         <refname>BPLATFORM</refname>
         <refpurpose>Balls under a platform viewer</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/BPLATFORM.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/BPLATFORM.png" align="center" valign="middle"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_BPLATFORM">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="BPLATFORM">Balls under a platform viewer</link>
-                </para>
+                <xref linkend="Dialogbox_BPLATFORM">Parameters</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_BPLATFORM">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_BPLATFORM">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_BPLATFORM">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_BPLATFORM">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_BPLATFORM">Default properties</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_BPLATFORM">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Demonstrationsblocks_pal">Demonstrations blocks palette</link>
-                </para>
+                <xref linkend="Interfacingfunction_BPLATFORM">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_BPLATFORM">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_BPLATFORM">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/BPLATFORM_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/BPLATFORM_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Defaultproperties_BPLATFORM">
         <title>Default properties</title>
@@ -156,6 +129,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_BPLATFORM">
         <title>Interfacing function</title>
@@ -166,11 +140,11 @@
         </itemizedlist>
     </refsection>
     <refsection id="Example_BPLATFORM">
-        <title>BPLATFORM example:</title>
+        <title>Example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/demos/ModelicaBlocks/Ball_Platform.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../demos/ModelicaBlocks/Ball_Platform.zcos" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../demos/ModelicaBlocks/Ball_Platform.zcos"/>
                 </imageobject>
             </inlinemediaobject>
         </link>

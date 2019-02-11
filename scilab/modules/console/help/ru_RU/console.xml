@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008 - DIGITEO - Allan CORNET
-*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - DIGITEO - Allan CORNET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,187 +11,356 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-*
--->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" scilab:needs-examples="no" xmlns:scilab="http://www.scilab.org" xml:id="console" xml:lang="ru">
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"
+          xml:id="console" xml:lang="ru">
+    <refnamediv xml:id="shortcuts"></refnamediv>
     <refnamediv>
         <refname>console</refname>
-        <refpurpose>сочетания клавиш в командном окне</refpurpose>
+        <refpurpose>Сочетания клавиш, определённые в командном окне</refpurpose>
     </refnamediv>
     <refsection>
         <title>Описание</title>
+        <para>
+            Для трёх режимом запуска Scilab <literal>STD</literal>, <literal>NW</literal> и
+            <literal>NWNI</literal> некоторые сочетания клавиш доступны, когда командное окно
+            находится в фокусе.
+        </para>
+        <para>
+            Предопределения по умолчнию перечислены в следующей таблице. Они могут быть
+            переопределены через <link linkend="preferences">настройки</link> Scilab
+            (Общие/Сочетания клавиш).
+        </para>
+        <warning>
+            <para>
+            Указанное сочетание клавиш могут различать действия в соответствии с компонентом,
+            находящимся в фокусе: командное окно, графическое окно, история команд и т.д.
+            Ниже рассматриваются лишь сочетания клавиш, определённые для панели командного окна.
+            </para>
+        </warning>
+        <para>
         <informaltable border="1">
             <tr>
-                <td>ВВЕРХ или Ctrl+P</td>
-                <td>повторный вызов предыдущей строки.</td>
+                <td><emphasis role="bold">Сочетание клавиш</emphasis></td>
+                <th>STD</th>
+                <th>NW</th>
+                <th>NWNI</th>
+                <td><emphasis role="bold">Действие</emphasis></td>
+            </tr>
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <tr>
+                <td colspan="5"><refsect3><title>Главные действия</title></refsect3></td>
             </tr>
             <tr>
-                <td>ВНИЗ или Ctrl+N</td>
-                <td>повторный вызов следующей строки.</td>
-            </tr>
-            <tr>
-                <td>F1</td>
-                <td>вызов справки.</td>
-            </tr>
-            <tr>
-                <td>F2</td>
-                <td>очистить консоль.</td>
-            </tr>
-            <tr>
-                <td>F12</td>
-                <td>открывает консоль в отдельном окне (только в Windows).</td>
+                <td>ALT</td>
+                <td align="center">x</td>
+                <td align="center"></td>
+                <td align="center"></td>
+                <td>Установка/снятие фокуса с меню командного окна. Затем с помощью стрелок и/или
+                    активацией подчёркнутых клавиш в пунктах меню производится навигация по меню.
+                </td>
             </tr>
             <tr>
                 <td>Ctrl+пробел или TAB</td>
-                <td>
-                    дополнение : Scilab отображает список всех имён, которые начинаются
-                    с некоторых символов.
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>дополнение : Scilab отображает список всех имён, которые начинаются с некоторых символов.
+                    <para/>
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../images/completion_listbox.png" />
+                        </imageobject>
+                    </inlinemediaobject>
                 </td>
             </tr>
             <tr>
-                <td>Ctrl + A или HOME</td>
-                <td>переход в начало текущей строки.</td>
+                <td>F1</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td></td>
+                <td>открывает браузер справки или выводит её на передний план</td>
             </tr>
             <tr>
-                <td>Ctrl + B или LEFT</td>
-                <td>перевод курсора на один символ влево.</td>
+                <td>F12</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>открывает поле командного окна (только в Windows)</td>
+            </tr>
+            <tr>
+                <td>F3 или Ctrl + F</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>открывает диалог поиска в содержимом командного окна</td>
             </tr>
             <tr>
                 <td>Ctrl + C</td>
-                <td>
-                    прерывание работы Scilab, если ничего не выбрано в консоли,
-                    иначе выбранный текст копируется в буфер обмена.
-                </td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>копирует выделение в буфер обмена</td>
             </tr>
             <tr>
-                <td>Ctrl + D или DELETE</td>
-                <td>удаляет текущий символ.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + E или END</td>
-                <td>перемещает курсор в конец командной строки.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + F или RIGHT</td>
-                <td>перемещает курсор на один символ вправо.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + H или BACKSPACE</td>
-                <td>удаляет предыдущий символ.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + K</td>
-                <td>убивает командную строку от курсора до конца.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + S</td>
-                <td>выбирает всё.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + U</td>
-                <td>удаляет командную строку целиком.</td>
+                <td>Ctrl + C</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>прерывает исполнение</td>
             </tr>
             <tr>
                 <td>Ctrl + V</td>
-                <td>делает вставку из буфера обмена.</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>вставляет содержимое буфера обмена</td>
             </tr>
             <tr>
-                <td>Ctrl + W</td>
-                <td>удаляет последнее слово командной строки.</td>
+                <td>Ctrl + V</td>
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>заменяет окончание строки содержимым буфера обмена</td>
             </tr>
             <tr>
                 <td>Ctrl + X</td>
-                <td>прерывает работу Scilab'а</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>(Прерывает Scilab)</td>
+            </tr>
+<!--
+                <td>Ctrl + F</td><td>Opens the search/Find dialog for the Console content</td>
+                <td>Ctrl + U</td><td>kills command line from cursor to beginning.</td>
+-->
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <tr>
+                <td colspan="5"><refsect3><title>История</title></refsect3></td>
             </tr>
             <tr>
-                <td>Ctrl + ВЛЕВО</td>
-                <td>перемещение на одно слово влево.</td>
+                <td>ВВЕРХ</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>вызывает предыдущую строку</td>
             </tr>
             <tr>
-                <td>Ctrl + RIGHT</td>
-                <td>перемещение на одно слово вправо.</td>
+                <td>Ctrl + P</td>
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>вызывает предыдущую строку</td>
+            </tr>
+            <tr>
+                <td>ВНИЗ</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>вызывает следующую строку</td>
+            </tr>
+            <tr>
+                <td>Ctrl + N</td>
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>вызывает следующую строку</td>
+            </tr>
+            <tr>
+                <td valign='top'>!abc&lt;enter></td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>
+                    вызывает последнюю строку, начинающуюся с 'abc' ('!' доллжен быть самым первым символов в строке)
+                </td>
+            </tr>
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <tr>
+                <td colspan="5"><refsect3><title>Выделение</title></refsect3></td>
+            </tr>
+            <tr>
+                <td>Ctrl + S</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>выделяет всё содержимое командного окна</td>
             </tr>
             <tr>
                 <td>Shift + HOME</td>
-                <td>выбор от курсора до начала инструкции.</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>выделяет от курсора до начала строки</td>
             </tr>
             <tr>
                 <td>Shift + END</td>
-                <td>выбор от курсора до конца инструкции.</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>выделяет от курсора до конца строки</td>
             </tr>
             <tr>
-                <td>Double-click</td>
-                <td>выбор текущего слова.</td>
+                <td>двойной щелчок</td>
+                <td align="center">x</td>
+                <td></td>
+                <td align="center">x</td>
+                <td>выбирает текущее слово</td>
             </tr>
-        </informaltable>
-    </refsection>
-    <refnamediv>
-        <refname>console cli</refname>
-        <refpurpose>сочетания клавиш в неграфическом режиме NW/NWNI</refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Описание</title>
-        <informaltable border="1">
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
             <tr>
-                <td>ВВЕРХ или Ctrl+P</td>
-                <td>повторный вызов предыдущей строки.</td>
+                <td colspan="5"><refsect3><title>Удаление</title></refsect3></td>
             </tr>
             <tr>
-                <td>ВНИЗ или Ctrl+N</td>
-                <td>повторный вызов следующей строки.</td>
-            </tr>
-            <tr>
-                <td>TAB</td>
-                <td>
-                    дополнение: Scilab отображает список всех имён, которые
-                    начинаются с некоторых.
-                </td>
-            </tr>
-            <tr>
-                <td>Ctrl + A или HOME</td>
-                <td>перемещение в начало текущей строки.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + B или ВЛЕВО</td>
-                <td>перемещает курсор на один символ влево.</td>
+                <td>F2</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>очищает командное окно, как <link linkend="clc">clc</link></td>
             </tr>
             <tr>
                 <td>Ctrl + D или DELETE</td>
-                <td>удаляет текущий символ.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + E или END</td>
-                <td>перемещает курсор в конец командной строки.</td>
-            </tr>
-            <tr>
-                <td>Ctrl + F или RIGHT</td>
-                <td>перемещает курсор на один символ вправо.</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>удаляет текущий символ (или справа)</td>
             </tr>
             <tr>
                 <td>Ctrl + H или BACKSPACE</td>
-                <td>удаляет предыдущий символ.</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>удаляет предыдущий символ</td>
             </tr>
             <tr>
                 <td>Ctrl + K</td>
-                <td>удаляет командную строку от курсора до конца.</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>удаляет конец строки (от курсора до конца)</td>
             </tr>
             <tr>
                 <td>Ctrl + U</td>
-                <td>удаляет командную строку от курсора до начала.</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>удаляет целиком командную строку</td>
             </tr>
             <tr>
                 <td>Ctrl + W</td>
-                <td>удаляет предыдущее слово от курсора.</td>
+                <td align="center">x</td>
+                <td></td>
+                <td></td>
+                <td>удаляет последнее слово в строке, отделённое пробелом</td>
             </tr>
             <tr>
-                <td>Alt+B или Ctrl+ВЛЕВО</td>
-                <td>перемещение на одно слово влево.</td>
+                <td>Ctrl + W</td>
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>удаляет слово, на котором стоит курсор, и конец строки</td>
+            </tr>
+            <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+            <tr>
+                <td colspan="5"><refsect3><title>Перемещения курсора</title></refsect3></td>
             </tr>
             <tr>
-                <td>Alt+F или Ctrl+ВПРАВО</td>
-                <td>перемещение на одно слово вправо.</td>
+                <td>Ctrl + A или HOME</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>перемещает курсор в начало текущей строки</td>
+            </tr>
+            <tr>
+                <td>Ctrl + B или ВЛЕВО</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>перемещает курсор на один символ назад, влево</td>
+            </tr>
+            <tr>
+                <td>Ctrl + ВЛЕВО</td>
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>перемещает курсор в начало текущего или предыдущего слова</td>
+            </tr>
+            <!--
+            <tr>
+                <td>Alt+B</td>
+                <td>перемещает влево на одно слово</td>
+            </tr>
+            -->
+            <tr>
+                <td>Ctrl + E или END</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>перемещает курсор в конец командной строки</td>
+            </tr>
+            <tr>
+                <td>Ctrl + F</td>
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>перемещает курсор на один симовл вперёд, вправо</td>
+            </tr>
+            <tr>
+                <td>ВПРАВО</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>перемещает курсор на один символ вправо</td>
+            </tr>
+            <tr>
+                <td>Ctrl + ВПРАВО</td> <!-- или alt+F: не в Windows, в режиме none -->
+                <td></td>
+                <td align="center">x</td>
+                <td align="center">x</td>
+                <td>перемещает курсор к следующему слову справа</td>
             </tr>
         </informaltable>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+jdeff org.scilab.modules.preferences.XConfigManager openPreferences prefs;
+prefs general/shortcuts;
+   ]]></programlisting>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../images/preferences_shortcuts.png" />
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="preferences">настройки</link>
+            </member>
+            <member>
+                <link linkend="consolebox">панель командного окна</link>
+            </member>
+            <member>
+                <link linkend="completion">дополнение</link>
+            </member>
+            <member>
+                <link linkend="browsehistory">история команд</link>
+            </member>
+            <member>
+                <link linkend="getscilabmode">getscilabmode</link>
+            </member>
+            <member>
+                <link linkend="scilab">scilab</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>
-

@@ -21,75 +21,44 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="INTRP2BLK_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="INTRP2BLK_f" xml:lang="en_US">
     <refnamediv>
         <refname>INTRP2BLK_f</refname>
         <refpurpose>2D interpolation</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/INTRP2BLK_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/INTRP2BLK_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_INTRP2BLK_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="INTRP2BLK_f">2D interpolation</link>
-                </para>
+                <xref linkend="Description_INTRP2BLK_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_INTRP2BLK_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_INTRP2BLK_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_INTRP2BLK_f">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_INTRP2BLK_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_INTRP2BLK_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_INTRP2BLK_f">Computational function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_INTRP2BLK_f">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_INTRP2BLK_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_INTRP2BLK_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_INTRP2BLK_f">Computational function</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_INTRP2BLK_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Lookuptables_pal">Lookup tables palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_INTRP2BLK_f">
         <title>Description</title>
         <para>
@@ -97,17 +66,13 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_INTRP2BLK_f">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/INTRP2BLK_f_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/INTRP2BLK_f_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -128,7 +93,7 @@
                     <emphasis role="bold">Z values</emphasis>
                 </para>
                 <para>
-                    an <latex>$m \times n$</latex> matrix.
+                    a <emphasis>m × n</emphasis> matrix.
                 </para>
                 <para> Properties : Type 'mat' of size [-1,-1] </para>
             </listitem>
@@ -208,6 +173,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_INTRP2BLK_f">
         <title>Interfacing function</title>

@@ -5,10 +5,12 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
-
+// <-- NO CHECK REF -->
+// <-- NOT FIXED -->      6.0.1 -> 6.0.2
+//
 // <-- Non-regression test for bug 979 -->
 //
 // <-- Bugzilla URL -->
@@ -24,17 +26,20 @@ MFILE=TMPDIR+"/bug979.m";
 SCIFILE=TMPDIR+"/bug979.sci";
 
 mputl(MFILECONTENTS,MFILE);
+sleep(200);
 mfile2sci(MFILE,TMPDIR);
+sleep(200);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
-SCIFILECONTENTSREF=["";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
-		"";
-		"comment = 1;";
-		"//This line is a comment line"];
+SCIFILECONTENTSREF = [
+    "";
+    "// Display mode";
+    "mode(0);";
+    "";
+    "// Display warning for floating point exception";
+    "ieee(1);";
+    "";
+    "comment = 1;";
+    "//This line is a comment line"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

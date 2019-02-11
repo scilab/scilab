@@ -21,70 +21,41 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CBLOCK">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="CBLOCK" xml:lang="en_US">
     <refnamediv>
         <refname>CBLOCK</refname>
         <refpurpose>New C</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CBLOCK.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CBLOCK.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_CBLOCK">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CBLOCK">New C</link>
-                </para>
+                <xref linkend="Description_CBLOCK">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CBLOCK">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CBLOCK">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_CBLOCK">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CBLOCK">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CBLOCK">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_CBLOCK">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_CBLOCK">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_CBLOCK">Interfacing function</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_CBLOCK">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Userdefinedfunctions_pal">User defined functions palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_CBLOCK">
         <title>Description</title>
         <para>
@@ -93,17 +64,14 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_CBLOCK">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/CBLOCK_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/CBLOCK_gui.gif"
+                        align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -116,7 +84,9 @@
                 <para>
                     <emphasis role="bold">is block implicit? </emphasis>
                 </para>
-                <para> If yes (y) is selected, it calls implicit solver (dasrt) else (n) it calls explicit solver, lsodar.</para>
+                <para> If yes (y) is selected, it calls implicit solver (dasrt) else (n) it calls
+                        explicit solver, lsodar.
+                </para>
                 <para> Properties : Type 'str' of size 1 </para>
             </listitem>
             <listitem>
@@ -187,7 +157,10 @@
                     <emphasis role="bold">initial firing vector </emphasis>
                 </para>
                 <para>
-                    A vector. Size of this vector corresponds to the number of event outputs. The value of the <latex>$i^{th}$</latex> entry specifies the time of the preprogrammed event firing on the <latex>$i^{th}$</latex> output event port. If less than zero, no event is preprogrammed.
+                    A vector. Size of this vector corresponds to the number of event outputs.
+                    The value of the <latex>$i^{th}$</latex> entry specifies the time of the
+                    preprogrammed event firing on the <latex>$i^{th}$</latex> output event port.
+                    If less than zero, no event is preprogrammed.
                 </para>
                 <para> Properties : Type 'vec' of size 'sum(%6)' </para>
             </listitem>
@@ -195,7 +168,11 @@
                 <para>
                     <emphasis role="bold">direct feedthrough </emphasis>
                 </para>
-                <para> The input to the block at the current time determine the output of the block at the current time. This forces the input to feed through to the output, as if the system were operating at steady-state.</para>
+                <para>
+                    The input to the block at the current time determine the output of the block
+                    at the current time. This forces the input to feed through to the output,
+                    as if the system were operating at steady-state.
+                </para>
                 <para> Properties : Type 'str' of size 1 </para>
             </listitem>
             <listitem>
@@ -207,6 +184,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Defaultproperties_CBLOCK">
         <title>Default properties</title>
         <itemizedlist>
@@ -278,6 +256,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Interfacingfunction_CBLOCK">
         <title>Interfacing function</title>
         <itemizedlist>

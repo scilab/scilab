@@ -425,7 +425,8 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
                             {
                                 FREE(pstFormat);
                             }
-                            Scierror(999, _("End of file at line %d.\n"));
+
+                            Scierror(999, _("%s: Input missing from console.\n"), "read");
                             return types::Function::Error;
                         }
                         else
@@ -644,8 +645,7 @@ types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, typ
                         {
                             delete pD;
                             FREE(pstFormat);
-
-                            Scierror(999, _("End of file at line %d.\n"));
+                            Scierror(999, _("%s: Input missing from console.\n"), "read");
                             return types::Function::Error;
                         }
                     }

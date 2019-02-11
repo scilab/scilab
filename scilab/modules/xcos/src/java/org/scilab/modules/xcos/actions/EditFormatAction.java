@@ -49,13 +49,21 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGraphModel;
+import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
-import javax.swing.AbstractAction;
-import org.scilab.modules.localization.Messages;
-import org.scilab.modules.xcos.block.BasicBlock;
+import java.util.List;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfInt;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.block.io.ContextUpdate;
+import org.scilab.modules.xcos.graph.model.XcosCell;
+import org.scilab.modules.xcos.graph.model.XcosGraphModel;
 
 /**
  * Customize the block representation.
@@ -339,7 +347,7 @@ public final class EditFormatAction extends DefaultAction {
         if (fontSize != mxConstants.DEFAULT_FONTSIZE) {
             identifierStyle.put(mxConstants.STYLE_FONTSIZE, Integer.toString(fontSize));
         } else {
-            identifierStyle.remove(mxConstants.DEFAULT_FONTSIZE);
+            identifierStyle.remove(mxConstants.STYLE_FONTSIZE);
         }
 
         if (!textColor.equals(DEFAULT_BORDERCOLOR)) {
@@ -370,11 +378,47 @@ public final class EditFormatAction extends DefaultAction {
         }
         oneliner = str.toString();
 
+        //
+        // Update the cell value and cell identifier value (related annotation)
+        //
+
         graph.cellLabelChanged(cell, oneliner, false);
         graph.fireEvent(new mxEventObject(mxEvent.LABEL_CHANGED, "cell", cell, "value", text, "parent", cell.getParent()));
 
         graph.cellLabelChanged(identifier, text, false);
         graph.fireEvent(new mxEventObject(mxEvent.LABEL_CHANGED, "cell", identifier, "value", text, "parent", cell));
+
+        //
+        // Update the corresponding port if the block is an I/O block
+        //
+        if (cell instanceof ContextUpdate) {
+            JavaController controller = new JavaController();
+
+            VectorOfInt ipar = new VectorOfInt();
+            controller.getObjectProperty(((ContextUpdate) cell).getUID(), Kind.BLOCK, ObjectProperties.IPAR, ipar);
+            int portNumber = ipar.size() > 0 ? ipar.get(0) : 1;
+
+            XcosCell parent = (XcosCell) graph.getDefaultParent();
+            XcosDiagram parentGraph = Xcos.findParent(controller, parent.getUID(), parent.getKind());
+            if (parentGraph != null) {
+                String[] jgraphxID = {""};
+                controller.getObjectProperty(parent.getUID(), parent.getKind(), ObjectProperties.UID, jgraphxID);
+
+                XcosGraphModel parentModel = (XcosGraphModel) parentGraph.getModel();
+                Object superBlock = parentModel.getCell(jgraphxID[0]);
+                if (superBlock instanceof SuperBlock) {
+                    List<mxICell> ports = ContextUpdate.IOBlocks.getPorts((SuperBlock) superBlock, (Class<? extends ContextUpdate>) cell.getClass());
+
+                    if (ports.size() >= portNumber) {
+                        mxICell port = ports.get(portNumber - 1);
+                        parentGraph.cellLabelChanged(port, oneliner, false);
+                        parentGraph.fireEvent(new mxEventObject(mxEvent.LABEL_CHANGED, "cell", port, "value", text, "parent", superBlock));
+                    }
+                }
+
+            }
+
+        }
     }
 
     // CSON: NPathComplexity
@@ -522,7 +566,7 @@ public final class EditFormatAction extends DefaultAction {
         private javax.swing.JScrollPane jScrollPane1;
         private javax.swing.JTabbedPane mainTab;
         private javax.swing.JTextField labelArea;
-        private javax.swing.JTextArea textArea;
+        private javax.swing.JTextPane textArea;
         private javax.swing.JPanel textFormat;
 
         private javax.swing.JButton cancelButton;
@@ -696,13 +740,10 @@ public final class EditFormatAction extends DefaultAction {
             labelArea.setToolTipText(XcosMessages.ONELINE_DESCRIPTION_TOOLTIP);
 
             jScrollPane1 = new javax.swing.JScrollPane();
-            textArea = new javax.swing.JTextArea();
+            textArea = new javax.swing.JTextPane();
             textArea.setToolTipText(XcosMessages.MULTILINE_DESCRIPTION_TOOLTIP);
 
-            textArea.setColumns(TEXT_AREA_COLUMNS);
-            textArea.setRows(TEXT_AREA_ROWS);
-            textArea.setLineWrap(true);
-            textArea.setWrapStyleWord(true);
+            textArea.setContentType("text/html");
 
             cancelButton = new javax.swing.JButton(XcosMessages.CANCEL);
             okButton = new javax.swing.JButton(XcosMessages.OK);
@@ -843,7 +884,7 @@ public final class EditFormatAction extends DefaultAction {
                     graph.getModel().beginUpdate();
                     EditFormatAction.updateFromDialog(getDialog(), borderColorChooser.getColor(), backgroundColorChooser.getColor(),
                                                       (String) fontNameComboBox.getSelectedItem(), (Integer) fontSizeSpinner.getValue(), textColorChooser.getColor(),
-                                                      fontStyleBold.isSelected(), fontStyleItalic.isSelected(), labelArea.getText(), textArea.getText(), imagePath.getText());
+                                                      fontStyleBold.isSelected(), fontStyleItalic.isSelected(), labelArea.getText(), mxUtils.getBodyMarkup(textArea.getText(), false), imagePath.getText());
                     graph.getModel().endUpdate();
                     getDialog().dispose();
                 }

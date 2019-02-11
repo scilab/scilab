@@ -31,7 +31,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="AUTOMAT">
             <inlinemediaobject>
                 <imageobject>
@@ -41,19 +40,19 @@
             </inlinemediaobject>
             </link>.
 
-            <link linkend="DELAYV_f">
+            <link linkend="DELAY_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DELAYV_f" fileref="../../../../images/palettes/DELAYV_f.png"
+                    <imagedata linkend="DELAY_f" fileref="../../../../images/palettes/DELAY_f.png"
                      style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
             </link>.
 
-            <link linkend="DELAY_f">
+            <link linkend="DELAYV_f">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata linkend="DELAY_f" fileref="../../../../images/palettes/DELAY_f.png"
+                    <imagedata linkend="DELAYV_f" fileref="../../../../images/palettes/DELAYV_f.png"
                      style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
                 </imageobject>
             </inlinemediaobject>
@@ -95,6 +94,15 @@
             </inlinemediaobject>
             </link>.
 
+            <link linkend="REGISTER">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata linkend="REGISTER" fileref="../../../../images/palettes/REGISTER.png"
+                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
+                </imageobject>
+            </inlinemediaobject>
+            </link>.
+
             <link linkend="SAMPHOLD_m">
             <inlinemediaobject>
                 <imageobject>
@@ -112,83 +120,45 @@
                 </imageobject>
             </inlinemediaobject>
             </link>.
-
-            <link linkend="REGISTER">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata linkend="REGISTER" fileref="../../../../images/palettes/REGISTER.png"
-                     style="width:100px; padding:10px; border-style:solid; border-width:1px; border-color:#1e90ff;"/>
-                </imageobject>
-            </inlinemediaobject>
-            </link>.
-
-        </para>
-    </refsection>
-    <refsection id="Module_Discrete_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
     </refsection>
     <refsection id="Description_Discrete_pal">
         <title>Description</title>
-        <para>The Discrete time systems palette contains blocks for medeling discrete time
-            systems.
+        <para>
+            The Discrete time systems palette contains blocks for medeling discrete time systems.
         </para>
     </refsection>
-    <refsection id="Blocks_Discrete_pal">
+    <refsection id="Blocks_Discrete_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="DELAY_f">DELAY_f — Discrete time delay</link>
-                </para>
+                <link linkend="AUTOMAT">AUTOMAT</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DELAYV_f">DELAYV_f — Variable delay</link>
-                </para>
+                <link linkend="DELAY_f">DELAY_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DLR">DLR — Discrete transfer function</link>
-                </para>
+                <link linkend="DELAYV_f">DELAYV_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DLRADAPT_f">DLRADAPT_f — Discrete Zero-Pole
-                        function
-                    </link>
-                </para>
+                <link linkend="DLR">DLR</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DLSS">DLSS — Discrete state-space system</link>
-                </para>
+                <link linkend="DLRADAPT_f">DLRADAPT_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DOLLAR_f">DOLLAR_f — Delay operator</link>
-                </para>
+                <link linkend="DLSS">DLSS</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="REGISTER">REGISTER — Shift Register</link>
-                </para>
+                <link linkend="DOLLAR_f">DOLLAR_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SAMPHOLD_m">SAMPHOLD_m — Sample and hold</link>
-                </para>
+                <link linkend="REGISTER">REGISTER</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TCLSS">TCLSS — Continuous linear system with jump</link>
-                </para>
+                <link linkend="SAMPHOLD_m">SAMPHOLD_m</link>
+            </listitem>
+            <listitem>
+                <link linkend="TCLSS">TCLSS</link>
             </listitem>
         </itemizedlist>
     </refsection>

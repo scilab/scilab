@@ -21,7 +21,7 @@
 
  Don't touch if you do not know what you are doing
 -->
-<module name="scinotes">
+<module name="matio">
     <gateway name="sci_matfile_open"        function="matfile_open"         type="0"/>
     <gateway name="sci_matfile_close"       function="matfile_close"        type="0"/>
     <gateway name="sci_matfile_listvar"     function="matfile_listvar"      type="0"/>

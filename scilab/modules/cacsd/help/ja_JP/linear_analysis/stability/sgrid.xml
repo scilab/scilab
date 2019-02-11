@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="sgrid">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="sgrid">
     <refnamediv>
         <refname>sgrid</refname>
         <refpurpose>s平面のグリッド線.  </refpurpose>
@@ -22,9 +25,9 @@
         <title>呼び出し手順</title>
         <synopsis>
             sgrid()
-            sgrid(zeta,wn [,colors])
-            sgrid(['new',] zeta,wn [,colors])
-            sgrid(zeta,wn [,'new'] [,colors])
+            sgrid(zeta, wn)
+            sgrid(.., colors)
+            sgrid(.., "new")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -38,10 +41,8 @@
                             1]
                         </literal>
                         の範囲の値が有効です.
-                        デフォルト値は
-                        <literal>[0 0.16 0.34 0.5 0.64 0.76 0.86 0.94 0.985
-                            1]
-                        </literal>
+                        デフォルト値はcosd(90:-10:0) ~
+                        <literal>[0 0.17 0.34 0.5 0.64 0.77 0.87 0.94 0.985 1]</literal>
                         です.
                     </para>
                 </listitem>
@@ -95,23 +96,81 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-    //sgrid
-    clf();sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])
+clf
+subplot(1,2,1), sgrid([0:0.1:0.9 0.97 1], 0.5:0.5:3)
+subplot(1,2,2), sgrid("grey70")
     ]]></programlisting>
+        <scilab:image>
+            clf
+            subplot(1,2,1), sgrid([0:0.1:0.9 0.97 1], 0.5:0.5:3)
+            subplot(1,2,2), sgrid("grey70")
+        </scilab:image>
         <para>
-            <scilab:image>
-                sgrid(0:0.2:1,[0.2 0.6 1 1.7 2])
-            </scilab:image>
+            Post-tuning graphical elements of the grid:
         </para>
         <programlisting role="example"><![CDATA[
-        H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
-        clf();evans(H,100);sgrid()
+sgrid()
+
+sGrid = gca().children.children.children;
+i = find(sGrid(3:$).type=="Polyline" & sGrid(1:$-2).type=="Polyline",1);
+
+Circles = sGrid(1:i-1);
+Circ_text = Circles(Circles.type=="Text");      // Labels
+Circ_text.font_size = 2;
+Circ_lines = Circles(Circles.type=="Polyline"); // Circles
+Circ_lines.line_style = 8;
+
+Rays = sGrid(i:$);
+Rays(Rays.type=="Text").font_foreground = color("light slate blue");
+Rays_lines = Rays(Rays.type=="Polyline");
+set(Rays_lines, "line_style", 9, "thickness", 1.5);
         ]]></programlisting>
         <para>
-            <scilab:image localized="true">
-                H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
-                clf();evans(H,100);sgrid()
-            </scilab:image>
+            <scilab:image><![CDATA[
+                sgrid()
+
+                // Post-tuning graphical elements
+                // ------------------------------
+                sGrid = gca().children.children.children;
+                i = find(sGrid(3:$).type=="Polyline" & sGrid(1:$-2).type=="Polyline",1);
+
+                Circles = sGrid(1:i-1);
+                Circ_text = Circles(Circles.type=="Text");      // Labels
+                Circ_text.font_size = 2;
+                Circ_lines = Circles(Circles.type=="Polyline"); // Circles
+                Circ_lines.line_style = 8;
+
+                Rays = sGrid(i:$);
+                Rays(Rays.type=="Text").font_foreground = color("light slate blue");
+                Rays_lines = Rays(Rays.type=="Polyline");
+                set(Rays_lines, "line_style", 9, "thickness", 1.5);
+            ]]></scilab:image>
+        </para>
+        <para>
+            Evans plot + an s grid:
+        </para>
+        <programlisting role="example"><![CDATA[
+H = syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+clf
+evans(H,100)
+sgrid()
+
+// All labels in violet
+sGrid = gca().children.children.children;
+sGrid(sGrid.type=="Text").font_foreground = color("light slate blue");
+        ]]></programlisting>
+        <para>
+            <scilab:image><![CDATA[
+                H = syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+                clf
+                gcf().axes_size = [610 470];
+                evans(H,100)
+                sgrid()
+
+                // All labels in violet
+                sGrid = gca().children.children.children;
+                sGrid(sGrid.type=="Text").font_foreground = color("light slate blue");
+            ]]></scilab:image>
         </para>
     </refsection>
     <refsection role="see also">
@@ -124,8 +183,22 @@
                 <link linkend="zgrid">zgrid</link>
             </member>
             <member>
-                <link linkend="datatips">datatips</link>
+                <link linkend="hallchart">hallchart</link>
+            </member>
+            <member>
+                <link linkend="nicholschart">nicholschart</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    colors can be specified by their names or by their #RRGGBB code
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -21,79 +21,42 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="INTEGRAL_m">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="INTEGRAL_m" xml:lang="en_US">
     <refnamediv>
         <refname>INTEGRAL_m</refname>
         <refpurpose>Integration</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/INTEGRAL_m.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/INTEGRAL_m.png" valign="middle"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_INTEGRAL_m">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="INTEGRAL_m">Integration</link>
-                </para>
+                <xref linkend="Description_INTEGRAL_m">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_INTEGRAL_m">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_INTEGRAL_m">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_INTEGRAL_m">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_INTEGRAL_m">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_INTEGRAL_m">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_INTEGRAL_m">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Examples_INTEGRAL_m">Examples</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_INTEGRAL_m">Parameters</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_INTEGRAL_m">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">Continuous time systems
-                        palette
-                    </link>
-                </para>
+                <xref linkend="Defaultproperties_INTEGRAL_m">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_INTEGRAL_m">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_INTEGRAL_m">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Examples_INTEGRAL_m">Examples</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -109,10 +72,11 @@
             </mediaobject>
         </informalequation>
 
-        Where y0 is an initial condition and t0 is its corresponding time.
+      where y<subscript>0</subscript> is an initial condition and t<subscript>0</subscript> is
+      its corresponding time.
     </refsection>
     <refsection id="Dialogbox_INTEGRAL_m">
-        <title>Dialog box</title>
+        <title>Parameters</title>
         <para>The parameter dialog box allows you to define:</para>
         <itemizedlist>
             <listitem>
@@ -147,7 +111,8 @@
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/INTEGRAL_m_gui.gif" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../images/gui/INTEGRAL_m_gui.gif" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
                 </imageobject>
             </inlinemediaobject>
         </para>
@@ -197,6 +162,7 @@
                 <para/>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Defaultproperties_INTEGRAL_m">
         <title>Default properties</title>
@@ -226,9 +192,7 @@
                     <emphasis role="bold">regular inputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -236,31 +200,22 @@
                     <emphasis role="bold">regular outputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        inputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        outputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">continuous-time state:</emphasis>
-                    yes
+                    <emphasis role="bold">continuous-time state:</emphasis> yes
                 </para>
             </listitem>
             <listitem>
@@ -270,8 +225,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis>
-                    no
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -282,6 +236,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Interfacingfunction_INTEGRAL_m">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -294,16 +249,16 @@
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/integral_func.c</para>
+                SCI/modules/scicos_blocks/src/c/integral_func.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/integralz_func.c</para>
+                SCI/modules/scicos_blocks/src/c/integralz_func.c
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Examples_INTEGRAL_m">
         <title>Examples</title>
-        <refsection id="Example_INTEGRAL_m_1">
+        <refsect3 id="Example_INTEGRAL_m_1">
             <title>Example 1</title>
             <para>This sample model demonstrates how to use the integrator's state
                 port.
@@ -325,8 +280,8 @@ xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
 
-        </refsection>
-        <refsection id="Example_INTEGRAL_m_2">
+        </refsect3>
+        <refsect3 id="Example_INTEGRAL_m_2">
             <title>Example 2</title>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.zcos">
@@ -341,6 +296,6 @@ importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_2_Exam
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
             </para>
-        </refsection>
+        </refsect3>
     </refsection>
 </refentry>

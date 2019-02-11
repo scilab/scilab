@@ -105,5 +105,9 @@ public class PortWriter extends ScilabWriter {
         String[] style = new String[1];
         shared.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.STYLE, style);
         shared.stream.writeAttribute("style", style[0]);
+
+        String[] value = new String[1];
+        shared.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.LABEL, value);
+        shared.stream.writeAttribute("value", value[0]);
     }
 }

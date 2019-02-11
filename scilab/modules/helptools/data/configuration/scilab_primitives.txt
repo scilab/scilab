@@ -951,7 +951,6 @@ xmlValidate
 xmlWrite
 xmlXPath
 xname
-xpause
 xpoly
 xpolys
 xrect

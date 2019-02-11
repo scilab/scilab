@@ -5,20 +5,22 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
-
+// <-- NO CHECK REF -->
+// <-- NOT FIXED -->   6.0.0 -> 6.0.2
+//
 // <-- Non-regression test for bug 1262 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=1262
+// http://bugzilla.scilab.org/1262
 //
 // <-- Short Description -->
 //    Four errors of mfile2sci are reported
 //    (scilab-3.0-u-20050309) Linux+Windows+Solaris.
 //
-//    Briefly: 
+//    Briefly:
 //    1) end; end -> endend
 //    2) Initialization to empty matrix at wrong place
 //    3) Problem with useless [ or ]
@@ -26,25 +28,26 @@
 //
 //    Apply mfile2sci to the Matlab script given below.
 
-MFILECONTENTS=["A = rand(3,3);"
-	""
-	"for ii=1:3; for jj=1:3; disp(A(ii,jj)); end; end"
-	""
-	"k=0;"
-	"for ii=1:3;"
-	"   for jj=1:3;"
-	"      if k>2 then"
-	"         B(ii,jj) = A(ii,jj);"
-	"         k = 0;"
-	"      else"
-	"         k = k+1;"
-	"      end;"
-	"  end;"
-	"end;"
-	""
-	"C = [A [A [1;2;3]]];"
-	""
-	"B = -(A-A)"];
+MFILECONTENTS = [
+    "A = rand(3,3);"
+    ""
+    "for ii=1:3; for jj=1:3; disp(A(ii,jj)); end; end"
+    ""
+    "k=0;"
+    "for ii=1:3;"
+    "   for jj=1:3;"
+    "      if k>2 then"
+    "         B(ii,jj) = A(ii,jj);"
+    "         k = 0;"
+    "      else"
+    "         k = k+1;"
+    "      end;"
+    "  end;"
+    "end;"
+    ""
+    "C = [A [A [1;2;3]]];"
+    ""
+    "B = -(A-A)"];
 
 MFILE=TMPDIR+"/bug1262.m";
 SCIFILE=TMPDIR+"/bug1262.sci";
@@ -55,31 +58,32 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 
-SCIFILECONTENTSREF=["";
-	"// Display mode";
-	"mode(0);";
-	"";
-	"// Display warning for floating point exception";
-	"ieee(1);";
-	"";
-	"A = rand(3,3);"
-	""
-	"for ii = 1:3 for jj = 1:3 disp(A(ii,jj));end;end;"
-	""
-	"k = 0;"
-	"for ii = 1:3"
-	"  for jj = 1:3"
-	"    if k>2 then"
-	"      B(ii,jj) = A(ii,jj);"
-	"      k = 0;"
-	"    else"
-	"      k = k+1;"
-	"    end;"
-	"  end;"
-	"end;"
-	""
-	"C = [A,A,[1;2;3]];"
-	""
-	"B = -(A-A)"]
+SCIFILECONTENTSREF = [
+    ""
+    "// Display mode"
+    "mode(0);"
+    ""
+    "// Display warning for floating point exception"
+    "ieee(1);"
+    ""
+    "A = rand(3,3);"
+    ""
+    "for ii = 1:3 for jj = 1:3 disp(A(ii,jj));end;end;"
+    ""
+    "k = 0;"
+    "for ii = 1:3"
+    "  for jj = 1:3"
+    "    if k>2 then"
+    "      B(ii,jj) = A(ii,jj);"
+    "      k = 0;"
+    "    else"
+    "      k = k+1;"
+    "    end;"
+    "  end;"
+    "end;"
+    ""
+    "C = [A,A,[1;2;3]];"
+    ""
+    "B = -(A-A)"]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

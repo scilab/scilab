@@ -865,6 +865,9 @@
     <ClInclude Include="src\cpp\ast\run_SeqExp.hpp">
       <Filter>Header Files\ast</Filter>
     </ClInclude>
+    <ClInclude Include="includes\types\dtoa.h">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\expHistory.cpp">
@@ -1571,6 +1574,9 @@
     </ClCompile>
     <ClCompile Include="src\cpp\analysis\VisitWhileExp.cpp">
       <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\types\dtoa.c">
+      <Filter>Source Files\ast</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

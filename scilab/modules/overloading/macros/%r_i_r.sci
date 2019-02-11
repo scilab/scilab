@@ -20,11 +20,9 @@ function s1 = %r_i_r(varargin)
         sel = 1     // linearized indices
     end
     num = s2.num;
-    sz2 = size(num)
-    ind = list();
-    for i = sz2, ind($+1) = 1:i, end
     num(varargin(sel)) = s1.num
     den = s2.den
     den(varargin(sel)) = s1.den
+    den(num==0) = 1;
     s1 = rlist(num, den, s2.dt)
 endfunction

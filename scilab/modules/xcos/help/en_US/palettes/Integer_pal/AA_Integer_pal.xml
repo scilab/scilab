@@ -32,7 +32,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="BITCLEAR">
             <inlinemediaobject>
                 <imageobject>
@@ -131,19 +130,8 @@
                 </imageobject>
             </inlinemediaobject>
             </link>.
+    </refsection>
 
-        </para>
-    </refsection>
-    <refsection id="Module_Integer_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Integer_pal">
         <title>Description</title>
         <para>
@@ -152,63 +140,41 @@
             as well as common gates encountered in digital circuits.
         </para>
     </refsection>
-    <refsection id="Blocks_Integer_pal">
+    <refsection id="Blocks_Integer_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="BITCLEAR">BITCLEAR - Clear a Bit</link>
-                </para>
+                <link linkend="BITCLEAR">BITCLEAR</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="BITSET">BITSET - Set a Bit</link>
-                </para>
+                <link linkend="BITSET">BITSET</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CONVERT">CONVERT - Data Type Conversion</link>
-                </para>
+                <link linkend="CONVERT">CONVERT</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DFLIPFLOP">DFLIPFLOP - D Flip-Flop</link>
-                </para>
+                <link linkend="DFLIPFLOP">DFLIPFLOP</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DLATCH">DLATCH - Transparent D Latch Flip-Flop</link>
-                </para>
+                <link linkend="DLATCH">DLATCH</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="EXTRACTBITS">EXTRACTBITS - Bits Extraction</link>
-                </para>
+                <link linkend="EXTRACTBITS">EXTRACTBITS</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INTMUL">INTMUL - Integer Matrix Multiplication</link>
-                </para>
+                <link linkend="INTMUL">INTMUL</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="JKFLIPFLOP">JKFLIPFLOP - JK Flip-Flop</link>
-                </para>
+                <link linkend="JKFLIPFLOP">JKFLIPFLOP</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="LOGIC">LOGIC - Combinatorial Logic</link>
-                </para>
+                <link linkend="LOGIC">LOGIC</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SHIFT">SHIFT - Shift/Rotates Bits</link>
-                </para>
+                <link linkend="SHIFT">SHIFT </link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SRFLIPFLOP">SRFLIPFLOP - SR Flip-Flop</link>
-                </para>
+                <link linkend="SRFLIPFLOP">SRFLIPFLOP</link>
             </listitem>
         </itemizedlist>
     </refsection>

@@ -21,83 +21,42 @@
 *
 * See the file ./license.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CLSS" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="CLSS" xml:lang="ja">
     <refnamediv>
         <refname>CLSS</refname>
         <refpurpose>連続系状態空間システム</refpurpose>
     </refnamediv>
     <refsection>
         <title>ブロックのスクリーンショット</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/CLSS.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/CLSS.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_CLSS">
         <title>内容</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLSS">連続系状態空間システム</link>
-                </para>
+                <xref linkend="Description_CLSS">説明</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CLSS">パレット</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CLSS">説明</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_CLSS">ダイアログボックス</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CLSS">デフォルト
-                                プロパティ
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CLSS">インターフェイス用
-                                関数
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_CLSS">計算用関数
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_CLSS">例</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_CLSS">ダイアログボックス</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_CLSS">
-        <title>パレット</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">連続時間システムパレット
-                    </link>
-                </para>
+                <xref linkend="Defaultproperties_CLSS">デフォルトプロパティ</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_CLSS">インターフェイス用関数</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_CLSS">計算用関数</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_CLSS">例</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -128,13 +87,13 @@
     </refsection>
     <refsection id="Dialogbox_CLSS">
         <title>ダイアログボックス</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/CLSS_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/CLSS_gui.gif"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -210,8 +169,7 @@
                     <emphasis role="bold">標準入力:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- ポート 1 : 大きさ [1,1] / 1型
-                    </emphasis>
+                    <emphasis role="bold">- ポート 1 : 大きさ [1,1] / 1型 </emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -219,28 +177,22 @@
                     <emphasis role="bold">標準出力:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- ポート 1 : 大きさ [1,1] / 1型
-                    </emphasis>
+                    <emphasis role="bold">- ポート 1 : 大きさ [1,1] / 1型 </emphasis>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">アクティベーション入力の数/大きさ:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">アクティベーション入力の数/大きさ:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">アクティベーション出力の数/大きさ:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">アクティベーション出力の数/大きさ: </emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">連続時間状態量:</emphasis>
-                    yes
+                    <emphasis role="bold">連続時間状態量:</emphasis> yes
                 </para>
             </listitem>
             <listitem>
@@ -250,8 +202,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis>
-                    no
+                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -259,6 +210,23 @@
                     <emphasis role="bold">計算用関数の名前:</emphasis>
                     <emphasis role="italic">csslti4</emphasis>
                 </para>
+            </listitem>
+        </itemizedlist>
+        <para/>
+    </refsection>
+    <refsection id="Interfacingfunction_CLSS">
+        <title>インターフェイス用関数</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/Linear/CLSS.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_CLSS">
+        <title>計算用関数</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/csslti4.c (Type 4)</para>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -303,12 +271,14 @@ Ri_L + L \frac{\mathrm{d} i_L }{\mathrm{d} t} + v_C = u_0(t)
 \mbox{$x_1 = i_L$}\\
 \mbox{$x_2 = v_C$}\\
 \end{array}
+
 then
+
 \begin{array}{c}
 \mbox{$\dot{x_1} = \frac{\mathrm{d} i_L }{\mathrm{d} t}$}\\
 \mbox{$\dot{x_2} = \frac{\mathrm{d} v_C }{\mathrm{d} t}$}
 \end{array}
-]]></latex>
+      ]]></latex>
         </para>
         <para>つまり</para>
         <para>
@@ -338,7 +308,7 @@ then
 +
 \begin{bmatrix}\frac{1}{L}\\0\end{bmatrix}
 u_0(t)
-]]></latex>
+      ]]></latex>
         </para>
         <para>必要な出力方程式は</para>
         <para>
@@ -348,7 +318,7 @@ y(t) = \begin{bmatrix} 1 & 0 \end{bmatrix} \cdot \begin{bmatrix} x_{1} \\ x_{2} 
         </para>
         <para>以下のダイアグラムはXcos上でモデル化されたこれらの方程式を示します.
             ただし,
-            R=10Ω, L=5 mΗ and C=0.1µF;
+            R= 10 Ω, L= 5 mΗ and C= 0.1 µF;
             状態変数初期値は x1=0 および x2=0.5です.
         </para>
         <para>
@@ -368,21 +338,5 @@ importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/CLSS_Example.zcos
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
         </para>
-    </refsection>
-    <refsection id="Interfacingfunction_CLSS">
-        <title>インターフェイス用関数</title>
-        <itemizedlist>
-            <listitem>
-                <para>SCI/modules/scicos_blocks/macros/Linear/CLSS.sci</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Computationalfunction_CLSS">
-        <title>計算用関数</title>
-        <itemizedlist>
-            <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/csslti4.c (Type 4)</para>
-            </listitem>
-        </itemizedlist>
     </refsection>
 </refentry>

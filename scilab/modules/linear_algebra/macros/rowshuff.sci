@@ -23,12 +23,18 @@ function [Ws,Fs1]=rowshuff(Fs,alfa)
     if RHS==1 then
         alfa=0;
     end
+    Fs1 = Fs;
     [E,A]=pen2ea(Fs);
     //     E is non singular: --> exit
-    if rcond(E) >= 1.d-5 then W=eye(E);Fs1=Fs;return;end
+    if rcond(E) >= 1.d-5 then   // includes the Fs==[] case
+        W = eye(E);
+        return
+    end
     //     E is singular:
-    s=poly(0,"s");tol=1.d-10*(norm(E,1)+norm(A,1));
-    [n,n]=size(E);Ws=eye(n,n);
+    s = poly(0,"s");
+    tol = 1.d-10*(norm(E,1)+norm(A,1));
+    [n,n] = size(E);
+    Ws = eye(n,n);
     //
     rk=0;i=0;
     while rk  < n
@@ -37,7 +43,9 @@ function [Ws,Fs1]=rowshuff(Fs,alfa)
             W=[];
         end
         [W,rk]=rowcomp(E);
-        if rk==n then return;end
+        if rk==n then
+            return
+        end
         W1=W(1:rk,:);W2=W(rk+1:n,:);
         E=[W1*E;
         -W2*A];

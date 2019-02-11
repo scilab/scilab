@@ -33,12 +33,13 @@ int sci_mpi_recv(char *fname, void* pvApiCtx)
     double Tag = 0;
     double Rank = 0;
     MPI_Status status;
+    MPI_Comm comm = NULL;
 
     CheckInputArgument(pvApiCtx, 2, 3);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
     // if no optional "comm" is given, return MPI_COMM_WORLD
-    MPI_Comm comm = getOptionalComm(pvApiCtx);
+    comm = getOptionalComm(pvApiCtx);
     if (comm == NULL)
     {
         Scierror(999, _("%s: Wrong type for input argument #%s: An MPI communicator expected.\n"), fname, "comm");

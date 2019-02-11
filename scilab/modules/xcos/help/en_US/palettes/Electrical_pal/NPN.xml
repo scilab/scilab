@@ -21,101 +21,62 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="NPN">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="NPN" xml:lang="en_US">
     <refnamediv>
         <refname>NPN</refname>
         <refpurpose>NPN transistor</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/NPN.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/NPN.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_NPN">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="NPN">NPN transistor</link>
-                </para>
+                <xref linkend="Description_NPN">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_NPN">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_NPN">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_NPN">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_NPN">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_NPN">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="NPN">Modelica model</link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_NPN">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_NPN">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_NPN">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_NPN">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="NPN">Modelica model</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_NPN">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_NPN">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Electrical_pal">Electrical.cosf - Electrical toolbox</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_NPN">
         <title>Description</title>
         <para>
             This model is a simple model of a bipolar NPN junction transistor according to Ebers-Moll.
         </para>
-        <para>
-        </para>
     </refsection>
     <refsection id="Dialogbox_NPN">
-        <title>Dialog box</title>
+        <title>Parameters</title>
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../images/gui/NPN_gui.gif" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/gui/NPN_gui.gif"/>
                 </imageobject>
             </inlinemediaobject>
         </para>
-        <para>
-        </para>
-        <para>
-        </para>
+        <para/>
         <informaltable border="1" cellpadding="3">
             <tr>
                 <td align="left">Parameter</td>
@@ -275,8 +236,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -288,8 +247,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -301,8 +258,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -314,8 +269,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -327,8 +280,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -340,8 +291,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -353,8 +302,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -366,8 +313,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -379,8 +324,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -392,8 +335,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -405,8 +346,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -418,8 +357,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -431,8 +368,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -444,8 +379,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -457,8 +390,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -470,8 +401,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -483,8 +412,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -495,6 +422,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_NPN">
         <title>Interfacing function</title>
@@ -512,13 +440,11 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_NPN">
+    <refsection id="Seealso_NPN" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="PNP">PNP - PNP transistor</link>
-                </para>
+                <link linkend="PNP">PNP</link>
             </listitem>
         </itemizedlist>
     </refsection>

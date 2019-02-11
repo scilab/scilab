@@ -27,6 +27,9 @@
 */
 
 // +
+types::InternalType* GenericUnaryPlus(types::InternalType *_pRightOperand);
+
+// +
 types::InternalType* GenericPlus(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
 // -

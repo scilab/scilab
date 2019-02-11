@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,84 +13,47 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATCATH" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" 
+		  xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" 
+		  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" 
+		  xmlns:scilab="http://www.scilab.org" xml:id="MATCATH" xml:lang="fr_FR">
     <refnamediv>
         <refname>MATCATH</refname>
         <refpurpose>Concaténation horizontale</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/MATCATH.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata align="center" fileref="../../../../images/palettes/MATCATH.png"/>
+			</imageobject>
+		</inlinemediaobject>
     </refsection>
     <refsection id="Contents_MATCATH">
         <title>Contenu</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="MATCATH">Concaténation horizontale</link>
-                </para>
-            </listitem>
-            <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MATCATH">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MATCATH">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_MATCATH">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="MATCATH">Exemple</link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MATCATH">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MATCATH">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_MATCATH">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_MATCATH">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_MATCATH">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Matrix_pal">Palette Opérations matricielles</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+		<itemizedlist>
+			<listitem>
+				<xref linkend="Description_MATCATH">Description</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Dialogbox_MATCATH">Paramètres</xref>
+			</listitem>
+			<listitem>
+				<link linkend="MATCATH">Exemple</link>
+			</listitem>
+			<listitem>
+				<xref linkend="Defaultproperties_MATCATH">Propriétés par défaut</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Interfacingfunction_MATCATH">Fonction d'interfaçage</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Computationalfunction_MATCATH">Fonction de calcul</xref>
+			</listitem>
+			<listitem>
+				<xref linkend="Seealso_MATCATH">Voir aussi</xref>
+			</listitem>
+		</itemizedlist>
     </refsection>
     <refsection id="Description_MATCATH">
         <title>Description</title>
@@ -101,21 +64,21 @@
             <emphasis role="bold">Number of input</emphasis>.
         </para>
         <para>
-            La sortie est une matrice Mx(N1+N2+...+Nn), où les N1,N2,...,Nn sont les nombres de colonnes des matrices d'entrée, et M le nombre de lignes.
+            La sortie est une matrice Mx(N1+N2+...+Nn), où les N1,N2,...,Nn sont les nombres de
+			colonnes des matrices d'entrée, et M le nombre de lignes.
         </para>
         <para>L'équivalent de MATCATH dans Scilab est y=[U1 U2 ... Un].</para>
         <para/>
     </refsection>
     <refsection id="Dialogbox_MATCATH">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/MATCATH_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Paramètres</title>
+		<inlinemediaobject>
+			<imageobject>
+				<imagedata fileref="../../../../images/gui/MATCATH_gui.gif"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+			</imageobject>
+		</inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -211,6 +174,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+		<para/>
     </refsection>
     <refsection id="Interfacingfunction_MATCATH">
         <title>Fonction d'interfaçage</title>
@@ -224,10 +188,10 @@
         <title>Fonctions de calcul</title>
         <itemizedlist>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/mat_cath.c</para>
+                SCI/modules/scicos_blocks/src/c/mat_cath.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matz_cath.c</para>
+                SCI/modules/scicos_blocks/src/c/matz_cath.c
             </listitem>
         </itemizedlist>
     </refsection>
@@ -241,13 +205,11 @@
             </inlinemediaobject>
         </link>
     </refsection>
-    <refsection id="Seealso_MATCATH">
+    <refsection id="Seealso_MATCATH" role="see also">
         <title>Voir aussi</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATCATV">MATCATV - Concaténation Verticale (Bloc Xcos)</link>
-                </para>
+                <link linkend="MATCATV">MATCATV</link>
             </listitem>
         </itemizedlist>
     </refsection>

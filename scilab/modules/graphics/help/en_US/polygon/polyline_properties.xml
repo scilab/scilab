@@ -423,7 +423,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>datatip_display_mode: </term>
+                <term>datatip_display_mode:</term>
                 <listitem>
                     <para>
                         The value can be one of the following:
@@ -448,10 +448,26 @@
                 <term>display_function: </term>
                 <listitem>
                     <para>
-                        A character string that contains a function name. This function syntax must be <literal>str=fun(datatipHandle)</literal> where <literal>datatipHandle</literal> is the handle of the datatip to be displayed. This function must return a string or a vector of strings in str.
+                        A character string that contains a function name. This function syntax must
+                        be <literal>str=fun(datatipHandle)</literal> where
+                        <literal>datatipHandle</literal> is the handle of the datatip to be displayed.
+                        This function must return a string or a vector of strings in str.
                     </para>
                     <para>
                         This function can be overloaded by setting the similar property on a datatip itself.
+                    </para>
+                    <para>
+                        Some datatips formatting functions are predefined:
+                        <table border="1">
+                          <tr valign="top">
+                            <th align="left">polar_datatip_display()</th>
+                            <td>: set by polarplot()</td>
+                          </tr>
+                          <tr valign="top">
+                            <th align="left">formatBodePhaseTip()</th>
+                            <td>: set by bode()</td>
+                          </tr>
+                        </table>
                     </para>
                 </listitem>
             </varlistentry>

@@ -21,70 +21,44 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MCLOCK_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="MCLOCK_f" xml:lang="en_US">
     <refnamediv>
         <refname>MCLOCK_f</refname>
-        <refpurpose>MCLOCK_f title</refpurpose>
+        <refpurpose>double clock at two multiple output frequencies</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/MCLOCK_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/MCLOCK_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_MCLOCK_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MCLOCK_f">Multiple Frequencies f/n</link>
-                </para>
+                <xref linkend="Description_MCLOCK_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MCLOCK_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MCLOCK_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_MCLOCK_f">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MCLOCK_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MCLOCK_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_MCLOCK_f">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_MCLOCK_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_MCLOCK_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_MCLOCK_f">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_MCLOCK_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Signalprocessing_pal">Event handling palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_MCLOCK_f">
         <title>Description</title>
         <para>
@@ -94,16 +68,14 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_MCLOCK_f">
-        <title>Dialog box</title>
+        <title>Parameters</title>
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../images/gui/MCLOCK_f_gui.gif" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/gui/MCLOCK_f_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
                 </imageobject>
             </inlinemediaobject>
-        </para>
-        <para>
-
         </para>
         <itemizedlist>
             <listitem>
@@ -177,6 +149,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_MCLOCK_f">
         <title>Interfacing function</title>
@@ -187,11 +160,11 @@
         </itemizedlist>
     </refsection>
     <refsection id="Example_MCLOCK_f">
-        <title>MClock example</title>
+        <title>Example</title>
         <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/MCLOCK_f_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/events_pal/MCLOCK_f_Example.zcos" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/events_pal/MCLOCK_f_Example.zcos"/>
                 </imageobject>
             </inlinemediaobject>
         </link>

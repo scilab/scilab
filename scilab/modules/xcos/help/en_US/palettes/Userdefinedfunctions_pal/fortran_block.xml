@@ -21,90 +21,57 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fortran_block">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="fortran_block" xml:lang="en_US">
     <refnamediv>
         <refname>fortran_block</refname>
         <refpurpose>Fortran</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/fortran_block.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/fortran_block.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_fortran_block">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="fortran_block">Fortran</link>
-                </para>
+                <xref linkend="Description_fortran_block">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_fortran_block">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_fortran_block">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_fortran_block">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_fortran_block">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_fortran_block">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_fortran_block">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_fortran_block">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_fortran_block">Interfacing function</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_fortran_block">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Userdefinedfunctions_pal">User defined functions palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_fortran_block">
         <title>Description</title>
         <para>
-            This block creates skeleton of the FORTRAN computing function. Also it
-            creates library file and object files.
-
+            This block creates skeleton of the FORTRAN computing function. Also it creates
+            library file and object files.
         </para>
     </refsection>
     <refsection id="Dialogbox_fortran_block">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/fortran_block_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/fortran_block_gui.gif"
+                            align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -206,12 +173,14 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Interfacingfunction_fortran_block">
         <title>Interfacing function</title>
         <itemizedlist>
             <listitem>
-                <para> SCI/modules/scicos_blocks/macros/Misc/fortran_block.sci</para>
+                <para>SCI/modules/scicos_blocks/macros/Misc/fortran_block.sci</para>
             </listitem>
         </itemizedlist>
     </refsection>

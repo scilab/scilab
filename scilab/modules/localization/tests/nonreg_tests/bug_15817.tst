@@ -6,6 +6,7 @@
 // =============================================================================
 // <-- MACOSX ONLY -->
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 15817 -->
 //
@@ -15,4 +16,6 @@
 // <-- Short Description -->
 // ascii(c); with c>=128 crashes on OSX
 
-ascii(255)
+// ascii(128)=="€" is false under Linux and OSX hence we test only 
+// visible chars starting from ascii code 161
+assert_checkequal(ascii([161:255]),"¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ")

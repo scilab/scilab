@@ -25,7 +25,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
         xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-        xmlns:scilab="http://www.scilab.org" xml:id="END_c">
+        xmlns:scilab="http://www.scilab.org" xml:id="END_c" xml:lang="en_US">
     <refnamediv>
         <refname>END_c</refname>
         <refpurpose>END_c block</refpurpose>
@@ -42,45 +42,42 @@
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-              <xref linkend="Description_END_c">Description</xref>
+                <xref linkend="Description_END_c">Description</xref>
             </listitem>
             <listitem>
-              <xref linkend="Dialogbox_END_c">Parameters</xref>
+                <xref linkend="Dialogbox_END_c">Parameters</xref>
             </listitem>
             <listitem>
-              <xref linkend="Defaultproperties_END_c">Default properties</xref>
+                <xref linkend="Defaultproperties_END_c">Default properties</xref>
             </listitem>
             <listitem>
-              <xref linkend="Interfacingfunction_END_c">Interfacing function</xref>
+                <xref linkend="Interfacingfunction_END_c">Interfacing function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Computationalfunction_END_c">Computational function</xref>
+                <xref linkend="Computationalfunction_END_c">Computational function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Example_END_c">Example</xref>
+                <xref linkend="Example_END_c">Example</xref>
             </listitem>
             <listitem>
-              <xref linkend="Seealso_END_c">See also</xref>
+                <xref linkend="Seealso_END_c">See also</xref>
             </listitem>
         </itemizedlist>
-        <para/>
     </refsection>
 
     <refsection id="Description_END_c">
         <title>Description</title>
-        <para>
-          That block increases the current time to the final integration time of
-          the simulation when it is activated : T<subscript>f</subscript>=T<subscript>cur</subscript>
+        <para>That block increases the current time to the final integration time
+            of the simulation when it is activated :
         </para>
+        <latex>$$T_f = T_{cur}$$</latex>
         <para>
-            with <emphasis role="italic">T<subscript>cur</subscript></emphasis> the activation date
-            of the block and <emphasis role="bold">T<subscript>f</subscript></emphasis> the final
-            integration time defined in the Setup item of the simulate Menu (scs_m.props.tf).
+            with <emphasis role="bold">Tcur</emphasis> the activation date of
+            the block and <emphasis role="bold">Tf</emphasis> the final integration
+            time defined in the in the Setup item of the simulate Menu
+            (scs_m.props.tf).
         </para>
-        <para>
-          The 'Final simulation time' item (on diagram settings) always ends the simulation
-          at the specified time. This block should be configured to end the simulation before
-          this setting.
+        <para>Note that the 'Final simulation time' item (on diagram settings) always end the simulation at the specified time. This block should be configured to end the simulation before this setting.
         </para>
     </refsection>
 
@@ -166,6 +163,17 @@
         <para/>
     </refsection>
 
+    <refsection id="Example_END_c">
+        <title>Example</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/END_c_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/sinks_pal/END_c_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
+    </refsection>
+
     <refsection id="Interfacingfunction_END_c">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -182,17 +190,6 @@
             </listitem>
         </itemizedlist>
         <para/>
-    </refsection>
-
-    <refsection id="Example_END_c">
-        <title>Example</title>
-        <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/END_c_Example.zcos">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/sinks_pal/END_c_Example.zcos" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </link>
     </refsection>
     <refsection id="Seealso_END_c" role="see also">
         <title>See also</title>

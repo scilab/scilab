@@ -22,92 +22,53 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SHIFT">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="SHIFT" xml:lang="en_US">
     <refnamediv>
         <refname>SHIFT</refname>
         <refpurpose>Shift/Rotates Bits</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/SHIFT.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/SHIFT.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_SHIFT">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="SHIFT">Shift/Rotate Bits</link>
-                </para>
+                <xref linkend="Description_SHIFT">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_SHIFT">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_SHIFT">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Data_Type_SHIFT">Data types</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_SHIFT">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_SHIFT">Default
-                                properties
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_SHIFT">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_SHIFT">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_SHIFT">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_SHIFT">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Data_Type_SHIFT">Data types</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_SHIFT">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_SHIFT">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_SHIFT">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_SHIFT">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_SHIFT">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_SHIFT">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_SHIFT">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Integer_pal">Integer palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_SHIFT">
         <title>Description</title>
         <para>
@@ -236,7 +197,7 @@ spline at First.s down 0.25 then right then right 1.125 then right then up 0.375
                     and the one bit rotation left gives:
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../images/palettes/integer_pal/shift_rotate_left.gif" valign="middle"/>
+                            <imagedata fileref="../../../images/palettes/integer_pal/shift_rotate_left.gif"/>
                         </imageobject>
                         <textobject>
                             <programlisting role="pic"><![CDATA[
@@ -269,13 +230,9 @@ spline at Last.s down 0.25 then left then left 1.125 then left then up 0.375 the
         </itemizedlist>
         <para>
             The shift register makes a multiplication by
-            <literal>
-                2<superscript>n</superscript>
-            </literal>
+            <literal>2<superscript>n</superscript></literal>
             (arithmetic left shift) or an integer division by
-            <literal>
-                2<superscript>n</superscript>
-            </literal>
+            <literal>2<superscript>n</superscript></literal>
             (arithmetic right shift), where <literal>n</literal> is the number of bit shifts.
             It can also be used to serialize data or to create a memory buffer.
         </para>
@@ -290,7 +247,6 @@ spline at Last.s down 0.25 then left then left 1.125 then left then up 0.375 the
                 <para>
                     Input : scalar. All Scilab's integer type (<emphasis role="bold">Data Type</emphasis> parameter).
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
@@ -299,16 +255,15 @@ spline at Last.s down 0.25 then left then left 1.125 then left then up 0.375 the
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Dialogbox_SHIFT">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../gui/integer_pal/en_US/SHIFT_gui.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../gui/integer_pal/en_US/SHIFT_gui.png" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -442,29 +397,20 @@ spline at Last.s down 0.25 then left then left 1.125 then left then up 0.375 the
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Example_SHIFT">
         <title>Example</title>
         <para>
             In this example the Super block is a binary counter with 3 bits output. In order to obtain the corresponding decimal value,
             the outputs
-            <emphasis><literal>
-                    Q<subscript>1</subscript>
-                </literal>
-            </emphasis>
-            and
-            <emphasis><literal>
-                    Q<subscript>2</subscript>
-                </literal>
-            </emphasis>
+            <emphasis><literal>Q<subscript>1</subscript></literal></emphasis> and
+            <emphasis><literal>Q<subscript>2</subscript></literal></emphasis>
             of the counter are respectively shifted left
             of one bit and of two bits. Finally the
-            <emphasis><literal>
-                    Q<subscript>0</subscript>
-                </literal>
-            </emphasis>
-            output,
-            and the shifted outputs are added.
+            <emphasis><literal>Q<subscript>0</subscript></literal></emphasis>
+            output, and the shifted outputs are added.
         </para>
         <para>
             To better see the output change, set the parameter <emphasis>Real Time Scale</emphasis> to 0.5
@@ -474,7 +420,7 @@ spline at Last.s down 0.25 then left then left 1.125 then left then up 0.375 the
             <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/SHIFT_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/integer_pal/en_US/SHIFT_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/integer_pal/en_US/SHIFT_en_US.zcos" align="center"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -492,6 +438,7 @@ spline at Last.s down 0.25 then left then left 1.125 then left then up 0.375 the
             </link>
         </para>
     </refsection>
+
     <refsection id="Interfacingfunction_SHIFT">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -506,52 +453,53 @@ spline at Last.s down 0.25 then left then left 1.125 then left then up 0.375 the
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_32_LA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_32_LA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_32_LC.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_32_LC.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_32_RA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_32_RA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_u32_RA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_u32_RA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_32_RC.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_32_RC.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_16_LA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_16_LA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_16_LC.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_16_LC.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_16_RA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_16_RA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_u16_RA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_u16_RA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_16_RC.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_16_RC.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_8_LA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_8_LA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_8_LC.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_8_LC.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_8_RA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_8_RA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_u8_RA.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_u8_RA.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/shift_8_RC.c</para>
+                SCI/modules/scicos_blocks/src/c/shift_8_RC.c
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection role="see also" id="Seealso_SHIFT">
         <title>See also</title>
         <itemizedlist>

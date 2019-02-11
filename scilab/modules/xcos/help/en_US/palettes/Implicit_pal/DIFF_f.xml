@@ -21,96 +21,56 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="DIFF_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="DIFF_f" xml:lang="en_US">
     <refnamediv>
         <refname>DIFF_f</refname>
         <refpurpose>Derivative</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/DIFF_f.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/DIFF_f.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_DIFF_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="DIFF_f">Derivative</link>
-                </para>
+                <xref linkend="Description_DIFF_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_DIFF_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_DIFF_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_DIFF_f">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_DIFF_f">Default
-                                properties
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_DIFF_f">Interfacing
-                                function
-                            </xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_DIFF_f">Computational
-                                function
-                            </xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_DIFF_f">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_DIFF_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_DIFF_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_DIFF_f">Computational function</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_DIFF_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Implicit_pal">Implicit palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_DIFF_f">
         <title>Description</title>
         <para>This block computes the derivative of the input.</para>
-        <para/>
     </refsection>
     <refsection id="Dialogbox_DIFF_f">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/DIFF_f_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/gui/DIFF_f_gui.gif" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -156,9 +116,7 @@
                     <emphasis role="bold">regular inputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -166,31 +124,22 @@
                     <emphasis role="bold">regular outputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [1,1] / type
-                        1
-                    </emphasis>
+                    <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        inputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation inputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">number/sizes of activation
-                        outputs:
-                    </emphasis>
-                    0
+                    <emphasis role="bold">number/sizes of activation outputs:</emphasis> 0
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">continuous-time state:</emphasis>
-                    yes
+                    <emphasis role="bold">continuous-time state:</emphasis> yes
                 </para>
             </listitem>
             <listitem>
@@ -200,8 +149,7 @@
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">object discrete-time state:</emphasis>
-                    no
+                    <emphasis role="bold">object discrete-time state:</emphasis> no
                 </para>
             </listitem>
             <listitem>
@@ -211,7 +159,22 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
+    <refsection id="Example_DIFF_f">
+        <title>
+            Example: derivative of <literal>(x-10)^3</literal>
+        </title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/implicit_pal/DIFF_f_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/implicit_pal/DIFF_f_Example.zcos"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
+    </refsection>
+
     <refsection id="Interfacingfunction_DIFF_f">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -230,25 +193,11 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_DIFF_f">
-        <title>
-            Example: derivative of <literal>(x-10)^3</literal>
-        </title>
-        <link type="scilab" linkend="scilab.xcos/xcos/examples/implicit_pal/DIFF_f_Example.zcos">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/implicit_pal/DIFF_f_Example.zcos" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </link>
-    </refsection>
-    <refsection id="Seealso_DIFF_f">
+    <refsection id="Seealso_DIFF_f" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CONSTRAINT_c">CONSTRAINT_c</link>
-                </para>
+                <link linkend="CONSTRAINT_c">CONSTRAINT_c</link>
             </listitem>
         </itemizedlist>
     </refsection>

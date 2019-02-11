@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -88,57 +88,33 @@
             </link>.
         </para>
     </refsection>
-    <refsection id="Module_Portaction_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Portaction_pal">
         <title>Description</title>
         <para>La palette Port &amp; Sous-systèmes contient les blocs de création de sous-systèmes.</para>
     </refsection>
-    <refsection id="Blocks_Portaction_pal">
+    <refsection id="Blocks_Portaction_pal" role="see also">
         <title>Blocs</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLKINV_f">CLKINV_f — Port d'activation d'entrée. Sélection d'événement</link>
-                </para>
+                <link linkend="CLKINV_f">CLKINV_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CLKOUTV_f">CLKOUTV_f — Port d'activation de sortie. Sélection d'événement.</link>
-                </para>
+                <link linkend="CLKOUTV_f">CLKOUTV_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="IN_f">IN_f - Port d'entrée régulier</link>
-                </para>
+                <link linkend="IN_f">IN_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INIMPL_f">INIMPL_f — Port d'entrée implicite.</link>
-                </para>
+                <link linkend="INIMPL_f">INIMPL_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="OUTIMPL_f">OUTIMPL_f — Port de sortie implicite</link>
-                </para>
+                <link linkend="OUTIMPL_f">OUTIMPL_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="OUT_f">OUT_f - Port de sortie régulier</link>
-                </para>
+                <link linkend="OUT_f">OUT_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SUPER_f">SUPER_f — Super bloc</link>
-                </para>
+                <link linkend="SUPER_f">SUPER_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

@@ -1,3 +1,11 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005 - INRIA - Farid BELAHCENE
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 1629 -->
 //
 // <-- Bugzilla URL -->
@@ -25,8 +33,6 @@
 //    ---------------------
 //    Note: without the nargin test surrounding the structure field assignments, the
 // ...
-// Copyright INRIA
-// Scilab Project - F. Belahcene
 MFILECONTENTS=["function out=bug1629(par)";
 		"if (nargin<2)";
 		"    par.a = 2;";
@@ -43,8 +49,7 @@ MFILECONTENTS=["function out=bug1629(par)";
 		"    par.o = 8;";
 		"    par.u = 0;";
 		"end"]
- MFILECONTENTS  =
- 
+ MFILECONTENTS  = 
 !function out=bug1629(par)  !
 !                           !
 !if (nargin<2)              !
@@ -77,20 +82,18 @@ MFILECONTENTS=["function out=bug1629(par)";
 !                           !
 !end                        !
 MFILE=TMPDIR+"/bug1629.m"
- MFILE  =
- 
- TMPDIR/bug1629.m   
+ MFILE  = 
+ TMPDIR/bug1629.m
 SCIFILE=TMPDIR+"/bug1629.sci"
- SCIFILE  =
- 
- TMPDIR/bug1629.sci   
+ SCIFILE  = 
+ TMPDIR/bug1629.sci
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR,%f,%t);
   ****** Beginning of mfile2sci() session ******
   File to convert: TMPDIR/bug1629.m
   Result file path: TMPDIR/
   Recursive mode: OFF
-  Only double values used in M-file: NO
+  Only double values used in M-file: YES
   Verbose mode: 3
   Generate formatted code: NO
   M-file reading...
@@ -133,8 +136,7 @@ SCIFILECONTENTSREF=["function [out] = bug1629(par)";
 		"  par.u = 0;";
 		"end;";
 		"endfunction"]
- SCIFILECONTENTSREF  =
- 
+ SCIFILECONTENTSREF  = 
 !function [out] = bug1629(par)                                      !
 !                                                                   !
 !                                                                   !

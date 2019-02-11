@@ -5,10 +5,12 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
-
+// <-- NO CHECK REF -->
+// <-- NOT FIXED -->    6.0.0 -> 6.0.2
+//
 // <-- Non-regression test for bug 853 -->
 //
 // <-- Bugzilla URL -->
@@ -23,9 +25,6 @@
 //    (CO.R.P.A.B.O.T.)
 //    % Salesse Robin UMR6152 June 17th 2004
 //
-//
-//
-//
 //    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //    % Nettoyage du workspace
 //    clear all;
@@ -33,7 +32,7 @@
 //    % Nettoyage du Command Window
 //    clc;
 //
-//    % Lancement du chronom�tre
+//    % Lancement du chronomètre
 //    tic;
 // ...
 
@@ -51,17 +50,17 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
-		"";
-		"dir_name = ""path"";";
-		"dir_target = mtlb_dir(dir_name);";
-		"for i = 1:10";
-		"  RC(1,i) = dir_name+""\""+dir_target(i).name;";
-		"end;"];
+    "// Display mode";
+    "mode(0);";
+    "";
+    "// Display warning for floating point exception";
+    "ieee(1);";
+    "";
+    "dir_name = ""path"";";
+    "dir_target = mtlb_dir(dir_name);";
+    "for i = 1:10";
+    "  RC(1,i) = dir_name+""\""+dir_target(i).name;";
+    "end;"];
 
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

@@ -22,90 +22,53 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="BITCLEAR" xml:lang="en_US" xmln.mml="http://www.w3.org/1998/Math/MathML">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xmln.mml="http://www.w3.org/1998/Math/MathML" xml:id="BITCLEAR" xml:lang="en_US">
     <refnamediv>
         <refname>BITCLEAR</refname>
         <refpurpose>Clear a Bit</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/BITCLEAR.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/BITCLEAR.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_BITCLEAR">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="BITCLEAR">Clear a Bit</link>
-                </para>
+                <xref linkend="Description_BITCLEAR">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_BITCLEAR">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_BITCLEAR">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Data_Type_BITCLEAR">Data types</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_BITCLEAR">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_BITCLEAR">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_BITCLEAR">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_BITCLEAR">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_BITCLEAR">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_BITCLEAR">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Data_Type_BITCLEAR">Data types</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_BITCLEAR">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_BITCLEAR">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_BITCLEAR">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_BITCLEAR">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_BITCLEAR">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_BITCLEAR">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_BITCLEAR">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Integer_pal">Integer palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_BITCLEAR">
         <title>Description</title>
         <para>
@@ -115,7 +78,7 @@
             summarized by this expression:
         </para>
         <para>
-            <latex><![CDATA[ Output=Input \wedge Mask]]></latex>
+            <emphasis>Sortie = Entrée ∧ Masque</emphasis>
         </para>
         <para>
             i.e. a bitwise <literal>AND</literal> between <literal>Input</literal> and
@@ -124,6 +87,7 @@
             for the other bits.
         </para>
     </refsection>
+
     <refsection id="Data_Type_BITCLEAR">
         <title>Data types</title>
         <para>
@@ -143,15 +107,13 @@
         </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_BITCLEAR">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../gui/integer_pal/en_US/BITCLEAR_gui.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/integer_pal/en_US/BITCLEAR_gui.png" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -259,7 +221,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Example_BITCLEAR">
         <title>Example</title>
         <para>
@@ -269,7 +233,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/BITCLEAR_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/integer_pal/en_US/BITCLEAR_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/integer_pal/en_US/BITCLEAR_en_US.zcos" align="center"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -299,6 +263,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection role="see also" id="Seealso_BITCLEAR">
         <title>See also</title>
         <itemizedlist>

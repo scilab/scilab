@@ -22,85 +22,50 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SAWTOOTH_f" xml:lang="en_US">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="SAWTOOTH_f" xml:lang="en_US">
     <refnamediv>
         <refname>SAWTOOTH_f</refname>
         <refpurpose>Sawtooth generator</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/SAWTOOTH_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/SAWTOOTH_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_SAWTOOTH_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="SAWTOOTH_f">Sawtooth generator</link>
-                </para>
+                <xref linkend="Description_SAWTOOTH_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_SAWTOOTH_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_SAWTOOTH_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Datatype_SAWTOOTH_f">Data types</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_SAWTOOTH_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_SAWTOOTH_f">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_SAWTOOTH_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_SAWTOOTH_f">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_SAWTOOTH_f">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Datatype_SAWTOOTH_f">Data types</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_SAWTOOTH_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_SAWTOOTH_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_SAWTOOTH_f">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_SAWTOOTH_f">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_SAWTOOTH_f">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_SAWTOOTH_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    Output:scalar double.
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_SAWTOOTH_f">
         <title>Description</title>
         <para>
@@ -112,13 +77,18 @@
       ]]></latex>
         </para>
         <para>
-            At first event on its activation input, the output increases linearly from 0 with a unitary rate. When the
-            following event occurs, the output goes to 0 and begin again to increase until the next event and so on.
+            At first event on its activation input, the output increases linearly from 0 with a
+            unitary rate. When the following event occurs, the output goes to 0 and begin again
+            to increase until the next event and so on.
         </para>
         <para>
-            The resulting amplitude of the output is equal to the period of event signal. If you want more control on the amplitude or a negative rate, use the <link linkend="Sigbuilder">Sigbuilder</link> or <link linkend="Sigbuilder">Curve_f</link> blocks.
+            The resulting amplitude of the output is equal to the period of event signal.
+            If you want more control on the amplitude or a negative rate, use the
+            <link linkend="Sigbuilder">Sigbuilder</link> or
+            <link linkend="Sigbuilder">Curve_f</link> blocks.
         </para>
     </refsection>
+
     <refsection id="Datatype_SAWTOOTH_f">
         <title>Data types</title>
         <itemizedlist>
@@ -129,6 +99,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Defaultproperties_SAWTOOTH_f">
         <title>Default properties</title>
         <itemizedlist>
@@ -192,18 +163,20 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Example_SAWTOOTH_f">
         <title>Example</title>
         <para>
-            This diagram shows the output of the SAWTOOTH_f block with an event period of 2 seconds and an offset
-            of 1 second on event generation.
+            This diagram shows the output of the SAWTOOTH_f block with an event period of 2
+            seconds and an offset of 1 second on event generation.
         </para>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/sawtooth_f_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/sources_pal/en_US/sawtooth_f_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/sources_pal/en_US/sawtooth_f_en_US.zcos" align="center"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -213,6 +186,7 @@ importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/sawtooth_f_en_
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
     </refsection>
+
     <refsection id="Interfacingfunction_SAWTOOTH_f">
         <title>Interfacing function</title>
         <itemizedlist>
@@ -231,6 +205,7 @@ xcos_simulate(scs_m, 4);
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection role="see also" id="Seealso_SAWTOOTH_f">
         <title>See also</title>
         <itemizedlist>

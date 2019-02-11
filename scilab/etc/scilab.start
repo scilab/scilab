@@ -112,11 +112,11 @@ if ~or(sciargs()=="-nouserstartup") then
   // execute .scilab and scilab.start only
   // if last exec does not change current directory to SCIHOME
   // See bug #4150
-  usedwd = getPreferencesValue("//general/body/startup", "use");
+  usedwd = xmlGetValues("//general/body/startup", "use");
   if usedwd=="previous"
-      workingDirectory =  getPreferencesValue("//general/body/startup", "previous");
+      workingDirectory =  xmlGetValues("//general/body/startup", "previous");
   elseif usedwd=="default"
-      workingDirectory =  getPreferencesValue("//general/body/startup", "default");
+      workingDirectory =  xmlGetValues("//general/body/startup", "default");
   else
       workingDirectory = pwd();
   end

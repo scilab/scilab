@@ -1,9 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 1998 - INRIA
 // Copyright (C) DIGITEO - 2011-2012 - Allan CORNET
-// Copyright (C) 2016 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2016, 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -49,6 +48,11 @@ function answ = isempty(m)
         if typeof(m) == "rational" then
             answ = size(m, "*") == 0;
         else
+            oname = "%" + typeof(m) + "_isempty"
+            if isdef(oname,"n")
+                execstr("answ = "+oname+"(m)")
+                return
+            end
             answ = %t;
             for i = 2:size(m)
                 answ = answ & (type(m(i))==0 || isempty(m(i)))
@@ -85,6 +89,11 @@ function answ = isempty(m)
                 end
             end
         else                    // other types of mlist
+            oname = "%" + typeof(m) + "_isempty"
+            if isdef(oname,"n")
+                execstr("answ = "+oname+"(m)")
+                return
+            end
             answ = %f
         end
 

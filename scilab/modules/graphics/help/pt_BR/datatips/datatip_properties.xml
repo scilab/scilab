@@ -18,44 +18,44 @@
             <varlistentry>
                 <term>parent: </term>
                 <listitem>
-                    <para>Veja
-                        <literal>
-                            <link linkend="polyline_properties">polyline_properties</link>
-                        </literal>
-                        nas páginas de ajuda.
+                    <para>
+                        handle of the curve the datatip is plugged on.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>children: </term>
                 <listitem>
-                    <para>Veja
-                        <literal>
-                            <link linkend="polyline_properties">polyline_properties</link>
-                        </literal>
-                        nas páginas de ajuda.
-                    </para>
+                    <para>unused.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>visible: </term>
                 <listitem>
-                    <para>Veja
-                        <literal>
-                            <link linkend="polyline_properties">polyline_properties</link>
-                        </literal>
-                        nas páginas de ajuda.
+                    <para>"on": the datatip is displayable according to the
+                            <literal>parent.datatip_display_mode</literal> setting.
+                    </para>
+                    <para>"off": the datatip display is canceled anyway.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>data: </term>
                 <listitem>
-                    <para>Veja
-                        <literal>
-                            <link linkend="polyline_properties">polyline_properties</link>
-                        </literal>
-                        nas páginas de ajuda.
+                    <para>
+                        Cartesian coordinates of the datatip's anchor on its curve, in data scales.
+                        For curves in special not-cartesian grids (after polarplot(), sgrid(), etc),
+                        <varname>.data</varname> contains the raw equivalent cartesian coordinates.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>text: </term>
+                <listitem>
+                    <para>
+                        Matrix of texts to be displayed (as a matrix) in the datatip label.
+                        Leading and trailing spaces are all trimmed. In each cell,
+                        the text is centered.
                     </para>
                 </listitem>
             </varlistentry>
@@ -305,13 +305,11 @@
                 <revremark>
                    <itemizedlist>
                      <listitem>
-                       <para><literal>.z_component</literal> is removed.</para>
+                       <literal>.z_component</literal> is removed.
                      </listitem>
                      <listitem>
-                       <para>New <literal>.display_components</literal> property.</para>
-                     </listitem>
-                       <para>New <literal>.detached_position</literal> property.</para>
-                     <listitem>
+                       New <literal>.display_components</literal> and
+                       <literal>.detached_position</literal> properties.
                      </listitem>
                    </itemizedlist>
                 </revremark>

@@ -21,75 +21,44 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="EXPRESSION">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="EXPRESSION" xml:lang="en_US">
     <refnamediv>
         <refname>EXPRESSION</refname>
         <refpurpose>Mathematical expression</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/EXPRESSION.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/EXPRESSION.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_EXPRESSION">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="EXPRESSION">Mathematical expression</link>
-                </para>
+                <xref linkend="Description_EXPRESSION">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_EXPRESSION">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_EXPRESSION">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_EXPRESSION">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_EXPRESSION">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_EXPRESSION">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_EXPRESSION">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_EXPRESSION">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_EXPRESSION">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_EXPRESSION">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_EXPRESSION">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_EXPRESSION">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Userdefinedfunctions_pal">User defined functions palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_EXPRESSION">
         <title>Description</title>
         <para>
@@ -97,17 +66,14 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_EXPRESSION">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/userdefinedfunctions_pal/en_US/EXPRESSION_gui.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/userdefinedfunctions_pal/en_US/EXPRESSION_gui.png"
+                           align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -122,6 +88,58 @@
                 </para>
                 <para> The Scilab expression applied to the input.</para>
                 <para> Properties : Type 'vec' of size 1 </para>
+                <para>All Scilab operators are supported.</para>
+                <para>
+                  Only a restricted list of functions are supported in the expression.
+                <table>
+                <tr>
+                    <td valign="top">
+                        <table>
+                            <tr><th>Name</th><th>#rhs</th></tr>
+                            <tr><td>sin</td>    <td>1</td></tr>
+                            <tr><td>cos</td>    <td>1</td></tr>
+                            <tr><td>tan</td>    <td>1</td></tr>
+                            <tr><td>asin</td>   <td>1</td></tr>
+                            <tr><td>acos</td>   <td>1</td></tr>
+                            <tr><td>atan</td>   <td>1</td></tr>
+                            <tr><td>atan2</td>  <td>2</td></tr>
+                        </table>
+                    </td>
+                    <td valign="top">
+                        <table>
+                            <tr><th>Name</th>   <th>#rhs</th></tr>
+                            <tr><td>sinh</td>   <td>1</td></tr>
+                            <tr><td>cosh</td>   <td>1</td></tr>
+                            <tr><td>tanh</td>   <td>1</td></tr>
+                            <tr><td>asinh</td>  <td>1</td></tr>
+                            <tr><td>acosh</td>  <td>1</td></tr>
+                            <tr><td>atanh</td>  <td>1</td></tr>
+                        </table>
+                    </td>
+                    <td valign="top">
+                        <table>
+                            <tr><th>Name</th><th>#rhs</th></tr>
+                            <tr><td>exp</td>    <td>1</td></tr>
+                            <tr><td>log</td>    <td>1</td></tr>
+                            <tr><td>log10</td>  <td>1</td></tr>
+                            <tr><td>int</td>    <td>1</td></tr>
+                            <tr><td>round</td>  <td>1</td></tr>
+                            <tr><td>ceil</td>   <td>1</td></tr>
+                            <tr><td>floor</td>  <td>1</td></tr>
+                        </table>
+                    </td>
+                    <td valign="top">
+                        <table>
+                            <tr><th>Name</th><th>#rhs</th></tr>
+                            <tr><td>sign</td>   <td>1</td></tr>
+                            <tr><td>abs</td>    <td>1</td></tr>
+                            <tr><td>min</td>    <td>2</td></tr>
+                            <tr><td>max</td>    <td>2</td></tr>
+                        </table>
+                    </td>
+                </tr>
+                </table>
+                </para>
             </listitem>
             <listitem>
                 <para>
@@ -132,6 +150,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Defaultproperties_EXPRESSION">
         <title>Default properties</title>
         <itemizedlist>
@@ -206,20 +225,22 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Example_EXPRESSION">
         <title>Example</title>
         <para>
             The following example calculate an arbitrary expression with multiple different configuration or blocks.
         </para>
         <para>
-            <latex>y=u(1) - u(2) - u(3)</latex>
+            <emphasis>y = u(1) - u(2) - u(3)</emphasis>
         </para>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos" align="center"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -229,6 +250,7 @@ importXcosDiagram(SCI + "/modules/xcos/examples/userdefinedfunctions_pal/en_US/E
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
     </refsection>
+
     <refsection id="Interfacingfunction_EXPRESSION">
         <title>Interfacing function</title>
         <itemizedlist>

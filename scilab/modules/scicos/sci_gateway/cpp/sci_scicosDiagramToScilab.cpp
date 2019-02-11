@@ -88,7 +88,7 @@ types::Function::ReturnValue sci_scicosDiagramToScilab(types::typed_list &in, in
         {
             if (!in[1 + i]->isUserType())
             {
-                Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, i+2, "diagram");
+                Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, i + 2, "diagram");
                 return types::Function::Error;
             }
         }
@@ -136,6 +136,7 @@ static types::InternalType* importFile(char const* file)
     if (XMIResource(uid).load(file) != 0)
     {
         Scierror(999, _("%s: Unable to load \"%s\" .\n"), funname, file);
+        controller.deleteObject(uid);
         return nullptr;
     }
 

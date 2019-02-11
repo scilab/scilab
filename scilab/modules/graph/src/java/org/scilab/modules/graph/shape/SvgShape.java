@@ -42,8 +42,25 @@ public class SvgShape extends mxLabelShape {
      */
     @Override
     public void paintShape(mxGraphics2DCanvas canvas, mxCellState state) {
-        // paint previously set background
-        super.paintShape(canvas, state);
+        // paint previously set background without the rotation applied
+        if (mxUtils.getDouble(state.getStyle(), mxConstants.STYLE_ROTATION, 0) != 0) {
+            mxCellState nonRotatedState = (mxCellState) state.clone();
+
+            double tmp = nonRotatedState.getCenterY() - nonRotatedState.getWidth() / 2;
+            nonRotatedState.setX(nonRotatedState.getCenterX() - nonRotatedState.getHeight() / 2);
+            nonRotatedState.setY(tmp);
+
+
+            tmp = nonRotatedState.getWidth();
+            nonRotatedState.setWidth(nonRotatedState.getHeight());
+            nonRotatedState.setHeight(tmp);
+
+            Rectangle rect = nonRotatedState.getRectangle();
+            canvas.getGraphics().clipRect(rect.x, rect.y, rect.width, rect.height);
+            super.paintShape(canvas, nonRotatedState);
+        } else {
+            super.paintShape(canvas, state);
+        }
 
         final String image = getImageForStyle(canvas, state);
         if (image != null && image.endsWith(".svg")) {

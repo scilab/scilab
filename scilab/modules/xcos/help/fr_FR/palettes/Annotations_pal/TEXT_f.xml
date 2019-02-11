@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,72 +13,39 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="TEXT_f" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="TEXT_f" xml:lang="fr_FR">
     <refnamediv>
         <refname>TEXT_f</refname>
         <refpurpose>Annotation libre</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/TEXT_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/TEXT_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_TEXT_f">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="TEXT_f">Annotation libre</link>
-                </para>
+                <xref linkend="Description_TEXT_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_TEXT_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_TEXT_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_TEXT_f">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_TEXT_f">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_TEXT_f">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="See_also">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_TEXT_f">Paramètres</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_TEXT_f">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Annotations_pal">Palette Annotations</link>
-                </para>
+                <xref linkend="Defaultproperties_TEXT_f">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_TEXT_f">Exemple</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="See_also">Voir aussi</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -101,20 +68,21 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_TEXT_f">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/annotations_pal/fr_FR/TEXT_f_text_gui.png" align="center"/>
-                </imageobject>
-            </inlinemediaobject>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/annotations_pal/fr_FR/TEXT_f_color_gui.png" align="center"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/annotations_pal/fr_FR/TEXT_f_text_gui.png"
+                    align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/annotations_pal/fr_FR/TEXT_f_color_gui.png"
+                    align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -209,6 +177,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_TEXT_f">
         <title>Exemple</title>
@@ -217,9 +186,9 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/annotations_pal/fr_FR/text_f_fr_FR.zcos">
                 Ouvrez cet exemple dans Xcos
             </link>
-            et sélectionnez <emphasis>Format</emphasis> puis <emphasis>Edition</emphasis> dans le menu contextuel pour changer les paramètres du texte.
+            et sélectionnez <emphasis>Format</emphasis> puis <emphasis>Edition</emphasis> dans le
+            menu contextuel pour changer les paramètres du texte.
         </para>
-        <para/>
         <mediaobject>
             <imageobject>
                 <imagedata fileref="../../../../examples/annotations_pal/fr_FR/text_f_fr_FR.zcos" align="center"/>
@@ -228,10 +197,10 @@
     </refsection>
     <refsection role="see also" id="See_also">
         <title>Voir aussi</title>
-        <itemizedlist>
-            <listitem>
+        <simplelist>
+            <member>
                 <link linkend="math_rendering_features_in_graphic">Rendu mathématique</link>
-            </listitem>
-        </itemizedlist>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

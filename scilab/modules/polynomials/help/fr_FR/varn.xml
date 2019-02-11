@@ -2,9 +2,8 @@
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) - INRIA
-* Copyright (C) 2018 - Samuel GOUGEON
-*
 * Copyright (C) 2012 - 2016 - Scilab Enterprises
+* Copyright (C) 2018 - Samuel GOUGEON
 *
 * This file is hereby licensed under the terms of the GNU GPL v2.0,
 * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -72,6 +71,9 @@
         <para>
             <literal>varn(p,'s')</literal> renvoie une matrice polynomiale égale à
             <literal>p</literal> mais avec <literal>'s'</literal> comme indéterminée.
+        </para>
+        <para>
+            <literal>varn([])</literal> produit [].
         </para>
     </refsection>
     <refsection>
@@ -166,9 +168,16 @@ fx == f
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revremark>
+                    <itemizedlist>
+                        <listitem>
+                            Le nom de la variable symbolique n'est plus limité à 4 caractères.
+                            Il peut désormais inclure des caractères UTF-8 étendus.
+                        </listitem>
+                        <listitem>
+                            varn([]) produit désormais [] au lieu de diriger vers %s_varn().
+                        </listitem>
+                    </itemizedlist>
                     <para>
-                        Le nom de la variable symbolique n'est plus limité à 4 caractères.
-                        Il peut désormais inclure des caractères UTF-8 étendus.
                     </para>
                 </revremark>
             </revision>

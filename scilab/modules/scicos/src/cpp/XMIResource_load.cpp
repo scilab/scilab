@@ -1105,7 +1105,6 @@ int XMIResource::processElement(xmlTextReaderPtr reader)
                         // assign the child
                         model::BaseObject parent = processed.back();
 
-                        controller.referenceObject(o);
                         controller.setObjectProperty(o, BLOCK, PARENT_DIAGRAM, root);
                         if (parent.kind() == BLOCK)
                         {
@@ -1127,7 +1126,6 @@ int XMIResource::processElement(xmlTextReaderPtr reader)
                         // assign the child
                         model::BaseObject parent = processed.back();
 
-                        controller.referenceObject(o);
                         controller.setObjectProperty(o, LINK, PARENT_DIAGRAM, root);
                         if (parent.kind() == BLOCK)
                         {
@@ -1149,7 +1147,6 @@ int XMIResource::processElement(xmlTextReaderPtr reader)
                         // assign the child
                         model::BaseObject parent = processed.back();
 
-                        controller.referenceObject(o);
                         controller.setObjectProperty(o, ANNOTATION, PARENT_DIAGRAM, root);
                         if (parent.kind() == BLOCK)
                         {

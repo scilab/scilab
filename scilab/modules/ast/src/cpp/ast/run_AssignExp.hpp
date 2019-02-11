@@ -85,6 +85,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     }
                 }
 
+                pIT->killMe();
                 setResult(NULL);
                 CoverageInstance::stopChrono((void*)&e);
                 return;

@@ -21,80 +21,47 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MIN_f">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="MIN_f" xml:lang="en">
     <refnamediv>
         <refname>MIN_f</refname>
         <refpurpose>Minimum value of a vector's elements</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/MIN_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/MIN_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_MIN_f">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MIN_f">Minimum value of a vector's elements</link>
-                </para>
+                <xref linkend="Description_MIN_f">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MIN_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MIN_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MIN_f">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MIN_f">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_MIN_f">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_MIN_f">Example</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_MIN_f">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_MIN_f">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_MIN_f">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_MIN_f">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_MIN_f">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_MIN_f">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_MIN_f">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Mathoperations_pal">Math operations palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_MIN_f">
         <title>Description</title>
         <para>
@@ -172,6 +139,19 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
+    </refsection>
+    <refsection id="Example_MIN_f">
+        <title>Example</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/MIN_f_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/mathoperations_pal/MIN_f_Example.zcos"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
     </refsection>
     <refsection id="Interfacingfunction_MIN_f">
         <title>Interfacing function</title>
@@ -189,30 +169,14 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_MIN_f">
-        <title>Example</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/MIN_f_Example.zcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/mathoperations_pal/MIN_f_Example.zcos" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
-        </para>
-    </refsection>
-    <refsection id="Seealso_MIN_f">
+    <refsection id="Seealso_MIN_f" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MAX_f">MAX_f - Maximum value of a vector's elements (Xcos block)</link>
-                </para>
+                <link linkend="MAX_f">MAX_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MAXMIN">MAXMIN - Maximum or minimum value of vectors's elements (Xcos block)</link>
-                </para>
+                <link linkend="MAXMIN">MAXMIN</link>
             </listitem>
         </itemizedlist>
     </refsection>

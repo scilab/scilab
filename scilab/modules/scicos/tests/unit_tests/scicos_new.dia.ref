@@ -10,7 +10,7 @@ loadXcosLibs();
 o = scicos_graphics()
  o  = 
 orig = [0,0]
-sz = [2,2]
+sz = [20,20]
 exprs = []
 pin = []
 pout = []
@@ -60,7 +60,7 @@ o = scicos_block()
 GUI     : 
 Graphics: 
           orig = [0,0]
-          sz = [2,2]
+          sz = [20,20]
           exprs = []
           pin = []
           pout = []
@@ -115,17 +115,13 @@ clear o;
 // allocate a Diagram
 scs_m = scicos_diagram()
  scs_m  = 
-wpar = [6,45,0,0,6,45]
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
-<<<<<<< HEAD
 tf = 30
-=======
-tf = 1
->>>>>>> origin/6.0
 context = []
 void1 = []
-options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,1,1],[4,1,2,1]),[0.8,0.8,0.8])
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()

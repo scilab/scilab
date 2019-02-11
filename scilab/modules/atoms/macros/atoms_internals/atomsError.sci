@@ -13,6 +13,7 @@
 // Internal function
 
 function atomsError(issue,msg)
+    // issue = "error" | "warning"
 
     // Check input argments
     // =========================================================================

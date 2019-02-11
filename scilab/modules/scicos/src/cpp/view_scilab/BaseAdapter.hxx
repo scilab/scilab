@@ -40,6 +40,7 @@
 #include "types_comparison_eq.hxx"
 
 #include "view_scilab/Adapters.hxx"
+#include "view_scilab/AdapterView.hxx"
 #include "controller_helpers.hxx"
 #include "utilities.hxx"
 #include "Controller.hxx"
@@ -191,6 +192,7 @@ public:
     {
         if (adapter.getAdaptee() != nullptr)
         {
+            AdapterView update_partial_information;
             Controller controller;
 
             Controller::cloned_t mapped;
@@ -203,6 +205,8 @@ public:
     {
         if (m_adaptee != nullptr)
         {
+            AdapterView update_partial_information;
+
             Controller controller;
             controller.deleteObject(m_adaptee->id());
         }
@@ -394,7 +398,7 @@ public:
         {
             types::InternalType* ith_prop1 = p.get(*static_cast<Adaptor*>(this), controller);
             types::InternalType* ith_prop2 = p.get(*static_cast<Adaptor*>(ut), controller);
-            ret->set(p.original_index, *ith_prop1 == *ith_prop2);
+            ret->set(p.original_index + 1, *ith_prop1 == *ith_prop2);
 
             // Getting a property allocates data, so free them
             ith_prop1->killMe();

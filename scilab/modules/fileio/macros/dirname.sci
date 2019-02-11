@@ -11,6 +11,7 @@
 // along with this program.
 
 function [files]= dirname(files,flag,flagexpand)
+    warnobsolete("fileparts", "6.1.0")
     // return the dirnames of files
     // if flag == %t files are first converted
     // according to getos() == 'Windows'. if flagexpand is also true

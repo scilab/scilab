@@ -4,7 +4,7 @@
  * Copyright (C) 2009-2010 - DIGITEO - Clement DAVID
  * Copyright (C) 2011-2017 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2015 - Marcos Cardinot
- * Copyright (C) 2017 - ESI Group - Clement DAVID
+ * Copyright (C) 2017-2019 - ESI Group - Clement DAVID
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -1953,15 +1953,8 @@ public class XcosDiagram extends ScilabGraph {
         if (getKind() == Kind.DIAGRAM) {
             controller.getObjectProperty(getUID(), getKind(), ObjectProperties.TITLE, property);
         } else { // Kind.BLOCK
-            // if an annotation is present use it, otherwise use the one-line description
-            long[] annotation = { 0 };
-            controller.getObjectProperty(getUID(), getKind(), ObjectProperties.LABEL, annotation);
-
-            if (annotation[0] != 0) {
-                controller.getObjectProperty(annotation[0], Kind.ANNOTATION, ObjectProperties.DESCRIPTION, property);
-            } else {
-                controller.getObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, property);
-            }
+            // use the one-line description
+            controller.getObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, property);
         }
 
         if (property[0].isEmpty()) {

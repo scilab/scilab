@@ -6,11 +6,12 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 7163 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=7163
+// http://bugzilla.scilab.org/7163
 //
 // <-- Short Description -->
 // tree2code wrongly replaced every (:) occurence in a function definition with (eye()).
@@ -21,4 +22,4 @@ endfunction
 
 txt = tree2code(macr2tree(foo));
 
-if or(txt<>["function [] = foo(r)";"r(:) = 1";"endfunction";""]) then pause; end
+if or(txt<>["function foo(r)";"r(:) = 1";"endfunction";""]) then pause; end

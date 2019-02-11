@@ -280,6 +280,7 @@ lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="..\cpp\Model_getObjectProperties.cpp" />
     <ClCompile Include="..\cpp\Model_setObjectProperties.cpp" />
     <ClCompile Include="..\cpp\view_scilab\Adapters.cpp" />
+    <ClCompile Include="..\cpp\view_scilab\AdapterView.cpp" />
     <ClCompile Include="..\cpp\view_scilab\BlockAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\CprAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\DiagramAdapter.cpp" />
@@ -317,6 +318,7 @@ lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClInclude Include="..\..\includes\model\BaseObject.hxx" />
     <ClInclude Include="..\..\includes\view_scilab\Adapters.hxx" />
     <ClInclude Include="..\..\includes\View.hxx" />
+    <ClInclude Include="..\..\includes\view_scilab\AdapterView.hxx" />
     <ClInclude Include="..\..\includes\XMIResource.hxx" />
     <ClInclude Include="..\cpp\createblklist.hxx" />
     <ClInclude Include="..\cpp\extractblklist.hxx" />

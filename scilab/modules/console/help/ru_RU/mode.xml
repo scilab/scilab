@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+ <!--  module: core  -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="mode" xml:lang="ru">
+    <refnamediv>
+        <refname>mode</refname>
+        <refpurpose>устанавливает или запрашивает режим отображения в командном окне инструкций Scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            mode(k)
+            k = mode()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>k</term>
+                <para>целое число от -1 до 6: выбранный или текущий режим исполнения / отображения на экране.
+                </para>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>mode(k)</literal> позволяет выбрать как информация отображается в командном окне в
+            ходе выполнения инструкций Scilab. Если эти инструкции включают в себя инструкцию
+            <literal>mode</literal>, то последующие инструкции в том же окружении будут отображаться
+            в соответствии с новым режимом. <link linkend="semicolon">Точка с запятой</link>, поставленная
+            в конце любой инструкции всегда прекращает отображение результатов работы, несмотря ни на
+            какой текущий режим исполнения.
+        </para>
+        <refsect3>
+            <title>Контекст</title>
+            <literal>mode(..)</literal> и другие инструкции могут быть использованы и исполнены в различном контексте:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                    <emphasis role="bold">Функции (F)</emphasis>: функция, написанная на языке Scilab,
+                    может включать в себя инструкции <literal>mode</literal>. Будучи скомпилированной
+                    и вызванной, действия внутренней инструкции <literal>mode</literal> отмечены буквой
+                    <emphasis role="bold">F</emphasis> в таблице, приведённой ниже.
+                    По умолчанию инструкции в функциях запускаются в режиме молчания <literal>mode(-1)</literal>
+                    какой бы ни был текущий режим в вызывающем окружении.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                    <emphasis role="bold">Сценарии (S)</emphasis>: инструкции Scilab, написанные
+                    в файле (обычно с расширением .sce) вне определения любой функции может включать
+                    в себя инструкции <literal>mode</literal>. Когда такой файл запущен с помощью
+                    <literal>exec(filename)</literal> или <literal>exec(filename, mode_k)</literal>, то результаты
+                    инструкции  <literal>mode</literal> в исполняемом файле помечены буквой
+                    <emphasis role="bold">S</emphasis> в таблице, приведённой ниже.
+                    По умолчанию сценарии запускаются в режиме <literal>mode(3)</literal>
+                    <emphasis role="italic">какой бы ни был текущий режим в вызывающем
+                    окружении</emphasis>. Это переписывается с помощью опции <literal>mode_k</literal>.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                    <emphasis role="bold">Командное окно (C)</emphasis>: инструкции Scilab, напрямую
+                    вводимые в командном окне, всегда отображаются после ввода. Результаты текущего
+                    режима инструкции <literal>mode</literal> или любого последующего режима,
+                    введённого в командном окне, помечены буквой <emphasis role="bold">C</emphasis>
+                    в таблице, приведённой ниже. По умолчанию результаты работы инструкций отображаются
+                    в командном окне в режиме <literal>mode(2)</literal>.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                    <emphasis role="bold">execstr(T)</emphasis>: эта функция принимает матрицу текста
+                    <literal>T</literal>. Каждый элемент исполняется как последовательность инструкций
+                    Scilab, который может содержать инструкцию <literal>mode</literal>.
+                    Результаты любой последующей инструкции <literal>mode</literal>, встреченной в
+                    матрице, помечены буквой <emphasis role="bold">T</emphasis> ("текст") в таблице,
+                    приведённой ниже.
+                    По умолчанию все инструкции исполняются в режиме молчания <literal>mode(-1)</literal>
+                    <emphasis role="italic">какой бы ни был текущий режим в вызывающем окружении</emphasis>
+                    запускающего <literal>execstr()</literal>.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                    <emphasis role="bold">Обратные вызовы (K)</emphasis>: обратный вызов является уникальной
+                    строкой в которой написаны инструкции Scilab. Эта строка назначается для интерактивного
+                    компонента, такого как пункт в меню, флажок и т.д. Инструкции исполняются при активации
+                    компонента через воздействие: выбор меню, установку или снятие флажка и т.д. Обратный
+                    вызов может содержать инструкции <literal>mode</literal>. Инструкции обратного вызова
+                    всегда исполняются непосредственно на уровне командного окна. Результаты их работы
+                    остаются в командном окне после того, как обратный вызов будет завершён. Результаты работы
+                    инструкции <literal>mode</literal>, используемые в обратном вызове, отмечены буквой
+                    <emphasis role="bold">K</emphasis> в таблице, приведённой ниже.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsect3>
+        <refsect3>
+            <title>Характеристики</title>
+        <table border="1" cellpadding="3pt" style="text-align:center" align="center">
+            <tr style="text-align:center">
+                <th align="left">режим #</th>
+                <th>-1</th><th>0</th>  <th>1</th>    <th>2</th> <th>3</th> <th>4</th> <th>6</th>
+            </tr>
+            <tr style="text-align:center">
+                <td align="left">Инструкции отображения [a]</td>
+                <td>C</td>  <td>C</td> <td>C S</td>  <td>C</td> <td>C S</td> <td>C S</td> <td>C S K</td>
+            </tr>
+            <tr style="text-align:center">
+                <td align="left">Результаты отображения [b]</td>
+                <td></td><td>всегда</td><td>всегда</td><td>всегда</td><td>всегда</td><td>всегда</td><td>всегда</td>
+            </tr>
+            <tr style="text-align:center">
+                <td align="left">Шаг за шагом [s]</td>
+                <td></td>  <td></td>  <td> </td>  <td></td>  <td></td> <td>S F K</td> <td>S F T K</td>
+            </tr>
+            <tr style="text-align:center">
+                <td align="left">Кратко [c]</td>
+                <td>C++</td><td>+</td><td>++</td><td></td><td>SFT +</td><td>CK++ SFT+</td><td>S+</td>
+            </tr>
+            <tr style="text-align:center">
+                <td align="left">Комментарии</td>
+                <td>[d]</td>  <td></td>   <td>[e]</td>     <td>[f]</td> <td>[g]</td><td>[h]</td><td>[h,i]</td>
+            </tr>
+        </table>
+        </refsect3>
+        <refsect3>
+            <title>Комментарии</title>
+            <!-- <emphasis role="bold">Comments:</emphasis> -->
+            <table>
+                <tr>
+                    <td valign="top">[a]: </td>
+                    <td>
+                        В нормальном режиме инструкции отображаются в предложением о вводе
+                        <literal>--></literal>, идущим впереди. В пошаговом режиме вместо
+                        этого используется <literal>>></literal>.
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">[b]: </td>
+                    <td>указывает, что <link linkend="semicolon">точка с запятой</link> в конце не поставлена.
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">[c]: </td>
+                    <td>
+                       "+" означает: нет дополнительной пустой строки после результатов.
+                       "++" означает: нет дополнительной пустой строки ни после выполненных инструкций, ни после результатов.
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">[d]: </td>
+                    <td>
+                        По умолчанию режим молчания в функциях и с <literal>execstr()</literal>.
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">[e]: </td>
+                    <td>
+                        <literal>mode(5)</literal> эквивалентно <literal>mode(1)</literal>, но не должен быть использован.
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">[f]: </td>
+                    <td>
+                        Режим работы по умолчанию в командном окне.
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">[g]: </td>
+                    <td>
+                        По умолчанию режим работы <literal>exec()</literal>.
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">[h]: </td>
+                    <td valign="top">
+                        <simplelist>
+                            <member>
+                                Любой комментарий <literal>//</literal> отображается без предложения о вводе и без
+                                остановки на нём.
+                            </member>
+                            <member>
+                                Некоторые паразитные предложения о вводе <literal>--></literal> и
+                                дополнительные пустые строки могут иногда отображаться (программная ошибка).
+                            </member>
+                            <member>
+                                Обратный  вызов всегда делается уникальной строкой инструкций, как если бы
+                                они были определены и запущены одной строкой. Следовательно, оба доступных
+                                пошаговых режима исполнения могут быть активированы, но бесполезны в любом
+                                обратном вызове.
+                            </member>
+                        </simplelist>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">[i]: </td>
+                    <td>
+                        <literal>mode(7)</literal> делает то же самое, но не должен быть использован.
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">[s]: </td>
+                    <td>
+                        Пошаговый режим останавливается после каждой строки инструкций и ждёт нажатия
+                        пользователем клавиш <literal>&lt;ввод></literal> или <literal>p&lt;ввод></literal>,
+                        чтобы  продолжить работу. Нажатие клавиши <literal>p</literal> вводит режим
+                        <link linkend="pause">паузы</link>. Эти режимы могут быть использованы например
+                        в демонстрационных примерах или режиме необработанной отладки.
+                    </td>
+                </tr>
+            </table>
+        </refsect3>
+        <para> </para>
+        <important>
+            Режим в вызывающем окружении никогда не меняется после использования
+            <literal>mode(..)</literal> в вызывающей функции, в исполняемом сценарии
+            .sce или в качестве ввода <literal>execstr()</literal> после того, как
+            выполнение завершится и вернёт результат. Когда инструкция <literal>mode(k)</literal>
+            используется в <emphasis role="italic">обратном вызове</emphasis>, то она исполняется,
+            она становится и остаётся актуальным режимом отображения в командном окне после завершения
+            обратного вызова.
+        </important>
+        <important>
+            Вывод специально отображаемый функциями наподобие <literal>disp()</literal> или
+            <literal>mprinf()</literal> никогда не отменяется, даже в режиме <literal>mode(-1)</literal>.
+        </important>
+        <warning>
+            <literal>mode(5)</literal>, <literal>mode(7)</literal> и другие незарегистрированные значения
+            могут приниматься, но не должны использоваться: они могут быть удалены или переопределены в будущем.
+        </warning>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <para>
+        В функции:
+        </para>
+        <programlisting role="example"><![CDATA[
+function example_mode( level_mode )
+   disp(mode());
+   mode(level_mode)
+   a = 3
+endfunction
+mode(2)
+example_mode(0)
+mode()
+example_mode(1)
+example_mode(2)
+ ]]></programlisting>
+    <para>
+      В инструкции <literal>exec(script, mode)</literal>:
+    </para>
+    <programlisting role="example"><![CDATA[
+ins = [
+    "mprintf(""Режим исполнения по умолчанию: %d\n"", mode())"
+    "mode(i)"
+    "mprintf(""Новый активный режим: %d\n"", mode())"
+    "// Новый комментарий"
+    "a = rand(2,4)"
+    "b = %pi;"
+    "c = %s;"
+    ];
+fn = TMPDIR + "\test_mode.sce";
+mputl(ins, fn);
+//
+mode(2)
+i = 1;
+exec(fn)
+mode()
+exec(fn, 0)
+i = 3; // инструкции отображаются
+exec(fn, 3)
+i = 4; // инструкции отображаются + пошаговый режим. "p<ввод>" вводит режим паузы
+exec(fn, 4)
+ ]]></programlisting>
+    <para>
+      With <literal>execstr()</literal>:
+    </para>
+    <programlisting role="example"><![CDATA[
+ins = [
+    "mprintf(""Режим исполнения по умолчанию: %d\n"", mode())"
+    "mode(1)        // Введение компактного режима"
+    "mprintf(""Новый активный режим: %d\n"", mode())"
+    "a = rand(2,4)"
+    "b = 1"
+    "c = %pi"
+    ];
+mode(2)
+execstr(ins)
+mode()       // Восстановлен исходный режим
+ ]]></programlisting>
+    <para>
+    В обратном вызове (в данном случае меню):
+    </para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+mode(2)
+uimenu("parent",0,"Label","mode_test",..
+       "callback", "disp(mode()); mode(1); a = rand(2,4), pwd(),");
+// Щёлкните по меню "mode_test" и посмотрите что отобразится в командном окне
+mode()
+delmenu mode_test
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="exec">exec</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="semicolon">точка с запятой</link>
+            </member>
+            <member>
+                <link linkend="debug">debug</link>
+            </member>
+            <member>
+                <link linkend="pause">pause</link>
+            </member>
+            <member>
+                <link linkend="getscilabmode">getscilabmode</link>
+            </member>
+            <member>
+                <link linkend="warning">режим выдачи предупреждений</link>
+            </member>
+            <member>
+                <link linkend="funcprot">funcprot</link>
+            </member>
+            <member>
+                <link linkend="ieee">ieee</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                <itemizedlist>
+                    <listitem>
+                        <literal>mode(4)</literal> теперь выполняется пошагово и может быть
+                        приостановлен в сценариях и в функциях.
+                    </listitem>
+                    <listitem>
+                      Для/внутри сценариев <literal>mode(4)</literal> теперь отображает каждую
+                      строчку инструкций и отображает результаты компактно. Он может использоваться
+                      для демонстрационных примеров.
+                    </listitem>
+                    <listitem>
+                      Обратные вызовы всегда исполнялись в режиме молчания <literal>mode(-1)</literal>.
+                      Теперь они исполняются по умолчанию в текущем режиме <literal>mode()</literal>.
+                    </listitem>
+                </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -110,8 +110,8 @@ opt = optimset ( "Display" , "iter" );
     10           21        4.1355598         contract inside     
     11           23        4.0127268         expand              
     12           25        3.9373812         expand              
-    13           27        3.6026060         expand              
-    14           28        3.6026060         reflect             
+    13           27         3.602606         expand              
+    14           28         3.602606         reflect             
     15           30        3.4662211         reflect             
     16           32        3.2160547         expand              
     17           34        3.1649126         reflect             
@@ -134,8 +134,8 @@ opt = optimset ( "Display" , "iter" );
     34           64        0.6691654         reflect             
     35           66        0.5367289         reflect             
     36           68        0.5367289         contract inside     
-    37           70        0.4232940         expand              
-    38           72        0.4232940         contract outside    
+    37           70         0.423294         expand              
+    38           72         0.423294         contract outside    
     39           74        0.3985272         reflect             
     40           76        0.3144704         expand              
     41           77        0.3144704         reflect             
@@ -159,11 +159,11 @@ opt = optimset ( "Display" , "iter" );
     59          110        0.0040146         reflect             
     60          112        0.0040146         contract inside     
     61          113        0.0040146         reflect             
-    62          115        0.0003700         reflect             
-    63          117        0.0003700         contract inside     
-    64          118        0.0003700         reflect             
-    65          120        0.0003700         contract inside     
-    66          122        0.0000590         contract outside    
+    62          115          0.00037         reflect             
+    63          117          0.00037         contract inside     
+    64          118          0.00037         reflect             
+    65          120          0.00037         contract inside     
+    66          122         0.000059         contract outside    
     67          124        0.0000337         contract inside     
     68          126        0.0000337         contract outside    
     69          128        0.0000189         contract outside    

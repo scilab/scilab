@@ -440,9 +440,7 @@ int Variables::getVarsToVariableBrowser(std::list<Variable*>& lst)
         if (var.second->empty() == false)
         {
             types::InternalType* pIT = var.second->top()->m_pIT;
-            if (pIT &&
-                    pIT->isMacro() == false &&
-                    pIT->isMacroFile() == false &&
+            if (pIT && pIT->isMacroFile() == false &&
                     pIT->isFunction() == false)
             {
                 lst.push_back(var.second);

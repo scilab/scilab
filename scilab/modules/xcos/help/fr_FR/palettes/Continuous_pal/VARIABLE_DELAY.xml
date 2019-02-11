@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,77 +13,42 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="VARIABLE_DELAY" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="VARIABLE_DELAY" xml:lang="fr">
     <refnamediv>
         <refname>VARIABLE_DELAY</refname>
         <refpurpose>Retard pur variable</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/VARIABLE_DELAY.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/VARIABLE_DELAY.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_VARIABLE_DELAY">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="VARIABLE_DELAY">Retard pur variable</link>
-                </para>
+                <xref linkend="Description_VARIABLE_DELAY">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_VARIABLE_DELAY">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_VARIABLE_DELAY">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_VARIABLE_DELAY">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_VARIABLE_DELAY">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_VARIABLE_DELAY">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_VARIABLE_DELAY">Fonction de calcul</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_VARIABLE_DELAY">Exemple</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_VARIABLE_DELAY">Paramètres</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_VARIABLE_DELAY">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">Palette Systèmes à temps continu</link>
-                </para>
+                <xref linkend="Defaultproperties_VARIABLE_DELAY">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_VARIABLE_DELAY">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_VARIABLE_DELAY">Fonction de calcul</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_VARIABLE_DELAY">Exemple</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -96,32 +61,29 @@
             signal u(t) qui passe à travers le bloc (entrée de donnée); la seconde entrée
             est le temps de retard variable τ(t).
         </para>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/variable_delay_with_equations.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../examples/variable_delay_with_equations.png" valign="middle"/>
+            </imageobject>
+        </inlinemediaobject>
         <para>A l'instant t, le bloc sort l'entrée retardée u(θ) où θ
             est le temps de simulation courant t moins le paramètre de retard τ.
         </para>
         <para>L'équation du signal de sortie est :</para>
         e est
         <para>
-            <latex>y(t) = y(θ) - u(t - τ(t))</latex>
+            <emphasis>y(t) = y(θ) - u(t - τ(t))</emphasis>
         </para>
     </refsection>
     <refsection id="Dialogbox_VARIABLE_DELAY">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../examples/variable_delay1.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../examples/variable_delay1.png"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -226,7 +188,25 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+    <refsection id="Interfacingfunction_VARIABLE_DELAY">
+        <title>Fonction d'interfaçage</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/Linear/VARIABLE_DELAY.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_VARIABLE_DELAY">
+        <title>Fonction de calcul</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/variable_delay.c (Type 4)</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+
     <refsection id="Example_VARIABLE_DELAY">
         <title>Exemple</title>
         <para>Dans cet exemple, le temps de retard maximum dans le dialogue des Paramètres de Bloc
@@ -249,21 +229,5 @@ importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/fr_FR/VARIABLE_DE
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
         </para>
-    </refsection>
-    <refsection id="Interfacingfunction_VARIABLE_DELAY">
-        <title>Fonction d'interfaçage</title>
-        <itemizedlist>
-            <listitem>
-                <para>SCI/modules/scicos_blocks/macros/Linear/VARIABLE_DELAY.sci</para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Computationalfunction_VARIABLE_DELAY">
-        <title>Fonction de calcul</title>
-        <itemizedlist>
-            <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/variable_delay.c (Type 4)</para>
-            </listitem>
-        </itemizedlist>
     </refsection>
 </refentry>

@@ -35,7 +35,7 @@ void* GetUimenuLabel(void* _pvCtx, int iOobjUID)
     else
     {
         status = sciReturnString(label);
-        free(label);
+        delete[] label;
         return status;
     }
 }

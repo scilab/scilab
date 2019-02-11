@@ -21,100 +21,64 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="IdealTransformer">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="IdealTransformer" xml:lang="en_US">
     <refnamediv>
         <refname>IdealTransformer</refname>
         <refpurpose>Ideal Transformer</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/IdealTransformer.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/IdealTransformer.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_IdealTransformer">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="IdealTransformer">Ideal Transformer</link>
-                </para>
+                <xref linkend="Description_IdealTransformer">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_IdealTransformer">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_IdealTransformer">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_IdealTransformer">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_IdealTransformer">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_IdealTransformer">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="IdealTransformer">Modelica model</link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_IdealTransformer">Example</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_IdealTransformer">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_IdealTransformer">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_IdealTransformer">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="IdealTransformer">Modelica model</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_IdealTransformer">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_IdealTransformer">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Electrical_pal">Electrical.cosf - Electrical toolbox</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_IdealTransformer">
         <title>Description</title>
         <para>
-            The ideal transformer is an ideal two-port resistive circuit element which is characterized by the following two equations:  v1 =  n * v2   i2 = -n * i1  where n is a real number called the turns ratio.
+            The ideal transformer is an ideal two-port resistive circuit element which is
+            characterized by the following two equations:  v1 =  n * v2,   i2 = -n * i1,
+            where n is a real number called the turns ratio.
         </para>
         <para>
         </para>
     </refsection>
     <refsection id="Dialogbox_IdealTransformer">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/IdealTransformer_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/IdealTransformer_gui.gif" align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -139,8 +103,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -149,8 +111,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -159,8 +119,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -169,8 +127,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -189,8 +145,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -201,6 +155,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_IdealTransformer">
         <title>Interfacing function</title>
@@ -224,7 +179,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/electrical_pal/IdealTransformer_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/electrical_pal/IdealTransformer_Example.zcos" valign="middle"/>
+                        <imagedata align="center" fileref="../../../../examples/electrical_pal/IdealTransformer_Example.zcos"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>

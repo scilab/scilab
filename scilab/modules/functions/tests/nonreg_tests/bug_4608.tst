@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 4608 -->
 //
@@ -21,7 +22,7 @@ ref = pathconvert(SCI + '/modules/core/macros/ver.sci',%f);
 if getlongpathname(r) <> getlongpathname(ref) then pause,end
 
 ierr = execstr('get_function_path(1)','errcatch');
-if ierr <> 999 then pause,end
+if ierr <> 10000 then pause,end
 
 ierr = execstr('get_function_path([''ver'',''typeof''])','errcatch');
-if ierr <> 999 then pause,end
+if ierr <> 10000 then pause,end

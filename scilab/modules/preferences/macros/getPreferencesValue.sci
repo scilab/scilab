@@ -12,6 +12,8 @@
 // along with this program.
 
 function values = getPreferencesValue(xpath, attributes, doc)
+
+    warnobsolete("xmlGetValues", "6.1");
     rhs = argn(2);
 
     if (rhs ~= 2 & rhs ~= 3) then
@@ -79,7 +81,7 @@ function values = getPreferencesValue(xpath, attributes, doc)
             msg = gettext("%s: Target node is not a XML_ELEMENT_NODE.")
             error(msprintf(msg, "getPreferencesValue"));
         end
-    
+
         attr = node.attributes;
         for j = 1:size(attributes,"*")
             a = attributes(j)

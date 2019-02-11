@@ -168,7 +168,7 @@ edit(filename)
                 <link linkend="csvRead">csvRead</link>
             </member>
             <member>
-                <link linkend="csvTextscan">csvTextscan</link>
+                <link linkend="csvTextScan">csvTextScan</link>
             </member>
             <member>
                 <link linkend="csvDefault">csvDefault</link>

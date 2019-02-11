@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -259,16 +259,6 @@
             </link>.
         </para>
     </refsection>
-    <refsection id="Module_Matrix_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Matrix_pal">
         <title>Description</title>
         <para>
@@ -276,138 +266,86 @@
             des opérations matricielles simples et complexes.
         </para>
     </refsection>
-    <refsection id="Blocks_Matrix_pal">
+    <refsection id="Blocks_Matrix_pal" role="see also">
         <title>Blocs</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CUMSUM">CUMSUM - Somme cumulative</link>
-                </para>
+                <link linkend="CUMSUM">CUMSUM</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="EXTRACT">EXTRACT - Extraction de matrice</link>
-                </para>
+                <link linkend="EXTRACT">EXTRACT</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="EXTTRI">EXTTRI - Extraction triangulaire ou diagonale</link>
-                </para>
+                <link linkend="EXTTRI">EXTTRI</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATBKSL">MATBKSL - Division gauche de matrices</link>
-                </para>
+                <link linkend="MATBKSL">MATBKSL</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATCATH">MATCATH - Concaténation horizontale</link>
-                </para>
+                <link linkend="MATCATH">MATCATH</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATCATV">MATCATV - Concaténation verticale</link>
-                </para>
+                <link linkend="MATCATV">MATCATV</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATDET">MATDET - Déterminant d'une matrice</link>
-                </para>
+                <link linkend="MATDET">MATDET</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATDIAG">MATDIAG - Création d'une matrice diagonale</link>
-                </para>
+                <link linkend="MATDIAG">MATDIAG</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATDIV">MATDIV - Division de matrices</link>
-                </para>
+                <link linkend="MATDIV">MATDIV</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATEIG">MATEIG - Valeurs propres d'une matrice</link>
-                </para>
+                <link linkend="MATEIG">MATEIG</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATEXPM">MATEXPM - Exponentielle d'une matrice</link>
-                </para>
+                <link linkend="MATEXPM">MATEXPM</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATINV">MATINV -  Inverse d'une matrice</link>
-                </para>
+                <link linkend="MATINV">MATINV</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATLU">MATLU - Factorisation LU</link>
-                </para>
+                <link linkend="MATLU">MATLU</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATMAGPHI">MATMAGPHI - Complexe à partir de/vers module et phase</link>
-                </para>
+                <link linkend="MATMAGPHI">MATMAGPHI</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATMUL">MATMUL - Multiplication de matrices</link>
-                </para>
+                <link linkend="MATMUL">MATMUL</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATPINV">MATPINV - Pseudo-inverse d'une matrice</link>
-                </para>
+                <link linkend="MATPINV">MATPINV</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATRESH">MATRESH - Remise en forme de matrice</link>
-                </para>
+                <link linkend="MATRESH">MATRESH</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATSING">MATSING - Décomposition SVD</link>
-                </para>
+                <link linkend="MATSING">MATSING</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATSUM">MATSUM - Somme des éléments d'une matrice</link>
-                </para>
+                <link linkend="MATSUM">MATSUM</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATTRAN">MATTRAN - Transposée d'une matrice</link>
-                </para>
+                <link linkend="MATTRAN">MATTRAN</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATZCONJ">MATZCONJ - Conjuguée des éléments d'une matrice</link>
-                </para>
+                <link linkend="MATZCONJ">MATZCONJ</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATZREIM">MATZREIM - Composition/décomposition complexe</link>
-                </para>
+                <link linkend="MATZREIM">MATZREIM</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="RICC">RICC - Equation de Riccati</link>
-                </para>
+                <link linkend="RICC">RICC</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="ROOTCOEF">ROOTCOEF - Calcul de coefficients</link>
-                </para>
+                <link linkend="ROOTCOEF">ROOTCOEF</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SQRT">SQRT - Racine carrée</link>
-                </para>
+                <link linkend="SQRT">SQRT</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SUBMAT">SUBMAT - Extraction de sous-matrice</link>
-                </para>
+                <link linkend="SUBMAT">SUBMAT</link>
             </listitem>
         </itemizedlist>
     </refsection>

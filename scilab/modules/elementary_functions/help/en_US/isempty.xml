@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isempty" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="isempty" xml:lang="en">
     <refnamediv>
         <refname>isempty</refname>
         <refpurpose>check if a variable is an empty matrix or an empty
@@ -47,6 +50,11 @@
             <literal>isempty(x)</literal> returns true if <literal>x</literal> is an empty matrix
             or an empty list.
         </para>
+        <para>
+          <note>
+            isempty() can be overloaded for custom t-lists and m-lists typeof.
+          </note>
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -55,5 +63,33 @@ a=1
 isempty(a(2:$))
 isempty(find(rand(1:10)==5))
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="empty">[]</link>
+            </member>
+            <member>
+                <link linkend="emptystr">emptystr</link>
+            </member>
+            <member>
+                <link linkend="size">size</link>
+            </member>
+            <member>
+                <link linkend="length">length</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    isempty() can now be overloaded for custom tlist and mlist typeof.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

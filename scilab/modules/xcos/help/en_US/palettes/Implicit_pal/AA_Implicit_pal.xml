@@ -31,7 +31,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="CONSTRAINT_c">
             <inlinemediaobject>
                 <imageobject>
@@ -49,35 +48,21 @@
                 </imageobject>
             </inlinemediaobject>
             </link>.
+    </refsection>
 
-        </para>
-    </refsection>
-    <refsection id="Module_Implicit_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Implicit_pal">
         <title>Description</title>
         <para>In the Implicit palette, you can find blocks used to model implicit systems.</para>
     </refsection>
-    <refsection id="Blocks_Implicit_pal">
+
+    <refsection id="Blocks_Implicit_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CONSTRAINT_c">CONSTRAINT_c - Constraint</link>
-                </para>
+                <link linkend="CONSTRAINT_c">CONSTRAINT_c</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DIFF_f">DIFF_f - Sum</link>
-                </para>
+                <link linkend="DIFF_f">DIFF_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

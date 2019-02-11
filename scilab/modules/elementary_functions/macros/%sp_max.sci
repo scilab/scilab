@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - Scilab Enterprises - Adeline CARNIS
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,269 +14,156 @@ function [m, k] = %sp_max(varargin)
     [lhs, rhs] = argn(0);
 
     elements = varargin;
-    error_list = %f;
+    error_list = "";
 
     // If the first argument is a list, it retrieves the number of sparse
     // matrices in list
     if type(varargin(1)) == 15 then
         if rhs <> 1 then
-            error(msprintf(_("%s: Wrong size of input argument: %d expected.\n"), "%sp_max", 1))
+            msg = _("%s: Wrong size of input argument: %d expected.\n")
+            error(msprintf(msg, "%sp_max", 1))
         end
 
         rhs = length(varargin(1));
         elements = varargin(1);
-        error_list = %t;
+        error_list = _(" (in list)");
 
         // If the second argument of list is not a sparse -> ERROR
         if rhs == 2 & type(elements(2)) <> 5 then
-            error(msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), "%sp_max", 1))
+            msg = _("%s: Wrong type for input argument #%d: A sparse matrix expected.\n")
+            error(msprintf(msg, "%sp_max", 1))
         end
     end
 
-    select rhs
-        // If rhs = 1, the first input argument must be a sparse
-    case 1
-        A1 = elements(1);
+    A1 = elements(1);         // Is necessarily a sparse, due to the %sp_ prefix
+    // Check if A1 is real
+    if ~isreal(A1) then
+        msg = _("%s: Argument #%d: Complex numbers not supported.\n")
+        error(msprintf(msg, "%sp_max", 1));
+    end
+    siz = size(A1);
 
-        // Check if A is a sparse
-        if type(A1)<> 5 then
-            error(msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), "%sp_max", 1))
+    // max(A)
+    // ------
+    if rhs==1
+        if isempty(A1) then
+            m = []
+            k = []
+            return
         end
-
         // Retrieves entries of sparse matrix
-        [ij, v, mn]= spget(A1);
-        if lhs == 1 then
-            if v == [] then
-                m = 0;
-            else
-                m = max(v);
-            end
+        [ij, v, mn] = spget(A1)
+
+        // Matrix of zeros:
+        if v==[] then
+            m = 0
+            k = 1
         else
-            if v == [] then
-                m = 0;
-                k = [1 1];
-            else
-                [m, i] = max(v);
-                if mn(1) == 1 then
-                    k = ij(i,2);
-                else
-                    if mn(2) == 1 then
-                        k = ij(i,1);
-                    else
-                        k = [ij(i,1) ij(i,2)];
-                    end
+            [m, k] = max(v);
+            k = ij(k,:)
+            if m<0 then
+                i = find(A1(:)==0,1)
+                if i~=[]
+                    m = 0
+                    k = i
                 end
             end
         end
-
-        // If A1 contains negative values and the length of v is less then mn(1)
-        // * mn(2), A1 contains one or several zeros
-        // So, max = 0
-        if m < 0 & length(v)<> mn(1)*mn(2) then
-            m = 0;
-            if lhs == 2 then
-                k = 0;
-                if mn(1) == 1 then
-                    for i = 1:length(v)
-                        if and(ij(:,2) <> i) then
-                            k = i;
-                            break;
-                        end
-                    end
-                else
-                    if mn(2) == 1 then
-                        for i = 1:length(v)
-                            if and(ij(:,1) <> i) then
-                                k = i;
-                                break;
-                            end
-                        end
-                    else
-                        // thanks to ij, find the position of zero value
-                        // But ij contains only the indices of non zero values
-                        // So check on first column the values 1:mn(1)
-                        // if posi is less than mn(2) then there is zero value
-                        cpt = 0;
-                        for i = 1:mn(1)
-                            posi = length(find(ij(:,1)==i));
-                            if posi <> mn(2) then
-                                for j = 1:mn(2)
-                                    // it is the last index of line where m = 0
-                                    if mn(2)*(i-1)+j ==  mn(2)*i then
-                                        k = [i, j];
-                                        break;
-                                    else
-                                        pos = find(ij(mn(2)*(i-1)+j,2) == j);
-                                        if pos == [] & k == 0 then
-                                            k = [i,j];
-                                            break;
-                                        end
-                                    end
-                                end
-                                if k <> 0 then
-                                    break;
-                                end
-                            end
-                        end
-                    end
-                end
-            end
+        if length(m)<2
+            m = full(m)
+        end
+        if mn(1)>1 & mn(2)>1 & length(k)==1
+            k = ind2sub(siz, k)
+        elseif (mn(1)<2 | mn(2)<2) & length(k)==2
+            k = sub2ind(siz,k)
         end
 
-        // If rhs = 2, the second input argument can be a character or a sparse
-        // matrix
-    case 2
-        if lhs == 2 then
-            error(msprintf(_("%s: Wrong number of output argument: %d expected.\n"), "%sp_max", 1));
+    // max(A, "r"|"c"|"m")
+    // -------------------
+    elseif rhs==2 & type(elements(2))==10
+        opts = elements(2);
+        if ~or(opts==["c" "r" "m"]) then
+            msg = _("%s: Wrong value for input argument #%d: [''r'' ''c'' ''m''] expected.\n")
+            error(msprintf(msg, "%sp_max", 2))
         end
-
-        A1 = elements(1);
-
-        // Check if A is a sparse
-        if type(A1) <> 5  then
-            error(msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), "%sp_max", 1));
+        if isempty(A1) then
+            m = A1
+            k = []
+            return
         end
-
-        select type(elements(2))
-            // If the second argument is a string
-        case 10
-            opts = elements(2);
-            // Opts can be : 'c' 'r' or 'm'
-            ind = find(opts == ["c","r","m"]);
-            if (ind == []) then
-                error(msprintf(_("%s: Wrong value for input argument #%d: [''r'' ''c'' ''m''] expected.\n"),"%sp_max",2));
-            end
-
-            [ij, v, mn] = spget(A1);
-
-            // If mn(1) = 1, A1 is a row vector
-            if mn(1) == 1 then
-                // max(A1, 'r') = A1(1,:) because A1 is a row vector
-                if opts == "r" then
-                    m = A1;
-                    // max(A1, 'c') or max(A1, 'm') = max(A1)
-                else
-                    m = max(v', opts);
-                    if m < 0 & length(v)<> mn(1)*mn(2) then
-                        m = 0;
-                    end
-                end
-            end
-
-            // If mn(2) = 1, A1 is a column vector
-            if mn(2) == 1 then
-                if opts == "c" then
-                    m = A1;
-                else
-                    m = max(v, opts);
-                end
-                if m < 0 & length(v)<> mn(1)*mn(2) then
-                    m = 0;
-                end
-            end
-
-            // Return a sparse vector containing the max in terms of 'c', 'r' or 'm'
-            if mn(1) <> 1 & mn(2) <> 1 then
-
-                // If opts = 'c', the result is returned in column vector
-                if opts == "c" then
-                    m = spzeros(mn(1),1);
-                    for i = 1:mn(1)
-                        pos = length(find(ij(:,1)==i));
-                        if pos <> mn(2) then
-                            m(i) = 0;
-                        else
-                            m(i) = max(A1(i,:));
-                        end
-                    end
-                    // If opts = 'r' or 'm', the result is returned in row vector
-                else
-                    m = spzeros(1,mn(2));
-                    for i = 1:mn(2)
-                        pos = length(find(ij(:,2)==i));
-                        if pos <> mn(1) then
-                            m(i) = 0;
-                        else
-                            m(i) = max(A1(:,i));
-                        end
-                    end
-                end
-            end
-
-        case 5
-            // If the second argument is a sparse
-            A2 = elements(2);
-
-            [m1, n1] = size(A1);
-            [m2, n2] = size(A2);
-
-            // Check the size of A2
-            if (m1 <> m2 | n1 <> n2) then
-                error(msprintf(_("%s: Wrong size of input argument #%d: Same size as input argument #%d expected.\n"), "%sp_max", 2, 1));
-            end
-
-            // Retrieve the indices of non-zeros
-            ij1 = spget(A1);
-            ij2 = spget(A2);
-
-            // A1 and A2 contain non zeros -> full
-            if size(ij1,"r") == m1*n1 & size(ij2,"r") == m2*n2 then
-                [m,k] = max(full(A1), full(A2));
-                m = sparse(m);
-                k = sparse(k);
-            else
-                m = A1;
-                pos = find(m < A2);
-                m(pos) = A2(pos);
-            end
-
+        if siz(1)==1 & opts=="r"
+            m = A1
+            k = ones(1, siz(2))
+        elseif siz(2)==1 & opts=="c"
+            m = A1
+            k = ones(siz(1), 1)
         else
-            error(msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix or a character expected.\n"), "%sp_max", 2));
+            if or(opts==["r" "m"])
+                A1 = A1'
+            end
+            [ij, v, mn] = spget(A1)
+            // mprintf("""%s"" [%d, %d]\n", opts, siz(1), siz(2))
+            m = spzeros(mn(1), 1)
+            k = ones(mn(1), 1)
+            kk = unique(ij(:,1))
+            for j = kk'
+                [V,K] = max(A1(j,:))    // handles Nan correctly
+                m(j) = V
+                k(j) = K
+            end
+            // If opts = 'r' or 'm', the result is returned in row vector
+            if or(opts==["r" "m"]) then
+                m = m'
+                k = k'
+            end
         end
 
-        // Case : max(A1,A2,A3,..,An) or max(list(A1,A2,A3,..,An))
+    // max(A1,A2,...) or equivalently max(list(A1,A2,..))
+    // --------------------------------------------------
     else
-        if lhs == 2 then
-            error(msprintf(_("%s: Wrong number of output argument: %d expected.\n"), "%sp_max", 1));
-        end
         // m is the first matrix
         m = elements(1);
+        if lhs>1
+            k = ones(m)
+        end
+        [m1, n1] = size(m)
+
         // Loop on the number of input arguments
         for i = 2:rhs
-            An = elements(i);
-
+            An = elements(i)
             // Check if An is a sparse
-            if type(An) <> 5 then
-                if error_list then
-                    error(msprintf(_("%s: Wrong type for input argument #%d (List element: %d): A sparse matrix expected.\n"), "%sp_max", 1, i))
-                else
-                    error(msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), "%sp_max", i))
-                end
+            if and(type(An) <> [1 5])  | (type(An)==1 & or(size(An)~=[1 1])) then
+                msg = _("%s: Wrong type for input argument #%d%s: A sparse matrix or a scalar expected.\n")
+                error(msprintf(msg, "%sp_max", i, error_list))
             end
-
-            [m1, n1] = size(m);
-            [m2, n2] = size(An);
-
+            // Check if An is real
+            if ~isreal(An) then
+                msg = _("%s: Argument #%d%s: Complex numbers not supported.\n")
+                error(msprintf(msg, "%sp_max", i, error_list))
+            end
+            [m2, n2] = size(An)
             // Check size
-            if (m1 <> m2 | n1 <> n2) then
-                if error_list then
-                    error(msprintf(_("%s: Wrong size of input argument #%d (List element: %d): Same size as input argument #%d expected.\n"), "%sp_max", 1, i, 1))
-                else
-                    error(msprintf(_("%s: Wrong size of input argument #%d: Same size as input argument #%d expected.\n"), "%sp_max", i, 1))
-                end
+            if (m1 <> m2 | n1 <> n2) & or([m2 n2]~=[1 1]) then
+                msg = _("%s: Wrong size of input argument #%d%s: Same size as input argument #%d expected.\n")
+                error(msprintf(msg, "%sp_max", i, error_list, 1))
             end
 
-            ij1 = spget(m);
-            ij2 = spget(An);
-
-            if size(ij1,"r") == m1*n1 & size(ij2,"r") == m2*n2 then
-                [m,k] = max(full(m), full(An));
-                m = sparse(m);
-                k = sparse(k);
+            // Processing:
+            mNan = isnan(m);
+            newNan = isnan(An);
+            pos = (m < An) | (mNan & ~newNan) | ..
+                  (mNan & newNan) // position of the last %nan, as with dense processing
+            if or([m2 n2]~=[1 1])
+                m(pos) = An(pos)
             else
-                pos = find(m < An);
-                m(pos) = An(pos);
+                m(pos) = An
             end
+            if lhs > 1
+                k(pos) = i
+            end
+        end  // for
+        if length(m)<2
+            m = full(m)
         end
     end
 endfunction

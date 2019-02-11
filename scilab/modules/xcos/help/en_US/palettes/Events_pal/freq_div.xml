@@ -21,89 +21,60 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="freq_div">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="freq_div" xml:lang="en_US">
     <refnamediv>
         <refname>freq_div</refname>
         <refpurpose>Frequency division</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/freq_div.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/freq_div.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_freq_div">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="freq_div">Frequency division</link>
-                </para>
+                <xref linkend="Description_freq_div">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_freq_div">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_freq_div">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_freq_div">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_freq_div">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_freq_div">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_freq_div">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_freq_div">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_freq_div">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_freq_div">Example</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_freq_div">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Events_pal">Event handling palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_freq_div">
         <title>Description</title>
         <para>
             This block is a Super Block. The input event is directed once every n
             times to output. The input is  driven by an event clock.
-
         </para>
     </refsection>
     <refsection id="Dialogbox_freq_div">
-        <title>Dialog box</title>
+        <title>Parameters</title>
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../images/gui/freq_div_gui.gif" align="center" valign="middle"/>
+                    <imagedata fileref="../../../../images/gui/freq_div_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
                 </imageobject>
             </inlinemediaobject>
-        </para>
-        <para>
-
         </para>
         <itemizedlist>
             <listitem>
@@ -186,7 +157,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Examples_freq_div">
+    <refsection id="Example_freq_div">
         <title>Example</title>
         <para>
             The following example divides a frequency per three.
@@ -195,15 +166,14 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/en_US/freq_div_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/events_pal/en_US/freq_div_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/events_pal/en_US/freq_div_en_US.zcos" align="center"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
-        </para>
-
-        <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/events_pal/en_US/freq_div_en_US.zcos");
-xcos_simulate(scs_m, 4);
+          <scilab:image><![CDATA[
+  importXcosDiagram(SCI + "/modules/xcos/examples/events_pal/en_US/freq_div_en_US.zcos");
+  xcos_simulate(scs_m, 4);
 ]]></scilab:image>
+        </para>
     </refsection>
 </refentry>

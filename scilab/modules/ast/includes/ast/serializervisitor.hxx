@@ -320,6 +320,10 @@ private :
             case OpExp::logicalShortCutOr:
                 code = (27);
                 break;
+
+            case OpExp::unaryPlus:
+                code = (28);
+                break;
         }
         add_uint8(code);
     }

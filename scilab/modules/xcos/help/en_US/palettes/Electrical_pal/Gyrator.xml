@@ -21,95 +21,61 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Gyrator">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="Gyrator" xml:lang="en_US">
     <refnamediv>
         <refname>Gyrator</refname>
         <refpurpose>Modelica Gyrator</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/Gyrator.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/Gyrator.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_Gyrator">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Gyrator">Modelica Gyrator</link>
-                </para>
+                <xref linkend="Description_Gyrator">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_Gyrator">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_Gyrator">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_Gyrator">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_Gyrator">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_Gyrator">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="Gyrator">Modelica model</link>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_Gyrator">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_Gyrator">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_Gyrator">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Gyrator">Modelica model</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_Gyrator">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Electrical_pal">Electrical.cosf - Electrical toolbox</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_Gyrator">
         <title>Description</title>
         <para>
-            A gyrator is a two-port element defined by the following equations:  i1 =  G2 * v2   i2 = -G1 * v1  where the constants G1, G2 are called the gyration conductance.
+            A gyrator is a two-port element defined by the following equations:
+            <literal>i1 = G2 * v2</literal>, and <literal>i2 = -G1 * v1</literal>,
+              where the constants G1 and G2 are called the gyration conductances.
         </para>
         <para>
         </para>
     </refsection>
     <refsection id="Dialogbox_Gyrator">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/Gyrator_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/Gyrator_gui.gif" align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -141,8 +107,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -151,8 +115,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -161,8 +123,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -171,8 +131,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -191,8 +149,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -204,8 +160,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                 </itemizedlist>

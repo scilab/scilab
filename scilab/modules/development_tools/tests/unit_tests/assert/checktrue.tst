@@ -1,7 +1,7 @@
 // Copyright (C) 2008 - INRIA - Michael Baudin
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,8 +12,9 @@
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 
-function flag = MY_assert_equal ( computed , expected )
+function flag = MY_assert_equal (computed , expected)
   if computed==expected then
     flag = 1;
   else
@@ -22,48 +23,47 @@ function flag = MY_assert_equal ( computed , expected )
   if flag <> 1 then pause,end
 endfunction
 
-function checkassert ( flag , errmsg , ctype )
-  if ( ctype == "success" ) then
-    MY_assert_equal ( (flag==%t) & (errmsg==""), %t )
+function checkassert (flag , errmsg , ctype)
+  if (ctype == "success") then
+    MY_assert_equal ((flag==%t) & (errmsg==""), %t)
   else
-    MY_assert_equal ( (flag==%f) & (errmsg<>""), %t )
+    MY_assert_equal ((flag==%f) & (errmsg<>""), %t)
   end
 endfunction
 
 format("v",10);
 
 // Check error message when number of arguments is false
-instr = "assert_checktrue ( )";
+instr = "assert_checktrue ()";
 ierr=execstr(instr,"errcatch");
-MY_assert_equal ( ierr , 10000 );
+MY_assert_equal (ierr , 10000);
 //
-instr = "[o1,o2,o3]=assert_checktrue ( %t )";
+instr = "[o1,o2,o3]=assert_checktrue (%t)";
 ierr=execstr(instr,"errcatch");
-MY_assert_equal ( ierr , 999 );
+MY_assert_equal (ierr , 999);
 //////////////////////////////////////////
 // Check error message when type of arguments is false
-instr = "assert_checktrue ( ""a"" )";
+instr = "assert_checktrue (""a"")";
 ierr=execstr(instr,"errcatch");
-MY_assert_equal ( ierr , 10000 );
+MY_assert_equal (ierr , 10000);
 //
 //
 // Check that the error message is correctly handled.
-instr = "assert_checktrue ( [%f %t] )";
+instr = "assert_checktrue ([%f %t])";
 ierr=execstr(instr,"errcatch");
-MY_assert_equal ( ierr , 10000 );
+MY_assert_equal (ierr , 10000);
 errmsg = lasterror();
-refmsg = msprintf( gettext( "%s: Assertion failed: found false entry in condition = %s" ) , "assert_checktrue", "[F ...]");
-MY_assert_equal ( errmsg , refmsg );
+msg = gettext("%s: Assertion failed: Entry %%F found in condition(%d).\n");
+refmsg = msprintf(msg, "assert_checktrue", 1);
+MY_assert_equal (errmsg , refmsg);
 //
-[flag,errmsg] = assert_checktrue ( %t );
-checkassert ( flag , errmsg , "success" );
+for o = list(%t, [%t %t], sparse(%t), sparse([%t %t]))
+    [flag,errmsg] = assert_checktrue(o);
+    checkassert (flag , errmsg , "success");
+end
 //
-[flag,errmsg] = assert_checktrue ( [%t %t] );
-checkassert ( flag , errmsg , "success" );
-//
-[flag,errmsg] = assert_checktrue ( %f );
-checkassert ( flag , errmsg , "failure" );
-//
-[flag,errmsg] = assert_checktrue ( [%t %f] );
-checkassert ( flag , errmsg , "failure" );
+for o = list(%f, [%f %f], [%t %f], sparse(%f), sparse([%f %f]), sparse([%t %f]))
+    [flag,errmsg] = assert_checktrue(o);
+    checkassert (flag , errmsg , "failure");
+end
 

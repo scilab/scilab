@@ -4,9 +4,11 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- ENGLISH IMPOSED -->
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
+//
 // <-- Non-regression test for bug 954 -->
 //
 // <-- Bugzilla URL -->
@@ -35,7 +37,7 @@ pi0=inv(p0);
 xh0=2;
 z0=xh0;
 sig0=0;
-TT=0:.0000001:1;
+TT=0:.0000001:0.43;
 XX=ode([p0;pi0;xh0;z0;sig0],0,TT,f);
 
 TT=TT(1:size(XX,2));

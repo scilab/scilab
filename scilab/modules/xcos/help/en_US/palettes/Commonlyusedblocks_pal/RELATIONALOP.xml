@@ -21,72 +21,39 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="RELATIONALOP">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="RELATIONALOP" xml:lang="en_US">
     <refnamediv>
         <refname>RELATIONALOP</refname>
         <refpurpose>Relational operation</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/RELATIONALOP.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/RELATIONALOP.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_RELATIONALOP">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="RELATIONALOP">Relational operation</link>
-                </para>
+                <xref linkend="Description_RELATIONALOP">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_RELATIONALOP">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_RELATIONALOP">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_RELATIONALOP">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_RELATIONALOP">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_RELATIONALOP">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_RELATIONALOP">Computational function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_RELATIONALOP">Parameters</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_RELATIONALOP">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Commonlyusedblocks_pal">Commonly used blocks palette</link>
-                </para>
+                <xref linkend="Defaultproperties_RELATIONALOP">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_RELATIONALOP">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_RELATIONALOP">Computational function</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -98,17 +65,13 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_RELATIONALOP">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/RELATIONALOP_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/RELATIONALOP_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -213,25 +176,25 @@
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/relational_op.c</para>
+                 SCI/modules/scicos_blocks/src/c/relational_op.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/relational_op_i32.c</para>
+                 SCI/modules/scicos_blocks/src/c/relational_op_i32.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/relational_op_i16.c</para>
+                 SCI/modules/scicos_blocks/src/c/relational_op_i16.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/relational_op_i8.c</para>
+                 SCI/modules/scicos_blocks/src/c/relational_op_i8.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/relational_op_ui32.c</para>
+                 SCI/modules/scicos_blocks/src/c/relational_op_ui32.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/relational_op_ui16.c</para>
+                 SCI/modules/scicos_blocks/src/c/relational_op_ui16.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/relational_op_ui8.c</para>
+                 SCI/modules/scicos_blocks/src/c/relational_op_ui8.c
             </listitem>
         </itemizedlist>
     </refsection>

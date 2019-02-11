@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -16,5 +17,5 @@ function r = %s_a_ip(s,ip)
         msg = _("%s: Argument #%d: Scalar (1 element) expected.\n")
         error(msprintf(msg, "%s_a_ip", 1))
     end
-    r=(s+ip(1)):(s+ip(2)):(s+ip(3))
+    r=(s+ip(1)):ip(2):(s+ip(3))
 endfunction

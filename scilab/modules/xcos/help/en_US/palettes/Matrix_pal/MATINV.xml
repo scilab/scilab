@@ -21,80 +21,50 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATINV">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="MATINV" xml:lang="en_US">
     <refnamediv>
         <refname>MATINV</refname>
         <refpurpose>Matrix Inverse</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/MATINV.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/MATINV.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_MATINV">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATINV">Matrix Inverse</link>
-                </para>
+                <xref linkend="Description_MATINV">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MATINV">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MATINV">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_MATINV">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MATINV">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MATINV">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_MATINV">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_MATINV">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_MATINV">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_MATINV">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_MATINV">Examples</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_MATINV">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_MATINV">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_MATINV">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_MATINV">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Matrix_pal">Matrix operation palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_MATINV">
         <title>Description</title>
         <para>
@@ -104,18 +74,16 @@
         <para>
             The equivalent function of this block in Scilab is <link linkend="inv">inv</link>.
         </para>
-        <para/>
     </refsection>
     <refsection id="Dialogbox_MATINV">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/gui/MATINV_gui.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/gui/MATINV_gui.gif" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -200,6 +168,17 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
+    </refsection>
+    <refsection id="Example_MATINV">
+        <title>Matrix Inverse example: inv([0 1/(sin(t)+1) ; 1/(t+1) 0])</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATINV_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATINV_Example.zcos"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Interfacingfunction_MATINV">
         <title>Interfacing function</title>
@@ -213,40 +192,24 @@
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/mat_inv.c</para>
+                SCI/modules/scicos_blocks/src/c/mat_inv.c
             </listitem>
             <listitem>
-                <para>SCI/modules/scicos_blocks/src/c/matz_inv.c</para>
+                SCI/modules/scicos_blocks/src/c/matz_inv.c
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Example_MATINV">
-        <title>Matrix Inverse example: inv([0 1/(sin(t)+1) ; 1/(t+1) 0])</title>
-        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATINV_Example.zcos">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATINV_Example.zcos" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </link>
-    </refsection>
-    <refsection id="Seealso_MATINV">
+    <refsection id="Seealso_MATINV" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATLU">MATLU - LU Factorization (xcos Block)</link>
-                </para>
+                <link linkend="MATLU">MATLU</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MATPINV">MATPINV - Matrix PseudoInverse (xcos Block)</link>
-                </para>
+                <link linkend="MATPINV">MATPINV</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="inv">inv (Scilab function)</link>
-                </para>
+                <link linkend="inv">inv</link>
             </listitem>
         </itemizedlist>
     </refsection>

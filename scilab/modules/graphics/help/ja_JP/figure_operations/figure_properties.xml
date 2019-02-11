@@ -171,6 +171,8 @@
                                     例えば, "16x" は "2x"よりも高い品質となります.
                                     より高いアンチエイリアスのレベルを指定することにより画像の品質は改善されますが,
                                     グラフィック性能は低下します.
+                                    Please visit the <link linkend="anti_aliasing">dedicated page</link>
+                                    to see specific examples.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -538,6 +540,9 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
             </member>
             <member>
                 <link linkend="pixel_drawing_mode">pixel_drawing_mode</link>
+            </member>
+            <member>
+                <link linkend="anti_aliasing">anti_aliasing</link>
             </member>
             <member>
                 <link linkend="colormap">colormap</link>

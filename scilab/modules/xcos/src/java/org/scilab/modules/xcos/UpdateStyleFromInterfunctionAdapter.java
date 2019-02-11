@@ -16,6 +16,7 @@
 package org.scilab.modules.xcos;
 
 import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 
 /**
  * Update the source block when the interface function change.
@@ -32,8 +33,8 @@ public final class UpdateStyleFromInterfunctionAdapter extends XcosViewListener 
      * and not newStyle="fillColor=red;DSUPER"
      */
     @Override
-    public void propertyUpdated(long uid, Kind kind, ObjectProperties property, UpdateStatus status) {
-        if (status != UpdateStatus.SUCCESS || kind != Kind.BLOCK) {
+    public void propertyUpdated(ScicosObjectOwner owner, ObjectProperties property, UpdateStatus status) {
+        if (status != UpdateStatus.SUCCESS || owner.getKind() != Kind.BLOCK) {
             return;
         }
 
@@ -45,15 +46,15 @@ public final class UpdateStyleFromInterfunctionAdapter extends XcosViewListener 
         JavaController controller = new JavaController();
 
         String[] interfaceFunction = new String[1];
-        controller.getObjectProperty(uid, kind, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
+        controller.getObjectProperty(owner.getUID(), owner.getKind(), ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
 
         String[] style = new String[1];
-        controller.getObjectProperty(uid, kind, ObjectProperties.STYLE, style);
+        controller.getObjectProperty(owner.getUID(), owner.getKind(), ObjectProperties.STYLE, style);
 
 
         final StyleMap styleMap = new StyleMap(interfaceFunction[0]);
         styleMap.putAll(style[0]);
 
-        controller.setObjectProperty(uid, kind, ObjectProperties.STYLE, styleMap.toString());
+        controller.setObjectProperty(owner.getUID(), owner.getKind(), ObjectProperties.STYLE, styleMap.toString());
     }
 }

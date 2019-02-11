@@ -3,6 +3,7 @@
 *  Copyright (C) INRIA - Alan LAYEC
 *  Copyright (C) 2013 - Scilab Enterprises - Clement DAVID
 *  Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
+*  Copyright (C) 2018 - ESI Group - Antoine ELIAS
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -358,7 +359,7 @@ bool extractblklist(types::TList* t, scicos_block* const Block)
 
     /* 11 - oz */
     pIT = t->getField(L"oz");
-    if (pIT->isList())
+    if (pIT->isList() && Block->noz > 0)
     {
         types::List* ozptr = pIT->getAs<types::List>();
         if (ozptr->getSize() != Block->noz)
@@ -425,7 +426,7 @@ bool extractblklist(types::TList* t, scicos_block* const Block)
 
     /* 18 - inptr */
     pIT = t->getField(L"inptr");
-    if (pIT->isList())
+    if (pIT->isList() && Block->nin > 0)
     {
         types::List* inptr = pIT->getAs<types::List>();
         if (inptr->getSize() != Block->nin)
@@ -468,7 +469,7 @@ bool extractblklist(types::TList* t, scicos_block* const Block)
 
     /* 21 - outptr */
     pIT = t->getField(L"outptr");
-    if (pIT->isList())
+    if (pIT->isList() && Block->nout > 0)
     {
         types::List* outptr = pIT->getAs<types::List>();
         if (outptr->getSize() != Block->nout)
@@ -553,7 +554,7 @@ bool extractblklist(types::TList* t, scicos_block* const Block)
 
     /* 31 - opar */
     pIT = t->getField(L"opar");
-    if (pIT->isList())
+    if (pIT->isList() && Block->nopar > 0)
     {
         types::List* opar = pIT->getAs<types::List>();
         if (opar->getSize() != Block->nopar)

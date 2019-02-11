@@ -6,8 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
-//
-// <-- INTERACTIVE TEST -->
+// <-- ENGLISH IMPOSED -->
 //
 // <-- Non-regression test for bug 12426 -->
 //
@@ -17,10 +16,8 @@
 // <-- Short Description -->
 // By using addErrorMessage, random string error can be displayed.
 
-// exec SCI/modules/api_scilab/tests/nonreg_tests/bug_12426.tst
 ilib_verbose(0);
-directory = get_absolute_file_path("bug_12426.tst");
-exec(directory + "/build_bug_12426_gateway.sce");
+exec("SCI/modules/api_scilab/tests/nonreg_tests/build_bug_12426_gateway.sce");
 exec(TMPDIR + "/bug_12426_gateway/loader.sce");
 
 n = int32(1);

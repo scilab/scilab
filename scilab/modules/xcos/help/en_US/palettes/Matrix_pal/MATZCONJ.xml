@@ -21,80 +21,47 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATZCONJ">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="MATZCONJ" xml:lang="en_US">
     <refnamediv>
         <refname>MATZCONJ</refname>
         <refpurpose>Conjugate of Matrix's Elements</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/MATZCONJ.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/MATZCONJ.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_MATZCONJ">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATZCONJ">Conjugate of Matrix's Elements</link>
-                </para>
+                <xref linkend="Description_MATZCONJ">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MATZCONJ">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MATZCONJ">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="MATZCONJ">Example</link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MATZCONJ">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MATZCONJ">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_MATZCONJ">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_MATZCONJ">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Defaultproperties_MATZCONJ">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_MATZCONJ">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_MATZCONJ">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_MATZCONJ">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_MATZCONJ">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_MATZCONJ">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Matrix_pal">Matrix operation palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_MATZCONJ">
         <title>Description</title>
         <para>
@@ -103,16 +70,6 @@
         <para>
             The equivalent function of this block in Scilab is <link linkend="conj">conj</link>.
         </para>
-        <para/>
-    </refsection>
-    <refsection id="Example_MATZCONJ">
-        <title>Example</title>
-        <programlisting role="example"><![CDATA[
---                  --                  --                  --
-| 1+i   2+3i    3+2i |   Conjugate     | 1-i   2-3i    3-2i |
-| 4+i   5-8i    6-2i |   ----------->   | 4-i   5+8i    6+2i |
---                  --                  --                  --
- ]]></programlisting>
     </refsection>
     <refsection id="Defaultproperties_MATZCONJ">
         <title>Default properties</title>
@@ -185,6 +142,16 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
+    </refsection>
+    <refsection id="Example_MATZCONJ">
+        <title>Example</title>
+        <screen><![CDATA[
+--                  --                  --                  --
+| 1+i   2+3i    3+2i |    Conjugate     | 1-i   2-3i    3-2i |
+| 4+i   5-8i    6-2i |   ----------->   | 4-i   5+8i    6+2i |
+--                  --                  --                  --
+]]></screen>
     </refsection>
     <refsection id="Interfacingfunction_MATZCONJ">
         <title>Interfacing function</title>
@@ -202,18 +169,14 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_MATZCONJ">
+    <refsection id="Seealso_MATZCONJ" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATTRAN">MATTRAN - Matrix Transpose (xcos Block)</link>
-                </para>
+                <link linkend="MATTRAN">MATTRAN</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="conj">conj (Scilab function)</link>
-                </para>
+                <link linkend="conj">conj (Function)</link>
             </listitem>
         </itemizedlist>
     </refsection>

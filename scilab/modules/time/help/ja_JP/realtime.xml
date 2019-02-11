@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="realtime">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="realtime">
     <refnamediv xml:id="realtimeinit">
         <refname>realtimeinit</refname>
         <refpurpose>時間の単位を設定</refpurpose>
@@ -24,7 +27,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>realtimeinit(time_unit)
+        <synopsis>
+            realtimeinit(time_unit)
+            realtime(t0)
             realtime(t)
         </synopsis>
     </refsynopsisdiv>
@@ -36,6 +41,17 @@
                 <listitem>
                     <para>
                         実数. <literal>realtime</literal> の引数に関連する秒数
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t0</term>
+                <listitem>
+                    <para>
+                       decimal number: initial datetime, in <literal>time_unit</literal>.
+                       This meaning holds when <literal>realtime(…)</literal> is called for the
+                       first time after the last <literal>realtimeinit(…)</literal>.
+                       This first call sets the datetime origin and restarts the real timer.
                     </para>
                 </listitem>
             </varlistentry>
@@ -66,41 +82,53 @@
     </refsection>
     <refsection>
         <title>例</title>
+        <para>
+        In the following example, in a loop, a job takes an arbitrary time, from
+        0 to 1.50 s. This is simulated with a sleep() of random duration. Although this period
+        is not regular, realtime() is used to compensate and print something every 2.00 seconds:
+        </para>
         <programlisting role="example"><![CDATA[
-realtimeinit(1/2);//時間の単位を 0.5秒に設定s
-realtime(0);// カレントの時刻を 0に設定
-for k=1:10
-  realtime(k);
-  mprintf('current time is '+string(k/2)+'sec .\r\n');
+clc
+tic();
+realtimeinit(2.00);
+realtime(0);
+for k = 1:10
+    if k==1, mprintf("\nSleep for  Wake-up at   Wait until date\n"), end
+    d = rand(1,1);
+    sleep(d*1500);
+    mprintf(' %4.2f s     %5.2f s', d*1.5, toc());
+    realtime(k);
+    mprintf('      %5.2f s\n', toc());
 end
-//次の命令では2秒毎にドットを出力
-realtimeinit(2);
-realtime(0);
-for k=1:10
-  realtime(k);
-  mprintf('.\r\n');
-end
-realtimeinit(1);
-realtime(0);
-dt=getdate('s');
-realtime(10);
-getdate('s')-dt
  ]]></programlisting>
-        <programlisting role="example"><![CDATA[
-realtimeinit(1);
-realtime(0);
-t1 = now()
-datevec(t1)
-realtime(10);
-t1 = now()
-datevec(t1)
- ]]></programlisting>
+    <screen><![CDATA[
+Sleep for  Wake-up at   Wait until date
+ 0.28 s      0.57 s       2.08 s
+ 0.03 s      2.11 s       4.08 s
+ 1.27 s      5.34 s       6.08 s
+ 0.11 s      6.19 s       8.08 s
+ 1.28 s      9.36 s      10.08 s
+ 0.02 s     10.10 s      12.08 s
+ 0.28 s     12.36 s      14.08 s
+ 0.74 s     14.82 s      16.08 s
+ 1.12 s     17.20 s      18.08 s
+ 1.41 s     19.49 s      20.08 s
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="sleep">sleep</link>
+            </member>
+            <member>
                 <link linkend="getdate">getdate</link>
+            </member>
+            <member>
+                <link linkend="waitbar">waitbar</link>
+            </member>
+            <member>
+                <link linkend="progressionbar">progressionbar</link>
             </member>
         </simplelist>
     </refsection>

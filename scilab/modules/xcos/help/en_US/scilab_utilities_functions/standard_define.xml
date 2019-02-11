@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="standard_define">
+    <refnamediv>
+        <refname>standard_define</refname>
+        <refpurpose>Define a block from its interface as in Xcos editor.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>[block] = standard_define(sz, model, exprs)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>block</term>
+                <listitem>
+                    <para>xcos block.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sz</term>
+                <listitem>
+                    <para>
+                        <varname>[height, width]</varname> size of the block.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>model</term>
+                <listitem>
+                    <para>
+                      The <link linkend="scicos_model">part of the block</link> that define its
+                      simulation interface.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>exprs</term>
+                <listitem>
+                    <para>
+                        The <link linkend="scicos_block_graphics_exprs">graphics.exprs</link> default parameters expressions.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This Scilab function is an helper used to allocate an Xcos block from an interfacing functions using a computed <link linkend="scicos_block_graphics">graphics</link> from a <link linkend="scicos_block_model">model</link> interface. It ensures that the ports match, that the size is similar to standard blocks and set the <link linkend="scicos_block_gui">gui</link> field.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scicos_block">scicos_block</link>
+            </member>
+            <member>
+                <link linkend="standard_outputs">standard_inputs</link>
+            </member>
+            <member>
+                <link linkend="standard_outputs">standard_outputs</link>
+            </member>
+            <member>
+                <link linkend="standard_origin">standard_origin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

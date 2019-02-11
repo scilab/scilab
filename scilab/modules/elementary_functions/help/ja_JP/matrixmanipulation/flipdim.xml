@@ -36,8 +36,9 @@
                 <term>x, y</term>
                 <listitem>
                     <para>
-                        ベクトル、行列、または任意の通常のデータ型のハイパーマトリックスを含む。
-                        <varname> y </varname>は<varname> x </varname>のサイズを取得します。
+                        ベクトル、行列、または任意の通常のデータ型のハイパーマトリックスを含む、
+                        or cells array.
+                        <varname> y </varname>は<varname> x </varname>のサイズを取得します.
                     </para>
                 </listitem>
             </varlistentry>
@@ -65,8 +66,7 @@
         <title>説明</title>
         <para>
             <literal>flipdim(x, 1)</literal> inverts the order of
-            <emphasis role="italic">rows</emphasis> in the matrix or hypermatrix
-            <varname>x</varname>.
+            <emphasis role="italic">rows</emphasis> of <varname>x</varname>.
         </para>
         <para>
             <literal>flipdim(x, 2)</literal> inverts the order of
@@ -74,8 +74,7 @@
         </para>
         <para>
             <literal>flipdim(x, 3)</literal> inverts the order of
-            <emphasis role="italic">pages</emphasis> in the hypermatrix
-            <varname>x</varname>. Etc.
+            <emphasis role="italic">pages</emphasis> of <varname>x</varname>. Etc.
         </para>
         <para>
             The optional parameter <literal>blockSize</literal> allows splitting

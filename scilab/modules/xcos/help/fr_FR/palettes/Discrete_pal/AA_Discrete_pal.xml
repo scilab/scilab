@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -116,70 +116,40 @@
 
       </para>
     </refsection>
-    <refsection id="Module_Discrete_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
     <refsection id="Description_Discrete_pal">
         <title>Description</title>
         <para>La palette Systèmes à temps discret contient les blocs de modélisation en temps discret.</para>
     </refsection>
-    <refsection id="Blocks_Discrete_pal">
-        <title>Blocks</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="DELAY_f">DELAY_f — Retard en temps discret</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="DELAYV_f">DELAYV_f — Retard variable</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="DLR">DLR — Fonction de transfert discrète</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="DLRADAPT_f">DLRADAPT_f — Fonction de transfert discrète (Pôles &amp; zéros)
-                        function
-                    </link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="DLSS">DLSS — Représentation d'état en temps discret</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="DOLLAR_f">DOLLAR_f — Opérateur retard</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="REGISTER">REGISTER — Registre à décalage</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="SAMPHOLD_m">SAMPHOLD_m — Echantilonneur-bloqueur</link>
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    <link linkend="TCLSS">TCLSS — Système continu linéaire avec saut</link>
-                </para>
-            </listitem>
-        </itemizedlist>
+    <refsection id="Blocks_Discrete_pal" role="see also">
+        <title>Blocs</title>
+        <simplelist>
+            <member>
+                <link linkend="DELAY_f">DELAY_f</link>
+            </member>
+            <member>
+                <link linkend="DELAYV_f">DELAYV_f</link>
+            </member>
+            <member>
+                <link linkend="DLR">DLR</link>
+            </member>
+            <member>
+                <link linkend="DLRADAPT_f">DLRADAPT_f</link>
+            </member>
+            <member>
+                <link linkend="DLSS">DLSS</link>
+            </member>
+            <member>
+                <link linkend="DOLLAR_f">DOLLAR_f</link>
+            </member>
+            <member>
+                <link linkend="REGISTER">REGISTER</link>
+            </member>
+            <member>
+                <link linkend="SAMPHOLD_m">SAMPHOLD_m</link>
+            </member>
+            <member>
+                <link linkend="TCLSS">TCLSS</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

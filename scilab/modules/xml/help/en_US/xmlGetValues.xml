@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="xmlGetValues" xml:lang="en">
+    <refnamediv>
+        <refname>xmlGetValues</refname>
+        <refpurpose>Parses and gets values of chosen tags attributes in a XML file of preferences</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            Values = xmlGetValues(path2tag, attributes)
+            Values = xmlGetValues(path2tag, attributes, XMLsource)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>path2tag</term>
+                <listitem>
+                    <para>
+                        unique string: in the XML source file, path targeting a chosen tag whose
+                        attributes must be read. The path is the list of nested tags leading to the
+                        required one, such as <literal>"/a/b/c/d"</literal>, or equivalently
+                        <literal>"//b/c/d"</literal>. It is case-sensitive.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>attributes</term>
+                <listitem>
+                    <para>
+                        vector or matrix of strings: names of attributes of the chosen tag, whose values
+                        must be read. The order of attributes does not matter wrt their actual order in
+                        the tag.
+                        <note>
+                            <itemizedlist>
+                                <listitem>
+                                    Attributes names are case-sensitive.
+                                </listitem>
+                                <listitem>
+                                    If needed, the name of a given attribute may be specified several times.
+                                </listitem>
+                            </itemizedlist>
+                        </note>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>XMLsource</term>
+                <listitem>
+                    <para>
+                        points to the XML document from which informations must be extracted. It
+                        can be one of the following:
+                        <itemizedlist>
+                            <listitem>
+                                unique string: path to the XML source file (where preferences are
+                                registered). By default,
+                                <literal>SCIHOME+'/XConfiguration.xml'</literal> is considered.
+                            </listitem>
+                            <listitem>
+                                XML handle of type <literal>XMLdoc</literal>, as returned by a
+                                prior <code>xmlRead(XMLsource)</code> external instruction.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Values</term>
+                <listitem>
+                    <para>
+                        matrix of strings: Values of the chosen attributes of the chosen tag:
+                        <itemizedlist>
+                            <listitem>
+                                If the set of chosen <varname>attributes</varname> is provided as a
+                                matrix with several rows, then only the first occurrence of the chosen
+                                tag is considered, and <varname>Values(i,j)</varname> is the value of
+                                its <varname>attributes(i,j)</varname>.
+                            </listitem>
+                            <listitem>
+                                Otherwise, if the names of <varname>attributes</varname> are
+                                provided in a row vector, then
+                                <emphasis role="italic">all occurences</emphasis> of the chosen tag
+                                are considered: Results are returned with one row per occurrence,
+                                and one colum per attribute. Thus, <varname>Values(i,j)</varname>
+                                is the value of the <varname>attributes(j)</varname> for the
+                                <literal>
+                                    i<superscript>th</superscript>
+                                </literal>
+                                occurrence of the
+                                tag in the document.
+                            </listitem>
+                        </itemizedlist>
+                        If some final values are expected to be numeric rather than literal (text),
+                        <code>evstr()</code> may be applied to them to get expected numbers.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            When an XML handle returned by <code>xmlRead(..)</code> is provided as
+            <varname>XMLsource</varname>, <function>xmlGetValues()</function> uses it
+            directly to parse the XML Preferences document opened by this prior
+            <code>xmlRead(..)</code>. This is useful when the same document must be parsed with
+            multiple calls to <function>xmlGetValues()</function>, typically to address
+            different XML tags. In this case, one should not forget to close the XML document after
+            its whole processing.
+        </para>
+        <para>
+            When the path of the XML Preferences file is provided as <varname>XMLsource</varname>,
+            <function>xmlGetValues()</function> opens the file, builds its DOM tree, parses
+            the tree for the chosen tag and attributes, and finally deletes the tree and closes the
+            file before returning results. This is what occurs with the default Xconfiguration.xml
+            file when no explicit <varname>XMLsource</varname> is specified.
+        </para>
+        <para>
+            The <varname>path2tag</varname> argument must be a valid "XPath" according to the
+            <ulink url="https://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandations</ulink>.
+            Examples are given herebelow. If the path uses a intermediate or a final tag that does
+            not exist, or if one of the queried attributes does not exist, an error is yielded.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <emphasis role="bold">Example 1:</emphasis>
+        <para>
+            Your web and proxy settings for Scilab are stored in the default
+            <literal>SCIHOME+'/XConfiguration.xml'</literal> preferences file. Let's consider the
+            following excerpt of the file:
+            <programlisting role="xml"><![CDATA[
+    <?xml version="1.0" encoding="utf-8" standalone="no"?>
+    <interface height="600" path="1/" version="0.17" width="800">
+        <general title="_(General)">
+        ...
+        </general>
+        <web title="_(Web)">
+            <body>
+                <web command-browser="" command-mailer="" default-browser="true" default-mailer="true"/>
+                <proxy enabled="false" host="" password="" port="" user=""/>
+                <previous-proxy enabled="false" host="" password="" port="" user=""/>
+            </body>
+        </web>
+        ...
+    </interface>
+              ]]></programlisting>
+        </para>
+        <para>
+            To get some informations about the proxy parameters (proxy tag), the required code
+            will be:
+            <programlisting role="scilab"><![CDATA[
+            proxy = xmlGetValues("//web/body/proxy", ["enabled", "host", "port"]);
+     ]]></programlisting>
+        </para>
+        <para>
+            <emphasis role="bold">Example 2:</emphasis>
+        </para>
+        <para>
+            <function>xmlGetValues()</function> can also be used to get values of a tag
+            having multiple occurrences in the <literal>XMLsource</literal> file. For instance,
+            your preferences for the Scilab's editor Scinotes are stored in the
+            <literal>SCIHOME\scinotesConfiguration.xml</literal> file. The list of most recent files
+            opened in Scinotes is stored in the following part and path:
+            <programlisting role="xml"><![CDATA[
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Setting version="0.42">
+    <!-- SCINOTES configuration -->
+    <Profile name="scinotes">
+        <!-- .../... -->
+        <!-- Recent Opened Files Section  -->
+        <recentFiles>
+            <document path="C:\Path\to\my\first\working\dir\ged_move_entity.sci"/>
+            <document path="C:\Path\to\my\first\working\dir\ged_loop.sci"/>
+            <document path="C:\Path\to\my\first\working\dir\test_legend_move.sce"/>
+            <document path="C:\Path\to\another\working\dir2\clf.sci"/>
+        </recentFiles>
+        <!-- .../... -->
+    </Profile>
+</Setting>
+              ]]></programlisting>
+        </para>
+        <para>
+            Then, the following code will extract, return and display the column of recent files:
+            <programlisting role="example"><![CDATA[
+            scinotesFile = SCIHOME + "/scinotesConfiguration.xml";
+            recent = xmlGetValues("//Setting/Profile/recentFiles/document", "path", scinotesFile);
+            mprintf("%s\n", recent)
+     ]]></programlisting>
+            <screen><![CDATA[
+C:\Path\to\my\first\working\dir\ged_move_entity.sci
+C:\Path\to\my\first\working\dir\ged_loop.sci
+C:\Path\to\my\first\working\dir\test_legend_move.sce
+C:\Path\to\another\working\dir2\clf.sci
+]]></screen>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="setPreferencesValue">setPreferencesValue</link>
+            </member>
+            <member>
+                <link linkend="xmlXPath">xmlXPath</link>
+            </member>
+            <member>
+                <ulink url="https://www.w3.org/TR/1999/REC-xpath-19991116/">XML path language</ulink>
+            </member>
+            <member>
+                <link linkend="xmlRead">xmlRead</link>
+            </member>
+            <member>
+                <link linkend="xmlDelete">xmlDelete</link>
+            </member>
+            <member>
+                <link linkend="atomsGetConfig">atomsGetConfig</link>
+            </member>
+            <member>
+                <link linkend="printsetupbox">printsetupbox</link>
+            </member>
+            <member>
+                <link linkend="csvDefault">csvDefault</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>xmlGetValues() introduced, was formerly getPreferencesValue().
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

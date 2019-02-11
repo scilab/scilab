@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,67 +13,45 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="INIMPL_f" xml:lang="fr_FR">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="INIMPL_f" xml:lang="fr_FR">
     <refnamediv>
         <refname>INIMPL_f</refname>
         <refpurpose>Port d'entrée implicite</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/INIMPL_f.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/INIMPL_f.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_INIMPL_f">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="INIMPL_f">Port d'entrée implicite</link>
-                </para>
+                <xref linkend="Palette_INIMPL_f">Palettes</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_INIMPL_f">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_INIMPL_f">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_INIMPL_f">Boîte de dialogue</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_INIMPL_f">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_INIMPL_f">Exemple</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_INIMPL_f">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_INIMPL_f">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Description_INIMPL_f">Description</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_INIMPL_f">Paramètres</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_INIMPL_f">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_INIMPL_f">Exemple</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_INIMPL_f">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_INIMPL_f">Voir aussi</xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -81,38 +59,35 @@
         <title>Palettes</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Portaction_pal">Port &amp; Sous-systèmes</link>
-                </para>
+                <link linkend="Portaction_pal">Port &amp; Sous-systèmes</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="Sources_pal">Sources</link>
-                </para>
+                <link linkend="Sources_pal">Sources</link>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection id="Description_INIMPL_f">
         <title>Description</title>
         <para>
-            Ce bloc représente une port d'entrée implicite. Il doit être utilisé uniquement à l'intérieur d'un Super bloc Xcos et être connecté une entrée implicite dans le sous-système.
+            Ce bloc représente une port d'entrée implicite. Il doit être utilisé uniquement à
+            l'intérieur d'un Super-bloc Xcos et être connecté une entrée implicite dans le sous-système.
         </para>
         <para>
-            Ce bloc est une liaison de signal d'un système dans un sous-système. Dans un Super bloc, les ports d'entrée implicites
-            doivent être numérotés de 1 au nombre total d'entrées implicites du Super bloc. Chaque numéro d'entrée implicite doit être
+            Ce bloc est une liaison de signal d'un système dans un sous-système.
+            Dans un Super-bloc, les ports d'entrée implicites doivent être numérotés de 1 au nombre
+            total d'entrées implicites du Super bloc. Chaque numéro d'entrée implicite doit être
             unique et défini avec le paramètre <emphasis role="bold">Port number</emphasis>.
         </para>
     </refsection>
     <refsection id="Dialogbox_INIMPL_f">
-        <title>Boîte de dialogue</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/portaction_pal/fr_FR/INIMPL_f_gui.png" align="center"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Paramètres</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/portaction_pal/fr_FR/INIMPL_f_gui.png"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -186,12 +161,16 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Example_INIMPL_f">
         <title>Exemple</title>
         <para>
-            L'exemple suivant montre l'utilisation du bloc INIMPL_f. Le Super bloc contient un circuit électrique simple avec deux entrées, une sur la résistance, l'autre pour la masse. Ces entrées sont connectées à l'environnement extérieur du bloc à travers deux blocs INIMPL_f numérotés
-            1 et 2. La sortie du Super block est connectée via le bloc <link linkend="OUTIMPL_f">OUTIMPL_f</link>.
+            L'exemple suivant montre l'utilisation du bloc INIMPL_f. Le Super-bloc contient un
+            circuit électrique simple avec deux entrées, une sur la résistance, l'autre pour la masse.
+            Ces entrées sont connectées à l'environnement extérieur du bloc à travers deux blocs
+            INIMPL_f numérotés 1 et 2. La sortie du Super-bloc est connectée via le bloc
+            <link linkend="OUTIMPL_f">OUTIMPL_f</link>.
         </para>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/INIMPL_f_fr_FR.zcos">
@@ -205,7 +184,7 @@
         <scilab:image localized="true"><![CDATA[
 // overload messagebox to avoid the "modelica compiler" message
 function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
-	btn=1;
+    btn=1;
 endfunction
 
 importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/fr_FR/INIMPL_f_fr_FR.zcos");
@@ -222,7 +201,7 @@ xcos_simulate(scs_m, 4);
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_INIMPL_f">
+    <refsection id="Seealso_INIMPL_f" role="see also">
         <title>Voir aussi</title>
         <itemizedlist>
             <listitem>

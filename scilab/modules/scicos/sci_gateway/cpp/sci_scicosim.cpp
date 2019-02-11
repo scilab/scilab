@@ -58,6 +58,21 @@ extern "C"
 #define snprintf _snprintf
 #endif
 
+// anonymous namespace for helper functions
+namespace
+{
+void delete_strings(char** l_sim_lab, int len)
+{
+    for (int i = 0; i < len; i++)
+    {
+        FREE(l_sim_lab[i]);
+    }
+    delete[] l_sim_lab;
+}
+
+} // namespace
+
+
 /*--------------------------------------------------------------------------*/
 /* intsicosimc scicosim interface routine.
 *
@@ -1002,9 +1017,9 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         il_state->killMe();
         il_tcur->DecreaseRef();
         il_tcur->killMe();
+        delete[] il_sim_labptr;
         il_sim->DecreaseRef();
         il_sim->killMe();
-        delete[] il_sim_labptr;
         return types::Function::Error;
     }
     for (int i = 0; i < il_sim_lab->getSize(); ++i)
@@ -1021,10 +1036,10 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         il_state->killMe();
         il_tcur->DecreaseRef();
         il_tcur->killMe();
+        delete[] il_sim_labptr;
+        delete_strings(l_sim_lab, il_sim_lab->getSize());
         il_sim->DecreaseRef();
         il_sim->killMe();
-        delete[] il_sim_labptr;
-        delete[] l_sim_lab;
         return types::Function::Error;
     }
     types::Double* il_sim_modptr_input = il_sim_input->get(32)->getAs<types::Double>();
@@ -1041,10 +1056,10 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         il_state->killMe();
         il_tcur->DecreaseRef();
         il_tcur->killMe();
+        delete[] il_sim_labptr;
+        delete_strings(l_sim_lab, il_sim_lab->getSize());
         il_sim->DecreaseRef();
         il_sim->killMe();
-        delete[] il_sim_labptr;
-        delete[] l_sim_lab;
         return types::Function::Error;
     }
     types::String* il_sim_uid_input = il_sim_input->get(33)->getAs<types::String>();
@@ -1062,10 +1077,10 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         il_state->killMe();
         il_tcur->DecreaseRef();
         il_tcur->killMe();
+        delete[] il_sim_labptr;
+        delete_strings(l_sim_lab, il_sim_lab->getSize());
         il_sim->DecreaseRef();
         il_sim->killMe();
-        delete[] il_sim_labptr;
-        delete[] l_sim_lab;
         return types::Function::Error;
     }
     char** l_sim_uid;
@@ -1080,11 +1095,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         il_state->killMe();
         il_tcur->DecreaseRef();
         il_tcur->killMe();
+        delete[] il_sim_labptr;
+        delete_strings(l_sim_lab, il_sim_lab->getSize());
+        delete[] il_sim_uidptr;
         il_sim->DecreaseRef();
         il_sim->killMe();
-        delete[] il_sim_labptr;
-        delete[] l_sim_lab;
-        delete[] il_sim_uidptr;
         return types::Function::Error;
     }
     for (int i = 0; i < il_sim_uid->getSize(); ++i)
@@ -1103,12 +1118,12 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         il_state->killMe();
         il_tcur->DecreaseRef();
         il_tcur->killMe();
+        delete[] il_sim_labptr;
+        delete_strings(l_sim_lab, il_sim_lab->getSize());
+        delete[] il_sim_uidptr;
+        delete_strings(l_sim_uid, il_sim_uid->getSize());
         il_sim->DecreaseRef();
         il_sim->killMe();
-        delete[] il_sim_labptr;
-        delete[] l_sim_lab;
-        delete[] il_sim_uidptr;
-        delete[] l_sim_uid;
         return types::Function::Error;
     }
     types::String* il_str = in[4]->getAs<types::String>();
@@ -1119,12 +1134,12 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         il_state->killMe();
         il_tcur->DecreaseRef();
         il_tcur->killMe();
+        delete[] il_sim_labptr;
+        delete_strings(l_sim_lab, il_sim_lab->getSize());
+        delete[] il_sim_uidptr;
+        delete_strings(l_sim_uid, il_sim_uid->getSize());
         il_sim->DecreaseRef();
         il_sim->killMe();
-        delete[] il_sim_labptr;
-        delete[] l_sim_lab;
-        delete[] il_sim_uidptr;
-        delete[] l_sim_uid;
         return types::Function::Error;
     }
 
@@ -1162,12 +1177,12 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         il_state->killMe();
         il_tcur->DecreaseRef();
         il_tcur->killMe();
+        delete[] il_sim_labptr;
+        delete_strings(l_sim_lab, il_sim_lab->getSize());
+        delete[] il_sim_uidptr;
+        delete_strings(l_sim_uid, il_sim_uid->getSize());
         il_sim->DecreaseRef();
         il_sim->killMe();
-        delete[] il_sim_labptr;
-        delete[] l_sim_lab;
-        delete[] il_sim_uidptr;
-        delete[] l_sim_uid;
         return types::Function::Error;
     }
 
@@ -1181,12 +1196,12 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         il_state->killMe();
         il_tcur->DecreaseRef();
         il_tcur->killMe();
+        delete[] il_sim_labptr;
+        delete_strings(l_sim_lab, il_sim_lab->getSize());
+        delete[] il_sim_uidptr;
+        delete_strings(l_sim_uid, il_sim_uid->getSize());
         il_sim->DecreaseRef();
         il_sim->killMe();
-        delete[] il_sim_labptr;
-        delete[] l_sim_lab;
-        delete[] il_sim_uidptr;
-        delete[] l_sim_uid;
         return types::Function::Error;
     }
     types::Double* il_tol = in[5]->getAs<types::Double>();
@@ -1198,12 +1213,12 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         il_state->killMe();
         il_tcur->DecreaseRef();
         il_tcur->killMe();
+        delete[] il_sim_labptr;
+        delete_strings(l_sim_lab, il_sim_lab->getSize());
+        delete[] il_sim_uidptr;
+        delete_strings(l_sim_uid, il_sim_uid->getSize());
         il_sim->DecreaseRef();
         il_sim->killMe();
-        delete[] il_sim_labptr;
-        delete[] l_sim_lab;
-        delete[] il_sim_uidptr;
-        delete[] l_sim_uid;
         return types::Function::Error;
     }
 
@@ -1291,12 +1306,12 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         il_state->killMe();
         il_tcur->DecreaseRef();
         il_tcur->killMe();
+        delete[] il_sim_labptr;
+        delete_strings(l_sim_lab, il_sim_lab->getSize());
+        delete[] il_sim_uidptr;
+        delete_strings(l_sim_uid, il_sim_uid->getSize());
         il_sim->DecreaseRef();
         il_sim->killMe();
-        delete[] il_sim_labptr;
-        delete[] l_sim_lab;
-        delete[] il_sim_uidptr;
-        delete[] l_sim_uid;
         return types::Function::Error;
     }
 
@@ -1316,12 +1331,12 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         il_state->killMe();
         il_tcur->DecreaseRef();
         il_tcur->killMe();
+        delete[] il_sim_labptr;
+        delete_strings(l_sim_lab, il_sim_lab->getSize());
+        delete[] il_sim_uidptr;
+        delete_strings(l_sim_uid, il_sim_uid->getSize());
         il_sim->DecreaseRef();
         il_sim->killMe();
-        delete[] il_sim_labptr;
-        delete[] l_sim_lab;
-        delete[] il_sim_uidptr;
-        delete[] l_sim_uid;
         return types::Function::Error;
     }
 
@@ -1350,13 +1365,13 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                 il_state->killMe();
                 il_tcur->DecreaseRef();
                 il_tcur->killMe();
+                delete[] il_sim_labptr;
+                delete_strings(l_sim_lab, il_sim_lab->getSize());
+                delete[] il_sim_uidptr;
+                delete_strings(l_sim_uid, il_sim_uid->getSize());
+                delete[] lfunpt;
                 il_sim->DecreaseRef();
                 il_sim->killMe();
-                delete[] il_sim_labptr;
-                delete[] l_sim_lab;
-                delete[] il_sim_uidptr;
-                delete[] l_sim_uid;
-                delete[] lfunpt;
                 return types::Function::Error;
             }
 
@@ -1409,14 +1424,14 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                             il_state->killMe();
                             il_tcur->DecreaseRef();
                             il_tcur->killMe();
-                            il_sim->DecreaseRef();
-                            il_sim->killMe();
                             delete[] il_sim_labptr;
-                            delete[] l_sim_lab;
+                            delete_strings(l_sim_lab, il_sim_lab->getSize());
                             delete[] il_sim_uidptr;
-                            delete[] l_sim_uid;
+                            delete_strings(l_sim_uid, il_sim_uid->getSize());
                             delete[] lfunpt;
                             FREE(c_str);
+                            il_sim->DecreaseRef();
+                            il_sim->killMe();
                             return types::Function::Error;
                         }
                     }
@@ -1431,13 +1446,13 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             il_state->killMe();
             il_tcur->DecreaseRef();
             il_tcur->killMe();
+            delete[] il_sim_labptr;
+            delete_strings(l_sim_lab, il_sim_lab->getSize());
+            delete[] il_sim_uidptr;
+            delete_strings(l_sim_uid, il_sim_uid->getSize());
+            delete[] lfunpt;
             il_sim->DecreaseRef();
             il_sim->killMe();
-            delete[] il_sim_labptr;
-            delete[] l_sim_lab;
-            delete[] il_sim_uidptr;
-            delete[] l_sim_uid;
-            delete[] lfunpt;
             return types::Function::Error;
         }
     }
@@ -1462,13 +1477,13 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             il_state->killMe();
             il_tcur->DecreaseRef();
             il_tcur->killMe();
+            delete[] il_sim_labptr;
+            delete_strings(l_sim_lab, il_sim_lab->getSize());
+            delete[] il_sim_uidptr;
+            delete_strings(l_sim_uid, il_sim_uid->getSize());
+            delete[] lfunpt;
             il_sim->DecreaseRef();
             il_sim->killMe();
-            delete[] il_sim_labptr;
-            delete[] l_sim_lab;
-            delete[] il_sim_uidptr;
-            delete[] l_sim_uid;
-            delete[] lfunpt;
             return types::Function::Error;
         }
         // Allocation of 'ozsz'
@@ -1483,14 +1498,14 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             il_state->killMe();
             il_tcur->DecreaseRef();
             il_tcur->killMe();
-            il_sim->DecreaseRef();
-            il_sim->killMe();
             delete[] il_sim_labptr;
-            delete[] l_sim_lab;
+            delete_strings(l_sim_lab, il_sim_lab->getSize());
             delete[] il_sim_uidptr;
-            delete[] l_sim_uid;
+            delete_strings(l_sim_uid, il_sim_uid->getSize());
             delete[] lfunpt;
             delete[] oz;
+            il_sim->DecreaseRef();
+            il_sim->killMe();
             return types::Function::Error;
         }
         // Allocation of 'oztyp'
@@ -1505,15 +1520,15 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             il_state->killMe();
             il_tcur->DecreaseRef();
             il_tcur->killMe();
-            il_sim->DecreaseRef();
-            il_sim->killMe();
             delete[] il_sim_labptr;
-            delete[] l_sim_lab;
+            delete_strings(l_sim_lab, il_sim_lab->getSize());
             delete[] il_sim_uidptr;
-            delete[] l_sim_uid;
+            delete_strings(l_sim_uid, il_sim_uid->getSize());
             delete[] lfunpt;
             delete[] oz;
             delete[] ozsz;
+            il_sim->DecreaseRef();
+            il_sim->killMe();
             return types::Function::Error;
         }
 
@@ -1627,16 +1642,16 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             il_state->killMe();
             il_tcur->DecreaseRef();
             il_tcur->killMe();
-            il_sim->DecreaseRef();
-            il_sim->killMe();
             delete[] il_sim_labptr;
-            delete[] l_sim_lab;
+            delete_strings(l_sim_lab, il_sim_lab->getSize());
             delete[] il_sim_uidptr;
-            delete[] l_sim_uid;
+            delete_strings(l_sim_uid, il_sim_uid->getSize());
             delete[] lfunpt;
             delete[] oz;
             delete[] ozsz;
             delete[] oztyp;
+            il_sim->DecreaseRef();
+            il_sim->killMe();
             return types::Function::Error;
         }
         // Allocation of 'oparsz'
@@ -1651,17 +1666,17 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             il_state->killMe();
             il_tcur->DecreaseRef();
             il_tcur->killMe();
-            il_sim->DecreaseRef();
-            il_sim->killMe();
             delete[] il_sim_labptr;
-            delete[] l_sim_lab;
+            delete_strings(l_sim_lab, il_sim_lab->getSize());
             delete[] il_sim_uidptr;
-            delete[] l_sim_uid;
+            delete_strings(l_sim_uid, il_sim_uid->getSize());
             delete[] lfunpt;
             delete[] oz;
             delete[] ozsz;
             delete[] oztyp;
             delete[] opar;
+            il_sim->DecreaseRef();
+            il_sim->killMe();
             return types::Function::Error;
         }
         // Allocation of 'opartyp'
@@ -1676,18 +1691,18 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             il_state->killMe();
             il_tcur->DecreaseRef();
             il_tcur->killMe();
-            il_sim->DecreaseRef();
-            il_sim->killMe();
             delete[] il_sim_labptr;
-            delete[] l_sim_lab;
+            delete_strings(l_sim_lab, il_sim_lab->getSize());
             delete[] il_sim_uidptr;
-            delete[] l_sim_uid;
+            delete_strings(l_sim_uid, il_sim_uid->getSize());
             delete[] lfunpt;
             delete[] oz;
             delete[] ozsz;
             delete[] oztyp;
             delete[] opar;
             delete[] oparsz;
+            il_sim->DecreaseRef();
+            il_sim->killMe();
             return types::Function::Error;
         }
 
@@ -1721,12 +1736,10 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                             il_state->killMe();
                             il_tcur->DecreaseRef();
                             il_tcur->killMe();
-                            il_sim->DecreaseRef();
-                            il_sim->killMe();
                             delete[] il_sim_labptr;
-                            delete[] l_sim_lab;
+                            delete_strings(l_sim_lab, il_sim_lab->getSize());
                             delete[] il_sim_uidptr;
-                            delete[] l_sim_uid;
+                            delete_strings(l_sim_uid, il_sim_uid->getSize());
                             delete[] lfunpt;
                             delete[] oz;
                             delete[] ozsz;
@@ -1734,6 +1747,8 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                             delete[] opar;
                             delete[] oparsz;
                             delete[] opartyp;
+                            il_sim->DecreaseRef();
+                            il_sim->killMe();
                             return types::Function::Error;
                         }
                         memcpy(opar[j], oparDouble->get(), oparDouble->getSize() * sizeof(double)); // Real part
@@ -1835,12 +1850,10 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             il_state->killMe();
             il_tcur->DecreaseRef();
             il_tcur->killMe();
-            il_sim->DecreaseRef();
-            il_sim->killMe();
             delete[] il_sim_labptr;
-            delete[] l_sim_lab;
+            delete_strings(l_sim_lab, il_sim_lab->getSize());
             delete[] il_sim_uidptr;
-            delete[] l_sim_uid;
+            delete_strings(l_sim_uid, il_sim_uid->getSize());
             delete[] lfunpt;
             delete[] oz;
             delete[] ozsz;
@@ -1848,6 +1861,8 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             delete[] opar;
             delete[] oparsz;
             delete[] opartyp;
+            il_sim->DecreaseRef();
+            il_sim->killMe();
             return types::Function::Error;
         }
         // Allocation of 'outtbptrsz'
@@ -1862,12 +1877,10 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             il_state->killMe();
             il_tcur->DecreaseRef();
             il_tcur->killMe();
-            il_sim->DecreaseRef();
-            il_sim->killMe();
             delete[] il_sim_labptr;
-            delete[] l_sim_lab;
+            delete_strings(l_sim_lab, il_sim_lab->getSize());
             delete[] il_sim_uidptr;
-            delete[] l_sim_uid;
+            delete_strings(l_sim_uid, il_sim_uid->getSize());
             delete[] lfunpt;
             delete[] oz;
             delete[] ozsz;
@@ -1876,6 +1889,8 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             delete[] oparsz;
             delete[] opartyp;
             delete[] outtbptr;
+            il_sim->DecreaseRef();
+            il_sim->killMe();
             return types::Function::Error;
         }
         // Allocation of 'outtbtyp'
@@ -1890,12 +1905,10 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             il_state->killMe();
             il_tcur->DecreaseRef();
             il_tcur->killMe();
-            il_sim->DecreaseRef();
-            il_sim->killMe();
             delete[] il_sim_labptr;
-            delete[] l_sim_lab;
+            delete_strings(l_sim_lab, il_sim_lab->getSize());
             delete[] il_sim_uidptr;
-            delete[] l_sim_uid;
+            delete_strings(l_sim_uid, il_sim_uid->getSize());
             delete[] lfunpt;
             delete[] oz;
             delete[] ozsz;
@@ -1905,6 +1918,8 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             delete[] opartyp;
             delete[] outtbptr;
             delete[] outtbsz;
+            il_sim->DecreaseRef();
+            il_sim->killMe();
             return types::Function::Error;
         }
 
@@ -1938,12 +1953,10 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                             il_state->killMe();
                             il_tcur->DecreaseRef();
                             il_tcur->killMe();
-                            il_sim->DecreaseRef();
-                            il_sim->killMe();
                             delete[] il_sim_labptr;
-                            delete[] l_sim_lab;
+                            delete_strings(l_sim_lab, il_sim_lab->getSize());
                             delete[] il_sim_uidptr;
-                            delete[] l_sim_uid;
+                            delete_strings(l_sim_uid, il_sim_uid->getSize());
                             delete[] lfunpt;
                             delete[] oz;
                             delete[] ozsz;
@@ -1953,6 +1966,8 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                             delete[] opartyp;
                             delete[] outtbptr;
                             delete[] outtbsz;
+                            il_sim->DecreaseRef();
+                            il_sim->killMe();
                             return types::Function::Error;
                         }
                         memcpy(outtbptr[j], outtbDouble->get(), outtbDouble->getSize() * sizeof(double)); // Real part
@@ -2024,12 +2039,10 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                     il_state->killMe();
                     il_tcur->DecreaseRef();
                     il_tcur->killMe();
-                    il_sim->DecreaseRef();
-                    il_sim->killMe();
                     delete[] il_sim_labptr;
-                    delete[] l_sim_lab;
+                    delete_strings(l_sim_lab, il_sim_lab->getSize());
                     delete[] il_sim_uidptr;
-                    delete[] l_sim_uid;
+                    delete_strings(l_sim_uid, il_sim_uid->getSize());
                     delete[] lfunpt;
                     delete[] outtbptr;
                     delete[] outtbtyp;
@@ -2041,6 +2054,8 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                     delete[] ozsz;
                     delete[] oztyp;
                     FREE(outtb_elem);
+                    il_sim->DecreaseRef();
+                    il_sim->killMe();
                     return types::Function::Error;
                 }
             }
@@ -2055,12 +2070,10 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                 il_state->killMe();
                 il_tcur->DecreaseRef();
                 il_tcur->killMe();
-                il_sim->DecreaseRef();
-                il_sim->killMe();
                 delete[] il_sim_labptr;
-                delete[] l_sim_lab;
+                delete_strings(l_sim_lab, il_sim_lab->getSize());
                 delete[] il_sim_uidptr;
-                delete[] l_sim_uid;
+                delete_strings(l_sim_uid, il_sim_uid->getSize());
                 delete[] lfunpt;
                 delete[] outtbptr;
                 delete[] outtbtyp;
@@ -2072,6 +2085,8 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                 delete[] ozsz;
                 delete[] oztyp;
                 FREE(outtb_elem);
+                il_sim->DecreaseRef();
+                il_sim->killMe();
                 return types::Function::Error;
             }
             for (int i = 0; i < outtbsz[j]*outtbsz[j + nlnk]; ++i)
@@ -2279,16 +2294,16 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         il_state->killMe();
         il_tcur->DecreaseRef();
         il_tcur->killMe();
-        il_sim->DecreaseRef();
-        il_sim->killMe();
         delete[] il_sim_labptr;
-        delete[] l_sim_lab;
+        delete_strings(l_sim_lab, il_sim_lab->getSize());
         delete[] il_sim_uidptr;
-        delete[] l_sim_uid;
+        delete_strings(l_sim_uid, il_sim_uid->getSize());
         if (allocatedError)
         {
             delete[] error;
         }
+        il_sim->DecreaseRef();
+        il_sim->killMe();
         return types::Function::Error;
     }
 
@@ -2303,11 +2318,12 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     out.push_back(il_tcur);
 
     // End
+    delete[] il_sim_labptr;
+    delete_strings(l_sim_lab, il_sim_lab->getSize());
+    delete[] il_sim_uidptr;
+    delete_strings(l_sim_uid, il_sim_uid->getSize());
     il_sim->DecreaseRef();
     il_sim->killMe();
-    delete[] il_sim_labptr;
-    delete[] l_sim_lab;
-    delete[] il_sim_uidptr;
-    delete[] l_sim_uid;
     return types::Function::OK;
 }
+

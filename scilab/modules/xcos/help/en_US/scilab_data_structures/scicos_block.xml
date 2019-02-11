@@ -29,7 +29,7 @@
     <refsection id="block_scicos_block">
         <title>block</title>
         <para>
-            Basic  structure that define a xcos block.
+            Basic structure that define a xcos block.
         </para>
         <para>
             Type : scilab tlist of type <code>"Block"</code> with fields :

@@ -23,80 +23,47 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CLOCK_c" xml:lang="en_US">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="CLOCK_c" xml:lang="en_US">
     <refnamediv>
         <refname>CLOCK_c</refname>
         <refpurpose>Activation clock</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/CLOCK_c.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CLOCK_c.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_CLOCK_c">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="CLOCK_c">Activation clock</link>
-                </para>
+                <xref linkend="Description_CLOCK_c">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CLOCK_c">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CLOCK_c">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_CLOCK_c">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CLOCK_c">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="Example_CLOCK_c">Example</link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CLOCK_c">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_CLOCK_c">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_CLOCK_c">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_CLOCK_c">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_CLOCK_c">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_CLOCK_c">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_CLOCK_c">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_CLOCK_c">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Sources_pal">Sources palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_CLOCK_c">
         <title>Description</title>
         <para>
@@ -107,15 +74,14 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_CLOCK_c">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../gui/sources_pal/en_US/CLOCK_c_gui.png" align="center"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../gui/sources_pal/en_US/CLOCK_c_gui.png"
+                        align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -137,6 +103,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Defaultproperties_CLOCK_c">
         <title>Default properties</title>
         <itemizedlist>
@@ -192,7 +159,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Example_CLOCK_c">
         <title>Example</title>
         <para>
@@ -202,7 +171,7 @@
             <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/clock_c_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/sources_pal/en_US/clock_c_en_US.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/sources_pal/en_US/clock_c_en_US.zcos" align="center"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -212,6 +181,7 @@ importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/clock_c_en_US.
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
     </refsection>
+
     <refsection id="Interfacingfunction_CLOCK_c">
         <title>Interfacing function</title>
         <itemizedlist>

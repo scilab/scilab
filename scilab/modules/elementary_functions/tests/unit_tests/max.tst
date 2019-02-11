@@ -2,11 +2,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2018 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+// <-- ENGLISH IMPOSED -->
 
 Ntest = 1;
 // test max(A) : A matrix
@@ -101,16 +104,11 @@ assert_checkequal(Akm, Ak1);
 
 // ******************** WITH SPARSES ********************
 // check error messages
-A = [1 2;3 4];
-A = sparse(A);
-assert_checkfalse(execstr("[m,i] = max(A,''c'')", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of output argument: %d expected.\n"), "%sp_max", 1);
-assert_checkerror("[m,i] = max(A,''c'')", refMsg);
-
+// --------------------
 A = [1 2;3 4];
 A = sparse(A);
 assert_checkfalse(execstr("m = max(A,full(A))", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix or a character expected.\n"), "%sp_max", 2);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix or a scalar expected.\n"), "%sp_max", 2);
 assert_checkerror("m = max(A,full(A))", refMsg);
 
 B = sparse([1 2]);
@@ -125,31 +123,88 @@ assert_checkerror("m = max(A,B)", refMsg);
 
 B = [6 7;8 9];
 C = [2 4; 6 8];
-assert_checkfalse(execstr("[m,i] = max(A,B,C)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong number of output argument: %d expected.\n"), "%sp_max", 1);
-assert_checkerror("[m,i] = max(A,B,C)", refMsg);
-
-
 assert_checkfalse(execstr("m = max(A,sparse(B),C)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), "%sp_max", 3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix or a scalar expected.\n"), "%sp_max", 3);
 assert_checkerror("m = max(A,sparse(B),C)", refMsg);
 
 L = list(A,sparse(B),C);
 assert_checkfalse(execstr("m = max(L)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d (List element: %d): A sparse matrix expected.\n"), "%sp_max", 1, 3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d (in list): A sparse matrix or a scalar expected.\n"), "%sp_max", 3);
 assert_checkerror("m = max(L)", refMsg);
 
 C = sparse([1 2]);
 L = list(A,sparse(B),C);
 assert_checkfalse(execstr("m = max(L)", "errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size of input argument #%d (List element: %d): Same size as input argument #%d expected.\n"), "%sp_max", 1, 3, 1);
+refMsg = msprintf(_("%s: Wrong size of input argument #%d (in list): Same size as input argument #%d expected.\n"), "%sp_max", 3, 1);
 assert_checkerror("m = max(L)", refMsg);
 
 assert_checkfalse(execstr("m = max(A,sparse(B),C)", "errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong size of input argument #%d: Same size as input argument #%d expected.\n"), "%sp_max", 3, 1);
 assert_checkerror("m = max(A,sparse(B),C)", refMsg);
 
+// --- checks min() and max() with sparse, with %nan and second output [r,k] = ...
+// -------------------------------------------------------------------
+empty = spzeros(0, 0);
+scalar = sprand(1, 1, 1);
+row = sprand(1, 10, 0.5);
+row(3) = %nan;
+col = row';
+mat = sprand(10,10,0.3);
+mat(3,:) = rand(1,10) + 1;
+mat(:,5) = rand(1,10) + 1;
+mat(2,4) = %nan;
+for fun = list(min, max)
+    for object = list(empty, scalar, row, col, mat)
+        [vref, kref] = fun(full(object))
+        [v, k] = fun(object);
+        c = length(v)>1;
+        assert_checktrue(issparse(v)==c);
+        assert_checktrue(~issparse(k));
+        assert_checkequal(full(v), vref);
+        assert_checkequal(k, kref);
 
+        [vref, kref] = fun(full(object), "c");
+        [v, k] = fun(object, "c");
+        assert_checktrue(issparse(v));
+        assert_checktrue(~issparse(k));
+        assert_checkequal(full(v), vref);
+        assert_checkequal(k, kref);
+
+        [vref, kref] = fun(full(object), "r");
+        [v, k] = fun(object, "r");
+        assert_checktrue(issparse(v));
+        assert_checktrue(~issparse(k));
+        assert_checkequal(full(v), vref);
+        assert_checkequal(k, kref);
+    end
+end
+// min(A1,A2, ..) | max(A1,A2,..)
+scalar2 = sprand(1, 1, 1);
+row2 = sprand(1, 10, 0.5);
+row2([3 7]) = %nan;
+col2 = row2';
+mat2 = sprand(10,10,0.3);
+mat2(3,:) = rand(1,10) + 1;
+mat2(:,5) = rand(1,10) + 1;
+mat2(7,4) = %nan;
+for fun = list(min, max)
+    if fun==max
+        scalar2 = scalar2 - 1
+    end
+    for o = ["scalar" "row" "col" "mat"]
+        execstr(msprintf("[vref, kref] = fun(full(%s), full(%s2))\n", o, o));
+        err = execstr(msprintf("[v, k] = fun(%s, %s2)\n", o, o), "errcatch");
+        assert_checktrue(err==0);
+
+        c = length(v)>1;
+        assert_checktrue(issparse(v)==c);
+        assert_checktrue(~issparse(k));
+        assert_checkequal(full(v), vref);
+        assert_checkequal(k, kref);
+    end
+end
+
+// ------------ Other tests with sparse matrices ----
 a = -1 * rand(3,2);
 a(2) = 0;
 A = sparse(a);

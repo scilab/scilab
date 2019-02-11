@@ -21,75 +21,43 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SineVoltage">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="SineVoltage" xml:lang="en_US">
     <refnamediv>
         <refname>SineVoltage</refname>
         <refpurpose>Sine voltage source</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/SineVoltage.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/SineVoltage.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_SineVoltage">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="SineVoltage">Sine voltage source</link>
-                </para>
+                <xref linkend="Description_SineVoltage">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_SineVoltage">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_SineVoltage">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_SineVoltage">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_SineVoltage">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_SineVoltage">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="SineVoltage">Modelica model</link>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_SineVoltage">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_SineVoltage">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_SineVoltage">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="SineVoltage">Modelica model</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_SineVoltage">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Electrical_pal">Electrical.cosf - Electrical toolbox</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_SineVoltage">
         <title>Description</title>
         <para>
@@ -99,17 +67,13 @@
         </para>
     </refsection>
     <refsection id="Dialogbox_SineVoltage">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/SineVoltage_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/SineVoltage_gui.gif" align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -147,6 +111,7 @@
                 <para> Properties : Type 'vec' of size 1.</para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Defaultproperties_SineVoltage">
         <title>Default properties</title>
@@ -162,8 +127,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -179,8 +142,6 @@
                         </para>
                         <para>
                             Implicit <emphasis role="bold">variable.</emphasis>
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -199,8 +160,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -212,8 +171,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -225,8 +182,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -238,8 +193,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                     <listitem>
@@ -251,8 +204,6 @@
                         </para>
                         <para>
                             <emphasis role="bold">Is a state variable :</emphasis> no.
-
-
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -263,6 +214,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_SineVoltage">
         <title>Interfacing function</title>

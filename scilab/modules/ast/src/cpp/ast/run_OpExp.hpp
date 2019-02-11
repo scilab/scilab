@@ -89,6 +89,11 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
 
         switch (e.getOper())
         {
+            case OpExp::unaryPlus:
+            {
+                pResult = GenericUnaryPlus(pITR);
+                break;
+            }
             case OpExp::plus:
             {
                 pResult = GenericPlus(pITL, pITR);
@@ -458,7 +463,7 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
     /*
     ** Special case for unary minus => will call %{type_s}
     */
-    if (_oper == OpExp::unaryMinus)
+    if (_oper == OpExp::unaryMinus || _oper == OpExp::unaryPlus)
     {
         _paramR->IncreaseRef();
         in.push_back(_paramR);
@@ -478,7 +483,7 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
 
         _paramR->DecreaseRef();
         return out[0];
-    }
+    } 
 
     _paramL->IncreaseRef();
     _paramR->IncreaseRef();

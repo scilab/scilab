@@ -163,7 +163,7 @@ function result = atomsRemove(packages,section,del)
 
     // Some checking on packages variable
     // =========================================================================
-
+    i_keep = [];
     for i=1:size(packages(:,1),"*")
 
         package_names(i)    = packages(i,1);
@@ -188,7 +188,10 @@ function result = atomsRemove(packages,section,del)
             installed_details = atomsGetInstalledDetails(packages(i,:),section);
 
             if installed_details(3) == "allusers" then
-                error(msprintf(gettext("%s: You have not enough rights to remove the package %s (%s).\n"),"atomsRemove",package_names(i),package_versions(i)));
+                msg = gettext("%s: You have not enough rights to remove the package %s (%s).\n")
+                warning(msprintf(msg, "atomsRemove", package_names(i), package_versions(i)));
+                i_keep = [i_keep i];
+                continue
             end
 
         elseif (section=="user") & isempty(package_versions(i)) then
@@ -196,12 +199,17 @@ function result = atomsRemove(packages,section,del)
             // Check if we have the right to remove at least one of the version
             // of the package
             if isempty(atomsGetInstalledVers(package_names(i),section)) then
-                error(msprintf(gettext("%s: You have not enough rights to remove any version of the package %s.\n"),"atomsRemove",package_names(i)));
+                msg = gettext("%s: You have not enough rights to remove any version of the package %s.\n")
+                warning(msprintf(msg, "atomsRemove", package_names(i)));
+                i_keep = [i_keep i];
+                continue
             end
 
         end
 
     end
+    packages(i_keep, :) = [];
+
 
     // Build the list of package to Uninstall
     // =========================================================================
@@ -267,12 +275,13 @@ function result = atomsRemove(packages,section,del)
             (grep(this_package_directory,pathconvert(SCIHOME)) == []) &..
             (grep(this_package_directory,"/^(SCI|SCIHOME)\"+filesep()+"/","r") == []) then
 
-            atomsError("error", ..
+            atomsError("warning", ..
             msprintf( ..
-            gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"), ..
+            gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME.\n\tFor security reason, ATOMS refuses to delete this directory.\n"), ..
             "atomsRemove", ..
             this_package_name, ..
             this_package_version));
+            continue
         end
 
         if isdir(this_package_directory) then
@@ -280,13 +289,14 @@ function result = atomsRemove(packages,section,del)
             uninstall_status = rmdir(this_package_directory,"s");
 
             if uninstall_status<>1 then
-                atomsError("error", ..
+                atomsError("warning", ..
                 msprintf( ..
-                gettext("%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"), ..
+                gettext("%s: The package (%s - %s) directory ""%s"" cannot be deleted.\n\tIt may be used and locked. Please also check that you have write permission on it.\n"), ..
                 "atomsRemove", ..
                 this_package_name, ..
                 this_package_version, ..
                 strsubst(this_package_directory,"\","\\") ));
+                continue
             end
 
         end
@@ -299,9 +309,9 @@ function result = atomsRemove(packages,section,del)
         if isdir(this_package_root_dir) & listfiles(this_package_root_dir)==[] then
             stat = rmdir(this_package_root_dir);
             if stat<>1 then
-                atomsError("error", ..
+                atomsError("warning", ..
                 msprintf( ..
-                gettext("%s: The root directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"), ..
+                gettext("%s: The package (%s - %s) has been removed from its root directory ""%s"".\n\tHowever, this empty directory cannot be deleted. It may be used and locked, or you may have no write permission on it.\n"), ..
                 "atomsRemove", ..
                 this_package_name, ..
                 this_package_version, ..

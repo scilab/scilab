@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,71 +13,48 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CVS" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="CVS" xml:lang="fr">
     <refnamediv>
         <refname>CVS</refname>
-        <refpurpose>Source de tension contrôlable Modelica</refpurpose>
+        <refpurpose>Générateur de tension contrôlable Modelica</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../images/palettes/CVS.png" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata align="center" fileref="../../../../images/palettes/CVS.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_CVS">
         <title>Contenu</title>
         <itemizedlist>
             <listitem>
                 <para>
-                    <link linkend="CVS">Source de tension contrôlable Modelica</link>
+                    <xref linkend="Description_CVS">Description</xref>
                 </para>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_CVS">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_CVS">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_CVS">Propriétés par défaut</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_CVS">Fonction d'interfaçage</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="CVS">Modèle Modelica</link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_CVS">Voir aussi</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <para>
+                    <xref linkend="Defaultproperties_CVS">Propriétés par défaut</xref>
+                </para>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_CVS">
-        <title>Palette</title>
-        <itemizedlist>
             <listitem>
                 <para>
-                    <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils Electrique</link>
+                    <xref linkend="Interfacingfunction_CVS">Fonction d'interfaçage</xref>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="CVS">Modèle Modelica</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <xref linkend="Seealso_CVS">Voir aussi</xref>
                 </para>
             </listitem>
         </itemizedlist>
@@ -138,6 +115,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_CVS">
         <title>Fonction d'interfaçage</title>
@@ -155,16 +133,12 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_CVS">
+    <refsection id="Seealso_CVS" role="see also">
         <title>Voir aussi</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="CCS">CCS - Controllable Modelica current
-                        source
-                    </link>
-                </para>
-            </listitem>
-        </itemizedlist>
+        <simplelist>
+            <member>
+                <link linkend="CCS">CCS</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

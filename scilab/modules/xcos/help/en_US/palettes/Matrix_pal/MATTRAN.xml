@@ -21,119 +21,83 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATTRAN">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="MATTRAN" xml:lang="en_US">
     <refnamediv>
         <refname>MATTRAN</refname>
         <refpurpose>Matrix Transpose</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/MATTRAN.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/MATTRAN.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_MATTRAN">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATTRAN">Matrix Transpose</link>
-                </para>
+                <xref linkend="Description_MATTRAN">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_MATTRAN">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_MATTRAN">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_MATTRAN">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="MATTRAN">Example</link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_MATTRAN">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_MATTRAN">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_MATTRAN">Computational function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_MATTRAN">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_MATTRAN">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_MATTRAN">Example</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_MATTRAN">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_MATTRAN">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_MATTRAN">Computational function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_MATTRAN">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_MATTRAN">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Matrix_pal">Matrix operation palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_MATTRAN">
         <title>Description</title>
         <para>
-            This block transposes an MxN matrix to a NxM matrix. The result depends on <emphasis role="bold">rule</emphasis>
-            parameter. When this parameter is equal to :
+            This block transposes an MxN matrix to a NxM matrix. The result depends on
+            <emphasis role="bold">rule</emphasis> parameter. When this parameter is equal to :
         </para>
         <itemizedlist>
             <listitem>
                 <para>
                     <emphasis role="bold">1</emphasis> : the block outputs the transposed matrix.
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">2</emphasis> : the block outputs the transposed matrix of the conjugate matrix.
+                    <emphasis role="bold">2</emphasis> : the block outputs the transposed matrix
+                    of the conjugate matrix.
                 </para>
             </listitem>
         </itemizedlist>
         <para>
-            The equivalent operators of this block in Scilab are y=u.' and y=u'. See <link linkend="quote">quote (')</link>.
+            The equivalent operators of this block in Scilab are y=u.' and y=u'.
+            See <link linkend="quote">quote (')</link>.
         </para>
-        <para/>
     </refsection>
+
     <refsection id="Dialogbox_MATTRAN">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/MATTRAN_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para/>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/MATTRAN_gui.gif" align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -153,29 +117,6 @@
                 <para> Propriétés : Type 'vec' de taille 1.</para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection id="Example_MATTRAN">
-        <title>Example</title>
-        <programlisting role="example"><![CDATA[
-.                        Complex
---                  --                    --           --
-| 1+i   2+3i    3+2i |   Transpose (.')   | 1+ i   4+ i |
-| 4+i   5-8i    6-2i |   ----------->     | 2+3i   5-8i |
---                  --                    | 3+2i   6-2i |
-.                                         --           --
-.                        Complex
---                  --                   --           --
-| 1+i   2+3i    3+2i |   Transpose (')   | 1- i   4- i |
-| 4+i   5-8i    6-2i |   ----------->    | 2-3i   5+8i |
---                  --                   | 3-2i   6+2i |
-.                                        --           --
-.                  Real
---          --               --      --
-| 1   -2   3 |   Transpose   |  1   4 |
-| 4   5    6 | ----------->  |- 2   5 |
---          --               |  3   6 |
-.                            --      --
- ]]></programlisting>
     </refsection>
     <refsection id="Defaultproperties_MATTRAN">
         <title>Default properties</title>
@@ -248,6 +189,30 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
+    </refsection>
+    <refsection id="Example_MATTRAN">
+        <title>Example</title>
+        <screen><![CDATA[
+.                        Complex
+--                  --                    --           --
+| 1+i   2+3i    3+2i |   Transpose (.')   | 1+ i   4+ i |
+| 4+i   5-8i    6-2i |   ----------->     | 2+3i   5-8i |
+--                  --                    | 3+2i   6-2i |
+.                                         --           --
+.                        Complex
+--                  --                   --           --
+| 1+i   2+3i    3+2i |   Transpose (')   | 1- i   4- i |
+| 4+i   5-8i    6-2i |   ----------->    | 2-3i   5+8i |
+--                  --                   | 3-2i   6+2i |
+.                                        --           --
+.                  Real
+--          --               --      --
+| 1   -2   3 |   Transpose   |  1   4 |
+| 4   5    6 | ----------->  |- 2   5 |
+--          --               |  3   6 |
+.                            --      --
+]]></screen>
     </refsection>
     <refsection id="Interfacingfunction_MATTRAN">
         <title>Interfacing function</title>
@@ -261,25 +226,21 @@
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/mattran_m.c</para>
+                 SCI/modules/scicos_blocks/src/c/mattran_m.c
             </listitem>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/c/matztran_m.c</para>
+                 SCI/modules/scicos_blocks/src/c/matztran_m.c
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_MATTRAN">
+    <refsection id="Seealso_MATTRAN" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="MATZCONJ">MATZCONJ - Matrix conjugate (xcos Block)</link>
-                </para>
+                <link linkend="MATZCONJ">MATZCONJ</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="quote">quote (Scilab function)</link>
-                </para>
+                <link linkend="quote">quote</link>
             </listitem>
         </itemizedlist>
     </refsection>

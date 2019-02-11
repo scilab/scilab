@@ -59,11 +59,11 @@ types::Function::ReturnValue sci_nearfloat(types::typed_list &in, int _iRetCount
         wchar_t* wcsString = pStr->get(0);
         if (wcscmp(wcsString, L"succ") == 0)
         {
-            dblMode = DBL_MAX;
+            dblMode = std::numeric_limits<double>::infinity();
         }
         else if (wcscmp(wcsString, L"pred") == 0)
         {
-            dblMode = -DBL_MAX;
+            dblMode = -std::numeric_limits<double>::infinity();
         }
         else
         {

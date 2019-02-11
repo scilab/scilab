@@ -1837,7 +1837,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
             }
             else
             {
-                pOut = pH->insert(_pArgs, _pInsert);
+                pOut = pH->remove(_pArgs);
             }
         }
         else if (_pVar->isStruct())

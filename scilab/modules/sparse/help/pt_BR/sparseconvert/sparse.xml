@@ -89,8 +89,17 @@
             <literal>sp</literal> são os valores máximos de <literal>ij(:,1)</literal>
             e <literal>ij(:,2)</literal> respectivamente.
         </para>
-        <warning>For the building syntaxes, if several values are given for a same
-            <varname>ij</varname> position, the sum of theses values is assigned.
+        <warning>
+            <itemizedlist>
+              <listitem>
+                  For the building syntaxes, if several values are given for a same
+                  <varname>ij</varname> position, the sum of theses values is assigned.
+              </listitem>
+              <listitem>
+                <literal>sparse([],[])</literal> yields the <literal>(0, 0) zero sparse matrix</literal>,
+                with <literal>sparse([],[]) ~= []</literal>.
+              </listitem>
+            </itemizedlist>
         </warning>
       <refsect3>
         <title>Operating sparse matrices</title>
@@ -98,7 +107,7 @@
             feitas usando a mesma sintaxe para matrizes completas.
         </para>
         <para>Funções elementares também estão disponíveis
-            (<literal>abs,maxi,sum,diag,...</literal>) para matrizes esparsas.
+            (<literal>abs, min, max, sum, diag,...</literal>) para matrizes esparsas.
         </para>
         <para>Operações mistas (completas-esparsas) são permitidas. Os resultados
             são completos ou esparsos dependendo das operações.
@@ -156,5 +165,16 @@ sp = sparse(dense)
                 <link linkend="toeplitz">toeplitz</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    sparse([],[]) now yields the "(0,0) zero sparse matrix" instead of [].
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

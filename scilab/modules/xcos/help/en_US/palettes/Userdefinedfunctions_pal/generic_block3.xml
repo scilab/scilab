@@ -21,75 +21,44 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="generic_block3">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="generic_block3" xml:lang="en_US">
     <refnamediv>
         <refname>generic_block3</refname>
         <refpurpose>Generic block</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/generic_block3.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/generic_block3.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_generic_block3">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="generic_block3">Generic block</link>
-                </para>
+                <xref linkend="Description_generic_block3">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_generic_block3">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_generic_block3">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_generic_block3">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_generic_block3">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_generic_block3">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_generic_block3">Computational function</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_generic_block3">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_generic_block3">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_generic_block3">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_generic_block3">Computational function</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_generic_block3">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Userdefinedfunctions_pal">User defined functions palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_generic_block3">
         <title>Description</title>
         <para>
@@ -101,21 +70,18 @@
             realising computational functions of generic blocks of a Scicos
             diagram must be saved along with the diagram and loaded or dynamically
             linked before simulation.
-
         </para>
     </refsection>
-    <refsection id="Dialogbox_generic_block3">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/generic_block3_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
 
-        </para>
+    <refsection id="Dialogbox_generic_block3">
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/generic_block3_gui.gif"
+                            align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -163,14 +129,18 @@
                 <para>
                     <emphasis role="bold">Input event ports sizes</emphasis>
                 </para>
-                <para> a vector of ones, size of event input ports. The size of the vector gives the number of event input ports.</para>
+                <para> a vector of ones, size of event input ports. The size of the vector gives
+                        the number of event input ports.
+                </para>
                 <para> Properties : Type 'vec' of size -1 </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Output events ports sizes</emphasis>
                 </para>
-                <para> a vector of ones, size of event output ports. The size of the vector gives the number of of event output ports.</para>
+                <para> a vector of ones, size of event output ports. The size of the vector gives
+                        the number of of event output ports.
+                </para>
                 <para> Properties : Type 'vec' of size -1 </para>
             </listitem>
             <listitem>
@@ -233,7 +203,11 @@
                 <para>
                     <emphasis role="bold">Initial firing vector </emphasis>
                 </para>
-                <para> vector. Size of this vector corresponds to the number of event outputs. The value of the i-th entry specifies the time of the preprogrammed event firing on the i-th output event port. If less than zero, no event is preprogrammed.</para>
+                <para> vector. Size of this vector corresponds to the number of event outputs.
+                        The value of the i-th entry specifies the time of the preprogrammed event
+                        firing on the i-th output event port. If less than zero, no event is
+                        preprogrammed.
+                </para>
                 <para> Properties : Type 'vec' of size sum(%6) </para>
             </listitem>
             <listitem>
@@ -247,7 +221,9 @@
                 <para>
                     <emphasis role="bold">Time dependence </emphasis>
                 </para>
-                <para> Time dependence : character "y" or "n", specifies if block output depends explicitly on time.</para>
+                <para> Time dependence : character "y" or "n", specifies if block output depends
+                        explicitly on time.
+                </para>
                 <para> Properties : Type 'vec' of size 1</para>
             </listitem>
         </itemizedlist>
@@ -323,7 +299,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Interfacingfunction_generic_block3">
         <title>Interfacing function</title>
         <itemizedlist>

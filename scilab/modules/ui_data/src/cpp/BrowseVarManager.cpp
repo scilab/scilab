@@ -45,14 +45,17 @@ extern "C"
 #include "freeArrayOfString.h"
 #include "os_string.h"
 #include "api_scilab.h"
+#include "sci_types.h"
+#include "sciprint.h"
 }
 
 #define N_A             "N/A"
 #define EMPTY_MATRIX    "[ ]"
+#define EMPTY_CELL      "{}"
+#define EMPTY_LIST      "()"
 #define LOCAL_STR       "local"
 #define GLOBAL_STR      "global"
 #define INHERITED_STR   "inherited"
-#define STRUCT_STR      "st"
 #define NEG_INF_STR     "-Inf"
 #define INF_STR         "Inf"
 #define NAN_STR         "NaN"
@@ -143,26 +146,40 @@ void SetBrowseVarData()
             pstAllVariableVisibility[i] = os_strdup(LOCAL_STR);
         }
 
-        // type
+        // type with Scilab < 6 compatibility (structs and cells have type 17)
         err = getVarType(NULL, (int*)pIT, &piAllVariableTypes[i]);
         if (!err.iErr)
         {
             err = getVarDimension(NULL, (int*)pIT, &nbRows, &nbCols);
         }
 
-        if (err.iErr)
+        if (pIT->isArrayOf() || pIT->isSparse())
         {
-            pstAllVariableSizes[i] = os_strdup(N_A);
+            int nbRows = pIT->getAs<types::GenericType>()->getRows();
+            int nbCols = pIT->getAs<types::GenericType>()->getCols();
+            piAllVariableNbRows[i] = nbRows;
+            piAllVariableNbCols[i] = nbCols;                
+            if (nbRows*nbCols == 0)
+            {
+                pstAllVariableSizes[i] = pIT->isCell() ? os_strdup(EMPTY_CELL) : os_strdup(EMPTY_MATRIX);                
+            }
+            else if (pIT->isArrayOf())
+            {
+                pstAllVariableSizes[i] = valueToDisplay(pIT);
+            }
+            else
+            {
+                std::string sizeString = std::to_string(nbRows) + "x" + std::to_string(nbCols);
+                pstAllVariableSizes[i] =  os_strdup(sizeString.data());
+            }
         }
-        else if (nbRows * nbCols == 0)
+        else if (pIT->isMList() || pIT->isTList() || pIT->isList() )
         {
-            pstAllVariableSizes[i] = os_strdup(EMPTY_MATRIX);
+            pstAllVariableSizes[i] = pIT->getAs<types::List>()->getSize() == 0 ? os_strdup(EMPTY_LIST) : os_strdup(N_A);
         }
         else
         {
-            pstAllVariableSizes[i] = valueToDisplay(pIT);
-            piAllVariableNbRows[i] = nbRows;
-            piAllVariableNbCols[i] = nbCols;
+            pstAllVariableSizes[i] =  os_strdup(N_A);
         }
 
         if (piAllVariableTypes[i] == sci_ints)
@@ -202,7 +219,13 @@ void SetBrowseVarData()
         }
         else if (pIT->isStruct())
         {
-            pstAllVariableListTypes[i] = os_strdup(STRUCT_STR);
+            piAllVariableTypes[i] = sci_struct;
+            pstAllVariableListTypes[i] = os_strdup("");
+        }
+        else if (pIT->isCell())
+        {
+            piAllVariableTypes[i] = sci_cell;
+            pstAllVariableListTypes[i] = os_strdup("");
         }
         else
         {
@@ -256,6 +279,7 @@ void SetBrowseVarData()
 
         ++i;
     }
+
     // Launch Java Variable Browser through JNI
     BrowseVar::setVariableBrowserData(getScilabJavaVM(),
                                       pstAllVariableNames, iLocalVariablesUsed,
@@ -293,44 +317,45 @@ void SetBrowseVarData()
 /*--------------------------------------------------------------------------*/
 static std::set<string> createScilabDefaultVariablesSet()
 {
-    string arr[] = { "home",
-                     "PWD",
-                     "%tk",
-                     "%pvm",
-                     "MSDOS",
-                     "%F",
-                     "%T",
-                     "%f",
-                     "%t",
-                     "%e",
-                     "%pi",
-                     "%modalWarning",
-                     "%nan",
-                     "%inf",
-                     "SCI",
-                     "WSCI",
-                     "SCIHOME",
-                     "TMPDIR",
-                     "%gui",
-                     "%fftw",
-                     "%helps",
-                     "%eps",
-                     "%io",
-                     "%i",
-                     "demolist",
-                     "%z",
-                     "%s",
-                     "$",
-                     "%toolboxes",
-                     "%toolboxes_dir",
-                     "TICTOC",
-                     "%helps_modules",
-                     "%_atoms_cache",
-                     "evoid", // Constant for external object
-                     "jvoid", // Constant for external object Java (jims)
-                     "jnull", // Constant for external object Java (jims)
-                     "enull"  // Constant for external object
-                   };
+    string arr[] = {
+        "home",
+        "PWD",
+        "%tk",
+        "%pvm",
+        "MSDOS",
+        "%F",
+        "%T",
+        "%f",
+        "%t",
+        "%e",
+        "%pi",
+        "%modalWarning",
+        "%nan",
+        "%inf",
+        "SCI",
+        "WSCI",
+        "SCIHOME",
+        "TMPDIR",
+        "%gui",
+        "%fftw",
+        "%helps",
+        "%eps",
+        "%io",
+        "%i",
+        "demolist",
+        "%z",
+        "%s",
+        "$",
+        "%toolboxes",
+        "%toolboxes_dir",
+        "TICTOC",
+        "%helps_modules",
+        "%_atoms_cache",
+        "evoid", // Constant for external object
+        "jvoid", // Constant for external object Java (jims)
+        "jnull", // Constant for external object Java (jims)
+        "enull"  // Constant for external object
+    };
     int i = 0;
 
 #define NBELEMENT 37

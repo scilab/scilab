@@ -21,77 +21,42 @@
 *
 * See the file ./license.txt
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="TCLSS" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="TCLSS" xml:lang="ja">
     <refnamediv>
         <refname>TCLSS</refname>
         <refpurpose>ジャンプ付き連続系線形システム</refpurpose>
     </refnamediv>
     <refsection>
         <title>ブロックスクリーンショット</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/TCLSS.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/TCLSS.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_TCLSS">
         <title>内容</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="TCLSS">ジャンプ付き連続系線形システム</link>
-                </para>
+                <xref linkend="Description_TCLSS">説明</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_TCLSS">パレット</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_TCLSS">説明</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_TCLSS">ダイアログボックス</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_TCLSS">デフォルトプロパティ</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_TCLSS">インターフェイス用関数</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Computationalfunction_TCLSS">計算用関数</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Example_TCLSS">例</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_TCLSS">ダイアログボックス</xref>
             </listitem>
-        </itemizedlist>
-    </refsection>
-    <refsection id="Palette_TCLSS">
-        <title>パレット</title>
-        <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Continuous_pal">連続時間システムパレット</link>
-                </para>
+                <xref linkend="Defaultproperties_TCLSS">デフォルトプロパティ</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_TCLSS">インターフェイス用関数</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_TCLSS">計算用関数</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Example_TCLSS">例 </xref>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -113,15 +78,13 @@
     </refsection>
     <refsection id="Dialogbox_TCLSS">
         <title>ダイアログボックス</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/TCLSS_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/TCLSS_gui.gif"
+                            align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -242,6 +205,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_TCLSS">
         <title>インターフェイス用関数</title>

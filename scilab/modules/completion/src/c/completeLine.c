@@ -56,9 +56,14 @@ static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL s
         }
     }
 
-    //Tips : no infinite loop there, tmpfind string length is always reduced at each iteration
+    // as we try to "find" within "string", "find" should be smaller than or equal to "string"
+    if (strlen(pointerOnFindCopy) > strlen(string))
+    {
+        pointerOnFindCopy[strlen(string)] = '\0';
+    }
     movingPointerOnFindCopy = strrchr(pointerOnFindCopy, toupper(lastchar));
 
+    //Tips : no infinite loop there, tmpfind string length is always reduced at each iteration
     while ( movingPointerOnFindCopy )
     {
         //find the last occurence of last char of string in tmpfind

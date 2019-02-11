@@ -21,95 +21,64 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="GotoTagVisibilityMO">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="GotoTagVisibilityMO" xml:lang="en_US">
     <refnamediv>
         <refname>GotoTagVisibilityMO</refname>
         <refpurpose>Define Scope of GOTOMO tag visibility</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/GotoTagVisibilityMO.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/GotoTagVisibilityMO.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection id="Contents_GotoTagVisibilityMO">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="GotoTagVisibilityMO">Define Scope of GOTOMO tag visibility</link>
-                </para>
+                <xref linkend="Description_GotoTagVisibilityMO">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_GotoTagVisibilityMO">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_GotoTagVisibilityMO">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_GotoTagVisibilityMO">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_GotoTagVisibilityMO">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_GotoTagVisibilityMO">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Seealso_GotoTagVisibilityMO">See also</xref>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_GotoTagVisibilityMO">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_GotoTagVisibilityMO">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_GotoTagVisibilityMO">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Seealso_GotoTagVisibilityMO">See also</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_GotoTagVisibilityMO">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Signalrouting_pal">Signal Routing palette</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_GotoTagVisibilityMO">
         <title>Description</title>
         <para>
-            This block is used in case of Modelica connection. For more information on how it works please refer to the GotoTagVisibility block by clicking on the link in the "See also" field.
+            This block is used in case of Modelica connection. For more information on how it works
+            please refer to the GotoTagVisibility block by clicking on the link in the
+            "See also" field.
         </para>
         <para>
         </para>
     </refsection>
-    <refsection id="Dialogbox_GotoTagVisibilityMO">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/GotoTagVisibilityMO_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
 
-        </para>
+    <refsection id="Dialogbox_GotoTagVisibilityMO">
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/GotoTagVisibilityMO_gui.gif"
+                        align="center" style="float:right"/>
+                    <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -120,6 +89,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection id="Defaultproperties_GotoTagVisibilityMO">
         <title>Default properties</title>
         <itemizedlist>
@@ -175,6 +145,7 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_GotoTagVisibilityMO">
         <title>Interfacing function</title>
@@ -184,13 +155,11 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Seealso_GotoTagVisibilityMO">
+    <refsection id="Seealso_GotoTagVisibilityMO" role="see also">
         <title>See also</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="GotoTagVisibility">GotoTagVisibility - Define Scope of GOTO tag visibility (xcos Block)</link>
-                </para>
+                <link linkend="GotoTagVisibility">GotoTagVisibility</link>
             </listitem>
         </itemizedlist>
     </refsection>

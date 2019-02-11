@@ -21,86 +21,55 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Diode">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:id="Diode" xml:lang="en_US">
     <refnamediv>
         <refname>Diode</refname>
         <refpurpose>Electrical diode</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/palettes/Diode.png" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/Diode.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_Diode">
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="Diode">Electrical diode</link>
-                </para>
+                <xref linkend="Description_Diode">Description</xref>
             </listitem>
             <listitem>
-                <itemizedlist>
-                    <listitem>
-                        <para>
-                            <xref linkend="Palette_Diode">Palette</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Description_Diode">Description</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Dialogbox_Diode">Dialog box</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Defaultproperties_Diode">Default properties</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <xref linkend="Interfacingfunction_Diode">Interfacing function</xref>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="Diode">Modelica model</link>
-                        </para>
-                    </listitem>
-                </itemizedlist>
+                <xref linkend="Dialogbox_Diode">Parameters</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_Diode">Default properties</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_Diode">Interfacing function</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Diode">Modelica model</xref>
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="Palette_Diode">
-        <title>Palette</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="Electrical_pal">Electrical.cosf - Electrical toolbox</link>
-                </para>
-            </listitem>
-        </itemizedlist>
-    </refsection>
+
     <refsection id="Description_Diode">
         <title>Description</title>
         <para>
             This component consists of a simple diode parallel with an ohmic
             resistance (<literal>R</literal>).
             The current (<literal>I</literal>)
-            passing through this component is defined as a function of the voltage across the ports (<literal>V</literal>):
+            passing through this component is defined as a function of the voltage across the
+            ports (<literal>V</literal>):
         </para>
-        <latex><![CDATA[
+        <latex align="center" alt="i = I_ds.(exp(v/V_t)-1) + v/R"><![CDATA[
         $$
-        i = I_{ds} \times (\exp {v/V_t} - 1) + v \over R
+        i = I_{ds} \times (\exp(v/V_t) - 1) + \frac{v}{R}
         $$
         ]]></latex>
         <para>
@@ -108,23 +77,19 @@
             <literal>Ids</literal>
             and
             <literal>Vt</literal>
-            are the saturation
-            current and the voltage equivalent of temperature, respectively. If the exponent reaches a certain limit (<emphasis role="bold">Max exponent for linear continuation</emphasis>),
-            the diode characteristic becomes linear to avoid overflow.
+            are the saturation current and the voltage equivalent of temperature, respectively.
+            If the exponent reaches a certain limit (<emphasis role="bold">Max exponent for linear
+            continuation</emphasis>), the diode characteristic becomes linear to avoid overflow.
         </para>
     </refsection>
     <refsection id="Dialogbox_Diode">
-        <title>Dialog box</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../images/gui/Diode_gui.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>
-
-        </para>
+        <title>Parameters</title>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/Diode_gui.gif" align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -155,6 +120,7 @@
                 <para> Properties : Type 'vec' of size 1.</para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
     <refsection id="Defaultproperties_Diode">
         <title>Default properties</title>
@@ -246,7 +212,9 @@
                 </para>
             </listitem>
         </itemizedlist>
+        <para/>
     </refsection>
+
     <refsection id="Interfacingfunction_Diode">
         <title>Interfacing function</title>
         <itemizedlist>

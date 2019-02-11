@@ -31,7 +31,6 @@
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
-        <para>
             <link linkend="ANDBLK">
                 <inlinemediaobject>
                     <imageobject>
@@ -41,7 +40,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="BIGSOM_f">
                 <inlinemediaobject>
                     <imageobject>
@@ -51,7 +50,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="CMSCOPE">
                 <inlinemediaobject>
                     <imageobject>
@@ -61,7 +60,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="CONST_m">
                 <inlinemediaobject>
                     <imageobject>
@@ -71,7 +70,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="CONVERT">
                 <inlinemediaobject>
                     <imageobject>
@@ -81,7 +80,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="CSCOPXY">
                 <inlinemediaobject>
                     <imageobject>
@@ -91,7 +90,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="DEMUX">
                 <inlinemediaobject>
                     <imageobject>
@@ -101,7 +100,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="DOLLAR_f">
                 <inlinemediaobject>
                     <imageobject>
@@ -111,7 +110,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="INTEGRAL_f">
                 <inlinemediaobject>
                     <imageobject>
@@ -121,7 +120,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="IN_f">
                 <inlinemediaobject>
                     <imageobject>
@@ -131,7 +130,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="LOGICAL_OP">
                 <inlinemediaobject>
                     <imageobject>
@@ -141,7 +140,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="MUX">
                 <inlinemediaobject>
                     <imageobject>
@@ -151,7 +150,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="NRMSOM_f">
                 <inlinemediaobject>
                     <imageobject>
@@ -161,7 +160,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="OUT_f">
                 <inlinemediaobject>
                     <imageobject>
@@ -171,7 +170,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="PRODUCT">
                 <inlinemediaobject>
                     <imageobject>
@@ -181,7 +180,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="RELATIONALOP">
                 <inlinemediaobject>
                     <imageobject>
@@ -191,7 +190,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="SATURATION">
                 <inlinemediaobject>
                     <imageobject>
@@ -201,7 +200,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="SWITCH2_m">
                 <inlinemediaobject>
                     <imageobject>
@@ -211,7 +210,7 @@
                 </inlinemediaobject>
             </link>
             .
-            
+
             <link linkend="TEXT_f">
                 <inlinemediaobject>
                     <imageobject>
@@ -221,126 +220,73 @@
                 </inlinemediaobject>
             </link>
             .
-            
-        </para>
-    </refsection>
-    <refsection id="Module_Commonlyusedblocks_pal">
-        <title>Module</title>
-        <itemizedlist>
-            <listitem>
-                <para>
-                    <link linkend="xcos">xcos</link>
-                </para>
-            </listitem>
-        </itemizedlist>
     </refsection>
     <refsection id="Description_Commonlyusedblocks_pal">
         <title>Description</title>
-        <para>In the Commonly used blocks palette, you can find blocks from other
-            palettes that most models use.
+        <para>
+            In the Commonly used blocks palette, you can find blocks from other palettes that most
+            models use.
         </para>
     </refsection>
-    <refsection id="Blocks_Commonlyusedblocks_pal">
+    <refsection id="Blocks_Commonlyusedblocks_pal" role="see also">
         <title>Blocks</title>
         <itemizedlist>
             <listitem>
-                <para>
-                    <link linkend="ANDBLK">ANDBLK - Activation and</link>
-                </para>
+                <link linkend="ANDBLK">ANDBLK</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="BIGSOM_f">BIGSOM_f - Sum</link>
-                </para>
+                <link linkend="BIGSOM_f">BIGSOM_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CMSCOPE">CMSCOPE - Multi display scope</link>
-                </para>
+                <link linkend="CMSCOPE">CMSCOPE</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CONST_m">CONST_m - Constant</link>
-                </para>
+                <link linkend="CONST_m">CONST_m</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CONVERT">CONVERT - CONVERT Data Type
-                        Conversion
-                    </link>
-                </para>
+                <link linkend="CONVERT">CONVERT</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="CSCOPXY">CSCOPXY - y=f(x) permanent viewer</link>
-                </para>
+                <link linkend="CSCOPXY">CSCOPXY</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DEMUX">DEMUX - Demultiplexer</link>
-                </para>
+                <link linkend="DEMUX">DEMUX</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="DOLLAR_f">DOLLAR_f - Delay operator</link>
-                </para>
+                <link linkend="DOLLAR_f">DOLLAR_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="INTEGRAL_f">INTEGRAL_f - Integration</link>
-                </para>
+                <link linkend="INTEGRAL_f">INTEGRAL_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="IN_f">IN_f - Input Port</link>
-                </para>
+                <link linkend="IN_f">IN_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="LOGICAL_OP">LOGICAL_OP - Logical operation</link>
-                </para>
+                <link linkend="LOGICAL_OP">LOGICAL_OP</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="MUX">MUX - Multiplexer</link>
-                </para>
+                <link linkend="MUX">MUX</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="NRMSOM_f">NRMSOM_f - Merge data</link>
-                </para>
+                <link linkend="NRMSOM_f">NRMSOM_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="OUT_f">OUT_f - Output Port</link>
-                </para>
+                <link linkend="OUT_f">OUT_f</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="PRODUCT">PRODUCT - Product</link>
-                </para>
+                <link linkend="PRODUCT">PRODUCT</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="RELATIONALOP">RELATIONALOP — Relational
-                        operation
-                    </link>
-                </para>
+                <link linkend="RELATIONALOP">RELATIONALOP</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SATURATION">SATURATION - Saturation</link>
-                </para>
+                <link linkend="SATURATION">SATURATION</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="SWITCH2_m">SWITCH2_m - Switch2</link>
-                </para>
+                <link linkend="SWITCH2_m">SWITCH2_m</link>
             </listitem>
             <listitem>
-                <para>
-                    <link linkend="TEXT_f">TEXT_f - Text</link>
-                </para>
+                <link linkend="TEXT_f">TEXT_f</link>
             </listitem>
         </itemizedlist>
     </refsection>

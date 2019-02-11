@@ -21,7 +21,7 @@
     <refnamediv>
         <refname>flipdim</refname>
         <refpurpose>
-            inverse l'ordre des (blocs de) lignes, colonnes, pages.. d'une matrice ou hypermatrice
+            inverse l'ordre des (blocs de) lignes, colonnes, pages.. d'un tableau.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -38,7 +38,8 @@
                 <term>x, y</term>
                 <listitem>
                     <para>
-                      scalaires, vecteurs, matrices, ou hypermatrices de n'importe quel type de données régulier.
+                      scalaires, vecteurs, matrices, ou hypermatrices de n'importe quel type de
+                      données régulier, ou tableau de cells.
                       <varname>y</varname> prend la taille de <varname>x</varname>.
                     </para>
                 </listitem>
@@ -67,8 +68,7 @@
         <title>Description</title>
         <para>
             <literal>flipdim(x, 1)</literal> inverse l'ordre des
-            <emphasis role="italic">lignes</emphasis> de la matrice ou hypermatrice
-            <varname>x</varname>.
+            <emphasis role="italic">lignes</emphasis> de <varname>x</varname>.
         </para>
         <para>
             <literal>flipdim(x, 2)</literal> inverse l'ordre des
@@ -76,8 +76,7 @@
         </para>
         <para>
             <literal>flipdim(x, 3)</literal> inverse l'ordre des
-            <emphasis role="italic">pages</emphasis> de l'hypermatrice
-            <varname>x</varname>. etc.
+            <emphasis role="italic">pages</emphasis> de <varname>x</varname>. etc.
         </para>
         <para>
             Le paramètre optionnel <literal>blockSize</literal> permet d'inverser l'ordre des

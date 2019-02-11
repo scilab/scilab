@@ -73,6 +73,9 @@ public:
         // Unary minus
         /** \brief "-" */ unaryMinus,
 
+        // Unary plus
+        /** \brief "+" */ unaryPlus,
+
         /** unknow operator*/ unknown
     };
 
@@ -251,7 +254,11 @@ public:
                 return L"||";
             case unaryMinus:
                 return L"-";
+            case unaryPlus:
+                return L"+";
             case unknown:
+                return L"unknown";
+            default:
                 return L"unknown";
         }
     }

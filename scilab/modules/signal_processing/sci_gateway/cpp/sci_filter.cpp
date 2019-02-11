@@ -224,7 +224,6 @@ types::Function::ReturnValue sci_filter(types::typed_list &in, int _iRetCount, t
 {
     int iRhs = (int)in.size();
 
-    bool alloc_si = false;
     types::Double* b = nullptr;
     types::Double* a = nullptr;
     types::Double* x = nullptr;
@@ -260,11 +259,10 @@ types::Function::ReturnValue sci_filter(types::typed_list &in, int _iRetCount, t
 
     if (iRhs > 3)
     {
-        si = in[3]->getAs<types::Double>();
+        si = in[3]->getAs<types::Double>()->clone();
     }
     else
     {
-        alloc_si = true;
         int size_a = a->getSize();
         int size_b = b->getSize();
         int len = std::max(size_a, size_b) - 1;
@@ -307,7 +305,7 @@ types::Function::ReturnValue sci_filter(types::typed_list &in, int _iRetCount, t
     }
 
     types::Double* ret = filter(b, a, x, si);
-    if (_iRetCount != 2 && alloc_si)
+    if (_iRetCount != 2)
     {
         si->killMe();
     }

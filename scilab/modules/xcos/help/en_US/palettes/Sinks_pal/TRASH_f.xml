@@ -25,7 +25,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
         xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-        xml:id="TRASH_f">
+        xml:id="TRASH_f" xml:lang="en_US">
     <refnamediv>
         <refname>TRASH_f</refname>
         <refpurpose>Trash block</refpurpose>
@@ -42,19 +42,19 @@
         <title>Contents</title>
         <itemizedlist>
             <listitem>
-              <xref linkend="Description_TRASH_f">Description</xref>
+                <xref linkend="Description_TRASH_f">Description</xref>
             </listitem>
             <listitem>
-              <xref linkend="Defaultproperties_TRASH_f">Default properties</xref>
+                <xref linkend="Defaultproperties_TRASH_f">Default properties</xref>
             </listitem>
             <listitem>
-              <xref linkend="Interfacingfunction_TRASH_f">Interfacing function</xref>
+                <xref linkend="Interfacingfunction_TRASH_f">Interfacing function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Computationalfunction_TRASH_f">Computational function</xref>
+                <xref linkend="Computationalfunction_TRASH_f">Computational function</xref>
             </listitem>
             <listitem>
-              <xref linkend="Example_TRASH_f">Example</xref>
+                <xref linkend="Example_TRASH_f">Example</xref>
             </listitem>
         </itemizedlist>
         <para/>
@@ -128,7 +128,7 @@
                 </para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_TRASH_f">
         <title>Interfacing function</title>
@@ -145,7 +145,7 @@
                 <para> SCI/modules/scicos_blocks/src/fortran/trash.f (Type 0)</para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
     <refsection id="Example_TRASH_f" role="examples">
         <title>Example</title>

@@ -19,4 +19,4 @@ s.txt = null();
 s.num = null();
 s.pol = null();
 disp(s)
-1x1 struct array with no field.
+1x1 struct array with no fields.

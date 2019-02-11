@@ -28,6 +28,7 @@ extern "C"
 #include "os_string.h"
 #include "dtoa.h"
 #include "charEncoding.h"
+#include "sciprint.h"
 }
 
 #define BLANK_SIZE 1
@@ -275,13 +276,13 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
     else if (_pDF->bExp)
     {
         // Prints the exponent part 1.543D+03 for example
-        int decpt = 0;
-        int sign = 0;
-        char *rve = nullptr;
-        char *dtoa_str = dtoa(fabs(_dblVal), 2, _pDF->iPrec + 1, &decpt, &sign, &rve);
+        int iDecpt = 0;
+        int iSign = 0;
+        char *pRve = nullptr;
+        char *pDtoaStr = dtoa(fabs(_dblVal), 2, _pDF->iPrec + 1, &iDecpt, &iSign, &pRve);
 
-        std::string str(dtoa_str);
-        freedtoa(dtoa_str);
+        std::string str(pDtoaStr);
+        freedtoa(pDtoaStr);
 
         // in format("e") omiting the decimal point has a sense
         // only if fabs(_dblVal) is an integer in {1...9}
@@ -292,40 +293,55 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
             str.insert(1, ".");
         }
 
-        wchar_t* tmp = to_wide_string(str.data());
-        os_swprintf(pwstOutput, 32, L"%ls%lsD%+.02d", pwstSign, tmp, decpt - 1);
-        FREE(tmp);
+        wchar_t* pwstData = to_wide_string(str.data());
+        os_swprintf(pwstOutput, 32, L"%ls%lsD%+.02d", pwstSign, pwstData, iDecpt - 1);
+        FREE(pwstData);
     }
     else if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
     {
         //do not print if _bPrintOne == false && _dblVal == 1
-        int decpt = 0;
-        int sign = 0;
-        char *rve = nullptr;
-        char *dtoa_str = dtoa(fabs(_dblVal), 2, std::floor(log10(fabs(_dblVal))) + _pDF->iPrec + 1, &decpt, &sign, &rve);
+        int iDecpt = 0;
+        int iSign = 0;
+        int iWidth = _pDF->iWidth;
+        char *pRve = nullptr;
+        char *pDtoaStr = dtoa(fabs(_dblVal), 2, std::floor(log10(fabs(_dblVal))) + _pDF->iPrec + 1, &iDecpt, &iSign, &pRve);
 
-        std::string str(dtoa_str);
-        freedtoa(dtoa_str);
+        std::string str(pDtoaStr);
+        freedtoa(pDtoaStr);
 
         /* add leading 0.000..., if applicable */
-        if (decpt <= 0)
+        if (iDecpt <= 0)
         {
-            str.insert(str.begin(), 1 - decpt, '0');
+            str.insert(str.begin(), 1 - iDecpt, '0');
             str.insert(1, ".");
         }
-        else if (_pDF->bPrintPoint || decpt < str.length())
+        else if (_pDF->bPrintPoint || iDecpt < (int)str.length())
         {
-            str.append(std::max(0, (int)(decpt - str.length())), '0');
-            str.insert(decpt, ".");
+            str.append(std::max(0, (iDecpt - (int)str.length())), '0');
+            str.insert(iDecpt, ".");
         }
-        else 
+        else
         {
-            str.append(std::max(0, (int)(decpt - str.length())), '0');
+            str.append(std::max(0, (iDecpt - (int)str.length())), '0');
+            iWidth--;
         }
 
-        wchar_t* tmp = to_wide_string(str.data());
-        os_swprintf(pwstOutput, 32, L"%ls%-*ls", pwstSign,_pDF->iWidth-1,tmp);
-        FREE(tmp);
+        // append trailing zeros, if applicable
+        if (std::atof(str.data()) != fabs(_dblVal))
+        {
+            if (_pDF->bPrintPoint)
+            {
+                /* str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()))-1, '0'); */
+            }
+            else
+            {
+                iWidth = 1+str.length();
+            }
+        }
+
+        wchar_t* pwstData = to_wide_string(str.data());
+        os_swprintf(pwstOutput, 32, L"%ls%-*ls", pwstSign, iWidth-1, pwstData);
+        FREE(pwstData);
     }
     else if (wcslen(pwstSign) != 0)
     {
