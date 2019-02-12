@@ -97,7 +97,7 @@ if haveacompiler() then
 
         mprintf("\n");
         mprintf(gettext("Calling ilib_for_link to build C++ function.\n"));
-        lib_ = ilib_for_link(["barxx"], "barxx.cxx", [],"c");
+        lib_ = ilib_for_link(["barxx"], "barxx.cxx", [], "c", "", "loader.sce", "", "", " -std=c++11");
         link(lib_, "barxx", "c");
         ilib_build("gw_barxx",["barxx" "sci_barxx"],"sci_barxx.c",basename(lib_));
         exec loader.sce ;
