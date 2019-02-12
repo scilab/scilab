@@ -15,7 +15,7 @@ function demo_seros()
     copyfile("SCI/modules/optimization/demos/icse/", "TMPDIR/icse");
     cd("TMPDIR/icse");
 
-    libn  = ilib_for_link("icsest", "icsest.f", [], "f", "", "", "", "-L"+SCI+"/modules/optimization/.libs/ -lscioptimization");
+    libn  = ilib_for_link("icsest", "icsest.f", [], "f", "", "", "",  "-L"+SCI+"/modules/optimization/.libs/ -L"+SCI+"/../../lib/scilab/ -lscioptimization");
     nlink = link("./"+libn, "icsest", "f");
     libn  = ilib_for_link("icsez0", "icsez0.f", [], "f")
     nlink = link("./"+libn, "icsez0", "f")
