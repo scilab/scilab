@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varargout" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="varargout" xml:lang="ja">
     <refnamediv>
         <refname>varargout</refname>
         <refpurpose>出力変数リストの引数の数を可変にする</refpurpose>
@@ -44,33 +47,30 @@
         <para>
             出力引数の実際の総数は,<code>argn(1)</code>で取得できます.
         </para>
-    </refsection>
-    <refsection>
-        <title>注記</title>
-        <para>
-            <literal>varargout</literal> 変数は関数内で作成され,
-            <link linkend="list">list</link>に代入される必要があります.
-            <literal>varargout</literal> が唯一の形式上の出力変数の場合,
-            リストには最低でも一つのエントリを含む必要があります.
-        </para>
+        <note>
+            <literal>varargout</literal> is by default initialized to <literal>list()</literal>.
+        </note>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-function varargout=exampl()
-  varargout=list(1,2,3,4)
+function varargout = exampl()
+    varargout = list(1,2,3,4)
 endfunction
-x=exampl()
-[x,y]=exampl()
-[x,y,z]=exampl()
+
+x = exampl()
+[x, y]    = exampl()
+[x, y, z] = exampl()
+
 function [a,b,varargout]=exampl1()
-  a='first'
-  b='second'
-  varargout=list(1,2,3,4)
+    a = 'first'
+    b = 'second'
+    varargout = list(1,2,3,4)
 endfunction
+
 exampl1()
-[a,b]=exampl1()
-[a,b,c]=exampl1()
+[a, b]  = exampl1()
+[a,b,c] = exampl1()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -89,5 +89,16 @@ exampl1()
                 <link linkend="varargin">varargin</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    varargout is now initialized to list() by default.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

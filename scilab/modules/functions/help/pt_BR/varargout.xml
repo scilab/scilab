@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varargout" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="varargout" xml:lang="pt">
     <refnamediv>
         <refname>varargout</refname>
         <refpurpose>variável do número de argumentos de saída em uma lista de
@@ -40,38 +43,32 @@
             atribuídas na função tanto quanto <literal>varargout(i)</literal>.
         </para>
         <para>
-            O número total real de argumentos de saída é dado por <code>argn(1)</code>
+            O número total real de argumentos de saída é dado por <literal>argn(1)</literal>.
         </para>
-    </refsection>
-    <refsection>
-        <title>Observação</title>
-        <para>
-            A variável <literal>varargout</literal> deve ser criada dentro de
-            uma função e atribuída a uma <link linkend="list">list</link>. Se
-            <literal>varargout</literal> for a única variável de saída formal, a lista deve conter pelo
-            menos uma entrada.
-        </para>
+        <note>
+            <literal>varargout</literal> is by default initialized to <literal>list()</literal>.
+        </note>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-function varargout=exampl()
-  varargout=list(1,2,3,4)
+function varargout = exampl()
+    varargout = list(1,2,3,4)
 endfunction
 
-x=exampl()
-[x,y]=exampl()
-[x,y,z]=exampl()
+x = exampl()
+[x, y]    = exampl()
+[x, y, z] = exampl()
 
 function [a,b,varargout]=exampl1()
-  a='first'
-  b='second'
-  varargout=list(1,2,3,4)
+    a = 'first'
+    b = 'second'
+    varargout = list(1,2,3,4)
 endfunction
 
 exampl1()
-[a,b]=exampl1()
-[a,b,c]=exampl1()
+[a, b]  = exampl1()
+[a,b,c] = exampl1()
  ]]></programlisting>
     </refsection>
     <refsection>
@@ -90,5 +87,16 @@ exampl1()
                 <link linkend="varargin">varargin</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    varargout is now initialized to list() by default.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
