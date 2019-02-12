@@ -17,5 +17,5 @@
 // Error message of grand function was incoherent
 
 assert_checkfalse(execstr("grand(2,2,2,""uin"",0,2^31)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input arguments #%d and #%d: Low and High must be integers and (high - low + 1) <=  2147483561.\n"), "grand", 5, 6);
+refMsg = msprintf(_("%s: Wrong value for input arguments #%d and #%d: Low and High must be a 32 bits integer value and (high - low + 1) <=  2147483561.\n"), "grand", 5, 6);
 assert_checkerror("grand(2,2,2,""uin"",0,2^31)", refMsg);
