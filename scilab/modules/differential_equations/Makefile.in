@@ -1738,6 +1738,11 @@ uninstall-am: uninstall-libscidifferential_equations_la_etcDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
+# enforce -O0 for some files
+@IS_MACOSX_TRUE@src/fortran/colnew.lo: src/fortran/colnew.f
+@IS_MACOSX_TRUE@	$(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/colnew.lo src/fortran/colnew.f
+
+
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test
 	if test -d $(mydatadir)/tests; then \

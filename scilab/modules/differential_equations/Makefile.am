@@ -133,7 +133,11 @@ else
 noinst_LTLIBRARIES = libscidifferential_equations-algo.la libscidifferential_equations.la
 endif
 
-
+if IS_MACOSX
+# enforce -O0 for some files
+src/fortran/colnew.lo: src/fortran/colnew.f
+	$(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/colnew.lo src/fortran/colnew.f
+endif
 
 libscidifferential_equations_algo_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(DIFFERENTIAL_EQUATIONS_CPP_SOURCES)
 libscidifferential_equations_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES)

@@ -77,7 +77,17 @@ else
 noinst_LTLIBRARIES = libscisparse-algo.la libscisparse.la
 endif
 
+if IS_MACOSX
+#enforce -O0 for some files due to macOS crash
+src/fortran/blkfct.lo: src/fortran/blkfct.f
+	$(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/blkfct.lo src/fortran/blkfct.f
 
+src/fortran/symfct.lo: src/fortran/symfct.f
+	$(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/symfct.lo src/fortran/symfct.f
+
+src/fortran/ordmmd.lo: src/fortran/ordmmd.f
+	$(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/ordmmd.lo src/fortran/ordmmd.f
+endif
 
 libscisparse_algo_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES)
 libscisparse_la_SOURCES = $(GATEWAY_CPP_SOURCES)
@@ -98,13 +108,13 @@ libscisparse_la_rootdir = $(mydatadir)
 libscisparse_la_root_DATA =  license.txt
 
 
-#### sparse : init scripts ####
+####Â sparse : init scripts ####
 libscisparse_la_etcdir = $(mydatadir)/etc
 libscisparse_la_etc_DATA = \
     etc/sparse.quit \
     etc/sparse.start
 
-#### sparse : gateway declaration ####
+####Â sparse : gateway declaration ####
 libscisparse_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisparse_la_sci_gateway_DATA =
 

@@ -690,14 +690,14 @@ modulename = sparse
 libscisparse_la_rootdir = $(mydatadir)
 libscisparse_la_root_DATA = license.txt
 
-#### sparse : init scripts ####
+####Â sparse : init scripts ####
 libscisparse_la_etcdir = $(mydatadir)/etc
 libscisparse_la_etc_DATA = \
     etc/sparse.quit \
     etc/sparse.start
 
 
-#### sparse : gateway declaration ####
+####Â sparse : gateway declaration ####
 libscisparse_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisparse_la_sci_gateway_DATA = 
 
@@ -1579,6 +1579,19 @@ uninstall-am: uninstall-libscisparse_la_etcDATA \
 	uninstall-libscisparse_la_rootDATA \
 	uninstall-libscisparse_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
+
+
+# enforce -O0 for some file due to macOS crash
+@IS_MACOSX_TRUE@src/fortran/blkfct.lo: src/fortran/blkfct.f
+@IS_MACOSX_TRUE@	$(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/blkfct.lo src/fortran/blkfct.f
+
+# enforce -O0 for some file due to macOS crash
+@IS_MACOSX_TRUE@src/fortran/symfct.lo: src/fortran/symfct.f
+@IS_MACOSX_TRUE@	$(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/symfct.lo src/fortran/symfct.f
+
+# enforce -O0 for some file due to macOS crash
+@IS_MACOSX_TRUE@src/fortran/ordmmd.lo: src/fortran/ordmmd.f
+@IS_MACOSX_TRUE@	$(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/ordmmd.lo src/fortran/ordmmd.f
 
 
 # This target enables tests for Scilab
