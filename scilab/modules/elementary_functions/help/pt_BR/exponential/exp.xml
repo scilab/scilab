@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="exp" xml:lang="pt">
     <refnamediv>
         <refname>exp</refname>
-        <refpurpose>exponencial em relação aos elementos</refpurpose>
+        <refpurpose>exponencial em relaÃ§Ã£o aos elementos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento </title>
+        <title>SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>exp(X)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
@@ -36,9 +36,9 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>exp(X)</literal> é a função exponencial (elemento a
+            <literal>exp(X)</literal> Ã© a funÃ§Ã£o exponencial (elemento a
             elemento) das entradas de<literal>X</literal>.
         </para>
     </refsection>
@@ -52,7 +52,7 @@ exp(x*log(2))
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title>Ver Também </title>
+        <title>Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="coff">coff</link>

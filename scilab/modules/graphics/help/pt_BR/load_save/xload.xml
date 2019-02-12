@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xload" xml:lang="pt">
     <refnamediv>
         <refname>xload</refname>
-        <refpurpose>carrega gráficos salvos</refpurpose>
+        <refpurpose>carrega grÃ¡ficos salvos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>xload(file_name,[win_num])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>file_name</term>
@@ -34,27 +34,27 @@
             <varlistentry>
                 <term>win_num</term>
                 <listitem>
-                    <para>inteiro, o número da janela de gráficos. Se não for fornecido,
-                        a janela de gráficos corrente é utilizada
+                    <para>inteiro, o nÃºmero da janela de grÃ¡ficos. Se nÃ£o for fornecido,
+                        a janela de grÃ¡ficos corrente Ã© utilizada
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>xload</literal> recarrega os gráficos contidos no arquivo
-            <literal>file_name</literal> na janela de gráficos
+            <literal>xload</literal> recarrega os grÃ¡ficos contidos no arquivo
+            <literal>file_name</literal> na janela de grÃ¡ficos
             <literal>win_num</literal>.
         </para>
         <para>
-            Desde o Scilab 5.0, todos os manipuladores <link linkend="uimenu">uimenu</link> ou <link linkend="uicontrol">uicontrol</link> são também carregados.
+            Desde o Scilab 5.0, todos os manipuladores <link linkend="uimenu">uimenu</link> ou <link linkend="uicontrol">uicontrol</link> sÃ£o tambÃ©m carregados.
         </para>
-        <para>Para arquivos contendo novos gráficos, a função
-            <literal>load</literal> pode ser utilizada ao invés de
-            <literal>xload</literal>. <literal>xload</literal> não recupera o número
-            da janela, nem seu tamanho ou dimensões.
+        <para>Para arquivos contendo novos grÃ¡ficos, a funÃ§Ã£o
+            <literal>load</literal> pode ser utilizada ao invÃ©s de
+            <literal>xload</literal>. <literal>xload</literal> nÃ£o recupera o nÃºmero
+            da janela, nem seu tamanho ou dimensÃµes.
         </para>
     </refsection>
     <refsection>
@@ -75,7 +75,7 @@ load(TMPDIR + "/foo.scg")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xsave">xsave</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isascii" xml:lang="pt">
     <refnamediv>
         <refname>isascii</refname>
-        <refpurpose>verifica se um caractere é do tipo 7-bit US-ASCII</refpurpose>
+        <refpurpose>verifica se um caractere Ã© do tipo 7-bit US-ASCII</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>res = isascii(str)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>str</term>
@@ -40,10 +40,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>res = isascii(str)</literal> retorna verdadeiro (%T) se c é
-            um código 7-bit US-ASCII entre 0 e 0177 octal, inclusive. Caso contrário,
+            <literal>res = isascii(str)</literal> retorna verdadeiro (%T) se c Ã©
+            um cÃ³digo 7-bit US-ASCII entre 0 e 0177 octal, inclusive. Caso contrÃ¡rio,
             retorna falso (%F).
         </para>
     </refsection>
@@ -57,7 +57,7 @@ isascii('scilab')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="isalphanum">isalphanum</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tokenpos" xml:lang="pt">
     <refnamediv>
         <refname>tokenpos</refname>
-        <refpurpose>retorna as posições das fichas (token) em um
+        <refpurpose>retorna as posiÃ§Ãµes das fichas (token) em um
             string
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>kdf=tokenpos(str [,delimiter])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>str</term>
@@ -44,34 +44,34 @@
             <varlistentry>
                 <term>kdf</term>
                 <listitem>
-                    <para>matriz de duas colunas, a primeira coluna fornece os índices
-                        dos primeiros caracteres das fichas, a segunda fornece os índices
-                        dos últimos caracteres das fichas.
+                    <para>matriz de duas colunas, a primeira coluna fornece os Ã­ndices
+                        dos primeiros caracteres das fichas, a segunda fornece os Ã­ndices
+                        dos Ãºltimos caracteres das fichas.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>kdf=tokenpos(str [,delimiter]) </literal> busca as fichas
-            inclusas no string <literal>str</literal>. O valor padrão de
-            <literal>delimiter</literal> é [" ",&lt;Tab&gt;] onde &lt;Tab&gt; é
-            <literal>ascii(9)</literal>. Retorna os índices dos primeiros e últimos
+            inclusas no string <literal>str</literal>. O valor padrÃ£o de
+            <literal>delimiter</literal> Ã© [" ",&lt;Tab&gt;] onde &lt;Tab&gt; Ã©
+            <literal>ascii(9)</literal>. Retorna os Ã­ndices dos primeiros e Ãºltimos
             caracteres de cada ficha encontrada.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-str='Isto é um string';
+str='Isto Ã© um string';
 kdf=tokenpos(str)
 first=part(str,kdf(1,1):kdf(1,2))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strindex">strindex</link>

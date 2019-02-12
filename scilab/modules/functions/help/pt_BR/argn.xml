@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -20,10 +20,10 @@
         xmlns:scilab="http://www.scilab.org" xml:id="argn" xml:lang="pt">
     <refnamediv>
         <refname>argn</refname>
-        <refpurpose>número de argumentos na chamada de uma função</refpurpose>
+        <refpurpose>nÃºmero de argumentos na chamada de uma funÃ§Ã£o</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>
            [lhs, rhs] = argn()
             lhs = argn(1)
@@ -31,7 +31,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection role="arguments">
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>lhs</term>
@@ -51,11 +51,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta função é usada dentro da definição de uma função. Ela fornece
-            os números de parâmetros de entrada <literal>rhs</literal> e saída
-            <literal>lhs</literal> passados à função quando esta é chamada. Geralmente
-            é usada em definições de funções para lidar com parâmetros
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta funÃ§Ã£o Ã© usada dentro da definiÃ§Ã£o de uma funÃ§Ã£o. Ela fornece
+            os nÃºmeros de parÃ¢metros de entrada <literal>rhs</literal> e saÃ­da
+            <literal>lhs</literal> passados Ã  funÃ§Ã£o quando esta Ã© chamada. Geralmente
+            Ã© usada em definiÃ§Ãµes de funÃ§Ãµes para lidar com parÃ¢metros
             opcionais.
         </para>
         <warning>
@@ -154,7 +154,7 @@ out1 = test();
    3.   1.
 ]]></screen>
     <para/>
-    <para>Teste robusto da existência de argumentos de entrada:</para>
+    <para>Teste robusto da existÃªncia de argumentos de entrada:</para>
         <programlisting role="example"><![CDATA[
 function res = test(a, b, varargin)
     res = ""
@@ -226,7 +226,7 @@ endfunction
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="isdef">isdef</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="foo" xml:lang="pt">
     <refnamediv>
         <refname>foo</refname>
-        <refpurpose>descrição breve de foo</refpurpose>
+        <refpurpose>descriÃ§Ã£o breve de foo</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[y] = foo(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -40,27 +40,27 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Um primeiro parárgrafo que explica o que a função foo computa. Se
-            quiser enfatizar um parâmetro, então você utiliza o seguinte tag
+        <title>DescriÃ§Ã£o</title>
+        <para>Um primeiro parÃ¡rgrafo que explica o que a funÃ§Ã£o foo computa. Se
+            quiser enfatizar um parÃ¢metro, entÃ£o vocÃª utiliza o seguinte tag
             <literal>x</literal>, se quiser enfatizar parte do texto
-            <emphasis>encerre-o nestes tags</emphasis> e então utilize estes <emphasis role="bold">para obter uma fonte em negrito</emphasis> e finalmente
-            <literal>para um estilo em máquina de escrever</literal>.
+            <emphasis>encerre-o nestes tags</emphasis> e entÃ£o utilize estes <emphasis role="bold">para obter uma fonte em negrito</emphasis> e finalmente
+            <literal>para um estilo em mÃ¡quina de escrever</literal>.
         </para>
-        <para>Um segundo parágrafo... Aqui está um exemplo de um link para outra
-            página : <link linkend="man">man</link>.
+        <para>Um segundo parÃ¡grafo... Aqui estÃ¡ um exemplo de um link para outra
+            pÃ¡gina : <link linkend="man">man</link>.
         </para>
         <variablelist>
             <varlistentry>
                 <term>first</term>
                 <listitem>
-                    <para>parágrafo simples</para>
+                    <para>parÃ¡grafo simples</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>second</term>
                 <listitem>
-                    <para>toto é o foo francês...</para>
+                    <para>toto Ã© o foo francÃªs...</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -68,12 +68,12 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-deff("y=foo(x)","y=x"); // define a função foo como a função identidade.
+deff("y=foo(x)","y=x"); // define a funÃ§Ã£o foo como a funÃ§Ã£o identidade.
 foo("toto")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="man">man</link>

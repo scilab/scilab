@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="with_macros_source" xml:lang="pt">
     <refnamediv>
         <refname>with_macros_source</refname>
-        <refpurpose>Verifica se a fonte de macros está instalada</refpurpose>
+        <refpurpose>Verifica se a fonte de macros estÃ¡ instalada</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>r=with_macros_source()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>r</term>
@@ -20,10 +20,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Retorna <literal>%t</literal> se a fonte de macros está instalada,
-            ou <literal>%f</literal> senão.
+            Retorna <literal>%t</literal> se a fonte de macros estÃ¡ instalada,
+            ou <literal>%f</literal> senÃ£o.
         </para>
     </refsection>
 </refentry>

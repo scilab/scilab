@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -16,31 +16,31 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="label_properties" xml:lang="pt">
     <refnamediv>
         <refname>label_properties</refname>
-        <refpurpose>Descrição de propriedades da entidade Label
-            (rótulo)
+        <refpurpose>DescriÃ§Ã£o de propriedades da entidade Label
+            (rÃ³tulo)
         </refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            A entidade Label é um galho da entidade <literal>Axes</literal> (de
-            eixos). Quando uma entidade Axes é construída, os manipuladores das
-            entidades Title e Label são criados juntos e são parte das propriedade da
-            entidade Axes. Logo, as propriedades destes sub-objetos são editáveis via
+            A entidade Label Ã© um galho da entidade <literal>Axes</literal> (de
+            eixos). Quando uma entidade Axes Ã© construÃ­da, os manipuladores das
+            entidades Title e Label sÃ£o criados juntos e sÃ£o parte das propriedade da
+            entidade Axes. Logo, as propriedades destes sub-objetos sÃ£o editÃ¡veis via
             o manipulador da entidade Axes (ver <literal>gca</literal> e
-            <literal>gda</literal>). Esta entidade define os parâmetros para impressão
-            de rótulos:
+            <literal>gda</literal>). Esta entidade define os parÃ¢metros para impressÃ£o
+            de rÃ³tulos:
         </para>
         <variablelist>
             <varlistentry>
                 <term>parent:</term>
                 <listitem>
-                    <para>esta propriedade contém o manipulador para a raiz. A raiz de
+                    <para>esta propriedade contÃ©m o manipulador para a raiz. A raiz de
                         uma entidade Label deve ser do tipo <literal>"Axes"</literal>
                         .
                     </para>
-                    <para>Note que, por ora, a entidade Label é exclusivamente utilizada
-                        na construção de <literal>title</literal>,
+                    <para>Note que, por ora, a entidade Label Ã© exclusivamente utilizada
+                        na construÃ§Ã£o de <literal>title</literal>,
                         <literal>x_label</literal>, <literal>y_label</literal> e
                         <literal>z_label</literal>.
                     </para>
@@ -49,12 +49,12 @@
             <varlistentry>
                 <term>visible:</term>
                 <listitem>
-                    <para>este campo contém o valor da propriedade
+                    <para>este campo contÃ©m o valor da propriedade
                         <literal>visible</literal> para a entidade. Pode ser <literal>"on"
                         </literal>
-                        ou <literal>"off"</literal> . Por padrão, o rótulo é
-                        visível, o valor da propriedade é <literal>"on"</literal>. Se
-                        <literal>"off"</literal> o rótulo não é impresso na tela.
+                        ou <literal>"off"</literal> . Por padrÃ£o, o rÃ³tulo Ã©
+                        visÃ­vel, o valor da propriedade Ã© <literal>"on"</literal>. Se
+                        <literal>"off"</literal> o rÃ³tulo nÃ£o Ã© impresso na tela.
                     </para>
                 </listitem>
             </varlistentry>
@@ -62,15 +62,15 @@
                 <term>text:</term>
                 <listitem>
                     <para>a matriz contendo os strings do objeto. As linhas da matriz
-                        são exibidas horizontalmente e as colunas verticalmente.
+                        sÃ£o exibidas horizontalmente e as colunas verticalmente.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>font_foreground:</term>
                 <listitem>
-                    <para>este campo contém o índice de cor utilizado para exibir o
-                        rótulo <literal>text</literal>. Seu valor deve ser um índice de cor
+                    <para>este campo contÃ©m o Ã­ndice de cor utilizado para exibir o
+                        rÃ³tulo <literal>text</literal>. Seu valor deve ser um Ã­ndice de cor
                         (relativo ao mapa de cores corrente).
                     </para>
                 </listitem>
@@ -78,8 +78,8 @@
             <varlistentry>
                 <term>foreground:</term>
                 <listitem>
-                    <para>este campo contém a cor utilizada para exibir o rótulo e a
-                        linha ao redor da caixa, se houver. Deve ser um índice de cor
+                    <para>este campo contÃ©m a cor utilizada para exibir o rÃ³tulo e a
+                        linha ao redor da caixa, se houver. Deve ser um Ã­ndice de cor
                         (relativo ao mapa de cores corrente).
                     </para>
                 </listitem>
@@ -87,8 +87,8 @@
             <varlistentry>
                 <term>background:</term>
                 <listitem>
-                    <para>este campo contém a cor a ser usada para preencher a caixa, se
-                        houver. Deve ser um índice de cor (relativo ao mapa de cores
+                    <para>este campo contÃ©m a cor a ser usada para preencher a caixa, se
+                        houver. Deve ser um Ã­ndice de cor (relativo ao mapa de cores
                         corrente).
                     </para>
                 </listitem>
@@ -98,7 +98,7 @@
                 <listitem>
                     <para>
                         este campo toma valores <literal>"on"</literal> ou
-                        <literal>"off"</literal>. Se <literal>"on"</literal> uma caixa é
+                        <literal>"off"</literal>. Se <literal>"on"</literal> uma caixa Ã©
                         desenhada ao redor do texto com uma linha em sua borda e um plano de
                         fundo.
                     </para>
@@ -107,43 +107,43 @@
             <varlistentry>
                 <term>font_style:</term>
                 <listitem>
-                    <para>especifica a fonte a ser utilizada para exibir o rótulo. É um
-                        inteiro positivo fazendo referência uma das fontes carregadas. Seu
-                        valor deve estar entre 0, fazendo referência à primeira fonte, e o
-                        número de fontes carregadas menos um, fazendo referência à última
-                        fonte. Para mais informações, veja <link linkend="graphics_fonts">graphics_fonts</link>.
+                    <para>especifica a fonte a ser utilizada para exibir o rÃ³tulo. Ã‰ um
+                        inteiro positivo fazendo referÃªncia uma das fontes carregadas. Seu
+                        valor deve estar entre 0, fazendo referÃªncia Ã  primeira fonte, e o
+                        nÃºmero de fontes carregadas menos um, fazendo referÃªncia Ã  Ãºltima
+                        fonte. Para mais informaÃ§Ãµes, veja <link linkend="graphics_fonts">graphics_fonts</link>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>font_size:</term>
                 <listitem>
-                    <para>é um escalar especificando o tamanho dos caracteres exibidos.
+                    <para>Ã© um escalar especificando o tamanho dos caracteres exibidos.
                         Se a propriedade <literal>fractional_font</literal> for
-                        <literal>"off"</literal>, apenas a parte inteira é utilizada. Para
-                        mais informações, veja <link linkend="graphics_fonts">graphics_fonts</link>.
+                        <literal>"off"</literal>, apenas a parte inteira Ã© utilizada. Para
+                        mais informaÃ§Ãµes, veja <link linkend="graphics_fonts">graphics_fonts</link>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fractional_font:</term>
                 <listitem>
-                    <para>esta propriedade especifica se o texto será utilizado
-                        utilizando-se tamanhos de fonte fracionários. Seu valor deve ser
+                    <para>esta propriedade especifica se o texto serÃ¡ utilizado
+                        utilizando-se tamanhos de fonte fracionÃ¡rios. Seu valor deve ser
                         <literal>"on"</literal> ou <literal>"off"</literal>. Se
                         <literal>"on"</literal>, o valor em ponto flutuante de
-                        <literal>font_size</literal> é utilizado para a exibição e evita-se
+                        <literal>font_size</literal> Ã© utilizado para a exibiÃ§Ã£o e evita-se
                         o serrilhamento da fonte. Se <literal>"off"</literal>, apenas a
-                        parte inteira é utilizada e a fonte não é suavizada.
+                        parte inteira Ã© utilizada e a fonte nÃ£o Ã© suavizada.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>font_angle:</term>
                 <listitem>
-                    <para>um escalar que permite girar o rótulo. A fonte é girada em
-                        sentido horário em um ângulo dado em graus. Note que mudar
-                        <literal>font_angle</literal> desabilitará automaticamente a
+                    <para>um escalar que permite girar o rÃ³tulo. A fonte Ã© girada em
+                        sentido horÃ¡rio em um Ã¢ngulo dado em graus. Note que mudar
+                        <literal>font_angle</literal> desabilitarÃ¡ automaticamente a
                         propriedade <literal>auto_rotation</literal>.
                     </para>
                 </listitem>
@@ -153,18 +153,18 @@
                 <listitem>
                     <para>
                         se <literal>"on"</literal>, o Scilab computa automaticamente o
-                        melhor ângulo de rotação para a exibição do rótulo. Se
-                        <literal>"off"</literal>, o rótulo pode ser girado manualmente
-                        através da propriedade <literal>font_angle</literal>.
+                        melhor Ã¢ngulo de rotaÃ§Ã£o para a exibiÃ§Ã£o do rÃ³tulo. Se
+                        <literal>"off"</literal>, o rÃ³tulo pode ser girado manualmente
+                        atravÃ©s da propriedade <literal>font_angle</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>position:</term>
                 <listitem>
-                    <para>este vetor 2d permite posicionar o rótulo na tela. A posição é
+                    <para>este vetor 2d permite posicionar o rÃ³tulo na tela. A posiÃ§Ã£o Ã©
                         armazenada em unidades de dados dos eixos. Note que mudar
-                        <literal>font_angle</literal> desabilitará automaticamente a
+                        <literal>font_angle</literal> desabilitarÃ¡ automaticamente a
                         propriedade <literal>auto_position</literal>.
                     </para>
                 </listitem>
@@ -174,9 +174,9 @@
                 <listitem>
                     <para>
                         se <literal>"on"</literal>, o Scilab computa automaticamente a
-                        melhor posição para a exibição do rótulo na janela de gráficos. Se
-                        <literal>"off"</literal>, o rótulo pode ser posicionado manualmente
-                        através da propriedade <literal>position</literal>.
+                        melhor posiÃ§Ã£o para a exibiÃ§Ã£o do rÃ³tulo na janela de grÃ¡ficos. Se
+                        <literal>"off"</literal>, o rÃ³tulo pode ser posicionado manualmente
+                        atravÃ©s da propriedade <literal>position</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -192,7 +192,7 @@ plot3d()
 a.x_label
 a.y_label
 a.z_label
-xtitle("Meu título","meu rótulo de eixo x", "Volume","Mês")
+xtitle("Meu tÃ­tulo","meu rÃ³tulo de eixo x", "Volume","MÃªs")
 
 t=a.title;
 t.foreground=9;
@@ -207,7 +207,7 @@ a.y_label.foreground = 12;
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>

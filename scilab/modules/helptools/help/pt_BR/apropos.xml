@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,18 +19,18 @@
         <refpurpose>procura por palavras-chave na ajuda do Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>apropos(key)
             apropos(regexp)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>key</term>
                 <listitem>
-                    <para>string. Fornece a seqüência de caracteres a ser
+                    <para>string. Fornece a seqÃ¼Ãªncia de caracteres a ser
                         encontrada.
                     </para>
                 </listitem>
@@ -38,7 +38,7 @@
             <varlistentry>
                 <term>regexp</term>
                 <listitem>
-                    <para>string. Fornece a expressão regular a ser encontrada (apenas
+                    <para>string. Fornece a expressÃ£o regular a ser encontrada (apenas
                         com "Scilab Browser")
                     </para>
                 </listitem>
@@ -46,16 +46,16 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>apropos(key)</literal> procura por arquivos de ajuda Scilab
-            contendo a palavra-chave <literal>key</literal> na seção de descrições
+            contendo a palavra-chave <literal>key</literal> na seÃ§Ã£o de descriÃ§Ãµes
             breves.
         </para>
         <para>
             <literal>apropos(regexp)</literal> procura por arquivos de ajuda
-            Scilab contendo a expressão regular <literal>regexp</literal> na seção de
-            descrições breves.
+            Scilab contendo a expressÃ£o regular <literal>regexp</literal> na seÃ§Ã£o de
+            descriÃ§Ãµes breves.
         </para>
     </refsection>
     <refsection>
@@ -65,12 +65,12 @@ apropos('ode')
 apropos ode
 apropos "list of"
 apropos "sin.*hyperbolic"
-apropos "^ab"  //procura por ajuda começando com os dois caracteres "ab"
+apropos "^ab"  //procura por ajuda comeÃ§ando com os dois caracteres "ab"
 apropos "quadratic.*solver"
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="help">help</link>

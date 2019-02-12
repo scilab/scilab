@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sysdiag" xml:lang="pt">
     <refnamediv>
         <refname>sysdiag</refname>
-        <refpurpose>conexão de sistemas diagonais em blocos</refpurpose>
+        <refpurpose>conexÃ£o de sistemas diagonais em blocos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>r=sysdiag(a1,a2,...,an)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Retorna um sistema diagonal em blocos feito de subsistemas postos na
             diagonal principal.
         </para>
@@ -31,17 +31,17 @@
             <varlistentry>
                 <term>ai</term>
                 <listitem>
-                    <para>subsistemas (i.e. ganhos, ou sistema linear em forma de espaço
-                        de estados ou de transferência)
+                    <para>subsistemas (i.e. ganhos, ou sistema linear em forma de espaÃ§o
+                        de estados ou de transferÃªncia)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>Usado em particular para interconexões de sistemas.</para>
+        <para>Usado em particular para interconexÃµes de sistemas.</para>
     </refsection>
     <refsection>
-        <title>Observação</title>
-        <para>No máximo 17 argumentos.</para>
+        <title>ObservaÃ§Ã£o</title>
+        <para>No mÃ¡ximo 17 argumentos.</para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -52,7 +52,7 @@ sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="brackets">brackets</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -16,12 +16,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getd" xml:lang="pt">
     <refnamediv>
         <refname>getd</refname>
-        <refpurpose>retorna todas as funções definidas em um
-            diretório
+        <refpurpose>retorna todas as funÃ§Ãµes definidas em um
+            diretÃ³rio
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>getd(path)</synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,16 +30,16 @@
             <varlistentry>
                 <term>path</term>
                 <listitem>
-                    <para>string Scilab. O endereço do diretório</para>
+                    <para>string Scilab. O endereÃ§o do diretÃ³rio</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Carrega todos os arquivos <literal>.sci</literal> (contendo funções
-            Scilab) definidos no diretório <varname>path</varname>.
+            Carrega todos os arquivos <literal>.sci</literal> (contendo funÃ§Ãµes
+            Scilab) definidos no diretÃ³rio <varname>path</varname>.
         </para>
     </refsection>
     <refsection>
@@ -49,7 +49,7 @@ getd('SCI/modules/cacsd/macros')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="exec">exec</link>

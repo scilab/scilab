@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,19 +16,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="spanplus" xml:lang="pt">
     <refnamediv>
         <refname>spanplus</refname>
-        <refpurpose>soma de subespaços</refpurpose>
+        <refpurpose>soma de subespaÃ§os</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[X,dim,dima]=spanplus(A,B[,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A, B</term>
                 <listitem>
-                    <para>duas matrizes de reais ou complexos com igual número de
+                    <para>duas matrizes de reais ou complexos com igual nÃºmero de
                         linhas
                     </para>
                 </listitem>
@@ -36,37 +36,37 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>matriz quadrada ortogonal ou unitária </para>
+                    <para>matriz quadrada ortogonal ou unitÃ¡ria </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>dim, dima</term>
                 <listitem>
-                    <para>inteiros, dimensões de subespaços </para>
+                    <para>inteiros, dimensÃµes de subespaÃ§os </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>número real não-negativo</para>
+                    <para>nÃºmero real nÃ£o-negativo</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Computa a base X tal que:</para>
         <para>
             as primeiras <literal>dima</literal> colunas de <literal>X</literal>
             geram Im(<literal>A</literal>) e as (<literal>dim-dima</literal>) colunas
-            seguintes formam uma base de <literal>A+B</literal> em relação a
+            seguintes formam uma base de <literal>A+B</literal> em relaÃ§Ã£o a
             <literal>A</literal>.
         </para>
         <para>
             As <literal>dim</literal> primeiras colunas de <literal>X</literal>
             formam uma base para <literal>A+B</literal>.
         </para>
-        <para>Tem-se a seguinte forma canônica para
+        <para>Tem-se a seguinte forma canÃ´nica para
             <literal>[A,B]</literal>:
         </para>
         <programlisting role=""><![CDATA[
@@ -75,8 +75,8 @@ X'*[A,B]=[0,*]    (dim-dima rows)
          [0,0]
  ]]></programlisting>
         <para>
-            <literal>tol</literal> é um argumento opcional (ver código da
-            função).
+            <literal>tol</literal> Ã© um argumento opcional (ver cÃ³digo da
+            funÃ§Ã£o).
         </para>
     </refsection>
     <refsection>
@@ -90,7 +90,7 @@ dim
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também</title>
+        <title> Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="spaninter">spaninter</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -16,21 +16,21 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rectangle_properties" xml:lang="pt">
     <refnamediv>
         <refname>rectangle_properties</refname>
-        <refpurpose>Descrição de propriedades da entidade Rectangle
-            (retângulo)
+        <refpurpose>DescriÃ§Ã£o de propriedades da entidade Rectangle
+            (retÃ¢ngulo)
         </refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
-        <para>A entidade Rectangle é uma folha na hierarquia de entidades
-            gráficas. Esta entidade define parâmetros para retângulos preenchidos ou
-            não.
+        <title>DescriÃ§Ã£o</title>
+        <para>A entidade Rectangle Ã© uma folha na hierarquia de entidades
+            grÃ¡ficas. Esta entidade define parÃ¢metros para retÃ¢ngulos preenchidos ou
+            nÃ£o.
         </para>
         <variablelist>
             <varlistentry>
                 <term>parent:</term>
                 <listitem>
-                    <para>esta propriedade contém o manipulador da raiz. A raiz de uma
+                    <para>esta propriedade contÃ©m o manipulador da raiz. A raiz de uma
                         entidade Rectangle deve ser do tipo <literal>"Axes"</literal> ou
                         <literal>"Compound"</literal>.
                     </para>
@@ -39,15 +39,15 @@
             <varlistentry>
                 <term>children:</term>
                 <listitem>
-                    <para>esta propriedade contém um vetor com os galhos do manipulador.
-                        Contudo, manipuladores rectangle não possuem galhos correntemente.
+                    <para>esta propriedade contÃ©m um vetor com os galhos do manipulador.
+                        Contudo, manipuladores rectangle nÃ£o possuem galhos correntemente.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mark_mode:</term>
                 <listitem>
-                    <para>este campo contém o valor padrão da propriedade
+                    <para>este campo contÃ©m o valor padrÃ£o da propriedade
                         <literal>mark_mode</literal> para a poligonal. Deve ser
                         <literal>"on"</literal> (marcas desenhadas) ou
                         <literal>"off"</literal> (nenhuma marca desenhada).
@@ -58,32 +58,32 @@
                 <term>mark_style:</term>
                 <listitem>
                     <para>
-                        a propriedade <literal>mark_style</literal> é utilizada para
+                        a propriedade <literal>mark_style</literal> Ã© utilizada para
                         selecionar o tipo de marca utilizada quando a propriedade
-                        <literal>mark_mode</literal> é <literal>"on"</literal>. O valor é um
+                        <literal>mark_mode</literal> Ã© <literal>"on"</literal>. O valor Ã© um
                         inteiro em [0 14] que significa: ponto, sinal de mais, cruz,
-                        estrela, rombo preenchido, rombo, triângulo para cima, triângulo
-                        para baixo, rombo mais, círculo, asterísco, quadrado, triângulo para
-                        direita, triângulo para esquerda e pentagrama.
+                        estrela, rombo preenchido, rombo, triÃ¢ngulo para cima, triÃ¢ngulo
+                        para baixo, rombo mais, cÃ­rculo, asterÃ­sco, quadrado, triÃ¢ngulo para
+                        direita, triÃ¢ngulo para esquerda e pentagrama.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mark_size_unit:</term>
                 <listitem>
-                    <para>este campo contém o valor padrão da propriedade
+                    <para>este campo contÃ©m o valor padrÃ£o da propriedade
                         <literal>mark_size_unit</literal> property value. Se
                         <literal>mark_size_unit</literal> for ajustado para
-                        <literal>"point"</literal>, então o valor de
-                        <literal>mark_size</literal> é diretamente dado em pontos. Quando
-                        <literal>mark_size_unit</literal> é ajustado para
-                        <literal>"tabulated"</literal>, <literal>mark_size</literal> é
-                        computado em relação ao array de tamanho de fonte: logo, seu valor
+                        <literal>"point"</literal>, entÃ£o o valor de
+                        <literal>mark_size</literal> Ã© diretamente dado em pontos. Quando
+                        <literal>mark_size_unit</literal> Ã© ajustado para
+                        <literal>"tabulated"</literal>, <literal>mark_size</literal> Ã©
+                        computado em relaÃ§Ã£o ao array de tamanho de fonte: logo, seu valor
                         deve ser um inteiro em [0 5] que significa 8pt, 10pt, 12pt, 14pt,
                         18pt e 24pt. Note que <link linkend="xrect">xrect</link> como
-                        padrão; quando se utiliza a função <literal>tabulated</literal> como
-                        padrão; quando se utiliza a função <link linkend="plot">plot</link>
-                        o modo <literal>point</literal> é automaticamente habilitado.
+                        padrÃ£o; quando se utiliza a funÃ§Ã£o <literal>tabulated</literal> como
+                        padrÃ£o; quando se utiliza a funÃ§Ã£o <link linkend="plot">plot</link>
+                        o modo <literal>point</literal> Ã© automaticamente habilitado.
                     </para>
                 </listitem>
             </varlistentry>
@@ -91,9 +91,9 @@
                 <term>mark_size:</term>
                 <listitem>
                     <para>
-                        A propriedade <literal>mark_size</literal> é utilizada para
+                        A propriedade <literal>mark_size</literal> Ã© utilizada para
                         escolher o tamanho das marcas quando a propriedade
-                        <literal>mark_mode</literal> é <literal>"on"</literal>. Deve ser um
+                        <literal>mark_mode</literal> Ã© <literal>"on"</literal>. Deve ser um
                         valor inteiro em [0 5] que significa 8pt, 10pt, 12pt, 14pt, 18pt e
                         24pt.
                     </para>
@@ -102,9 +102,9 @@
             <varlistentry>
                 <term>mark_foreground:</term>
                 <listitem>
-                    <para>este campo contém o valor da propriedade
-                        <literal>mark_foreground</literal> que é a cor da borda das marcas.
-                        O valor deve ser um índice de cor (relativo ao mapa de cores
+                    <para>este campo contÃ©m o valor da propriedade
+                        <literal>mark_foreground</literal> que Ã© a cor da borda das marcas.
+                        O valor deve ser um Ã­ndice de cor (relativo ao mapa de cores
                         corrente).
                     </para>
                 </listitem>
@@ -112,9 +112,9 @@
             <varlistentry>
                 <term>mark_background:</term>
                 <listitem>
-                    <para>este campo contém o valor da propriedade
-                        <literal>mark_background</literal> que é a cor da face das marcas. O
-                        valor deve ser um índice de cor (relativo ao mapa de cores
+                    <para>este campo contÃ©m o valor da propriedade
+                        <literal>mark_background</literal> que Ã© a cor da face das marcas. O
+                        valor deve ser um Ã­ndice de cor (relativo ao mapa de cores
                         corrente).
                     </para>
                 </listitem>
@@ -122,7 +122,7 @@
             <varlistentry>
                 <term>line_mode:</term>
                 <listitem>
-                    <para>este campo contém o valor padrão da propriedade
+                    <para>este campo contÃ©m o valor padrÃ£o da propriedade
                         <literal>line_mode</literal> para a poligonal. O valor pode ser
                         <literal>"on" </literal>(linha desenhada) ou
                         <literal>"off"</literal> (nenhuma linha desenhada).
@@ -133,11 +133,11 @@
                 <term>fill_mode:</term>
                 <listitem>
                     <para>
-                        Se o valor da propriedade <literal>fill_mode</literal> é
-                        <literal>"on"</literal>, o retângulo é preenchido com a cor de
-                        primeiro plano, <literal>mark_mode</literal> também deve ter valor
-                        <literal>"off"</literal>. Senão, o valor da propriedade é
-                        <literal>"off"</literal> apenas a forma o contorno do retângulo é
+                        Se o valor da propriedade <literal>fill_mode</literal> Ã©
+                        <literal>"on"</literal>, o retÃ¢ngulo Ã© preenchido com a cor de
+                        primeiro plano, <literal>mark_mode</literal> tambÃ©m deve ter valor
+                        <literal>"off"</literal>. SenÃ£o, o valor da propriedade Ã©
+                        <literal>"off"</literal> apenas a forma o contorno do retÃ¢ngulo Ã©
                         desenhado utilizando-se a cor de primeiro plano.
                     </para>
                 </listitem>
@@ -147,7 +147,7 @@
                 <listitem>
                     <para>
                         a propriedade <literal>line_style</literal> deve ser um
-                        inteiro em [1 6]. 1 stands significa linha sólida, o restante
+                        inteiro em [1 6]. 1 stands significa linha sÃ³lida, o restante
                         seleciona tracejados.
                     </para>
                 </listitem>
@@ -155,7 +155,7 @@
             <varlistentry>
                 <term>thickness:</term>
                 <listitem>
-                    <para>este campo contém o valor padrão da propriedade
+                    <para>este campo contÃ©m o valor padrÃ£o da propriedade
                         <literal>thickness</literal> (espessura) da linha. Deve ser um
                         inteiro positivo.
                     </para>
@@ -164,8 +164,8 @@
             <varlistentry>
                 <term>foreground:</term>
                 <listitem>
-                    <para>este campo contém a cor utilizada para desenhar a linha de
-                        contorno do retângulo. Seu valor deve ser um índice de cor (relativo
+                    <para>este campo contÃ©m a cor utilizada para desenhar a linha de
+                        contorno do retÃ¢ngulo. Seu valor deve ser um Ã­ndice de cor (relativo
                         ao mapa de cores corrente).
                     </para>
                 </listitem>
@@ -173,8 +173,8 @@
             <varlistentry>
                 <term>background:</term>
                 <listitem>
-                    <para>este campo contém a cor utilizada para preencher a parte
-                        interna do retângulo. Seu valor deve ser um índice de cor (relativo
+                    <para>este campo contÃ©m a cor utilizada para preencher a parte
+                        interna do retÃ¢ngulo. Seu valor deve ser um Ã­ndice de cor (relativo
                         ao mapa de cores corrente).
                     </para>
                 </listitem>
@@ -183,8 +183,8 @@
                 <term>data:</term>
                 <listitem>
                     <para>esta propriedade retorna as coordenadas do ponto superior
-                        esquerdo do retângulo, sua altura e largura em unidades de dados dos
-                        eixos. O resultado é uma matriz
+                        esquerdo do retÃ¢ngulo, sua altura e largura em unidades de dados dos
+                        eixos. O resultado Ã© uma matriz
                         <literal>[xleft,yup,[zup],width,height]</literal>
                     </para>
                 </listitem>
@@ -192,39 +192,39 @@
             <varlistentry>
                 <term>visible:</term>
                 <listitem>
-                    <para>este campo contém o valor da propriedade
+                    <para>este campo contÃ©m o valor da propriedade
                         <literal>visible</literal> para a entidade. Pode ser <literal>"on"
                         </literal>
-                        ou <literal>"off"</literal> . Por padrão, o retângulo é
-                        visível, a propriedade é <literal>"on"</literal>. Se
-                        <literal>"off"</literal> o retângulo não é exibido na tela.
+                        ou <literal>"off"</literal> . Por padrÃ£o, o retÃ¢ngulo Ã©
+                        visÃ­vel, a propriedade Ã© <literal>"on"</literal>. Se
+                        <literal>"off"</literal> o retÃ¢ngulo nÃ£o Ã© exibido na tela.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>clip_state:</term>
                 <listitem>
-                    <para>este campo contém o valor da propriedade
-                        <literal>clip_state</literal> para o retângulo. o valor de
+                    <para>este campo contÃ©m o valor da propriedade
+                        <literal>clip_state</literal> para o retÃ¢ngulo. o valor de
                         clip_state pode ser :
                     </para>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>"off"</literal> ignifica que o retângulo não é
+                                <literal>"off"</literal> ignifica que o retÃ¢ngulo nÃ£o Ã©
                                 recortado.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>"clipgrf"</literal> significa que o retângulo é
+                                <literal>"clipgrf"</literal> significa que o retÃ¢ngulo Ã©
                                 recortado fora da caixa dos eixos.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>"on"</literal> significa que o retângulo é
-                                recortado fora do retângulo dado pela propriedade
+                                <literal>"on"</literal> significa que o retÃ¢ngulo Ã©
+                                recortado fora do retÃ¢ngulo dado pela propriedade
                                 clip_box.
                             </para>
                         </listitem>
@@ -236,11 +236,11 @@
                 <listitem>
                     <para>
                         este campo determina a propriedade <literal>clip_box</literal>
-                        property. Por padrão seu valor é uma matriz vazia se a propriedade
-                        clip_state é "off". Em outros casos, o vetor
+                        property. Por padrÃ£o seu valor Ã© uma matriz vazia se a propriedade
+                        clip_state Ã© "off". Em outros casos, o vetor
                         <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura,
-                        altura) define as porções do retângulo a ser exibido, contudo o
-                        valor da propriedade <literal>clip_state</literal> será
+                        altura) define as porÃ§Ãµes do retÃ¢ngulo a ser exibido, contudo o
+                        valor da propriedade <literal>clip_state</literal> serÃ¡
                         alterado.
                     </para>
                 </listitem>
@@ -248,9 +248,9 @@
             <varlistentry>
                 <term>user_data:</term>
                 <listitem>
-                    <para>este campo pode ser utilizado para armazenar qualquer variável
-                        Scilab na estrutura de dados da entidade retângulo e
-                        recuperá-la.
+                    <para>este campo pode ser utilizado para armazenar qualquer variÃ¡vel
+                        Scilab na estrutura de dados da entidade retÃ¢ngulo e
+                        recuperÃ¡-la.
                     </para>
                 </listitem>
             </varlistentry>
@@ -278,7 +278,7 @@ r.clip_state="off"
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>

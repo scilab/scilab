@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -19,32 +19,32 @@
         <refpurpose>determinante polinomial</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>d=detr(h)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>matriz quadrada de polinômios ou de razões de
-                        polinômios
+                    <para>matriz quadrada de polinÃ´mios ou de razÃµes de
+                        polinÃ´mios
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>d=detr(h)</literal> retorna o determinante
-            <literal>d</literal> da matriz de funções polinomiais ou racionais
-            <literal>h</literal>. É baseado no algoritmo de Leverrier.
+            <literal>d</literal> da matriz de funÃ§Ãµes polinomiais ou racionais
+            <literal>h</literal>. Ã‰ baseado no algoritmo de Leverrier.
         </para>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="det">det</link>

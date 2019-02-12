@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -16,38 +16,38 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="gda" xml:lang="pt">
     <refnamediv>
         <refname>gda</refname>
-        <refpurpose>Retorna o manipulador dos eixos padrões.</refpurpose>
+        <refpurpose>Retorna o manipulador dos eixos padrÃµes.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>a = gda()
             a = get("default_axes")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>a</term>
                 <listitem>
-                    <para>o manipulador dos eixos padrões.</para>
+                    <para>o manipulador dos eixos padrÃµes.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Os eixos padrões são uma entidade gráfica (entidade Axes) que nunca
-            é desenhada. Ela usada como referência para os valores de propriedades
-            padrões dos eixos. Estes valores de propriedades padrões são usados para
+        <title>DescriÃ§Ã£o</title>
+        <para>Os eixos padrÃµes sÃ£o uma entidade grÃ¡fica (entidade Axes) que nunca
+            Ã© desenhada. Ela usada como referÃªncia para os valores de propriedades
+            padrÃµes dos eixos. Estes valores de propriedades padrÃµes sÃ£o usados para
             inicializar novos eixos dentro de figuras.
         </para>
         <para>
-            A função <literal>gda</literal> retorna o manipulador dos eixos
-            padrões. O usuário pode utilizar este manipulador para ajustar ou obter os
-            valores padrões de propriedades dos eixos.
+            A funÃ§Ã£o <literal>gda</literal> retorna o manipulador dos eixos
+            padrÃµes. O usuÃ¡rio pode utilizar este manipulador para ajustar ou obter os
+            valores padrÃµes de propriedades dos eixos.
         </para>
-        <para>Note que uma entidade gráfica padrão equivalente também existe para
+        <para>Note que uma entidade grÃ¡fica padrÃ£o equivalente tambÃ©m existe para
             entidades Figure (ver <literal>gdf</literal>).
         </para>
     </refsection>
@@ -63,7 +63,7 @@ a.labels_font_color=5;
 a.sub_tics=[5 5 3];
 a.x_location="top";
 
-//os eixos modelos são agora usados
+//os eixos modelos sÃ£o agora usados
 subplot(211) //criando uma nova entidade Axes
 plot2d()
 
@@ -74,14 +74,14 @@ subplot(212)
 t=0:0.1:5*%pi;
 plot2d(sin(t),cos(t))
 
-set(a,"default_values",1); // retornando para os valores padrões do modelo
-                           // ver a função sda()
+set(a,"default_values",1); // retornando para os valores padrÃµes do modelo
+                           // ver a funÃ§Ã£o sda()
 clf()
 plot2d(sin(t),cos(t))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="gdf">gdf</link>

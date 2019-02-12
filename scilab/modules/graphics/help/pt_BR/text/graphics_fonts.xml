@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C)  2009 - Digiteo - Jean-Baptiste Silvy
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="graphics_fonts" xml:lang="pt">
     <refnamediv>
         <refname>graphics_fonts</refname>
-        <refpurpose>Descrição de fontes utilizadas em figuras
-            gráficas
+        <refpurpose>DescriÃ§Ã£o de fontes utilizadas em figuras
+            grÃ¡ficas
         </refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
-        <para>Algumas entidades gráficas como Text, Axes, Label ou Legend exibem
-            um ou mais strings em suas figuras gráficas. A aparência dos strings
+        <title>DescriÃ§Ã£o</title>
+        <para>Algumas entidades grÃ¡ficas como Text, Axes, Label ou Legend exibem
+            um ou mais strings em suas figuras grÃ¡ficas. A aparÃªncia dos strings
             exibidos pode ser modificada especificando diferentes fontes e tamanhos de
             caracteres.
         </para>
@@ -32,64 +32,64 @@
             <varlistentry>
                 <term>Mudando a fonte</term>
                 <listitem>
-                    <para>Fontes utilizadas em figuras gráficas são selecionadas de um
+                    <para>Fontes utilizadas em figuras grÃ¡ficas sÃ£o selecionadas de um
                         conjunto de fontes chamado fontes carregadas. Em outras palavras, as
-                        fontes carregadas são aquelas correntemente disponíveis em figuras
-                        gráficas. Uma lista destas fontes pode ser obtida utilizando-se a
-                        função <literal>xlfont</literal> sem argumento. Por padrão, o Scilab
+                        fontes carregadas sÃ£o aquelas correntemente disponÃ­veis em figuras
+                        grÃ¡ficas. Uma lista destas fontes pode ser obtida utilizando-se a
+                        funÃ§Ã£o <literal>xlfont</literal> sem argumento. Por padrÃ£o, o Scilab
                         possui um conjunto de 11 fontes carregadas. Este conjunto pode ser
-                        modificado e estendido utilizando-se a função
+                        modificado e estendido utilizando-se a funÃ§Ã£o
                         <literal>xlfont</literal> com um nome de fonte como argumento. A
                         fonte carregada pode ser de um arquivo ou mesmo uma uma do sistema.
-                        Para conhecer a lista de fontes disponíveis no sistema, utilize o
+                        Para conhecer a lista de fontes disponÃ­veis no sistema, utilize o
                         comando <literal>xlfont('AVAILABLE_FONTS')</literal>. Para mais
-                        informações sobre como manipular fontes, veja <link linkend="xlfont">xlfont</link>.
+                        informaÃ§Ãµes sobre como manipular fontes, veja <link linkend="xlfont">xlfont</link>.
                     </para>
-                    <para>Aqui está a lista das 11 fontes padrões</para>
+                    <para>Aqui estÃ¡ a lista das 11 fontes padrÃµes</para>
                     <informaltable border="1">
                         <tr>
                             <td>
-                                <emphasis role="bold">Número da fonte</emphasis>
+                                <emphasis role="bold">NÃºmero da fonte</emphasis>
                             </td>
                             <td>
-                                <emphasis role="bold">Família de Fontes</emphasis>
+                                <emphasis role="bold">FamÃ­lia de Fontes</emphasis>
                             </td>
                             <td>
                                 <emphasis role="bold">Negrito</emphasis>
                             </td>
                             <td>
-                                <emphasis role="bold">Itálico</emphasis>
+                                <emphasis role="bold">ItÃ¡lico</emphasis>
                             </td>
                         </tr>
                         <tr>
                             <td>0</td>
                             <td>Monospaced</td>
-                            <td>Não</td>
-                            <td>Não</td>
+                            <td>NÃ£o</td>
+                            <td>NÃ£o</td>
                         </tr>
                         <tr>
                             <td>1</td>
                             <td>ScilabSymbols</td>
-                            <td>Não</td>
-                            <td>Não</td>
+                            <td>NÃ£o</td>
+                            <td>NÃ£o</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Serif</td>
-                            <td>Não</td>
-                            <td>Não</td>
+                            <td>NÃ£o</td>
+                            <td>NÃ£o</td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>Serif</td>
-                            <td>Não</td>
+                            <td>NÃ£o</td>
                             <td>Sim</td>
                         </tr>
                         <tr>
                             <td>4</td>
                             <td>Serif</td>
                             <td>Sim</td>
-                            <td>Não</td>
+                            <td>NÃ£o</td>
                         </tr>
                         <tr>
                             <td>5</td>
@@ -100,20 +100,20 @@
                         <tr>
                             <td>6</td>
                             <td>SansSerif</td>
-                            <td>Não</td>
-                            <td>Não</td>
+                            <td>NÃ£o</td>
+                            <td>NÃ£o</td>
                         </tr>
                         <tr>
                             <td>7</td>
                             <td>SansSerif</td>
-                            <td>Não</td>
+                            <td>NÃ£o</td>
                             <td>Sim</td>
                         </tr>
                         <tr>
                             <td>8</td>
                             <td>SansSerif</td>
                             <td>Sim</td>
-                            <td>Não</td>
+                            <td>NÃ£o</td>
                         </tr>
                         <tr>
                             <td>9</td>
@@ -128,19 +128,19 @@
                             <td>Sim</td>
                         </tr>
                     </informaltable>
-                    <para>A fonte utilizada por uma entidade gráfica pode ser alterada
-                        através da propriedade <literal>font_style</literal>. Esta é um
-                        inteiro positivo fazendo referência a uma das fontes. Seu valor deve
-                        estar entre 0, fazendo referência à primeira fonte, e o número de
-                        fontes carregadas menos um, fazendo referência à última
+                    <para>A fonte utilizada por uma entidade grÃ¡fica pode ser alterada
+                        atravÃ©s da propriedade <literal>font_style</literal>. Esta Ã© um
+                        inteiro positivo fazendo referÃªncia a uma das fontes. Seu valor deve
+                        estar entre 0, fazendo referÃªncia Ã  primeira fonte, e o nÃºmero de
+                        fontes carregadas menos um, fazendo referÃªncia Ã  Ãºltima
                         fonte.
                     </para>
                     <para>
                         A propriedade <literal>fractional_font</literal> controla o
                         anti-serrilhamento da fonte. Seu valor pode ser
                         <literal>'on'</literal> ou <literal>'off'</literal>. Se for
-                        <literal>'on'</literal>a fonte é suavizada, em caso contrário, ela
-                        não é.
+                        <literal>'on'</literal>a fonte Ã© suavizada, em caso contrÃ¡rio, ela
+                        nÃ£o Ã©.
                     </para>
                     <para/>
                 </listitem>
@@ -148,12 +148,12 @@
             <varlistentry>
                 <term>Mudando o tamanho dos caracteres</term>
                 <listitem>
-                    <para>O tamanho do texto de uma entidade gráfica é modificado
-                        através da propriedade <literal>font_size</literal>. É um escalar
+                    <para>O tamanho do texto de uma entidade grÃ¡fica Ã© modificado
+                        atravÃ©s da propriedade <literal>font_size</literal>. Ã‰ um escalar
                         especificando o tamanho dos caracteres exibidos.
                     </para>
-                    <para>O tamanho do caractere do Scilab é diferente do tamanho do
-                        caractere Java. Aqui está uma equivalência entre as duas
+                    <para>O tamanho do caractere do Scilab Ã© diferente do tamanho do
+                        caractere Java. Aqui estÃ¡ uma equivalÃªncia entre as duas
                         escalas.
                     </para>
                     <informaltable border="1">
@@ -210,14 +210,14 @@
                             <td>54</td>
                         </tr>
                     </informaltable>
-                    <para>O tamanho do caractere pode não ser um inteiro. Neste caso, o
+                    <para>O tamanho do caractere pode nÃ£o ser um inteiro. Neste caso, o
                         resultado depende da propriedade <literal>fractional_font</literal>
                         da entidade. Se a propriedade <literal>fractional_font</literal> for
-                        <literal>'on'</literal>, então o tamanho da fonte é interpolado
-                        entre os dois inteiros mais próximos. Por exemplo, um tamanho de
+                        <literal>'on'</literal>, entÃ£o o tamanho da fonte Ã© interpolado
+                        entre os dois inteiros mais prÃ³ximos. Por exemplo, um tamanho de
                         fonte 2.5 exibe caracteres com tamanho Java 13. Se a propriedade
                         <literal>fractional_font</literal> for <literal>'off'</literal>,
-                        então a fonte exibida é truncada para a sua parte inteira. Por
+                        entÃ£o a fonte exibida Ã© truncada para a sua parte inteira. Por
                         exemplo, um tamanho de fonte 2.5 exibe caracteres Java de tamanho
                         12.
                     </para>
@@ -227,7 +227,7 @@
         </variablelist>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xlfont">xlfont</link>

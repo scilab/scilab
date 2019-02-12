@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="interp2d" xml:lang="pt">
     <refnamediv>
         <refname>interp2d</refname>
-        <refpurpose>função de avaliação spline bicúbica (2d)</refpurpose>
+        <refpurpose>funÃ§Ã£o de avaliaÃ§Ã£o spline bicÃºbica (2d)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[zp[,dzpdx,dzpdy[,d2zpdxx,d2zpdxy,d2zpdyy]]]=interp2d(xp,yp,x,y,C [,out_mode])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>xp, yp</term>
@@ -20,7 +20,7 @@
             <varlistentry>
                 <term>x,y,C</term>
                 <listitem>
-                    <para>vetores de reais definindo uma função de spline bicúbico ou
+                    <para>vetores de reais definindo uma funÃ§Ã£o de spline bicÃºbico ou
                         sub-spline (chamada <literal>s</literal> daqui em diante)
                     </para>
                 </listitem>
@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>out_mode</term>
                 <listitem>
-                    <para>(opcional) string definindo a avaliação de
+                    <para>(opcional) string definindo a avaliaÃ§Ã£o de
                         <literal>s</literal> fora de [x(1),x(nx)]x[y(1),y(ny)]
                     </para>
                 </listitem>
@@ -38,7 +38,7 @@
                 <listitem>
                     <para>
                         vetor ou matriz com o mesmo formato que <literal>xp</literal>
-                        e <literal>yp</literal>, avaliação elemento a elemento de
+                        e <literal>yp</literal>, avaliaÃ§Ã£o elemento a elemento de
                         <literal>s</literal> nestes pontos.
                     </para>
                 </listitem>
@@ -47,7 +47,7 @@
                 <term>dzpdx, dzpdy</term>
                 <listitem>
                     <para>vetores (ou matrizes) de mesmo formato que
-                        <literal>xp</literal> e <literal>yp</literal>, avaliação elemento a
+                        <literal>xp</literal> e <literal>yp</literal>, avaliaÃ§Ã£o elemento a
                         elemento das derivadas primeiras de <literal>s</literal> nesses
                         pontos.
                     </para>
@@ -57,7 +57,7 @@
                 <term>d2zpdxx, d2zpdxy, d2zpdyy</term>
                 <listitem>
                     <para>vetores (ou matrizes) de mesmo formato que
-                        <literal>xp</literal> e <literal>yp</literal>, eavaliação elemento a
+                        <literal>xp</literal> e <literal>yp</literal>, eavaliaÃ§Ã£o elemento a
                         elemento das derivadas segundas de <literal>s</literal> nesses
                         pontos.
                     </para>
@@ -66,13 +66,13 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Dados três vetores <literal>(x,y,C)</literal> definindo uma função
-            de sub-spline ou spline bicúbico (ver <link linkend="splin2d">splin2d</link>) esta função avalia s (e <emphasis>ds/dx,
+            Dados trÃªs vetores <literal>(x,y,C)</literal> definindo uma funÃ§Ã£o
+            de sub-spline ou spline bicÃºbico (ver <link linkend="splin2d">splin2d</link>) esta funÃ§Ã£o avalia s (e <emphasis>ds/dx,
                 ds/dy, d2s/dxx, d2s/dxy, d2s/dyy
             </emphasis>
-            se necessário) em
+            se necessÃ¡rio) em
             <emphasis>(xp(i),yp(i))</emphasis> :
         </para>
         <programlisting role=""><![CDATA[
@@ -84,8 +84,8 @@
       d2zpdyy(i) = d2s/dy2(xp(i),yp(i))
  ]]></programlisting>
         <para>
-            O parâmetro <literal>out_mode</literal> define a regra de avaliação
-            para extrapolação, i.e., para <emphasis>(xp(i),yp(i)) fora de
+            O parÃ¢metro <literal>out_mode</literal> define a regra de avaliaÃ§Ã£o
+            para extrapolaÃ§Ã£o, i.e., para <emphasis>(xp(i),yp(i)) fora de
                 [x(1),x(nx)]x[y(1),y(ny)]
             </emphasis>
             :
@@ -94,21 +94,21 @@
             <varlistentry>
                 <term>"by_zero"</term>
                 <listitem>
-                    <para>uma extrapolação por zero é realizada </para>
+                    <para>uma extrapolaÃ§Ã£o por zero Ã© realizada </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"by_nan"</term>
                 <listitem>
-                    <para>extrapolação por NaN </para>
+                    <para>extrapolaÃ§Ã£o por NaN </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"C0"</term>
                 <listitem>
-                    <para>Extrapolação definida como segue :</para>
+                    <para>ExtrapolaÃ§Ã£o definida como segue :</para>
                     <programlisting role=""><![CDATA[
-     s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo
+     s(x,y) = s(proj(x,y)) onde  proj(x,y) Ã© o ponto mais prÃ³ximo
                            em [x(1),x(nx)]x[y(1),y(ny)] de (x,y)
  ]]></programlisting>
                 </listitem>
@@ -116,8 +116,8 @@
             <varlistentry>
                 <term>"natural"</term>
                 <listitem>
-                    <para>a extrapolação é realizada utilizando o elemento de área
-                        bicúbico mais próximo de (x,y).
+                    <para>a extrapolaÃ§Ã£o Ã© realizada utilizando o elemento de Ã¡rea
+                        bicÃºbico mais prÃ³ximo de (x,y).
                     </para>
                 </listitem>
             </varlistentry>
@@ -125,7 +125,7 @@
                 <term>"periodic"</term>
                 <listitem>
                     <para>
-                        <literal>s</literal> é estendida por periodicidade.
+                        <literal>s</literal> Ã© estendida por periodicidade.
                     </para>
                 </listitem>
             </varlistentry>
@@ -136,15 +136,15 @@
         <programlisting role="example"><![CDATA[
 // veja os exemplos de splin2d
 
-// este exemplo mostra características de extrapolações diferentes
-// interpolação de cos(x)cos(y)
-n = 7;  // um grid de interpolação n x n
+// este exemplo mostra caracterÃ­sticas de extrapolaÃ§Ãµes diferentes
+// interpolaÃ§Ã£o de cos(x)cos(y)
+n = 7;  // um grid de interpolaÃ§Ã£o n x n
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
 C = splin2d(x, y, z, "periodic");
 
-// agora avaliando em um domínio maior que [0,2pi]x [0,2pi]
-m = 80; // parâmetro de discretização do grid de avaliação
+// agora avaliando em um domÃ­nio maior que [0,2pi]x [0,2pi]
+m = 80; // parÃ¢metro de discretizaÃ§Ã£o do grid de avaliaÃ§Ã£o
 xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
 [XX,YY] = ndgrid(xx,yy);
 zz1 = interp2d(XX,YY, x, y, C, "C0");
@@ -154,21 +154,21 @@ zz4 = interp2d(XX,YY, x, y, C, "natural");
 clf()
 subplot(2,2,1)
 plot3d(xx, yy, zz1, flag=[2 6 4])
-xtitle("Extrapolação com o outmode C0")
+xtitle("ExtrapolaÃ§Ã£o com o outmode C0")
 subplot(2,2,2)
 plot3d(xx, yy, zz2, flag=[2 6 4])
-xtitle("Extrapolação com o outmode by_zero")
+xtitle("ExtrapolaÃ§Ã£o com o outmode by_zero")
 subplot(2,2,3)
 plot3d(xx, yy, zz3, flag=[2 6 4])
-xtitle("Extrapolação com o outmode periodic")
+xtitle("ExtrapolaÃ§Ã£o com o outmode periodic")
 subplot(2,2,4)
 plot3d(xx, yy, zz4, flag=[2 6 4])
-xtitle("Extrapolação com o outmode natural")
+xtitle("ExtrapolaÃ§Ã£o com o outmode natural")
 show_window()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="splin2d">splin2d</link>

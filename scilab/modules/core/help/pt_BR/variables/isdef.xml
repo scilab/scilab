@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isdef" xml:lang="pt">
     <refnamediv>
         <refname>isdef</refname>
-        <refpurpose>verifica existência de variáveis</refpurpose>
+        <refpurpose>verifica existÃªncia de variÃ¡veis</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>isdef(name [,where])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>name</term>
@@ -34,33 +34,33 @@
             <varlistentry>
                 <term>where</term>
                 <listitem>
-                    <para>um string opcional com valor padrão 'all' (todos os locais)
+                    <para>um string opcional com valor padrÃ£o 'all' (todos os locais)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>isdef(name)</literal> retorna <literal>%T</literal> se a
-            variável <literal>name</literal> existe e <literal>%F</literal> em caso
-            contrário.
+            variÃ¡vel <literal>name</literal> existe e <literal>%F</literal> em caso
+            contrÃ¡rio.
         </para>
         <para>
-            Aviso: uma função que utiliza <literal>isdef</literal> pode retornar
+            Aviso: uma funÃ§Ã£o que utiliza <literal>isdef</literal> pode retornar
             um resultado que depende do ambiente!
         </para>
         <para>
             <literal>isdef(name,'local')</literal> retorna <literal>%T</literal>
-            se a variável <literal>name</literal> existe no ambiente local da função
-            corrente e <literal>%F</literal> em caso contrário.
+            se a variÃ¡vel <literal>name</literal> existe no ambiente local da funÃ§Ã£o
+            corrente e <literal>%F</literal> em caso contrÃ¡rio.
         </para>
         <para>
             <literal>isdef(name,'nolocal')</literal> retorna
-            <literal>%T</literal> se a variável <literal>name</literal> existe no
-            ambiente de chamada completo (incluindo o nível global) da função corrente
-            e <literal>%F</literal> em caso contrário.
+            <literal>%T</literal> se a variÃ¡vel <literal>name</literal> existe no
+            ambiente de chamada completo (incluindo o nÃ­vel global) da funÃ§Ã£o corrente
+            e <literal>%F</literal> em caso contrÃ¡rio.
         </para>
     </refsection>
     <refsection>
@@ -87,7 +87,7 @@ go()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="exists">exists</link>

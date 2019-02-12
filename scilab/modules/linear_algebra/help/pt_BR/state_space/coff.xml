@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="coff" xml:lang="pt">
     <refnamediv>
         <refname>coff</refname>
-        <refpurpose>resolvente (método do cofator) </refpurpose>
+        <refpurpose>resolvente (mÃ©todo do cofator) </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[N,d]=coff(M [,var])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>M</term>
@@ -40,7 +40,7 @@
             <varlistentry>
                 <term>N</term>
                 <listitem>
-                    <para> matriz de polinômios (com o mesmo tamanho que
+                    <para> matriz de polinÃ´mios (com o mesmo tamanho que
                         <literal>M</literal>)
                     </para>
                 </listitem>
@@ -48,7 +48,7 @@
             <varlistentry>
                 <term>d</term>
                 <listitem>
-                    <para>polinômio ( polinômio característico
+                    <para>polinÃ´mio ( polinÃ´mio caracterÃ­stico
                         <literal>poly(A,'s')</literal>)
                     </para>
                 </listitem>
@@ -56,14 +56,14 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>coff</literal> computa R=<literal>(s*eye()-M)^-1</literal>
-            para <literal>M</literal> uma matriz de reais. R é dado por
+            para <literal>M</literal> uma matriz de reais. R Ã© dado por
             <literal>N/d</literal>.
         </para>
         <para>
-            <literal>N</literal> = matriz de polinômios como numerador.
+            <literal>N</literal> = matriz de polinÃ´mios como numerador.
         </para>
         <para>
             <literal>d</literal> = denominador comum.
@@ -83,7 +83,7 @@ inv(%s*eye(2,2)-M)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="coffg">coffg</link>

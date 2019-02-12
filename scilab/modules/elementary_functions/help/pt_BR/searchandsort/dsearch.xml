@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dsearch" xml:lang="pt">
     <refnamediv>
         <refname>dsearch</refname>
-        <refpurpose>Busca binária (também conhecida como busca dicótoma em
-            francês)
+        <refpurpose>Busca binÃ¡ria (tambÃ©m conhecida como busca dicÃ³toma em
+            francÃªs)
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[ind, occ, info] = dsearch(X, val [, ch ])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
@@ -30,13 +30,13 @@
             <varlistentry>
                 <term>ch</term>
                 <listitem>
-                    <para>(opcional) um caractere "c" ou "d" (valor padrão "c") </para>
+                    <para>(opcional) um caractere "c" ou "d" (valor padrÃ£o "c") </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ind</term>
                 <listitem>
-                    <para>um vetor ou matriz de reais com as mesmas dimensões que X
+                    <para>um vetor ou matriz de reais com as mesmas dimensÃµes que X
                     </para>
                 </listitem>
             </varlistentry>
@@ -57,14 +57,14 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta função é útil para encontrar em uma tabela ("table") ordenada
-            e/ou contar o número de componentes de um vetor caindo em algumas classes
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta funÃ§Ã£o Ã© Ãºtil para encontrar em uma tabela ("table") ordenada
+            e/ou contar o nÃºmero de componentes de um vetor caindo em algumas classes
             (sendo uma classe um intervalo ou um valor).
         </para>
         <para>
-            Por padrão ou quando <literal>ch="c"</literal>, temos o caso de
-            intervalos, isto é, para cada X(i), busca em qual dos n-1 intervalos o
+            Por padrÃ£o ou quando <literal>ch="c"</literal>, temos o caso de
+            intervalos, isto Ã©, para cada X(i), busca em qual dos n-1 intervalos o
             componente do vetor cai, sendo os intervalos definidos por:
         </para>
         <programlisting role=""><![CDATA[
@@ -77,7 +77,7 @@
             <varlistentry>
                 <term>ind(i)</term>
                 <listitem>
-                    <para>é o número do intervalo de X(i) (0 se X(i) não está em
+                    <para>Ã© o nÃºmero do intervalo de X(i) (0 se X(i) nÃ£o estÃ¡ em
                         [val(1),val(n)])
                     </para>
                 </listitem>
@@ -85,41 +85,41 @@
             <varlistentry>
                 <term>occ(k)</term>
                 <listitem>
-                    <para>é o número de componentes de X que estão em Ik </para>
+                    <para>Ã© o nÃºmero de componentes de X que estÃ£o em Ik </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>info</term>
                 <listitem>
-                    <para>é o número de componentes de X que não estão em
+                    <para>Ã© o nÃºmero de componentes de X que nÃ£o estÃ£o em
                         [val(1),val(n)]
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
         <para>
-            Quando <literal>ch="d"</literal>, temos o caso discreto, isto é,
-            para cada X(i) busca se é igual a um valor val(k) e:
+            Quando <literal>ch="d"</literal>, temos o caso discreto, isto Ã©,
+            para cada X(i) busca se Ã© igual a um valor val(k) e:
         </para>
         <variablelist>
             <varlistentry>
                 <term>ind(i)</term>
                 <listitem>
-                    <para>é igual ao índice do componente de val que corresponde a X(i)
-                        (ind(i) = k se X(i)=val(k)) ou 0 se X(i) não está em val.
+                    <para>Ã© igual ao Ã­ndice do componente de val que corresponde a X(i)
+                        (ind(i) = k se X(i)=val(k)) ou 0 se X(i) nÃ£o estÃ¡ em val.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>occ(k)</term>
                 <listitem>
-                    <para>é igual ao número de componentes de X iguais a val(k) </para>
+                    <para>Ã© igual ao nÃºmero de componentes de X iguais a val(k) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>info</term>
                 <listitem>
-                    <para>é o número de componentes de X que não estão no conjunto
+                    <para>Ã© o nÃºmero de componentes de X que nÃ£o estÃ£o no conjunto
                         {val(1),...,val(n)}
                     </para>
                 </listitem>
@@ -129,14 +129,14 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-// exemplo #1 (estatística elementar para U(0,1))
+// exemplo #1 (estatÃ­stica elementar para U(0,1))
 m = 50000 ; n = 10;
 X = grand(m,1,"def");
 val = linspace(0,1,n+1)';
 [ind, occ] = dsearch(X, val);
-clf() ; plot2d2(val, [occ/m;0])  // sem normalização: y deve ser próximo de 1/n
+clf() ; plot2d2(val, [occ/m;0])  // sem normalizaÃ§Ã£o: y deve ser prÃ³ximo de 1/n
 
-// exemplo #2 (estatística elementar para B(N,p))
+// exemplo #2 (estatÃ­stica elementar para B(N,p))
 N = 8 ; p = 0.5; m = 50000;
 X = grand(m,1,"bin",N,p); val = (0:N)';
 [ind, occ] = dsearch(X, val, "d");
@@ -144,16 +144,16 @@ Pexp = occ/m; Pexa = binomial(p,N);
 clf() ; hm = 1.1*max(max(Pexa),max(Pexp));
 plot2d3([val val+0.1], [Pexa' Pexp],[1 2],"111",  ...
         "Pexact@Pexp", [-1 0 N+1 hm],[0 N+2 0 6])
-xtitle(  "Distribuição binomial B("+string(N)+","+string(p)+") :" ...
+xtitle(  "DistribuiÃ§Ã£o binomial B("+string(N)+","+string(p)+") :" ...
         +" probabilidades exatas versus as experimentais")
 
-// exemplo #3 (polinômio de Hermite seccionado)
+// exemplo #3 (polinÃ´mio de Hermite seccionado)
 x = [0 ; 0.2 ; 0.35 ; 0.5 ; 0.65 ; 0.8 ;  1];
 y = [0 ; 0.1 ;-0.1  ; 0   ; 0.4  ;-0.1 ;  0];
 d = [1 ; 0   ; 0    ; 1   ; 0    ; 0   ; -1];
 X = linspace(0, 1, 200)';
 ind = dsearch(X, x);
-// definindo funções bases hermitianas
+// definindo funÃ§Ãµes bases hermitianas
 deff("y=Ll(t,k,x)","y=(t-x(k+1))./(x(k)-x(k+1))")   // Lagrange esquerdo em Ik
 deff("y=Lr(t,k,x)","y=(t-x(k))./(x(k+1)-x(k))")     // Lagrange direito em Ik
 deff("y=Hl(t,k,x)","y=(1-2*(t-x(k))./(x(k)-x(k+1))).*Ll(t,k,x).^2")
@@ -163,13 +163,13 @@ deff("y=Kr(t,k,x)","y=(t-x(k+1)).*Lr(t,k,x).^2")
 // plotando a curva
 Y = y(ind).*Hl(X,ind) + y(ind+1).*Hr(X,ind) + d(ind).*Kl(X,ind) + d(ind+1).*Kr(X,ind);
 clf(); plot2d(X,Y,2) ; plot2d(x,y,-9,"000")
-xtitle("Um polinômio seccionado de hermite")
-// NOTE : a verificação pode ser feita adicionando-se :
+xtitle("Um polinÃ´mio seccionado de hermite")
+// NOTE : a verificaÃ§Ã£o pode ser feita adicionando-se :
 // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="find">find</link>

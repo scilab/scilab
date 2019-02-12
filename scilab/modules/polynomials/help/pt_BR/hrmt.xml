@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -16,19 +16,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="hrmt" xml:lang="pt">
     <refnamediv>
         <refname>hrmt</refname>
-        <refpurpose>máximo divisor comum de polinômios</refpurpose>
+        <refpurpose>mÃ¡ximo divisor comum de polinÃ´mios</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[pg,U]=hrmt(v)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>vetor linha de polinômios, i.e. matriz de polinômios
+                    <para>vetor linha de polinÃ´mios, i.e. matriz de polinÃ´mios
                         <literal>1</literal>x<literal>k</literal>
                     </para>
                 </listitem>
@@ -36,23 +36,23 @@
             <varlistentry>
                 <term>pg</term>
                 <listitem>
-                    <para>polinômio</para>
+                    <para>polinÃ´mio</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>U</term>
                 <listitem>
-                    <para>matriz de polinômios unimodular</para>
+                    <para>matriz de polinÃ´mios unimodular</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>[pg,U]=hrmt(v)</literal> retorna uma matriz unimodular
             <literal>U</literal> e <literal>pg</literal> = MDC do vetor linha de
-            polinômios <literal>v</literal> tais que <literal>v*U =
+            polinÃ´mios <literal>v</literal> tais que <literal>v*U =
                 [pg,0]
             </literal>
             .
@@ -68,7 +68,7 @@ det(U)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="gcd">gcd</link>

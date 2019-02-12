@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sinhm" xml:lang="pt">
     <refnamediv>
         <refname>sinhm</refname>
-        <refpurpose>seno hiperbólico da matriz (matriz seno
-            hiperbólico)
+        <refpurpose>seno hiperbÃ³lico da matriz (matriz seno
+            hiperbÃ³lico)
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>t=sinhm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x,t</term>
@@ -36,8 +36,8 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>sinhm(x) é o seno hiperbólico da matriz x (matriz seno hiperbólico
+        <title>DescriÃ§Ã£o</title>
+        <para>sinhm(x) Ã© o seno hiperbÃ³lico da matriz x (matriz seno hiperbÃ³lico
             de x). <literal>t=(expm(x)-expm(-x))/2</literal>
         </para>
     </refsection>
@@ -50,7 +50,7 @@ A(1,1)=%i;sinhm(A)-(expm(A)-expm(-A))/2   //Caso para complexos
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sinh">sinh</link>

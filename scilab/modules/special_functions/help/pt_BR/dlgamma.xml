@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dlgamma" xml:lang="pt">
     <refnamediv>
         <refname>dlgamma</refname>
-        <refpurpose>derivada da função gammaln, função psi</refpurpose>
+        <refpurpose>derivada da funÃ§Ã£o gammaln, funÃ§Ã£o psi</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>y = dlgamma(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -40,17 +40,17 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>dlgamma(x)</literal> avalia, em todos os elementos de
-            <literal>x</literal> a derivada logarítmica da função gama (gamma), que
-            corresponde também à derivada da função ln(gama) (gammaln):
+            <literal>x</literal> a derivada logarÃ­tmica da funÃ§Ã£o gama (gamma), que
+            corresponde tambÃ©m Ã  derivada da funÃ§Ã£o ln(gama) (gammaln):
         </para>
         <programlisting role=""><![CDATA[
 d/dx (gamma(x)) / gamma(x) = d/dx (ln gamma(x))
  ]]></programlisting>
         <para>
-            <literal>x</literal> deve ser real. Também é conhecida como a função
+            <literal>x</literal> deve ser real. TambÃ©m Ã© conhecida como a funÃ§Ã£o
             psi.
         </para>
     </refsection>
@@ -61,7 +61,7 @@ dlgamma(0.5)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="gamma">gamma</link>

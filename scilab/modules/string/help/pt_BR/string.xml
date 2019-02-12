@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -16,50 +16,50 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="string" xml:lang="pt">
     <refnamediv>
         <refname>string</refname>
-        <refpurpose>conversão para string (cadeia de caracteres)</refpurpose>
+        <refpurpose>conversÃ£o para string (cadeia de caracteres)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>string(x)
             [out, in, text] = string(x)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>matriz de reais ou função</para>
+                    <para>matriz de reais ou funÃ§Ã£o</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Converte uma matriz em uma matriz de strings.</para>
         <para>
-            Se <literal>x</literal> é uma função <literal>[out, in, text] =
+            Se <literal>x</literal> Ã© uma funÃ§Ã£o <literal>[out, in, text] =
                 string(x)
             </literal>
-            retorna três vetores de strings :
-            <literal>out</literal> é o vetor de variáveis de saída,
-            <literal>in</literal> é o vetor de variáveis de entrada, e
-            <literal>text</literal> é o vetor (coluna) do código fonte da
-            função.
+            retorna trÃªs vetores de strings :
+            <literal>out</literal> Ã© o vetor de variÃ¡veis de saÃ­da,
+            <literal>in</literal> Ã© o vetor de variÃ¡veis de entrada, e
+            <literal>text</literal> Ã© o vetor (coluna) do cÃ³digo fonte da
+            funÃ§Ã£o.
         </para>
         <para>
-            Se <literal>x</literal> é uma variável <literal>lib</literal>
-            (bibiloteca), text é um vetor coluna de strings. O primeiro elemento
-            contém o endereço do arquivo biblioteca e o outro o nome da função que ela
+            Se <literal>x</literal> Ã© uma variÃ¡vel <literal>lib</literal>
+            (bibiloteca), text Ã© um vetor coluna de strings. O primeiro elemento
+            contÃ©m o endereÃ§o do arquivo biblioteca e o outro o nome da funÃ§Ã£o que ela
             define.
         </para>
         <para>
-            Strings são definidos como <literal>'string'</literal> (entre aspas
+            Strings sÃ£o definidos como <literal>'string'</literal> (entre aspas
             simples) ou <literal>"string"</literal> (entre aspas duplas); matrizes de
-            strings são definidas como matrizes de constantes.
+            strings sÃ£o definidas como matrizes de constantes.
         </para>
-        <para>Concatenação de strings é feita pela operação
+        <para>ConcatenaÃ§Ã£o de strings Ã© feita pela operaÃ§Ã£o
             <literal>+</literal>.
         </para>
     </refsection>
@@ -87,7 +87,7 @@
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="part">part</link>

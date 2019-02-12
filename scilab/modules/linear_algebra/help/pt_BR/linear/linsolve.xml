@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="linsolve" xml:lang="pt">
     <refnamediv>
         <refname>linsolve</refname>
-        <refpurpose>solucionador de equações lineares</refpurpose>
+        <refpurpose>solucionador de equaÃ§Ãµes lineares</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[x0,kerA]=linsolve(A,b [,x0])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
@@ -38,7 +38,7 @@
                 <term>b</term>
                 <listitem>
                     <para>
-                        um vetor <literal>na x 1</literal> (mesma dimensão de linha de
+                        um vetor <literal>na x 1</literal> (mesma dimensÃ£o de linha de
                         <literal>A</literal>)
                     </para>
                 </listitem>
@@ -60,32 +60,32 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>linsolve</literal> computa todas as soluções para <literal>
+            <literal>linsolve</literal> computa todas as soluÃ§Ãµes para <literal>
                 A*x+b=0
             </literal>
             .
         </para>
         <para>
-            <literal>x0</literal> é uma solução particular (se houver) e
-            <literal> kerA= </literal>núcleo de <literal>A</literal>. Qualquer
-            <literal>x=x0+kerA*w</literal> com <literal>w</literal> arbitrário
+            <literal>x0</literal> Ã© uma soluÃ§Ã£o particular (se houver) e
+            <literal> kerA= </literal>nÃºcleo de <literal>A</literal>. Qualquer
+            <literal>x=x0+kerA*w</literal> com <literal>w</literal> arbitrÃ¡rio
             satisfaz <literal> A*x+b=0</literal>.
         </para>
         <para>
-            Se um compatible <literal>x0</literal> compatível é dado na entrada,
-            <literal>x0</literal> é retornado. Senão, um <literal>x0</literal>,
-            compatível é retornado, se houver.
+            Se um compatible <literal>x0</literal> compatÃ­vel Ã© dado na entrada,
+            <literal>x0</literal> Ã© retornado. SenÃ£o, um <literal>x0</literal>,
+            compatÃ­vel Ã© retornado, se houver.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 A=rand(5,3)*rand(3,8);
-b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   //b comatível
-b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   //b incompatível
-A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x é único
+b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   //b comatÃ­vel
+b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   //b incompatÃ­vel
+A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x Ã© Ãºnico
 
 // A benchmark of sparse linear solver
 
@@ -107,7 +107,7 @@ mprintf('\ntime needed to solve the system with the backslash operator: %.3f\n',
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também</title>
+        <title> Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="inv">inv</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,39 +16,39 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ssrand" xml:lang="pt">
     <refnamediv>
         <refname>ssrand</refname>
-        <refpurpose>gerador de sistema randômico</refpurpose>
+        <refpurpose>gerador de sistema randÃ´mico</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>sl=ssrand(nout,nin,nstate)
             [sl,U]=ssrand(nout,nin,nstate,flag)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>nout</term>
                 <listitem>
-                    <para>inteiro (número de saídas)</para>
+                    <para>inteiro (nÃºmero de saÃ­das)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>nin</term>
                 <listitem>
-                    <para>inteiro (número de entradas)</para>
+                    <para>inteiro (nÃºmero de entradas)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>nstate</term>
                 <listitem>
-                    <para>inteiro (dimensão de espaço de estados)</para>
+                    <para>inteiro (dimensÃ£o de espaÃ§o de estados)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flag</term>
                 <listitem>
-                    <para>lista feita de um string ou vários inteiros</para>
+                    <para>lista feita de um string ou vÃ¡rios inteiros</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -63,7 +63,7 @@
                 <term>U</term>
                 <listitem>
                     <para>
-                        matriz quadrada não-singular <literal>(nstate x
+                        matriz quadrada nÃ£o-singular <literal>(nstate x
                             nstate)
                         </literal>
                     </para>
@@ -72,12 +72,12 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>sl=ssrand(nout,nin,nstate)</literal> retorna um sistema em
-            espaço de estado randômico estritamente próprio (<literal>D=0</literal>)
+            espaÃ§o de estado randÃ´mico estritamente prÃ³prio (<literal>D=0</literal>)
             de tamanho <literal>[nout,nint]</literal> representado por uma lista
-            <literal>syslin</literal> e com <literal>nstate</literal> variáveis de
+            <literal>syslin</literal> e com <literal>nstate</literal> variÃ¡veis de
             estado.
         </para>
         <para>
@@ -96,16 +96,16 @@ flag=list('on',nr,ng,ng0,nv,rk)
 flag=list('ui',nw,nwu,nwui,nwuis,rk)
  ]]></programlisting>
         <para>
-            A completa descrição dos <literal>Sys</literal> é dada no código da
-            função <literal>ssrand</literal> (em
+            A completa descriÃ§Ã£o dos <literal>Sys</literal> Ã© dada no cÃ³digo da
+            funÃ§Ã£o <literal>ssrand</literal> (em
             <literal>SCI/modules/cacsd/macros/</literal>). Por exemplo, com
             <literal>flag=list('co',dim_cont_subs)</literal> um sistema
-            não-controlável é retornado e <literal>dim_cont_subs</literal> é a
-            dimensão do subespaço controlável de <literal>Sys</literal>. Os strings
+            nÃ£o-controlÃ¡vel Ã© retornado e <literal>dim_cont_subs</literal> Ã© a
+            dimensÃ£o do subespaÃ§o controlÃ¡vel de <literal>Sys</literal>. Os strings
             <literal>'co','uo','ncno','st','dt','on','ui'</literal> significam
-            "controlável", "inobservável", "não-controlável-não-observável",
-            "estabilizável", "detectável", "anulador-de-saída",
-            "saída-desconhecida".
+            "controlÃ¡vel", "inobservÃ¡vel", "nÃ£o-controlÃ¡vel-nÃ£o-observÃ¡vel",
+            "estabilizÃ¡vel", "detectÃ¡vel", "anulador-de-saÃ­da",
+            "saÃ­da-desconhecida".
         </para>
     </refsection>
     <refsection>
@@ -119,14 +119,14 @@ flag=list('ui',nw,nwu,nwui,nwuis,rk)
 //A=  [0,0,i,*;   B=[0;
 //    [0,0,0,u]     [0]
 //
-// (A11,B1) controlável  s=matriz estável i=matriz neutra u=matriz instável
+// (A11,B1) controlÃ¡vel  s=matriz estÃ¡vel i=matriz neutra u=matriz instÃ¡vel
 [Sl,U]=ssrand(2,3,8,list('st',2,5,5));
-w=ss2ss(Sl,inv(U)); //desfaz a mudança aleatória de base=&gt; forma como acima
+w=ss2ss(Sl,inv(U)); //desfaz a mudanÃ§a aleatÃ³ria de base=&gt; forma como acima
 [n,nc,u,sl]=st_ility(Sl);n,nc
 ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="syslin">syslin</link>

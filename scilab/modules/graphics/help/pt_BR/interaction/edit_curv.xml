@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -16,10 +16,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="edit_curv" xml:lang="pt">
     <refnamediv>
         <refname>edit_curv</refname>
-        <refpurpose>editor interativo de curvas gráficas</refpurpose>
+        <refpurpose>editor interativo de curvas grÃ¡ficas</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[x,y,ok,gc] = edit_curv(y)
             [x,y,ok,gc] = edit_curv(x,y)
             [x,y,ok,gc] = edit_curv(x,y,job)
@@ -28,7 +28,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -45,14 +45,14 @@
             <varlistentry>
                 <term>job</term>
                 <listitem>
-                    <para>um string formado por um a três dos caracteres
+                    <para>um string formado por um a trÃªs dos caracteres
                         'a','x','y'
                     </para>
                     <variablelist>
                         <varlistentry>
                             <term>'a'</term>
                             <listitem>
-                                <para>adicionar pontos à curva editada </para>
+                                <para>adicionar pontos Ã  curva editada </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -76,27 +76,27 @@
             <varlistentry>
                 <term>tit</term>
                 <listitem>
-                    <para>um vetor de três strings que fornecem a legenda da curva
+                    <para>um vetor de trÃªs strings que fornecem a legenda da curva
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>gc</term>
                 <listitem>
-                    <para>uma lista de parâmetros de janela de gráficos:
+                    <para>uma lista de parÃ¢metros de janela de grÃ¡ficos:
                         <literal>gc=list(rect,nax)</literal>
                     </para>
                     <variablelist>
                         <varlistentry>
                             <term>rect</term>
                             <listitem>
-                                <para>bordas dos gráficos (ver plot2d para detalhes) </para>
+                                <para>bordas dos grÃ¡ficos (ver plot2d para detalhes) </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>nax</term>
                             <listitem>
-                                <para>parâmetros de graduação (ver plot2d para
+                                <para>parÃ¢metros de graduaÃ§Ã£o (ver plot2d para
                                     detalhes)
                                 </para>
                             </listitem>
@@ -107,8 +107,8 @@
             <varlistentry>
                 <term>ok</term>
                 <listitem>
-                    <para>indicador. Se ok== %t retorna com menu 'ok' senão, retorna com
-                        menu 'abort': lista (objetos gráficos criados sob
+                    <para>indicador. Se ok== %t retorna com menu 'ok' senÃ£o, retorna com
+                        menu 'abort': lista (objetos grÃ¡ficos criados sob
                         <literal>edit_curv</literal>
                     </para>
                 </listitem>
@@ -116,13 +116,13 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>edit_curv</literal> é um editor de curvas gráficas
-            interativo. Para adicionar um ponto novo, apenas clique na localização
-            desejada, o ponto adicionado será conectado à extremidade mais próxima.
-            Para mover um ponto, clique nele, arraste o mouse para a nova posição e
-            clique para ajustar a nova posição.
+            <literal>edit_curv</literal> Ã© um editor de curvas grÃ¡ficas
+            interativo. Para adicionar um ponto novo, apenas clique na localizaÃ§Ã£o
+            desejada, o ponto adicionado serÃ¡ conectado Ã  extremidade mais prÃ³xima.
+            Para mover um ponto, clique nele, arraste o mouse para a nova posiÃ§Ã£o e
+            clique para ajustar a nova posiÃ§Ã£o.
         </para>
     </refsection>
 </refentry>

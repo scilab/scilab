@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Farid Belahcene
@@ -16,38 +16,38 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="title" xml:lang="pt">
     <refnamediv>
         <refname>title</refname>
-        <refpurpose>Exibe um título em uma janela gráfica</refpurpose>
+        <refpurpose>Exibe um tÃ­tulo em uma janela grÃ¡fica</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>title(my_title)
             title(my_title,&lt;Property&gt;)
             title(&lt;axes_handle&gt;,&lt;my_title&gt;,&lt;Property&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>my_title</term>
                 <listitem>
-                    <para>string, o título a ser exibido </para>
+                    <para>string, o tÃ­tulo a ser exibido </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>&lt;Property&gt;</term>
                 <listitem>
-                    <para>argumento opcional, representa um par de declarações
+                    <para>argumento opcional, representa um par de declaraÃ§Ãµes
                         <literal>{PropertyName,PropertyValue}</literal>que definem
-                        propriedades de objetos globais aplicadas o título criado.
+                        propriedades de objetos globais aplicadas o tÃ­tulo criado.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>&lt;axes_handle&gt;</term>
                 <listitem>
-                    <para>este argumento opcional força o título a parecer dentro dos
-                        eixos selecionados dados por <literal>axes_handle</literal> ao invés
+                    <para>este argumento opcional forÃ§a o tÃ­tulo a parecer dentro dos
+                        eixos selecionados dados por <literal>axes_handle</literal> ao invÃ©s
                         dos eixos correntes (ver <link linkend="gca">gca</link>).
                     </para>
                 </listitem>
@@ -55,60 +55,60 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>title</literal> exibe um título numa janela de gráficos.
+            <literal>title</literal> exibe um tÃ­tulo numa janela de grÃ¡ficos.
         </para>
         <para>Os argumentos Property (propriedade) devem ser usados para
-            customizar o título. Aqui está uma lista completa das opções
-            disponíveis.
+            customizar o tÃ­tulo. Aqui estÃ¡ uma lista completa das opÃ§Ãµes
+            disponÃ­veis.
         </para>
         <variablelist>
             <varlistentry>
                 <term>Property :</term>
                 <listitem>
                     <para>
-                        <literal>backgroundcolor :</literal> este campo contém a cor
+                        <literal>backgroundcolor :</literal> este campo contÃ©m a cor
                         utilizada para preencher a caixa, se houver. Seu valor deve ser um
-                        índice de cor (relativo ao mapa de cores corrente).
+                        Ã­ndice de cor (relativo ao mapa de cores corrente).
                     </para>
                     <para>
-                        <literal>color :</literal> este campo contém a cor a ser
-                        utilizada para exibir o texto de título. Seu valor deve ser um
-                        índice de cor (relativo ao mapa de cores corrente).
+                        <literal>color :</literal> este campo contÃ©m a cor a ser
+                        utilizada para exibir o texto de tÃ­tulo. Seu valor deve ser um
+                        Ã­ndice de cor (relativo ao mapa de cores corrente).
                     </para>
                     <para>
-                        <literal>edgecolor :</literal>este campo contém a cor usada
+                        <literal>edgecolor :</literal>este campo contÃ©m a cor usada
                         para exibir a linha ao redor da caixa, se houver alguma. Seu valor
-                        deve ser um índice de cor (relativo ao mapa de cores corrente).
+                        deve ser um Ã­ndice de cor (relativo ao mapa de cores corrente).
                     </para>
                     <para>
-                        <literal>fontname :</literal> sete fontes diferentes estão
-                        disponíveis: "Courrier", "Symbol", "Times", "Times Italic", "Times
-                        Bold", "Definida pelo Usuário". A propriedade font_size é um índice
-                        no intervalo [0 6] que é associado a um dos nomes anteriores.
+                        <literal>fontname :</literal> sete fontes diferentes estÃ£o
+                        disponÃ­veis: "Courrier", "Symbol", "Times", "Times Italic", "Times
+                        Bold", "Definida pelo UsuÃ¡rio". A propriedade font_size Ã© um Ã­ndice
+                        no intervalo [0 6] que Ã© associado a um dos nomes anteriores.
                     </para>
                     <para>
-                        <literal>fontsize :</literal> a propriedade é utilizada para
-                        selecionar o tipo de tamanho do título. Seu valor deve ser um
+                        <literal>fontsize :</literal> a propriedade Ã© utilizada para
+                        selecionar o tipo de tamanho do tÃ­tulo. Seu valor deve ser um
                         inteiro entre 0 e 5 que significa 8pt, 10pt, 12pt, 14pt, 18pt e
                         24pt.
                     </para>
                     <para>
-                        <literal>position :</literal> este vetor 2d permite que você
-                        posicione manualmente o título na tela. A posição é armazenada nas
+                        <literal>position :</literal> este vetor 2d permite que vocÃª
+                        posicione manualmente o tÃ­tulo na tela. A posiÃ§Ã£o Ã© armazenada nas
                         unidades de dados dos eixos.
                     </para>
                     <para>
-                        <literal>rotation :</literal> escalar que permite que você
-                        gire o título. A fonte é girada em sentido anti-horário com o ângulo
+                        <literal>rotation :</literal> escalar que permite que vocÃª
+                        gire o tÃ­tulo. A fonte Ã© girada em sentido anti-horÃ¡rio com o Ã¢ngulo
                         dado em graus.
                     </para>
                     <para>
-                        <literal>visible :</literal> este campo contém o valor da
-                        propriedade visible para o título. Pode ser "on" ou "off". Por
-                        padrão, o título é visível, a propriedade é "on" . Se "off" , o
-                        título não é exibido na tela.
+                        <literal>visible :</literal> este campo contÃ©m o valor da
+                        propriedade visible para o tÃ­tulo. Pode ser "on" ou "off". Por
+                        padrÃ£o, o tÃ­tulo Ã© visÃ­vel, a propriedade Ã© "on" . Se "off" , o
+                        tÃ­tulo nÃ£o Ã© exibido na tela.
                     </para>
                 </listitem>
             </varlistentry>
@@ -117,25 +117,25 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-// exibindo um título com várias propriedades
-title('meu título');
-// mudando a cor de fonte do título
-title('meu título','color','blue');
+// exibindo um tÃ­tulo com vÃ¡rias propriedades
+title('meu tÃ­tulo');
+// mudando a cor de fonte do tÃ­tulo
+title('meu tÃ­tulo','color','blue');
 // mudando a cor ao redor da caixa
-title('meu título','edgecolor','red');
-// mudando a posição do título
-title('meu título','position',[0.3 0.8]);
+title('meu tÃ­tulo','edgecolor','red');
+// mudando a posiÃ§Ã£o do tÃ­tulo
+title('meu tÃ­tulo','position',[0.3 0.8]);
 // mudando o tamanho da fonte
-title('meu título','fontsize',3);
-// dando uma rotação
-title('meu título','rotation',90);
+title('meu tÃ­tulo','fontsize',3);
+// dando uma rotaÃ§Ã£o
+title('meu tÃ­tulo','rotation',90);
 
-// podemos realizar todas essas modificações apenas pela instrução abaixo:
-title('meu título','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
+// podemos realizar todas essas modificaÃ§Ãµes apenas pela instruÃ§Ã£o abaixo:
+title('meu tÃ­tulo','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="label_properties">label_properties</link>

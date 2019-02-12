@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -17,17 +17,17 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xinit" xml:lang="pt">
     <refnamediv>
         <refname>xinit</refname>
-        <refpurpose>inicialização de um driver de gráficos</refpurpose>
+        <refpurpose>inicializaÃ§Ã£o de um driver de grÃ¡ficos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>
             xinit(FileName)
             xinit()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>FileName</term>
@@ -38,14 +38,14 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Para os drivers Postscript, Xfig, Gif ou PPM,
-            <literal>FileName</literal> deve ser especificado. É o nome do arquivo
-            onde todas as operações gráficas são registradas.
+            <literal>FileName</literal> deve ser especificado. Ã‰ o nome do arquivo
+            onde todas as operaÃ§Ãµes grÃ¡ficas sÃ£o registradas.
         </para>
         <para>
             Para os drivers (X11 ou Rec), <literal>xinit</literal> deve ser
-            chamado sem nenhum argumento e abre uma janela de gráficos vazia.
+            chamado sem nenhum argumento e abre uma janela de grÃ¡ficos vazia.
         </para>
     </refsection>
     <refsection>
@@ -59,7 +59,7 @@ driver("X11")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="driver">driver</link>

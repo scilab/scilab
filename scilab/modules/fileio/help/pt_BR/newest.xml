@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -21,24 +21,24 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>k=newest(paths)
             k=newest(path1,path2,...,pathn)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>k</term>
                 <listitem>
-                    <para>o índice do arquivo mais novo</para>
+                    <para>o Ã­ndice do arquivo mais novo</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>paths</term>
                 <listitem>
-                    <para>vetor de strings, paths(i) é o endereço do i-ésimo
+                    <para>vetor de strings, paths(i) Ã© o endereÃ§o do i-Ã©simo
                         arquivo
                     </para>
                 </listitem>
@@ -46,15 +46,15 @@
             <varlistentry>
                 <term>pathi</term>
                 <listitem>
-                    <para>string, o endereço do i-ésimo arquivo</para>
+                    <para>string, o endereÃ§o do i-Ã©simo arquivo</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Dado um conjunto de endereços, newest retorna o índice do mais novo.
-            Arquivos não existentes são supostos como mais antigos.
+        <title>DescriÃ§Ã£o</title>
+        <para>Dado um conjunto de endereÃ§os, newest retorna o Ã­ndice do mais novo.
+            Arquivos nÃ£o existentes sÃ£o supostos como mais antigos.
         </para>
     </refsection>
     <refsection>
@@ -66,7 +66,7 @@ newest('SCI/modules/graphics/macros/bode.'+['sci','bin'])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="fileinfo">fileinfo</link>

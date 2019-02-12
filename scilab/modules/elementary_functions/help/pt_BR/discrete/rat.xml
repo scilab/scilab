@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rat" xml:lang="pt">
     <refnamediv>
         <refname>rat</refname>
-        <refpurpose>aproximação racional de ponto-flutuante</refpurpose>
+        <refpurpose>aproximaÃ§Ã£o racional de ponto-flutuante</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[N,D]=rat(x [,tol])
             y=rat(x [,tol])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -54,13 +54,13 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>[N,D] = rat(x,tol)</literal> retorna duas matrizes de
-            inteiros tais que <literal>N./D</literal> é próxima a <literal>x</literal>
+            inteiros tais que <literal>N./D</literal> Ã© prÃ³xima a <literal>x</literal>
             no sentido de que <literal>abs(N./D - X) &lt;= tol*abs(x)</literal>. As
-            aproximações racionais são geradas truncando-se expansões de frações
-            contínuas. <literal>tol = 1.e-6*norm(X,1)</literal> é o padrão. <literal>y
+            aproximaÃ§Ãµes racionais sÃ£o geradas truncando-se expansÃµes de fraÃ§Ãµes
+            contÃ­nuas. <literal>tol = 1.e-6*norm(X,1)</literal> Ã© o padrÃ£o. <literal>y
                 = rat(x,tol)
             </literal>
             retorna o quociente <literal>N./D</literal>
@@ -75,7 +75,7 @@ n/d-%pi
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="int">int</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
@@ -22,11 +22,11 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>ind = vectorfind(m,v,job)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>m</term>
@@ -43,7 +43,7 @@
             <varlistentry>
                 <term>job</term>
                 <listitem>
-                    <para>um string indicador com valores possíveis "r" para procura de
+                    <para>um string indicador com valores possÃ­veis "r" para procura de
                         linhas coincidentes ou "c" para procura de colunas coincidentes
                     </para>
                 </listitem>
@@ -51,7 +51,7 @@
             <varlistentry>
                 <term>ind</term>
                 <listitem>
-                    <para>vetor-linha contendo os índices das linhas ou colunas
+                    <para>vetor-linha contendo os Ã­ndices das linhas ou colunas
                         coincidentes
                     </para>
                 </listitem>
@@ -59,7 +59,7 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Acha, em uma matriz, as linhas ou colunas que coincidem com um dado
             vetor.
         </para>
@@ -77,7 +77,7 @@ ind = vectorfind(string(alr),string([1,2,1]),'r')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="find">find</link>

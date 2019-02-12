@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -16,18 +16,18 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fgrayplot" xml:lang="pt">
     <refnamediv>
         <refname>fgrayplot</refname>
-        <refpurpose>esboço 2d de uma superfície definida por uma função utilizando
+        <refpurpose>esboÃ§o 2d de uma superfÃ­cie definida por uma funÃ§Ã£o utilizando
             cores
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>fgrayplot(x,y,f,[strf,rect,nax])
             fgrayplot(x,y,f,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x,y</term>
@@ -39,7 +39,7 @@
                 <term>f</term>
                 <listitem>
                     <para>
-                        função externa do tipo <literal>y=f(x,y)</literal>.
+                        funÃ§Ã£o externa do tipo <literal>y=f(x,y)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -47,7 +47,7 @@
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
                     <para>
-                        representa uma seqüência de declarações <literal>key1=value1,
+                        representa uma seqÃ¼Ãªncia de declaraÃ§Ãµes <literal>key1=value1,
                             key2=value2
                         </literal>
                         ,... onde <literal>key1</literal>,
@@ -67,17 +67,17 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>fgrayplot</literal> realiza um esboço 2d de uma superfície
+            <literal>fgrayplot</literal> realiza um esboÃ§o 2d de uma superfÃ­cie
             dada por <literal>z=f(x,y)</literal> em um grid definido por
-            <literal>x</literal> e <literal>y</literal>. Cada retângulo no grid é
-            preenchido com um nível de cinza ou de cor dependendo do valor médio de
-            <literal>z</literal> nas quinas do retângulo.
+            <literal>x</literal> e <literal>y</literal>. Cada retÃ¢ngulo no grid Ã©
+            preenchido com um nÃ­vel de cinza ou de cor dependendo do valor mÃ©dio de
+            <literal>z</literal> nas quinas do retÃ¢ngulo.
         </para>
         <para>
             Entre com o comando <literal>fgrayplot()</literal> para visualizar
-            uma demonstração.
+            uma demonstraÃ§Ã£o.
         </para>
     </refsection>
     <refsection>
@@ -89,7 +89,7 @@ fgrayplot(t,t,my_surface,rect=[-2,-2,2,2])
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title>Ver Também </title>
+        <title>Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="grayplot">grayplot</link>

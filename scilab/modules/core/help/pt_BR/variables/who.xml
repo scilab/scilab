@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="who" xml:lang="pt">
     <refnamediv>
         <refname>who</refname>
-        <refpurpose>listagem de variáveis</refpurpose>
+        <refpurpose>listagem de variÃ¡veis</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento </title>
+        <title>SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>who
             who()
             names=who('local')
@@ -20,26 +20,26 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>who</literal> exibe os nome de variáveis correntes.
+            <literal>who</literal> exibe os nome de variÃ¡veis correntes.
         </para>
         <para>
             <literal>who('local')</literal> ou <literal>who('get')</literal>
-            retorna os nomes de variáveis correntes e a memória utilizada em palavras
-            de dupla precisão.
+            retorna os nomes de variÃ¡veis correntes e a memÃ³ria utilizada em palavras
+            de dupla precisÃ£o.
         </para>
         <para>
-            <literal>who('global')</literal> retorna os nomes de variáveis
-            globais e a memória utilizada em palavras de dupla precisão.
+            <literal>who('global')</literal> retorna os nomes de variÃ¡veis
+            globais e a memÃ³ria utilizada em palavras de dupla precisÃ£o.
         </para>
         <para>
-            <literal>who('sorted')</literal> exibe todas as variáveis em ordem
-            alfabética.
+            <literal>who('sorted')</literal> exibe todas as variÃ¡veis em ordem
+            alfabÃ©tica.
         </para>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="whos">whos</link>

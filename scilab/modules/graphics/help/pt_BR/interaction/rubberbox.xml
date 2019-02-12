@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -16,12 +16,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rubberbox" xml:lang="pt">
     <refnamediv>
         <refname>rubberbox</refname>
-        <refpurpose>Caixa tipo liga de borracha para seleção de um
-            retângulo
+        <refpurpose>Caixa tipo liga de borracha para seleÃ§Ã£o de um
+            retÃ¢ngulo
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[final_rect,btn]=rubberbox()
             [final_rect,btn]=rubberbox(initial_rect)
             [final_rect,btn]=rubberbox(edition_mode)
@@ -29,24 +29,24 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>initial_rect</term>
                 <listitem>
                     <para>vetor de duas a quatro entradas. Com quatro entradas fornece o
-                        retângulo inicial definido por [x_esquerdo, y_topo, largura,
-                        altura]. Com duas entradas, largura e altura são supostas 0.
+                        retÃ¢ngulo inicial definido por [x_esquerdo, y_topo, largura,
+                        altura]. Com duas entradas, largura e altura sÃ£o supostas 0.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>edition_mode</term>
                 <listitem>
-                    <para>um booleano, se edition_mode==%t; um aperto de botão seleciona
+                    <para>um booleano, se edition_mode==%t; um aperto de botÃ£o seleciona
                         a primeira quina, soltar seleciona a quina oposta. Se edition_mode==
-                        %f, aperto de botão ou clique seleciona a primeira quina, um clique
-                        é requerido para selecionar a quina oposta. O valor padrão é
+                        %f, aperto de botÃ£o ou clique seleciona a primeira quina, um clique
+                        Ã© requerido para selecionar a quina oposta. O valor padrÃ£o Ã©
                         edition_mode=%f
                     </para>
                 </listitem>
@@ -54,7 +54,7 @@
             <varlistentry>
                 <term>final_rect</term>
                 <listitem>
-                    <para>um retângulo definido por [x_esquerdo, y_topo, largura,
+                    <para>um retÃ¢ngulo definido por [x_esquerdo, y_topo, largura,
                         altura]
                     </para>
                 </listitem>
@@ -62,20 +62,20 @@
             <varlistentry>
                 <term>btn</term>
                 <listitem>
-                    <para>um inteiro, o número do botão do mouse clicado</para>
+                    <para>um inteiro, o nÃºmero do botÃ£o do mouse clicado</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>rubberbox(initial_rect)</literal> trilha uma caixa liga de
-            borracha na janela de gráficos corrente, seguindo o mouse. Quando um botão
-            é clicado, <literal>rubberbox</literal> retorna a definição dos retângulos
+            borracha na janela de grÃ¡ficos corrente, seguindo o mouse. Quando um botÃ£o
+            Ã© clicado, <literal>rubberbox</literal> retorna a definiÃ§Ã£o dos retÃ¢ngulos
             finais <literal>final_Rect</literal>. Se o argumento
-            <literal>initial_rect</literal> estiver presente, o usuário deve clicar
-            para fixar a posição da quina inicial.
+            <literal>initial_rect</literal> estiver presente, o usuÃ¡rio deve clicar
+            para fixar a posiÃ§Ã£o da quina inicial.
         </para>
     </refsection>
     <refsection>
@@ -130,7 +130,7 @@ r = rubberbox()
 ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xrect">xrect</link>

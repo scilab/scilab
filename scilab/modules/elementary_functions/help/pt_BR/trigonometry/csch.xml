@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Ajouter ici d'éventuels commentaires sur le fichier XML
+ * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="csch" xml:lang="pt">
     <refnamediv>
         <refname>csch</refname>
-        <refpurpose>computa a cossecante hipertbólica do argumento elemento a
+        <refpurpose>computa a cossecante hipertbÃ³lica do argumento elemento a
             elemento
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>y = csch(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>array de reais ou complexos com as mesmas dimensões que
+                    <para>array de reais ou complexos com as mesmas dimensÃµes que
                         <literal>x</literal>.
                     </para>
                 </listitem>
@@ -33,9 +33,9 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Computa a cossecante hipertbólica do argumento elemento a elemento.
-            Para dados reais, os resultados são reais
+        <title>DescriÃ§Ã£o</title>
+        <para>Computa a cossecante hipertbÃ³lica do argumento elemento a elemento.
+            Para dados reais, os resultados sÃ£o reais
         </para>
     </refsection>
     <refsection>
@@ -46,7 +46,7 @@ clf();plot(x,csch(x))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="csc">csc</link>

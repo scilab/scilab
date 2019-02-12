@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -16,28 +16,28 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="graypolarplot" xml:lang="pt">
     <refnamediv>
         <refname>graypolarplot</refname>
-        <refpurpose>Esboço polar 2d de uma superfície utilizando-se
+        <refpurpose>EsboÃ§o polar 2d de uma superfÃ­cie utilizando-se
             cores
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>graypolarplot(theta,rho,z,[strf,rect])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>theta</term>
                 <listitem>
-                    <para>vetor de tamanho n1, a discretização do ângulo em radianos.
+                    <para>vetor de tamanho n1, a discretizaÃ§Ã£o do Ã¢ngulo em radianos.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rho</term>
                 <listitem>
-                    <para>vetor de tamanho n2, a discretização do raio </para>
+                    <para>vetor de tamanho n2, a discretizaÃ§Ã£o do raio </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -45,7 +45,7 @@
                 <listitem>
                     <para>
                         matriz de reais de tamanho (n1,n2). <literal>z(i,j)</literal>
-                        é o valor da superfície no ponto (theta(i),rho(j)).
+                        Ã© o valor da superfÃ­cie no ponto (theta(i),rho(j)).
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,14 +60,14 @@
                             <term>default</term>
                             <listitem>
                                 <para>
-                                    o padrão é <literal>"030"</literal>.
+                                    o padrÃ£o Ã© <literal>"030"</literal>.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>x</term>
                             <listitem>
-                                <para>controla a exibição de legendas.</para>
+                                <para>controla a exibiÃ§Ã£o de legendas.</para>
                                 <variablelist>
                                     <varlistentry>
                                         <term>x=0</term>
@@ -78,7 +78,7 @@
                                     <varlistentry>
                                         <term>x=1</term>
                                         <listitem>
-                                            <para>com legendas. Elas são fornecidas pelo argumento
+                                            <para>com legendas. Elas sÃ£o fornecidas pelo argumento
                                                 opcional <literal>leg</literal>.
                                             </para>
                                         </listitem>
@@ -89,14 +89,14 @@
                         <varlistentry>
                             <term>y</term>
                             <listitem>
-                                <para>controla a computação da moldura.</para>
+                                <para>controla a computaÃ§Ã£o da moldura.</para>
                                 <variablelist>
                                     <varlistentry>
                                         <term>y=0</term>
                                         <listitem>
                                             <para>as molduras correntes (definidas por uma chamada
-                                                anterior a uma função de esboço de alto-nível) são
-                                                utilizadas. Útil ao se superpor esboços múltiplos.
+                                                anterior a uma funÃ§Ã£o de esboÃ§o de alto-nÃ­vel) sÃ£o
+                                                utilizadas. Ãštil ao se superpor esboÃ§os mÃºltiplos.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -104,16 +104,16 @@
                                         <term>y=1</term>
                                         <listitem>
                                             <para>
-                                                o argumento opcional <literal>rect</literal> é
-                                                utilizado para se especificar as fronteiras do esboço.
+                                                o argumento opcional <literal>rect</literal> Ã©
+                                                utilizado para se especificar as fronteiras do esboÃ§o.
                                             </para>
                                         </listitem>
                                     </varlistentry>
                                     <varlistentry>
                                         <term>y=2</term>
                                         <listitem>
-                                            <para>as fronteiras do esboço são computadas
-                                                utilizando-se os valores mínimo e máximo de
+                                            <para>as fronteiras do esboÃ§o sÃ£o computadas
+                                                utilizando-se os valores mÃ­nimo e mÃ¡ximo de
                                                 <literal>x</literal> e <literal>y</literal>.
                                             </para>
                                         </listitem>
@@ -123,7 +123,7 @@
                                         <listitem>
                                             <para>
                                                 como <literal>y=1</literal> mas produz escala de
-                                                isovisualização.
+                                                isovisualizaÃ§Ã£o.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -132,7 +132,7 @@
                                         <listitem>
                                             <para>
                                                 como <literal>y=2</literal> mas produz escala de
-                                                isovisualização.
+                                                isovisualizaÃ§Ã£o.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -142,9 +142,9 @@
                                             <para>
                                                 como <literal>y=1</literal> mas
                                                 <literal>plot2d</literal> pode mudar as fronteiras do
-                                                esboço e os tiques dos eixos para se obter boas
-                                                graduações. Quando o botão de zoom é ativado, este modo
-                                                é usado.
+                                                esboÃ§o e os tiques dos eixos para se obter boas
+                                                graduaÃ§Ãµes. Quando o botÃ£o de zoom Ã© ativado, este modo
+                                                Ã© usado.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -154,9 +154,9 @@
                                             <para>
                                                 como <literal>y=2</literal> mas
                                                 <literal>plot2d</literal> pode mudar as fronteiras do
-                                                esboço e os tiques dos eixos para se obter boas
-                                                graduações. Quando o botão de zoom é ativado, este modo
-                                                é usado.
+                                                esboÃ§o e os tiques dos eixos para se obter boas
+                                                graduaÃ§Ãµes. Quando o botÃ£o de zoom Ã© ativado, este modo
+                                                Ã© usado.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -165,7 +165,7 @@
                                         <listitem>
                                             <para>
                                                 como <literal>y=5</literal> mas a escala do novo
-                                                esboço é misturada à escala corrente.
+                                                esboÃ§o Ã© misturada Ã  escala corrente.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -174,7 +174,7 @@
                                         <listitem>
                                             <para>
                                                 como <literal>y=6</literal> mas a escala do novo
-                                                esboço é misturada à escala corrente.
+                                                esboÃ§o Ã© misturada Ã  escala corrente.
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -187,20 +187,20 @@
             <varlistentry>
                 <term>leg</term>
                 <listitem>
-                    <para>string. É usado quando o primeiro caractere x do argumento
-                        <literal>strf</literal> é 1. <literal>leg</literal> possui a forma
+                    <para>string. Ã‰ usado quando o primeiro caractere x do argumento
+                        <literal>strf</literal> Ã© 1. <literal>leg</literal> possui a forma
                         <literal>"leg1@leg2@...."</literal> onde <literal>leg1</literal>,
-                        <literal>leg2</literal>, etc. são respectivamente as legendas das
-                        primeira, segunda, etc. curvas. O padrão é " ".
+                        <literal>leg2</literal>, etc. sÃ£o respectivamente as legendas das
+                        primeira, segunda, etc. curvas. O padrÃ£o Ã© " ".
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rect</term>
                 <listitem>
-                    <para>É usado quando o segundo caractere y do argumento
-                        <literal>strf</literal> é 1, 3 ou 5. É um vetor linha de tamanho 4 e
-                        fornece as dimensões da moldura:
+                    <para>Ã‰ usado quando o segundo caractere y do argumento
+                        <literal>strf</literal> Ã© 1, 3 ou 5. Ã‰ um vetor linha de tamanho 4 e
+                        fornece as dimensÃµes da moldura:
                         <literal>rect=[xmin,ymin,xmax,ymax]</literal>.
                     </para>
                 </listitem>
@@ -208,11 +208,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Toma um esboço 2d de uma superfície dada por z em um grid de
+        <title>DescriÃ§Ã£o</title>
+        <para>Toma um esboÃ§o 2d de uma superfÃ­cie dada por z em um grid de
             coordenadas polares definido por <literal>rho</literal> e
-            <literal>theta</literal>. Cada região é preenchida com um nível de cinza
-            ou de cor dependendo do valor médio de <literal>z</literal> nas quinas do
+            <literal>theta</literal>. Cada regiÃ£o Ã© preenchida com um nÃ­vel de cinza
+            ou de cor dependendo do valor mÃ©dio de <literal>z</literal> nas quinas do
             grid.
         </para>
     </refsection>

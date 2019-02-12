@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="asinh" xml:lang="pt">
     <refnamediv>
         <refname>asinh</refname>
-        <refpurpose>arco-seno hiperbólico</refpurpose>
+        <refpurpose>arco-seno hiperbÃ³lico</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[t]=asinh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -40,11 +40,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            As entradas de <literal>t</literal> são os arcos-senos hiperbólicos
-            das entradas correspondentes de <literal>x</literal>. O domínio de
-            definição é]-1,infinito[. A função toma valores em conjuntos.
+            As entradas de <literal>t</literal> sÃ£o os arcos-senos hiperbÃ³licos
+            das entradas correspondentes de <literal>x</literal>. O domÃ­nio de
+            definiÃ§Ã£o Ã©]-1,infinito[. A funÃ§Ã£o toma valores em conjuntos.
         </para>
     </refsection>
     <refsection>
@@ -55,7 +55,7 @@ sinh(asinh(A))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sinh">sinh</link>

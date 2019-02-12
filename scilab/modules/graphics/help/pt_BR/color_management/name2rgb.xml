@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -21,11 +21,11 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>rgb=name2rgb(name)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>name</term>
@@ -42,20 +42,20 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>name2rgb</literal> retorna os valores RGB (vermelho, verde,
-            azul) inteiros de uma cor dado o seu nome. O resultado é um vetor
+            azul) inteiros de uma cor dado o seu nome. O resultado Ã© um vetor
             <literal>[r,g,b]</literal> onde <literal>r</literal>, <literal>g</literal>
-            e <literal>b</literal> são inteiros entre 0 e 255 correspondentes aos
+            e <literal>b</literal> sÃ£o inteiros entre 0 e 255 correspondentes aos
             componentes de cor vermelho, verde e azul. Como de uso, 0 significa
             nenhuma intensidade e 255 significa intensidade total da cor.
         </para>
-        <para>Se uma cor não for encontrada, é retornado
+        <para>Se uma cor nÃ£o for encontrada, Ã© retornado
             <literal>[]</literal>.
         </para>
         <para>
-            A lista de todas as cores conhecidas é dada por <link linkend="color_list">color_list</link>.
+            A lista de todas as cores conhecidas Ã© dada por <link linkend="color_list">color_list</link>.
         </para>
     </refsection>
     <refsection>
@@ -66,7 +66,7 @@ rgb2name(rgb)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="color">color</link>

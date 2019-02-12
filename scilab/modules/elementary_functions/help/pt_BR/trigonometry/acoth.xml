@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Ajouter ici d'éventuels commentaires sur le fichier XML
+ * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="acoth" xml:lang="pt">
     <refnamediv>
         <refname>acoth</refname>
-        <refpurpose>arco-cotangente hiperbólico elemento a elemento</refpurpose>
+        <refpurpose>arco-cotangente hiperbÃ³lico elemento a elemento</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>y = acoth(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -29,8 +29,8 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Computa o arco-cotangente hiperbólico do argumento elemento a
+        <title>DescriÃ§Ã£o</title>
+        <para>Computa o arco-cotangente hiperbÃ³lico do argumento elemento a
             elemento.
         </para>
     </refsection>
@@ -43,7 +43,7 @@ plot(x,acoth(x))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="atanh">atanh</link>
@@ -54,9 +54,9 @@ plot(x,acoth(x))
         </simplelist>
     </refsection>
     <refsection>
-        <title>Funções Usadas</title>
+        <title>FunÃ§Ãµes Usadas</title>
         <para>
-            Esta rotina é baseada na função <literal>atanh</literal>.
+            Esta rotina Ã© baseada na funÃ§Ã£o <literal>atanh</literal>.
         </para>
     </refsection>
 </refentry>

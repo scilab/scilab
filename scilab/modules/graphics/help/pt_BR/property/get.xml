@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -17,19 +17,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="get" xml:lang="pt">
     <refnamediv>
         <refname>get</refname>
-        <refpurpose>Recupera um valor de propriedade de uma entidade de gráficos
-            ou um objeto Interface do Usuário.
+        <refpurpose>Recupera um valor de propriedade de uma entidade de grÃ¡ficos
+            ou um objeto Interface do UsuÃ¡rio.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>h=get(prop)
             val=get(h,prop)
             val=h.prop
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
@@ -37,7 +37,7 @@
                     <para>manipulador da entidade da qual se deseja recuperar uma
                         propriedade. <literal>h</literal> pode ser um vetor de manipuladores
                         e, neste caso, get retorna os valores da propriedade definidos para
-                        todos os objetos identificados por h. <literal>h</literal> também
+                        todos os objetos identificados por h. <literal>h</literal> tambÃ©m
                         pode ser <emphasis>0</emphasis> para se retornar as propriedades do
                         objeto raiz.
                     </para>
@@ -58,19 +58,19 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Esta rotina pode ser utilizada para se recuperar o valor de uma
-            propriedade especificada de uma entidade de gráficos ou objeto GUI. Neste
-            caso, é equivalente a se usar o operador ponto ('.') em um manipulador.
-            Por exemplo, <literal>get(h,"background")</literal> é equivalente a
+            propriedade especificada de uma entidade de grÃ¡ficos ou objeto GUI. Neste
+            caso, Ã© equivalente a se usar o operador ponto ('.') em um manipulador.
+            Por exemplo, <literal>get(h,"background")</literal> Ã© equivalente a
             <literal>h.background</literal>.
         </para>
-        <para>Nomes de propriedades são strings. Para obter a lista de todas as
+        <para>Nomes de propriedades sÃ£o strings. Para obter a lista de todas as
             propriedade existentes ver <link linkend="graphics_entities">graphics_entities</link> ou <link linkend="uicontrol">uicontrol</link> para objetos de Interface do
-            Usuário
+            UsuÃ¡rio
         </para>
         <para>
-            <literal>get</literal> também pode ser chamado com apenas uma
+            <literal>get</literal> tambÃ©m pode ser chamado com apenas uma
             propriedade como argumento. Neste caso, a propriedade deve ser uma das
             seguintes:
         </para>
@@ -78,7 +78,7 @@
             <varlistentry>
                 <term>current_entity or hdl</term>
                 <listitem>
-                    <para>retorna o manipulador da última (e ainda existente) entidade
+                    <para>retorna o manipulador da Ãºltima (e ainda existente) entidade
                         criada. <literal>get('current_entity')</literal> e
                         <literal>get('hdl')</literal> equivalem a <link linkend="gce">gce</link>.
                     </para>
@@ -103,7 +103,7 @@
             <varlistentry>
                 <term>default_figure</term>
                 <listitem>
-                    <para>retorna o manipulador da figura padrão.
+                    <para>retorna o manipulador da figura padrÃ£o.
                         <literal>get('default_figure')</literal> equivale a <link linkend="gdf">gdf</link>.
                     </para>
                 </listitem>
@@ -111,7 +111,7 @@
             <varlistentry>
                 <term>default_axes</term>
                 <listitem>
-                    <para>retorna o manipulador dos eixos padrões.
+                    <para>retorna o manipulador dos eixos padrÃµes.
                         <literal>get('default_axes')</literal>equivale a <link linkend="gda">gda</link>.
                     </para>
                 </listitem>
@@ -120,7 +120,7 @@
                 <term>figures_id</term>
                 <listitem>
                     <para>retorna um vetor contendo os ids de todas as figuras
-                        gráficas abertas. <literal>get('figures_id')</literal> equivale a
+                        grÃ¡ficas abertas. <literal>get('figures_id')</literal> equivale a
                         <link linkend="winsid">winsid</link>.
                     </para>
                 </listitem>
@@ -130,10 +130,10 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-// para entidades gráficas
+// para entidades grÃ¡ficas
 clf()
 
-// objetos gráficos simples
+// objetos grÃ¡ficos simples
 subplot(121);
 x=[-.2:0.1:2*%pi]';
 plot2d(x-2,x.^2);
@@ -157,18 +157,18 @@ f.children(2).children.children.thickness=4;
 
 a=get("current_axes") //obtendo os eixos correntes
 a.children.type
-a.children.foreground //obtendo a cor de primeiro plano de um conjunto de objetos gráficos
+a.children.foreground //obtendo a cor de primeiro plano de um conjunto de objetos grÃ¡ficos
 a.children.foreground=9;
 
-// para objetos de Interface do Usuário
-h=uicontrol('string', 'Button'); // Abrindo uma janela com um botão.
-p=get(h,'position'); // obtendo o aspecto geométrico do botão
-disp('Largura do botão: ' + string(p(3))); // imprimindo a largura do botão
+// para objetos de Interface do UsuÃ¡rio
+h=uicontrol('string', 'Button'); // Abrindo uma janela com um botÃ£o.
+p=get(h,'position'); // obtendo o aspecto geomÃ©trico do botÃ£o
+disp('Largura do botÃ£o: ' + string(p(3))); // imprimindo a largura do botÃ£o
 close(); // fechando a figura
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="uicontrol">uicontrol</link>

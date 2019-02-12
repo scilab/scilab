@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - 2009 - INRIA - Michael Baudin
@@ -296,7 +296,7 @@ nm = neldermead_destroy(nm);
             Algorithm Using a Sufficient Decrease Condition", SIAM J. on
             Optimization, Kelley,, C. T., 1999
         </para>
-        <para>Matlab ® fminsearch ,
+        <para>Matlab Â® fminsearch ,
             http://www.mathworks.com/access/helpdesk/help/techdoc/index.html?/access/helpdesk/help/techdoc/ref/fminsearch.html
         </para>
         <para>GAMS, A19A20 - description,

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -19,11 +19,11 @@
         <refpurpose>justifica um array de caracteres</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>Tj=justify(T,opt)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>T</term>
@@ -40,24 +40,24 @@
             <varlistentry>
                 <term>opt</term>
                 <listitem>
-                    <para>opção com possíveis valores</para>
+                    <para>opÃ§Ã£o com possÃ­veis valores</para>
                     <variablelist>
                         <varlistentry>
                             <term>'r'</term>
                             <listitem>
-                                <para>ou 'right' para justificação direita</para>
+                                <para>ou 'right' para justificaÃ§Ã£o direita</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>'l'</term>
                             <listitem>
-                                <para>ou 'left' para justificação esquerda</para>
+                                <para>ou 'left' para justificaÃ§Ã£o esquerda</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>'c'</term>
                             <listitem>
-                                <para>ou 'center' justificação centrada</para>
+                                <para>ou 'center' justificaÃ§Ã£o centrada</para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
@@ -66,10 +66,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>justify</literal> justifica a coluna de uma matriz de
-            strings de acordo com a opção dada.
+            strings de acordo com a opÃ§Ã£o dada.
         </para>
     </refsection>
     <refsection>
@@ -85,7 +85,7 @@ justify(t,'r')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="length">length</link>

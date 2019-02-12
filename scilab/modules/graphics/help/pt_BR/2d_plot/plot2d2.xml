@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -16,58 +16,58 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="plot2d2" xml:lang="pt">
     <refnamediv>
         <refname>plot2d2</refname>
-        <refpurpose>esboço 2d (funções de degraus)</refpurpose>
+        <refpurpose>esboÃ§o 2d (funÃ§Ãµes de degraus)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>plot2d2([x],y)
             plot2d2([x],y,&lt;opt_args&gt;)
             plot2d2([logflag],x,y,[style,strf,leg,rect,nax])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>args</term>
                 <listitem>
                     <para>
-                        ver <literal>plot2d</literal> para uma descrição dos
-                        parâmetros.
+                        ver <literal>plot2d</literal> para uma descriÃ§Ã£o dos
+                        parÃ¢metros.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>plot2d2</literal> é o mesmo que <literal>plot2d</literal>
-            mas as funções dadas por <literal>(x,y)</literal> são supostas
+            <literal>plot2d2</literal> Ã© o mesmo que <literal>plot2d</literal>
+            mas as funÃ§Ãµes dadas por <literal>(x,y)</literal> sÃ£o supostas
             seccionalmente constantes.
         </para>
-        <para>Por padrão, esboços sucessivos são superpostos. Para limpar os
-            esboços anteriores, use <literal>clf()</literal>.
+        <para>Por padrÃ£o, esboÃ§os sucessivos sÃ£o superpostos. Para limpar os
+            esboÃ§os anteriores, use <literal>clf()</literal>.
         </para>
         <para>
             Entre com o comando <literal>plot2d2()</literal> para visualizar uma
-            demonstração. Note que todos os modos propostos por
+            demonstraÃ§Ã£o. Note que todos os modos propostos por
             <literal>plot2dxx</literal> (xx = 1 a 4) podem ser habilitados
-            utilizando-se <literal>plot2d</literal> e ajustando a opção
-            <literal>polyline_style</literal> para o número correspondente.
+            utilizando-se <literal>plot2d</literal> e ajustando a opÃ§Ã£o
+            <literal>polyline_style</literal> para o nÃºmero correspondente.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-// esboçando uma função de degrau de valor i no segmento [i,i+1]
-// o último segmento não é desenhado
-plot2d2([1:4],[1:4],1,"111","função de degrau",[0,0,5,5])
+// esboÃ§ando uma funÃ§Ã£o de degrau de valor i no segmento [i,i+1]
+// o Ãºltimo segmento nÃ£o Ã© desenhado
+plot2d2([1:4],[1:4],1,"111","funÃ§Ã£o de degrau",[0,0,5,5])
 // compare o seguinte com plot2d
 x=[0:0.1:2*%pi]';
 clf()
 plot2d2(x,[sin(x) sin(2*x) sin(3*x)])
-  // apenas no novo modo gráfico
+  // apenas no novo modo grÃ¡fico
 clf();
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 e=gce();
@@ -77,7 +77,7 @@ e.children(3).polyline_style=2;
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot2d">plot2d</link>

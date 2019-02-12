@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -16,18 +16,18 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fplot3d" xml:lang="pt">
     <refnamediv>
         <refname>fplot3d</refname>
-        <refpurpose>esboço 3d de uma superfície definida por uma
-            função
+        <refpurpose>esboÃ§o 3d de uma superfÃ­cie definida por uma
+            funÃ§Ã£o
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>fplot3d(xr,yr,f,[theta,alpha,leg,flag,ebox])
             fplot3d(xr,yr,f,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>xr</term>
@@ -66,15 +66,15 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>fplot3d</literal> esboça uma superfície definida pela
-            função externa <literal>f</literal> no grid definido por
+            <literal>fplot3d</literal> esboÃ§a uma superfÃ­cie definida pela
+            funÃ§Ã£o externa <literal>f</literal> no grid definido por
             <literal>xr</literal> e <literal>yr</literal>.
         </para>
         <para>
             Entre com o comando <literal>fplot3d()</literal> para ver uma
-            demonstração.
+            demonstraÃ§Ã£o.
         </para>
     </refsection>
     <refsection>
@@ -86,7 +86,7 @@ clf() ;fplot3d(x,y,f,alpha=5,theta=31)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot3d">plot3d</link>

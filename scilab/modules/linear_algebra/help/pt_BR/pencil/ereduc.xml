@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -17,15 +17,15 @@
     <refnamediv>
         <refname>ereduc</refname>
         <refpurpose>computa de forma escada de colunas da matriz por
-            transformações qz
+            transformaÃ§Ãµes qz
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[E,Q,Z [,stair [,rk]]]=ereduc(X,tol)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
@@ -48,26 +48,26 @@
             <varlistentry>
                 <term>Q</term>
                 <listitem>
-                    <para>matriz unitária m x m </para>
+                    <para>matriz unitÃ¡ria m x m </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Z</term>
                 <listitem>
-                    <para>matriz unitária n x n </para>
+                    <para>matriz unitÃ¡ria n x n </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>stair</term>
                 <listitem>
-                    <para>vetor de índices,</para>
+                    <para>vetor de Ã­ndices,</para>
                     <variablelist>
                         <varlistentry>
                             <term>*</term>
                             <listitem>
                                 <para>
                                     <literal>ISTAIR(i) = + j</literal> se o elemento da
-                                    borda <literal>E(i,j)</literal> é uma quina.
+                                    borda <literal>E(i,j)</literal> Ã© uma quina.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -76,7 +76,7 @@
                             <listitem>
                                 <para>
                                     <literal>ISTAIR(i) = - j</literal> se o elemento da
-                                    borda <literal>E(i,j)</literal> não é uma quina.
+                                    borda <literal>E(i,j)</literal> nÃ£o Ã© uma quina.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -95,12 +95,12 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Dada uma matriz X <literal>mx n</literal> (não necessariamente
-            regular), a função ereduc calcula a matriz unitária transformada
-            <literal>E=Q*X*Z</literal> que está na forma escada de colunas (forma
-            trapezoidal). Ainda, o posto da matriz <literal>X</literal> é
+            Dada uma matriz X <literal>mx n</literal> (nÃ£o necessariamente
+            regular), a funÃ§Ã£o ereduc calcula a matriz unitÃ¡ria transformada
+            <literal>E=Q*X*Z</literal> que estÃ¡ na forma escada de colunas (forma
+            trapezoidal). Ainda, o posto da matriz <literal>X</literal> Ã©
             determinado.
         </para>
     </refsection>
@@ -112,7 +112,7 @@ X=[1 2 3;4 5 6]
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="fstair">fstair</link>

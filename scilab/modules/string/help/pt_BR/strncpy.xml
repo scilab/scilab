@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -19,11 +19,11 @@
         <refpurpose>copia caracteres de strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>res = strncpy(str1,num)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>str1</term>
@@ -34,7 +34,7 @@
             <varlistentry>
                 <term>num</term>
                 <listitem>
-                    <para>matriz. Números máximos de caracteres a serem copiados da
+                    <para>matriz. NÃºmeros mÃ¡ximos de caracteres a serem copiados da
                         fonte
                     </para>
                 </listitem>
@@ -48,13 +48,13 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>res = strncpy(str1,num)</literal> copia os primeiros num
             caracteres da fonte para o destino.
         </para>
-        <para>num deve ter as mesmas dimensões que str1, ou deve ser um
-            número.
+        <para>num deve ter as mesmas dimensÃµes que str1, ou deve ser um
+            nÃºmero.
         </para>
     </refsection>
     <refsection>
@@ -66,7 +66,7 @@ strncpy(['scilab','SciLab';'strncpy','strstr'],[1,2;3,4])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strcat">strcat</link>

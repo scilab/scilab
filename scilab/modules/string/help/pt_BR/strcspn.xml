@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strcspn" xml:lang="pt">
     <refnamediv>
         <refname>strcspn</refname>
-        <refpurpose>retorna extensão até um caractere em um string</refpurpose>
+        <refpurpose>retorna extensÃ£o atÃ© um caractere em um string</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>res = strcspn(string_one,string_two)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>string_one</term>
@@ -46,14 +46,14 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>res = strcspn(string_one,string_two)</literal> lê
-            string_one para a primeira ocorrência de qualquer caractere que esteja em
-            string_two, retornando o número de caracteres de string_one lidos antes da
-            primeira ocorrência.
+            <literal>res = strcspn(string_one,string_two)</literal> lÃª
+            string_one para a primeira ocorrÃªncia de qualquer caractere que esteja em
+            string_two, retornando o nÃºmero de caracteres de string_one lidos antes da
+            primeira ocorrÃªncia.
         </para>
-        <para>string_one deve ter as mesmas dimensões que string_two, ou
+        <para>string_one deve ter as mesmas dimensÃµes que string_two, ou
             string_one deve ser um string.
         </para>
     </refsection>
@@ -66,7 +66,7 @@ strcspn(["fcba73","f7cba73"],["312","34567890"])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strspn">strspn</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -19,11 +19,11 @@
         <refpurpose>Retorna o manipulador da entidade corrente</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>e = gce()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>e</term>
@@ -34,8 +34,8 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta rotina retorna o manipulador da última (e ainda existente)
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta rotina retorna o manipulador da Ãºltima (e ainda existente)
             entidade criada.
         </para>
     </refsection>
@@ -56,7 +56,7 @@ delete(gcf()); // deletando a figura corrente
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="gcf">gcf</link>

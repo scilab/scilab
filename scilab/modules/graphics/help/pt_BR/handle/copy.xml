@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -16,17 +16,17 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="copy" xml:lang="pt">
     <refnamediv>
         <refname>copy</refname>
-        <refpurpose>Copia uma entidade de gráficos </refpurpose>
+        <refpurpose>Copia uma entidade de grÃ¡ficos </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>copy(h)
             copy(h,h_axes)
             h_copy=copy(h)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
@@ -51,10 +51,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta rotina pode ser usada para copiar uma entidade de gráficos com
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta rotina pode ser usada para copiar uma entidade de grÃ¡ficos com
             todos os seus valores de propriedades, retornando o manipulador da nova
-            entidade. Se <literal>h_axes</literal> for omitido, a entidade gráfica é
+            entidade. Se <literal>h_axes</literal> for omitido, a entidade grÃ¡fica Ã©
             clonada e copiada no mesmo na mesma entidade Axes raiz.
         </para>
     </refsection>
@@ -72,7 +72,7 @@ copy(p1,a2);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="get">get</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -16,60 +16,60 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="library" xml:lang="pt">
     <refnamediv>
         <refname>library</refname>
-        <refpurpose>descrição de tipo de dado bibilioteca</refpurpose>
+        <refpurpose>descriÃ§Ã£o de tipo de dado bibilioteca</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
-        <para>Uma bibilioteca é um tipo de dado com número 14. Contém um nome de
-            endereço e um conjunto de nomes. Permite o carregamento automático de
-            variáveis utilizando o seguinte algoritmo:
+        <title>DescriÃ§Ã£o</title>
+        <para>Uma bibilioteca Ã© um tipo de dado com nÃºmero 14. ContÃ©m um nome de
+            endereÃ§o e um conjunto de nomes. Permite o carregamento automÃ¡tico de
+            variÃ¡veis utilizando o seguinte algoritmo:
         </para>
-        <para>Suponha o usuário Scilab referencie a variável de nome
+        <para>Suponha o usuÃ¡rio Scilab referencie a variÃ¡vel de nome
             <literal>foo</literal>. O Scilab procura primeiro se
-            <literal>foo</literal> é o nome de uma primitiva, ou de uma variável já
-            definida. Se naõ for, procura por <literal>foo</literal> seqüencialmente
+            <literal>foo</literal> Ã© o nome de uma primitiva, ou de uma variÃ¡vel jÃ¡
+            definida. Se naÃµ for, procura por <literal>foo</literal> seqÃ¼encialmente
             (a mais nova) em toda a biblioteca definida .
         </para>
         <para>
             Suponha que <literal>foo</literal> pertence ao conjunto de nomes da
-            biblioteca <literal>xlib</literal>. Então o Scilab tenta carregar o
+            biblioteca <literal>xlib</literal>. EntÃ£o o Scilab tenta carregar o
             arquivo &lt;xlib-path-name&gt;/foo.bin. &lt;xlib-path-name&gt;/foo.bin
-            deve ter sido criado utilizando-se a função
+            deve ter sido criado utilizando-se a funÃ§Ã£o
             <literal>save</literal>.
         </para>
-        <para>Bibliotecas geralmente são utilizadas para coleções de funções, mas
-            também podem ser utilizadas para coleções de variáveis Scilab.
+        <para>Bibliotecas geralmente sÃ£o utilizadas para coleÃ§Ãµes de funÃ§Ãµes, mas
+            tambÃ©m podem ser utilizadas para coleÃ§Ãµes de variÃ¡veis Scilab.
         </para>
-        <para>Se uma função estiver definida em mais de uma biblioteca, o
-            algoritmo de busca padrão carrega aquela contida na mais nova. É possível
-            forçar o uso de uma biblioteca específica utilizando a notação de
+        <para>Se uma funÃ§Ã£o estiver definida em mais de uma biblioteca, o
+            algoritmo de busca padrÃ£o carrega aquela contida na mais nova. Ã‰ possÃ­vel
+            forÃ§ar o uso de uma biblioteca especÃ­fica utilizando a notaÃ§Ã£o de
             ponto:
         </para>
         <para>
-            <literal>xlib.foo</literal> carrega a variável
+            <literal>xlib.foo</literal> carrega a variÃ¡vel
             <literal>foo</literal> contida em <literal>xlib</literal>, if
-            <literal>foo</literal> for uma função e <literal>xlib.foo(args)</literal>
-            executa as funções.
+            <literal>foo</literal> for uma funÃ§Ã£o e <literal>xlib.foo(args)</literal>
+            executa as funÃ§Ãµes.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-// elemlib é uma biblioteca predefinida
-elementary_functionlib //exibindo o conteúdo da biblioteca
+// elemlib Ã© uma biblioteca predefinida
+elementary_functionlib //exibindo o conteÃºdo da biblioteca
 A=rand(3,3);
 cosm(A) //carregando cosm e executando-o
-whos -name cosm // agora, cosm é uma variável
+whos -name cosm // agora, cosm Ã© uma variÃ¡vel
 elementary_functionlib.sinm //carregando sinm da biblioteca
 elementary_functionlib.cosm(A) //carregando novamente cosm e executando-o
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="lib">lib</link>

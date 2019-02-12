@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xgraduate" xml:lang="pt">
     <refnamediv>
         <refname>xgraduate</refname>
-        <refpurpose>Graduação de eixos</refpurpose>
+        <refpurpose>GraduaÃ§Ã£o de eixos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[xi,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(xmi,xma)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>xmi,xma</term>
@@ -46,17 +46,17 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>xgraduate</literal> retorna as graduações de eixos que são
-            utilizadas pelas rotinas de esboço (com o flag de embelezamento
-            habilitado). Retorna um intervalo <literal>[xi,xa]</literal> que contém o
+            <literal>xgraduate</literal> retorna as graduaÃ§Ãµes de eixos que sÃ£o
+            utilizadas pelas rotinas de esboÃ§o (com o flag de embelezamento
+            habilitado). Retorna um intervalo <literal>[xi,xa]</literal> que contÃ©m o
             dado intervalo <literal>[xmi,xma]</literal> e tal que
         </para>
         <para>
             <literal>xi= kMinr*10^ar</literal>,
             <literal>xa=kMaxr*10^ar</literal> e o intervalo pode ser dividido em
-            <literal>np2</literal> intervalos e cada intervalo é dividido em
+            <literal>np2</literal> intervalos e cada intervalo Ã© dividido em
             <literal>np1</literal> subintervalos.
         </para>
     </refsection>
@@ -67,7 +67,7 @@
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="graduate">graduate</link>

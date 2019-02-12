@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -19,83 +19,83 @@
         <refpurpose>procedimentos Scilab e objetos Scilab</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
-        <para>Funções são procedimentos Scilab ("macro", "função" e "procedure"
+        <title>DescriÃ§Ã£o</title>
+        <para>FunÃ§Ãµes sÃ£o procedimentos Scilab ("macro", "funÃ§Ã£o" e "procedure"
             possuem o mesmo significado).
         </para>
     </refsection>
     <refsection>
-        <title>Definição de Função</title>
-        <para>Geralmente, elas são definidas em arquivos com um edito e carregadas
-            no Scilab através da função <link linkend="exec">exec</link> ou através de
-            uma biblioteca (ver <link linkend="lib">lib</link> ou <link linkend="genlib">genlib</link>). Mas também podem ser definidas on-line
-            (ver <link linkend="deff">deff</link> ou <link linkend="function">function</link>. Uma função é definida por dois
+        <title>DefiniÃ§Ã£o de FunÃ§Ã£o</title>
+        <para>Geralmente, elas sÃ£o definidas em arquivos com um edito e carregadas
+            no Scilab atravÃ©s da funÃ§Ã£o <link linkend="exec">exec</link> ou atravÃ©s de
+            uma biblioteca (ver <link linkend="lib">lib</link> ou <link linkend="genlib">genlib</link>). Mas tambÃ©m podem ser definidas on-line
+            (ver <link linkend="deff">deff</link> ou <link linkend="function">function</link>. Uma funÃ§Ã£o Ã© definida por dois
             componentes:
         </para>
         <itemizedlist>
             <listitem>
-                <para>uma parte "definição de sintaxe" como segue:</para>
+                <para>uma parte "definiÃ§Ã£o de sintaxe" como segue:</para>
                 <programlisting  role='no-scilab-exec'><![CDATA[
 function [y1,...,yn]=foo(x1,...,xm)
 function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
  ]]></programlisting>
             </listitem>
             <listitem>
-                <para>uma seqüência de instruções Scilab.</para>
+                <para>uma seqÃ¼Ãªncia de instruÃ§Ãµes Scilab.</para>
             </listitem>
         </itemizedlist>
-        <para>A linha de "definição de sintaxe" fornece a sintaxe de chamamento
-            "completa" para esta função. As variáveis <literal>yi</literal> são
-            variáveis de saída calculadas em função das variáveis de entrada
-            <literal>xi</literal> e variáveis existentes no Scilab quando a função é
+        <para>A linha de "definiÃ§Ã£o de sintaxe" fornece a sintaxe de chamamento
+            "completa" para esta funÃ§Ã£o. As variÃ¡veis <literal>yi</literal> sÃ£o
+            variÃ¡veis de saÃ­da calculadas em funÃ§Ã£o das variÃ¡veis de entrada
+            <literal>xi</literal> e variÃ¡veis existentes no Scilab quando a funÃ§Ã£o Ã©
             executada.
         </para>
     </refsection>
     <refsection>
-        <title>Chamada de Função</title>
+        <title>Chamada de FunÃ§Ã£o</title>
         <itemizedlist>
             <listitem>
-                <para>A sintaxe de chamamento de função usual é
+                <para>A sintaxe de chamamento de funÃ§Ã£o usual Ã©
                     <literal>[y1,...,yn]=foo(x1,...,xm)</literal>. Listas de argumentos de
-                    entrada ou saída mais curtos que as da definição podem ser usadas. Em
-                    tais casos, apenas as primeiras variáveis da esquerda para direita são
+                    entrada ou saÃ­da mais curtos que as da definiÃ§Ã£o podem ser usadas. Em
+                    tais casos, apenas as primeiras variÃ¡veis da esquerda para direita sÃ£o
                     usadas ou definidas.
                 </para>
                 <para>
-                    A função <link linkend="argn">argn</link> pode ser utilizada
-                    para se o número total real de argumentos de chamada.
+                    A funÃ§Ã£o <link linkend="argn">argn</link> pode ser utilizada
+                    para se o nÃºmero total real de argumentos de chamada.
                 </para>
             </listitem>
             <listitem>
-                <para>É possível definir funções com número máximo indeterminado de
-                    argumentos de entrada ou saída. Isto pode ser feito utilizando-se as
+                <para>Ã‰ possÃ­vel definir funÃ§Ãµes com nÃºmero mÃ¡ximo indeterminado de
+                    argumentos de entrada ou saÃ­da. Isto pode ser feito utilizando-se as
                     palavras-chave <link linkend="varargin">varargin</link> e <link linkend="varargout">varargout</link> keywords. Veja os links para
                     detalhes.
                 </para>
             </listitem>
             <listitem>
-                <para>Também é possível utilizar "argumentos nomeados" para
-                    especificar argumentos de entrada: suponha que a função <function>fun1</function> seja
-                    definida como <code>function y1 = fun1(x1, x2, x3)</code>, então pode ser chamada com uma sintaxe
+                <para>TambÃ©m Ã© possÃ­vel utilizar "argumentos nomeados" para
+                    especificar argumentos de entrada: suponha que a funÃ§Ã£o <function>fun1</function> seja
+                    definida como <code>function y1 = fun1(x1, x2, x3)</code>, entÃ£o pode ser chamada com uma sintaxe
                     como <code>y = fun1(x1=33, x3=[1 2 3])</code>. Dentro de
-                    <function>fun1</function> <varname>x2</varname> será indefinida.
+                    <function>fun1</function> <varname>x2</varname> serÃ¡ indefinida.
                 </para>
-                <para>Também pode ser chamada com sintaxe como
-                    <code>y = fun1(x1=33, y='foo')</code>. Em tal caso, a variável
-                    <varname>y</varname> estará disponível no contexto da função
+                <para>TambÃ©m pode ser chamada com sintaxe como
+                    <code>y = fun1(x1=33, y='foo')</code>. Em tal caso, a variÃ¡vel
+                    <varname>y</varname> estarÃ¡ disponÃ­vel no contexto da funÃ§Ã£o
                     <function>fun1</function>.
                     <note>
-                        Note que o número máximo de argumentos deve
-                        ser menor que ou igual ao número de argumentos de entrada fornais
-                        utilizados na parte de sintaxe da função.
+                        Note que o nÃºmero mÃ¡ximo de argumentos deve
+                        ser menor que ou igual ao nÃºmero de argumentos de entrada fornais
+                        utilizados na parte de sintaxe da funÃ§Ã£o.
                     </note>
                 </para>
-                <para>É possível buscar por variáveis definidas através da função
+                <para>Ã‰ possÃ­vel buscar por variÃ¡veis definidas atravÃ©s da funÃ§Ã£o
                     <link linkend="exists">exists</link>.
                 </para>
             </listitem>
             <listitem>
-                <para>Quando uma função não possui argumento de lado esquerdo e é
+                <para>Quando uma funÃ§Ã£o nÃ£o possui argumento de lado esquerdo e Ã©
                     chamada apenas com argumentos strings, a sintaxe de chamamento pode
                     ser simplificada:
                 </para>
@@ -110,21 +110,21 @@ fun a toto 'a string'
         </itemizedlist>
     </refsection>
     <refsection>
-        <title>Miscelânea</title>
-        <para>Funções Scilab são objetos (com números de tipo 13 ou 11). Elas
-            podem ser manipuladas (construídas, salvas, carregadas, passadas como
-            argumentos,...) como outros tipos de variáveis.
+        <title>MiscelÃ¢nea</title>
+        <para>FunÃ§Ãµes Scilab sÃ£o objetos (com nÃºmeros de tipo 13 ou 11). Elas
+            podem ser manipuladas (construÃ­das, salvas, carregadas, passadas como
+            argumentos,...) como outros tipos de variÃ¡veis.
         </para>
-        <para>Coleções de funções podem ser reunidas em bibliotecas. Funções que
-            começam pelo sinal <literal>%</literal> (ex: <literal>%foo</literal>) são
-            geralmente utilizadas para operações de sobrecarga (ver <link linkend="overloading">overloading</link>) ou são funções para novos tipos
+        <para>ColeÃ§Ãµes de funÃ§Ãµes podem ser reunidas em bibliotecas. FunÃ§Ãµes que
+            comeÃ§am pelo sinal <literal>%</literal> (ex: <literal>%foo</literal>) sÃ£o
+            geralmente utilizadas para operaÃ§Ãµes de sobrecarga (ver <link linkend="overloading">overloading</link>) ou sÃ£o funÃ§Ãµes para novos tipos
             de dados.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-//definição inline (ver function)
+//definiÃ§Ã£o inline (ver function)
 function [x,y]=myfct(a,b)
   x=a+b
   y=a-b
@@ -132,15 +132,15 @@ endfunction
 
 [x,y]=myfct(3,2)
 
-//definição inline (ver deff)
+//definiÃ§Ã£o inline (ver deff)
 deff('[x,y]=myfct(a,b)',['x=a+b';
                          'y=a-b'])
-// definição em um arquivo ASCI (ver exec)
+// definiÃ§Ã£o em um arquivo ASCI (ver exec)
 exec SCI/modules/elementary_functions/macros/asinh.sci;
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="function">function</link>

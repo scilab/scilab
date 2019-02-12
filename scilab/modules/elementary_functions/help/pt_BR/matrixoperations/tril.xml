@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,32 +19,32 @@
         <refpurpose>parte triangular inferior de uma matriz</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>tril(x [,k])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>matriz (de reais, complexos, polinômios ou razões de
-                        polinômios)
+                    <para>matriz (de reais, complexos, polinÃ´mios ou razÃµes de
+                        polinÃ´mios)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>k</term>
                 <listitem>
-                    <para>inteiro (valor padrão 0)</para>
+                    <para>inteiro (valor padrÃ£o 0)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Parte triangular inferior de uma matriz.
-            <literal>tril(x,k)</literal> é formada pelas entradas abaixo da k-ésima
+            <literal>tril(x,k)</literal> Ã© formada pelas entradas abaixo da k-Ã©sima
             diagonal : k&gt;0 (acima da diagonal superior) e k&lt;0 (diagonais abaixo
             da diagonal principal).
         </para>
@@ -58,7 +58,7 @@ tril([1/s,1/s;1/s,1])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="triu">triu</link>

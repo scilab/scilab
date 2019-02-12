@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="pencan" xml:lang="pt">
     <refnamediv>
         <refname>pencan</refname>
-        <refpurpose>forma canônica de feixe de matrizes</refpurpose>
+        <refpurpose>forma canÃ´nica de feixe de matrizes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento</title>
+        <title> SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[Q,M,i1]=pencan(Fs)
             [Q,M,i1]=pencan(E,A)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>Fs</term>
@@ -44,7 +44,7 @@
             <varlistentry>
                 <term>Q,M</term>
                 <listitem>
-                    <para>duas matrizes não-singulares de reais</para>
+                    <para>duas matrizes nÃ£o-singulares de reais</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -56,15 +56,15 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             Dado o feixe regular <literal>Fs=s*E-A</literal>,
             <literal>pencan</literal> retorna as matrizes <literal>Q</literal> e
-            <literal>M</literal> tais que <literal>M*(s*E-A)*Q</literal> está na forma
-            "canônica".
+            <literal>M</literal> tais que <literal>M*(s*E-A)*Q</literal> estÃ¡ na forma
+            "canÃ´nica".
         </para>
         <para>
-            <literal>M*E*Q</literal> é uma matriz de blocos
+            <literal>M*E*Q</literal> Ã© uma matriz de blocos
         </para>
         <programlisting role=""><![CDATA[
 [I,0;
@@ -75,7 +75,7 @@
             tamanho da matriz acima <literal>I</literal>.
         </para>
         <para>
-            <literal>M*A*Q</literal> é uma matriz de blocos:
+            <literal>M*A*Q</literal> Ã© uma matriz de blocos:
         </para>
         <programlisting role=""><![CDATA[
 [Ar,0;
@@ -94,7 +94,7 @@ det(W($-2:$,$-2:$))
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="glever">glever</link>

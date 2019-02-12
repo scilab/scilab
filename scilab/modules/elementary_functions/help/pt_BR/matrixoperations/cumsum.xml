@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -21,7 +21,7 @@
     </refnamediv>
 
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>y=cumsum(x)
             y=cumsum(x,'r') or y=cumsum(x,1)
             y=cumsum(x,'c') or y=cumsum(x,2)
@@ -29,7 +29,7 @@
     </refsynopsisdiv>
 
     <refsection role="parameters">
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -47,7 +47,7 @@
     </refsection>
 
     <refsection role="description">
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             Para um vetor ou uma matriz <term>x</term>,
             <literal>y=cumsum(x)</literal> retorna em <term>y</term> a soma
@@ -95,8 +95,8 @@
             <literal>y=cumsum(x,"*")</literal> is equivalent to <literal>y=cumsum(x)</literal>
         </para>
         <para>
-            <literal>y=cumsum(x,'m')</literal> é a soma cumulativa ao longo da
-            primeira dimensão "não-singleton" de <term>x</term> (para
+            <literal>y=cumsum(x,'m')</literal> Ã© a soma cumulativa ao longo da
+            primeira dimensÃ£o "nÃ£o-singleton" de <term>x</term> (para
             compatibilidade com o Matlab).
         </para>
         <para>
@@ -154,7 +154,7 @@ for k=2:m;w(k,:)=w(k-1,:)+a(k,:);end;w-cumsum(a,'r')
     </refsection>
 
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cumprod">cumprod</link>

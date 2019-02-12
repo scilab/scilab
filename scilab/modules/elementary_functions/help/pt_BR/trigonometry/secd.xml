@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Ajouter ici d'éventuels commentaires sur le fichier XML
+ * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="secd" xml:lang="pt">
     <refnamediv>
@@ -10,11 +10,11 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>y = secd(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -31,18 +31,18 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            as entradas de <literal>y</literal> são as secantes
+            as entradas de <literal>y</literal> sÃ£o as secantes
             <literal>1/cos</literal> das entradas de <literal>x</literal> dadas em
-            graus. Os resultados são reais e estão em <literal>]-%inf -1] U [1
+            graus. Os resultados sÃ£o reais e estÃ£o em <literal>]-%inf -1] U [1
                 %inf[
             </literal>
             .para entradas iguais a <literal>n*180</literal> com
-            <literal>n</literal> inteiro, o resultado é exatamente
+            <literal>n</literal> inteiro, o resultado Ã© exatamente
             <literal>-1</literal> ou <literal>+1</literal>. para entradas iguais a
-            <literal>n*90</literal> com <literal>n</literal> inteiro e ímpar, o
-            resultado é infinito (ou um erro dependendo do modo <link linkend="ieee">ieee</link>).
+            <literal>n*90</literal> com <literal>n</literal> inteiro e Ã­mpar, o
+            resultado Ã© infinito (ou um erro dependendo do modo <link linkend="ieee">ieee</link>).
         </para>
     </refsection>
     <refsection>
@@ -53,7 +53,7 @@ sec(%pi/2)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cosd">cosd</link>

@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="user" xml:lang="pt">
     <refnamediv>
         <refname>user</refname>
         <refpurpose>interface para rotinas FORTRAN ou C</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[s_1,s_2,...,s_lhs]=user(e_1,e_2,...,e_rhs)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
-        <para>Com este comando, é possível utilizar um programa externo como um
-            comando do Scilab onde <literal>(s_1,s_2,...,s_lhs)</literal> são as
-            variáveis de saída e<literal> (e_1,e_2,...,e_rhs)</literal> asão as
-            variáveis de entrada. Para inserir este comando no Scilab, é necessário
+        <title>DescriÃ§Ã£o</title>
+        <para>Com este comando, Ã© possÃ­vel utilizar um programa externo como um
+            comando do Scilab onde <literal>(s_1,s_2,...,s_lhs)</literal> sÃ£o as
+            variÃ¡veis de saÃ­da e<literal> (e_1,e_2,...,e_rhs)</literal> asÃ£o as
+            variÃ¡veis de entrada. Para inserir este comando no Scilab, Ã© necessÃ¡rio
             escrever algumas linhas na subrotina FORTRAN <literal>user</literal> do
             Scilab.
         </para>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="call">call</link>

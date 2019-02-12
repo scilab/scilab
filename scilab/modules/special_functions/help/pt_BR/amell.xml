@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="amell" xml:lang="pt">
     <refnamediv>
         <refname>amell</refname>
-        <refpurpose>função "am" de Jacobi</refpurpose>
+        <refpurpose>funÃ§Ã£o "am" de Jacobi</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[sn]=amell(u,k)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>u</term>
@@ -46,17 +46,17 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Computa a função elíptica de Jacobi <literal>am(u,k)</literal> onde
-            <literal>k</literal> é o parâmetro e <literal>u</literal> é o argumento.
-            Se <literal>u</literal> é um vetor <literal>sn</literal> é o vetor dos
-            valores computados (elemento a elemento) . Usado na função
+            Computa a funÃ§Ã£o elÃ­ptica de Jacobi <literal>am(u,k)</literal> onde
+            <literal>k</literal> Ã© o parÃ¢metro e <literal>u</literal> Ã© o argumento.
+            Se <literal>u</literal> Ã© um vetor <literal>sn</literal> Ã© o vetor dos
+            valores computados (elemento a elemento) . Usado na funÃ§Ã£o
             <literal>%sn</literal>.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="delip">delip</link>

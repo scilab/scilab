@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="abort" xml:lang="pt">
     <refnamediv>
         <refname>abort</refname>
-        <refpurpose>Interrupção de avaliação</refpurpose>
+        <refpurpose>InterrupÃ§Ã£o de avaliaÃ§Ã£o</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>abort</literal> interrompe a avaliação corrente e retrona
-            ao prompt de comando. Dentro de um nível de <literal>pause</literal> ,
-            <literal>abort</literal> retorna ao prompt de nível 0.
+            <literal>abort</literal> interrompe a avaliaÃ§Ã£o corrente e retrona
+            ao prompt de comando. Dentro de um nÃ­vel de <literal>pause</literal> ,
+            <literal>abort</literal> retorna ao prompt de nÃ­vel 0.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="quit">quit</link>

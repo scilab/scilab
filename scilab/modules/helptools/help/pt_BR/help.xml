@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,27 +19,27 @@
         <refpurpose>comando de ajuda on-line</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>help(key)
             help
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>key</term>
                 <listitem>
-                    <para>string. Fornece a página de ajuda a ser encontrada</para>
+                    <para>string. Fornece a pÃ¡gina de ajuda a ser encontrada</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>help</literal> sem argumentos fornece a página de
-            hipertextos dos capítulos de ajuda.
+            <literal>help</literal> sem argumentos fornece a pÃ¡gina de
+            hipertextos dos capÃ­tulos de ajuda.
         </para>
         <para>
             <literal>help(key)</literal> exibe o arquivo de ajuda Scilab
@@ -48,12 +48,12 @@
             <literal>apropos(key)</literal>.
         </para>
         <para>
-            Ver <link linkend="man">man</link> para mais explicações sobre como
-            escrever novas páginas.
+            Ver <link linkend="man">man</link> para mais explicaÃ§Ãµes sobre como
+            escrever novas pÃ¡ginas.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="apropos">apropos</link>

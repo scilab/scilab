@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="move" xml:lang="pt">
     <refnamediv>
         <refname>move</refname>
-        <refpurpose>Move uma entidade gráfica e seus galhos. </refpurpose>
+        <refpurpose>Move uma entidade grÃ¡fica e seus galhos. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>move(h,xy)
             move(h,xy,"alone")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
@@ -38,7 +38,7 @@
                 <listitem>
                     <para>
                         um array <literal>[dx,dy]</literal> que fornece o vetor
-                        translação a ser aplicado
+                        translaÃ§Ã£o a ser aplicado
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,10 +51,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta rotina pode ser usada para aplicar uma translação em uma
-            entidade de gráficos. Se a entidade tiver galhos (unidades de dependência
-            hierárquica), elas também serão transladadas.
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta rotina pode ser usada para aplicar uma translaÃ§Ã£o em uma
+            entidade de grÃ¡ficos. Se a entidade tiver galhos (unidades de dependÃªncia
+            hierÃ¡rquica), elas tambÃ©m serÃ£o transladadas.
         </para>
         <para>
             Dada a palavra chave <literal>"alone"</literal> , apenas a unidade
@@ -70,7 +70,7 @@
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="get">get</link>

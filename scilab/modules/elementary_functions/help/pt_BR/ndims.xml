@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
@@ -16,10 +16,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ndims" xml:lang="pt">
     <refnamediv>
         <refname>ndims</refname>
-        <refpurpose>número de dimensões de um array</refpurpose>
+        <refpurpose>nÃºmero de dimensÃµes de um array</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
@@ -30,16 +30,16 @@
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>inteiro, o número de dimensões do array</para>
+                    <para>inteiro, o nÃºmero de dimensÃµes do array</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>n=ndims(A)</literal> retorna o número de dimensões de um
-            array <literal>A</literal>. <literal>n</literal> é maior que ou igual a
+            <literal>n=ndims(A)</literal> retorna o nÃºmero de dimensÃµes de um
+            array <literal>A</literal>. <literal>n</literal> Ã© maior que ou igual a
             2.
         </para>
     </refsection>
@@ -57,7 +57,7 @@ ndims(H)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="size">size</link>

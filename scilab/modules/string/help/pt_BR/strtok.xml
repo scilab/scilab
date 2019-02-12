@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -19,11 +19,11 @@
         <refpurpose>divide um string em fichas (tokens)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>res = strtok(str,delimiters)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>str</term>
@@ -46,10 +46,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>res = strtok(str,delimiters)</literal> divide str em
-            fichas, que são seqüências de caracteres contíguos separados por qualquer
+            fichas, que sÃ£o seqÃ¼Ãªncias de caracteres contÃ­guos separados por qualquer
             um dos caracteres que fazem parte do string delimiters (delimiters =
             delimitadores).
         </para>
@@ -68,7 +68,7 @@ disp(TOKENS);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strrchr">strrchr</link>

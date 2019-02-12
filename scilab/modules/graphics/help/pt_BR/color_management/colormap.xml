@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -19,28 +19,28 @@
         <refpurpose>mapa de cores</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Um mapa de cores <literal>cmap</literal> é definido por uma matriz m
-            x 3 . m é o número de cores. A cor de número i é dada pela tripla
+            Um mapa de cores <literal>cmap</literal> Ã© definido por uma matriz m
+            x 3 . m Ã© o nÃºmero de cores. A cor de nÃºmero i Ã© dada pela tripla
             <literal>cmap(i,1)</literal>, <literal>cmap(i,2)</literal>
-            <literal>cmap(i,3)</literal> correspondentes às intensidades de vermelho,
+            <literal>cmap(i,3)</literal> correspondentes Ã s intensidades de vermelho,
             verde e azul entre 0 e 1.
         </para>
-        <para>De início, 32 cores são definidas no mapa de cores. Você pode
-            modificar o mapa de cores de uma figura através da opção
-            <literal>set(f,"color_map",cmap)</literal> onde <literal>f</literal> é o
+        <para>De inÃ­cio, 32 cores sÃ£o definidas no mapa de cores. VocÃª pode
+            modificar o mapa de cores de uma figura atravÃ©s da opÃ§Ã£o
+            <literal>set(f,"color_map",cmap)</literal> onde <literal>f</literal> Ã© o
             manipulador da figura.
         </para>
-        <para>Cada cor no mapa de cores possui um identificador que você deve
-            utilizar para especificar a cor na maioria das funções de esboço. Para
-            visualizar os identificadores, use a função <link linkend="getcolor">getcolor</link>.
+        <para>Cada cor no mapa de cores possui um identificador que vocÃª deve
+            utilizar para especificar a cor na maioria das funÃ§Ãµes de esboÃ§o. Para
+            visualizar os identificadores, use a funÃ§Ã£o <link linkend="getcolor">getcolor</link>.
         </para>
         <para>
-            As funções <link linkend="hotcolormap">hotcolormap</link>, <link linkend="jetcolormap">jetcolormap</link> e <link linkend="graycolormap">graycolormap</link> fornecem mapas de cores com
-            variação contínua de cores.
+            As funÃ§Ãµes <link linkend="hotcolormap">hotcolormap</link>, <link linkend="jetcolormap">jetcolormap</link> e <link linkend="graycolormap">graycolormap</link> fornecem mapas de cores com
+            variaÃ§Ã£o contÃ­nua de cores.
         </para>
-        <para>Você pode obter o mapa de cores padrão através de
+        <para>VocÃª pode obter o mapa de cores padrÃ£o atravÃ©s de
             <literal>cmap=get(sdf(),"color_map")</literal>.
         </para>
     </refsection>
@@ -58,7 +58,7 @@ f.color_map=get(sdf(),"color_map");
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="autumncolormap">autumncolormap</link>

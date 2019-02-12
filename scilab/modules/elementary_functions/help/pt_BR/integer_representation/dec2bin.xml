@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dec2bin" xml:lang="pt">
     <refnamediv>
         <refname>dec2bin</refname>
-        <refpurpose>representação binária</refpurpose>
+        <refpurpose>representaÃ§Ã£o binÃ¡ria</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[str]=dec2bin(x[,n])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -46,18 +46,18 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             Dado <literal>x</literal>, um inteiro (ou um vetor/matriz de
-            inteiros) positivo, esta função retorna um string (ou um vetor coluna de
-            strings) que é a representação binária de <literal>x. </literal>Se a
-            dimensão de <literal>x</literal> é superior a 1, então cada componente do
-            vetor coluna <literal>str</literal> é a representação binária dos
-            componentes de <literal>x</literal> (i.e <literal>str(i)</literal> é a
-            representação binária de <literal>x(i)</literal>). Se o comprimento dos
-            componentes de <literal>str</literal> é menor que <literal>n</literal> (
-            i.e length str(i) &lt; n ), então, adicione aos componentes de
-            <literal>str</literal> os caracteres '0' à esquerda, para se obter o
+            inteiros) positivo, esta funÃ§Ã£o retorna um string (ou um vetor coluna de
+            strings) que Ã© a representaÃ§Ã£o binÃ¡ria de <literal>x. </literal>Se a
+            dimensÃ£o de <literal>x</literal> Ã© superior a 1, entÃ£o cada componente do
+            vetor coluna <literal>str</literal> Ã© a representaÃ§Ã£o binÃ¡ria dos
+            componentes de <literal>x</literal> (i.e <literal>str(i)</literal> Ã© a
+            representaÃ§Ã£o binÃ¡ria de <literal>x(i)</literal>). Se o comprimento dos
+            componentes de <literal>str</literal> Ã© menor que <literal>n</literal> (
+            i.e length str(i) &lt; n ), entÃ£o, adicione aos componentes de
+            <literal>str</literal> os caracteres '0' Ã  esquerda, para se obter o
             comprimento dos componentes igual a <literal>n</literal>
         </para>
     </refsection>
@@ -69,9 +69,9 @@ x=86;
 str=dec2bin(x)
 
 // exemplo 2 :
-// a representação binária de 86 é: '1010110'
-// seu comprimento é 7(menor que n), então, temos adicionamos a str,
-//8 vezes o caracteres '0'  (à esquerda)
+// a representaÃ§Ã£o binÃ¡ria de 86 Ã©: '1010110'
+// seu comprimento Ã© 7(menor que n), entÃ£o, temos adicionamos a str,
+//8 vezes o caracteres '0'  (Ã  esquerda)
 x=86;n=15;
 str=dec2bin(x,n)
 
@@ -81,7 +81,7 @@ z=dec2bin(x)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="base2dec">base2dec</link>

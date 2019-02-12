@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Serge STEER
@@ -16,19 +16,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="coeff" xml:lang="pt">
     <refnamediv>
         <refname>coeff</refname>
-        <refpurpose>coeficientes de matrizes de polinômios</refpurpose>
+        <refpurpose>coeficientes de matrizes de polinÃ´mios</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[C]=coeff(Mp [,v])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>Mp</term>
                 <listitem>
-                    <para>matriz de polinômios</para>
+                    <para>matriz de polinÃ´mios</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -47,24 +47,24 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>C=coeff(Mp)</literal> retorna em uma matriz grande
-            <literal>C</literal> os coeficientes da matriz de polinômios
-            <literal>Mp</literal> . <literal>C</literal> é particionada como
-            <literal>C=[C0,C1,...,Ck]</literal> onde os <literal>Ci</literal> estão
+            <literal>C</literal> os coeficientes da matriz de polinÃ´mios
+            <literal>Mp</literal> . <literal>C</literal> Ã© particionada como
+            <literal>C=[C0,C1,...,Ck]</literal> onde os <literal>Ci</literal> estÃ£o
             dispostos em ordem crescente, <literal>k =
                 max(degree(Mp))
             </literal>
         </para>
         <para>
             <literal>C=coeff(Mp,v)</literal> retorna a matriz de coeficientes
-            com graus em <literal>v</literal> . (<literal>v</literal> é um vetor linha
+            com graus em <literal>v</literal> . (<literal>v</literal> Ã© um vetor linha
             ou coluna).
         </para>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="poly">poly</link>

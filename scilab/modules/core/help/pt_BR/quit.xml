@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="quit" xml:lang="pt">
     <refnamediv>
         <refname>quit</refname>
-        <refpurpose>Decresce o nível de pausa ou termina o Scilab</refpurpose>
+        <refpurpose>Decresce o nÃ­vel de pausa ou termina o Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>quit</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             O comando <literal>quit</literal> tem dois significados diferentes
             dependendo do contexto de chamamento:
@@ -17,12 +17,12 @@
         <variablelist>
             <varlistentry>
                 <term>
-                    Se não houver <literal>pause</literal> ativo,
+                    Se nÃ£o houver <literal>pause</literal> ativo,
                 </term>
                 <listitem>
                     <para>
-                        Então o comando <literal>quit</literal> faz o Scilab terminar,
-                        mesmo que o comando seja chamado dentro de uma função.
+                        EntÃ£o o comando <literal>quit</literal> faz o Scilab terminar,
+                        mesmo que o comando seja chamado dentro de uma funÃ§Ã£o.
                     </para>
                 </listitem>
             </varlistentry>
@@ -32,8 +32,8 @@
                 </term>
                 <listitem>
                     <para>
-                        Então o comando <literal>quit</literal> aborta instruções
-                        iniciadas neste nível de pausa e termina o nível de pausa
+                        EntÃ£o o comando <literal>quit</literal> aborta instruÃ§Ãµes
+                        iniciadas neste nÃ­vel de pausa e termina o nÃ­vel de pausa
                         corrente.
                     </para>
                 </listitem>
@@ -47,10 +47,10 @@
 function foo(x),if x then quit,end,endfunction
 foo(%t) //quits scilab
 
-//terminando instrução iniciada num contexto de pausa
+//terminando instruÃ§Ã£o iniciada num contexto de pausa
 function foo(x),if x then quit,end,endfunction
 pause
-foo(%t) //retorna ao nível de prompt principal
+foo(%t) //retorna ao nÃ­vel de prompt principal
 
 function foo1(x),
   mprintf('P1\n')
@@ -62,7 +62,7 @@ foo1(%t) //enter com quit no prompt seguinte
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="pause">pause</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isnan" xml:lang="pt">
     <refnamediv>
         <refname>isnan</refname>
-        <refpurpose>verifica entradas NaN ("não é um número")</refpurpose>
+        <refpurpose>verifica entradas NaN ("nÃ£o Ã© um nÃºmero")</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>r=isnan(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -36,11 +36,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>isnan(x)</literal> retorna um vetor ou matriz de valores
-            booleanos que contém entradas verdadeiras correspondentes às entradas NaN
-            de <literal>x</literal> e entradas falsas correspondentes às entradas
+            booleanos que contÃ©m entradas verdadeiras correspondentes Ã s entradas NaN
+            de <literal>x</literal> e entradas falsas correspondentes Ã s entradas
             regulares de <literal>x</literal> .
         </para>
     </refsection>
@@ -51,7 +51,7 @@ isnan([1 0.01 -%nan %inf-%inf])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="isinf">isinf</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
         <refpurpose>matriz companheira</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>A=companion(p)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>polinômio ou vetor de polinômios </para>
+                    <para>polinÃ´mio ou vetor de polinÃ´mios </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -40,19 +40,19 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Retorna uma matriz quadrada <literal>A</literal> com o polinômio
-            característico igual a <literal>p</literal> se <literal>p</literal> é
-            mônico. Se <literal>p</literal> não é mônico, o polinômio característico
-            de <literal>A</literal> é igual a <literal>p/c</literal> onde
-            <literal>c</literal> é o coeficiente do termo de maior grau em
+            Retorna uma matriz quadrada <literal>A</literal> com o polinÃ´mio
+            caracterÃ­stico igual a <literal>p</literal> se <literal>p</literal> Ã©
+            mÃ´nico. Se <literal>p</literal> nÃ£o Ã© mÃ´nico, o polinÃ´mio caracterÃ­stico
+            de <literal>A</literal> Ã© igual a <literal>p/c</literal> onde
+            <literal>c</literal> Ã© o coeficiente do termo de maior grau em
             <literal>p</literal>.
         </para>
         <para>
-            Se <literal>p</literal> é um vetor de polinômios mônicos,
-            <literal>A</literal> é diagonal em blocos, e o polinômio característico do
-            i-ésimo bloco é <literal>p(i)</literal>.
+            Se <literal>p</literal> Ã© um vetor de polinÃ´mios mÃ´nicos,
+            <literal>A</literal> Ã© diagonal em blocos, e o polinÃ´mio caracterÃ­stico do
+            i-Ã©simo bloco Ã© <literal>p(i)</literal>.
         </para>
     </refsection>
     <refsection>
@@ -66,7 +66,7 @@ spec(companion(p))
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também</title>
+        <title> Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="spec">spec</link>

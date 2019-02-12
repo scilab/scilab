@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,26 +19,26 @@
         <refpurpose>determinante</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>det(X)
             [e,m]=det(X)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>matriz quadrada de reais ou complexos, matriz de polinômios ou
-                        de razões de polinômios
+                    <para>matriz quadrada de reais ou complexos, matriz de polinÃ´mios ou
+                        de razÃµes de polinÃ´mios
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>m</term>
                 <listitem>
-                    <para>número real ou complexo, a mantissa de base 10 do
+                    <para>nÃºmero real ou complexo, a mantissa de base 10 do
                         determinante
                     </para>
                 </listitem>
@@ -52,23 +52,23 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>det(X)</literal> ( <literal>m*10^e</literal> é o
+            <literal>det(X)</literal> ( <literal>m*10^e</literal> Ã© o
             determinante da matriz quadrada <literal>X)</literal>.
         </para>
         <para>
-            Para uma matriz de polinômios, <literal>det(X)</literal> é
+            Para uma matriz de polinÃ´mios, <literal>det(X)</literal> Ã©
             equivalente a <literal>determ(X)</literal>.
         </para>
         <para>
-            Para matrizes de razões de polinômios <literal>det(X)</literal> é
+            Para matrizes de razÃµes de polinÃ´mios <literal>det(X)</literal> Ã©
             equivalente a <literal>detr(X)</literal>.
         </para>
     </refsection>
     <refsection>
-        <title>Referências</title>
-        <para>As computações da função det são baseadas nas rotinas do LAPACK
+        <title>ReferÃªncias</title>
+        <para>As computaÃ§Ãµes da funÃ§Ã£o det sÃ£o baseadas nas rotinas do LAPACK
             DGETRF para matrizes de reais e ZGETRF para o caso de matrizes de
             complexos.
         </para>
@@ -84,7 +84,7 @@ det(A), prod(spec(A))
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também</title>
+        <title> Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="detr">detr</link>

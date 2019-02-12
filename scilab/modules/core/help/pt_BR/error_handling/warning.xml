@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="warning" xml:lang="pt">
     <refnamediv>
         <refname>warning</refname>
         <refpurpose>mensagens de aviso</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>warning('string')
             warning('off')
             warning('on')
@@ -13,7 +13,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             Imprime o string <literal>'string'</literal> em uma mensagem de
             aviso
@@ -32,9 +32,9 @@
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 warning('on')
-warning('este é um aviso')
+warning('este Ã© um aviso')
 warning('off')
-warning('este é um aviso')
+warning('este Ã© um aviso')
 warning('query')
 warning('on')
 // Example with a localized message
@@ -42,7 +42,7 @@ warning(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="error">error</link>

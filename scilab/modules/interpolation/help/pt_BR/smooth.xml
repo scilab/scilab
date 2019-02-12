@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="smooth" xml:lang="pt">
     <refnamediv>
         <refname>smooth</refname>
-        <refpurpose>suavização por funções splines</refpurpose>
+        <refpurpose>suavizaÃ§Ã£o por funÃ§Ãµes splines</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[pt]=smooth(ptd [,step])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>ptd</term>
@@ -20,7 +20,7 @@
             <varlistentry>
                 <term>step</term>
                 <listitem>
-                    <para>real (passo de discretização das abscissas) </para>
+                    <para>real (passo de discretizaÃ§Ã£o das abscissas) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -32,12 +32,12 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta função computa a interpolação por funções splines para um dado
-            conjunto de pontos no plano. As coordenadas são
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta funÃ§Ã£o computa a interpolaÃ§Ã£o por funÃ§Ãµes splines para um dado
+            conjunto de pontos no plano. As coordenadas sÃ£o
             <literal>(ptd(1,i),ptd(2,i))</literal>. Os componentes
-            <literal>ptd(1,:)</literal> devem estar em ordem crescente. O valor padrão
-            para o para step é
+            <literal>ptd(1,:)</literal> devem estar em ordem crescente. O valor padrÃ£o
+            para o para step Ã©
             <literal>abs(max(ptd(1,:))-min(ptd(1,:)))/100</literal>
         </para>
     </refsection>
@@ -52,7 +52,7 @@ plot2d(yi(1,:)',yi(2,:)',[1],"000");
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="splin">splin</link>

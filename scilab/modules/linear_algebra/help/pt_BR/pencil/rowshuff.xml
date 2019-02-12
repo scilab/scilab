@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
         <refpurpose>algoritmo de embaralhamento</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[Ws,Fs1]=rowshuff(Fs, [alfa])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>Fs</term>
@@ -36,7 +36,7 @@
             <varlistentry>
                 <term>Ws</term>
                 <listitem>
-                    <para>matriz de polinômios </para>
+                    <para>matriz de polinÃ´mios </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -44,7 +44,7 @@
                 <listitem>
                     <para>
                         feixe quadrado de reais <literal>F1s = s*E1 -A1</literal> com
-                        <literal>E1</literal> não-singular
+                        <literal>E1</literal> nÃ£o-singular
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,31 +52,31 @@
                 <term>alfa</term>
                 <listitem>
                     <para>
-                        número real (<literal>alfa = 0</literal> é o valor
-                        padrão)
+                        nÃºmero real (<literal>alfa = 0</literal> Ã© o valor
+                        padrÃ£o)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Algoritmo de embaralhamento: dado o feixe
             <literal>Fs=s*E-A</literal>, retorna Ws=W(s) (matriz quadrada de
-            polinômios) tal que:
+            polinÃ´mios) tal que:
         </para>
         <para>
-            <literal> Fs1 = s*E1-A1 = W(s)*(s*E-A) </literal> é um feixe com
-            matriz <literal>E1</literal> não-singular.
+            <literal> Fs1 = s*E1-A1 = W(s)*(s*E-A) </literal> Ã© um feixe com
+            matriz <literal>E1</literal> nÃ£o-singular.
         </para>
         <para>
-            Isto é possível se, e só se, o feixe <literal>Fs = s*E-A</literal> é
-            regular (i.e., invertível). O grau de <literal>Ws</literal> é igual ao
-            índice do feixe.
+            Isto Ã© possÃ­vel se, e sÃ³ se, o feixe <literal>Fs = s*E-A</literal> Ã©
+            regular (i.e., invertÃ­vel). O grau de <literal>Ws</literal> Ã© igual ao
+            Ã­ndice do feixe.
         </para>
         <para>
-            Os pólos no infinito de<literal> Fs</literal> asão colocados para
-            <literal>alfa</literal> e os zeros de <literal>Ws</literal> estão em
+            Os pÃ³los no infinito de<literal> Fs</literal> asÃ£o colocados para
+            <literal>alfa</literal> e os zeros de <literal>Ws</literal> estÃ£o em
             <literal>alfa</literal>.
         </para>
         <para>
@@ -89,16 +89,16 @@
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 F=randpencil([],[2],[1,2,3],[]);
-F=rand(5,5)*F*rand(5,5);   // feixe regular  5 x 5 com três avaliações em 1,2,3
+F=rand(5,5)*F*rand(5,5);   // feixe regular  5 x 5 com trÃªs avaliaÃ§Ãµes em 1,2,3
 [Ws,F1]=rowshuff(F,-1);
 [E1,A1]=pen2ea(F1);
-svd(E1)           //E1 não-singular
+svd(E1)           //E1 nÃ£o-singular
 roots(det(Ws))
 clean(inv(F)-inv(F1)*Ws,1.d-7)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="pencan">pencan</link>

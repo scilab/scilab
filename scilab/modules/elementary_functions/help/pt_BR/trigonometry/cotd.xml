@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -21,11 +21,11 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>y=cotd(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -36,7 +36,7 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>array de reais com as mesmas dimensões que
+                    <para>array de reais com as mesmas dimensÃµes que
                         <literal>x</literal>.
                     </para>
                 </listitem>
@@ -44,16 +44,16 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            As entradas <literal>y</literal> são as cotangentes das entradas
+            As entradas <literal>y</literal> sÃ£o as cotangentes das entradas
             correspondentes de <literal>x</literal> supostamente dadas em graus.
             <literal>t=cos(x)./sin(x)</literal>. Para entradas iguais a
             <literal>n*180</literal> com <literal>n</literal> inteiro, os resultados
-            são infinitos, enquanto que com <literal>cotg(n*%pi)</literal> o resultado
-            é grande, pois <literal>%pi</literal> não pode ser representado
+            sÃ£o infinitos, enquanto que com <literal>cotg(n*%pi)</literal> o resultado
+            Ã© grande, pois <literal>%pi</literal> nÃ£o pode ser representado
             exatamente. para entradas iguais a <literal>n*90</literal> com
-            <literal>n</literal> inteiro e ímpar, o resultado é exatamente 0.
+            <literal>n</literal> inteiro e Ã­mpar, o resultado Ã© exatamente 0.
         </para>
     </refsection>
     <refsection>
@@ -64,7 +64,7 @@ cotd(x)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cotg">cotg</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,29 +16,29 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="diff" xml:lang="pt">
     <refnamediv>
         <refname>diff</refname>
-        <refpurpose>diferença e derivada discreta</refpurpose>
+        <refpurpose>diferenÃ§a e derivada discreta</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>y=diff(x)
             y=diff(x [,n [,dim]])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
                     <para>vetor ou matriz (de reais, complexos, esparso(a) ou de
-                        polinômios)
+                        polinÃ´mios)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>inteiro, ordem da diferenciação</para>
+                    <para>inteiro, ordem da diferenciaÃ§Ã£o</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -57,26 +57,26 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>y=diff(x)</literal> computa a função de diferença
+            <literal>y=diff(x)</literal> computa a funÃ§Ã£o de diferenÃ§a
             y=x(2:$)-x(1:$-1)
         </para>
         <para>
-            <literal>diff(x,n,dim)</literal> é a n-ésima função de diferença ao
-            longo da dimensão <literal>dim</literal>.
+            <literal>diff(x,n,dim)</literal> Ã© a n-Ã©sima funÃ§Ã£o de diferenÃ§a ao
+            longo da dimensÃ£o <literal>dim</literal>.
         </para>
         <para>
-            <literal>diff(x,n,"*")</literal> é equivalente a
+            <literal>diff(x,n,"*")</literal> Ã© equivalente a
             diff(x(:),n).
         </para>
         <para>
-            O valor padrão para <literal>n</literal> é 1. O valor padrão para
-            <literal>dim</literal> é <literal>"*"</literal>.
+            O valor padrÃ£o para <literal>n</literal> Ã© 1. O valor padrÃ£o para
+            <literal>dim</literal> Ã© <literal>"*"</literal>.
         </para>
         <para>
-            <literal>dim='r'</literal> é equivalente a <literal>dim=1</literal>
-            e <literal>dim='c'</literal> é equivalente a
+            <literal>dim='r'</literal> Ã© equivalente a <literal>dim=1</literal>
+            e <literal>dim='c'</literal> Ã© equivalente a
             <literal>dim=2</literal>.
         </para>
     </refsection>
@@ -93,16 +93,16 @@ A=[(1:8)^2
 
 diff(A,3,2)
 
-//diferenciação aproximada
+//diferenciaÃ§Ã£o aproximada
 step=0.001
 t=0:step:10;
 y=sin(t);
-dy=diff(sin(t))/step; //diferenciação aproximada da função seno
+dy=diff(sin(t))/step; //diferenciaÃ§Ã£o aproximada da funÃ§Ã£o seno
 norm(dy-cos(t(1:$-1)),%inf)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="numderivative">numderivative</link>

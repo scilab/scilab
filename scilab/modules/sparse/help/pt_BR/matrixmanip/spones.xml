@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
         <refpurpose>matriz esparsa</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>sp=spones(A)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
@@ -40,11 +40,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>sp=spones(A)</literal> gera uma matriz com a mesma
-            estrutura de espargimento de <literal>A</literal>, mas com 1 em posições
-            não-nulas;
+            estrutura de espargimento de <literal>A</literal>, mas com 1 em posiÃ§Ãµes
+            nÃ£o-nulas;
         </para>
     </refsection>
     <refsection>
@@ -57,7 +57,7 @@ bool2s(B)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sparse">sparse</link>

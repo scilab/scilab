@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -19,11 +19,11 @@
         <refpurpose>adiciona cores novas ao mapa de cores corrente</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>new=addcolor(c)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>new</term>
@@ -36,7 +36,7 @@
             <varlistentry>
                 <term>c</term>
                 <listitem>
-                    <para>matriz com 3 colunas, definição de cores RGB (vermelho, verde
+                    <para>matriz com 3 colunas, definiÃ§Ã£o de cores RGB (vermelho, verde
                         e azul)
                     </para>
                 </listitem>
@@ -44,24 +44,24 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>addcolor</literal> adiciona novas cores fornecidas no
             argumento <literal>c</literal> ao mapa de cores corrente.
-            <literal>c</literal> deve ser uma matriz com três colunas <literal>[R G
+            <literal>c</literal> deve ser uma matriz com trÃªs colunas <literal>[R G
                 B].
             </literal>
-            <literal>R</literal> é o componente vermelho,
-            <literal>G</literal> é o componente verde, <literal>B</literal> é o
-            componente azul). cada entrada em <literal>c</literal> deve ser um número
-            não-negativo menor do que ou igual a 1.
+            <literal>R</literal> Ã© o componente vermelho,
+            <literal>G</literal> Ã© o componente verde, <literal>B</literal> Ã© o
+            componente azul). cada entrada em <literal>c</literal> deve ser um nÃºmero
+            nÃ£o-negativo menor do que ou igual a 1.
         </para>
-        <para>Os identificadores das novas cores são retornados em
+        <para>Os identificadores das novas cores sÃ£o retornados em
             <literal>new</literal>.
         </para>
         <para>
-            Se uma cor definida em <literal>c</literal> já está presente no mapa
-            de cores, ela não será adicionada.
+            Se uma cor definida em <literal>c</literal> jÃ¡ estÃ¡ presente no mapa
+            de cores, ela nÃ£o serÃ¡ adicionada.
         </para>
     </refsection>
     <refsection>
@@ -74,7 +74,7 @@ addcolor(name2rgb('grey')/255);
   ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="colormap">colormap</link>

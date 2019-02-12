@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -16,27 +16,27 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="print" xml:lang="pt">
     <refnamediv>
         <refname>print</refname>
-        <refpurpose>imprime variáveis em um arquivo</refpurpose>
+        <refpurpose>imprime variÃ¡veis em um arquivo</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>print('file-name',x1,[x2,...xn])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             Imprime <literal>xi</literal> no arquivo
             <literal>'file-name'</literal> com o formato corrente, i.e., o formato
-            utilizado pelo Scilab para exibir variáveis. Todos os tipos de variáveis
+            utilizado pelo Scilab para exibir variÃ¡veis. Todos os tipos de variÃ¡veis
             podem ser impressos.
         </para>
         <para>
-            Note que <literal>xi</literal> deve ser uma variável nomeada. Com
-            expressões, a exibição da parte do nome da variável é imprevisível.
+            Note que <literal>xi</literal> deve ser uma variÃ¡vel nomeada. Com
+            expressÃµes, a exibiÃ§Ã£o da parte do nome da variÃ¡vel Ã© imprevisÃ­vel.
         </para>
         <para>
             <literal>print(%io(2),...)</literal> imprime na janela do Scilab.
-            Esta sintaxe pode ser utilizada para exibir variáveis dentro de um
+            Esta sintaxe pode ser utilizada para exibir variÃ¡veis dentro de um
             macro.
         </para>
     </refsection>
@@ -49,7 +49,7 @@ write(%io(2),a)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="write">write</link>

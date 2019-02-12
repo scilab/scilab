@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,24 +19,24 @@
         <refpurpose>matriz nula esparsa</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>sp=spzeros(nrows,ncols)
             sp=spzeros(A)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>nrows</term>
                 <listitem>
-                    <para>inteiro (número de linhas) </para>
+                    <para>inteiro (nÃºmero de linhas) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ncols</term>
                 <listitem>
-                    <para>inteiro (número de colunas) </para>
+                    <para>inteiro (nÃºmero de colunas) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -54,7 +54,7 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>sp=spzeros(nrows,ncols)</literal> retorna uma matriz nula
             esparsa <literal>sp</literal> com <literal>nrows</literal> linhas e,
@@ -63,10 +63,10 @@
         </para>
         <para>
             <literal>sp=spzeros(A)</literal> retorna uma matriz nula esparsa com
-            as mesmas dimensões que <literal>A</literal>. Se
+            as mesmas dimensÃµes que <literal>A</literal>. Se
             <literal>[m,n]=size(A)</literal>, <literal>spzeros(m,n)</literal> e
-            <literal>spzeros(A)</literal> são equivalentes. Em particular
-            <literal>spzeros(3)</literal> não é equivalente a
+            <literal>spzeros(A)</literal> sÃ£o equivalentes. Em particular
+            <literal>spzeros(3)</literal> nÃ£o Ã© equivalente a
             <literal>spzeros(3,3)</literal>.
         </para>
     </refsection>
@@ -80,7 +80,7 @@ sum(spzeros(1000,1000))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sparse">sparse</link>

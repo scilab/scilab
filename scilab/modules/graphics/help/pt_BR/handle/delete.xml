@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -16,10 +16,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="delete" xml:lang="pt">
     <refnamediv>
         <refname>delete</refname>
-        <refpurpose>Deleta uma entidade gráfica e seus galhos </refpurpose>
+        <refpurpose>Deleta uma entidade grÃ¡fica e seus galhos </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>delete(h)
             delete(h,"callback")
             delete()
@@ -27,14 +27,14 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>manipulador da entidade gráfica a ser deletada.
+                    <para>manipulador da entidade grÃ¡fica a ser deletada.
                         <literal>h</literal> pode ser um vetor de manipuladores, em qual
-                        caso todos os objetos identificados por h(i) serão deletados.
+                        caso todos os objetos identificados por h(i) serÃ£o deletados.
                     </para>
                 </listitem>
             </varlistentry>
@@ -47,16 +47,16 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta rotina pode ser utilizada para deletar uma entidade gráfica
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta rotina pode ser utilizada para deletar uma entidade grÃ¡fica
             identificada pelo manipulador dado como argumento. Neste caso, todos os
-            galhos desta entidade gráfica serão deletados. Sem qualaquer argumento,
+            galhos desta entidade grÃ¡fica serÃ£o deletados. Sem qualaquer argumento,
             <literal>delete</literal> remove a entidade corrente. Com o argumento
             <literal>"all"</literal> deleta todas as entidades da figura
             corrente.
         </para>
         <para>
-            O argumento <literal>"callback"</literal> ainda não é
+            O argumento <literal>"callback"</literal> ainda nÃ£o Ã©
             manipulado.
         </para>
     </refsection>
@@ -71,14 +71,14 @@ subplot(224);
 plot2d();
 xfrect(1,0,3,1);
 a=get("current_axes")
-delete(); //deletando o novo objeto gráfico criado
+delete(); //deletando o novo objeto grÃ¡fico criado
 delete(a.children); //deletando todos os galhos dos eixos corentes
 delete(a); //deletando os eixos
-delete("all"); //deletando todos os objetos gráficos da figura
+delete("all"); //deletando todos os objetos grÃ¡ficos da figura
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="get">get</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005      - INRIA - Pierrick MODE
@@ -17,19 +17,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="readxls" xml:lang="pt">
     <refnamediv>
         <refname>readxls</refname>
-        <refpurpose>lê um arquivo Excel</refpurpose>
+        <refpurpose>lÃª um arquivo Excel</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>sheets = readxls(file_path)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>file_path</term>
                 <listitem>
-                    <para>string: o endereço do arquivo Excel</para>
+                    <para>string: o endereÃ§o do arquivo Excel</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -44,23 +44,23 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Dado um endereço de um arquivo Excel, esta função retorna uma
+        <title>DescriÃ§Ã£o</title>
+        <para>Dado um endereÃ§o de um arquivo Excel, esta funÃ§Ã£o retorna uma
             estrutura de dados <literal>mlist</literal> do tipo
             <literal>xls</literal>, com um campo chamado <literal>sheets</literal>. O
-            campo <literal>sheets</literal> contém uma lista da estutura de dados
+            campo <literal>sheets</literal> contÃ©m uma lista da estutura de dados
             folha.
         </para>
         <para>
             <literal>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</literal>
-            onde <literal>sheetname</literal> é um string contendo o nome da folha,
-            <literal>Text</literal> é uma matriz de strings que contém os strings e
-            todas as células <literal>Value</literal> é uma matriz de números que
-            contém todos os valores das células.
+            onde <literal>sheetname</literal> Ã© um string contendo o nome da folha,
+            <literal>Text</literal> Ã© uma matriz de strings que contÃ©m os strings e
+            todas as cÃ©lulas <literal>Value</literal> Ã© uma matriz de nÃºmeros que
+            contÃ©m todos os valores das cÃ©lulas.
         </para>
         <para>
             <warning>
-                AVISO: apenas arquivos Excel BIFF8 (última versão do Excel (2003)) são
+                AVISO: apenas arquivos Excel BIFF8 (Ãºltima versÃ£o do Excel (2003)) sÃ£o
                 manipulados
             </warning>
         </para>
@@ -69,7 +69,7 @@
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 Sheets = readxls('SCI/modules/spreadsheet/demos/xls/t1.xls')
-// algumas operações básicas sobre Sheets
+// algumas operaÃ§Ãµes bÃ¡sicas sobre Sheets
 typeof(Sheets)
 s1=Sheets(1) //obtendo a primeira folha
 typeof(s1)
@@ -82,7 +82,7 @@ disp(s1)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xls_open">xls_open</link>
@@ -93,9 +93,9 @@ disp(s1)
         </simplelist>
     </refsection>
     <refsection>
-        <title>Funções Utilizadas</title>
+        <title>FunÃ§Ãµes Utilizadas</title>
         <para>
-            Esta função é baseada nas funções Scilab <literal>xls_open</literal>
+            Esta funÃ§Ã£o Ã© baseada nas funÃ§Ãµes Scilab <literal>xls_open</literal>
             e <literal>xls_read</literal>.
         </para>
     </refsection>

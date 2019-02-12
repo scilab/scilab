@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -16,27 +16,27 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="get_function_path" xml:lang="pt">
     <refnamediv>
         <refname>get_function_path</refname>
-        <refpurpose>retorna o endereço do arquivo fonte de uma função de
+        <refpurpose>retorna o endereÃ§o do arquivo fonte de uma funÃ§Ã£o de
             biblioteca
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>path=get_function_path(fun_name)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>fun_name</term>
                 <listitem>
-                    <para>string, o nome da função</para>
+                    <para>string, o nome da funÃ§Ã£o</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>path</term>
                 <listitem>
-                    <para>string, o nome absoluto do endereço do arquivo fonte da função
+                    <para>string, o nome absoluto do endereÃ§o do arquivo fonte da funÃ§Ã£o
                         (.sci) ou [].
                     </para>
                 </listitem>
@@ -44,10 +44,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Dadi o nome de uma uma função, get_function_path o nome absoluto do
-            endereço do arquivo fonte da função se a função estiver definida em uma
-            biblioteca Scilab (ver lib) ou [] se nenhum nome corresponde a uma função
+        <title>DescriÃ§Ã£o</title>
+        <para>Dadi o nome de uma uma funÃ§Ã£o, get_function_path o nome absoluto do
+            endereÃ§o do arquivo fonte da funÃ§Ã£o se a funÃ§Ã£o estiver definida em uma
+            biblioteca Scilab (ver lib) ou [] se nenhum nome corresponde a uma funÃ§Ã£o
             de biblioteca.
         </para>
     </refsection>
@@ -58,7 +58,7 @@ get_function_path('median')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="lib">lib</link>
