@@ -107,8 +107,11 @@ public class NewsFeedWidget extends JPanel implements NewsFeedEventListener, Hyp
         setLayout(new BorderLayout());
         add(headerPane, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
+        
+        // at startup, display an error message
+        displayError(NewsFeedUIMessages.NEWS_FEED_UNAVAILABLE_ERROR);
     }
-
+    
     public void newsFeedEventReceived(NewsFeedEvent evt) {
         switch (evt.getEventType()) {
             case NewsFeedEvent.NEWS_CHANGED: {
