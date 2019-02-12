@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="parentheses" xml:lang="pt">
     <refnamediv>
         <refname>parentheses</refname>
-        <refpurpose>( ) parênteses esquerdo e direito</refpurpose>
+        <refpurpose>( ) parÃªnteses esquerdo e direito</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
-        <synopsis>(expressão)
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
+        <synopsis>(expressÃ£o)
             [...]=func(e1,e2,...)
             [x1,x2,...]=(e1,e2,...)
             x(i,j)
@@ -15,54 +15,54 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros </title>
+        <title>ParÃ¢metros </title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>matriz de qualquer tipo possível </para>
+                    <para>matriz de qualquer tipo possÃ­vel </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>vetor linha ou coluna de qualquer tipo possível </para>
+                    <para>vetor linha ou coluna de qualquer tipo possÃ­vel </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>l</term>
                 <listitem>
-                    <para>variável tipo lista </para>
+                    <para>variÃ¡vel tipo lista </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>func</term>
                 <listitem>
-                    <para>qualquer nome de função </para>
+                    <para>qualquer nome de funÃ§Ã£o </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>e1,e2,...</term>
                 <listitem>
-                    <para>qualquer tipo possível de expressão</para>
+                    <para>qualquer tipo possÃ­vel de expressÃ£o</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Parênteses esquerdo e direito são usados para</para>
-        <para>* Especificar ordem de avaliação dentro de expressões,</para>
-        <para>* Formar listas de argumentos do lado direito de uma função. Dentro
-            de lados direitos múltiplos, os argumentos devem ser separados por
-            vírgula.
+        <title>DescriÃ§Ã£o</title>
+        <para>ParÃªnteses esquerdo e direito sÃ£o usados para</para>
+        <para>* Especificar ordem de avaliaÃ§Ã£o dentro de expressÃµes,</para>
+        <para>* Formar listas de argumentos do lado direito de uma funÃ§Ã£o. Dentro
+            de lados direitos mÃºltiplos, os argumentos devem ser separados por
+            vÃ­rgula.
         </para>
         <para>* Selecionar elementos dentro de vetores, matrizes e listas.Ver
-            ajuda em insertion e extraction para maiores informações.
+            ajuda em insertion e extraction para maiores informaÃ§Ãµes.
         </para>
-        <para> * [x1,x2,...]=(e1,e2,...) é equivalente a realizar primeiro %t_1 =
-            e1, %t_2 = e2, ..., e então x1 = %t_1, x2 = %t_2, ..., onde as variáveis
-            %t_i, i = 1, 2, ... são visíveis ao usuário.
+        <para> * [x1,x2,...]=(e1,e2,...) Ã© equivalente a realizar primeiro %t_1 =
+            e1, %t_2 = e2, ..., e entÃ£o x1 = %t_1, x2 = %t_2, ..., onde as variÃ¡veis
+            %t_i, i = 1, 2, ... sÃ£o visÃ­veis ao usuÃ¡rio.
         </para>
     </refsection>
     <refsection>
@@ -94,7 +94,7 @@ v=%t([1 1 1 1 1])
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também</title>
+        <title> Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="colon">colon</link>
