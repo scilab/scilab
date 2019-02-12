@@ -44,7 +44,9 @@
                     <table>
                       <tr>
                         <td>%T : </td>
-                        <td>The generated code is indented and beautified</td>
+                        <td>The generated code is indented and beautified. The indentation length
+                            is the Scinotes one. It can be tuned through Scinotes preferences.
+                        </td>
                       </tr>
                       <tr>
                         <td>%F : </td>
