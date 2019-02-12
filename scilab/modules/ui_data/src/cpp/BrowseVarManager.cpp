@@ -97,10 +97,8 @@ void SetBrowseVarData()
     symbol::Context* ctx = symbol::Context::getInstance();
 
     std::list<symbol::Variable*> lstVars;
-    std::list<symbol::Library*> lstLibs;
 
     iLocalVariablesUsed = ctx->getVarsToVariableBrowser(lstVars);
-    iLocalVariablesUsed += ctx->getLibsToVariableBrowser(lstLibs);
 
     char **pstAllVariableNames = new char*[iLocalVariablesUsed]();
     char **pstAllVariableVisibility = new char*[iLocalVariablesUsed]();
