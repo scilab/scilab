@@ -768,6 +768,23 @@ end
                   </itemizedlist>
                 </revdescription>
             </revision>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                  <itemizedlist>
+                    <listitem>
+                      &lt;latex>: attribute alt now supported. Default value is the tag content.
+                    </listitem>
+                    <listitem>
+                      &lt;tr>: now by default valign="top" instead of "middle".
+                    </listitem>
+                    <listitem>
+                      For external modules, pages in Farsi or Arabic are now correctly processed
+                      to be correctly displayed in a Right-To-Left way in their web version.
+                    </listitem>
+                  </itemizedlist>
+                </revdescription>
+            </revision>
         </revhistory>
     </refsection>
 </refentry>
