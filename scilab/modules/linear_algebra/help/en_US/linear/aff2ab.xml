@@ -124,7 +124,7 @@ A=rand(3,3);Q=rand(3,3);Q=Q+Q';D=list(A,Q);dimX=[3,3];
 // Find matrices X1 and X2 such that:
 // A1*X1 - X1*A2 + B*X2 -A3 = 0
 // D1*X1 -D2 = 0
-deff('Y=bruce(X,D)','[A1,A2,A3,B,D1,D2]=D(:)'+,...
+deff('Y=bruce(X,D)','[A1,A2,A3,B,D1,D2]=D(:);'+...
 '[X1,X2]=X(:);Y=list(A1*X1-X1*A2+B*X2-A3,D1*X1-D2)')
 A1=[-4,10;-1,2];A3=[1;2];B=[0;1];A2=1;D1=[0,1];D2=1;
 D=list(A1,A2,A3,B,D1,D2);
