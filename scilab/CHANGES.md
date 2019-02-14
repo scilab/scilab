@@ -34,6 +34,7 @@ In summary, the main new features are:
    - numbers (IEEE 754 double) are not rounded
 * importgui function has been added to easily interface csvRead
 
+
 Installation
 ------------
 
@@ -255,6 +256,7 @@ Bug Fixes
 * [#15745](http://bugzilla.scilab.org/show_bug.cgi?id=15745): `diophant(0,0,m)`, `diophant([p 0],q)`, `diophant([0 p],q)` with m<>0 and p>q were wrong. There was no flag for cases with an infinite number of solutions. When there is no solution, some values were returned anyway, instead of []. In this case, the documented definition of the err value was dubious. Decimal numbers and integers were accepted, but not encoded integers. Inf and NaN input coefficients were not rejected.
 * [#15812](http://bugzilla.scilab.org/show_bug.cgi?id=15812): On assigning variables the source variable may become become corrupted
 * [#15840](http://bugzilla.scilab.org/show_bug.cgi?id=15840): `grand(1,"prm",m)` yielded an unsqueezed size([size(m) 1]) hypermatrix
+* [#15934](http://bugzilla.scilab.org/show_bug.cgi?id=15934): The `^ hat` page wrongly indicated that `^` applied to a rectangular matrix not being a vector is done element-wise.
 * [#15948](http://bugzilla.scilab.org/show_bug.cgi?id=15948): `xlabel`, `ylabel`, `zlabel` and `title` needed to be upgraded.
 * [#15964](http://bugzilla.scilab.org/show_bug.cgi?id=15954): A complex empty sparse matrix could be obtained after insertion.
 * [#15969](http://bugzilla.scilab.org/show_bug.cgi?id=15969): Fix spelling

@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="hat" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="hat" xml:lang="pt">
     <refnamediv>
         <refname>hat</refname>
         <refpurpose>(^) exponentiation</refpurpose>
@@ -26,7 +29,7 @@
         <title>Descrição</title>
         <para>Exponenciação de matrizes ou vetores por um vetor constante.</para>
         <para>
-            Se <literal>A</literal> é um vetor ou uma matriz retangular, a
+            Se <literal>A</literal> é um vetor, a
             exponenciação é feita elemento a elemento no sentido usual.
         </para>
         <para>Para matrizes quadradas, a exponenciação é feita no sentido
@@ -69,7 +72,16 @@ s=poly(0,"s");
         <title> Ver Também </title>
         <simplelist type="inline">
             <member>
+                <link linkend="power">power</link>
+            </member>
+            <member>
                 <link linkend="exp">exp</link>
+            </member>
+            <member>
+                <link linkend="log">log</link>
+            </member>
+            <member>
+                <link linkend="log2">log2</link>
             </member>
             <member>
                 <link linkend="inv">inv</link>

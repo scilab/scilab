@@ -28,11 +28,11 @@
             Exponentiation of matrices or vectors by a constant vector.
         </para>
         <para>
-            If <literal>A</literal> is a vector or a rectangular matrix the exponentiation is done
+            If <literal>A</literal> is a vector, the exponentiation is done
             element-wise, with the usual meaning.
         </para>
         <para>
-            For square <literal>A</literal> matrix the exponentiation is done in the matrix sense.
+            For a square <literal>A</literal> matrix, the exponentiation is done in the matrix sense.
         </para>
         <para>
             For boolean, polynomial and rational matrices, the exponent must be an
@@ -73,10 +73,19 @@ s=poly(0,"s");
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="power">power</link>
+            </member>
+            <member>
                 <link linkend="exp">exp</link>
             </member>
             <member>
                 <link linkend="log">log</link>
+            </member>
+            <member>
+                <link linkend="log2">log2</link>
+            </member>
+            <member>
+                <link linkend="inv">inv</link>
             </member>
         </simplelist>
     </refsection>

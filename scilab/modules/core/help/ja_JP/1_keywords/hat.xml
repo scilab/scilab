@@ -28,7 +28,7 @@
             定数ベクトルによる行列またはベクトルの累乗.
         </para>
         <para>
-            <literal>A</literal> がベクトルまたは矩形行列の場合,累乗は要素毎に行われます.
+            <literal>A</literal> がベクトルの場合,累乗は要素毎に行われます.
         </para>
         <para>
             <literal>A</literal> が正方行列の場合, 累乗は行列に関して行われます.
@@ -65,7 +65,16 @@ s=poly(0,"s");
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="power">power</link>
+            </member>
+            <member>
                 <link linkend="exp">exp</link>
+            </member>
+            <member>
+                <link linkend="log">log</link>
+            </member>
+            <member>
+                <link linkend="log2">log2</link>
             </member>
             <member>
                 <link linkend="inv">inv</link>
