@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getmemory" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="getmemory" xml:lang="pt">
     <refnamediv>
         <refname>getmemory</refname>
         <refpurpose>retorna as memórias livre e total do sistema</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[free, total]=getmemory()</synopsis>
+        <synopsis>[free, total] = getmemory()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Descrição</title>
@@ -18,5 +21,32 @@
             <literal>[free, total]=getmemory()</literal> retorna as memórias
             livre e total do sistema (em kilo-octetos).
         </para>
+        <para>
+            <warning>
+                Do not rely too much on this function. Due to various level of caching,
+                free memory detection is a tricky thing under most modern operating
+                systems.
+            </warning>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+[a,b] = getmemory()
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="recursionlimit">recursionlimit</link>
+            </member>
+            <member>
+                <link linkend="host">host</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

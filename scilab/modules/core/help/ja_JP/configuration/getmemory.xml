@@ -1,36 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="getmemory">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="getmemory">
     <refnamediv>
         <refname>getmemory</refname>
         <refpurpose>利用可能なシステムメモリおよびシステムメモリの総量を返す</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>[free, total]=getmemory()</synopsis>
+        <synopsis>[free, total] = getmemory()</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>説明</title>
         <para>
-          <code>getmemory()</code> は利用可能なシステムメモリを取得します (キロ-オクテット).
+          <literal>getmemory()</literal> は利用可能なシステムメモリを取得します (キロ-オクテット).
         </para>
         <para>
-          <code>[free, total] = getmemory()</code>は,
-	  利用可能なシステムメモリおよびシステムメモリの総量を返します
+          <literal>[free, total] = getmemory()</literal>は,
+      利用可能なシステムメモリおよびシステムメモリの総量を返します
           (キロ-オクテット).
         </para>
         <para>
-          <note>
-	    この関数を信用しすぎないようにしてください.
-	    様々なレベルのキャッシュのせいで,
-	    多くの現代的なオペレーティングシステムにおいて,
-	    メモリ解放の検出は難しくなっています.
-          </note>
+          <warning>
+            この関数を信用しすぎないようにしてください.
+            様々なレベルのキャッシュのせいで,
+            多くの現代的なオペレーティングシステムにおいて,
+            メモリ解放の検出は難しくなっています.
+          </warning>
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-[a,b]=getmemory()
+[a, b] = getmemory()
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="recursionlimit">recursionlimit</link>
+            </member>
+            <member>
+                <link linkend="host">host</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>
