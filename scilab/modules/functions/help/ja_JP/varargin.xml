@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varargin" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="varargin" xml:lang="ja">
     <refnamediv>
         <refname>varargin</refname>
         <refpurpose>入力引数リストの引数の数を可変にする</refpurpose>
@@ -95,6 +98,9 @@ exampl(1,l(2:3))
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="varargout">varargout</link>
+            </member>
+            <member>
                 <link linkend="argn">argn</link>
             </member>
             <member>
@@ -102,9 +108,6 @@ exampl(1,l(2:3))
             </member>
             <member>
                 <link linkend="list">list</link>
-            </member>
-            <member>
-                <link linkend="varargout">varargout</link>
             </member>
         </simplelist>
     </refsection>

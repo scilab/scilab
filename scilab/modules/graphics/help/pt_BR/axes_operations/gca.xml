@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -19,11 +19,11 @@
         <refpurpose>Retorna o manipulador da entidade Axes corrente </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>a = gca()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>a</term>
@@ -34,7 +34,7 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Esta rotina retorna o manipulador da entidade Axes da figura
             corrente
         </para>
@@ -47,17 +47,17 @@ a=gca() //obtendo os eixos correntes
 a.box="off";
 t=-%pi:0.3:%pi;plot3d(t,t,sin(t)'*cos(t),80,50,'X@Y@Z',[5,2,4]);
 subplot(212)
-plot2d(); //esboço simples
+plot2d(); //esboÃ§o simples
 a=gca() //obtendo os eixos correntes
 a.box="off";
 a.x_location="middle";
 a.parent.background=4;
 delete(gca()) // deletando os eixos correntes
-xdel(0) //deletando uma janela de gráficos
+xdel(0) //deletando uma janela de grÃ¡ficos
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="gda">gda</link>

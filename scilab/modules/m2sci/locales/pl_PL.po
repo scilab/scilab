@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-12-14 15:51+0000\n"
+"PO-Revision-Date: 2019-02-12 15:51+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 msgid "Input file"
 msgstr "Plik wejściowy"
@@ -481,26 +481,6 @@ msgstr "Konwertuj pojedyczy plik"
 msgid "Convert a whole directory"
 msgstr "Konwertuj cały katalog"
 
-#, c-format
-msgid "%s: %s module is not installed.\n"
-msgstr "%s: moduł %s nie jest zainstalowany.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Could not read variables in %s"
-msgstr ""
-
 msgid "OFF"
 msgstr "WYŁĄCZONE"
 
@@ -531,8 +511,7 @@ msgstr "W M-pliku użyte tylko wartości rzeczywiste (typ double);"
 msgid "Verbose mode:"
 msgstr "Tryb wyściowy rozszerzony:"
 
-#, fuzzy
-msgid "Generate formated code:"
+msgid "Generate formatted code:"
 msgstr "Generowanie sformatowanego kodu:"
 
 msgid "M-file reading..."
@@ -550,6 +529,12 @@ msgstr "Zmiana składni..."
 
 msgid "Syntax modification: Done"
 msgstr "Zmiana składni: zakończona"
+
+#
+# File: modules/m2sci/macros/mfile2sci.sci, line: 212
+#, c-format
+msgid "%s: %s does not exist or is not the macro name.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -891,3 +876,6 @@ msgstr "%s: Wartość wyjściowa ustawiona na  'on"
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
+
+#~ msgid "%s: %s module is not installed.\n"
+#~ msgstr "%s: moduł %s nie jest zainstalowany.\n"

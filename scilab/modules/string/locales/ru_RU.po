@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-04-16 14:05+0000\n"
+"PO-Revision-Date: 2019-02-12 13:10+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -126,7 +126,7 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался '%s' или '%s'.\n"
 
 #, c-format
 msgid ""
@@ -371,13 +371,33 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось неотрицательное "
 "целое число.\n"
 
+#
+# File: modules/string/macros/evstr.sci, line: 65
+#, c-format
+msgid "%s: Argument #%d: Some expression can't be evaluated (%s).\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: %d-element list expected.\n"
+msgstr ""
+
+#
+# File: modules/string/macros/evstr.sci, line: 76
+#, c-format
+msgid "%s: Argument #%d: Both list components must be of text type.\n"
+msgstr ""
+
+#
+# File: modules/string/macros/evstr.sci, line: 89
+#, c-format
+msgid "%s: Argument #1(2): The expression #%d = %s can't be evaluated (%s).\n"
+msgstr ""
+
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
-"character strings or list expected.\n"
+"%s: Wrong type for input argument #%d: Matrix of character strings or list "
+"expected.\n"
 msgstr ""
-"%s: Неверный тип входного параметра 3%d: ожидалась матрица вещественных или "
-"комплексных чисел, матрица символьных строк или список.\n"
 
 #, c-format
 msgid "%s: Given expression has no value.\n"
@@ -394,29 +414,31 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d."
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s», «%s», "
+"«%s», «%s» или «%s».\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента №%d: ожидалось логическое значение.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d"
 
 #, c-format
 msgid "%s: Wrong export format: %s"
-msgstr ""
+msgstr "%s: Неверный формат экспорта: %s"
 
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr ""
+msgstr "%s: Тип %s не обрабатывается: определите функцию %s2%s."
 
 #, c-format
 msgid ""
@@ -432,3 +454,10 @@ msgid ""
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидался символ или вектор "
 "символов.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
+#~ "character strings or list expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра 3%d: ожидалась матрица вещественных "
+#~ "или комплексных чисел, матрица символьных строк или список.\n"

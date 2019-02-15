@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="colcomp" xml:lang="pt">
     <refnamediv>
         <refname>colcomp</refname>
-        <refpurpose>compressão de colunas, núcleo</refpurpose>
+        <refpurpose>compressÃ£o de colunas, nÃºcleo</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[W,rk]=colcomp(A [,flag] [,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
@@ -40,13 +40,13 @@
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>número real</para>
+                    <para>nÃºmero real</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>W</term>
                 <listitem>
-                    <para>matriz quadrada não-singular (mudança de base) </para>
+                    <para>matriz quadrada nÃ£o-singular (mudanÃ§a de base) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -60,12 +60,12 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Compressão de colunas de <literal>A</literal>: <literal>Ac =
+            CompressÃ£o de colunas de <literal>A</literal>: <literal>Ac =
                 A*W
             </literal>
-            éde colunas comprimidas ,i.e.,
+            Ã©de colunas comprimidas ,i.e.,
         </para>
         <para>
             <literal>Ac=[0,Af]</literal> com o posto-coluna de
@@ -73,17 +73,17 @@
             posto(<literal>A</literal>) = <literal>rk</literal>.
         </para>
         <para>
-            <literal>flag</literal> e <literal>tol</literal> são parâmetros
+            <literal>flag</literal> e <literal>tol</literal> sÃ£o parÃ¢metros
             opcionais: <literal>flag = 'qr'</literal> ou <literal>'svd'</literal> (o
-            padrão é <literal>'svd'</literal>).
+            padrÃ£o Ã© <literal>'svd'</literal>).
         </para>
         <para>
-            <literal>tol</literal> = parâmetro de tolerância (de ordem
-            <literal>%eps</literal> como valor padrão).
+            <literal>tol</literal> = parÃ¢metro de tolerÃ¢ncia (de ordem
+            <literal>%eps</literal> como valor padrÃ£o).
         </para>
         <para>
             As <literal>ma-rk</literal> primeiras colunas de
-            <literal>W</literal> geram o núcleo de <literal>A</literal> quando
+            <literal>W</literal> geram o nÃºcleo de <literal>A</literal> quando
             <literal>size(A)=(na,ma)</literal>
         </para>
     </refsection>
@@ -96,7 +96,7 @@ norm(A*X(:,1:$-r),1)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="rowcomp">rowcomp</link>

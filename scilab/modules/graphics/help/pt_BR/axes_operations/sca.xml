@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -19,11 +19,11 @@
         <refpurpose>Ajusta a entidade de eixos corrente</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>a=sca(a)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>a</term>
@@ -34,11 +34,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>sca(a)</literal> é usado para ajustar a entidade
+            <literal>sca(a)</literal> Ã© usado para ajustar a entidade
             <literal>Axes</literal> corrente (ver <link linkend="graphics_entities">graphics_entities</link>) como sendo aquela
-            apontada pelo manipulador <literal>a</literal>. As funções de esboço
+            apontada pelo manipulador <literal>a</literal>. As funÃ§Ãµes de esboÃ§o
             geralmente utilizam a entidade de eixos corrente.
         </para>
     </refsection>
@@ -63,7 +63,7 @@ legend('sinh')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="subplot">subplot</link>

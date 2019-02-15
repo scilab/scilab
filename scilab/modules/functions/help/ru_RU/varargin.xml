@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varargin" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="varargin" xml:lang="ru">
     <refnamediv>
         <refname>varargin</refname>
         <refpurpose>
@@ -26,7 +29,8 @@
             Функция, чьим последним входным аргументом является
             <literal>varargin</literal>, может быть вызвана с
             бОльшим числом входных аргументов, чем указано в списке
-            входных аргументов. Аргументы вызова, переданные внутрь в форме ключевого слова <literal>varargin</literal> затем могут быть получены внутри функции в
+            входных аргументов. Аргументы вызова, переданные внутрь в форме ключевого слова
+            <literal>varargin</literal> затем могут быть получены внутри функции в
             списке с именем <literal>varargin</literal>.
         </para>
         <para>
@@ -60,7 +64,10 @@
     <refsection>
         <title>Примечание</title>
         <para>
-            Синтаксис именованных аргументов, такой как <literal>foo(...,key=value)</literal>, не совместим с использованием <literal>varargin</literal>. Причина в том, что имена (то есть ключи), связанные со значениями, не хранятся в списке <literal>varargin</literal>. Рассмотрим пример:
+            Синтаксис именованных аргументов, такой как <literal>foo(...,key=value)</literal>,
+            не совместим с использованием <literal>varargin</literal>. Причина в том, что имена
+            (то есть ключи), связанные со значениями, не хранятся в списке
+            <literal>varargin</literal>. Рассмотрим пример:
         </para>
         <programlisting role="no-scilab-exec"><![CDATA[
 function foo(varargin)
@@ -97,6 +104,9 @@ exampl(1,l(2:3))
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
+                <link linkend="varargout">varargout</link>
+            </member>
+            <member>
                 <link linkend="argn">argn</link>
             </member>
             <member>
@@ -104,9 +114,6 @@ exampl(1,l(2:3))
             </member>
             <member>
                 <link linkend="list">list</link>
-            </member>
-            <member>
-                <link linkend="varargout">varargout</link>
             </member>
         </simplelist>
     </refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="readb" xml:lang="pt">
     <refnamediv>
         <refname>readb</refname>
-        <refpurpose>leitura de arquivo FORTRAN binário</refpurpose>
+        <refpurpose>leitura de arquivo FORTRAN binÃ¡rio</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamemento</title>
+        <title>SeqÃ¼Ãªncia de Chamemento</title>
         <synopsis>x=readb(file-name,m,n [,rec])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>file-name</term>
@@ -34,8 +34,8 @@
             <varlistentry>
                 <term>m, n</term>
                 <listitem>
-                    <para>inteiros (dimensões da matriz x). Ajuste m=-1 se o número de
-                        linhas não for conhecido, então todo arquivo será lido
+                    <para>inteiros (dimensÃµes da matriz x). Ajuste m=-1 se o nÃºmero de
+                        linhas nÃ£o for conhecido, entÃ£o todo arquivo serÃ¡ lido
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,7 +43,7 @@
                 <term>rec</term>
                 <listitem>
                     <para>vetor de inteiros positivos, os registros selecionados para
-                        acesso direto. O tamanho deste vetor deve ser igual ao número de
+                        acesso direto. O tamanho deste vetor deve ser igual ao nÃºmero de
                         linhas de <literal>x</literal> desejado.
                     </para>
                 </listitem>
@@ -51,20 +51,20 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Leitura binária da matriz <literal>x</literal> no arquivo
-            <literal>file-name</literal>. Supõe-se que as entradas da matriz tenham
+            Leitura binÃ¡ria da matriz <literal>x</literal> no arquivo
+            <literal>file-name</literal>. SupÃµe-se que as entradas da matriz tenham
             sido armazenadas em palavras de 8 bytes.
         </para>
         <para>Para acesso direto a registros, o arquivo deve ter sido aberto
-            previamente com a função <literal>file</literal> para ajustar o
+            previamente com a funÃ§Ã£o <literal>file</literal> para ajustar o
             comprimento de registro. <literal>file-name</literal> deve ser o resultado
-            da função <literal>file</literal>.
+            da funÃ§Ã£o <literal>file</literal>.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="file">file</link>

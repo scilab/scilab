@@ -415,9 +415,9 @@ int main(int argc, char *argv[])
     //                      | [-nw]         -> Terminal IO + InitMacOSXEnv
 #ifndef WITHOUT_GUI
 #ifdef _MSC_VER
-    #ifndef WITH_CONSOLE_JAVA
-        pSEI->iConsoleMode = SCILAB_NW;
-    #endif
+#ifndef WITH_CONSOLE_JAVA
+    pSEI->iConsoleMode = SCILAB_NW;
+#endif
 #endif
     if (pSEI->iConsoleMode)
     {
@@ -472,7 +472,7 @@ int main(int argc, char *argv[])
 
     if (!isatty(_fileno(stdin)) && (_fileno(stdin) != -2) && getScilabMode() != SCILAB_STD)
 #else
-    if (!isatty(fileno(stdin)))
+    if (!isatty(fileno(stdin)) && getScilabMode() != SCILAB_STD)
 #endif
     {
         // We are in a pipe

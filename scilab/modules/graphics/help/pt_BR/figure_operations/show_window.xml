@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -16,30 +16,30 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="show_window" xml:lang="pt">
     <refnamediv>
         <refname>show_window</refname>
-        <refpurpose>Restaura uma janela de gráficos</refpurpose>
+        <refpurpose>Restaura uma janela de grÃ¡ficos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>show_window([figure])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>figure</term>
                 <listitem>
-                    <para>número ou manipulador da figura a ser exibida</para>
+                    <para>nÃºmero ou manipulador da figura a ser exibida</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Sem parâmetros, <literal>show_window</literal> restaura a janela de
-            gráficos corrente, mesmo se estiver iconificada. Em caso contrário,
-            restaura a janela especificada por seu número ou por seu manipulador. Se
-            nenhuma janela existir, uma é criada.
+            Sem parÃ¢metros, <literal>show_window</literal> restaura a janela de
+            grÃ¡ficos corrente, mesmo se estiver iconificada. Em caso contrÃ¡rio,
+            restaura a janela especificada por seu nÃºmero ou por seu manipulador. Se
+            nenhuma janela existir, uma Ã© criada.
         </para>
     </refsection>
 </refentry>

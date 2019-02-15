@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
         <refpurpose>raiz quadrada</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>y=sqrt(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -35,11 +35,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>sqrt(x)</literal> é o vetor de raízes quadradas dos
-            elementos de <literal>x</literal>. O resultado é complexo se
-            <literal>x</literal> é negativo.
+            <literal>sqrt(x)</literal> Ã© o vetor de raÃ­zes quadradas dos
+            elementos de <literal>x</literal>. O resultado Ã© complexo se
+            <literal>x</literal> Ã© negativo.
         </para>
     </refsection>
     <refsection>
@@ -50,7 +50,7 @@ sqrt(-1)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="hat">hat</link>

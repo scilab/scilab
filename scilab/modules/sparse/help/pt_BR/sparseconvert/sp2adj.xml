@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -17,16 +17,16 @@
     <refnamediv>
         <refname>sp2adj</refname>
         <refpurpose>converte uma matriz esparsa para forma de
-            adjacência
+            adjacÃªncia
         </refpurpose>
     </refnamediv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>matriz esparsa de reais ou complexos (nz entradas não-nulas)
+                    <para>matriz esparsa de reais ou complexos (nz entradas nÃ£o-nulas)
                     </para>
                 </listitem>
             </varlistentry>
@@ -39,7 +39,7 @@
             <varlistentry>
                 <term>adjncy</term>
                 <listitem>
-                    <para>vetor de inteiros de comprimento nz contendo os índices de
+                    <para>vetor de inteiros de comprimento nz contendo os Ã­ndices de
                         linha para os elementos correspondentes em anz
                     </para>
                 </listitem>
@@ -47,7 +47,7 @@
             <varlistentry>
                 <term>anz</term>
                 <listitem>
-                    <para>vetor coluna de comprimento nz contendo os elementos não-nulos
+                    <para>vetor coluna de comprimento nz contendo os elementos nÃ£o-nulos
                         de A
                     </para>
                 </listitem>
@@ -55,21 +55,21 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <programlisting role=""><![CDATA[
-sp2adj converte uma matriz esparsa para usa forma de adjacência
-(função utilitária).
-A = matriz esparsa n x m . xadj, adjncy, anz = representação
-em adjacência de A, i.e.:
+sp2adj converte uma matriz esparsa para usa forma de adjacÃªncia
+(funÃ§Ã£o utilitÃ¡ria).
+A = matriz esparsa n x m . xadj, adjncy, anz = representaÃ§Ã£o
+em adjacÃªncia de A, i.e.:
  ]]></programlisting>
         <para>
-            <literal>xadj(j+1)-xadj(j)</literal> = número de entradas não-nulas
-            na linha j. <literal>adjncy</literal> = índice de coluna das entradas
-            não-nulas nas linha 1, linha 2,..., linha n. <literal>anz</literal> =
-            valores de entradas não-nulas nas linha 1, linha 2,..., linha n.
-            <literal>xadj</literal> é um vetor (coluna) de tamanho n+1 e
-            <literal>adjncy</literal> é um vetor (coluna) de inteiros de tamanho
-            <literal>nz=nnz(A)</literal>. <literal>anz</literal> é um vetor de reais
+            <literal>xadj(j+1)-xadj(j)</literal> = nÃºmero de entradas nÃ£o-nulas
+            na linha j. <literal>adjncy</literal> = Ã­ndice de coluna das entradas
+            nÃ£o-nulas nas linha 1, linha 2,..., linha n. <literal>anz</literal> =
+            valores de entradas nÃ£o-nulas nas linha 1, linha 2,..., linha n.
+            <literal>xadj</literal> Ã© um vetor (coluna) de tamanho n+1 e
+            <literal>adjncy</literal> Ã© um vetor (coluna) de inteiros de tamanho
+            <literal>nz=nnz(A)</literal>. <literal>anz</literal> Ã© um vetor de reais
             de tamanho <literal>nz=nnz(A)</literal>.
         </para>
     </refsection>
@@ -84,7 +84,7 @@ A-p,
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="adj2sp">adj2sp</link>

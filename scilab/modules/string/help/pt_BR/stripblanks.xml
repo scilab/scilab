@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="stripblanks" xml:lang="pt">
     <refnamediv>
         <refname>stripblanks</refname>
-        <refpurpose>retira espaços em branco (e tabulações) no início ou no fim de
+        <refpurpose>retira espaÃ§os em branco (e tabulaÃ§Ãµes) no inÃ­cio ou no fim de
             strings
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>txt=stripblanks(txt[,tabs])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>txt</term>
@@ -36,7 +36,7 @@
             <varlistentry>
                 <term>tabs</term>
                 <listitem>
-                    <para>se TRUE, retira também tabulações (o valor padrão é
+                    <para>se TRUE, retira tambÃ©m tabulaÃ§Ãµes (o valor padrÃ£o Ã©
                         FALSE)
                     </para>
                 </listitem>
@@ -44,8 +44,8 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>stripblanks retira espaços em branco (e tabulações) no início ou no
+        <title>DescriÃ§Ã£o</title>
+        <para>stripblanks retira espaÃ§os em branco (e tabulaÃ§Ãµes) no inÃ­cio ou no
             fim de strings.
         </para>
     </refsection>

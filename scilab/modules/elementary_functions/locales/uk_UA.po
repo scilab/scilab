@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-02-09 21:17+0000\n"
+"PO-Revision-Date: 2019-02-12 21:17+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -249,8 +249,8 @@ msgstr ""
 "тип.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"
-msgstr "%s: помилкове значення вхідного параметра №%d: мало бути [«i» «d»].\n"
+msgid "%s: Wrong value for input argument #%d: %s expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -332,6 +332,10 @@ msgstr ""
 "однакового розміру.\n"
 
 #, c-format
+msgid "%s: Wrong number of output argument(s): %d expected."
+msgstr "%s: помилкова кількість вихідного параметра: мало бути %d."
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d : A constant scalar expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано стале "
@@ -388,6 +392,12 @@ msgstr ""
 msgid "%s: Wrong size of input argument: %d expected.\n"
 msgstr "%s: помилкова розмірність вхідного параметра: мало бути %d.\n"
 
+#
+# File: modules/elementary_functions/macros/%sp_max.sci, line: 29
+# File: modules/elementary_functions/macros/%sp_min.sci, line: 29
+msgid " (in list)"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
 msgstr ""
@@ -395,8 +405,8 @@ msgstr ""
 "матрицю.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument: %d expected.\n"
-msgstr "%s: помилкова кількість вихідного параметра: мало бути %d.\n"
+msgid "%s: Argument #%d: Complex numbers not supported.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ['r' 'c' 'm'] expected.\n"
@@ -406,39 +416,27 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size of input argument #%d: Same size as input argument #%d "
+"%s: Wrong type for input argument #%d%s: A sparse matrix or a scalar "
 "expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути використано ту "
-"саму розмірність, що і у вхідному параметрі №%d.\n"
+
+#, c-format
+msgid "%s: Argument #%d%s: Complex numbers not supported.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A sparse matrix or a character "
+"%s: Wrong size of input argument #%d%s: Same size as input argument #%d "
 "expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано розріджену "
-"матрицю або символ.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d (List element: %d): A sparse matrix "
-"expected.\n"
+msgid "%s: Argument #%d: the scalar must be negative.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d (елемент списку: %d): мало бути "
-"використано розріджену матрицю.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size of input argument #%d (List element: %d): Same size as input "
-"argument #%d expected.\n"
+msgid "%s: Argument #%d: the scalar must be positive.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d (елемент списку: %d): мало "
-"бути використано ту саму розмірність, що і у вхідного параметра №%d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument: %d expected"
-msgstr "%s: помилкова кількість вихідного параметра: мало бути %d"
 
 #, c-format
 msgid ""
@@ -672,6 +670,10 @@ msgid "%s: Argument #%d: Number(s) expected.\n"
 msgstr "%s: параметр №%d: мало бути вказано числа.\n"
 
 #, c-format
+msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
 msgstr "%s: параметр №%d: не можна використовувати значення %%nan і %%inf.\n"
 
@@ -818,14 +820,6 @@ msgstr ""
 "вектор.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
-"%d] integers.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мала бути коректна "
-"перестановка [1..n>%d] цілих чисел.\n"
-
-#, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
 msgstr "%s: несумісні вхідні параметри: типи мали бути однаковими.\n"
 
@@ -923,6 +917,22 @@ msgid "%s: conversion into %s is not supported\n"
 msgstr "%s: підтримки перетворення на %s не передбачено\n"
 
 #, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d. Значення має належати набору "
+"{%s}.\n"
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
+msgstr ""
+"%s: несумісні вхідні параметри №%d і №%d: кількість стовпчиків у параметрах "
+"має збігатися.\n"
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
 msgstr "%s: помилкове значення вхідного параметра №%d: не ермітова матриця.\n"
 
@@ -988,3 +998,32 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: помилкові розмірності вхідних параметрів: несумісні розмірності.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: мало бути [«i» «d»].\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d (List element: %d): A sparse matrix "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d (елемент списку: %d): мало бути "
+#~ "використано розріджену матрицю.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size of input argument #%d (List element: %d): Same size as "
+#~ "input argument #%d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d (елемент списку: %d): "
+#~ "мало бути використано ту саму розмірність, що і у вхідного параметра №"
+#~ "%d.\n"
+
+#~ msgid "%s: Wrong number of output argument: %d expected"
+#~ msgstr "%s: помилкова кількість вихідного параметра: мало бути %d"
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Must be a valid permutation of "
+#~ "[1..n>%d] integers.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: мала бути коректна "
+#~ "перестановка [1..n>%d] цілих чисел.\n"

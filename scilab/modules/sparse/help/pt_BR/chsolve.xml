@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
         <refpurpose>solucionador esparso de Cholesky</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>sol=chsolve(spcho,rhs)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>spcho</term>
@@ -42,13 +42,13 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>sol=chsolve(spcho,rhs)</literal> computa a solução de
+            <literal>sol=chsolve(spcho,rhs)</literal> computa a soluÃ§Ã£o de
             <literal>rhs=A*sol</literal>, com <literal>A</literal> uma matriz
-            simétrica e positiva definida. Esta função é baseada nos programas
-            Ng-Peyton (ORNL). Veja os programas FORTRAN para uma descrição completa
-            das variáveis em <literal>spcho</literal>.
+            simÃ©trica e positiva definida. Esta funÃ§Ã£o Ã© baseada nos programas
+            Ng-Peyton (ORNL). Veja os programas FORTRAN para uma descriÃ§Ã£o completa
+            das variÃ¡veis em <literal>spcho</literal>.
         </para>
     </refsection>
     <refsection>
@@ -63,7 +63,7 @@ chsolve(spcho,rhs)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="chfact">chfact</link>

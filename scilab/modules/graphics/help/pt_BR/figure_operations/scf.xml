@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -16,17 +16,17 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scf" xml:lang="pt">
     <refnamediv>
         <refname>scf</refname>
-        <refpurpose>Ajusta a (janela) de figura gráfica corrente</refpurpose>
+        <refpurpose>Ajusta a (janela) de figura grÃ¡fica corrente</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>f = scf()
             f = scf(h)
             f = scf(num)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
@@ -49,16 +49,16 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>A figura corrente é o destino do desenho gráfico. A função
+        <title>DescriÃ§Ã£o</title>
+        <para>A figura corrente Ã© o destino do desenho grÃ¡fico. A funÃ§Ã£o
             <literal>scf</literal> permite modificar esta figura corrente ou criar uma
-            caso ainda não exista.
+            caso ainda nÃ£o exista.
         </para>
         <para/>
         <para>
             <literal>scf(num)</literal> ajusta a figura com
-            <literal>figure_id==num</literal> como figura corrente. Se ainda não
-            existir, ela é criada.
+            <literal>figure_id==num</literal> como figura corrente. Se ainda nÃ£o
+            existir, ela Ã© criada.
         </para>
         <para/>
         <para>
@@ -66,9 +66,9 @@
             <literal>h</literal> ajusta a figura apontada pelo manipulador
         </para>
         <para>
-            <literal>scf()</literal> é equivalente a
+            <literal>scf()</literal> Ã© equivalente a
             <literal>scf(max(winsid())+1) </literal>. Pode ser utilizado para criar
-            uma nova janela de gráficos.
+            uma nova janela de grÃ¡ficos.
         </para>
     </refsection>
     <refsection>
@@ -82,7 +82,7 @@ plot3d() //desenhando na figura corrente (id=4)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>

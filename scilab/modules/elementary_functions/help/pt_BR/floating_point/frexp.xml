@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="frexp" xml:lang="pt">
     <refnamediv>
         <refname>frexp</refname>
-        <refpurpose>separa um número em ponto flutuante em potência de base 2 e
+        <refpurpose>separa um nÃºmero em ponto flutuante em potÃªncia de base 2 e
             mantissa
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[f,e]=frexp(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -45,7 +45,7 @@
                 <term>e</term>
                 <listitem>
                     <para>
-                        array de inteiros que satisfazem a equação: <literal>x=
+                        array de inteiros que satisfazem a equaÃ§Ã£o: <literal>x=
                             f.*2.^e
                         </literal>
                     </para>
@@ -54,8 +54,8 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta função corresponde à função ANSI C frexp(). Quaisquer zeros em
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta funÃ§Ã£o corresponde Ã  funÃ§Ã£o ANSI C frexp(). Quaisquer zeros em
             <literal>x</literal> produzem <literal>f=0</literal> e
             <literal>e=0</literal>.
         </para>
@@ -67,7 +67,7 @@
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="log">log</link>

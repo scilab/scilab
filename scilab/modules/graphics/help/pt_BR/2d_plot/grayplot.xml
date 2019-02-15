@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="grayplot" xml:lang="pt">
     <refnamediv>
         <refname>grayplot</refname>
-        <refpurpose>esboço 2d de uma superfície utilizando-se cores</refpurpose>
+        <refpurpose>esboÃ§o 2d de uma superfÃ­cie utilizando-se cores</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>grayplot(x,y,z,[strf,rect,nax])
             grayplot(x,y,z,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x,y</term>
@@ -38,7 +38,7 @@
                 <listitem>
                     <para>
                         matriz de reais de tamanho (n1,n2). <literal>z(i,j)</literal>
-                        é o valor da superfície no ponto(x(i),y(j)).
+                        Ã© o valor da superfÃ­cie no ponto(x(i),y(j)).
                     </para>
                 </listitem>
             </varlistentry>
@@ -46,7 +46,7 @@
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
                     <para>
-                        representa uma seqüência de declarações <literal>key1=value1,
+                        representa uma seqÃ¼Ãªncia de declaraÃ§Ãµes <literal>key1=value1,
                             key2=value2
                         </literal>
                         ,... onde <literal>key1</literal>,
@@ -66,17 +66,17 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>grayplot</literal> faz um esboço 2d de uma superfície dada
+            <literal>grayplot</literal> faz um esboÃ§o 2d de uma superfÃ­cie dada
             por <literal>z</literal> em um grid definido por <literal>x</literal> e
-            <literal>y</literal>. Cada retângulo no grid é preenchido com um nível de
-            cinza ou de cor dependendo do valor médio de <literal>z</literal> nas
-            quinas do retângulo.
+            <literal>y</literal>. Cada retÃ¢ngulo no grid Ã© preenchido com um nÃ­vel de
+            cinza ou de cor dependendo do valor mÃ©dio de <literal>z</literal> nas
+            quinas do retÃ¢ngulo.
         </para>
         <para>
             Entre com o comando <literal>grayplot()</literal> para visualizar
-            uma demonstração.
+            uma demonstraÃ§Ã£o.
         </para>
     </refsection>
     <refsection>
@@ -90,7 +90,7 @@ grayplot(t,t,m)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="fgrayplot">fgrayplot</link>

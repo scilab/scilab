@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="insertion" xml:lang="pt">
     <refnamediv>
         <refname>insertion</refname>
-        <refpurpose>atribuição ou modificação parcial de variáveis</refpurpose>
+        <refpurpose>atribuiÃ§Ã£o ou modificaÃ§Ã£o parcial de variÃ¡veis</refpurpose>
     </refnamediv>
     <refnamediv xml:id="assignation">
         <refname>assignation</refname>
-        <refpurpose>atribuição parcial de variáveis</refpurpose>
+        <refpurpose>atribuiÃ§Ã£o parcial de variÃ¡veis</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>x(i,j)=a
             x(i)=a
             l(i)=a
@@ -18,7 +18,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -35,13 +35,13 @@
             <varlistentry>
                 <term>i,j</term>
                 <listitem>
-                    <para>índices</para>
+                    <para>Ã­ndices</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>k1,...kn</term>
                 <listitem>
-                    <para>índices com valores inteiros</para>
+                    <para>Ã­ndices com valores inteiros</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -53,27 +53,27 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <variablelist>
             <varlistentry>
                 <term>CASO DE MATRIZES</term>
                 <listitem>
                     <para>
-                        Se <literal>x</literal> é uma matriz, os índices
+                        Se <literal>x</literal> Ã© uma matriz, os Ã­ndices
                         <literal>i</literal> e <literal>j</literal>, podem ser:
                     </para>
                     <variablelist>
                         <varlistentry>
                             <term>Escalares reais, vetores ou matrizes</term>
                             <listitem>
-                                <para>neste caso, os valores fornecidos como índices devem ser
-                                    inteiros e apenas suas partes inteiras são levadas em
-                                    consideração.
+                                <para>neste caso, os valores fornecidos como Ã­ndices devem ser
+                                    inteiros e apenas suas partes inteiras sÃ£o levadas em
+                                    consideraÃ§Ã£o.
                                 </para>
                                 <itemizedlist>
                                     <listitem>
                                         <para>
-                                            Se <literal>a</literal> é uma matriz com dimensões
+                                            Se <literal>a</literal> Ã© uma matriz com dimensÃµes
                                             <literal>(size(i,'*'),size(j,'*'))</literal>,
                                             <literal>x(i,j)=a</literal> retorna uma nova matriz
                                             <literal>x</literal> tal que
@@ -81,30 +81,30 @@
                                             <literal>l</literal> de 1 a <literal>size(i,'*')</literal>
                                             e <literal>k</literal> de 1 a
                                             <literal>size(j,'*')</literal>, as outras entradas
-                                            iniciais de <literal>x</literal> não são
+                                            iniciais de <literal>x</literal> nÃ£o sÃ£o
                                             modificadas.
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            Se <literal>a</literal> é um escalar,
+                                            Se <literal>a</literal> Ã© um escalar,
                                             <literal>x(i,j)=a</literal> retorna uma nova matriz
                                             <literal>x</literal> tal que
                                             <literal>x(int(i(l)),int(j(k)))=a</literal> para
                                             <literal>l</literal> de 1 a <literal>size(i,'*')</literal>
                                             e <literal>k</literal> de 1 a
                                             <literal>size(j,'*')</literal>, as outras entradas
-                                            iniciais de <literal>x</literal> não são
+                                            iniciais de <literal>x</literal> nÃ£o sÃ£o
                                             modificadas.
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            Se o valor máximo de <literal>i</literal> ou
-                                            <literal>j</literal> exceder a dimensão correspondente da
+                                            Se o valor mÃ¡ximo de <literal>i</literal> ou
+                                            <literal>j</literal> exceder a dimensÃ£o correspondente da
                                             matriz <literal>x</literal> , o array <literal>x</literal>
-                                            é previamente estendido para as dimensões requeridas com
-                                            entradas 0 para matrizes padrões, strings de comprimento 0
+                                            Ã© previamente estendido para as dimensÃµes requeridas com
+                                            entradas 0 para matrizes padrÃµes, strings de comprimento 0
                                             para matrizes de strings e valores falsos para matrizes de
                                             booleanos.
                                         </para>
@@ -126,7 +126,7 @@
                                             um vetor retorna a nova matriz <literal>x</literal> tal
                                             que <literal>x(int(i(l)))=a(l)</literal> para
                                             <literal>l</literal> de 1 a <literal>size(i,'*')</literal>
-                                            , outras entradas iniciais de <literal>x</literal> não são
+                                            , outras entradas iniciais de <literal>x</literal> nÃ£o sÃ£o
                                             modificadas.
                                         </para>
                                     </listitem>
@@ -136,14 +136,14 @@
                                             um escalar retorna uma nova matriz <literal>x</literal>
                                             tal que <literal>x(int(i(l)))=a</literal> para
                                             <literal>l</literal> de 1 a <literal>size(i,'*')</literal>
-                                            , outras entradas iniciais de <literal>x</literal> não são
+                                            , outras entradas iniciais de <literal>x</literal> nÃ£o sÃ£o
                                             modificadas.
                                         </para>
                                         <para>
-                                            Se o valor máximo de <literal>i</literal> exceder
-                                            <literal>size(x,1)</literal>, <literal>x</literal> é
-                                            previamente estendida para a dimensão requerida com
-                                            entradas 0 para matrizes padrões, strings de comprimento 0
+                                            Se o valor mÃ¡ximo de <literal>i</literal> exceder
+                                            <literal>size(x,1)</literal>, <literal>x</literal> Ã©
+                                            previamente estendida para a dimensÃ£o requerida com
+                                            entradas 0 para matrizes padrÃµes, strings de comprimento 0
                                             para matrizes de strings e valores falsos para matrizes de
                                             booleanos.
                                         </para>
@@ -152,13 +152,13 @@
                                                 <term>Se</term>
                                                 <listitem>
                                                     <para>
-                                                        <literal>x</literal> é uma matriz 1x1
+                                                        <literal>x</literal> Ã© uma matriz 1x1
                                                     </para>
                                                     <para>
                                                         <literal>a</literal> pode ser um vetor linha
-                                                        (respectivamente coluna) com dimensão
+                                                        (respectivamente coluna) com dimensÃ£o
                                                         <literal>size(i,'*')</literal>. A matriz
-                                                        <literal>x</literal> resultante é um vetor linha
+                                                        <literal>x</literal> resultante Ã© um vetor linha
                                                         (respectivamente coluna).
                                                     </para>
                                                 </listitem>
@@ -167,11 +167,11 @@
                                                 <term>Se</term>
                                                 <listitem>
                                                     <para>
-                                                        <literal>x</literal> é um vetor linha
+                                                        <literal>x</literal> Ã© um vetor linha
                                                     </para>
                                                     <para>
                                                         <literal>a</literal> deve ser um vetor linha
-                                                        de dimensão <literal>size(i,'*')</literal>
+                                                        de dimensÃ£o <literal>size(i,'*')</literal>
                                                     </para>
                                                 </listitem>
                                             </varlistentry>
@@ -179,11 +179,11 @@
                                                 <term>Se</term>
                                                 <listitem>
                                                     <para>
-                                                        <literal>x</literal> é um vetor coluna
+                                                        <literal>x</literal> Ã© um vetor coluna
                                                     </para>
                                                     <para>
                                                         <literal>a</literal> deve ser um vetor coluna
-                                                        de dimensão <literal>size(i,'*')</literal>
+                                                        de dimensÃ£o <literal>size(i,'*')</literal>
                                                     </para>
                                                 </listitem>
                                             </varlistentry>
@@ -191,12 +191,12 @@
                                                 <term>Se</term>
                                                 <listitem>
                                                     <para>
-                                                        <literal>x</literal> é uma matriz geral
+                                                        <literal>x</literal> Ã© uma matriz geral
                                                     </para>
                                                     <para>
                                                         <literal>a</literal> deve ser um vetor linha
-                                                        ou coluna de dimensão <literal>size(i,'*')</literal>
-                                                        e o valor máximo de <literal>i</literal> não pode
+                                                        ou coluna de dimensÃ£o <literal>size(i,'*')</literal>
+                                                        e o valor mÃ¡ximo de <literal>i</literal> nÃ£o pode
                                                         exceder <literal>size(x,'*')</literal>,
                                                     </para>
                                                 </listitem>
@@ -213,22 +213,22 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>O símbolo :</term>
+                            <term>O sÃ­mbolo :</term>
                             <listitem>
                                 <para>
-                                    O símbolo <literal>':'</literal> significa "todos os
+                                    O sÃ­mbolo <literal>':'</literal> significa "todos os
                                     elementos".
                                 </para>
                                 <itemizedlist>
                                     <listitem>
                                         <para>
-                                            <literal>x(i,:)=a</literal> é interpretado como
+                                            <literal>x(i,:)=a</literal> Ã© interpretado como
                                             <literal>x(i,1:size(x,2))=a</literal>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>x(:,j)=a</literal> é interpretado como
+                                            <literal>x(:,j)=a</literal> Ã© interpretado como
                                             <literal>x(1:size(x,1),j)=a</literal>
                                         </para>
                                     </listitem>
@@ -236,7 +236,7 @@
                                         <para>
                                             <literal>x(:)=a</literal> retorna em
                                             <literal>x</literal> a matriz <literal>a</literal> de
-                                            forma redefinida de acordo com as dimensões de x.
+                                            forma redefinida de acordo com as dimensÃµes de x.
                                             <literal>size(x,'*')</literal> deve ser igual a
                                             <literal>size(a,'*')</literal>
                                         </para>
@@ -248,25 +248,25 @@
                             <term>Vetores de booleanos</term>
                             <listitem>
                                 <para>
-                                    se um índice (<literal>i</literal> ou
-                                    <literal>j</literal> ) é um vetor de booleanos, é interpretado
+                                    se um Ã­ndice (<literal>i</literal> ou
+                                    <literal>j</literal> ) Ã© um vetor de booleanos, Ã© interpretado
                                     como <literal>find(i)</literal> ou, respectivamente,
                                     <literal>find(j)</literal>
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>Polinômios</term>
+                            <term>PolinÃ´mios</term>
                             <listitem>
                                 <para>
-                                    se um índice (<literal>i</literal> ou
-                                    <literal>j</literal> ) é um vetor de polinômios ou um vetor de
-                                    polinômios implícito, é interpretado como
+                                    se um Ã­ndice (<literal>i</literal> ou
+                                    <literal>j</literal> ) Ã© um vetor de polinÃ´mios ou um vetor de
+                                    polinÃ´mios implÃ­cito, Ã© interpretado como
                                     <literal>horner(i,m)</literal> ou respectivamente
                                     <literal>horner(j,n)</literal> onde <literal>m</literal> e
-                                    <literal>n</literal> são as dimensões associadas de
+                                    <literal>n</literal> sÃ£o as dimensÃµes associadas de
                                     <literal>x</literal>. Mesmo se esse recurso funcionar para
-                                    todos os polinômios, é recomendado utilizar polinômios em
+                                    todos os polinÃ´mios, Ã© recomendado utilizar polinÃ´mios em
                                     <literal>$</literal> para legibilidade.
                                 </para>
                             </listitem>
@@ -281,11 +281,11 @@
                         <listitem>
                             <para>
                                 Se estiverem presentes, os <literal>ki</literal> fornecem
-                                o endereço para uma entrada de sub-lista da estrutura de dados
-                                <literal>l</literal> data structure. Eles permitem uma extração
-                                recursiva sem cópias intermediárias. As instruções
+                                o endereÃ§o para uma entrada de sub-lista da estrutura de dados
+                                <literal>l</literal> data structure. Eles permitem uma extraÃ§Ã£o
+                                recursiva sem cÃ³pias intermediÃ¡rias. As instruÃ§Ãµes
                                 <literal>l(k1)...(kn)(i)=a</literal> e
-                                <literal>l(list(k1,...,kn,i)=a)</literal> são interpretadas
+                                <literal>l(list(k1,...,kn,i)=a)</literal> sÃ£o interpretadas
                                 como:
                             </para>
                             <para>
@@ -306,8 +306,8 @@
                                 <literal>l(k1) = lk1</literal>
                             </para>
                             <para>
-                                E as instruções <literal>l(k1)...(kn)(i,j)=a</literal> e
-                                <literal>l(list(k1,...,kn,list(i,j))=a</literal> são
+                                E as instruÃ§Ãµes <literal>l(k1)...(kn)(i,j)=a</literal> e
+                                <literal>l(list(k1,...,kn,list(i,j))=a</literal> sÃ£o
                                 interpretadas como:
                             </para>
                             <para>
@@ -334,24 +334,24 @@
                             </para>
                             <itemizedlist>
                                 <listitem>
-                                    <para>Um escalar real não-negativo.
-                                        <literal>l(0)=a</literal> adiciona uma entrada à "esquerda"
+                                    <para>Um escalar real nÃ£o-negativo.
+                                        <literal>l(0)=a</literal> adiciona uma entrada Ã  "esquerda"
                                         da lista, <literal>l(i)=a</literal> configura a entrada
                                         <literal>i</literal> da lista <literal>l</literal> como
                                         <literal>a</literal>. Se <literal>i&gt;size(l)</literal>,
-                                        <literal>l</literal> é previamente estendido com entradas de
+                                        <literal>l</literal> Ã© previamente estendido com entradas de
                                         comprimento 0 (indefinidas). <literal>l(i)=null()</literal>
-                                        suprime a <literal>i</literal>-ésima entrada da
+                                        suprime a <literal>i</literal>-Ã©sima entrada da
                                         lista.
                                     </para>
                                 </listitem>
                                 <listitem>
                                     <para>
-                                        Um polinômio. Se <literal>i</literal> é um polinômio,
-                                        é interpretado como <literal>horner(i,m)</literal> onde
+                                        Um polinÃ´mio. Se <literal>i</literal> Ã© um polinÃ´mio,
+                                        Ã© interpretado como <literal>horner(i,m)</literal> onde
                                         <literal>m=size(l)</literal>. Mesmo se este recurso
-                                        funcionar para todos os polinômios, é recomendado utilizar
-                                        polinômios em <literal>$</literal> para legibilidade.
+                                        funcionar para todos os polinÃ´mios, Ã© recomendado utilizar
+                                        polinÃ´mios em <literal>$</literal> para legibilidade.
                                     </para>
                                 </listitem>
                             </itemizedlist>
@@ -365,8 +365,8 @@
                                     <para>Escalares reais positivos.</para>
                                 </listitem>
                                 <listitem>
-                                    <para>Polinômios, interpretados como
-                                        <literal>horner(ki,m)</literal> onde <literal>m</literal> é
+                                    <para>PolinÃ´mios, interpretados como
+                                        <literal>horner(ki,m)</literal> onde <literal>m</literal> Ã©
                                         o tamanho da sub-lista correspondente.
                                     </para>
                                 </listitem>
@@ -383,11 +383,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Observações</title>
-        <para>Para tipos de matrizes "soft-coded" como funções racionais e
-            sistemas lineares de espaços de estados, a sintaxe <literal>x(i)</literal>
-            não pode ser usada para inserção de entradas em vetores devido a confusões
-            com inserção de entradas em listas. A sintaxe <literal>x(1,j)</literal> ou
+        <title>ObservaÃ§Ãµes</title>
+        <para>Para tipos de matrizes "soft-coded" como funÃ§Ãµes racionais e
+            sistemas lineares de espaÃ§os de estados, a sintaxe <literal>x(i)</literal>
+            nÃ£o pode ser usada para inserÃ§Ã£o de entradas em vetores devido a confusÃµes
+            com inserÃ§Ã£o de entradas em listas. A sintaxe <literal>x(1,j)</literal> ou
             <literal>x(i,1)</literal> deve ser usada.
         </para>
     </refsection>
@@ -428,7 +428,7 @@ dts(2)('b')(1,2)=-100
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="find">find</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strspn" xml:lang="pt">
     <refnamediv>
         <refname>strspn</refname>
-        <refpurpose>retorna a extensão do conjunto de caracteres no
+        <refpurpose>retorna a extensÃ£o do conjunto de caracteres no
             string
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>res = strspn(str1,str2)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>str1</term>
@@ -48,13 +48,13 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>res = strspn(str1,str2)</literal> retorna o comprimento da
-            porção inicial de str1 que consiste apenas de caracteres que fazem parte
+            porÃ§Ã£o inicial de str1 que consiste apenas de caracteres que fazem parte
             de str2.
         </para>
-        <para>str2 deve ter as mesmas dimensões que str2, ou str1 pode ser um
+        <para>str2 deve ter as mesmas dimensÃµes que str2, ou str1 pode ser um
             string.
         </para>
     </refsection>
@@ -67,7 +67,7 @@ i = strspn(["129o","130o"],["1234567890","130o"])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strcspn">strcspn</link>

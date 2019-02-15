@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-05-02 02:28+0000\n"
+"PO-Revision-Date: 2019-02-12 02:28+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -218,8 +218,8 @@ msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  ['i' 'd']を指定してください.\n"
+msgid "%s: Wrong value for input argument #%d: %s expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -289,6 +289,10 @@ msgstr ""
 "い.\n"
 
 #, c-format
+msgid "%s: Wrong number of output argument(s): %d expected."
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください."
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d : A constant scalar expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています:  定数スカラーを指定してください.\n"
@@ -341,13 +345,19 @@ msgstr ""
 msgid "%s: Wrong size of input argument: %d expected.\n"
 msgstr "%s: 入力引数の大きさが間違っています: %d を指定してください.\n"
 
+#
+# File: modules/elementary_functions/macros/%sp_max.sci, line: 29
+# File: modules/elementary_functions/macros/%sp_min.sci, line: 29
+msgid " (in list)"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 疎行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument: %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+msgid "%s: Argument #%d: Complex numbers not supported.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ['r' 'c' 'm'] expected.\n"
@@ -356,38 +366,27 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size of input argument #%d: Same size as input argument #%d "
+"%s: Wrong type for input argument #%d%s: A sparse matrix or a scalar "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 入力引数 #%d と同じ大きさを指定し"
-"てください.\n"
+
+#, c-format
+msgid "%s: Argument #%d%s: Complex numbers not supported.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A sparse matrix or a character "
+"%s: Wrong size of input argument #%d%s: Same size as input argument #%d "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 疎行列または文字を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d (List element: %d): A sparse matrix "
-"expected.\n"
+msgid "%s: Argument #%d: the scalar must be negative.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています (リスト要素: %d): 疎行列を指定してくだ"
-"さい.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size of input argument #%d (List element: %d): Same size as input "
-"argument #%d expected.\n"
+msgid "%s: Argument #%d: the scalar must be positive.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています (リスト要素: %d): 入力引数 #%d とし"
-"て同じ大きさを指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument: %d expected"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください"
 
 #, c-format
 msgid ""
@@ -614,6 +613,10 @@ msgid "%s: Argument #%d: Number(s) expected.\n"
 msgstr "%s: 引数 #%d: 数値を指定してください.\n"
 
 #, c-format
+msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
 msgstr "%s: 引数 #%d: 値 %%nan および %%inf は使用できません.\n"
 
@@ -751,14 +754,6 @@ msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid permutation of [1..n>"
-"%d] integers.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています:   [1..n>%d] 整数の有効な順列とする必要"
-"があります.\n"
-
-#, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
 msgstr "%s: 入力引数に互換性がありません: 同じ型を指定してください.\n"
 
@@ -850,6 +845,21 @@ msgid "%s: conversion into %s is not supported\n"
 msgstr "%s: %s への変換はサポートされていません\n"
 
 #, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: {%s} の範囲で設定してください.\n"
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
+msgstr ""
+"%s: 入力引数 #%d 及び #%d に互換性がありません : 列の数を同じにする必要があり"
+"ます.\n"
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: エルミート行列以外を指定してくださ"
@@ -909,3 +919,31 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: 入力引数の大きさが間違っています: 大きさに互換性がありません.\n"
+
+#~ msgid "%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の値が間違っています:  ['i' 'd']を指定してください.\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d (List element: %d): A sparse matrix "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の型が間違っています (リスト要素: %d): 疎行列を指定してく"
+#~ "ださい.\n"
+
+#~ msgid ""
+#~ "%s: Wrong size of input argument #%d (List element: %d): Same size as "
+#~ "input argument #%d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の大きさが間違っています (リスト要素: %d): 入力引数 #%d "
+#~ "として同じ大きさを指定してください.\n"
+
+#~ msgid "%s: Wrong number of output argument: %d expected"
+#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください"
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Must be a valid permutation of "
+#~ "[1..n>%d] integers.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の値が間違っています:   [1..n>%d] 整数の有効な順列とする"
+#~ "必要があります.\n"

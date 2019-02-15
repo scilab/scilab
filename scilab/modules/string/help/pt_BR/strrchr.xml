@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strrchr" xml:lang="pt">
     <refnamediv>
         <refname>strrchr</refname>
-        <refpurpose>acha a última ocorrência de um caractere em um
+        <refpurpose>acha a Ãºltima ocorrÃªncia de um caractere em um
             string
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>res = strrchr(str1,char)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>str1</term>
@@ -48,12 +48,12 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>res = strrchr(str1,char)</literal> retorna a última
-            ocorrência de caractere no string str
+            <literal>res = strrchr(str1,char)</literal> retorna a Ãºltima
+            ocorrÃªncia de caractere no string str
         </para>
-        <para>num deve ter as mesmas dimensões que str1, ou apenas um caracteres
+        <para>num deve ter as mesmas dimensÃµes que str1, ou apenas um caracteres
             char.
         </para>
     </refsection>
@@ -66,7 +66,7 @@ strrchr(['Este e um string de amostra','no scilab'],['s','a'])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strchr">strchr</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -17,16 +17,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="feval" xml:lang="pt">
     <refnamediv>
         <refname>feval</refname>
-        <refpurpose>múltipla avaliação</refpurpose>
+        <refpurpose>mÃºltipla avaliaÃ§Ã£o</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[z]=feval(x,y,f)
             [z]=feval(x,f)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x,y</term>
@@ -37,14 +37,14 @@
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>função ou string (para chamada FORTRAN ou C)</para>
+                    <para>funÃ§Ã£o ou string (para chamada FORTRAN ou C)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Múltipla avaliação de uma função para um ou dois argumentos do tipo
+        <title>DescriÃ§Ã£o</title>
+        <para>MÃºltipla avaliaÃ§Ã£o de uma funÃ§Ã£o para um ou dois argumentos do tipo
             vetor:
         </para>
         <variablelist>
@@ -68,11 +68,11 @@
             </varlistentry>
         </variablelist>
         <para>
-            <literal>f</literal> é uma external (função ou rotina) que aceita
+            <literal>f</literal> Ã© uma external (funÃ§Ã£o ou rotina) que aceita
             dois ou mais argumentos supostos reais. O resultado retornado por
             <literal>f</literal> pode ser real ou complexo. No caso de uma chamada
-            FORTRAN, a função <literal> 'f' </literal> deve ser definida na subrotina
-            <literal>fevaltable.c</literal> (no diretório
+            FORTRAN, a funÃ§Ã£o <literal> 'f' </literal> deve ser definida na subrotina
+            <literal>fevaltable.c</literal> (no diretÃ³rio
             <literal>SCI/modules/differential_equations/src/c</literal>)
         </para>
     </refsection>
@@ -85,13 +85,13 @@ deff('[z]=f(x,y)','z=x+%i*y');
 feval(1:10,1:5,f)
 feval(1:10,1:5,'parab')   //See ffeval.f file
 feval(1:10,'parab')
-// Para link dinâmico (ver exemplo ftest em ffeval.f)
-// você pode usar o comando link (os parâmetros dependem da máquina):
+// Para link dinÃ¢mico (ver exemplo ftest em ffeval.f)
+// vocÃª pode usar o comando link (os parÃ¢metros dependem da mÃ¡quina):
 // unix('make ftest.o');link('ftest.f','ftest'); feval(1:10,1:5,'ftest')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="evstr">evstr</link>

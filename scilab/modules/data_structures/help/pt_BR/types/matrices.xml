@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="matrices" xml:lang="pt">
     <refnamediv>
         <refname>matrices</refname>
         <refpurpose>objeto do Scilab: matrizes</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
-        <para>Matrizes são objetos básicos definidos no Scilab. Elas podem ser
+        <title>DescriÃ§Ã£o</title>
+        <para>Matrizes sÃ£o objetos bÃ¡sicos definidos no Scilab. Elas podem ser
             definidas como segue:
         </para>
         <programlisting role=""><![CDATA[
@@ -16,10 +16,10 @@ E=[e11,e12,...,e1n;
    em1,em2,...,emn];
  ]]></programlisting>
         <para>
-            As entradas <literal>eij</literal> podem ser números reais,
-            complexos, polinômios, razões de polinômios, strings ou booleanos.
+            As entradas <literal>eij</literal> podem ser nÃºmeros reais,
+            complexos, polinÃ´mios, razÃµes de polinÃ´mios, strings ou booleanos.
         </para>
-        <para>Vetores são vistos como matrizes de uma linha ou uma coluna.</para>
+        <para>Vetores sÃ£o vistos como matrizes de uma linha ou uma coluna.</para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -33,7 +33,7 @@ E=['A11','A12';'A21','A22']
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="poly">poly</link>

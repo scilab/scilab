@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
@@ -21,11 +21,11 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>f = get_figure_handle(figure_id)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>figure_id</term>
@@ -42,12 +42,12 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>get_figure_handle</literal> permite recuperar o manipulador
-            de uma figura gráfica desde que se conheça o seu identificador. Se uma
-            figura com o id especificado existir, ela é retornada. Em caso contrário,
-            uma matriz vazia é retornada.
+            de uma figura grÃ¡fica desde que se conheÃ§a o seu identificador. Se uma
+            figura com o id especificado existir, ela Ã© retornada. Em caso contrÃ¡rio,
+            uma matriz vazia Ã© retornada.
         </para>
     </refsection>
     <refsection>
@@ -60,14 +60,14 @@ scf(12);
 
 // obtendo o manipulador da figura com id 5
 f5 = get_figure_handle(5);
-// a figura corrente ainda é aquela com id 12
+// a figura corrente ainda Ã© aquela com id 12
 gcf()
 // obtendo uma figura inexistente
 f42 = get_figure_handle(42);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>

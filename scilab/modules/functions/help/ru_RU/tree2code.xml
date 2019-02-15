@@ -45,7 +45,11 @@
                     <table>
                       <tr>
                         <td>%T : </td>
-                        <td>генерирует код, который имеет отступы и красивый вид</td>
+                        <td>
+                            генерирует код, который имеет отступы и красивый вид.
+                            The indentation length is the Scinotes one. It can be tuned through
+                            Scinotes preferences.
+                        </td>
                       </tr>
                       <tr>
                         <td>%F : </td>
@@ -78,7 +82,7 @@
 tree = macr2tree(log2);   // заметьте, что на входе указано log2 (дескриптор функции), а не "log2"
 txt = tree2code(tree, %T);
 printf("%s\n", txt);
-	]]></programlisting>
+    ]]></programlisting>
     <screen><![CDATA[--> printf("%s\n",c)
 function [f,e] = log2(x)
   // x may be positive, negative, or complex

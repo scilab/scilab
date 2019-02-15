@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ver" xml:lang="pt">
     <refnamediv>
         <refname>ver</refname>
-        <refpurpose>informação de versão sobre Scilab</refpurpose>
+        <refpurpose>informaÃ§Ã£o de versÃ£o sobre Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>r = ver()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>r</term>
@@ -34,9 +34,9 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Informação de versão sobre o Scilab.</para>
-        <para>Retorna uma matriz de strings com informações de versão sobre o
+        <title>DescriÃ§Ã£o</title>
+        <para>InformaÃ§Ã£o de versÃ£o sobre o Scilab.</para>
+        <para>Retorna uma matriz de strings com informaÃ§Ãµes de versÃ£o sobre o
             Scilab.
         </para>
     </refsection>
@@ -47,7 +47,7 @@ r = ver()
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="getversion">getversion</link>

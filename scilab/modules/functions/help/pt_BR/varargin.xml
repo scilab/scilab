@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varargin" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="varargin" xml:lang="pt">
     <refnamediv>
         <refname>varargin</refname>
         <refpurpose>variável do número de argumentos de saída em uma lista de
@@ -54,7 +57,8 @@
     <refsection>
         <title>Observações</title>
         <para>
-            Sintaxe de argumento nomeada, como <literal>foo(...,key=value)</literal>, é incompatível com o uso de <literal>varargin</literal>. A razão é que os nomes
+            Sintaxe de argumento nomeada, como <literal>foo(...,key=value)</literal>,
+            é incompatível com o uso de <literal>varargin</literal>. A razão é que os nomes
             (i.e. keys) associados aos valores value não são armazenados na lista
             <literal>varargin</literal>. Considere por exemplo:
         </para>
@@ -91,6 +95,9 @@ exampl(1,l(2:3))
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
+                <link linkend="varargout">varargout</link>
+            </member>
+            <member>
                 <link linkend="argn">argn</link>
             </member>
             <member>
@@ -98,9 +105,6 @@ exampl(1,l(2:3))
             </member>
             <member>
                 <link linkend="list">list</link>
-            </member>
-            <member>
-                <link linkend="varargout">varargout</link>
             </member>
         </simplelist>
     </refsection>

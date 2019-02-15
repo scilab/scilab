@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,30 +19,30 @@
         <refpurpose>editando item do manual</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>manedit(manitem)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>manitem</term>
                 <listitem>
-                    <para>string (geralmente, o nome de uma função)</para>
+                    <para>string (geralmente, o nome de uma funÃ§Ã£o)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>edit(manitem)</literal> abre o arquivo xml associado a
             <literal>manitem</literal> no editor.
         </para>
         <para>
-            Se não há arquivo xml associado a <literal>manitem</literal> e
-            <literal>manitem</literal> é o nome de uma função Scilab, o scinotes abre
-            com o esqueleto do arquivo xml produzido por <link linkend="help_skeleton">help_skeleton</link>. Este arquivo está localizado
+            Se nÃ£o hÃ¡ arquivo xml associado a <literal>manitem</literal> e
+            <literal>manitem</literal> Ã© o nome de uma funÃ§Ã£o Scilab, o scinotes abre
+            com o esqueleto do arquivo xml produzido por <link linkend="help_skeleton">help_skeleton</link>. Este arquivo estÃ¡ localizado
             em TMPDIR.
         </para>
     </refsection>
@@ -58,7 +58,7 @@ manedit foo123
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="help">help</link>

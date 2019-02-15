@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-10-19 13:07+0000\n"
+"PO-Revision-Date: 2019-02-12 13:07+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
-"Language: \n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -440,6 +440,10 @@ msgid "%s: Arguments must be scalar or must have same dimensions.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
+
+#, c-format
 msgid "%s: Can not create a %s with input argument #%d.\n"
 msgstr ""
 
@@ -574,7 +578,9 @@ msgstr ""
 msgid "ESI Group\n"
 msgstr ""
 
-msgid "Copyright (c) 2017-2018 (ESI Group)\n"
+#
+# File: modules/core/src/cpp/banner.cpp, line: 41
+msgid "Copyright (c) 2017-2019 (ESI Group)\n"
 msgstr ""
 
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
@@ -681,18 +687,6 @@ msgid "%s: File doesn't exist: %s"
 msgstr "%s: 檔案不存在 : %s"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr "%s: 輸入參數 #%d 的型態錯誤: 應該是雙精度.\n"
-
-#, c-format
-msgid "%s: %s is an uneditable hard coded function.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 
@@ -741,9 +735,6 @@ msgstr "使用者自訂變數"
 msgid "Using %s elements"
 msgstr ""
 
-msgid " by "
-msgstr " 由 "
-
 msgid "Name"
 msgstr "名稱"
 
@@ -755,3 +746,36 @@ msgstr "大小"
 
 msgid "Bytes"
 msgstr "位元組"
+
+#~ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#~ msgstr "%s: 輸入參數 #%d 的型態錯誤: 應該是雙精度.\n"
+
+# File: macros/perl.sci, line: 12
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s:無法找到 Perl 程序檔: %s"
+
+#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+#~ msgstr "%s: 輸入參數 #%d 型態錯誤: 應為字串.\n"
+
+#
+# File: macros/perl.sci, line: 32
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s: perl 指令未給定(specified)."
+
+#
+# File: macros/perl.sci, line: 40
+#~ msgid "%s: Unable to find Perl in '%s"
+#~ msgstr "%s: 無法在 '%s' 中找到 Perl"
+
+#
+# File: macros/perl.sci, line: 56
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s: 無法找到 Perl.\n"
+
+#
+# File: macros/perl.sci, line: 61
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s: 系統錯誤: 執行指令為: %s"
+
+#~ msgid " by "
+#~ msgstr " 由 "

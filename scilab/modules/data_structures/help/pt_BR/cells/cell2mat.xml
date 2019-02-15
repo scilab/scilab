@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cell2mat" xml:lang="pt">
     <refnamediv>
         <refname>cell2mat</refname>
-        <refpurpose>converte um cell array (array de células) em uma
+        <refpurpose>converte um cell array (array de cÃ©lulas) em uma
             matriz
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>x=cell2mat(c)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>c</term>
@@ -44,9 +44,9 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Retorna uma matriz que é a concatenação de todos os componentes do
-            cell (célula) c.
+        <title>DescriÃ§Ã£o</title>
+        <para>Retorna uma matriz que Ã© a concatenaÃ§Ã£o de todos os componentes do
+            cell (cÃ©lula) c.
         </para>
         <variablelist>
             <varlistentry>
@@ -56,15 +56,15 @@
                         (string, doubles, inteiros ou booleanos). Para cada linha <literal>i
                         </literal>
                         de <literal>c,</literal> <literal>cell2mat</literal>
-                        concatena todos os componentes da i-ésima linha do cell
+                        concatena todos os componentes da i-Ã©sima linha do cell
                         <literal>c</literal>
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>Perceba que se os componentes da entrada do cell c são são strings,
-            então <literal>cell2mat(c)</literal> retorna um vetor-coluna de
-            concatenação de strings.
+        <para>Perceba que se os componentes da entrada do cell c sÃ£o sÃ£o strings,
+            entÃ£o <literal>cell2mat(c)</literal> retorna um vetor-coluna de
+            concatenaÃ§Ã£o de strings.
         </para>
     </refsection>
     <refsection>
@@ -75,7 +75,7 @@ cell2mat(c)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cell">cell</link>

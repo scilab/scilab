@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Farid Belahcene
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="pie" xml:lang="pt">
     <refnamediv>
         <refname>pie</refname>
-        <refpurpose>Desenha um gráfico de torta</refpurpose>
+        <refpurpose>Desenha um grÃ¡fico de torta</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>pie(x)
             pie(x[,sp[,txt]])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -42,30 +42,30 @@
             <varlistentry>
                 <term>txt</term>
                 <listitem>
-                    <para>uma célula ou vetor de strings.</para>
+                    <para>uma cÃ©lula ou vetor de strings.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>pie(x):</literal> se o tamanho de x é N então a função
-            desenha um gráfico de torta de N partes, a área da i-ésima parte é igual a
-            (x(i)/sum(x))*( superfície do círculo unitário).
+            <literal>pie(x):</literal> se o tamanho de x Ã© N entÃ£o a funÃ§Ã£o
+            desenha um grÃ¡fico de torta de N partes, a Ã¡rea da i-Ã©sima parte Ã© igual a
+            (x(i)/sum(x))*( superfÃ­cie do cÃ­rculo unitÃ¡rio).
         </para>
         <para>
-            <literal>pie(x,sp):</literal> o vetor sp permite cortar um ou vários
-            pedaços da torta, (o tamanho de sp deve ser igual a N). Se o valor do
-            i-ésimo índice de sp é diferente de 0, então a i-ésima parte é separada
-            das outras por um espaço, senão, se for igual a zero, então é anexada às
+            <literal>pie(x,sp):</literal> o vetor sp permite cortar um ou vÃ¡rios
+            pedaÃ§os da torta, (o tamanho de sp deve ser igual a N). Se o valor do
+            i-Ã©simo Ã­ndice de sp Ã© diferente de 0, entÃ£o a i-Ã©sima parte Ã© separada
+            das outras por um espaÃ§o, senÃ£o, se for igual a zero, entÃ£o Ã© anexada Ã s
             outras.
         </para>
         <para>
             <literal>pie(x,txt):</literal> o vetor txt permite escrever um texto
-            para cada parte da torta, o i-ésimo componente de txt corresponde à
-            i-ésima parte da torta (padrão: são escritas as porcentagens que
-            correspondem às partes da superfície). O tamanho de txt deve ser igual a
+            para cada parte da torta, o i-Ã©simo componente de txt corresponde Ã 
+            i-Ã©sima parte da torta (padrÃ£o: sÃ£o escritas as porcentagens que
+            correspondem Ã s partes da superfÃ­cie). O tamanho de txt deve ser igual a
             N.
         </para>
     </refsection>
@@ -76,17 +76,17 @@
 scf(0);
 pie([1 2 5]);
 
-// segundo exemplo: dois argumentos de entrada x=[5 9  4 6 3], sp=[0 1 0 1 0], o segundo e o quarto são separados dos demais
+// segundo exemplo: dois argumentos de entrada x=[5 9  4 6 3], sp=[0 1 0 1 0], o segundo e o quarto sÃ£o separados dos demais
 scf(1);
 pie([5 9 4 6 3],[0 1 0 1 0]);
 
-// terceiro exemplo: três argumentos de entrada, x=[3 4 6 2], sp=[0 1 0 0], txt=["parte 1","parte 2","parte 3","parte 4"]
+// terceiro exemplo: trÃªs argumentos de entrada, x=[3 4 6 2], sp=[0 1 0 0], txt=["parte 1","parte 2","parte 3","parte 4"]
 scf(2);
 pie([3 4 6 2],[0 1 0 0],["parte 1","parte 2","parte 3","parte 4"]);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xfpolys">xfpolys</link>

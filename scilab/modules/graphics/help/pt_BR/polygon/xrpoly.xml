@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xrpoly" xml:lang="pt">
     <refnamediv>
         <refname>xrpoly</refname>
-        <refpurpose>desenha um polígono regular</refpurpose>
+        <refpurpose>desenha um polÃ­gono regular</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>xrpoly(orig,n,r,[theta])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>orig</term>
@@ -34,7 +34,7 @@
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>inteiro, número de lados. </para>
+                    <para>inteiro, nÃºmero de lados. </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -46,19 +46,19 @@
             <varlistentry>
                 <term>theta</term>
                 <listitem>
-                    <para>escalar real, ângulo em radianos; 0 é o valor padrão.</para>
+                    <para>escalar real, Ã¢ngulo em radianos; 0 Ã© o valor padrÃ£o.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>xrpoly</literal> desenha um polígono regular com
-            <literal>n</literal> lados contindo no círculo de diâmetro
-            <literal>r</literal> e com a origem do círculo posta em um ponto
-            <literal>orig</literal>. <literal>theta</literal> especifica a rotação do
-            ângulo em radianos. Esta função utiliza as escalas gráficas
+            <literal>xrpoly</literal> desenha um polÃ­gono regular com
+            <literal>n</literal> lados contindo no cÃ­rculo de diÃ¢metro
+            <literal>r</literal> e com a origem do cÃ­rculo posta em um ponto
+            <literal>orig</literal>. <literal>theta</literal> especifica a rotaÃ§Ã£o do
+            Ã¢ngulo em radianos. Esta funÃ§Ã£o utiliza as escalas grÃ¡ficas
             correntes.
         </para>
     </refsection>
@@ -70,7 +70,7 @@ xrpoly([5,5],5,5)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xrect">xrect</link>

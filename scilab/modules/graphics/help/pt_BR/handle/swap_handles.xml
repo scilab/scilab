@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Jean-Baptiste Silvy
@@ -17,45 +17,45 @@
     <refnamediv>
         <refname>swap_handles</refname>
         <refpurpose>Permuta dois manipuladores em uma hierarquia
-            gráfica
+            grÃ¡fica
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>swap_handle( handle1, handle2 )</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>handle1</term>
                 <listitem>
-                    <para>primeiro manipulador da permutação</para>
+                    <para>primeiro manipulador da permutaÃ§Ã£o</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>handle2</term>
                 <listitem>
-                    <para>segundo manipulador da permutação</para>
+                    <para>segundo manipulador da permutaÃ§Ã£o</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            A função <emphasis role="bold">swap_handles</emphasis> permite
-            permutar dois manipuladores em uma hierarquia gráfica. O primeiro
-            manipulador tomará a posição do segundo e vice-versa.
+            A funÃ§Ã£o <emphasis role="bold">swap_handles</emphasis> permite
+            permutar dois manipuladores em uma hierarquia grÃ¡fica. O primeiro
+            manipulador tomarÃ¡ a posiÃ§Ã£o do segundo e vice-versa.
         </para>
-        <para>Desde que nem todos os manipuladores são compatíveis com cada um dos
-            outros, existem algumas restrições ao se trocar manipuladores. Por
-            exemplo, não é permitido trocar um manipulador Polyline com um manipulador
-            Axes, já que não seriam compatíveis com suas novas raízes. Mais informação
-            sobre compatibilidade pode ser encontrada na página <link linkend="graphics_entities">graphics_entities</link>.
+        <para>Desde que nem todos os manipuladores sÃ£o compatÃ­veis com cada um dos
+            outros, existem algumas restriÃ§Ãµes ao se trocar manipuladores. Por
+            exemplo, nÃ£o Ã© permitido trocar um manipulador Polyline com um manipulador
+            Axes, jÃ¡ que nÃ£o seriam compatÃ­veis com suas novas raÃ­zes. Mais informaÃ§Ã£o
+            sobre compatibilidade pode ser encontrada na pÃ¡gina <link linkend="graphics_entities">graphics_entities</link>.
         </para>
         <para>Esta rotina pode ser utilizada em galhos com uma mesma raiz para se
-            trocar os seus índices.
+            trocar os seus Ã­ndices.
         </para>
     </refsection>
     <refsection>
@@ -65,11 +65,11 @@
 // Primeiro Exemplo//
 //-----------------//
 
-// criando um retângulo
+// criando um retÃ¢ngulo
 xrect( 0.5, 0.5,0.5,0.5) ;
 rect = gce() ;
 
-// criando um círculo
+// criando um cÃ­rculo
 xarc( 0.5, 0.5, 0.5, 0.5, 0, 64 * 360 ) ;
 circle = gce() ;
 
@@ -103,12 +103,12 @@ fec ;
 axes2 = gca() ;
 
 // trocando os seus eixos
-// note que o mapa de cores não muda.
+// note que o mapa de cores nÃ£o muda.
 swap_handles( axes1, axes2 ) ;
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="graphics_entities">graphics_entities</link>

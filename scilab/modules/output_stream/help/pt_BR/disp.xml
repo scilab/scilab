@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -16,30 +16,30 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="disp" xml:lang="pt">
     <refnamediv>
         <refname>disp</refname>
-        <refpurpose>exibição de variáveis</refpurpose>
+        <refpurpose>exibiÃ§Ã£o de variÃ¡veis</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>disp(x1,[x2,...xn])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             Exibe <literal>xi</literal> com o formato corrente.
-            <literal>xi</literal>'s são objetos arbitrários (matrizes de constantes,
-            strings, funções, listas, ...)
+            <literal>xi</literal>'s sÃ£o objetos arbitrÃ¡rios (matrizes de constantes,
+            strings, funÃ§Ãµes, listas, ...)
         </para>
         <para>
-            A exibição de objetos definidos por <literal>tlist</literal>'s pode
-            ser sobrecarregada pela definição de uma função. Esta função não deve ter
-            argumento de saída, um único argumento de entrada e seu nome deve ser
+            A exibiÃ§Ã£o de objetos definidos por <literal>tlist</literal>'s pode
+            ser sobrecarregada pela definiÃ§Ã£o de uma funÃ§Ã£o. Esta funÃ§Ã£o nÃ£o deve ter
+            argumento de saÃ­da, um Ãºnico argumento de entrada e seu nome deve ser
             formado como segue: <literal>%&lt;tlist_type&gt;_p</literal> onde
-            <literal>%&lt;tlist_type&gt;</literal> é a primeira entrada do componente
+            <literal>%&lt;tlist_type&gt;</literal> Ã© a primeira entrada do componente
             de tipo tlist.
         </para>
         <para>
-            A função <link linkend="lines">lines</link> pode ser usada para
-            controlar a saída.
+            A funÃ§Ã£o <link linkend="lines">lines</link> pode ser usada para
+            controlar a saÃ­da.
         </para>
     </refsection>
     <refsection>
@@ -51,7 +51,7 @@ disp(tlist('t',1,2))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="lines">lines</link>

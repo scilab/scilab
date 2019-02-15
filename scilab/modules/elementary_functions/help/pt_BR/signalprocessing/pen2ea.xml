@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="pen2ea" xml:lang="pt">
     <refnamediv>
         <refname>pen2ea</refname>
-        <refpurpose>conversão de feixe em matrizes E e A</refpurpose>
+        <refpurpose>conversÃ£o de feixe em matrizes E e A</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[E,A]=pen2ea(Fs)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>Fs</term>
@@ -44,9 +44,9 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Função utilitária. Dado o feixe <literal>Fs=s*E-A</literal>, retorna
+            FunÃ§Ã£o utilitÃ¡ria. Dado o feixe <literal>Fs=s*E-A</literal>, retorna
             as matrizes <literal>E</literal> e <literal>A</literal>.
         </para>
     </refsection>

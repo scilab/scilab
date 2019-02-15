@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
         <refpurpose>arco-seno da matriz (matriz arco-seno)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>t=asinm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -40,11 +40,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>t</literal> é o arco-seno da matriz <literal>x</literal>
-            matrix. (matriz arco-seno de x). É usado o método da diagonalização. Para
-            matrizes não-simétricas, o resultado pode ser impreciso.
+            <literal>t</literal> Ã© o arco-seno da matriz <literal>x</literal>
+            matrix. (matriz arco-seno de x). Ã‰ usado o mÃ©todo da diagonalizaÃ§Ã£o. Para
+            matrizes nÃ£o-simÃ©tricas, o resultado pode ser impreciso.
         </para>
     </refsection>
     <refsection>
@@ -56,7 +56,7 @@ asinm(A)+%i*logm(%i*A+sqrtm(eye()-A*A))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="asin">asin</link>

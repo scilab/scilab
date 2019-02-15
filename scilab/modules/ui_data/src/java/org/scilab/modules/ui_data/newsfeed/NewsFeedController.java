@@ -165,7 +165,7 @@ public class NewsFeedController implements ActionListener {
     }
 
     public void updateNewsFeed() {
-        news = null;
+        news = new ArrayList<>();
 
         try {
             newsFetcher.readSettings();
@@ -175,7 +175,7 @@ public class NewsFeedController implements ActionListener {
             }
 
             // TODO : update only if RSS feed has new news
-            news = newsFetcher.fetchNews();
+            newsFetcher.fetchNews(this, news);
         } catch (Exception e) {
             System.err.println(e);
             fireNewsFeedErrorEvent(NewsFeedUIMessages.NEWS_FEED_UNAVAILABLE_ERROR);

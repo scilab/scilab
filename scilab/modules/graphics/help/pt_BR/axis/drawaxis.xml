@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -19,20 +19,20 @@
         <refpurpose>Desenha um eixo</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>drawaxis([options])
-            // opções:  x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics
+            // opÃ§Ãµes:  x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>dir=string</term>
                 <listitem>
-                    <para>é utilizado para se especificar a direção dos tiques.
+                    <para>Ã© utilizado para se especificar a direÃ§Ã£o dos tiques.
                         <literal>string</literal> can pode ser escolhido entre
-                        'u','r','d','l' e 'l' é o valor padrão. Os valores 'u','r','d','l'
+                        'u','r','d','l' e 'l' Ã© o valor padrÃ£o. Os valores 'u','r','d','l'
                         correspondem respectivamente a "para cima", "para direita", "para
                         baixo" e "para esquerda".
                     </para>
@@ -41,23 +41,23 @@
             <varlistentry>
                 <term>tics=string</term>
                 <listitem>
-                    <para>um flag definindo como os tiques são fornecidos.
+                    <para>um flag definindo como os tiques sÃ£o fornecidos.
                         <literal>string</literal> pode ser escolhido entre 'v','r' e 'i', e
-                        , 'v' é o valor padrão.
+                        , 'v' Ã© o valor padrÃ£o.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>x,y</term>
                 <listitem>
-                    <para>dois vetores que fornecem as posições dos tiques.</para>
+                    <para>dois vetores que fornecem as posiÃ§Ãµes dos tiques.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>val= string matrix</term>
                 <listitem>
                     <para>uma matriz de strings que, quando dada, fornece os strings a
-                        serem impressos ao longo dos eixos nas posições dos tiques.
+                        serem impressos ao longo dos eixos nas posiÃ§Ãµes dos tiques.
                     </para>
                 </listitem>
             </varlistentry>
@@ -65,7 +65,7 @@
                 <term>fontsize=int</term>
                 <listitem>
                     <para>especifica o tamanho de fonte a ser utilizado para se exibir
-                        os valores ao longo dos eixos. O valor padrão é
+                        os valores ao longo dos eixos. O valor padrÃ£o Ã©
                         <literal>-1</literal> que corresponde ao tamanho de fonte
                         atual
                     </para>
@@ -74,7 +74,7 @@
             <varlistentry>
                 <term>format_n=string</term>
                 <listitem>
-                    <para>formato a ser utilizado para se exibir os números ao longo dos
+                    <para>formato a ser utilizado para se exibir os nÃºmeros ao longo dos
                         eixos
                     </para>
                 </listitem>
@@ -82,15 +82,15 @@
             <varlistentry>
                 <term>seg= 1 ou 0</term>
                 <listitem>
-                    <para>um flag que controla a exibição do segmento base do eixo (o
-                        valor padrão é 1).
+                    <para>um flag que controla a exibiÃ§Ã£o do segmento base do eixo (o
+                        valor padrÃ£o Ã© 1).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>sub_int=integer</term>
                 <listitem>
-                    <para>um inteiro que fornece o número de subintervalos entre dois
+                    <para>um inteiro que fornece o nÃºmero de subintervalos entre dois
                         tiques maiores.
                     </para>
                 </listitem>
@@ -98,8 +98,8 @@
             <varlistentry>
                 <term>textcolor=integer</term>
                 <listitem>
-                    <para>especifica a cor a ser utilizada para a exibição de valores ao
-                        longo dos eixos. O valor padrão é <literal>-1</literal>, que
+                    <para>especifica a cor a ser utilizada para a exibiÃ§Ã£o de valores ao
+                        longo dos eixos. O valor padrÃ£o Ã© <literal>-1</literal>, que
                         corresponde a cor corrente.
                     </para>
                 </listitem>
@@ -108,7 +108,7 @@
                 <term>ticscolor=integer</term>
                 <listitem>
                     <para>especifica a cor a ser utilizada para o desenho dos tiques. O
-                        valor padrão é <literal>-1</literal>, que corresponde à cor
+                        valor padrÃ£o Ã© <literal>-1</literal>, que corresponde Ã  cor
                         corrente.
                     </para>
                 </listitem>
@@ -116,11 +116,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>drawaxis</literal> é utilizado para desenhar um eixo na
-            direção horizontal ou vertical. A direção do eixo é dada por dir.
-            <literal>dir = 'u'</literal> ou <literal>'d'</literal> fornece a direção
+            <literal>drawaxis</literal> Ã© utilizado para desenhar um eixo na
+            direÃ§Ã£o horizontal ou vertical. A direÃ§Ã£o do eixo Ã© dada por dir.
+            <literal>dir = 'u'</literal> ou <literal>'d'</literal> fornece a direÃ§Ã£o
             com os tiques indo para cima (<literal>'u'</literal>) ou para baixo
             (<literal>'d'</literal>). <literal>dir = 'r'</literal> ou
             <literal>'l'</literal> fornece um eixo vertical com os tiques indo para a
@@ -128,37 +128,37 @@
             (<literal>'l'</literal>).
         </para>
         <para>
-            <literal>x</literal> e <literal>y</literal> fornecem as posições dos
-            tiques dos eixos. Se o eixo é horizontal, então <literal>y</literal> deve
-            ser um escalar, ou pode ser omitido, e <literal>x</literal> é um vetor
-            Scilab. O significado de <literal>x</literal> é controlado por
+            <literal>x</literal> e <literal>y</literal> fornecem as posiÃ§Ãµes dos
+            tiques dos eixos. Se o eixo Ã© horizontal, entÃ£o <literal>y</literal> deve
+            ser um escalar, ou pode ser omitido, e <literal>x</literal> Ã© um vetor
+            Scilab. O significado de <literal>x</literal> Ã© controlado por
             <literal>tics</literal>.
         </para>
         <para>
-            Se <literal>tics='v'</literal> então <literal>x</literal> fornece as
-            posições dos tiques ao longo do eixo x.
+            Se <literal>tics='v'</literal> entÃ£o <literal>x</literal> fornece as
+            posiÃ§Ãµes dos tiques ao longo do eixo x.
         </para>
         <para>
-            Se <literal>tics='r'</literal> então <literal>x</literal> deve ter
+            Se <literal>tics='r'</literal> entÃ£o <literal>x</literal> deve ter
             tamanho 3. <literal>x=[xmin,xmax,n]</literal> e <literal>n</literal>
-            fornece o número de intervalos.
+            fornece o nÃºmero de intervalos.
         </para>
         <para>
-            Se <literal>tics='i'</literal> então <literal>x</literal> deve ser
-            de tamanho 4, <literal>x=[k1,k2,a,n]</literal>. Então
+            Se <literal>tics='i'</literal> entÃ£o <literal>x</literal> deve ser
+            de tamanho 4, <literal>x=[k1,k2,a,n]</literal>. EntÃ£o
             <literal>xmin=k1*10^a</literal>, <literal>xmax=k2*10^a</literal> e
-            <literal>n</literal> fornece o número de intervalos.
+            <literal>n</literal> fornece o nÃºmero de intervalos.
         </para>
         <para>
-            Se <literal>y</literal> for omitido, então o eixo será posicionado
+            Se <literal>y</literal> for omitido, entÃ£o o eixo serÃ¡ posicionado
             ao topo da moldura se <literal>dir='u'</literal> ou ao fundo se
             <literal>dir='d'</literal>
         </para>
-        <para>Por padrão, os números são impressos ao longo do eixo. Eles são
-            impressos utilizando-se um formato padrão que pode ser alterado através de
-            <literal>format_n</literal>. ITambém é possível exibir strings dados, e
-            não números, isto é feito se <literal>val</literal> é fornecido. O tamanho
-            de <literal>val</literal> deve corresponder ao número de tiques.
+        <para>Por padrÃ£o, os nÃºmeros sÃ£o impressos ao longo do eixo. Eles sÃ£o
+            impressos utilizando-se um formato padrÃ£o que pode ser alterado atravÃ©s de
+            <literal>format_n</literal>. ITambÃ©m Ã© possÃ­vel exibir strings dados, e
+            nÃ£o nÃºmeros, isto Ã© feito se <literal>val</literal> Ã© fornecido. O tamanho
+            de <literal>val</literal> deve corresponder ao nÃºmero de tiques.
         </para>
     </refsection>
     <refsection>
@@ -181,9 +181,9 @@ drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
 drawaxis(y=2:7,dir='r',tics='v')
 drawaxis(y=2:7,dir='l',tics='v')
 
-// eixo horizontal com strings exibidos nas posições dos tiques
+// eixo horizontal com strings exibidos nas posiÃ§Ãµes dos tiques
 drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
-// eixo vertical com strings exibidos nas posições dos tiques
+// eixo vertical com strings exibidos nas posiÃ§Ãµes dos tiques
 drawaxis(x=8,y=2:7,dir='r',tics='v',val='B'+string(1:6));
 
 // eixo horizontal dado com um intervalo 'i'.

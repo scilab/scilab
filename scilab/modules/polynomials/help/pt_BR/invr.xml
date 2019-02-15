@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -16,35 +16,35 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="invr" xml:lang="pt">
     <refnamediv>
         <refname>invr</refname>
-        <refpurpose>inversão de matrizes (de razões de polinômios)</refpurpose>
+        <refpurpose>inversÃ£o de matrizes (de razÃµes de polinÃ´mios)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>F = invr(H)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>H</term>
                 <listitem>
-                    <para>matriz de polinômios ou de razões de polinômios </para>
+                    <para>matriz de polinÃ´mios ou de razÃµes de polinÃ´mios </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>F</term>
                 <listitem>
-                    <para>matriz de polinômios ou de razões de polinômios</para>
+                    <para>matriz de polinÃ´mios ou de razÃµes de polinÃ´mios</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Se <literal>H</literal> é uma matriz de polinômios ou de razões de
-            polinômios, <literal>invr</literal> computa <literal>H^(-1)</literal>
-            utilizando o algoritmo de Leverrier (ver código da função).
+            Se <literal>H</literal> Ã© uma matriz de polinÃ´mios ou de razÃµes de
+            polinÃ´mios, <literal>invr</literal> computa <literal>H^(-1)</literal>
+            utilizando o algoritmo de Leverrier (ver cÃ³digo da funÃ§Ã£o).
         </para>
     </refsection>
     <refsection>
@@ -57,7 +57,7 @@ H=[1/s,(s+1);1/(s+2),(s+3)/s];invr(H)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="glever">glever</link>

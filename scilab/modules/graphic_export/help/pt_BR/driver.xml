@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="driver" xml:lang="pt">
     <refnamediv>
         <refname>driver</refname>
-        <refpurpose>seleciona um driver gráfico</refpurpose>
+        <refpurpose>seleciona um driver grÃ¡fico</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>driver(driver_name)
             current_driver=driver()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>driver_name</term>
@@ -36,30 +36,30 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta função seleciona um driver gráfico, ou, sem argumentos, retorna
-            o nome do driver gráfico corrente. Na maioria das vezes, o usuário pode
-            ignorar esta função e modificar o driver por uma chamada a funções de alto
-            nível como <literal>clf</literal>. O driver selecionado pode ser um dos
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta funÃ§Ã£o seleciona um driver grÃ¡fico, ou, sem argumentos, retorna
+            o nome do driver grÃ¡fico corrente. Na maioria das vezes, o usuÃ¡rio pode
+            ignorar esta funÃ§Ã£o e modificar o driver por uma chamada a funÃ§Ãµes de alto
+            nÃ­vel como <literal>clf</literal>. O driver selecionado pode ser um dos
             seguintes:
         </para>
         <variablelist>
             <varlistentry>
                 <term>"X11"</term>
                 <listitem>
-                    <para>saída para a tela do computador.</para>
+                    <para>saÃ­da para a tela do computador.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"Pos"</term>
                 <listitem>
-                    <para>saída em formato Postscript.</para>
+                    <para>saÃ­da em formato Postscript.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"Rec"</term>
                 <listitem>
-                    <para>saída para a tela do computador. É o mesmo que
+                    <para>saÃ­da para a tela do computador. Ã‰ o mesmo que
                         <literal>X11</literal>.
                     </para>
                 </listitem>
@@ -67,31 +67,31 @@
             <varlistentry>
                 <term>"Fig"</term>
                 <listitem>
-                    <para>saída em formato XFig.</para>
+                    <para>saÃ­da em formato XFig.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"GIF"</term>
                 <listitem>
-                    <para>saída em formato Gif.</para>
+                    <para>saÃ­da em formato Gif.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"PPM"</term>
                 <listitem>
-                    <para>saída em formato PPM.</para>
+                    <para>saÃ­da em formato PPM.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Observação</title>
+        <title>ObservaÃ§Ã£o</title>
         <para>Para converter arquivos "GIF" ou "PPM" para outro formato de imagem
-            para construir uma animação pode-se utilizar o programa "convert" para
+            para construir uma animaÃ§Ã£o pode-se utilizar o programa "convert" para
             ImageMagic (http://www.imagemagick.org/)
         </para>
-        <para>Por exemplo, se é gerada uma seqüência de arquivos Gif nomeada
-            <literal>img*.gif</literal> é possível construir um arquivo Gif animado
+        <para>Por exemplo, se Ã© gerada uma seqÃ¼Ãªncia de arquivos Gif nomeada
+            <literal>img*.gif</literal> Ã© possÃ­vel construir um arquivo Gif animado
             (chamado anim.gif) por
         </para>
         <programlisting role=""><![CDATA[
@@ -99,7 +99,7 @@ convert -delay 10  img*.gif anim.gif
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="clf">clf</link>

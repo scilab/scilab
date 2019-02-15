@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -17,10 +17,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="zoom_rect" xml:lang="pt">
     <refnamediv>
         <refname>zoom_rect</refname>
-        <refpurpose>Amplia uma seleção da figura gráfica corrente</refpurpose>
+        <refpurpose>Amplia uma seleÃ§Ã£o da figura grÃ¡fica corrente</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>zoom_rect()
             zoom_rect(rect)
             zoom_rect(h)
@@ -28,50 +28,50 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>rect</term>
                 <listitem>
                     <para>
                         vetor de tamanho 4 <literal>[xmin,ymin,xmax,ymax]</literal>
-                        fornece o retângulo a ser ampliado
+                        fornece o retÃ¢ngulo a ser ampliado
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>manipulador gráfico do tipo Figure ou Axes. Especifica sobre
-                        que eixos se realizará a ampliação.
+                    <para>manipulador grÃ¡fico do tipo Figure ou Axes. Especifica sobre
+                        que eixos se realizarÃ¡ a ampliaÃ§Ã£o.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>zoom_rect</literal> é a função utilizada para realizar
-            ampliações dentro de um conjunto de objetos Axes.
+            <literal>zoom_rect</literal> Ã© a funÃ§Ã£o utilizada para realizar
+            ampliaÃ§Ãµes dentro de um conjunto de objetos Axes.
         </para>
         <para>
             O argumento de entrada <literal>h</literal> especifica sobre que
-            eixos se realizará a ampliação. Se <literal>h</literal> for um manipulador
-            do tipo Figure, então a ampliação ocorrerá sobre seus galhos Axes. Se
-            <literal>h</literal> for um manipulador Axes, a ampliação será aplicada
-            apenas sobre este objeto. Se <literal>h</literal> não for especificado,
-            então a ampliação será aplicada sobre a entidade Figure corrente.
+            eixos se realizarÃ¡ a ampliaÃ§Ã£o. Se <literal>h</literal> for um manipulador
+            do tipo Figure, entÃ£o a ampliaÃ§Ã£o ocorrerÃ¡ sobre seus galhos Axes. Se
+            <literal>h</literal> for um manipulador Axes, a ampliaÃ§Ã£o serÃ¡ aplicada
+            apenas sobre este objeto. Se <literal>h</literal> nÃ£o for especificado,
+            entÃ£o a ampliaÃ§Ã£o serÃ¡ aplicada sobre a entidade Figure corrente.
         </para>
         <para>
             Se o argumento de entrada <literal>rect</literal> for especificada,
-            então a propriedade <literal>zoom_box</literal> dos eixos ampliados será
+            entÃ£o a propriedade <literal>zoom_box</literal> dos eixos ampliados serÃ¡
             modificada por este argumento (ver <link linkend="axes_properties">axes_properties</link>). Seus limites ao longo
-            dos eixos X e Y serão substituídos por <literal>rect</literal>. Se
-            <literal>rect</literal> não for especificado zoom_rect será uma ampliação
-            interativa. Requer-se que o usuário selecione um retângulo utilizando o
+            dos eixos X e Y serÃ£o substituÃ­dos por <literal>rect</literal>. Se
+            <literal>rect</literal> nÃ£o for especificado zoom_rect serÃ¡ uma ampliaÃ§Ã£o
+            interativa. Requer-se que o usuÃ¡rio selecione um retÃ¢ngulo utilizando o
             mouse. A nova propriedade <literal>zoom_box</literal> dos eixos ampliados
-            é então computada encontrando-se as interseções do retângulo com suas
+            Ã© entÃ£o computada encontrando-se as interseÃ§Ãµes do retÃ¢ngulo com suas
             caixas de eixos.
         </para>
     </refsection>
@@ -86,36 +86,36 @@ zoom_rect([16,-1,18,1])
 zoom_rect([16,0,16.2,1])
 //de volta ao original
 unzoom()
-// ajustando o zoom através de axes_properties
+// ajustando o zoom atravÃ©s de axes_properties
 a=gca();
 a.zoom_box=[16,0,16.2,1];
 a.zoom_box=[];
 
-//ajustando zoom de sub-esboços
+//ajustando zoom de sub-esboÃ§os
 clf()
 x=0:0.01:6*%pi;
 subplot(211)
 plot2d(x,cos(x))
 subplot(212)
 plot2d(x,cos(2*x))
-rect=[3 -2 7 10]; //um retângulo especificado nas coordenadas dos eixos correntes (os últimos)
+rect=[3 -2 7 10]; //um retÃ¢ngulo especificado nas coordenadas dos eixos correntes (os Ãºltimos)
 zoom_rect(rect)
 unzoom()
 //ajustando os eixos subjascentes globais como sendo os correntes
 f=gcf();set('current_axes',f.children($))
-rect=[0.4 0 0.6 1] //um retângulo especificado em razão do tamanho da janela
+rect=[0.4 0 0.6 1] //um retÃ¢ngulo especificado em razÃ£o do tamanho da janela
 zoom_rect(rect)
-rect=[0.4 0.2 0.6 0.8]; //um retângulo especificado em razão do tamanho da janela
+rect=[0.4 0.2 0.6 0.8]; //um retÃ¢ngulo especificado em razÃ£o do tamanho da janela
 zoom_rect(rect)
 
-// ampliação interativa sob a figura corrente
+// ampliaÃ§Ã£o interativa sob a figura corrente
 zoom_rect();
 // ou
 zoom_rect(gcf());
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="unzoom">unzoom</link>

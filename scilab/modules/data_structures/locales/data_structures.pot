@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2019-01-23 12:13+0100\n"
 
 #
 # File: modules/data_structures/sci_gateway/cpp/sci_definedfields.cpp, line: 44
@@ -175,4 +175,10 @@ msgstr ""
 # File: modules/data_structures/macros/num2cell.sci, line: 46
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
+msgstr ""
+
+#
+# File: modules/data_structures/macros/tree_show.sci, line: 25
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""

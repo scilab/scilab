@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -19,18 +19,18 @@
         <refpurpose>campo direcional de uma EDO 2d de primeira ordem</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>fchamp(f,t,xr,yr,[arfact,rect,strf])
             fchamp(f,t,xr,yr,&lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>uma external (função ou string) ou uma lista descrevendo a
+                    <para>uma external (funÃ§Ã£o ou string) ou uma lista descrevendo a
                         EDO.
                     </para>
                     <variablelist>
@@ -38,8 +38,8 @@
                             <term>-</term>
                             <listitem>
                                 <para>
-                                    Pode ser um nome de função <literal>f</literal>, onde
-                                    <literal>f</literal> se supõe ser uma função do tipo
+                                    Pode ser um nome de funÃ§Ã£o <literal>f</literal>, onde
+                                    <literal>f</literal> se supÃµe ser uma funÃ§Ã£o do tipo
                                     <literal>y=f(t,xy [p1,..pn])</literal>. <literal>f</literal>
                                     retorna um vetor coluna de tamanho 2, <literal>y</literal>,
                                     que fornece o valor do campo direcional <literal>f</literal>
@@ -51,10 +51,10 @@
                         <varlistentry>
                             <term>-</term>
                             <listitem>
-                                <para> Também pode ser um objeto do tipo lista,
-                                    <literal>list(f,P1,..Pn)</literal> onde <literal>f</literal> é
-                                    uma função do tipo <literal>y=f(t,xy,p1,..pn)</literal> e
-                                    <literal>Pi</literal> fornece o valor do parâmetro
+                                <para> TambÃ©m pode ser um objeto do tipo lista,
+                                    <literal>list(f,P1,..Pn)</literal> onde <literal>f</literal> Ã©
+                                    uma funÃ§Ã£o do tipo <literal>y=f(t,xy,p1,..pn)</literal> e
+                                    <literal>Pi</literal> fornece o valor do parÃ¢metro
                                     <literal>pi</literal>.
                                 </para>
                             </listitem>
@@ -72,14 +72,14 @@
                 <term>xr,yr</term>
                 <listitem>
                     <para>dois vetores linhas de tamanhos n1 e n2 que definem o grid
-                        sobre o qual o campo direcional é computado.
+                        sobre o qual o campo direcional Ã© computado.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>&lt;opt_args&gt;</term>
                 <listitem>
-                    <para>representa uma seqüência de decarações
+                    <para>representa uma seqÃ¼Ãªncia de decaraÃ§Ãµes
                         <literal>key1=value1,key2=value2</literal>, ... onde
                         <literal>key1</literal>, <literal>key2,...</literal> pode ser um dos
                         seguintes : arfact, rect, strf (ver abaixo).
@@ -97,16 +97,16 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>fchamp</literal> é utilizado para desenhar o campo
-            direcional de uma EDO 2d de primeira ordem definida pela função externa
-            <literal>f</literal>. Note que se a EDO é autônoma, o argumento
-            <literal>t</literal> não possui utilidade, mas deve ser fornecido.
+            <literal>fchamp</literal> Ã© utilizado para desenhar o campo
+            direcional de uma EDO 2d de primeira ordem definida pela funÃ§Ã£o externa
+            <literal>f</literal>. Note que se a EDO Ã© autÃ´noma, o argumento
+            <literal>t</literal> nÃ£o possui utilidade, mas deve ser fornecido.
         </para>
         <para>
             Entre com o comando <literal>fchamp()</literal> para visualizar uma
-            demonstração.
+            demonstraÃ§Ã£o.
         </para>
     </refsection>
     <refsection>
@@ -124,7 +124,7 @@ fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="champ">champ</link>

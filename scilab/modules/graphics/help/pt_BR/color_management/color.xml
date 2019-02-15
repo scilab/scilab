@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -19,13 +19,13 @@
         <refpurpose>Retorna o identificador de uma cor</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>id=color(name)
             id=color(r,g,b)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>name</term>
@@ -48,7 +48,7 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>color</literal> retorna o identificador de cor
             correspondente ao seu argumento:
@@ -70,11 +70,11 @@
                 </para>
             </listitem>
         </itemizedlist>
-        <para>Se a cor requisitada não existe no mapa de cores corrente, então ela
-            é adicionada ao mapa de cores.
+        <para>Se a cor requisitada nÃ£o existe no mapa de cores corrente, entÃ£o ela
+            Ã© adicionada ao mapa de cores.
         </para>
-        <para>Esta função pode ser utilizada para se especificar as cores de plano
-            de fundo e de primeiro plano em esboços.
+        <para>Esta funÃ§Ã£o pode ser utilizada para se especificar as cores de plano
+            de fundo e de primeiro plano em esboÃ§os.
         </para>
     </refsection>
     <refsection>
@@ -91,7 +91,7 @@ p1.foreground=color(255,128,128);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="colormap">colormap</link>

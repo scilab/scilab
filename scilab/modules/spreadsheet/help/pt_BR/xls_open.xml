@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005      - INRIA - Pierrick MODE
@@ -20,22 +20,22 @@
         <refpurpose>abre um arquivo Excel para leitura</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[fd,SST,Sheetnames,Sheetpos] = xls_open(file_path)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>file_path</term>
                 <listitem>
-                    <para>string: o endereço do arquivo Excel.</para>
+                    <para>string: o endereÃ§o do arquivo Excel.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fd</term>
                 <listitem>
-                    <para>número, a unidade lógica do fluxo de dados do Excel</para>
+                    <para>nÃºmero, a unidade lÃ³gica do fluxo de dados do Excel</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -55,7 +55,7 @@
             <varlistentry>
                 <term>Sheetpos</term>
                 <listitem>
-                    <para>vetor de números,as posições dos inícios das folhas no fluxo
+                    <para>vetor de nÃºmeros,as posiÃ§Ãµes dos inÃ­cios das folhas no fluxo
                         de dados do Excel
                     </para>
                 </listitem>
@@ -63,16 +63,16 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta função primeiro analisa a estrutura de dados ole2 associada ao
-            dado arquivo para extrair o fluxo de dado do Excel no qual está contido.
-            Após isso, o fluxo de dados do Excel é salvo no diretório
-            <literal>TMDIR</literal> e aberto. Uma unidade lógica
-            <literal>fd</literal> aponta para este arquivo temporário. Então, a
-            primeira folha neste fluxo é lida para se obter informações globais como o
-            número de folhas, o nome das folhas <literal>Sheetnames</literal>,
-            endereços das folhas dentro do fluxo <literal>Sheetpos</literal> e
-            <literal>SST</literal> que contém todos os strings utilizados nas
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta funÃ§Ã£o primeiro analisa a estrutura de dados ole2 associada ao
+            dado arquivo para extrair o fluxo de dado do Excel no qual estÃ¡ contido.
+            ApÃ³s isso, o fluxo de dados do Excel Ã© salvo no diretÃ³rio
+            <literal>TMDIR</literal> e aberto. Uma unidade lÃ³gica
+            <literal>fd</literal> aponta para este arquivo temporÃ¡rio. EntÃ£o, a
+            primeira folha neste fluxo Ã© lida para se obter informaÃ§Ãµes globais como o
+            nÃºmero de folhas, o nome das folhas <literal>Sheetnames</literal>,
+            endereÃ§os das folhas dentro do fluxo <literal>Sheetpos</literal> e
+            <literal>SST</literal> que contÃ©m todos os strings utilizados nas
             folhas.
         </para>
         <para>
@@ -81,13 +81,13 @@
             folhas de dados
         </para>
         <para>
-            A função <link linkend="readxls">readxls</link> pode ser usada para
-            se ler todo um arquivo Excel em uma função através de uma única chamada de
-            função.
+            A funÃ§Ã£o <link linkend="readxls">readxls</link> pode ser usada para
+            se ler todo um arquivo Excel em uma funÃ§Ã£o atravÃ©s de uma Ãºnica chamada de
+            funÃ§Ã£o.
         </para>
         <para>
-            <warning>AVISO: apenas arquivos Excel BIFF8 (última versão do Excel (2003))
-                são manipulados.
+            <warning>AVISO: apenas arquivos Excel BIFF8 (Ãºltima versÃ£o do Excel (2003))
+                sÃ£o manipulados.
             </warning>
         </para>
     </refsection>
@@ -103,7 +103,7 @@ mclose(fd)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xls_read">xls_read</link>
@@ -115,15 +115,15 @@ mclose(fd)
     </refsection>
     <refsection>
         <title>Bibliografia</title>
-        <para>Esta função é baseada na documentação do arquivo ole2 da Microsoft
+        <para>Esta funÃ§Ã£o Ã© baseada na documentaÃ§Ã£o do arquivo ole2 da Microsoft
             (<ulink url="http://chicago.sourceforge.net/devel/docs/ole/">http://chicago.sourceforge.net/devel/docs/ole/</ulink>)
-            e na descrição do OpenOffice sobre fluxo de dados do Excel (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>).
+            e na descriÃ§Ã£o do OpenOffice sobre fluxo de dados do Excel (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>).
         </para>
     </refsection>
     <refsection>
-        <title>Funções Utilizadas</title>
+        <title>FunÃ§Ãµes Utilizadas</title>
         <para>
-            O procedure ripole-0.1.4 <ulink url="http://www.pldaniels.com/ripole">http://www.pldaniels.com/ripole</ulink>) é
+            O procedure ripole-0.1.4 <ulink url="http://www.pldaniels.com/ripole">http://www.pldaniels.com/ripole</ulink>) Ã©
             utilizado para extrair do arquivo ole o fluxo de dados da planilha.
         </para>
     </refsection>

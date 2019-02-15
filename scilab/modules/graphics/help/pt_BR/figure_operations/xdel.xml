@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xdel" xml:lang="pt">
     <refnamediv>
         <refname>xdel</refname>
-        <refpurpose>deleta uma janela de gráficos</refpurpose>
+        <refpurpose>deleta uma janela de grÃ¡ficos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>xdel([win-nums])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>win-nums</term>
@@ -34,10 +34,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>xdel</literal> deleta a janela de gráficos
-            <literal>win-nums</literal> ou a janela de gráficos corrente, se não for
+            <literal>xdel</literal> deleta a janela de grÃ¡ficos
+            <literal>win-nums</literal> ou a janela de grÃ¡ficos corrente, se nÃ£o for
             fornecido nenhum argumento.
         </para>
     </refsection>

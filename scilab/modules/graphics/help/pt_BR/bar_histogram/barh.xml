@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Farid Belahcene
@@ -16,22 +16,22 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="barh" xml:lang="pt">
     <refnamediv>
         <refname>barh</refname>
-        <refpurpose>Exibição horizontal de um histograma de barras</refpurpose>
+        <refpurpose>ExibiÃ§Ã£o horizontal de um histograma de barras</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>barh(y)
             barh(x,y)
             barh([h],x,y [,width [,color [,style]]])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>manipulador de eixos, (padrão: h=gca() ). </para>
+                    <para>manipulador de eixos, (padrÃ£o: h=gca() ). </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -43,10 +43,10 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>escalar real ou um vetor de tamanho N, (padrão: se y é um
-                        vetor, então x é um vetor e o comprimento de x é igual ao
-                        comprimento de y. Se y é uma matriz, então x é um vetor e o
-                        comprimento de x é igual ao número de linhas de y)
+                    <para>escalar real ou um vetor de tamanho N, (padrÃ£o: se y Ã© um
+                        vetor, entÃ£o x Ã© um vetor e o comprimento de x Ã© igual ao
+                        comprimento de y. Se y Ã© uma matriz, entÃ£o x Ã© um vetor e o
+                        comprimento de x Ã© igual ao nÃºmero de linhas de y)
                     </para>
                 </listitem>
             </varlistentry>
@@ -54,14 +54,14 @@
                 <term>width</term>
                 <listitem>
                     <para>(opcional), escalar real, define a largura (uma porcentagem do
-                        espaço disponível) para a barra (padrão: 0.8, i.e. 80%).
+                        espaÃ§o disponÃ­vel) para a barra (padrÃ£o: 0.8, i.e. 80%).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>color</term>
                 <listitem>
-                    <para>(opcional), um string (padrão: 'blue'), especificando a cor
+                    <para>(opcional), um string (padrÃ£o: 'blue'), especificando a cor
                         interior da barra barra.
                     </para>
                 </listitem>
@@ -69,48 +69,48 @@
             <varlistentry>
                 <term>style:</term>
                 <listitem>
-                    <para>string, 'grouped' ou 'stacked' (padrão: 'grouped').</para>
+                    <para>string, 'grouped' ou 'stacked' (padrÃ£o: 'grouped').</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>barh(y,...) :</literal> se y é um vetor então a função bar
+            <literal>barh(y,...) :</literal> se y Ã© um vetor entÃ£o a funÃ§Ã£o bar
             desenha uma poligonal que tem <literal>polyline_style</literal> tipo 6. Se
             y for um vetor, desenha o vetor y versus o vetor 1:size(y,'*'). Se y for
             uma matriz N*M, bar desenha M poligonais (tipo 6), cada poligonal
             corresponde a uma coluna de y versus o vetor x=1:size(y,1)
         </para>
         <para>
-            <literal>barh(x,y,...) :</literal> se y for um vetor então a função
+            <literal>barh(x,y,...) :</literal> se y for um vetor entÃ£o a funÃ§Ã£o
             desenha uma poligonal que tem <literal>polyline_style</literal> tipo 6,
-            onde comprimento de x = comprimento de y. Se y é uma matriz NxM então a
-            função desenha M poligonais que possuem tipo 6. Cada poligonal corresponde
+            onde comprimento de x = comprimento de y. Se y Ã© uma matriz NxM entÃ£o a
+            funÃ§Ã£o desenha M poligonais que possuem tipo 6. Cada poligonal corresponde
             a uma coluna de y versus o vetor x.
         </para>
         <para>
             <literal>barh(h,...) :</literal> define os eixos correntes onde o
-            desenho é realizado.
+            desenho Ã© realizado.
         </para>
         <para>
             <literal>barh(...,width,...) :</literal> define a largura da(s)
             barra(s) em porcentagem (geralmente: 0&lt;width&lt;1).
         </para>
         <para>
-            <literal>barh(...,style,...) :</literal> define como as barras serão
-            desenhadas. Se y é uma matriz NxM (então temos M poligonais de tipo 6)
-            então há dois modos de se desenhar as M barras. A opção style= 'grouped'
-            permite centrar as M poligonais versus cada componente de x, e a opção
-            style = 'stacked' permite empilhá-las.
+            <literal>barh(...,style,...) :</literal> define como as barras serÃ£o
+            desenhadas. Se y Ã© uma matriz NxM (entÃ£o temos M poligonais de tipo 6)
+            entÃ£o hÃ¡ dois modos de se desenhar as M barras. A opÃ§Ã£o style= 'grouped'
+            permite centrar as M poligonais versus cada componente de x, e a opÃ§Ã£o
+            style = 'stacked' permite empilhÃ¡-las.
         </para>
         <para>
             <literal>barh(...,color,...) : </literal>define a cor da barra.
-            Funções de barra utilizam o mesmo mapa de cores que na função
+            FunÃ§Ãµes de barra utilizam o mesmo mapa de cores que na funÃ§Ã£o
             <literal>plot</literal>.
         </para>
-        <para>Se há várias chamadas a barh, a função
+        <para>Se hÃ¡ vÃ¡rias chamadas a barh, a funÃ§Ã£o
             <literal>barhomogenize</literal> permite homogeneizar a largura e estilo
             de todas as barras (i.e poligonais do tipo 6) inclusas nos eixos
             correntes.
@@ -124,7 +124,7 @@ scf(0);
 y=[1 -3 5];
 barh(y,0.5,'yellow');
 
-// segundo exemplo: desenhando três barras (i.e três poligonais com polyline_style =6),style='grouped'
+// segundo exemplo: desenhando trÃªs barras (i.e trÃªs poligonais com polyline_style =6),style='grouped'
 scf(1);
 x=[1 2 5]; y=[1  -5 6;3 -2 7;4  -3 8];
 barh(x,y);
@@ -141,7 +141,7 @@ barh(x,y,0.2,'green');
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="bar">bar</link>

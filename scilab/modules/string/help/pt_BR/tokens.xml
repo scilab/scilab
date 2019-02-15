@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -19,11 +19,11 @@
         <refpurpose>retorna as fichas (tokens) de um string</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>T=tokens(str [,delimiter])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>str</term>
@@ -48,18 +48,18 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>T=tokens(str [,delimiter]) </literal> procura pelos tokens
-            inclusos no string <literal>str</literal>. O padrão de
-            <literal>delimiter</literal> é [" ",&lt;Tab&gt;] onde &lt;Tab&gt; é
+            inclusos no string <literal>str</literal>. O padrÃ£o de
+            <literal>delimiter</literal> Ã© [" ",&lt;Tab&gt;] onde &lt;Tab&gt; Ã©
             <literal>ascii(9)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-tokens('Isto é um string')
+tokens('Isto Ã© um string')
 
 tokens('SCI/demos/scicos','/')
 
@@ -67,7 +67,7 @@ tokens('y=a+b*2',['=','+','*'])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strindex">strindex</link>

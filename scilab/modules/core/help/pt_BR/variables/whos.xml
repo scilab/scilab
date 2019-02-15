@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="whos" xml:lang="pt">
     <refnamediv>
         <refname>whos</refname>
         <refpurpose>listing of variables in long form</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>whos()
             whos -type typ
             whos -name nam
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>typ</term>
                 <listitem>
                     <para>
-                        nome do tipo da variável selecionada (ver <literal>typeof</literal>)
+                        nome do tipo da variÃ¡vel selecionada (ver <literal>typeof</literal>)
                     </para>
                 </listitem>
             </varlistentry>
@@ -31,20 +31,20 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>whos()</literal> exibe todos os nomes de variáveis
-            correntes, bem como seus tipos e memória utilizada.
+            <literal>whos()</literal> exibe todos os nomes de variÃ¡veis
+            correntes, bem como seus tipos e memÃ³ria utilizada.
         </para>
         <para>
-            <literal>whos -type typ</literal> exibe todas as variáveis correntes
+            <literal>whos -type typ</literal> exibe todas as variÃ¡veis correntes
             com o tipo especificado.
         </para>
         <para>
-            <literal>whos -name nam</literal> exibe todas as variáveis cujos
-            nomes começam com <literal>nam</literal>.
+            <literal>whos -name nam</literal> exibe todas as variÃ¡veis cujos
+            nomes comeÃ§am com <literal>nam</literal>.
         </para>
-        <para>Nota : se uma variável é global, um "*" aparece em frente ao seu
+        <para>Nota : se uma variÃ¡vel Ã© global, um "*" aparece em frente ao seu
             tipo.
         </para>
     </refsection>
@@ -58,7 +58,7 @@ whos -name %
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="who">who</link>

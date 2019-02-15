@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -16,25 +16,25 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="champ_properties" xml:lang="pt">
     <refnamediv>
         <refname>champ_properties</refname>
-        <refpurpose>Descrição das propriedades da entidade campo vetorial
+        <refpurpose>DescriÃ§Ã£o das propriedades da entidade campo vetorial
             2d
         </refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
-        <para>A entidade Champ é uma folha na hierarquia de entidade gráficas.
-            Esta entidade define parâmetros para um campo vetorial 2d .
+        <title>DescriÃ§Ã£o</title>
+        <para>A entidade Champ Ã© uma folha na hierarquia de entidade grÃ¡ficas.
+            Esta entidade define parÃ¢metros para um campo vetorial 2d .
         </para>
         <variablelist>
             <varlistentry>
                 <term>visible:</term>
                 <listitem>
-                    <para>este campo contém o valor da propriedade
+                    <para>este campo contÃ©m o valor da propriedade
                         <literal>visible</literal> para a entidade. Pode ser <literal>"on"
                         </literal>
                         ou <literal>"off"</literal> . Se <literal>"on" </literal>
-                        o campo vetorial é desenhado, se <literal>"off"</literal> o campo
-                        vetorial não aparece na tela.
+                        o campo vetorial Ã© desenhado, se <literal>"off"</literal> o campo
+                        vetorial nÃ£o aparece na tela.
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,11 +43,11 @@
                 <listitem>
                     <para>este campo define uma estrutura de dados
                         <literal>tlist</literal> de tipo <literal>"champdata"</literal>
-                        composto de uma linha e índices de colunas de cada elemento: as
+                        composto de uma linha e Ã­ndices de colunas de cada elemento: as
                         coordenadas do grid x e y contidas respectivamente em
                         <literal>data.x </literal>e <literal>data.y</literal>. Os campos
                         complementares chamados <literal>data.fx</literal> e
-                        <literal>data.fy</literal> são matrizes que descrevem
+                        <literal>data.fy</literal> sÃ£o matrizes que descrevem
                         respectivamente os componentes <literal>x</literal> e
                         <literal>y</literal> do campo vetorial no ponto
                         <literal>(x(i),y(j))</literal>.
@@ -57,8 +57,8 @@
             <varlistentry>
                 <term>user_data:</term>
                 <listitem>
-                    <para>este campo pode ser utilizado para armazenar qualquer variável
-                        Scilab na estrutura de dados da entidade Champ e recuperá-la.
+                    <para>este campo pode ser utilizado para armazenar qualquer variÃ¡vel
+                        Scilab na estrutura de dados da entidade Champ e recuperÃ¡-la.
                     </para>
                 </listitem>
             </varlistentry>
@@ -67,7 +67,7 @@
                 <listitem>
                     <para>
                         o valor da propriedade <literal>line_style</literal> deve ser
-                        um valor inteiro no intervalo [0 9]. 0 significa linha sólida e os
+                        um valor inteiro no intervalo [0 9]. 0 significa linha sÃ³lida e os
                         outros valores significam estilos de tracejados. Esta propriedade
                         aplica-se a todas as linhas usadas para desenhar o campo vetorial.
                     </para>
@@ -76,9 +76,9 @@
             <varlistentry>
                 <term>thickness:</term>
                 <listitem>
-                    <para>este campo contém o valor da propriedade
+                    <para>este campo contÃ©m o valor da propriedade
                         <literal>thickness</literal> (espessura) para todas as linhas
-                        utilizadas no desenho. Seu valor deve ser um inteiro não-negativo.
+                        utilizadas no desenho. Seu valor deve ser um inteiro nÃ£o-negativo.
                     </para>
                 </listitem>
             </varlistentry>
@@ -87,7 +87,7 @@
                 <listitem>
                     <para>
                         se o valor desta propriedade for <literal>"on"</literal>, os
-                        vetores são coloridos utilizando-se uma cor porporcional à
+                        vetores sÃ£o coloridos utilizando-se uma cor porporcional Ã 
                         intensidade do campo.
                     </para>
                 </listitem>
@@ -95,7 +95,7 @@
             <varlistentry>
                 <term>clip_state:</term>
                 <listitem>
-                    <para>este campo contém o valor da propriedade
+                    <para>este campo contÃ©m o valor da propriedade
                         <literal>clip_state</literal> para a entidade Champ. Pode ser
                         :
                     </para>
@@ -103,19 +103,19 @@
                         <listitem>
                             <para>
                                 <literal>"off"</literal> significa que o campo vetorial
-                                não é recortado
+                                nÃ£o Ã© recortado
                             </para>
                         </listitem>
                         <listitem>
                             <para>
                                 <literal>"clipgrf"</literal> siginifica que o campo
-                                vetorial é recortado fora da caixa da entidade Axes.
+                                vetorial Ã© recortado fora da caixa da entidade Axes.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>"on"</literal> significa que o campo vetorial é
-                                recortado fora do retângulo dado pela propriedade
+                                <literal>"on"</literal> significa que o campo vetorial Ã©
+                                recortado fora do retÃ¢ngulo dado pela propriedade
                                 clip_box.
                             </para>
                         </listitem>
@@ -125,12 +125,12 @@
             <varlistentry>
                 <term>clip_box:</term>
                 <listitem>
-                    <para>este campo contém o valor da propriedade
+                    <para>este campo contÃ©m o valor da propriedade
                         <literal>clip_box</literal>. Seu valor pode ser uma matriz vazia se
-                        a propriedade clip_state é "off" .em outros casos, o vetor
+                        a propriedade clip_state Ã© "off" .em outros casos, o vetor
                         <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura,
-                        altura) define as porções do campo a serem exibidas, contudo, o
-                        valor da propriedade <literal>clip_state</literal> será
+                        altura) define as porÃ§Ãµes do campo a serem exibidas, contudo, o
+                        valor da propriedade <literal>clip_state</literal> serÃ¡
                         modificado.
                     </para>
                 </listitem>
@@ -138,7 +138,7 @@
             <varlistentry>
                 <term>parent:</term>
                 <listitem>
-                    <para>esta propriedade contém o manipulador da raiz. A raiz de uma
+                    <para>esta propriedade contÃ©m o manipulador da raiz. A raiz de uma
                         entidade campo vetorial 2d deve ser do tipo
                         <literal>"Axes"</literal> ou <literal>"Compound"</literal>.
                     </para>
@@ -173,7 +173,7 @@ a.data_bounds=[-5,-5;5,5];
         ]]></scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>

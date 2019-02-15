@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="coshm" xml:lang="pt">
     <refnamediv>
         <refname>coshm</refname>
-        <refpurpose>co-seno hiperbólico da matriz (matriz co-seno
-            hiperbólico)
+        <refpurpose>co-seno hiperbÃ³lico da matriz (matriz co-seno
+            hiperbÃ³lico)
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>t=coshm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x,t</term>
@@ -36,10 +36,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>coshm é o co-seno hiperbólico da matriz x (matriz co-seno
-            hiperbólico de x). <literal>t=(expm(x)+expm(-x))/2</literal>. O resultado
-            pode ser impreciso para matrizes não-simétricas.
+        <title>DescriÃ§Ã£o</title>
+        <para>coshm Ã© o co-seno hiperbÃ³lico da matriz x (matriz co-seno
+            hiperbÃ³lico de x). <literal>t=(expm(x)+expm(-x))/2</literal>. O resultado
+            pode ser impreciso para matrizes nÃ£o-simÃ©tricas.
         </para>
     </refsection>
     <refsection>
@@ -50,7 +50,7 @@ acoshm(coshm(A))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cosh">cosh</link>

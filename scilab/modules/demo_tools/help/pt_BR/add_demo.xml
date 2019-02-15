@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Serge STEER
@@ -16,52 +16,52 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="add_demo" xml:lang="pt">
     <refnamediv>
         <refname>add_demo</refname>
-        <refpurpose>adiciona uma entrada na lista de demonstrações</refpurpose>
+        <refpurpose>adiciona uma entrada na lista de demonstraÃ§Ãµes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>add_demo(title,path)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>title</term>
                 <listitem>
-                    <para>string, o título da demonstração</para>
+                    <para>string, o tÃ­tulo da demonstraÃ§Ã£o</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>path</term>
                 <listitem>
-                    <para>string, o endereço do script scilab associado à
-                        demonstração
+                    <para>string, o endereÃ§o do script scilab associado Ã 
+                        demonstraÃ§Ã£o
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta função adiciona uma nova entrada na lista de demonstrações. A
-            demonstração deve ser executada por um arquivo script do Scilab. Se o dado
-            título já existir <literal>title</literal> na lista de demonstrações
-            associada ao mesmo arquivo, nada é feito. Esta função checa se o arquivo
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta funÃ§Ã£o adiciona uma nova entrada na lista de demonstraÃ§Ãµes. A
+            demonstraÃ§Ã£o deve ser executada por um arquivo script do Scilab. Se o dado
+            tÃ­tulo jÃ¡ existir <literal>title</literal> na lista de demonstraÃ§Ãµes
+            associada ao mesmo arquivo, nada Ã© feito. Esta funÃ§Ã£o checa se o arquivo
             existe.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-//criando um simples script de demonstração
+//criando um simples script de demonstraÃ§Ã£o
 path=TMPDIR+'/foo.sce';
 mputl('disp Hello',path)
 add_demo('My first demo',path)
-//a demonstração pode agora ser executada através do menu "Demos".
+//a demonstraÃ§Ã£o pode agora ser executada atravÃ©s do menu "Demos".
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="add_help_chapter">add_help_chapter</link>

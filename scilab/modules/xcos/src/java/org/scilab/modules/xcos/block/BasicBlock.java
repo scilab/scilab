@@ -441,8 +441,7 @@ public class BasicBlock extends XcosCell implements Serializable {
                     if (previous.getEdgeCount() != 0) {
                         final mxICell relinked = previous.getEdgeAt(0);
                         final boolean isOutgoing = previous == relinked.getTerminal(true);
-                        previous.removeEdge(relinked, isOutgoing);
-                        modified.insertEdge(relinked, isOutgoing);
+                        parent.getModel().setTerminal(relinked, modified, isOutgoing);
                     }
 
                     parent.removeCells(new Object[] { previous }, false);

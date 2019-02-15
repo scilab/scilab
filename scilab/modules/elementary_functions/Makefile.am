@@ -417,6 +417,11 @@ libdummy_elementary_functions_la-unsfdcopy.lo: src/c/unsfdcopy.c
 libdummy_elementary_functions_la-icopy.lo: src/fortran/linpack/icopy.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o libdummy_elementary_functions_la-icopy.lo `test -f 'src/fortran/linpack/icopy.f' || echo '$(srcdir)/'`src/fortran/linpack/icopy.f
 
+if IS_MACOSX
+# enforce -O0 for some file due to macOS crash
+src/fortran/slatec/dtensbs.lo: src/fortran/slatec/dtensbs.f
+	$(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/slatec/dtensbs.lo src/fortran/slatec/dtensbs.f
+endif
 
 #### Target ######
 modulename=elementary_functions

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -19,16 +19,16 @@
         <refpurpose>matriz de Sylvester</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[S]=sylm(a,b)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>a,b</term>
                 <listitem>
-                    <para>duas matrizes de polinômios </para>
+                    <para>duas matrizes de polinÃ´mios </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -40,10 +40,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>sylm(a,b)</literal> fornece a matriz de Sylvester associada
-            aos polinômios <literal>a</literal> e <literal>b</literal>, i.e. a matriz
+            aos polinÃ´mios <literal>a</literal> e <literal>b</literal>, i.e. a matriz
             <literal>S</literal> tal que:
         </para>
         <para>
@@ -53,16 +53,16 @@
             .
         </para>
         <para>
-            A dimensão de <literal>S</literal> é igual a
+            A dimensÃ£o de <literal>S</literal> Ã© igual a
             <literal>degree(a)+degree(b)</literal>.
         </para>
         <para>
-            Se <literal>a</literal> e <literal>b</literal> são polinômios primos
-            entre si, então
+            Se <literal>a</literal> e <literal>b</literal> sÃ£o polinÃ´mios primos
+            entre si, entÃ£o
         </para>
         <para>
             <literal>rank(sylm(a,b))=degree(a)+degree(b))</literal> e as
-            instruções
+            instruÃ§Ãµes
         </para>
         <programlisting role=""><![CDATA[
 u = sylm(a,b) \ eye(na+nb,1)
@@ -71,7 +71,7 @@ y = poly(u(nb+1:na+nb),'z','coeff')
  ]]></programlisting>
         <para>
             computam os fatores de Bezout <literal>x</literal> e
-            <literal>y</literal> de graus mínimos tais que <literal>a*x+b*y =
+            <literal>y</literal> de graus mÃ­nimos tais que <literal>a*x+b*y =
                 1
             </literal>
         </para>

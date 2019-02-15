@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-01-04 13:14+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"PO-Revision-Date: 2019-02-12 13:14+0000\n"
+"Last-Translator: Webish <Unknown>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -173,8 +173,8 @@ msgstr "%s：输入参数 #%d 的大小出错：应该为 1x1 或 1x2 大小的�
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: The config file ('%s') is not well formated at line %d\n"
+#, c-format
+msgid "%s: The config file ('%s') is not well formatted at line %d\n"
 msgstr "%s：配置文件 （“%s”） 在第 %d 行不能很好地格式化\n"
 
 #, c-format
@@ -225,6 +225,16 @@ msgstr "%s：DESCRIPTION 文件不能在包“%s”中找到\n"
 msgid ""
 "Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
 "not check the latest modules availables."
+msgstr ""
+
+#, c-format
+msgid "\t%s (%s) will be installed in the '%s' section"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsInstall.sci, line: 259
+#, c-format
+msgid "\t%s (%s) is already installed in the '%s' section and up-to-date"
 msgstr ""
 
 #, c-format
@@ -323,10 +333,37 @@ msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr ""
 
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 217
 #, c-format
 msgid ""
-"Removing %s (%s)(%s).\n"
-"\n"
+"\t%s (%s) will be removed from the '%s' section and its package fully deleted"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 219
+#, c-format
+msgid "\t%s (%s) will be removed from the '%s' section"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 222
+#, c-format
+msgid "\t%s (%s) cannot be removed from the '%s' section and will be broken"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 247
+#, c-format
+msgid ""
+"\tthe package %s (%s) is currently loaded, It will be removed at next Scilab "
+"start\n"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 251
+#, c-format
+msgid "\tRemoving %s (%s)(%s)... "
 msgstr ""
 
 #, c-format
@@ -660,19 +697,19 @@ msgstr ""
 msgid "Updating Atoms modules database..."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
+"%s: The file %s is not well formatted, the toolbox %s - %s does not contain "
 "the %s field\n"
-msgstr "%s：配置文件 （“%s”） 在第 %d 行不能很好地格式化\n"
+msgstr ""
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: The file '%s' is not well formated at line %d\n"
-msgstr "%s：配置文件 （“%s”） 在第 %d 行不能很好地格式化\n"
+#, c-format
+msgid "%s: The file '%s' is not well formatted at line %d\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -958,8 +995,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为 mlist。\n"
 
-#, fuzzy, c-format
-msgid "%s: The description is not well formated at line %d\n"
+#, c-format
+msgid "%s: The description is not well formatted at line %d\n"
 msgstr "%s：description 在第 %d 行不能很好地被格式化\n"
 
 #, c-format

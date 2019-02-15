@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-12-14 15:52+0000\n"
+"PO-Revision-Date: 2019-02-12 15:52+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -205,8 +205,8 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Valor errónea para el argumento de entrada #%d.\n"
 
-#, fuzzy, c-format
-msgid "%s: The config file ('%s') is not well formated at line %d\n"
+#, c-format
+msgid "%s: The config file ('%s') is not well formatted at line %d\n"
 msgstr ""
 "%s: El archivo de configuración ('%s') no tiene el formato correcto en la "
 "línea %d\n"
@@ -276,6 +276,16 @@ msgid ""
 msgstr ""
 "La opción offline de la configuración de ATOMS se ha establecido a True. "
 "atomsSystemUpdate no comprobará los módulos disponibles más recientes."
+
+#, c-format
+msgid "\t%s (%s) will be installed in the '%s' section"
+msgstr "\t%s (%s) se instalará en la sección '%s'"
+
+#
+# File: modules/atoms/macros/atomsInstall.sci, line: 259
+#, c-format
+msgid "\t%s (%s) is already installed in the '%s' section and up-to-date"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -389,13 +399,36 @@ msgid ""
 msgstr ""
 "%s: No tiene permisos suficientes para borrar una versión del paquete %s.\n"
 
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 217
 #, c-format
 msgid ""
-"Removing %s (%s)(%s).\n"
-"\n"
+"\t%s (%s) will be removed from the '%s' section and its package fully deleted"
 msgstr ""
-"Removiendo %s(%s)(%s).\n"
-"\n"
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 219
+#, c-format
+msgid "\t%s (%s) will be removed from the '%s' section"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 222
+#, c-format
+msgid "\t%s (%s) cannot be removed from the '%s' section and will be broken"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 247
+#, c-format
+msgid ""
+"\tthe package %s (%s) is currently loaded, It will be removed at next Scilab "
+"start\n"
+msgstr ""
+
+#, c-format
+msgid "\tRemoving %s (%s)(%s)... "
+msgstr "\tRemoviendo %s (%s)(%s)... "
 
 #, c-format
 msgid ""
@@ -767,18 +800,18 @@ msgstr "%s: El archivo %s está vacío.\n"
 msgid "Updating Atoms modules database..."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
+"%s: The file %s is not well formatted, the toolbox %s - %s does not contain "
 "the %s field\n"
-msgstr "%s: El archivo '%s' no está bien formateado en la linea %d\n"
+msgstr ""
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
 msgstr "%s: El nombre y la versión no están definidos\n"
 
-#, fuzzy, c-format
-msgid "%s: The file '%s' is not well formated at line %d\n"
+#, c-format
+msgid "%s: The file '%s' is not well formatted at line %d\n"
 msgstr "%s: El archivo '%s' no está bien formateado en la linea %d\n"
 
 #, c-format
@@ -1097,8 +1130,8 @@ msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una mlist.\n"
 
-#, fuzzy, c-format
-msgid "%s: The description is not well formated at line %d\n"
+#, c-format
+msgid "%s: The description is not well formatted at line %d\n"
 msgstr "%s: La descripción no tiene un formato adecuado en la línea %d\n"
 
 #, c-format

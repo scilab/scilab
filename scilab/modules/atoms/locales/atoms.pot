@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2019-01-23 12:13+0100\n"
 
 # File: modules/atoms/macros/atomsAutoload.sci, line: 50
 # File: modules/atoms/macros/atomsLoad.sci, line: 41
@@ -582,7 +582,7 @@ msgstr ""
 # File: modules/atoms/macros/atomsSaveConfig.sci, line: 20
 # File: modules/atoms/macros/atomsUpdate.sci, line: 45
 # File: modules/atoms/macros/atoms_internals/atomsDeleteTarball.sci, line: 29
-# File: modules/atoms/macros/atoms_internals/atomsDisp.sci, line: 25
+# File: modules/atoms/macros/atoms_internals/atomsDisp.sci, line: 23
 # File: modules/atoms/macros/atoms_internals/atomsGetAvailable.sci, line: 63
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -631,7 +631,19 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsInstall.sci, line: 289
+# File: modules/atoms/macros/atomsInstall.sci, line: 257
+#, c-format
+msgid "\t%s (%s) will be installed in the '%s' section"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsInstall.sci, line: 259
+#, c-format
+msgid "\t%s (%s) is already installed in the '%s' section and up-to-date"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsInstall.sci, line: 290
 # File: modules/atoms/macros/atoms_internals/atomsLoadSave.sci, line: 45
 # File: modules/atoms/macros/atoms_internals/atomsLoadSave.sci, line: 51
 #, c-format
@@ -641,21 +653,21 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsInstall.sci, line: 320
-# File: modules/atoms/macros/atomsInstall.sci, line: 443
+# File: modules/atoms/macros/atomsInstall.sci, line: 321
+# File: modules/atoms/macros/atomsInstall.sci, line: 444
 #, c-format
 msgid "%s: Error while copying the file '%s' to the directory '%s'.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsInstall.sci, line: 360
-# File: modules/atoms/macros/atomsInstall.sci, line: 389
+# File: modules/atoms/macros/atomsInstall.sci, line: 361
+# File: modules/atoms/macros/atomsInstall.sci, line: 390
 #, c-format
 msgid "%s: Error while creating the directory '%s'.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsInstall.sci, line: 438
+# File: modules/atoms/macros/atomsInstall.sci, line: 439
 #, c-format
 msgid "%s: Previously existing file with the same name in '%s'.\n"
 msgstr ""
@@ -740,7 +752,7 @@ msgid "%s: An error occurred while loading '%s-%s':\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsQuit.sci, line: 44
+# File: modules/atoms/macros/atomsQuit.sci, line: 48
 #, c-format
 msgid "%s: An error occurred while unloading '%s-%s':\n"
 msgstr ""
@@ -789,15 +801,40 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsRemove.sci, line: 249
+# File: modules/atoms/macros/atomsRemove.sci, line: 217
 #, c-format
 msgid ""
-"Removing %s (%s)(%s).\n"
-"\n"
+"\t%s (%s) will be removed from the '%s' section and its package fully deleted"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsRemove.sci, line: 270
+# File: modules/atoms/macros/atomsRemove.sci, line: 219
+#, c-format
+msgid "\t%s (%s) will be removed from the '%s' section"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 222
+#, c-format
+msgid "\t%s (%s) cannot be removed from the '%s' section and will be broken"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 247
+#, c-format
+msgid ""
+"\tthe package %s (%s) is currently loaded, It will be removed at next Scilab "
+"start\n"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 251
+#, c-format
+msgid "\tRemoving %s (%s)(%s)... "
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 272
 #, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
@@ -805,7 +842,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsRemove.sci, line: 283
+# File: modules/atoms/macros/atomsRemove.sci, line: 285
 #, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) cannot been deleted, please check "
@@ -813,7 +850,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsRemove.sci, line: 302
+# File: modules/atoms/macros/atomsRemove.sci, line: 304
 #, c-format
 msgid ""
 "%s: The root directory of this package (%s-%s) cannot been deleted, please "
@@ -821,7 +858,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsRemove.sci, line: 312
+# File: modules/atoms/macros/atomsRemove.sci, line: 314
 #, c-format
 msgid ""
 "Deleting archives files for %s.\n"
@@ -1211,7 +1248,7 @@ msgstr ""
 
 #
 # File: modules/atoms/macros/atoms_internals/atomsCompatibleVersions.sci, line: 32
-# File: modules/atoms/macros/atoms_internals/atomsDisp.sci, line: 29
+# File: modules/atoms/macros/atoms_internals/atomsDisp.sci, line: 27
 # File: modules/atoms/macros/atoms_internals/atomsGetVersions.sci, line: 33
 # File: modules/atoms/macros/atoms_internals/atomsGetVersions.sci, line: 37
 # File: modules/atoms/macros/atoms_internals/atomsGetVersions.sci, line: 41

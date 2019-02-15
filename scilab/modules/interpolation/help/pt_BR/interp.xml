@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="interp" xml:lang="pt">
     <refnamediv>
         <refname>interp</refname>
-        <refpurpose>função de avaliação de spline cúbico</refpurpose>
+        <refpurpose>funÃ§Ã£o de avaliaÃ§Ã£o de spline cÃºbico</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[yp [,yp1 [,yp2 [,yp3]]]]=interp(xp, x, y, d [, out_mode])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>xp</term>
@@ -20,8 +20,8 @@
             <varlistentry>
                 <term>x,y,d</term>
                 <listitem>
-                    <para>vetores de reais de mesmo tamanho definindo uma função de
-                        spline cúbico ou sub-spline (chamado <literal>s</literal> a partir
+                    <para>vetores de reais de mesmo tamanho definindo uma funÃ§Ã£o de
+                        spline cÃºbico ou sub-spline (chamado <literal>s</literal> a partir
                         daqui)
                     </para>
                 </listitem>
@@ -30,7 +30,7 @@
                 <term>out_mode</term>
                 <listitem>
                     <para>
-                        (opcional) string definido a avaliação de <literal>s</literal>
+                        (opcional) string definido a avaliaÃ§Ã£o de <literal>s</literal>
                         fora do intervalo [x1,xn]
                     </para>
                 </listitem>
@@ -40,7 +40,7 @@
                 <listitem>
                     <para>
                         vetor ou matriz de mesmo tamanho que <literal>xp</literal>,
-                        avaliação elemento a elemento de <literal>s</literal> em
+                        avaliaÃ§Ã£o elemento a elemento de <literal>s</literal> em
                         <literal>xp</literal> (yp(i)=s(xp(i) ou yp(i,j)=s(xp(i,j))
                     </para>
                 </listitem>
@@ -49,7 +49,7 @@
                 <term>yp1, yp2, yp3</term>
                 <listitem>
                     <para>vetores (ou matrizes) de mesmo tamanho que
-                        <literal>xp</literal>, avaliação elemento a elemento das derivadas
+                        <literal>xp</literal>, avaliaÃ§Ã£o elemento a elemento das derivadas
                         sucessivas de <literal>s</literal> em <literal>xp</literal>
                     </para>
                 </listitem>
@@ -57,12 +57,12 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Dados três vetores <literal>(x,y,d)</literal> ddefinindo uma função
-            de spline cúbico ou sup-spline (ver <link linkend="splin">splin</link>)
-            com <literal>yi=s(xi), di = s'(xi)</literal> esta função avalia
-            <literal>s</literal> (e <literal>s', s'', s'''</literal> se necessário) em
+            Dados trÃªs vetores <literal>(x,y,d)</literal> ddefinindo uma funÃ§Ã£o
+            de spline cÃºbico ou sup-spline (ver <link linkend="splin">splin</link>)
+            com <literal>yi=s(xi), di = s'(xi)</literal> esta funÃ§Ã£o avalia
+            <literal>s</literal> (e <literal>s', s'', s'''</literal> se necessÃ¡rio) em
             <literal>xp(i)</literal> :
         </para>
         <programlisting role=""><![CDATA[
@@ -72,26 +72,26 @@ yp2(i) = s''(xp(i))   ou  yp2(i,j) = s''(xp(i,j))
 yp3(i) = s'''(xp(i))   ou  yp3(i,j) = s'''(xp(i,j))
  ]]></programlisting>
         <para>
-            O parâmetro <literal>out_mode</literal> ajusta a regra de avaliação
-            para extrapolação, i.e., para <literal>xp(i)</literal> fora de [x1,xn] :
+            O parÃ¢metro <literal>out_mode</literal> ajusta a regra de avaliaÃ§Ã£o
+            para extrapolaÃ§Ã£o, i.e., para <literal>xp(i)</literal> fora de [x1,xn] :
         </para>
         <variablelist>
             <varlistentry>
                 <term>"by_zero"</term>
                 <listitem>
-                    <para>uma extrapolação por zero é feita </para>
+                    <para>uma extrapolaÃ§Ã£o por zero Ã© feita </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"by_nan"</term>
                 <listitem>
-                    <para>extrapolação por NaN </para>
+                    <para>extrapolaÃ§Ã£o por NaN </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"C0"</term>
                 <listitem>
-                    <para>a extrapolação é definida como segue :</para>
+                    <para>a extrapolaÃ§Ã£o Ã© definida como segue :</para>
                     <programlisting role=""><![CDATA[
 s(x) = y1  para  x < x1
 s(x) = yn  para  x > xn
@@ -101,7 +101,7 @@ s(x) = yn  para  x > xn
             <varlistentry>
                 <term>"natural"</term>
                 <listitem>
-                    <para>a extrapolação é definida como segue (p_i sendo o polinômio
+                    <para>a extrapolaÃ§Ã£o Ã© definida como segue (p_i sendo o polinÃ´mio
                         que define <literal>s</literal> em [x_i,x_{i+1}]) :
                     </para>
                     <programlisting role=""><![CDATA[
@@ -113,7 +113,7 @@ s(x) = p_{n-1}(x)  para  x > xn
             <varlistentry>
                 <term>"linear"</term>
                 <listitem>
-                    <para>a extrapolação é definida como segue :</para>
+                    <para>a extrapolaÃ§Ã£o Ã© definida como segue :</para>
                     <programlisting role=""><![CDATA[
 s(x) = y1 + s'(x1)(x-x1)  para  x < x1
 s(x) = yn + s'(xn)(x-xn)  para  x > xn
@@ -124,7 +124,7 @@ s(x) = yn + s'(xn)(x-xn)  para  x > xn
                 <term>"periodic"</term>
                 <listitem>
                     <para>
-                        <literal>s</literal> é estendido por periodicidade.
+                        <literal>s</literal> Ã© estendido por periodicidade.
                     </para>
                 </listitem>
             </varlistentry>
@@ -148,19 +148,19 @@ clf()
 subplot(3,1,1)
 plot2d(xx, [yyk yyf])
 plot2d(x, y, style=-9)
-legends(["spline não é um nó","sub-spline rápido","pontos de interpolação"],...
+legends(["spline nÃ£o Ã© um nÃ³","sub-spline rÃ¡pido","pontos de interpolaÃ§Ã£o"],...
         [1 2 -9], "ur",%f)
-xtitle("interpolação por spline")
+xtitle("interpolaÃ§Ã£o por spline")
 subplot(3,1,2)
 plot2d(xx, [yy1k yy1f])
-legends(["spline não é um nó","sub-spline rápido"], [1 2], "ur",%f)
-xtitle("interpolação por spline (derivadas)")
+legends(["spline nÃ£o Ã© um nÃ³","sub-spline rÃ¡pido"], [1 2], "ur",%f)
+xtitle("interpolaÃ§Ã£o por spline (derivadas)")
 subplot(3,1,3)
 plot2d(xx, [yy2k yy2f])
-legends(["spline não é um nó","sub-spline rápido"], [1 2], "lr",%f)
-xtitle("interpolação por splines (segundas derivadas)")
+legends(["spline nÃ£o Ã© um nÃ³","sub-spline rÃ¡pido"], [1 2], "lr",%f)
+xtitle("interpolaÃ§Ã£o por splines (segundas derivadas)")
 
-// aqui está um exemplo mostrando as diferentes possibilidades de extrapolação
+// aqui estÃ¡ um exemplo mostrando as diferentes possibilidades de extrapolaÃ§Ã£o
 x = linspace(0,1,11)';
 y = cosh(x-0.5);
 d = splin(x,y);
@@ -171,11 +171,11 @@ yy2 = interp(xx,x,y,d,"natural");
 yy3 = interp(xx,x,y,d,"periodic");
 clf()
 plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
-xtitle(" Modos diferentes de avaliar um spline fora de seu domínio")
+xtitle(" Modos diferentes de avaliar um spline fora de seu domÃ­nio")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="splin">splin</link>

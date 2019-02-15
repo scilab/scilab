@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -21,13 +21,13 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>unglue(h)
             H=unglue(h)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
@@ -38,7 +38,7 @@
             <varlistentry>
                 <term>H</term>
                 <listitem>
-                    <para>um vetor de manipuladores das entidades resultantes após um
+                    <para>um vetor de manipuladores das entidades resultantes apÃ³s um
                         unCompound.
                     </para>
                 </listitem>
@@ -46,15 +46,15 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Dado um manipulador de uma entidade Compound, destrói o Compound e
-            desembrulha as entidades elementares associadas à sua raiz.
+        <title>DescriÃ§Ã£o</title>
+        <para>Dado um manipulador de uma entidade Compound, destrÃ³i o Compound e
+            desembrulha as entidades elementares associadas Ã  sua raiz.
             <literal>glue</literal> retorna um vetor de manipuladores desses galhos
             individuais.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="get">get</link>

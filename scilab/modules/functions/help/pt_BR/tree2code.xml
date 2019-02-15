@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tree2code" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="tree2code" xml:lang="pt">
     <refnamediv>
         <refname>tree2code</refname>
         <refpurpose>gera a definição ASCII de uma função Scilab</refpurpose>
@@ -40,7 +43,9 @@
                     <table>
                       <tr>
                         <td>%T : </td>
-                        <td>o código gerado é identado e embelezado</td>
+                        <td>o código gerado é identado e embelezado. The indentation length
+                            is the Scinotes one. It can be tuned through Scinotes preferences.
+                        </td>
                       </tr>
                       <tr>
                         <td>%F : </td>

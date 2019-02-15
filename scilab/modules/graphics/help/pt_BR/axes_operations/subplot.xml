@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -16,18 +16,18 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="subplot" xml:lang="pt">
     <refnamediv>
         <refname>subplot</refname>
-        <refpurpose>divide uma janela de gráficos em uma matriz de
+        <refpurpose>divide uma janela de grÃ¡ficos em uma matriz de
             sub-janelas
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>subplot(m,n,p)
             subplot(mnp)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>m,n,p</term>
@@ -39,19 +39,19 @@
                 <term>mnp</term>
                 <listitem>
                     <para>
-                        um inteiro com notação decimal <literal>mnp</literal>
+                        um inteiro com notaÃ§Ã£o decimal <literal>mnp</literal>
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>subplot(m,n,p) ou subplot(mnp) parte a janela de gráficos em uma
-            matriz m-por-n de sub-janelas e seleciona a p-ésima sub-janela para
-            esboçar o gráfico corrente. O número uma sub-janela nas matrizes é contado
+        <title>DescriÃ§Ã£o</title>
+        <para>subplot(m,n,p) ou subplot(mnp) parte a janela de grÃ¡ficos em uma
+            matriz m-por-n de sub-janelas e seleciona a p-Ã©sima sub-janela para
+            esboÃ§ar o grÃ¡fico corrente. O nÃºmero uma sub-janela nas matrizes Ã© contado
             linha por linha, i.e. a sub-janela correspondente ao elemento (i,j) da
-            matriz tem número (i-1)*n + j.
+            matriz tem nÃºmero (i-1)*n + j.
         </para>
     </refsection>
     <refsection>
@@ -68,7 +68,7 @@ hist3d()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot2d">plot2d</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
@@ -16,19 +16,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ged" xml:lang="pt">
     <refnamediv>
         <refname>ged</refname>
-        <refpurpose>Editor Gráfico do Scilab</refpurpose>
+        <refpurpose>Editor GrÃ¡fico do Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>ged(action, fignum)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>action</term>
                 <listitem>
-                    <para>Real: ação a ser executada na janela gráfica dada por
+                    <para>Real: aÃ§Ã£o a ser executada na janela grÃ¡fica dada por
                         <literal>fignum</literal>:
                     </para>
                     <itemizedlist>
@@ -49,23 +49,23 @@
                             </para>
                         </listitem>
                         <listitem>
-                            <para>4: Pede que o usuário selecione uma entidade gráfica para
-                                efetuar cópia.
+                            <para>4: Pede que o usuÃ¡rio selecione uma entidade grÃ¡fica para
+                                efetuar cÃ³pia.
                             </para>
                         </listitem>
                         <listitem>
-                            <para>5: Cola a última entidade gráfica copiada pela ação
+                            <para>5: Cola a Ãºltima entidade grÃ¡fica copiada pela aÃ§Ã£o
                                 <literal>4</literal>.
                             </para>
                         </listitem>
                         <listitem>
-                            <para>6: Pede ao usuário para que selecione uma entidade gráfica
-                                e então a mova.
+                            <para>6: Pede ao usuÃ¡rio para que selecione uma entidade grÃ¡fica
+                                e entÃ£o a mova.
                             </para>
                         </listitem>
                         <listitem>
-                            <para>7: Pede ao usuário que selecione uma entidade gráfica para
-                                efetuar deleção.
+                            <para>7: Pede ao usuÃ¡rio que selecione uma entidade grÃ¡fica para
+                                efetuar deleÃ§Ã£o.
                             </para>
                         </listitem>
                         <listitem>
@@ -80,7 +80,7 @@
                         </listitem>
                         <listitem>
                             <para>10: Inicia um selecionador para selecionar um objeto e
-                                editá-lo através da GUI do Editor Gráfico.
+                                editÃ¡-lo atravÃ©s da GUI do Editor GrÃ¡fico.
                             </para>
                         </listitem>
                         <listitem>
@@ -92,7 +92,7 @@
             <varlistentry>
                 <term>fignum</term>
                 <listitem>
-                    <para>Real: número da janela de gráficos, a figura a ser
+                    <para>Real: nÃºmero da janela de grÃ¡ficos, a figura a ser
                         editada
                     </para>
                 </listitem>
@@ -100,10 +100,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>ged</literal> inicia um Editor Gráfico do Scilab sobre a
-            figura de número <literal>fignum</literal> e executa a ação fornecida por
+            <literal>ged</literal> inicia um Editor GrÃ¡fico do Scilab sobre a
+            figura de nÃºmero <literal>fignum</literal> e executa a aÃ§Ã£o fornecida por
             <literal>action</literal>.
         </para>
     </refsection>

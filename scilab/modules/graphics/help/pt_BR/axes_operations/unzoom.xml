@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -17,16 +17,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="unzoom" xml:lang="pt">
     <refnamediv>
         <refname>unzoom</refname>
-        <refpurpose>Diminui a ampliação</refpurpose>
+        <refpurpose>Diminui a ampliaÃ§Ã£o</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>unzoom()
             unzoom(H)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>H</term>
@@ -37,16 +37,16 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>unzoom()</literal> é usado para remover o efeito de
-            ampliação em todos os eixos da figura gráfica corrente:
+            <literal>unzoom()</literal> Ã© usado para remover o efeito de
+            ampliaÃ§Ã£o em todos os eixos da figura grÃ¡fica corrente:
         </para>
         <para>
-            <literal>unzoom(H)</literal> é usado para remover o efeito de
-            ampliação em todos os Figures e Axes dados pelo vetor de manipuladores
-            <literal>H</literal>. A remoção do efeito de ampliação para uma entidade
-            Figure é o mesmo que remover o efeito de ampliação para todos os seus Axes
+            <literal>unzoom(H)</literal> Ã© usado para remover o efeito de
+            ampliaÃ§Ã£o em todos os Figures e Axes dados pelo vetor de manipuladores
+            <literal>H</literal>. A remoÃ§Ã£o do efeito de ampliaÃ§Ã£o para uma entidade
+            Figure Ã© o mesmo que remover o efeito de ampliaÃ§Ã£o para todos os seus Axes
             galhos.
         </para>
     </refsection>
@@ -59,7 +59,7 @@ plot2d(x,sin(x.^2))
 zoom_rect([16,-1,18,1])
 unzoom()
 
-//aplicação a subesboços
+//aplicaÃ§Ã£o a subesboÃ§os
 clf()
 x=0:0.01:6*%pi;
 subplot(211)
@@ -68,16 +68,16 @@ a1=gca();
 subplot(212)
 plot2d(x,cos(2*x))
 a2=gca();
-rect=[3 -2 7 10]; // um retângulo especificado nos eixos correntes (os últimos)
+rect=[3 -2 7 10]; // um retÃ¢ngulo especificado nos eixos correntes (os Ãºltimos)
 zoom_rect(rect)
-unzoom(a1) // diminuição de ampliação aplicado ao primeiro esboço apenas
-unzoom(a2) // diminuição de ampliação aplicado ao segundo esboço apenas
-zoom_rect(rect) // aplicando ampliação de novo
-unzoom(gcf()) // diminuição de ampliação aplicada a todos os eixos, equivalente a unzoom()
+unzoom(a1) // diminuiÃ§Ã£o de ampliaÃ§Ã£o aplicado ao primeiro esboÃ§o apenas
+unzoom(a2) // diminuiÃ§Ã£o de ampliaÃ§Ã£o aplicado ao segundo esboÃ§o apenas
+zoom_rect(rect) // aplicando ampliaÃ§Ã£o de novo
+unzoom(gcf()) // diminuiÃ§Ã£o de ampliaÃ§Ã£o aplicada a todos os eixos, equivalente a unzoom()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="zoom_rect">zoom_rect</link>

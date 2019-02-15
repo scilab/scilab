@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="nearfloat" xml:lang="pt">
     <refnamediv>
         <refname>nearfloat</refname>
         <refpurpose>get previous or next floating-point number</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>xnear = nearfloat(dir, x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>dir</term>
@@ -32,8 +32,8 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta função computa, elemento a elemento, os vizinhos
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta funÃ§Ã£o computa, elemento a elemento, os vizinhos
             correspondentes dos elementos de <literal>x</literal> (no conjunto de
             pontos flutuantes subjacente, ver number_properties), os sucessores se
             <literal>dir = "succ"</literal> e e os predecessores se <literal>dir =
@@ -47,11 +47,11 @@
 format("e",22)
 nearfloat("succ",1) - 1
 1 - nearfloat("pred",1)
-format("v") //retoma o formato padrão
+format("v") //retoma o formato padrÃ£o
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="number_properties">number_properties</link>

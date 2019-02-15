@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
         <refpurpose>base ortogonal</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>Q=orth(A)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
@@ -40,14 +40,14 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>Q=orth(A)</literal> retorna <literal>Q</literal>, uma base
             ortogonal para o gerado de <literal>A</literal>. Im(<literal>Q</literal>)
             = Im(<literal>A</literal>) e <literal>Q'*Q=eye</literal>.
         </para>
         <para>
-            O número de colunas de <literal>Q</literal> é o posto de
+            O nÃºmero de colunas de <literal>Q</literal> Ã© o posto de
             <literal>A</literal> como determinado pelo algoritmo QR.
         </para>
     </refsection>
@@ -60,7 +60,7 @@ svd([orth(A),X(:,1:dim)])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="qr">qr</link>

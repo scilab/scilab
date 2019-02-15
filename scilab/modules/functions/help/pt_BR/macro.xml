@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -19,35 +19,35 @@
         <refpurpose>Procedimento Scilab e objeto Scilab</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
-        <para>Macros são procedimentos Scilab ("macro", "função" e "procedimento"
-            possuem o mesmo significado). Geralmente, eles são definidos em arquivos
+        <title>DescriÃ§Ã£o</title>
+        <para>Macros sÃ£o procedimentos Scilab ("macro", "funÃ§Ã£o" e "procedimento"
+            possuem o mesmo significado). Geralmente, eles sÃ£o definidos em arquivos
             com um editor e carregados no Scilab com <function>exec</function> ou
-            através de uma biblioteca.
+            atravÃ©s de uma biblioteca.
         </para>
         <para>
-            Também podem ser definidos on-line (ver <link linkend="deff">deff</link>). Um
-            arquivo que contém uma macro deve começar como segue:
+            TambÃ©m podem ser definidos on-line (ver <link linkend="deff">deff</link>). Um
+            arquivo que contÃ©m uma macro deve comeÃ§ar como segue:
         </para>
         <programlisting role='no-scilab-exec'><![CDATA[
 function [y1,...,yn]=foo(x1,...,xm)
  ]]></programlisting>
         <para>
-            Os <literal>yi</literal> são variáveis de saída calculadas como
-            funções de variáveis de entrada e variáveis existentes no Scilab quando o
-            macro é executado. Um macro pode ser compilado para uma execução mais
-            rápida. Coleções de macros podem ser armazenadas em bibliotecas. Macros
-            que começam pelo símbolo <literal>%</literal> (ex.:
-            <literal>%foo</literal>) e cujos argumentos são listas são usadas para
-            executar operações específicas: por exemplo,
-            <code>z=%rmr(x,y)</code> é equivalente a <code>z=x*y</code>
-            quando <varname>x</varname> e <varname>z</varname> são racionais (i.e.
+            Os <literal>yi</literal> sÃ£o variÃ¡veis de saÃ­da calculadas como
+            funÃ§Ãµes de variÃ¡veis de entrada e variÃ¡veis existentes no Scilab quando o
+            macro Ã© executado. Um macro pode ser compilado para uma execuÃ§Ã£o mais
+            rÃ¡pida. ColeÃ§Ãµes de macros podem ser armazenadas em bibliotecas. Macros
+            que comeÃ§am pelo sÃ­mbolo <literal>%</literal> (ex.:
+            <literal>%foo</literal>) e cujos argumentos sÃ£o listas sÃ£o usadas para
+            executar operaÃ§Ãµes especÃ­ficas: por exemplo,
+            <code>z=%rmr(x,y)</code> Ã© equivalente a <code>z=x*y</code>
+            quando <varname>x</varname> e <varname>z</varname> sÃ£o racionais (i.e.
             <code>x=list('r',n,d,[])</code> com <varname>n</varname> e
-            <varname>d</varname> polinômios).
+            <varname>d</varname> polinÃ´mios).
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="deff">deff</link>

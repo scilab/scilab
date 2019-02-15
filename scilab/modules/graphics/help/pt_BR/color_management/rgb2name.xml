@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -19,13 +19,13 @@
         <refpurpose>Retorna o nome de uma cor</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>names=rgb2name(r,g,b)
             names=rgb2name(rgb)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>r,g,b</term>
@@ -49,7 +49,7 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>rgb2name</literal> retorna o nome da cor correspondente aos
             valores RGB dados pelo seu argumento. Um vetor de nomes de cores pode ser
@@ -57,15 +57,15 @@
             <literal>g</literal> e <literal>b</literal> devem ser inteiros entre 0 e
             255 correspondentes aos componentes das cores vermelho, verde e azul. Como
             de uso, 0 significa intensidade nenhuma e 255 significa intensidade total
-            da cor. Os valores RGB também podem ser fornecidos pelo vetor
+            da cor. Os valores RGB tambÃ©m podem ser fornecidos pelo vetor
             <literal>[r,g,b]</literal>.
         </para>
         <para>
-            Se não for encontrada nenhuma cor <literal>[]</literal> é
+            Se nÃ£o for encontrada nenhuma cor <literal>[]</literal> Ã©
             retornado.
         </para>
         <para>
-            A lista de todas as cores conhecidas é dada por <link linkend="color_list">color_list</link>.
+            A lista de todas as cores conhecidas Ã© dada por <link linkend="color_list">color_list</link>.
         </para>
     </refsection>
     <refsection>
@@ -73,13 +73,13 @@
         <programlisting role="example"><![CDATA[
 rgb2name(255,128,128)
 rgb2name([255 215 0])
-// retorna a cor de número 10 do mapa de cores corrente acha seu nome
+// retorna a cor de nÃºmero 10 do mapa de cores corrente acha seu nome
 cmap=get(gcf(),"color_map");
 rgb2name(cmap(10,:)*255)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="color">color</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,7 +19,7 @@
         <refpurpose>produto</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>y=prod(x)
             y=prod(x,'r') ou y=prod(x,1)
             y=prod(x,'c') ou y=prod(x,2)
@@ -27,7 +27,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -44,32 +44,32 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição </title>
+        <title>DescriÃ§Ã£o </title>
         <para>
             Para um vetor ou uma matriz <literal>x</literal>,
             <literal>y=prod(x)</literal> retorna no escalar <literal>y</literal> o
-            produtório de todas as entradas de <literal>x</literal>, , ex.
-            <literal>prod(1:n)</literal> é n!
+            produtÃ³rio de todas as entradas de <literal>x</literal>, , ex.
+            <literal>prod(1:n)</literal> Ã© n!
         </para>
         <para>
             <literal>y=prod(x,'r')</literal> (ou, equivalentemente,
-            <literal>y=prod(x,1)</literal>) computa os produtórios dos elementos das
-            linhas de <literal>x</literal>. <literal>y</literal> é o vetor linha:
+            <literal>y=prod(x,1)</literal>) computa os produtÃ³rios dos elementos das
+            linhas de <literal>x</literal>. <literal>y</literal> Ã© o vetor linha:
             <literal>y(1,j)=prod(x(:,j))</literal>.
         </para>
         <para>
             <literal>y=prod(x,'c')</literal> (ou, equivalentemente,
-            <literal>y=prod(x,2)</literal>) computa os produtórios dos elementos das
-            colunas de <literal>x</literal>. <literal>y</literal> é o vetor coluna:
+            <literal>y=prod(x,2)</literal>) computa os produtÃ³rios dos elementos das
+            colunas de <literal>x</literal>. <literal>y</literal> Ã© o vetor coluna:
             <literal>y(i,1)=prod(x(i,:))</literal>.
         </para>
         <para>
-            <literal>y=prod(x,'m')</literal> é o produtório ao longo da primeira
-            dimensão "não-singleton" de <literal>x</literal> (para compatibilidade com
+            <literal>y=prod(x,'m')</literal> Ã© o produtÃ³rio ao longo da primeira
+            dimensÃ£o "nÃ£o-singleton" de <literal>x</literal> (para compatibilidade com
             o Matlab).
         </para>
         <para>
-            <literal>prod</literal> não é implementado para matrizes
+            <literal>prod</literal> nÃ£o Ã© implementado para matrizes
             esparsas.
         </para>
     </refsection>
@@ -83,7 +83,7 @@ prod(A,'r')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sum">sum</link>

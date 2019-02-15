@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
@@ -16,39 +16,39 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="rotate_axes" xml:lang="pt">
     <refnamediv>
         <refname>rotate_axes</refname>
-        <refpurpose>Rotação interativa de um manipulador Axes</refpurpose>
+        <refpurpose>RotaÃ§Ã£o interativa de um manipulador Axes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>rotate_axes()
             rotate_axes(h)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
                 <listitem>
                     <para>manipulador Axes ou Figure. Especifica sobre qual eixo se
-                        efetuará a rotação.
+                        efetuarÃ¡ a rotaÃ§Ã£o.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>rotate_axes</literal> é utilizado para realizar uma rotação
-            interativa sobre um objeto Axes. Quando a função é chamada, pede-se ao
-            usuário que clique duas vezes na janela gráfica. O primeiro clique
-            inicializa uma rotação e o segundo termina.
+            <literal>rotate_axes</literal> Ã© utilizado para realizar uma rotaÃ§Ã£o
+            interativa sobre um objeto Axes. Quando a funÃ§Ã£o Ã© chamada, pede-se ao
+            usuÃ¡rio que clique duas vezes na janela grÃ¡fica. O primeiro clique
+            inicializa uma rotaÃ§Ã£o e o segundo termina.
         </para>
         <para>Se um manipulador Axes for especificado como argumento de entrada, a
-            rotação será aplicada sobre ele. Se um manipulador Figure for
+            rotaÃ§Ã£o serÃ¡ aplicada sobre ele. Se um manipulador Figure for
             especificado, o primeiro clique determina qual objeto Axes rotacionar. Se
-            a função for chamada sem argumento, a rotação se aplicará sobre a Figura
+            a funÃ§Ã£o for chamada sem argumento, a rotaÃ§Ã£o se aplicarÃ¡ sobre a Figura
             corrente.
         </para>
     </refsection>
@@ -73,7 +73,7 @@ rotate_axes(gcf());
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="zoom_rect">zoom_rect</link>

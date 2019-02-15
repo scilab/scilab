@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,43 +19,43 @@
         <refpurpose>inverso do feixe de matrizes</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[Bfs,Bis,chis]=glever(E,A [,s])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>E, A</term>
                 <listitem>
-                    <para>duas matrizes de reais quadradas de igual dimensão</para>
+                    <para>duas matrizes de reais quadradas de igual dimensÃ£o</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>s</term>
                 <listitem>
                     <para>
-                        string (o valor padrão é '<literal>s</literal>')
+                        string (o valor padrÃ£o Ã© '<literal>s</literal>')
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Bfs,Bis</term>
                 <listitem>
-                    <para>duas matrizes de polinômios </para>
+                    <para>duas matrizes de polinÃ´mios </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>chis</term>
                 <listitem>
-                    <para>polinômio</para>
+                    <para>polinÃ´mio</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Computação de</para>
+        <title>DescriÃ§Ã£o</title>
+        <para>ComputaÃ§Ã£o de</para>
         <para>
             <literal>(s*E-A)^-1</literal>
         </para>
@@ -66,15 +66,15 @@
 (s*E-A)^-1 = (Bfs/chis) - Bis.
  ]]></programlisting>
         <para>
-            <literal>chis</literal> = polinômio característico (até uma
+            <literal>chis</literal> = polinÃ´mio caracterÃ­stico (atÃ© uma
             constante multiplicativa).
         </para>
         <para>
-            <literal>Bfs</literal> = nmatriz de polinômios como
+            <literal>Bfs</literal> = nmatriz de polinÃ´mios como
             numerador.
         </para>
         <para>
-            <literal>Bis</literal> = matriz de polinômios ( - expansão de
+            <literal>Bis</literal> = matriz de polinÃ´mios ( - expansÃ£o de
             <literal>(s*E-A)^-1</literal> ao infinito).
         </para>
         <para>
@@ -84,7 +84,7 @@
     <refsection>
         <title>Cuidado </title>
         <para>
-            Esta função usa <literal>cleanp</literal> para simplificar
+            Esta funÃ§Ã£o usa <literal>cleanp</literal> para simplificar
             <literal>Bfs,Bis</literal> e <literal>chis</literal>.
         </para>
     </refsection>
@@ -97,7 +97,7 @@ inv(F)-((Bfs/chis) - Bis)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="rowshuff">rowshuff</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -16,29 +16,29 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="genlib" xml:lang="pt">
     <refnamediv>
         <refname>genlib</refname>
-        <refpurpose>constrói biblioteca a partir de funções em um
-            diretório
+        <refpurpose>constrÃ³i biblioteca a partir de funÃ§Ãµes em um
+            diretÃ³rio
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>genlib(lib_name [[,dir_name, [ Force [,verb [,Names]]]])
             genlib(lib_name [,path=dir_name] [,verbose=verb] [,force=Force] [,names=Names])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>lib_name:</term>
                 <listitem>
-                    <para>string. O nome da variável biblioteca a ser (re)criada.</para>
+                    <para>string. O nome da variÃ¡vel biblioteca a ser (re)criada.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>dir_name:</term>
                 <listitem>
-                    <para>string. O nome do diretório onde se deve procurar arquivos
+                    <para>string. O nome do diretÃ³rio onde se deve procurar arquivos
                         <literal>.sci</literal>.
                     </para>
                 </listitem>
@@ -47,8 +47,8 @@
                 <term>Force</term>
                 <listitem>
                     <para>
-                        booleano (o padrão é <literal>%f</literal>). Para forçar
-                        recompilação de arquivos .sci, ajuste-o para
+                        booleano (o padrÃ£o Ã© <literal>%f</literal>). Para forÃ§ar
+                        recompilaÃ§Ã£o de arquivos .sci, ajuste-o para
                         <literal>%t</literal>.
                     </para>
                 </listitem>
@@ -57,16 +57,16 @@
                 <term>verb</term>
                 <listitem>
                     <para>
-                        booleano (o padrão é <literal>%f</literal>). Para obter
-                        informações ajuste-o para <literal>%t</literal>.
+                        booleano (o padrÃ£o Ã© <literal>%f</literal>). Para obter
+                        informaÃ§Ãµes ajuste-o para <literal>%t</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Names</term>
                 <listitem>
-                    <para>vetor de strings, os nomes das funções a serem inclusas na
-                        bibilioteca. Por padrão, todos os arquivos sci são levados em
+                    <para>vetor de strings, os nomes das funÃ§Ãµes a serem inclusas na
+                        bibilioteca. Por padrÃ£o, todos os arquivos sci sÃ£o levados em
                         conta.
                     </para>
                 </listitem>
@@ -74,53 +74,53 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             Para cada arquivo <literal>.sci</literal> em
             <literal>dir_name</literal> (ou apenas para aqueles especificados pelo
             argumento <literal>Names</literal>), <literal>genlib</literal> executa um
-            <literal>exec</literal> e salva as funções no arquivo
+            <literal>exec</literal> e salva as funÃ§Ãµes no arquivo
             <literal>.bin</literal> correspondente. O arquivo <literal>.sci</literal>
-            só pode conter instruções Scilab. Se um arquivo <literal>.bin</literal>
+            sÃ³ pode conter instruÃ§Ãµes Scilab. Se um arquivo <literal>.bin</literal>
             for mais novo que o arquivo <literal>.sci</literal> assicuadi,
-            <literal>genlib</literal> não traduz nem salva o arquivo.
+            <literal>genlib</literal> nÃ£o traduz nem salva o arquivo.
         </para>
-        <para>O comportamento padrão pode ser modificado se
+        <para>O comportamento padrÃ£o pode ser modificado se
             <literal>force</literal> for fornecido e ajustado para
-            <literal>%t</literal>. Neste último caso, a recompilação é sempre feita
+            <literal>%t</literal>. Neste Ãºltimo caso, a recompilaÃ§Ã£o Ã© sempre feita
             para cada arquivo <literal>.sci</literal>.
         </para>
         <para>
             Quando todos os arquivos <literal>.sci</literal> tiverem sido
             processados, <literal>genlib</literal> cria uma biblioteca nomeada
             <literal>lib_name</literal> e a salva arquivo <literal>lib</literal> em
-            <literal>dir_name</literal>. Se a variável Scilab
-            <literal>lib_name</literal> não estiver protegida (ver <link linkend="predef">predef</link>), esta variável é atualizada.
+            <literal>dir_name</literal>. Se a variÃ¡vel Scilab
+            <literal>lib_name</literal> nÃ£o estiver protegida (ver <link linkend="predef">predef</link>), esta variÃ¡vel Ã© atualizada.
         </para>
         <para>
             Se <literal>verb</literal> estiver ajustado para
-            <literal>%t</literal> informações são exibidas durante o processo de
-            construção.
+            <literal>%t</literal> informaÃ§Ãµes sÃ£o exibidas durante o processo de
+            construÃ§Ã£o.
         </para>
         <para>
-            Seo argumento <literal>dir_name</literal> não for fornecido e se a
-            variável Scilab <literal>lib_name</literal> existe e é uma variável
-            dir_name é tomado como sendo igual a o endereço de bibilioteca
-            <literal>lib_name</literal> (modo de atualização).
+            Seo argumento <literal>dir_name</literal> nÃ£o for fornecido e se a
+            variÃ¡vel Scilab <literal>lib_name</literal> existe e Ã© uma variÃ¡vel
+            dir_name Ã© tomado como sendo igual a o endereÃ§o de bibilioteca
+            <literal>lib_name</literal> (modo de atualizaÃ§Ã£o).
         </para>
     </refsection>
     <refsection>
-        <title>Restrições</title>
+        <title>RestriÃ§Ãµes</title>
         <para>
             Scilab assume implicitamente que <literal>foo.sci</literal> define
-            pelo menos uma função de nome <literal>foo</literal>. Se funções
-            subsidiárias estiverem inlusas, elas são tornadas conhecidas ao Scilab
-            apenas depois que função <literal>foo</literal> tiver sido
+            pelo menos uma funÃ§Ã£o de nome <literal>foo</literal>. Se funÃ§Ãµes
+            subsidiÃ¡rias estiverem inlusas, elas sÃ£o tornadas conhecidas ao Scilab
+            apenas depois que funÃ§Ã£o <literal>foo</literal> tiver sido
             referencida.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="getd">getd</link>

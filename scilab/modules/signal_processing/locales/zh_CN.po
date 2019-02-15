@@ -11,11 +11,15 @@ msgstr ""
 "PO-Revision-Date: 2009-04-12 06:56+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
+
+#, c-format
+msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
+msgstr "%s：输入参数#%d的值错误：元素必须在区间[%s, %s]中。\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -151,11 +155,8 @@ msgstr ""
 msgid "Undefined function '%ls'.\n"
 msgstr ""
 
-#
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 93
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 154
 #, c-format
-msgid "User function '%s' have not been setted.\n"
+msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 msgid "An error occurred while getting Signalprocessingfunctions object.\n"
@@ -403,6 +404,10 @@ msgstr "%s：输入参数数目错误：应该为%d个或%d个。\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal or complex number(s) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 
 #, c-format

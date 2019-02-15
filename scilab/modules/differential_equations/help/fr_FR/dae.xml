@@ -517,7 +517,7 @@ y = dae([x0, xd0], 0, 4d10, chemres, chemjac); // Avec jacobien
 //--------------------------------------------------
 bOK = haveacompiler();
 if bOK <> %t
-    [btn] = messagebox(["Vous avez besoin nd'un compilateur C pour cet exemple."; "Arrêt de l'exécution."], "Problème de Software", 'info');
+    [btn] = messagebox(["Vous avez besoin d''un compilateur C pour cet exemple."; "Arrêt de l''exécution."], "Problème de Software", "info");
     return
 end
 
@@ -615,7 +615,7 @@ cd(previous_dir);
 //--------------------------------------------------
 bOK = haveacompiler();
 if bOK <> %t
-    [btn] = messagebox(["Vous avez besoin nd'un compilateur C pour cet exemple."; "Arrêt de l'exécution."], "Problème de Software", 'info');
+    [btn] = messagebox(["Vous avez besoin d''un compilateur C pour cet exemple."; "Arrêt de l''exécution."], "Problème de Software", "info");
     return
 end
 

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2019-02-12 12:13+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 83
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 221
@@ -197,9 +197,9 @@ msgstr ""
 # File: modules/graphics/src/c/sciCall.c, line: 717
 # File: modules/graphics/src/c/sciCall.c, line: 776
 # File: modules/graphics/src/c/sciCall.c, line: 873
-# File: modules/graphics/src/cpp/set_data_property.cpp, line: 485
-# File: modules/graphics/src/cpp/set_data_property.cpp, line: 702
-# File: modules/graphics/src/cpp/set_data_property.cpp, line: 720
+# File: modules/graphics/src/cpp/set_data_property.cpp, line: 481
+# File: modules/graphics/src/cpp/set_data_property.cpp, line: 698
+# File: modules/graphics/src/cpp/set_data_property.cpp, line: 716
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -464,6 +464,13 @@ msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/c/sci_color.c, line: 62
+# File: modules/graphics/sci_gateway/c/sci_color.c, line: 107
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/c/sci_color.c, line: 68
 # File: modules/graphics/sci_gateway/c/sci_name2rgb.c, line: 56
 # File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 74
 # File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 82
@@ -480,20 +487,19 @@ msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_color.c, line: 69
+# File: modules/graphics/sci_gateway/c/sci_color.c, line: 75
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A known color expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_color.c, line: 95
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 363
+# File: modules/graphics/sci_gateway/c/sci_color.c, line: 101
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: A number expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_color.c, line: 102
+# File: modules/graphics/sci_gateway/c/sci_color.c, line: 114
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
@@ -609,7 +615,7 @@ msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 304
-msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
+msgid "%s: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr ""
 
 #
@@ -1045,6 +1051,12 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 311
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-negative int expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 363
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
@@ -2809,8 +2821,8 @@ msgstr ""
 
 #
 # File: modules/graphics/src/cpp/set_data_property.cpp, line: 409
-# File: modules/graphics/src/cpp/set_data_property.cpp, line: 537
-# File: modules/graphics/src/cpp/set_data_property.cpp, line: 542
+# File: modules/graphics/src/cpp/set_data_property.cpp, line: 533
+# File: modules/graphics/src/cpp/set_data_property.cpp, line: 538
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
 msgstr ""
@@ -2823,26 +2835,25 @@ msgstr ""
 
 #
 # File: modules/graphics/src/cpp/set_data_property.cpp, line: 458
-# File: modules/graphics/src/cpp/set_data_property.cpp, line: 461
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Incompatible length.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/cpp/set_data_property.cpp, line: 529
+# File: modules/graphics/src/cpp/set_data_property.cpp, line: 525
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d, #%d and #%d: Incompatible lengths.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/cpp/set_data_property.cpp, line: 547
+# File: modules/graphics/src/cpp/set_data_property.cpp, line: 543
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Should be >= %d.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/cpp/set_data_property.cpp, line: 573
+# File: modules/graphics/src/cpp/set_data_property.cpp, line: 569
 #, c-format
 msgid ""
 "Wrong size for %s element: A %d-by-%d matrix or a vector of size %d "
@@ -2850,15 +2861,15 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/src/cpp/set_data_property.cpp, line: 600
-# File: modules/graphics/src/cpp/set_data_property.cpp, line: 609
+# File: modules/graphics/src/cpp/set_data_property.cpp, line: 596
+# File: modules/graphics/src/cpp/set_data_property.cpp, line: 605
 #, c-format
 msgid "Cannot change the %s of graphic object: its type is %s.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/cpp/set_data_property.cpp, line: 639
-# File: modules/graphics/src/cpp/set_data_property.cpp, line: 672
+# File: modules/graphics/src/cpp/set_data_property.cpp, line: 635
+# File: modules/graphics/src/cpp/set_data_property.cpp, line: 668
 #, c-format
 msgid "%s: Wrong value: Vector is not monotonous.\n"
 msgstr ""
@@ -2915,64 +2926,44 @@ msgid "Scale #1"
 msgstr ""
 
 #
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 16
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 14
 msgid ""
 "Please press enter into the Scilab console to see more polarplot examples"
 msgstr ""
 
 #
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 18
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 17
 msgid "Press enter to go on..."
 msgstr ""
 
 #
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 23
-msgid "polarplot(): Only quadrant(s) reached by data are displayed"
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 56
+msgid "Data on 3 or 4 quadrants"
 msgstr ""
 
 #
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 32
-msgid "Still a single quadrant..."
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 60
+msgid "Several curves may be plotted at the same time"
 msgstr ""
 
 #
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 55
-msgid "on 2 quadrants..."
-msgstr ""
-
-#
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 85
-msgid "Data on the full circle ..."
-msgstr ""
-
-#
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 94
-msgid "A partial viewport may be set with clipping"
-msgstr ""
-
-#
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 104
-msgid "Negative radii are supported:"
-msgstr ""
-
-#
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 113
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 72
 msgid "Big radii are supported..."
 msgstr ""
 
 #
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 129
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 76
+msgid "... as well as very tiny ones"
+msgstr ""
+
+#
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 80
 msgid "even huge radii, with properly formatted labels..."
 msgstr ""
 
 #
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 145
-msgid "... as well as very tiny radii"
-msgstr ""
-
-#
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 154
-msgid "Several curves may be plotted at the same time"
+# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 85
+msgid "A partial viewport may be set with clipping"
 msgstr ""
 
 #
@@ -3062,68 +3053,98 @@ msgid "Graphics"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 15
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 16
 msgid "2D and 3D plots"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 16
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 17
 msgid "Basic functions"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 17
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 18
 msgid "Animation"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 18
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 19
 msgid "Finite Elements"
 msgstr ""
 
 #
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 19
-msgid "Bezier curves and surfaces"
-msgstr ""
-
-#
 # File: modules/graphics/demos/graphics.dem.gateway.sce, line: 20
-msgid "More surfaces"
+msgid "Stems bars histograms"
 msgstr ""
 
 #
 # File: modules/graphics/demos/graphics.dem.gateway.sce, line: 21
-msgid "Complex elementary functions"
+msgid "Bezier curves and surfaces"
 msgstr ""
 
 #
 # File: modules/graphics/demos/graphics.dem.gateway.sce, line: 22
-msgid "bar histogram"
+msgid "More surfaces"
 msgstr ""
 
 #
 # File: modules/graphics/demos/graphics.dem.gateway.sce, line: 23
-msgid "Datatips"
+msgid "Complex elementary functions"
 msgstr ""
 
 #
 # File: modules/graphics/demos/graphics.dem.gateway.sce, line: 24
-msgid "LaTeX/MathML"
+msgid "Technical plots"
 msgstr ""
 
 #
 # File: modules/graphics/demos/graphics.dem.gateway.sce, line: 25
-msgid "Lighting"
+msgid "Datatips"
 msgstr ""
 
 #
 # File: modules/graphics/demos/graphics.dem.gateway.sce, line: 26
-msgid "Colormap"
+msgid "LaTeX/MathML"
 msgstr ""
 
 #
 # File: modules/graphics/demos/graphics.dem.gateway.sce, line: 27
+msgid "Lighting"
+msgstr ""
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 28
+msgid "Colormap"
+msgstr ""
+
+#
+# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 29
 msgid "Matplot"
+msgstr ""
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 14
+msgid "Stems (plot2d3)"
+msgstr ""
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 15
+msgid "Bars (custom)"
+msgstr ""
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 16
+msgid "Bars (grouped)"
+msgstr ""
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 17
+msgid "histplot"
+msgstr ""
+
+#
+# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 18
+msgid "hist3d"
 msgstr ""
 
 #
@@ -3218,6 +3239,12 @@ msgid "%s : Invalid entity %s\n"
 msgstr ""
 
 #
+# File: modules/graphics/macros/%h_set.sci, line: 57
+#, c-format
+msgid "%s: Unsupported assignment for property '%s'.\n"
+msgstr ""
+
+#
 # File: modules/graphics/macros/ResetFigureDDM.sci, line: 23
 #, c-format
 msgid ""
@@ -3225,12 +3252,11 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/Sfgrayplot.sci, line: 28
-# File: modules/graphics/macros/bar.sci, line: 79
-# File: modules/graphics/macros/colorbar.sci, line: 47
+# File: modules/graphics/macros/Sfgrayplot.sci, line: 40
+# File: modules/graphics/macros/colorbar.sci, line: 51
 # File: modules/graphics/macros/colordef.sci, line: 18
 # File: modules/graphics/macros/comet.sci, line: 53
-# File: modules/graphics/macros/fac3d.sci, line: 44
+# File: modules/graphics/macros/fac3d.sci, line: 46
 # File: modules/graphics/macros/fac3d1.sci, line: 46
 # File: modules/graphics/macros/getcolor.sci, line: 49
 # File: modules/graphics/macros/iscolor.sci, line: 38
@@ -3240,20 +3266,20 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/Sfgrayplot.sci, line: 33
-# File: modules/graphics/macros/Sfgrayplot.sci, line: 36
+# File: modules/graphics/macros/Sfgrayplot.sci, line: 45
+# File: modules/graphics/macros/Sfgrayplot.sci, line: 48
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/Sfgrayplot.sci, line: 39
+# File: modules/graphics/macros/Sfgrayplot.sci, line: 51
 #, c-format
 msgid "%s: Wrong type for input argument #%d: function expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/Sgrayplot.sci, line: 52
+# File: modules/graphics/macros/Sgrayplot.sci, line: 53
 #, c-format
 msgid ""
 "%s: Wrong type for input argument(s): Arguments #%d, #%d and #%d must be "
@@ -3261,9 +3287,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/Sgrayplot.sci, line: 56
-# File: modules/graphics/macros/bar.sci, line: 137
-# File: modules/graphics/macros/bar.sci, line: 169
+# File: modules/graphics/macros/Sgrayplot.sci, line: 58
 # File: modules/graphics/macros/barh.sci, line: 116
 # File: modules/graphics/macros/barh.sci, line: 140
 #, c-format
@@ -3273,7 +3297,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/Sgrayplot.sci, line: 58
+# File: modules/graphics/macros/Sgrayplot.sci, line: 61
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: The number of columns of "
@@ -3282,7 +3306,6 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/TitleLabel.sci, line: 32
-# File: modules/graphics/macros/bar.sci, line: 52
 # File: modules/graphics/macros/barh.sci, line: 45
 # File: modules/graphics/macros/barhomogenize.sci, line: 46
 #, c-format
@@ -3338,21 +3361,73 @@ msgid "%s: Wrong size for input argument #%d: a real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/bar.sci, line: 62
-# File: modules/graphics/macros/bar.sci, line: 201
+# File: modules/graphics/macros/bar.sci, line: 53
+#, c-format
+msgid "%s: Argument #%d: Graphic handle of type '%s' expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar.sci, line: 64
+# File: modules/graphics/macros/bar.sci, line: 147
+# File: modules/graphics/macros/colorbar.sci, line: 187
+# File: modules/graphics/macros/colorbar.sci, line: 226
+#, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar.sci, line: 73
+# File: modules/graphics/macros/colorbar.sci, line: 86
+# File: modules/graphics/macros/colorbar.sci, line: 182
+# File: modules/graphics/macros/colorbar.sci, line: 221
+# File: modules/graphics/macros/iscolor.sci, line: 47
+#, c-format
+msgid "%s: Argument #%d: Decimal number(s) expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar.sci, line: 107
+#, c-format
+msgid "%s: Argument #%d: Non-empty matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar.sci, line: 121
+# File: modules/graphics/macros/bar.sci, line: 176
+# File: modules/graphics/macros/setPlotProperty.sci, line: 46
+# File: modules/graphics/macros/surf.sci, line: 127
+#, c-format
+msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar.sci, line: 125
+# File: modules/graphics/macros/bar.sci, line: 130
+#, c-format
+msgid "%s: Argument #%d: Inf and Nan values forbidden.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar.sci, line: 134
+#, c-format
+msgid "%s: Argument #%d: Non-negative values expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar.sci, line: 154
+#, c-format
+msgid "%s: Argument #%d: Must be in the interval %s.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar.sci, line: 167
 # File: modules/graphics/macros/setPlotProperty.sci, line: 40
+# File: modules/graphics/macros/setSurfProperty.sci, line: 350
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/bar.sci, line: 69
-#, c-format
-msgid "%s: Wrong type for input arguments #%d: string expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/bar.sci, line: 91
 # File: modules/graphics/macros/barh.sci, line: 74
 #, c-format
 msgid ""
@@ -3360,40 +3435,12 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/bar.sci, line: 96
 # File: modules/graphics/macros/barh.sci, line: 78
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected for %s and %s.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/bar.sci, line: 141
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A scalar or a row vector expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/bar.sci, line: 145
-# File: modules/graphics/macros/bar.sci, line: 177
-# File: modules/graphics/macros/barh.sci, line: 122
-# File: modules/graphics/macros/barh.sci, line: 146
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/bar.sci, line: 161
-# File: modules/graphics/macros/barh.sci, line: 133
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 46
-# File: modules/graphics/macros/setPlotProperty.sci, line: 101
-# File: modules/graphics/macros/setSurfProperty.sci, line: 394
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/bar.sci, line: 173
 # File: modules/graphics/macros/barh.sci, line: 119
 # File: modules/graphics/macros/barh.sci, line: 143
 #, c-format
@@ -3403,10 +3450,19 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/bar.sci, line: 216
-# File: modules/graphics/macros/setPlotProperty.sci, line: 46
+# File: modules/graphics/macros/barh.sci, line: 122
+# File: modules/graphics/macros/barh.sci, line: 146
 #, c-format
-msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/barh.sci, line: 133
+# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 46
+# File: modules/graphics/macros/setPlotProperty.sci, line: 101
+# File: modules/graphics/macros/setSurfProperty.sci, line: 292
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
@@ -3494,7 +3550,7 @@ msgid "Transposing column vector X to get row vector"
 msgstr ""
 
 #
-# File: modules/graphics/macros/clf.sci, line: 48
+# File: modules/graphics/macros/clf.sci, line: 64
 # File: modules/graphics/macros/createConstraints.sci, line: 33
 # File: modules/graphics/macros/createConstraints.sci, line: 58
 # File: modules/graphics/macros/rotate.sci, line: 23
@@ -3507,13 +3563,13 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected."
 msgstr ""
 
 #
-# File: modules/graphics/macros/clf.sci, line: 53
+# File: modules/graphics/macros/clf.sci, line: 69
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'clear' or 'reset' expected."
 msgstr ""
 
 #
-# File: modules/graphics/macros/clf.sci, line: 66
+# File: modules/graphics/macros/clf.sci, line: 82
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A vector of 'Figure' or 'Frame' "
@@ -3521,9 +3577,23 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/colorbar.sci, line: 54
+# File: modules/graphics/macros/colorbar.sci, line: 91
 #, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgid "%s: Argument #%d: Vector with %d elements expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/colorbar.sci, line: 178
+# File: modules/graphics/macros/colorbar.sci, line: 217
+#, c-format
+msgid ""
+"%s: Argument #%d: Can't retrieve a default value: Decimal number expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/colorbar.sci, line: 250
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
 
 #
@@ -3623,7 +3693,7 @@ msgstr ""
 # File: modules/graphics/macros/plot3d3.sci, line: 19
 # File: modules/graphics/macros/plotframe.sci, line: 28
 # File: modules/graphics/macros/title.sci, line: 17
-# File: modules/graphics/macros/xinfo.sci, line: 17
+# File: modules/graphics/macros/xinfo.sci, line: 19
 # File: modules/graphics/macros/xlabel.sci, line: 17
 # File: modules/graphics/macros/xsave.sci, line: 14
 # File: modules/graphics/macros/ylabel.sci, line: 17
@@ -4026,10 +4096,6 @@ msgstr ""
 # File: modules/graphics/macros/getColorIndex.sci, line: 49
 # File: modules/graphics/macros/setPlotProperty.sci, line: 190
 # File: modules/graphics/macros/setPlotProperty.sci, line: 244
-# File: modules/graphics/macros/setSurfProperty.sci, line: 106
-# File: modules/graphics/macros/setSurfProperty.sci, line: 156
-# File: modules/graphics/macros/setSurfProperty.sci, line: 299
-# File: modules/graphics/macros/setSurfProperty.sci, line: 353
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A color of the colormap expected.\n"
@@ -4093,72 +4159,72 @@ msgid "Cancel"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 28
+# File: modules/graphics/macros/hist3d.sci, line: 30
 msgid "April"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 28
+# File: modules/graphics/macros/hist3d.sci, line: 30
 msgid "Febuary"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 28
+# File: modules/graphics/macros/hist3d.sci, line: 30
 msgid "January"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 28
+# File: modules/graphics/macros/hist3d.sci, line: 30
 msgid "June"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 28
+# File: modules/graphics/macros/hist3d.sci, line: 30
 msgid "March"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 28
+# File: modules/graphics/macros/hist3d.sci, line: 30
 msgid "May"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 29
+# File: modules/graphics/macros/hist3d.sci, line: 31
 msgid "August"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 29
+# File: modules/graphics/macros/hist3d.sci, line: 31
 msgid "July"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 29
+# File: modules/graphics/macros/hist3d.sci, line: 31
 msgid "November"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 29
+# File: modules/graphics/macros/hist3d.sci, line: 31
 msgid "October"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 29
+# File: modules/graphics/macros/hist3d.sci, line: 31
 msgid "September"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 30
+# File: modules/graphics/macros/hist3d.sci, line: 32
 msgid "Average"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 30
+# File: modules/graphics/macros/hist3d.sci, line: 32
 msgid "December"
 msgstr ""
 
 #
-# File: modules/graphics/macros/hist3d.sci, line: 49
+# File: modules/graphics/macros/hist3d.sci, line: 53
 msgid "Average monthly temperatures in french cities"
 msgstr ""
 
@@ -4188,12 +4254,6 @@ msgstr ""
 # File: modules/graphics/macros/iscolor.sci, line: 42
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/iscolor.sci, line: 47
-#, c-format
-msgid "%s: Argument #%d: Decimal number(s) expected.\n"
 msgstr ""
 
 #
@@ -4289,27 +4349,32 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/plot.sci, line: 232
+# File: modules/graphics/macros/plot.sci, line: 49
 #, c-format
-msgid "%s: Error : unable to evaluate input function '%s'."
+msgid "%s: Argument #%d: Graphic handle(s) of type %s expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/plot.sci, line: 232
-# File: modules/graphics/macros/plot.sci, line: 234
+# File: modules/graphics/macros/plot.sci, line: 217
+#, c-format
+msgid "%s: wrong list() specification for the curve #%d.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plot.sci, line: 259
+#, c-format
+msgid "%s: Error : unable to evaluate input function %s."
+msgstr ""
+
+#
+# File: modules/graphics/macros/plot.sci, line: 260
 #, c-format
 msgid "Error %d at line %d of the function: '%s"
 msgstr ""
 
 #
-# File: modules/graphics/macros/plot.sci, line: 234
-#, c-format
-msgid "%s: Error : unable to evaluate input function."
-msgstr ""
-
-#
 # File: modules/graphics/macros/plot3d2.sci, line: 64
-# File: modules/graphics/macros/polarplot.sci, line: 56
+# File: modules/graphics/macros/polarplot.sci, line: 58
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
@@ -4317,7 +4382,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/polarplot.sci, line: 155
+# File: modules/graphics/macros/polarplot.sci, line: 176
 #, c-format
 msgid "%s: '%s' cannot be used with '%s'.\n"
 msgstr ""
@@ -4377,14 +4442,14 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/rotate.sci, line: 28
-# File: modules/graphics/macros/surf.sci, line: 374
-# File: modules/graphics/macros/surf.sci, line: 380
-# File: modules/graphics/macros/surf.sci, line: 412
-# File: modules/graphics/macros/surf.sci, line: 448
-# File: modules/graphics/macros/surf.sci, line: 485
-# File: modules/graphics/macros/surf.sci, line: 491
-# File: modules/graphics/macros/surf.sci, line: 537
-# File: modules/graphics/macros/surf.sci, line: 582
+# File: modules/graphics/macros/surf.sci, line: 452
+# File: modules/graphics/macros/surf.sci, line: 458
+# File: modules/graphics/macros/surf.sci, line: 490
+# File: modules/graphics/macros/surf.sci, line: 526
+# File: modules/graphics/macros/surf.sci, line: 563
+# File: modules/graphics/macros/surf.sci, line: 569
+# File: modules/graphics/macros/surf.sci, line: 615
+# File: modules/graphics/macros/surf.sci, line: 660
 #, c-format
 msgid "%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
 msgstr ""
@@ -4405,7 +4470,7 @@ msgstr ""
 # File: modules/graphics/macros/setPlotProperty.sci, line: 64
 # File: modules/graphics/macros/setPlotProperty.sci, line: 296
 # File: modules/graphics/macros/setSurfProperty.sci, line: 67
-# File: modules/graphics/macros/setSurfProperty.sci, line: 405
+# File: modules/graphics/macros/setSurfProperty.sci, line: 304
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr ""
@@ -4414,8 +4479,8 @@ msgstr ""
 # File: modules/graphics/macros/setPlotProperty.sci, line: 122
 # File: modules/graphics/macros/setPlotProperty.sci, line: 127
 # File: modules/graphics/macros/setPlotProperty.sci, line: 145
-# File: modules/graphics/macros/setSurfProperty.sci, line: 231
-# File: modules/graphics/macros/setSurfProperty.sci, line: 254
+# File: modules/graphics/macros/setSurfProperty.sci, line: 193
+# File: modules/graphics/macros/setSurfProperty.sci, line: 218
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A marker style expected.\n"
 msgstr ""
@@ -4423,10 +4488,6 @@ msgstr ""
 #
 # File: modules/graphics/macros/setPlotProperty.sci, line: 207
 # File: modules/graphics/macros/setPlotProperty.sci, line: 262
-# File: modules/graphics/macros/setSurfProperty.sci, line: 117
-# File: modules/graphics/macros/setSurfProperty.sci, line: 167
-# File: modules/graphics/macros/setSurfProperty.sci, line: 316
-# File: modules/graphics/macros/setSurfProperty.sci, line: 371
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
 msgstr ""
@@ -4434,11 +4495,6 @@ msgstr ""
 #
 # File: modules/graphics/macros/setPlotProperty.sci, line: 213
 # File: modules/graphics/macros/setPlotProperty.sci, line: 268
-# File: modules/graphics/macros/setSurfProperty.sci, line: 123
-# File: modules/graphics/macros/setSurfProperty.sci, line: 173
-# File: modules/graphics/macros/setSurfProperty.sci, line: 269
-# File: modules/graphics/macros/setSurfProperty.sci, line: 322
-# File: modules/graphics/macros/setSurfProperty.sci, line: 377
 # File: modules/graphics/macros/setTitleLabelProperty.sci, line: 77
 # File: modules/graphics/macros/setTitleLabelProperty.sci, line: 90
 # File: modules/graphics/macros/setTitleLabelProperty.sci, line: 111
@@ -4466,9 +4522,21 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/setSurfProperty.sci, line: 236
+# File: modules/graphics/macros/setSurfProperty.sci, line: 171
+#, c-format
+msgid "%s: Bad value for property %s\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/setSurfProperty.sci, line: 199
 #, c-format
 msgid "%s: Ambiguous MarkStyle value.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/setSurfProperty.sci, line: 234
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A marker style expected.\n"
 msgstr ""
 
 #
@@ -4512,14 +4580,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 50
+# File: modules/graphics/macros/surf.sci, line: 49
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An 'Axes' handle expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 95
-# File: modules/graphics/macros/surf.sci, line: 111
+# File: modules/graphics/macros/surf.sci, line: 101
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-"
@@ -4527,8 +4594,39 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 117
-# File: modules/graphics/macros/surf.sci, line: 157
+# File: modules/graphics/macros/surf.sci, line: 108
+# File: modules/graphics/macros/surf.sci, line: 118
+#, c-format
+msgid "%s: Argument #%d: Decimal numbers expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/surf.sci, line: 112
+# File: modules/graphics/macros/surf.sci, line: 122
+#, c-format
+msgid "%s: Argument #%d: At least %d components expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/surf.sci, line: 143
+#, c-format
+msgid "%s: Argument #%d: Wrong list() specification.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/surf.sci, line: 176
+#, c-format
+msgid "%s: Argument #%d : Unable to evaluate Z: Error %d at line %d in %s: '%s"
+msgstr ""
+
+#
+# File: modules/graphics/macros/surf.sci, line: 188
+#, c-format
+msgid "%s: Argument #%d: Inconsistent size of the result.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/surf.sci, line: 213
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix "
@@ -4536,15 +4634,15 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 189
-# File: modules/graphics/macros/surf.sci, line: 201
-# File: modules/graphics/macros/surf.sci, line: 213
+# File: modules/graphics/macros/surf.sci, line: 281
+# File: modules/graphics/macros/surf.sci, line: 292
+# File: modules/graphics/macros/surf.sci, line: 303
 #, c-format
 msgid "%s: Wrong type for input argument '%s': A Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 218
+# File: modules/graphics/macros/surf.sci, line: 307
 #, c-format
 msgid ""
 "%s: Wrong size for input argument '%s': A matrix of size greater than %d-by-"
@@ -4552,15 +4650,15 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 393
-# File: modules/graphics/macros/surf.sci, line: 399
-# File: modules/graphics/macros/surf.sci, line: 418
-# File: modules/graphics/macros/surf.sci, line: 442
-# File: modules/graphics/macros/surf.sci, line: 511
-# File: modules/graphics/macros/surf.sci, line: 517
-# File: modules/graphics/macros/surf.sci, line: 543
-# File: modules/graphics/macros/surf.sci, line: 576
-# File: modules/graphics/macros/surf.sci, line: 612
+# File: modules/graphics/macros/surf.sci, line: 471
+# File: modules/graphics/macros/surf.sci, line: 477
+# File: modules/graphics/macros/surf.sci, line: 496
+# File: modules/graphics/macros/surf.sci, line: 520
+# File: modules/graphics/macros/surf.sci, line: 589
+# File: modules/graphics/macros/surf.sci, line: 595
+# File: modules/graphics/macros/surf.sci, line: 621
+# File: modules/graphics/macros/surf.sci, line: 654
+# File: modules/graphics/macros/surf.sci, line: 690
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments '%s' and '%s': Matrices of same size "
@@ -4568,7 +4666,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 470
+# File: modules/graphics/macros/surf.sci, line: 548
 #, c-format
 msgid "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""
@@ -4580,9 +4678,14 @@ msgid "%s: Wrong type for input argument #%d: Positive integer expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/xload.sci, line: 19
+# File: modules/graphics/macros/xload.sci, line: 21
 #, c-format
 msgid "%s: file %s does not exist.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/xload.sci, line: 100
+msgid "xload: Given file is not a graphic one."
 msgstr ""
 
 #

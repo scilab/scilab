@@ -1,27 +1,27 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="star" xml:lang="pt">
     <refnamediv>
         <refname>star</refname>
-        <refpurpose>(*) operador de multiplicação</refpurpose>
+        <refpurpose>(*) operador de multiplicaÃ§Ã£o</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
-        <para>Multiplicação no sentido usual. Válido para matrizes de contrantes,
-            valores booleanos, polinômios ou razões de polinômios e para listas
-            <literal>syslin</literal> (o significado é de conexão de série).
+        <title>DescriÃ§Ã£o</title>
+        <para>MultiplicaÃ§Ã£o no sentido usual. VÃ¡lido para matrizes de contrantes,
+            valores booleanos, polinÃ´mios ou razÃµes de polinÃ´mios e para listas
+            <literal>syslin</literal> (o significado Ã© de conexÃ£o de sÃ©rie).
         </para>
-        <para>A multiplicação elemento a elemento é denotada por
-            <literal>x.*y</literal>. Se <literal>x</literal> ou <literal>y</literal> é
-            escalar (matriz 1x1) <literal> .* </literal> é o mesmo que
+        <para>A multiplicaÃ§Ã£o elemento a elemento Ã© denotada por
+            <literal>x.*y</literal>. Se <literal>x</literal> ou <literal>y</literal> Ã©
+            escalar (matriz 1x1) <literal> .* </literal> Ã© o mesmo que
             <literal>*</literal>.
         </para>
-        <para>O produto de Kronecker é denotado por
+        <para>O produto de Kronecker Ã© denotado por
             <literal>x.*.y</literal>
         </para>
         <para>
-            <literal>A*.B</literal> é um operador sem significado predefinido.
+            <literal>A*.B</literal> Ã© um operador sem significado predefinido.
             Pode ser usado para definir um novo operador (ver <link linkend="overloading">overloading</link>) com a
-            mesma precedência que * ou /.
+            mesma precedÃªncia que * ou /.
         </para>
         <para>
             <note>
@@ -31,7 +31,7 @@
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="slash">slash</link>

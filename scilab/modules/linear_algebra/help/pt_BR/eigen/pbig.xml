@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="pbig" xml:lang="pt">
     <refnamediv>
         <refname>pbig</refname>
-        <refpurpose>autoprojeção</refpurpose>
+        <refpurpose>autoprojeÃ§Ã£o</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[Q,M]=pbig(A,thres,flag)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title> Parâmetros </title>
+        <title> ParÃ¢metros </title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
@@ -34,7 +34,7 @@
             <varlistentry>
                 <term>thres</term>
                 <listitem>
-                    <para>número real </para>
+                    <para>nÃºmero real </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -55,14 +55,14 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Projeção sobre um auto-subespaço associado aos autovalores de parte
+        <title>DescriÃ§Ã£o</title>
+        <para>ProjeÃ§Ã£o sobre um auto-subespaÃ§o associado aos autovalores de parte
             real&gt;= <literal>thres</literal> (<literal>flag='c'</literal>) ou com
             magnitude &gt;= <literal>thres</literal>
             (<literal>flag='d'</literal>).
         </para>
         <para>
-            A projeção é definida por <literal>Q*M</literal>,
+            A projeÃ§Ã£o Ã© definida por <literal>Q*M</literal>,
             <literal>Q</literal> tem posto-coluna cheio, <literal>M</literal> tem
             posto-linha cheio e <literal>M*Q=eye</literal>.
         </para>
@@ -78,15 +78,15 @@
         </para>
         <para>
             Se <literal>flag='c'</literal> e se <literal>[Q1,M1]</literal> =
-            fatoração em posto cheio (<literal>fullrf</literal>) de
-            <literal>eye()-Q*M</literal> então os autovalores de
+            fatoraÃ§Ã£o em posto cheio (<literal>fullrf</literal>) de
+            <literal>eye()-Q*M</literal> entÃ£o os autovalores de
             <literal>M1*A*Q1</literal> = autovalores de <literal>A</literal> com parte
             real &lt; <literal>thres</literal>.
         </para>
         <para>
             Se <literal>flag='d'</literal> e se <literal>[Q1,M1]</literal>
-            =fatoração em posto cheio (<literal>fullrf</literal>) de
-            <literal>eye()-Q*M</literal> então os autovalores de
+            =fatoraÃ§Ã£o em posto cheio (<literal>fullrf</literal>) de
+            <literal>eye()-Q*M</literal> entÃ£o os autovalores de
             <literal>M1*A*Q1</literal> = autovalores de <literal>A</literal> com
             magnitude &lt; <literal>thres</literal>.
         </para>
@@ -102,7 +102,7 @@ spec(M1*A*Q1)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="psmall">psmall</link>
@@ -119,9 +119,9 @@ spec(M1*A*Q1)
         </simplelist>
     </refsection>
     <refsection>
-        <title> Função Usada </title>
+        <title> FunÃ§Ã£o Usada </title>
         <para>
-            <literal>pbig</literal> é baseada na forma ordenada de Schur (função
+            <literal>pbig</literal> Ã© baseada na forma ordenada de Schur (funÃ§Ã£o
             do Scilab <literal>schur</literal>).
         </para>
     </refsection>

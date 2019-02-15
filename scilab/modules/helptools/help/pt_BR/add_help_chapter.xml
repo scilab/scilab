@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,22 +19,22 @@
         <refpurpose>adiciona uma entrada na lista de ajudas</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>add_help_chapter(title,path[,mode])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>title</term>
                 <listitem>
-                    <para>string, o título da ajuda</para>
+                    <para>string, o tÃ­tulo da ajuda</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>path</term>
                 <listitem>
-                    <para>string, o endereço do diretório contendo os arquivos de
+                    <para>string, o endereÃ§o do diretÃ³rio contendo os arquivos de
                         ajuda
                     </para>
                 </listitem>
@@ -42,8 +42,8 @@
             <varlistentry>
                 <term>mode</term>
                 <listitem>
-                    <para>booleano, %T se o diretório pertence à lista de módulos do
-                        Scilab, %F em caso contrário (toolboxes). O valor padrão é
+                    <para>booleano, %T se o diretÃ³rio pertence Ã  lista de mÃ³dulos do
+                        Scilab, %F em caso contrÃ¡rio (toolboxes). O valor padrÃ£o Ã©
                         %F.
                     </para>
                 </listitem>
@@ -51,16 +51,16 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta função adiciona uma nova entrada na lista de ajudas. Os
-            arquivos do capítulo de ajuda devem estar localizados em um único
-            diretório. Se o dado título <literal>title</literal> já existir na lista
-            de ajudas associado com o mesmo endereço, nada é feito. A função verifica
-            se o diretório existe.
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta funÃ§Ã£o adiciona uma nova entrada na lista de ajudas. Os
+            arquivos do capÃ­tulo de ajuda devem estar localizados em um Ãºnico
+            diretÃ³rio. Se o dado tÃ­tulo <literal>title</literal> jÃ¡ existir na lista
+            de ajudas associado com o mesmo endereÃ§o, nada Ã© feito. A funÃ§Ã£o verifica
+            se o diretÃ³rio existe.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="help">help</link>

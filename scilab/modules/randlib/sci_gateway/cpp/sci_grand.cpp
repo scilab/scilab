@@ -1203,22 +1203,25 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 }
             }
 
-            long long int low  = static_cast<long long int>(vectpDblInput[0]->get(0));
-            long long int high = static_cast<long long int>(vectpDblInput[1]->get(0));
+            int low  = static_cast<int>(vectpDblInput[0]->get(0));
+            int high = static_cast<int>(vectpDblInput[1]->get(0));
+
+            // 2147483561 is provided by clcg2 generator. It is present in igniun function.
+            // we take (b-a+1) <= Min RngMaxInt =  2147483561 (clcg2)
+
+            if ( low  != vectpDblInput[0]->get(0) ||
+                    high != vectpDblInput[1]->get(0) ||
+                    (high - low + 1) > 2147483561)
+            {
+                delete pDblOut;
+                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low and High must be a 32 bits integer value and (high - low + 1) <=  2147483561.\n"), "grand", iPos + 1, iPos + 2);
+                return types::Function::Error;
+            }
 
             if (low > high)
             {
                 delete pDblOut;
                 Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"), "grand", iPos + 1, iPos + 2);
-                return types::Function::Error;
-            }
-
-            if ( low  != vectpDblInput[0]->get(0) ||
-                    high != vectpDblInput[1]->get(0) ||
-                    (high - low + 1) > 2147483647)
-            {
-                delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low and High must be integers and (high - low + 1) <=  2147483647.\n"), "grand", iPos + 1, iPos + 2);
                 return types::Function::Error;
             }
 

@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="interp3d" xml:lang="pt">
     <refnamediv>
         <refname>interp3d</refname>
-        <refpurpose>função de avaliação spline 3d</refpurpose>
+        <refpurpose>funÃ§Ã£o de avaliaÃ§Ã£o spline 3d</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[fp[,dfpdx,dfpdy,dfpdz]]=interp3d(xp,yp,zp,tl,out_mode)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>xp, yp, zp</term>
@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>out_mode</term>
                 <listitem>
-                    <para>(opcional) string definindo a avaliação de
+                    <para>(opcional) string definindo a avaliaÃ§Ã£o de
                         <literal>s</literal> fora do grid
                         ([xmin,xmax]x[ymin,ymax]x[zmin,zmax])
                     </para>
@@ -39,7 +39,7 @@
                 <listitem>
                     <para>
                         vetor ou matriz de mesmo formato que <literal>xp</literal>,
-                        <literal>yp</literal> e <literal>zp</literal>, avaliação elemento a
+                        <literal>yp</literal> e <literal>zp</literal>, avaliaÃ§Ã£o elemento a
                         elemento de <literal>s</literal> onesses pontos.
                     </para>
                 </listitem>
@@ -49,7 +49,7 @@
                 <listitem>
                     <para>vetores (ou matrizes) de mesmo formato que
                         <literal>xp</literal>, <literal>yp</literal> e
-                        <literal>zp</literal>, avaliação elemento a elemento das primeiras
+                        <literal>zp</literal>, avaliaÃ§Ã£o elemento a elemento das primeiras
                         derivadas de <literal>s</literal> nesses pontos.
                     </para>
                 </listitem>
@@ -57,12 +57,12 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Dada uma tlist <literal>tl</literal> definindo uma função spline 3d
-            (ver <link linkend="splin3d">splin3d</link>) esta função avalia
+            Dada uma tlist <literal>tl</literal> definindo uma funÃ§Ã£o spline 3d
+            (ver <link linkend="splin3d">splin3d</link>) esta funÃ§Ã£o avalia
             <emphasis>s</emphasis> (e <emphasis>ds/dx, ds/dy, ds/dz</emphasis> , se
-            necessário) em <emphasis>(xp(i),yp(i),zp(i))</emphasis> :
+            necessÃ¡rio) em <emphasis>(xp(i),yp(i),zp(i))</emphasis> :
         </para>
         <programlisting role=""><![CDATA[
 zp(i) = s(xp(i),yp(i))
@@ -71,8 +71,8 @@ dzpdy(i) = ds/dy(xp(i),yp(i),zp(i))
 dzpdz(i) = ds/dz(xp(i),yp(i),zp(i))
  ]]></programlisting>
         <para>
-            O parâmetro <literal>out_mode</literal>define a regra de avaliação
-            para extrapolação, i.e. para <emphasis>(xp(i),yp(i),zp(i)) fora de
+            O parÃ¢metro <literal>out_mode</literal>define a regra de avaliaÃ§Ã£o
+            para extrapolaÃ§Ã£o, i.e. para <emphasis>(xp(i),yp(i),zp(i)) fora de
                 [xmin,xmax]x[ymin,ymax]x[zmin,zmax]
             </emphasis>
             :
@@ -81,21 +81,21 @@ dzpdz(i) = ds/dz(xp(i),yp(i),zp(i))
             <varlistentry>
                 <term>"by_zero"</term>
                 <listitem>
-                    <para>uma extrapolação por zero é feita </para>
+                    <para>uma extrapolaÃ§Ã£o por zero Ã© feita </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"by_nan"</term>
                 <listitem>
-                    <para>extrapolação por NaN ("não é número") </para>
+                    <para>extrapolaÃ§Ã£o por NaN ("nÃ£o Ã© nÃºmero") </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"C0"</term>
                 <listitem>
-                    <para>a extrapolação definida como segue :</para>
+                    <para>a extrapolaÃ§Ã£o definida como segue :</para>
                     <programlisting role=""><![CDATA[
-s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo
+s(x,y) = s(proj(x,y)) onde  proj(x,y) Ã© o ponto mais prÃ³ximo
                        em [x(1),x(nx)]x[y(1),y(ny)] de (x,y)
  ]]></programlisting>
                 </listitem>
@@ -104,7 +104,7 @@ s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo
                 <term>"periodic"</term>
                 <listitem>
                     <para>
-                        <literal>s</literal> é estendido por periodicidade.
+                        <literal>s</literal> Ã© estendido por periodicidade.
                     </para>
                 </listitem>
             </varlistentry>
@@ -113,11 +113,11 @@ s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo
     <refsection>
         <title>Exemplos </title>
         <programlisting role="example"><![CDATA[
-// veja exemplos na página da função splin3d
+// veja exemplos na pÃ¡gina da funÃ§Ã£o splin3d
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="splin3d">splin3d</link>
@@ -130,7 +130,7 @@ s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo
     <refsection>
         <title>Autores</title>
         <simplelist type="vert">
-            <member>R.F. Boisvert, C. De Boor (código da biblioteca FORTRAN CMLIB)
+            <member>R.F. Boisvert, C. De Boor (cÃ³digo da biblioteca FORTRAN CMLIB)
             </member>
             <member>B. Pincon (interface Scilab)</member>
         </simplelist>

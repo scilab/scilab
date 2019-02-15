@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bdiag" xml:lang="pt">
     <refnamediv>
         <refname>bdiag</refname>
-        <refpurpose>diagonalização em blocos, autovetores
+        <refpurpose>diagonalizaÃ§Ã£o em blocos, autovetores
             generalizados
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[Ab [,X [,bs]]]=bdiag(A [,rmax])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
@@ -36,7 +36,7 @@
             <varlistentry>
                 <term>rmax</term>
                 <listitem>
-                    <para>número real</para>
+                    <para>nÃºmero real</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -48,7 +48,7 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>matriz de reais ou complexos não-singular</para>
+                    <para>matriz de reais ou complexos nÃ£o-singular</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -60,28 +60,28 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <programlisting role=""><![CDATA[
 [Ab [,X [,bs]]]=bdiag(A [,rmax])
  ]]></programlisting>
         <para>
-            realiza a diagonalização em blocos da matriz <literal>A</literal>.
+            realiza a diagonalizaÃ§Ã£o em blocos da matriz <literal>A</literal>.
             bs fornece a estrutura dos blocos (respectivos tamanhos dos blocos).
-            <literal>X</literal> é a matriz mudança de base i.e <literal>Ab =
+            <literal>X</literal> Ã© a matriz mudanÃ§a de base i.e <literal>Ab =
                 inv(X)*A*X
             </literal>
-            édiagonal em blocos.
+            Ã©diagonal em blocos.
         </para>
         <para>
             <literal>rmax</literal> controla o condicionamento de
-            <literal>X</literal>; o valor padrão é a norma L1 de
+            <literal>X</literal>; o valor padrÃ£o Ã© a norma L1 de
             <literal>A</literal>.
         </para>
         <para>Para encontrar a forma diagonal (se existir) escolha um valor
             suficientemente grande para <literal>rmax</literal>
             (<literal>rmax=1/%eps</literal> , por exemplo). Genericamente, (para uma
-            matriz A de reais aleatória) os blocos são (1x1) e (2x2) e
-            <literal>X</literal> é a matriz de autovetores.
+            matriz A de reais aleatÃ³ria) os blocos sÃ£o (1x1) e (2x2) e
+            <literal>X</literal> Ã© a matriz de autovetores.
         </para>
     </refsection>
     <refsection>
@@ -95,7 +95,7 @@ a=rand(5,5);[ab,x,bs]=bdiag(a);ab
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="schur">schur</link>

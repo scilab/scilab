@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2019-01-23 12:13+0100\n"
 
 # File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 57
 #, c-format
@@ -126,7 +126,7 @@ msgstr ""
 # File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 117
 # File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 148
 # File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 127
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 167
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 173
 #, c-format
 msgid "%s: LAPACK error n%d.\n"
 msgstr ""
@@ -197,7 +197,7 @@ msgstr ""
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 80
 # File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 108
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 103
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 106
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 74
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 94
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 71
@@ -237,13 +237,13 @@ msgid "%s: %s and %s must have equal number of rows.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 121
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 125
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 134
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 139
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr ""
@@ -592,7 +592,7 @@ msgstr ""
 
 #
 # File: modules/linear_algebra/macros/penlaur.sci, line: 33
-# File: modules/linear_algebra/macros/rowshuff.sci, line: 36
+# File: modules/linear_algebra/macros/rowshuff.sci, line: 42
 #, c-format
 msgid "%s: Singular pencil."
 msgstr ""

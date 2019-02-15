@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,18 +16,18 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cothm" xml:lang="pt">
     <refnamediv>
         <refname>cothm</refname>
-        <refpurpose>cotangente hiperbólica da matriz (matriz cotangente
-            hiperbólica)
+        <refpurpose>cotangente hiperbÃ³lica da matriz (matriz cotangente
+            hiperbÃ³lica)
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[t]=cothm(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>cothm(x)</literal> é a (matriz) contangente hiperbólica da
+            <literal>cothm(x)</literal> Ã© a (matriz) contangente hiperbÃ³lica da
             matriz quadrada x.
         </para>
     </refsection>
@@ -39,7 +39,7 @@ cothm(A)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="coth">coth</link>

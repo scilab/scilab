@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -20,34 +20,34 @@
         <refpurpose>integral definida</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[v,err]=intg(a,b,f [,ea [,er])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>a, b</term>
                 <listitem>
-                    <para>números reais</para>
+                    <para>nÃºmeros reais</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>função externa (função, lista ou string)</para>
+                    <para>funÃ§Ã£o externa (funÃ§Ã£o, lista ou string)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ea, er</term>
                 <listitem>
-                    <para>números reais</para>
+                    <para>nÃºmeros reais</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ea</term>
                 <listitem>
-                    <para>erro absoluto requerido no resultado. Valor padrão:
+                    <para>erro absoluto requerido no resultado. Valor padrÃ£o:
                         1.d-13.
                     </para>
                 </listitem>
@@ -55,7 +55,7 @@
             <varlistentry>
                 <term>er</term>
                 <listitem>
-                    <para>erro relativo requerido no resultado. Valor padrão:
+                    <para>erro relativo requerido no resultado. Valor padrÃ£o:
                         1.d-8.
                     </para>
                 </listitem>
@@ -69,42 +69,42 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>intg(a,b,f)</literal> avalia a integral definida de
             <literal>a</literal> a <literal>b</literal> de <literal>f(t)dt</literal>.
-            A função <literal>f(t)</literal> deve ser contínua.
+            A funÃ§Ã£o <literal>f(t)</literal> deve ser contÃ­nua.
         </para>
-        <para>Espera-se que a avaliação satisfaça à seguinte precisão:
-            <literal>abs(I-v)&lt;= max(ea,er*abs(I))</literal> onde I é o valor exato
+        <para>Espera-se que a avaliaÃ§Ã£o satisfaÃ§a Ã  seguinte precisÃ£o:
+            <literal>abs(I-v)&lt;= max(ea,er*abs(I))</literal> onde I Ã© o valor exato
             da integral.
         </para>
         <para>
-            <literal>f</literal> é uma função externa :
+            <literal>f</literal> Ã© uma funÃ§Ã£o externa :
         </para>
         <para>
-            Se <literal>f</literal> é uma função, sua definição deve ser como
+            Se <literal>f</literal> Ã© uma funÃ§Ã£o, sua definiÃ§Ã£o deve ser como
             segue: <literal> y = f(t) </literal>
         </para>
         <para>
-            Se <literal>f</literal> é uma lista, a lista deve ser como segue:
-            <literal> list(f,x1,x2,...)</literal> onde <literal>f</literal> é uma
-            função com seqüência de chamamento
+            Se <literal>f</literal> Ã© uma lista, a lista deve ser como segue:
+            <literal> list(f,x1,x2,...)</literal> onde <literal>f</literal> Ã© uma
+            funÃ§Ã£o com seqÃ¼Ãªncia de chamamento
             <literal>f(t,x1,x2,...)</literal>.
         </para>
         <para>
-            Se <literal>f</literal> é um string, ele se refere ao nome de uma
-            função FORTRAN ou procedure C com dada seqüência de chamamento:
+            Se <literal>f</literal> Ã© um string, ele se refere ao nome de uma
+            funÃ§Ã£o FORTRAN ou procedure C com dada seqÃ¼Ãªncia de chamamento:
         </para>
         <para>
-            No caso FORTRAN, a seqüência de chamamento deve ser <literal>double
+            No caso FORTRAN, a seqÃ¼Ãªncia de chamamento deve ser <literal>double
                 precision function f(x)
             </literal>
-            onde <literal>x</literal> tabém é um
-            número de dupla precisão.
+            onde <literal>x</literal> tabÃ©m Ã© um
+            nÃºmero de dupla precisÃ£o.
         </para>
         <para>
-            No caso C, a seqüência de chamamento é <literal>double f(double
+            No caso C, a seqÃ¼Ãªncia de chamamento Ã© <literal>double f(double
                 *x)
             </literal>
             .
@@ -113,19 +113,19 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-//caso de função Scilab
+//caso de funÃ§Ã£o Scilab
 function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 exact=-2.5432596188;
 I=intg(0,2*%pi,f)
 abs(exact-I)
 
-//caso de função Scilab com parâmetros
+//caso de funÃ§Ã£o Scilab com parÃ¢metros
 function y=f1(x,w),y=x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 I=intg(0,2*%pi,list(f1,30))
 abs(exact-I)
 
-// caso de código FORTRAN (compilador FORTRAN requerido)
-// escreve o código FORTRAN
+// caso de cÃ³digo FORTRAN (compilador FORTRAN requerido)
+// escreve o cÃ³digo FORTRAN
 cd TMPDIR;
 F=['      double precision function ffun(x)'
    '      double precision x,pi'
@@ -136,18 +136,18 @@ F=['      double precision function ffun(x)'
 mputl(F,'ffun.f')
 
 
-// compile o código FORTRAN
+// compile o cÃ³digo FORTRAN
 l=ilib_for_link('ffun','ffun.f',[],'f');
 
 // linking incremental
 link(l,'ffun','f')
 
-//integrando a função
+//integrando a funÃ§Ã£o
 I=intg(0,2*%pi,'ffun')
 abs(exact-I)
 
-// caso de código C (compilador C requerido)
-// escreva o código C
+// caso de cÃ³digo C (compilador C requerido)
+// escreva o cÃ³digo C
 C=['#include <math.h>'
    'double cfun(double *x)'
    '{'
@@ -157,19 +157,19 @@ C=['#include <math.h>'
    '}'];
 mputl(C,'cfun.c')
 
-// compile o código C
+// compile o cÃ³digo C
 l=ilib_for_link('cfun','cfun.c',[],'c');
 
 // linking incremental
 link(l,'cfun','c')
 
-//integrando a função
+//integrando a funÃ§Ã£o
 I=intg(0,2*%pi,'cfun')
 abs(exact-I)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="intc">intc</link>
@@ -189,8 +189,8 @@ abs(exact-I)
         </simplelist>
     </refsection>
     <refsection>
-        <title>Funções Utilizadas</title>
-        <para>As rotinas associadas podem ser encontradas no diretório
+        <title>FunÃ§Ãµes Utilizadas</title>
+        <para>As rotinas associadas podem ser encontradas no diretÃ³rio
             SCI/modules/differential_equations/src/fortran :
         </para>
         <para>dqags.f e dqagse.f de quadpack</para>

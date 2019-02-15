@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-05-02 11:09+0000\n"
+"PO-Revision-Date: 2019-02-12 12:42+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -59,7 +59,7 @@ msgstr "ランダム置換でvectが指定されていません\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
@@ -67,9 +67,9 @@ msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 正のスカラーを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : At least %lf expected.\n"
+msgid "%s: Wrong value for input argument #%d : At least %.0E expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %lf 以上の引数を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: %.0E 以上の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Positive integer expected.\n"
@@ -128,9 +128,10 @@ msgid "%s: setgmn return with state %d.\n"
 msgstr "%s: setgmn は状態 %d を返します.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
+msgid "%s: Wrong value for input argument #%d : Must be between %.1E and %d.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %lf および %d の間としてください.\n"
+"%s: 入力引数 #%d の値が間違っています:  %.1E および %d の間の値を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
@@ -238,10 +239,8 @@ msgid "The %s option affects only the %s generator\n"
 msgstr "オプション %s は, %s 生成器専用です\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : Must be between %d and %d.\n"
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています:  %d および %d の間の値を指定してくださ"
-"い.\n"
 
 #, c-format
 msgid ""
@@ -377,3 +376,8 @@ msgstr "アーラン乱数"
 
 msgid "Simulation of a Weibull random variable"
 msgstr "ワイブル乱数のシミュレーション"
+
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d : Must be between %lf and %d.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の値が間違っています: %lf および %d の間としてください.\n"

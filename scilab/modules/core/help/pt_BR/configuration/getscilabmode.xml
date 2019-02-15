@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="getscilabmode" xml:lang="pt">
     <refnamediv>
         <refname>getscilabmode</refname>
         <refpurpose>retorna o modo do Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>m = getscilabmode()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
-        <para>Retorna o modo do Scilab. Quatro são os possíveis modos : STD , API
+        <title>DescriÃ§Ã£o</title>
+        <para>Retorna o modo do Scilab. Quatro sÃ£o os possÃ­veis modos : STD , API
             , NW , NWNI .
         </para>
         <para>
-            <literal>API</literal> o Scilab é lançado como um API.
+            <literal>API</literal> o Scilab Ã© lanÃ§ado como um API.
         </para>
         <para>
-            <literal>STD</literal> o Scilab padrão (gui, plot ...)
+            <literal>STD</literal> o Scilab padrÃ£o (gui, plot ...)
         </para>
         <para>
-            <literal>NW</literal> Scilab em linha de comando com esboços.
+            <literal>NW</literal> Scilab em linha de comando com esboÃ§os.
         </para>
         <para>
             <literal>NWNI</literal> Scilab em linha de comando sem quaisquer
-            gráficos.
+            grÃ¡ficos.
         </para>
     </refsection>
     <refsection>
@@ -34,7 +34,7 @@ getscilabmode()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="scilab">scilab</link>

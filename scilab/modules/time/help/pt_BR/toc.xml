@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -16,32 +16,32 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="toc" xml:lang="pt">
     <refnamediv>
         <refname>toc</refname>
-        <refpurpose>lê o cronômetro</refpurpose>
+        <refpurpose>lÃª o cronÃ´metro</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>toc()
             t = toc()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>número de segundos desde a última chamada a
-                        <literal>tic()</literal> (precisão em ordem de milissegundos)
+                    <para>nÃºmero de segundos desde a Ãºltima chamada a
+                        <literal>tic()</literal> (precisÃ£o em ordem de milissegundos)
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            A seqüência de comandos <literal>tic(); operation; toc();</literal>
-            imprime o número de segundos requeridos para a operação.
+            A seqÃ¼Ãªncia de comandos <literal>tic(); operation; toc();</literal>
+            imprime o nÃºmero de segundos requeridos para a operaÃ§Ã£o.
         </para>
     </refsection>
     <refsection>
@@ -55,7 +55,7 @@ toc();
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="tic">tic</link>

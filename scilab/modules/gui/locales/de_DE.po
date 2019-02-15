@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2016-12-07 22:12+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2019-02-12 22:15+0000\n"
+"Last-Translator: Stephan Woidowski <swoidowski@t-online.de>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -331,6 +331,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#
+# File: modules/gui/sci_gateway/cpp/sci_datatip_toggle.cpp, line: 34
+#, c-format
+msgid "%s: %s is obsolete and will be removed from Scilab %s\n"
 msgstr ""
 
 #, c-format
@@ -851,7 +857,7 @@ msgid "&Figure properties"
 msgstr "&Voreinstellungen der Darstellung"
 
 msgid "&Axes properties"
-msgstr "&Voreinstellungen der Achsen"
+msgstr "&Achsen-Eigenschaften"
 
 msgid "&Start entity picker"
 msgstr "&Einheitswähler starten"
@@ -1483,10 +1489,12 @@ msgstr ""
 msgid "Delete selected object"
 msgstr ""
 
-msgid "Clear"
-msgstr ""
+msgid "Clear axes"
+msgstr "Grafikbereich löschen"
 
-msgid "Clears the figure"
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 312
+msgid "Delete axes contents and labels"
 msgstr ""
 
 msgid "Hide"
@@ -1507,25 +1515,33 @@ msgstr ""
 msgid "Copy figure to system clipboard"
 msgstr ""
 
-msgid "Insert a title"
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 320
+msgid "Set the axes main title"
 msgstr ""
 
 msgid "Label X"
 msgstr ""
 
-msgid "Insert a label in X axis"
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 322
+msgid "Set the X axis label"
 msgstr ""
 
 msgid "Label Y"
 msgstr ""
 
-msgid "Insert a label in Y axis"
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 324
+msgid "Set the Y axis label"
 msgstr ""
 
 msgid "Label Z"
 msgstr ""
 
-msgid "Insert a label in Z axis"
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 326
+msgid "Set the Z axis label"
 msgstr ""
 
 msgid "Insert a legend into the selected curve"

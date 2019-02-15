@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="jetcolormap" xml:lang="pt">
     <refnamediv>
         <refname>jetcolormap</refname>
-        <refpurpose>Mapa de cores de gradação do azul para o vermelho</refpurpose>
+        <refpurpose>Mapa de cores de gradaÃ§Ã£o do azul para o vermelho</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>cmap=jetcolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>n</term>
@@ -35,18 +35,18 @@
                 <term>cmap</term>
                 <listitem>
                     <para>
-                        matriz com três colunas <literal>[R,G,B]</literal>.
+                        matriz com trÃªs colunas <literal>[R,G,B]</literal>.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>jetcolormap</literal> computa o mapa de cores com
             <literal>n</literal> cores variando do azul, passando por azul claro,
-            verde, amarelo, laranja e então vermelho.
+            verde, amarelo, laranja e entÃ£o vermelho.
         </para>
     </refsection>
     <refsection>
@@ -58,7 +58,7 @@ f.color_map = jetcolormap(32);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="colormap">colormap</link>

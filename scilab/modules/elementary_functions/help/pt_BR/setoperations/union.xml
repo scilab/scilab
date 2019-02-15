@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,40 +16,40 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="union" xml:lang="pt">
     <refnamediv>
         <refname>union</refname>
-        <refpurpose>extrai componentes da união de um vetor</refpurpose>
+        <refpurpose>extrai componentes da uniÃ£o de um vetor</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>
             [v [,ka, kb] ] = union(a,b)
             [v [,ka, kb] ] = union(a,b,orient)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>a</term>
                 <listitem>
-                    <para>vetor ou matriz de números ou strings</para>
+                    <para>vetor ou matriz de nÃºmeros ou strings</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>b</term>
                 <listitem>
-                    <para>vetor ou matriz de números ou strings</para>
+                    <para>vetor ou matriz de nÃºmeros ou strings</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orient</term>
                 <listitem>
-                    <para>flag com valores possíveis : 1 ou "r", 2 ou "c".</para>
+                    <para>flag com valores possÃ­veis : 1 ou "r", 2 ou "c".</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>vetor linha ou matriz de números ou strings</para>
+                    <para>vetor linha ou matriz de nÃºmeros ou strings</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -67,29 +67,29 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>union(a,b)</literal> retorna um vetor linha ordenado que
-            retém as entradas únicas de <literal>[a(:);b(:)]</literal>.
+            retÃ©m as entradas Ãºnicas de <literal>[a(:);b(:)]</literal>.
         </para>
         <para>
             <literal>union(a,b,"r")</literal> ou
-            <literal>union(a,b,1)</literal>retorna a matriz formada pela união das
-            linhas únicas de <literal>a</literal> e <literal>b</literal> em ordem
-            lexicográfica ascendente. Neste caso, as matrizes <literal>a</literal> e
-            <literal>b</literal> devem ter o mesmo número de colunas.
+            <literal>union(a,b,1)</literal>retorna a matriz formada pela uniÃ£o das
+            linhas Ãºnicas de <literal>a</literal> e <literal>b</literal> em ordem
+            lexicogrÃ¡fica ascendente. Neste caso, as matrizes <literal>a</literal> e
+            <literal>b</literal> devem ter o mesmo nÃºmero de colunas.
         </para>
         <para>
             <literal>union(a,b,"c")</literal> ou
-            <literal>union(a,b,2)</literal>retorna a matriz formada pela união das
-            colunas únicas de <literal>a</literal> e <literal>b</literal> em ordem
-            lexicográfica ascendente. Neste caso, as matrizes <literal>a</literal> e
-            <literal>b</literal> devem ter o mesmo número de colunas.
+            <literal>union(a,b,2)</literal>retorna a matriz formada pela uniÃ£o das
+            colunas Ãºnicas de <literal>a</literal> e <literal>b</literal> em ordem
+            lexicogrÃ¡fica ascendente. Neste caso, as matrizes <literal>a</literal> e
+            <literal>b</literal> devem ter o mesmo nÃºmero de colunas.
         </para>
         <para>
-            <literal>[v,ka,kb]=union(a,b)</literal> também retorna vetores de
-            índices <literal>ka</literal> e <literal>kb</literal> tais que
-            <literal>v</literal> é uma combinação ordenada das entradas
+            <literal>[v,ka,kb]=union(a,b)</literal> tambÃ©m retorna vetores de
+            Ã­ndices <literal>ka</literal> e <literal>kb</literal> tais que
+            <literal>v</literal> Ã© uma combinaÃ§Ã£o ordenada das entradas
             <literal>a(ka)</literal> e <literal>b(kb)</literal>.
         </para>
     </refsection>
@@ -106,7 +106,7 @@ union('a'+string(A),'b'+string(B))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="unique">unique</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -17,19 +17,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="pol2str" xml:lang="pt">
     <refnamediv>
         <refname>pol2str</refname>
-        <refpurpose>conversão de polinômio para string</refpurpose>
+        <refpurpose>conversÃ£o de polinÃ´mio para string</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[str] = pol2str(p)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>Matriz ou hipermatriz polinômios com coeficientes reais ou complexos</para>
+                    <para>Matriz ou hipermatriz polinÃ´mios com coeficientes reais ou complexos</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -41,11 +41,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para> Converte um polinômio para um string (função utilitária).</para>
+        <title>DescriÃ§Ã£o</title>
+        <para> Converte um polinÃ´mio para um string (funÃ§Ã£o utilitÃ¡ria).</para>
         <para>
             <note>
-                O formato dos coeficientes de saída é definida através <link linkend="format">format(..)</link>.
+                O formato dos coeficientes de saÃ­da Ã© definida atravÃ©s <link linkend="format">format(..)</link>.
             </note>
         </para>
     </refsection>
@@ -62,7 +62,7 @@ pol2str(p)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="string">string</link>
@@ -76,11 +76,11 @@ pol2str(p)
         </simplelist>
     </refsection>
     <refsection role="history tag">
-        <title>Histórico</title>
+        <title>HistÃ³rico</title>
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revdescription>pol2str () estendido para polinômios com coeficientes complexos e para hipermatriz. Processamento de matriz vetorizado.</revdescription>
+                <revdescription>pol2str () estendido para polinÃ´mios com coeficientes complexos e para hipermatriz. Processamento de matriz vetorizado.</revdescription>
             </revision>
         </revhistory>
     </refsection>

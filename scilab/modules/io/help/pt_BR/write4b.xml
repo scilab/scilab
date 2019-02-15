@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="write4b" xml:lang="pt">
     <refnamediv>
         <refname>write4b</refname>
-        <refpurpose>escrita binária de arquivo FORTRAN</refpurpose>
+        <refpurpose>escrita binÃ¡ria de arquivo FORTRAN</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>write4b(file-name,a [,rec])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>file-name</term>
@@ -35,7 +35,7 @@
                 <term>rec</term>
                 <listitem>
                     <para>vetor de inteiros positivos, os registros selecionados para
-                        acesso direto. O tamanho deste vetor deve ter o mesmo número de
+                        acesso direto. O tamanho deste vetor deve ter o mesmo nÃºmero de
                         linhas que <literal>a</literal>
                     </para>
                 </listitem>
@@ -43,20 +43,20 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Escreve em formato binário a matriz <literal>a</literal> no arquivo
-            <literal>'filename'</literal>. As entradas da matriz são armazenadas em
+            Escreve em formato binÃ¡rio a matriz <literal>a</literal> no arquivo
+            <literal>'filename'</literal>. As entradas da matriz sÃ£o armazenadas em
             palavras de 8 bytes.
         </para>
         <para>Para acesso direto, o arquivo deve ter sido previamente aberto
-            através da função <literal>file</literal> para se ajustar o comprimento do
-            registro. <literal>file-name</literal> deve ser o resultado da função
+            atravÃ©s da funÃ§Ã£o <literal>file</literal> para se ajustar o comprimento do
+            registro. <literal>file-name</literal> deve ser o resultado da funÃ§Ã£o
             <literal>file</literal>.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="file">file</link>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -20,17 +20,17 @@
         <refpurpose>integral definida 2d por quadratura e cubatura</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[I,err]=int2d(X,Y,f [,params])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
                     <para>um array 3 por N contendo as abscissas dos vertices dos N
-                        triângulos.
+                        triÃ¢ngulos.
                     </para>
                 </listitem>
             </varlistentry>
@@ -38,14 +38,14 @@
                 <term>Y</term>
                 <listitem>
                     <para>um array 3 por N contendo as ordenadas dos vertices dos N
-                        triângulos.
+                        triÃ¢ngulos.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>função externa (função, string ou lista) definindo o
+                    <para>funÃ§Ã£o externa (funÃ§Ã£o, string ou lista) definindo o
                         integrando <literal>f(u,v)</literal>;
                     </para>
                 </listitem>
@@ -57,7 +57,7 @@
                         vetor de reais <literal>[tol, iclose, maxtri, mevals,
                             iflag]
                         </literal>
-                        .O valor padrão é <literal>[1.d-10, 1, 50, 4000,
+                        .O valor padrÃ£o Ã© <literal>[1.d-10, 1, 50, 4000,
                             1]
                         </literal>
                         .
@@ -67,9 +67,9 @@
                             <term>tol</term>
                             <listitem>
                                 <para>o limite desejado do erro. Se
-                                    <literal>iflag=0</literal>, <literal>tol</literal> é
+                                    <literal>iflag=0</literal>, <literal>tol</literal> Ã©
                                     interpretado como um limite de erro relativo; se
-                                    <literal>iflag=</literal>1, o limite é de erro
+                                    <literal>iflag=</literal>1, o limite Ã© de erro
                                     absoluto.
                                 </para>
                             </listitem>
@@ -77,33 +77,33 @@
                         <varlistentry>
                             <term>iclose</term>
                             <listitem>
-                                <para>um inteiro que determina a seleção dos métodos LQM0 ou
-                                    LQM. Se <literal>iclose=1</literal> , então LQM1 é utilizado.
+                                <para>um inteiro que determina a seleÃ§Ã£o dos mÃ©todos LQM0 ou
+                                    LQM. Se <literal>iclose=1</literal> , entÃ£o LQM1 Ã© utilizado.
                                     Qualquer outro valor de <literal>iclose</literal> faz com que
-                                    LQM0 seja usado. LQM0 utiliza valores da função apenas em
-                                    pontos interiores ao triângulo. LQM1 geralmente é mais preciso
-                                    que LQM0 mas envolve a avaliação do integrando em mais pontos,
-                                    incluindo em alguns pontos da fronteira do triângulo.
-                                    Geralmente é melhor utilizar LQM1 a não ser que o integrando
-                                    possuia singularidades nas bordas do triângulo.
+                                    LQM0 seja usado. LQM0 utiliza valores da funÃ§Ã£o apenas em
+                                    pontos interiores ao triÃ¢ngulo. LQM1 geralmente Ã© mais preciso
+                                    que LQM0 mas envolve a avaliaÃ§Ã£o do integrando em mais pontos,
+                                    incluindo em alguns pontos da fronteira do triÃ¢ngulo.
+                                    Geralmente Ã© melhor utilizar LQM1 a nÃ£o ser que o integrando
+                                    possuia singularidades nas bordas do triÃ¢ngulo.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>maxtri</term>
                             <listitem>
-                                <para>o número máximo de triângulos na triangularização final
-                                    da região
+                                <para>o nÃºmero mÃ¡ximo de triÃ¢ngulos na triangularizaÃ§Ã£o final
+                                    da regiÃ£o
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>mevals</term>
                             <listitem>
-                                <para>o número máximo de avaliações da função permitido. Este
-                                    número terá efeito na limitação da computação se for menor que
-                                    94*<literal>maxtri</literal> quando LQM1 é especificado ou
-                                    56*<literal>maxtri</literal> quando LQM0 é
+                                <para>o nÃºmero mÃ¡ximo de avaliaÃ§Ãµes da funÃ§Ã£o permitido. Este
+                                    nÃºmero terÃ¡ efeito na limitaÃ§Ã£o da computaÃ§Ã£o se for menor que
+                                    94*<literal>maxtri</literal> quando LQM1 Ã© especificado ou
+                                    56*<literal>maxtri</literal> quando LQM0 Ã©
                                     especificado.
                                 </para>
                             </listitem>
@@ -132,29 +132,29 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>int2d</literal> computa a integral bidimensional de uma
-            função <literal>f</literal> sobre uma região que consiste de
-            <literal>n</literal> triângulos. Um estimativa de erro total é obtida e
-            comparada a - <literal>tol</literal> - que é fornecida como entrada para a
-            subrotina. A tolerância de erro é tratada como relativa ou absoluta
-            dependendo do valor de entrada de <literal>iflag</literal>. Um "módulo de
-            quadratura local" ("Local Quadrature Module") é aplicado para cada
-            triângulo de entrada e estimativas da integral total e do erro total são
-            computadas. O módulo de quadratura local é a subrotina LQM0 ou a subrotina
-            LQM1 e a escolha entre elas é determinada pelo valor da variável
+            funÃ§Ã£o <literal>f</literal> sobre uma regiÃ£o que consiste de
+            <literal>n</literal> triÃ¢ngulos. Um estimativa de erro total Ã© obtida e
+            comparada a - <literal>tol</literal> - que Ã© fornecida como entrada para a
+            subrotina. A tolerÃ¢ncia de erro Ã© tratada como relativa ou absoluta
+            dependendo do valor de entrada de <literal>iflag</literal>. Um "mÃ³dulo de
+            quadratura local" ("Local Quadrature Module") Ã© aplicado para cada
+            triÃ¢ngulo de entrada e estimativas da integral total e do erro total sÃ£o
+            computadas. O mÃ³dulo de quadratura local Ã© a subrotina LQM0 ou a subrotina
+            LQM1 e a escolha entre elas Ã© determinada pelo valor da variÃ¡vel
             <literal>iclose</literal>.
         </para>
-        <para>Se a estimativa de erro total excede a tolerância, o triângulo com
-            maior erro absoluto é dividio em dois outro triângulos traçando-se uma
-            mediana por seu maior lado. O módulo de quadratura local é então aplicado
-            a cada um dos subtriângulos para se obter novas estimativas da integral e
-            do erro. Este processo é repetido até que um dos seguintes (1) a
-            tolerância é satisfeita, (2) o número de triângulos gerados excede o
-            parâmetro <literal>maxtri</literal>, (3) o número de avaliações do
-            integrando excede o parâmetro <literal>mevals</literal>, ou (4) a função
-            sente que um erro de arredondamento está começando a contaminar o
+        <para>Se a estimativa de erro total excede a tolerÃ¢ncia, o triÃ¢ngulo com
+            maior erro absoluto Ã© dividio em dois outro triÃ¢ngulos traÃ§ando-se uma
+            mediana por seu maior lado. O mÃ³dulo de quadratura local Ã© entÃ£o aplicado
+            a cada um dos subtriÃ¢ngulos para se obter novas estimativas da integral e
+            do erro. Este processo Ã© repetido atÃ© que um dos seguintes (1) a
+            tolerÃ¢ncia Ã© satisfeita, (2) o nÃºmero de triÃ¢ngulos gerados excede o
+            parÃ¢metro <literal>maxtri</literal>, (3) o nÃºmero de avaliaÃ§Ãµes do
+            integrando excede o parÃ¢metro <literal>mevals</literal>, ou (4) a funÃ§Ã£o
+            sente que um erro de arredondamento estÃ¡ comeÃ§ando a contaminar o
             resultado.
         </para>
     </refsection>
@@ -169,7 +169,7 @@ deff('z=f(x,y)','z=cos(x+y)')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="intc">intc</link>

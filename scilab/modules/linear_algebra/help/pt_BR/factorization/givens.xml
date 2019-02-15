@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,10 +16,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="givens" xml:lang="pt">
     <refnamediv>
         <refname>givens</refname>
-        <refpurpose>transformação de Givens</refpurpose>
+        <refpurpose>transformaÃ§Ã£o de Givens</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>U=givens(xy)
             U=givens(x,y)
             [U,c]=givens(xy)
@@ -27,12 +27,12 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x,y</term>
                 <listitem>
-                    <para>dois números reais ou complexos</para>
+                    <para>dois nÃºmeros reais ou complexos</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -44,7 +44,7 @@
             <varlistentry>
                 <term>U</term>
                 <listitem>
-                    <para>matriz 2x2 unitária</para>
+                    <para>matriz 2x2 unitÃ¡ria</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -56,13 +56,13 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>U= givens(x, y)</literal> ou <literal>U =
                 givens(xy)
             </literal>
             com <literal>xy = [x;y]</literal> retorna uma matriz
-            unitária <literal>2</literal>x<literal>2</literal> <literal>U</literal>
+            unitÃ¡ria <literal>2</literal>x<literal>2</literal> <literal>U</literal>
             tal que:
         </para>
         <para>
@@ -71,7 +71,7 @@
         <para>
             <note>
                 Note que <literal>givens(x,y)</literal> e
-                <literal>givens([x;y])</literal> são equivalentes.
+                <literal>givens([x;y])</literal> sÃ£o equivalentes.
             </note>
         </para>
     </refsection>
@@ -84,7 +84,7 @@ U*A
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="qr">qr</link>

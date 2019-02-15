@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -21,11 +21,11 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>expm(X)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
@@ -36,16 +36,16 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>X</literal> é uma matriz quadrada e
-            <literal>expm(X)</literal> é a matriz
+            <literal>X</literal> Ã© uma matriz quadrada e
+            <literal>expm(X)</literal> Ã© a matriz
         </para>
         <para>
             <literal>expm(X) = I + X + X^2 /2 + ...</literal>
         </para>
-        <para>A computação é realizada primeiro diagonalizando em blocos a matriz
-            <literal>X</literal> e, em seguida, aplicando uma aproximação de Pade em
+        <para>A computaÃ§Ã£o Ã© realizada primeiro diagonalizando em blocos a matriz
+            <literal>X</literal> e, em seguida, aplicando uma aproximaÃ§Ã£o de Pade em
             cada bloco.
         </para>
     </refsection>
@@ -58,7 +58,7 @@ logm(expm(X))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="logm">logm</link>

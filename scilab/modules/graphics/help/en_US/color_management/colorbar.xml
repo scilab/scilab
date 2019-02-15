@@ -1,39 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="colorbar">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="colorbar">
     <refnamediv>
         <refname>colorbar</refname>
-        <refpurpose>draw a colorbar</refpurpose>
+        <refpurpose>draws a vertical color bar</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>colorbar(umin, umax [, colminmax, fmt])</synopsis>
+        <synopsis>
+            colorbar
+            colorbar(umin, umax)
+            colorbar(umin, umax, colminmax)
+            colorbar(umin, umax, -1)
+            colorbar( , , [fmin fmax])
+            colorbar(.., Cformat)
+        </synopsis>
     </refsynopsisdiv>
-    <refsection>
+    <refsection role="parameters">
         <title>Arguments</title>
+        <para>
+            <itemizedlist>
+                <listitem>
+                    Let U be the Z values of the plot for which a colorbar scale is needed, %inf, -%inf and %nan values being ignored.
+                </listitem>
+                <listitem>
+                    Let minU and maxU be the minimum and the maximum of U values.
+                </listitem>
+                <listitem>
+                    Let Nc be the Number of colors in the current color map:
+                    <literal>Nc = size(gcf().color_map,1)</literal>.
+                </listitem>
+            </itemizedlist>
+        </para>
         <variablelist>
             <varlistentry>
                 <term>umin</term>
                 <listitem>
-                    <para>real scalar, the minimum value associated with the plot</para>
+                    <para>
+                        U's lowest data value covered by the colorbar.
+                    </para>
+                    <para>
+                        Using <literal>-%inf</literal> sets <literal>umin = min(U)</literal>.
+                    </para>
+                    <para>
+                        When underlaying plotted data exist in the current axes,
+                        <literal>umin</literal> may be skipped -- using colorbar(,..) --
+                        in order to extract and implicitly use min(U).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>umax</term>
                 <listitem>
-                    <para>real scalar, the maximum value associated with the plot</para>
+                    <para>
+                        U's biggest data value covered by the colorbar.
+                    </para>
+                    <para>
+                        Using <literal>%inf</literal> sets <literal>umax = max(U)</literal>.
+                    </para>
+                    <para>
+                        When underlaying plotted data exist in the current axes,
+                        <literal>umax</literal> may be skipped -- using colorbar(.., ,..) --
+                        in order to extract and implicitly use max(U).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>colminmax</term>
                 <listitem>
-                    <para>(optional) a vector with 2 integer components</para>
+                    <para>
+                        <literal>colminmax</literal> aims to provide the range of colors
+                        that will be spanned on the colorbar, and that will correspond
+                        to the data bounds provided through <literal>umin</literal> and
+                        <literal>umax</literal>.
+                    </para>
+                    <para>
+                        It is an implicit or explicit vector
+                        <literal>[colmin, colmax]</literal>
+                        being indices of bounding colors. The color of index
+                        <literal>colmin</literal> in the current colormap will
+                        represent the <literal>umin</literal> data value. Similarly,
+                        the color of index <literal>colmax</literal> will represent
+                        <literal>umax</literal>, with
+                        <literal>1 &lt; colmin &lt; colmax &lt; Nc</literal>.
+                    </para>
+                    <para>Default setting: <literal>[1,Nc]</literal></para>
+                    <para>
+                        Fractional bounds may also be specified, as well as using the special
+                        value <literal>colminmax=-1</literal>. Please see the description
+                        section for more details.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>fmt</term>
+                <term>Cformat</term>
                 <listitem>
-                    <para>(optional) a string to set up the display format for
-                        colorbar graduations
+                    <para>
+                        word providing a C-format formatting the display of graduated values along the colorbar. The formatting syntaxes are described in
+                        <link linkend="printf_conversion">this page</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -42,137 +120,520 @@
     <refsection>
         <title>Description</title>
         <para>
-            Draw a colorbar for a plot3d, fec, Sgrayplot, etc... The function may be called
-            <emphasis role="bold">BEFORE</emphasis> the plot3d, fec, Sgrayplot,... because its sets and changes the
-            frame for the plot. This way the colorbar is not part of the associated plot and
-            so is not modified by a zoom or a rotation.
+            <literal>colorbar(…)</literal> draws a vertical color bar on the right side of
+            the current axes. The width of the targetted axes is priorly narrowed by 15%.
+            The freed room is used for the color bar, that is made of its own axes.
         </para>
         <para>
-            The optional argument <literal>colminmax</literal> may be used to precise the first color
-            (associated with umin) and the last color (associated with umax) of the current
-            colormap. By default <literal>colminmax=[1 nb_colors]</literal> where nb_colors is the
-            number of colors of the current colormap.
+            <literal>umin</literal> and <literal>umax</literal> set the data bounds scaling
+            the color bar at its bottom and top.
         </para>
         <para>
-            The optional argument <literal>fmt</literal> is a string containing a
-            C-format, like <literal>"%.2f"</literal>, <literal>"%e"</literal>, etc...
+            <literal>colminmax</literal> set the color range mapping the
+            <literal>[umin,umax]</literal> range, and used to fill the color bar.
         </para>
         <para>
-            For the 2 optional arguments you can use the syntax
-            <literal>keyword=value</literal> (see the last example).
+            When the current axes embeds an object of graphical type among
+            {"Matplot" "Fec" "Fac3d" "Plot3d" "Grayplot"} and its related U data,
+            it is possible to skip <literal>umin</literal> or/and <literal>umax</literal> values.
+            <literal>min(U)</literal> or/and <literal>max(U)</literal> are then retrieved
+            from data and used to set the color bar. For a "Matplot" object, the case
+            .image_type=="index" is specifically processed.
+        </para>
+        <note>
+            Just after calling <literal>colorbar(…)</literal>,
+            <literal>colbar = gcf().children(1)</literal> as well as
+            <literal>gce().parent</literal> return the graphical handle of the color bar.
+        </note>
+        <para>
+            The possible syntaxes are the following:
+        </para>
+        <para><emphasis role="bold">colorbar()</emphasis></para>
+        <para>
+            sets umin=minU and umax=maxU.
+            <itemizedlist>
+                <listitem>
+                    For a Matplot.image_type="index", sets colminmax = [minU maxU].
+                </listitem>
+                <listitem>
+                    Otherwise, sets colminmax = [1 Nc]
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para><emphasis role="bold">colorbar(umin, umax, , Format)</emphasis></para>
+        <para>
+            sets <literal>colminmax=[1, Nc]</literal>.
+        </para>
+        <para><emphasis role="bold">colorbar(umin, umax, -1)</emphasis></para>
+        <para>
+            sets <literal>colmin</literal> and <literal>colmax</literal>
+            such that "[colmin,colmax]/[1,Nc]" maps the "[umin,umax]/[minU,maxU]"
+            "ratio".
+        </para>
+        <para><emphasis role="bold">colorbar(,, [colmin colmax])</emphasis></para>
+        <para>
+            with integers such that <literal>1 colmin &lt; colmax Nc</literal>.
+            Conversely to the previous one, this syntax sets
+            <literal>umin</literal> and <literal>umax</literal>
+            such that "[umin,umax]/[minU,maxU]" maps "[colmin,colmax]/[1,Nc]"
+            ratio.
+        </para>
+        <para><emphasis role="bold">colorbar(,, [fmin fmax])</emphasis></para>
+        <para>
+            The previous syntax <literal>colorbar(,,[colmin colmax])</literal> needs to know the colormap range to specify <literal>colmin</literal>
+            and <literal>colmax</literal> conveniently. This is not very
+            handy when we just want to target a fractional part of the colormap
+            whatever is its actual length. <literal>fmin</literal> and
+            <literal>fmax</literal> with <literal>0 ≤ fmin &lt; fmax ≤ 1</literal>
+            allow such a more robust specification.
+        </para>
+        <para>
+            This syntax sets
+            <itemizedlist>
+                <listitem>
+                    <literal>umin</literal> and <literal>umax</literal> such that the relative range "[umin umax]/[min(U) max(U]" maps "[fmin, fmax]".
+                </listitem>
+                <listitem>
+                    <literal>[colmin colmax]</literal> such that the relative range
+                    "[colmin,colmax]/[1,Nc]" maps <literal>[fmin,fmax]</literal>.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para><emphasis role="bold">colorbar(-%inf, %inf, ..)</emphasis></para>
+        <para>
+            sets umin = minU, umax = maxU. Each one may be set to the U bound independently.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <refsect3>
+            <title>Example #1</title>
+            without underlaying U data :
+            Direct umin and umax specifications. General colorbar() behavior.
         <programlisting role="example"><![CDATA[
-// example 1
-x = linspace(0,1,81);
-z = cos(2*%pi*x)'*sin(2*%pi*x);
-zm = min(z); zM = max(z);
-clf()
-gcf().color_map = jetcolormap(64);
-colorbar(zm,zM)
-Sgrayplot(x,x,z)
-xtitle("The function cos(2 pi x)sin(2 pi y)")
- ]]></programlisting>
-        <scilab:image localized="true">
-            // example 1
-            x = linspace(0,1,81);
-            z = cos(2*%pi*x)'*sin(2*%pi*x);
-            zm = min(z); zM = max(z);
-            clf()
-            gcf().color_map = jetcolormap(64);
-            colorbar(zm,zM)
-            Sgrayplot(x,x,z)
-            xtitle("The function cos(2 pi x)sin(2 pi y)")
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
-// example 2
-x = linspace(0,1,81);
-z = cos(2*%pi*x)'*sin(2*%pi*x);
-zm = min(z); zM = max(z);
-zz = abs(0.5*cos(2*%pi*x)'*cos(2*%pi*x));
-zzm = min(zz); zzM = max(zz);
-clf();
-gcf().color_map = jetcolormap(64);
+clf reset                           // clears and resets the figure
+gcf().color_map = jetcolormap(100); // sets its color map
+subplot(1,2,2), plotframe([0 0 1 1])// fake axes on the right
+subplot(1,2,1)                      // Now the default current axes
+ax0 = gca();                        //  is on the half left
+ax0.axes_bounds(3)  //  Here is its initial width
 
-drawlater() ;
+// The axes is clear. There is no plotted data.
+// We explicitely create a colorbar from scratch:
+colorbar(-2, 8, [1 100])    // It is inserted on the right
+
+// The current (empty) axes is still the same:
+gca() == ax0
+
+// But its width has been shrunk (by -15%) to set the
+// colorbar on its right side.
+gca().axes_bounds
+
+// gce() returns the handle of the colored area, and
+// gce().parent is the handle to the axes defining the color bar
+colbar1 = gce().parent;
+colbar1.type
+colbar1 == gcf().children(1)  // Another way to retrieve the handle
+// This handle allows to postprocess and customize the colorbar.
+ylabel(colbar1, "Temperature [°C]") // Let's add a label
+title("°C")                         // or as title
+colbar1.title.font_size = 3;   // .. with a bigger font
+// Beware: xlabel(), ylabel() title() moves the focus to the bar.
+sca(ax0); // Reset the focus to ax0 before going on
+
+// Now plot a frame in the empty axes:
+plotframe([0 0 1 1])
+
+// Then add some other color bars, still for the current axes
+colorbar(-2, 5, [1 70])
+// Set the labelsin magenta
+gcf().children(1).font_color = color("red");
+
+// The current axes is shrunk. The bar's width is decreased accordingly.
+
+// A last one: top half of the colormap, with another data scale:
+colorbar(0, 1.5, [0.5 1])  // colminmax = [fmin fmax]
+// Let decrease its font size:
+colbar3 = gcf().children(1);
+set(colbar3, "fractional_font","on","font_size", 0.5);
+// And vertically extend the bar, to match ax0's height
+colbar3.axes_bounds([2 4]) = ax0.axes_bounds([2 4]);
+colbar3.margins([3 4]) = ax0.margins([3 4]);
+
+// Color bars are automatically redrawn and regraduated
+// when resizing the figure. Try it!
+     ]]></programlisting>
+        <scilab:image>
+            clf reset                           // clears and resets the figure
+            gcf().color_map = jetcolormap(100); // sets its color map
+            gcf().figure_size = [730 420];
+            subplot(1,2,2), plotframe([0 0 1 1])// fake axes on the right
+            subplot(1,2,1)                      // Now the default current axes
+            ax0 = gca();                        //  is on the half left
+            ax0.axes_bounds(3)  //  Here is its initial width
+
+            // The axes is clear. There is no plotted data.
+            // We explicitely create a colorbar from scratch:
+            colorbar(-2, 8, [1 100])    // It is inserted on the right
+
+            // The current (empty) axes is still the same:
+            gca() == ax0
+
+            // But its width has been shrunk (by -15%) to set the
+            // colorbar on its right side.
+            gca().axes_bounds
+
+            // gce() returns the handle of the colored area, and
+            // gce().parent is the handle to the axes defining the color bar
+            colbar1 = gce().parent;
+            colbar1.type
+            colbar1 == gcf().children(1)  // Another way to retrieve the handle
+            // This handle allows to postprocess and customize the colorbar.
+            ylabel(colbar1, "Temperature [°C]") // Let's add a label
+            title("°C")                         // or as title
+            colbar1.title.font_size = 3;   // .. with a bigger font
+            // Beware: xlabel(), ylabel() title() moves the focus to the bar.
+            sca(ax0); // Reset the focus to ax0 before going on
+
+            // Now plot a frame in the empty axes:
+            plotframe([0 0 1 1])
+
+            // Then add some other color bars, still for the current axes
+            colorbar(-2, 5, [1 70])
+            // Set the labelsin magenta
+            gcf().children(1).font_color = color("red");
+
+            // The current axes is shrunk. The bar's width is decreased accordingly.
+
+            // A last one: top half of the colormap, with another data scale:
+            colorbar(0, 1.5, [0.5 1])  // colminmax = [fmin fmax]
+            // Let decrease its font size:
+            colbar3 = gcf().children(1);
+            set(colbar3, "fractional_font","on","font_size", 0.5);
+            // And vertically extend the bar, to match ax0's height
+            colbar3.axes_bounds([2 4]) = ax0.axes_bounds([2 4]);
+            colbar3.margins([3 4]) = ax0.margins([3 4]);
+
+            // Color bars are automatically redrawn and regraduated
+            // when resizing the figure. Try it!
+        </scilab:image>
+        <screen><![CDATA[
+--> ax0.axes_bounds(3)  //  Here is its initial width
+ ans  =
+   0.5
+
+--> ...
+--> // The current (empty) axes is still the same:
+--> gca() == ax0
+ ans  =
+  T
+
+--> ...
+--> // But its width has been shrunk (by -15%) ...
+--> gca().axes_bounds
+ ans  =
+   0.   0.   0.425   1.
+
+--> ...
+--> // gce().parent is the handle to the axes defining the color bar
+--> colbar1 = gce().parent;
+--> colbar1.type
+ ans  =
+ Axes
+
+--> colbar1 == gcf().children(1) // Another way to retrieve the handle
+ ans  =
+  T
+]]></screen>
+        </refsect3>
+        <!--===================================================-->
+        <refsect3>
+            <title>Example #2 : Matplot</title>
+            <para>
+                <emphasis role="bold">After Matplot()</emphasis> here used with the default colormap.
+            </para>
+            <programlisting role="example"><![CDATA[
+clf reset   // Default colormap used
+// 1) Matplot: implicit minU, maxU, colminmax = [umin umax]
 subplot(2,2,1)
-   colorbar(zm,zM)
-   Sgrayplot(x,x,z, strf="031", rect=[0 0 1 1])
-   xtitle("a Sgrayplot with a colorbar")
+Matplot([1 2 3; 4 5 7]);
+colorbar   // [1 7] graduations covered by colors #[1 7].
+           // Ticks on middles of colored blocks
+
+// 2) Matplot: Default colminmax = [1 Nc]
 subplot(2,2,2)
-   colorbar(zm,zM)
-   plot3d1(x,x,z)
-   xtitle("a plot3d1 with a colorbar")
+Matplot([1 2 3;4 5 7]);
+colorbar(1,7)   // [1 7] covered with the whole colormap.
+                // "1" at the very bottom. "7" at the very top.
+
+// 3) Matplot: another colors range, with explicit colminmax
 subplot(2,2,3)
-   colorbar(zzm,zzM)
-   plot3d1(x,x,zz)
-   xtitle("a plot3d1 with a colorbar")
-subplot(2,2,4)
-   colorbar(zzm,zzM)
-   Sgrayplot(x,x,zz, strf="031", rect=[0 0 1 1])
-   xtitle("a Sgrayplot with a colorbar")
-drawnow() ;
- ]]></programlisting>
-        <scilab:image localized="true">
-            x = linspace(0,1,81);
-            z = cos(2*%pi*x)'*sin(2*%pi*x);
-            zm = min(z); zM = max(z);
-            zz = abs(0.5*cos(2*%pi*x)'*cos(2*%pi*x));
-            zzm = min(zz); zzM = max(zz);
-            clf();
-            gcf().color_map = jetcolormap(64);
-            drawlater();
-            subplot(2,2,1)
-            colorbar(zm,zM)
-            Sgrayplot(x,x,z, strf="031", rect=[0 0 1 1])
-            xtitle("a Sgrayplot with a colorbar")
-            subplot(2,2,2)
-            colorbar(zm,zM)
-            plot3d1(x,x,z)
-            xtitle("a plot3d1 with a colorbar")
-            subplot(2,2,3)
-            colorbar(zzm,zzM)
-            plot3d1(x,x,zz)
-            xtitle("a plot3d1 with a colorbar")
-            subplot(2,2,4)
-            colorbar(zzm,zzM)
-            Sgrayplot(x,x,zz, strf="031", rect=[0 0 1 1])
-            xtitle("a Sgrayplot with a colorbar")
-            drawnow() ;
+Matplot([1 2 3;4 5 7])
+colorbar(3,7, [3 7])
+// Ticks 2.5-7.5 expected:
+//  - integer values ticked at the middle of colors blocks
+//  - other .5 values ticked at the blocks separations
+            ]]></programlisting>
+            <scilab:image>
+clf reset   // Default colormap used
+gcf().axes_size = [770 620];
+// 1) Matplot: implicit minU, maxU, colminmax = [umin umax]
+subplot(2,2,1)
+Matplot([1 2 3; 4 5 7]);
+colorbar   // [1 7] graduations covered by colors #[1 7].
+           // Ticks on middles of colored blocks
 
-        </scilab:image>
+// 2) Matplot: Default colminmax = [1 Nc]
+subplot(2,2,2)
+Matplot([1 2 3;4 5 7]);
+colorbar(1,7)   // [1 7] covered with the whole colormap.
+                // "1" at the very bottom. "7" at the very top.
 
-        <programlisting role="example"><![CDATA[
-// example 3
+// 3) Matplot: another colors range, with explicit colminmax
+subplot(2,2,3)
+Matplot([1 2 3;4 5 7])
+colorbar(3,7, [3 7])
+// Ticks 2.5-7.5 expected:
+//  - integer values ticked at the middle of colors blocks
+//  - other .5 values ticked at the blocks separations
+            </scilab:image>
+        </refsect3>
+        <!--===================================================-->
+        <refsect3>
+            <title>Example #3: After Sgrayplot()</title>
+            <para>
+                U data are available from the underlaying Fec object.
+                Then <literal>umin</literal> and <literal>umax</literal> may be implicit.
+                Here we use a small number of colors, showing that a given [umin umax] data
+                range (here implicitly [-1, 1], is exactly covered by chosen colors.
+            </para>
+            <programlisting role="example"><![CDATA[
 x = linspace(0,1,81);
-zz = abs(0.5*cos(2*%pi*x)'*cos(2*%pi*x));
-zzm = min(zz); zzM = max(zz);
-[xf,yf,zf]=genfac3d(x,x,zz);
-nb_col = 64;
-clf()
-gcf().color_map = hotcolormap(nb_col);
-drawlater() ;
-colorbar(zzm,zzM,[1, nb_col],fmt="%.1f")
-zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
-plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
-xtitle("a plot3d with shaded interpolated colors")
-drawnow() ;
-show_window()
- ]]></programlisting>
-        <scilab:image localized="true">
-            x = linspace(0,1,81);
-            zz = abs(0.5*cos(2*%pi*x)'*cos(2*%pi*x));
-            zzm = min(zz); zzM = max(zz);
-            [xf,yf,zf]=genfac3d(x,x,zz);
-            nb_col = 64;
-            gcf().color_map = hotcolormap(nb_col);
-            colorbar(zzm,zzM,[1, nb_col],fmt="%.1f")
-            zcol = dsearch(zf, linspace(zzm, zzM, nb_col+1));
-            plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
-            xtitle("a plot3d with shaded interpolated colors")
-        </scilab:image>
+z = cos(2*%pi*x)'*sin(2*%pi*x);
+n = 10;
+clf
+gcf().color_map = jetcolormap(n);
+Sgrayplot(x, x, z);
+contour(x,x,z,[-0.8 -0.6 -0.4 -0.2 0 0.2 0.4 0.6 0.8]);
+gce().children.children(1:2:$-1).foreground=-1; // contours in black
+
+colorbar
+// Default umin = minU, umax = maxU, colminmax = [1 Nc]
+// * "-1" tick at the very bottom of the scale
+// * "1" tick at the very top
+// * Nice subticks, at blocks middles & blocks limits
+// * The contours levels must be at the right levels on the color bar
+            ]]></programlisting>
+            <scilab:image>
+x = linspace(0,1,81);
+z = cos(2*%pi*x)'*sin(2*%pi*x);
+n = 10;
+clf
+gcf().color_map = jetcolormap(n);
+Sgrayplot(x, x, z);
+contour(x,x,z,[-0.8 -0.6 -0.4 -0.2 0 0.2 0.4 0.6 0.8]);
+gce().children.children(1:2:$-1).foreground=-1; // contours in black
+colorbar
+gcf().axes_size = [760 450];
+            </scilab:image>
+            <para>
+                <emphasis role="bold">Partial colors range: 8 colors used over 20</emphasis>:
+            </para>
+            <programlisting role="example"><![CDATA[
+x = linspace(0,1,81);
+z = cos(2*%pi*x)'*sin(2*%pi*x);
+n = 8;
+clf reset
+gcf().color_map = jetcolormap(20);
+gcf().axes_size = [770 320];
+
+// 3.2) umin=minU and umax=maxU, covered by a subrange of colors
+subplot(1,2,1)
+Sgrayplot(x, x, z,colminmax=[3 n+2]);
+contour(x,x,z,[-0.75 -0.5 -0.25 0 0.25 0.5 0.75]);
+colorbar(-%inf,%inf,[3 n+2]);
+// * The contours levels must be at the right levels on the color bar
+
+// 3.3) Explicit umin and umax, with saturation for z values out of [umin, umax]:
+subplot(1,2,2)
+Sgrayplot(x, x, z, zminmax = [-0.6 0.8], colminmax = [5 11]);
+contour(x,x,z,[-0.6 -0.4 -0.2 0.2 0.4 0.6]);
+colorbar(-0.6, 0.8,[5 11]);
+            ]]></programlisting>
+            <scilab:image><![CDATA[
+x = linspace(0,1,81);
+z = cos(2*%pi*x)'*sin(2*%pi*x);
+n = 8;
+clf reset
+gcf().color_map = jetcolormap(20);
+gcf().axes_size = [770 320];
+
+// 3.2) umin=minU and umax=maxU, covered by a subrange of colors
+subplot(1,2,1)
+Sgrayplot(x, x, z,colminmax=[3 n+2]);
+contour(x,x,z,[-0.75 -0.5 -0.25 0 0.25 0.5 0.75]);
+colorbar(-%inf,%inf,[3 n+2]);
+// * The contours levels must be at the right levels on the color bar
+
+// 3.3) Explicit umin and umax, with saturation for z values out of [umin, umax]:
+subplot(1,2,2)
+Sgrayplot(x, x, z, zminmax = [-0.6 0.8], colminmax = [5 11]);
+contour(x,x,z,[-0.6 -0.4 -0.2 0.2 0.4 0.6]);
+colorbar(-0.6, 0.8,[5 11]);
+            ]]></scilab:image>
+        </refsect3>
+        <!--===================================================-->
+        <refsect3>
+            <title>Example #4: for a Fac3d object</title>
+            <para> After plot3d1() or surf():
+            <programlisting role="example"><![CDATA[
+function [zz, zz1] = plotSphere()
+    r = 0.3;
+    orig = [1.5 0 0];
+    deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";..
+         "y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";..
+         "z=r*sin(alp)+orig(3)*ones(tet)"]);
+    [xx,yy,zz] = eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20));
+    [xx1,yy1,zz1] = eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20));
+    cc  = (xx+zz+2)*32;
+    cc1 = (xx1-orig(1)+zz1/r+2)*32;
+    plot3d1([xx xx1],[yy yy1],list([zz,zz1],[cc cc1]),theta=70,alpha=80,flag=[5,6,3])
+endfunction
+
+clf reset
+gcf().color_map = jetcolormap(120);  // 120 colors available
+gcf().axes_size = [670, 560];
+
+// For these 4 plots of a sphere of radius 0.3,
+//  the color-value relationship is the same.
+
+// 3.0) Implicit min(u), max(u), on the whole color map
+subplot(2,2,1)
+plotSphere();
+colorbar;               // graduations on [-0.3 0.3]
+
+// 3.1) Selection of a data range. Color range set accordingly
+subplot(2,2,2)
+plotSphere();
+colorbar(0.0, 0.15, -1);// graduations on [0, 0.15]
+
+// 3.2) Selection of a colormap interval. umin & umax set accordingly
+subplot(2,2,3)
+plotSphere();
+colorbar(,,[60 120]);  // graduations on [0, 0.3]
+
+// 3.3) Selection of a colormap relative part. umin & umax set accordingly
+subplot(2,2,4)
+plotSphere();
+colorbar(,,[0 0.5]);  // graduations on [-0.3, 0]
+            ]]></programlisting>
+            <scilab:image><![CDATA[
+function [zz, zz1] = plotSphere()
+    r = 0.3;
+    orig = [1.5 0 0];
+    deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";..
+         "y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";..
+         "z=r*sin(alp)+orig(3)*ones(tet)"]);
+    [xx,yy,zz] = eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20));
+    [xx1,yy1,zz1] = eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20));
+    cc  = (xx+zz+2)*32;
+    cc1 = (xx1-orig(1)+zz1/r+2)*32;
+    plot3d1([xx xx1],[yy yy1],list([zz,zz1],[cc cc1]),theta=70,alpha=80,flag=[5,6,3])
+endfunction
+
+clf reset
+gcf().color_map = jetcolormap(100);  // 100 colors available
+gcf().axes_size = [670, 560];
+
+// For these 4 plots of a sphere of radius 0.3,
+//  the color-value relationship is the same.
+
+// 3.0) Implicit min(u), max(u), on the whole color map
+subplot(2,2,1)
+plotSphere();
+colorbar;               // graduations on [-0.3 0.3]
+
+// 3.1) Selection of a data range. Color range set accordingly
+subplot(2,2,2)
+plotSphere();
+colorbar(0.0, 0.15, -1);// graduations on [0, 0.15]
+
+// 3.2) Selection of a colormap interval. umin & umax set accordingly
+subplot(2,2,3)
+plotSphere();
+colorbar(,,[50 100]);  // graduations on [0, 0.3]
+
+// 3.3) Selection of a colormap relative part. umin & umax set accordingly
+subplot(2,2,4)
+plotSphere();
+colorbar(,,[0 0.5]);  // graduations on [-0.3, 0]
+            ]]></scilab:image>
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Example #5 : Plot3d object</title>
+            <para> After plot3d() or surf():</para>
+            <para>
+                <programlisting role="example"><![CDATA[
+function plotSample()
+    t=[-4:0.1:4];
+    plot3d(t,t,sin(t)'*cos(t));
+    e = gce();
+    e.color_flag = 1;
+    e.color_mode = -2;
+endfunction
+
+clf
+gcf().color_map = rainbowcolormap(200);
+gcf().axes_size = [800 300];
+
+// 5.1) Bar graduated from minU=-1 to maxU=1 with the full colormap
+subplot(1,2,1)
+plotSample();
+colorbar;
+
+// 5.2) Consistent U/colors fractional selection (top 40%)
+subplot(1,2,2)
+plotSample();
+colorbar(,,[0.6 1]);
+
+gcf().children([2 4]).rotation_angles = [55 45];
+                ]]></programlisting>
+            <scilab:image><![CDATA[
+function plotSample()
+    t=[-4:0.1:4];
+    plot3d(t,t,sin(t)'*cos(t));
+    e = gce();
+    e.color_flag = 1;
+    e.color_mode = -2;
+endfunction
+
+clf
+gcf().color_map = rainbowcolormap(200);
+gcf().axes_size = [800 300];
+
+// 5.1) Bar graduated from minU=-1 to maxU=1 with the full colormap
+subplot(1,2,1)
+plotSample();
+colorbar;
+
+// 5.2) Consistent U/colors fractional selection
+subplot(1,2,2)
+plotSample();
+colorbar(,,[0.6 1]);
+
+gcf().children([2 4]).rotation_angles = [55 45];
+            ]]></scilab:image>
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Example #6: Demo</title>
+            <para>
+                <programlisting role="example">
+exec("SCI/modules/graphics/demos/colormap/colormaps.dem.sce",-1)
+                </programlisting>
+            </para>
+        </refsect3>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -180,6 +641,43 @@ show_window()
             <member>
                 <link linkend="colormap">colormap</link>
             </member>
+            <member>
+                <link linkend="Matplot">Matplot</link>
+            </member>
+            <member>
+                <link linkend="Sgrayplot">Sgrayplot</link>
+            </member>
+            <member>
+                <link linkend="surf">surf</link>
+            </member>
+            <member>
+                <link linkend="printf_conversion">Cformat rules</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            colorbar() syntax added.
+                        </listitem>
+                        <listitem>
+                            implicit umin or/and umax values can now be infered either from actual
+                            U data values, or from colminmax and the colormap size.
+                        </listitem>
+                        <listitem>
+                            colminmax bounds can now be specified as fractions of the colormap size.
+                        </listitem>
+                        <listitem>
+                            umin=-%inf and umax=%inf semantics are now available.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

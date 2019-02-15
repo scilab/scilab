@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,40 +16,40 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lyap" xml:lang="pt">
     <refnamediv>
         <refname>lyap</refname>
-        <refpurpose>equação de Lyapunov</refpurpose>
+        <refpurpose>equaÃ§Ã£o de Lyapunov</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[X]=lyap(A,C,'c')
             [X]=lyap(A,C,'d')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A, C</term>
                 <listitem>
                     <para>
                         matrizes quadradas de reais, <literal>C</literal> deve ser
-                        simétrica
+                        simÃ©trica
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>X= lyap(A,C,flag)</literal> resolve as equações matriciais
-            de tempo contínuo ou de tempo discreto de Lyapunov:
+            <literal>X= lyap(A,C,flag)</literal> resolve as equaÃ§Ãµes matriciais
+            de tempo contÃ­nuo ou de tempo discreto de Lyapunov:
         </para>
         <programlisting role=""><![CDATA[
 A'*X + X*A = C       ( flag='c' )
 A'*X*A - X = C       ( flag='d' )
  ]]></programlisting>
-        <para>Perceba que existe uma única solução se e só se um autovalor de
-            <literal>A</literal> não é um autovalor de <literal>-A</literal>
+        <para>Perceba que existe uma Ãºnica soluÃ§Ã£o se e sÃ³ se um autovalor de
+            <literal>A</literal> nÃ£o Ã© um autovalor de <literal>-A</literal>
             (<literal>flag='c'</literal>) ou 1 sobre um autovalor de
             <literal>A</literal> (<literal>flag='d'</literal>).
         </para>
@@ -65,7 +65,7 @@ A'*X*A - X -C
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sylv">sylv</link>

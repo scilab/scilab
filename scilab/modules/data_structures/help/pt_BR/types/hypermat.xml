@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA
@@ -19,22 +19,22 @@
         <refpurpose>inicializa matrizes n-dimensionais</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>M=hypermat(dims [,v])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>dims</term>
                 <listitem>
-                    <para>vetor de dimensões da hipermatriz </para>
+                    <para>vetor de dimensÃµes da hipermatriz </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>vetor de entradas da hipermatriz (valor padrão
+                    <para>vetor de entradas da hipermatriz (valor padrÃ£o
                         <literal>zeros(prod(dims),1)</literal>)
                     </para>
                 </listitem>
@@ -42,14 +42,14 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Incializa uma hipermatriz cujas dimensões são dadas pelo vetor dims
-            e as entradas são dadas pelo argumento opcional
+        <title>DescriÃ§Ã£o</title>
+        <para>Incializa uma hipermatriz cujas dimensÃµes sÃ£o dadas pelo vetor dims
+            e as entradas sÃ£o dadas pelo argumento opcional
             <literal>v</literal>
         </para>
-        <para>A estrutura de dados de M contém o vetor de dimensões da matriz
+        <para>A estrutura de dados de M contÃ©m o vetor de dimensÃµes da matriz
             <literal>M('dims')</literal> e o vetor de entradas
-            <literal>M('entries')</literal> tais que os índices subescritos mais à
+            <literal>M('entries')</literal> tais que os Ã­ndices subescritos mais Ã 
             esquerda variam primeiro:
             <literal>[M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]</literal>
         </para>

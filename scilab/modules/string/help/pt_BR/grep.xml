@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -16,12 +16,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="grep" xml:lang="pt">
     <refnamediv>
         <refname>grep</refname>
-        <refpurpose>acha correspondências de um string em um vetor de
+        <refpurpose>acha correspondÃªncias de um string em um vetor de
             strings
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>row=grep(haystack,needle )
             [row,which]=grep(haystack,needle )
             row=grep(haystack,needle ,[flag])
@@ -29,7 +29,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>haystack</term>
@@ -48,8 +48,8 @@
             <varlistentry>
                 <term>row</term>
                 <listitem>
-                    <para>vetor de índices: linha onde uma correspondência foi
-                        encontrada, ou matriz vazia se nenhuma ocorrência tiver sido
+                    <para>vetor de Ã­ndices: linha onde uma correspondÃªncia foi
+                        encontrada, ou matriz vazia se nenhuma ocorrÃªncia tiver sido
                         encontrada
                     </para>
                 </listitem>
@@ -57,8 +57,8 @@
             <varlistentry>
                 <term>which</term>
                 <listitem>
-                    <para>vetor de índices: índice do string needle encontrado, ou uma
-                        matriz vazia, se nenhuma correspondência tiver sido
+                    <para>vetor de Ã­ndices: Ã­ndice do string needle encontrado, ou uma
+                        matriz vazia, se nenhuma correspondÃªncia tiver sido
                         encontrada
                     </para>
                 </listitem>
@@ -66,19 +66,19 @@
             <varlistentry>
                 <term>flag</term>
                 <listitem>
-                    <para>caractere ("r" para expressão regular)</para>
+                    <para>caractere ("r" para expressÃ£o regular)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Para cada entradada de haystack , grep procura se pelo menos um
-            string em needle corresponde a um substring. Os índices das entradas de
-            haystack onde pelo menos uma entrada foi encontrada são retornados no
-            argumento row. O argumento opcional which fornece o índice do primeiro
-            string de needle encontrado. Quando se usa o terceiro parâmetro "r",
-            needle deve ser substituído por uma expressão regular. Então, grep vai
+            string em needle corresponde a um substring. Os Ã­ndices das entradas de
+            haystack onde pelo menos uma entrada foi encontrada sÃ£o retornados no
+            argumento row. O argumento opcional which fornece o Ã­ndice do primeiro
+            string de needle encontrado. Quando se usa o terceiro parÃ¢metro "r",
+            needle deve ser substituÃ­do por uma expressÃ£o regular. EntÃ£o, grep vai
             corresponder a haystack de acordo com as regras regulares
             expressas.
         </para>
@@ -86,8 +86,8 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-txt=['acha correspondência em um string ou em um vetor de strings'
-     'procura posição de um string em outro string'
+txt=['acha correspondÃªncia em um string ou em um vetor de strings'
+     'procura posiÃ§Ã£o de um string em outro string'
      'Compara Strings'];
 
 grep(txt,'strings')
@@ -103,7 +103,7 @@ grep(str,'/cat|dog/','r')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strindex">strindex</link>

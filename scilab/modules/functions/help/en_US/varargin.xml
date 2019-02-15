@@ -13,11 +13,13 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varargin" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="varargin" xml:lang="en">
     <refnamediv>
         <refname>varargin</refname>
-        <refpurpose>variable number of arguments in an input argument
-            list
+        <refpurpose>variable number of arguments in an input argument list
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -40,7 +42,8 @@
         <para>
             <literal>function y = ex(varargin)</literal> may be called with any
             number of input arguments. Within function <literal>ex</literal> input
-            arguments may be retrieved in <literal>varargin(i)</literal>, <literal>i=1:length(varargin)</literal>.
+            arguments may be retrieved in <literal>varargin(i)</literal>,
+            <literal>i=1:length(varargin)</literal>.
         </para>
         <para>
             If it is not the last input argument of a function,
@@ -54,10 +57,10 @@
     <refsection>
         <title>Remark</title>
         <para>
-            Named argument syntax like <literal>foo(...,key=value)</literal> is
-            incompatible with the use of <literal>varargin</literal>. The reason is that the names (i.e.
-            keys) associated with values are not stored in the <literal>varargin</literal> list. Consider
-            for instance:
+            Named argument syntax like <literal>foo(...,key=value)</literal> is incompatible
+            with the use of <literal>varargin</literal>. The reason is that the names (i.e.
+            keys) associated with values are not stored in the <literal>varargin</literal> list.
+            Consider for instance:
         </para>
         <programlisting role="no-scilab-exec"><![CDATA[
 function foo(varargin)
@@ -94,6 +97,9 @@ exampl(1,l(2:3))
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="varargout">varargout</link>
+            </member>
+            <member>
                 <link linkend="argn">argn</link>
             </member>
             <member>
@@ -101,9 +107,6 @@ exampl(1,l(2:3))
             </member>
             <member>
                 <link linkend="list">list</link>
-            </member>
-            <member>
-                <link linkend="varargout">varargout</link>
             </member>
         </simplelist>
     </refsection>

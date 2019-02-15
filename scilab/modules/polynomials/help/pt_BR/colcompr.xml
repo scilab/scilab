@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -16,25 +16,25 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="colcompr" xml:lang="pt">
     <refnamediv>
         <refname>colcompr</refname>
-        <refpurpose>compressão de colunas de matrizes de polinômios</refpurpose>
+        <refpurpose>compressÃ£o de colunas de matrizes de polinÃ´mios</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[Y,rk,ac]=colcompr(A);</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>matriz de polinômios </para>
+                    <para>matriz de polinÃ´mios </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Y</term>
                 <listitem>
-                    <para>matriz de polinômios quadrada (base unimodular direita)
+                    <para>matriz de polinÃ´mios quadrada (base unimodular direita)
                     </para>
                 </listitem>
             </varlistentry>
@@ -50,17 +50,17 @@
                 <term>Ac</term>
                 <listitem>
                     <para>
-                        <literal>Ac=A*Y</literal>, matriz de polinômios
+                        <literal>Ac=A*Y</literal>, matriz de polinÃ´mios
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Compressão de colunas da matriz de polinômios <literal>A</literal>
-            (compressão para a esquerda).
+            CompressÃ£o de colunas da matriz de polinÃ´mios <literal>A</literal>
+            (compressÃ£o para a esquerda).
         </para>
     </refsection>
     <refsection>
@@ -73,7 +73,7 @@ p*p'*Y
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="rowcompr">rowcompr</link>

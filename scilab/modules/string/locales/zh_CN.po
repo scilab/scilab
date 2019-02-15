@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-11-02 11:12+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"PO-Revision-Date: 2019-02-12 11:12+0000\n"
+"Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: \n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -332,12 +332,33 @@ msgid ""
 "%s: Wrong values for input argument #%d: An non-negative integer expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为一个非负整数。\n"
 
+#
+# File: modules/string/macros/evstr.sci, line: 65
+#, c-format
+msgid "%s: Argument #%d: Some expression can't be evaluated (%s).\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: %d-element list expected.\n"
+msgstr ""
+
+#
+# File: modules/string/macros/evstr.sci, line: 76
+#, c-format
+msgid "%s: Argument #%d: Both list components must be of text type.\n"
+msgstr ""
+
+#
+# File: modules/string/macros/evstr.sci, line: 89
+#, c-format
+msgid "%s: Argument #1(2): The expression #%d = %s can't be evaluated (%s).\n"
+msgstr ""
+
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
-"character strings or list expected.\n"
+"%s: Wrong type for input argument #%d: Matrix of character strings or list "
+"expected.\n"
 msgstr ""
-"%s：输入参数#%d的类型错误：应该为实数或附属矩阵、字符串矩阵或者列表。\n"
 
 #, c-format
 msgid "%s: Given expression has no value.\n"
@@ -387,3 +408,9 @@ msgid ""
 "%s: Wrong size for input argument #%d: A character or vector of characters "
 "expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个字符或一个字符向量。\n"
+
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
+#~ "character strings or list expected.\n"
+#~ msgstr ""
+#~ "%s：输入参数#%d的类型错误：应该为实数或附属矩阵、字符串矩阵或者列表。\n"

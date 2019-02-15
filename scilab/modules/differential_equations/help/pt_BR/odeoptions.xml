@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -17,42 +17,42 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="odeoptions" xml:lang="pt">
     <refnamediv>
         <refname>odeoptions</refname>
-        <refpurpose>ajusta opções para solucionadores de EDO</refpurpose>
+        <refpurpose>ajusta opÃ§Ãµes para solucionadores de EDO</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>odeoptions()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
-        <para>Esta função exibe interativamente um comando que deveria ser
-            executado para se ajustar diversas opções para solucionadores de EDOs. A
-            variável global <literal>%ODEOPTIONS</literal> ajusta as opções.
+        <title>DescriÃ§Ã£o</title>
+        <para>Esta funÃ§Ã£o exibe interativamente um comando que deveria ser
+            executado para se ajustar diversas opÃ§Ãµes para solucionadores de EDOs. A
+            variÃ¡vel global <literal>%ODEOPTIONS</literal> ajusta as opÃ§Ãµes.
         </para>
         <para>
-            CUIDADO: a função <literal>ode</literal> verifica se esta variável
-            existe e, neste caso, a utiliza. Para se utilizar valores padrões, deve-se
-            limpar esta variável. Note que <literal>odeoptions</literal> não cria esta
-            variável. Para criá-la, você deve executar a linha de comando exibida por
+            CUIDADO: a funÃ§Ã£o <literal>ode</literal> verifica se esta variÃ¡vel
+            existe e, neste caso, a utiliza. Para se utilizar valores padrÃµes, deve-se
+            limpar esta variÃ¡vel. Note que <literal>odeoptions</literal> nÃ£o cria esta
+            variÃ¡vel. Para criÃ¡-la, vocÃª deve executar a linha de comando exibida por
             <literal>odeoptions</literal>.
         </para>
         <para>
-            A variável <literal>%ODEOPTIONS</literal> é um vetor com os
+            A variÃ¡vel <literal>%ODEOPTIONS</literal> Ã© um vetor com os
             seguintes elementos:
         </para>
         <programlisting role=""><![CDATA[
 [itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr,ml,mu]
  ]]></programlisting>
-        <para>O valor padrão é:</para>
+        <para>O valor padrÃ£o Ã©:</para>
         <programlisting role=""><![CDATA[
 [1,0,0,%inf,0,2,500,12,5,0,-1,-1]
  ]]></programlisting>
-        <para>O significado de cada elemento é descrito abaixo</para>
+        <para>O significado de cada elemento Ã© descrito abaixo</para>
         <para>
-            <literal>itask</literal> 1 : computação normal nos tempos
-            especificados 2 : computação nos tempos de malha (dados na primeira linha
-            da saída de <literal>ode</literal>) 3 : um passo em um ponto interno da
-            malha e retorna 4 : computação normal sem overshooting ("desvalorização
+            <literal>itask</literal> 1 : computaÃ§Ã£o normal nos tempos
+            especificados 2 : computaÃ§Ã£o nos tempos de malha (dados na primeira linha
+            da saÃ­da de <literal>ode</literal>) 3 : um passo em um ponto interno da
+            malha e retorna 4 : computaÃ§Ã£o normal sem overshooting ("desvalorizaÃ§Ã£o
             excessiva") <literal>tcrit</literal> 5 : um passo, sem passagem de
             <literal>tcrit</literal>, e retorna
         </para>
@@ -64,46 +64,46 @@
             <literal>h0</literal> primeiro passo tentado
         </para>
         <para>
-            <literal>hmax</literal> tamanho máximo do passo
+            <literal>hmax</literal> tamanho mÃ¡ximo do passo
         </para>
         <para>
-            <literal>hmin</literal> tamanho mínimo do passo
+            <literal>hmin</literal> tamanho mÃ­nimo do passo
         </para>
         <para>
-            <literal>jactype</literal> 0 : iterações funcionais, nenhum
+            <literal>jactype</literal> 0 : iteraÃ§Ãµes funcionais, nenhum
             jacobiano usado (<literal>"adams"</literal> ou <literal>"stiff"</literal>
-            apenas) 1 : jacobiano completo fornecido pelo usuário 2 : jacobiano
+            apenas) 1 : jacobiano completo fornecido pelo usuÃ¡rio 2 : jacobiano
             completo internamente gerado 3 : jacobiano diagonal internamente gerado
             (<literal>"adams"</literal> ou <literal>"stiff"</literal> apenas) 4 :
-            jacobiano com bandas fornecido pelo usuário (ver <literal>ml</literal> e
+            jacobiano com bandas fornecido pelo usuÃ¡rio (ver <literal>ml</literal> e
             <literal>mu</literal> abaixo) 5 : jacobiano com bandas internamente gerado
             (<literal>ver</literal> ml e <literal>mu</literal> abaixo)
         </para>
         <para>
-            <literal>maxordn</literal> máxima ordem não-stiff permitida, no
-            máximo 12
+            <literal>maxordn</literal> mÃ¡xima ordem nÃ£o-stiff permitida, no
+            mÃ¡ximo 12
         </para>
         <para>
-            <literal>maxords</literal> máxima ordem stiff permitida, no máximo
+            <literal>maxords</literal> mÃ¡xima ordem stiff permitida, no mÃ¡ximo
             5
         </para>
         <para>
-            <literal>ixpr</literal> nível de impressão, 0 ou 1
+            <literal>ixpr</literal> nÃ­vel de impressÃ£o, 0 ou 1
         </para>
         <para>
             <literal>ml</literal>,<literal>mu</literal> se
-            <literal>jactype</literal> é igual a 4 ou 5, <literal>ml</literal> e
-            <literal>mu</literal> são as semi-bandas inferior e superior do jacobiano
-            com bandas: a banda são os i,j's com i-ml &lt;= j &lt;= ny-1. Se
-            <literal>jactype</literal> é igual a 4 a função jacobiana deve retornar
-            uma matriz J que é ml+mu+1 x ny (onde ny=dim de y em ydot=f(t,y)) tal que
-            a coluna 1 de J é feita de mu zeros seguidos por df1/dy1, df2/dy1,
-            df3/dy1, ... (1+ml entradas não-nulas possivelmente) a coluna 2 é feita de
+            <literal>jactype</literal> Ã© igual a 4 ou 5, <literal>ml</literal> e
+            <literal>mu</literal> sÃ£o as semi-bandas inferior e superior do jacobiano
+            com bandas: a banda sÃ£o os i,j's com i-ml &lt;= j &lt;= ny-1. Se
+            <literal>jactype</literal> Ã© igual a 4 a funÃ§Ã£o jacobiana deve retornar
+            uma matriz J que Ã© ml+mu+1 x ny (onde ny=dim de y em ydot=f(t,y)) tal que
+            a coluna 1 de J Ã© feita de mu zeros seguidos por df1/dy1, df2/dy1,
+            df3/dy1, ... (1+ml entradas nÃ£o-nulas possivelmente) a coluna 2 Ã© feita de
             mu-1 zeros seguidos por df1/dx2, df2/dx2, etc
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="ode">ode</link>

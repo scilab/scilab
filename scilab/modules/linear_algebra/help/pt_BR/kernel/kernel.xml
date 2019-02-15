@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="kernel" xml:lang="pt">
     <refnamediv>
         <refname>kernel</refname>
-        <refpurpose>núcleo de uma matriz</refpurpose>
+        <refpurpose>nÃºcleo de uma matriz</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>W=kernel(A [,tol,[,flag])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
@@ -37,7 +37,7 @@
                 <term>flag</term>
                 <listitem>
                     <para>
-                        string <literal>'svd'</literal> (padrão) ou
+                        string <literal>'svd'</literal> (padrÃ£o) ou
                         <literal>'qr'</literal>
                     </para>
                 </listitem>
@@ -45,7 +45,7 @@
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>número real </para>
+                    <para>nÃºmero real </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -57,20 +57,20 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>W=kernel(A)</literal> retorna o núcleo (espaço nulo) de
-            <literal>A</literal>. Se A tem posto-coluna completo, então uma matriz
-            vazia [] é retornada.
+            <literal>W=kernel(A)</literal> retorna o nÃºcleo (espaÃ§o nulo) de
+            <literal>A</literal>. Se A tem posto-coluna completo, entÃ£o uma matriz
+            vazia [] Ã© retornada.
         </para>
         <para>
-            <literal>flag</literal> e <literal>tol</literal> são parâmetros
+            <literal>flag</literal> e <literal>tol</literal> sÃ£o parÃ¢metros
             opcionais: <literal>flag = 'qr'</literal> ou<literal>'svd'</literal> (o
-            padrão é <literal>'svd'</literal>).
+            padrÃ£o Ã© <literal>'svd'</literal>).
         </para>
         <para>
-            <literal>tol</literal> = parâmetro de tolerância (de ordem
-            <literal>%eps</literal> como valor padrão).
+            <literal>tol</literal> = parÃ¢metro de tolerÃ¢ncia (de ordem
+            <literal>%eps</literal> como valor padrÃ£o).
         </para>
     </refsection>
     <refsection>
@@ -83,7 +83,7 @@ clean(A*kernel(A))
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também</title>
+        <title> Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="colcomp">colcomp</link>

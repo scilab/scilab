@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="power" xml:lang="pt">
     <refnamediv>
         <refname>power</refname>
-        <refpurpose>operação de potenciação(^,.^)</refpurpose>
+        <refpurpose>operaÃ§Ã£o de potenciaÃ§Ã£o(^,.^)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>t=A^b
             t=A**b
             t=A.^b
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A,t</term>
                 <listitem>
-                    <para>matriz de escalares, polinômios ou razões de
-                        polinômios.
+                    <para>matriz de escalares, polinÃ´mios ou razÃµes de
+                        polinÃ´mios.
                     </para>
                 </listitem>
             </varlistentry>
@@ -31,33 +31,33 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <itemizedlist>
             <listitem>
                 <para>
                     <literal>"(A:square)^(b:scalar)"</literal>Se
-                    <literal>A</literal> é uma matriz quadrada e <literal>b</literal> é um
-                    escalar, então <literal>A^b</literal> é a matriz <literal>A</literal>
-                    elevada à potência <literal>b</literal>.
+                    <literal>A</literal> Ã© uma matriz quadrada e <literal>b</literal> Ã© um
+                    escalar, entÃ£o <literal>A^b</literal> Ã© a matriz <literal>A</literal>
+                    elevada Ã  potÃªncia <literal>b</literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>
                     <literal>"(A:matrix).^(b:scalar)"</literal>Se
-                    <literal>b</literal> é um escalar e <literal>A</literal> uma matriz,
-                    então <literal>A.^b</literal> é formada pelos elementos de
-                    <literal>A</literal> elevados à potência <literal>b</literal>
-                    (potenciação elemento a elemento). Se <literal>A</literal> é um vetor
-                    e <literal>b</literal> é um escalar, então <literal>A^b</literal> e
-                    <literal>A.^b</literal> realizam a mesma operação (i.e., potenciação
+                    <literal>b</literal> Ã© um escalar e <literal>A</literal> uma matriz,
+                    entÃ£o <literal>A.^b</literal> Ã© formada pelos elementos de
+                    <literal>A</literal> elevados Ã  potÃªncia <literal>b</literal>
+                    (potenciaÃ§Ã£o elemento a elemento). Se <literal>A</literal> Ã© um vetor
+                    e <literal>b</literal> Ã© um escalar, entÃ£o <literal>A^b</literal> e
+                    <literal>A.^b</literal> realizam a mesma operaÃ§Ã£o (i.e., potenciaÃ§Ã£o
                     elemento a elemento).
                 </para>
             </listitem>
             <listitem>
                 <para>
                     <literal>"(A:scalar).^(b:matrix)"</literal> Se
-                    <literal>A</literal> é um escalar e <literal>b</literal> é uma matriz
-                    (ou vetor) então <literal>A^b</literal> e <literal>A.^b</literal> são
+                    <literal>A</literal> Ã© um escalar e <literal>b</literal> Ã© uma matriz
+                    (ou vetor) entÃ£o <literal>A^b</literal> e <literal>A.^b</literal> sÃ£o
                     as matrizes (ou vetores) formados por<literal>
                         a^(b(i,j))
                     </literal>
@@ -67,8 +67,8 @@
             <listitem>
                 <para>
                     <literal>"(A:matrix).^(b:matrix)"</literal> Se
-                    <literal>A</literal> e <literal>b</literal> são vetores (matrizes) de
-                    mesmo tamanho <literal>A.^b</literal> é o vetor
+                    <literal>A</literal> e <literal>b</literal> sÃ£o vetores (matrizes) de
+                    mesmo tamanho <literal>A.^b</literal> Ã© o vetor
                     <literal>A(i)^b(i)</literal> (matriz
                     <literal>A(i,j)^b(i,j)</literal>).
                 </para>
@@ -76,11 +76,11 @@
         </itemizedlist>
         <para>Notas:</para>
         <para>
-            - Para matrizes quadradas <literal>A^p</literal> é computada através
-            de sucessivas multiplicações de matrizes se <literal>p</literal> is é um
-            número inteiro positivo e por diagonalização se não for.
+            - Para matrizes quadradas <literal>A^p</literal> Ã© computada atravÃ©s
+            de sucessivas multiplicaÃ§Ãµes de matrizes se <literal>p</literal> is Ã© um
+            nÃºmero inteiro positivo e por diagonalizaÃ§Ã£o se nÃ£o for.
         </para>
-        <para>- Os operadores ** e ^ são sinônimos.</para>
+        <para>- Os operadores ** e ^ sÃ£o sinÃ´nimos.</para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -96,7 +96,7 @@ s^(1:10)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="exp">exp</link>

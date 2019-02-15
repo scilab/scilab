@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -16,27 +16,27 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="execstr" xml:lang="pt">
     <refnamediv>
         <refname>execstr</refname>
-        <refpurpose>executa código Scilab em strings</refpurpose>
+        <refpurpose>executa cÃ³digo Scilab em strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>execstr(instr)
             ierr = execstr(instr, 'errcatch' [,msg])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>instr</term>
                 <listitem>
-                    <para>vetor de strings, instrução Scilab a ser executada. </para>
+                    <para>vetor de strings, instruÃ§Ã£o Scilab a ser executada. </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ierr</term>
                 <listitem>
-                    <para>inteiro, 0 ou número de erro. </para>
+                    <para>inteiro, 0 ou nÃºmero de erro. </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -44,54 +44,54 @@
                 <listitem>
                     <para>
                         string com valores <literal>'m'</literal> ou
-                        <literal>'n'</literal>. O padrão é <literal>'n'</literal>.
+                        <literal>'n'</literal>. O padrÃ£o Ã© <literal>'n'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Executa as instruções Scilab fornecidas pelo argumento
+        <title>DescriÃ§Ã£o</title>
+        <para>Executa as instruÃ§Ãµes Scilab fornecidas pelo argumento
             <varname>instr</varname>.
         </para>
         <note>
-            Note que <varname>instr</varname> não deve fazer uso de marcas de continuação (..)
+            Note que <varname>instr</varname> nÃ£o deve fazer uso de marcas de continuaÃ§Ã£o (..)
         </note>
         <para>
-            Se o flag <literal>'errcatch'</literal> não estiver presente, a manipulação de erros
+            Se o flag <literal>'errcatch'</literal> nÃ£o estiver presente, a manipulaÃ§Ã£o de erros
             ocorre de maneira usual.
         </para>
         <para>
             Se o flag <literal>'errcatch'</literal> for ajustado, e um erro for encontrado enquanto
-            são executadas as instruções definidas em <varname>instr</varname>,
-            <function>execstr</function> não imprime uma mensagem de erro, mas aborta a
-            execução das instruções <varname>instr</varname> (no ponto onde o erro
-            ocorreu) e retorna com <varname>ierr</varname> igual ao número de erro.
-            Neste caso a exibição da mensagem de erro é controlada pela opção
+            sÃ£o executadas as instruÃ§Ãµes definidas em <varname>instr</varname>,
+            <function>execstr</function> nÃ£o imprime uma mensagem de erro, mas aborta a
+            execuÃ§Ã£o das instruÃ§Ãµes <varname>instr</varname> (no ponto onde o erro
+            ocorreu) e retorna com <varname>ierr</varname> igual ao nÃºmero de erro.
+            Neste caso a exibiÃ§Ã£o da mensagem de erro Ã© controlada pela opÃ§Ã£o
             <varname>msg</varname> :
         </para>
         <variablelist>
             <varlistentry>
                 <term>"m"</term>
                 <listitem>
-                    <para>a mensagem é exibida e registrada.</para>
+                    <para>a mensagem Ã© exibida e registrada.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"n"</term>
                 <listitem>
-                    <para>nenhuma mensagem de erro é exibida, mas a mensagem de erro é
-                        registrada (ver <literal>lasterror</literal>). Este é o
-                        padrão.
+                    <para>nenhuma mensagem de erro Ã© exibida, mas a mensagem de erro Ã©
+                        registrada (ver <literal>lasterror</literal>). Este Ã© o
+                        padrÃ£o.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
         <para>
-            <code>ierr = execstr(instr, 'errcatch')</code> pode manipular erros sintáticos.
-            Isto é útil para a avaliação de uma instrução obtida por uma pegunta ao
-            usuário.
+            <code>ierr = execstr(instr, 'errcatch')</code> pode manipular erros sintÃ¡ticos.
+            Isto Ã© Ãºtil para a avaliaÃ§Ã£o de uma instruÃ§Ã£o obtida por uma pegunta ao
+            usuÃ¡rio.
         </para>
     </refsection>
     <refsection>
@@ -134,7 +134,7 @@ end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="evstr">evstr</link>

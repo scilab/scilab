@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
         <refpurpose>operadores espectrais</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento</title>
+        <title> SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[S,P,D,i]=projspec(A)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title> Parâmetros </title>
+        <title> ParÃ¢metros </title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
@@ -40,7 +40,7 @@
             <varlistentry>
                 <term>i</term>
                 <listitem>
-                    <para>inteiro (índice do autovalor zero de
+                    <para>inteiro (Ã­ndice do autovalor zero de
                         <literal>A</literal>).
                     </para>
                 </listitem>
@@ -48,22 +48,22 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Características espectrais de <literal>A</literal> em 0.
+            CaracterÃ­sticas espectrais de <literal>A</literal> em 0.
         </para>
         <para>
             <literal>S</literal> = resolvente reduzido em 0
             (<literal>S</literal> = -Inverso_de_Drazin(<literal>A</literal>)).
         </para>
         <para>
-            <literal>P</literal> = projeção espectral em 0.
+            <literal>P</literal> = projeÃ§Ã£o espectral em 0.
         </para>
         <para>
             <literal>D</literal> = operador nilpotente em 0.
         </para>
         <para>
-            <literal>index</literal> = índice do autovalor 0.
+            <literal>index</literal> = Ã­ndice do autovalor 0.
         </para>
         <para>
             Tem-se <literal>(s*eye()-A)^(-1) = D^(i-1)/s^i +... + D/s^2 + P/s -
@@ -80,13 +80,13 @@ A=sysdiag(jdrn(3),jdrn(2),rand(2,2));X=rand(7,7);
 A=X*A*inv(X);
 [S,P,D,index]=projspec(A);
 index   //tamanho do bloco J
-trace(P)  //soma das dimensões dos blocos J
+trace(P)  //soma das dimensÃµes dos blocos J
 A*S-(eye()-P)
 norm(D^index,1)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também</title>
+        <title> Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="coff">coff</link>

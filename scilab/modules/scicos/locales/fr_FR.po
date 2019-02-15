@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-03-24 09:20+0000\n"
+"PO-Revision-Date: 2019-02-12 09:20+0000\n"
 "Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -1493,6 +1493,13 @@ msgstr "%s : Diagramme vide"
 #, c-format
 msgid "%s: Wrong input argument.\n"
 msgstr "%s : Argument d'entrée erroné.\n"
+
+#
+# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 42
+# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 68
+# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 111
+msgid "Set Xcos context"
+msgstr ""
 
 #, c-format
 msgid "The variable name %s cannot be used as block parameter: ignored\n"

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="oct2dec" xml:lang="pt">
     <refnamediv>
         <refname>oct2dec</refname>
-        <refpurpose>conversão de octais para inteiros</refpurpose>
+        <refpurpose>conversÃ£o de octais para inteiros</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>d=oct2dec(o)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>d</term>
@@ -34,7 +34,7 @@
             <varlistentry>
                 <term>o</term>
                 <listitem>
-                    <para>matriz de strings correspondentes às representações
+                    <para>matriz de strings correspondentes Ã s representaÃ§Ãµes
                         octais
                     </para>
                 </listitem>
@@ -42,10 +42,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>oct2dec(x)</literal> retorna a matriz de número
-            correspondentes à representação octal
+            <literal>oct2dec(x)</literal> retorna a matriz de nÃºmero
+            correspondentes Ã  representaÃ§Ã£o octal
         </para>
     </refsection>
     <refsection>
@@ -55,7 +55,7 @@ oct2dec(["1" "756115"; "0" "23"])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="base2dec">base2dec</link>

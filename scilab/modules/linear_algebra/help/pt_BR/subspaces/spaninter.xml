@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,19 +16,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="spaninter" xml:lang="pt">
     <refnamediv>
         <refname>spaninter</refname>
-        <refpurpose>interseção de subespaços</refpurpose>
+        <refpurpose>interseÃ§Ã£o de subespaÃ§os</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento</title>
+        <title> SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[X,dim]=spaninter(A,B [,tol])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A, B</term>
                 <listitem>
-                    <para>duas matrizes de reais ou de complexos com igual número de
+                    <para>duas matrizes de reais ou de complexos com igual nÃºmero de
                         linhas
                     </para>
                 </listitem>
@@ -36,14 +36,14 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>matriz quadrada ortogonal ou unitária</para>
+                    <para>matriz quadrada ortogonal ou unitÃ¡ria</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>dim</term>
                 <listitem>
                     <para>
-                        inteiro, dimensão do subesbaço Im(<literal>A</literal>) inter
+                        inteiro, dimensÃ£o do subesbaÃ§o Im(<literal>A</literal>) inter
                         Im(<literal>B</literal>)
                     </para>
                 </listitem>
@@ -51,14 +51,14 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Computa a intereseção de Im(<literal>A</literal>) e
+            Computa a intereseÃ§Ã£o de Im(<literal>A</literal>) e
             Im(<literal>B</literal>).
         </para>
         <para>
             As primeiras <literal>dim</literal> colunas de <literal>X</literal>
-            geram esta interseção i.e. <literal>X(:,1:dim)</literal> é uma base
+            geram esta interseÃ§Ã£o i.e. <literal>X(:,1:dim)</literal> Ã© uma base
             ortogonal para
         </para>
         <para>
@@ -66,29 +66,29 @@
         </para>
         <para>
             Na base <literal>X</literal>, <literal>A</literal> e
-            <literal>B</literal> são respectivamente representados por:
+            <literal>B</literal> sÃ£o respectivamente representados por:
         </para>
         <para>
             <literal>X'*A</literal> e <literal>X'*B</literal>.
         </para>
         <para>
-            <literal>tol</literal> é um limiar (<literal>sqrt(%eps)</literal> é
-            o valor padrão).
+            <literal>tol</literal> Ã© um limiar (<literal>sqrt(%eps)</literal> Ã©
+            o valor padrÃ£o).
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-A=rand(5,3)*rand(3,4);     // A é 5 x 4, rank=3
+A=rand(5,3)*rand(3,4);     // A Ã© 5 x 4, rank=3
 B=[A(:,2),rand(5,1)]*rand(2,2);
 [X,dim]=spaninter(A,B);
-X1=X(:,1:dim);    //A interseção
+X1=X(:,1:dim);    //A interseÃ§Ã£o
 svd(A),svd([X1,A])   // X1 no gerado(A) (span(A))
 svd(B),svd([B,X1])   // X1 no gerado(B) (span(B))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="spanplus">spanplus</link>

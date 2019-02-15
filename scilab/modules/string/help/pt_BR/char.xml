@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
@@ -16,21 +16,21 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="char" xml:lang="pt">
     <refnamediv>
         <refname>char</refname>
-        <refpurpose>função char</refpurpose>
+        <refpurpose>funÃ§Ã£o char</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>y=char( x)
             y=char(st1,st2,st3,....)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>um cell de arrays de strings, ou um array de códigos ASCII
+                    <para>um cell de arrays de strings, ou um array de cÃ³digos ASCII
                     </para>
                 </listitem>
             </varlistentry>
@@ -49,20 +49,20 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>Argumento de uma entrada :</literal>
         </para>
         <para>
-            Dado um<literal> cell de arrays de strings x</literal>, esta função
-            retorna um vetor de strings <literal>y </literal>no qual as linhas são
+            Dado um<literal> cell de arrays de strings x</literal>, esta funÃ§Ã£o
+            retorna um vetor de strings <literal>y </literal>no qual as linhas sÃ£o
             componentes do cell de strings.
         </para>
         <para>
-            Dado um<literal> array de códigos ASCII x,</literal> esta função
+            Dado um<literal> array de cÃ³digos ASCII x,</literal> esta funÃ§Ã£o
             retorna um array de strings <literal>y</literal> correspondente aos
-            códigos ASCII. Se dims (<literal>x</literal>)=[n1,n2,n3,n4,....], então o
-            valor retornado tem o mesmo tamanho que o valor de entrada, ao invés do
+            cÃ³digos ASCII. Se dims (<literal>x</literal>)=[n1,n2,n3,n4,....], entÃ£o o
+            valor retornado tem o mesmo tamanho que o valor de entrada, ao invÃ©s do
             segundo dims, dims(<literal>y</literal>)=[n1,n3,n4,..]
         </para>
         <para>
@@ -70,18 +70,18 @@
         </para>
         <para>
             Dados <literal>arrays de strings</literal>
-            <literal>st1,st2,st3,...</literal>, esta função retorna um vetor de
-            strings no qual as linhas são os componentes de <literal>st1,st2,st3,...
+            <literal>st1,st2,st3,...</literal>, esta funÃ§Ã£o retorna um vetor de
+            strings no qual as linhas sÃ£o os componentes de <literal>st1,st2,st3,...
             </literal>
             <literal> No vetor </literal><literal>y </literal>o comprimento
-            de todos os strings sti é completado por lacunas, para terem o mesmo
-            comprimento que o comprimento máximo de sti.
+            de todos os strings sti Ã© completado por lacunas, para terem o mesmo
+            comprimento que o comprimento mÃ¡ximo de sti.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-//exemplo com uma hipermatriz de códigos ASCII :
+//exemplo com uma hipermatriz de cÃ³digos ASCII :
 x=matrix([61:84, 4,2,3]);
 y=char(x)
 size(x)
@@ -93,12 +93,12 @@ st2=["one","two"];
 st3=["three"];
 y=char(st1,st2,st3)
 size(y)
-//todos os strings são completados por "lacunas" para terem o mesmo comprimento : 6
+//todos os strings sÃ£o completados por "lacunas" para terem o mesmo comprimento : 6
 length(y)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="asciimat">asciimat</link>

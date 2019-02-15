@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -164,7 +164,7 @@ xtitle("f(x,y) = x^2+y^2")
 drawnow();
 ]]></scilab:image>
         <programlisting role="example"><![CDATA[
-// exemplo #2: esboço de surf3 e adição de algumas linhas de contorno
+// exemplo #2: esboÃ§o de surf3 e adiÃ§Ã£o de algumas linhas de contorno
 function z=surf3(x,y), z=x^3+y^2, endfunction
 clf()
 x = linspace(-1,1,60);
@@ -193,8 +193,8 @@ drawnow();
 show_window()
 ]]></scilab:image>
         <programlisting role="example"><![CDATA[
-// exemplo #3: esboço de surf3 e uso dos argumentos opcionais zminmax e colout
-//             para restringir o esboço em -0.5&lt;= z &lt;= 1
+// exemplo #3: esboÃ§o de surf3 e uso dos argumentos opcionais zminmax e colout
+//             para restringir o esboÃ§o em -0.5&lt;= z &lt;= 1
 function z=surf3(x,y), z=x^3+y^2, endfunction
 clf()
 x = linspace(-1,1,60);

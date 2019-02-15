@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atanh" xml:lang="pt">
     <refnamediv>
         <refname>atanh</refname>
-        <refpurpose>arco-tangente hiperbólico</refpurpose>
+        <refpurpose>arco-tangente hiperbÃ³lico</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>t=atanh(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -40,32 +40,32 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Os compontente do vetor <literal>t</literal> são os arcos-tangentes
-            hiperbólicos das entradas correspondentes em <literal>x</literal>. O
-            domínio de definição é <literal>[-1,1]</literal> para a função real (ver
-            "Observação").
+            Os compontente do vetor <literal>t</literal> sÃ£o os arcos-tangentes
+            hiperbÃ³licos das entradas correspondentes em <literal>x</literal>. O
+            domÃ­nio de definiÃ§Ã£o Ã© <literal>[-1,1]</literal> para a funÃ§Ã£o real (ver
+            "ObservaÃ§Ã£o").
         </para>
     </refsection>
     <refsection>
-        <title>Observação </title>
-        <para>No Scilab (como em alguns outros softwares numéricos), quando se
-            tenta avaliar uma função matemática elementar fora de seu domínio de
-            definição no caso real, uma extensão complexa é usada (com resultado
-            complexo). O exemplo mais famoso é a função sqrt (tente
-            <literal>sqrt(-1)</literal> !). !). Esta aproximação tem algumas
-            desvantagens quando você avalia a função em um ponto singular que pode
-            levar a diferentes resultados quando o ponto é considerado como real ou
-            complexo. Para a função <literal>atanh</literal> isto ocorre para
+        <title>ObservaÃ§Ã£o </title>
+        <para>No Scilab (como em alguns outros softwares numÃ©ricos), quando se
+            tenta avaliar uma funÃ§Ã£o matemÃ¡tica elementar fora de seu domÃ­nio de
+            definiÃ§Ã£o no caso real, uma extensÃ£o complexa Ã© usada (com resultado
+            complexo). O exemplo mais famoso Ã© a funÃ§Ã£o sqrt (tente
+            <literal>sqrt(-1)</literal> !). !). Esta aproximaÃ§Ã£o tem algumas
+            desvantagens quando vocÃª avalia a funÃ§Ã£o em um ponto singular que pode
+            levar a diferentes resultados quando o ponto Ã© considerado como real ou
+            complexo. Para a funÃ§Ã£o <literal>atanh</literal> isto ocorre para
             <literal>-1</literal> e <literal>1</literal> porque, nestes pontos, a
-            parte imaginária não converge e então <literal>atanh(1) = +Inf + i
+            parte imaginÃ¡ria nÃ£o converge e entÃ£o <literal>atanh(1) = +Inf + i
                 NaN
             </literal>
             enquanto <literal>atanh(1) = +Inf</literal> para o caso real
-            (como lim x-&gt;1- de atanh(x)). Então, quando você avaliar esta função no
-            vetor <literal>[1 2]</literal> , como <literal>2</literal> está fora do
-            domínio de definição, a extensão complexa é usada para todo o vetor e o
+            (como lim x-&gt;1- de atanh(x)). EntÃ£o, quando vocÃª avaliar esta funÃ§Ã£o no
+            vetor <literal>[1 2]</literal> , como <literal>2</literal> estÃ¡ fora do
+            domÃ­nio de definiÃ§Ã£o, a extensÃ£o complexa Ã© usada para todo o vetor e o
             resultado de <literal>atanh(1) = +Inf + i NaN</literal> enquanto o
             resultado de <literal>atanh(1) = +Inf</literal> com <literal>[1
                 0.5]
@@ -85,14 +85,14 @@ x = [-%inf -3 -2 -1 0 1 2 3 %inf]
 ieee(2)
 atanh(tanh(x))
 
-// exemplo 3 (ver "Observação")
+// exemplo 3 (ver "ObservaÃ§Ã£o")
 ieee(2)
 atanh([1 2])
 atanh([1 0.5])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="tanh">tanh</link>

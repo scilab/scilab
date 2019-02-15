@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,18 +19,18 @@
         <refpurpose>imagem inversa</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[X,dim]=im_inv(A,B [,tol])
             [X,dim,Y]=im_inv(A,B, [,tol])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A,B</term>
                 <listitem>
-                    <para>duas matirzes de reais ou complexos com igual número de
+                    <para>duas matirzes de reais ou complexos com igual nÃºmero de
                         colunas
                     </para>
                 </listitem>
@@ -38,7 +38,7 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>matriz quadrada ortogonal ou unitária de ordem igual ao número
+                    <para>matriz quadrada ortogonal ou unitÃ¡ria de ordem igual ao nÃºmero
                         de colunas de <literal>A</literal>
                     </para>
                 </listitem>
@@ -46,13 +46,13 @@
             <varlistentry>
                 <term>dim</term>
                 <listitem>
-                    <para>inteiro (dimensão do subespaço) </para>
+                    <para>inteiro (dimensÃ£o do subespaÃ§o) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Y</term>
                 <listitem>
-                    <para>matriz ortogonal de ordem igual ao número de linhas de
+                    <para>matriz ortogonal de ordem igual ao nÃºmero de linhas de
                         <literal>A</literal> e <literal>B</literal>.
                     </para>
                 </listitem>
@@ -60,20 +60,20 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>[X,dim]=im_inv(A,B)</literal>
-            computa<literal>(A^-1)(B)</literal> ,i.e, vetores cujas imagens através de
-            <literal>A</literal> estão em Im(<literal>B</literal>)
+            computa<literal>(A^-1)(B)</literal> ,i.e, vetores cujas imagens atravÃ©s de
+            <literal>A</literal> estÃ£o em Im(<literal>B</literal>)
         </para>
         <para>
             As <literal>dim</literal> primeiras colunas de <literal>X</literal>
             geram<literal> (A^-1)(B)</literal>
         </para>
         <para>
-            <literal>tol</literal> é um limiar usado para testar a inclusão de
-            subespaço ; o valor padrão é <literal>tol = 100*%eps</literal>. Se
-            <literal>Y</literal> é retornado, então <literal>[Y*A*X,Y*B]</literal> é
+            <literal>tol</literal> Ã© um limiar usado para testar a inclusÃ£o de
+            subespaÃ§o ; o valor padrÃ£o Ã© <literal>tol = 100*%eps</literal>. Se
+            <literal>Y</literal> Ã© retornado, entÃ£o <literal>[Y*A*X,Y*B]</literal> Ã©
             particionado como segue:
             <literal>[A11,A12;0,A22]</literal>,<literal>[B1;0]</literal>
         </para>
@@ -94,7 +94,7 @@ svd([A*X(:,1:dim),B])   //vetores A*X(:,1:dim) pertencem a range(B) (Imagem de B
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também</title>
+        <title> Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="rowcomp">rowcomp</link>

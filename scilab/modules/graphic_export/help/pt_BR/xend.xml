@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -16,17 +16,17 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xend" xml:lang="pt">
     <refnamediv>
         <refname>xend</refname>
-        <refpurpose>termina uma sessão de gráficos</refpurpose>
+        <refpurpose>termina uma sessÃ£o de grÃ¡ficos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>xend()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>xend</literal> é usado para encerrar uma sessão de
-            gráficos. Sob os drivers Postscript, Xfig ou Gif <literal>xend</literal>
+            <literal>xend</literal> Ã© usado para encerrar uma sessÃ£o de
+            grÃ¡ficos. Sob os drivers Postscript, Xfig ou Gif <literal>xend</literal>
             fecha o arquivo que foi aberto por <literal>xinit</literal>.
         </para>
     </refsection>
@@ -41,7 +41,7 @@ driver("X11")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xinit">xinit</link>

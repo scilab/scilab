@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isletter" xml:lang="pt">
     <refnamediv>
         <refname>isletter</refname>
-        <refpurpose>verifica se os caracteres de um string são letras do
+        <refpurpose>verifica se os caracteres de um string sÃ£o letras do
             alfabeto
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>res = isletter(str)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>str</term>
@@ -42,11 +42,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>res = isletter(str)</literal> retorna um array de mesmo
-            tamanho que str com %t (verdadeiro) onde os elementos de str são letras do
-            alfabeto e %f (false) onde eles não são.
+            tamanho que str com %t (verdadeiro) onde os elementos de str sÃ£o letras do
+            alfabeto e %f (false) onde eles nÃ£o sÃ£o.
         </para>
     </refsection>
     <refsection>
@@ -57,7 +57,7 @@ isletter(s)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="isalphanum">isalphanum</link>

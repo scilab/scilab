@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -21,11 +21,11 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento</title>
+        <title> SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[M,Q]=eigenmarkov(P)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>P</term>
@@ -50,16 +50,16 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Retorna os autovetores esquerdo e direito normalizados associados ao
-            autovalor 1 da matriz P de transição de Markov. Se a multiplicidade deste
-            autovalor é m e P é N x N, M é uma matriz m x N e Q é uma matriz N x m.
-            M(k,:) é o vetor de distribuição de probabilidade associado ao k-ésimo
-            conjunto ergódico (classe recorrente). M(k,x) é zero se x não está na
-            k-ésima classe recorrente. Q(x,k) é a probabilidade de se terminar na
-            k-ésima classe recorrente começando de x. Se <literal>P^k</literal>
-            converge para <literal>k</literal> (sem autovalores no círculo unitário,
-            exceto 1), então o limite é <literal>Q*M</literal> (auto-projeção).
+            autovalor 1 da matriz P de transiÃ§Ã£o de Markov. Se a multiplicidade deste
+            autovalor Ã© m e P Ã© N x N, M Ã© uma matriz m x N e Q Ã© uma matriz N x m.
+            M(k,:) Ã© o vetor de distribuiÃ§Ã£o de probabilidade associado ao k-Ã©simo
+            conjunto ergÃ³dico (classe recorrente). M(k,x) Ã© zero se x nÃ£o estÃ¡ na
+            k-Ã©sima classe recorrente. Q(x,k) Ã© a probabilidade de se terminar na
+            k-Ã©sima classe recorrente comeÃ§ando de x. Se <literal>P^k</literal>
+            converge para <literal>k</literal> (sem autovalores no cÃ­rculo unitÃ¡rio,
+            exceto 1), entÃ£o o limite Ã© <literal>Q*M</literal> (auto-projeÃ§Ã£o).
         </para>
     </refsection>
     <refsection>
@@ -73,7 +73,7 @@ Q*M-P^20
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também</title>
+        <title> Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="genmarkov">genmarkov</link>

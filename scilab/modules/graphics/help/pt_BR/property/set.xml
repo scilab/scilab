@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+ï»¿<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -16,12 +16,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="set" xml:lang="pt">
     <refnamediv>
         <refname>set</refname>
-        <refpurpose>Ajusta um valor de propriedade de uma objeto entidade gráfica
-            ou de um objeto Interface do Usuário (User Interface)
+        <refpurpose>Ajusta um valor de propriedade de uma objeto entidade grÃ¡fica
+            ou de um objeto Interface do UsuÃ¡rio (User Interface)
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>set(prop,val)
             set(h,prop)
             set(h,prop,val)
@@ -29,14 +29,14 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
                 <listitem>
                     <para>manipulador da entidade da qual a propriedade nomeada se
                         deseja ajustar, <literal>h</literal> pode ser um vetor de
-                        manipuladores, em tal caso, serão ajustados valores de propriedades
+                        manipuladores, em tal caso, serÃ£o ajustados valores de propriedades
                         para todos os objetos identificados por h
                     </para>
                 </listitem>
@@ -50,28 +50,28 @@
             <varlistentry>
                 <term>val</term>
                 <listitem>
-                    <para>valor a ser dado à propriedade</para>
+                    <para>valor a ser dado Ã  propriedade</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Esta rotina pode ser utilizada para se recuperar o valor de uma
-            propriedade especificada de uma entidade de gráficos ou objeto GUI. Neste
-            caso, é equivalente a se usar o operador ponto ('.') em um manipulador.
-            Por exemplo, <literal>set(h,"background",5)</literal> é equivalente a
+            propriedade especificada de uma entidade de grÃ¡ficos ou objeto GUI. Neste
+            caso, Ã© equivalente a se usar o operador ponto ('.') em um manipulador.
+            Por exemplo, <literal>set(h,"background",5)</literal> Ã© equivalente a
             <literal>h.background = 5</literal>.
         </para>
-        <para>Nomes de propriedades são strings. O tipo do valor ajustado dependo
+        <para>Nomes de propriedades sÃ£o strings. O tipo do valor ajustado dependo
             do tipo do manipulador e da propriedade.
         </para>
         <para>
             Para obter a lista de todas as propriedade existentes ver <link linkend="graphics_entities">graphics_entities</link> ou <link linkend="uicontrol">uicontrol</link> para objetos de Interface do
-            Usuário
+            UsuÃ¡rio
         </para>
         <para>
-            <literal>set</literal> também pode ser chamado com apenas uma
+            <literal>set</literal> tambÃ©m pode ser chamado com apenas uma
             propriedade como argumento. Neste caso, a propriedade deve ser uma das
             seguintes:
         </para>
@@ -83,7 +83,7 @@
                         <literal>set('current_entity',h)</literal> ou
                         <literal>set('hdl',h)</literal> ajusta uma nova entidade como a
                         corrente. Neste caso, o valor deve ser um manipulador
-                        gráfico.
+                        grÃ¡fico.
                     </para>
                 </listitem>
             </varlistentry>
@@ -92,7 +92,7 @@
                 <listitem>
                     <para>
                         <literal>set('current_figure',fig)</literal> ajusta uma nova
-                        figura como a corrente. É equivalente a <link linkend="scf">scf</link>. Neste caso, o valor deve ser um
+                        figura como a corrente. Ã‰ equivalente a <link linkend="scf">scf</link>. Neste caso, o valor deve ser um
                         manipulador FIgure.
                     </para>
                 </listitem>
@@ -102,18 +102,18 @@
                 <listitem>
                     <para>
                         <literal>set('current_axes',axes)</literal> ajusta novos
-                        eixos como os correntes. É equivalente a <link linkend="sca">sca</link>. Neste caso, o valor deve ser um
+                        eixos como os correntes. Ã‰ equivalente a <link linkend="sca">sca</link>. Neste caso, o valor deve ser um
                         manipulador Axes.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
         <para>
-            <literal>set</literal> também pode ser chamado com manipuladores
-            gráficos e com propriedades como argumentos. O manipulador deve ser de uma
-            figura padrão ou de eixos padrões. A propriedade deve ser
-            <literal>"default_values"</literal>. Neste caso, a entidade padrão é
-            reajustada para os valores que possuía na inicialização do Scilab.
+            <literal>set</literal> tambÃ©m pode ser chamado com manipuladores
+            grÃ¡ficos e com propriedades como argumentos. O manipulador deve ser de uma
+            figura padrÃ£o ou de eixos padrÃµes. A propriedade deve ser
+            <literal>"default_values"</literal>. Neste caso, a entidade padrÃ£o Ã©
+            reajustada para os valores que possuÃ­a na inicializaÃ§Ã£o do Scilab.
             <literal>set("default_values",h)</literal> equivale a <link linkend="sda">sda</link> ou <link linkend="sdf">sdf</link>.
         </para>
     </refsection>
@@ -144,7 +144,7 @@ set([a p1 p2 p3],"foreground",5)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title>Ver Também </title>
+        <title>Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="get">get</link>

@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2018-02-20 00:31+0000\n"
+"PO-Revision-Date: 2019-02-12 00:31+0000\n"
 "Last-Translator: Paul Bignier <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -460,6 +460,10 @@ msgstr ""
 "dimensions.\n"
 
 #, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s : au moins %d arguments d'entrée attendus.\n"
+
+#, c-format
 msgid "%s: Can not create a %s with input argument #%d.\n"
 msgstr "%s : Impossible de créer un(e) %s avec l'argument d'entrée n°%d.\n"
 
@@ -602,8 +606,8 @@ msgstr ""
 msgid "ESI Group\n"
 msgstr "ESI Group\n"
 
-msgid "Copyright (c) 2017-2018 (ESI Group)\n"
-msgstr "Copyright (c) 2017-2018 (ESI Group)\n"
+msgid "Copyright (c) 2017-2019 (ESI Group)\n"
+msgstr "Copyright (c) 2017-2019 (ESI Group)\n"
 
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
 msgstr "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
@@ -709,18 +713,6 @@ msgid "%s: File doesn't exist: %s"
 msgstr "%s : Le fichier n'existe pas : %s"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un double attendu.\n"
-
-#, c-format
-msgid "%s: %s is an uneditable hard coded function.\n"
-msgstr "%s : %s est une fonction non modifiable programmée en dur.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr "%s : Nombre erroné d'argument d'entrée.\n"
 
@@ -769,9 +761,6 @@ msgstr "Vos variables sont :"
 msgid "Using %s elements"
 msgstr "En utilisant %s éléments"
 
-msgid " by "
-msgstr " par "
-
 msgid "Name"
 msgstr "Nom"
 
@@ -783,3 +772,32 @@ msgstr "Dimensions"
 
 msgid "Bytes"
 msgstr "Octets"
+
+#~ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#~ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un double attendu.\n"
+
+#~ msgid "%s: %s is an uneditable hard coded function.\n"
+#~ msgstr "%s : %s est une fonction non modifiable programmée en dur.\n"
+
+#~ msgid "%s: Unable to find Perl file: %s"
+#~ msgstr "%s : Impossible de trouver le fichier Perl : %s"
+
+#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+#~ msgstr ""
+#~ "%s : Type erroné de l'argument d'entrée n°%d : Des chaînes de caractères "
+#~ "attendues.\n"
+
+#~ msgid "%s: No perl command specified."
+#~ msgstr "%s : Commande perl non fournie."
+
+#~ msgid "%s: Unable to find Perl in '%s"
+#~ msgstr "%s : Impossible de trouver Perl dans '%s"
+
+#~ msgid "%s: Unable to find Perl.\n"
+#~ msgstr "%s : Impossible de trouver Perl.\n"
+
+#~ msgid "%s: System error: Command executed: %s"
+#~ msgstr "%s : Erreur système : Commande exécutée : %s."
+
+#~ msgid " by "
+#~ msgstr " par "

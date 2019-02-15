@@ -30,13 +30,91 @@ import java.util.Locale;
 
 import java.util.List;
 import java.util.ArrayList;
+import javax.swing.SwingWorker;
 
 /**
  * Fetches news through a RSS feed
  * The RSS URL is configurable in the settings file
  */
 public class NewsFetcher {
+    private static class Worker extends SwingWorker<Object, News> {
+        private final NewsFeedController controller;
+        private final URL rssURL;
+        private final List<News> into;
+
+        private Worker(NewsFeedController controller, URL rssURL, List<News> into) {
+            this.controller = controller;
+            this.rssURL = rssURL;
+            this.into = into;
+        }
+
+        @Override
+        protected void process(List<News> chunks) {
+            into.addAll(chunks);
+        }
+
+        @Override
+        protected void done() {
+            controller.nextNews();
+        }
+
+        @Override
+        protected Object doInBackground() throws Exception {
+            DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            Document doc = builder.parse(rssURL.openStream());
+
+            NodeList items = doc.getElementsByTagName("item");
+            if ((items == null) || (items.getLength() == 0)) {
+                throw new Exception("The fetched document has no 'item' element, please check it is a RSS feed.");
+            }
+
+            SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US);
+
+            for (int i = 0; i < items.getLength(); i++) {
+                Element item = (Element) items.item(i);
+                String title = getItemValue(item, "title");
+                String dateStr = getItemValue(item, "pubDate");
+                Date date = formatter.parse(dateStr);
+                String description = getItemValue(item, "description");
+                String content = getItemValue(item, "content:encoded");
+                // media content
+                NewsMediaContent mediaContent = null;
+                Node mediaContentNode = getItemNode(item, "media:content");
+                if (mediaContentNode != null) {
+                    String url = mediaContentNode.getAttributes().getNamedItem("url").getNodeValue();
+                    String width = mediaContentNode.getAttributes().getNamedItem("width").getNodeValue();
+                    String height = mediaContentNode.getAttributes().getNamedItem("height").getNodeValue();
+                    mediaContent = new NewsMediaContent(url, width, height);
+                }
+                String link = getItemValue(item, "link");
+                publish(new News(title, date, description, content, mediaContent, link));
+            }
+
+            return null;
+        }
+
+        private static Node getItemNode(Element item, String nodeName) {
+            NodeList nodeList = item.getElementsByTagName(nodeName);
+            if (nodeList.getLength() > 0) {
+                return nodeList.item(0);
+            } else {
+                return null;
+            }
+        }
+
+        private static String getItemValue(Element item, String nodeName) {
+            Node node = getItemNode(item, nodeName);
+            if (node != null) {
+                if (node.hasChildNodes()) {
+                    return node.getFirstChild().getNodeValue();
+                }
+            }
+            return null;
+        }
+    }
+
     private URL rssURL = null;
+    private Worker worker = null;
 
     public NewsFetcher() {
     }
@@ -56,57 +134,16 @@ public class NewsFetcher {
         return rssURL != null;
     }
 
-    public List<News> fetchNews() throws Exception {
-        List<News> newsList = new ArrayList<News>();
-        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document doc = builder.parse(rssURL.openStream());
-
-        NodeList items = doc.getElementsByTagName("item");
-        if ((items == null) || (items.getLength() == 0)) {
-            throw new Exception("The fetched document has no 'item' element, please check it is a RSS feed.");
+    public void fetchNews(NewsFeedController controller, List<News> into) throws Exception {
+        // if already in progress discard further update in case of laggy 
+        // DNS or HTTP GET.
+        if (worker != null) {
+            worker.cancel(true);
         }
-
-        SimpleDateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.US);
-
-        for (int i = 0; i < items.getLength(); i++) {
-            Element item = (Element) items.item(i);
-            String title = getItemValue(item, "title");
-            String dateStr = getItemValue(item, "pubDate");
-            Date date = formatter.parse(dateStr);
-            String description = getItemValue(item, "description");
-            String content = getItemValue(item, "content:encoded");
-            // media content
-            NewsMediaContent mediaContent = null;
-            Node mediaContentNode = getItemNode(item, "media:content");
-            if (mediaContentNode != null) {
-                String url = mediaContentNode.getAttributes().getNamedItem("url").getNodeValue();
-                String width = mediaContentNode.getAttributes().getNamedItem("width").getNodeValue();
-                String height = mediaContentNode.getAttributes().getNamedItem("height").getNodeValue();
-                mediaContent = new NewsMediaContent(url, width, height);
-            }
-            String link = getItemValue(item, "link");
-            newsList.add(new News(title, date, description, content, mediaContent, link));
-        }
-        return newsList;
-    }
-
-    private Node getItemNode(Element item, String nodeName) {
-        NodeList nodeList = item.getElementsByTagName(nodeName);
-        if (nodeList.getLength() > 0) {
-            return nodeList.item(0);
-        } else {
-            return null;
-        }
-    }
-
-    private String getItemValue(Element item, String nodeName) {
-        Node node = getItemNode(item, nodeName);
-        if (node != null) {
-            if (node.hasChildNodes()) {
-                return node.getFirstChild().getNodeValue();
-            }
-        }
-        return null;
+        
+        // setup the fetch
+        worker = new Worker(controller, rssURL, into);
+        worker.execute();
     }
 
 }

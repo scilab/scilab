@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-05-01 15:14+0000\n"
+"PO-Revision-Date: 2019-02-12 11:51+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -87,11 +87,11 @@ msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
 #, c-format
 msgid "%s: incompatible type between input and output variables.\n"
-msgstr ""
+msgstr "%s: 入力および出力変数の間の型に互換性がありません.\n"
 
 #, c-format
 msgid "%s: incompatible sizes between input and output variables.\n"
-msgstr ""
+msgstr "%s: 入力および出力変数の間の大きさに互換性がありません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
@@ -100,6 +100,7 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定し�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -231,16 +232,16 @@ msgid "Result Z = %d"
 msgstr "結果: Z = %d"
 
 msgid "Calling C function. Z = (1+Y)**X - 1"
-msgstr ""
+msgstr "C関数 Z = (1+Y)**X - 1 をコールしています"
 
 msgid "Calling a C++ function from Scilab.\n"
-msgstr ""
+msgstr "C++関数をScilabからコールしています.\n"
 
 msgid "Calling ilib_for_link to build C++ function.\n"
-msgstr ""
+msgstr "C++関数を構築するためにilib_for_linkをコールしています.\n"
 
 msgid "Calling C++ function. Z = X+Y"
-msgstr ""
+msgstr "C++関数 Z=X+Yをコールしています."
 
 msgid "Calling a Fortran subroutine from Scilab.\n"
 msgstr "ScilabからFortranサブルーチンをコール中.\n"
@@ -252,7 +253,7 @@ msgid "Calling Fortran subroutine. Z = X+Y"
 msgstr "Fortranサブルーチンをコール中. Z = X+Y"
 
 msgid "Calling Fortran subroutine. Z = (1+Y)**X - 1"
-msgstr ""
+msgstr "Fortranサブルーチン Z=(1+Y)**X-1をコールしています"
 
 msgid "Dynamic link"
 msgstr "ダイナミックリンク"
@@ -261,19 +262,19 @@ msgid "Call a C function"
 msgstr "C関数をコール"
 
 msgid "Call a C function (using C standard library)"
-msgstr ""
+msgstr "C関数をコール (C標準ライブラリを使用)"
 
 msgid "Call a Fortran subroutine"
 msgstr "Fortranサブルーチンをコール"
 
 msgid "Call a Fortran subroutine (with Fortran intrinsics)"
-msgstr ""
+msgstr "Fortranサブルーチンをコール (Fortran命令を使用)"
 
 msgid "Call a C++ function"
-msgstr ""
+msgstr "C++関数をコール"
 
 msgid "Call a C++ function (using C++ Standard Library)"
-msgstr ""
+msgstr "C++関数をコール (C++標準ライブラリを使用)"
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"

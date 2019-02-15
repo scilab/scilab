@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,19 +16,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dec2hex" xml:lang="pt">
     <refnamediv>
         <refname>dec2hex</refname>
-        <refpurpose>representação hexadecimal de inteiros</refpurpose>
+        <refpurpose>representaÃ§Ã£o hexadecimal de inteiros</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>h=dec2hex(d)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>d</term>
                 <listitem>
-                    <para>matriz de inteiros não-negativos</para>
+                    <para>matriz de inteiros nÃ£o-negativos</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -40,9 +40,9 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>dec2hex(x)</literal> retorna a representação hexadecimal de
+            <literal>dec2hex(x)</literal> retorna a representaÃ§Ã£o hexadecimal de
             uma matriz de inteiros.
         </para>
     </refsection>
@@ -53,7 +53,7 @@ dec2hex([2748 10;11 3])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="base2dec">base2dec</link>

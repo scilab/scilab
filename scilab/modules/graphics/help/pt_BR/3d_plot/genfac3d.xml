@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -16,23 +16,23 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="genfac3d" xml:lang="pt">
     <refnamediv>
         <refname>genfac3d</refname>
-        <refpurpose>computa facetas de uma superfície 3d</refpurpose>
+        <refpurpose>computa facetas de uma superfÃ­cie 3d</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[xx,yy,zz]=genfac3d(x,y,z,[mask])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>xx,yy,zz</term>
                 <listitem>
                     <para>
                         matrizes de tamanho (4,n-1xm-1). <literal>xx(:,i)</literal>
-                        ,<literal>yy(:,i)</literal> e <literal>zz(:,i)</literal> são
+                        ,<literal>yy(:,i)</literal> e <literal>zz(:,i)</literal> sÃ£o
                         respectivamente as coordenadas nos eixos x, y e z dos 4 pontos da
-                        i-ésima faceta de quatro lados
+                        i-Ã©sima faceta de quatro lados
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,8 +52,8 @@
                 <term>z</term>
                 <listitem>
                     <para>
-                        matriz de tamanho (m,n). <literal>z(i,j)</literal> é o valor
-                        da superfície no ponto (x(i),y(j)).
+                        matriz de tamanho (m,n). <literal>z(i,j)</literal> Ã© o valor
+                        da superfÃ­cie no ponto (x(i),y(j)).
                     </para>
                 </listitem>
             </varlistentry>
@@ -69,10 +69,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>genfac3d</literal> computa uma faceta de quatro lados de
-            uma superfície 3d <literal>z=f(x,y)</literal> definida por
+            uma superfÃ­cie 3d <literal>z=f(x,y)</literal> definida por
             <literal>x</literal>, <literal>y</literal> e <literal>z</literal>.
         </para>
     </refsection>
@@ -85,7 +85,7 @@ plot3d(xx,yy,zz)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="eval3dp">eval3dp</link>

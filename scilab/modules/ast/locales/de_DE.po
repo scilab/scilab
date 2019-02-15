@@ -1,0 +1,388 @@
+# German translation for scilab
+# Copyright (c) 2018 Rosetta Contributors and Canonical Ltd 2018
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2015-08-17 11:20+0100\n"
+"PO-Revision-Date: 2019-02-12 16:26+0000\n"
+"Last-Translator: Stephan Woidowski <swoidowski@t-online.de>\n"
+"Language-Team: German <de@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 18857)\n"
+
+msgid "Warning :\n"
+msgstr "Warnung:\n"
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
+msgstr ""
+
+msgid "computing least squares solution. (see lsq).\n"
+msgstr ""
+
+#, c-format
+msgid "debugger stop on breakpoint(%d) in function %ls line %d\n"
+msgstr ""
+
+msgid "Execution aborted.\n"
+msgstr "Ausführung abgebrochen.\n"
+
+#, c-format
+msgid "debugger stop on error in file %ls line %d\n"
+msgstr "Debugger-Halt wegen Fehler in Datei %ls Zeile %d\n"
+
+#, c-format
+msgid "debugger stop on error in function %ls line %d\n"
+msgstr "Debugger-Halt wegen Fehler in Funktion %ls Zeile %d\n"
+
+msgid "Leave debugger.\n"
+msgstr "Verlasse Debugger.\n"
+
+#, c-format
+msgid "Undefined variable: %s\n"
+msgstr "Undefinierte Variable: %s\n"
+
+msgid "inconsistent row/column dimensions\n"
+msgstr "uneinheitliche Reihen/Spalten-Dimensionen\n"
+
+msgid "/!\\ Unmanaged FieldExp.\n"
+msgstr ""
+
+msgid "Attempt to reference field of non-structure array.\n"
+msgstr ""
+
+msgid "Not yet implemented in Scilab.\n"
+msgstr ""
+
+msgid "Invalid index.\n"
+msgstr ""
+
+msgid "Redefining permanent variable.\n"
+msgstr ""
+
+msgid "for expression can only manage 1 or 2 dimensions variables\n"
+msgstr ""
+
+msgid "for expression : Wrong type for loop iterator.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: function is disabled in debug mode.\n"
+msgstr "%s: Funktion ist im Debug-Modus deaktiviert.\n"
+
+msgid "With input arguments, return / resume expects output arguments.\n"
+msgstr "Return / resume erwarten mit Eingabeargumenten Ausgabeargumente.\n"
+
+#, c-format
+msgid "%ls: Can not transpose multiple elements.\n"
+msgstr "%ls: Kann mehrere Elemente nicht vertauschen.\n"
+
+#, c-format
+msgid ""
+"It is not possible to redefine the %s primitive this way (see clearfun).\n"
+msgstr ""
+"Es ist nicht möglich, auf diese Weise das %s Primitiv neu zu definieren "
+"(siehe clearfun).\n"
+
+#, c-format
+msgid ""
+"%ls: Too many %ls or wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
+msgstr "%ls: Falscher Typ für Argument %d: Echter Skalar erwartet.\n"
+
+#, c-format
+msgid "Recursion limit reached (%d).\n"
+msgstr "Rekursions-Grenze erreicht (%d).\n"
+
+msgid "Unknown expression"
+msgstr "Unbekannter Ausdruck"
+
+msgid "Error in overload function: "
+msgstr "Fehler in Überladefunktion: "
+
+msgid "Wrong insertion : use extraction with {} only on a Cell."
+msgstr "Falsche Einfügung: Nutze Extraktion mit {} nur auf einer Zelle."
+
+msgid "Unable to insert multiple item in a Struct."
+msgstr "Unmöglich, Mehrfachelement in ein Struct einzufügen."
+
+msgid "Unable to insert multiple item in a List."
+msgstr ""
+
+msgid "Wrong insertion."
+msgstr "Falsche Einfügung."
+
+msgid "Wrong insertion in a Cell."
+msgstr "Falsche Einfügung in eine Zelle."
+
+#, c-format
+msgid "Wrong insertion: insertion in output of '%s' is not allowed.\n"
+msgstr "Falsche Einfügung: Einfügen in Ausgabe von '%s' ist nicht erlaubt.\n"
+
+msgid "Wrong insertion : Cannot insert without arguments."
+msgstr "Falsche Einfügung: Kann nicht ohne Argumente einfügen."
+
+msgid "Unexpected redefinition of Scilab function."
+msgstr "Unerwartete Neudefinition der Scilab-Funktion"
+
+msgid "Submatrix incorrectly defined.\n"
+msgstr "Sub-Matrix nicht korrekt definiert.\n"
+
+msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
+msgstr ""
+"Falsche Einfügung: Eine Zelle erwartet: Nutzen Sie {...} anstatt von (...).\n"
+
+msgid "Inconsistent row/column dimensions.\n"
+msgstr "Inkonsistente Reihen-/Spaltendimensionen.\n"
+
+msgid ""
+"operation +: Warning adding a matrix with the empty matrix old behaviour.\n"
+msgstr ""
+
+msgid ""
+"operation +: Warning adding a matrix with the empty matrix will give an "
+"empty matrix result.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"
+msgstr ""
+
+msgid "With NaN or Inf a division by scalar expected.\n"
+msgstr ""
+
+msgid "Division by zero...\n"
+msgstr "Division durch Null...\n"
+
+msgid "Warning : Division by zero...\n"
+msgstr "Warnung: Division durch Null...\n"
+
+#, c-format
+msgid "Operator / : Error %d not yet managed.\n"
+msgstr ""
+
+msgid "Warning : division by zero...\n"
+msgstr "Warnung: Division durch Null...\n"
+
+msgid "Bad value in the left or right operand.\n"
+msgstr ""
+
+msgid "Bad size for left or right operand.\n"
+msgstr ""
+
+msgid "Bad value in the left operand.\n"
+msgstr ""
+
+msgid "With NaN or Inf a left division by scalar expected.\n"
+msgstr ""
+
+msgid "Left division by zero...\n"
+msgstr ""
+
+msgid "Warning : Left division by zero...\n"
+msgstr ""
+
+#, c-format
+msgid "Operator \\ : Error %d not yet managed.\n"
+msgstr ""
+
+#
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 67
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 138
+msgid "Invalid exponent: expected finite integer exponents.\n"
+msgstr ""
+
+msgid "Invalid exponent.\n"
+msgstr ""
+
+msgid ""
+"operation -: Warning adding a matrix with the empty matrix old behaviour.\n"
+msgstr ""
+
+msgid ""
+"operation -: Warning adding a matrix with the empty matrix will give an "
+"empty matrix result.\n"
+msgstr ""
+
+#, c-format
+msgid "%ls: Cannot open file %ls.\n"
+msgstr ""
+
+msgid "Error: "
+msgstr ""
+
+msgid "Your variables are:"
+msgstr ""
+
+#, c-format
+msgid " using %10d elements out of  %10d.\n"
+msgstr ""
+
+#, c-format
+msgid " and   %10d variables out of %10d.\n"
+msgstr ""
+
+msgid "Your global variables are:"
+msgstr ""
+
+#, c-format
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgstr ""
+
+msgid "in builtin "
+msgstr ""
+
+#, c-format
+msgid "at line % 5d of function "
+msgstr ""
+
+#, c-format
+msgid "at line % 5d of executed string "
+msgstr ""
+
+#, c-format
+msgid "at line % 5d of executed file "
+msgstr ""
+
+msgid "line"
+msgstr ""
+
+msgid "Cannot find Windows temporary directory (1)."
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+#, c-format
+msgid "Impossible to create : %s"
+msgstr ""
+
+#, c-format
+msgid "Error: Could not resolve symbolic link %s\n"
+msgstr ""
+
+#, c-format
+msgid "Error: Could not find %s\n"
+msgstr ""
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr ""
+
+#, c-format
+msgid "Scilab '%s' function disabled in -nogui or -nwni mode.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Library name must not be empty\n"
+"."
+msgstr ""
+
+#, c-format
+msgid "An error has been detected while loading %s: %s\n"
+msgstr ""
+
+#, c-format
+msgid "Impossible to load %s library\n"
+msgstr ""
+
+#, c-format
+msgid "Impossible to load %s function in %s library: %s\n"
+msgstr ""
+
+#, c-format
+msgid "Functions files location : %s.\n"
+msgstr ""
+
+#, c-format
+msgid "Unknown field : %ls.\n"
+msgstr ""
+
+msgid "Unable to insert multiple item in a list.\n"
+msgstr ""
+
+msgid "Index out of bounds.\n"
+msgstr ""
+
+msgid "Wrong number of input arguments: This function has no input argument.\n"
+msgstr ""
+
+msgid "Wrong number of input arguments.\n"
+msgstr ""
+
+#, c-format
+msgid "Undefined variable '%s' in function '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr ""
+
+#, c-format
+msgid "Unable to open : %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Warning : please rename your overloaded function\n"
+" \"%s\" to \"%s\"\n"
+msgstr ""
+
+#, c-format
+msgid "check or define function %s for overloading.\n"
+msgstr ""
+
+msgid "Undefined operation for the given operands.\n"
+msgstr ""
+
+#, c-format
+msgid "  check arguments or define function %s for overloading.\n"
+msgstr ""
+
+msgid "Function not defined for given argument type(s),\n"
+msgstr ""
+
+msgid "Input arguments should have the same formal variable name.\n"
+msgstr ""
+
+#, c-format
+msgid "Can not allocate negative size (%d).\n"
+msgstr ""
+
+#, c-format
+msgid "Can not allocate %.2f MB memory.\n"
+msgstr ""
+
+msgid "Unable to insert multiple item in a struct.\n"
+msgstr ""
+
+msgid "Assignment between unlike types is not allowed.\n"
+msgstr ""
+
+msgid "Can not allocate data.\n"
+msgstr ""
+
+#, c-format
+msgid "Field \"%ls\" does not exists\n"
+msgstr ""
+
+#, c-format
+msgid "variable size exceeded : less than %d expected.\n"
+msgstr ""

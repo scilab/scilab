@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -19,19 +19,19 @@
         <refpurpose>Escrita em arquivo formatado</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>write(file-desc,a,[format])
             write(file-desc,a,k,format)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>file-desc</term>
                 <listitem>
                     <para>string especificando o nome do arquivo ou valor inteiro
-                        especificando a unidade lógica (ver file).
+                        especificando a unidade lÃ³gica (ver file).
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,9 +45,9 @@
                 <term>format</term>
                 <listitem>
                     <para>string, especifica um formato "Fortran". Este string deve
-                        começar com um parêntese direito e terminar com um parêntese
-                        esquerdo. Formatos não podem misturar pontos flutuantes, inteiros ou
-                        modo de edição de caractere.
+                        comeÃ§ar com um parÃªntese direito e terminar com um parÃªntese
+                        esquerdo. Formatos nÃ£o podem misturar pontos flutuantes, inteiros ou
+                        modo de ediÃ§Ã£o de caractere.
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,10 +60,10 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>Escreve linha por linha uma matriz de reais ou um vetor coluna de
             strings em um arquivo formatado. Cada linha do argumento
-            <literal>a</literal> começa em uma nova linha do arquivo
+            <literal>a</literal> comeÃ§a em uma nova linha do arquivo
             <literal>file-desc</literal>. Dependendo de <literal>format</literal> uma
             dada linha do argumento <literal>a</literal> pode ser escrita em mais de
             uma linha do arquivo <literal>file-desc</literal>.
@@ -72,17 +72,17 @@
             Exemplos de formatos : <literal>(1x,e10.3,5x,3(f3.0))</literal> ,
             <literal>(10x,a20)</literal> ;
         </para>
-        <para>Veja um livro de Fortran para maior precisão.</para>
+        <para>Veja um livro de Fortran para maior precisÃ£o.</para>
         <para>Arquivos de acesso direto :
             <literal>x=write(file_desc,a,k,format)</literal>. Aqui
-            <literal>k</literal> é o vetor de gravações (uma gravação por linha, i.e.
+            <literal>k</literal> Ã© o vetor de gravaÃ§Ãµes (uma gravaÃ§Ã£o por linha, i.e.
             <literal>m=prod(size(k)</literal>)
         </para>
         <para>
             <literal>write(%io(2),....)</literal> escreve em uma janela do
             Scilab. Note que neste caso <literal>format</literal> deve produzir uma
-            linha de saída por linha da matriz. Se esta restrição não for respeitada,
-            um erro imprevisível acontece.
+            linha de saÃ­da por linha da matriz. Se esta restriÃ§Ã£o nÃ£o for respeitada,
+            um erro imprevisÃ­vel acontece.
         </para>
     </refsection>
     <refsection>
@@ -102,7 +102,7 @@ write('foo',A)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="file">file</link>

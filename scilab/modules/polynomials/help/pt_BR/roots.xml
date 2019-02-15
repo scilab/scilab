@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -16,22 +16,22 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="roots" xml:lang="pt">
     <refnamediv>
         <refname>roots</refname>
-        <refpurpose>raízes de polinômios</refpurpose>
+        <refpurpose>raÃ­zes de polinÃ´mios</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[x]=roots(p)
             [x]=roots(p,'e')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>polinômio com coeficientes reais ou complexos ou vetor dos
-                        coeficientes do polinômio em ordem de graus decrescentes (para
+                    <para>polinÃ´mio com coeficientes reais ou complexos ou vetor dos
+                        coeficientes do polinÃ´mio em ordem de graus decrescentes (para
                         compatibilidade com o Matlab).
                     </para>
                 </listitem>
@@ -39,13 +39,13 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>x=roots(p)</literal> retorna no vetor de complexos
-            <literal>x</literal> as raízes do polinômio <literal>p</literal>. Para
-            polinômios reais de grau&lt;= 100 o algoritmo rápido RPOLY é utilizado. Em
-            outros casos, as raízes são computadas como os autovalores da matriz
-            companheira associada. Use <literal>x=roots(p,'e')</literal> para forçar
+            <literal>x</literal> as raÃ­zes do polinÃ´mio <literal>p</literal>. Para
+            polinÃ´mios reais de grau&lt;= 100 o algoritmo rÃ¡pido RPOLY Ã© utilizado. Em
+            outros casos, as raÃ­zes sÃ£o computadas como os autovalores da matriz
+            companheira associada. Use <literal>x=roots(p,'e')</literal> para forÃ§ar
             este algoritmo em qualquer caso.
         </para>
     </refsection>
@@ -54,12 +54,12 @@
         <programlisting role="example"><![CDATA[
 p=poly([0,10,1+%i,1-%i],'x');
 roots(p)
-A=rand(3,3);roots(poly(A,'x'))    // avaliações por polinômios característicos
+A=rand(3,3);roots(poly(A,'x'))    // avaliaÃ§Ãµes por polinÃ´mios caracterÃ­sticos
 spec(A)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="poly">poly</link>
@@ -74,15 +74,15 @@ spec(A)
     </refsection>
     <refsection>
         <title>References</title>
-        <para>O algoritmo RPOLY é descrito em "Algorithm 493: Zeros of a Real
-            Polynomial", ACM TOMS Volume 1, edição 2 (Junho 1975), pp. 178-189
+        <para>O algoritmo RPOLY Ã© descrito em "Algorithm 493: Zeros of a Real
+            Polynomial", ACM TOMS Volume 1, ediÃ§Ã£o 2 (Junho 1975), pp. 178-189
         </para>
         <para>Jenkins, M. A. e Traub, J. F. (1970), A Three-Stage Algorithm for
             Real Polynomials Using Quadratic Iteration, SIAM J. Numer. Anal., 7(1970),
             545-566.
         </para>
         <para>Jenkins, M. A. e Traub, J. F. (1970), Principles for Testing
-            Polynomial Zerofinding Programs. ACM TOMS 1, 1 (Março1975), pp.
+            Polynomial Zerofinding Programs. ACM TOMS 1, 1 (MarÃ§o1975), pp.
             26-34
         </para>
     </refsection>

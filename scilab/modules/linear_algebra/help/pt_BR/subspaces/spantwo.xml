@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,48 +16,48 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="spantwo" xml:lang="pt">
     <refnamediv>
         <refname>spantwo</refname>
-        <refpurpose>soma e interseção de subespaços</refpurpose>
+        <refpurpose>soma e interseÃ§Ã£o de subespaÃ§os</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[Xp,dima,dimb,dim]=spantwo(A,B, [tol])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A, B</term>
                 <listitem>
-                    <para>duas matrizes de reais ou complexos com igual número de linhas
+                    <para>duas matrizes de reais ou complexos com igual nÃºmero de linhas
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Xp</term>
                 <listitem>
-                    <para>matriz quadrada não-singular </para>
+                    <para>matriz quadrada nÃ£o-singular </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>dima, dimb, dim</term>
                 <listitem>
-                    <para>inteiros, dimensões dos subespaços </para>
+                    <para>inteiros, dimensÃµes dos subespaÃ§os </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>número real não-negativo</para>
+                    <para>nÃºmero real nÃ£o-negativo</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             Dadas duas matrizes <literal>A</literal> e <literal>B</literal> com
-            o mesmo número de linhas, retorna uma matriz quadrada
-            <literal>Xp</literal> (não-singular, mas não necessariamente ortogonal)
+            o mesmo nÃºmero de linhas, retorna uma matriz quadrada
+            <literal>Xp</literal> (nÃ£o-singular, mas nÃ£o necessariamente ortogonal)
             tal que :
         </para>
         <programlisting role=""><![CDATA[
@@ -71,8 +71,8 @@ Xp*[A,B]=[A2,B2]    (dima+dimb-dim linhas)
             <literal>inv(Xp)</literal> geram Im(<literal>A</literal>).
         </para>
         <para>
-            As colunas de <literal>dim-dimb+1</literal> até
-            <literal>dima</literal> de <literal>inv(Xp)</literal> geram a interseção
+            As colunas de <literal>dim-dimb+1</literal> atÃ©
+            <literal>dima</literal> de <literal>inv(Xp)</literal> geram a interseÃ§Ã£o
             de Im(A) e Im(B).
         </para>
         <para>
@@ -81,7 +81,7 @@ Xp*[A,B]=[A2,B2]    (dima+dimb-dim linhas)
             Im(<literal>A</literal>)+Im(<literal>B</literal>).
         </para>
         <para>
-            As colunas de <literal>dim-dimb+1</literal> até
+            As colunas de <literal>dim-dimb+1</literal> atÃ©
             <literal>dim</literal> de <literal>inv(Xp)</literal> geram
             Im(<literal>B</literal>).
         </para>
@@ -102,14 +102,14 @@ A=[1,0,0,4;
    0,0,0,16];
 B=[1,2,0,0]';C=[4,0,0,1];
 Sl=ss2ss(syslin('c',A,B,C),rand(A));
-[no,X]=contr(Sl('A'),Sl('B'));CO=X(:,1:no);  //Parte controlável
-[uo,Y]=unobs(Sl('A'),Sl('C'));UO=Y(:,1:uo);  //Parte inobservável
-[Xp,dimc,dimu,dim]=spantwo(CO,UO);    //Decomposição de Kalman
+[no,X]=contr(Sl('A'),Sl('B'));CO=X(:,1:no);  //Parte controlÃ¡vel
+[uo,Y]=unobs(Sl('A'),Sl('C'));UO=Y(:,1:uo);  //Parte inobservÃ¡vel
+[Xp,dimc,dimu,dim]=spantwo(CO,UO);    //DecomposiÃ§Ã£o de Kalman
 Slcan=ss2ss(Sl,inv(Xp));
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="spanplus">spanplus</link>

@@ -63,7 +63,7 @@
                     <xref linkend="Seealso_AFFICH_m">See also</xref>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
 
     <refsection id="Description_AFFICH_m">
@@ -137,7 +137,7 @@
                 <para> Properties : Type 'vec' of size 1</para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
     <refsection id="Defaultproperties_AFFICH_m">
         <title>Default properties</title>
@@ -202,25 +202,7 @@
                 </para>
             </listitem>
         </itemizedlist>
-		<para/>
-    </refsection>
-    <refsection id="Interfacingfunction_AFFICH_m">
-        <title>Interfacing function</title>
-        <itemizedlist>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/macros/Sinks/AFFICH_m.sci</para>
-            </listitem>
-        </itemizedlist>
-		<para/>
-    </refsection>
-    <refsection id="Computationalfunction_AFFICH_m">
-        <title>Computational function</title>
-        <itemizedlist>
-            <listitem>
-                <para> SCI/modules/scicos_blocks/src/fortran/affich2.f (Type 0)</para>
-            </listitem>
-        </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
     <refsection id="Example_AFFICH_m">
         <title>Example</title>
@@ -231,6 +213,29 @@
                 </imageobject>
             </inlinemediaobject>
         </link>
+    </refsection>
+    <refsection id="Interfacingfunction_AFFICH_m">
+        <title>Interfacing function</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/Sinks/AFFICH_m.sci</para>
+            </listitem>
+        </itemizedlist>
+        <para/>
+    </refsection>
+    <refsection id="Computationalfunction_AFFICH_m">
+        <title>Computational functions</title>
+        <itemizedlist>
+            <listitem>
+                SCI/modules/scicos_blocks/src/cpp/affich2.cpp
+            </listitem>
+            <listitem>
+                SCI/modules/scicos_blocks/src/jni/AfficheBlock.cpp (SWIG generated)
+            </listitem>
+            <listitem>
+                SCI/modules/xcos/src/java/org/scilab/modules/xcos/block/AfficheBlock.java
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection id="Seealso_AFFICH_m" role="see also">
         <title>See also</title>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -19,42 +19,42 @@
         <refpurpose>forma hermitiana</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[Ar,U]=hermit(A)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>matriz de polinômios </para>
+                    <para>matriz de polinÃ´mios </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Ar</term>
                 <listitem>
-                    <para>matriz de polinômios triangular </para>
+                    <para>matriz de polinÃ´mios triangular </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>U</term>
                 <listitem>
-                    <para>matriz de polinômios unimodular</para>
+                    <para>matriz de polinÃ´mios unimodular</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Forma hermitiana: <literal>U</literal> é uma matriz unimodular tal
-            que <literal>A*U</literal> está na forma triangular de Hermite:
+            Forma hermitiana: <literal>U</literal> Ã© uma matriz unimodular tal
+            que <literal>A*U</literal> estÃ¡ na forma triangular de Hermite:
         </para>
         <para>
-            A variável de saída é <literal>Ar=A*U</literal>.
+            A variÃ¡vel de saÃ­da Ã© <literal>Ar=A*U</literal>.
         </para>
-        <para>Aviso: versão experimental</para>
+        <para>Aviso: versÃ£o experimental</para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -66,7 +66,7 @@ clean(p'*p*U), det(U)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="hrmt">hrmt</link>

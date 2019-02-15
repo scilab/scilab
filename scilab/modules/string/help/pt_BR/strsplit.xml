@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -19,11 +19,11 @@
         <refpurpose>divide um string em um vetor de strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>v = strsplit(str,ind)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>str</term>
@@ -34,7 +34,7 @@
             <varlistentry>
                 <term>ind</term>
                 <listitem>
-                    <para>um vetor de índices estritamente crescentes no intervalo
+                    <para>um vetor de Ã­ndices estritamente crescentes no intervalo
                         <literal>[1 length(str)-1] </literal>.
                     </para>
                 </listitem>
@@ -42,7 +42,7 @@
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>o vetor coluna resultante de strings (dimensão
+                    <para>o vetor coluna resultante de strings (dimensÃ£o
                         <literal>size(ind,'*')+1 </literal>).
                     </para>
                 </listitem>
@@ -50,12 +50,12 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>v= strsplit(str,ind)</literal> divide o string
             <literal>str</literal> em um vetor de strings nos pontos dados pelos
-            índices em <literal>ind</literal> (após cada caractere apontado pelo
-            índice em ind).
+            Ã­ndices em <literal>ind</literal> (apÃ³s cada caractere apontado pelo
+            Ã­ndice em ind).
         </para>
     </refsection>
     <refsection>
@@ -67,7 +67,7 @@ ind=strindex(S,' ')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strcat"> strcat</link>

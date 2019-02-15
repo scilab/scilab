@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="int3d" xml:lang="pt">
     <refnamediv>
         <refname>int3d</refname>
-        <refpurpose>integral definida 3d pelo método da quadratura e
+        <refpurpose>integral definida 3d pelo mÃ©todo da quadratura e
             cubatura
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[result,err]=int3d(X,Y,Z,f [,nf[,params]])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
                     <para>
                         um array 4 por <literal>NUMTET</literal> contendo as abscissas
-                        dos vértices dos <literal>NUMTET</literal> tetraedros.
+                        dos vÃ©rtices dos <literal>NUMTET</literal> tetraedros.
                     </para>
                 </listitem>
             </varlistentry>
@@ -27,7 +27,7 @@
                 <listitem>
                     <para>
                         um array 4 por <literal>NUMTET</literal> contendo as ordenadas
-                        dos vértices dos <literal>NUMTET</literal> tetraedros.
+                        dos vÃ©rtices dos <literal>NUMTET</literal> tetraedros.
                     </para>
                 </listitem>
             </varlistentry>
@@ -36,7 +36,7 @@
                 <listitem>
                     <para>
                         um array 4 por <literal>NUMTET</literal> contendo as terceiras
-                        coordenadas dos vértices dos <literal>NUMTET</literal>
+                        coordenadas dos vÃ©rtices dos <literal>NUMTET</literal>
                         tetraedros.
                     </para>
                 </listitem>
@@ -44,17 +44,17 @@
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>função externa (function, string ou lista) definindo o
+                    <para>funÃ§Ã£o externa (function, string ou lista) definindo o
                         integrando <literal>f(xyz,nf)</literal>, onde <literal>xyz</literal>
-                        é o vetor das coordenadas de um ponto e nf os números das
-                        funções
+                        Ã© o vetor das coordenadas de um ponto e nf os nÃºmeros das
+                        funÃ§Ãµes
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>nf</term>
                 <listitem>
-                    <para>o número da função a ser integrada (o padrão é 1)</para>
+                    <para>o nÃºmero da funÃ§Ã£o a ser integrada (o padrÃ£o Ã© 1)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -64,7 +64,7 @@
                         vetor de reais <literal>[minpts, maxpts, epsabs,
                             epsrel]
                         </literal>
-                        .O valor padrão é <literal>[0, 1000, 0.0,
+                        .O valor padrÃ£o Ã© <literal>[0, 1000, 0.0,
                             1.d-5]
                         </literal>
                         .
@@ -85,14 +85,14 @@
                         <varlistentry>
                             <term>minpts</term>
                             <listitem>
-                                <para>número mínimo de avaliações da função</para>
+                                <para>nÃºmero mÃ­nimo de avaliaÃ§Ãµes da funÃ§Ã£o</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>maxpts</term>
                             <listitem>
-                                <para>número máximo de avaliações da função. O número de
-                                    avaliações da função sobre cada subregião é 43
+                                <para>nÃºmero mÃ¡ximo de avaliaÃ§Ãµes da funÃ§Ã£o. O nÃºmero de
+                                    avaliaÃ§Ãµes da funÃ§Ã£o sobre cada subregiÃ£o Ã© 43
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -114,63 +114,63 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>A função calcula uma aproximação a um dado vetor de integrais
+        <title>DescriÃ§Ã£o</title>
+        <para>A funÃ§Ã£o calcula uma aproximaÃ§Ã£o a um dado vetor de integrais
             definidas
         </para>
         <programlisting role="no-scilab-exec"><![CDATA[
 I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
           1  2      numfun
  ]]></programlisting>
-        <para>onde a região de integração são os NUMTET tetraedros e onde</para>
+        <para>onde a regiÃ£o de integraÃ§Ã£o sÃ£o os NUMTET tetraedros e onde</para>
         <programlisting role="no-scilab-exec"><![CDATA[
 F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
  J   J
  ]]></programlisting>
-        <para>uma estratégia globalmente adaptativa é aplicada para se computar
-            aproximações <literal>result(k)</literal> esperando-se que satisfaça, para
-            cada componente de I, à seguinte precisão:
+        <para>uma estratÃ©gia globalmente adaptativa Ã© aplicada para se computar
+            aproximaÃ§Ãµes <literal>result(k)</literal> esperando-se que satisfaÃ§a, para
+            cada componente de I, Ã  seguinte precisÃ£o:
             <literal>ABS(I(K)-RESULT(K))&lt;=MAX(EPSABS,EPSREL*ABS(I(K)))</literal>
         </para>
         <para>
             <literal>int3d</literal> repetidamente subdivide os tetraedros com
             maiores erros estimados e estima as integrais e os erros sobre os novos
-            tetraedros até que a exigência de erro seja encontrada ou
-            <literal>MAXPTS</literal> avaliações da função tenham sido feitas.
+            tetraedros atÃ© que a exigÃªncia de erro seja encontrada ou
+            <literal>MAXPTS</literal> avaliaÃ§Ãµes da funÃ§Ã£o tenham sido feitas.
         </para>
-        <para>Uma regra de 43 pontos de integração com todos os pontos de
-            avaliação dentro dos tetraedros é aplicada. A regra tem grau polinomial
+        <para>Uma regra de 43 pontos de integraÃ§Ã£o com todos os pontos de
+            avaliaÃ§Ã£o dentro dos tetraedros Ã© aplicada. A regra tem grau polinomial
             8.
         </para>
         <para>
-            Se os valores dos parâmetros de entrada <literal>EPSABS</literal> ou
-            <literal>EPSREL</literal> são suficientemente grandes, uma regra de
-            integração é aplicada sobre cada tetraedro e os valores são aproximados
-            para se fornecer as aproximações <literal>RESULT(K)</literal>. Nenhuma
-            subdivisão posterior dos tetraedros será feita.
+            Se os valores dos parÃ¢metros de entrada <literal>EPSABS</literal> ou
+            <literal>EPSREL</literal> sÃ£o suficientemente grandes, uma regra de
+            integraÃ§Ã£o Ã© aplicada sobre cada tetraedro e os valores sÃ£o aproximados
+            para se fornecer as aproximaÃ§Ãµes <literal>RESULT(K)</literal>. Nenhuma
+            subdivisÃ£o posterior dos tetraedros serÃ¡ feita.
         </para>
         <para>
             Quando <literal>int3d</literal> computa estimativas a um vetor de
-            integrais, é dado tratamento igual a todos os componentes do vetor. Isto
-            é, <literal>I(Fj)</literal> e <literal>I(Fk)</literal> para<literal>
+            integrais, Ã© dado tratamento igual a todos os componentes do vetor. Isto
+            Ã©, <literal>I(Fj)</literal> e <literal>I(Fk)</literal> para<literal>
                 j
             </literal>
-            diferente de <literal>k</literal>, são estimados com a mesma
-            subdivisão da região de integração. Para integrais suficientemente
+            diferente de <literal>k</literal>, sÃ£o estimados com a mesma
+            subdivisÃ£o da regiÃ£o de integraÃ§Ã£o. Para integrais suficientemente
             semelhantes, podemos economizar tempo aplicando <literal>int3d</literal> a
             todos os integrando em uma chamada. Para integrais que variam
-            continuamente em função de um parâmetro, as estimativas produzidas por
-            <literal>int3d</literal> também irão variar continuamente quando a
-            subdivisão é aplicada a todos os componentes. Este geralmente não será o
-            caso quando componentes diferentes são tratados separadamente.
+            continuamente em funÃ§Ã£o de um parÃ¢metro, as estimativas produzidas por
+            <literal>int3d</literal> tambÃ©m irÃ£o variar continuamente quando a
+            subdivisÃ£o Ã© aplicada a todos os componentes. Este geralmente nÃ£o serÃ¡ o
+            caso quando componentes diferentes sÃ£o tratados separadamente.
         </para>
         <para>Por outro lado, este recurso deve ser utilizado com cautela quando
-            os componentes diferentes da integral requerem claramente subdivisões
+            os componentes diferentes da integral requerem claramente subdivisÃµes
             diferentes.
         </para>
     </refsection>
     <refsection>
-        <title>Referências</title>
+        <title>ReferÃªncias</title>
         <para>Rotina FORTRAN dcutet.f</para>
     </refsection>
     <refsection>
@@ -183,7 +183,7 @@ Z=[0;0;0;1];
 // computa o integrando exp(x*x+y*y+z*z) sobre o
 //tetraedro (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
 
- //integração sobre um cubo  -1<=x<=1;-1<=y<=1;-1<=z<=1
+ //integraÃ§Ã£o sobre um cubo  -1<=x<=1;-1<=y<=1;-1<=z<=1
 
 //  fundo  -topo-    direita -esquerda- frente  -traseira-
 X=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;
@@ -207,7 +207,7 @@ function v=f(xyz,numfun),v=1,endfunction
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="intc">intc</link>

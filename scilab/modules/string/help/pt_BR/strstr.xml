@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
@@ -19,11 +19,11 @@
         <refpurpose>localiza sub-strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>res = strstr(haystack,needle)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>haystack</term>
@@ -46,24 +46,24 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>res = strstr(haystack,needle)</literal> retorna uma matriz
-            de strings começando onde da primeira ocorrência de needle em haystack até
-            o fim de haystack, ou '' se needle não é parte de haystack.
+            de strings comeÃ§ando onde da primeira ocorrÃªncia de needle em haystack atÃ©
+            o fim de haystack, ou '' se needle nÃ£o Ã© parte de haystack.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-strstr('Este é um string simples','simples')
-strstr('Este é um string simples','samples')
-strstr(['Este é um string simples','no scilab'],'é')
-strstr(['Este é um string simples','no scilab'],['um','scilab'])
+strstr('Este Ã© um string simples','simples')
+strstr('Este Ã© um string simples','samples')
+strstr(['Este Ã© um string simples','no scilab'],'Ã©')
+strstr(['Este Ã© um string simples','no scilab'],['um','scilab'])
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="strrchr">strrchr</link>

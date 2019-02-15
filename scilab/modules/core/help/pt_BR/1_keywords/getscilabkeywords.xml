@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -21,11 +21,11 @@
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>list_keywords=getscilabkeywords()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>list_keywords</term>
@@ -36,12 +36,12 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>list_keywords(1) : primitivas</para>
         <para>list_keywords(2) : comandos</para>
-        <para>list_keywords(3) : variáveis predefinidas</para>
-        <para>list_keywords(4) : funções Scilab</para>
-        <para>list_keywords(5) : funções xcos</para>
+        <para>list_keywords(3) : variÃ¡veis predefinidas</para>
+        <para>list_keywords(4) : funÃ§Ãµes Scilab</para>
+        <para>list_keywords(5) : funÃ§Ãµes xcos</para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -56,6 +56,6 @@ xcos_functions = list_keywords(5)
     </refsection>
     <refsection>
         <title>Autores</title>
-        <para>A.C, adaptado do código de Enrico Segre's no Scipad.</para>
+        <para>A.C, adaptado do cÃ³digo de Enrico Segre's no Scipad.</para>
     </refsection>
 </refentry>

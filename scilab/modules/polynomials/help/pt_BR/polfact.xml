@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Serge STEER
@@ -16,19 +16,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="polfact" xml:lang="pt">
     <refnamediv>
         <refname>polfact</refname>
-        <refpurpose>fatores mínimos</refpurpose>
+        <refpurpose>fatores mÃ­nimos</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[f]=polfact(p)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>polinômio </para>
+                    <para>polinÃ´mio </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -48,7 +48,7 @@
                         <varlistentry>
                             <term>fi</term>
                             <listitem>
-                                <para>polinômio</para>
+                                <para>polinÃ´mio</para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
@@ -57,15 +57,15 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            <literal>f=polfact(p)</literal> retorna os valores mínimos de p,
+            <literal>f=polfact(p)</literal> retorna os valores mÃ­nimos de p,
             i.e., <literal>f=[f0 f1 ... fn]</literal> tal que
             <literal>p=prod(f)</literal>
         </para>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="lcm">lcm</link>

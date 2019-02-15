@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -19,13 +19,13 @@
         <refpurpose>Retorna o manipulador da figura corrente</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>f = gdf()
             f = get("default_figure")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>f</term>
@@ -36,18 +36,18 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>A figura padrão é uma entidade gráfica (entidade Figure) que nunca é
-            desenhada. É usada como referência para os valores padrões das
-            propriedades da figura. Estes valores padrões são utilizados para iniciar
+        <title>DescriÃ§Ã£o</title>
+        <para>A figura padrÃ£o Ã© uma entidade grÃ¡fica (entidade Figure) que nunca Ã©
+            desenhada. Ã‰ usada como referÃªncia para os valores padrÃµes das
+            propriedades da figura. Estes valores padrÃµes sÃ£o utilizados para iniciar
             novas figuras.
         </para>
         <para>
-            A função <literal>gdf</literal> retorna o manipulador da figura
-            corrente. O usuário pode utilizar este manipulador para ajustar ou obter
-            os valores padrões das propriedades da figura.
+            A funÃ§Ã£o <literal>gdf</literal> retorna o manipulador da figura
+            corrente. O usuÃ¡rio pode utilizar este manipulador para ajustar ou obter
+            os valores padrÃµes das propriedades da figura.
         </para>
-        <para>Note que uma entidade gráfica padrão equivalente também existe para
+        <para>Note que uma entidade grÃ¡fica padrÃ£o equivalente tambÃ©m existe para
             entidades Axes (de eixos) (ver <literal>gda</literal>).
         </para>
     </refsection>
@@ -65,14 +65,14 @@ f.axes_size=[600 400];
 plot2d() //criando uma figura
 scf(1);
 plot3d() //criando uma segunda figura
-set(f,"default_values",1); // retornando para os valores padrões do modelo da figura
-                           // ver a função sdf()
+set(f,"default_values",1); // retornando para os valores padrÃµes do modelo da figura
+                           // ver a funÃ§Ã£o sdf()
 scf(2);
 plot2d()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="gda">gda</link>

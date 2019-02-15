@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="clearfun" xml:lang="pt">
     <refnamediv>
         <refname>clearfun</refname>
-        <refpurpose>remove função primitiva</refpurpose>
+        <refpurpose>remove funÃ§Ã£o primitiva</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>ret=clearfun('name')</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>clearfun('name')</literal> remove a primitiva
-            <literal>'name'</literal> do conjunto de primitivas (funções built-in).
-            clearfun retorna %t ou %f. Esta função permite renomear uma primitiva :
-            uma primitiva Scilab pode ser substituída por uma função definida pelo
-            usuário. Para usuários experientes...
+            <literal>'name'</literal> do conjunto de primitivas (funÃ§Ãµes built-in).
+            clearfun retorna %t ou %f. Esta funÃ§Ã£o permite renomear uma primitiva :
+            uma primitiva Scilab pode ser substituÃ­da por uma funÃ§Ã£o definida pelo
+            usuÃ¡rio. Para usuÃ¡rios experientes...
         </para>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="newfun">newfun</link>

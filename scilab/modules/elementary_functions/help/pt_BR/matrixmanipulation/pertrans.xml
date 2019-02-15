@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
         <refpurpose>matriz pertransposta</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[Y]=pertrans(X)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
@@ -40,11 +40,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>Y=pertrans(X)</literal> retorna a matriz pertransposta de
-            <literal>X</literal>, i.e. a matriz simétrica a <literal>X</literal> em
-            relação à segunda diagonal (função utilitária).
+            <literal>X</literal>, i.e. a matriz simÃ©trica a <literal>X</literal> em
+            relaÃ§Ã£o Ã  segunda diagonal (funÃ§Ã£o utilitÃ¡ria).
         </para>
     </refsection>
     <refsection>

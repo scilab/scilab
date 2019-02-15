@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -19,9 +19,9 @@
         <refpurpose>description of the grayplot entities properties</refpurpose>
     </refnamediv>
     <refsection>
-        <title>Descrição</title>
-        <para>A entidade Grayplot é uma folha na hierarquia de entidades gráficas.
-            Representa esboços 2d de superfícies utilizando cores e imagens (ver
+        <title>DescriÃ§Ã£o</title>
+        <para>A entidade Grayplot Ã© uma folha na hierarquia de entidades grÃ¡ficas.
+            Representa esboÃ§os 2d de superfÃ­cies utilizando cores e imagens (ver
             <literal>grayplot</literal>, <literal>Sgrayplot</literal>,
             <literal>fgrayplot</literal> e <literal>Sfgrayplot</literal>).
         </para>
@@ -29,7 +29,7 @@
             <varlistentry>
                 <term>parent:</term>
                 <listitem>
-                    <para>esta propriedade contém o manipulador para a raiz. A raiz de
+                    <para>esta propriedade contÃ©m o manipulador para a raiz. A raiz de
                         uma entidade grayplot deve ser do tipo
                         <literal>"Axes"</literal>.
                     </para>
@@ -38,8 +38,8 @@
             <varlistentry>
                 <term>children:</term>
                 <listitem>
-                    <para> esta propriedade contém um vetor com os galhos do
-                        manipulador. Contudo, manipuladores grayplot não possuem galhos
+                    <para> esta propriedade contÃ©m um vetor com os galhos do
+                        manipulador. Contudo, manipuladores grayplot nÃ£o possuem galhos
                         correntemente.
                     </para>
                 </listitem>
@@ -47,12 +47,12 @@
             <varlistentry>
                 <term>visible:</term>
                 <listitem>
-                    <para>este campo contém o valor da propriedade
+                    <para>este campo contÃ©m o valor da propriedade
                         <literal>visible</literal> para a entidade. Pode ser <literal>"on"
                         </literal>
-                        ou <literal>"off"</literal> . Por padrão, o grayplot é
-                        visível, a propriedade é <literal>"on"</literal>. Se
-                        <literal>"off"</literal> o grayplot não é exibido na tela.
+                        ou <literal>"off"</literal> . Por padrÃ£o, o grayplot Ã©
+                        visÃ­vel, a propriedade Ã© <literal>"on"</literal>. Se
+                        <literal>"off"</literal> o grayplot nÃ£o Ã© exibido na tela.
                     </para>
                 </listitem>
             </varlistentry>
@@ -61,19 +61,19 @@
                 <listitem>
                     <para>este campo define uma estrutura de dados do tipo
                         <literal>tlist</literal> de tipo <literal>"grayplotdata"</literal>
-                        composto de uma linha e índices de colunas de cada elemento: as
-                        coordenadas do grid x e y estão contidas respectivamente em
+                        composto de uma linha e Ã­ndices de colunas de cada elemento: as
+                        coordenadas do grid x e y estÃ£o contidas respectivamente em
                         <literal>data.x</literal> e <literal>data.y</literal>. O campo
-                        complementar chamado <literal>data.z</literal> é o valor da
-                        superfície no ponto <literal>(x(i),y(j))</literal> (modo escalado)
-                        ou o valor centrado da superfície definido entre dois pontos
+                        complementar chamado <literal>data.z</literal> Ã© o valor da
+                        superfÃ­cie no ponto <literal>(x(i),y(j))</literal> (modo escalado)
+                        ou o valor centrado da superfÃ­cie definido entre dois pontos
                         consecutivos <literal>x(i)</literal> e <literal>y(j)</literal> (modo
                         direto). Se <literal>data_mapping</literal> (ver abaixo) for
-                        ajustado para <literal>"scaled"</literal>, todo o dado z é utilizado
-                        para realizar uma interpolação de cores, enquanto que, se o valor de
+                        ajustado para <literal>"scaled"</literal>, todo o dado z Ã© utilizado
+                        para realizar uma interpolaÃ§Ã£o de cores, enquanto que, se o valor de
                         <literal>data_mapping</literal> for <literal>"direct"</literal>, a
-                        última linha e coluna dos índices de dados z são ignoradas e a cor é
-                        determinada diretamente no mapa de cores através dos índices da
+                        Ãºltima linha e coluna dos Ã­ndices de dados z sÃ£o ignoradas e a cor Ã©
+                        determinada diretamente no mapa de cores atravÃ©s dos Ã­ndices da
                         submatriz <literal>data.z(1:$-1,1:$-1)</literal>.
                     </para>
                 </listitem>
@@ -81,39 +81,39 @@
             <varlistentry>
                 <term>data_mapping:</term>
                 <listitem>
-                    <para>por padrão, o valor desta propriedade é
-                        <literal>"scaled"</literal> : os índices das cores utilizadas para
-                        colorir são proporcionais ao valor das coordenadas
+                    <para>por padrÃ£o, o valor desta propriedade Ã©
+                        <literal>"scaled"</literal> : os Ã­ndices das cores utilizadas para
+                        colorir sÃ£o proporcionais ao valor das coordenadas
                         <literal>z</literal>. Em outro caso, a propriedade possui valor
-                        <literal>"direct"</literal> onde o esboço é um grayplot e os índices
-                        das cores de pintura são fornecidos pelos dados (ver acima).
+                        <literal>"direct"</literal> onde o esboÃ§o Ã© um grayplot e os Ã­ndices
+                        das cores de pintura sÃ£o fornecidos pelos dados (ver acima).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>clip_state:</term>
                 <listitem>
-                    <para>este campo contém o valor da propriedade
+                    <para>este campo contÃ©m o valor da propriedade
                         <literal>clip_state</literal> para o grayplot. o valor de clip_state
                         pode ser :
                     </para>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>"off"</literal> significa que o grayplot não é
+                                <literal>"off"</literal> significa que o grayplot nÃ£o Ã©
                                 recortado.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>"clipgrf"</literal> significa que o grayplot é
+                                <literal>"clipgrf"</literal> significa que o grayplot Ã©
                                 recortado fora da caixa dos eixos.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>"on"</literal> significa que o grayplot é
-                                recortado fora do retângulo dado pela propriedade
+                                <literal>"on"</literal> significa que o grayplot Ã©
+                                recortado fora do retÃ¢ngulo dado pela propriedade
                                 clip_box.
                             </para>
                         </listitem>
@@ -125,11 +125,11 @@
                 <listitem>
                     <para>
                         este campo determina a propriedade <literal>clip_box</literal>
-                        . Por padrão seu valor é uma matriz vazia se a propriedade
-                        clip_state é "off". Em outros casos, o vetor
+                        . Por padrÃ£o seu valor Ã© uma matriz vazia se a propriedade
+                        clip_state Ã© "off". Em outros casos, o vetor
                         <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura,
-                        altura) define as porções do retângulo a ser exibido, contudo o
-                        valor da propriedade <literal>clip_state</literal> será
+                        altura) define as porÃ§Ãµes do retÃ¢ngulo a ser exibido, contudo o
+                        valor da propriedade <literal>clip_state</literal> serÃ¡
                         alterado.
                     </para>
                 </listitem>
@@ -137,9 +137,9 @@
             <varlistentry>
                 <term>user_data:</term>
                 <listitem>
-                    <para>este campo pode ser utilizado para armazenar qualquer variável
+                    <para>este campo pode ser utilizado para armazenar qualquer variÃ¡vel
                         Scilab na estrutura de dados da entidade grayplot e
-                        recuperá-la.
+                        recuperÃ¡-la.
                     </para>
                 </listitem>
             </varlistentry>
@@ -158,7 +158,7 @@ h=a.children
 
 h.data_mapping="direct";
 
-// um esboço 2D de uma matriz utilizando cores
+// um esboÃ§o 2D de uma matriz utilizando cores
 clf()
 a=get("current_axes");
 a.data_bounds=  [0,0;4,4];
@@ -174,7 +174,7 @@ end
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="set">set</link>

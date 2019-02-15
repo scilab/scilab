@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,13 +19,13 @@
         <refpurpose>Laurent coefficients of matrix pencil</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[Si,Pi,Di,order]=penlaur(Fs)
             [Si,Pi,Di,order]=penlaur(E,A)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>Fs</term>
@@ -44,7 +44,7 @@
             <varlistentry>
                 <term>Si,Pi,Di</term>
                 <listitem>
-                    <para>três matrizes quadradas de reais </para>
+                    <para>trÃªs matrizes quadradas de reais </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -56,7 +56,7 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>penlaur</literal> computa os primeiros coeficientes de
             Laurent de <literal>(s*E-A)^-1</literal> no infinito.
@@ -67,35 +67,35 @@
         </para>
         <para>
             <literal>order</literal> = ordem da singularidade
-            (ordem=índice-1).
+            (ordem=Ã­ndice-1).
         </para>
         <para>
             O feixe de matrizes <literal>Fs=s*E-A</literal> deve ser
-            invertível.
+            invertÃ­vel.
         </para>
         <para>
-            Para um feixe de índice 0, <literal>Pi, Di,...</literal> são zero e
+            Para um feixe de Ã­ndice 0, <literal>Pi, Di,...</literal> sÃ£o zero e
             <literal>Si=inv(E)</literal>.
         </para>
         <para>
-            Para um feixe de índice 1 (order=0),<literal>Di</literal> =0.
+            Para um feixe de Ã­ndice 1 (order=0),<literal>Di</literal> =0.
         </para>
         <para>
-            Para feixes de índices maiores, os termos <literal> -s^2 Di(2), -s^3
+            Para feixes de Ã­ndices maiores, os termos <literal> -s^2 Di(2), -s^3
                 Di(3),...
             </literal>
-            são dados por:
+            sÃ£o dados por:
         </para>
         <para>
             <literal> Di(2)=Di*A*Di</literal>, <literal>
                 Di(3)=Di*A*Di*A*Di
             </literal>
-            (até <literal>Di(order)</literal>).
+            (atÃ© <literal>Di(order)</literal>).
         </para>
     </refsection>
     <refsection>
-        <title>Observação</title>
-        <para>Versão experimental: há problemas quando se tem mal-condicionamento
+        <title>ObservaÃ§Ã£o</title>
+        <para>VersÃ£o experimental: hÃ¡ problemas quando se tem mal-condicionamento
             de<literal>so*E-A</literal>
         </para>
     </refsection>
@@ -110,7 +110,7 @@ norm(coeff(Bis,1)-Di,1)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
             <member>
                 <link linkend="glever">glever</link>

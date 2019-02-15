@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2018-03-26 10:40+0100\n"
+"Revision-Date: 2019-01-23 12:13+0100\n"
 
 # File: modules/boolean/sci_gateway/cpp/sci_and.cpp, line: 49
 # File: modules/boolean/sci_gateway/cpp/sci_or.cpp, line: 45
@@ -27,7 +27,7 @@ msgstr ""
 # File: modules/boolean/sci_gateway/cpp/sci_and.cpp, line: 55
 # File: modules/boolean/sci_gateway/cpp/sci_or.cpp, line: 51
 #, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #

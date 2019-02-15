@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 22:03+0000\n"
+"PO-Revision-Date: 2019-02-12 22:03+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18573)\n"
+"X-Generator: Launchpad (build 18857)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -123,16 +123,22 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
 "%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgstr ""
+
+#
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 163
+# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 180
+#, c-format
+msgid "%s: Invalid index.\n"
 msgstr ""
 
 #, c-format
@@ -171,6 +177,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -292,7 +303,7 @@ msgstr "     ursprüngliche Anzahl der Elemente=%d\n"
 #, c-format
 msgid "     Initial average number of elements per row = %lf\n"
 msgstr ""
-"     ursprüngliche durchschnittliche Anzahl an Elementen per Reihe = %1f\n"
+"     ursprüngliche durchschnittliche Anzahl an Elementen per Reihe = %lf\n"
 
 #, c-format
 msgid "     Fill-ins = %d\n"
@@ -300,7 +311,7 @@ msgstr "     Eintragungen=%d\n"
 
 #, c-format
 msgid "     Average number of fill-ins per row = %lf%%\n"
-msgstr "     Durchschnittliche Anzahl an Eintragungen per Reihe=%1f%%\n"
+msgstr "     Durchschnittliche Anzahl an Eintragungen per Reihe=%lf%%\n"
 
 #, c-format
 msgid "     Total number of elements = %d\n"
@@ -308,7 +319,7 @@ msgstr "     Gesamte Anzahl an Elementen=%d\n"
 
 #, c-format
 msgid "     Average number of elements per row = %lf\n"
-msgstr "     Gesamte Anzahl an Elementen per Reihe=%1f\n"
+msgstr "     Gesamte Anzahl an Elementen per Reihe=%lf\n"
 
 #, c-format
 msgid "     Density = %lf%%\n"

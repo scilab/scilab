@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="mlist" xml:lang="pt">
     <refnamediv>
         <refname>mlist</refname>
-        <refpurpose>objeto Scilab, definição de listas com tipos orientadas
+        <refpurpose>objeto Scilab, definiÃ§Ã£o de listas com tipos orientadas
             matricialmente
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>mlist(typ,a1,....an )</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>typ</term>
@@ -47,34 +47,34 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
-            Objetos mlist são bastante semelhantes a objetos <link linkend="tlist">tlist</link> objects. A única diferença concerne às
-            sintaxes de extração e inserção (<link linkend="extraction">extraction</link> e <link linkend="insertion">insertion</link>): se <literal>M</literal> é uma
-            mlist, para qualquer índice <literal>i</literal> que não é um campo de
-            nome, <literal>M(i)</literal> não é mais o <literal>i</literal>-ésimo
+            Objetos mlist sÃ£o bastante semelhantes a objetos <link linkend="tlist">tlist</link> objects. A Ãºnica diferenÃ§a concerne Ã s
+            sintaxes de extraÃ§Ã£o e inserÃ§Ã£o (<link linkend="extraction">extraction</link> e <link linkend="insertion">insertion</link>): se <literal>M</literal> Ã© uma
+            mlist, para qualquer Ã­ndice <literal>i</literal> que nÃ£o Ã© um campo de
+            nome, <literal>M(i)</literal> nÃ£o Ã© mais o <literal>i</literal>-Ã©simo
             campo da lista
         </para>
-        <para>A semântica da sintaxe de extração e inserção deve ser dada por uma
-            função de (sobrecarga) <link linkend="overloading">overloading</link>.
+        <para>A semÃ¢ntica da sintaxe de extraÃ§Ã£o e inserÃ§Ã£o deve ser dada por uma
+            funÃ§Ã£o de (sobrecarga) <link linkend="overloading">overloading</link>.
         </para>
-        <para>A função de overloading para sintaxe de extração
-            <literal>b=a(i1,...,in)</literal> tem a seguinte seqüência de chamamento:
+        <para>A funÃ§Ã£o de overloading para sintaxe de extraÃ§Ã£o
+            <literal>b=a(i1,...,in)</literal> tem a seguinte seqÃ¼Ãªncia de chamamento:
             <literal>b=%&lt;tipo_de_a&gt;_e_(i1,...,in,a)</literal>
         </para>
         <para>
             e a sintaxe <literal>[x1,..,xm]=a(i1,...,in)</literal> tem a
-            seguinte seqüência de chamamento:
+            seguinte seqÃ¼Ãªncia de chamamento:
             <literal>[x1,..,xm]=%&lt;type_de_a&gt;_e_(i1,...,in,a)</literal>
         </para>
         <para/>
-        <para>A função de overloading associada à sintaxe de inserção
-            <literal>a(i1,...,in)=b</literal> tem a seguinte seqüência de chamamento:
+        <para>A funÃ§Ã£o de overloading associada Ã  sintaxe de inserÃ§Ã£o
+            <literal>a(i1,...,in)=b</literal> tem a seguinte seqÃ¼Ãªncia de chamamento:
             <literal>a=%&lt;type_de_b&gt;_i_&lt;type_de_a&gt;(i1,...,in,b,a)</literal>.
         </para>
         <para/>
-        <para>Os campos de um mlist devem, então, ser designados por seus nomes.
-            Eles também podem ser manipulados usando-se as funções
+        <para>Os campos de um mlist devem, entÃ£o, ser designados por seus nomes.
+            Eles tambÃ©m podem ser manipulados usando-se as funÃ§Ãµes
             <literal>getfield</literal> e <literal>setfield</literal>.
         </para>
     </refsection>
@@ -82,10 +82,10 @@
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
-//Definindo exibição
+//Definindo exibiÃ§Ã£o
 function %V_p(M),disp(M.name+':'+string(M.value)),endfunction
 
-//Definindo operação de extração
+//Definindo operaÃ§Ã£o de extraÃ§Ã£o
 function r=%V_e(varargin)
   M=varargin($)
   r=mlist(['V','name','value'],M.name(varargin(1:$-1)),M.value(varargin(1:$-1)))
@@ -93,7 +93,7 @@ endfunction
 M(2,:) // a segunda entrada do vetor M
 M.value
 
-//Definindo operações de inserção
+//Definindo operaÃ§Ãµes de inserÃ§Ã£o
 function M=%V_i_V(varargin)
   M=varargin($)
   N=varargin($-1)
@@ -102,7 +102,7 @@ function M=%V_i_V(varargin)
 endfunction
 M(1,1)=M(2,2)
 
-function M=%s_i_V(varargin) //inserção de uma matriz regular em uma matriz V
+function M=%s_i_V(varargin) //inserÃ§Ã£o de uma matriz regular em uma matriz V
   M=varargin($)
   N=varargin($-1)
   M.value(varargin(1:$-2))=N
@@ -119,7 +119,7 @@ M('name')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="tlist">tlist</link>

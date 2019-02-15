@@ -51,8 +51,8 @@ public final class XcosView extends View {
         registeredListeners = new EnumMap<>(Kind.class);
         visibleObjects = new HashMap<Long, Object>();
 
-
-        addXcosViewListener(new UpdateStyleFromInterfunctionAdapter(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION);
+        // FIXME: update the style on mvc interaction, discarded for EDT vs Scilab thread misbehavior
+        // addXcosViewListener(new UpdateStyleFromInterfunctionAdapter(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION);
     }
 
     /**

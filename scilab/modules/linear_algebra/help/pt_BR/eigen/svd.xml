@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,10 +16,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="svd" xml:lang="pt">
     <refnamediv>
         <refname>svd</refname>
-        <refpurpose>decomposição em valores singulares</refpurpose>
+        <refpurpose>decomposiÃ§Ã£o em valores singulares</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>s=svd(X)
             [U,S,V]=svd(X)
             [U,S,V]=svd(X,0) (obsolete)
@@ -28,7 +28,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
@@ -51,7 +51,7 @@
             <varlistentry>
                 <term>U,V</term>
                 <listitem>
-                    <para>matrizes quadradas ortogonais ou unitárias (vetores
+                    <para>matrizes quadradas ortogonais ou unitÃ¡rias (vetores
                         singulares)
                     </para>
                 </listitem>
@@ -59,39 +59,39 @@
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>número real</para>
+                    <para>nÃºmero real</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>[U,S,V] = svd(X)</literal> produz uma matriz diagonal
-            <literal>S</literal> , com dimensão igual a de <literal>X</literal> e com
-            elementos da diagonal não-negativos em ordem decrescente, e matrizes
-            unitárias <literal>U</literal> e <literal>V</literal> tais que <literal>X
+            <literal>S</literal> , com dimensÃ£o igual a de <literal>X</literal> e com
+            elementos da diagonal nÃ£o-negativos em ordem decrescente, e matrizes
+            unitÃ¡rias <literal>U</literal> e <literal>V</literal> tais que <literal>X
                 = U*S*V'
             </literal>
             .
         </para>
         <para>
-            <literal>[U,S,V] = svd(X,0)</literal> produz a decomposição com
-            "economia de tamanho". Se <literal>X</literal> é m-por-n com m &gt; n,
-            então apenas as primeiras n colunas de <literal>U</literal> são computadas
-            e <literal>S</literal> é n-por-n.
+            <literal>[U,S,V] = svd(X,0)</literal> produz a decomposiÃ§Ã£o com
+            "economia de tamanho". Se <literal>X</literal> Ã© m-por-n com m &gt; n,
+            entÃ£o apenas as primeiras n colunas de <literal>U</literal> sÃ£o computadas
+            e <literal>S</literal> Ã© n-por-n.
         </para>
         <para>
             <literal>s= svd(X)</literal> por si mesmo retorna um vetor
             <literal>s</literal> contendo os valores singulares.
         </para>
         <para>
-            <literal>[U,S,V,rk]=svd(X,tol)</literal> fornece também
-            <literal>rk</literal>, o posto numérico de <literal>X</literal> i.e. i.e.
-            o número de valores singulares maiores que <literal>tol</literal>.
+            <literal>[U,S,V,rk]=svd(X,tol)</literal> fornece tambÃ©m
+            <literal>rk</literal>, o posto numÃ©rico de <literal>X</literal> i.e. i.e.
+            o nÃºmero de valores singulares maiores que <literal>tol</literal>.
         </para>
         <para>
-            O valor default de <literal>tol</literal> é o mesmo que em
+            O valor default de <literal>tol</literal> Ã© o mesmo que em
             <literal>rank</literal>.
         </para>
     </refsection>
@@ -104,7 +104,7 @@ sqrt(spec(X*X'))
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também</title>
+        <title> Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="rank">rank</link>
@@ -127,8 +127,8 @@ sqrt(spec(X*X'))
         </simplelist>
     </refsection>
     <refsection>
-        <title> Função Usada </title>
-        <para>Decomposições svd são baseadas nas rotinas Lapack DGESVD para
+        <title> FunÃ§Ã£o Usada </title>
+        <para>DecomposiÃ§Ãµes svd sÃ£o baseadas nas rotinas Lapack DGESVD para
             matrizes de reais e ZGESVD no caso de matrizes de complexos.
         </para>
     </refsection>

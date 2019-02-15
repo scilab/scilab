@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -16,16 +16,16 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="nf3d" xml:lang="pt">
     <refnamediv>
         <refname>nf3d</refname>
-        <refpurpose>Facetas retangulares para parâmetros da função
+        <refpurpose>Facetas retangulares para parÃ¢metros da funÃ§Ã£o
             plot3d
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>[xx,yy,zz]=nf3d(x,y,z)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>x,y,x,xx,yy,zz</term>
@@ -36,9 +36,9 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
-        <para>Função utilitária. Usada para transformar facetas retangulares
-            codificadas em três matrizes x,y e z para o código Scilab para facetas,
+        <title>DescriÃ§Ã£o</title>
+        <para>FunÃ§Ã£o utilitÃ¡ria. Usada para transformar facetas retangulares
+            codificadas em trÃªs matrizes x,y e z para o cÃ³digo Scilab para facetas,
             aceito por plot3d.
         </para>
     </refsection>
@@ -51,12 +51,12 @@ v = linspace(0,2*%pi,20);
 x= cos(u)'*cos(v);
 y= cos(u)'*sin(v);
 z= sin(u)'*ones(v);
-//plot3d2(x,y,z) é equivalente a...
+//plot3d2(x,y,z) Ã© equivalente a...
 [xx,yy,zz]=nf3d(x,y,z); plot3d(xx,yy,zz)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>Ver Também</title>
+        <title>Ver TambÃ©m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="plot3d">plot3d</link>
