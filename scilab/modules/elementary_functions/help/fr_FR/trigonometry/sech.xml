@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sech" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="sech" xml:lang="fr">
     <refnamediv>
         <refname>sech</refname>
         <refpurpose>sécante hyperbolique des éléments de l'argument.</refpurpose>
@@ -45,7 +48,7 @@
         <title>Description</title>
         <para>
             Les éléments de <literal>y</literal> sont les sécantes hyperboliques
-            (<literal>1/cosh</literal>) des éléments correspondants de
+            (<literal>1/cosh(x)</literal>) des éléments correspondants de
             <literal>x</literal>. Pour les éléments réels, les résultats sont réels et
             dans <literal> [0 1]</literal>.
         </para>

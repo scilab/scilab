@@ -69,11 +69,9 @@
             flows from the black port to the white port. The pressure loss is
             obtained with :
         </para>
-        <latex>
-            $$
-            P_{loss} = P_{black} - P_{white}
-            $$
-        </latex>
+        <emphasis>
+            P<subscript>loss</subscript> = P<subscript>black</subscript> - P<subscript>white</subscript>
+        </emphasis>
         <para>The key parameters of this block are the pipes' length, the pipe's
             diameter, inlet and outlet altitudes, and some other thermal-hydraulic
             coefficients.

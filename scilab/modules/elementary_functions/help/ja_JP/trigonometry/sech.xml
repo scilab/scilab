@@ -4,7 +4,10 @@
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="sech" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="sech" xml:lang="ja">
 
     <refnamediv>
 
@@ -66,11 +69,11 @@
 
         <para>
 
-            引数の双曲線割線を要素毎に計算します. 双曲線割線は 1/cos で定義されます.
+            引数の双曲線割線を要素毎に計算します. 双曲線割線は 1/cos(x) で定義されます.
 
             実数のデータの場合,結果は実数で
 
-            <literal> [0 1]</literal>の範囲となります.
+            <literal>[0 1]</literal>の範囲となります.
 
         </para>
 

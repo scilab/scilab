@@ -34,9 +34,9 @@
         <title>説明</title>
         <para>
             引数の要素毎のコセカント(余割)を計算します.
-            コセカント(余割)は <latex>1/\sin(x)</latex>で定義される周期関数です.
+            コセカント(余割)は <literal>1/sin(x)</literal>で定義される周期関数です.
             実数のデータの場合,結果は
-            <latex>]-\infty -1] \cup [1 \infty[</latex>の範囲の実数となります.
+            <literal>]-∞ -1] ∪ [1 ∞[</literal>の範囲の実数となります.
         </para>
     </refsection>
     <refsection>

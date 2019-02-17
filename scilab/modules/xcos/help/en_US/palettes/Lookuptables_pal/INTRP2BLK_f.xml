@@ -62,7 +62,11 @@
     <refsection id="Description_INTRP2BLK_f">
         <title>Description</title>
         <para>
-            The output of this block is a function of the inputs obtained by bilinear interpolation. This block has two scalar inputs and a single scalar output. The <literal>X(i)</literal> and <literal>Y(i)</literal> give respectively the <literal>X</literal> coordinate and the <literal>Y</literal> coordinate of the <literal>i</literal>-th data point to be interpolated and <literal>Z(Y(i),X(i))</literal> its value.
+            The output of this block is a function of the inputs obtained by bilinear interpolation.
+            This block has two scalar inputs and a single scalar output. The <literal>X(i)</literal>
+            and <literal>Y(i)</literal> give respectively the <literal>X</literal> coordinate and
+            the <literal>Y</literal> coordinate of the <literal>i</literal>-th data point
+            to be interpolated and <literal>Z(Y(i),X(i))</literal> its value.
         </para>
     </refsection>
     <refsection id="Dialogbox_INTRP2BLK_f">

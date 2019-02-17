@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ceil" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="ceil" xml:lang="ru">
     <refnamediv>
         <refname>ceil</refname>
         <refpurpose>округление вверх</refpurpose>
@@ -43,7 +46,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>ceil(x)</literal> возвращает матрицу целых чисел, состоящую из элементов, округлённых вверх (в сторону <latex scilab:localized="true">$+\infty$</latex>).
+            <literal>ceil(x)</literal> возвращает матрицу целых чисел, состоящую из элементов,
+            округлённых вверх (в сторону +∞).
         </para>
     </refsection>
     <refsection>

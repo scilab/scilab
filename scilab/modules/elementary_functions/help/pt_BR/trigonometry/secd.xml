@@ -2,7 +2,10 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="secd" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="secd" xml:lang="pt">
     <refnamediv>
         <refname>secd</refname>
         <refpurpose>computa a secante elemento a elemento do argumento em
@@ -34,10 +37,8 @@
         <title>Descrição</title>
         <para>
             as entradas de <literal>y</literal> são as secantes
-            <literal>1/cos</literal> das entradas de <literal>x</literal> dadas em
-            graus. Os resultados são reais e estão em <literal>]-%inf -1] U [1
-                %inf[
-            </literal>
+            <literal>1/cos(x)</literal> das entradas de <literal>x</literal> dadas em
+            graus. Os resultados são reais e estão em <literal>]-∞, -1] ∪ [1, ∞[</literal>
             .para entradas iguais a <literal>n*180</literal> com
             <literal>n</literal> inteiro, o resultado é exatamente
             <literal>-1</literal> ou <literal>+1</literal>. para entradas iguais a

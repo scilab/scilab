@@ -21,7 +21,10 @@
  *
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="C_struct">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="C_struct" xml:lang="en_US">
     <refnamediv>
         <refname>C_struct</refname>
         <refpurpose>C Block structure of a computational function</refpurpose>
@@ -514,7 +517,8 @@ void mycomputfunc(scicos_block *block,int flag)
 }
 ]]></programlisting>
                 <para>
-                    Finally note that the regular output port registers must be only written for <literal>flag=1</literal>.
+                    Finally note that the regular output port registers must be only written
+                    for <literal>flag=1</literal>.
                 </para>
             </listitem>
         </itemizedlist>
@@ -524,7 +528,13 @@ void mycomputfunc(scicos_block *block,int flag)
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">block->nevprt :</emphasis> Integer that gives the event input port number by which the block has been activated. This number is a binary coding. For i.e, if block has two event inputs ports, <literal> block->nevptr</literal>can take the value <literal>1</literal> if the block has been called by its first event input port, the value <literal>2</literal> if it has been called by the second event input port and <literal>3</literal> if it is called by the same event on both input port 1 and 2.
+                    <emphasis role="bold">block->nevprt :</emphasis> Integer that gives the event
+                    input port number by which the block has been activated. This number is a
+                    binary coding. For i.e, if block has two event inputs ports,
+                    <literal> block->nevptr</literal>can take the value <literal>1</literal>
+                    if the block has been called by its first event input port, the value
+                    <literal>2</literal> if it has been called by the second event input port and
+                    <literal>3</literal> if it is called by the same event on both input port 1 and 2.
                 </para>
                 <para>
                     Note that can be <literal>-1</literal> if the block is internally called.
@@ -535,37 +545,48 @@ void mycomputfunc(scicos_block *block,int flag)
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">block->nevout :</emphasis> Integer that gives the number of event output ports of the block (also called the length of the output event register).
+                    <emphasis role="bold">block->nevout :</emphasis> Integer that gives the number
+                    of event output ports of the block (also called the length of the output event
+                    register).
                 </para>
                 <para>
-                    One can't override the index <literal>block->nevout-1</literal> when setting value of events in the output event register <literal>evout</literal>.
+                    One can't override the index <literal>block->nevout-1</literal> when setting
+                    value of events in the output event register <literal>evout</literal>.
                 </para>
                 <para>
-                    The number of event output ports can also be got by the use of the C macro <literal>GetNevOut(block)</literal>.
+                    The number of event output ports can also be got by the use of the C macro
+                    <literal>GetNevOut(block)</literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">block->evout :</emphasis> Array of double of size [nevout,1] corresponding to the output event register. That register is used to program date of events during the simulation.
-                </para>
-                <para> When setting values in that array, you must understand that you give a delay relative to the current time of simulator :</para>
-                <latex>
-                    $$
-                    t_{event} = t_{current} + T_{delay}
-                    $$
-                </latex>
-                <para>
-                    where <latex>$t_{event}$</latex> is the date of the programmed event, <latex>$t_{cur}$</latex> is the current time in the simulator and <latex>$T_{delay}$</latex> the value that must be informed in the output event register.
+                    <emphasis role="bold">block->evout :</emphasis> Array of double of size
+                    [nevout,1] corresponding to the output event register.
+                    That register is used to program date of events during the simulation.
                 </para>
                 <para>
-                    For i.e, suppose that you want generate an event with the first event output port, 1ms after
-                    each calls of the block, then you'll use :
+                    When setting values in that array, you must understand that you give a
+                    delay relative to the current time of simulator :
+                </para>
+                <emphasis>
+                    t<subscript>event</subscript> = t<subscript>current</subscript> +
+                                                    T<subscript>delay</subscript>
+                </emphasis>
+                <para>
+                    where <emphasis>t<subscript>event</subscript></emphasis> is the date of the
+                    programmed event,
+                    <emphasis>t<subscript>current</subscript></emphasis> is the current time in
+                    the simulator, and
+                    <emphasis>T<subscript>delay</subscript></emphasis> the value that must
+                    be informed in the output event register.
+                </para>
+                <para>
+                    For i.e, suppose that you want generate an event with the first event output
+                    port, 1ms after each calls of the block, then you'll use :
                 </para>
                 <programlisting role="c"><![CDATA[
 #include "scicos_block4.h"
-
 ...
-
 void mycomputfunc(scicos_block *block,int flag)
 {
 ...
@@ -574,15 +595,14 @@ void mycomputfunc(scicos_block *block,int flag)
     }
 ...
 }
-
 ]]></programlisting>
                 <para>
-                    Note that every events generated from output event register will be asynchronous with event coming from event input port (even if you set
+                    Note that every events generated from output event register will be
+                    asynchronous with event coming from event input port (even if you set
                     <literal>block->evout[x]=0</literal>).
                 </para>
                 <para>
-                    The event output register must be only written for
-                    <literal>flag=3</literal>.
+                    The event output register must be only written for <literal>flag=3</literal>.
                 </para>
             </listitem>
         </itemizedlist>
@@ -596,22 +616,28 @@ void mycomputfunc(scicos_block *block,int flag)
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">block->nrpar :</emphasis> Integer that gives the length of the real parameter register.
+                    <emphasis role="bold">block->nrpar :</emphasis> Integer that gives the
+                    length of the real parameter register.
                 </para>
                 <para>
-                    One can't override the index <literal>(block->nrpar)-1</literal> when reading value of real parameters in the register <literal>rpar</literal>.
+                    One can't override the index <literal>(block->nrpar)-1</literal> when reading
+                    value of real parameters in the register <literal>rpar</literal>.
                 </para>
                 <para>
-                    The total number of real parameters can also be got by the use of the C macro <literal>rpar</literal>.
+                    The total number of real parameters can also be got by the use of the C macro
+                    <literal>rpar</literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">block->rpar :</emphasis> Array of double of size [nrpar,1] corresponding to the real parameter register. That register is used to pass real parameters coming from the Scilab/Xcos environment to your block model.
+                    <emphasis role="bold">block->rpar :</emphasis> Array of double of size
+                    [nrpar,1] corresponding to the real parameter register. That register is used to
+                    pass real parameters coming from the Scilab/Xcos environment to your block model.
                 </para>
                 <para> The C type of that array is (or C scicos type ).</para>
                 <para>
-                    Suppose that you have defined the following real parameters in the<link linkend="scicos_model">scicos_model</link> of a block :
+                    Suppose that you have defined the following real parameters in the
+                    <link linkend="scicos_model">scicos_model</link> of a block :
                 </para>
                 <programlisting role="scilab"><![CDATA[
 model = scicos_model();

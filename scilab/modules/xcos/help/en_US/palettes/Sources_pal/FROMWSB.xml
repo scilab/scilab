@@ -101,8 +101,8 @@
                         <para>
                             <emphasis role="bold">0: "Zero order method"</emphasis>.
                             This method generates a piecewise constant signal. i.e., for
-                            <latex><![CDATA[$t_i \leq t < t_{i+1} $]]></latex>,
-                            <latex><![CDATA[$y(t) = y_i$]]></latex>.
+                            <literal>t<subscript>i</subscript> ≤ t &lt; t<subscript>i+1</subscript></literal>,
+                            <literal>y(t) = y<subscript>i</subscript></literal>.
                             This method is available for all data types.
                         </para>
                     </listitem>
@@ -110,8 +110,12 @@
                         <para>
                             <emphasis role="bold">1: "Linear method"</emphasis>. This
                             method generates a piecewise linear signal, i.e., for
-                            <latex><![CDATA[$t_i \leq t < t_{i+1} $]]></latex>,
-                            <latex><![CDATA[$y(t) = y_i + (t - t_i) \times {y_{i+1} - y_i} over {t_{i+1} - t_i}$]]></latex>.
+                            <literal>t<subscript>i</subscript> ≤ t &lt; t<subscript>i+1</subscript></literal>,
+                            <literal>
+                                y(t) = y<subscript>i</subscript> +
+                                (y<subscript>i+1</subscript>-y<subscript>i</subscript>)/
+                                (t<subscript>i+1</subscript>-t<subscript>i</subscript>)
+                            </literal>
                             For data types other than double and complex, the linear interpolation
                             can be used, but the final output will be computed by casting
                             interpolation result into the original data type.

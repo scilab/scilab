@@ -2,7 +2,10 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="secd" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="secd" xml:lang="ru">
     <refnamediv>
         <refname>secd</refname>
         <refpurpose>вычисляет поэлементно секанс аргумента, заданного в градусах
@@ -32,9 +35,10 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Элементы  <varname>y</varname> являются секансом <latex>1/\cos(x)</latex>
+            Элементы  <varname>y</varname> являются секансом <literal>1/cos(x)</literal>
             соответствующих элементов <varname>x</varname>, заданных в градусах.
-            Результаты вещественны и лежат на интервале <latex>]-\infty -1] \cup [1 %infty[</latex>. Для элементов, равных <literal>n*180</literal>, где
+            Результаты вещественны и лежат на интервале <literal>]-∞, -1] ∪ [1, ∞[</literal>.
+            Для элементов, равных <literal>n*180</literal>, где
             <literal>n</literal> - целое число, результат равен строго <literal>-1</literal>
             или <literal>+1</literal>. Для элементов, равных <literal>n*90</literal>, где
             <literal>n</literal> - целое нечётное число, резульат равен бесконечности

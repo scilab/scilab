@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="csc" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="csc" xml:lang="en">
     <refnamediv>
         <refname>csc</refname>
         <refpurpose>сomputes the element-wise cosecant of the
@@ -46,8 +49,8 @@
     <refsection>
         <title>Description</title>
         <para>Computes the element-wise cosecant of the argument. The cosecant is
-            a periodic function defined as <latex>1/\sin(x)</latex>. For real data the results are real
-            and in <latex>]-\infty -1] \cup [1 \infty[</latex>.
+            a periodic function defined as <literal>1/sin(x)</literal>.
+            For real data the results are real and in <literal>]-∞ -1] ∪ [1 ∞[</literal>.
         </para>
     </refsection>
     <refsection>

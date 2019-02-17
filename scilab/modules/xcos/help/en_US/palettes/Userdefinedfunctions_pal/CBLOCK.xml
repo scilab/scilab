@@ -158,8 +158,8 @@
                 </para>
                 <para>
                     A vector. Size of this vector corresponds to the number of event outputs.
-                    The value of the <latex>$i^{th}$</latex> entry specifies the time of the
-                    preprogrammed event firing on the <latex>$i^{th}$</latex> output event port.
+                    The value of the i<superscript>th</superscript> entry specifies the time of the
+                    preprogrammed event firing on the i<superscript>th</superscript> output event port.
                     If less than zero, no event is preprogrammed.
                 </para>
                 <para> Properties : Type 'vec' of size 'sum(%6)' </para>

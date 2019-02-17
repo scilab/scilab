@@ -4,7 +4,10 @@
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="secd" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="secd" xml:lang="ja">
 
     <refnamediv>
 
@@ -66,11 +69,11 @@
 
             <varname>x</varname>のエントリの割線(セカント)
 
-            <latex>1/\cos(x)</latex>となります.
+            <literal>1/cos(x)</literal>となります.
 
             結果は実数,範囲は
 
-            <latex>]-\infty -1] \cup [1 %infty[</latex>となります.
+            <literal>]-∞, -1] ∪ [1, ∞[</literal>となります.
 
             エントリが<literal>n*180</literal>に等しい場合
 

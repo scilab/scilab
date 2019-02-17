@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="erfcx" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="erfcx" xml:lang="fr">
     <refnamediv>
         <refname>erfcx</refname>
         <refpurpose>fonction erreur complémentaire normalisée.</refpurpose>
@@ -29,7 +32,10 @@
         <title>Description</title>
         <para>
             <literal>erfcx</literal> calcule la fonction erreur complémentaire
-            normalisée définie par <latex>e^{x^2} \operatorname{erfc}(x)</latex>.  <latex>\operatorname{erfcx}(-ix)</latex> calcul aussi la fonction Faddeeva w(x).
+            normalisée définie par
+            <literal>exp(x<superscript>2</superscript>).erfc(x)</literal>.
+            <literal>erfcx(-ix)</literal> calcule aussi la fonction Faddeeva
+            <literal>w(x)</literal>.
         </para>
     </refsection>
     <refsection>

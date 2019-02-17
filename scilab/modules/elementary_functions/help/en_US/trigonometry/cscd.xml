@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="cscd" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="cscd" xml:lang="en">
     <refnamediv>
         <refname>cscd</refname>
         <refpurpose>сomputes the element-wise cosecant of the argument given in
@@ -45,8 +48,8 @@
         <title>Description</title>
         <para>
             The entries of <varname>y</varname> are the cosecant
-            <latex>1/\sin(x)</latex> of the entries of <varname>x</varname> given in
-            degree. The results are real and in <latex>]-\infty -1] \cup [1 \infty[</latex>.
+            <literal>1/sin(x)</literal> of the entries of <varname>x</varname> given in
+            degree. The results are real and in <literal>]-∞ -1] ∪ [1 ∞[</literal>.
             For entries equal to <literal>n*180</literal> with
             <literal>n</literal> integer, the result is infinite (or an error
             depending on <link linkend="ieee">ieee</link> mode). For entries equal to

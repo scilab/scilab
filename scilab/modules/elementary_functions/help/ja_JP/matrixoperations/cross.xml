@@ -55,11 +55,7 @@
             <function>cross</function> は以下のような
             <varname>A</varname> 及び <varname>B</varname>の外積を返します:
             <para>
-                <latex>
-                    \begin{eqnarray}
-                    C = A \wedge B
-                    \end{eqnarray}
-                </latex>
+                <emphasis>C = A ∧ B</emphasis>
             </para>
         </para>
         <para>

@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sech" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="sech" xml:lang="ru">
     <refnamediv>
         <refname>sech</refname>
         <refpurpose>Поэлементно вычисляет гиперболический секанс аргумента.
@@ -44,9 +47,9 @@
         <title>Описание</title>
         <para>
             Поэлементно вычисляет гиперболический секанс аргумента.
-            Гиперболический секанс определяется как <latex>1/\cosh(x)</latex>.
+            Гиперболический секанс определяется как <literal>1/cosh(x)</literal>.
             Для вещественных данных результаты вещественны и лежат
-            на интервале <literal>[0 1]</literal>.
+            на интервале <literal>[0, 1]</literal>.
         </para>
     </refsection>
     <refsection>

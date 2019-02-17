@@ -75,7 +75,7 @@
             This block is a sine wave generator and its output is defined by the equation:
         </para>
         <para>
-            <latex><![CDATA[Output=M\sin\left(F.t+P\right)]]></latex>
+            <emphasis>Output = M.sin(F.t + P)</emphasis>
         </para>
         <para>
             You can adjust:

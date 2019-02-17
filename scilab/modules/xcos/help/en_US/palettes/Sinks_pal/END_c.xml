@@ -70,14 +70,17 @@
         <para>That block increases the current time to the final integration time
             of the simulation when it is activated :
         </para>
-        <latex>$$T_f = T_{cur}$$</latex>
+        <emphasis>T<subscript>f</subscript> = T<subscript>cur</subscript></emphasis>
         <para>
-            with <emphasis role="bold">Tcur</emphasis> the activation date of
-            the block and <emphasis role="bold">Tf</emphasis> the final integration
-            time defined in the in the Setup item of the simulate Menu
+            with <emphasis role="bold">T<subscript>cur</subscript></emphasis> the activation date of
+            the block and <emphasis role="bold">T<subscript>f</subscript></emphasis> the final
+            integration time defined in the in the Setup item of the simulate Menu
             (scs_m.props.tf).
         </para>
-        <para>Note that the 'Final simulation time' item (on diagram settings) always end the simulation at the specified time. This block should be configured to end the simulation before this setting.
+        <para>
+            Note that the 'Final simulation time' item (on diagram settings) always end the
+            simulation at the specified time. This block should be configured to end the
+            simulation before this setting.
         </para>
     </refsection>
 

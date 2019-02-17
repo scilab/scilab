@@ -2,7 +2,10 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sech" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="sech" xml:lang="pt">
     <refnamediv>
         <refname>sech</refname>
         <refpurpose>computa a secante hipertbólica do argumento elemento a
@@ -33,8 +36,8 @@
     <refsection>
         <title>Descrição</title>
         <para>Computa a secante hipertbólica do argumento elemento a elemento. A
-            secante hiperbólica é definida como 1/cosh. Para dados reais, os
-            resultados são reais em <literal> [0 1]</literal>.
+            secante hiperbólica é definida como 1/cosh(x). Para dados reais, os
+            resultados são reais em <literal>[0, 1]</literal>.
         </para>
     </refsection>
     <refsection>

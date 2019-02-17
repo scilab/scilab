@@ -2,7 +2,10 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sec" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="sec" xml:lang="pt">
     <refnamediv>
         <refname>sec</refname>
         <refpurpose>computa a secante elemento a elemento do
@@ -34,7 +37,7 @@
         <title>Descrição</title>
         <para>Computa a secante elemento a elemento do argumento. A secante é uma
             função periódica definida como 1/cos. Para dados reais, os resultados são
-            reais em <literal>]-%inf -1] U [1 %inf[</literal>.
+            reais em <literal>]-∞,-1] ∪ [1,∞[</literal>.
         </para>
     </refsection>
     <refsection>

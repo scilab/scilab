@@ -86,7 +86,7 @@
                     <emphasis role="bold">3: Floor</emphasis>
                 </para>
                 <para>
-                    Rounding down the number of quantization steps (output signal is the nearest step towards <latex>-\infty</latex>)
+                    Rounding down the number of quantization steps (output signal is the nearest step towards -∞)
                 </para>
             </listitem>
             <listitem>
@@ -94,7 +94,7 @@
                     <emphasis role="bold">4: Ceil</emphasis>
                 </para>
                 <para>
-                    Rounding up the number of quantization steps (output signal is the nearest step towards <latex>+\infty</latex>)
+                    Rounding up the number of quantization steps (output signal is the nearest step towards +∞)
                 </para>
             </listitem>
         </itemizedlist>

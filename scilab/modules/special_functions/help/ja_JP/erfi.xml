@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="erfi" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="erfi" xml:lang="ja">
     <refnamediv>
         <refname>erfi</refname>
         <refpurpose>虚数の誤差関数.</refpurpose>
@@ -42,7 +45,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>erfi</literal> は,<latex>-i \operatorname{erf}(ix)</latex>
+            <literal>erfi</literal> は,<emphasis>-i.erf(i.x)</emphasis>
             で定義される xの虚数誤差関数を計算します.
         </para>
     </refsection>

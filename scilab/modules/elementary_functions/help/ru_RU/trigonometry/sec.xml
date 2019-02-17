@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sec" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="sec" xml:lang="ru">
     <refnamediv>
         <refname>sec</refname>
         <refpurpose>Поэлементно вычисляет секанс аргумента.</refpurpose>
@@ -42,9 +45,10 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функция <function>sec</function> поэлементно вычисляет секанс аргумента. Секанс - это периодическая функция, определяемая как <latex>1/\cos(x)</latex>.
+            Функция <function>sec</function> поэлементно вычисляет секанс аргумента. Секанс - это
+            периодическая функция, определяемая как <literal>1/cos(x)</literal>.
             Для вещественных данных результаты вещественные и лежат на интервале
-            <latex>]-\infty -1] \cup [1 \infty[</latex>.
+            <literal>]-∞, -1] ∪ [1, ∞[</literal>.
         </para>
     </refsection>
     <refsection>

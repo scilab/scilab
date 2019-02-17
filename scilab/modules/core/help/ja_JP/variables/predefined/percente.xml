@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percente" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="percente" xml:lang="ja">
     <refnamediv>
         <refname>%e</refname>
         <refpurpose>オイラー数.</refpurpose>
@@ -25,7 +28,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>%e</literal> はオイラー数, つまり, 方程式 <latex>\[ln(x) = 1\]</latex>の解です.
+            <literal>%e</literal> はオイラー数, つまり, 方程式 <emphasis>ln(x)=1</emphasis>の解です.
         </para>
         <para>
             この数は以下の式により得られます

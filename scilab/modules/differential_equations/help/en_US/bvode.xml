@@ -1422,8 +1422,8 @@ function [dmval,zu]=fsub(x,parameters)
             The method used to approximate the solution <literal>u</literal> is collocation at
             gaussian points, requiring <literal>m(i)-1</literal> continuous derivatives in the <literal>i</literal>-th
             component, <literal>i = 1:N</literal>. here, <literal>k</literal> is the number of collocation points (stages)
-            per subinterval and is chosen such that <latex>k \ge \max\left(m(i)\right)</latex>. A
-            runge-kutta-monomial solution representation is utilized.
+            per subinterval and is chosen such that <emphasis>k ≥ max(m(i))</emphasis>.
+            A runge-kutta-monomial solution representation is utilized.
         </para>
     </refsection>
     <refsection>
@@ -1817,7 +1817,7 @@ function [zu,mpar]=guess(x)
     mpar=0;
 endfunction
 
- //define the function which computes the exact value of u for a given x ( for testing purposes)
+//define the function which computes the exact value of u for a given x ( for testing purposes)
 function zu=trusol(x)
   zu=0*ones(4,1)
   zu(1) =  0.25*(10*log(2)-3)*(1-x) + 0.5 *( 1/x   + (3+x)*log(x) - x)
@@ -1863,9 +1863,10 @@ zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
                 <para>
                     <emphasis role="bold">The problem 2</emphasis> describes the
                     small finite deformation of a thin shallow spherical cap of constant
-                    thickness subject to a quadratically varying axisymmetric external
-                    pressure distribution. Here <latex>$\varphi$</latex> is the meridian angle change of the
-                    deformed shell and <latex>$\psi$</latex> is a stress function. For <latex>$\varepsilon=\mu=10^{-3}$</latex> two
+                    thickness subject to a quadratically varying axisymmetric external pressure
+                    distribution. Here <emphasis>φ</emphasis> is the meridian angle change of the
+                    deformed shell and <emphasis>ψ</emphasis> is a stress function.
+					For <emphasis>ε = μ = 10<superscript>-3</superscript></emphasis>, two
                     different solutions may found depending on the starting point
                 </para>
                 <mediaobject>
@@ -2450,7 +2451,6 @@ disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
                     </emphasis>
                 </para>
                 <programlisting role="example"><![CDATA[
-
 // Quantum Neumann equation, with 2 "eigenvalues" c_1 and c_2
 // (c_1=v-c_2-c_3, v is a parameter, used in continuation)
 //
@@ -2467,13 +2467,8 @@ disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
 // the differential equation at 1.0 and y, z_3=1, z_4=1/(2*y-1)
 // Ref: http://arxiv.org/pdf/hep-th/0407005
 
-
-
-
 y= 1.9d0;
 eigens=zeros(3,40); // To store the results
-
-
 
 // General setup for bvode
 
@@ -2519,33 +2514,33 @@ tol = [1d-5, 1d-5, 1d-5, 1d-5];
 // Define the differential equations
 
 function [f]=fsub(x,z)
-	f = [ -.5*(1/x+1/(x-1)+1/(x-y))*z(2) +...
+    f = [ -.5*(1/x+1/(x-1)+1/(x-y))*z(2) +...
      z(1) * ((v-z(3)-z(4))/x + z(3)/(x-1) + z(4)/(x-y)),...
-	0,0];
+    0,0];
 endfunction
 function [df] = dfsub(x,z)
-	df = [(v-z(3)-z(4))/x + z(3)/(x-1) + z(4)/(x-y),...
-	-.5*(1/x+1/(x-1)+1/(x-y)),z(1)/(x*(x-1)),z(1)*y/(x*(x-y));...
-	0,0,0,0;0,0,0,0];
+    df = [(v-z(3)-z(4))/x + z(3)/(x-1) + z(4)/(x-y),...
+    -.5*(1/x+1/(x-1)+1/(x-y)),z(1)/(x*(x-1)),z(1)*y/(x*(x-y));...
+    0,0,0,0;0,0,0,0];
 endfunction
 
 // Boundary conditions
 
 function [g]=gsub(i,z)
-	select i
-	case 1, g = z(2) - 2*z(1)*(v-z(3)-z(4))
-	case 2, g = z(2) - 2*z(1)*z(3)
-	case 3, g = z(1)-1.
-	case 4, g = z(2) - 2*z(1)*z(4)
-	end
+    select i
+    case 1, g = z(2) - 2*z(1)*(v-z(3)-z(4))
+    case 2, g = z(2) - 2*z(1)*z(3)
+    case 3, g = z(1)-1.
+    case 4, g = z(2) - 2*z(1)*z(4)
+    end
 endfunction
 function [dg]=dgsub(i,z)
-    	select i
-    	case 1, dg = [-2*(v-z(3)-z(4)),1.,2*z(1),2*z(1)]
-    	case 2, dg = [-2*z(3),1.,-2*z(1),0]
-    	case 3, dg = [1,0,0,0]
-    	case 4, dg = [-2*z(4),1.,0,-2*z(1)]
-    	end
+        select i
+        case 1, dg = [-2*(v-z(3)-z(4)),1.,2*z(1),2*z(1)]
+        case 2, dg = [-2*z(3),1.,-2*z(1),0]
+        case 3, dg = [1,0,0,0]
+        case 4, dg = [-2*z(4),1.,0,-2*z(1)]
+        end
 endfunction
 
 // Start computation
@@ -2567,8 +2562,8 @@ res = [linspace(0,.99,100) linspace(1,y,101)];
 // has mstar = 4 components, while dmval has ncomp = 3 components.
 
 function [z,dmval]=guess(x)
-	 z=[2*x-1, 2., 1., 1/(2*y-1)]
-	 dmval=[0,0,0]
+     z=[2*x-1, 2., 1., 1/(2*y-1)]
+     dmval=[0,0,0]
 endfunction
 
 // First execution has ipar(9)=1 and uses the guess
@@ -2583,7 +2578,6 @@ eigens(:,i)=[v;sol(3,101);sol(4,101)];  // c_2 and c_3 are constant!
 ipar(9)=3;
 end
 
-
 // To see the evolution of the eigenvalues with v, disp(eigens)
 // Note they evolve smoothly.
 // To see the solution f for v=40, disp(sol(1,:)). Note that it vanishes
@@ -2592,7 +2586,6 @@ end
 // This is markedly different from the case  at small v.
 // The continuation procedure allows to explore these exponential behaviours
 // without skipping to other eigenstates.
-
  ]]></programlisting>
             </listitem>
         </itemizedlist>

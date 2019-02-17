@@ -103,9 +103,7 @@
             The covariance of two random vectors X and Y is defined by:
         </para>
         <para>
-            <latex>
-                Cov(X, Y) = E( (X-E(X)) (Y-E(Y))^T )
-            </latex>
+            <emphasis>Cov(X,Y) = E[ (X-E(X)).(Y-E(Y))<superscript>t</superscript>]</emphasis>
         </para>
         <para>
             where E is the expectation.

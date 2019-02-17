@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="sec" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="sec" xml:lang="en">
     <refnamediv>
         <refname>sec</refname>
         <refpurpose>computes the element-wise secant of the argument</refpurpose>
@@ -43,8 +46,8 @@
         <title>Description</title>
         <para>
             The <function>sec</function> function computes the element-wise secant of the argument. The secant is a
-            periodic function defined as <latex>1/\cos(x)</latex>. For real data the results are real and
-            in <latex>]-\infty -1] \cup [1 \infty[</latex>.
+            periodic function defined as <literal>1/cos(x)</literal>. For real data the results are real and
+            in <literal>]-∞,-1] ∪ [1,∞[</literal>.
         </para>
     </refsection>
     <refsection>
@@ -77,7 +80,7 @@ plot(x,sec(x))
     <refsection>
         <title>Used Functions</title>
         <para>
-            This function uses the <latex>cos</latex> function.
+            This function uses the <literal>cos()</literal> function.
         </para>
     </refsection>
 </refentry>

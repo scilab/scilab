@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="percente" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="percente" xml:lang="en">
     <refnamediv>
         <refname>%e</refname>
         <refpurpose>Euler number.</refpurpose>
@@ -25,7 +28,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>%e</literal> is the Euler number, solution of the equation <latex>\[ln(x) = 1\]</latex>.
+            <literal>%e</literal> is the Euler number, solution of the equation
+          <emphasis>ln(x)=1</emphasis>.
         </para>
         <para>
             This number can be found with
