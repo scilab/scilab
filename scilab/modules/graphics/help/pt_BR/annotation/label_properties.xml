@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="label_properties" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="label_properties" xml:lang="pt">
     <refnamediv>
         <refname>label_properties</refname>
         <refpurpose>Descrição de propriedades da entidade Label
@@ -61,8 +64,12 @@
             <varlistentry>
                 <term>text:</term>
                 <listitem>
-                    <para>a matriz contendo os strings do objeto. As linhas da matriz
-                        são exibidas horizontalmente e as colunas verticalmente.
+                    <para>
+                        Matrix of texts of the label. So, a label can have multiple rows or/and
+                        columns of text. Leading and trailing blanks are trimmed.
+                        In their columns, texts are left-justified.
+                        <link linkend="math_rendering_features_in_graphic">LaTeX expressions</link>
+                        delimited with "$...$" are supported.
                     </para>
                 </listitem>
             </varlistentry>
@@ -70,7 +77,7 @@
                 <term>font_foreground:</term>
                 <listitem>
                     <para>este campo contém o índice de cor utilizado para exibir o
-                        rótulo <literal>text</literal>. Seu valor deve ser um índice de cor
+                        rótulo <literal>.text</literal>. Seu valor deve ser um índice de cor
                         (relativo ao mapa de cores corrente).
                     </para>
                 </listitem>
@@ -97,10 +104,10 @@
                 <term>fill_mode:</term>
                 <listitem>
                     <para>
-                        este campo toma valores <literal>"on"</literal> ou
-                        <literal>"off"</literal>. Se <literal>"on"</literal> uma caixa é
-                        desenhada ao redor do texto com uma linha em sua borda e um plano de
-                        fundo.
+                        This is actually a "box mode" property. <literal>"on"</literal> draws a box
+                        around the block of text of the label. Otherwise, no block's edge is drawn.
+                        The <literal>.foreground</literal> value is the color's index of the edge.
+                        The <literal>.background</literal> value is the index of the filling color.
                     </para>
                 </listitem>
             </varlistentry>
@@ -111,7 +118,8 @@
                         inteiro positivo fazendo referência uma das fontes carregadas. Seu
                         valor deve estar entre 0, fazendo referência à primeira fonte, e o
                         número de fontes carregadas menos um, fazendo referência à última
-                        fonte. Para mais informações, veja <link linkend="graphics_fonts">graphics_fonts</link>.
+                        fonte. Para mais informações, veja
+                        <link linkend="graphics_fonts">graphics_fonts</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -119,7 +127,7 @@
                 <term>font_size:</term>
                 <listitem>
                     <para>é um escalar especificando o tamanho dos caracteres exibidos.
-                        Se a propriedade <literal>fractional_font</literal> for
+                        Se a propriedade <literal>.fractional_font</literal> for
                         <literal>"off"</literal>, apenas a parte inteira é utilizada. Para
                         mais informações, veja <link linkend="graphics_fonts">graphics_fonts</link>.
                     </para>
@@ -132,7 +140,7 @@
                         utilizando-se tamanhos de fonte fracionários. Seu valor deve ser
                         <literal>"on"</literal> ou <literal>"off"</literal>. Se
                         <literal>"on"</literal>, o valor em ponto flutuante de
-                        <literal>font_size</literal> é utilizado para a exibição e evita-se
+                        <literal>.font_size</literal> é utilizado para a exibição e evita-se
                         o serrilhamento da fonte. Se <literal>"off"</literal>, apenas a
                         parte inteira é utilizada e a fonte não é suavizada.
                     </para>
@@ -141,10 +149,11 @@
             <varlistentry>
                 <term>font_angle:</term>
                 <listitem>
-                    <para>um escalar que permite girar o rótulo. A fonte é girada em
-                        sentido horário em um ângulo dado em graus. Note que mudar
-                        <literal>font_angle</literal> desabilitará automaticamente a
-                        propriedade <literal>auto_rotation</literal>.
+                    <para>
+                        Clockwise angle of the label's block, in degrees, horizontal = 0°.
+                        The lower-left corner of the horizontal box is used as pivot (fixed point).
+                        Setting <literal>.font_angle</literal> automatically sets
+                        <literal>.auto_rotation="off"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -155,17 +164,18 @@
                         se <literal>"on"</literal>, o Scilab computa automaticamente o
                         melhor ângulo de rotação para a exibição do rótulo. Se
                         <literal>"off"</literal>, o rótulo pode ser girado manualmente
-                        através da propriedade <literal>font_angle</literal>.
+                        através da propriedade <literal>.font_angle</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>position:</term>
                 <listitem>
-                    <para>este vetor 2d permite posicionar o rótulo na tela. A posição é
-                        armazenada em unidades de dados dos eixos. Note que mudar
-                        <literal>font_angle</literal> desabilitará automaticamente a
-                        propriedade <literal>auto_position</literal>.
+                    <para>
+                        Vector of coordinates of the label's anchor, in data unit.
+                        The anchor is the lower-left corner of the horizontal box of the label.
+                        Setting the <literal>.position</literal> automatically sets
+                        <literal>.auto_position="off"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -176,7 +186,7 @@
                         se <literal>"on"</literal>, o Scilab computa automaticamente a
                         melhor posição para a exibição do rótulo na janela de gráficos. Se
                         <literal>"off"</literal>, o rótulo pode ser posicionado manualmente
-                        através da propriedade <literal>position</literal>.
+                        através da propriedade <literal>.position</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -210,26 +220,43 @@ a.y_label.foreground = 12;
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
-                <link linkend="set">set</link>
-            </member>
-            <member>
-                <link linkend="get">get</link>
-            </member>
-            <member>
-                <link linkend="delete">delete</link>
+                <link linkend="xlabel">xlabel ylabel zlabel</link>
             </member>
             <member>
                 <link linkend="xtitle">xtitle</link>
             </member>
             <member>
-                <link linkend="graphics_entities">graphics_entities</link>
+                <link linkend="title">title</link>
             </member>
             <member>
-                <link linkend="axes_properties">axes_properties</link>
+                <link linkend="xstring">xstring</link>
+            </member>
+            <member>
+                <link linkend="xlfont">xlfont</link>
+            </member>
+            <member>
+                <link linkend="color">color</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
             </member>
             <member>
                 <link linkend="text_properties">text_properties</link>
             </member>
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.2</revnumber>
+                <revdescription>
+                    LaTeX expressions delimited with "$..$" are now supported
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
