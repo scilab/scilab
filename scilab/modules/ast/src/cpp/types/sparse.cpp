@@ -1860,29 +1860,27 @@ GenericType* Sparse::remove(typed_list* _pArgs)
         }
     }
 
+    if (iNewDimSize == 0)
+    {
+        delete[] piNewDims;
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
+        return new Sparse(0, 0);
+    }
+
     if (iDims == 1)
     {
-        if (iNewDimSize == 0)
+        //two cases, depends of original matrix/vector
+        if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] != 1)
         {
-            delete[] piNewDims;
-            //free pArg content
-            cleanIndexesArguments(_pArgs, &pArg);
-            return new Sparse(0, 0);
+            //special case for row vector
+            pOut = new Sparse(1, iNewDimSize, isComplex());
+            //in this case we have to care of 2nd dimension
+            //iNotEntire = 1;
         }
         else
         {
-            //two cases, depends of original matrix/vector
-            if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] != 1)
-            {
-                //special case for row vector
-                pOut = new Sparse(1, iNewDimSize, isComplex());
-                //in this case we have to care of 2nd dimension
-                //iNotEntire = 1;
-            }
-            else
-            {
-                pOut = new Sparse(iNewDimSize, 1, isComplex());
-            }
+            pOut = new Sparse(iNewDimSize, 1, isComplex());
         }
     }
     else
