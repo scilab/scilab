@@ -94,6 +94,13 @@ public:
     BOOL writeToFile(char* _pstFilename);
 
     /**
+    * save history
+    * default filename --> SCIHOME/history.scilab
+    * @return TRUE or FALSE
+    */
+    BOOL writeToFile();
+
+    /**
     * load history from a file
     * @param a filename if NULL load from default filename
     * default filename --> SCIHOME/<scilab version>history.scilab

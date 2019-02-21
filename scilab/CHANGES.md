@@ -100,6 +100,7 @@ User Interface improvements:
 ----------------------------
 
 * The `ans` variable is editable as any other variable
+* Commands history is saved *before* executing a command to have the correct history on crash.
 
 
 Xcos

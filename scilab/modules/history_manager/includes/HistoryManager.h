@@ -57,7 +57,13 @@ HISTORY_MANAGER_IMPEXP void displayScilabHistory(void);
 * @param a filename if NULL saves in default filename
 * @return TRUE or FALSE
 */
-HISTORY_MANAGER_IMPEXP BOOL writeScilabHistoryToFile(char *filename);
+HISTORY_MANAGER_IMPEXP BOOL writeScilabHistoryToFile(char* filename);
+
+/**
+* save history
+* @return TRUE or FALSE
+*/
+HISTORY_MANAGER_IMPEXP BOOL saveScilabHistoryToFile();
 
 /**
 * load history from a file

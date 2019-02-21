@@ -128,6 +128,11 @@ void displayScilabHistory(void)
     HistoryManager::getInstance()->displayHistory();
 }
 /*------------------------------------------------------------------------*/
+BOOL saveScilabHistoryToFile()
+{
+    return HistoryManager::getInstance()->writeToFile();
+}
+/*------------------------------------------------------------------------*/
 BOOL writeScilabHistoryToFile(char* _pstFilename)
 {
     return HistoryManager::getInstance()->writeToFile(_pstFilename);
@@ -415,6 +420,12 @@ BOOL HistoryManager::writeToFile(char* _pstFilename)
         return m_HF.writeToFile(_pstFilename);
     }
     return FALSE;
+}
+/*------------------------------------------------------------------------*/
+BOOL HistoryManager::writeToFile()
+{
+	m_HF.setHistory(m_Commands);
+	return m_HF.writeToFile();
 }
 /*------------------------------------------------------------------------*/
 BOOL HistoryManager::loadFromFile(char* _pstFilename)

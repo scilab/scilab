@@ -21,6 +21,7 @@
 
 extern "C"
 {
+#include "HistoryManager.h"
 #include "BrowseVarManager.h"
 #include "FileBrowserChDir.h"
 #include "scicurdir.h"
@@ -172,6 +173,7 @@ int StaticRunner::launch()
         int err = 0;
 
         UpdateBrowseVar();
+        saveScilabHistoryToFile();
         cwd = scigetcwd(&err);
         if (cwd)
         {
