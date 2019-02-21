@@ -15,7 +15,7 @@
 // http://bugzilla.scilab.org/13962
 //
 // <-- Short Description -->
-// If the groupname and value properties were setted to radiobutton creation, 
+// If the groupname and value properties were set to radiobutton creation, 
 // then it was only selected at the first execution.
 
 function test()
