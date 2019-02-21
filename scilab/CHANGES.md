@@ -96,6 +96,11 @@ Help pages:
 * overhauled / rewritten: `bitget`, `edit`
 * fixed / improved:  `bench_run` `M_SWITCH`
 
+User Interface improvements:
+----------------------------
+
+* The `ans` variable is editable as any other variable
+
 
 Xcos
 ----

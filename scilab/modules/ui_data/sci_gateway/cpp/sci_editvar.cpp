@@ -197,13 +197,6 @@ int sci_editvar(char * fname, void* pvApiCtx)
         return 0;
     }
 
-    if (strcmp(pStVarOne, "ans") == 0)
-    {
-        Scierror(999, _("%s: ans cannot be edited.\n"), fname);
-        freeAllocatedSingleString(pStVarOne);
-        return 0;
-    }
-
     /* get address of the variable*/
     sciErr = getVarAddressFromName(pvApiCtx, pStVarOne, &piAddr);
     if (sciErr.iErr)
