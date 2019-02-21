@@ -69,7 +69,7 @@
         <title>Parameters</title>
         <inlinemediaobject>
             <imageobject>
-                <imagedata fileref="../../../gui/userdefinedfunctions_pal/en_US/EXPRESSION_gui.png"
+                <imagedata fileref="../../../gui/mathoperations_pal/en_US/EXPRESSION_gui.png"
                            align="center" style="float:right"/>
                     <!-- align => Javahelp, style => Online -->
             </imageobject>
@@ -250,16 +250,16 @@
             <emphasis>y = u(1) - u(2) - u(3)</emphasis>
         </para>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/mathoperations_pal/EXPRESSION.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos" align="center"/>
+                        <imagedata fileref="../../../../examples/mathoperations_pal/EXPRESSION.zcos" align="center"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
         </para>
         <scilab:image><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/mathoperations_pal/EXPRESSION.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
     </refsection>
@@ -268,7 +268,7 @@ xcos_simulate(scs_m, 4);
         <title>Interfacing function</title>
         <itemizedlist>
             <listitem>
-                <para> SCI/modules/scicos_blocks/macros/Misc/EXPRESSION.sci</para>
+                <para> SCI/modules/scicos_blocks/macros/NonLinear/EXPRESSION.sci</para>
             </listitem>
         </itemizedlist>
     </refsection>

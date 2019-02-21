@@ -508,6 +508,7 @@ Bug Fixes
 * [#15921](https://bugzilla.scilab.org/15921): Xcos user's function `scifunc_block_m` block: any `<` in the expression was not displayed on the block's icon.
 * [#15934](https://bugzilla.scilab.org/15934): The `^ hat` page wrongly indicated that `^` applied to a rectangular matrix not being a vector is done element-wise.
 * [#15948](https://bugzilla.scilab.org/15948): `xlabel`, `ylabel`, `zlabel` and `title` needed to be upgraded.
+* [#15963](https://bugzilla.scilab.org/15963): The `EXPRESSION` block was more expected in the Mathematical palette.
 * [#15964](https://bugzilla.scilab.org/15954): A complex empty sparse matrix could be obtained after insertion.
 * [#15965](https://bugzilla.scilab.org/15965): `plot(x,y)` did not accept y as encoded integers.
 * [#15967](https://bugzilla.scilab.org/15967): `setdiff(1,[])` was [] instead of `1`. `setdiff(a,[],..)` was not enough tested.
