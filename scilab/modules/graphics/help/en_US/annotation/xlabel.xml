@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - 2011 - Allan CORNET
- * Copyright (C) 2016 - Samuel GOUGEON
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2016, 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,25 +13,39 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="xlabel" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="xlabel" xml:lang="en">
     <refnamediv>
         <refname>xlabel</refname>
-        <refpurpose>sets the x-axis label</refpurpose>
+        <refpurpose>sets or updates the x-axis label or/and its properties</refpurpose>
     </refnamediv>
     <refnamediv xml:id="ylabel">
         <refname>ylabel</refname>
-        <refpurpose>sets the y-axis label</refpurpose>
+        <refpurpose>sets or updates the y-axis label or/and its properties</refpurpose>
     </refnamediv>
     <refnamediv xml:id="zlabel">
         <refname>zlabel</refname>
-        <refpurpose>sets the z-axis label</refpurpose>
+        <refpurpose>sets or updates the z-axis label or/and its properties</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            xlabel([axes_handle], label, [property_name, property_value,...])
-            ylabel([axes_handle], label, [property_name, property_value,...])
-            zlabel([axes_handle], label, [property_name, property_value,...])
+            xlabel(label)
+            xlabel(label, property_name, property_value,...)
+            xlabel(property_name, property_value,...)
+            xlabel(axes_handle,...)
+
+            ylabel(label)
+            ylabel(label, property_name, property_value,...)
+            ylabel(property_name, property_value,...)
+            ylabel(axes_handle,...)
+
+            zlabel(label)
+            zlabel(label, property_name, property_value,...)
+            zlabel(property_name, property_value,...)
+            zlabel(axes_handle,...)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -40,75 +54,175 @@
             <varlistentry>
                 <term>label</term>
                 <listitem>
-                    <para>a string, containing the label value.</para>
+                    <para>
+                        Matrix of texts of the label. A label can have multiple rows or/and
+                        columns of text. Leading and trailing blanks are trimmed.
+                        In their columns, texts are left-justified.
+                        <link linkend="math_rendering_features_in_graphic">LaTeX expressions</link>
+                        delimited with "$...$" are supported.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>axes_handle</term>
                 <listitem>
-                    <para>an optional handle, to specify the axes for which the label is set.</para>
+                    <para>
+                        Handle of the axes whose x|y|z label must be set or updated.
+                        By default, the current axes is processed. Otherwise, the given axes
+                        is set as and remains the current one after returning from
+                        <literal>x|y|zlabel()</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>[property_name, property_value,...]</term>
+                <term>property_name, property_value,...</term>
                 <listitem>
-                    <para>an optional sequence of name-value pairs, to specify the text properties of the label
-                        (related to the text properties described <link linkend="text_properties">here</link>).
+                    <para>
+                        unlimited series of pairs of property name (word) and the respective value
+                        to assign to it. The available properties are related to
+                        <link linkend="label_properties">labels properties</link>). Some of them
+                        have an alias that can be used as well with <literal>x|y|zlabel()</literal>:
                     </para>
-                    <para>The available properties for x-y-zlabel are:
+                    <para>
+                        <table border="1">
+                            <tr>
+                                <th align="left">visible</th>
+                                <th></th>
+                                <td>
+                                    <literal>"on"</literal> or <literal>"off"</literal>.
+                                    If <literal>"off"</literal>, the label (and its box) still
+                                    exists but is not displayed.
+                        </td>
+                            </tr>
+                            <tr>
+                                <th align="left">fontsize</th>
+                                <th align="left">font_size</th>
+                                <td>
+                                    Scalar positive number specifying the size of displayed
+                                    characters. default = 1. For any non-integer size, the font is
+                                    scaled accordingly and anti-aliased (made a bit foggy).
+                                </td>
+                            </tr>
+                            <tr>
+                                <th align="left">fontname</th>
+                                <th align="left">font_style</th>
+                                <td>
+                                    Ten font names are available (case and space unsensitive string),
+                                    or their related id number:
+                                    <table>
+                                        <tr>
+                                            <td>0</td><td>"courrier"</td><td></td>
+                                            <td>2</td><td>"times"</td><td></td>
+                                            <td>6</td><td>"helvetica"</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td><td>"symbol"</td><td></td>
+                                            <td>3</td><td>"times italic"</td><td></td>
+                                            <td>7</td><td>"helvetica italic"</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td><td></td><td></td>
+                                            <td>4</td><td>"times bold"</td><td></td>
+                                            <td>8</td><td>"helvetica bold"</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td><td></td><td></td>
+                                            <td>5</td><td>"times bold italic"</td><td></td>
+                                            <td>9</td><td>"helvetica bold italic"</td>
+                                        </tr>
+                                    </table>
+                                    <para>
+                                        For instance, 3, "3", "times italic", "timesitalic" or
+                                        "TimesItalic" are equivalent.
+                                    </para>
+                                    <para>
+                                        Other fonts can be loaded with <literal>xlfont()</literal>
+                                        and used.
+                                    </para>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th align="left">color</th>
+                                <th align="left">font_foreground</th>
+                                <td>
+                                    Color of the text of the label (*).
+                                </td>
+                            </tr>
+                            <tr>
+                                <th align="left">position</th>
+                                <th></th>
+                                <td>
+                                    Vector of coordinates of the label's anchor, in data unit.
+                                    The anchor is the lower-left corner of the box of
+                                    the label (when horizontal). Note: This property can't be set
+                                    with a console-oriented syntax.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th align="left">rotation</th>
+                                <th align="left">font_angle</th>
+                                <td>
+                                    Direct (anti-clockwise) angle of the label's block, in degrees,
+                                    horizontal = 0°.
+                                    The lower-left corner of the box bounding the horizontal label
+                                    is used as pivot (fixed point).
+                                </td>
+                            </tr>
+                            <tr>
+                                <th align="left">box</th>
+                                <th></th>
+                                <td>
+                                    "off" | "on": hides or displays a box around the block of text
+                                    of the label.
+                                </td>
+                            </tr>
+                            <tr>
+                                <th align="left">edgecolor</th>
+                                <th align="left">foreground</th>
+                                <td>
+                                    Color of the border of the box (if any)(*). The box is then
+                                    automatically turned "on".
+                                </td>
+                            </tr>
+                            <tr>
+                                <th align="left">background</th>
+                                <th align="left">backgroundcolor</th>
+                                <td>
+                                    Filling color of the box background, behind the text (*).
+                                    The box is then automatically turned "on".
+                                </td>
+                            </tr>
+                            <tr>
+                                <th align="left">tag</th>
+                                <th></th>
+                                <td>
+                                    String or matrix of strings: Custom literal identifier of the label.
+                                </td>
+                            </tr>
+                        </table>
+                    </para>
+                    <para>
+                        (*) Any color can be specified by any of the following:
                         <itemizedlist>
                             <listitem>
-                                <para>
-                                    <literal>"visible"</literal>: <literal>"on"</literal> or <literal>"off"</literal>
-                                </para>
+                                Its numerical or literal index in the current colormap
+                                (like 13 or "13"). Special values whatever is the colormap:
+                                -1 for black, -2 for white.
                             </listitem>
                             <listitem>
-                                <para>
-                                    <literal>"fontsize", "font_size"</literal>: size of font (constant)
-                                </para>
+                                Its name as a string, if it is a predefined
+                                <link linkend="color_list">listed color</link>. For colors among
+                                the short list
+                                ["red","green","blue","cyan","magenta","yellow","black","white"],
+                                shortened names are supported, like "m" for magenta or "k"
+                                for "black".
                             </listitem>
                             <listitem>
-                                <para>
-                                    <literal>"fontname", "font_style"</literal>: ten font names are available
-                                    (case unsensitive string or related id number):
-                                    "courrier" | 0, "symbol" | 1, "times" | 2, "times italic" | 3,
-                                    "times bold" | 4, "times bold italic" | 5, "helvetica" | 6,
-                                    "helvetica italic" | 7, "helvetica bold" | 8, "helvetica bold italic" | 9.
-                                </para>
+                                Its "#RRGGBB" hexadecimal code, as a string.
                             </listitem>
                             <listitem>
-                                <para>
-                                    <literal>"rotation", "font_angle"</literal>: angle in degrees (constant)
-                                </para>
-                            </listitem>
-                            <listitem>
-                                <para>
-                                    <literal>"position"</literal>: position of label (2d vector)
-                                </para>
-                            </listitem>
-                            <listitem>
-                                <para>
-                                    <literal>"color", "font_foreground"</literal>:
-                                    the color of font (a string value chosen among
-                                    <literal>["red","green","blue","cyan","magenta","yellow","black","white"]</literal>,
-                                    or a RGB matrix value)
-                                </para>
-                            </listitem>
-                            <listitem>
-                                <para>
-                                    <literal>"edgecolor", "foreground"</literal>:
-                                    the color of line around the text (a string value chosen among
-                                    <literal>["red","green","blue","cyan","magenta","yellow","black","white"]</literal>,
-                                    or a RGB matrix value)
-                                </para>
-                            </listitem>
-                            <listitem>
-                                <para>
-                                    <literal>"backgroundcolor", "background"</literal>:
-                                    the color of background around the text (a string value chosen among
-                                    <literal>["red","green","blue","cyan","magenta","yellow","black","white"]</literal>,
-                                    or a RGB matrix value)
-                                </para>
+                                the [r,g,b] row of its Red/Green/Blue 0 ≤ r,g,b ≤ 1 intensities.
+                                This syntax can't be used in console-oriented mode.
                             </listitem>
                         </itemizedlist>
                     </para>
@@ -118,42 +232,63 @@
     </refsection>
     <refsection role="description">
         <title>Description</title>
-        <para>xlabel, ylabel, zlabel are used to label the x-, y-, and z-axis, respectively.
+        <para>
+            xlabel, ylabel, zlabel are used to label the x|y|z-axis, respectively, or
+            to change properties of existing labels.
         </para>
-        <para>Each label appears beneath its respective axis in a two-dimensional
-            plot and to the side or beneath the axis in a three-dimensional plot.
+        <para>
+            Each of these functions can be called with a functional syntax like
+            <literal>xlabel("My title", "fontsize", 3)</literal> or with an equivalent
+            console-oriented syntax like <literal>xlabel "My title" fontsize 3</literal>.
+            However, [r,g,b] row color and [x,y] coordinates specifications can't be used
+            in console-oriented syntaxes.
         </para>
+        <warning>
+            When an axes handle is specified as the target axes, it becomes the current axes
+            and remains as is after leaving x|y|zlabel().
+        </warning>
     </refsection>
     <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 t = linspace(-2*%pi, 2*%pi, 30);
+plotframe([0 0 1 1])
 
-subplot(2,1,1);
-plot(t, sin(t), "r");
-xlabel("t", "fontsize", 2);
-ylabel("sin(t)");
-axes_handle = gca();
+subplot(2,1,1)
+plot(t, sin(t), "color", "orange")
+xlabel "Elapsed time" fontsize 2
+ylabel sin(t)
+ax1 = gca();
 
-subplot(2,1,2);
-plot(t, cos(t), "b");
-xlabel("t", "fontsize", 2);
-ylabel("cos(t)", "fontsize", 6, "color", "blue");
+subplot(2,1,2)
+plot(t, cos(t), "b")
+xlabel $time_{eigen}$  fontsize 4
+ylabel cos(t) fontsize 4.5 color blue
+ylabel edgecolor r background grey95
 
-ylabel(axes_handle, "sin(t)", "fontsize", 6, "color", "red");
+ylabel(ax1, "fontsize", 4)
+// Now ax1 is the current axes:
+ylabel color orange  rotation -90
 ]]>     </programlisting>
         <scilab:image>
-            t = linspace(-2*%pi, 2*%pi, 50);
-            subplot(2,1,1);
-            plot(t, sin(t), "r");
-            xlabel("t", "fontsize", 2);
-            ylabel("sin(t)");
-            axes_handle = gca();
-            subplot(2,1,2);
-            plot(t, cos(t), "b");
-            xlabel("t", "fontsize", 2);
-            ylabel("cos(t)", "fontsize", 6, "color", "blue");
-            ylabel(axes_handle, "sin(t)", "fontsize", 6, "color", "red");
+            t = linspace(-2*%pi, 2*%pi, 30);
+            plotframe([0 0 1 1])
+
+            subplot(2,1,1)
+            plot(t, sin(t), "color", "orange")
+            xlabel "Elapsed time" fontsize 2
+            ylabel sin(t)
+            ax1 = gca();
+
+            subplot(2,1,2)
+            plot(t, cos(t), "b")
+            xlabel $time_{eigen}$  fontsize 4
+            ylabel cos(t) fontsize 4.5 color blue
+            ylabel edgecolor r background grey95
+
+            ylabel(ax1, "fontsize", 4)
+            // Now ax1 is the current axes:
+            ylabel color orange  rotation -90
         </scilab:image>
     </refsection>
     <refsection role="see also">
@@ -163,11 +298,67 @@ ylabel(axes_handle, "sin(t)", "fontsize", 6, "color", "red");
                 <link linkend="label_properties">label_properties</link>
             </member>
             <member>
+                <link linkend="title">title</link>
+            </member>
+            <member>
                 <link linkend="xtitle">xtitle</link>
             </member>
             <member>
-                <link linkend="title">title</link>
+                <link linkend="ieditor">Interactive editor</link>
+            </member>
+            <member>
+                <link linkend="xstring">xstring</link>
+            </member>
+            <member>
+                <link linkend="color_list">color_list</link>
+            </member>
+            <member>
+                <link linkend="color">color</link>
+            </member>
+            <member>
+                <link linkend="xlfont">xlfont</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            The <literal>label</literal> becomes optional, to update only properties.
+                        </listitem>
+                        <listitem>
+                            The full list of Scilab predefined colors names can now be used,
+                            as well as hexadecimal #RRGGBB colors codes.
+                        </listitem>
+                        <listitem>
+                            Console-oriented usages are now possible, specifying any color index,
+                            font id, font size, or box angle as a string like "13" instead of 13,
+                            excepted for [r,g,b] and [x,y,z] position.
+                        </listitem>
+                        <listitem>
+                            When a non-integer font size is specified,
+                            <literal>.fractional_font</literal> is now automatically turned "on".
+                            It is conversely forced to "off" for any input integer font size.
+                        </listitem>
+                        <listitem>
+                            Any specified font name is now space-insensitive.
+                        </listitem>
+                        <listitem>
+                            New property <literal>box="on"|"off"</literal> added.
+                        </listitem>
+                        <listitem>
+                            New property <literal>tag</literal> added.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
