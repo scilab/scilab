@@ -35,7 +35,7 @@ extern "C"
 }
 
 static wchar_t* replaceAndCountLines(const wchar_t* _pwstInput, int* _piLines, int* _piNewLine);
-static wchar_t* addl(TokenDef* token);
+static wchar_t* replace_with_ls(TokenDef* token);
 static void updatel(TokenDef* token);
 static void replace_lu_llu(TokenDef* token);
 static void replace_ld_lld(TokenDef* token);
@@ -439,7 +439,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     }
                     else
                     {
-                        wchar_t* newToken = addl(tok);
+                        wchar_t* newToken = replace_with_ls(tok);
 
                         if (std::isnan(dblVal))
                         {
@@ -494,7 +494,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     }
                     else
                     {
-                        wchar_t* newToken = addl(tok);
+                        wchar_t* newToken = replace_with_ls(tok);
 
                         if (std::isnan(dblVal))
                         {
@@ -552,7 +552,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     }
                     else
                     {
-                        wchar_t* newToken = addl(tok);
+                        wchar_t* newToken = replace_with_ls(tok);
 
                         if (std::isnan(dblVal))
                         {
@@ -788,7 +788,7 @@ static wchar_t* replaceAndCountLines(const wchar_t* _pwstInput, int* _piLines, i
     return pwstFirstOutput;
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t* addl(TokenDef* token)
+static wchar_t* replace_with_ls(TokenDef* token)
 {
     //replace %s or %c by %ls or %lc to wide char compatibility
     int iPos = token->typePos;
@@ -797,7 +797,7 @@ static wchar_t* addl(TokenDef* token)
 
     wcsncpy(pwstToken, token->pwstToken, iPos);
     pwstToken[iPos] = L'l';
-    pwstToken[iPos + 1] = token->pwstToken[iPos];
+    pwstToken[iPos + 1] = L's';
     wcsncpy(&pwstToken[iPos + 2], token->pwstToken + iPos + 1, sizeTotal - (iPos + 1));
     pwstToken[sizeTotal + 1] = L'\0';
 
@@ -806,7 +806,7 @@ static wchar_t* addl(TokenDef* token)
 /*--------------------------------------------------------------------------*/
 static void updatel(TokenDef* token)
 {
-    wchar_t* newToken = addl(token);
+    wchar_t* newToken = replace_with_ls(token);
     delete[] token->pwstToken;
     token->pwstToken = newToken;
 }

@@ -128,7 +128,7 @@ User Interface improvements:
 ----------------------------
 
 * The `ans` variable is editable as any other variable
-* Commands history is saved *before* executing a command to have the correct history on crash.
+* Commands history is saved before executing a command to have the correct history on crash.
 * Used memory per variable is displayed by BrowserVar to give the user numbers on memory usage repartition and let the user `clear` the big ones first.
 
 Xcos
@@ -206,6 +206,7 @@ Bug Fixes
 * [#15812](http://bugzilla.scilab.org/show_bug.cgi?id=15812): On assigning variables the source variable may become become corrupted
 * [#15840](http://bugzilla.scilab.org/show_bug.cgi?id=15840): `grand(1,"prm",m)` yielded an unsqueezed size([size(m) 1]) hypermatrix
 * [#15964](http://bugzilla.scilab.org/show_bug.cgi?id=15954): A complex empty sparse matrix could be obtained after insertion.
+* [#15974](http://bugzilla.scilab.org/show_bug.cgi?id=15974): `msprintf("%d", %nan)` did not return Nan
 * [#15983](http://bugzilla.scilab.org/show_bug.cgi?id=15983): `group()` regressed in 5.5.2 due to a too intrusive fix.
 * [#15984](http://bugzilla.scilab.org/show_bug.cgi?id=15984): display scale was wrong with Retina dispplays on OSX..
 * [#15995](http://bugzilla.scilab.org/show_bug.cgi?id=15995): patch was missing in surface plot (regression)
