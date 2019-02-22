@@ -259,6 +259,7 @@ Bug Fixes
 * [#15534](http://bugzilla.scilab.org/show_bug.cgi?id=15534): Booleans and encoded integers could not be concatenated together.
 >>>>>>> 7115870ad73... * Bug 15534 fixed: [%t int8(-5)] was refused
 * [#15577](http://bugzilla.scilab.org/show_bug.cgi?id=15577): `edit` did not accept a line number as text, as with `edit linspace 21`.
+<<<<<<< HEAD
 * [#15580](http://bugzilla.scilab.org/show_bug.cgi?id=15580): `det(sparse([],[]))` yielded an error.
 * [#15981](http://bugzilla.scilab.org/show_bug.cgi?id=15981): `wavread()` kept the wav file open and locked when returning on errors. It weakly managed the input file name. It claimed for invalid data formats instead of unsupported ones, with poor information about the current format vs the supported ones. Several error messages refered to a wrong function.
 * [#15595](http://bugzilla.scilab.org/show_bug.cgi?id=15595): `unique()` was not able to return distinct values in their original order, without sorting them. A `keepOrder` option now allows it.
@@ -275,6 +276,7 @@ Bug Fixes
 * [#15934](http://bugzilla.scilab.org/show_bug.cgi?id=15934): The `^ hat` page wrongly indicated that `^` applied to a rectangular matrix not being a vector is done element-wise.
 * [#15948](http://bugzilla.scilab.org/show_bug.cgi?id=15948): `xlabel`, `ylabel`, `zlabel` and `title` needed to be upgraded.
 * [#15964](http://bugzilla.scilab.org/show_bug.cgi?id=15954): A complex empty sparse matrix could be obtained after insertion.
+* [#15967](http://bugzilla.scilab.org/show_bug.cgi?id=15967): `setdiff(1,[])` was [] instead of `1`. `setdiff(a,[],..)` was not enough tested.
 * [#15969](http://bugzilla.scilab.org/show_bug.cgi?id=15969): Fix spelling
 * [#15974](http://bugzilla.scilab.org/show_bug.cgi?id=15974): `msprintf("%d", %nan)` did not return Nan
 * [#15977](http://bugzilla.scilab.org/show_bug.cgi?id=15977): The documentation for `wavread(..,'info')` had a mistake. The `wavread` page deserved some improvements.
@@ -357,3 +359,5 @@ Bug Fixes
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot`, `colorbar` displayed an empty ungraduated color bar.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
+=======
+

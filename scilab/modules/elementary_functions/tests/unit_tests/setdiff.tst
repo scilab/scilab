@@ -1,7 +1,7 @@
 // =============================================================================
 // Scilab ( http://wwwscilaborg/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
-// Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2018 - 2019 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package
 // =============================================================================
@@ -47,8 +47,6 @@ h = cat(3, m(:,1:6), m2(:,1:6));
 h2 = cat(3, m([2 1],1:6), m2([2 1],1:6));
 L  = list(s,  r,  c,  m,  h);
 L2 = list(s2, r2, c2, m2, h2);
-msgr = "setdiff: Arguments #1 and #2: Same numbers of columns expected.";
-msgc = "setdiff: Arguments #1 and #2: Same numbers of rows expected.";
 
 // With a=[] , orien = none|"r"|"c"
 // --------------------------------
@@ -63,8 +61,32 @@ for i = 1:length(L)
     [va, ka] = setdiff([], o, "c");
     assert_checkequal(va, []);
     assert_checkequal(ka, []);
-    assert_checkerror("setdiff(o, [], ''r'')", msgr);
-    assert_checkerror("setdiff(o, [], ''c'')", msgc);
+end
+
+// With b=[] , orien = none|"r"|"c"
+// --------------------------------
+for i = 1:length(L)
+    o = L(i);
+    [va, ka] = setdiff(o,[]);
+    [var,kar]= unique(o);
+    assert_checkequal(va, var);
+    assert_checkequal(ka, kar);
+    if ndims(o)>2
+        [var,kar] = unique(matrix(permute(o,[2 1 3]),6,-1)', "r");
+    else
+        [var,kar] = unique(o, "r")
+    end
+    [va, ka] = setdiff(o, [], "r");
+    assert_checkequal(va, var);
+    assert_checkequal(ka, kar);
+    [va, ka] = setdiff(o, [], "c");
+    if ndims(o)>2
+        [var,kar] = unique(matrix(o,2,-1), "c");
+    else
+        [var,kar] = unique(o, "c")
+    end
+    assert_checkequal(va, var);
+    assert_checkequal(ka, kar);
 end
 
 // "r" and "c" options
