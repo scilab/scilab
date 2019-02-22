@@ -177,8 +177,8 @@ msgstr "12月"
 
 #
 # File: macros/calendar.sci, line: 52
-msgid "   M      Tu     W      Th     F     Sat     Sun"
-msgstr "   月      火      水      木      金      土      日"
+msgid  "   M      Tu     W      Th     F     Sat     Sun"
+msgstr "   月     火     水      木    金     土       日"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"

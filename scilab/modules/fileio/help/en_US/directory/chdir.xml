@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="chdir">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="chdir">
     <refnamediv>
         <refname>chdir</refname>
         <refpurpose>changes Scilab current directory</refpurpose>
@@ -25,7 +28,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>b = chdir(path)
+        <synopsis>
+            b = chdir(path)
             realpath = cd(path)
             cd path
         </synopsis>
@@ -34,17 +38,18 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>b</term>
+                <term>path</term>
                 <listitem>
-                    <para>
-                        a boolean  <constant>%t</constant> if <function>chdir</function> operation is ok
-                    </para>
+                  <para>a character string</para>. The default path is <literal>home</literal>.
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>path</term>
+                <term>b</term>
                 <listitem>
-                    <para>a character string</para>
+                    <para>
+                        a boolean:  <constant>%t</constant> if <function>chdir</function> operation
+                        is successful.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -64,35 +69,69 @@
         </para>
         <para>
             <note>
-                Note that path conversion is performed and for example
-                <literal>SCI/modules/core/macros</literal> is a valid pattern for both Unix and Windows.
-                If <varname>path</varname> is empty change to "home" directory.
+                Note that, if any, <link linkend="SCI">SCI</link>,
+                <link linkend="SCIHOME">SCIHOME</link>,
+                <link linkend="TMPDIR">TMPDIR</link> and
+                <link linkend="home">home</link> headings constants in path are  converted.
+                For example,  <literal>SCI/modules/core/macros</literal> is a valid pattern for
+                both Unix and Windows.
             </note>
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-chdir(TMPDIR);
+chdir("SCI/etc")
 pwd
-cd
-cd SCI
- ]]></programlisting>
+cd ..
+cd TMPDIR
+p = cd()
+p == home
+     ]]></programlisting>
+        <screen><![CDATA[
+--> chdir("SCI/etc")
+ ans  =
+  T
+
+--> pwd
+ ans  =
+ C:\Programs\scilab\scilab-6.0.2\etc
+
+
+--> cd ..
+ ans  =
+ C:\Programs\scilab\scilab-6.0.2
+
+--> cd TMPDIR
+ ans  =
+ C:\Users\Me\AppData\Local\Temp\SCI_TMP_5444_26901
+
+--> p = cd()
+ p  =
+ C:\Users\Me
+
+--> p == home
+ ans  =
+  T
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="isdir">isdir</link>
+            </member>
+            <member>
                 <link linkend="pwd">pwd</link>
             </member>
             <member>
-                <link linkend="SCI">SCI</link>
+                <link linkend="home">home</link>
             </member>
             <member>
-                <link linkend="SCIHOME">SCIHOME</link>
+                <link linkend="filebrowser">filebrowser</link>
             </member>
             <member>
-                <link linkend="TMPDIR">TMPDIR</link>
+                <link linkend="uigetdir">uigetdir</link>
             </member>
         </simplelist>
     </refsection>

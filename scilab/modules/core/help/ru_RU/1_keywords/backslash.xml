@@ -73,7 +73,7 @@ b=[
    30.
 ];
 x=A\b
-A*x-b // close to zero
+A*x-b // близко к нулю
 
 A=rand(3,2);
 b=[1;1;1];
@@ -143,12 +143,13 @@ mprintf('\nвремя, необходимое для решения систем
         </simplelist>
     </refsection>
     <refsection>
-        <title>History</title>
+        <title>История</title>
         <revhistory>
             <revision>
-                <revnumber>5.4.1</revnumber>
+                <revnumber>5.5.0</revnumber>
                 <revremark>
-                    Пороговый уровень для обусловливания в обратном слэше увеличен.
+                  Пороговый уровень, который переключает при вычислении A\B между исключением по
+                  методу Гаусса и перестановкой строк матрицы, уменьшен от sqrt(eps) до eps.
                 </revremark>
             </revision>
         </revhistory>

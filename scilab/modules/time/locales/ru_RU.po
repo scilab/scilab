@@ -135,7 +135,7 @@ msgstr "Ноя"
 msgid "Dec"
 msgstr "Дек"
 
-msgid "   M      Tu     W      Th     F     Sat     Sun"
+msgid  "   M      Tu     W      Th     F     Sat     Sun"
 msgstr "   Пн     Вт     Ср     Чт     Пт    Сб      Вс"
 
 #, c-format

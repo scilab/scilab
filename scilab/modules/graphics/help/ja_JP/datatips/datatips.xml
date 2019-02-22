@@ -18,7 +18,10 @@
 
 -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="datatips">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="datatips">
 
     <refnamediv>
 
@@ -258,6 +261,9 @@
 
         <simplelist type="inline">
 
+            <member>
+                <link linkend="datatip_properties">datatip_properties</link>
+            </member>
             <member>
 
                 <link linkend="datatipToggle">datatipManagerMode</link>

@@ -3,9 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
- * Copyright (C) 2018 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -149,9 +148,9 @@
                             </tr>
                             <tr valign="top">
                                 <th>2</th>
-                                <td style="white-space:pre"><literal>
+                                <td style="white-space:pre"><screen><![CDATA[
 msg = "To be translated";
-gettext(msg)</literal>
+gettext(msg)]]></screen>
                                 </td>
                                 <td>NOK</td>
                                 <td>
@@ -176,9 +175,9 @@ gettext(msg)</literal>
                             </tr>
                             <tr valign="top">
                                 <th>4</th>
-                                <td style="white-space:pre"><literal>
+                                <td style="white-space:pre"><screen><![CDATA[
 gettext("To be" + ..
-                  " translated")</literal>
+        " translated")]]></screen>
                                 </td>
                                 <td>NOK</td>
                                 <td>Same as #3</td>
@@ -205,9 +204,9 @@ gettext("To be" + ..
                             </tr>
                             <tr valign="top">
                                 <th>7</th>
-                                <td style="white-space:pre"><literal>
+                                <td style="white-space:pre"><screen><![CDATA[
 gettext(["item#1"
-         "item#2"])</literal>
+         "item#2"])]]></screen>
                                 </td>
                                 <td>NOK</td>
                                 <td>Same as #6</td>
@@ -222,9 +221,9 @@ gettext(["item#1"
                             </tr>
                             <tr valign="top">
                                 <th>9</th>
-                                <td style="white-space:pre"><literal>
+                                <td style="white-space:pre"><screen><![CDATA[
 gettext(["item#1" ;
-         "item#2"])</literal>
+         "item#2"])]]></screen>
                                 </td>
                                 <td>OK</td>
                                 <td>
@@ -246,6 +245,7 @@ gettext(["item#1" ;
                             <literal>addlocalizationdomain()</literal>
                         </para>
                     </important>
+                    <para/>
                 </listitem>
                 <listitem>
                     <para>
@@ -253,6 +253,7 @@ gettext(["item#1" ;
                         contributors. Anyway, by some humans. Good translation tools are also available
                         online.
                     </para>
+                    <para/>
                 </listitem>
                 <listitem>
                     <para>
@@ -261,6 +262,7 @@ gettext(["item#1" ;
                         This is done by running <literal>tbx_generate_pofile()</literal> another
                         time.
                     </para>
+                    <para/>
                 </listitem>
                 <listitem>
                     <para>
@@ -337,10 +339,20 @@ gettext(["item#1" ;
                         </para>
                         <warning>
                             When <literal>gettext()</literal> or <literal>_()</literal> is used in
-                            an XML file such as in the preferences files of an external module, the
-                            literal domain string and the literal message id must no longer be
-                            delimited. For instance, <literal>_(my_domain, My message)</literal>
+                            a XML or XSL file such as in the preferences files of an external module,
+                            the literal domain string and the literal message id must no longer be
+                            delimited.
+                            <para/>
+                            For instance, <literal>_(my_domain, My message)</literal>
                             will be used instead of <literal>_("my_domain", "My message")</literal>.
+                            <para>
+                                In addition, spaces before and after the messageID are then never
+                                taken into account and never belong to the message. For example,
+                                the actual message ID corresponding to
+                                <literal>_(my_domain, My message:  )</literal> is
+                                <literal>"My message:"</literal>, not
+                                <literal>" My message:  "</literal>.
+                            </para>
                         </warning>
                     </listitem>
                     <listitem>
@@ -358,7 +370,7 @@ gettext(["item#1" ;
                     <listitem>
                         <para>
                             Some template messages may often include some "%" C-like directives
-                            aiming to be replaced with some input custom data through
+                            aiming to be replaced with some custom input data through
                             <literal>msprintf()</literal> at run time.
                             For instance,
                             <literal>msprintf("Hi %s, could you come at %s today?", "John", "12:30")</literal>

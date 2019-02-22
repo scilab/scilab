@@ -9,4 +9,4 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Qualité",SCI+"/modules/coverage/help/fr_FR",%T);
+add_help_chapter("Performances des programmes",SCI+"/modules/coverage/help/fr_FR",%T);

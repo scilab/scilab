@@ -222,7 +222,7 @@ d, k
    1.   2.   3.   8.
  k  =
    6.   1.   10.   9.
- ]]></screen>
+]]></screen>
         <para>
             <emphasis role="bold">Пример №2: постолбцовая обработка</emphasis>
         </para>
@@ -248,7 +248,7 @@ d, k
    1.   2.   2.   0.
  k  =
    6.   1.   7.   5.
- ]]></screen>
+]]></screen>
         <para>
             <emphasis role="bold">Пример №3: с текстом</emphasis>
         </para>

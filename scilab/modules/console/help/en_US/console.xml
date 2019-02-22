@@ -341,6 +341,9 @@ prefs general/shortcuts;
         <title>See Also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="scinotes_menus_shortcuts">editor shortcuts</link>
+            </member>
+            <member>
                 <link linkend="preferences">preferences</link>
             </member>
             <member>

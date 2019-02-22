@@ -141,8 +141,8 @@ msgstr "Nov."
 msgid "Dec"
 msgstr "Déc."
 
-msgid "   M      Tu     W      Th     F     Sat     Sun"
-msgstr "   L Ma M Je V Sam Dim"
+msgid  "   M      Tu     W      Th     F     Sat     Sun"
+msgstr "  Lun    Mar    Mer    Jeu    Ven    Sam     Dim"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"

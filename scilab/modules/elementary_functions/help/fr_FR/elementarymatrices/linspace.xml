@@ -157,8 +157,9 @@ linspace([1:4]', [5:8]', 10)   // avec des colonnes de bornes
 ]]></screen>
     <para/>
     <para>
-        <emphasis role="bold">With encoded integers:</emphasis>
-        The step may vary by one unit along the series:
+        <emphasis role="bold">Avec des entiers encodés :</emphasis>
+        le pas peut varier d'au plus une unité en cours de série, afin d'assurer que la borne
+        supérieure est toujours atteinte :
     </para>
         <programlisting role="example"><![CDATA[
 x = linspace(int8([5;127]), int8([127;5]), 10)

@@ -13,11 +13,14 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="object_editor">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="object_editor">
     <refnamediv>
-        <refname>object editor </refname>
+        <refname>graphical editor</refname>
         <refpurpose>
-            description of the graphic object editor capacities
+            Interactive edition of hierarchical properties of graphic objects
         </refpurpose>
     </refnamediv>
     <refsection>
@@ -368,6 +371,12 @@
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="ieditor">ieditor</link>
+            </member>
+            <member>
+                <link linkend="ged">ged</link>
+            </member>
+            <member>
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
             <member>
@@ -377,13 +386,7 @@
                 <link linkend="get">get</link>
             </member>
             <member>
-                <link linkend="clf">clf</link>
-            </member>
-            <member>
                 <link linkend="plot">plot</link>
-            </member>
-            <member>
-                <link linkend="ged">ged</link>
             </member>
         </simplelist>
     </refsection>

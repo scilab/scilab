@@ -35,7 +35,8 @@
         <para>
             <itemizedlist>
                 <listitem>
-                    Let U be the Z values of the plot for which a colorbar scale is needed, %inf, -%inf and %nan values being ignored.
+                    Let U be the Z values of the plot for which a colorbar scale is needed, %inf,
+                    -%inf and %nan values being ignored.
                 </listitem>
                 <listitem>
                     Let minU and maxU be the minimum and the maximum of U values.
@@ -96,7 +97,7 @@
                         represent the <literal>umin</literal> data value. Similarly,
                         the color of index <literal>colmax</literal> will represent
                         <literal>umax</literal>, with
-                        <literal>1 &lt; colmin &lt; colmax &lt; Nc</literal>.
+                        <literal>1 ≤ colmin &lt; colmax ≤ Nc</literal>.
                     </para>
                     <para>Default setting: <literal>[1,Nc]</literal></para>
                     <para>
@@ -173,7 +174,7 @@
         </para>
         <para><emphasis role="bold">colorbar(,, [colmin colmax])</emphasis></para>
         <para>
-            with integers such that <literal>1 colmin &lt; colmax Nc</literal>.
+            with integers such that <literal>1 ≤ colmin &lt; colmax ≤ Nc</literal>.
             Conversely to the previous one, this syntax sets
             <literal>umin</literal> and <literal>umax</literal>
             such that "[umin,umax]/[minU,maxU]" maps "[colmin,colmax]/[1,Nc]"
@@ -181,7 +182,8 @@
         </para>
         <para><emphasis role="bold">colorbar(,, [fmin fmax])</emphasis></para>
         <para>
-            The previous syntax <literal>colorbar(,,[colmin colmax])</literal> needs to know the colormap range to specify <literal>colmin</literal>
+            The previous syntax <literal>colorbar(,,[colmin colmax])</literal> needs to know the
+            colormap range to specify <literal>colmin</literal>
             and <literal>colmax</literal> conveniently. This is not very
             handy when we just want to target a fractional part of the colormap
             whatever is its actual length. <literal>fmin</literal> and
@@ -192,7 +194,8 @@
             This syntax sets
             <itemizedlist>
                 <listitem>
-                    <literal>umin</literal> and <literal>umax</literal> such that the relative range "[umin umax]/[min(U) max(U]" maps "[fmin, fmax]".
+                    <literal>umin</literal> and <literal>umax</literal> such that the relative
+                    range "[umin umax]/[min(U) max(U]" maps "[fmin, fmax]".
                 </listitem>
                 <listitem>
                     <literal>[colmin colmax]</literal> such that the relative range

@@ -13,15 +13,20 @@
  * along with this program.
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="playsnd">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="playsnd">
     <refnamediv>
         <refname>playsnd</refname>
         <refpurpose>サウンドプレイヤー機能</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[]=playsnd(y)
-            []=playsnd(y,rate,bits [,command])
+        <synopsis>
+          playsnd(y)
+          playsnd(y, rate, bits)
+          playsnd(y, rate, bits, command)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

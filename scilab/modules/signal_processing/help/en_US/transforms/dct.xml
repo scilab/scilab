@@ -30,12 +30,17 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>X=dct(A [,sign] [,option])
-            X=dct(A,sign,selection [,option])
-            X=dct(A,sign,dims,incr [,option])
-            X=idct(A [,option])
-            X=idct(A,selection [,option])
-            X=idct(A,dims,incr [,option])
+        <synopsis>
+            X = dct(A)
+            X = dct(A, sign)
+            X = dct(A, sign, selection)
+            X = dct(A, sign, dims, incr)
+            X = dct(.., option)
+
+            X = idct(A)
+            X = idct(A, selection)
+            X = idct(A, dims, incr)
+            X = idct(.., option)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -385,16 +390,17 @@
   //----------------------------------
   // build a sampled at 1000hz  containing pure frequencies
   // at 50 and 70 Hz
-  sample_rate=1000;
+  sample_rate = 1000;
   t = 0:1/sample_rate:0.6;
-  N=size(t,'*'); //number of samples
-  s=sin(2*%pi*50*t)+sin(2*%pi*70*t+%pi/4)+grand(1,N,'nor',0,1);
-  d=dct(s);
+  N = size(t,'*'); //number of samples
+  s = sin(2*%pi*50*t) + sin(2*%pi*70*t+%pi/4) + grand(1,N,'nor',0,1);
+  d = dct(s);
   // zero low energy components
-  d(abs(d)<1)=0;
-  size(find(y1<>0),'*') //only 30 non zero coefficients out of 600
-  clf;plot(s,'b'),plot(dct(d,1),'r')
-
+  d(abs(d)<1) = 0;
+  size(find(d<>0), '*') //only 30 non zero coefficients out of 600
+  clf
+  plot(s,'b')
+  plot(dct(d,1),'r')
   ]]></programlisting>
 
         <para>2-D dct</para>

@@ -27,7 +27,7 @@
         <title>Syntax</title>
         <synopsis>
             y = log2(x)
-            [m,e] = log2(u)
+            [m, e] = log2(u)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -61,14 +61,14 @@
             </note>
         </para>
         <para>
-            <literal>[m,e]=log2(u)</literal> computes in an element-wise way the base-2 mantissa
+            <literal>[m, e] = log2(u)</literal> computes in an element-wise way the base-2 mantissa
             <varname>m</varname> and exponent <varname>e</varname> of every elements of
             <varname>u</varname>. Hence, for any index <literal>k</literal> we have
             <literal>u(k) = m(k) .* 2.^e(k)</literal> with <literal>0.5 ≤ |m(k)| &lt; 1</literal>.
             <note>
                 <itemizedlist>
                     <listitem>
-                        <literal>[m,e]=log2([0 %nan -%inf %inf])</literal> returns
+                        <literal>[m, e] = log2([0 %nan -%inf %inf])</literal> returns
                         <literal>m=[0  NaN -Inf Inf]</literal> and <literal>e=[0 0 0 0]</literal>.
                     </listitem>
                     <listitem>

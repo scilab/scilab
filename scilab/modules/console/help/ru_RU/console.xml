@@ -344,6 +344,9 @@ prefs general/shortcuts;
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
+                <link linkend="scinotes_menus_shortcuts">Ярлыки редактора</link>
+            </member>
+            <member>
                 <link linkend="preferences">настройки</link>
             </member>
             <member>

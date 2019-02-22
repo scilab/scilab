@@ -15,7 +15,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tbx_builder_macros" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="tbx_builder_macros" xml:lang="en">
     <refnamediv>
         <refname>tbx_builder_macros</refname>
         <refpurpose>Create library(es) of a toolbox for its functions in Scilab language</refpurpose>
@@ -46,8 +49,8 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            This function is usually called from <literal>builder.sce</literal> scripts when
-            creating or updating a toolbox.
+            This function is usually called by <literal>tbx_make(..)</literal> or called from
+            <literal>builder.sce</literal> scripts, when creating or updating a toolbox.
         </para>
         <warning>
           The short name (id) <literal>tbx_name</literal> of the toolbox is retrieved as the basename
@@ -77,7 +80,7 @@
               </itemizedlist>
               </listitem>
               <listitem>
-                 Otherwise, <function>tbx_builder_macros</function> exists silently.
+                 Otherwise, <function>tbx_builder_macros</function> exits silently.
               </listitem>
             </itemizedlist>
         </para>
@@ -93,6 +96,15 @@
 // Recommended usage, from a builder.sce script
 tbx_builder_macros(get_absolute_file_path('builder.sce'))
  ]]></programlisting>
+    </refsection>
+
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tbx_make">tbx_make</link>
+            </member>
+        </simplelist>
     </refsection>
 
     <refsection role="history">

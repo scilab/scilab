@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="chdir" xml:lang="pt">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="chdir" xml:lang="pt">
     <refnamediv>
         <refname>chdir</refname>
         <refpurpose>muda o diretório corrente do Scilab</refpurpose>
@@ -10,8 +28,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>b=chdir(path)
-            realpath=cd(path)
+        <synopsis>
+            b = chdir(path)
+            realpath = cd(path)
             cd path
         </synopsis>
     </refsynopsisdiv>
@@ -27,7 +46,7 @@
             <varlistentry>
                 <term>path</term>
                 <listitem>
-                    <para>um string</para>
+                    <para>um string</para>. O caminho padrão é <literal>home</literal>.
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -43,26 +62,69 @@
     <refsection>
         <title>Descrição</title>
         <para>Muda o diretório corrente do Scilab para aquele dado por
-            <literal>path</literal>. Note que a conversão de endereço é realizada e.
-            por exemplo <literal>SCI/modules/core/macros</literal> é um padrão válido
-            tanto pra Unix quanto para Windows. Se path for vazio, muda para diretório
-            "home".
+            <literal>path</literal>. Note que a conversão de endereço é realizada e
+            (<link linkend="SCI">SCI</link>,
+                <link linkend="SCIHOME">SCIHOME</link>,
+                <link linkend="TMPDIR">TMPDIR</link>,
+                <link linkend="home">home</link>, etc).
+            Por exemplo <literal>SCI/modules/core/macros</literal> é um padrão válido
+            tanto pra Unix quanto para Windows.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-chdir(TMPDIR);
+chdir("SCI/etc")
 pwd
-cd
-cd SCI
- ]]></programlisting>
+cd ..
+cd TMPDIR
+p = cd()
+p == home
+     ]]></programlisting>
+        <screen><![CDATA[
+--> chdir("SCI/etc")
+ ans  =
+  T
+
+--> pwd
+ ans  =
+ C:\Programs\scilab\scilab-6.0.2\etc
+
+
+--> cd ..
+ ans  =
+ C:\Programs\scilab\scilab-6.0.2
+
+--> cd TMPDIR
+ ans  =
+ C:\Users\Me\AppData\Local\Temp\SCI_TMP_5444_26901
+
+--> p = cd()
+ p  =
+ C:\Users\Me
+
+--> p == home
+ ans  =
+  T
+]]></screen>
     </refsection>
     <refsection>
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
+                <link linkend="isdir">isdir</link>
+            </member>
+            <member>
                 <link linkend="pwd">pwd</link>
+            </member>
+            <member>
+                <link linkend="home">home</link>
+            </member>
+            <member>
+                <link linkend="filebrowser">filebrowser</link>
+            </member>
+            <member>
+                <link linkend="uigetdir">uigetdir</link>
             </member>
         </simplelist>
     </refsection>

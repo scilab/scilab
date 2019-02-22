@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="pt" xml:id="ieditor">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab"
+          xml:lang="pt" xml:id="ieditor">
     <refnamediv>
         <refname>Editor Interativo</refname>
-        <refpurpose> Interactive plot editor</refpurpose>
+        <refpurpose>Interactive plot editor</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
-
         <para>
             O editor interativo adiciona novas funcionalidades ao scilab, agora o usuário pode
             interagir com a janela de plot e os objetos graficos sem usar uma única linha de código.
@@ -41,9 +43,11 @@
             <listitem><para>
                     Copiar, recortar, colar
                 </para>
-                Entidades selecionadas podem ser copiadas ou recortadas e coladas em outras figuras (exceto legendas).
+                Entidades selecionadas podem ser copiadas ou recortadas e coladas
+                em outras figuras (exceto legendas).
                 <para>
-                    Para copiar ou recortar: selecione-a, click com o botão direito do mouse copiar/recortar.
+                    Para copiar ou recortar: selecione-a, click com o botão direito
+                    do mouse copiar/recortar.
                 </para>
                 <inlinemediaobject>
                     <imageobject>
@@ -58,9 +62,11 @@
             <listitem><para>
                     Copiar o estilo dos eixos
                 </para>
-                As propriedades dos eixos podem ser copiadas e coladas de uma figura para outra para facilitar a formatação.
+                As propriedades dos eixos podem ser copiadas e coladas de uma figura para outra
+                para facilitar a formatação.
                 <para>
-                    Para copiar o estilo do eixo: click com o botao direito do mouse sobre qualquer parte da figura e "copiar estilo".
+                    Para copiar o estilo do eixo: click com o botao direito do mouse sobre
+                    qualquer parte da figura e "copiar estilo".
                 </para>
                 <inlinemediaobject>
                     <imageobject>
@@ -75,9 +81,11 @@
             <listitem><para>
                     Copiar para a área de transferência
                 </para>
-                A figura pode ser copiada par a área de transferência do sistema, e colada em outros programas (como editores de texto e imagens que suportem).
+                A figura pode ser copiada par a área de transferência do sistema, e colada em
+                outros programas (como editores de texto e imagens que suportem).
                 <para>
-                    Para copiar a figura para a área de transferência: click com o botao direito do mouse, "Copiar para a área de transferência".
+                    Para copiar a figura para a área de transferência: click com o botao direito
+                    do mouse, "Copiar para a área de transferência".
                 </para>
                 <inlinemediaobject>
                     <imageobject>
@@ -136,7 +144,9 @@
                     Rotulos
                 </para>
                 <para>
-                    Com o simples click do botão direito o usuário pode inserir rotulos nos eixos, e com um click duplo sobre o texto de um rotulo abrir uma caixa de diálogo para editar o texto do mesmo.
+                    Com o simples click do botão direito o usuário pode inserir rotulos nos eixos,
+                    e com um click duplo sobre o texto de um rotulo abrir uma caixa de diálogo
+                    para editar o texto do mesmo.
                 </para>
                 <inlinemediaobject>
                     <imageobject>
@@ -149,7 +159,10 @@
                     Legendas
                 </para>
                 <para>
-                    Com o simples click do botão direito o usuário pode inserir uma legenda para a curva selecionada ou remover uma legenda existente dessa curva, e com um click duplo sobre uma legenda abrir uma caixa de dialogo para edita o texto do mesmo.
+                    Com o simples click do botão direito o usuário pode inserir uma legenda para
+                    a curva selecionada ou remover uma legenda existente dessa curva,
+                    e com um click duplo sobre uma legenda abrir uma caixa de dialogo
+                    para edita o texto do mesmo.
                 </para>
                 <inlinemediaobject>
                     <imageobject>
@@ -187,7 +200,8 @@
             <listitem><para>
                     Abrir GED(Janela de Propriedades)
                 </para>
-                Com o simples click do botão direito o usuario pode abrir a ged com as propriedades da entidade selecionada.
+                Com o simples click do botão direito o usuario pode abrir a ged com as
+                propriedades da entidade selecionada.
             </listitem>
 
         </itemizedlist>
@@ -223,7 +237,9 @@
                     Editor gráfico de curvas
                 </para>
                 <para>
-                    Para editar os dados de uma curva: Habilite o modo de edição de dados, selecione um objeto, click com o botão direito, "editar dados da curva" ou dê um click duplo sobre a curva.
+                    Para editar os dados de uma curva: Habilite o modo de edição de dados,
+                   selecione um objeto, click com o botão direito, "editar dados da curva"
+                  ou dê um click duplo sobre a curva.
                 </para>
                 <inlinemediaobject>
                     <imageobject>
@@ -231,10 +247,13 @@
                     </imageobject>
                 </inlinemediaobject>
                 <para>
-                    Para adicionar um ponto a curva: com a curva selecionada e o modo de edição de dados habilitado, click com o botão direito, inserir ou dê um click duplo sobre a curva na posição onde deseja adicionar o ponto.
+                    Para adicionar um ponto a curva: com a curva selecionada e o modo de edição
+                   de dados habilitado, click com o botão direito, inserir ou dê um click duplo
+                  sobre a curva na posição onde deseja adicionar o ponto.
                 </para>
                 <para>
-                    Para remover um ponto: com a curva selecionada e o modo de edição de dados habilitado, click com o botao direito sobre o ponto, "remover".
+                    Para remover um ponto: com a curva selecionada e o modo de edição de dados
+                   habilitado, click com o botao direito sobre o ponto, "remover".
                 </para>
                 <inlinemediaobject>
                     <imageobject>
@@ -242,7 +261,8 @@
                     </imageobject>
                 </inlinemediaobject>
                 <para>
-                    Para mover um ponto: com a curva selecionada e o modo de edição de dados habilitado, click e arraste o ponto.
+                    Para mover um ponto: com a curva selecionada e o modo de edição de dados
+                    habilitado, click e arraste o ponto.
                 </para>
                 <inlinemediaobject>
                     <imageobject>
@@ -251,5 +271,25 @@
                 </inlinemediaobject>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="object_editor">Properties editor</link>
+            </member>
+            <member>
+                <link linkend="ged">ged</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

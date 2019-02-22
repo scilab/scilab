@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_randperm">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="m2sci_randperm">
     <refnamediv>
         <refname>randperm (Matlab function)</refname>
         <refpurpose>Uniformly distributed random numbers and arrays</refpurpose>
@@ -28,28 +31,28 @@
                 <td align="center">
                     <emphasis role="bold">Scilab</emphasis>
                 </td>
+                <td/>
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-randperm(n) ; randperm(n ,k)
-]]></programlisting>
+                    <screen><![CDATA[
+randperm(n)
+randperm(n, m)
+]]></screen>
+                </td>
+                <td>
+                    <screen><![CDATA[
+grand(1, "prm", 1:n)
+grand(1, "prm", 1:n)(1:m)
+]]></screen>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-grand(1, "prm", (1:n)')' ; v = grand(1, "prm", (1:n)')', v(1:k)
+grand(1, "prm", 1:10)
+grand(1, "prm", 1:10)(1:6)
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Description</title>
-        <para>
-            Matlab's randperm(n) is equivalent to grand(1, "prm", (1:n)')' in Scilab.
-        </para>
-        <para>
-            randperm(n, k) corresponds to the k first elements of the above command, so the equivalent is stored in v(1:k), if v = grand(1, "prm", (1:n)')'.
-        </para>
     </refsection>
 </refentry>

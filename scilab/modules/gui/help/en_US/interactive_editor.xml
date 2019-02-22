@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ieditor">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab"
+          xml:lang="en" xml:id="ieditor">
     <refnamediv>
         <refname>Interactive Editor</refname>
-        <refpurpose> Interactive plot editor</refpurpose>
+        <refpurpose>Interactive plot editor</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -245,5 +248,25 @@
                 </inlinemediaobject>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="object_editor">Properties editor</link>
+            </member>
+            <member>
+                <link linkend="ged">ged</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

@@ -25,7 +25,7 @@
         <title>Séquence d'appel</title>
         <synopsis>
             y = log2(x)
-            [f, e] = log2(u)
+            [m, e] = log2(u)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -59,14 +59,14 @@
             </note>
         </para>
         <para>
-            <literal>[m,e]=log2(u)</literal> calcule élément par élément la mantisse
+            <literal>[m, e] = log2(u)</literal> calcule élément par élément la mantisse
             <varname>m</varname> et l'exposant <varname>e</varname> de tous les éléments de
             <varname>u</varname>. Ainsi, pour tout indice <literal>k</literal> nous avons
             <literal>u(k) = m(k) .* 2.^e(k)</literal> avec <literal>0.5 ≤ |m(k)| &lt; 1</literal>.
             <note>
                 <itemizedlist>
                     <listitem>
-                        <literal>[m,e]=log2([0 %nan -%inf %inf])</literal> donne
+                        <literal>[m, e] = log2([0 %nan -%inf %inf])</literal> donne
                         <literal>m=[0  NaN -Inf Inf]</literal> et <literal>e=[0 0 0 0]</literal>.
                     </listitem>
                     <listitem>

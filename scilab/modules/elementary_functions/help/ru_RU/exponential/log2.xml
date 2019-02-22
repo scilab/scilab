@@ -25,7 +25,7 @@
         <title>Синтаксис</title>
         <synopsis>
             y = log2(x)
-            [f, e] = log2(u)
+            [m, e] = log2(u)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -60,14 +60,14 @@
             </note>
         </para>
         <para>
-            <literal>[m,e]=log2(u)</literal> вычисляет поэлементно мантиссу по основанию 2
+            <literal>[m, e] = log2(u)</literal> вычисляет поэлементно мантиссу по основанию 2
             <varname>m</varname> и экспоненту <varname>e</varname> каждого элемента
             <varname>u</varname>. Следовательно, для любого индекса <literal>k</literal> имеем
             <literal>u(k) = m(k) .* 2.^e(k)</literal> при <literal>0.5 ≤ |m(k)| &lt; 1</literal>.
             <note>
                 <itemizedlist>
                     <listitem>
-                        <literal>[m,e]=log2([0 %nan -%inf %inf])</literal> возвращает
+                        <literal>[m, e] = log2([0 %nan -%inf %inf])</literal> возвращает
                         <literal>m=[0  NaN -Inf Inf]</literal> и <literal>e=[0 0 0 0]</literal>.
                     </listitem>
                     <listitem>

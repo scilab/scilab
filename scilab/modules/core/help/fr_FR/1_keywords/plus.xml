@@ -110,7 +110,7 @@
  ans  =
 !concatenate  concrete  console  !
 ]]></screen>
-    <para>Avec des booléeens :</para>
+    <para>Avec des booléens :</para>
         <programlisting role="example"><![CDATA[
 [%f %f %t %t] + [%f %t %f %t]
 %f + [-1 0 2 %i]

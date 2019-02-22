@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="object_editor" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="object_editor" xml:lang="pt">
     <refnamediv>
         <refname>object_editor</refname>
         <refpurpose>Descrição das capacidades do editor de objetos
@@ -327,6 +330,12 @@
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
+                <link linkend="ieditor">ieditor</link>
+            </member>
+            <member>
+                <link linkend="ged">ged</link>
+            </member>
+            <member>
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
             <member>
@@ -334,9 +343,6 @@
             </member>
             <member>
                 <link linkend="get">get</link>
-            </member>
-            <member>
-                <link linkend="clf">clf</link>
             </member>
             <member>
                 <link linkend="plot">plot</link>

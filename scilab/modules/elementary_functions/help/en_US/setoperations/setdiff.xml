@@ -225,7 +225,7 @@ d, k
 
  k  =
    6.   1.   10.   9.
- ]]></screen>
+]]></screen>
         <para>
             <emphasis role="bold">Example #2: column-wise processing</emphasis>
         </para>
@@ -254,7 +254,7 @@ d, k
 
  k  =
    6.   1.   7.   5.
- ]]></screen>
+]]></screen>
         <para>
             <emphasis role="bold">Example #3: with some text</emphasis>
         </para>

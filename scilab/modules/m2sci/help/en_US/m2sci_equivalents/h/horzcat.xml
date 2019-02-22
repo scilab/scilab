@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_horzcat">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="m2sci_horzcat">
     <refnamediv>
         <refname>horzcat (Matlab function)</refname>
         <refpurpose>Horizontal concatenation</refpurpose>
@@ -28,25 +31,32 @@
                 <td align="center">
                     <emphasis role="bold">Scilab</emphasis>
                 </td>
+                <td/>
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-horzcat
-]]></programlisting>
+                    <screen><![CDATA[
+horzcat(A, B,..)
+]]></screen>
+                </td>
+                <td>
+                    <screen><![CDATA[
+cat(2, A, B,..)
+[A, B, ..]
+]]></screen>
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-No equivalent
+m = [1:4 ; 5:8; 9:12]'
+cat(2, m, m)
+[m ; m]
+
+h = matrix(m,2,3,2)
+cat(2, h, h)
+[h ; h]
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
-    </refsection>
-    <refsection>
-        <title>Particular cases</title>
-        <para>
-            Scilab equivalent for Matlab <emphasis role="bold">horzcat(A1,A2,...,An)</emphasis> is <emphasis role="bold">[A1,A2,...,An]</emphasis> if all <emphasis role="bold">Ai</emphasis> are not character strings, else, Scilab equivalent is <emphasis role="bold">A1+A2+...+An</emphasis>.
-        </para>
     </refsection>
 </refentry>

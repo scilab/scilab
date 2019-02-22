@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="name2rgb">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="name2rgb">
     <refnamediv>
         <refname>name2rgb</refname>
         <refpurpose>returns the RGB values of a named color</refpurpose>
@@ -28,7 +31,7 @@
             <varlistentry>
                 <term>name</term>
                 <listitem>
-                    <para>name of the color or matrix with names of the colors.</para>
+                    <para>name of the color, or matrix with names of the colors (case insensitive).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -42,8 +45,10 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>name2rgb</literal> returns the RGB values of a color given by its name. The result is
-            a vector or a matrix with 3 columns <literal>[r,g,b]</literal> where <literal>r</literal>, <literal>g</literal> and <literal>b</literal> are integers between 0 and 255
+            <literal>name2rgb</literal> returns the RGB values of a color given by its literal name.
+            The result is
+            a vector or a matrix with 3 columns <literal>[r,g,b]</literal> where <literal>r</literal>,
+            <literal>g</literal> and <literal>b</literal> are integers between 0 and 255
             corresponding to colors components red, green and blue. As usual 0 means no intensity and
             255 means all the intensity of the color.
         </para>

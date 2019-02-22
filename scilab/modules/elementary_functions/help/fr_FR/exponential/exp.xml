@@ -14,7 +14,8 @@
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>matrice carrée réelle ou complexe.</para>
+                    <para>scalaire, vecteur, matrice ou hypermatrice de nombres réels ou complexes.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>

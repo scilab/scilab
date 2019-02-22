@@ -49,13 +49,9 @@
             <member>
                 <link linkend="SCI">SCI</link>
             </member>
-        </simplelist>
-        <simplelist type="inline">
             <member>
                 <link linkend="TMPDIR">TMPDIR</link>
             </member>
-        </simplelist>
-        <simplelist type="inline">
             <member>
                 <link linkend="scilab">Scilab startup</link>
             </member>

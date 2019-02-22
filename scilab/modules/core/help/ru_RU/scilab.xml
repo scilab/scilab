@@ -533,6 +533,9 @@ echo $? ]]></screen>
                 <link linkend="getversion">getversion</link>
             </member>
             <member>
+                <link linkend="getscilabmode">getscilabmode</link>
+            </member>
+            <member>
                 <link linkend="consolebox">consolebox</link>
             </member>
             <member>

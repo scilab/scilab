@@ -10,4 +10,4 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Web Tools",SCI+"/modules/webtools/help/fr_FR",%T);
+add_help_chapter("Outils web",SCI+"/modules/webtools/help/fr_FR",%T);

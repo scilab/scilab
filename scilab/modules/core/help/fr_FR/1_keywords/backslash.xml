@@ -90,7 +90,7 @@ mprintf('\ntemps nécessaire à la résolution du système avec l''opérateur ba
         <title>Historique</title>
         <revhistory>
             <revision>
-                <revnumber>5.4.1</revnumber>
+                <revnumber>5.5.0</revnumber>
                 <revremark>
                   The threshold level which switches between Gaussian Elimination with row pivoting
                   and linear least squares when computing A\B is decreased from sqrt(eps) to eps.

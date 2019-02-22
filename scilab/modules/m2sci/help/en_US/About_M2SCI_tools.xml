@@ -13,7 +13,10 @@
  * along with this program.
     *
     -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="About_M2SCI_tools">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="About_M2SCI_tools">
     <refnamediv>
         <refname>About M2SCI tools</refname>
         <refpurpose>Generally speaking about tools to convert Matlab files to Scilab</refpurpose>
@@ -23,7 +26,7 @@
         <para>Scilab includes useful tools to convert Matlab M-files to Scilab.</para>
         <para>
             Taking a Matlab M-file, <literal>mfile2sci</literal> modifies this files so that it can be
-            compiled by Scilab. After that this compiled code is converted to a "tree" of instructions
+            compiled by Scilab. Then, this compiled code is converted to a "tree" of instructions
             by <literal>macr2tree</literal>. This "tree" is an imbrication of Scilab lists and tlists and
             is the basis for conversion. Each instruction of this "tree" is converted to Scilab and
             inference is done to known what are the variables. Once this "tree" is converted to Scilab,
@@ -114,56 +117,48 @@
             Function calls are converted using a function called <literal>sci_&lt;Matlab_function_name&gt;</literal>.
             Some of these functions have been written and are in directory SCI/modules/m2sci/macros/sci_files/.
             We are working on increasing the set of Matlab functions converted. However, everybody can
-            written such functions using help page sci_files.
+            write such functions using help page sci_files.
         </para>
         <para>
             Inference is done using tlists of type "infer" containing fields:
         </para>
-        <itemizedlist>
+        <variablelist>
+          <varlistentry>
+            <term>dims</term>
             <listitem>
-                <variablelist>
-                    <varlistentry>
-                        <term>dims</term>
-                        <listitem>
-                            <para>list of dimensions</para>
-                        </listitem>
-                    </varlistentry>
-                    <varlistentry>
-                        <term>type</term>
-                        <listitem>
-                            <para>"type" tlist</para>
-                        </listitem>
-                    </varlistentry>
-                    <varlistentry>
-                        <term>contents</term>
-                        <listitem>
-                            <para>"contents" tlist if a Cell or a Struct</para>
-                        </listitem>
-                    </varlistentry>
-                </variablelist>
+              <para>list of dimensions</para>
             </listitem>
-        </itemizedlist>
+          </varlistentry>
+          <varlistentry>
+            <term>type</term>
+            <listitem>
+              <para>"type" tlist</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>contents</term>
+            <listitem>
+              <para>"contents" tlist if a Cell or a Struct</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
         <para>
             Type is a tlist of type "type" containing fields:
         </para>
-        <itemizedlist>
+        <variablelist>
+          <varlistentry>
+            <term>vtype</term>
             <listitem>
-                <variablelist>
-                    <varlistentry>
-                        <term>vtype</term>
-                        <listitem>
-                            <para>data type</para>
-                        </listitem>
-                    </varlistentry>
-                    <varlistentry>
-                        <term>property</term>
-                        <listitem>
-                            <para>property</para>
-                        </listitem>
-                    </varlistentry>
-                </variablelist>
+              <para>data type</para>
             </listitem>
-        </itemizedlist>
+          </varlistentry>
+          <varlistentry>
+            <term>property</term>
+            <listitem>
+              <para>property</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
         <para>To have more details about inference see help page for m2scideclare.</para>
     </refsection>
     <refsection role="see also">

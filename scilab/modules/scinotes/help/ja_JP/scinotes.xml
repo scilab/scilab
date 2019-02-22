@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scinotes" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="scinotes" xml:lang="ja">
     <refnamediv>
         <refname>scinotes</refname>
         <refpurpose>Scinotes: Scilab組込みテキストエディタ</refpurpose>
@@ -154,7 +157,7 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection>
+    <refsection id="scinotes_menus_shortcuts">
         <title>メニューとショートカット</title>
         <itemizedlist>
             <listitem>
@@ -552,19 +555,51 @@ scinotes(['SCI/modules/time/macros/datenum.sci','SCI/modules/time/macros/datevec
         Scilabコードをインデント
         <programlisting role="example"><![CDATA[
 f=TMPDIR + "/file_to_correct.sci";
-mputl(["a=''abcdef''									";
+mputl(["a=''abcdef''                                    ";
        "if a==1";
        "   b=1+""abcdef''         ";
-       "   			c=2";
-       " d=3			";
-       "					        if		                 		";
+       "            c=2";
+       " d=3            ";
+       "                            if                              ";
        "a=''abcdef""""""";
        "           end";
-       "				end              "], f);
+       "                end              "], f);
 scinotes(f, ["indent" "trailing" "quote"]);
 // 結果を表示
-mgetl(f)
+write(%io(2),mgetl(f))
  ]]></programlisting>
+      <screen><![CDATA[
+--> write(%io(2),mgetl(f))
+a="abcdef"
+if a==1
+    b=1+"abcdef"
+    c=2
+    d=3
+    if
+        a="abcdef"""
+    end
+end
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="edit">edit</link>
+            </member>
+            <member>
+                <link linkend="editvar">editvar</link>
+            </member>
+            <member>
+                <link linkend="object_editor">ged</link>
+            </member>
+            <member>
+                <link linkend="ieditor">ieditor</link>
+            </member>
+            <member>
+                <link linkend="console">console</link>
+            </member>
+        </simplelist>
     </refsection>
     <refsection>
         <title>履歴</title>

@@ -321,7 +321,7 @@ Rp == p
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>6.1</revnumber>
+                <revnumber>6.0.2</revnumber>
                 <revremark>
                     The name of the predefined variables <literal>%s</literal> and
                     <literal>%z</literal> is now used as literal generator for input polynomials in

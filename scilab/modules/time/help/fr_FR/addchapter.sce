@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Heure et date",SCI+"/modules/time/help/fr_FR",%T);
+add_help_chapter("Temps - calendrier date horloge",SCI+"/modules/time/help/fr_FR",%T);
 

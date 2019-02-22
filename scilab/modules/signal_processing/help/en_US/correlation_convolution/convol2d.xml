@@ -2,14 +2,17 @@
 <!--
  * Add some comments about XML file
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="convol2d">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en_US" xml:id="convol2d">
     <refnamediv>
         <refname>convol2d</refname>
         <refpurpose>discrete 2-D convolution, using fft. </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>C = convol2d(A,B)</synopsis>
+        <synopsis>C = convol2d(A, B)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
@@ -43,21 +46,56 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>convol2d</literal> uses fft to compute the full
-            two-dimensional discrete convolution. The
-            dimensions of the result<literal>C</literal> are given by
-            <literal>size(A)+size(B)+1</literal>. The indices of the
-            center element of <literal>B</literal> are defined as
-            <literal>floor((size(B)+1)/2)</literal>.
+            <literal>convol2d</literal> uses fft to compute the full two-dimensional discrete
+            convolution. The dimensions of the result <varname>C</varname> are given by
+            <literal>size(A)+size(B)-1</literal>. The indices of the center element of
+            <varname>B</varname> are defined as <literal>floor((size(B)+1)/2)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-    s = [1 2 1; 0 0 0; -1 -2 -1];//Sobel horizontal edge kernel
-    A = zeros(10,10);A(3:7,3:7) = 1;
-    convol2d(s,A);
+s = [1 2 1; 0 0 0; -1 -2 -1] // Sobel horizontal edge kernel
+A = zeros(10,10); A(3:7,3:7) = 1
+C = convol2d(s, A);
+clean(C)
     ]]></programlisting>
+    <screen><![CDATA[
+--> s = [1 2 1; 0 0 0; -1 -2 -1] // Sobel horizontal edge kernel
+ s  =
+   1.   2.   1.
+   0.   0.   0.
+  -1.  -2.  -1.
+
+--> A = zeros(10,10); A(3:7,3:7) = 1
+ A  =
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   1.   1.   1.   1.   1.   0.   0.   0.
+   0.   0.   1.   1.   1.   1.   1.   0.   0.   0.
+   0.   0.   1.   1.   1.   1.   1.   0.   0.   0.
+   0.   0.   1.   1.   1.   1.   1.   0.   0.   0.
+   0.   0.   1.   1.   1.   1.   1.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+
+--> C = convol2d(s, A);
+--> clean(C)
+ ans  =
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   1.   3.   4.   4.   4.   3.   1.   0.   0.   0.
+   0.   0.   1.   3.   4.   4.   4.   3.   1.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.  -1.  -3.  -4.  -4.  -4.  -3.  -1.   0.   0.   0.
+   0.   0.  -1.  -3.  -4.  -4.  -4.  -3.  -1.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -66,15 +104,18 @@
                 <link linkend="conv2">conv2</link>
             </member>
             <member>
+                <link linkend="conv">conv</link>
+            </member>
+            <member>
                 <link linkend="convol">convol</link>
             </member>
+            <member>
+                <link linkend="real">real</link>
+            </member>
+            <member>
+                <link linkend="clean">clean</link>
+            </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>Used Functions</title>
-        <para>
-            The  <literal>convol2d</literal> function is based on the <link linkend="fft">fft</link> builtin.
-        </para>
     </refsection>
     <refsection>
         <title>History</title>
