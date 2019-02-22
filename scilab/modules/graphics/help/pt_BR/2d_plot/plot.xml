@@ -2,9 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
- * Copyright (C) 2018 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -34,6 +33,7 @@
             plot(.., LineSpec, GlobalProperty)
             plot(x1, y1, LineSpec1, x2,y2,LineSpec2,...xN, yN, LineSpecN, GlobalProperty1,.. GlobalPropertyM)
             plot(x1,fun1,LineSpec1, x2,y2,LineSpec2,...xN,funN,LineSpecN, GlobalProperty1, ..GlobalPropertyM)
+            plot(logflag,...)
             plot(axes_handle,...)
         </synopsis>
     </refsynopsisdiv>
@@ -98,7 +98,26 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;axes_handle&gt;</term>
+                <term>logflag</term>
+                <listitem>
+                    <para>
+                        "ln" | "nl" | "ll" : 2-character word made of "l" standing for
+                        "<emphasis role="bold">L</emphasis>ogarithmic" or/and "n" standing for
+                        "<emphasis role="bold">N</emphasis>ormal". The first character applies to
+                        the X axis, the second to the Y axis. Hence, "ln" means that the X axis
+                        is logarithmic and the Y axis is normal. The default is "nn":
+                        both axes in normal scales.
+                    </para>
+                    <para>
+                        <literal>logflag</literal> must be used after <literal>axes_handle</literal>
+                        (if any) and before the first curve's data <literal>x</literal> or
+                        <literal>y</literal> or <literal>fun</literal>.
+                        It applies to all curves drawn by the <literal>plot(…)</literal> instruction.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>axes_handle</term>
                 <listitem>
                     <para>este argumento opcional força o esboço a aparecer dentro dos
                         eixos selecionados fornecidos por <literal>axes_handle</literal> ao
@@ -121,7 +140,8 @@
             argumentos opcionais <literal>LineSpec</literal> ou
             <literal>GlobalProperty</literal> já que eles não interferem na entrada de
             dados (exceto pelas propriedades <literal>"Xdata"</literal>,
-            <literal>"Ydata"</literal> e <literal>"Zdata"</literal>, ver <link linkend="GlobalProperty">GlobalProperty</link>). É assumido que todos
+            <literal>"Ydata"</literal> e <literal>"Zdata"</literal>,
+            ver <link linkend="GlobalProperty">GlobalProperty</link>). É assumido que todos
             estes argumentos podem estar presentes também.
         </para>
         <para>
@@ -209,10 +229,13 @@
                         <literal>GlobalProperty</literal>, pode-se ajustar várias
                         propriedades : todas as propriedades disponíveis via LineSpec e
                         mais: a cor da marca (plano de fundo e primeiro plano), a
-                        visibilidade, o recorte e a espessura das curvas. (ver <link linkend="GlobalProperty">GlobalProperty</link>)
+                        visibilidade, o recorte e a espessura das curvas.
+                        (ver <link linkend="GlobalProperty">GlobalProperty</link>)
                     </para>
-                    <para>Note que todas as propriedades podem ser (re-)ajustadas
-                        através das propriedades de entidades poligonais (ver <link linkend="polyline_properties">polyline_properties</link>).
+                    <para>
+                        Note que todas as propriedades podem ser (re-)ajustadas
+                        através das propriedades de entidades poligonais
+                        (ver <link linkend="polyline_properties">polyline_properties</link>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -245,51 +268,17 @@
         </para>
         <informaltable border="1">
             <tr>
-                <td>
-                    <literal>R</literal>
-                </td>
-                <td>
-                    <literal>G</literal>
-                </td>
-                <td>
-                    <literal>B</literal>
-                </td>
+                <th> <literal>R</literal> </th>
+                <th> <literal>G</literal> </th>
+                <th> <literal>B</literal> </th>
             </tr>
-            <tr>
-                <td>0.</td>
-                <td>0.</td>
-                <td>1.</td>
-            </tr>
-            <tr>
-                <td>0.</td>
-                <td>0.5</td>
-                <td>0.</td>
-            </tr>
-            <tr>
-                <td>1.</td>
-                <td>0.</td>
-                <td>0.</td>
-            </tr>
-            <tr>
-                <td>0.</td>
-                <td>0.75</td>
-                <td>0.75</td>
-            </tr>
-            <tr>
-                <td>0.75</td>
-                <td>0.</td>
-                <td>0.75</td>
-            </tr>
-            <tr>
-                <td>0.75</td>
-                <td>0.75</td>
-                <td>0.</td>
-            </tr>
-            <tr>
-                <td>0.25</td>
-                <td>0.25</td>
-                <td>0.25</td>
-            </tr>
+            <tr> <td>0.</td>   <td>0.</td>   <td>1.</td>   </tr>
+            <tr> <td>0.</td>   <td>0.5</td>  <td>0.</td>   </tr>
+            <tr> <td>1.</td>   <td>0.</td>   <td>0.</td>   </tr>
+            <tr> <td>0.</td>   <td>0.75</td> <td>0.75</td> </tr>
+            <tr> <td>0.75</td> <td>0.</td>   <td>0.75</td> </tr>
+            <tr> <td>0.75</td> <td>0.75</td> <td>0.</td>   </tr>
+            <tr> <td>0.25</td> <td>0.25</td> <td>0.25</td> </tr>
         </informaltable>
         <para/>
         <para>
@@ -299,6 +288,50 @@
     </refsection>
     <refsection role="examples">
         <title>Exemplos</title>
+        <para>
+            <emphasis role="bold">Choosing the normal or logarithmic plotting mode:</emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+set(gda(), "grid_style",[7 7], "grid", [1 1]*color("grey70"));
+title(gda(), "fontsize", 3, "color", "lightseagreen", "fontname", "helvetica bold");
+
+x = linspace(1e-1,100,1000);
+xm = 35;
+dx = 17;
+G = exp(-((x-xm)/dx).^2/2)*30;
+
+scf(1); clf
+subplot(2,2,1), plot(x, G),       title("plot(x, y)")
+subplot(2,2,2), plot("ln", x, G), title("semilog-x : plot(""ln"", x, y)")
+gca().sub_ticks(1) = 8;
+subplot(2,2,3), plot("nl", x, G), title("semilog-y : plot(""nl"", x, y)")
+gca().sub_ticks(2) = 8;
+subplot(2,2,4), plot("ll", x, G), title("loglog : plot(""ll"", x, y)")
+gca().sub_ticks = [8 8];
+
+sda();
+ ]]></programlisting>
+        <scilab:image>
+            title(gda(), "", "fontsize", 3, "color", "lightseagreen", "fontname", "helvetica bold");
+            set(gda(), "grid_style",[7 7], "grid", [1 1]*color("grey70"));
+
+            x = linspace(1e-1,100,1000);
+            xm = 35;
+            dx = 17;
+            G = exp(-((x-xm)/dx).^2/2)*30;
+            scf(1); clf
+            subplot(2,2,1), plot(x, G),       title("plot(x, y)")
+            subplot(2,2,2), plot("ln", x, G), title("semilog-x : plot(""ln"", x, y)")
+            gca().sub_ticks(1) = 8;
+            subplot(2,2,3), plot("nl", x, G), title("semilog-y : plot(""nl"", x, y)")
+            gca().sub_ticks(2) = 8;
+            subplot(2,2,4), plot("ll", x, G), title("loglog : plot(""ll"", x, y)")
+            gca().sub_ticks = [8 8];
+
+            gcf().axes_size = [750 520];
+            sda();
+        </scilab:image>
+        <para/>
         <para>
             <emphasis role="bold">Simple plot of a single curve:</emphasis>
         </para>
@@ -674,6 +707,12 @@ isoview off
                 <revdescription>
                     Plotting a function fun(x, params) with input parameters is now possible with
                     plot(x, list(fun, params)).
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    logflag option added.
                 </revdescription>
             </revision>
         </revhistory>

@@ -2,7 +2,7 @@
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
 // Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2018 - 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -15,6 +15,13 @@ function varargout = plot(varargin)
     // Try to build a new better parser that could manage things like:
     // plot(x,y,'X',1:10); // where X stands for Xdata (Matlab recognizes
     //it and treats it well...)
+    // HISTORY:
+    // 2018:
+    //   plot(x, fun) : call to fun() vectorized
+    //   plot(x, list(fun, params)) implemented
+    // 2019:
+    //   logflag implemented.
+    //   y: support to integers added
 
     [lhs,rhs]=argn(0);
 
@@ -38,8 +45,10 @@ function varargout = plot(varargin)
 
 
     ListArg = varargin;
+    nextArgin = 1;
 
     //detect and set the current axes now:
+    // -----------------------------------
     if type(ListArg(1)) == 9
         hdle = ListArg(1);
         if (hdle.type == "Axes")
@@ -50,11 +59,32 @@ function varargout = plot(varargin)
             warning(msprintf(msg, "plot", 1, "Axes"))
             return;
         end
+        nextArgin = 2
+    end;
+
+    // Possible log flags
+    // ------------------
+    tmp = ListArg(1);
+    if type(tmp)==10 then
+        if size(tmp,"*")>1
+            msg = _("%s: Argument #%d: log flags: scalar expected.\n")
+            warning(msprintf(msg, "plot", nextArgin))
+            return
+        end
+        tmp = convstr(tmp);
+        tmp2 = strsubst(tmp, "/\s|l|n/", "", "r");
+        if tmp2<>""
+            msg = _("%s: Argument #%d: log flags: wrong value. Ignored.\n")
+            warning(msprintf(msg, "plot", nextArgin))
+            tmp = "nnn"
+        end
+        logflags = part(tmp+"n",1:2);
+        ListArg(1) = null()
+        nextArgin = nextArgin + 1;
+    else
+        logflags = "nn";
     end
-
-
     nv = size(ListArg)
-
 
     argTypes=[];
     couple=[];
@@ -72,7 +102,7 @@ function varargout = plot(varargin)
         acceptedTypes=[];
         // double, macro function or primitive,
         //    or list(macro|primitive, params) accepted as second argument
-        acceptedTypes=find(Ttmp(i,1)==1 & or(Ttmp(i+1,1)==[1,13,130,15]))
+        acceptedTypes=find(Ttmp(i,1)==1 & or(Ttmp(i+1,1)==[1,8,13,130,15]))
         if (acceptedTypes<>[]) then
             couple=[couple i];
             Ttmp(i,1)  = 99; // Replace a known type by 99 (no meaning) to count it once only!
@@ -122,8 +152,6 @@ function varargout = plot(varargin)
                 return;
             end
         end
-
-
 
         if (modulo(nv-(couple($)+1),2)<>0) then
             P1 = couple($)+3 // Position of the first PropertyName field
@@ -350,8 +378,6 @@ function varargout = plot(varargin)
             Property = Property+2;
         end
 
-
-
         //Now we have an array xyIndexLineSpec [numplot x 3] containing indices pointing on T for :
         // - x (<>0 if existing)
         // - y
@@ -364,14 +390,12 @@ function varargout = plot(varargin)
         //plot3  i4|i5 |i6   <=> plot(x,y,LINESPEC)
         //...
 
-
-
         if (xyIndexLineSpec(i,3)<>0) then // if we have a line spec <=> index <> 0
             [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail] = getLineSpec(ListArg(xyIndexLineSpec(i,3)),current_figure,cur_draw_mode);
         end
 
         // The plot is made now :
-        err = execstr("plot2d(X,Y)","errcatch","m");
+        err = execstr("plot2d(logflags,X,double(Y))","errcatch","m");
 
         if err <> 0
             mprintf("Error %d : in plot2d called by plot",err);

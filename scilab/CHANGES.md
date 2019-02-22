@@ -157,7 +157,7 @@ Feature changes and additions
 * `setdiff` now supports complex numbers.
 * `twinkle` can now blink together several hierarchically independent objects, like a curve and its labels, etc.
 * `repmat` has been rewritten. It is 7 times faster now.
-
+* `plot` can now work in semi or bi-logarithmic mode with some input logflag.
 
 
 Help pages:
@@ -255,9 +255,11 @@ Bug Fixes
 * [#12520](https://bugzilla.scilab.org/12520): Variable browser did not display the size of the variables.
 * [#12534](https://bugzilla.scilab.org/12534): Variable browser did not display the size of the variables.
 * [#12837](https://bugzilla.scilab.org/12837): `strcmpi` was an obsolete duplicate of `strcmp(,'i')`. It is removed.
+* [#13603](https://bugzilla.scilab.org/13603): `plot(1:3, 10)` failed.
 * [#13683](https://bugzilla.scilab.org/13683): unsetmenu for a dockable="off" figure crashed Scilab.
 * [#13766](https://bugzilla.scilab.org/13766): Minimal values for `.figure_size` were not documented.
 * [#14015](https://bugzilla.scilab.org/14015): Nan terms added to a polynomial were ignored.
+* [#14191](https://bugzilla.scilab.org/14191): Unlike `plot2d()`, `plot()` did not accept logflags among input arguments.
 * [#14422](https://bugzilla.scilab.org/14422): `clc(0)` did nothing, now clears last console entry. Remove leading blank after a `clc()`.
 * [#14498](https://bugzilla.scilab.org/14498): `size([],3)` returned 1 instead of 0.
 * [#14501](https://bugzilla.scilab.org/14501): `strsubst` crashed on consecutive occurrences.
@@ -324,6 +326,7 @@ Bug Fixes
 * [#15934](https://bugzilla.scilab.org/15934): The `^ hat` page wrongly indicated that `^` applied to a rectangular matrix not being a vector is done element-wise.
 * [#15948](https://bugzilla.scilab.org/15948): `xlabel`, `ylabel`, `zlabel` and `title` needed to be upgraded.
 * [#15964](https://bugzilla.scilab.org/15954): A complex empty sparse matrix could be obtained after insertion.
+* [#15965](https://bugzilla.scilab.org/15965): `plot(x,y)` did not accept y as encoded integers.
 * [#15967](https://bugzilla.scilab.org/15967): `setdiff(1,[])` was [] instead of `1`. `setdiff(a,[],..)` was not enough tested.
 * [#15969](https://bugzilla.scilab.org/15969): Fix spelling
 * [#15974](https://bugzilla.scilab.org/15974): `msprintf("%d", %nan)` did not return Nan
