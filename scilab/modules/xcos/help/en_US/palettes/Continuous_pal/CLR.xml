@@ -81,6 +81,19 @@
                 <para> This parameter sets the numerator of the transfer function.</para>
                 <para> This must be a polynomial in s.</para>
                 <para> Properties : Type 'pol' of size 1. </para>
+                <warning>
+                    In the provided expression, any subexpression being an exponent given either by
+                    a variable (of the context) whose name is more than 1-character long, or by an
+                    expression (not a literal integer) must end with a space to be correctly
+                    displayed on the block's icon.
+                    <para/>
+                    This constrain has no consequence on the computational validity of the expression.
+                    <para/>
+                    Examples: "s^12+1", "s^ +12+1", "s^+ 12+1" are all displayed as "s^{12}+1",
+                    while "1+s^ab+s^2" will be displayed as "1+s^{ab+s^2}"
+                    (but will be well computed as <literal>1 + s^ab + s^2</literal>).
+                    To make it well displayed, "1+s^ab +s^2" will have to be entered (for instance).
+                </warning>
             </listitem>
             <listitem>
                 <para>
@@ -89,6 +102,7 @@
                 <para> This parameter sets the denominator of the transfer function.</para>
                 <para> This must be a polynomial in s.</para>
                 <para> Properties : Type 'pol' of size 1. </para>
+                <para> Take care about multichar exponents (see <literal>Numerator</literal>).</para>
             </listitem>
         </itemizedlist>
     </refsection>

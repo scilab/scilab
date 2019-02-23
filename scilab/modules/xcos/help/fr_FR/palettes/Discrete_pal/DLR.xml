@@ -76,6 +76,22 @@
                     Ce doit être un polynôme en <emphasis role="bold">z</emphasis> .
                 </para>
                 <para> Propriétés : Type 'pol' de taille 1. </para>
+                <warning>
+                    Dans l'expression fournie, toute sous-expression représentant un exposant
+                    libélé soit par une variable (du contexte) dont le nom fait au moins 2
+                    caractères, soit par une expression (autre qu'un entier literal), doit se
+                    terminer par un espace (utilisé comme terminateur d'exposant). Dans le cas
+                    contraire, l'expression sera incorrectement affichée sur l'icône du bloc.
+                    <para/>
+                    Cette contrainte n'a cependant aucun effet sur la validité computationnelle
+                    de l'expression.
+                    <para/>
+                    Exemples: "z^12+1", "z^ +12+1", "z^+ 12+1" sont toutes affichées pour "z^{12}+1",
+                    alors que "1+z^ab+z^2" sera affichée comme "1+z^{ab+z^2}"
+                    (mais sera calculée comme <literal>1 + z^ab + z^2</literal>).
+                    Pour un affichage correct, "1+z^ab + z^2" devra être saisie.
+                    De même, "z^(ab+1) + 2" devra être saisie, au lieu de "z^(ab+1)+2".
+                </warning>
             </listitem>
             <listitem>
                 <para>
@@ -86,6 +102,7 @@
                     Ce doit être un polynôme en <emphasis role="bold">z</emphasis> .
                 </para>
                 <para> Propriétés : Type 'pol' de taille 1.</para>
+                <para> Attention au libélé des exposants (voir <literal>Numerator</literal>).</para>
             </listitem>
         </itemizedlist>
     </refsection>

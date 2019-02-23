@@ -14,57 +14,57 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-		  xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-		  xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-		  xml:id="CLR" xml:lang="fr">
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="CLR" xml:lang="fr">
     <refnamediv>
         <refname>CLR</refname>
         <refpurpose>Fonction de transfert continue</refpurpose>
     </refnamediv>
     <refsection>
         <title>Aperçu</title>
-		<inlinemediaobject>
-			<imageobject>
-				<imagedata fileref="../../../../images/palettes/CLR.png" align="center"/>
-			</imageobject>
-		</inlinemediaobject>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/palettes/CLR.png" align="center"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection id="Contents_CLR">
         <title>Contenu</title>
-		<itemizedlist>
-			<listitem>
-				<xref linkend="Description_CLR">Description</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Dialogbox_CLR">Paramètres</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Defaultproperties_CLR">Propriétés par défaut</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Interfacingfunction_CLR">Fonction d'interfaçage</xref>
-			</listitem>
-			<listitem>
-				<xref linkend="Computationalfunction_CLR">Fonction de calcul</xref>
-			</listitem>
-		</itemizedlist>
+        <itemizedlist>
+            <listitem>
+                <xref linkend="Description_CLR">Description</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Dialogbox_CLR">Paramètres</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Defaultproperties_CLR">Propriétés par défaut</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Interfacingfunction_CLR">Fonction d'interfaçage</xref>
+            </listitem>
+            <listitem>
+                <xref linkend="Computationalfunction_CLR">Fonction de calcul</xref>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection id="Description_CLR">
         <title>Description</title>
         <para>
             Ce bloc réalise une système linaire représenté par sa fonction de transfert rationnelle
-			<emphasis role="bold">Numerator/Denominator</emphasis>. La fraction rationnelle doit
-			être propre (degré du dénominateur inférieur ou égal à degré du numérateur).
+            <emphasis role="bold">Numerator/Denominator</emphasis>. La fraction rationnelle doit
+            être propre (degré du dénominateur inférieur ou égal à degré du numérateur).
         </para>
     </refsection>
     <refsection id="Dialogbox_CLR">
         <title>Paramètres</title>
-		<inlinemediaobject>
-			<imageobject>
-				<imagedata fileref="../../../../images/gui/CLR_gui.gif" align="center" style="float:right"/>
-				<!-- align => Javahelp, style => Online -->
-			</imageobject>
-		</inlinemediaobject>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../images/gui/CLR_gui.gif" align="center" style="float:right"/>
+                <!-- align => Javahelp, style => Online -->
+            </imageobject>
+        </inlinemediaobject>
         <itemizedlist>
             <listitem>
                 <para>
@@ -73,6 +73,20 @@
                 <para> Ce paramètre initialise le numérateur de la fonction de transfert.</para>
                 <para> Ce doit un être un polynôme en s.</para>
                 <para> Propriétés Type 'pol' de taille 1. </para>
+                <warning>
+                    Dans l'expression fournie, toute sous-expression représentant un exposant
+                    libélé soit par une variable (du contexte) dont le nom fait au moins 2
+                    caractères, soit par une expression (autre qu'un entier literal), doit se
+                    terminer par un espace (utilisé comme terminateur d'exposant). Dans le cas
+                    contraire, l'expression sera incorrectement affichée sur l'icône du bloc.
+                    Cette contrainte n'a aucun effet sur la validité computationnelle de l'expression.
+                    <para/>
+                    Exemples: "s^12+1", "s^ +12+1", "s^+ 12+1" sont toutes affichées pour "s^{12}+1",
+                    alors que "1+s^ab+s^2" sera affichée comme "1+s^{ab+s^2}"
+                    (mais sera calculée comme <literal>1 + s^ab + s^2</literal>).
+                    Pour un affichage correct, "1+s^ab + s^2" devra être saisie.
+                    De même, "s^(ab+1) + 2" devra être saisie, au lieu de "s^(ab+1)+2".
+                </warning>
             </listitem>
             <listitem>
                 <para>
@@ -81,6 +95,7 @@
                 <para> Ce paramètre initialise le dénominateur de la fonction de transfert.</para>
                 <para> Ce doit un être un polynôme en s.</para>
                 <para> Propriétés Type 'pol' de taille 1. </para>
+                <para> Attention au libélé des exposants (voir <literal>Numerator</literal>).</para>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -155,7 +170,7 @@
                 </para>
             </listitem>
         </itemizedlist>
-		<para/>
+        <para/>
     </refsection>
     <refsection id="Interfacingfunction_CLR">
         <title>Fonction d'interfaçage</title>

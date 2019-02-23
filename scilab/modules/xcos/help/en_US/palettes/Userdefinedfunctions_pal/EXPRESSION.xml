@@ -140,6 +140,19 @@
                 </tr>
                 </table>
                 </para>
+                <warning>
+                    In the provided expression, any subexpression being an exponent more than
+                    1-character long must end with a space, to be correctly displayed on the
+                    block's icon.
+                    <para/>
+                    This constrain has no consequence on the computational validity of the expression.
+                    <para/>
+                    Examples: "u1^12-u2", "u1^ 12-u2", "u1^abc - 3", "u1^(u2-3) + 4" will be
+                    correctly displayed, while "u1^abc-3" would be displayed as "u1^{abc-3}"
+                    (but well computed as <literal>u1^abc + 3</literal>)
+                    and "u1^(u2-3)+4" as "u1^{(u2-3)+4}" instead of "u1^{(u2-3)} + 4".
+                    "u1^abc - 3" and "u1^(u2-3) + 4" will have to be entered instead.
+                </warning>
             </listitem>
             <listitem>
                 <para>

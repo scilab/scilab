@@ -1,6 +1,7 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2018 - 2019 - Samuel GOUGEON
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -96,13 +97,11 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
                                 model.nmode=0
                             end
                             graphics.exprs=exprs;
-                            // Updating the protected label: http://bugzilla.scilab.org/14680
-                            // "<" can't be replaced with "&lt;" because ";" is
-                            //  used as subfield separator in the graphics.style field...
-                            // => using a LaTeX expression instead
-                            lab = strsubst(exprs(2), "%", "\%");
-                            lab = strsubst(lab, "&", "\&");
-                            lab = strsubst(lab, "~", "{\small\sim\!}");
+
+                            // Protecting ^{.} groups for LaTeX after num and den
+                            // have been generated: http://bugzilla.scilab.org/14551
+                            // and other protections and display improvements:
+                            lab = expr2LaTeX(exprs(2));
                             tmp = [
                                 "$\mathsf\scalebox{0.8}{"
                                 "\begin{array}{c}"

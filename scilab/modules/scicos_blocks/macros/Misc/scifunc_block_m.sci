@@ -99,11 +99,30 @@ function [x,y,typ]=scifunc_block_m(job,arg1,arg2)
                 x.model=model
                 exprs(2)=tt
                 graphics.exprs=exprs
+
+                // Protecting the "<" in the function expression as pointed
+                // in http://bugzilla.scilab.org/15921 can't be done with
+                // "&lt;" due to the ";" that is a separator in
+                // graphics.style => LaTeX required
+                // + other protections and style improvements with LaTeX
+                lab = expr2LaTeX(tt(1));
+                tmp = [
+                    "$\mathsf\scalebox{0.8}{"
+                    "\begin{array}{c}"
+                        "\mbox{Expression:}\\"
+                        "\scalebox{0.9}{"+lab+"}"
+                    "\end{array}"
+                    "}$"
+                    ];
+                lab = "scifunc_block_m;displayedLabel="+strcat(tmp);
+                graphics.style = lab;
+                sleep(100)
                 x.graphics=graphics
                 break
             end
         end
         needcompile=resume(needcompile)
+
     case "define" then
         in=1
         out=1

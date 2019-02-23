@@ -387,6 +387,7 @@ Bug Fixes
 * [#15840](https://bugzilla.scilab.org/15840): `grand(1,"prm",m)` yielded an unsqueezed size([size(m) 1]) hypermatrix
 * [#15861](https://bugzilla.scilab.org/15861): The `overloadname` internal macro defined in CACSD was a duplicate of `typeof(,"overload")`. It is removed.
 * [#15874](https://bugzilla.scilab.org/15874): The `scatter3` function name was an unfounded naming exception. It had to be renamed `scatter3d`.
+* [#15921](https://bugzilla.scilab.org/15921): Xcos user's function `scifunc_block_m` block: any `<` in the expression was not displayed on the block's icon.
 * [#15934](https://bugzilla.scilab.org/15934): The `^ hat` page wrongly indicated that `^` applied to a rectangular matrix not being a vector is done element-wise.
 * [#15948](https://bugzilla.scilab.org/15948): `xlabel`, `ylabel`, `zlabel` and `title` needed to be upgraded.
 * [#15964](https://bugzilla.scilab.org/15954): A complex empty sparse matrix could be obtained after insertion.
@@ -396,6 +397,7 @@ Bug Fixes
 * [#15974](https://bugzilla.scilab.org/15974): `msprintf("%d", %nan)` did not return Nan
 * [#15977](https://bugzilla.scilab.org/15977): The documentation for `wavread(..,'info')` had a mistake. The `wavread` page deserved some improvements.
 * [#15978](https://bugzilla.scilab.org/15978): The `writewav` page in english said that input data are one column per channel, instead of one row per channel. In addition, in case of writing error, `savewave` kept the output file open and locked.
+* [#15979](https://bugzilla.scilab.org/15979): `EXPRESSION`, `CLR` and `DLR` Xcos blocks did not (always) correctly display multicharacter exponents in expressions displayed in their icons.
 * [#15981](https://bugzilla.scilab.org/15981): `wavread` kept the wav file open and locked when returning on errors. It weakly managed the input file name. It claimed for invalid data formats instead of unsupported ones, with poor information about the current format vs the supported ones. Several error messages refered to a wrong function.
 * [#15983](https://bugzilla.scilab.org/15983): `group` regressed in 5.5.2 due to a too intrusive fix.
 * [#15984](https://bugzilla.scilab.org/15984): display scale was wrong with Retina dispplays on OSX..
@@ -474,6 +476,7 @@ Bug Fixes
 * [#16209](https://bugzilla.scilab.org/16209): `grand` causes a freeze after several consecutive calls when using default base generator.
 * [#16210](https://bugzilla.scilab.org/16210): The uicontrol.units = "normalized" property was not described.
 * [#16215](https://bugzilla.scilab.org/16215): `mfile2sci` badly converted the colon `:` into `mtlb(:)`
+* [#16223](https://bugzilla.scilab.org/16223): `EXPRESSION`, `CLR` and `DLR` Xcos blocks sometimes displayed multiplied terms in an ambiguous way in their icons.
 * [#16227](https://bugzilla.scilab.org/16227): `WSCI` was not defined as environment variable and could not be used as `%WSCI%` in commands sent with `host` or `unix_*`.
 * [#16228](https://bugzilla.scilab.org/16228): `bode` and `nyquist` inline demos did not clear and reset the current axes where to draw, what could yield an error.
 * [#16229](https://bugzilla.scilab.org/16229): Some outdated parts of the `help scilab` page were misleading.
