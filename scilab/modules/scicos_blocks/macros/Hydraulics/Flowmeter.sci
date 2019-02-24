@@ -34,7 +34,7 @@ function [x,y,typ]=Flowmeter(job,arg1,arg2)
         x=arg1
         exprs=x.graphics.exprs
         while %f do
-            [ok,Qini,exprs]=scicos_getvalue(["Set Flowmeter block parameters:";"";"Qini: "],"Qini",list("vec",1),exprs)
+            [ok,Qini,exprs]=scicos_getvalue([_("FLOWMETER parameters:");"";"Qini: "],"Qini",list("vec",1),exprs)
             if ~ok then
                 break,
             end

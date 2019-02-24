@@ -35,11 +35,11 @@ function [x,y,typ]=SourceP(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,P0,T0,H0,option_temperature,exprs]=scicos_getvalue("Paramètres de la source",..
-            ["Pression : P0 (Pa)";..
-            "Température : T0 (K)";..
-            "Enthalpie spécifique : H0 (J/kg)";..
-            "1:température fixée - 2:enthalpie fixée : option_temperature"],..
+            [ok,P0,T0,H0,option_temperature,exprs]=scicos_getvalue(_("Fluid SOURCE parameters"),..
+            [_("Pressure : P0 (Pa)")
+            _("Temperature : T0 (K)")
+            _("Specific enthalpy : H0 (J/kg)")
+            _("Condition: 1=Fixed temperature | 2=Fixed enthalpy")],..
             list("vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs)
             if ~ok then
                 break,

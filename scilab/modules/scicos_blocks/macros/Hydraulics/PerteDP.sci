@@ -35,13 +35,13 @@ function [x,y,typ]=PerteDP(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,L,D,lambda,z1,z2,p_rho,exprs]=scicos_getvalue("Parametres du tuyau", ..
-            ["Longueur du tube : L (m)";..
-            "Diamètre interne du tube : D (m)";..
-            "Coefficient de perte de charge-frottement(S.U) : lambda";..
-            "Altitude entrée tuyauterie : z1 (m)";..
-            "Altitude sortie tuyauterie : z2 (m)";..
-            "Si >0, masse volumique imposée fu fluide : p_rho (kg/m3)"],..
+            [ok,L,D,lambda,z1,z2,p_rho,exprs]=scicos_getvalue(_("PIPE parameters"), ..
+            [_("Pipe length : L (m)")
+            _("Pipe internal diameter : D (m)")
+            _("Coefficient of loss of load-friction (S.U): lambda")
+            _("Altitude of pipe''s inlet: z1 (m)")
+            _("Altitude of pipe''s outlet: z2 (m)")
+            _("If >0, fixed fluid density : p_rho (kg/m3)")],..
             list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs)
             if ~ok then
                 break,

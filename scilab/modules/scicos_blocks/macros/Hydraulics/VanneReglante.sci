@@ -35,7 +35,7 @@ function [x,y,typ]=VanneReglante(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,Cvmax,p_rho,exprs]=scicos_getvalue("Paramètres de la vanne reglante",..
+            [ok,Cvmax,p_rho,exprs]=scicos_getvalue(_("REGULATING VALVE parameters"),..
             ["Cvmax";"p_rho"],..
             list("vec",-1,"vec",-1),exprs)
             if ~ok then
