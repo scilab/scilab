@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2017-11-02 09:35+0000\n"
+"PO-Revision-Date: 2019-11-02 09:35+0000\n"
 "Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -436,7 +436,7 @@ msgstr ""
 msgid "Font style"
 msgstr ""
 
-msgid "Text settings"
+msgid "Block legend"
 msgstr ""
 
 msgid "Image path"
@@ -535,8 +535,7 @@ msgstr ""
 msgid "Palette name"
 msgstr ""
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 
 #, c-format
@@ -612,20 +611,16 @@ msgstr "添加到"
 msgid "Add to new diagram"
 msgstr "添加到新图表"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
+msgid "Explicit data input port must be connected to explicit data output port"
 msgstr "显式的数据输入端口必须跟显式的数据数出端口相连"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr "隐式的数据输入端口必须跟隐式的数据数出端口相连"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
+msgid "Explicit data output port must be connected to explicit data input port"
 msgstr "显式的数据输出端口必须跟显式的数据数入端口相连"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr "隐式的数据输出端口必须跟隐式的数据数入端口相连"
 
 msgid "Command port must be connected to control port"
@@ -659,13 +654,13 @@ msgstr "底对齐"
 msgid "Middle"
 msgstr "垂直居中"
 
-msgid "Border Color"
+msgid "Block edge"
 msgstr ""
 
-msgid "Fill Color"
+msgid "Block background"
 msgstr ""
 
-msgid "Text Color"
+msgid "Legend color"
 msgstr ""
 
 msgid "Link Style"
@@ -746,8 +741,7 @@ msgstr ""
 msgid "Generate SuperBlock, please wait"
 msgstr ""
 
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 
 msgid "No trace nor debug printing"
@@ -852,8 +846,8 @@ msgid "Expecting <code>%d</code> but got <code>%d</code>."
 msgstr ""
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. "
-"<br/>Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. <br/"
+">Please reconnect it.</body></html>"
 msgstr ""
 
 msgid "Block name: "
@@ -1099,8 +1093,7 @@ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr ""
 
 #, c-format
@@ -1180,8 +1173,7 @@ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr ""
 
 #, c-format
@@ -1204,6 +1196,8 @@ msgstr ""
 msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
 msgstr ""
 
+#
+# File: modules/xcos/macros/xcosPalAddBlock.sci, line: 102
 #, c-format
 msgid "%s: Unable to load block from %s: Missing file.\n"
 msgstr ""

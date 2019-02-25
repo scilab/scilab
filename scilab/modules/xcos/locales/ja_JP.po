@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:10+0000\n"
+"PO-Revision-Date: 2020-02-15 22:10+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
 "X-Poedit-Country: Japan\n"
-"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 msgid "Signal Processing"
@@ -27,7 +27,8 @@ msgstr "離散時間システム"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -39,7 +40,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定して
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or %s expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています : 文字列または %s を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています : 文字列または %s を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -176,7 +178,8 @@ msgstr "パラメータ埋込"
 msgid ""
 "lets the user change the parameters and call the solver without regenerating "
 "code."
-msgstr "ユーザにパラメータを変更させ,コードを再度生成することなくソルバをコールします"
+msgstr ""
+"ユーザにパラメータを変更させ,コードを再度生成することなくソルバをコールします"
 
 msgid "Generate Jacobian"
 msgstr "ヤコビアンを生成"
@@ -221,7 +224,9 @@ msgstr "入力引数 \"%s\" が間違っています: ツリーパスが間違�
 #, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
-msgstr "入力引数 \"%s\" が間違っています: ノードが不正です, 代わりに 'xcosPalDisable' を使用してください.\n"
+msgstr ""
+"入力引数 \"%s\" が間違っています: ノードが不正です, 代わりに "
+"'xcosPalDisable' を使用してください.\n"
 
 #, c-format
 msgid "Unable to import %s .\n"
@@ -444,8 +449,8 @@ msgstr "フォント名"
 msgid "Font style"
 msgstr "フォントの種類"
 
-msgid "Text settings"
-msgstr "テキスト設定"
+msgid "Block legend"
+msgstr ""
 
 msgid "Image path"
 msgstr "イメージのパス"
@@ -489,6 +494,9 @@ msgstr "不連続"
 msgid "Lookup Tables"
 msgstr "ルックアップ・テーブル"
 
+msgid "Signal Processing"
+msgstr "信号処理"
+
 msgid "Zero crossing detection"
 msgstr "ゼロクロス検出"
 
@@ -509,6 +517,9 @@ msgstr "ポートとサブシステム"
 
 msgid "Annotations"
 msgstr "注釈"
+
+msgid "Discrete time systems"
+msgstr "離散時間システム"
 
 msgid "Event handling"
 msgstr "イベント・ハンドリング"
@@ -537,8 +548,7 @@ msgstr "有効にする"
 msgid "Palette name"
 msgstr "パレット名"
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "直近の保存以降にダイアグラムが修正されています.<br/>保存しますか?"
 
 #, c-format
@@ -568,8 +578,9 @@ msgid ""
 "evaluated once confirmed (i.e. you click on OK and every time the diagram is "
 "loaded)."
 msgstr ""
-"Scilab命令を用いたブロック定義で使用される記号パラメータを定義するためのScilab命令をここに入力することができます.<br/>これらの命令は確認"
-"後(すなわち,OKをクリックし,ダイアグラムがロードされた時)に評価されます."
+"Scilab命令を用いたブロック定義で使用される記号パラメータを定義するための"
+"Scilab命令をここに入力することができます.<br/>これらの命令は確認後(すなわち,"
+"OKをクリックし,ダイアグラムがロードされた時)に評価されます."
 
 msgid "Failed to load Diagram"
 msgstr "ダイアグラムの読み込みに失敗"
@@ -616,21 +627,23 @@ msgstr "追加"
 msgid "Add to new diagram"
 msgstr "新規ダイアグラムを追加"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
-msgstr "明示的データ入力ポートは明示的データ出力ポートと結合されている必要があります"
+msgid "Explicit data input port must be connected to explicit data output port"
+msgstr ""
+"明示的データ入力ポートは明示的データ出力ポートと結合されている必要があります"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
-msgstr "暗示的なデータ入力ポートは、暗示的なデータ出力ポートと繋がってなくてはいけません"
+msgid "Implicit data input port must be connected to implicit data output port"
+msgstr ""
+"暗示的なデータ入力ポートは、暗示的なデータ出力ポートと繋がってなくてはいけま"
+"せん"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
-msgstr "明示的データ出力ポートは明示的データ入力ポートと結合されている必要があります"
+msgid "Explicit data output port must be connected to explicit data input port"
+msgstr ""
+"明示的データ出力ポートは明示的データ入力ポートと結合されている必要があります"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
-msgstr "暗示的なデータ出力ポートは、暗示的なデータ入力ポートと繋がってなくてはいけません"
+msgid "Implicit data output port must be connected to implicit data input port"
+msgstr ""
+"暗示的なデータ出力ポートは、暗示的なデータ入力ポートと繋がってなくてはいけま"
+"せん"
 
 msgid "Command port must be connected to control port"
 msgstr "コマンドポートは、制御ポートと接続されなくてはなりません"
@@ -640,7 +653,8 @@ msgstr "制御ポートは、コマンドポートと接続されてなくては
 
 msgid ""
 "Port is already connected, please select an unconnected port or a valid link."
-msgstr "ポートは接続済みです, 未接続のポートまたは有効なリンクを選択してください."
+msgstr ""
+"ポートは接続済みです, 未接続のポートまたは有効なリンクを選択してください."
 
 msgid "Align Blocks"
 msgstr "ブロックを整列"
@@ -663,14 +677,14 @@ msgstr "下揃え"
 msgid "Middle"
 msgstr "中間"
 
-msgid "Border Color"
-msgstr "境界色"
+msgid "Block edge"
+msgstr ""
 
-msgid "Fill Color"
-msgstr "色を塗る"
+msgid "Block background"
+msgstr ""
 
-msgid "Text Color"
-msgstr "テキストの色"
+msgid "Legend color"
+msgstr ""
 
 msgid "Link Style"
 msgstr "結合方法"
@@ -750,9 +764,10 @@ msgstr "コンパイル中, 結果は 'cpr'変数に保存されます"
 msgid "Generate SuperBlock, please wait"
 msgstr "SuperBlockを生成中, お待ちください"
 
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
-msgstr "図形をクリックしてリンク点を加えるか、あるいは互換の目標をクリックして終了してください"
+msgid "Click on diagram to add link point or on a compatible target to finish"
+msgstr ""
+"図形をクリックしてリンク点を加えるか、あるいは互換の目標をクリックして終了し"
+"てください"
 
 msgid "No trace nor debug printing"
 msgstr "トレースもデバッグ出力も行ないません"
@@ -832,12 +847,16 @@ msgstr "ブロック・パラメータ設定"
 msgid ""
 "The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
 "to the default one."
-msgstr "ユーザのパレット設定ファイル (palettes.xml) に誤りがあります.<BR>デフォルトの設定に切り替えます."
+msgstr ""
+"ユーザのパレット設定ファイル (palettes.xml) に誤りがあります.<BR>デフォルトの"
+"設定に切り替えます."
 
 msgid ""
 "The user configuration file (xcos.xml) is invalid.<BR> Switching to the "
 "default one."
-msgstr "ユーザ設定ファイル (xcos.xml) に誤りがあります.<BR> デフォルトの設定に切り替えます."
+msgstr ""
+"ユーザ設定ファイル (xcos.xml) に誤りがあります.<BR> デフォルトの設定に切り替"
+"えます."
 
 msgid "Setting up Modelica Compiler."
 msgstr "Modelicaコンパイラを設定"
@@ -856,10 +875,11 @@ msgid "Expecting <code>%d</code> but got <code>%d</code>."
 msgstr "<code>%d</code> が仕様ですが,  <code>%d</code> が得られました."
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. "
-"<br/>Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. <br/"
+">Please reconnect it.</body></html>"
 msgstr ""
-"<html><body>コンパイルエラー: 未接続のためリンクは無視されます. <br/>再接続してください.</body></html>"
+"<html><body>コンパイルエラー: 未接続のためリンクは無視されます. <br/>再接続し"
+"てください.</body></html>"
 
 msgid "Block name: "
 msgstr "ブロック名: "
@@ -1097,20 +1117,23 @@ msgstr "%s: %s を %s にエクスポートできません.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr "%s: 入力引数 %s の型が間違っています: ブロック型を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
-msgstr "%s: 入力引数 %s の型が間違っています: ディレクトリパス文字列を指定してください.\n"
+msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
+msgstr ""
+"%s: 入力引数 %s の型が間違っています: ディレクトリパス文字列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr "%s: 入力引数 %s が間違っています : svg, gif または jpg を指定してください.\n"
+msgstr ""
+"%s: 入力引数 %s が間違っています : svg, gif または jpg を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string expected.\n"
@@ -1148,7 +1171,9 @@ msgstr "%s: %s 変数により定義された全てのパスが存在する必�
 msgid ""
 "%s: The directory %s cannot been created, please check if you have write "
 "access on this directory.\n"
-msgstr "%s: ディレクトリー %s を作成できません. このディレクトリーへの書き込みアクセス権の有無を確認ください.\n"
+msgstr ""
+"%s: ディレクトリー %s を作成できません. このディレクトリーへの書き込みアクセ"
+"ス権の有無を確認ください.\n"
 
 #, c-format
 msgid "Unable to open %s"
@@ -1166,7 +1191,9 @@ msgstr "%s: サポートされない形式 %s.\n"
 msgid ""
 "%s: the block %s is no more available, please update the diagram with a "
 "compatible one."
-msgstr "%s: ブロック %s は利用できなくなりました, ダイアグラムを同等なブロックに更新してください."
+msgstr ""
+"%s: ブロック %s は利用できなくなりました, ダイアグラムを同等なブロックに更新"
+"してください."
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -1178,16 +1205,19 @@ msgstr "%s: 入力引数 %s の型が間違っています: 文字列型を指�
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-msgstr "%s: 入力引数 %s の型が間違っています: ダイアグラム型を指定してください.\n"
+msgstr ""
+"%s: 入力引数 %s の型が間違っています: ダイアグラム型を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr "%s: 入力引数 %s の型が間違っています: パレット型またはパスを指定してください.\n"
+msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr ""
+"%s: 入力引数 %s の型が間違っています: パレット型またはパスを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: File not found.\n"
@@ -1195,7 +1225,8 @@ msgstr "%s: 入力引数 %s の型が間違っています: ファイルが見�
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-msgstr "%s: 入力引数 %s の型が間違っています:文字列のベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 %s の型が間違っています:文字列のベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: palette type expected.\n"
@@ -1203,22 +1234,26 @@ msgstr "%s: 入力引数 %s の型が間違っています: パレット型を�
 
 #, c-format
 msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-msgstr "%s: ブロックを %s から読み込めません: hdf5 ファイルを指定してください.\n"
+msgstr ""
+"%s: ブロックを %s から読み込めません: hdf5 ファイルを指定してください.\n"
 
 #, c-format
 msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
-msgstr "%s:  %s からブロックをロードできませんでした: `scs_m' 変数が見つかりません.\n"
+msgstr ""
+"%s:  %s からブロックをロードできませんでした: `scs_m' 変数が見つかりません.\n"
 
 #, c-format
 msgid "%s: Unable to load block from %s: Missing file.\n"
-msgstr "%s: ブロックを %s から読み込めません: hdf5 ファイルを指定してください.\n"
+msgstr ""
+"%s: ブロックを %s から読み込めません: hdf5 ファイルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument %s: function as string or Block type or "
 "full path string expected.\n"
 msgstr ""
-"%s: 入力引数 %s の型が間違っています: 文字列で指定した関数またはブロック(Block)型または完全パス文字列を指定してください.\n"
+"%s: 入力引数 %s の型が間違っています: 文字列で指定した関数またはブロック"
+"(Block)型または完全パス文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Unable to generate the palette icon : %s already exists.\n"
@@ -1230,13 +1265,16 @@ msgstr "%s: 入力引数 %s の型が間違っています: パス文字列を�
 
 #, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
-msgstr "%s: 入力引数 %s の値が間違っています:存在するファイルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 %s の値が間違っています:存在するファイルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
 "expected.\n"
-msgstr "%s: 入力引数 %s が間違っています : 有効な形式 (png, jpg, gif) を指定してください.\n"
+msgstr ""
+"%s: 入力引数 %s が間違っています : 有効な形式 (png, jpg, gif) を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid "%s: Unable to generate the image %s.\n"
@@ -1244,11 +1282,13 @@ msgstr "%s: イメージ %s を作成できません.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-msgstr "%s: 入力引数 %s の型が間違っています: 文字列または構造体を指定してください.\n"
+msgstr ""
+"%s: 入力引数 %s の型が間違っています: 文字列または構造体を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-msgstr "%s: 入力引数 %s の型が間違っています: ファイルパス文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 %s の型が間違っています: ファイルパス文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"
@@ -1260,7 +1300,8 @@ msgstr "%s: 引数 #%d の型が間違っています:  文字列の行列を指
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: No block found.\n"
@@ -1279,11 +1320,14 @@ msgstr "%s は有効なブロック記述子ではありません."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "Block definition with function [%s] failed."
@@ -1397,7 +1441,8 @@ msgid "Unable to simulate %s"
 msgstr "%s をシュミレートできません"
 
 msgid "Error occurred in pre_xcos_simulate: Cancelling simulation."
-msgstr "pre_xcos_simulateでエラーが発生しました: シミュレーションをキャンセルします."
+msgstr ""
+"pre_xcos_simulateでエラーが発生しました: シミュレーションをキャンセルします."
 
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
@@ -1417,7 +1462,8 @@ msgid "Simulation problem"
 msgstr "シミュレーション問題"
 
 msgid "Error in post_xcos_simulate: ending simulation."
-msgstr "post_xcos_simulateでエラーが発生しました: シミュレーションを終了します."
+msgstr ""
+"post_xcos_simulateでエラーが発生しました: シミュレーションを終了します."
 
 #, c-format
 msgid "%s: Cannot open file '%s' for reading.\n"

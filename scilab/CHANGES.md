@@ -281,6 +281,7 @@ Bug Fixes
 * [#7967](https://bugzilla.scilab.org/7967): The tricky size `[ny,nx]` of `meshgrid(x,y)` results and usages with graphics was not enough documented.
 * [#8301](https://bugzilla.scilab.org/8301): `definedfields` wrongly considered as defined void elements in lists, tlists and mlists.
 * [#8307](https://bugzilla.scilab.org/8307): `list2vec` and `vec2list` were located in the optimization module instead of in data_structures, and were missing in the `See also` section of `list`.
+* [#8328](https://bugzilla.scilab.org/8328): Tabs of the Xcos block Format => Edit dialog were unclear.
 * [#8393](https://bugzilla.scilab.org/8393): `isdef` and `definedfields` had mismatching answers for void elements in lists, mlists or tlists.
 * [#8418](https://bugzilla.scilab.org/8418): `unique` was not able to return the number of occurences of returned dictinct entities.
 * [#8784](https://bugzilla.scilab.org/8784): Automatic self-adjusting blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` in Xcos.

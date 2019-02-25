@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-15 22:11+0000\n"
+"PO-Revision-Date: 2020-02-15 22:11+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -442,8 +442,8 @@ msgstr "Schriftname"
 msgid "Font style"
 msgstr "Schriftart"
 
-msgid "Text settings"
-msgstr "Texteinstellungen"
+msgid "Block legend"
+msgstr ""
 
 msgid "Image path"
 msgstr ""
@@ -541,8 +541,7 @@ msgstr ""
 msgid "Palette name"
 msgstr "Paletten-Name"
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "Das Diagramm wurde seit dem letzten Speichern verändert. <br/> Wollen Sie es "
 "speichern?"
@@ -620,26 +619,22 @@ msgstr "Hinzufügen zu"
 msgid "Add to new diagram"
 msgstr "Zum neuen Diagramm hinzufügen"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
+msgid "Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Explizierter Dateneingangsport muß mit explizitem Datenausgangsport "
 "verbunden sein"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Implizierter Dateneingangsport muß mit implizitem Datenausgangsport "
 "verbunden sein"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
+msgid "Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Explizierter Datenausgangsport muß mit explizitem Dateneingangsport "
 "verbunden sein"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Implizierter Datenausgangsport muß mit impliziertem Dateneingangsport "
 "verbunden sein"
@@ -677,14 +672,14 @@ msgstr "Unten"
 msgid "Middle"
 msgstr "Mittig"
 
-msgid "Border Color"
-msgstr "Rahmenfarbe"
+msgid "Block edge"
+msgstr ""
 
-msgid "Fill Color"
-msgstr "Füllfarbe"
+msgid "Block background"
+msgstr ""
 
-msgid "Text Color"
-msgstr "Textfarbe"
+msgid "Legend color"
+msgstr ""
 
 msgid "Link Style"
 msgstr "Stil des Links"
@@ -699,8 +694,7 @@ msgid "Vertical"
 msgstr "Vertikal"
 
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
-msgstr ""
-"Setzte Fehlersuchstufe (0,1,2,3) <br/>es führt Scicos Fehlersuche aus."
+msgstr "Setzte Fehlersuchstufe (0,1,2,3) <br/>es führt Scicos Fehlersuche aus."
 
 msgid "Execution trace and Debug"
 msgstr ""
@@ -765,8 +759,7 @@ msgstr ""
 msgid "Generate SuperBlock, please wait"
 msgstr ""
 
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Klicken Sie auf das Diagramm, um einen Verbindungspunkt hinzuzufügen, oder "
 "auf ein kompatibles Ziel, um zu beenden."
@@ -877,8 +870,8 @@ msgid "Expecting <code>%d</code> but got <code>%d</code>."
 msgstr ""
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. "
-"<br/>Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. <br/"
+">Please reconnect it.</body></html>"
 msgstr ""
 
 msgid "Block name: "
@@ -1125,8 +1118,7 @@ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr "%s: Falscher Typ für Eingangsargument %s: Block-Typ erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr ""
 "%s: Falscher Typ für Eingangsargument %s: Zeichenkette für Verzeichnispfad "
 "erwartet.\n"
@@ -1162,13 +1154,11 @@ msgstr "%s: Falscher Typ für Argument %d: Diagrammstruktur erwartet"
 
 #, c-format
 msgid "%s: Wrong type for %s variable: A string array expected.\n"
-msgstr ""
-"%s: Falscher Typ für %s Variable: ein Zeichenketten-Array erwartet.\n"
+msgstr "%s: Falscher Typ für %s Variable: ein Zeichenketten-Array erwartet.\n"
 
 #, c-format
 msgid "%s: All paths defined by %s variable must exist.\n"
-msgstr ""
-"%s: Alle durch die Variable %s definierten Pfade müssen existieren.\n"
+msgstr "%s: Alle durch die Variable %s definierten Pfade müssen existieren.\n"
 
 #, c-format
 msgid ""
@@ -1215,8 +1205,7 @@ msgstr ""
 "%s: Falsche Anzahl von Ausgangsargumenten: zwischen %d und %d erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr ""
 "%s: Falscher Typ für Eingangsargument %s: Paletten-Typ oder Pfad erwartet.\n"
 
@@ -1239,8 +1228,7 @@ msgstr "%s: Kann Block nicht von %s laden: hdf5-Datei erwartet.\n"
 
 #, c-format
 msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
-msgstr ""
-"%s: Kann Block nicht von %s laden: keine `scs_m' Variable gefunden.\n"
+msgstr "%s: Kann Block nicht von %s laden: keine `scs_m' Variable gefunden.\n"
 
 #, c-format
 msgid "%s: Unable to load block from %s: Missing file.\n"

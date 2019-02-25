@@ -127,7 +127,7 @@ public final class XcosMessages {
     public static final String FONT_SIZE = Messages.gettext("Font size");
     public static final String FONT_NAME = Messages.gettext("Font name");
     public static final String FONT_STYLE = Messages.gettext("Font style");
-    public static final String TEXT_SETTINGS = Messages.gettext("Text settings");
+    public static final String TEXT_SETTINGS = Messages.gettext("Block legend");
     public static final String IMAGE_PATH = Messages.gettext("Image path");
 
     /* Tools menu */
@@ -218,9 +218,9 @@ public final class XcosMessages {
     public static final String ALIGN_BOTTOM = Messages.gettext("Bottom");
     public static final String ALIGN_MIDDLE = Messages.gettext("Middle");
 
-    public static final String BORDER_COLOR = Messages.gettext("Border Color");
-    public static final String FILL_COLOR = Messages.gettext("Fill Color");
-    public static final String TEXT_COLOR = Messages.gettext("Text Color");
+    public static final String BORDER_COLOR = Messages.gettext("Block edge");
+    public static final String FILL_COLOR = Messages.gettext("Block background");
+    public static final String TEXT_COLOR = Messages.gettext("Legend color");
 
     public static final String LINK_STYLE = Messages.gettext("Link Style");
     public static final String LINK_STYLE_STRAIGHT = Messages.gettext("Straight");
