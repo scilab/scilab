@@ -4744,7 +4744,7 @@ function [txt]=get_comment(typ,param)
     case "set_blk" then
         txt = ["/* set blk struc. of ''"+param(1) + ...
         "'' (type "+string(param(2))+" - blk nb "+...
-        string(param(3))++" - uid "+param(4)+") */"];
+        string(param(3))+ " - uid "+param(4)+") */"];
         //** Update xd vector ptr
     case "update_xd" then
         txt = ["/* Update xd vector ptr */"];

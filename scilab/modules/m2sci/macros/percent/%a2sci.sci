@@ -20,9 +20,6 @@ function [tree]=%a2sci(tree)
     // In Matlab only two matrices with the same size can be added unless one is a scalar
     // So empty matrix can only be added to a scalar or an onther empty matrix
     // For example : [1,2,3]+[] is not possible
-    // An other important difference with Scilab is that :
-    //  - Matlab gives : [1]+[]=[]
-    //  - Scilab gives : [1]+[]=[1]
 
     // WARNING : translation does not work for codes like var=+'a'
     // In this case, user have to modify M-file and replace +'a' by 0+'a' for example
