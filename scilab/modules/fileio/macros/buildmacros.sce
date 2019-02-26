@@ -11,3 +11,4 @@
 // along with this program.
 
 genlib("fileiolib","SCI/modules/fileio/macros",%f,%t);
+genlib("fileioguilib","SCI/modules/fileio/macros/importgui",%f,%t);

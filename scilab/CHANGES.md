@@ -32,6 +32,7 @@ In summary, the main new features are:
    - strings are quoted
    - complex numbers are aligned for matrices
    - numbers (IEEE 754 double) are not rounded
+* importgui function has been added to easily interface csvRead
 
 Installation
 ------------
