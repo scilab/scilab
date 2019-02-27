@@ -126,8 +126,8 @@ assert_checkequal(ierr, 999);
 //test long file with CRLF
 tmp = tempname();
 fd = mopen(tmp, "wb");
-txt = "a":"z"
-for i = 1:10000;
+txt = "a":"z";
+for i = 1:10000
     mfprintf(fd, "%s %s %s %s %s %s %s %s %s %s" + ascii(13) + ascii(10), txt, txt, txt, txt, txt, txt, txt, txt, txt, txt);
 end
 mclose(fd);
@@ -137,10 +137,20 @@ assert_checktrue(length(x) == 27 * 10 - 1);
 //test long file with LF
 tmp = tempname();
 fd = mopen(tmp, "wb");
-txt = "a":"z"
-for i = 1:10000;
+txt = "a":"z";
+for i = 1:10000
     mfprintf(fd, "%s %s %s %s %s %s %s %s %s %s" + ascii(10), txt, txt, txt, txt, txt, txt, txt, txt, txt, txt);
 end
 mclose(fd);
 x = mgetl(tmp);
 assert_checktrue(length(x) == 27 * 10 - 1);
+
+fd = mopen(tmp, "rt");
+x = mgetl(fd, 1);
+
+for i = 1:(10000-1)
+    y = mgetl(fd, 1);
+    assert_checkequal(x, y);
+end
+
+mclose(fd);

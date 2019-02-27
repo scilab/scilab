@@ -90,11 +90,11 @@ int mgetl(int iFileID, int iLineCount, wchar_t*** pwstLines)
     char* name = wide_string_to_UTF8(wname.data());
     std::ifstream ifs(name);
     FREE(name);
+    //seek to same position
+    ifs.seekg(orig);
 #else
     std::ifstream ifs(fd);
 #endif
-    //seek to same position
-    ifs.seekg(orig);
 
 #define MAX_READ_LEN 262144
     char str[MAX_READ_LEN];
