@@ -334,6 +334,7 @@ Bug Fixes
 * [#14900](https://bugzilla.scilab.org/14900): In Scilab 6.0, the new overloading code `function` replacing `mc` for functions in Scilab language was not documented.
 * [#14982](https://bugzilla.scilab.org/14982): `msprintf` segmentation fault was caught due to wrong size
 * [#14985](https://bugzilla.scilab.org/14985): Scilab crashed if a .bin file was not found.
+* [#15067](https://bugzilla.scilab.org/15067): `.xmi` files saved from Xcos could not be opened by drag & dropping them into the console.
 * [#15068](https://bugzilla.scilab.org/15068): `size(sum(ones(2,3,4,5),4))` was [4 2 3] instead of [2 3 4].
 * [#15087](https://bugzilla.scilab.org/15087): Deleting rows or columns from a matrix is slow (regression)
 * [#15200](https://bugzilla.scilab.org/15200): `weekday` yielded an error for some row of input dates.
