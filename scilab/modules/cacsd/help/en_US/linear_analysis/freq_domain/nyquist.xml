@@ -2,7 +2,6 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,7 +12,10 @@
  * along with this program.
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="nyquist" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="nyquist" xml:lang="en">
     <refnamediv>
         <refname>nyquist</refname>
         <refpurpose>nyquist plot</refpurpose>
@@ -21,10 +23,14 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            nyquist( sl,[fmin,fmax] [,step] [,comments] [,symmetry])
-            nyquist( sl, frq [,comments] [,symmetry])
-            nyquist(frq,db,phi [,comments] [,symmetry])
-            nyquist(frq, repf [,comments] [,symmetry])
+            nyquist(sl)
+            nyquist(sl, fmin, fmax)
+            nyquist(sl, fmin, fmax, step)
+            nyquist(sl, frq)
+            nyquist(frq, db, phi)
+            nyquist(frq, repf)
+            nyquist(.., comments)
+            nyquist(.., symmetry)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

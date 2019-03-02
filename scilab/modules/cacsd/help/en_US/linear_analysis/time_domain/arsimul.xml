@@ -2,7 +2,6 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - JPC
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,15 +12,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="arsimul">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="arsimul">
     <refnamediv>
         <refname>arsimul</refname>
         <refpurpose>armax simulation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[z]=arsimul(a,b,d,sig,u,[up,yp,ep])
-            [z]=arsimul(ar,u,[up,yp,ep])
+        <synopsis>
+             z = arsimul(ar, u)
+             z = arsimul(ar, u, up, yp, ep)
+             z = arsimul(a, b, d, sig, u)
+             z = arsimul(a, b, d, sig, u, up, yp, ep)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

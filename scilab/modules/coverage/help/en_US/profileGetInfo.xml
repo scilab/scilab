@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="profileGetInfo">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="profileGetInfo">
     <refnamediv>
         <refname>profileGetInfo</refname>
         <refpurpose>Retrieve instrumentation information as a Scilab value</refpurpose>
@@ -31,25 +34,25 @@
         <variablelist>
         <varlistentry><term>FunctionTable</term><listitem><para>a struct of profiled functions information containing:
         <variablelist>
-		    <varlistentry><term>FunctionName</term><listitem><para>the function name.</para></listitem></varlistentry>
-		    <varlistentry><term>FileName</term><listitem><para>the macro <literal>.bin</literal> file used to defined the function.</para></listitem></varlistentry>
-			<varlistentry><term>FirstLine</term><listitem><para>the number of the first executed line of the macro.</para></listitem></varlistentry>
-			<varlistentry><term>LibraryName</term><listitem><para>the library name (with its lib suffix) containing the function.</para></listitem></varlistentry>
-			<varlistentry><term>ParentIndex</term><listitem><para>index to the parent function for inner functions.</para></listitem></varlistentry>
+            <varlistentry><term>FunctionName</term><listitem><para>the function name.</para></listitem></varlistentry>
+            <varlistentry><term>FileName</term><listitem><para>the macro <literal>.bin</literal> file used to defined the function.</para></listitem></varlistentry>
+            <varlistentry><term>FirstLine</term><listitem><para>the number of the first executed line of the macro.</para></listitem></varlistentry>
+            <varlistentry><term>LibraryName</term><listitem><para>the library name (with its lib suffix) containing the function.</para></listitem></varlistentry>
+            <varlistentry><term>ParentIndex</term><listitem><para>index to the parent function for inner functions.</para></listitem></varlistentry>
         </variablelist></para></listitem></varlistentry>
-		
-		<varlistentry><term>FunctionCoverage</term><listitem><para>a struct of profiled functions information containing:
+
+        <varlistentry><term>FunctionCoverage</term><listitem><para>a struct of profiled functions information containing:
         <variablelist>
-		    <varlistentry><term>NumCalls</term><listitem><para>the number of call to this function.</para></listitem></varlistentry>
-		<varlistentry><term>TotalTime</term><listitem><para>the time spent in seconds within this function.</para></listitem></varlistentry>
-		<varlistentry><term>InstructionsCount</term><listitem><para>a vector <code>2xN</code> of <code>uint64</code>, where <code>N</code> is the executed lines count, containing the number of executed instructions and the number of non-executed instructions.</para></listitem></varlistentry>
-		<varlistentry><term>BranchesCount</term><listitem><para>a vector <code>2xN</code> of <code>uint64</code>, where <code>N</code> is the executed lines count, containing the number of executed branches and the number of non-executed branches.</para></listitem></varlistentry>
-		<varlistentry><term>PathsCount</term><listitem><para>a vector <code>1xN</code> of <code>uint64</code>, where <code>N</code> is the executed lines count, containing the number of executed paths.</para></listitem></varlistentry>
+            <varlistentry><term>NumCalls</term><listitem><para>the number of call to this function.</para></listitem></varlistentry>
+        <varlistentry><term>TotalTime</term><listitem><para>the time spent in seconds within this function.</para></listitem></varlistentry>
+        <varlistentry><term>InstructionsCount</term><listitem><para>a vector <code>2xN</code> of <code>uint64</code>, where <code>N</code> is the executed lines count, containing the number of executed instructions and the number of non-executed instructions.</para></listitem></varlistentry>
+        <varlistentry><term>BranchesCount</term><listitem><para>a vector <code>2xN</code> of <code>uint64</code>, where <code>N</code> is the executed lines count, containing the number of executed branches and the number of non-executed branches.</para></listitem></varlistentry>
+        <varlistentry><term>PathsCount</term><listitem><para>a vector <code>1xN</code> of <code>uint64</code>, where <code>N</code> is the executed lines count, containing the number of executed paths.</para></listitem></varlistentry>
         </variablelist></para></listitem></varlistentry>
     <varlistentry><term>LineCoverage</term><listitem><para>a list of <code>M</code> vectors of <code>double</code>, where <code>M</code> the number of instrumented functions, storing execution counters per function with:
         <variablelist>
-		    <varlistentry><term>LineCoverage(i)(1,j)</term><listitem><para>the number of times the line <literal>j</literal> of the function <literal>j</literal> has been executed or containing <literal>-1</literal> if this is not an executable line.</para></listitem></varlistentry>
-		    <varlistentry><term>LineCoverage(i)(2,j)</term><listitem><para>cumulated CPU time [in seconds] spent to execute the line <literal>j</literal> of the function <literal>j</literal>.</para></listitem></varlistentry>
+            <varlistentry><term>LineCoverage(i)(1,j)</term><listitem><para>the number of times the line <literal>j</literal> of the function <literal>j</literal> has been executed or containing <literal>-1</literal> if this is not an executable line.</para></listitem></varlistentry>
+            <varlistentry><term>LineCoverage(i)(2,j)</term><listitem><para>cumulated CPU time [in seconds] spent to execute the line <literal>j</literal> of the function <literal>j</literal>.</para></listitem></varlistentry>
         </variablelist></para></listitem></varlistentry></variablelist></para>
     </refsection>
     <refsection role="see also">

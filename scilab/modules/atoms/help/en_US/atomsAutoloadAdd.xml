@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="atomsAutoloadAdd">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="atomsAutoloadAdd">
     <refnamediv>
         <refname>atomsAutoloadAdd</refname>
         <refpurpose>Add one or several modules to autoload</refpurpose>
@@ -24,7 +27,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            nbAdd = atomsAutoloadAdd(modules[,section])
+            nbAdd = atomsAutoloadAdd(modules)
+            nbAdd = atomsAutoloadAdd(modules, section)
         </synopsis>
     </refsynopsisdiv>
     <!-- ===================================================================== -->
@@ -68,7 +72,7 @@
                             </td>
                             <td>
                                 If this field is empty or is not present,
-                                the most recent	version is used
+                                the most recent version is used
                             </td>
                         </tr>
                         <!-- Section -->

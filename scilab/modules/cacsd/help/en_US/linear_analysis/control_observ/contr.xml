@@ -2,7 +2,6 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,16 +12,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="contr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="contr">
     <refnamediv>
         <refname>contr</refname>
         <refpurpose>controllability, controllable subspace, staircase</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>n=contr(A,B [,tol])
-            [n,U]=contr(A,B [,tol])
-            [n,U,ind,V,Ac,Bc]=contr(A,B,[,tol])
+        <synopsis>
+            n = contr(A, B)
+            [n, U] = contr(A, B)
+            [n, U, ind, V, Ac, Bc] = contr(A, B)
+            .. = contr(.., tol)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="diary" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="diary" xml:lang="ja">
     <refnamediv>
         <refname>diary</refname>
         <refpurpose>セッションのダイアリー</refpurpose>
@@ -24,18 +27,23 @@
             [id,filename] = diary(filename, ['new'|'append'])
             [ids, filenames] = diary()
             [ids, filenames] = diary([], 'list')
+
             diary([], 'close')
             diary(0)
             diary(filename, 'close')
             diary(id, 'close')
+
             diary([], 'pause'|'off')
             diary(filename, 'pause'|'off')
             diary(id, 'pause'|'off')
+
             diary([], 'resume'|'on')
             diary(filename, 'resume'|'on')
             diary(id, 'resume'|'on')
+
             diary(filenames, 'exists')
             diary(ids, 'exists')
+
             diary(filename, 'new'|'append', 'prefix=YYYY-MM-DD hh:mm:ss')
             diary(filename, 'new'|'append', 'prefix=U')
             diary(filename, 'new'|'append', [ 'prefix=YYYY-MM-DD hh:mm:ss' ; 'prefix-only-commands' ] );

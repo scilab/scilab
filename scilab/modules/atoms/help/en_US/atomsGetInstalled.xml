@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atomsGetInstalled" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="atomsGetInstalled" xml:lang="en">
     <refnamediv>
         <refname>atomsGetInstalled</refname>
         <refpurpose>Get the list of installed external modules</refpurpose>
@@ -88,13 +91,13 @@
                         <listitem>
                             <para>
                                 <literal>"allusers"</literal>: atomsGetInstalled() only lists
-                                external modules	installed in the "allusers" section.
+                                external modules    installed in the "allusers" section.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
                                 <literal>"user"</literal>: atomsGetInstalled() only lists
-                                external modules	installed in the "user" section.
+                                external modules    installed in the "user" section.
                             </para>
                         </listitem>
                     </itemizedlist>

@@ -2,7 +2,6 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - F Delebecque
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -23,7 +22,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[P_aug,r]=lqg2stan(P,Qxu,Qwv)</synopsis>
+        <synopsis>[P_aug, r] = lqg2stan(P, Qxu, Qwv)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -125,8 +124,8 @@
             <literal>Qxu</literal>, <literal>[C1, D12]</literal> is a
             factor of <literal>Qwv</literal> (see: <link
             linkend="fullrf">fullrf</link>) then
-		</para>
-		<para>
+        </para>
+        <para>
             <literal>P_aug = syslin(P.dt, P.A, [B1,P.B], [C1;-P.C], [0,D12;D21,P.D])</literal>
         </para>
 

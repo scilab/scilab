@@ -2,7 +2,6 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,7 +12,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="black" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="black" xml:lang="en">
     <refnamediv>
         <refname>black</refname>
         <refpurpose>Black-Nichols diagram of a linear dynamical system</refpurpose>
@@ -21,10 +23,13 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            black( sl,[fmin,fmax] [,step] [,comments] )
-            black( sl,frq [,comments] )
-            black(frq,db,phi [,comments])
-            black(frq,repf [,comments])
+            black(sl)
+            black(sl, fmin, fmax)
+            black(sl, fmin, fmax, step)
+            black(sl, frq)
+            black(frq, db, phi)
+            black(frq, repf)
+            black(.., comments)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -53,27 +58,35 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>db,phi</term>
+                <term>db, phi</term>
                 <listitem>
-                    <para>row vectors or matrices (modulus, phase)</para>
+                    <para>
+                        row vectors or matrices of modulus (in dB) and phases (in degrees).
+                        One row for each response.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>repf</term>
                 <listitem>
-                    <para>row vectors or matrices (complex frequency response)</para>
+                    <para>
+                        row or matrix of complex frequency response(s). One row for each response.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>step</term>
                 <listitem>
-                    <para>real</para>
+                    <para>
+                        real: (logarithmic) discretization step.
+                        See <link linkend="calfrq">calfrq</link> for the choice of default value.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>comments</term>
                 <listitem>
-                    <para>string</para>
+                    <para>vector of character strings: captions.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -99,24 +112,6 @@
             <literal>fmin</literal>,<literal>fmax</literal> (in Hz) or
             by a row-vector (or a matrix for multi-output)
             <literal>frq</literal>.
-        </para>
-        <para>
-            <literal>step</literal> is the ( logarithmic )
-            discretization step.  (see <link
-          linkend="calfrq">calfrq</link> for the choice of default
-            value).
-        </para>
-        <para>
-            <literal>comments</literal> is a vector of character strings
-            (captions).
-        </para>
-        <para>
-            <literal>db,phi</literal> are the matrices of modulus (in Db) and
-            phases (in degrees). (One row for each response).
-        </para>
-        <para>
-            <literal>repf</literal> matrix of complex numbers. One row for each
-            response.
         </para>
         <para>To plot the grid of iso-gain and iso-phase of
             <literal>y/(1+y)</literal> use <link linkend="nicholschart">nicolschart()</link>.

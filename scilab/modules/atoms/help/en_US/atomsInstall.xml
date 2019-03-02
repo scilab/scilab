@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="atomsInstall">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="atomsInstall">
     <refnamediv>
         <refname>atomsInstall</refname>
         <refpurpose>Install one or several external modules</refpurpose>
@@ -24,7 +27,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            result = atomsInstall(modules[,section])
+            result = atomsInstall(modules)
+            result = atomsInstall(modules, section)
             result = atomsInstall(file)
         </synopsis>
     </refsynopsisdiv>
@@ -68,7 +72,7 @@
                             </td>
                             <td>
                                 If this field is empty or is not present,
-                                the most recent	version is used
+                                the most recent version is used
                             </td>
                         </tr>
                     </informaltable>
@@ -166,7 +170,7 @@
                             </td>
                             <td>
                                 this parameter determines whether the module has been installed
-                                for all users or only for the	current user.
+                                for all users or only for the   current user.
                             </td>
                         </tr>
                         <!-- Installation path -->

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
- *
+ * Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,17 +12,24 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="repfreq">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="repfreq">
     <refnamediv>
         <refname>repfreq</refname>
         <refpurpose>frequency response</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[ [frq,] repf]=repfreq(sys,fmin,fmax [,step])
-            [ [frq,] repf]=repfreq(sys [,frq])
-            [ frq,repf,splitf]=repfreq(sys,fmin,fmax [,step])
-            [ frq,repf,splitf]=repfreq(sys [,frq])
+        <synopsis>
+            repf = repfreq(sys)
+            repf = repfreq(sys, frq)
+            repf = repfreq(sys, fmin, fmax)
+            repf = repfreq(sys, fmin, fmax, step)
+
+            [frq, repf] = repfreq(..)
+            [frq, repf, splitf] = repfreq(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

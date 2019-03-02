@@ -9,14 +9,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="zp2tf">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="zp2tf">
     <refnamediv>
         <refname>zp2tf</refname>
         <refpurpose>Zero pole gain to transfer function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>S=zp2tf(z,p,k [,dt])</synopsis>
+        <synopsis>
+            S = zp2tf(z, p, k)
+            S = zp2tf(z, p, k, dt)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

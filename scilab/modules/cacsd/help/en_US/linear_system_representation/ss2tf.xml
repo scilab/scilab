@@ -2,7 +2,6 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,23 +12,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ss2tf">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="ss2tf">
     <refnamediv>
         <refname>ss2tf</refname>
         <refpurpose>conversion from state-space to transfer function</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[h]=ss2tf(sl)
-            [Ds,NUM,chi]=ss2tf(sl)
-
-            [h]=ss2tf(sl,"b")
-            [Ds,NUM,chi]=ss2tf(sl,"b")
-
-
-            [h]=ss2tf(sl,rmax)
-            [Ds,NUM,chi]=ss2tf(sl,rmax)
-
+        <synopsis>
+            h = ss2tf(sl)
+            h = ss2tf(sl,"b")
+            h = ss2tf(sl,rmax)
+            [Ds, NUM, chi] = ss2tf(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

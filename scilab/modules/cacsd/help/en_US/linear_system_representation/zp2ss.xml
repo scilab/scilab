@@ -5,18 +5,24 @@
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
-  * For more information, see the COPYING file which you should have received
+ * For more information, see the COPYING file which you should have received
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="zp2ss">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="zp2ss">
     <refnamediv>
         <refname>zp2ss</refname>
         <refpurpose>Zero pole gain to  state space</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>S=zp2ss(z,p,k [,dt])</synopsis>
+        <synopsis>
+          S = zp2ss(z, p, k)
+          S = zp2ss(z, p, k, dt)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>

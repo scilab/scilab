@@ -21,7 +21,7 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            result = atomsQuit();
+            result = atomsQuit()
         </synopsis>
     </refsynopsisdiv>
     <refsection>

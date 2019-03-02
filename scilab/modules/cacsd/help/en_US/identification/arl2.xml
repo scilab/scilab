@@ -2,7 +2,6 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,17 +12,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="arl2">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="arl2">
     <refnamediv>
         <refname>arl2</refname>
         <refpurpose>SISO model realization by L2 transfer approximation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>h=arl2(y,den0,n [,imp])
-            h=arl2(y,den0,n [,imp],'all')
-            [den,num,err]=arl2(y,den0,n [,imp])
-            [den,num,err]=arl2(y,den0,n [,imp],'all')
+        <synopsis>
+            h = arl2(y, den0, n)
+            h = arl2(y, den0, n, imp)
+            h = arl2(y, den0, n, imp, 'all')
+            h = arl2(y, den0, n, 'all')
+            [den, num, err] = arl2(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -33,7 +37,9 @@
                 <term>y</term>
                 <listitem>
                     <para>
-                        real vector or polynomial in <literal>z^-1</literal>, it contains the coefficients of the Fourier's series of the rational system to approximate (the impulse response)
+                        real vector or polynomial in <literal>z^-1</literal>, it contains the
+                        coefficients of the Fourier's series of the rational system to approximate
+                        (the impulse response)
                     </para>
                 </listitem>
             </varlistentry>

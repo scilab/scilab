@@ -2,7 +2,6 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,14 +12,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="linf">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="linf">
     <refnamediv>
         <refname>linf</refname>
         <refpurpose>infinity norm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>linf(g [,eps],[tol])</synopsis>
+        <synopsis>
+            linf(g)
+            linf(g, eps)
+            linf(g, eps, tol)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -50,12 +56,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            returns the L_infinity norm of <literal>g</literal>.
+            returns the L_infinity norm of <literal>g</literal>:
+            <literal>n = sup_<subscript>w</subscript>(sigmax(g(j.w)))</literal>
         </para>
-        <programlisting role=""><![CDATA[
-n=sup [sigmax(g(jw)]
-   w
- ]]></programlisting>
         <para>
             (sigmax largest singular value).
         </para>

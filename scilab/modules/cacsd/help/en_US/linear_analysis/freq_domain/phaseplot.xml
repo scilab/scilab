@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
-*
+* Copyright (C) 1996 - 2016 - INRIA - Serge Steer <serge.steer@inria.fr>
 * Copyright (C) 2012 - 2016 - Scilab Enterprises
 *
 * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,7 +12,10 @@
 * along with this program.
 *
 -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="phaseplot">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="phaseplot">
     <refnamediv>
         <refname>phaseplot</refname>
         <refpurpose>frequency phase plot</refpurpose>
@@ -22,9 +24,11 @@
         <title>Syntax</title>
         <synopsis>
             phaseplot(sl)
-            phaseplot(sl,fmin,fmax [,step] [,comments] )
-            phaseplot(frq,db,phi [,comments])
-            phaseplot(frq, repf [,comments])
+            phaseplot(sl, fmin, fmax)
+            phaseplot(sl, fmin, fmax, step)
+            phaseplot(frq, db, phi)
+            phaseplot(frq, repf)
+            phaseplot(.., comments)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

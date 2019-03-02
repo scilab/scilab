@@ -20,8 +20,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-          S = zpk(Z,P,K,dt)
-          S = zpk(z,p,k,dt)
+          S = zpk(Z, P, K, dt)
+          S = zpk(z, p, k, dt)
           S = zpk(sys)
          </synopsis>
     </refsynopsisdiv>

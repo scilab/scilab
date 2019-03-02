@@ -19,7 +19,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>S=zpk2tf(sys)</synopsis>
+        <synopsis>S = zpk2tf(sys)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
