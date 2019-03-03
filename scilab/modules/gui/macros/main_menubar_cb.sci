@@ -1,7 +1,5 @@
 // Copyright (C) 2017 - Samuel GOUGEON
 //
-// Copyright (C) 2012 - 2016 - Scilab Enterprises
-//
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
 // This file was originally licensed under the terms of the CeCILL v2.1,
@@ -18,7 +16,7 @@ function main_menubar_cb(key)
     if key=="openFile"
         msg = gettext("Select a file to open");
         ext = [ "*.sce|*.sci"       _("Scilab scripts")
-                "*.xcos|*.zcos"     _("Xcos diagrams")
+                "*.xcos|*.zcos|*.xmi" _("Xcos diagrams")
                 "*.tst|*.dia.ref"   _("Scilab Tests")
                 "*.scg"             _("Scilab Graphics")
                 "lib"               _("Scilab Library")
@@ -27,7 +25,7 @@ function main_menubar_cb(key)
         %fileToOpen = uigetfile(ext, pwd(), msg);
         if %fileToOpen ~= "" then
             ext = convstr(fileparts(%fileToOpen, "extension"));
-            if or(ext==[".xcos" ".zcos"])
+            if or(ext==[".xcos" ".zcos" ".xmi"])
                 xcos(%fileToOpen);
             elseif or(ext==[".sce" ".sci" ".tst" ".ref"])
                 editor(%fileToOpen);
@@ -97,6 +95,8 @@ function main_menubar_cb(key)
         tmp = strcat([tmp tmp+"\/" tmp+"\\"],"|");
         tmp = grep(r,"_^("+tmp+")$_", "r");
         r(tmp) = [];
+        [?, k] = gsort(convstr(r),"g","i");
+        r = r(k);
 
         // Finding the handle of the submenu "Files => Go to Bookmark"
         // It has a sub-submenu with Label = "TMPDIR", coming from the
