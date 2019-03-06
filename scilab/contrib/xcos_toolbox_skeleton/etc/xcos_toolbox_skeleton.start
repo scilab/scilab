@@ -62,7 +62,7 @@ function xcos_skeletonlib = startModule()
   if or(getscilabmode() == ["NW";"STD"]) then
     mprintf("\tLoad help\n");
     path_addchapter = pathconvert(root_tlbx+"/jar");
-    if ( isdir(path_addchapter) <> [] ) then
+    if isdir(path_addchapter) then
         add_help_chapter("Xcos toolbox skeleton", path_addchapter, %F);
     end
   end

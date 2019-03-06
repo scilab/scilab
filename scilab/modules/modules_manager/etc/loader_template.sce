@@ -47,7 +47,7 @@ function startModule(TOOLBOX_NAME, TOOLBOX_TITLE, VERBOSELevel)
     if isdir(root_tlbx + "/jar") && or(getscilabmode() == ["NW";"STD"])
         mprintf("\tLoad help\n");
         path_addchapter = pathconvert(root_tlbx+"/jar")
-        if ( isdir(path_addchapter) <> [] ) then
+        if isdir(path_addchapter) then
             add_help_chapter(TOOLBOX_NAME, path_addchapter, %F)
         end
     end
