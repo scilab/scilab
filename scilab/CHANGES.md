@@ -248,18 +248,13 @@ Bug Fixes
 * [#15392](http://bugzilla.scilab.org/show_bug.cgi?id=15392): `comet` and `comet3d` did not allow specifying colors with colors names.
 * [#15393](http://bugzilla.scilab.org/show_bug.cgi?id=15393): In a new figure, `nicholschart` plotted nothing. The default frame color was a flashy cyan. The position of gain labels could be puzzling. It was not possible to specify colors by their names. Postprocessing the frames and the set of labels was not easy.
 * [#15425](http://bugzilla.scilab.org/show_bug.cgi?id=15425): The Kronecker product `a.*.b` failed when `a` or `b` or both are hypermatrices, with one or both being polynomials or rationals.
-<<<<<<< HEAD
 * [#15431](http://bugzilla.scilab.org/show_bug.cgi?id=15431): The empty matrix `[]` and its non-convertibility were poorly documented.
 * [#15451](http://bugzilla.scilab.org/show_bug.cgi?id=15451): The code was not adapted to use `lucene 4.10` in Debian.
 * [#15514](http://bugzilla.scilab.org/show_bug.cgi?id=15514): The `set()` documentation page needed to be overhauled.
 * [#15522](http://bugzilla.scilab.org/show_bug.cgi?id=15522): `unique()` was not able to consider all Nan values as the same value. A `uniqueNan` option now allows it.
 * [#15523](http://bugzilla.scilab.org/show_bug.cgi?id=15523): `%ODEOPTIONS(1)=2` didn't work with solvers 'rk' and 'rkf'
-=======
-* [#15523](http://bugzilla.scilab.org/show_bug.cgi?id=15523): `%ODEOPTIONS(1)=2` didn't work with solvers 'rk' and 'rkf' 
 * [#15534](http://bugzilla.scilab.org/show_bug.cgi?id=15534): Booleans and encoded integers could not be concatenated together.
->>>>>>> 7115870ad73... * Bug 15534 fixed: [%t int8(-5)] was refused
 * [#15577](http://bugzilla.scilab.org/show_bug.cgi?id=15577): `edit` did not accept a line number as text, as with `edit linspace 21`.
-<<<<<<< HEAD
 * [#15580](http://bugzilla.scilab.org/show_bug.cgi?id=15580): `det(sparse([],[]))` yielded an error.
 * [#15981](http://bugzilla.scilab.org/show_bug.cgi?id=15981): `wavread()` kept the wav file open and locked when returning on errors. It weakly managed the input file name. It claimed for invalid data formats instead of unsupported ones, with poor information about the current format vs the supported ones. Several error messages refered to a wrong function.
 * [#15595](http://bugzilla.scilab.org/show_bug.cgi?id=15595): `unique()` was not able to return distinct values in their original order, without sorting them. A `keepOrder` option now allows it.
@@ -284,6 +279,8 @@ Bug Fixes
 * [#15983](http://bugzilla.scilab.org/show_bug.cgi?id=15983): `group` regressed in 5.5.2 due to a too intrusive fix.
 * [#15984](http://bugzilla.scilab.org/show_bug.cgi?id=15984): display scale was wrong with Retina dispplays on OSX..
 * [#15995](http://bugzilla.scilab.org/show_bug.cgi?id=15995): patch was missing in surface plot (regression)
+* [#15998](http://bugzilla.scilab.org/show_bug.cgi?id=15998): `mfile2sci()` yielded an unsuitable warning when converting `atan()`.
+* [#16000](http://bugzilla.scilab.org/show_bug.cgi?id=16000): `mfile2sci()` converted `acoth()` using `atanh()` and yielding a wrong warning message.
 * [#16003](http://bugzilla.scilab.org/show_bug.cgi?id=16003): Zoom with mouse scroll wheel was broken on simple surfaces.
 * [#16005](http://bugzilla.scilab.org/show_bug.cgi?id=16005): The `intdec` example was biased and not robust when changing sampling frequencies.
 * [#16007](http://bugzilla.scilab.org/show_bug.cgi?id=16007): Non-integer index in sparse makes Scilab crash.
@@ -359,5 +356,3 @@ Bug Fixes
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot`, `colorbar` displayed an empty ungraduated color bar.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
-=======
-

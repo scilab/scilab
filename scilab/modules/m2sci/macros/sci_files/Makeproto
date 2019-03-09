@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) ???? - INRIA - Scilab
-# 
+#
 # This file is distributed under the same license as the Scilab package.
 
 # This Makefile is used to build sci_funname.sci files from PROTOx.g
@@ -8,19 +8,19 @@
 PROTO0 = sci_abs.sci sci_cos.sci sci_cosh.sci sci_erf.sci sci_erfc.sci\
 	 sci_erfcx.sci sci_gamma.sci sci_gammaln.sci sci_imag.sci sci_real.sci
 PROTO1 = sci_max.sci sci_min.sci
-PROTO2 = sci_cumprod.sci sci_cumsum.sci 
-PROTO3 = sci_eye.sci sci_false.sci sci_ones.sci sci_rand.sci sci_randn.sci sci_true.sci sci_zeros.sci 
+PROTO2 = sci_cumprod.sci sci_cumsum.sci
+PROTO3 = sci_eye.sci sci_false.sci sci_ones.sci sci_rand.sci sci_randn.sci sci_true.sci sci_zeros.sci
 PROTO4 = sci_acosh.sci sci_asinh.sci sci_conj.sci sci_cot.sci sci_coth.sci sci_double.sci sci_exp.sci sci_expm.sci sci_inv.sci sci_log.sci sci_log10.sci sci_sign.sci sci_sin.sci sci_sinh.sci sci_sqrt.sci sci_tan.sci sci_tanh.sci
-PROTO5 = sci_asin.sci sci_atan.sci
+PROTO5 = sci_asin.sci sci_atanh.sci sci_atan.sci sci_acoth.sci
 PROTO6 = sci_ceil.sci sci_fix.sci sci_floor.sci sci_round.sci
-PROTO7 = sci_tril.sci sci_triu.sci 
+PROTO7 = sci_tril.sci sci_triu.sci
 PROTO8 = sci_prod.sci sci_sum.sci
 PROTO9 = sci_int8.sci sci_int16.sci sci_int32.sci sci_uint8.sci sci_uint16.sci sci_uint32.sci
 PROTO10 = sci_lower.sci sci_upper.sci
 PROTO11 = sci_dos.sci sci_unix.sci
 PROTO12 = sci_who.sci sci_whos.sci
 PROTO13 = sci_all.sci sci_any.sci
-PROTO14 = sci_acos.sci 
+PROTO14 = sci_acos.sci
 PROTO15 = sci_nargin.sci sci_nargout.sci
 
 # Files generated from file : sci_PROTO0.g
@@ -116,6 +116,8 @@ sci_atan.sci: sci_PROTO5.g
 	@./GEN $? atan atan > $@
 sci_atanh.sci: sci_PROTO5.g
 	@./GEN $? atanh atanh > $@
+sci_acoth.sci: sci_PROTO5.g
+	@./GEN $? acoth acoth > $@
 
 # Files generated from file : sci_PROTO6.g
 sci_ceil.sci: sci_PROTO6.g

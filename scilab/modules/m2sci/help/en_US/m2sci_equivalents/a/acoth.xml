@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_acoth">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="m2sci_acoth">
     <refnamediv>
         <refname>acoth (Matlab function)</refname>
         <refpurpose>Inverse hyperbolic cotangent</refpurpose>
@@ -31,12 +34,12 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 acoth(A)
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 acoth(A)
 ]]></programlisting>
                 </td>
@@ -46,8 +49,8 @@ acoth(A)
     <refsection>
         <title>Particular cases</title>
         <para>
-            For <literal>x</literal> real in <literal>]-1,1[</literal>, <literal>imag(acoth(x))</literal>
-            is +?/2 in Matlab and -?/2 in Scilab.
+            For <literal>x</literal> real in <literal>[0,1[</literal>, <literal>imag(acoth(x))</literal>
+            is +π/2 in Matlab, and -π/2 in Scilab.
         </para>
     </refsection>
 </refentry>

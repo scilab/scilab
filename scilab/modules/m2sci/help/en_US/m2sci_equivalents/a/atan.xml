@@ -13,7 +13,9 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_atan">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_atan">
     <refnamediv>
         <refname>atan (Matlab function)</refname>
         <refpurpose>Two-quadrant inverse tangent</refpurpose>
@@ -42,5 +44,21 @@ atan
                 </td>
             </tr>
         </informaltable>
+    </refsection>
+    <refsection>
+        <title>Particular cases</title>
+          <para>
+            When the input <literal>x</literal> is imaginary and <literal>abs(x)>=1</literal>,
+            the real part of the result differs from Scilab vs Matlab or Octave:
+          </para>
+          <para>
+          <table border="0">
+            <tr><td></td>         <th>Scilab</th>    <th>Octave</th>    <th>Matlab</th>   </tr>
+            <tr><th>atan(-2i)</th><td>-π/2 - B.i</td><td>-π/2 - B.i</td><td>π/2 - B.i</td></tr>
+            <tr><th>atan(-i)</th> <td>Nan - Inf</td> <td>0 - Inf</td>   <td>0 - Inf</td>  </tr>
+            <tr><th>atan(i)</th>  <td>Nan + Inf</td> <td>0 + Inf</td>   <td>0 + Inf</td>  </tr>
+            <tr><th>atan(2i)</th> <td>π/2 + B.i</td> <td>π/2 + B.i</td><td>-π/2 + B.i</td></tr>
+          </table>
+        </para>
     </refsection>
 </refentry>

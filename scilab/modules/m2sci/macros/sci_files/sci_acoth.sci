@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -10,22 +10,27 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function tree=sci_acoth(tree)
+function tree = sci_acoth(tree)
+    // File generated from sci_PROTO5.g: PLEASE DO NOT EDIT !
     // M2SCI function
     // Conversion function for Matlab acoth()
     // Input: tree = Matlab funcall tree
-    // Ouput: tree = Scilab equivalent for tree
+    // Output: tree = Scilab equivalent for tree
 
-    X=getrhs(tree)
-    X=convert2double(X)
+    A = getrhs(tree)
+    A = convert2double(A)
+    tree.rhs = Rhs_tlist(A)
 
-    set_infos(msprintf(gettext("If %s is outside [-1,1]\n   complex part of output of %s will be the opposite of Matlab one."), strcat(expression2code(X), ""), strcat(expression2code(tree), "")),2)
-
-    tree.name="atanh"
-    Op=Operation("./",list(Cste(1),X),list())
-    tree.rhs=Rhs_tlist(Op)
-
-    tree.lhs(1).dims=X.dims
+    if tree.name=="atan" then
+        set_infos(msprintf(gettext("If %s is imaginary and its module is > 1\n      the real part of %s is -π/2 in Scilab instead of +π/2 in Matlab."), strcat(expression2code(A), ""), strcat(expression2code(tree), "")),2)
+    elseif tree.name=="acoth" then
+        set_infos(msprintf(gettext("If %s is in [0,1)\n  imag(%s) is -π/2 in Scilab instead of +π/2 in Matlab."), strcat(expression2code(A), ""), strcat(expression2code(tree), "")),2)
+    elseif tree.name=="asin" then
+        set_infos(msprintf(gettext("If %s is outside [-1,1]\n   complex part of output of %s will be the opposite of Matlab one."), strcat(expression2code(A), ""), strcat(expression2code(tree), "")),2)
+    else
+		set_infos(msprintf(gettext("If %s < -1, complex part of output of %s will be the opposite of Matlab one."), strcat(expression2code(A), ""), strcat(expression2code(tree), "")),2)
+	end
+    tree.lhs(1).dims = A.dims
     // Property unknown because result can be complex for real input
-    tree.lhs(1).type=Type(X.vtype,Unknown)
+    tree.lhs(1).type = Type(Double,Unknown)
 endfunction
