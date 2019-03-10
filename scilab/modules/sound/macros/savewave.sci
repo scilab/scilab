@@ -1,7 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018 - Stéphane MOTTELET
+// Copyright (C) 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,8 +13,7 @@
 
 // =============================================================================
 // WAVE Audio File Format
-// http://ccrma.stanford.edu/courses/422/projects/WaveFormat/
-// http://www.digitalpreservation.gov/formats/fdd/fdd000001.shtml
+// https://www.loc.gov/preservation/digital/formats/fdd/fdd000001.shtml
 // =============================================================================
 function savewave(filename,x,rate,nbits)
 
@@ -98,6 +98,7 @@ function savewave(filename,x,rate,nbits)
         //   and a chunk structure.
         //   ck.fid, ck.ID, ck.Size, ck.Data
         if length(ck("ID"))<>4 then
+            mclose(ck("fid"));
             error(msprintf(gettext("%s: Wrong size for input argument #%d.\n"),"write_ckinfo",1));
         end
 
@@ -146,6 +147,7 @@ function savewave(filename,x,rate,nbits)
                 data = round((data+1)*(2^32-1)/2)-(2^31);
 
             else
+                mclose(fid)
                 error(msprintf(gettext("%s: An error occurred: %s\n"),"savewave",gettext("only 8/16/24/32 bits for the encoding.")));
             end
 
@@ -170,7 +172,6 @@ function savewave(filename,x,rate,nbits)
                 data_line = data;
             end
 
-
             try
                 mput(data_line,dtype,fid);
             catch
@@ -185,9 +186,9 @@ function savewave(filename,x,rate,nbits)
             end
         else
             // Unknown wave-format for data.
+            mclose(fid)
             error(msprintf(gettext("%s: An error occurred: %s\n"),"write_wavedat",gettext("Unknown data format.")));
         end
-        return
     endfunction
     // =============================================================================
     function [status]=write_wavefmt(fid,fmt)
@@ -210,6 +211,7 @@ function savewave(filename,x,rate,nbits)
             // Write standard <PCM-format-specific> info:
             mput(fmt("nBitsPerSample"),"us",fid)
         else
+            mclose(fid)
             error("Unknown data format.");
         end
     endfunction
@@ -237,11 +239,7 @@ function savewave(filename,x,rate,nbits)
 
     [fid,%v] = mopen(filename,"wb",1);
 
-    if (%v < 0) then
-        fid = -1;
-    end
-
-    if ( fid == (-1) ) then
+    if fid==-1 | %v < 0 then
         error(msprintf(gettext("%s: Cannot open file %s.\n"),"savewave",filename));
     end
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) ????-2006 - INRIA - Scilab
-    *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2006 - INRIA - Scilab
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -11,16 +11,20 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-    *
-    -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="wavwrite" xml:lang="en">
+ *
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="wavwrite" xml:lang="en">
     <refnamediv>
         <refname>wavwrite</refname>
         <refpurpose>writes .wav sound file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>wavwrite(y, wavfile)
+        <synopsis>
+            wavwrite(y, wavfile)
             wavwrite(y, Fs, wavfile)
             wavwrite(y, Fs, nbits, wavfile)
         </synopsis>
@@ -31,28 +35,29 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>real vector or matrix with entries in [-1,1].</para>
+                    <para>row vector or matrix: Sound amplitudes = real values in [-1,1].
+                        One row per channel. Values out of [-1,+1] are ignored.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>wavfile</term>
                 <listitem>
-                    <para>string (The .wav extension is appended if no extension is
-                        given)
+                    <para>string (The .wav extension is appended if no extension is given)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Fs</term>
                 <listitem>
-                    <para>integer, frequency sampling in Hz. 22500 is the default value.</para>
+                    <para>integer: Sampling frequency, in Hz. 22500 is the default value.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>nbits</term>
                 <listitem>
-                    <para>bit-depth 8, 16, 24, 32 bits. it describes the number of bits of information recorded for each sample.
-                        16 is the default value.
+                    <para>bit-depth 8, 16, 24, 32 bits. it describes the number of bits of
+                          information recorded for each sample. 16 is the default value.
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,20 +68,19 @@
         <para>
             Utility function to save <literal>.wav</literal> sound file.
             <literal>wavwrite(y,wavfile)</literal> writes a sound file specified by
-            the string wavfile. The data should be arranged with one channel per
-            column. Amplitude values outside the range [-1,+1] are ignored.
+            the string <literal>wavfile</literal>.
         </para>
         <para>
             <literal>wavwrite(y,Fs,wavfile)</literal> specifies in
-            <literal>Fs</literal> the sample rate of the data in Hertz.
+            <literal>Fs</literal> the sampling rate of the data in Hertz.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-A=matrix(1:6,2,3);
+A = matrix(1:6,2,3);
 wavwrite(A/6,TMPDIR+'/foo.wav');
-B=wavread(TMPDIR+'/foo.wav');
+B = wavread(TMPDIR+'/foo.wav');
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

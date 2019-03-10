@@ -269,6 +269,7 @@ Bug Fixes
 * [#15964](http://bugzilla.scilab.org/show_bug.cgi?id=15954): A complex empty sparse matrix could be obtained after insertion.
 * [#15969](http://bugzilla.scilab.org/show_bug.cgi?id=15969): Fix spelling
 * [#15974](http://bugzilla.scilab.org/show_bug.cgi?id=15974): `msprintf("%d", %nan)` did not return Nan
+* [#15978](http://bugzilla.scilab.org/show_bug.cgi?id=15978): The `writewav()` page in english said that input data are one column per channel, instead of one row per channel. In addition, in case of writing error, `savewave()` kept the output file open and locked.
 * [#15983](http://bugzilla.scilab.org/show_bug.cgi?id=15983): `group` regressed in 5.5.2 due to a too intrusive fix.
 * [#15984](http://bugzilla.scilab.org/show_bug.cgi?id=15984): display scale was wrong with Retina dispplays on OSX..
 * [#15995](http://bugzilla.scilab.org/show_bug.cgi?id=15995): patch was missing in surface plot (regression)
