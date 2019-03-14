@@ -152,16 +152,17 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                 Double[] bounds = axes.getDisplayedBounds();
                 double[][] factors = axes.getScaleTranslateFactors();
                 // Zoom only if position of mouse cursor is inside the bounds
-                if (position[0] > bounds[0] && position[0] < bounds[1] &&
-                        position[1] > bounds[2] && position[1] < bounds[3] &&
-                        position[2] > bounds[4] && position[2] < bounds[5]) {
+                if (position[0] >= bounds[0] && position[0] <= bounds[1] &&
+                        position[1] >= bounds[2] && position[1] <= bounds[3] &&
+                        position[2] >= bounds[4] && position[2] <= bounds[5]) {
                     bounds[0] = position[0] + (bounds[0] - position[0]) * scale;
                     bounds[1] = position[0]  + (bounds[1] - position[0]) * scale;
                     bounds[2] = position[1] + (bounds[2] - position[1]) * scale;
                     bounds[3] = position[1] + (bounds[3] - position[1]) * scale;
-                    bounds[4] = position[2] + (bounds[4] - position[2]) * scale;
-                    bounds[5] = position[2] + (bounds[5] - position[2]) * scale;
-
+                    if (axes.getView() != 0) {
+                        bounds[4] = position[2] + (bounds[4] - position[2]) * scale;
+                        bounds[5] = position[2] + (bounds[5] - position[2]) * scale;
+                    }
                     bounds[0] = bounds[0] * factors[0][0] + factors[1][0];
                     bounds[1] = bounds[1] * factors[0][0] + factors[1][0];
                     bounds[2] = bounds[2] * factors[0][1] + factors[1][1];

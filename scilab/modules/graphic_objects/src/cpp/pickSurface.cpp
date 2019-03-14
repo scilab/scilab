@@ -22,7 +22,6 @@ extern "C"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "sciprint.h"
 
 double pickSurface(int uid, double x, double y,  double z, double dx, double dy, double dz);
 
@@ -98,6 +97,7 @@ public:
 
 int test_tri(Vec3 V1, Vec3 V2, Vec3 V3, Vec3 Dir, Vec3 P0, Vec3 &ret);
 void QuadTestAndSaveT(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 direction, Vec3 point, double &retT);
+void TriTestAndSaveT(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 direction, Vec3 point, double &retT);
 
 /*
  * Given a ray (point(x, y,z) and direction(dx, dy, dz))
@@ -123,8 +123,6 @@ double pickSurface(int uid, double x, double y,  double z, double dx, double dy,
     getGraphicObjectProperty(uid, __GO_DATA_MODEL_Y__, jni_double_vector, (void**) &Y);
     getGraphicObjectProperty(uid, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &Z);
 
-
-
     int axes_uid = 0;
     int * paxes_uid = &axes_uid;
     int zoom_enabled = 0;
@@ -141,7 +139,6 @@ double pickSurface(int uid, double x, double y,  double z, double dx, double dy,
     {
         getGraphicObjectProperty(axes_uid, __GO_DATA_BOUNDS__, jni_double_vector, (void**) &bounds);
     }
-
 
     getGraphicObjectProperty(uid, __GO_TYPE__, jni_int, (void**) &pType);
     if (type == __GO_PLOT3D__)
@@ -180,31 +177,46 @@ double pickSurface(int uid, double x, double y,  double z, double dx, double dy,
         getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void**) &png);
         getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**) &pnvg);
 
-        if (nvg != 4)
+        // Fac3d data model is made by gons
+        // each gon can be a quad
+        if (nvg == 4)
         {
-            return 2.0;
+             /* ordered in the vector
+             * X = [ p1, p2, p3, p4, p1, p2, p3, p4, ...]
+             * Y = [ p1, p2, p3, p4, p1, p2, p3, p4, ...]
+             * Z = [ p1, p2, p3, p4, p1, p2, p3, p4, ...]
+             * where a point is given by (x, y, z)
+             */
+            for (int i = 0; i < ng * nvg; i += nvg)
+            {
+                Vec3 P0 = Vec3(X[i],   Y[i],   Z[i]);
+                Vec3 P1 = Vec3(X[i + 1], Y[i + 1], Z[i + 1]);
+                Vec3 P2 = Vec3(X[i + 2], Y[i + 2], Z[i + 2]);
+                Vec3 P3 = Vec3(X[i + 3], Y[i + 3], Z[i + 3]);
+
+                QuadTestAndSaveT(bounds, P0, P1, P2, P3, direction, point, lastT);
+            }
         }
-
-        /*
-         * Fac3d data model is made by gons
-         * each gon should be a quad
-         * ordered in the vector
-         * X = [ p1, p2, p3, p4, p1, p2, p3, p4, ...]
-         * Y = [ p1, p2, p3, p4, p1, p2, p3, p4, ...]
-         * Z = [ p1, p2, p3, p4, p1, p2, p3, p4, ...]
-         * where a point is given by (x, y, z)
-         */
-        for (int i = 0; i < ng * nvg; i += nvg)
+        // or a triangle
+        else if (nvg == 3)
         {
-            Vec3 P0 = Vec3(X[i],   Y[i],   Z[i]);
-            Vec3 P1 = Vec3(X[i + 1], Y[i + 1], Z[i + 1]);
-            Vec3 P2 = Vec3(X[i + 2], Y[i + 2], Z[i + 2]);
-            Vec3 P3 = Vec3(X[i + 3], Y[i + 3], Z[i + 3]);
+            /* ordered in the vector
+            * X = [ p1, p2, p3, p1, p2, p3, ...]
+            * Y = [ p1, p2, p3, p1, p2, p3, ...]
+            * Z = [ p1, p2, p3, p1, p2, p3, ...]
+            * where a point is given by (x, y, z)
+            */
+            for (int i = 0; i < ng * nvg; i += nvg)
+            {
+                Vec3 P0 = Vec3(X[i],   Y[i],   Z[i]);
+                Vec3 P1 = Vec3(X[i + 1], Y[i + 1], Z[i + 1]);
+                Vec3 P2 = Vec3(X[i + 2], Y[i + 2], Z[i + 2]);
 
-            QuadTestAndSaveT(bounds, P0, P1, P2, P3, direction, point, lastT);
+                TriTestAndSaveT(bounds, P0, P1, P2, direction, point, lastT);
+            }            
         }
     }
-    if (type == __GO_GRAYPLOT__)
+    else if (type == __GO_GRAYPLOT__)
     {
 
         int numX = 0;
@@ -226,7 +238,7 @@ double pickSurface(int uid, double x, double y,  double z, double dx, double dy,
 
         QuadTestAndSaveT(bounds, P0, P1, P2, P3, direction, point, lastT);
     }
-    if (type == __GO_MATPLOT__)
+    else if (type == __GO_MATPLOT__)
     {
         double* scale = NULL;
         double* translate = NULL;
@@ -316,6 +328,12 @@ bool isInViewBox(double * bounds, Vec3 point)
 
 void QuadTestAndSaveT(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 direction, Vec3 point, double &retT)
 {
+    TriTestAndSaveT(bounds, P0, P1, P2, direction, point, retT);
+    TriTestAndSaveT(bounds, P0, P2, P3, direction, point, retT);
+}
+
+void TriTestAndSaveT(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 direction, Vec3 point, double &retT)
+{
     Vec3 intersectionPoint;
     double t;
     /*test first triangle*/
@@ -329,17 +347,7 @@ void QuadTestAndSaveT(double *bounds, Vec3 P0, Vec3 P1, Vec3 P2, Vec3 P3, Vec3 d
             retT = retT > t ? retT : t;
         }
     }
-    /*test second triangle*/
-    if (test_tri(P0, P2, P3, direction, point, t) == 1)
-    {
-        intersectionPoint = point + direction * t;        
-        if (isInViewBox(bounds, intersectionPoint))
-        {
-            retT = retT > t ? retT : t;
-        }
-    }
 }
-
 
 
 
