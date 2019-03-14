@@ -155,27 +155,33 @@ types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, 
         }
 
         bool alloc = false;
-        double* i = pDij->get();
-        double* j = i + size;
+        double* pdbli = pDij->get();
+        double* pdblj = pdbli + size;
 
-        if ( (size > 0) && ((*std::min_element(i, i + size) <= 0) || (*std::min_element(j, j + size) <= 0)) )
+        for (int i = 0; i < 2*size; i++)
+        {
+            pdbli[i] = trunc(pdbli[i]);
+        }
+
+        if ( (size > 0) && ((*std::min_element(pdbli, pdbli + size) <= 0) || (*std::min_element(pdblj, pdblj + size) <= 0)) )
         {
             Scierror(999, _("%s: Invalid index.\n"), "sparse");
             return types::Function::Error;
         }
-
+        
         if (pDdims == nullptr)
         {
             pDdims = new types::Double(1, 2, false);
             pDdims->setZeros();
             if (size > 0)
             {
-                pDdims->set(0, *std::max_element(i, i + size));
-                pDdims->set(1, *std::max_element(j, j + size));
+                pDdims->set(0, *std::max_element(pdbli, pdbli + size));
+                pDdims->set(1, *std::max_element(pdblj, pdblj + size));
             }
             alloc = true;
         }
-        else if ( (size > 0) && ((pDdims->get(0) < *std::max_element(i, i + size)) || (pDdims->get(1) < *std::max_element(j, j + size))) )
+        else if ( (size > 0) && ((pDdims->get(0) < *std::max_element(pdbli, pdbli + size)) 
+                  || (pDdims->get(1) < *std::max_element(pdblj, pdblj + size))) )
         {
             Scierror(999, _("%s: Invalid index.\n"),"sparse");
             return types::Function::Error;
