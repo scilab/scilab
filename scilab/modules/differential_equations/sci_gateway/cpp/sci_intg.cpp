@@ -123,7 +123,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
         deFunctionsManager.setFFunction(pCall);
 
         // check function
-        double t = 1;
+        double t = pdA;
         double ret = intg_f(&t);
         /* if (ret == 0)
         {
