@@ -16,7 +16,7 @@
             <callback instruction="%fileToLoad = uigetfile([&quot;*.sav&quot;;&quot;*.sod&quot;], &quot;&quot;, gettext(&quot;Select a file to load&quot;)); if ~(%fileToLoad == &quot;&quot;) then load(%fileToLoad); updatebrowsevar(); disp(msprintf(gettext(&quot;Environment loaded.\n&quot;))); end; clear(&quot;%fileToLoad&quot;);" type="0"/>
         </submenu>
         <submenu label="&amp;Save environment..." accelerator="OSSCKEY S" icon="document-save">
-            <callback instruction="%fileToSave = uiputfile([&quot;*.sav&quot;;&quot;*.sod&quot;], &quot;&quot;, gettext(&quot;Select a file to write&quot;)); if ~(%fileToSave == &quot;&quot;) then if (fileparts(%fileToSave, &quot;extension&quot;) == &quot;&quot;) then %fileToSave = %fileToSave + &quot;.sav&quot;; end; save(%fileToSave); disp(msprintf(gettext(&quot;Environment saved.\n&quot;))); end; clear(&quot;%fileToSave&quot;);" type="0"/>
+            <callback instruction="%fileToSave = uiputfile([&quot;*.sav&quot;;&quot;*.sod&quot;], &quot;&quot;, gettext(&quot;Select a file to write&quot;)); if ~(%fileToSave == &quot;&quot;) then if (fileparts(%fileToSave, &quot;extension&quot;) == &quot;&quot;) then %fileToSave = %fileToSave + &quot;.sav&quot;; end; clear gcbo; execstr(msprintf(&quot;clear %%fileToSave\n save %s&quot;,%fileToSave)); disp(msprintf(gettext(&quot;Environment saved.\n&quot;))); end;" type="0"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Current Working Directory" icon="scilab-folder-open">
