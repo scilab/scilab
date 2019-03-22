@@ -145,8 +145,8 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
         {
             types::InternalType* pIT = ctx->getAtLevel(symbol::Symbol(wvar), SCOPE_CONSOLE);
 
-            //do not save macrofile
-            if (pIT->isMacroFile() || pIT->isFunction() || pIT->isLibrary())
+            //do not save protected variables nor macrofile
+            if (ctx->isprotected(symbol::Symbol(wvar)) || pIT->isMacroFile() || pIT->isFunction() || pIT->isLibrary())
             {
                 continue;
             }
