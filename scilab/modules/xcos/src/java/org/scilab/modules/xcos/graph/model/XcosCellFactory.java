@@ -225,6 +225,7 @@ public final class XcosCellFactory {
                     BasicBlock b = createBlock(controller, uid, kind);
                     cells[i] = b;
                     BlockPositioning.updatePortsPosition(diagram, b);
+                    BlockPositioning.rotateAllPorts(diagram, b);
                     b.getTypedChildrenIndexes(BasicPort.class).stream()
                     .map(index -> b.getChildAt(index))
                     .filter(c -> c instanceof BasicPort)

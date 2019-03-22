@@ -256,12 +256,6 @@ public final class BlockPositioning {
      */
     private static void updatePortsPositions(final XcosDiagram diag, BasicBlock block, List<BasicPort> ports, Orientation iter) {
         @SuppressWarnings("serial")
-        final List<BasicPort> invertedPorts = new ArrayList<BasicPort>(ports) {
-            {
-                Collections.reverse(this);
-            }
-        };
-
         JavaController controller = new JavaController();
         String[] style = new String[1];
         controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.STYLE, style);
@@ -272,19 +266,24 @@ public final class BlockPositioning {
         final int intRotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0")).intValue();
         final int angle = (intRotation % 360 + 360) % 360;
 
-        List<BasicPort> working = ports;
+        List<BasicPort> working = new ArrayList<>(ports);
+
+        /* List order modification for opposite angle */
+        if (0 < angle && angle < 270) {
+            Collections.reverse(working);
+        }
 
         /* List order modification with the flip flag */
         if (flipped) {
-            if (iter == Orientation.NORTH || iter == Orientation.SOUTH) {
-                working = invertedPorts;
+            if (iter == Orientation.EAST || iter == Orientation.WEST) {
+                Collections.reverse(working);
             }
         }
 
         /* List order modification with the mirror flag */
         if (mirrored) {
-            if (iter == Orientation.EAST || iter == Orientation.WEST) {
-                working = invertedPorts;
+            if (iter == Orientation.NORTH || iter == Orientation.SOUTH) {
+                Collections.reverse(working);
             }
         }
 
@@ -452,7 +451,8 @@ public final class BlockPositioning {
         final boolean invertedFlip = ! Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
 
         styleMap.put(XcosConstants.STYLE_FLIP, Boolean.toString(invertedFlip));
-
+        cleanup(styleMap);
+        
         diag.getModel().setStyle(block, styleMap.toString());
         updateBlockView(diag, block);
     }
@@ -468,7 +468,8 @@ public final class BlockPositioning {
         final boolean invertedFlip = ! Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
 
         styleMap.put(XcosConstants.STYLE_MIRROR, Boolean.toString(invertedFlip));
-
+        cleanup(styleMap);
+        
         diag.getModel().setStyle(block, styleMap.toString());
         updateBlockView(diag, block);
     }
@@ -482,6 +483,7 @@ public final class BlockPositioning {
     public static void toggleAntiClockwiseRotation(final XcosDiagram diag, BasicBlock block) {
         StyleMap styleMap = new StyleMap(block.getStyle());
         computeNextAntiClockwiseAngle(styleMap);
+        cleanup(styleMap);
 
         mxGeometry old = block.getGeometry();
         mxGeometry rotated = new mxGeometry(old.getCenterX() - old.getHeight() / 2,
@@ -498,30 +500,12 @@ public final class BlockPositioning {
      */
     private static void computeNextAntiClockwiseAngle(StyleMap styleMap) {
         final int rotation = Double.valueOf(styleMap.getOrDefault(XcosConstants.STYLE_ROTATION, "0")).intValue();
-        boolean flip = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_FLIP));
-        boolean mirror = Boolean.TRUE.toString().equals(styleMap.get(XcosConstants.STYLE_MIRROR));
-
-        int angle = (rotation - ROTATION_STEP + MAX_ROTATION) % MAX_ROTATION;
-        if (angle > 90) {
-            angle = angle - 180;
-            flip = !flip;
-            mirror = !mirror;
-        }
-
+        
+        int angle = roundAngle(rotation - ROTATION_STEP);
         if (angle == 0) {
             styleMap.remove(XcosConstants.STYLE_ROTATION);
         } else {
             styleMap.put(XcosConstants.STYLE_ROTATION, Integer.toString(angle));
-        }
-        if (!flip) {
-            styleMap.remove(XcosConstants.STYLE_FLIP);
-        } else {
-            styleMap.put(XcosConstants.STYLE_FLIP, Boolean.toString(flip));
-        }
-        if (!mirror) {
-            styleMap.remove(XcosConstants.STYLE_MIRROR);
-        } else {
-            styleMap.put(XcosConstants.STYLE_MIRROR, Boolean.toString(mirror));
         }
     }
 
@@ -548,5 +532,17 @@ public final class BlockPositioning {
             }
         }
         return ret;
+    }
+    
+    private static void cleanup(StyleMap styleMap) {
+        String rotation = styleMap.get(XcosConstants.STYLE_ROTATION);
+        if ("0".equals(rotation))
+            styleMap.remove(XcosConstants.STYLE_ROTATION);
+        String flip = styleMap.get(XcosConstants.STYLE_FLIP);
+        if ("false".equals(flip))
+            styleMap.remove(XcosConstants.STYLE_FLIP);
+        String mirror = styleMap.get(XcosConstants.STYLE_MIRROR);
+        if ("false".equals(mirror))
+            styleMap.remove(XcosConstants.STYLE_MIRROR);
     }
 }

@@ -43,7 +43,8 @@ public class SvgShape extends mxLabelShape {
     @Override
     public void paintShape(mxGraphics2DCanvas canvas, mxCellState state) {
         // paint previously set background without the rotation applied
-        if (mxUtils.getDouble(state.getStyle(), mxConstants.STYLE_ROTATION, 0) != 0) {
+        double angle = mxUtils.getDouble(state.getStyle(), mxConstants.STYLE_ROTATION, 0);
+        if (angle % 180. != 0.) {
             mxCellState nonRotatedState = (mxCellState) state.clone();
 
             double tmp = nonRotatedState.getCenterY() - nonRotatedState.getWidth() / 2;
