@@ -109,19 +109,30 @@ function colorbar(umin, umax, colminmax, fmt)
     // Default umin, umax, colminmax
     if Type=="Fec"
         u = h.data(:,3);
+
     elseif Type=="Plot3d"
         u = h.data.z
+
     elseif Type=="Fac3d"
         u = h.data.z;
-        c = h.data.color;
-        colorsAreZ = ~isvector(c)
-        //if colorsAreZ
-        //    // c = U*a+b
-        //    c2 = c-mean(c);
-        //    u2 = u-mean(u);
-        //    k = u~=0;
-        //    colorsAreZ = colorsAreZ & stdev(c(k)./u(k))==0 // Improvement to explore
-        //end
+        colorsAreZ = %f;
+        if or(fieldnames(h.data)=="color")
+            c = h.data.color;
+            colorsAreZ = ~isvector(c)
+            if  or(h.color_flag==[2 3 4]) & h.cdata_mapping == "direct"
+                u = h.data.color
+                if colminmax == -1
+                    colminmax = [min(u) max(u)]
+                end
+            end
+            //if colorsAreZ
+            //    // c = U*a+b
+            //    c2 = c-mean(c);
+            //    u2 = u-mean(u);
+            //    k = u~=0;
+            //    colorsAreZ = colorsAreZ & stdev(c(k)./u(k))==0 // Improvement to explore
+            //end
+        end
         if colorsAreZ
             select h.color_flag
             case 0
@@ -157,7 +168,8 @@ function colorbar(umin, umax, colminmax, fmt)
     if ~isdef("umin","l") | type(umin)==0 | umin==[] then
         if u~=[]
             if colminmax~=[] & (length(colminmax)>1 | colminmax~=-1)
-                if Type=="Matplot"
+                if Type=="Matplot" | ..
+                   Type=="Fac3d" & or(h.color_flag==[2 3 4]) & h.cdata_mapping == "direct"
                     umin = colminmax(1)
                 else
                     if argn(2)<2
@@ -196,7 +208,8 @@ function colorbar(umin, umax, colminmax, fmt)
     if ~isdef("umax","l") | type(umax)==0 | umax==[] then
         if u~=[]
             if colminmax~=[] & colminmax~=-1
-                if Type=="Matplot"
+                if Type=="Matplot" | ..
+                   Type=="Fac3d" & or(h.color_flag==[2 3 4]) & h.cdata_mapping == "direct"
                     umax = colminmax(2)
                 else
                     if argn(2)<2

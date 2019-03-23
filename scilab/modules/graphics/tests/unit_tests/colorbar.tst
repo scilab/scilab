@@ -147,6 +147,12 @@ z = plotSphere();
 colorbar(,,[2.97 5]/6);   // ticks on [9, 0.2]
                           // colors in [orange, yellow] must match figure #10 ones
 
+// 3.4) after graypolarplot()
+clf reset
+graypolarplot
+colorbar
+// Values from 30 to 137. Direct colors = full color map = dark red to white.
+
 // 4) Plot3d
 //    ======
 function plotSample()
