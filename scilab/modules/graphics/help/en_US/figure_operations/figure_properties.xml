@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -66,40 +66,97 @@
                         <varlistentry>
                             <term>figure_size: </term>
                             <listitem>
-                                <para>This property controls the size in pixel of the screen's
-                                    graphics window. The size is the vector
-                                    <literal>[width,height]</literal>.
+                                <para>
+                                    Vector <literal>[width, height]</literal>, providing the
+                                    external size of the graphic window, in screen pixels.
+                                </para>
+                                <para>
+                                <warning>
+                                    When the figure is docked (to the Scilab desktop, etc),
+                                    .figure_size holds for the whole docked block and should not
+                                    be set.
+                                </warning>
+                                <warning>
+                                    The OS window manager defines some minimal sizes. If sizes
+                                    smaller than minimal ones are provided, the minimal ones are
+                                    actually set.
+                                    <para>
+                                        On Windows, minimal sizes can be retrieved with
+                                        <screen><![CDATA[
+--> [getsystemmetrics("SM_CXMIN") getsystemmetrics("SM_CYMIN")]
+ ans  =
+   158.   45.
+]]></screen>
+                                    </para>
+                                </warning>
+                                <warning>
+                                    When a figure is created in .auto_resize="on" mode,
+                                    the .axes_size value is set as specified, and .figure_size
+                                    is set accordingly, not the reverse.
+                                </warning>
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>axes_size: </term>
                             <listitem>
-                                <para>Used to Specifies the size in pixel of the virtual graphics
-                                    window. The size is the vector <literal>[width,height] </literal>. The
-                                    virtual graphic window should be bigger than the part really
-                                    visible on the screen. This property could not be modified if the figure is docked
-                                    with other elements.
+                                <para>
+                                    Vector <literal>[width, height]</literal> of sizes of the whole
+                                    graphical area in the window, in pixels.
+                                </para>
+                                <warning>
+                                    This property should not be modified if the figure is docked
+                                    to the Scilab desktop.
+                                </warning>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>position: </term>
+                            <listitem>
+                                <para>
+                                    <literal>.position = [x, y, graphics_width, graphics_height]</literal>
+                                    or <literal>.position = 'x|y|graphics_width|graphics_height'</literal>
+                                    (like '100|150|500|300')
+                                    is a pseudo-property allowing to set or querry both
+                                    <literal>.figure_position</literal> and <literal>.axes_size</literal>
+                                    properties in a once.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>auto_resize: </term>
                             <listitem>
-                                <para>This property determines if graphics window is resized. If the
-                                    value is <literal>"on"</literal> then the <literal>axes_size</literal>
-                                    property is equaled to the <literal>figure_size</literal> and the axes
-                                    children are zoomed accordingly. If the value is
-                                    <literal>"off"</literal> that indicate that <literal>axes_size</literal>
-                                    cannot be resized when <literal>figure_size</literal> is changed.
+                                <para>
+                                    Auto-resizing of children axes when the figure is resized.
+                                </para>
+                                <para>
+                                    When the figure is resized by hand or by setting the
+                                    .figure_size property, and .auto_resize is
+                                    <table>
+                                        <tr>
+                                            <th>"on"</th>
+                                            <td>Then the .axes_size is updated and axes contents
+                                                are zoomed accordingly, without displaying scroll
+                                                bars.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>"off"</th>
+                                            <td>Then the .axes_size is kept unchanged. The display
+                                                scale of children axes is unchanged. If the window
+                                                gets smaller than axes sizes, some scroll bars are
+                                                displayed.
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>viewport: </term>
                             <listitem>
-                                <para>Position of the visible part of graphics in the
-                                    panner.
+                                <para>
+                                    Position of the visible part of graphics in the panner.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -184,6 +241,19 @@
                                 </para>
                             </listitem>
                         </varlistentry>
+                       <varlistentry>
+                            <term>BackgroundColor</term>
+                            <listitem>
+                                <para>
+                                    This pseudo-property is a set-only one. It is the same as
+                                    <literal>background</literal>, but allows to specify the color
+                                    as a [r g b] vector of real values of Red Green and Blue
+                                    intensities in [0,1] like <literal>[0.1, 0.5, 0.3]</literal>,
+                                    or as a unique equivalent 'r|g|b' string like
+                                    <literal>'0.1|0.5|0.3'</literal>, using "|" as a separator.
+                                </para>
+                            </listitem>
+                        </varlistentry>
                         <varlistentry>
                             <term>event_handler</term>
                             <listitem>
@@ -265,9 +335,15 @@
                         <varlistentry>
                             <term>info_message: </term>
                             <listitem>
-                                <para>This character string set the text displayed in the info bar of the
-                                    graphic window.
+                                <para>
+                                    Single character string: text displayed in the info bar
+                                    of the graphic window.
                                 </para>
+                                <note>
+                                    A multi-line message is possible, using ascii(10) as lines
+                                    separator, as with "Line #1"+ascii(10)+"Line #2".
+                                    Styling the text is not possible (HTML styles not supported).
+                                </note>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -485,9 +561,6 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
                 <link linkend="colormap">colormap</link>
             </member>
             <member>
-                <link linkend="xname">xname</link>
-            </member>
-            <member>
                 <link linkend="scf">scf</link>
             </member>
             <member>
@@ -497,22 +570,26 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
                 <link linkend="gdf">gdf</link>
             </member>
             <member>
-                <link linkend="findobj">findobj</link>
-            </member>
-            <member>
-                <link linkend="axes_properties">axes_properties</link>
+                <link linkend="get">get</link>
             </member>
             <member>
                 <link linkend="set">set</link>
             </member>
             <member>
-                <link linkend="get">get</link>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
+            <member>
+                <link linkend="getsystemmetrics">getsystemmetrics</link>
             </member>
         </simplelist>
     </refsection>
     <refsection>
         <title>History</title>
         <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>New resizefcn &amp; closerequestfcn properties introduced.</revremark>
+            </revision>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
@@ -531,10 +608,6 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
                         <listitem>"layout_options" property added.</listitem>
                     </itemizedlist>
                 </revremark>
-            </revision>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>New resizefcn &amp; closerequestfcn properties introduced.</revremark>
             </revision>
         </revhistory>
     </refsection>

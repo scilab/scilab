@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -73,9 +73,33 @@
                             <term>figure_size: </term>
                             <listitem>
                                 <para>
-                                    このプロパティは画面のグラフィックウインドウのピクセル単位の
-                                    大きさを制御します.この大きさはベクトル<literal>[width,height]</literal>
-                                    です.
+                                    Vector <literal>[width, height]</literal>, providing the
+                                    external size of the graphic window, in screen pixels.
+                                </para>
+                                <para>
+                                <warning>
+                                    When the figure is docked (to the Scilab desktop, etc),
+                                    .figure_size holds for the whole docked block and should not
+                                    be set.
+                                </warning>
+                                <warning>
+                                    The OS window manager defines some minimal sizes. If sizes
+                                    smaller than minimal ones are provided, the minimal ones are
+                                    actually set.
+                                    <para>
+                                        On Windows, minimal sizes can be retrieved with
+                                        <screen><![CDATA[
+--> [getsystemmetrics("SM_CXMIN") getsystemmetrics("SM_CYMIN")]
+ ans  =
+   158.   45.
+]]></screen>
+                                    </para>
+                                </warning>
+                                <warning>
+                                    When a figure is created in .auto_resize="on" mode,
+                                    the .axes_size value is set as specified, and .figure_size
+                                    is set accordingly, not the reverse.
+                                </warning>
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -83,12 +107,25 @@
                             <term>axes_size: </term>
                             <listitem>
                                 <para>
-                                    仮想グラフィックウインドウにおけるピクセル単位の大きさを
-                                    指定する際に使用されます.
-                                    この大きさはベクトル <literal>[width,height] </literal> です.
-                                    仮想グラフィックウインドウは画面で実際に可視となる領域よりも
-                                    大きくなります.
-                                    このプロパティは図が他の要素に結合されている場合には修正することができません.
+                                    Vector <literal>[width, height]</literal> of sizes of the whole
+                                    graphical area in the window, in pixels.
+                                </para>
+                                <warning>
+                                    This property should not be modified if the figure is docked
+                                    to the Scilab desktop.
+                                </warning>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>position: </term>
+                            <listitem>
+                                <para>
+                                    <literal>.position = [x, y, graphics_width, graphics_height]</literal>
+                                    or <literal>.position = 'x|y|graphics_width|graphics_height'</literal>
+                                    (like '100|150|500|300')
+                                    is a pseudo-property allowing to set or querry both
+                                    <literal>.figure_position</literal> and <literal>.axes_size</literal>
+                                    properties in a once.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -96,14 +133,28 @@
                             <term>auto_resize: </term>
                             <listitem>
                                 <para>
-                                    このプロパティはグラフィックウインドウの大きさの変更動作
-                                    を定義します.
-                                    この値が <literal>"on"</literal>の場合,<literal>axes_size</literal>
-                                    プロパティは <literal>figure_size</literal>に等しくなり,
-                                    子である軸自動的に拡大・縮小されます.
-                                    この値が<literal>"off"</literal> の場合,
-                                    <literal>figure_size</literal>が変更された場合でも
-                                    <literal>axes_size</literal>は変更されません.
+                                    Auto-resizing of children axes when the figure is resized.
+                                </para>
+                                <para>
+                                    When the figure is resized by hand or by setting the
+                                    .figure_size property, and .auto_resize is
+                                    <table>
+                                        <tr>
+                                            <th>"on"</th>
+                                            <td>Then the .axes_size is updated and axes contents
+                                                are zoomed accordingly, without displaying scroll
+                                                bars.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>"off"</th>
+                                            <td>Then the .axes_size is kept unchanged. The display
+                                                scale of children axes is unchanged. If the window
+                                                gets smaller than axes sizes, some scroll bars are
+                                                displayed.
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -198,6 +249,19 @@
                                 <para>
                                     このプロパティは図の背景を制御します.
                                     カレントのカラーマップに関連する添え字を値として指定します.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                       <varlistentry>
+                            <term>BackgroundColor</term>
+                            <listitem>
+                                <para>
+                                    This pseudo-property is a set-only one. It is the same as
+                                    <literal>background</literal>, but allows to specify the color
+                                    as a [r g b] vector of real values of Red Green and Blue
+                                    intensities in [0,1] like <literal>[0.1, 0.5, 0.3]</literal>,
+                                    or as a unique equivalent 'r|g|b' string like
+                                    <literal>'0.1|0.5|0.3'</literal>, using "|" as a separator.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -302,6 +366,11 @@
                             <term>info_message: </term>
                             <listitem>
                                 <para>この文字列はグラフィックウインドウの情報バーに表示されるテキストを指定します.</para>
+                                <note>
+                                    A multi-line message is possible, using ascii(10) as lines
+                                    separator, as with "Line #1"+ascii(10)+"Line #2".
+                                    Styling the text is not possible (HTML styles not supported).
+                                </note>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -548,9 +617,6 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
                 <link linkend="colormap">colormap</link>
             </member>
             <member>
-                <link linkend="xname">xname</link>
-            </member>
-            <member>
                 <link linkend="scf">scf</link>
             </member>
             <member>
@@ -560,22 +626,26 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
                 <link linkend="gdf">gdf</link>
             </member>
             <member>
-                <link linkend="findobj">findobj</link>
-            </member>
-            <member>
-                <link linkend="axes_properties">axes_properties</link>
+                <link linkend="get">get</link>
             </member>
             <member>
                 <link linkend="set">set</link>
             </member>
             <member>
-                <link linkend="get">get</link>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
+            <member>
+                <link linkend="getsystemmetrics">getsystemmetrics</link>
             </member>
         </simplelist>
     </refsection>
     <refsection>
         <title>履歴</title>
         <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>resizefcn &amp; closerequestfcn プロパティが追加されました.</revremark>
+            </revision>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
@@ -594,10 +664,6 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
                         <listitem>"layout_options" プロパティ追加.</listitem>
                     </itemizedlist>
                 </revremark>
-            </revision>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>resizefcn &amp; closerequestfcn プロパティが追加されました.</revremark>
             </revision>
         </revhistory>
     </refsection>

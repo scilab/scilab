@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="figure">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="figure">
     <refnamediv>
         <refname>figure</refname>
         <refpurpose>図を作成する</refpurpose>
@@ -21,7 +24,7 @@
             最小の番号で作成されます.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="arguments">
         <title>引数</title>
         <variablelist>
             <varlistentry>
@@ -37,8 +40,22 @@
                 <listitem>
                     <para>
                         設定するプロパティ名の文字列,
-                        以下に一覧を示すプロパティ名のどれか.
+                        among <link linkend="figure_properties">all existing ones</link>.
                     </para>
+                    <warning>
+                        <itemizedlist>
+                            <listitem>
+                                <literal>'dockable'</literal>, <literal>'toolbar'</literal> and
+                                <literal>'menubar'</literal> properties can be set only at figure's
+                                creation.
+                            </listitem>
+                            <listitem>
+                                <literal>'resizefcn'</literal>: when it is set at figure's creation,
+                                the callback is first executed while building the initial figure.
+                                Hence it must already be defined and callable.
+                            </listitem>
+                        </itemizedlist>
+                    </warning>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -58,82 +75,6 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>プロパティ</title>
-        <variablelist>
-            <varlistentry>
-                <term>BackgroundColor</term>
-                <listitem>
-                    <para>
-                        図の背景色を表す実数ベクトル [1,3] または文字列.
-                        色は赤, 緑および青の値で指定します.
-                        これらの値は[0,1]の範囲の実数です.
-                        色は実数ベクトル,すなわち[R,G,B]または
-                        "|"で区切られた文字列,すなわち"R|G|B"
-                        で指定できます.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Figure_name</term>
-                <listitem>
-                    <para>文字列, 図の表題を設定できます.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>ForegroundColor</term>
-                <listitem>
-                    <para>
-                        図の表面色を表す実数ベクトル [1,3] または文字列.
-                        色は赤, 緑および青の値で指定します.
-                        これらの値は[0,1]の範囲の実数です.
-                        色は実数ベクトル,すなわち[R,G,B]または
-                        "|"で区切られた文字列,すなわち"R|G|B"
-                        で指定できます.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Position</term>
-                <listitem>
-                    <para>
-                        これにより図の外観を制御できます.
-                        [1,4]の実数ベクトルで, [x y width height]
-                        各文字は左上隅の位置x,左上隅の位置y,
-                        仮想グラフィックウインドウの幅と高さ
-                        (uicontrolsおよびグラフィックを有する図の部分)
-                        を意味します.
-                        <link linkend="figure_properties">図のプロパティ</link>
-                        のヘルプページで説明された
-                        <emphasis role="bold">axes_size</emphasis>プロパティ
-                        を参照してください.
-                        "x|y|width|height"のように
-                        フィールドを"|"で区切った文字列によりこのプロパティを
-                        指定することもできます.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Tag</term>
-                <listitem>
-                    <para>
-                        文字列で,このプロパティは一般に図を特定する際に使用されます.
-                        これにより,"名前"を付けることができるようになります.
-                        主にfindobj()と組み合わせて使用されます.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Userdata</term>
-                <listitem>
-                    <para>
-                        図に何らかのScilabオブジェクトを関連付ける際に使用できます.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
 // figure_id==3の図を作成します
@@ -143,6 +84,7 @@ uicontrol(h, "style", "text", ...
              "string", "This is a figure", ...
              "position", [50 70 100 100], ...
              "fontsize",15);
+
 // figure_id==1の図を作成します
 figure();
 // 図1のテキストuicontrolを追加します
@@ -150,6 +92,7 @@ uicontrol("style", "text", ...
           "string", "Another figure", ...
           "position", [50 70 100 100], ...
           "fontsize", 15);
+
 // カレントの図(すなわち,図1)を閉じる
 close();
 // 図3を閉じる
@@ -160,10 +103,19 @@ close(h);
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="close">close</link>
+                <link linkend="scf">scf</link>
             </member>
             <member>
                 <link linkend="gcf">gcf</link>
+            </member>
+            <member>
+                <link linkend="createWindow">createWindow</link>
+            </member>
+            <member>
+                <link linkend="figure_properties">figure_properties</link>
+            </member>
+            <member>
+                <link linkend="close">close</link>
             </member>
         </simplelist>
     </refsection>
