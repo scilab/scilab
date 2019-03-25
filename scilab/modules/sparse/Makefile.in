@@ -607,6 +607,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -1595,18 +1596,15 @@ uninstall-am: uninstall-libscisparse_la_etcDATA \
 .PRECIOUS: Makefile
 
 
-# enforce -O0 for some file due to macOS crash
+#enforce -O0 for some files due to macOS crash
 @IS_MACOSX_TRUE@src/fortran/blkfct.lo: src/fortran/blkfct.f
 @IS_MACOSX_TRUE@	$(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/blkfct.lo src/fortran/blkfct.f
 
-# enforce -O0 for some file due to macOS crash
 @IS_MACOSX_TRUE@src/fortran/symfct.lo: src/fortran/symfct.f
 @IS_MACOSX_TRUE@	$(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/symfct.lo src/fortran/symfct.f
 
-# enforce -O0 for some file due to macOS crash
 @IS_MACOSX_TRUE@src/fortran/ordmmd.lo: src/fortran/ordmmd.f
 @IS_MACOSX_TRUE@	$(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/ordmmd.lo src/fortran/ordmmd.f
-
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test

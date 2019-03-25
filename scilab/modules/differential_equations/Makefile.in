@@ -639,6 +639,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -1755,7 +1756,6 @@ uninstall-am: uninstall-libscidifferential_equations_la_etcDATA \
 # enforce -O0 for some files
 @IS_MACOSX_TRUE@src/fortran/colnew.lo: src/fortran/colnew.f
 @IS_MACOSX_TRUE@	$(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/colnew.lo src/fortran/colnew.f
-
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test

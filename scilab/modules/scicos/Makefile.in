@@ -942,6 +942,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -3780,7 +3781,7 @@ distclean-local:
 # Build the binaries, disabling parallel building as ocamldep ordering seems to fail on some systems
 
 @OCAML_TRUE@@XCOS_TRUE@modelicac: $(modelicac_SOURCES) $(MLS_modelicac)
-@OCAML_TRUE@@XCOS_TRUE@	/usr/bin/time -v $(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicac)
+@OCAML_TRUE@@XCOS_TRUE@	/usr/bin/time $(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicac)
 
 @OCAML_TRUE@@XCOS_TRUE@modelicac.ocamlc: $(modelicac_SOURCES) $(MLS_modelicac)
 @OCAML_TRUE@@XCOS_TRUE@	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicac)
