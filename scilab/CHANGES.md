@@ -230,6 +230,7 @@ Bug Fixes
 * [#16013](http://bugzilla.scilab.org/show_bug.cgi?id=16013): Load previously saved environment with "File/Load environment" menu failed.
 * [#16014](http://bugzilla.scilab.org/show_bug.cgi?id=16014): after `x.a=1; x(:)=[]` x.a was an empty list.
 * [#16015](http://bugzilla.scilab.org/show_bug.cgi?id=16015): `intg(a,b,f)` called f(x) with x outside [a,b].
+* [#16019](http://bugzilla.scilab.org/show_bug.cgi?id=16019): `polarplot(x,Z)` yielded an error when x is a vector and Z a matrix.
 * [#16021](http://bugzilla.scilab.org/show_bug.cgi?id=16021): `tand([-90 90])` answered [Nan Nan] instead of [-Inf, Inf]. `cotd([-90 90])` answered [Nan Nan] instead of [0 0]. `1 ./cosd([-90 90])` answered [Inf -Inf] instead of [Inf Inf].
 * [#16026](http://bugzilla.scilab.org/show_bug.cgi?id=16026): For `atanh()`, neither the documentation pages nor the `m2sci` converter were up to date.
 * [#16051](http://bugzilla.scilab.org/show_bug.cgi?id=16051): undefined list elements could be of 2 distinct typeof "void" or "listundefined" according to the way they are created.

@@ -2,7 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) 2010 - DIGITEO - Manuel Juliachs
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2010, 2018 - Samuel GOUGEON
+// Copyright (C) 2010, 2018, 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,6 +26,9 @@ function polarplot(theta,rho,style,strf,leg,rect)
     end
     if size(rho,1)==1 then
         rho=rho(:),
+    end
+    if size(theta,2)==1 & size(rho,2)>1 then
+        theta = theta * ones(rho(1,:));
     end
     rm=max(abs(rho))
     x=rho.*cos(theta)
