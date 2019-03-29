@@ -7,8 +7,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
-
+// <-- NO CHECK REF -->
 
 // Maple code used to create reference
 // Digits := 40:
@@ -395,9 +394,6 @@ computed = cotd(x);
 e=max(abs((expected-computed)./expected));
 if e>100*eps then pause,end
 
-if  cotd(-180)<>Inf then pause,end
-if  cotd(+180)<>Inf then pause,end
-if  cotd(0)<>Inf then pause,end
-
-if cotd([])<>[] then pause,end
-
+assert_checkequal(cotd([-180 0 180]), %inf*[1 1 1]);
+assert_checkequal(cotd([-90 90]), [0 0]);
+assert_checkequal(cotd([]), []);

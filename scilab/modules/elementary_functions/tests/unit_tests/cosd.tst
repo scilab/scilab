@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // Maple code used to create reference
 
@@ -13,7 +14,10 @@
 // writeto("cosd.ref"); interface(prettyprint = 0); 
 // for i from 0 to 360 do print(-180+i, evalf[30](cos(-Pi+i*Pi/180), 30)) end do; 
 // writeto(terminal);
-pi=%pi;eps=%eps;Inf=%inf;NaN=%nan; //used to make following code runnable under Matlab
+pi = %pi;       //used to make following code runnable under Matlab
+eps = %eps;
+Inf = %inf;
+NaN = %nan;
 
 ref=[-180, -1.
 -179, -.999847695156391239157011558814
@@ -389,6 +393,8 @@ if e>eps then pause,end
 if ~isnan(cosd(-Inf)) then pause,end
 if ~isnan(cosd(Inf)) then pause,end
 if ~isnan(cosd(NaN)) then pause,end
+
+assert_checkequal(1./cosd([-90 90]), [%inf %inf]);
 
 if cosd([])<>[] then pause,end
 

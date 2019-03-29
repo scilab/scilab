@@ -2,12 +2,13 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge Steer
 // Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2019 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-
+// <-- NO CHECK REF -->
 
 // Maple code used to create reference
 // Digits := 40; 
@@ -400,21 +401,13 @@ x2 = x - 2^6*360;
 c = tand(x2);
 assert_checkalmostequal ( c , e , 40 * %eps , [] , "element" );
 
-assert_checkequal ( tand(0) , 0 );
-assert_checkequal ( tand(360) , 0 );
-assert_checkequal ( tand(-360) , 0 );
-
-assert_checkequal ( tand(180) , 0 );
-assert_checkequal ( tand(-180) , 0 );
+assert_checkequal ( tand([-360 -180 0 180 360]) , [0 0 0 0 0] );
 
 assert_checkalmostequal ( tand(30) , 1/sqrt(3) , %eps );
 assert_checkalmostequal ( tand(45) , 1         , 2 * %eps );
 assert_checkalmostequal ( tand(60) , sqrt(3)   , 2*%eps );
 
-assert_checkequal ( isnan(tand(90))  , %t );
-assert_checkequal ( isnan(tand(-90)) , %t );
-assert_checkequal ( isnan(tand(270)) , %t );
-assert_checkequal ( isnan(tand(-270)) , %t );
+assert_checkequal ( tand([-270 -90 90 270])  , %inf*[1 -1 1 -1] );
 
 assert_checkequal ( isnan(tand(-%inf)) , %t );
 assert_checkequal ( isnan(tand(%inf))  , %t );
@@ -422,10 +415,7 @@ assert_checkequal ( isnan(tand(%nan))  , %t );
 
 assert_checkequal ( tand([])  , [] );
 
-ieee(0)
 assert_checkequal ( tand(0) , 0 );
 assert_checkalmostequal ( tand(30) , 1/sqrt(3) , %eps );
 assert_checkalmostequal ( tand(45) , 1         , 2 * %eps );
 assert_checkalmostequal ( tand(60) , sqrt(3)   , 2*%eps );
-
-

@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="tand" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="tand" xml:lang="en">
     <refnamediv>
         <refname>tand</refname>
         <refpurpose>tangent, argument in degree.</refpurpose>
@@ -49,20 +52,33 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-mod=ieee();ieee(2);
-x=[0,30 45 60 90 360];
-tand(x);
-ieee(mod);
+tand([0 30 45 60 90])
+tand([-90 0 90 180 270 360])
  ]]></programlisting>
+    <screen><![CDATA[
+--> tand([0 30 45 60 90])
+ ans  =
+   0.   0.5773503   1.   1.7320508   Inf
+
+--> tand([-90 0 90 180 270 360])
+ ans  =
+  -Inf   0.   Inf   0.  -Inf   0.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="atand">atand</link>
+            </member>
+            <member>
                 <link linkend="atan">atan</link>
             </member>
             <member>
                 <link linkend="tan">tan</link>
+            </member>
+            <member>
+                <link linkend="tanh">tanh</link>
             </member>
         </simplelist>
     </refsection>

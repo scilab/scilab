@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +13,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cotd" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="cotd" xml:lang="ru">
     <refnamediv>
         <refname>cotd</refname>
         <refpurpose>поэлементный котангенс, аргумент в градусах</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>y=cotd(x)</synopsis>
+        <synopsis>y = cotd(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -57,15 +60,33 @@
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-x=[30 45 60 90];
-cotd(x)
+cotd([30 45 60 90])
+cotd([-180 -90 0 90 180])
  ]]></programlisting>
+    <screen><![CDATA[
+--> cotd([30 45 60 90])
+ ans  =
+   1.7320508   1.   0.5773503   0.
+
+--> cotd([-180 -90 0 90 180])
+ ans  =
+   Inf   0.   Inf   0.   Inf
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="cotg">cotg</link>
+            </member>
+            <member>
+                <link linkend="coth">coth</link>
+            </member>
+            <member>
+                <link linkend="tan">tan</link>
+            </member>
+            <member>
+                <link linkend="tand">tand</link>
             </member>
         </simplelist>
     </refsection>

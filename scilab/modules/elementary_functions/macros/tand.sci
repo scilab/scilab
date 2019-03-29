@@ -2,8 +2,8 @@
 // Copyright (C) INRIA, Serge Steer
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -23,18 +23,17 @@ function y = tand(x)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"tand", 1));
     end
 
-    if type(x)<>1 | ~isreal(x) then
+    if ~or(type(x)==[1 5]) | ~isreal(x) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"tand",1));
     end
 
-    // Argument reduction toward [-90,90[
     if ~isempty(x)
+        m = pmodulo(x, 360);
         n = round(x / 180);
         x = x - n * 180;
         y = tan(%pi/180*x);
-        // Set all singular points to nan
-        m = pmodulo(x + 90, 180);
-        y(m == 0) = %nan;
+        y(m == 90) = %inf;
+        y(m == 270) = -%inf;
     else
         y = []
     end
