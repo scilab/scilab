@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - 1990 - C. Bunks
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -35,18 +35,18 @@ function [y] = intdec(x,lom)
     //Assuming that the signal length is N (=xsize)
     //the interpolated signal is N*l and the decimated
     //signal is N*l/m.  The resulting output will have
-    //length int(N*l/m).
+    //length round(N*l/m).
 
     xlsize = xsize.*l;
-    xmsize = int(xlsize./m);
+    xmsize = round(xlsize./m);
 
     //Since the location of %pi in the frequency domain
     //falls on a sample point for N even and between two
     //sample points for N odd care must be taken to differentiate
     //between the two cases in the following manipulations.
 
-    leven = 2*(int(xsize/2)-xsize/2)+ones(xsize);
-    meven = 2*(int(xmsize/2)-xmsize/2)+ones(xmsize);
+    leven = 2*(round(xsize/2)-xsize/2)+ones(xsize);
+    meven = 2*(round(xmsize/2)-xmsize/2)+ones(xmsize);
 
     //The position of %pi for the Fourier transform of the
     //original signal is different for odd and even length signals.
@@ -54,10 +54,10 @@ function [y] = intdec(x,lom)
     //for an odd length signal %pi is between the (N+1)/2 and the
     //(N+1)/2 + 1 samples.
 
-    fp = int(xsize/2)+ones(xsize);
+    fp = round(xsize/2)+ones(xsize);
     fpc = xsize-fp+leven;
 
-    fm = int(xmsize/2)+ones(xmsize);
+    fm = round(xmsize/2)+ones(xmsize);
     fmc = fm-ones(fm)-meven;
 
     //If the input is a constant then don't do the work
