@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) ????-2008 - INRIA - Scilab
-    *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA - Scilab
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
+ * Copyright (C) 2019 - Federico MIYARA
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,19 +12,25 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-    *
-    -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="wavread" xml:lang="ja">
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="wavread" xml:lang="ja">
     <refnamediv>
         <refname>wavread</refname>
         <refpurpose>.wav サウンドファイルを読み込む</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>y=wavread(wavfile)
-            y=wavread(wavfile,ext)
-            [y,Fs,bits]=wavread(wavfile)
-            [y,Fs,bits]=wavread(wavfile,ext)
+        <synopsis>
+            Info = wavread(wavfile, 'info')
+            s = wavread(wavfile, 'size')
+            y = wavread(wavfile)
+            y = wavread(wavfile, n)
+            y = wavread(wavfile, [i1 i2])
+            [y, Fs, bits] = wavread(..)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,24 +39,58 @@
             <varlistentry>
                 <term>wavfile</term>
                 <listitem>
-                    <para>文字列(拡張子が指定されない場合,拡張子 .wav が追加されます)
+                    <para>文字列. Included heading
+                        constant strings <literal>SCI</literal>, <literal>TMPDIR</literal>,
+                        <literal>SCIHOME</literal>, or <literal>home</literal> are
+                        automatically expanded.
+                        拡張子が指定されない場合,拡張子 .wav が追加されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>
+                        positive integer: number of first samples to get, per channel.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>[i1 i2]</term>
+                <listitem>
+                    <para>
+                        positive integers, to select and return from each channel the samples #i1 to #i2.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        Matrix: values of sound amplitudes in [-1,+1], with one row per channel.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Fs</term>
                 <listitem>
-                    <para>整数, サンプリング周波数(単位:Hz) (サンプル数/秒).
+                    <para>integer: sampling frequency in Hz = number of samples per second per channel.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ext</term>
+                <term>bits</term>
+                <listitem>
+                    <para>Positive integer: number of bits for <literal>y</literal> values.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Info</term>
                 <listitem>
                     <para>
-                        文字列 (<literal>'size'</literal>) または string('info') または
-                        (nサンプルを読み込む)整数 ,
-                        (n1からn2を読み込む) 1 x 2整数ベクトル.
+                        Row vector of 8 decimal integers describing the recorded signal.
+                        See the description section for details.
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,7 +105,7 @@
             指定されたサウンドファイルを読み込み,サンプルデータをyに返します.
             大きさは [-1,+1]の範囲となります.
             以下の形式の多チャネルデータをサポートします:
-            8-bit mu-law, 8-, 16-, および 32ビット,線形, および浮動小数点.
+            8-, 16-, および 32ビット,線形, および浮動小数点.
         </para>
         <para>
             <literal>[y,Fs,bits]=wavread(wavfile)</literal> は,
@@ -84,27 +125,116 @@
             [チャネル サンプル] のベクトルとして返します.
         </para>
         <para>
-            <literal>wavread(wavfile,'info')</literal> は,
-            実際のオーディオデータについて
-            ファイル中に含まれるオーディオデータに関する情報を,
-            ベクトル
-            [データ形式, チャネル数, サンプル/秒/チャネル, 所要バイト/秒の推定値,
-            基本サンプルブロックのバイト並び, ビット/秒, サウンドデータ長(単位:バイト),
-            バイト/サンプル (チャネル毎)]
-            として返します.
+            <literal>wavread(wavfile,'info')</literal> returns information
+            about the audio data contained in the file, instead of the actual audio
+            data, returning a row vector with the following components:
         </para>
+        <table border="0">
+            <tr>
+                <th>(1)</th>
+                <td>encoding code</td><td>:</td>
+                <td>
+                 AKA <emphasis>format category</emphasis>: positive integer = standard id of the
+                 type of data encoding. Supported formats: 1 (PCM), 3 (normalized floating point).
+                </td>
+            </tr>
+            <tr>
+                <th>(2)</th>
+                <td style="white-space: nowrap">number of channels</td><td>:</td>
+                <td>
+                    Number of simultaneous single-valued collected signals = <literal>size(y,1)</literal>.
+                </td>
+            </tr>
+            <tr>
+                <th>(3)</th>
+                <td>sampling frequency</td><td>:</td>
+                <td>
+                    number of samples recorded for each channel, per second.
+                </td>
+            </tr>
+            <tr>
+                <th>(4)</th>
+                <td>average bytes per second</td><td>:</td>
+                <td>
+                    For plain PCM it is the sampling rate multiplied by the number of channels and
+                    the number of bytes per sample. For compressed formats it is approximately
+                    the total data length in bytes divided by the duration of the sound.
+                </td>
+            </tr>
+            <tr>
+                <th>(5)</th>
+                <td>block alignment</td><td>:</td>
+                <td>
+                    The number of bytes associated with each sampling instant. For the plain
+                    PCM uncompressed format, it is equal to the number of channels multiplied by
+                    the number of bytes per channel.
+                </td>
+            </tr>
+            <tr>
+                <th>(6)</th>
+                <td>bits per sample (per channel)</td><td>:</td>
+                <td>
+                    Number of bits used to quantize each value of the sound amplitude.
+                </td>
+            </tr>
+            <tr>
+                <th>(7)</th>
+                <td>bytes per sample (per channel)</td><td>:</td>
+                <td>
+                    Number of bytes assigned to each individual value of the sound amplitude.
+                </td>
+            </tr>
+            <tr>
+                <th>(8)</th>
+                <td>length of sound data (per channel)</td><td>:</td>
+                <td>
+                   The total number of samples on each channel = <literal>size(y,2)</literal>.
+                   Hence, the record's duration is <literal>Info(8)/Info(3)</literal>.
+                </td>
+            </tr>
+        </table>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-wavread("SCI/modules/sound/demos/chimes.wav","size")
-[y,Fs,bits]=wavread("SCI/modules/sound/demos/chimes.wav");Fs,bits
+File = "SCI/modules/sound/demos/chimes.wav";
+wavread(File, "size")
+wavread(File, "info")
+y = wavread(File, 5)     // 最初の5サンプル
+y = wavread(File, [4 7]) // only samples #4 to #7
+[y, Fs, bits] = wavread(File); Fs, bits
+clf
 subplot(2,1,1)
 plot2d(y(1,:)) // 最初のチャネル
 subplot(2,1,2)
 plot2d(y(2,:)) // 2番目のチャネル
-y=wavread("SCI/modules/sound/demos/chimes.wav",[1 5]) //最初の5サンプル
  ]]></programlisting>
+    <screen><![CDATA[
+--> wavread(File, "size")
+ ans  =
+   2.   13921.
+
+--> wavread(File, "info")
+ ans  =
+   1.   2.   22050.   88200.   4.   16.   2.   13921.
+
+--> y = wavread(File, 5)     // the first five samples
+ y  =
+   0.000061    0.0002747   0.0002136   0.0001526   0.0000916
+   0.0000916   0.0001831   0.000061    0.          0.0000916
+
+--> y = wavread(File, [4 7]) // only samples #4 to #7
+ y  =
+   0.0001526   0.0000916   0.0000305  -0.0000305
+   0.          0.0000916   0.000061    0.0000916
+
+--> [y, Fs, bits] = wavread(File); Fs, bits
+ Fs  =
+   22050.
+
+ bits  =
+   16.
+]]></screen>
         <scilab:image>
             wavread("SCI/modules/sound/demos/chimes.wav","size")
             [y,Fs,bits]=wavread("SCI/modules/sound/demos/chimes.wav");
@@ -122,13 +252,16 @@ y=wavread("SCI/modules/sound/demos/chimes.wav",[1 5]) //最初の5サンプル
                 <link linkend="auread">auread</link>
             </member>
             <member>
-                <link linkend="savewave">savewave</link>
+                <link linkend="wavwrite">wavwrite</link>
             </member>
             <member>
                 <link linkend="analyze">analyze</link>
             </member>
             <member>
                 <link linkend="mapsound">mapsound</link>
+            </member>
+            <member>
+                <ulink url="http://www-mmsp.ece.mcgill.ca/Documents/AudioFormats/WAVE/Docs/riffmci.pdf">RIFF-wav encoding (p.56)</ulink>
             </member>
         </simplelist>
     </refsection>
