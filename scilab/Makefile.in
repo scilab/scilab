@@ -119,7 +119,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT)
+@GUI_FALSE@bin_PROGRAMS = scilab-cli-bin$(EXEEXT)
+@GUI_TRUE@bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT)
 @IS_MACOSX_TRUE@am__append_1 = bin/checkmacosx.applescript
 
 #
@@ -835,8 +836,9 @@ AM_CFLAGS = $(SCI_CFLAGS)
 AM_CXXFLAGS = $(SCI_CXXFLAGS)
 AM_FFLAGS = $(SCI_FFLAGS)
 AM_LDFLAGS = $(SCI_LDFLAGS)
-bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
-	bin/scinotes bin/xcos $(am__append_1)
+@GUI_FALSE@bin_SCRIPTS = bin/scilab-cli $(am__append_1)
+@GUI_TRUE@bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
+@GUI_TRUE@	bin/scinotes bin/xcos $(am__append_1)
 scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(am__append_2) \
 	$(am__append_4) $(am__append_6)
 scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(am__append_3) \

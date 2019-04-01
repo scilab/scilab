@@ -30,11 +30,13 @@ AM_CXXFLAGS = $(SCI_CXXFLAGS)
 AM_FFLAGS   = $(SCI_FFLAGS)
 AM_LDFLAGS  = $(SCI_LDFLAGS)
 
+if GUI
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
-
-bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli \
-bin/scinotes bin/xcos
-
+bin_SCRIPTS		= bin/scilab bin/scilab-adv-cli bin/scilab-cli bin/scinotes bin/xcos
+else
+bin_PROGRAMS		= scilab-cli-bin
+bin_SCRIPTS		= bin/scilab-cli
+endif
 if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
