@@ -2,9 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2017, 2018 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2017 - 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -26,9 +25,10 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>
-            N = unique(M)
-            N = unique(M, orient)
-            [N, k] = unique(..)
+            [N, k, nb] = unique(M)
+            [N, k, nb] = unique(M, orient)
+            [N, k, nb] = unique(.., "keepOrder")
+            [N, k, nb] = unique(.., "uniqueNan")
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -37,15 +37,17 @@
             <varlistentry>
                 <term>M</term>
                 <listitem>
-                    <para>vecteur, matrice, ou hypermatrice de nombres ou de textes.
+                    <para>
+                        vecteur, matrice, ou hypermatrice de nombres ou de textes.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orient</term>
                 <listitem>
-                    <para>1 ou "r", 2 ou "c". Ne peut pas être utilisé si <varname>M</varname>
-                        est une hypermatrice.
+                    <para>
+                        1 ou "r", 2 ou "c". Ne peut pas être utilisé si <varname>M</varname> est
+                        une hypermatrice.
                     </para>
                 </listitem>
             </varlistentry>
@@ -55,12 +57,17 @@
                     <para>
                       <itemizedlist>
                         <listitem>
-                          Sans <varname>orient</varname>: vecteur d'éléments de <varname>M</varname>
-                          triés par ordre croissant.
+                            <para>
+                                Sans <varname>orient</varname>: vecteur d'éléments de
+                                <varname>M</varname> triés par ordre croissant.
+                                Si <varname>M</varname> est un vecteur ligne, <varname>N</varname>
+                                aussi. Dans tous les autres cas, <varname>N</varname> est une
+                                matrice ou en colonne.
+                            </para>
                         </listitem>
                         <listitem>
-                          Avec <varname>orient</varname>: Matrice de lignes ou colonnes extraites de
-                          <varname>M</varname>, triées par ordre lexicographique croissant.
+                          Avec <varname>orient</varname>: Matrice de lignes ou de colonnes extraites
+                          de <varname>M</varname>, triées par ordre lexicographique croissant.
                         </listitem>
                       </itemizedlist>
                     </para>
@@ -73,6 +80,21 @@
                       Indices des éléments, lignes ou colonnes extraits, tels que
                       <literal>N(i) = M(k(i))</literal> ou <literal>N(i,:) = M(k(i),:)</literal>
                       ou <literal>N(:,i) = M(:,k(i))</literal>.
+                    </para>
+                    <para>
+                        <varname>k</varname> est un vecteur ligne si <varname>M</varname>
+                        l'est aussi ou si <literal>orient="c"</literal> est utilisé.
+                        Sinon <varname>k</varname> est en colonne.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nb</term>
+                <listitem>
+                    <para>
+                      Vecteur d'entiers > 0, au format de <varname>k</varname> :
+                      nombres d'exemplaires dans <varname>M</varname> de chaque entité
+                      (élément, ligne, colonne) retournée dans <varname>N</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -95,10 +117,20 @@
             <literal>unique(M,2)</literal>retourne les colonnes uniques
             <literal>M</literal> triées dans l'ordre lexicographique croissant.
         </para>
-        <note>
-          Les éléments, lignes ou colonnes extraits peuvent être remis dans leur ordre initial en
-          triant <varname>k</varname>. Voir le 1er exemple.
-        </note>
+        <para>
+            <literal>unique(M,.. "keepOrder")</literal> donne le vecteur des valeurs distinctes
+            de <varname>M</varname> selon leur ordre initial d'apparition dans <varname>M</varname>
+            (au lieu d'être par défaut triées par ordre croissant). L'indicateur
+            <literal>"keepOrder"</literal> est insensible aux minuscules/majuscules.
+        </para>
+        <para>
+            <literal>unique(M,.. "uniqueNan")</literal> considère toute valeur Nan comme égale
+            à toute autre Nan, et les dédoublonne comme pour n'importe quelle autre valeur numérique.
+            Par défaut, toute valeur Nan est distincte de toute autre Nan, y compris elle-même :
+            <literal>%nan&lt;>%nan</literal> est vrai, à moins d'utiliser
+            <literal>"uniqueNan"</literal>. L'indicateur
+            <literal>"uniqueNan"</literal> est insensible aux minuscules/majuscules.
+        </para>
     </refsection>
     <refsection role="examples">
         <title>Exemples</title>
@@ -114,8 +146,8 @@ M = int8([2  0  2  2  1  1  1  2  1  1  0  1  1  0  1  1
 M(:, gsort(kc,"g","i"))
  ]]></programlisting>
     <screen><![CDATA[
---> M 
- M = 
+--> M
+ M =
   2  0  2  2  1  1  1  2  1  1  0  1  1  0  1  1
   0  1  2  0  1  2  2  0  1  1  2  0  1  0  0  0
 
@@ -166,37 +198,112 @@ c = [1+i, 1-i, -i, i, -i, 1+i]
 
     <para>Dédoublonnement de textes :</para>
         <programlisting role="example"><![CDATA[
-t = ["AB" "BA" "BA" "BA" "AB" "BA" "AB" "AB" "BB" "AA" "AB" "BA" "BA" "BA" "AA"
-     "AA" "AA" "AB" "AA" "BB" "BB" "BB" "BA" "AB" "AB" "BB" "BB" "AB" "AB" "AA"
+t = ["BA" "BB" "AB" "BA" "AB" "BA" "AB" "AB" "BA" "AA" "AB" "BA" "BA" "BA" "AA"
+     "AA" "AB" "AA" "AA" "BB" "BB" "BB" "BA" "AB" "AB" "BB" "BB" "AB" "AB" "AA"
     ]
-[u, k] = unique(t)
-[uc, kc] = unique(t, "c")
+u = unique(t)'
+[u, k, nb] = unique(t(1,:))
+[u, k] = unique(t(1,:), "keepOrder")        // ordre initial conservé
+[uc, kc, nb] = unique(t, "c")
+[uc, kc, nb] = unique(t, "c", "keepOrder")  // ordre initial des colonnes conservé
  ]]></programlisting>
     <screen><![CDATA[
+--> t = ["BA" "BB" "AB" "BA" "AB" "BA" "AB" "AB" "BA" "AA" "AB" "BA" "BA" "BA" "AA"
+  >      "AA" "AB" "AA" "AA" "BB" "BB" "BB" "BA" "AB" "AB" "BB" "BB" "AB" "AB" "AA"
+  >     ]
  t  =
-!AB  BA  BA  BA  AB  BA  AB  AB  BB  AA  AB  BA  BA  BA  AA  !
-!AA  AA  AB  AA  BB  BB  BB  BA  AB  AB  BB  BB  AB  AB  AA  !
+!BA  BB  AB  BA  AB  BA  AB  AB  BA  AA  AB  BA  BA  BA  AA  !
+!AA  AB  AA  AA  BB  BB  BB  BA  AB  AB  BB  BB  AB  AB  AA  !
 
---> [u, k] = unique(t);
+--> u = unique(t)'
  u  =
-!AA  !
-!AB  !
-!BA  !
-!BB  !
+!AA  AB  BA  BB  !
+
+--> [u, k, nb] = unique(t(1,:))
+ u  =
+!AA  AB  BA  BB  !
 
  k  =
-   2.
-   1.
-   3.
-   10.
+   10.   3.   1.   2.
 
---> [uc, kc] = unique(t, "c")
- uc  =
-!AA  AA  AB  AB  AB  BA  BA  BA  BB  !
-!AA  AB  AA  BA  BB  AA  AB  BB  AB  !
+ nb  =
+   2.   5.   7.   1.
+
+--> [u, k] = unique(t(1,:), "keepOrder")  // ordre initial conservé
+ u  =
+!BA  BB  AB  AA  !
+
+ k  =
+   1.   2.   3.   10.
+
+--> [uc, kc, nb] = unique(t, "c")
+ nb  =
+   1.   1.   1.   1.   3.   2.   3.   2.   1.
 
  kc  =
-   15.   10.   1.   8.   5.   2.   3.   6.   9.
+   15.   10.   3.   8.   5.   1.   9.   6.   2.
+
+ uc  =
+!AA  AA  AB  AB  AB  BA  BA  BA  BB  !             colonnes triées
+!AA  AB  AA  BA  BB  AA  AB  BB  AB  !
+
+--> [uc, kc, nb] = unique(t, "c", "keepOrder")  // ordre initial des colonnes conservé
+ uc  =
+!BA  BB  AB  AB  BA  AB  BA  AA  AA  !
+!AA  AB  AA  BB  BB  BA  AB  AB  AA  !
+
+ kc  =
+   1.   2.   3.   5.   6.   8.   9.   10.   15.
+
+ nb  =
+   2.   1.   1.   3.   2.   1.   3.   1.   1.
+]]></screen>
+        <para/>
+        <para>Avec des valeurs Nan (et Inf). Option "uniqueNan" :</para>
+        <programlisting role="example"><![CDATA[
+M = [2  2  %nan  1     2  0     1  %nan  0    %nan
+     1  0  1     %nan  0  %inf  0  1     %inf 1
+    ];
+[v,k,n] = unique(M); v',n'
+[v,k,n] = unique(M, "uniqueNan"); v',n'
+unique(M, "c")
+[v, k, n] = unique(M, "c", "uniqueNan")
+ ]]></programlisting>
+    <screen><![CDATA[
+--> M
+ M  =
+   2.   2.   Nan   1.    2.   0.    1.   Nan   0.    Nan
+   1.   0.   1.    Nan   0.   Inf   0.   1.    Inf   1.
+
+--> [v,k,n] = unique(M); v',n'
+ ans  =
+   0.   1.   2.   Inf   Nan   Nan   Nan   Nan
+
+ ans  =
+   5.   6.   3.   2.   1.   1.   1.   1.
+
+--> [v,k,n] = unique(M, "uniqueNan"); v',n'
+ ans  =
+   0.   1.   2.   Inf   Nan
+
+ ans  =
+   5.   6.   3.   2.   4.
+
+--> unique(M, "c")
+ ans  =
+   0.    1.   1.    2.   2.   Nan   Nan   Nan
+   Inf   0.   Nan   0.   1.   1.    1.    1.
+
+--> [v, k, n] = unique(M, "c", "uniqueNan")
+ v  =
+   0.    1.   1.    2.   2.   Nan
+   Inf   0.   Nan   0.   1.   1.
+
+ k  =
+   6.   7.   4.   2.   1.   3.
+
+ n  =
+   2.   1.   1.   2.   1.   3.
 ]]></screen>
     </refsection>
     <refsection role="see also">
@@ -229,6 +336,19 @@ t = ["AB" "BA" "BA" "BA" "AB" "BA" "AB" "AB" "BB" "AA" "AB" "BA" "BA" "BA" "AA"
                 <revnumber>6.0.2</revnumber>
                 <revdescription>
                     unique() peut maintenant être utilisée pour dédoublonner des nombres complexes.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Options "keepOrder" et "uniqueNan" ajoutées.
+                        </listitem>
+                        <listitem>
+                            3ème résultat <literal>nb</literal> ajouté.
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

@@ -120,6 +120,10 @@ Feature changes and additions
 * `editvar()` GUI support copy-paste of strings removing quotes.
 * calendar() can now display formated calendars.
 * `xmlSetValues()` clones `setPreferencesValue` that is now obsolete.
+* `unique()` is upgraded to:
+  - return the number of occurences of distinct entities found in the input array.
+  - return distinct entities in their initial order (rather than sorted), with the `"keepOrder"` option.
+  - consider all `Nan` values as the same one, with the `"uniqueNan"` option.
 
 
 Help pages:
@@ -176,6 +180,7 @@ Bug Fixes
 * [#7765](http://bugzilla.scilab.org/show_bug.cgi?id=7765): `champ1()` is useless. `champ().colored` is available for a long time.
 * [#7967](http://bugzilla.scilab.org/show_bug.cgi?id=7967): The tricky size `[ny,nx]` of `meshgrid(x,y)` results and usages with graphics was not enough documented.
 * [#8307](http://bugzilla.scilab.org/show_bug.cgi?id=8307): `list2vec()` and `vec2list()` were located in the [optimization] module instead of in [data_structures], and were missing in the `See also` section of `list()`.
+* [#8418](http://bugzilla.scilab.org/show_bug.cgi?id=8418): `unique()` was not able to return the number of occurences of returned dictinct entities.
 * [#8784](http://bugzilla.scilab.org/show_bug.cgi?id=8784): Automatic self-adjusting blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` in Xcos.
 * [#5512](http://bugzilla.scilab.org/show_bug.cgi?id=5512): `disp()` puzzlingly displayed arguments in reverse order.
 * [#9529](http://bugzilla.scilab.org/show_bug.cgi?id=9529): `assert_checkequal(list(1,,3), list(1,,3))` yielded an error.
@@ -210,10 +215,12 @@ Bug Fixes
 * [#15425](http://bugzilla.scilab.org/show_bug.cgi?id=15425): The Kronecker product `a.*.b` failed when `a` or `b` or both are hypermatrices, with one or both being polynomials or rationals.
 * [#15451](http://bugzilla.scilab.org/show_bug.cgi?id=15451): The code was not adapted to use `lucene 4.10` in Debian.
 * [#15514](http://bugzilla.scilab.org/show_bug.cgi?id=15514): The `set()` documentation page needed to be overhauled.
+* [#15522](http://bugzilla.scilab.org/show_bug.cgi?id=15522): `unique()` was not able to consider all Nan values as the same value. A `uniqueNan` option now allows it. 
 * [#15523](http://bugzilla.scilab.org/show_bug.cgi?id=15523): `%ODEOPTIONS(1)=2` didn't work with solvers 'rk' and 'rkf'
 * [#15248](http://bugzilla.scilab.org/show_bug.cgi?id=15248): `lsq()`was leaking memory.
 * [#15577](http://bugzilla.scilab.org/show_bug.cgi?id=15577): `edit` did not accept a line number as text, as with `edit linspace 21`.
 * [#15580](http://bugzilla.scilab.org/show_bug.cgi?id=15580): `det(sparse([],[]))` yielded an error.
+* [#15595](http://bugzilla.scilab.org/show_bug.cgi?id=15595): `unique()` was not able to return distinct values in their original order, without sorting them. A `keepOrder` option now allows it. 
 * [#15668](http://bugzilla.scilab.org/show_bug.cgi?id=15668): `save(filename)` saved all predefined Scilab constants %e %pi etc.. (regression)
 * [#15715](http://bugzilla.scilab.org/show_bug.cgi?id=15715): `%nan` indices crashed Scilab.
 * [#15742](http://bugzilla.scilab.org/show_bug.cgi?id=15742): The `compatibility_functions` module should be merged in the `m2sci` one.
@@ -283,4 +290,5 @@ Bug Fixes
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot()`, `colorbar()` displayed an empty ungraduated color bar.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
+
 
