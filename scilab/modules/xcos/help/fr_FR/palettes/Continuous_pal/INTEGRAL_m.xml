@@ -243,11 +243,11 @@
                         </imageobject>
                     </inlinemediaobject>
                 </link>
-                <scilab:image><![CDATA[
+            </para>
+            <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_1_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-            </para>
         </refsect3>
         <refsect3 id="Example_INTEGRAL_m_2">
             <title>Exemple 2</title>
@@ -259,11 +259,11 @@ xcos_simulate(scs_m, 4);
                         </imageobject>
                     </inlinemediaobject>
                 </link>
-                <scilab:image><![CDATA[
+            </para>
+            <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-            </para>
         </refsect3>
     </refsection>
 </refentry>

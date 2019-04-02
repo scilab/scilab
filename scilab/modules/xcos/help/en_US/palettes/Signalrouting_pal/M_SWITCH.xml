@@ -196,11 +196,11 @@
                         </imageobject>
                     </inlinemediaobject>
                 </link>
-                <scilab:image><![CDATA[
+            </para>
+            <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/signalrouting_pal/M_SWITCH.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-            </para>
         </refsection>
 
     </refsection>

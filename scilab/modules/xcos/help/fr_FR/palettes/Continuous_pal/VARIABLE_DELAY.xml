@@ -224,10 +224,10 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image localized="true"><![CDATA[
+        </para>
+        <scilab:image localized="true"><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/fr_FR/VARIABLE_DELAY_fr_FR.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </para>
     </refsection>
 </refentry>

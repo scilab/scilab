@@ -81,7 +81,7 @@
         </para>
         <para>
             The system is defined by the <emphasis role="bold">(A, B, C, D)</emphasis> matrices
-			and the initial state <emphasis role="bold">X0</emphasis>.
+            and the initial state <emphasis role="bold">X0</emphasis>.
             The dimensions must be compatible.
         </para>
     </refsection>
@@ -278,8 +278,8 @@ then
         <para>thus</para>
         <para>
             <latex>
-				x_1 = i_L = C\frac{\mathrm{d} v_C }{\mathrm{d} t} = C\dot{x_2}
-			</latex>
+                x_1 = i_L = C\frac{\mathrm{d} v_C }{\mathrm{d} t} = C\dot{x_2}
+            </latex>
         </para>
         <para>Rearranging these equations we get:</para>
         <para>
@@ -325,10 +325,10 @@ y(t) = \begin{bmatrix} 1 & 0 \end{bmatrix} \cdot \begin{bmatrix} x_{1} \\ x_{2} 
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+        </para>
+        <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/CLSS_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </para>
     </refsection>
 </refentry>

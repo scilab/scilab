@@ -185,11 +185,11 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image localized="true"><![CDATA[
+        </para>
+        <scilab:image localized="true"><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/fr_FR/DELAY_f_1_fr_FR.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </para>
         <para/>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.zcos">
@@ -199,11 +199,11 @@ xcos_simulate(scs_m, 4);
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+        </para>
+        <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </para>
     </refsection>
     <refsection id="Interfacingfunction_DELAY_f">
         <title>Fonction d'interfaçage</title>

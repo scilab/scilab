@@ -193,6 +193,8 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
+        </para>
+        <para>
             <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/en_US/DELAY_f_1_en_US.zcos");
 xcos_simulate(scs_m, 4);
@@ -207,6 +209,8 @@ xcos_simulate(scs_m, 4);
                     </imageobject>
                 </inlinemediaobject>
             </link>
+        </para>
+        <para>
             <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/en_US/DELAY_f_2_en_US.zcos");
 xcos_simulate(scs_m, 4);

@@ -39,33 +39,33 @@
     </refsection>
     <refsection id="Contents_DERIV">
         <title>内容</title>
-		<itemizedlist>
-			<listitem>
-				<para>
-					<xref linkend="Description_DERIV">説明</xref>
-				</para>
-			</listitem>
-			<listitem>
-				<para>
-					<xref linkend="Defaultproperties_DERIV">デフォルトプロパティ</xref>
-				</para>
-			</listitem>
-			<listitem>
-				<para>
-					<xref linkend="Example_DERIV">例</xref>
-				</para>
-			</listitem>
-			<listitem>
-				<para>
-					<xref linkend="Interfacingfunction_DERIV">インターフェイス用関数</xref>
-				</para>
-			</listitem>
-			<listitem>
-				<para>
-					<xref linkend="Computationalfunction_DERIV">計算用関数</xref>
-				</para>
-			</listitem>
-		</itemizedlist>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <xref linkend="Description_DERIV">説明</xref>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <xref linkend="Defaultproperties_DERIV">デフォルトプロパティ</xref>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <xref linkend="Example_DERIV">例</xref>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <xref linkend="Interfacingfunction_DERIV">インターフェイス用関数</xref>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <xref linkend="Computationalfunction_DERIV">計算用関数</xref>
+                </para>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection id="Description_DERIV">
         <title>説明</title>
@@ -171,11 +171,11 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+        </para>
+        <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/DERIV_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </para>
     </refsection>
     <refsection id="Interfacingfunction_DERIV">
         <title>インターフェイス用関数</title>

@@ -230,6 +230,7 @@
                 </imageobject>
             </inlinemediaobject>
         </link>
+        <para/>
         <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/en_US/DELAYV_f_en_US.zcos");
 xcos_simulate(scs_m, 4);

@@ -235,6 +235,8 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
+        </para>
+        <para>
             <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/en_US/VARIABLE_DELAY_en_US.zcos");
 xcos_simulate(scs_m, 4);

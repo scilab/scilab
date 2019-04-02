@@ -178,6 +178,8 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
+        </para>
+        <para>
             <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/DERIV_Example.zcos");
 xcos_simulate(scs_m, 4);

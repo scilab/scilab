@@ -160,11 +160,11 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+        </para>
+        <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/mathoperations_pal/ABS_VALUE_Example.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </para>
     </refsection>
     <refsection id="Interfacingfunction_ABS_VALUE">
         <title>Fonction d'interfaçage</title>
