@@ -210,6 +210,9 @@ drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,su
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="plot_multiscaled">Multiscaled plots</link>
+            </member>
+            <member>
                 <link linkend="axis_properties">axis_properties</link>
             </member>
         </simplelist>

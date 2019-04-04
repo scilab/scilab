@@ -121,6 +121,9 @@ title(a_bt, "the exponential");
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="plot_multiscaled">Multiscaled plots</link>
+            </member>
+            <member>
                 <link linkend="subplot">subplot</link>
             </member>
             <member>
