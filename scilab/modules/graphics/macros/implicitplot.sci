@@ -82,7 +82,7 @@ function implicitplot(fun, x_range, y_range, varargin)
     if type(fun) ~= 1
         // Define the function
         if type(fun) == 10 then
-            deff("[%z] = internal_fun(%x, %y)", "%z = " + fun);
+            deff("[%z] = internal_fun(x, y)", "%z = " + fun);
         else
             internal_fun = fun;
             if type(fun) == 11 then
