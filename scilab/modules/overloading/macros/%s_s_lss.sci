@@ -10,8 +10,11 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function s=%s_s_lss(d1,s2)
+function s = %s_s_lss(d1,s2)
     //s=d1-s2
-    [a2,b2,c2,d2,x2,dom2]=s2(2:7),
-    s=tlist(["lss","A","B","C","D","X0","dt"],a2,-b2,c2,d1-d2,x2,dom2),
+    [a2,b2,c2,d2,x2,dom2] = s2(2:7),
+    if d1==[]
+        d1 = zeros(d2)
+    end
+    s = tlist(["lss","A","B","C","D","X0","dt"],a2,-b2,c2,d1-d2,x2,dom2),
 endfunction

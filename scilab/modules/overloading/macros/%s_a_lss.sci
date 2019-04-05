@@ -9,8 +9,10 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
-function s2=%s_a_lss(d1,s2)
-    // s=d1+s2
+function s2 = %s_a_lss(d1,s2)
+    // s = d1 + s2
     //!
-    s2(5)=s2(5)+d1
+    if d1 <> []
+        s2(5) = s2(5) + d1
+    end
 endfunction
