@@ -16,10 +16,13 @@
 #ifndef __STATISTICS_GW_HXX__
 #define __STATISTICS_GW_HXX__
 
+#include "cpp_gateway_prototype.hxx"
 extern "C"
 {
 #include "dynlib_statistics_gw.h"
 }
+
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_percent_cov, EXTERN_STATISTICS_GW);
 
 class StatisticsModule
 {

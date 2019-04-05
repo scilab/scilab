@@ -85,6 +85,9 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_cdfbet.c \
 	sci_gateway/c/sci_cdfnbn.c \
 	sci_gateway/c/sci_cdfnor.c
+	
+GATEWAY_CPP_SOURCES = \
+	sci_gateway/cpp/sci_percent_cov.cpp
 
 libscistatistics_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
@@ -101,6 +104,9 @@ libscistatistics_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/elementary_functions/includes \
+    -I$(top_srcdir)/modules/io/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
     $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscistatistics.la
@@ -109,7 +115,7 @@ noinst_LTLIBRARIES = libscistatistics-algo.la
 
 
 libscistatistics_algo_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES)
-libscistatistics_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscistatistics_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscistatistics_algo_la_CPPFLAGS = $(libscistatistics_la_CPPFLAGS)
 
 # For the code check (splint)

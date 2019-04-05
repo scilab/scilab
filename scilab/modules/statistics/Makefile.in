@@ -228,7 +228,9 @@ am__objects_3 = sci_gateway/c/libscistatistics_la-sci_cdfchi.lo \
 	sci_gateway/c/libscistatistics_la-sci_cdfbet.lo \
 	sci_gateway/c/libscistatistics_la-sci_cdfnbn.lo \
 	sci_gateway/c/libscistatistics_la-sci_cdfnor.lo
-am_libscistatistics_la_OBJECTS = $(am__objects_3)
+am__objects_4 =  \
+	sci_gateway/cpp/libscistatistics_la-sci_percent_cov.lo
+am_libscistatistics_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscistatistics_la_OBJECTS = $(am_libscistatistics_la_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -257,6 +259,7 @@ am__depfiles_remade =  \
 	sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfnor.Plo \
 	sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfpoi.Plo \
 	sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdft.Plo \
+	sci_gateway/cpp/$(DEPDIR)/libscistatistics_la-sci_percent_cov.Plo \
 	src/c/$(DEPDIR)/libscistatistics_algo_la-CdfBase.Plo \
 	src/c/$(DEPDIR)/libscistatistics_algo_la-ipmpar1.Plo \
 	src/c/$(DEPDIR)/libscistatistics_algo_la-sci_string_matrix.Plo
@@ -279,6 +282,24 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+LTCXXCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) \
+	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
+	$(AM_CXXFLAGS) $(CXXFLAGS)
+AM_V_CXX = $(am__v_CXX_@AM_V@)
+am__v_CXX_ = $(am__v_CXX_@AM_DEFAULT_V@)
+am__v_CXX_0 = @echo "  CXX     " $@;
+am__v_CXX_1 = 
+CXXLD = $(CXX)
+CXXLINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
+	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
+am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
+am__v_CXXLD_0 = @echo "  CXXLD   " $@;
+am__v_CXXLD_1 = 
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
@@ -703,6 +724,9 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_cdfnbn.c \
 	sci_gateway/c/sci_cdfnor.c
 
+GATEWAY_CPP_SOURCES = \
+	sci_gateway/cpp/sci_percent_cov.cpp
+
 libscistatistics_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
     -I$(srcdir)/src/c/ \
@@ -718,12 +742,15 @@ libscistatistics_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/elementary_functions/includes \
+    -I$(top_srcdir)/modules/io/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
     $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscistatistics.la
 noinst_LTLIBRARIES = libscistatistics-algo.la
 libscistatistics_algo_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES)
-libscistatistics_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscistatistics_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscistatistics_algo_la_CPPFLAGS = $(libscistatistics_la_CPPFLAGS)
 
 # For the code check (splint)
@@ -821,7 +848,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .f .lo .o .obj
+.SUFFIXES: .sci .bin .c .cpp .f .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -1082,14 +1109,25 @@ sci_gateway/c/libscistatistics_la-sci_cdfnbn.lo:  \
 sci_gateway/c/libscistatistics_la-sci_cdfnor.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp
+	@: > sci_gateway/cpp/$(am__dirstamp)
+sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
+	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscistatistics_la-sci_percent_cov.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscistatistics.la: $(libscistatistics_la_OBJECTS) $(libscistatistics_la_DEPENDENCIES) $(EXTRA_libscistatistics_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscistatistics_la_OBJECTS) $(libscistatistics_la_LIBADD) $(LIBS)
+	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscistatistics_la_OBJECTS) $(libscistatistics_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f sci_gateway/c/*.$(OBJEXT)
 	-rm -f sci_gateway/c/*.lo
+	-rm -f sci_gateway/cpp/*.$(OBJEXT)
+	-rm -f sci_gateway/cpp/*.lo
 	-rm -f src/c/*.$(OBJEXT)
 	-rm -f src/c/*.lo
 	-rm -f src/dcdflib/*.$(OBJEXT)
@@ -1109,6 +1147,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfnor.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfpoi.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdft.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscistatistics_la-sci_percent_cov.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistatistics_algo_la-CdfBase.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistatistics_algo_la-ipmpar1.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscistatistics_algo_la-sci_string_matrix.Plo@am__quote@ # am--include-marker
@@ -1241,6 +1280,37 @@ sci_gateway/c/libscistatistics_la-sci_cdfnor.lo: sci_gateway/c/sci_cdfnor.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-sci_cdfnor.lo `test -f 'sci_gateway/c/sci_cdfnor.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfnor.c
 
+.cpp.o:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
+
+.cpp.obj:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
+@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.cpp.lo:
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
+@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
+@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
+
+sci_gateway/cpp/libscistatistics_la-sci_percent_cov.lo: sci_gateway/cpp/sci_percent_cov.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscistatistics_la-sci_percent_cov.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscistatistics_la-sci_percent_cov.Tpo -c -o sci_gateway/cpp/libscistatistics_la-sci_percent_cov.lo `test -f 'sci_gateway/cpp/sci_percent_cov.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_cov.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscistatistics_la-sci_percent_cov.Tpo sci_gateway/cpp/$(DEPDIR)/libscistatistics_la-sci_percent_cov.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_percent_cov.cpp' object='sci_gateway/cpp/libscistatistics_la-sci_percent_cov.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscistatistics_la-sci_percent_cov.lo `test -f 'sci_gateway/cpp/sci_percent_cov.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_percent_cov.cpp
+
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
 
@@ -1256,6 +1326,7 @@ mostlyclean-libtool:
 clean-libtool:
 	-rm -rf .libs _libs
 	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
+	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
 	-rm -rf src/c/.libs src/c/_libs
 	-rm -rf src/dcdflib/.libs src/dcdflib/_libs
 install-libscistatistics_la_etcDATA: $(libscistatistics_la_etc_DATA)
@@ -1443,6 +1514,8 @@ distclean-generic:
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
 	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 	-rm -f sci_gateway/c/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(am__dirstamp)
 	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/c/$(am__dirstamp)
 	-rm -f src/dcdflib/$(DEPDIR)/$(am__dirstamp)
@@ -1468,6 +1541,7 @@ distclean: distclean-am
 	-rm -f sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfnor.Plo
 	-rm -f sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfpoi.Plo
 	-rm -f sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdft.Plo
+	-rm -f sci_gateway/cpp/$(DEPDIR)/libscistatistics_la-sci_percent_cov.Plo
 	-rm -f src/c/$(DEPDIR)/libscistatistics_algo_la-CdfBase.Plo
 	-rm -f src/c/$(DEPDIR)/libscistatistics_algo_la-ipmpar1.Plo
 	-rm -f src/c/$(DEPDIR)/libscistatistics_algo_la-sci_string_matrix.Plo
@@ -1530,6 +1604,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfnor.Plo
 	-rm -f sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfpoi.Plo
 	-rm -f sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdft.Plo
+	-rm -f sci_gateway/cpp/$(DEPDIR)/libscistatistics_la-sci_percent_cov.Plo
 	-rm -f src/c/$(DEPDIR)/libscistatistics_algo_la-CdfBase.Plo
 	-rm -f src/c/$(DEPDIR)/libscistatistics_algo_la-ipmpar1.Plo
 	-rm -f src/c/$(DEPDIR)/libscistatistics_algo_la-sci_string_matrix.Plo

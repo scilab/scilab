@@ -48,6 +48,9 @@
     <ClCompile Include="..\c\sci_cdft.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_percent_cov.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\statistics_gw.hxx">
@@ -62,5 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\dcd_f.lib" />
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\libintl.lib" />
   </ItemGroup>
 </Project>

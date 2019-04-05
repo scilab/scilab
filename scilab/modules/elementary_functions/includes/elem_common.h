@@ -61,6 +61,9 @@
 
 extern double C2F(dlamch) (const char *_pszCommand, unsigned long int);
 extern double C2F(logp1) (double *_pdblVal);
+
+// dger   performs the rank 1 operation
+extern int C2F(dger) (int *M, int *N, double* alpha, double* DX, int* incx, double* DY, int* incy,  double *DA, int *lda);
 extern int C2F(dgemm) (char *_pstTransA, char *_pstTransB, int *_piN, int *_piM, int *_piK, double *_pdblAlpha, double *_pdblA, int *_piLdA,
                        double *_pdblB, int *_piLdB, double *_pdblBeta, double *_pdblC, int *_piLdC);
 extern int C2F(zgemm) (char *_pstTransA, char *_pstTransB, int *_piN, int *_piM, int *_piK, double *_pdblAlpha, double *_pdblA, int *_piLdA,
@@ -123,6 +126,8 @@ extern int C2F(ztrsm) (char* side, char* uplo, char* trans, char* diag, int* m, 
 // dsyrk does a rank k symmetric update
 extern int C2F(dsyrk) (char* uplo, char* trans, int* n, int* k, double* alpha,
                        double* A, int* lda, double* beta, double* B, int* ldb);
+// dsyr   performs the symmetric rank 1 operation
+extern int C2F(dsyr) (char* uplo, int* n, double* alpha, double *x, int* incx, double* A, int* lda);
 // ztrmm multiply by a triangular matrix
 extern int C2F(ztrmm) (char* side, char* uplo, char* trans, char* diag, int* m, int* n, doublecomplex* alphac,
                        doublecomplex* A, int* lda, doublecomplex* B, int* ldb);

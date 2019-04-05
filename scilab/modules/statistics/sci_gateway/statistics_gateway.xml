@@ -33,4 +33,5 @@
     <gateway name="sci_cdfnor"  function="cdfnor"   type="0" />
     <gateway name="sci_cdfpoi"  function="cdfpoi"   type="0" />
     <gateway name="sci_cdft"    function="cdft"     type="0" />
+    <gateway name="sci_percent_cov"    function="%_cov"     type="1" />
 </module>
