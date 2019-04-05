@@ -61,6 +61,7 @@ extern "C"
 */
 
 types::InternalType* createblklist(const scicos_block* const Blocks, const int flag_imp, const int funtyp);
+types::InternalType* refreshblklist(types::InternalType* pIT, const scicos_block* const Blocks, const int flag_imp, const int funtyp);
 
 #endif /* __CREATEBLKLIST_HXX__ */
 /*--------------------------------------------------------------------------*/

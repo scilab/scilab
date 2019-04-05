@@ -1,4 +1,5 @@
 Language: Cpp
+AlignTrailingComments: true
 AllowShortIfStatementsOnASingleLine: false
 BreakBeforeBraces: Allman
 ColumnLimit: 0

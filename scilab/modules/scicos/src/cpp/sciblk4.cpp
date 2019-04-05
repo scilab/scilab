@@ -251,11 +251,30 @@ void sciblk4(scicos_block* blk, const int flag)
     /*****************************
     * Create Scilab tlist Blocks *
     *****************************/
-    types::InternalType* pIT = createblklist(blk, -1, funtyp[kfun - 1]);
-    if (pIT == nullptr)
+    types::InternalType* pIT = nullptr;
+    if (flag == 4) // Initialization
     {
-        set_block_error(-1);
-        return;
+        pIT = createblklist(blk, -1, funtyp[kfun - 1]);
+        if (pIT == nullptr)
+        {
+            set_block_error(-1);
+            return;
+        }
+        *blk->work = pIT;
+        pIT->IncreaseRef();
+    }
+    else
+    {
+        pIT = *(types::InternalType**) blk->work;
+    }
+
+    if (flag == 5) // Ending
+    {
+        pIT->DecreaseRef();
+    }
+    else // any other flag might use refreshed values
+    {
+        pIT = refreshblklist(pIT, blk, -1, funtyp[kfun - 1]);
     }
 
     in.push_back(pIT);
