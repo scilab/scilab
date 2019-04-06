@@ -130,6 +130,10 @@
             de la fonction <link linkend="double">double()</link> et un exemple ci-dessous.
             </para>
         </warning>
+        <warning>
+            La conversion de <literal>[]</literal> ne change rien : son type 1 est toujours
+            conservé (type numérique décimal).
+        </warning>
         <para>
             <table>
                 <tr><th>Fonction</th><th>y dans</th><th align="left">=</th></tr>
@@ -266,6 +270,41 @@ uint8(-10.2 + 3.4*%i)
 --> uint8(-10.2 + 3.4*%i)
  ans  =
   246
+]]></screen>
+    <para>
+        [] n'est pas convertible:
+    </para>
+    <programlisting role="example"><![CDATA[
+i = uint16(3);
+i(1,2) = 5.6
+typeof(i)
+
+i = uint16([])
+i(1,2) = 2.3
+typeof(i)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> i = uint16(3);
+--> i(1,2) = 5.6
+ i  =
+  3  5
+
+--> typeof(i)
+ ans  =
+ uint16
+
+
+--> i = uint16([])
+ i  =
+    []
+
+--> i(1,2) = 2.3
+ i  =
+   0.   2.3
+
+--> typeof(i)
+ ans  =
+ constant
 ]]></screen>
     </refsection>
     <refsection role="see also">

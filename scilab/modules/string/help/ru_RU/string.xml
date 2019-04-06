@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
  * Copyright (C) DIGITEO - 2012 - Allan CORNET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="string" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="string" xml:lang="ru">
     <refnamediv>
         <refname>string</refname>
         <refpurpose>преобразование в строку</refpurpose>
@@ -22,8 +25,8 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            string(x)
-            [out, in, text] = string(x)
+            text = string(x)
+            [out, in, text] = string(SciFun)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -33,7 +36,16 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        булева, комплексная, вещественная, целочисленная, полиномиальная матрица, неявный размер, библиотека или функция.
+                        булева, комплексная, вещественная, целочисленная, полиномиальная матрица,
+                        неявный размер, библиотека или функция.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciFun</term>
+                <listitem>
+                    <para>
+                        a function in Scilab language (handle of type 13, not its name as a string).
                     </para>
                 </listitem>
             </varlistentry>
@@ -46,7 +58,19 @@
             <varname>x</varname> в матрицу строк.
         </para>
         <para>
-            Если <varname>x</varname> является функцией, то <code>[out, in, text] = string(x)</code> возвращает три вектора строк: <varname>out</varname> - вектор выходных переменных, <varname>in</varname> - вектор входных переменных, а <varname>text</varname> - вектор (вектор-столбец) исходного кода функции.
+            Если <varname>SciFun</varname> является функцией,
+            то <literal>[out, in, text] = string(SciFun)</literal> возвращает три вектора строк:
+            <itemizedlist>
+                <listitem>
+                    <varname>out</varname> - вектор выходных переменных,
+                </listitem>
+                <listitem>
+                    <varname>in</varname> - вектор входных переменных, а
+                </listitem>
+                <listitem>
+                    <varname>text</varname> - вектор (вектор-столбец) исходного кода функции.
+                </listitem>
+            </itemizedlist>
         </para>
         <para>
             Если <varname>x</varname> является переменной типа
@@ -55,18 +79,13 @@
             путь до файла библиотеки, а другой - имя функций, которые она
             определяет.
         </para>
-        <para>
-            Символьные строки определяются как <literal>'строка'</literal>
-            (между одинарными кавычками) или <literal>"строка"</literal> (между
-            двойными кавычками); матрицы строк определяются как обычные матрицы констант.
-        </para>
-        <para>
-            Связка строк выполняется с помощью операции <literal>+</literal>.
-        </para>
-        <para>
+        <warning>
             Для комплексной, вещественной, целочисленной, полиномиальной
             матрицы вывод функции <function>string</function> управляется с
             помощью функции <link linkend="format">format</link> (см. примеры).
+        </warning>
+        <para>
+            Note that string([]) returns [] (unchanged).
         </para>
     </refsection>
     <refsection>
@@ -91,6 +110,7 @@
             format(24);
             disp(string(%pi))
             format(v(2))
+
             string(1:4:$)
         </programlisting>
     </refsection>
@@ -98,34 +118,31 @@
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="part">part</link>
-            </member>
-            <member>
-                <link linkend="length">length</link>
-            </member>
-            <member>
-                <link linkend="quote">кавычка</link>
-            </member>
-            <member>
-                <link linkend="evstr">evstr</link>
-            </member>
-            <member>
-                <link linkend="execstr">execstr</link>
-            </member>
-            <member>
-                <link linkend="strsubst">strsubst</link>
-            </member>
-            <member>
-                <link linkend="strcat">strcat</link>
-            </member>
-            <member>
-                <link linkend="strindex">strindex</link>
+                <link linkend="format">format</link>
             </member>
             <member>
                 <link linkend="sci2exp">sci2exp</link>
             </member>
             <member>
-                <link linkend="format">format</link>
+                <link linkend="msprintf">msprintf</link>
+            </member>
+            <member>
+                <link linkend="tree2code">tree2code</link>
+            </member>
+            <member>
+                <link linkend="pol2str">pol2str</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="evstr">evstr</link>
+            </member>
+            <member>
+                <link linkend="strtod">strtod</link>
+            </member>
+            <member>
+                <link linkend="csvTextScan">csvTextScan</link>
             </member>
         </simplelist>
     </refsection>
@@ -135,7 +152,7 @@
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>
-                    implicit size type managed as input argument.
+                    implicitlist typeof input accepted.
                 </revremark>
             </revision>
         </revhistory>

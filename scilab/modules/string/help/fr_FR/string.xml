@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,19 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="string" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="string" xml:lang="fr">
     <refnamediv>
         <refname>string</refname>
         <refpurpose>conversion en chaîne de caractères</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>string(x)
-            [out, in, text] = string(x)
+        <synopsis>
+            text = string(x)
+            [out, in, text] = string(SciFun)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -35,41 +39,49 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>SciFun</term>
+                <listitem>
+                    <para>
+                        function en langage Scilab (identifiant de type 13, non son nom comme texte).
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
         <para>Convertit une matrice en matrice de chaînes de caractères.</para>
         <para>
-            Si <literal>x</literal> est une fonction <literal>[out, in, text] =
-                string(x)
-            </literal>
+            Si <varname>SciFun</varname> est une fonction,
+            <literal>[out, in, text] = string(SciFun)</literal>
             retourne 3 vecteurs de chaînes de caractères :
-            <literal>out</literal> est le vecteur des variables de sortie,
-            <literal>in</literal> est le vecteur des variables d'entrée, et
-            <literal>text</literal> est le vecteur colonne du code source de la
-            fonction.
+            <itemizedlist>
+                <listitem>
+                    <varname>out</varname> est le vecteur des noms de ses variables de sortie,
+                </listitem>
+                <listitem>
+                    <varname>in</varname> est le vecteur des noms de ses variables d'entrée, et
+                </listitem>
+                <listitem>
+                    <varname>text</varname> est le vecteur colonne des lignes de code source de la fonction.
+                </listitem>
+            </itemizedlist>
         </para>
         <para>
-            Si <literal>x</literal> est une variable bibliotheque
+            Si <varname>x</varname> est une variable bibliotheque
             <literal>lib</literal>, text est un vecteur colonne de chaînes de
             caractères. Le premier élément contient le chemin de la bibliothèque et
             l'autre élément le nom des fonctions qui sont définies dans cette
             bibliothèque.
         </para>
-        <para>Les chaînes de caractères sont définies de la façon suivant,
-            <literal>'string'</literal> (entre quotes) ou <literal>"string"</literal>
-            (entre double quotes); les matrices de chaînes de caractères sont définies
-            comme des matrices constantes normales.
-        </para>
-        <para>La concaténation des chaînes de caractères est effectuée par
-            l'opérateur <literal>+</literal>.
-        </para>
+        <warning>
+            pour les types Booléen, complexe, réel, entier, polynôme, fraction rationnelle, le
+            format texte des nombres et coefficients produits par <literal>string</literal>
+            est déterminé par la fonction <link linkend="format">format</link> (voir exemples).
+        </warning>
         <para>
-            pour les types Booléen, complexe, réel, entier, polynôme matrice le texte issu de <literal>string</literal> est dependant de la fonction <link linkend="format">format</link> (voir exemples).
-        </para>
-        <para>
-            Notez que string([]) renvoie [].
+            Notez que string([]) renvoie [] (inchangée).
         </para>
     </refsection>
     <refsection>
@@ -94,38 +106,51 @@ disp(string(%pi))
 format(24);
 disp(string(%pi))
 format(v(2))
+
+string(1:4:$)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="part">part</link>
+                <link linkend="format">format</link>
             </member>
             <member>
-                <link linkend="length">length</link>
+                <link linkend="sci2exp">sci2exp</link>
             </member>
             <member>
-                <link linkend="quote">quote</link>
+                <link linkend="msprintf">msprintf</link>
             </member>
             <member>
-                <link linkend="evstr">evstr</link>
+                <link linkend="tree2code">tree2code</link>
+            </member>
+            <member>
+                <link linkend="pol2str">pol2str</link>
             </member>
             <member>
                 <link linkend="execstr">execstr</link>
             </member>
             <member>
-                <link linkend="strsubst">strsubst</link>
+                <link linkend="evstr">evstr</link>
             </member>
             <member>
-                <link linkend="strcat">strcat</link>
+                <link linkend="strtod">strtod</link>
             </member>
             <member>
-                <link linkend="strindex">strindex</link>
-            </member>
-            <member>
-                <link linkend="sci2exp">sci2exp</link>
+                <link linkend="csvTextScan">csvTextScan</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    implicitlist typeof input accepted.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

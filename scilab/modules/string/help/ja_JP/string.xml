@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,19 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="string">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="string">
     <refnamediv>
         <refname>string</refname>
         <refpurpose>文字列に変換</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>string(x)
-            [out, in, text] = string(x)
+        <synopsis>
+            text = string(x)
+            [out, in, text] = string(SciFun)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -31,8 +35,15 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        論理値, 複素数, 実数, 整数, 多項式行列,
-                        暗黙の大きさ, ライブラリまたは関数.
+                        論理値, 複素数, 実数, 整数, 多項式行列, 暗黙の大きさ, またはライブラリ.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SciFun</term>
+                <listitem>
+                    <para>
+                        a function in Scilab language (handle of type 13, not its name as a string).
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,12 +56,20 @@
             行列<varname>x</varname> を文字列の行列に変換します.
         </para>
         <para>
-            <literal>x</literal>が関数の場合,
-            <code>[out, in, text] = string(x)</code> は
+            <literal>SciFun</literal>が関数の場合,
+            <code>[out, in, text] = string(SciFun)</code> は
             3つの文字列ベクトルを返します:
-            <literal>out</literal> は出力変数のベクトル,
-            <literal>in</literal> は入力変数のベクトル, そして <literal>text</literal> は
-            関数のソースコードの(列)ベクトルです.
+            <itemizedlist>
+                <listitem>
+                    <varname>out</varname> は出力変数のベクトル,
+                </listitem>
+                <listitem>
+                    <varname>in</varname> は入力変数のベクトル, そして
+                </listitem>
+                <listitem>
+                    <varname>text</varname> は関数のソースコードの(列)ベクトルです.
+                </listitem>
+            </itemizedlist>
         </para>
         <para>
             <literal>x</literal>が <literal>lib</literal>変数の場合,
@@ -58,19 +77,11 @@
             最初の要素は,ライブラリファイルのパス,
             その他の要素は定義する関数の名前を有します.
         </para>
-        <para>
-            文字列は<literal>'string'</literal> (引用符で括る)または
-            <literal>"string"</literal> (二重引用符で括る)で定義されます;
-            文字列の行列は通常の定数行列として定義されます.
-        </para>
-        <para>
-            文字列の結合は<literal>+</literal>操作により行われます.
-        </para>
-        <para>
+        <warning>
             複素数, 実数, 整数, 多項式行列の場合,
             <function>string</function> の出力は
             <link linkend="format">format</link> function (例参照)で管理されます.
-        </para>
+        </warning>
         <para>
             string([]) は []を返すことに注意してください.
         </para>
@@ -79,20 +90,25 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[
             string(rand(2, 2))
+
             deff("y = mymacro(x)", "y = x + 1")
             [out, in, text] = string(mymacro)
             x = 123.356;
             disp("Result is " + string(x));
+
             disp("/" + string(~%t) + "/");
             disp("/" + string(%i+1) + "/");
             disp("/" + string(int16(-123)) + "/");
             disp("/" + string(1 + %s + %s^3) + "/");
+
             string(corelib)
+
             v = format();
             disp(string(%pi))
             format(24);
             disp(string(%pi))
             format(v(2))
+
             string(1:4:$)
  ]]></programlisting>
     </refsection>
@@ -100,34 +116,31 @@
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="part">part</link>
-            </member>
-            <member>
-                <link linkend="length">length</link>
-            </member>
-            <member>
-                <link linkend="quote">quote</link>
-            </member>
-            <member>
-                <link linkend="evstr">evstr</link>
-            </member>
-            <member>
-                <link linkend="execstr">execstr</link>
-            </member>
-            <member>
-                <link linkend="strsubst">strsubst</link>
-            </member>
-            <member>
-                <link linkend="strcat">strcat</link>
-            </member>
-            <member>
-                <link linkend="strindex">strindex</link>
+                <link linkend="format">format</link>
             </member>
             <member>
                 <link linkend="sci2exp">sci2exp</link>
             </member>
             <member>
-                <link linkend="format">format</link>
+                <link linkend="msprintf">msprintf</link>
+            </member>
+            <member>
+                <link linkend="tree2code">tree2code</link>
+            </member>
+            <member>
+                <link linkend="pol2str">pol2str</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="evstr">evstr</link>
+            </member>
+            <member>
+                <link linkend="strtod">strtod</link>
+            </member>
+            <member>
+                <link linkend="csvTextScan">csvTextScan</link>
             </member>
         </simplelist>
     </refsection>

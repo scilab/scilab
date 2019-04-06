@@ -69,6 +69,10 @@
                 <tr><th>18</th> <td>uint64</td> <td>[0, 18446744073709551615]</td></tr>
             </table>
         </para>
+        <warning>
+            La conversion de <literal>[]</literal> ne change rien : son type 1 == inttype 0
+            est toujours conservé (type numérique décimal).
+        </warning>
     </refsection>
     <refsection>
         <title>Exemples</title>
