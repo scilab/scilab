@@ -1108,7 +1108,6 @@ systmat
 %st_i_sp
 %st_i_spb
 %st_i_st
-%st_matrix
 %st_n_c
 %st_n_l
 %st_n_mc
@@ -1120,9 +1119,7 @@ systmat
 %st_o_p
 %st_o_s
 %st_p
-%st_size
 %st_string
-%st_t
 %ticks_i_h
 %xls_e
 %xls_p
