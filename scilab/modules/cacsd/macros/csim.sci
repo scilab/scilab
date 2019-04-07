@@ -50,7 +50,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     sltyp=typeof(sl)
     if and(sltyp<>["state-space" "rational" "zpk"]) then
         args=["u","dt","sl","x0","tol"];
-        ierr=execstr("[y,x]=%"+overloadname(sl)+"_csim("+strcat(args(1:rhs),",")+")","errcatch")
+        ierr=execstr("[y,x]=%"+typeof(sl,"overload")+"_csim("+strcat(args(1:rhs),",")+")","errcatch")
         if ierr<>0 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"csim",3))
         end

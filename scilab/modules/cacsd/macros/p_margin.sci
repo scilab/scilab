@@ -16,7 +16,7 @@ function [phm,fr]=p_margin(h)
         error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"g_margin",1));
     end
     if and(typeof(h)<>["state-space","rational","zpk"]) then
-        ierr=execstr("[phm,fr]=%"+overloadname(h)+"_p_margin(h)","errcatch")
+        ierr=execstr("[phm,fr]=%"+typeof(h,"overload")+"_p_margin(h)","errcatch")
         if ierr<>0 then
             error(msprintf(gettext("%s: Wrong type for input argument: Linear dynamical system expected.\n"),"p_margin",1))
         end

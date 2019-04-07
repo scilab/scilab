@@ -29,7 +29,7 @@ function [] = bode_asymp(sl, w_min, w_max)
 
     if and(typeof(sl) <> ["state-space" "rational" "zpk"]) then
         args=["sl", "w_min", "w_max"]
-        ierr=execstr("%"+overloadname(sl)+"_bode_asymp("+strcat(args(1:rhs),",")+")","errcatch")
+        ierr=execstr("%"+typeof(sl,"overload")+"_bode_asymp("+strcat(args(1:rhs),",")+")","errcatch")
         if ierr<>0 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),"bode_asymp",1))
         end

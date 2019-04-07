@@ -13,7 +13,7 @@ function [kk,ol_poles,ol_zeros,cl_poles,AsymptotesOrigin,AsymptotesAngles]=rlocu
     sltyp=typeof(sys)
     if and(sltyp<>["state-space" "rational" "zpk"]) then
         args=["sys","kmax"];
-        ierr=execstr("[kk,ol_poles,ol_zeros,cl_poles,AsymptotesOrigin,AsymptotesAngles]=%"+overloadname(sys)+"_rlocus("+strcat(args(1:rhs),",")+")","errcatch")
+        ierr=execstr("[kk,ol_poles,ol_zeros,cl_poles,AsymptotesOrigin,AsymptotesAngles]=%"+typeof(sys,"overload")+"_rlocus("+strcat(args(1:rhs),",")+")","errcatch")
         if ierr<>0 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"rlocus",1))
         end

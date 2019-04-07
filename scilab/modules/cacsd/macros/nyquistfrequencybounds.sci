@@ -24,7 +24,7 @@ function [fmin,fmax]=nyquistfrequencybounds(H,bounds)
         error(msprintf(msg, fname, 2))
     end
     if and(typeof(H)<>["state-space" "rational" "zpk"]) then
-        ierr = execstr("[fmin,fmax]=%"+overloadname(H)+"_nyquistfrequencybounds(H,bounds)","errcatch")
+        ierr = execstr("[fmin,fmax]=%"+typeof(H,"overload")+"_nyquistfrequencybounds(H,bounds)","errcatch")
         if ierr<>0 then
             msg = _("%s: Wrong type for input argument: Linear dynamical system expected.\n");
             error(msprintf(msg, fname, 1))

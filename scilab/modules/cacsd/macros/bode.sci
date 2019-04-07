@@ -93,7 +93,7 @@ function bode(varargin)
             error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 2, 4))
         end
     else
-        ierr=execstr("%"+overloadname(varargin(1))+"_bode(varargin(:))","errcatch")
+        ierr=execstr("%"+typeof(varargin(1),"overload")+"_bode(varargin(:))","errcatch")
         if ierr<>0 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"),fname,1))
         end

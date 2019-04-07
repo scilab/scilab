@@ -49,7 +49,7 @@ function [nt,dt,rk]=trzeros(Sl)
     end
 
     if typeof(Sl)<>"state-space" then
-        ierr=execstr("[nt,dt,rk]=%"+overloadname(Sl)+"_trzeros(Sl)","errcatch")
+        ierr=execstr("[nt,dt,rk]=%"+typeof(Sl,"overload")+"_trzeros(Sl)","errcatch")
         if ierr<>0 then
             error(msprintf(gettext("%s: Wrong type for input argument: Linear dynamical system expected.\n"),"trzeros",1))
         end

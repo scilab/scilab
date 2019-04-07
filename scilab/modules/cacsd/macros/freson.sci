@@ -18,7 +18,7 @@ function fr = freson(h)
         error(msprintf(msg, "freson", 1));
     end
     if and(typeof(h)<>["state-space","rational","zpk"]) then
-        ierr = execstr("[gm,fr]=%"+overloadname(sys)+"_freson(h)","errcatch")
+        ierr = execstr("[gm,fr]=%"+typeof(sys,"overload")+"_freson(h)","errcatch")
         if ierr<>0 then
             msg = gettext("%s: Wrong type for input argument: Linear dynamical system expected.\n")
             error(msprintf(msg, "freson", 1))

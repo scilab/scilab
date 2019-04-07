@@ -380,6 +380,7 @@ Bug Fixes
 * [#15821](https://bugzilla.scilab.org/15821): `fac3d` and `fac3d1` were still in Scilab 6.0 despite they were tagged obsolete 14 years ago in Scilab 4.1
 * [#15825](https://bugzilla.scilab.org/15825): `gsort` could not sort completely dense matrices of complex numbers.
 * [#15840](https://bugzilla.scilab.org/15840): `grand(1,"prm",m)` yielded an unsqueezed size([size(m) 1]) hypermatrix
+* [#15861](https://bugzilla.scilab.org/15861): The `overloadname` internal macro defined in CACSD was a duplicate of `typeof(,"overload")`. It is removed.
 * [#15874](https://bugzilla.scilab.org/15874): The `scatter3` function name was an unfounded naming exception. It had to be renamed `scatter3d`.
 * [#15934](https://bugzilla.scilab.org/15934): The `^ hat` page wrongly indicated that `^` applied to a rectangular matrix not being a vector is done element-wise.
 * [#15948](https://bugzilla.scilab.org/15948): `xlabel`, `ylabel`, `zlabel` and `title` needed to be upgraded.

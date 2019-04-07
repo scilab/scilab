@@ -109,7 +109,7 @@ function [y,xf] = flts(u, sl, x0)
         y=y(:,1:min(mu,l));
     else
         args = ["u","sl","x0"]
-        ierr = execstr("[y,xf]=%"+overloadname(sl)+"_flts("+strcat(args(1:rhs),",")+")", "errcatch")
+        ierr = execstr("[y,xf]=%"+typeof(sl,"overload")+"_flts("+strcat(args(1:rhs),",")+")", "errcatch")
         if ierr <> 0 then
             msg = _("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n")
             error(msprintf(msg, fname, 2))

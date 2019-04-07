@@ -18,7 +18,7 @@ function [frq,rep,splitf]=repfreq(sys,fmin,fmax,pas)
     //discretization
     if and(typeof(sys)<>[ "rational" "state-space" "zpk"]) then
         args=["sys","fmin","fmax","pas"];
-        ierr=execstr("[frq,rep,splitf]=%"+overloadname(sys)+"_repfreq("+strcat(args(1:rhs),",")+")","errcatch")
+        ierr=execstr("[frq,rep,splitf]=%"+typeof(sys,"overload")+"_repfreq("+strcat(args(1:rhs),",")+")","errcatch")
         if ierr<>0 then
             msg = gettext("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n")
             error(msprintf(msg, "repfreq", 1))

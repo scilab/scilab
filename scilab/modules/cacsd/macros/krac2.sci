@@ -18,7 +18,7 @@ function [kp,s]=krac2(sys)
     // K'= 0 --> den'*num-den*num'=0
     //  http://www.scribd.com/doc/21374148/An-Introduction-to-Control-Systems
     if and(typeof(sys)<>["state-space" "rational" "zpk"]) then
-        ierr=execstr("[kp,s]=%"+overloadname(sys)+"_krac2(sys)","errcatch")
+        ierr=execstr("[kp,s]=%"+typeof(sys,"overload")+"_krac2(sys)","errcatch")
         if ierr<>0 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"krac2",1))
         end

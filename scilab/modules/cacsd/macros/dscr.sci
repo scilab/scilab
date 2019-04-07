@@ -14,7 +14,7 @@ function [f,r]=dscr(sys,dt,m)
     [lhs,rhs]=argn(0);
     if and(typeof(sys) <> ["state-space" "rational" "zpk"]) then
         args=["sys","dt","m"]
-        ierr=execstr("%"+overloadname(sys)+"_dscr("+strcat(args(1:rhs),",")+")","errcatch")
+        ierr=execstr("%"+typeof(sys,"overload")+"_dscr("+strcat(args(1:rhs),",")+")","errcatch")
         if ierr<>0 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"),"dscr",1))
         end

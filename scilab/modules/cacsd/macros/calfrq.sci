@@ -24,7 +24,7 @@ function [frq, bnds, splitf] = calfrq(h, fmin, fmax)
     // ------------
     if and(typeof(h) <> ["state-space" "rational" "zpk"]) then
         args=["h", "fmin", "fmax"]
-        ierr=execstr("%"+overloadname(h)+"_calfrq("+strcat(args(1:rhs),",")+")","errcatch")
+        ierr=execstr("%"+typeof(h,"overload")+"_calfrq("+strcat(args(1:rhs),",")+")","errcatch")
         if ierr<>0 then
             msg = _("%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n")
             error(msprintf(msg, "calfrq", 1))

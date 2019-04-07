@@ -78,7 +78,7 @@ function [wn,z,p] = damp(R,dt1)
         p=R;
         toBeOrdered=%f
     else
-        ierr=execstr("[wn,z,p]=%"+overloadname(R)+"_damp(R)","errcatch")
+        ierr=execstr("[wn,z,p]=%"+typeof(R,"overload")+"_damp(R)","errcatch")
         if ierr<>0 then
             error(msprintf(_("%s: Wrong type for input argument #%d: Array of floats, Polynomial or linear dynamical system expected.\n"),..
             "damp",1))
