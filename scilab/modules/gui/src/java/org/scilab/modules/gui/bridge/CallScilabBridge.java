@@ -672,7 +672,7 @@ public class CallScilabBridge {
      * Open a Browser on Mailing List info
      */
     public static void openMailingList() {
-        WebBrowser.openUrl("http://www.scilab.org/communities/developer_zone/tools/mailing_list");
+        WebBrowser.openUrl("https://www.scilab.org/about/community/mailing-lists");
     }
 
     /**
