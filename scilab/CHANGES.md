@@ -207,12 +207,17 @@ Bug Fixes
 * [#11363](http://bugzilla.scilab.org/show_bug.cgi?id=11363): show_window() did not raise the current graphics window.
 * [#12520](http://bugzilla.scilab.org/show_bug.cgi?id=12520): Vriable browser did not display the size of the variables.
 * [#12534](http://bugzilla.scilab.org/show_bug.cgi?id=12534): Variable browser did not display the size of the variables.
+<<<<<<< HEAD
 * [#13766](http://bugzilla.scilab.org/show_bug.cgi?id=13766): Minimal values for `.figure_size` were not documented.
 * [#14498](http://bugzilla.scilab.org/show_bug.cgi?id=14498): `size([],3)` returned 1 instead of 0.
 * [#14501](http://bugzilla.scilab.org/show_bug.cgi?id=14501): `strsubst` crashed on consecutive occurrences.
 * [#14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557): `csim` failed when the system has no state.
 * [#14498](http://bugzilla.scilab.org/show_bug.cgi?id=14498): `size([],3)` returned 1 instead of 0.
 * [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr` is 40x slower with 6.0.0 wrt 5.5.2
+=======
+* [#14015](http://bugzilla.scilab.org/show_bug.cgi?id=14015): Nan terms added to a polynomial were ignored.
+* [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
+>>>>>>> 18f023abe88... * Bugs 14015 15068 fixed: Non-regression tests added
 * [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
 * [#14606](http://bugzilla.scilab.org/show_bug.cgi?id=14606): Memory used by variables returned by `[names,mem]=who()` was always zero.
 * [#14610](http://bugzilla.scilab.org/show_bug.cgi?id=14610): `x = ric_desc(H,E)` always yielded an error. [x1,x2,residual] = ric_desc(..) returned a wrong `residual` value.
@@ -224,6 +229,7 @@ Bug Fixes
 * [#14863](http://bugzilla.scilab.org/show_bug.cgi?id=14863): In Xcos, the default ending time was unhandily high (100000), reduced it to 30.
 * [#14982](http://bugzilla.scilab.org/show_bug.cgi?id=14982): `msprintf` segmentation fault was caught due to wrong size
 * [#14985](http://bugzilla.scilab.org/show_bug.cgi?id=14985): scilab crashed if a .bin file was not found.
+* [#15068](http://bugzilla.scilab.org/show_bug.cgi?id=15068): `size(sum(ones(2,3,4,5),4))` was [4 2 3] instead of [2 3 4].
 * [#15087](http://bugzilla.scilab.org/show_bug.cgi?id=15087): Deleting rows or columns from a matrix is slow (regression)
 * [#15248](http://bugzilla.scilab.org/show_bug.cgi?id=15248): `lsq`was leaking memory.
 * [#15269](http://bugzilla.scilab.org/show_bug.cgi?id=15269): `xgetech` was poor and stiff compared to any combination of `gca()` properties `.axes_bounds`, `.data_bounds`, `.log_flags`, and `.margins`. It is removed.
