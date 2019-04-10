@@ -1,8 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// Copyright (C) 2016 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2016, 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,7 +11,6 @@
 // along with this program.
 
 function r = isinf(x)
-
     rhs = argn(2);
 
     if rhs <> 1 then
@@ -23,12 +21,22 @@ function r = isinf(x)
     if x==[] then
         r = []
     else
-        if isreal(x)
-            r = abs(x)==%inf;
+        select typeof(x)
+        case "polynomial"
+            // polynomials : http://bugzilla.scilab.org/10078
+            r = matrix(or(isinf(coeff(x(:))),"c"), size(x))
+        case "rational"
+            msg = _("%s: Argument #%d: %s not supported.\n")
+            error(msprintf(msg, "isinf", 1, "rationals"))
+            // Possible implementation: a rational is inf if at least
+            // one coefficient of its numerator is infinite
         else
-            // workaround of http://bugzilla.scilab.org/14062
-            r = abs(real(x))==%inf | abs(imag(x))==%inf
+            if isreal(x)
+                r = abs(x)==%inf;
+            else
+                // workaround of http://bugzilla.scilab.org/14062
+                r = abs(real(x))==%inf | abs(imag(x))==%inf
+            end
         end
     end
-
 endfunction

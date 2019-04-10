@@ -2,9 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2016 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2016 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -32,14 +31,17 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>matrice de nombres décimaux ou complexes.
+                    <para>
+                        matrice de nombres décimaux ou complexes, ou de polynômes à coefficients
+                        réels ou complexes.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>r</term>
                 <listitem>
-                  <para>matrice de booléens, de même taille que <varname>x</varname>
+                    <para>
+                        matrice de booléens, de même taille que <varname>x</varname>
                     </para>
                 </listitem>
             </varlistentry>
@@ -48,12 +50,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>isinf(x)</literal> renvoie une matrice <literal>r</literal> dont chaque
+            Pour <literal>isinf(x)</literal> renvoie une matrice <literal>r</literal> dont chaque
             élément <literal>r(i)</literal> vaut <literal>%T</literal> (vrai) si et seulement si
             <literal>x(i)</literal> est infini.
-       </para>
-       <para>Pour <literal>x</literal> complexe, <literal>x(i)</literal> est considéré infini
-         dés que sa partie réelle ou complexe ou les deux sont infinies.
+        </para>
+        <para>
+            Pour <literal>x</literal> complexe, <literal>x(i)</literal> est considéré infini
+            dés que sa partie réelle ou complexe ou les deux sont infinies.
         </para>
     </refsection>
     <refsection>
@@ -62,12 +65,70 @@
 [i, inf, nan] = (%i, %inf, %nan);
 isinf([-1  0.01 -inf  inf  nan])
 isinf([2+i, -10-inf, inf+i])
-isinf([nan-i, inf-nan*i, nan+i*inf])
+isinf([nan-i, nan+i*inf])
+isinf(inf-nan*i)
  ]]></programlisting>
+        <screen><![CDATA[
+--> isinf([-1  0.01 -inf  inf  nan])
+ ans  =
+  F F T T F
+
+--> isinf([2+i, -10-inf, inf+i])
+ ans  =
+  F T T
+
+--> isinf([nan-i, nan+i*inf])
+ ans  =
+  F T
+
+--> isinf(inf-nan*i)
+ ans  =
+  F
+]]></screen>
+        Note : <literal>%inf-%nan*%i</literal> est évalué comme
+        <literal>%inf - %nan*complex(0,1) == %inf - complex(%nan*0, %nan*1) == %inf - complex(%nan, %nan)
+            == complex(%inf-%nan, -%nan) == complex(%nan, %nan)
+        </literal>
+        ,où Inf est effacé par Nan et
+        n'apparait plus.
+        <para/>
+        <para>
+            Avec des polynômes :
+        </para>
+        <programlisting role="example"><![CDATA[
+p = poly([%nan -2 0 3],"x","coeff")
+q = poly([0 %inf %i],"x","coeff")
+r = poly([%nan %inf*%i 1],"x","coeff")
+isinf([p q r])
+ ]]></programlisting>
+        <screen><![CDATA[
+--> p = poly([%nan -2 0 3],"x","coeff")
+ p  =
+
+  Nan -2x +3x³
+
+--> q = poly([0 %inf %i],"x","coeff")
+ q  =
+
+  Infx +ix²
+
+--> r = poly([%nan %inf*%i 1],"x","coeff")
+ r  =
+
+  Nan -(Nan-Infi)x +x²
+
+--> isinf([p q r])
+ ans  =
+
+  F T F
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="percentinf">percentinf</link>
+            </member>
             <member>
                 <link linkend="isnan">isnan</link>
             </member>
@@ -81,5 +142,16 @@ isinf([nan-i, inf-nan*i, nan+i*inf])
                 <link linkend="type">type</link>
             </member>
         </simplelist>
+        <refsection role="history">
+            <title>Historique</title>
+            <revhistory>
+                <revision>
+                    <revnumber>6.1.0</revnumber>
+                    <revdescription>
+                        Extension aux polynômes.
+                    </revdescription>
+                </revision>
+            </revhistory>
+        </refsection>
     </refsection>
 </refentry>

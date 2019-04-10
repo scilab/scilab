@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2016 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="isinf" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="isinf" xml:lang="ru">
     <refnamediv>
         <refname>isinf</refname>
         <refpurpose>проверка на бесконечные элементы</refpurpose>
@@ -28,7 +31,10 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>матрица или вектор вещественных или комплексных значений</para>
+                    <para>
+                        матрица или вектор вещественных или комплексных значений
+                        или полиномов с вещественными или комплексными коэффициентами.
+                    </para>
                 </listitem>
                 <term>r</term>
                 <listitem>
@@ -40,15 +46,20 @@
     <refsection>
         <title>Описание</title>
         <para>
-            <literal>isinf(x)</literal> returns a matrix <varname>r</varname>
-            of booleans such that, for each element <varname>x(i)</varname>,
-            <varname>r(i)</varname> is set to <literal>%T</literal> as soon as
-            <varname>x(i)</varname> is infinite.
+            <emphasis>
+                <varname>x</varname> состоит из вещественных или комплексных чисел:
+            </emphasis>
+            <literal>r = isinf(x)</literal> возвращает матрицу <varname>r</varname>
+            логических значений таких, что <literal>r(i)</literal> равно <literal>%T</literal>,
+            если <literal>abs(x(i))</literal> равно бесконечности и <literal>%F</literal> в ином случае.
         </para>
         <para>
-            When <literal>x</literal> is complex-encoded, <literal>x(i)</literal>
-            is considered infinite as soon as its real or imaginary or both parts
-            are infinite.
+            <emphasis>
+                <varname>x</varname> состоит из полиномов с вещественными или комплексными коэффициентами:
+            </emphasis>
+            Затем после <literal>r = isinf(x)</literal>, <literal>r(i)</literal> равен <literal>%T</literal>,
+            если по крайней мере один из коэффициентов полинома <literal>x(i)</literal> равен бесконечности и
+            <literal>%F</literal> в ином случае.
         </para>
     </refsection>
     <refsection>
@@ -57,12 +68,70 @@
 [i, inf, nan] = (%i, %inf, %nan);
 isinf([-1  0.01 -inf  inf  nan])
 isinf([2+i, -10-inf, inf+i])
-isinf([nan-i, inf-nan*i, nan+i*inf])
+isinf([nan-i, nan+i*inf])
+isinf(inf-nan*i)
  ]]></programlisting>
+        <screen><![CDATA[
+--> isinf([-1  0.01 -inf  inf  nan])
+ ans  =
+  F F T T F
+
+--> isinf([2+i, -10-inf, inf+i])
+ ans  =
+  F T T
+
+--> isinf([nan-i, nan+i*inf])
+ ans  =
+  F T
+
+--> isinf(inf-nan*i)
+ ans  =
+  F
+]]></screen>
+        Пожалуйста, обратите внимание, что <literal>%inf-%nan*%i</literal> вычисляется как
+        <literal>%inf - %nan*complex(0,1) == %inf - complex(%nan*0, %nan*1) == %inf - complex(%nan, %nan)
+            == complex(%inf-%nan, -%nan) == complex(%nan, %nan)
+        </literal>
+        ,где Inf съеден значениям Nan и
+        больше не появляется.
+        <para/>
+        <para>
+            С полиномами:
+        </para>
+        <programlisting role="example"><![CDATA[
+p = poly([%nan -2 0 3],"x","coeff")
+q = poly([0 %inf %i],"x","coeff")
+r = poly([%nan %inf*%i 1],"x","coeff")
+isinf([p q r])
+ ]]></programlisting>
+        <screen><![CDATA[
+--> p = poly([%nan -2 0 3],"x","coeff")
+ p  =
+
+  Nan -2x +3x³
+
+--> q = poly([0 %inf %i],"x","coeff")
+ q  =
+
+  Infx +ix²
+
+--> r = poly([%nan %inf*%i 1],"x","coeff")
+ r  =
+
+  Nan -(Nan-Infi)x +x²
+
+--> isinf([p q r])
+ ans  =
+
+  F T F
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="percentinf">percentinf</link>
+            </member>
             <member>
                 <link linkend="isnan">isnan</link>
             </member>
@@ -76,5 +145,16 @@ isinf([nan-i, inf-nan*i, nan+i*inf])
                 <link linkend="type">type</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Расширение до полиномов.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

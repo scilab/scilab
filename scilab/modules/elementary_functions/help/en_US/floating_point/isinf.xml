@@ -2,9 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2016 - Samuel GOUGEON
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2016 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -34,7 +33,9 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>matrix of real or complex numbers
+                    <para>
+                        matrix of real or complex numbers, or of polynomials with real or complex
+                        coefficients.
                     </para>
                 </listitem>
             </varlistentry>
@@ -42,7 +43,7 @@
                 <term>r</term>
                 <listitem>
                     <para>
-                        matrix of booleans of the same size as <varname>x</varname>
+                        matrix of booleans of the same size as <varname>x</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,15 +52,20 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>isinf(x)</literal> returns the matrix <varname>r</varname>
-            of booleans such that, for each element <varname>x(i)</varname>,
-            <varname>r(i)</varname> is set to <literal>%T</literal> if and only if
-            <varname>x(i)</varname> is infinite.
+            <emphasis>
+                <varname>x</varname> are real or complex numbers:
+            </emphasis>
+            <literal>r = isinf(x)</literal> returns the matrix <varname>r</varname>
+            of booleans such that <literal>r(i)</literal> is <literal>%T</literal>
+            if <literal>abs(x(i))</literal> is infinite, and <literal>%F</literal> otherwise.
         </para>
         <para>
-            When <literal>x</literal> is complex-encoded, <literal>x(i)</literal>
-            is considered infinite if its real part or its imaginary part (or both)
-            are infinite.
+            <emphasis>
+                <varname>x</varname> are polynomials with real or complex coefficients:
+            </emphasis>
+            Then after <literal>r = isinf(x)</literal>, <literal>r(i)</literal> is <literal>%T</literal>
+            if at least one of the <literal>x(i)</literal> coefficients is infinite,
+            and <literal>%F</literal> otherwise.
         </para>
     </refsection>
     <refsection>
@@ -68,12 +74,70 @@
 [i, inf, nan] = (%i, %inf, %nan);
 isinf([-1  0.01 -inf  inf  nan])
 isinf([2+i, -10-inf, inf+i])
-isinf([nan-i, inf-nan*i, nan+i*inf])
+isinf([nan-i, nan+i*inf])
+isinf(inf-nan*i)
  ]]></programlisting>
+        <screen><![CDATA[
+--> isinf([-1  0.01 -inf  inf  nan])
+ ans  =
+  F F T T F
+
+--> isinf([2+i, -10-inf, inf+i])
+ ans  =
+  F T T
+
+--> isinf([nan-i, nan+i*inf])
+ ans  =
+  F T
+
+--> isinf(inf-nan*i)
+ ans  =
+  F
+]]></screen>
+        Please note that <literal>%inf-%nan*%i</literal> is computed as
+        <literal>%inf - %nan*complex(0,1) == %inf - complex(%nan*0, %nan*1) == %inf - complex(%nan, %nan)
+            == complex(%inf-%nan, -%nan) == complex(%nan, %nan)
+        </literal>
+        ,where Inf is eaten by Nan
+        and no longer appears.
+        <para/>
+        <para>
+            With polynomials :
+        </para>
+        <programlisting role="example"><![CDATA[
+p = poly([%nan -2 0 3],"x","coeff")
+q = poly([0 %inf %i],"x","coeff")
+r = poly([%nan %inf*%i 1],"x","coeff")
+isinf([p q r])
+ ]]></programlisting>
+        <screen><![CDATA[
+--> p = poly([%nan -2 0 3],"x","coeff")
+ p  =
+
+  Nan -2x +3x³
+
+--> q = poly([0 %inf %i],"x","coeff")
+ q  =
+
+  Infx +ix²
+
+--> r = poly([%nan %inf*%i 1],"x","coeff")
+ r  =
+
+  Nan -(Nan-Infi)x +x²
+
+--> isinf([p q r])
+ ans  =
+
+  F T F
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="percentinf">percentinf</link>
+            </member>
             <member>
                 <link linkend="isnan">isnan</link>
             </member>
@@ -87,5 +151,16 @@ isinf([nan-i, inf-nan*i, nan+i*inf])
                 <link linkend="type">type</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Extension to polynomials.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
