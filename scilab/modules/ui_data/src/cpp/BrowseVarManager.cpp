@@ -148,9 +148,14 @@ void SetBrowseVarData()
 
         // type with Scilab < 6 compatibility (structs and cells have type 17)
         err = getVarType(NULL, (int*)pIT, &piAllVariableTypes[i]);
-        if (!err.iErr)
+        if (err.iErr)
         {
-            err = getVarDimension(NULL, (int*)pIT, &nbRows, &nbCols);
+            return;
+        }
+        err = getVarDimension(NULL, (int*)pIT, &nbRows, &nbCols);
+        if (err.iErr)
+        {
+            return;
         }
 
         if (pIT->isArrayOf() || pIT->isSparse())
@@ -158,10 +163,10 @@ void SetBrowseVarData()
             int nbRows = pIT->getAs<types::GenericType>()->getRows();
             int nbCols = pIT->getAs<types::GenericType>()->getCols();
             piAllVariableNbRows[i] = nbRows;
-            piAllVariableNbCols[i] = nbCols;                
-            if (nbRows*nbCols == 0)
+            piAllVariableNbCols[i] = nbCols;
+            if (nbRows * nbCols == 0)
             {
-                pstAllVariableSizes[i] = pIT->isCell() ? os_strdup(EMPTY_CELL) : os_strdup(EMPTY_MATRIX);                
+                pstAllVariableSizes[i] = pIT->isCell() ? os_strdup(EMPTY_CELL) : os_strdup(EMPTY_MATRIX);
             }
             else if (pIT->isArrayOf())
             {
@@ -187,6 +192,10 @@ void SetBrowseVarData()
             // Integer case
             int iPrec       = 0;
             err = getMatrixOfIntegerPrecision(NULL, (int*)pIT, &iPrec);
+            if (err.iErr)
+            {
+                return;
+            }
             switch (iPrec)
             {
                 case SCI_INT8:
@@ -240,10 +249,10 @@ void SetBrowseVarData()
         {
             piAllVariableFromUser[i] = FALSE;
         }
-        
+
         int bytesWithoutOverHead;
         pIT->getMemory(&bytesWithoutOverHead, &piAllVariableBytes[i]);
-        
+
         ++i;
     }
 
@@ -317,7 +326,8 @@ void SetBrowseVarData()
 /*--------------------------------------------------------------------------*/
 static std::set<string> createScilabDefaultVariablesSet()
 {
-    string arr[] = {
+    string arr[] =
+    {
         "home",
         "PWD",
         "%tk",
@@ -405,7 +415,8 @@ static char *valueToDisplay(types::InternalType* pIT)
     types::GenericType *pGT = pIT->getAs<types::GenericType>();
     int *piDims = pGT->getDimsArray();
 
-    if (pIT->isDouble() && pGT->getDims() < 3 && pGT->getSize() <= 4) {
+    if (pIT->isDouble() && pGT->getDims() < 3 && pGT->getSize() <= 4)
+    {
         // 4 is the dimension max to which display the content
         types::Double* pD = pIT->getAs<types::Double>();
         // Small double value, display it

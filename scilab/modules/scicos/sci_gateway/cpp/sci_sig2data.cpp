@@ -104,26 +104,31 @@ types::Function::ReturnValue sci_sig2data(types::typed_list &in, int _iRetCount,
         Scierror(999, _("%s: Wrong size for input argument #%d : A single struct expected.\n"), funname.data(), 1);
         return types::Function::Error;
     }
+
     auto fields = B->get(0)->getFields();
     if (fields.size() != 2)
     {
         Scierror(999, _("%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"), funname.data(), 1, "values", "time");
         return types::Function::Error;
     }
-    if (fields.find(L"values") == fields.end())
+
+    int valuesIdx = B->get(0)->getFieldIndex(L"values");
+    if (valuesIdx < 0)
     {
         Scierror(999, _("%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"), funname.data(), 1, "values", "time");
         return types::Function::Error;
     }
-    if (fields.find(L"time") == fields.end())
+
+    int timeIdx = B->get(0)->getFieldIndex(L"time");
+    if (timeIdx < 0)
     {
         Scierror(999, _("%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"), funname.data(), 1, "values", "time");
         return types::Function::Error;
     }
 
     // Values
-    types::InternalType* A = B->get(0)->getData()[B->get(0)->getFieldIndex(L"values")];
-    types::InternalType* timeValues = B->get(0)->getData()[B->get(0)->getFieldIndex(L"time")];
+    types::InternalType* A = B->get(0)->getData()[valuesIdx];
+    types::InternalType* timeValues = B->get(0)->getData()[timeIdx];
 
     out.push_back(A);
     if (_iRetCount == 2)
