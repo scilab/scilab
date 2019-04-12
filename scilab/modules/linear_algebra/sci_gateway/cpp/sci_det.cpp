@@ -14,26 +14,27 @@
 */
 /*--------------------------------------------------------------------------*/
 
-#include "linear_algebra_gw.hxx"
-#include "function.hxx"
 #include "double.hxx"
+#include "function.hxx"
+#include "linear_algebra_gw.hxx"
 #include "overload.hxx"
 
 extern "C"
 {
-#include "localization.h"
 #include "Scierror.h"
 #include "det.h"
 #include "doublecomplex.h"
+#include "localization.h"
 }
 /*--------------------------------------------------------------------------*/
 
-types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_det(types::typed_list& in, int _iRetCount, types::typed_list& out)
 {
-    types::Double* pDbl             = NULL;
-    types::Double* pDblMantissa     = NULL;
-    types::Double* pDblExponent     = NULL;
-    double* pData                   = NULL;
+    types::Double* pDbl = NULL;
+    types::Double* pDblE = NULL;
+    types::Double* pDblMantissa = NULL;
+    types::Double* pDblExponent = NULL;
+    double* pData = NULL;
 
     if (in.size() != 1)
     {
@@ -57,7 +58,7 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
 
     if (pDbl->isComplex())
     {
-        pData = (double *)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
+        pData = (double*)oGetDoubleComplexFromPointer(pDbl->getReal(), pDbl->getImg(), pDbl->getSize());
         if (!pData)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), "det");
@@ -75,7 +76,13 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
         return types::Function::Error;
     }
 
-    if ((pDbl->getRows() == -1)) // manage eye case
+    if (pDbl->isEmpty())
+    {
+        out.push_back(new types::Double(1));
+        return types::Function::OK;
+    }
+
+    if (pDbl->getRows() == -1) // manage eye case
     {
         Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "det", 1);
         return types::Function::Error;
@@ -94,7 +101,7 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
     {
         Scierror(999, _("%s: LAPACK error n°%d.\n"), "det", iRet);
         pDblMantissa->killMe();
-        if( pDblExponent )
+        if (pDblExponent)
         {
             pDblExponent->killMe();
         }
@@ -122,4 +129,3 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
-
