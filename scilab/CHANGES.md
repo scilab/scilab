@@ -391,6 +391,7 @@ Bug Fixes
 * [#16015](https://bugzilla.scilab.org/16015): `intg(a,b,f)` called f(x) with x outside [a,b].
 * [#16019](https://bugzilla.scilab.org/16019): `polarplot(x,Z)` yielded an error when x is a vector and Z a matrix.
 * [#16021](https://bugzilla.scilab.org/16021): `tand([-90 90])` answered [Nan Nan] instead of [-Inf, Inf]. `cotd([-90 90])` answered [Nan Nan] instead of [0 0]. `1 ./cosd([-90 90])` answered [Inf -Inf] instead of [Inf Inf].
+* [#16064](https://bugzilla.scilab.org/16064): `tbx_make(Dir,'localization')` did not update `.mo` files from `.po`.
 * [#16026](https://bugzilla.scilab.org/16026): For `atanh`, neither the documentation pages nor the `m2sci` converter were up to date.
 * [#16028](https://bugzilla.scilab.org/16028): The length of `intdec(intdec(x, r), 1/r)` was most often different from length(x).
 * [#16046](https://bugzilla.scilab.org/16046): After `w=ssrand(2,3,4)`, `[]+w`, `[]-w`, `w+[]` and `w-[]` yielded an "operation +/- []" warning.
