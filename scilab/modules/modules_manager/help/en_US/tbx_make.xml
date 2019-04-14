@@ -2,9 +2,9 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -41,7 +41,7 @@
             <varlistentry>
                 <term>tbx_path</term>
                 <listitem>
-                    <para>a single string; path to the toolbox root directory.</para>
+                    <para>a single string: absolute or relative path to the toolbox root directory.</para>
                     <para>Default path is the current working directory.</para>
                 </listitem>
             </varlistentry>
@@ -49,11 +49,14 @@
                 <term>sections</term>
                 <listitem>
                     <para>
-                        a matrix of string; list of the toolbox sections to be buit, amongst
+                        matrix of strings: Names of the toolbox sections to be built, amongst
                         <literal>["macros", "help", "src", "sci_gateway", "localization"]</literal>.
+                        <literal>"*"</literal> can be used to force building all available
+                        sections instead of running the builder script when it exists.
                     </para>
                     <para>
-                        Default or <literal>[]</literal> will select all possible sections.
+                        Default or <literal>[]</literal> will select all available sections
+                        in case of missing builder script.
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,23 +66,35 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            The short name (id) <literal>tbx_name</literal> of the toolbox is retrieved as the basename of the
-            <literal>etc/*.start</literal> file. This file is mandatory, even if it is empty.
+            The short name (id) <literal>tbx_name</literal> of the toolbox is retrieved as the
+            basename of the <literal>etc/*.start</literal> file.
+            This file is mandatory, even if it is empty.
         </para>
         <para>
             <varname>tbx_make</varname> builds the toolbox pointed to by its root directory
             <varname>tbx_path</varname>, by executing an explicit or default builder script.
         </para>
         <para>
-            <varname>tbx_path</varname> is scanned for a script named like <literal>build*.sce</literal>.
+
         </para>
         <para>
-            If such a file is found and no specific <varname>sections</varname> are requested to
-            build, <varname>tbx_make</varname> executes the available builder script, and that's it.
+            If some <varname>sections</varname> are explicitly required to build,
+            <literal>tbx_make(..)</literal> runs a default builder for each of them.
         </para>
         <para>
-            Otherwise, <varname>tbx_make</varname> builds the toolbox using directory naming
-            conventions. The sections of the toolbox are processed according to the following conventions:
+            Otherwise, <literal>tbx_path</literal> is scanned for a script named like
+            <literal>build*.sce</literal>.
+            <itemizedlist>
+                <listitem>
+                    If such a file is found, <literal>tbx_make</literal> executes it, and that's it.
+                </listitem>
+                <listitem>
+                    Otherwise, all available toolbox sections are built with the default builders.
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            Default builders process the sections of the toolbox according to the following conventions:
         </para>
         <para>
             <informaltable border="1" valign="top">
@@ -88,9 +103,14 @@
                         <literal>macros/</literal>
                     </th>
                     <td>
-                        All macros files <literal>*.sci</literal> available in the <literal>~/macros/*</literal>
-                        directory are compiled and gathered into a library named <term>tbx_name</term>lib
-                        (see <link linkend="tbx_builder_macros">tbx_builder_macros</link>)
+                        All macros files <literal>*.sci</literal> available in the
+                        <literal>~/macros/*</literal> directory are compiled and gathered into a
+                        library named <literal><emphasis role="bold">tbx_name</emphasis>lib</literal>
+                        (Please see <link linkend="tbx_builder_macros">tbx_builder_macros</link>).
+                        <para/>
+                        Unless there is a custom macros builder script in <literal>~/macros/*</literal>,
+                        no automatical recursive processing aiming to build sublibraries in
+                        subdirectories is performed.
                     </td>
                 </tr>
                 <tr>
@@ -99,7 +119,7 @@
                     </th>
                     <td>
                         Functional external code in src is compiled.
-                        (see <link linkend="tbx_builder_src">tbx_builder_src</link>)
+                        (Please see <link linkend="tbx_builder_src">tbx_builder_src</link>)
                     </td>
                 </tr>
                 <tr>
@@ -108,15 +128,7 @@
                     </th>
                     <td>
                         gateway functions in sci_gateway are compiled.
-                        (see <link linkend="tbx_builder_gateway">tbx_builder_gateway</link>)
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <literal>help/</literal>
-                    </th>
-                    <td>
-                        help is generated (see <link linkend="tbx_builder_help">tbx_builder_help</link>)
+                        (Please see <link linkend="tbx_builder_gateway">tbx_builder_gateway</link>)
                     </td>
                 </tr>
                 <tr>
@@ -124,18 +136,26 @@
                         <literal>localization</literal>
                     </th>
                     <td>
-                        Localization files are processed
-                        (see <link linkend="tbx_build_localization">tbx_build_localization</link>)
+                        Localization files are built and/or postprocessed
+                        (Please see <link linkend="tbx_build_localization">tbx_build_localization</link>)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <literal>help/</literal>
+                    </th>
+                    <td>
+                        Help pages are generated from XML source files stored in
+                        <literal>~/help/*</literal> available languages subdirectories
+                        (en_US, fr_FR, etc)
+                        (Please see <link linkend="tbx_builder_help">tbx_builder_help</link>).
                     </td>
                 </tr>
             </informaltable>
         </para>
         <para>
-            This default behaviour mimics the <literal>builder.sce</literal> script from the toolbox_skeleton
-            provided with Scilab.
-        </para>
-        <para>
-           Only the selected <varname>sections</varname> are built.
+            This default behaviour mimics the <literal>builder.sce</literal> script provided in the
+            toolbox_skeleton template module available in <literal>SCI/contrib</literal>.
         </para>
         <para>
             <literal>loader.sce</literal>, <literal>unloader.sce</literal> and <literal>cleaner.sce</literal>
@@ -145,9 +165,11 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="no-scilab-exec"><![CDATA[
-// Builds the toolbox mytoolbox at current location
-tbx_make() // build the toolbox in the current working directory
-tbx_make(".", "macros") build the macros in "./macros/" from the current directory.
+// The working directory is set at the toolbox root:
+tbx_make()          // builds the toolbox with the toolbox builder (if any),
+                    //  or for all sections with default builders otherwise.
+tbx_make .  macros  // builds only its macros section from files in ./macros/
+tbx_make .  *       // builds all available sections, without using the toolbox builder
 
 // Builds the toolbox located in path/to/mytoolbox directory
 tbx_make("path/to/mytoolbox")

@@ -1,8 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - Scilab Enterprises - Pierre-Aimé AGNEL
-// Copyright (C) 2016, 2018 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2016, 2018, 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -51,7 +50,7 @@ function [] = tbx_make(tbx_path, sections)
         tbx_path = pwd()
     end
     noSelectedSections = ~isdef("sections","l") || sections==[]
-    if noSelectedSections then
+    if noSelectedSections | and(sections=="*") then
         sections = ["macros", "help", "src", "sci_gateway", "localization"]
     end
 
@@ -74,7 +73,7 @@ function [] = tbx_make(tbx_path, sections)
 
     // Default is to exec builder (in current directory or given tbx_path)
     buildscript = findfiles(tbx_path, "build*.sce");
-    if ~isempty(buildscript) & noSelectedSections 
+    if ~isempty(buildscript) & noSelectedSections
         exec(tbx_path + "/" + buildscript);
         return
     end
