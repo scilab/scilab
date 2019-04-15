@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="preferences" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="preferences" xml:lang="ja">
     <refnamediv>
         <refname>preferences</refname>
         <refpurpose>Scilab設定ウィンドウを開く</refpurpose>
@@ -29,19 +32,106 @@
         <para>
             Scilab設定ウィンドウを開きます.
         </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../images/preferences_gui_en_US.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
 preferences()
+
+// Targeting a chosen section:
+jdeff org.scilab.modules.preferences.XConfigManager openPreferences prefs; // once for all
+prefs general/shortcuts
+prefs scinotes/display
  ]]></programlisting>
+      <para>
+        <emphasis role="bold">Edit your main user's preferences file</emphasis>
+        (you should not change its content by hand):
+      </para>
+        <programlisting role="example"><![CDATA[
+scinotes SCIHOME/XConfiguration.xml readonly
+ ]]></programlisting>
+    <para/>
+    <para>
+        <emphasis role="bold">How to get some configuration values:</emphasis>
+        Example : Retrieve from the main configuration file the status of the ask-for-confirmations:
+    </para>
+        <programlisting role="example"><![CDATA[
+xmlGetValues("//general/confirmation-dialogs/body/tools/tool",["id" "state"])
+     ]]></programlisting>
+    <screen><![CDATA[
+--> xmlGetValues("//general/confirmation-dialogs/body/tools/tool",["id" "state"])
+ ans  =
+!console-exit         unchecked  !
+!delete-history-item  unchecked  !
+!console-clear        unchecked  !
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="scinotes">scinotes</link>
+                <link linkend="xmlGetValues">xmlGetValues</link>
+            </member>
+            <member>
+                <link linkend="ieee">ieee</link>
+            </member>
+            <member>
+                <link linkend="format">format</link>
+            </member>
+            <member>
+                <link linkend="lines">lines</link>
+            </member>
+            <member>
+                <link linkend="mode">mode</link>
+            </member>
+            <member>
+                <link linkend="funcprot">funcprot</link>
+            </member>
+            <member>
+                <link linkend="setdefaultlanguage">setdefaultlanguage</link>
+            </member>
+            <member>
+                <link linkend="setlookandfeel">setlookandfeel</link>
+            </member>
+            <member>
+                <link linkend="printsetupbox">printsetupbox</link>
+            </member>
+            <member>
+                <link linkend="recursionlimit">recursionlimit</link>
+            </member>
+            <member>
+                <link linkend="odeoptions">odeoptions</link>
+            </member>
+            <member>
+                <link linkend="csvDefault">csvDefault</link>
+            </member>
+            <member>
+                <link linkend="xlfont">xlfont</link>
+            </member>
+            <member>
+                <link linkend="startup">startup</link>
+            </member>
+            <member>
+                <link linkend="atomsGetConfig">atomsGetConfig</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>
+                    Function introduced
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

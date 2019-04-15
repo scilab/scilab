@@ -16,21 +16,21 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-          xmlns:scilab="http://www.scilab.org" xml:id="preferences" xml:lang="en">
+          xmlns:scilab="http://www.scilab.org" xml:id="preferences" xml:lang="ru">
     <refnamediv>
         <refname>preferences</refname>
-        <refpurpose>Open the Scilab Preferences window</refpurpose>
+        <refpurpose>Открывает окно настроек Scilab'а</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Синтаксис</title>
         <synopsis>
             preferences()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            Opens the Scilab Preferences window.
+            Открывает окно настроек Scilab'а.
         </para>
         <para>
             <inlinemediaobject>
@@ -41,26 +41,26 @@
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 preferences()
 
-// Targeting a chosen section:
-jdeff org.scilab.modules.preferences.XConfigManager openPreferences prefs; // once for all
+// Назначение выбранного раздела:
+jdeff org.scilab.modules.preferences.XConfigManager openPreferences prefs; // единожды для всех
 prefs general/shortcuts
 prefs scinotes/display
  ]]></programlisting>
       <para>
-        <emphasis role="bold">Edit your main user's preferences file</emphasis>
-        (you should not change its content by hand):
+        <emphasis role="bold">Правит файл ваших главных пользовательских настроек</emphasis>
+        (не следует править его содержание руками):
       </para>
         <programlisting role="example"><![CDATA[
 scinotes SCIHOME/XConfiguration.xml readonly
  ]]></programlisting>
     <para/>
     <para>
-        <emphasis role="bold">How to get some configuration values:</emphasis>
-        Example : Retrieve from the main configuration file the status of the ask-for-confirmations:
+        <emphasis role="bold">Как получить некоторые значения настроек:</emphasis>
+        Например : Получить из файла главных настрек статус запроса-подтверждений (ask-for-confirmations):
     </para>
         <programlisting role="example"><![CDATA[
 xmlGetValues("//general/confirmation-dialogs/body/tools/tool",["id" "state"])
@@ -74,7 +74,7 @@ xmlGetValues("//general/confirmation-dialogs/body/tools/tool",["id" "state"])
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xmlGetValues">xmlGetValues</link>
@@ -124,12 +124,12 @@ xmlGetValues("//general/confirmation-dialogs/body/tools/tool",["id" "state"])
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>History</title>
+        <title>История</title>
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revdescription>
-                    Function introduced
+                    Функция введена.
                 </revdescription>
             </revision>
         </revhistory>

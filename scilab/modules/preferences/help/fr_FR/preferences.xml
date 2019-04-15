@@ -16,13 +16,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-          xmlns:scilab="http://www.scilab.org" xml:id="preferences" xml:lang="en">
+          xmlns:scilab="http://www.scilab.org" xml:id="preferences" xml:lang="fr">
     <refnamediv>
         <refname>preferences</refname>
-        <refpurpose>Open the Scilab Preferences window</refpurpose>
+        <refpurpose>Ouvre la fenêtre de configuration de Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Syntaxe</title>
         <synopsis>
             preferences()
         </synopsis>
@@ -30,7 +30,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            Opens the Scilab Preferences window.
+            <literal>preferences()</literal> ouvre l'interface interactive de configuration
+            de Scilab et des modules externes chargés.
         </para>
         <para>
             <inlinemediaobject>
@@ -41,26 +42,27 @@
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 preferences()
 
-// Targeting a chosen section:
+// Ouvrir une section particulière :
 jdeff org.scilab.modules.preferences.XConfigManager openPreferences prefs; // once for all
 prefs general/shortcuts
 prefs scinotes/display
  ]]></programlisting>
       <para>
-        <emphasis role="bold">Edit your main user's preferences file</emphasis>
-        (you should not change its content by hand):
+        <emphasis role="bold">Editer votre principal fichier de configuration utilisateur</emphasis>
+        (en modifier le contenu à la main est fortement déconseillé) :
       </para>
         <programlisting role="example"><![CDATA[
 scinotes SCIHOME/XConfiguration.xml readonly
  ]]></programlisting>
     <para/>
     <para>
-        <emphasis role="bold">How to get some configuration values:</emphasis>
-        Example : Retrieve from the main configuration file the status of the ask-for-confirmations:
+        <emphasis role="bold">Obtenir la valeur de paramètres de configuration</emphasis> :
+        Exemple : récupérer dans le fichier de configuration principal l'état des demandes de
+        confirmation réglables :
     </para>
         <programlisting role="example"><![CDATA[
 xmlGetValues("//general/confirmation-dialogs/body/tools/tool",["id" "state"])
@@ -74,7 +76,7 @@ xmlGetValues("//general/confirmation-dialogs/body/tools/tool",["id" "state"])
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xmlGetValues">xmlGetValues</link>
@@ -124,12 +126,12 @@ xmlGetValues("//general/confirmation-dialogs/body/tools/tool",["id" "state"])
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>History</title>
+        <title>Historique</title>
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revdescription>
-                    Function introduced
+                    Fonction ajoutée
                 </revdescription>
             </revision>
         </revhistory>
