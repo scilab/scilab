@@ -257,7 +257,6 @@ Bug Fixes
 ---------
 
 ### Bugs fixed in 6.1.0:
-<<<<<<< HEAD
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
 * [#5824](https://bugzilla.scilab.org/5824): The `datafit` algorithm was not documented.
 * [#6070](https://bugzilla.scilab.org/6070): How to make multiscaled plots was not documented.
@@ -285,12 +284,13 @@ Bug Fixes
 * [#10723](https://bugzilla.scilab.org/10723): `subplot`'s action was unclearly described in its help page. Page improved.
 * [#11852](https://bugzilla.scilab.org/11852): File browser didn't update after file creation or removal.
 * [#11363](https://bugzilla.scilab.org/11363): `show_window()` did not raise the current graphics window.
-* [#13738](https://bugzilla.scilab.org/13738): `get_figure_handle` was a specific duplicate of the more powerful `findobj('figure_id',n)` feature. It is now obsolete.
+* [#12013](https://bugzilla.scilab.org/12013): `bitset` did not work for numbers greater than 2^32-1.
 * [#12520](https://bugzilla.scilab.org/12520): Variable browser did not display the size of the variables.
 * [#12534](https://bugzilla.scilab.org/12534): Variable browser did not display the size of the variables.
 * [#12837](https://bugzilla.scilab.org/12837): `strcmpi` was an obsolete duplicate of `strcmp(,'i')`. It is removed.
 * [#13603](https://bugzilla.scilab.org/13603): `plot(1:3, 10)` failed.
 * [#13683](https://bugzilla.scilab.org/13683): unsetmenu for a dockable="off" figure crashed Scilab.
+* [#13738](https://bugzilla.scilab.org/13738): `get_figure_handle` was a specific duplicate of the more powerful `findobj('figure_id',n)` feature. It is now obsolete.
 * [#13766](https://bugzilla.scilab.org/13766): Minimal values for `.figure_size` were not documented.
 * [#14015](https://bugzilla.scilab.org/14015): Nan terms added to a polynomial were ignored.
 * [#14191](https://bugzilla.scilab.org/14191): Unlike `plot2d()`, `plot()` did not accept logflags among input arguments.
@@ -305,6 +305,7 @@ Bug Fixes
 * [#14606](https://bugzilla.scilab.org/14606): Memory used by variables returned by `[names,mem]=who()` was always zero.
 * [#14610](https://bugzilla.scilab.org/14610): `x = ric_desc(H,E)` always yielded an error. [x1,x2,residual] = ric_desc(..) returned a wrong `residual` value.
 * [#14642](https://bugzilla.scilab.org/14642): No more "\r" carriage return with printf.
+* [#14655](https://bugzilla.scilab.org/14655): `bitset` worked only element-wise, without accepting mixed scalar and array inputs.
 * [#14735](https://bugzilla.scilab.org/14735): The `genetic_algorithms` module was out of the `optimization` one.
 * [#14741](https://bugzilla.scilab.org/14741): The syntax `[m,e]=log2(x)` was not documented. As public function `frexp` was in duplicate with `[m,e]=log2(x)`.
 * [#14742](https://bugzilla.scilab.org/14742): `mprintf`, `msprintf` a non finite number displayed nothing.
@@ -389,6 +390,7 @@ Bug Fixes
 * [#16046](https://bugzilla.scilab.org/16046): After `w=ssrand(2,3,4)`, `[]+w`, `[]-w`, `w+[]` and `w-[]` yielded an "operation +/- []" warning.
 * [#16051](https://bugzilla.scilab.org/16051): undefined list elements could be of 2 distinct typeof "void" or "listundefined" according to the way they are created.
 * [#16053](https://bugzilla.scilab.org/16053): `plot(,"color",c)` no longer supported standard abbreviated color names c like "k" for black.
+* [#16065](https://bugzilla.scilab.org/16065): Building help pages including some <scilab:image> tags used and finally deleted the current on-screen figures (if any)!
 * [#16067](https://bugzilla.scilab.org/16067): The display of matrices of signed integers was misaligned (regression of 6.0.0 vs 5.5.2)
 * [#16071](https://bugzilla.scilab.org/16071): `prettyprint(complex(1,%nan))` omitted the "+" in `1 + Nani`. It printed positive exponents with a useless "+". For any input nul polynomial, the string result never included the name of the variable. Default input arguments could not be skipped. ExportFormat was uselessly case-sensitive. For tex|latex: for text input, $ \ % & { } ~ and ^ special characters were not protected ; spaces were not protected, all words were concatenated ; for polynomials and rationals, the result string could be extremely long and not easily wrappable. For MathML: "<" was not protected ; <mi></mi> were missing for text input ; <mtable>, </mtable>, <mtr>, </mtr>, <mtd>, <mfenced> and </mfenced> tags were not wrapped and could not be indented. Delimiters: "" was not documented as possible value ; ")" was wrongly documented. Dynamical linear systems were not documented as possible input.
 * [#16072](https://bugzilla.scilab.org/16072): `prettyprint` did not actually support input encoded integers.
@@ -468,20 +470,3 @@ Bug Fixes
 * [#16321](https://bugzilla.scilab.org/16321): There were typo errors in the documentation.
 * [#16323](https://bugzilla.scilab.org/16323): `conj(sparse(x))` was complex when x is real.
 * [#16325](https://bugzilla.scilab.org/16325): `mgetl` could not read single line data which is greater than ~260,000 characters.
-=======
-* [#2694](http://bugzilla.scilab.org/show_bug.cgi?id=2694): `bitget` did not accept positive integers of types int8, int16 or int32.
-* [#8784](http://bugzilla.scilab.org/show_bug.cgi?id=8784): Automatic self-adjusting blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` in Xcos.
-* [#12013](http://bugzilla.scilab.org/show_bug.cgi?id=12013): `bitset` did not work for numbers greater than 2^32-1.
-* [#14655](http://bugzilla.scilab.org/show_bug.cgi?id=14655): `bitset` worked only element-wise, without accepting mixed scalar and array inputs.
-* [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
-* [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
-* [#14812](http://bugzilla.scilab.org/show_bug.cgi?id=14812): Minor typos in messages.
-* [#14863](http://bugzilla.scilab.org/show_bug.cgi?id=14863): In Xcos, the default ending time was unhandily high (100000), reduced it to 30.
-* [#14982](http://bugzilla.scilab.org/show_bug.cgi?id=14982): `msprintf` segmentation fault was caught due to wrong size
-* [#15269](http://bugzilla.scilab.org/show_bug.cgi?id=15269): `xgetech` was poor and stiff compared to any combination of `gca()` properties `.axes_bounds`, `.data_bounds`, `.log_flags`, and `.margins`. It is removed.
-* [#15271](http://bugzilla.scilab.org/show_bug.cgi?id=15271): `bitget` needed to be upgraded.
-* [#15425](http://bugzilla.scilab.org/show_bug.cgi?id=15425): The Kronecker product `a.*.b` failed when `a` or `b` or both are hypermatrices, with one or both being polynomials or rationals.
-* [#15523](http://bugzilla.scilab.org/show_bug.cgi?id=15523): `%ODEOPTIONS(1)=2` didn't work with solvers 'rk' and 'rkf' 
-* [#15577](http://bugzilla.scilab.org/show_bug.cgi?id=15577): `edit` did not accept a line number as text, as with `edit linspace 21`.
-
->>>>>>> a82a833092d... * Bugs 12013 & 14655 fixed: bitset() upgraded

@@ -1,3 +1,4 @@
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
@@ -120,9 +121,9 @@ public class ScilabImageConverter implements ExternalImageConverter {
         buffer.append("mprintf(\"Generate image " + imageName + " from Scilab code from file " + new File(currentFile).getName() + "\\n\");");
         buffer.append("driver(\"png\");\n");
         buffer.append("xinit(\"").append(imageFile.getAbsolutePath()).append("\");\n");
-        buffer.append("clf();\n");
+        buffer.append("scf();\n");
         buffer.append(code).append("\n");
-        buffer.append("___f___=gcf();___f___.anti_aliasing=\"2x\";clear(\"___f___\");\n");
+        buffer.append("gcf().anti_aliasing=\"2x\";\n");
         buffer.append("xend();\n");
         buffer.append("driver(__olddrv__);\n");
 
