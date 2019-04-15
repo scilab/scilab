@@ -316,6 +316,7 @@ Bug Fixes
 * [#14498](https://bugzilla.scilab.org/14498): `size([],3)` returned 1 instead of 0.
 * [#14487](https://bugzilla.scilab.org/14487): matrix indexing was not coherent with MATLAB. 
 * [#14502](https://bugzilla.scilab.org/14502): `Demo > GUI > Uicontrols 2` could not be exported to a file.
+* [#14585](https://bugzilla.scilab.org/14585): `closeEditvar()` had to be replaced with `editvar("close")`.
 * [#14604](https://bugzilla.scilab.org/14604): `emptystr` is 40x slower with 6.0.0 wrt 5.5.2
 * [#14605](https://bugzilla.scilab.org/14605): fixed - `bench_run` was too strict about the specification of tests names.
 * [#14606](https://bugzilla.scilab.org/14606): Memory used by variables returned by `[names,mem]=who()` was always zero.
