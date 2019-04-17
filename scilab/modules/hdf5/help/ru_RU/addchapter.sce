@@ -10,4 +10,4 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("HDF5 Management",SCI+"/modules/hdf5/help/ru_RU",%T);
+add_help_chapter("HDF5 files",SCI+"/modules/hdf5/help/ru_RU",%T);
