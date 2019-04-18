@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,22 +13,25 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="bessel" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="bessel" xml:lang="ja">
     <refnamediv xml:id="besseli">
         <refname>besseli</refname>
-        <refpurpose>第1種修正ベッセル関数 (I_alpha).</refpurpose>
+      <refpurpose>第1種修正ベッセル関数 (I<subscript>α</subscript>).</refpurpose>
     </refnamediv>
     <refnamediv xml:id="besselj">
         <refname>besselj</refname>
-        <refpurpose>第1種ベッセル関数 (J_alpha).</refpurpose>
+        <refpurpose>第1種ベッセル関数 (J<subscript>α</subscript>).</refpurpose>
     </refnamediv>
     <refnamediv xml:id="besselk">
         <refname>besselk</refname>
-        <refpurpose>第2種修正ベッセル関数 (K_alpha).</refpurpose>
+        <refpurpose>第2種修正ベッセル関数 (K<subscript>α</subscript>).</refpurpose>
     </refnamediv>
     <refnamediv xml:id="bessely">
         <refname>bessely</refname>
-        <refpurpose>第2種ベッセル関数 (Y_alpha).</refpurpose>
+        <refpurpose>第2種ベッセル関数 (Y<subscript>α</subscript>).</refpurpose>
     </refnamediv>
     <refnamediv xml:id="besselh">
         <refname>besselh</refname>
@@ -36,12 +39,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>y = besseli(alpha,x [,ice])
-            y = besselj(alpha,x [,ice])
-            y = besselk(alpha,x [,ice])
-            y = bessely(alpha,x [,ice])
-            y = besselh(alpha,x)
-            y = besselh(alpha,K,x [,ice])
+        <synopsis>
+            y = besseli(alpha, x [,ice])
+            y = besselj(alpha, x [,ice])
+            y = besselk(alpha, x [,ice])
+            y = bessely(alpha, x [,ice])
+            y = besselh(alpha, x)
+            y = besselh(alpha, K, x [,ice])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -79,16 +83,16 @@
             <listitem>
                 <para>
                     <literal>besseli(alpha,x)</literal> は,
-                    実数の次数<literal>alpha</literal> および引数 <literal>x</literal>に関する
-                    第1種修正ベッセル関数(I_alpha)を計算します,
+                    実数の次数<varname>alpha</varname> および引数 <varname>x</varname>に関する
+                    第1種修正ベッセル関数(I<subscript>α</subscript>)を計算します,
                     <literal>besseli(alpha,x,1)</literal> は
                     <literal>besseli(alpha,x).*exp(-abs(real(x)))</literal>を計算します.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <literal>besselj(alpha,x)</literal> は第1種のベッセル関数(J_alpha)を
-                    実数の次数<literal>alpha</literal> および引数 <literal>x</literal>に関して
+                    <literal>besselj(alpha,x)</literal> は第1種のベッセル関数(J<subscript>α</subscript>)を
+                    実数の次数<varname>alpha</varname> および引数 <varname>x</varname>に関して
                     計算します.
                     <literal>besselj(alpha,x,1)</literal> は
                     <literal>besselj(alpha,x).*exp(-abs(imag(x)))</literal>を計算します.
@@ -97,8 +101,8 @@
             <listitem>
                 <para>
                     <literal>besselk(alpha,x)</literal> は第2種修正ベッセル関数
-                    (K_alpha)を
-                    実数の次数<literal>alpha</literal> および引数 <literal>x</literal>に関して
+                    (K<subscript>α</subscript>)を
+                    実数の次数<varname>alpha</varname> および引数 <varname>x</varname>に関して
                     計算します.
                     <literal>besselk(alpha,x,1)</literal> は
                     <literal>besselk(alpha,x).*exp(x)</literal>を計算します.
@@ -106,8 +110,8 @@
             </listitem>
             <listitem>
                 <para>
-                    <literal>bessely(alpha,x)</literal>は第2種のベッセル関数(Y_alpha)を
-                    実数の次数<literal>alpha</literal> および引数 <literal>x</literal>に関して
+                    <literal>bessely(alpha,x)</literal>は第2種のベッセル関数(Y<subscript>α</subscript>)を
+                    実数の次数<varname>alpha</varname> および引数 <varname>x</varname>に関して
                     計算します.
                     <literal>bessely(alpha,x,1)</literal> は
                     <literal>bessely(alpha,x).*exp(-abs(imag(x)))</literal>を計算します.
@@ -117,7 +121,7 @@
                 <para>
                     <literal>besselh(alpha [,K] ,x)</literal> は第3種のベッセル関数
                     (<literal>K</literal>に依存してハンケル関数 H1 または H2)を
-                    実数の次数<literal>alpha</literal> および引数 <literal>x</literal>に関して
+                    実数の次数<varname>alpha</varname> および引数 <varname>x</varname>に関して
                     計算します.<literal>K</literal>が省略された場合,
                     1に等しいと仮定されます.
                     <literal>besselh(alpha,1,x,1)</literal>は
@@ -131,44 +135,40 @@
     <refsection>
         <title>注意</title>
         <para>
-            <literal>alpha</literal>および <literal>x</literal>が同じ大きさの
+            <varname>alpha</varname>および <varname>x</varname>が同じ大きさの
             配列の場合,結果<literal>y</literal>も同じ大きさとなります.
             入力のどちらかがスカラーの場合,
             もう片方の大きさにまで拡張されます.
             片方の入力が行ベクトルでもう片方が列ベクトルの場合,
             結果<literal>y</literal>は関数値の二次元テーブルとなります.
         </para>
-        <para>Y_alpha および J_alpha ベッセル関数はベッセルの微分方程式の
-            2つの独立解です:
+        <para>
+            Y<subscript>α</subscript> および J<subscript>α</subscript>
+            ベッセル関数はベッセルの微分方程式の 2つの独立解です:
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/bessel_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
-        <para>修正ベッセル関数K_alpha および I_alphaは
+        <latex style="display" alt="x^2.(d^2y/d^2x) + x.dy/dx + (x^2 - alpha^2).y = 0,  alpha ≥ 0">
+            {x^2} \cdot {{d^2 y} \over {dx^2}} + x \cdot {{dy} \over {dx}} + (x^2 - \alpha^2) \cdot y = 0,
+            \quad\alpha\ge0
+        </latex>
+        <para>修正ベッセル関数K<subscript>α</subscript> および I<subscript>α</subscript>は
             修正ベッセル微分方程式の2つの独立解です:
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/bessel_equation2.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
-        <para>H^1_alpha および H^2_alphaは第1種および第2種のハンケル関数
+        <latex style="display" alt="x^2.(d^2y/d^2x) + x.dy/dx + (alpha^2 - x^2).y = 0,  alpha ≥ 0">
+            {x^2} \cdot {{d^2 y} \over {dx^2}} + x \cdot {{dy} \over {dx}} + (\alpha^2 - x^2) \cdot y = 0,
+            \quad\alpha\ge0
+        </latex>
+        <para>
+            H<subscript>α</subscript><superscript>1</superscript> および
+            H<subscript>α</subscript><superscript>2</superscript>は第1種および第2種のハンケル関数
             で,第1種および第2種のベッセル関数の線形結合です:
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/bessel_equation3.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <latex style="display" alt="H^1_α(z) = J_α(z) + i \cdot Y_α(z)  \n
+H^2_α(z) = J_α(z) - i \cdot Y_α(z)">
+            H^1_{\alpha}(z) = J_{\alpha}(z) + i \cdot Y_{\alpha}(z) \\
+            H^2_{\alpha}(z) = J_{\alpha}(z) - i \cdot Y_{\alpha}(z)
+        </latex>
     </refsection>
+
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
@@ -197,6 +197,8 @@
             legend('I'+string(0:4),1);
             xtitle("Some modified scaled Bessel functions of the first kind")
         </scilab:image>
+
+        <para/>
         <programlisting role="example"><![CDATA[
 // besselJ 関数
 // =================
@@ -212,6 +214,8 @@
             legend('I'+string(0:4),1);
             xtitle("Some Bessel functions of the first kind")
         </scilab:image>
+
+        <para/>
         <programlisting role="example"><![CDATA[
 // J_(1/2)(x) = sqrt(2/(x pi)) sin(x)　の関係を用いて
 //  besselj(0.5,x) のアルゴリズムをより直接的な式と比較します
@@ -242,6 +246,8 @@
    plot2d(x(ind), er(ind), style=2, logflag="nl")
    xtitle("relative error between 2 formulae for besselj(0.5,x)")
  ]]></scilab:image>
+
+        <para/>
         <programlisting role="example"><![CDATA[
 // besselK 関数
 // =================
@@ -268,6 +274,8 @@
             legend('K'+string(0:4),1);
             xtitle("Some modified scaled Bessel functions of the second kind")
         </scilab:image>
+
+        <para/>
         <programlisting role="example"><![CDATA[
 // besselY 関数
 // =================
@@ -284,6 +292,8 @@
             legend('Y'+string(0:4),4);
             xtitle("Some Bessel functions of the second kind")
         </scilab:image>
+
+        <para/>
         <programlisting role="example"><![CDATA[
 // besselH 関数
 // =================

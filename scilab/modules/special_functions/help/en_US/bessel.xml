@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="bessel" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="bessel" xml:lang="en">
     <refnamediv xml:id="besseli">
         <refname>besseli</refname>
         <refpurpose>Modified Bessel functions of the first kind (I sub
@@ -23,34 +26,32 @@
     </refnamediv>
     <refnamediv xml:id="besselj">
         <refname>besselj</refname>
-        <refpurpose>Bessel functions of the first kind (J sub alpha).</refpurpose>
+      <refpurpose>Bessel functions of the first kind (J<subscript>α</subscript>).</refpurpose>
     </refnamediv>
     <refnamediv xml:id="besselk">
         <refname>besselk</refname>
-        <refpurpose>Modified Bessel functions of the second kind (K sub
-            alpha).
+        <refpurpose>Modified Bessel functions of the second kind (K<subscript>α</subscript>).
         </refpurpose>
     </refnamediv>
     <refnamediv xml:id="bessely">
         <refname>bessely</refname>
-        <refpurpose>Bessel functions of the second kind (Y sub
-            alpha).
+        <refpurpose>Bessel functions of the second kind (Y<subscript>α</subscript>).
         </refpurpose>
     </refnamediv>
     <refnamediv xml:id="besselh">
         <refname>besselh</refname>
-        <refpurpose>Bessel functions of the third kind (aka Hankel
-            functions)
+        <refpurpose>Bessel functions of the third kind (aka Hankel functions)
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>y = besseli(alpha,x [,ice])
-            y = besselj(alpha,x [,ice])
-            y = besselk(alpha,x [,ice])
-            y = bessely(alpha,x [,ice])
-            y = besselh(alpha,x)
-            y = besselh(alpha,K,x [,ice])
+        <synopsis>
+            y = besseli(alpha, x [,ice])
+            y = besselj(alpha, x [,ice])
+            y = besselk(alpha, x [,ice])
+            y = bessely(alpha, x [,ice])
+            y = besselh(alpha, x)
+            y = besselh(alpha, K, x [,ice])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -77,8 +78,7 @@
             <varlistentry>
                 <term>K</term>
                 <listitem>
-                    <para>integer, with possible values 1 or 2, the Hankel function
-                        type.
+                    <para>integer, with possible values 1 or 2, the Hankel function type.
                     </para>
                 </listitem>
             </varlistentry>
@@ -90,17 +90,17 @@
             <listitem>
                 <para>
                     <literal>besseli(alpha,x)</literal> computes modified Bessel
-                    functions of the first kind (I sub alpha), for real order
-                    <literal>alpha</literal> and argument <literal>x</literal>.
+                    functions of the first kind (I<subscript>α</subscript>), for real order
+                    <varname>alpha</varname> and argument <varname>x</varname>.
                     <literal>besseli(alpha,x,1)</literal> computes
                     <literal>besseli(alpha,x).*exp(-abs(real(x)))</literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <literal>besselj(alpha,x)</literal> computes Bessel functions of
-                    the first kind (J sub alpha), for real order <literal>alpha</literal>
-                    and argument <literal>x</literal>.
+                    <literal>besselj(alpha,x)</literal> computes Bessel functions of the fisrt
+                    kind (J<subscript>α</subscript>), for real order <varname>alpha</varname>
+                    and argument <varname>x</varname>.
                     <literal>besselj(alpha,x,1)</literal> computes
                     <literal>besselj(alpha,x).*exp(-abs(imag(x)))</literal>.
                 </para>
@@ -108,17 +108,17 @@
             <listitem>
                 <para>
                     <literal>besselk(alpha,x)</literal> computes modified Bessel
-                    functions of the second kind (K sub alpha), for real order
-                    <literal>alpha</literal> and argument <literal>x</literal>.
+                    functions of the second kind (K<subscript>α</subscript>), for real order
+                    <varname>alpha</varname> and argument <varname>x</varname>.
                     <literal>besselk(alpha,x,1)</literal> computes
                     <literal>besselk(alpha,x).*exp(x)</literal>.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    <literal>bessely(alpha,x)</literal> computes Bessel functions of
-                    the second kind (Y sub alpha), for real order <literal>alpha</literal>
-                    and argument <literal>x</literal>.
+                    <literal>bessely(alpha,x)</literal> computes Bessel functions of the second
+                    kind (Y<subscript>alpha</subscript>), for real order <varname>alpha</varname>
+                    and argument <varname>x</varname>.
                     <literal>bessely(alpha,x,1)</literal> computes
                     <literal>bessely(alpha,x).*exp(-abs(imag(x)))</literal>.
                 </para>
@@ -127,8 +127,8 @@
                 <para>
                     <literal>besselh(alpha [,K] ,x)</literal> computes Bessel
                     functions of the third kind (Hankel function H1 or H2 depending on
-                    <literal>K</literal>), for real order <literal>alpha</literal> and
-                    argument <literal>x</literal>. If omitted <literal>K</literal> is
+                    <literal>K</literal>), for real order <varname>alpha</varname> and
+                    argument <varname>x</varname>. If omitted <literal>K</literal> is
                     supposed to be equal to 1. <literal>besselh(alpha,1,x,1)</literal>
                     computes <literal>besselh(alpha,1,x).*exp(-%i*x)</literal> and
                     <literal>besselh(alpha,2,x,1)</literal> computes
@@ -140,62 +140,57 @@
     <refsection>
         <title>Remarks</title>
         <para>
-            If <literal>alpha</literal> and <literal>x</literal> are arrays of
+            If <varname>alpha</varname> and <varname>x</varname> are arrays of
             the same size, the result <literal>y</literal> is also that size. If
             either input is a scalar, it is expanded to the other input's size. If one
             input is a row vector and the other is a column vector, the
-            result<literal>y</literal> is a two-dimensional table of function
+            result <literal>y</literal> is a two-dimensional table of function
             values.
         </para>
-        <para>Y_alpha and J_alpha Bessel functions are 2 independent solutions of
-            the Bessel 's differential equation :
+        <para>
+            Y<subscript>α</subscript> and J<subscript>α</subscript> Bessel functions are 2
+            independent solutions of the Bessel 's differential equation :
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/bessel_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
-        <para>K_alpha and I_alpha modified Bessel functions are 2 independent
-            solutions of the modified Bessel 's differential equation :
+        <latex style="display" alt="x^2.(d^2y/d^2x) + x.dy/dx + (x^2 - alpha^2).y = 0,  alpha ≥ 0">
+            {x^2} \cdot {{d^2 y} \over {dx^2}} + x \cdot {{dy} \over {dx}} + (x^2 - \alpha^2) \cdot y = 0,
+            \quad\alpha\ge0
+        </latex>
+        <para>
+            K<subscript>α</subscript> and I<subscript>α</subscript> modified Bessel functions
+            are 2 independent solutions of the modified Bessel 's differential equation :
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/bessel_equation2.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
-        <para>H^1_alpha and H^2_alpha, the Hankel functions of first and second
-            kind, are linear linear combinations of Bessel functions of the first and
+        <latex style="display" alt="x^2.(d^2y/d^2x) + x.dy/dx + (alpha^2 - x^2).y = 0,  alpha ≥ 0">
+            {x^2} \cdot {{d^2 y} \over {dx^2}} + x \cdot {{dy} \over {dx}} + (\alpha^2 - x^2) \cdot y = 0,
+            \quad\alpha\ge0
+        </latex>
+        <para>
+            H<subscript>α</subscript><superscript>1</superscript> and
+            H<subscript>α</subscript><superscript>2</superscript>, the Hankel functions of first
+            and second kind, are linear linear combinations of Bessel functions of the first and
             second kinds:
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/bessel_equation3.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <latex style="display" alt="H^1_α(z) = J_α(z) + i \cdot Y_α(z)  \n
+H^2_α(z) = J_α(z) - i \cdot Y_α(z)">
+            H^1_{\alpha}(z) = J_{\alpha}(z) + i \cdot Y_{\alpha}(z) \\
+            H^2_{\alpha}(z) = J_{\alpha}(z) - i \cdot Y_{\alpha}(z)
+        </latex>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-//  besselI functions
-// ==================
-   x = linspace(0.01,10,5000)';
-   clf()
-   subplot(2,1,1)
-   plot2d(x,besseli(0:4,x), style=2:6)
-   legend('I'+string(0:4),2);
-   xtitle("Some modified Bessel functions of the first kind")
-   subplot(2,1,2)
-   plot2d(x,besseli(0:4,x,1), style=2:6)
-   legend('I'+string(0:4),1);
-   xtitle("Some modified scaled Bessel functions of the first kind")
+    // besselI functions
+    // -----------------
+    x = linspace(0.01,10,5000)';
+    clf
+    subplot(2,1,1)
+    plot2d(x,besseli(0:4,x), style=2:6)
+    legend('I'+string(0:4),2);
+    xtitle("Some modified Bessel functions of the first kind")
+    subplot(2,1,2)
+    plot2d(x,besseli(0:4,x,1), style=2:6)
+    legend('I'+string(0:4),1);
+    xtitle("Some modified scaled Bessel functions of the first kind")
  ]]></programlisting>
-
         <scilab:image>
             x = linspace(0.01,10,5000)';
             clf()
@@ -207,18 +202,16 @@
             plot2d(x,besseli(0:4,x,1), style=2:6)
             legend('I'+string(0:4),1);
             xtitle("Some modified scaled Bessel functions of the first kind")
-
         </scilab:image>
-
-
+        <para/>
         <programlisting role="example"><![CDATA[
-// besselJ functions
-// =================
-   clf()
-   x = linspace(0,40,5000)';
-   plot2d(x,besselj(0:4,x), style=2:6, leg="J0@J1@J2@J3@J4")
-   legend('I'+string(0:4),1);
-   xtitle("Some Bessel functions of the first kind")
+    // besselJ functions
+    // -----------------
+    clf
+    x = linspace(0,40,5000)';
+    plot2d(x,besselj(0:4,x), style=2:6, leg="J0@J1@J2@J3@J4")
+    legend('I'+string(0:4),1);
+    xtitle("Some Bessel functions of the first kind")
  ]]></programlisting>
 
         <scilab:image>
@@ -227,7 +220,7 @@
             legend('I'+string(0:4),1);
             xtitle("Some Bessel functions of the first kind")
         </scilab:image>
-
+        <para/>
         <programlisting role="example"><![CDATA[
 // use the fact that J_(1/2)(x) = sqrt(2/(x pi)) sin(x)
 // to compare the algorithm of besselj(0.5,x) with a more direct formula
@@ -244,7 +237,6 @@
    plot2d(x(ind), er(ind), style=2, logflag="nl")
    xtitle("relative error between 2 formulae for besselj(0.5,x)")
  ]]></programlisting>
-
         <scilab:image><![CDATA[
    x = linspace(0.1,40,5000)';
    y1 = besselj(0.5, x);
@@ -260,6 +252,7 @@
    xtitle("relative error between 2 formulae for besselj(0.5,x)")
  ]]></scilab:image>
 
+        <para/>
         <programlisting role="example"><![CDATA[
 // besselK functions
 // =================
@@ -274,7 +267,6 @@
    legend('K'+string(0:4),1);
    xtitle("Some modified scaled Bessel functions of the second kind")
  ]]></programlisting>
-
         <scilab:image>
             x = linspace(0.01,10,5000)';
             clf()
@@ -288,6 +280,7 @@
             xtitle("Some modified scaled Bessel functions of the second kind")
         </scilab:image>
 
+        <para/>
         <programlisting role="example"><![CDATA[
 // besselY functions
 // =================
@@ -297,7 +290,6 @@
    legend('Y'+string(0:4),4);
    xtitle("Some Bessel functions of the second kind")
  ]]></programlisting>
-
         <scilab:image>
             x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -> 0+
             clf()
@@ -306,6 +298,7 @@
             xtitle("Some Bessel functions of the second kind")
         </scilab:image>
 
+        <para/>
         <programlisting role="example"><![CDATA[
 // besselH functions
 // =================
@@ -319,7 +312,6 @@
    legends(string(0.2:0.2:3.2),1:16,"ur")
    xtitle("Level curves of |H1(0,z)|")
  ]]></programlisting>
-
         <scilab:image>
             x=-4:0.025:2; y=-1.5:0.025:1.5;
             [X,Y] = ndgrid(x,y);
@@ -331,7 +323,6 @@
             legends(string(0.2:0.2:3.2),1:16,"ur")
             xtitle("Level curves of |H1(0,z)|")
         </scilab:image>
-
     </refsection>
     <refsection>
         <title>Used Functions</title>
