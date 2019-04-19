@@ -16,60 +16,63 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-          xml:lang="en" xml:id="subplot">
+          xml:lang="ru" xml:id="subplot">
     <refnamediv>
         <refname>subplot</refname>
-        <refpurpose>sets the current axes to a chosen cell of the current gridded figure</refpurpose>
+        <refpurpose>
+            устанавливает текущие оси для выбора ячейки текущей разграфлённой фигуры
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Синтаксис</title>
         <synopsis>
             subplot(m,n,p)
             subplot(mnp)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>m, n, p</term>
                 <listitem>
-                    <para>positive integers</para>
+                    <para>положительные целые числа</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mnp</term>
                 <listitem>
                     <para>
-                        an integer with decimal notation <literal>mnp</literal>
+                        целое число с десятичной нотацией <literal>mnp</literal>
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            subplot(m,n,p) or subplot(mnp) virtually grids the graphics window into an m-by-n
-            matrix of sub-windows, and selects the p<superscript>th</superscript> sub-window
-            for receiving the forthcoming drawings.
+            <literal>subplot(m,n,p)</literal> или <literal>subplot(mnp)</literal> виртуально
+            разделяет графическое окно на матрицу подокон размером m-на-n, и выбирает
+            <varname>p</varname>-тое подокно для получения следующего графика.
         </para>
         <para>
-            Into the grid, cells are indexed along each row, starting from the top row.
-            Hence, for instance the last cell of the first row is the p = n<superscript>th</superscript>
-            one. The cell on the row #i and the column #j has the index <literal>p=(i-1)*n+j</literal>.
+            В сетке, где ячейки индексированы вдоль каждого ряда, начиная с верхнего.
+            Следовательно, например, последняя ячейка первого ряда <varname>p</varname> будет
+            <varname>n</varname>-ной ячейкой. Ячейка в ряду №i и в столбце №j имеет индекс
+            <literal>p=(i-1)*n+j</literal>.
         </para>
         <para>
-            When the selected area matches exactly an existing axes, <literal>subplot(…)</literal>
-            just sets it as the current axes, and returns.
+            Когда выбранная зона точно соответствует существующим осям, то
+            <literal>subplot(…)</literal> просто устанавливает её в качестве текущих осей.
         </para>
         <para>
-            Otherwise, <literal>subplot(…)</literal> creates an empty axes covering the selected area,
-            ready to receive forthcoming plotting contents.
+            В противном случае <literal>subplot(…)</literal> создаёт пустые оси, по всей
+            выбранной зоне, готовые для получения следующего графического содержимого.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
             clf
             subplot(221)
@@ -96,20 +99,20 @@
         </scilab:image>
         <para/>
         <para>
-            <emphasis role="bold">A more complex layout</emphasis>, but still gridable:
+            <emphasis role="bold">Более сложная компоновка</emphasis>, но по-прежнему разграфлённая:
         </para>
         <programlisting role="example"><![CDATA[
             clf
             subplot(1,2,2)
             Matplot1()
-            xtitle("Matplot1() example","","")
+            xtitle("Пример Matplot1()","","")
 
             subplot(2,2,1)
             histplot
             delete(findobj("type","Legend"))
 
             subplot(2,2,3)
-            title("Smaller plots:", "fontsize",3)
+            title("Несколько меньшие графики:", "fontsize",3)
 
             subplot(2,4,5)
             polarplot()
@@ -118,18 +121,18 @@
             param3d()
             xtitle("","","","")
  ]]></programlisting>
-        <scilab:image>
+        <scilab:image localized="true">
             clf
             subplot(1,2,2)
             Matplot1()
-            xtitle("Matplot1() example","","")
+            xtitle("Примеры Matplot1()","","")
 
             subplot(2,2,1)
             histplot
             delete(findobj("type","Legend"))
 
             subplot(2,2,3)
-            title("Smaller plots:", "fontsize",3)
+            title("Несколько меньшие графики:", "fontsize",3)
 
             subplot(2,4,5)
             polarplot()
@@ -141,7 +144,7 @@
         </scilab:image>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xsetech">xsetech</link>

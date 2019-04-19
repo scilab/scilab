@@ -178,6 +178,7 @@ Bug Fixes
 * [#9529](http://bugzilla.scilab.org/show_bug.cgi?id=9529): `assert_checkequal(list(1,,3), list(1,,3))` yielded an error.
 * [#9673](http://bugzilla.scilab.org/show_bug.cgi?id=9673): Priority of colon `:` operator was too low
 * [#10353](http://bugzilla.scilab.org/show_bug.cgi?id=10353): Documentation: The referential for the uicontrol.position property was not provided. Moreover, gca().axes_bounds refered to fig.figure_size instead of fig.axes_size.
+* [#10723](http://bugzilla.scilab.org/show_bug.cgi?id=10723): `subplot`'s action was unclearly described in its help page. Page improved.
 * [#11852](http://bugzilla.scilab.org/show_bug.cgi?id=11852): File browser didn't update after file creation or remove.
 * [#12520](http://bugzilla.scilab.org/show_bug.cgi?id=12520): Vriable browser did not display the size of the variables.
 * [#12534](http://bugzilla.scilab.org/show_bug.cgi?id=12534): Variable browser did not display the size of the variables.
