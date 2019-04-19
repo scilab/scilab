@@ -130,8 +130,8 @@ public class SwingScilabCommonPanel {
                 }
 
                 /* Update callback */
-                String closingCommand = "if (get_figure_handle(" + figureId + ") <> []) then" + "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
-                                        + "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');" + "  end;" + "  delete(get_figure_handle("
+                String closingCommand = "if (findobj(\"figure_id\", " + figureId + ") <> []) then" + "  if (get(findobj(\"figure_id\", " + figureId + "), 'event_handler_enable') == 'on') then"
+                                        + "    execstr(get(findobj(\"figure_id\", " + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');" + "  end;" + "  delete(findobj(\"figure_id\", "
                                         + figureId + "));" + "end;";
                 component.setCallback(null);
                 component.setCallback(ScilabCloseCallBack.create(component.getId(), closingCommand));

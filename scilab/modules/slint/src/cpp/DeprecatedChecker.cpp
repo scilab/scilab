@@ -96,6 +96,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"setPreferencesValue", L"xmlSetValues");
 
     // Scilab 6.0.x => 6.1.0
+    map.emplace(L"get_figure_handle", L"findobj(\'figure_id\',n)");
     map.emplace(L"champ1", L"champ.colored");
     map.emplace(L"%sn", L"ellipj");
     map.emplace(L"dirname", L"fileparts");

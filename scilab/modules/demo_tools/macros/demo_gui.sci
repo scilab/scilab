@@ -81,7 +81,6 @@ function demo_gui()
 
     lst_vars_locals = ["%h_delete";
     "demo_fig";
-    "get_figure_handle";
     "subdemolist";
     "demolistlock";
     "resize_demo_gui";

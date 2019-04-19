@@ -3,25 +3,25 @@
     <!-- [SCILAB_FIGURE_ID] pattern is replaced at generation of Java menu by the ID of the figure -->
     <!-- Rotate -->
     <button icon="transform-rotate" tooltiptext="Rotate">
-        <callback instruction="set(get_figure_handle([SCILAB_FIGURE_ID]), 'info_message', 'Right click and drag to rotate.')" type="-2"/>
+        <callback instruction="findobj('figure_id',[SCILAB_FIGURE_ID]).info_message = _('Right click and drag to rotate.')" type="-2"/>
     </button>
     <separator/>
     <!-- Zoom Area -->
     <button icon="zoom-fit-selection" tooltiptext="Zoom Area">
-        <callback instruction="zoom_rect(get_figure_handle([SCILAB_FIGURE_ID]))" type="-2"/>
+        <callback instruction="zoom_rect(findobj('figure_id',[SCILAB_FIGURE_ID]))" type="-2"/>
     </button>
     <!-- Original View -->
     <button icon="zoom-original" tooltiptext="Original View">
-        <callback instruction="unzoom(get_figure_handle([SCILAB_FIGURE_ID]))" type="-2"/>
+        <callback instruction="unzoom(findobj('figure_id',[SCILAB_FIGURE_ID]))" type="-2"/>
     </button>
     <!-- Fit to the data -->
     <button icon="zoom-fit-drawing" tooltiptext="Reframe to contents">
-        <callback instruction="replot(get_figure_handle([SCILAB_FIGURE_ID]))" type="-2"/>
+        <callback instruction="replot(findobj('figure_id',[SCILAB_FIGURE_ID]))" type="-2"/>
     </button>
     <separator/>
     <!-- Datatips -->
     <button icon="datatips" tooltiptext="Toggle datatip mode" toggle="true">
-        <callback instruction="datatipManagerMode(get_figure_handle([SCILAB_FIGURE_ID]))" type="-2"/>
+        <callback instruction="datatipManagerMode(findobj('figure_id',[SCILAB_FIGURE_ID]))" type="-2"/>
     </button>
     <!-- Scilab Graphic Editor -->
     <!--

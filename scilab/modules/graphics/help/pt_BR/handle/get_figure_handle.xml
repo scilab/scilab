@@ -16,8 +16,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="get_figure_handle" xml:lang="pt">
     <refnamediv>
         <refname>get_figure_handle</refname>
-        <refpurpose>Retorna o manipulador de uma figura a partir de seu
-            id
+        <refpurpose>
+            Retorna o manipulador de uma figura a partir de seu id
+             <emphasis role="bold">(obsolete)</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -43,6 +44,11 @@
     </refsection>
     <refsection>
         <title>Descrição</title>
+        <warning>
+            <emphasis role="bold">This function is obsolete</emphasis> and
+            will be removed in Scilab 6.1.x. 
+            Please use <emphasis role="bold">findobj("figure_id",n)</emphasis> instead.
+        </warning>
         <para>
             <literal>get_figure_handle</literal> permite recuperar o manipulador
             de uma figura gráfica desde que se conheça o seu identificador. Se uma
@@ -85,5 +91,17 @@ f42 = get_figure_handle(42);
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    get_figure_handle(n) is declared obsolete.
+                    findobj("figure_id",n) is used instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

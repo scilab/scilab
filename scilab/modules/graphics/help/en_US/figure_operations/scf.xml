@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="scf">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="scf">
     <refnamediv>
         <refname>scf</refname>
         <refpurpose>set the current graphic figure
@@ -22,7 +25,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>f = scf()
+        <synopsis>
+            f = scf()
             f = scf(h)
             f = scf(num)
         </synopsis>
@@ -98,7 +102,7 @@ plot3d() //draw in current figure (id=4)
                 <link linkend="clf">clf</link>
             </member>
             <member>
-                <link linkend="get_figure_handle">get_figure_handle</link>
+                <link linkend="winsid">winsid</link>
             </member>
             <member>
                 <link linkend="graphics_entities">graphics_entities</link>

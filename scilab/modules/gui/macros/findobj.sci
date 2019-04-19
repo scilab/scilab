@@ -42,6 +42,16 @@ function h =  findobj(propertyName, propertyValue)
 
     propertyName = convstr(propertyName,"l");
 
+    // Special fast case: finding a figure
+    if propertyName=="figure_id" then
+        if type(propertyValue)==1 & or(figureIds==propertyValue)
+            h = scf(propertyValue);
+            scf(currentFig);
+        end
+        return
+    end
+
+    // Otherwise:
     // Iterate over all figures
     for figureindex = 1:size(figureIds,2)
         // Does the figure match the propertyName/propertyValue set ?

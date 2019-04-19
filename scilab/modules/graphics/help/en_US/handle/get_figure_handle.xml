@@ -16,7 +16,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="get_figure_handle">
     <refnamediv>
         <refname>get_figure_handle</refname>
-        <refpurpose>get a figure handle from its id</refpurpose>
+        <refpurpose>
+            get a figure handle from its id <emphasis role="bold">(obsolete)</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -41,6 +43,11 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            <emphasis role="bold">This function is obsolete</emphasis> and
+            will be removed in Scilab 6.1.x.
+            Please use <emphasis role="bold">findobj("figure_id",n)</emphasis> instead.
+        </warning>
         <para>
             <literal>get_figure_handle</literal> function allows to retrieve the handle
             of a graphic figure knowing its id. If a figure with the specified id exists
@@ -59,6 +66,7 @@ scf(12);
 f5 = get_figure_handle(5);
 // current figure remains the one with id 12
 gcf()
+
 // get a non existing figure
 f42 = get_figure_handle(42);
  ]]></programlisting>
@@ -82,5 +90,17 @@ f42 = get_figure_handle(42);
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    get_figure_handle(n) is declared obsolete.
+                    findobj("figure_id",n) is used instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -12,6 +12,8 @@
 
 function [fig]=get_figure_handle(index)
 
+    warnobsolete("findobj(""figure_id"", n)", "6.1.x")
+
     if argn(2)<>1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "get_figure_handle", 1));
     end
@@ -32,4 +34,3 @@ function [fig]=get_figure_handle(index)
     scf(curFig);
 
 endfunction
-

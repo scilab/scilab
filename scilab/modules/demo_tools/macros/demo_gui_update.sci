@@ -24,7 +24,7 @@ function script_path = demo_gui_update()
     all_figs = winsid();
     all_figs = all_figs(all_figs >= 100001); // All Scilab graphic windows opened for demos
     for fig_index = 2:size(all_figs, "*")
-        fig_to_del = get_figure_handle(all_figs(fig_index));
+        fig_to_del = findobj("figure_id", all_figs(fig_index));
         if ~isempty(fig_to_del) then
             delete(fig_to_del);
         end

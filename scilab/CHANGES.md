@@ -176,7 +176,7 @@ Obsolete functions or features
 * `sysdiag()` is obsolete. Please use `blockdiag()` instead.
 * `ric_desc` is obsolete and will be removed from Scilab 6.1.x. Please use `riccati` instead.
 * `noisegen` will be removed from Scilab 6.1.x. Please use `grand()` instead.
-
+* `get_figure_handle(n)` will be removed in Scilab 6.1.x. `findobj('figure_id',n)` replaces it.
 
 Removed Functions
 -----------------
@@ -224,6 +224,7 @@ Bug Fixes
 * [#10723](http://bugzilla.scilab.org/show_bug.cgi?id=10723): `subplot`'s action was unclearly described in its help page. Page improved.
 * [#11852](http://bugzilla.scilab.org/show_bug.cgi?id=11852): File browser didn't update after file creation or remove.
 * [#11363](http://bugzilla.scilab.org/show_bug.cgi?id=11363): show_window() did not raise the current graphics window.
+* [#13738](http://bugzilla.scilab.org/show_bug.cgi?id=13738): `get_figure_handle` was a specific duplicate of the more powerful `findobj('figure_id',n)` feature. It is now obsolete. 
 * [#12520](http://bugzilla.scilab.org/show_bug.cgi?id=12520): Vriable browser did not display the size of the variables.
 * [#12534](http://bugzilla.scilab.org/show_bug.cgi?id=12534): Variable browser did not display the size of the variables.
 * [#12837](http://bugzilla.scilab.org/show_bug.cgi?id=12837): `strcmpi` was an obsolete duplicate of `strcmp(,'i')`. It is removed.

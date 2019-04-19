@@ -1,8 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-// Copyright (C) 2017 - 2018 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2017 - 2018 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -39,7 +38,7 @@ function clf(varargin)
             num = varargin(1)
             h = [];
             for k = 1:size(num,"*")
-                h = [h ; get_figure_handle(num(k))];
+                h = [h ; findobj("figure_id",num(k))];
             end
             job = "clear"
         elseif type(varargin(1))==9 then // handle given
@@ -54,7 +53,7 @@ function clf(varargin)
             num = varargin(1)
             h = [];
             for k = 1:size(num,"*")
-                h = [h ; get_figure_handle(num(k))];
+                h = [h ; findobj("figure_id",num(k))];
             end
         elseif type(varargin(1))==9 then // handle given
             h = varargin(1);

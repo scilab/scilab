@@ -36,7 +36,7 @@ plot3d(x,x,cos(x)'*sin(x));
 clf(0:3);
 
 // Current figure must be empty
-fig = get_figure_handle(0);
+fig = findobj("figure_id",0);
 assert_checkequal(size(fig.children), [1,1]); // Default axes
 // No children below axes
 assert_checkequal(fig.children(1).children, []);
