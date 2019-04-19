@@ -27,6 +27,7 @@ function demo_java_image()
     Matplot(data);
     e = gce();
     e.image_type="argb";
+    isoview
 
     // DEMO END
 endfunction
