@@ -31,14 +31,28 @@
             <varlistentry>
                 <term>a</term>
                 <listitem>
-                    <para> is a Scilab variable</para>
+                    <para>a Scilab object.
+                        <itemizedlist>
+                            <listitem>
+                                Supported types: booleans, encoded integers, real or complex numbers,
+                                polynomials and rationals with real or complex coefficients, texts,
+                                cells, linear dynamical systems (as generated with syslin()),
+                                other Tlists.
+                            </listitem>
+                            <listitem>
+                                Supported sizes: scalar, vector, matrix. Hypermatrices are
+                                not supported (only the first page is processed.)
+                            </listitem>
+                        </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>exportFormat</term>
                 <listitem>
                     <para>
-                      is the output format. Possible values are 'latex' (default), 'tex', or 'mathml'.
+                      is the output format. Possible case-insensitive values are 'latex' (default),
+                      'tex', or 'mathml'.
                     </para>
                 </listitem>
             </varlistentry>
@@ -46,8 +60,9 @@
                 <term>delimiter</term>
                 <listitem>
                     <para> is a string indicating the delimiter to bracket the whole
-                       resulting matrix. It's only used if <varname>processByElement</varname> is
-                       false. It can be '(' (default), '{', '[', '|', or '||'.
+                       resulting matrix. It is used only if <varname>processByElement</varname> is
+                       false. It can be '(' (default), '{', '[', '|', '||', or '' if no bracketting
+                      is required.
                     </para>
                 </listitem>
             </varlistentry>
@@ -55,7 +70,7 @@
                 <term>processByElement</term>
                 <listitem>
                   <para> is a boolean: If set to <literal>%f</literal> (default), the result
-                    <varname>str</varname> is a single single representing the whole input
+                    <varname>str</varname> is a single string representing the whole input
                     matrix. Otherwise, <varname>str</varname> has as many elements as the input
                     matrix <varname>a</varname>.
                     </para>
@@ -88,35 +103,7 @@
             Formats can be TeX, LaTeX or MathML.
             They can be used in third party applications but also within Scilab with the most of the
             <link linkend="math_rendering_features_in_graphic">Scilab graphic features</link>.
-            The following types are handled by this function:
         </para>
-        <itemizedlist>
-            <listitem>
-                <para>Real / Complex matrices</para>
-            </listitem>
-            <listitem>
-                <para>Polynomial types</para>
-            </listitem>
-            <listitem>
-                <para>Boolean</para>
-            </listitem>
-            <listitem>
-                <para>Integer</para>
-            </listitem>
-            <listitem>
-                <para>String</para>
-            </listitem>
-            <listitem>
-                <para>Tlist</para>
-            </listitem>
-            <listitem>
-                <para>Rational</para>
-            </listitem>
-            <listitem>
-                <para>Cell</para>
-            </listitem>
-        </itemizedlist>
-        <para/>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -138,32 +125,34 @@ xstring(0.2,0.2,prettyprint(G*s-1)); // Show a polynomial through a LaTeX repres
                 <link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link>
             </member>
             <member>
-                <link linkend="xtitle">xtitle</link>
+                <link linkend="xnumb">xnumb</link>
             </member>
             <member>
-                <link linkend="axes_properties">axes_properties</link>
+                <link linkend="string">string</link>
             </member>
             <member>
-                <link linkend="label_properties">label_properties</link>
+                <link linkend="pol2str">pol2str</link>
             </member>
             <member>
-                <link linkend="legend_properties">legend_properties</link>
+                <link linkend="msprintf">msprintf</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol(table)</link>
             </member>
             <member>
                 <link linkend="sci2exp">sci2exp</link>
             </member>
-            <member>
-                <link linkend="text_properties">text_properties</link>
-            </member>
-            <member>
-                <link linkend="xstringb">xstringb</link>
-            </member>
-            <member>
-                <link linkend="xstringl">xstringl</link>
-            </member>
-            <member>
-                <link linkend="xstring">xstring</link>
-            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.2.0</revnumber>
+                <revdescription>
+                    Function introduced.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
