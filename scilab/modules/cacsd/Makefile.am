@@ -212,6 +212,11 @@ else
 noinst_LTLIBRARIES = libscicacsd-algo.la libscicacsd.la
 endif
 
+if IS_MACOSX
+# enforce -O0 for some files
+src/fortran/sszer.lo: src/fortran/sszer.f
+        $(LIBTOOL) $(AM_V_lt)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -O0 -c -o src/fortran/sszer.lo src/fortran/sszer.f
+endif
 
 libscicacsd_la_LDFLAGS = $(AM_LDFLAGS)
 
