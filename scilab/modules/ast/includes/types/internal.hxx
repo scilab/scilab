@@ -403,10 +403,10 @@ public :
     virtual bool isListOperation(void);
     virtual bool isListDelete(void);
     virtual bool isListInsert(void);
-    virtual bool isListUndefined(void);
     virtual bool isPointer(void);
     virtual bool isLibrary(void);
     virtual bool isUserType(void);
+    virtual bool isVoid(void);
 
     void clearPrintState();
 

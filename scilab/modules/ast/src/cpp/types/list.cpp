@@ -16,7 +16,7 @@
 #include <sstream>
 #include "double.hxx"
 #include "list.hxx"
-#include "listundefined.hxx"
+#include "void.hxx"
 #include "listinsert.hxx"
 #include "types_tools.hxx"
 #include "localization.hxx"
@@ -301,8 +301,8 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
             //try to insert after the last index, increase list size and assign value
             while ((int)m_plData->size() < idx)
             {
-                //incease list size and fill with "Undefined"
-                m_plData->push_back(new ListUndefined());
+                //incease list size and fill with Void type object
+                m_plData->push_back(new types::Void());
             }
             (*m_plData)[idx - 1] = pInsert;
         }
@@ -321,8 +321,8 @@ List* List::insert(typed_list* _pArgs, InternalType* _pSource)
     {
         while ((int)m_plData->size() < idx)
         {
-            //incease list size and fill with "Undefined"
-            InternalType* pLU = new ListUndefined();
+            //incease list size and fill with Void type object
+            InternalType* pLU = new types::Void();
             pLU->IncreaseRef();
             m_plData->push_back(pLU);
         }
@@ -368,8 +368,8 @@ List* List::set(const int _iIndex, InternalType* _pIT)
 
     while ((int)m_plData->size() < _iIndex)
     {
-        //incease list size and fill with "Undefined"
-        m_plData->push_back(new ListUndefined());
+        //incease list size and fill with Void type object
+        m_plData->push_back(new types::Void());
         m_plData->back()->IncreaseRef();
         m_iSize = getSize();
     }

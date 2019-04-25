@@ -490,7 +490,6 @@ lib /DEF:"$(ProjectDir)functions_manager_import.def" /SUBSYSTEM:WINDOWS /MACHINE
     <ClInclude Include="includes\types\listdelete.hxx" />
     <ClInclude Include="includes\types\listinsert.hxx" />
     <ClInclude Include="includes\types\listoperation.hxx" />
-    <ClInclude Include="includes\types\listundefined.hxx" />
     <ClInclude Include="includes\types\macro.hxx" />
     <ClInclude Include="includes\types\macrofile.hxx" />
     <ClInclude Include="includes\types\matrixiterator.hxx" />
@@ -727,7 +726,6 @@ lib /DEF:"$(ProjectDir)functions_manager_import.def" /SUBSYSTEM:WINDOWS /MACHINE
     <ClCompile Include="src\cpp\types\listdelete.cpp" />
     <ClCompile Include="src\cpp\types\listinsert.cpp" />
     <ClCompile Include="src\cpp\types\listoperation.cpp" />
-    <ClCompile Include="src\cpp\types\listundefined.cpp" />
     <ClCompile Include="src\cpp\types\macro.cpp" />
     <ClCompile Include="src\cpp\types\macrofile.cpp" />
     <ClCompile Include="src\cpp\types\mlist.cpp" />

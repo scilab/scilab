@@ -125,7 +125,7 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
     int iIndex = 0;
     for (int i = 0; i < iListSize; i++)
     {
-        if (pList->get(i)->isListUndefined())
+        if (pList->get(i)->isVoid())
         {
             switch (pIndex->getType())
             {

@@ -96,7 +96,6 @@ src/cpp/types/list.cpp \
 src/cpp/types/listdelete.cpp \
 src/cpp/types/listinsert.cpp \
 src/cpp/types/listoperation.cpp \
-src/cpp/types/listundefined.cpp \
 src/cpp/types/macro.cpp \
 src/cpp/types/macrofile.cpp \
 src/cpp/types/mlist.cpp \
@@ -480,7 +479,6 @@ includes/types/listdelete.hxx \
 includes/types/list.hxx \
 includes/types/listinsert.hxx \
 includes/types/listoperation.hxx \
-includes/types/listundefined.hxx \
 includes/types/macrofile.hxx \
 includes/types/macro.hxx \
 includes/types/matrixiterator.hxx \

@@ -19,6 +19,7 @@
 
 #include "macro.hxx"
 #include "list.hxx"
+#include "void.hxx"
 #include "listinsert.hxx"
 #include "string.hxx"
 #include "context.hxx"
@@ -405,7 +406,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         for (int i = 0 ; i < size ; ++i)
         {
             InternalType* pIT = pVarOut->get(i);
-            if (pIT->isListUndefined())
+            if (pIT->isVoid())
             {
                 for (int j = 0; j < i; ++j)
                 {

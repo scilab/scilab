@@ -305,11 +305,6 @@ bool InternalType::isListInsert(void)
     return false;
 }
 
-bool InternalType::isListUndefined(void)
-{
-    return false;
-}
-
 bool InternalType::isPointer(void)
 {
     return false;
@@ -321,6 +316,11 @@ bool InternalType::isLibrary(void)
 }
 
 bool InternalType::isUserType(void)
+{
+    return false;
+}
+
+bool InternalType::isVoid(void)
 {
     return false;
 }

@@ -31,7 +31,6 @@
 #include "graphichandle.hxx"
 #include "macro.hxx"
 #include "void.hxx"
-#include "listundefined.hxx"
 #include "context.hxx"
 #include "handle_properties.hxx"
 #include "deserializervisitor.hxx"
@@ -283,7 +282,7 @@ types::InternalType* import_data(hid_t dataset)
     if (type == g_SCILAB_CLASS_UNDEFINED)
     {
         closeDataSet(dataset);
-        return new types::ListUndefined();
+        return new types::Void();
     }
 
     if (type == g_SCILAB_CLASS_USERTYPE)

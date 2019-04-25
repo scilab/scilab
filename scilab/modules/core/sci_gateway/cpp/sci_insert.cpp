@@ -16,13 +16,13 @@
 #include "core_gw.hxx"
 #include "function.hxx"
 #include "listinsert.hxx"
-#include "listundefined.hxx"
+#include "void.hxx"
 
 types::Function::ReturnValue sci_insert(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     if (in.size() == 0)
     {
-        out.push_back(new types::ListInsert(new types::ListUndefined()));
+        out.push_back(new types::ListInsert(new types::Void()));
     }
     else
     {

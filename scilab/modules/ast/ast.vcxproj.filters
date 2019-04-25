@@ -385,9 +385,6 @@
     <ClInclude Include="includes\types\listoperation.hxx">
       <Filter>Header Files\types</Filter>
     </ClInclude>
-    <ClInclude Include="includes\types\listundefined.hxx">
-      <Filter>Header Files\types</Filter>
-    </ClInclude>
     <ClInclude Include="includes\types\macro.hxx">
       <Filter>Header Files\types</Filter>
     </ClInclude>
@@ -931,9 +928,6 @@
       <Filter>Source Files\types</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\types\listoperation.cpp">
-      <Filter>Source Files\types</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\types\listundefined.cpp">
       <Filter>Source Files\types</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\types\macro.cpp">

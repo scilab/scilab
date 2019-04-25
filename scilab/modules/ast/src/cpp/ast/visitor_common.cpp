@@ -1063,7 +1063,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         int iNewSize = pEH->getSizeFromArgs();
                         if (pTL->getSize() < iNewSize)
                         {
-                            pTL = pTL->set(iNewSize - 1, new types::ListUndefined());
+                            pTL = pTL->set(iNewSize - 1, new types::Void());
                             pEH->setCurrent(pTL);
                         }
 
@@ -1219,7 +1219,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             int iNewSize = pEH->getSizeFromArgs();
                             if (pL->getSize() < iNewSize)
                             {
-                                pL = pL->set(iNewSize - 1, new types::ListUndefined());
+                                pL = pL->set(iNewSize - 1, new types::Void());
                                 pEH->setCurrent(pL);
                             }
 

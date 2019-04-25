@@ -40,7 +40,6 @@
 #include "listoperation.hxx"
 #include "listdelete.hxx"
 #include "listinsert.hxx"
-#include "listundefined.hxx"
 #include "tlist.hxx"
 #include "mlist.hxx"
 #include "file.hxx"

@@ -191,8 +191,7 @@ Bug Fixes
 * [#14863](http://bugzilla.scilab.org/show_bug.cgi?id=14863): In Xcos, the default ending time was unhandily high (100000), reduced it to 30.
 * [#14982](http://bugzilla.scilab.org/show_bug.cgi?id=14982): `msprintf` segmentation fault was caught due to wrong size
 * [#14985](http://bugzilla.scilab.org/show_bug.cgi?id=14985): scilab crashed if a .bin file was not found.
-* [#15087](http://bugzilla.scilab.org/show_bug.cgi?id=15087): Deleting rows or columns from a matrix is slow (regression
-)
+* [#15087](http://bugzilla.scilab.org/show_bug.cgi?id=15087): Deleting rows or columns from a matrix is slow (regression)
 * [#15248](http://bugzilla.scilab.org/show_bug.cgi?id=15248): `lsq()`was leaking memory.
 * [#15269](http://bugzilla.scilab.org/show_bug.cgi?id=15269): `xgetech` was poor and stiff compared to any combination of `gca()` properties `.axes_bounds`, `.data_bounds`, `.log_flags`, and `.margins`. It is removed.
 * [#15271](http://bugzilla.scilab.org/show_bug.cgi?id=15271): `bitget` needed to be upgraded.
@@ -224,6 +223,7 @@ Bug Fixes
 * [#16015](http://bugzilla.scilab.org/show_bug.cgi?id=116015): `intg(a,b,f)` called f(x) with x outside [a,b].
 * [#16021](http://bugzilla.scilab.org/show_bug.cgi?id=16021): `tand([-90 90])` answered [Nan Nan] instead of [-Inf, Inf]. `cotd([-90 90])` answered [Nan Nan] instead of [0 0]. `1 ./cosd([-90 90])` answered [Inf -Inf] instead of [Inf Inf].
 * [#16026](http://bugzilla.scilab.org/show_bug.cgi?id=16026): For `atanh()`, neither the documentation pages nor the `m2sci` converter were up to date.
+* [#16051](http://bugzilla.scilab.org/show_bug.cgi?id=16051): undefined list elements could be of 2 distinct typeof "void" or "listundefined" according to the way they are created.
 * [#16067](http://bugzilla.scilab.org/show_bug.cgi?id=16067): The display of matrices of signed integers was misaligned (regression of 6.0.0 vs 5.5.2)
 * [#16071](http://bugzilla.scilab.org/show_bug.cgi?id=16071): `prettyprint(complex(1,%nan))` omitted the "+" in `1 + Nani`. It printed positive exponents with a useless "+". For any input nul polynomial, the string result never included the name of the variable. Default input arguments could not be skipped. ExportFormat was uselessly case-sensitive. For tex|latex: for text input, $ \ % & { } ~ and ^ special characters were not protected ; spaces were not protected, all words were concatenated ; for polynomials and rationals, the result string could be extremely long and not easily wrappable. For MathML: "<" was not protected ; <mi></mi> were missing for text input ; <mtable>, </mtable>, <mtr>, </mtr>, <mtd>, <mfenced> and </mfenced> tags were not wrapped and could not be indented. Delimiters: "" was not documented as possible value ; ")" was wrongly documented. Dynamical linear systems were not documented as possible input.
 * [#16072](http://bugzilla.scilab.org/show_bug.cgi?id=16072): `prettyprint()` did not actually support input encoded integers.
