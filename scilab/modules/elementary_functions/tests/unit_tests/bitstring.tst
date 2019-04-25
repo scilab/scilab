@@ -1,0 +1,40 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2019 - Stéphane MOTTELET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+
+//==============================================================================
+
+assert_checkequal(bitstring(%pi),"0100000000001001001000011111101101010100010001000010110100011000")
+assert_checkequal(bitstring(1+2^-52),"0011111111110000000000000000000000000000000000000000000000000001")
+assert_checkequal(bitstring([1/3;1/5;1/7]),...
+["0011111111010101010101010101010101010101010101010101010101010101"
+"0011111111001001100110011001100110011001100110011001100110011010"
+"0011111111000010010010010010010010010010010010010010010010010010"]);
+
+assert_checkequal(bitstring(nearfloat("pred",%inf)),  "0111111111101111111111111111111111111111111111111111111111111111");
+assert_checkequal(bitstring(nearfloat("succ",-%inf)), "1111111111101111111111111111111111111111111111111111111111111111");
+assert_checkequal(bitstring(nearfloat("succ",0)), "0000000000000000000000000000000000000000000000000000000000000001");
+assert_checkequal(bitstring(nearfloat("pred",0)), "1000000000000000000000000000000000000000000000000000000000000001");
+
+// special IEEE_754 values
+assert_checkequal(bitstring(0.0),"0000000000000000000000000000000000000000000000000000000000000000")
+assert_checkequal(bitstring(-0.0),"1000000000000000000000000000000000000000000000000000000000000000")
+assert_checkequal(bitstring(%inf), "0111111111110000000000000000000000000000000000000000000000000000")
+assert_checkequal(bitstring(-%inf), "1111111111110000000000000000000000000000000000000000000000000000")
+assert_checkequal(bitstring(%nan), "1111111111111000000000000000000000000000000000000000000000000000")
+assert_checkequal(bitstring(-%nan), "0111111111111000000000000000000000000000000000000000000000000000")
+
+// integer types
+assert_checkequal(bitstring([%t %f]), ["1","0"]);
+assert_checkequal(bitstring(int8(1)), "00000001");
+assert_checkequal(bitstring(int8(-1)), "11111111");
+assert_checkequal(bitstring(uint16(65535)), "1111111111111111");
+assert_checkequal(bitstring(int32(-65535)), "11111111111111110000000000000001");
+assert_checkequal(bitstring(uint64(-1)), "1111111111111111111111111111111111111111111111111111111111111111");
+

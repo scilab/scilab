@@ -40,6 +40,7 @@ int ElemFuncModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"acos", &sci_acos, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"asin", &sci_asin, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"atan", &sci_atan, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"bitstring", &sci_bitstring, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ceil", &sci_ceil, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"clean", &sci_clean, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"conj", &sci_conj, MODULE_NAME));

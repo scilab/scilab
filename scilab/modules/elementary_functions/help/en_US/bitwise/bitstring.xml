@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="bitstring">
+  <refnamediv>
+    <refname>bitstring</refname>
+    <refpurpose>A string giving the literal bit representation of a number</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Syntax</title>
+    <synopsis>str = bitstring(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>
+            a matrix of integers, real doubles or booleans
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>str</term>
+        <listitem>
+          <para>
+            a matrix of strings
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+     bitstring returns a string giving the literal bit representation of a number.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    // IEEE_754 Floating point number
+    str = bitstring(%pi)
+    mprintf("sign bit = %s\n",part(str,1))
+    mprintf("exponent = %s\n",part(str,2:12))
+    mprintf("mantissa = %s\n",part(str,13:$))
+
+    // see periodic pattern in mantissa
+    bitstring([1/3; 1/5; 1/7])
+
+    // see last bit of mantissa
+    bitstring([1; 1+%eps])
+
+    // special IEEE_754 values
+    bitstring([0 -0])
+    bitstring([%inf; -%inf; %nan; -%nan])
+
+    // integer types
+    bitstring([%t %f])
+    bitstring(int8(-1))
+    bitstring(uint16(65535))
+    bitstring(int32(-65535))
+    bitstring(uint64(-1))
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="bitget">bitget</link>
+      </member>
+      <member>
+        <link linkend="bitset">bitset</link>
+      </member>
+    </simplelist>
+  </refsection>
+   <refsection>
+       <title>References</title>
+Implementation of IEEE Standard for Floating-Point Arithmetic can be found at <ulink url="https://en.wikipedia.org/wiki/IEEE_754">https://en.wikipedia.org/wiki/IEEE_754</ulink>
+    </refsection>
+    <refsection>
+       <title>History</title>
+      <revhistory>
+        <revision>
+          <revnumber>6.1</revnumber>
+          <revdescription>Function bitstring added</revdescription>
+        </revision>
+      </revhistory>
+    </refsection>
+</refentry>

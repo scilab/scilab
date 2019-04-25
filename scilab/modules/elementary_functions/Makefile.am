@@ -338,7 +338,8 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_issquare.cpp \
     sci_gateway/cpp/sci_isvector.cpp\
     sci_gateway/cpp/sci_nearfloat.cpp\
-    sci_gateway/cpp/sci_permute.cpp		
+    sci_gateway/cpp/sci_permute.cpp\
+    sci_gateway/cpp/sci_bitstring.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 

@@ -219,6 +219,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\sci_asinh.cpp" />
     <ClCompile Include="..\sci_atan.cpp" />
     <ClCompile Include="..\sci_atanh.cpp" />
+    <ClCompile Include="..\sci_bitstring.cpp" />
     <ClCompile Include="..\sci_ceil.cpp" />
     <ClCompile Include="..\sci_clean.cpp" />
     <ClCompile Include="..\sci_conj.cpp" />
