@@ -115,9 +115,9 @@ void Triangulator::fillPoints(void)
         normal.y *= sign;
         normal.z *= sign;
 
-        double c, s;
+        double c, s, nxy = sqrt(normal.x * normal.x + normal.y * normal.y);
 
-        c = normal.y / sqrt(normal.x * normal.x + normal.y * normal.y);
+        c = nxy == 0. ? 1. : normal.y / nxy; // bug #15995 fix
         s = sqrt(1. - c * c);
         s = normal.x < 0. ? -s : s;
 
