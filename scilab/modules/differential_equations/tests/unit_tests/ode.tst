@@ -3,6 +3,7 @@
 // Copyright (C) 2007-2008 - INRIA
 // Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 // Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+// Copyright (C) 2019 - Stéphane MOTTELET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -22,6 +23,15 @@ y=ode(y0,t0,t,f);
 assert_checkalmostequal(size(y), [1 32] , %eps, [], "matrix");
 clear y;
 clear t;
+
+// to check that error in rhs is reported without crashing Scilab
+function ydot=f(t,y),ydot=z,endfunction
+y0=0;t0=0;t=0:0.1:%pi;
+message = [msprintf(_("Undefined variable: %s"),"z");
+           "ode: An error occurred in ''lsoda'' subroutine."]
+assert_checkerror("y=ode(y0,t0,t,f)",message);
+
+
 //*************************** function F and lsoda ********************************/
 // create functions
 cd TMPDIR;
