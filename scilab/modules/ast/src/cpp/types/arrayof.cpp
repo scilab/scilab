@@ -601,7 +601,6 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
     if (iSeqCount < 0)
     {
         //manage : and $ in creation by insertion
-        int *piSourceDims = getDimsArray();
         int iSourceDims = getDims();
         int iSource = 0;
         int iNbColon = 0;
@@ -622,6 +621,9 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
             cleanIndexesArguments(_pArgs, &pArg);
             return this;
         }
+
+        int *piSourceDims = new int[iSourceDims];
+        memcpy(piSourceDims, getDimsArray(), iSourceDims * sizeof(int));
 
         if (iNbColon == 1 && isVector())
         {
@@ -672,6 +674,7 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
                 ++iSource;
             }
         }
+        delete[] piSourceDims;
     }
 
     //remove last dimension at size 1
