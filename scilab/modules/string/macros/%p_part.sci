@@ -1,7 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) - 2013 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) - 2013, 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,8 +24,9 @@ function r = %p_part(txt, s)
     U = unique(L)
     r = emptystr(txt)
     for u = U(:)'
-        j = 1:u
         k = find(L==u)
-        r(k) = part(txt(k), horner(s(:)',u))
+        j = horner(s(:)',u)
+        j = j(j>0)
+        r(k) = part(txt(k), j)
     end
 endfunction

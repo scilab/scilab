@@ -14,14 +14,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:id="part" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xml:id="part" xml:lang="en">
     <refnamediv>
         <refname>part</refname>
         <refpurpose>Extraction of characters from strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[strings_out] = part(strings_in, v)</synopsis>
+        <synopsis>strings_out = part(strings_in, v)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -29,7 +32,7 @@
             <varlistentry>
                 <term>strings_in</term>
                 <listitem>
-                    <para>a character string or matrix of character string.</para>
+                    <para>a character string or a matrix of character string.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -109,7 +112,7 @@ part('Hello world', $:-1:1)        // => 'dlrow olleH'
 // 3) With unranging $:
 part('Hello world', [ $ 4:5 ])     // => 'dlo'
 
-// 4) Mixing scalar or unrangin $ with ranging ones is not possible:
+// 4) Mixing scalar or unranging $ with ranging ones is not possible:
 part("Hello", [ 1 $-1:$ $ ])       // =>  error
     ]]></programlisting>
     </refsection>

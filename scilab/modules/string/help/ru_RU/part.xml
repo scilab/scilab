@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
- *
+ * Copyright (C) Samuel GOUGEON - 2013 : $ is now supported. More examples.
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -13,14 +13,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:id="part" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xml:id="part" xml:lang="ru">
     <refnamediv>
         <refname>part</refname>
         <refpurpose>выделение строк</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>[strings_out] = part(strings_in, v)</synopsis>
+        <synopsis>strings_out = part(strings_in, v)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -34,7 +37,10 @@
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>вектор-строка целочисленных значений.</para>
+                    <para>
+                        вектор целых значений, содержащий индексы символов, которые требуется
+                        выделить. Символ <literal>$</literal> означает <literal>length(strings_in)</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -76,14 +82,29 @@ c = part(['abcdefg','hijklmn','opqrstu'], [4,1:7,4]);
 // 2-й символ
 c=part(['a','abc','abcd'], [1,1,2])
 
-// a a a
-part(['a','abc','abcd'], [1])
+part(['a', 'abc', 'abcd'], [1])         // =>  ['a' 'a' 'a']
+part(['a', 'abc', 'abcd'], [1 1])       // =>  ['aa' 'aa' 'aa']
+part(['a', 'abc', 'abcd'], [1 1 2])     // =>  ['aa ' 'aab' 'aab']
 
-// aa aa aa
-part(['a','abc','abcd'], [1 1])
+// Повторение смвола N раз:
+N = 10; part('-', ones(1:N))            // => '----------'
 
-// "aa " aab aab
-part(['a','abc','abcd'], [1 1 2])
+// Повторение шаблона N раз:
+N = 6; pat = '- ';
+part(pat, ones(1:N).*.(1:length(pat))) // => '- - - - - - '
+
+// Истользование $ как неявной длины строк:
+// 1)
+part(['a string' 'another longer one'], $-2:$ ) // => [ 'ing' 'one']
+
+// 2) Другая имплементация strrev():
+part('Hello world', $:-1:1)        // => 'dlrow olleH'
+
+// 3) Без указания диапазона $:
+part('Hello world', [ $ 4:5 ])     // => 'dlo'
+
+// 4) Смесь скаляра и неуказа диапазона $ с указанием диапазона невозможно:
+part("Hello", [ 1 $-1:$ $ ])       // =>  error
     ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -99,5 +120,17 @@ part(['a','abc','abcd'], [1 1 2])
                 <link linkend="length">length</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Символ <literal>$</literal>, означающий length(input_strings), теперь принимается
+                    в индексах выбранных символов.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

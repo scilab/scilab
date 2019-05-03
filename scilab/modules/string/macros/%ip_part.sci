@@ -1,7 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) - 2013, 2015 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) - 2013, 2015, 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -25,15 +24,17 @@ function r = %ip_part(txt, s)
     if length(L)>100 then
         U = unique(L)   // lengthy... So we factorize through unique() only for
         // big arrays of strings
-        for u = U'
-            j = 1:u
+        for u = U(:)'
             k = find(L==u)
-            r(k) = part(txt(k), j(s))
+            j = horner(s,u)
+            j = j(j>0)
+            r(k) = part(txt(k), j)
         end
     else                // Otherwise, a direct element-wise processing is faster.
         for i = 1:size(L, "*")
-            j = 1:L(i)
-            r(i) = part(txt(i), j(s))
+            j = horner(s, L(i))
+            j = j(j>0)
+            r(i) = part(txt(i), j)
         end
     end
 endfunction
