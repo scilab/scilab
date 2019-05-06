@@ -150,12 +150,13 @@ void SetBrowseVarData()
         err = getVarType(NULL, (int*)pIT, &piAllVariableTypes[i]);
         if (err.iErr)
         {
-            return;
+            piAllVariableTypes[i] = 0;
         }
         err = getVarDimension(NULL, (int*)pIT, &nbRows, &nbCols);
         if (err.iErr)
         {
-            return;
+            nbRows = 0;
+            nbCols = 0;
         }
 
         if (pIT->isArrayOf() || pIT->isSparse())
