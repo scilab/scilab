@@ -136,6 +136,7 @@ Xcos
 
 * Default ending time reduced from 100000 to 30, to fit default scope block.
 * `CURVE_c` settings did not always display a window.
+* Exporting all layers from a diagram will generate one unique file per layer.
 
 API modification
 ----------------

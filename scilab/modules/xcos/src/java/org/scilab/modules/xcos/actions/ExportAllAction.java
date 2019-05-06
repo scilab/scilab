@@ -56,6 +56,9 @@ import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.util.mxXmlUtils;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 
 /**
  * Diagram export management
@@ -153,7 +156,6 @@ public final class ExportAllAction extends DefaultAction {
              */
             JavaController controller = new JavaController();
             ArrayList<XcosDiagram> diagrams = new ArrayList<>();
-            diagrams.add(graph);
 
             ArrayList<Long> stash = new ArrayList<>();
             allocateDiagrams(controller, diagrams, stash, graph.getUID(), Kind.DIAGRAM);
@@ -163,19 +165,59 @@ public final class ExportAllAction extends DefaultAction {
             }
 
             /*
+             * Create unique filenames
+             */
+            HashMap<File, Integer> filesSet = new HashMap<>(diagrams.size());
+            makeUniqueFile(filesSet, 0, dir, graph.getTitle(), format);
+            for (int i = 0; i < diagrams.size(); i++) {
+                final XcosDiagram d = diagrams.get(i);
+                makeUniqueFile(filesSet, i + 1, dir, d.getTitle(), format);
+            }
+            File[] files = new File[diagrams.size() + 1];
+            filesSet.forEach((f, i) -> { if (i >= 0) files[i] = f;});
+
+            /*
              * Export
              */
             try {
-                export(graph, new File(dir, graph.getTitle() + "." + format), format);
+                export(graph, files[0], format);
 
-                for (XcosDiagram d : diagrams) {
-                    export(d, new File(dir, d.getTitle() + "." + format), format);
+                for (int i = 0; i < diagrams.size(); i++) {
+                    export(diagrams.get(i), files[i + 1], format);
                 }
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
 
         }
+    }
+
+    private static void makeUniqueFile(HashMap<File, Integer> filesSet, int fileIndex, File dir, String name, String ext) {
+        final StringBuilder str = new StringBuilder(name).append(".").append(ext);
+
+        File f = new File(dir, str.toString());
+        Integer index = filesSet.get(f);
+
+        // rename the existing file with a 0 prefix
+        if (index != null && index >= 0) {
+            // flag the original and rename it
+            filesSet.put(f, -1);
+
+            str.delete(name.length(), str.length());
+            str.append("_").append(0).append(".").append(ext);
+            f = new File(dir, str.toString());
+
+            filesSet.put(f, index);
+        }
+        for (int i = 1; index != null; i++) {
+            str.delete(name.length(), str.length());
+            str.append("_").append(i).append(".").append(ext);
+
+            f = new File(dir, str.toString());
+            index = filesSet.get(f);
+        }
+
+        filesSet.put(f, fileIndex);
     }
 
     private void allocateDiagrams(JavaController controller, ArrayList<XcosDiagram> diagrams, ArrayList<Long> stash,
@@ -199,6 +241,7 @@ public final class ExportAllAction extends DefaultAction {
                     controller.getObjectProperty(currentUID, Kind.BLOCK, ObjectProperties.UID, strUID);
 
                     final XcosDiagram child = new XcosDiagram(controller, currentUID, Kind.BLOCK, strUID[0]);
+                    XcosCellFactory.insertChildren(controller, child);
                     diagrams.add(child);
                     stash.add(currentUID);
                 }
