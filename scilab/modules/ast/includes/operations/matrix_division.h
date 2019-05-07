@@ -22,4 +22,7 @@
 #include "matrix_left_division.h"
 #include "matrix_right_division.h"
 
+void matrixIsTriangular(double *_pdblReal, double *_pdblImg, int _iRows, int _iCols, int *bUpper, int *bLower);
+extern double C2F(dasum) (int *, double *, int *);
+
 #endif //!__MATRIX_DIV_H__
