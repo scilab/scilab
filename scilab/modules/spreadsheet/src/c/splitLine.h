@@ -15,6 +15,8 @@
 #ifndef __SPLITLINE_H__
 #define __SPLITLINE_H__
 
+#include <wchar.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -22,7 +24,12 @@ extern "C" {
 /**
 * split a line by separator
 */
-char **splitLineCSV(const char *str, const char *sep, int *toks);
+char** splitLineCSV(const char* str, const char* sep, int* toks);
+
+/**
+* split a line by separator, iterator (non-allocating) version
+*/
+wchar_t* splitLineCSVNext(wchar_t* previousToken, const wchar_t* separator, wchar_t** start, wchar_t** end);
 
 #ifdef __cplusplus
 }

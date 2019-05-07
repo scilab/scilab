@@ -20,7 +20,7 @@
 filename = SCI + "/modules/spreadsheet/tests/nonreg_tests/bug_11999.csv";
 
 csvDefault("blank", "off"); // Default behavior in 5.4.0, changed 5.4.1 to "on"
-errMsg = msprintf(gettext("%s: can not read file %s: Error in the column structure\n"), "csvRead", filename);
+errMsg = msprintf(gettext("%s: can not read file, error in the column structure\n"), "csvRead");
 assert_checkerror("a=csvRead(filename, "";"", [], ""string"");", errMsg, 999);
 
 csvDefault("blank", "on");

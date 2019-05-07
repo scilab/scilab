@@ -86,7 +86,8 @@ stringToDoubleError;
  * @return <ReturnValue>
  */
 STRING_IMPEXP double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError *ierr);
-STRING_IMPEXP double stringToDoubleW(const wchar_t *pSTR, BOOL bConvertByNAN, stringToDoubleError *ierr);
+STRING_IMPEXP double stringToDoubleW(const wchar_t* pSTR, BOOL bConvertByNAN, stringToDoubleError* ierr);
+STRING_IMPEXP double stringToDoubleWInPlace(wchar_t* pSTR, BOOL bConvertByNAN, stringToDoubleError* ierr);
 
 #ifdef __cplusplus
 }

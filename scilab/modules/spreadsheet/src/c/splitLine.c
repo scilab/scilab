@@ -244,3 +244,66 @@ char **splitLineCSV(const char *str, const char *sep, int *toks)
     return retstr;
 }
 /* ==================================================================== */
+wchar_t* splitLineCSVNext(wchar_t* previousToken, const wchar_t* separator, wchar_t** start, wchar_t** end)
+{
+    size_t quoteCount = 0;
+    wchar_t* it = NULL;
+    if (previousToken == NULL)
+    {
+        return NULL;
+    }
+
+    // string separator might be a string, the management is also more complex due to some mix between " and *separator
+
+    // initial values
+    *start = previousToken;
+    *end = NULL;
+
+    it = previousToken;
+    for (; *it != L'\0'; it++)
+    {
+        if (*it == L'\"')
+        {
+            quoteCount++;
+        }
+        if (*it == *separator && quoteCount % 2 == 0)
+        {
+            // look for the next separator
+            const wchar_t* st = separator;
+            for (wchar_t* iit = it; *iit != L'\0'; iit++)
+            {
+                if (*iit == *st)
+                {
+                    // found! iterate on both strings
+                    st++;
+                }
+                else if (iit != it)
+                {
+                    // reset a previously started match
+                    break;
+                }
+
+                // last iteration
+                if (*st == L'\0')
+                {
+                    *end = iit;
+                    break;
+                }
+            }
+
+            if (*end != NULL)
+            {
+                break;
+            }
+        }
+    }
+
+    // last iteration, set the end to the last '\0' char and the iterator to NULL
+    if (*end == NULL)
+    {
+        *end = it;
+        return NULL;
+    }
+    return *end + 1;
+}
+

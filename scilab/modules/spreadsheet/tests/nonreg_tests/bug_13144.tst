@@ -29,7 +29,7 @@ header = 2;
 refM = [
 0.211324865464121 0.000221134629101 0.665381104219705
 0.756043854169548 0.330327091738582 0.628391788341105 ];
-refC = "";
+refC = comments;
 
 assert_checkalmostequal(M, refM);
 assert_checkequal(c, refC);

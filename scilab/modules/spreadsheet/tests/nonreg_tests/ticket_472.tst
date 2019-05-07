@@ -2,6 +2,7 @@
 // Copyright (C) 2012 - INRIA - Allan CORNET
 // =============================================================================
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 // =============================================================================
 // <-- Non-regression test for bug 472 -->
 //
@@ -12,18 +13,16 @@
 // csvRead, csvTextScan cannot ignore blank lines.
 // =============================================================================
 
-warning("off");
 txt = ["my data 1";"";"my data 2"];
 ref_res = ["my data 1";"my data 2"];
 
 assert_checkequal(csvDefault('blank'), 'on');
 assert_checkequal(csvDefault('blank','off'), %t);
-ierr = execstr("res = csvTextScan(txt, [] , [], ""string"")", "errcatch");
-assert_checkequal(ierr, 999);
+res = csvTextScan(txt, [] , [], "string");
+assert_checkequal(res, txt); // handle empty lines
 
 assert_checkequal(csvDefault('blank','on'), %t);
-ierr = execstr("res = csvTextScan(txt, [] , [], ""string"")", "errcatch");
-assert_checkequal(ierr, 0);
+res = csvTextScan(txt, [] , [], "string");
 assert_checkequal(res, ref_res);
 // =============================================================================
 

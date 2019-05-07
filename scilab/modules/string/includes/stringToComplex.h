@@ -37,20 +37,29 @@ typedef enum
 extern "C" {
 #endif
 
-doublecomplex stringToComplex(const char *pSTR,
-                              const char *decimal,
-                              BOOL bConvertByNAN,
-                              stringToComplexError *ierr);
+STRING_IMPEXP doublecomplex stringToComplexWInPlace(wchar_t* start, wchar_t* end,
+        const wchar_t* decimal,
+        BOOL bConvertByNAN,
+        stringToComplexError* ierr);
 
-doublecomplex stringToComplexW(const wchar_t *pSTR,
-                               const wchar_t *decimal,
-                               BOOL bConvertByNAN,
-                               stringToComplexError *ierr);
+STRING_IMPEXP doublecomplex stringToComplex(const char* pSTR,
+        const char *decimal,
+        BOOL bConvertByNAN,
+        stringToComplexError *ierr);
+
+STRING_IMPEXP doublecomplex stringToComplexW(const wchar_t* pSTR,
+        const wchar_t *decimal,
+        BOOL bConvertByNAN,
+        stringToComplexError *ierr);
 
 STRING_IMPEXP  complexArray *stringsToComplexArray(const char **pSTRs, int nbElements,
         const char *decimal,
         BOOL bConvertByNAN,
         stringToComplexError *ierr);
+
+STRING_IMPEXP void convertDecimalToDotInPlace(wchar_t* str, const wchar_t* decimal);
+
+STRING_IMPEXP void escapeDoubleQuotesInPlace(wchar_t* start, wchar_t* end);
 
 #ifdef __cplusplus
 }

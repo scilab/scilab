@@ -134,6 +134,9 @@ types::Function::ReturnValue sci_xls_read(types::typed_list &in, int _iRetCount,
     {
         out.push_back(types::Double::Empty());
         out.push_back(types::Double::Empty());
+
+        free(data);
+        free(ind);
     }
 
     return types::Function::OK;

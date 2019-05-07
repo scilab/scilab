@@ -38,6 +38,7 @@ int setCsvDefaultEncoding(const char *encoding);
 int setCsvDefaultCsvIgnoreBlankLine(const char *blankMode);
 
 int setCsvDefaultReset(void);
+void setCsvDefaultClear(void);
 
 #ifdef __cplusplus
 }

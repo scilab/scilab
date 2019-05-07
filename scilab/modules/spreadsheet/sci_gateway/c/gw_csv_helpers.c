@@ -16,12 +16,14 @@
  *
  */
 #include <string.h>
+#include <wchar.h>
 
 #include "api_scilab.h"
 #include "sci_types.h"
 #include "Scierror.h"
 #include "sci_malloc.h"
 #include "localization.h"
+#include "charEncoding.h"
 #include "gw_csv_helpers.h"
 #include "os_string.h"
 #include "freeArrayOfString.h"
@@ -107,7 +109,144 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* pvApiCtx, int _iVar, cons
     return returnedValue;
 }
 // =============================================================================
+wchar_t *csv_getArgumentAsWideStringWithEmptyManagement(void* pvApiCtx, int _iVar, const char *fname,
+        const char *defaultValue,
+        int *iErr)
+{
+    SciErr sciErr;
+    wchar_t *returnedValue = NULL;
+    int *piAddressVar = NULL;
+    int iType = 0;
+    int m = 0, n = 0;
 
+    sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddressVar);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        *iErr = sciErr.iErr;
+        return NULL;
+    }
+
+    sciErr = getVarType(pvApiCtx, piAddressVar, &iType);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        *iErr = sciErr.iErr;
+        return NULL;
+    }
+
+    if (iType != sci_strings)
+    {
+        if (isEmptyMatrix(pvApiCtx, piAddressVar))
+        {
+            /* [] equals default value */
+            if (defaultValue)
+            {
+                *iErr = 0;
+                returnedValue = to_wide_string(defaultValue);
+            }
+            else
+            {
+                *iErr = 0;
+                returnedValue = NULL;
+            }
+        }
+        else
+        {
+            *iErr = API_ERROR_INVALID_TYPE;
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, _iVar);
+            return NULL;
+        }
+    }
+    else
+    {
+        *iErr = checkVarDimension(pvApiCtx, piAddressVar, 1, 1);
+
+        if (*iErr == 0 )
+        {
+            *iErr = API_ERROR_CHECK_VAR_DIMENSION;
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, _iVar);
+            return NULL;
+        }
+
+        *iErr = getAllocatedSingleWideString(pvApiCtx, piAddressVar, &returnedValue);
+        if (*iErr)
+        {
+            if (returnedValue)
+            {
+                FREE(returnedValue);
+            }
+
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return NULL;
+        }
+        if (wcslen(returnedValue) == 0)
+        {
+            FREE(returnedValue);
+            returnedValue = to_wide_string(defaultValue);
+        }
+    }
+    return returnedValue;
+}
+// =============================================================================
+wchar_t *csv_getArgumentAsWideString(void* pvApiCtx, int _iVar,
+                                     const char *fname, int *iErr)
+{
+    SciErr sciErr;
+
+    int *piAddressVar = NULL;
+    int m = 0, n = 0;
+    int iType = 0;
+
+    wchar_t *returnedValue = NULL;
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddressVar);
+    if (sciErr.iErr)
+    {
+        *iErr = sciErr.iErr;
+        printError(&sciErr, 0);
+        return NULL;
+    }
+
+    sciErr = getVarType(pvApiCtx, piAddressVar, &iType);
+    if (sciErr.iErr)
+    {
+        *iErr = sciErr.iErr;
+        printError(&sciErr, 0);
+        return NULL;
+    }
+
+    if (iType != sci_strings)
+    {
+        *iErr = API_ERROR_INVALID_TYPE;
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
+        return NULL;
+    }
+
+    *iErr = checkVarDimension(pvApiCtx, piAddressVar, 1, 1);
+
+    if (*iErr == 0 )
+    {
+        *iErr = API_ERROR_CHECK_VAR_DIMENSION;
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, _iVar);
+        return NULL;
+    }
+
+    *iErr = getAllocatedSingleWideString(pvApiCtx, piAddressVar, &returnedValue);
+    if (*iErr)
+    {
+        if (returnedValue)
+        {
+            FREE(returnedValue);
+        }
+
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return NULL;
+    }
+    return returnedValue;
+}
+// =============================================================================
+// =============================================================================
 char *csv_getArgumentAsString(void* pvApiCtx, int _iVar,
                               const char *fname, int *iErr)
 {
@@ -294,6 +433,61 @@ char **csv_getArgumentAsMatrixOfString(void* pvApiCtx, int _iVar,
     }
 
     *iErr = getAllocatedMatrixOfString(pvApiCtx, piAddressVar, &m_, &n_, &pStringValues);
+    if (*iErr != 0)
+    {
+        if (pStringValues)
+        {
+            FREE(pStringValues);
+        }
+        return NULL;
+    }
+
+    *iErr = 0;
+    *m = m_;
+    *n = n_;
+
+    return pStringValues;
+}
+// =============================================================================
+wchar_t **csv_getArgumentAsMatrixOfWideString(void* pvApiCtx, int _iVar,
+        const char *fname,
+        int *m, int *n, int *iErr)
+{
+    SciErr sciErr;
+    wchar_t **pStringValues = NULL;
+    int *piAddressVar = NULL;
+    int m_ = 0, n_ = 0;
+    int iType = 0;
+    int *lengthStringValues = NULL;
+    int i = 0;
+
+    *m = 0;
+    *n = 0;
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, _iVar, &piAddressVar);
+    if (sciErr.iErr)
+    {
+        *iErr = sciErr.iErr;
+        printError(&sciErr, 0);
+        return NULL;
+    }
+
+    sciErr = getVarType(pvApiCtx, piAddressVar, &iType);
+    if (sciErr.iErr)
+    {
+        *iErr = sciErr.iErr;
+        printError(&sciErr, 0);
+        return NULL;
+    }
+
+    if (iType != sci_strings)
+    {
+        *iErr =  API_ERROR_INVALID_TYPE;
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, _iVar);
+        return NULL;
+    }
+
+    *iErr = getAllocatedMatrixOfWideString(pvApiCtx, piAddressVar, &m_, &n_, &pStringValues);
     if (*iErr != 0)
     {
         if (pStringValues)

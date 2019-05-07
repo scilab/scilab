@@ -15,6 +15,8 @@
 #ifndef __CSV_READ_H__
 #define __CSV_READ_H__
 
+#include <wchar.h>
+
 typedef enum
 {
     CSV_READ_NO_ERROR = 0,
@@ -30,11 +32,12 @@ typedef enum
 
 typedef struct
 {
-    char **pstrValues;
-    int m;
-    int n;
-    char **pstrComments;
+    wchar_t **pwstrValues;
+    int nbLines;
+    wchar_t **pwstrComments;
     int nbComments;
+    wchar_t **pwstrHeader;
+    int nbHeader;
     csvReadError err;
 } csvResult;
 
@@ -42,10 +45,14 @@ typedef struct
 extern "C" {
 #endif
 
-csvResult* csvRead(const char *filename, const char *separator, const char *decimal,
-                   const char **toreplace, int sizetoreplace, const char *regexpcomments, int header);
+csvResult* csvRead(const wchar_t *filename, const wchar_t *separator, const wchar_t *decimal,
+                   wchar_t **toreplace, int sizetoreplace, const wchar_t *regexpcomments, int header);
 
-csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separator, const char *decimal);
+int csvTextScanInPlace(wchar_t** text, int nbLines, const wchar_t* separator,
+                       const wchar_t* decimal, int haveRange, const int* iRange, int m1, int n1,
+                       wchar_t** pstrValues, double* pDblRealValues, double** pDblImgValues);
+
+char* csvTextScanSize(wchar_t** lines, int* numberOfLines, const wchar_t* separator, int *rows, int *cols, int haveRange, int* iRange);
 
 void freeCsvResult(csvResult *result);
 

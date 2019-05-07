@@ -52,6 +52,6 @@ assert_checkequal(b, [1.1  %inf*(1+%i)]);
 
 write_csv([ 1.1  1+%i*%inf],filename)
 b=mgetl(filename);
-assert_checkequal(b,"1.1000000000000001,Nan+Infi");
+assert_checkequal(b,"1.1000000000000001,1+Infi");
 b=csvRead(filename);
 assert_checkequal(b, [ 1.1  1+%i*%inf]);

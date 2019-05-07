@@ -16,6 +16,8 @@
  *
  */
 
+#include <wchar.h>
+
 #ifndef __GW_CSV_HELPERS_H__
 #define __GW_CSV_HELPERS_H__
 
@@ -23,8 +25,15 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* _pvCtx, int _iVar,
         const char *fname, const char *defaultValue,
         int *iErr);
 
+wchar_t *csv_getArgumentAsWideStringWithEmptyManagement(void* _pvCtx, int _iVar,
+        const char *fname, const char *defaultValue,
+        int *iErr);
+
 char *csv_getArgumentAsString(void* _pvCtx, int _iVar,
                               const char *fname, int *iErr);
+
+wchar_t *csv_getArgumentAsWideString(void* _pvCtx, int _iVar,
+                                     const char *fname, int *iErr);
 
 int csv_getArgumentAsScalarBoolean(void* _pvCtx, int _iVar,
                                    const char *fname, int *iErr);
@@ -32,6 +41,10 @@ int csv_getArgumentAsScalarBoolean(void* _pvCtx, int _iVar,
 char **csv_getArgumentAsMatrixOfString(void* _pvCtx, int _iVar,
                                        const char *fname,
                                        int *m, int *n, int *iErr);
+
+wchar_t **csv_getArgumentAsMatrixOfWideString(void* _pvCtx, int _iVar,
+        const char *fname,
+        int *m, int *n, int *iErr);
 
 int *csv_getArgumentAsMatrixofIntFromDouble(void* _pvCtx, int _iVar,
         const char *fname,

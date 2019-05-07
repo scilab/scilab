@@ -293,6 +293,12 @@ static int initializeCsvDefaultValues(void)
 // =============================================================================
 int setCsvDefaultReset(void)
 {
+    setCsvDefaultClear();
+    return initializeCsvDefaultValues();
+}
+// =============================================================================
+void setCsvDefaultClear(void)
+{
     if (defaultCsvSeparator)
     {
         FREE(defaultCsvSeparator);
@@ -333,7 +339,6 @@ int setCsvDefaultReset(void)
         FREE(defaultCsvIgnoreBlankLine);
         defaultCsvIgnoreBlankLine = NULL;
     }
-    return initializeCsvDefaultValues();
 }
 // =============================================================================
 int setCsvDefaultCommentsRegExp(const char *commentsRegExp)

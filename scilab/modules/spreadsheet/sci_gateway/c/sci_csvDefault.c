@@ -220,7 +220,7 @@ static int sci_csvDefault_one_rhs(char *fname, void* pvApiCtx)
     {
         freeVar(&fieldname, &fieldvalue);
 
-        setCsvDefaultReset();
+        setCsvDefaultClear();
 
         createEmptyMatrix(pvApiCtx, Rhs + 1);
 

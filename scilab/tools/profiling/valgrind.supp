@@ -57,4 +57,12 @@
    fun:H5F_open
    ...
 }
-
+{
+   gotoblas/gotoblas_affinity_init
+   Memcheck:Param
+   sched_getaffinity(mask)
+   ...
+   fun:gotoblas_affinity_init
+   fun:gotoblas_init
+   ...
+}
