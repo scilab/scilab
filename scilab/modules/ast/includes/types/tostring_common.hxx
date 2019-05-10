@@ -101,7 +101,7 @@ void getSignedIntFormat(T _TVal, int *_piWidth)
     {
         unsigned long long a = _abs64(_TVal);
         long double b = static_cast<long double>(a);
-        long double c = log10(b + 1);
+        long double c = log10(b) + 1;
         *_piWidth = static_cast<int>(c);
         //*_piWidth = static_cast<int>(log10(static_cast<unsigned long double>(_abs64(_TVal))) + 1);
     }

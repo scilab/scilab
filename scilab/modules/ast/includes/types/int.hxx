@@ -96,7 +96,7 @@ public :
         pbClone->set(ArrayOf<T>::get());
         return pbClone;
     }
-    
+
     /*Config management*/
     void whoAmI();
 
@@ -467,6 +467,7 @@ private :
             }
 
             ostr << ostemp.str();
+            delete[] piSize;
         }
 
         return true;
