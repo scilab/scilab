@@ -1583,8 +1583,11 @@ void sci_grand_prm(int iNumIter, U *pIn, types::InternalType** pOut)
     {
         piDimsArray = pOut[0]->getAs<U>()->getDimsArray();
         Dims = pOut[0]->getAs<U>()->getDims();
-        piDimsArray[Dims] = iNumIter;
-        pOut[0]->getAs<U>()->resize(piDimsArray, Dims + 1);
+        if (iNumIter > 1)
+        {
+            piDimsArray[Dims] = iNumIter;
+            pOut[0]->getAs<U>()->resize(piDimsArray, Dims + 1);
+        }
         pUTempo = pIn;
     }
 
