@@ -275,6 +275,7 @@ Bug Fixes
 
 ### Bugs fixed in 6.1.1:
 * [#3188](https://bugzilla.scilab.org/3188): `part()` was slower than in Scilab 4.1.2.
+* [#7117](https://bugzilla.scilab.org/7117): `findobj()` could not search within given object.
 * [#8059](https://bugzilla.scilab.org/8059): A local `.wgetrc` config file could make troubles in `atomsDownload`.
 * [#8378](https://bugzilla.scilab.org/8378): Datatip `ContextMenu => Delete last datatip` was useless.
 * [#9909](https://bugzilla.scilab.org/9909): In the help browser, add a way to open the online version of the current page.
