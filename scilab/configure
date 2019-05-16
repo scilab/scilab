@@ -49885,6 +49885,7 @@ fi
 
 
 # Check if -fsanitize=address is supported at compile time and link time
+saved_CFLAGS="$CFLAGS"
 saved_LDFLAGS="$LDFLAGS"
 asan_supported=no
 
@@ -49906,7 +49907,7 @@ See \`config.log' for more details" "$LINENO" 5; }
 else
   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
-const char hw[] = "Hello, World\n";
+const char hw[] = "Hello, AddressSanitizer\n";
 #ifdef F77_DUMMY_MAIN
 
 #  ifdef __cplusplus
@@ -49941,20 +49942,16 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
+CFLAGS="$saved_CFLAGS"
 LDFLAGS="$saved_LDFLAGS"
-if test "x$asan_supported" == "xno" -a "x$enable_address_sanitizer" == "xyes";
-  then
+if test "x$asan_supported" == "xno" -a "x$enable_address_sanitizer" == "xyes"; then
     as_fn_error $? "The $CC compiler does not support the options -fsanitize=address . Update your compiler and/or install the AddressSanitizer runtime library." "$LINENO" 5
-fi
-
-if test "x$asan_supported" == "xno";
-  then
-    echo "fsanitize=address not supported, AddressSanitizer disabled"
-  else
+elif test "x$enable_address_sanitizer" == "xyes"; then
     COMPILER_CFLAGS="$COMPILER_CFLAGS -fsanitize=address"
     COMPILER_CXXFLAGS="$COMPILER_CXXFLAGS -fsanitize=address"
     COMPILER_LDFLAGS="$COMPILER_LDFLAGS -fsanitize=address"
 fi
+
 
  if test "x$enable_address_sanitizer" == "xyes"; then
   USE_ADDRESS_SANITIZER_TRUE=
