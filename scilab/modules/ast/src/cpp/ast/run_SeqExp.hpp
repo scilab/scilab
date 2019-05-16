@@ -48,6 +48,37 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
         }
     }
 
+    if (exps.size() == 0)
+    {
+        if (ConfigVariable::isExecutionBreak())
+        {
+            ConfigVariable::resetExecutionBreak();
+            if (ConfigVariable::isPrintInteractive())
+            {
+                ClearTemporaryPrompt();
+            }
+
+            StorePrioritaryCommand("pause");
+            ThreadManagement::WaitForRunMeSignal();
+        }
+
+        // interrupt me to execute a prioritary command
+        while (StaticRunner_isInterruptibleCommand() == 1 && StaticRunner_isRunnerAvailable() == 1)
+        {
+            StaticRunner_launch();
+            StaticRunner_setInterruptibleCommand(1);
+        }
+
+        if (file)
+        {
+            file->close();
+            delete file;
+        }
+
+        CoverageInstance::stopChrono((void*)&e);
+        return;
+    }
+
     for (; it != itEnd; ++it)
     {
         if (ConfigVariable::isExecutionBreak())
