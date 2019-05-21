@@ -357,6 +357,12 @@ evstr(a(i+2))*2
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>-debug-rr</term>
+                <listitem>
+                    <para>Lance Scilab sous <ulink url="https://rr-project.org/">rr</ulink>.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>-debug-kdbg</term>
                 <listitem>
                     <para>Lance Scilab sous kdbg.</para>

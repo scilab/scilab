@@ -324,6 +324,12 @@ evstr(a(i+2))*2
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>-debug-rr</term>
+                <listitem>
+                    <para>rr上でScilabを開始します.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>-debug-kdbg</term>
                 <listitem>
                     <para>kdbg上でScilabを開始します.</para>

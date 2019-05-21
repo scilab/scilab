@@ -81,6 +81,16 @@ start_debug() {
     fi
 }
 
+start_debug_rr() {
+    if test -n "$DEVENV"; then
+        echo "Running debug of Scilab [rr]  : " "$SCI"/libtool --mode=execute rr "$SCILABBIN" "$@"
+        "$SCI"/libtool --mode=execute rr "$SCILABBIN" "$@"
+    else
+        echo "Running debug of Scilab [rr]  : " rr "$SCILABBIN" "$@"
+        rr record "$SCILABBIN" "$@"
+    fi
+}
+
 start_debug_kdbg() {
     if test -n "$DEVENV"; then
         echo "Running debug of Scilab [kdbg]  : " "$SCI"/libtool --mode=execute kdbg "$SCILABBIN"
@@ -1053,6 +1063,7 @@ do_help()
     echo     "Developer arguments:"
     echo     "  -debug          : Start Scilab under gdb (Unix/linux only)."
     echo     "                    define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
+    echo     "  -debug-rr       : Start Scilab under rr (Unix/linux only)."
     echo     "  -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
     echo     "  -profiling      : Start Scilab under valgrind (Unix/linux only)."
     echo     "                    define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
@@ -1169,6 +1180,9 @@ if test "$rest" = "yes"; then
             -debug)
                 DEBUG="-debug"
                 ;;
+            -debug-rr)
+                DEBUG_RR="-debug-rr"
+                ;;
             -debug-kdbg)
                 DEBUG_KDBG="-debug-kdbg"
                 ;;
@@ -1204,19 +1218,16 @@ if test "$rest" = "yes"; then
 
     if test -n "$DEBUG"; then
         start_debug "$@" $MORE_OPT
+    elif test -n "$DEBUG_RR"; then
+        start_debug_rr "$@" $MORE_OPT
+    elif test -n "$DEBUG_KDBG"; then
+        start_debug_kdbg "$@" $MORE_OPT
+    elif test -n "$PROFILING"; then
+        start_profiling "$@" $MORE_OPT
+    elif test -n "$PROFILING_VISU"; then
+        start_profiling_visu "$@" $MORE_OPT
     else
-        if test -n "$DEBUG_KDBG"; then
-            start_debug_kdbg "$@" $MORE_OPT
-        else
-            if test -n "$PROFILING"; then
-                start_profiling "$@" $MORE_OPT
-            else
-                if test -n "$PROFILING_VISU"; then
-                    start_profiling_visu "$@" $MORE_OPT
-                else
-                    do_scilex "$@" $MORE_OPT
-                fi # not profiling visu
-            fi # not profiling
-        fi # not debug kdbg
-    fi # not debug
+        do_scilex "$@" $MORE_OPT
+    fi # if $DEBUG
+
 fi # if rest
