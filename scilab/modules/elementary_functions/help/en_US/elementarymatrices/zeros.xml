@@ -146,6 +146,9 @@ repmat(1, [2 4 2])
             <member>
                 <link linkend="repmat">repmat</link>
             </member>
+            <member>
+                <link linkend="signed_zero">-0</link>
+            </member>
         </simplelist>
     </refsection>
 </refentry>

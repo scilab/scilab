@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="signed_zero">
+    <refnamediv>
+        <refname>ноль со знаком -0</refname>
+        <refpurpose>Обработка -0 по сравнению с 0</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Двоичное представление десятичных чисел таково, что один бить из 64 (= 8 байт) 
+            предназначен для знака мантиссы. Это верно для любого десятичного числа, которое 
+            может быть симметрично положительно или отрицательно. Это также применимо к нулевому 
+            значению.
+        </para>
+        <para>
+            Можно принудительно поставить знак минуса к нулю используя унарный минус и написав 
+            <literal>-0</literal>.
+        </para>
+        <para>
+            Большинство операций и функций не учитывает знак нуля, но есть некоторые исключения. 
+            Например, деление и <literal>atan()</literal> дают неодинаковые результаты для 
+            <literal>0</literal> и <literal>-0</literal>.
+        </para>
+        <para>
+            В следующих примерах показаны интересные случаи.
+        </para>
+        <note>
+            Как и <literal>0</literal>, <literal>-0</literal> не хранится в разрежённых матрицах, 
+            и, таким образом, игнорируется.
+        </note>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <para>
+            <literal>0</literal> и <literal>-0</literal> различаются:
+        </para>
+        <programlisting role="example"><![CDATA[
+bitstring([0 ; -0])
+[1/0 1/-0]
+a = - 0 - 0;    1 / a
+a = - 0 + (-0); 1 / a
+1 / (0*(-0))
+1 / prod([-0 1])
+1 ./ ((-0)^[1 2 3])
+[atan(0,0), atan(0,-0)]
+     ]]></programlisting>
+        <screen><![CDATA[
+--> bitstring([0 ; -0])
+ ans  =
+!0000000000000000000000000000000000000000000000000000000000000000  !
+!1000000000000000000000000000000000000000000000000000000000000000  !
+
+--> [1/0 1/-0]
+ ans  =
+   Inf  -Inf
+
+--> a = - 0 - 0; 1 / a
+ ans  =
+  -Inf
+
+--> a = - 0 + (-0); 1 / a
+ ans  =
+  -Inf
+
+--> 1 / (0*(-0))
+ ans  =
+  -Inf
+
+--> 1 / prod([-0 1])
+ ans  =
+  -Inf
+
+--> 1 ./ ((-0)^[1 2 3])
+ ans  =
+  -Inf   Inf  -Inf
+
+--> [atan(0,0), atan(0,-0)]
+ ans  =
+   0.   3.1415927
+]]></screen>
+        <para/>
+        <para>
+        .. но побеждает + 0:
+        </para>
+        <programlisting role="example"><![CDATA[
+a = - 0 + 0; 1 / a
+     ]]></programlisting>
+        <screen><![CDATA[
+--> a = - 0 + 0; 1 / a
+ ans  =
+   Inf
+]]></screen>
+        <para/>
+        <para>
+        <literal>0</literal> и <literal>-0</literal> НЕ различаются:
+        </para>
+        <programlisting role="example"><![CDATA[
+[sign(-0), 1/sign(-0)]
+sign(0)==sign(-0)
+[ isequal(0,-0), 0==-0,  -0<0,  0>-0 ]
+1 / sin(-0)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> [sign(-0), 1/sign(-0)]
+ ans  =
+   0.   Inf
+
+--> sign(0)==sign(-0)
+ ans  =
+  T
+
+--> [ isequal(0,-0), 0==-0,  -0<0,  0>-0 ]
+ ans  =
+  T T F F
+
+--> 1 / sin(-0)
+ ans  =
+   Inf
+]]></screen>
+        <para/>
+        <para>
+            Кодирование разрежённых матриц игнорирует <literal>-0</literal>, как
+            это делается и для <literal>0</literal>:
+        </para>
+        <programlisting role="example"><![CDATA[
+sparse([-0 0 1])
+1 / sparse(-0)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> sparse([-0 0 1])
+ ans  =
+(  1,  3) sparse matrix
+(  1,  3)     1.
+
+--> 1 / sparse(-0)
+ ans  =
+    Inf
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="percentinf">%inf</link>
+            </member>
+            <member>
+                <link linkend="zeros">zeros</link>
+            </member>
+            <member>
+                <link linkend="sparse">sparse</link>
+            </member>
+            <member>
+                <link linkend="number_properties">number_properties</link>
+            </member>
+            <member>
+                <ulink url="https://ru.wikipedia.org/wiki/%E2%88%920_(%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5)">Отрицательный ноль в Википедии</ulink>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

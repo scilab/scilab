@@ -163,6 +163,9 @@ eps = number_properties("eps")
             <member>
                 <link linkend="log2">log2</link>
             </member>
+            <member>
+                <link linkend="signed_zero">-0</link>
+            </member>
         </simplelist>
     </refsection>
 </refentry>

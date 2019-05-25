@@ -221,6 +221,9 @@ repmat(0, [2 4 2])
                 <link linkend="spzeros">spzeros</link>
 
             </member>
+            <member>
+                <link linkend="signed_zero">-0</link>
+            </member>
 
         </simplelist>
 

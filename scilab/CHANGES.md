@@ -340,6 +340,7 @@ Bug Fixes
 * [#15087](https://bugzilla.scilab.org/15087): Deleting rows or columns from a matrix is slow (regression)
 * [#15200](https://bugzilla.scilab.org/15200): `weekday` yielded an error for some row of input dates.
 * [#15248](https://bugzilla.scilab.org/15248): `lsq`was leaking memory.
+* [#15260](https://bugzilla.scilab.org/15260): `sci2exp` was no longer able to convert non-scalar structures.
 * [#15269](https://bugzilla.scilab.org/15269): `xgetech` was poor and stiff compared to any combination of `gca()` properties `.axes_bounds`, `.data_bounds`, `.log_flags`, and `.margins`. It is removed.
 * [#15271](https://bugzilla.scilab.org/15271): `bitget` needed to be upgraded.
 * [#15309](https://bugzilla.scilab.org/15309): `eval` was a weak duplicate of `evstr`. It should be removed.
@@ -351,31 +352,32 @@ Bug Fixes
 * [#15368](https://bugzilla.scilab.org/15368): `freson` silently returned frequencies not corresponding to a maximum, or returned [] instead of some still computable maxima frequencies.
 * [#15392](https://bugzilla.scilab.org/15392): `comet` and `comet3d` did not allow specifying colors with colors names.
 * [#15393](https://bugzilla.scilab.org/15393): In a new figure, `nicholschart` plotted nothing. The default frame color was a flashy cyan. The position of gain labels could be puzzling. It was not possible to specify colors by their names. Postprocessing the frames and the set of labels was not easy.
+* [#15421](https://bugzilla.scilab.org/15421): A new smarter default grid_style was required since smart lines styles #7-10 are available.
 * [#15425](https://bugzilla.scilab.org/15425): The Kronecker product `a .*. b` failed when `a` or `b` or both are hypermatrices, with one or both being polynomials or rationals.
 * [#15428](https://bugzilla.scilab.org/15428): `repmat` was slow. Its code did not use `kron` and was complex.
 * [#15431](https://bugzilla.scilab.org/15431): The empty matrix `[]` and its non-convertibility were poorly documented.
-* [#15421](https://bugzilla.scilab.org/15421): A new smarter default grid_style was required since smart lines styles #7-10 are available.
 * [#15451](https://bugzilla.scilab.org/15451): The code was not adapted to use `lucene 4.10` in Debian.
 * [#15514](https://bugzilla.scilab.org/15514): The `set` documentation page needed to be overhauled.
 * [#15517](https://bugzilla.scilab.org/15517): `factorial` could be actually used up to only n=170.
-* [#15260](https://bugzilla.scilab.org/15260): `sci2exp` was no longer able to convert non-scalar structures.
 * [#15522](https://bugzilla.scilab.org/15522): `unique` was not able to consider all Nan values as the same value. A `uniqueNan` option now allows it.
 * [#15523](https://bugzilla.scilab.org/15523): `%ODEOPTIONS(1)=2` didn't work with solvers 'rk' and 'rkf'
 * [#15534](https://bugzilla.scilab.org/15534): Booleans and encoded integers could not be concatenated together.
 * [#15577](https://bugzilla.scilab.org/15577): `edit` did not accept a line number as text, as with `edit linspace 21`.
 * [#15580](https://bugzilla.scilab.org/15580): `det(sparse([],[]))` yielded an error.
-* [#15737](https://bugzilla.scilab.org/15737): `setdiff` was wrong with complex numbers.
-* [#15981](https://bugzilla.scilab.org/15981): `wavread` kept the wav file open and locked when returning on errors. It weakly managed the input file name. It claimed for invalid data formats instead of unsupported ones, with poor information about the current format vs the supported ones. Several error messages refered to a wrong function.
-* [#15595](https://bugzilla.scilab.org/15595): `unique` was not able to return distinct values in their original order, without sorting them. A `keepOrder` option now allows it.
-* [#15668](https://bugzilla.scilab.org/15668): `save(filename)` saved all predefined Scilab constants %e %pi etc.. (regression)
-* [#15715](https://bugzilla.scilab.org/15715): `%nan` indices crashed Scilab.
-* [#15734](https://bugzilla.scilab.org/15734): `intersect` did not support complex numbers.
-* [#15742](https://bugzilla.scilab.org/15742): The `compatibility_functions` module should be merged in the `m2sci` one.
 * [#15581](https://bugzilla.scilab.org/15581): display of complex matrix was ugly.
+* [#15595](https://bugzilla.scilab.org/15595): `unique` was not able to return distinct values in their original order, without sorting them. A `keepOrder` option now allows it.
 * [#15628](https://bugzilla.scilab.org/15628): `with_tk` was a duplicate of `with_module('tclsci')`. It is removed.
+* [#15643](https://bugzilla.scilab.org/15643): Features with the signed zero -0 were not documented.
+* [#15668](https://bugzilla.scilab.org/15668): `save(filename)` saved all predefined Scilab constants %e %pi etc.. (regression)
 * [#15680](https://bugzilla.scilab.org/15680): `loadmatfile` could not return variables in a structure instead of into the calling environment.
 * [#15701](https://bugzilla.scilab.org/15701): `A\B` was not faster when `A` is square and triangular.
+* [#15715](https://bugzilla.scilab.org/15715): `%nan` indices crashed Scilab.
+* [#15734](https://bugzilla.scilab.org/15734): `intersect` did not support complex numbers.
+
 * [#15734](https://bugzilla.scilab.org/15734):  Trivial infinite loop could not be interrupted.
+
+* [#15737](https://bugzilla.scilab.org/15737): `setdiff` was wrong with complex numbers.
+* [#15742](https://bugzilla.scilab.org/15742): The `compatibility_functions` module should be merged in the `m2sci` one.
 * [#15744](https://bugzilla.scilab.org/15744): `sylm(a,b)` yielded an error when degree(a)==0 or degree(b)==0.
 * [#15745](https://bugzilla.scilab.org/15745): `diophant(0,0,m)`, `diophant([p 0],q)`, `diophant([0 p],q)` with m<>0 and p>q were wrong. There was no flag for cases with an infinite number of solutions. When there is no solution, some values were returned anyway, instead of []. In this case, the documented definition of the err value was dubious. Decimal numbers and integers were accepted, but not encoded integers. Inf and NaN input coefficients were not rejected.
 * [#15812](https://bugzilla.scilab.org/15812): On assigning variables the source variable may become become corrupted
@@ -393,6 +395,7 @@ Bug Fixes
 * [#15974](https://bugzilla.scilab.org/15974): `msprintf("%d", %nan)` did not return Nan
 * [#15977](https://bugzilla.scilab.org/15977): The documentation for `wavread(..,'info')` had a mistake. The `wavread` page deserved some improvements.
 * [#15978](https://bugzilla.scilab.org/15978): The `writewav` page in english said that input data are one column per channel, instead of one row per channel. In addition, in case of writing error, `savewave` kept the output file open and locked.
+* [#15981](https://bugzilla.scilab.org/15981): `wavread` kept the wav file open and locked when returning on errors. It weakly managed the input file name. It claimed for invalid data formats instead of unsupported ones, with poor information about the current format vs the supported ones. Several error messages refered to a wrong function.
 * [#15983](https://bugzilla.scilab.org/15983): `group` regressed in 5.5.2 due to a too intrusive fix.
 * [#15984](https://bugzilla.scilab.org/15984): display scale was wrong with Retina dispplays on OSX..
 * [#15995](https://bugzilla.scilab.org/15995): patch was missing in surface plot (regression)
@@ -409,13 +412,13 @@ Bug Fixes
 * [#16015](https://bugzilla.scilab.org/16015): `intg(a,b,f)` called f(x) with x outside [a,b].
 * [#16019](https://bugzilla.scilab.org/16019): `polarplot(x,Z)` yielded an error when x is a vector and Z a matrix.
 * [#16021](https://bugzilla.scilab.org/16021): `tand([-90 90])` answered [Nan Nan] instead of [-Inf, Inf]. `cotd([-90 90])` answered [Nan Nan] instead of [0 0]. `1 ./cosd([-90 90])` answered [Inf -Inf] instead of [Inf Inf].
-* [#16064](https://bugzilla.scilab.org/16064): `tbx_make(Dir,'localization')` did not update `.mo` files from `.po`.
 * [#16026](https://bugzilla.scilab.org/16026): For `atanh`, neither the documentation pages nor the `m2sci` converter were up to date.
 * [#16028](https://bugzilla.scilab.org/16028): The length of `intdec(intdec(x, r), 1/r)` was most often different from length(x).
 * [#16046](https://bugzilla.scilab.org/16046): After `w=ssrand(2,3,4)`, `[]+w`, `[]-w`, `w+[]` and `w-[]` yielded an "operation +/- []" warning.
 * [#16051](https://bugzilla.scilab.org/16051): undefined list elements could be of 2 distinct typeof "void" or "listundefined" according to the way they are created.
 * [#16053](https://bugzilla.scilab.org/16053): `plot(,"color",c)` no longer supported standard abbreviated color names c like "k" for black.
 * [#16062](https://bugzilla.scilab.org/16062): `tbx_make` did not allow easily to force building all toolbox sections without the toolbox builder (if any). `tbx_make(Dir,"*")` now does it.
+* [#16064](https://bugzilla.scilab.org/16064): `tbx_make(Dir,'localization')` did not update `.mo` files from `.po`.
 * [#16065](https://bugzilla.scilab.org/16065): Building help pages including some <scilab:image> tags used and finally deleted the current on-screen figures (if any)!
 * [#16067](https://bugzilla.scilab.org/16067): The display of matrices of signed integers was misaligned (regression of 6.0.0 vs 5.5.2)
 * [#16071](https://bugzilla.scilab.org/16071): `prettyprint(complex(1,%nan))` omitted the "+" in `1 + Nani`. It printed positive exponents with a useless "+". For any input nul polynomial, the string result never included the name of the variable. Default input arguments could not be skipped. ExportFormat was uselessly case-sensitive. For tex|latex: for text input, $ \ % & { } ~ and ^ special characters were not protected ; spaces were not protected, all words were concatenated ; for polynomials and rationals, the result string could be extremely long and not easily wrappable. For MathML: "<" was not protected ; <mi></mi> were missing for text input ; <mtable>, </mtable>, <mtr>, </mtr>, <mtd>, <mfenced> and </mfenced> tags were not wrapped and could not be indented. Delimiters: "" was not documented as possible value ; ")" was wrongly documented. Dynamical linear systems were not documented as possible input.

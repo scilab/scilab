@@ -182,6 +182,9 @@ sp=sparse(dense)
             <member>
                 <link linkend="toeplitz">toeplitz</link>
             </member>
+            <member>
+                <link linkend="signed_zero">sparse(-0)</link>
+            </member>
         </simplelist>
     </refsection>
     <refsection role="history">
