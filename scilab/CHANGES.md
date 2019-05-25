@@ -295,6 +295,7 @@ Bug Fixes
 * [#16085](http://bugzilla.scilab.org/show_bug.cgi?id=16085): insertion in an empty struct was broken.
 * [#16087](http://bugzilla.scilab.org/show_bug.cgi?id=16087): Insertion of struct in a non-empty struct crashed Scilab.
 * [#16089](http://bugzilla.scilab.org/show_bug.cgi?id=16089): x=1:1e10 freezed Scilab.
+* [#16095](http://bugzilla.scilab.org/show_bug.cgi?id=16095): For a matrix of graphic handles of same types, it was no longer possible to clear a property by assigning [].
 * [#16097](http://bugzilla.scilab.org/show_bug.cgi?id=16097): `coth()` was more than twice slower than `1./tanh()`. `tanh` and `coth` did not accept sparse-encoded input.
 * [#16104](http://bugzilla.scilab.org/show_bug.cgi?id=16104): `assert_checkequal` did not support properly or at all Nan and void in lists, Nan in sparse, implicit lists, macros, libraries, built-in functions, graphical handles. For input arrays or lists of matching typeof and sizes, the failure message did not display neither the index nor the values of the first mismatching elements.
 * [#16111](http://bugzilla.scilab.org/show_bug.cgi?id=16111): `isglobal` was not supporting non-scalar array of strings as input.
@@ -333,7 +334,7 @@ Bug Fixes
 * [#16245](http://bugzilla.scilab.org/show_bug.cgi?id=16245): `gsort` could not sort booleans.
 * [#16246](http://bugzilla.scilab.org/show_bug.cgi?id=16246): `isvector` was broken for sparse matrices.
 * [#16257](http://bugzilla.scilab.org/show_bug.cgi?id=16257): `blockdiag()` implemented to replace `sysdiag()`, improved and extended to strings.
-* [#16259](http://bugzilla.scilab.org/show_bug.cgi?id=16259): * and .* multiplications involving a sparse boolean and a double, or involving 2 booleans, were not implemented.
+* [#16259](http://bugzilla.scilab.org/show_bug.cgi?id=16259): `*` and `.*` multiplications involving a sparse boolean and a double, or involving 2 booleans, were not implemented.
 * [#16260](http://bugzilla.scilab.org/show_bug.cgi?id=16260): overloading `nnz` was not possible (regression).
 * [#16263](http://bugzilla.scilab.org/show_bug.cgi?id=16263): Polynomial insertion was broken for complex case.
 * [#16264](http://bugzilla.scilab.org/show_bug.cgi?id=16264): After empty for loop iterator was left uninitialized.
@@ -348,3 +349,4 @@ Bug Fixes
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot`, `colorbar` displayed an empty ungraduated color bar.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
+

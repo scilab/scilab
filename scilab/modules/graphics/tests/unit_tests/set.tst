@@ -61,6 +61,13 @@ assert_checkequal(f.color_map, cm);
 // ARRAY OF HANDLES
 // ================
 e = gce().children;  // Set of curves
+
+// Empty property => filled with a scalar => re-initialized to empty
+e.display_function_data = "test";
+assert_checkequal(e.display_function_data, emptystr(41,1)+"test");
+e.display_function_data = [];
+assert_checkequal(e.display_function_data, []);
+
 // Scalar property value (curve.thickness): repeated assignment
 L = list(e(1:3) , 2, [2 2 2]', ..
          e(1:3)', 3, [3 3 3]', ..

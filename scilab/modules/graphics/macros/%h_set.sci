@@ -35,7 +35,8 @@ function hdl = %h_set(varargin)
                     h = hdl(j)  // works around http://bugzilla.scilab.org/15802
                     lhs = h(prop);     // Current handle's content
                     LHSsize = size(lhs);
-                    if and(RHSsize==LHSsize) | lhs==[]  // => repeated assignment
+                    if and(RHSsize==LHSsize) | lhs==[] | rhs==[]
+                        // => repeated assignment
                         h(prop) = rhs;
                     elseif size(lhs,"*")==1 & and(RHSsize==Hsize)
                         // => element-wise assignments
