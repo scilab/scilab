@@ -286,6 +286,7 @@ Bug Fixes
 * [#16085](http://bugzilla.scilab.org/show_bug.cgi?id=16085): insertion in an empty struct was broken.
 * [#16087](http://bugzilla.scilab.org/show_bug.cgi?id=16087): Insertion of struct in a non-empty struct crashed Scilab.
 * [#16089](http://bugzilla.scilab.org/show_bug.cgi?id=16089): x=1:1e10 freezed Scilab.
+* [#16097](http://bugzilla.scilab.org/show_bug.cgi?id=16097): `coth()` was more than twice slower than `1./tanh()`. `tanh` and `coth` did not accept sparse-encoded input.
 * [#16104](http://bugzilla.scilab.org/show_bug.cgi?id=16104): `assert_checkequal` did not support properly or at all Nan and void in lists, Nan in sparse, implicit lists, macros, libraries, built-in functions, graphical handles. For input arrays or lists of matching typeof and sizes, the failure message did not display neither the index nor the values of the first mismatching elements.
 * [#16111](http://bugzilla.scilab.org/show_bug.cgi?id=16111): `isglobal` was not supporting non-scalar array of strings as input.
 * [#16118](http://bugzilla.scilab.org/show_bug.cgi?id=16118): `%s <> (1+%s)` returned %F.

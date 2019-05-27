@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +13,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="coth" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org"  xml:id="coth" xml:lang="en">
     <refnamediv>
         <refname>coth</refname>
         <refpurpose>hyperbolic cotangent</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[t] = coth(x)</synopsis>
+        <synopsis>t = coth(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,13 +31,15 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>a real or complex vector or matrix.</para>
+                    <para>
+                      vector or matrix of real or complex numbers (full or sparse-encoded).
+                   </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>a real or complex vector or matrix.</para>
+                    <para>a full-encoded vector or matrix of real or complex numbers.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,15 +50,53 @@
             The elements of <varname>t</varname> are the hyperbolic
             cotangent of elements of <varname>x</varname>.
         </para>
+        <note>
+          <literal>coth(0)</literal> not being 0, the result for any input
+          sparse-encoded matrix is always full-encoded (as for <literal>cos()</literal>).
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-x=[1,2*%i]
-t=exp(x);
+x = [1, 2*%i]
+t = exp(x);
 (t-ones(x)./t).\(t+ones(x)./t)
 coth(x)
+coth([-0 0])
+
+// With sparses:
+s = sparse([1 1; 3 1; 2 2; 2 3; 1 3],[0.02 0.7 0.15 0.4 3],[3 3])
+coth(s)   // no longer sparse
  ]]></programlisting>
+    <screen>
+--> (t-ones(x)./t).\(t+ones(x)./t)
+ ans  =
+   1.3130353   0.4576576i
+
+--> coth(x)
+ ans  =
+   1.3130353   0.4576576i
+
+--> coth([-0 0])
+ ans  =
+  -Inf   Inf
+
+--> // With sparses:
+--> s = sparse([1 1; 3 1; 2 2; 2 3; 1 3],[0.02 0.7 0.15 0.4 3],[3 3])
+ s  =
+(  3,  3) sparse matrix
+(  1,  1)      0.02
+(  1,  3)      3.
+(  2,  2)      0.15
+(  2,  3)      0.4
+(  3,  1)      0.7
+
+--> coth(s)   // no longer sparse
+ ans  =
+   50.006666   Inf         1.0049698
+   Inf         6.7165918   2.6319324
+   1.6546216   Inf         Inf
+</screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -62,5 +105,16 @@ coth(x)
                 <link linkend="cotg">cotg</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Extension to sparse matrices.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

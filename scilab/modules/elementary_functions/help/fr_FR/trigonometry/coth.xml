@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="coth" xml:lang="fr">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="coth" xml:lang="fr">
     <refnamediv>
         <refname>coth</refname>
         <refpurpose>cotangente hyperbolique</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[t]=coth(x)</synopsis>
+        <synopsis>t = coth(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -14,13 +31,17 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>vecteur ou matrice réel ou complexe.</para>
+                    <para>
+                       vecteur ou matrice de nombres réels ou complexes (encodée dense ou creuse).
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>t</term>
                 <listitem>
-                    <para>vecteur ou matrice réel ou complexe.</para>
+                    <para>
+                      vecteur ou matrice de nombres réels ou complexes (toujours encodée en format dense).
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -31,15 +52,53 @@
             Les éléments de <literal>t</literal> sont les cotangentes
             hyperboliques des éléments de <literal>x</literal>.
         </para>
+        <note>
+          <literal>coth(0)</literal> n'étant pas nul, le résultat pour toute matrice d'entrée
+          encodée creuse est encodé en format dense (comme avec <literal>cos()</literal>).
+        </note>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-x=[1,2*%i]
-t=exp(x);
+x = [1, 2*%i]
+t = exp(x);
 (t-ones(x)./t).\(t+ones(x)./t)
 coth(x)
+coth([-0 0])
+
+// avec une matrice creuse :
+s = sparse([1 1; 3 1; 2 2; 2 3; 1 3],[0.02 0.7 0.15 0.4 3],[3 3])
+coth(s)   // => format dense
  ]]></programlisting>
+    <screen>
+--> (t-ones(x)./t).\(t+ones(x)./t)
+ ans  =
+   1.3130353   0.4576576i
+
+--> coth(x)
+ ans  =
+   1.3130353   0.4576576i
+
+--> coth([-0 0])
+ ans  =
+  -Inf   Inf
+
+--> // avec une matrice creuse :
+--> s = sparse([1 1; 3 1; 2 2; 2 3; 1 3],[0.02 0.7 0.15 0.4 3],[3 3])
+ s  =
+(  3,  3) sparse matrix
+(  1,  1)      0.02
+(  1,  3)      3.
+(  2,  2)      0.15
+(  2,  3)      0.4
+(  3,  1)      0.7
+
+--> coth(s)   // => format dense
+ ans  =
+   50.006666   Inf         1.0049698
+   Inf         6.7165918   2.6319324
+   1.6546216   Inf         Inf
+</screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
@@ -48,5 +107,16 @@ coth(x)
                 <link linkend="cotg">cotg</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Extension aux matrices creuses.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
