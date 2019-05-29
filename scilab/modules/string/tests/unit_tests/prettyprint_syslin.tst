@@ -100,6 +100,16 @@ ref = [""
 ref = strcat(ref, ascii(10));
 assert_checkequal(prettyprint(s, "mathml"), ref);
 
+// HTML > 4
+ref = "<table style=""display:inline-table; padding: 5px 10px; background: url(file:///"+TMP+"openBrace.png) left top; background-size: 7px 100%; background-repeat:no-repeat;"">£<tr>£<td nowrap style=""white-space:nowrap"">£<table><tr><td>dX<br><hr>dt</td><td>(t)</td></tr></table>£</td>£<td>=</td>£<td nowrap=""nowrap"" style=""white-space:nowrap"">££<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""padding: 5px 10px; background: url(file:///"+TMP+"openParen.png) left top, url(file:///"+TMP+"closeParen.png) right top; background-size: 5px 100%; background-repeat:no-repeat; display:inline-table;"">£<tr align=""center"">£<td>2.02</td>£<td>7.14</td>£<td>-8.59</td>£</tr>£<tr align=""center"">£<td>-9.99</td>£<td>-9.64</td>£<td>-1.27</td>£</tr>£<tr align=""center"">£<td>5.59</td>£<td>7.25</td>£<td>7.44</td>£</tr>£</table>£ X(t) + ££<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""padding: 5px 10px; background: url(file:///"+TMP+"openParen.png) left top, url(file:///"+TMP+"closeParen.png) right top; background-size: 5px 100%; background-repeat:no-repeat; display:inline-table;"">£<tr align=""center"">£<td>4.46</td>£<td>-0.62</td>£</tr>£<tr align=""center"">£<td>8.42</td>£<td>-3.3</td>£</tr>£<tr align=""center"">£<td>-2.67</td>£<td>9.04</td>£</tr>£</table>£ U(t)£</td>£</tr>£<tr>£<td nowrap style=""white-space:nowrap"">£Y(t)</td>£<td>=</td>£<td nowrap=""nowrap"" style=""white-space:nowrap"">££<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""padding: 5px 10px; background: url(file:///"+TMP+"openParen.png) left top, url(file:///"+TMP+"closeParen.png) right top; background-size: 5px 100%; background-repeat:no-repeat; display:inline-table;"">£<tr align=""center"">£<td>-7.72</td>£<td>6.86</td>£<td>-6.75</td>£</tr>£<tr align=""center"">£<td>-4.58</td>£<td>-3.59</td>£<td>-8.06</td>£</tr>£</table>£ X(t)£</tr>£</table>£";
+ref = strsubst(ref,"£",ascii(10));
+assert_checkequal(prettyprint(s, "html"), ref);
+
+// HTML 4
+ref = "<table style=""display:inline-table; border-left: solid 1px; border-right:hidden;"">£<tr>£<td nowrap style=""white-space:nowrap"">£<table><tr><td>dX<br><hr>dt</td><td>(t)</td></tr></table>£</td>£<td>=</td>£<td align=""right"">££<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""border-left:solid 1px; border-right:solid 1px; display:inline-table;"">£<tr align=""center"">£<td>2.02</td>£<td>7.14</td>£<td>-8.59</td>£</tr>£<tr align=""center"">£<td>-9.99</td>£<td>-9.64</td>£<td>-1.27</td>£</tr>£<tr align=""center"">£<td>5.59</td>£<td>7.25</td>£<td>7.44</td>£</tr>£</table>££</td>£<td>X(t)&nbsp;&nbsp;+ </td>£<td align=""right"">££<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""border-left:solid 1px; border-right:solid 1px; display:inline-table;"">£<tr align=""center"">£<td>4.46</td>£<td>-0.62</td>£</tr>£<tr align=""center"">£<td>8.42</td>£<td>-3.3</td>£</tr>£<tr align=""center"">£<td>-2.67</td>£<td>9.04</td>£</tr>£</table>££</td>£<td>U(t)</td>£</tr>£<tr>£<td nowrap style=""white-space:nowrap"">£Y(t)</td>£<td>=</td>£<td nowrap=""nowrap"" style=""white-space:nowrap"">££<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""border-left:solid 1px; border-right:solid 1px; display:inline-table;"">£<tr align=""center"">£<td>-7.72</td>£<td>6.86</td>£<td>-6.75</td>£</tr>£<tr align=""center"">£<td>-4.58</td>£<td>-3.59</td>£<td>-8.06</td>£</tr>£</table>££</td>£<td>X(t)</td>£<td></td><td></td>£</tr>£</table>£";
+ref = strsubst(ref,"£",ascii(10));
+assert_checkequal(prettyprint(s, "html4", "("), ref);
+
 // Discrete states (and improper syslin):
 // -------------------------------------
 s = syslin("d", A, B, C, [1+%s, 1-%s; -%s, %s]);
@@ -194,3 +204,87 @@ ref = [""
 ""];
 ref = strcat(ref, ascii(10));
 assert_checkequal(prettyprint(s, "mathml"), ref);
+
+// HTML > 4
+ref = [
+"<table style=""display:inline-table; padding: 5px 10px; background: url(file:///"+TMP+"openBrace.png) left top; background-size: 7px 100%; background-repeat:no-repeat;"">"
+"<tr>"
+"<td nowrap style=""white-space:nowrap"">"
+"X<sup>+</sup>(t)"
+"</td>"
+"<td>=</td>"
+"<td nowrap=""nowrap"" style=""white-space:nowrap"">"
+""
+"<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""padding: 5px 10px; background: url(file:///"+TMP+"openParen.png) left top, url(file:///"+TMP+"closeParen.png) right top; background-size: 5px 100%; background-repeat:no-repeat; display:inline-table;"">"
+"<tr align=""center"">"
+"<td>2.02</td>"
+"<td>7.14</td>"
+"<td>-8.59</td>"
+"</tr>"
+"<tr align=""center"">"
+"<td>-9.99</td>"
+"<td>-9.64</td>"
+"<td>-1.27</td>"
+"</tr>"
+"<tr align=""center"">"
+"<td>5.59</td>"
+"<td>7.25</td>"
+"<td>7.44</td>"
+"</tr>"
+"</table>"
+" X(t) + "
+""
+"<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""padding: 5px 10px; background: url(file:///"+TMP+"openParen.png) left top, url(file:///"+TMP+"closeParen.png) right top; background-size: 5px 100%; background-repeat:no-repeat; display:inline-table;"">"
+"<tr align=""center"">"
+"<td>4.46</td>"
+"<td>-0.62</td>"
+"</tr>"
+"<tr align=""center"">"
+"<td>8.42</td>"
+"<td>-3.3</td>"
+"</tr>"
+"<tr align=""center"">"
+"<td>-2.67</td>"
+"<td>9.04</td>"
+"</tr>"
+"</table>"
+" U(t)"
+"</td>"
+"</tr>"
+"<tr>"
+"<td nowrap style=""white-space:nowrap"">"
+"Y(t)</td>"
+"<td>=</td>"
+"<td nowrap=""nowrap"" style=""white-space:nowrap"">"
+""
+"<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""padding: 5px 10px; background: url(file:///"+TMP+"openParen.png) left top, url(file:///"+TMP+"closeParen.png) right top; background-size: 5px 100%; background-repeat:no-repeat; display:inline-table;"">"
+"<tr align=""center"">"
+"<td>-7.72</td>"
+"<td>6.86</td>"
+"<td>-6.75</td>"
+"</tr>"
+"<tr align=""center"">"
+"<td>-4.58</td>"
+"<td>-3.59</td>"
+"<td>-8.06</td>"
+"</tr>"
+"</table>"
+" X(t)"
+" + "
+""
+"<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""padding: 5px 10px; background: url(file:///"+TMP+"openParen.png) left top, url(file:///"+TMP+"closeParen.png) right top; background-size: 5px 100%; background-repeat:no-repeat; display:inline-table;"">"
+"<tr align=""center"">"
+"<td>1 + s</td>"
+"<td>1 - s</td>"
+"</tr>"
+"<tr align=""center"">"
+"<td> - s</td>"
+"<td>s</td>"
+"</tr>"
+"</table>"
+" U(t)"
+"</tr>"
+"</table>"
+""];
+ref = strcat(ref, ascii(10));
+assert_checkequal(prettyprint(s, "html"), ref);

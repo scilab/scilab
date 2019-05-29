@@ -115,6 +115,7 @@ Feature changes and additions
 * `profileEnable`, `profileDisable`, `profileGetInfo` could be used to instrument functions and gather execution information within Scilab.
 * `prettyprint` is upgraded:
   - Integer and Text input are now actually supported.
+  - HTML is now supported as output format.
   - Default input arguments can be skipped instead of still having to be provided.
   - The result string is better formatted to be easily wrappable and indented.
 * `mesh2d` has been introduced to compute a 2d mesh from vectors (x,y) of points.
@@ -412,10 +413,11 @@ Bug Fixes
 * [#16072](https://bugzilla.scilab.org/16072): `prettyprint` did not actually support input encoded integers.
 * [#16075](https://bugzilla.scilab.org/16075): `prettyprint` was broken for cells.
 * [#16079](https://bugzilla.scilab.org/16079): `part("",$)` and `part("",$-1:$+2)` yielded an error instead of returning "" and "  ".
+* [#16081](https://bugzilla.scilab.org/16081): `prettyprint` did not allow to export objects into HTML.
 * [#16085](https://bugzilla.scilab.org/16085): insertion in an empty struct was broken.
 * [#16087](https://bugzilla.scilab.org/16087): Insertion of struct in a non-empty struct crashed Scilab.
 * [#16089](https://bugzilla.scilab.org/16089): x=1:1e10 freezed Scilab.
-* [#16090](https://bugzilla.scilab.org/16090): The documentation of `prbs_a()` was poor and unclear.
+* [#16090](https://bugzilla.scilab.org/16090): The documentation of `prbs_a` was poor and unclear.
 * [#16095](https://bugzilla.scilab.org/16095): For a matrix of graphic handles of same types, it was no longer possible to clear a property by assigning [].
 * [#16097](https://bugzilla.scilab.org/16097): `coth` was more than twice slower than `1./tanh()`. `tanh` and `coth` did not accept sparse-encoded input.
 * [#16102](https://bugzilla.scilab.org/16102): `lstcat` could not concatenate input lists with mixed objects of types>10 like 1:$, sin, sind, struct, cells, tlists or mlists. In addition, it was slow for very long inputs lists.

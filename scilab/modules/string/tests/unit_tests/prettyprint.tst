@@ -11,6 +11,7 @@
 
 // syslin objects: tests in prettyprint_syslin.tst
 
+TMP = strsubst(fileparts(TMPDIR), "\", "/");
 
 // TEXTS
 // =====
@@ -40,11 +41,17 @@ ref = [""
 ref = strcat(ref, ascii(10));
 assert_checkequal(prettyprint(text, "mathml"), ref);
 
+// HTML > 4
+ref = "£<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""padding: 5px 10px; background: url(file:///"+TMP+"openParen.png) left top, url(file:///"+TMP+"closeParen.png) right top; background-size: 5px 100%; background-repeat:no-repeat; display:inline-table;"">£<tr align=""center"">£<td>André''s got 50% of 1430 $, &amp; the ""remainder"" 1 month later.</td>£</tr>£<tr align=""center"">£<td>x=A\B is such that A*x=B, with A in {a&lt;b, 1-a, ~a, ^a}. _#</td>£</tr>£</table>£";
+ref = strsubst(ref, "£", ascii(10));
+assert_checkequal(prettyprint(text, "html"), ref);
+
 
 // DECIMAL NUMBERS
 // ===============
 assert_checkequal(prettyprint(%inf), "${\infty}$");
 assert_checkequal(prettyprint(%inf,"mathml"), "<mi>∞</mi>");
+assert_checkequal(prettyprint(%inf,"html"), "∞");
 
 ref = "${\begin{pmatrix}{\infty}&0&1&{-\infty}\cr \end{pmatrix}}$";
 assert_checkequal(prettyprint([%inf 0  1 -%inf]), ref);
@@ -137,6 +144,7 @@ assert_checkequal(prettyprint(B,"mathml"), ref);
 c = complex(0,%nan);
 assert_checkequal(prettyprint(c), "${\mathrm{NaN}}i$");
 assert_checkequal(prettyprint(c,"mathml"), "<mi>NaN</mi><mi>i</mi>");
+assert_checkequal(prettyprint(c,"html"), "NaNi");
 
 //
 c = [complex(1,%nan), complex(-1.25d-12, 2)
@@ -146,6 +154,11 @@ assert_checkequal(prettyprint(c), ref);
 ref = "${\pmatrix{1+{\mathrm{NaN}}i&-1.250\!\times\!10^{-12}+2i\cr {\infty}+6.10\!\times\!10^{167}i&1{-\infty}i\cr }}$";
 assert_checkequal(prettyprint(c,"tex"), ref);
 
+// HTML
+ref = "£<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""padding: 5px 10px; background: url(file:///"+TMP+"openParen.png) left top, url(file:///"+TMP+"closeParen.png) right top; background-size: 5px 100%; background-repeat:no-repeat; display:inline-table;"">£<tr align=""center"">£<td>1 + NaNi</td>£<td>-1.250&#x00D7;10<sup>-12</sup> + 2i</td>£</tr>£<tr align=""center"">£<td>∞ + 6.10&#x00D7;10<sup>167</sup>i</td>£<td>1- ∞i</td>£</tr>£</table>£";
+ref = strsubst(ref, "£", ascii(10));
+assert_checkequal(prettyprint(c,"html"), ref);
+
 
 // INTEGERS
 // ========
@@ -153,15 +166,12 @@ i = int16([
   26595  1212  4257 -4466  9784
   -4226  3404  5743    3  10032
   30471     6 14918  267     30 ]);
-
 // LaTeX
 ref = "${\begin{pmatrix}26595&1212&4257&-4466&9784\cr -4226&3404&5743&3&10032\cr 30471&6&14918&267&30\cr \end{pmatrix}}$";
 assert_checkequal(prettyprint(i), ref);
-
 // TeX
 ref = "${\pmatrix{26595&1212&4257&-4466&9784\cr -4226&3404&5743&3&10032\cr 30471&6&14918&267&30\cr }}$";
 assert_checkequal(prettyprint(i, "tex"), ref);
-
 // MathML
 ref  = [""
 "<mfenced open=""("" close="")"">"
@@ -193,6 +203,11 @@ ref  = [""
 ref = strcat(ref, ascii(10));
 assert_checkequal(prettyprint(i, "mathml"), ref);
 
+// HTML
+ref = "£<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""border-left:solid 1px; border-right:solid 1px; display:inline-table;"">£<tr align=""center"">£<td>26595</td>£<td>1212</td>£<td>4257</td>£<td>-4466</td>£<td>9784</td>£</tr>£<tr align=""center"">£<td>-4226</td>£<td>3404</td>£<td>5743</td>£<td>3</td>£<td>10032</td>£</tr>£<tr align=""center"">£<td>30471</td>£<td>6</td>£<td>14918</td>£<td>267</td>£<td>30</td>£</tr>£</table>£";
+ref = strsubst(ref, "£", ascii(10));
+assert_checkequal(prettyprint(i, "html", "|"), ref);
+
 
 // BOOLEANS
 // ========
@@ -221,15 +236,22 @@ ref = [""
 ref = strcat(ref, ascii(10));
 assert_checkequal(prettyprint(C,"mathml"), ref);
 
+// HTML
+ref = "£<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""border-left:solid 1px; border-right:solid 1px; display:inline-table;"">£<tr align=""center"">£<td>T</td>£<td>T</td>£</tr>£<tr align=""center"">£<td>F</td>£<td>T</td>£</tr>£</table>£";
+ref = strsubst(ref, "£", ascii(10));
+assert_checkequal(prettyprint(C,"html","|"), ref);
+
 
 // POLYNOMIALS
 // ===========
 assert_checkequal(prettyprint(0*%z), "$0z$");
 assert_checkequal(prettyprint(0*%z, "tex"), "$0z$");
 assert_checkequal(prettyprint(0*%z, "mathml"), "<mn>0</mn><mi>z</mi>");
+assert_checkequal(prettyprint(0*%z, "html"), "0z");
 
 p = 1+%s+2*%s^2;
 assert_checkequal(prettyprint(p), "$1+s +2s^{2} $");
+assert_checkequal(prettyprint(p, "html"), "1 + s + 2s<sup>2</sup> ");
 
 D = poly(B,"s");
 DResultLatex="$1.553\!\times\!10^{47}-1.738\!\times\!10^{47}s +8.994\!\times\!10^{46}s^{2} -2.885\!\times\!10^{46}s^{3} +6.474\!\times\!10^{45}s^{4} -1.086\!\times\!10^{45}s^{5} +1.422\!\times\!10^{44}s^{6} -1.493\!\times\!10^{43}s^{7} +1.284\!\times\!10^{42}s^{8} -9.182\!\times\!10^{40}s^{9} +5.527\!\times\!10^{39}s^{10} -2.824\!\times\!10^{38}s^{11} +1.233\!\times\!10^{37}s^{12} -4.626\!\times\!10^{35}s^{13} +1.496\!\times\!10^{34}s^{14} -4.182\!\times\!10^{32}s^{15} +1.011\!\times\!10^{31}s^{16} -2.116\!\times\!10^{29}s^{17} +3.826\!\times\!10^{27}s^{18} -5.965\!\times\!10^{25}s^{19} +7.990\!\times\!10^{23}s^{20} -9.144\!\times\!10^{21}s^{21} +8.876\!\times\!10^{19}s^{22} -7.234\!\times\!10^{17}s^{23} +4.885\!\times\!10^{15}s^{24} -2.683\!\times\!10^{13}s^{25} +1.167\!\times\!10^{11}s^{26} -3.868\!\times\!10^{08}s^{27} +916980.98s^{28} -1384.5606s^{29} +s^{30} $";
@@ -272,6 +294,22 @@ ref = [""
 ref = strcat(ref, ascii(10));
 assert_checkequal(prettyprint(p, "mathml"), ref);
 
+// HTML > 4
+ref = [""
+"<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""border-left:solid 1px; border-right:solid 1px; display:inline-table;"">"
+"<tr align=""center"">"
+"<td>i - z</td>"
+"<td> - i + 3z + 3iz<sup>2</sup>  - z<sup>3</sup> </td>"
+"</tr>"
+"<tr align=""center"">"
+"<td>-1-2iz + z<sup>2</sup> </td>"
+"<td>1 + 4iz-6z<sup>2</sup> -4iz<sup>3</sup>  + z<sup>4</sup> </td>"
+"</tr>"
+"</table>"
+""];
+ref = strcat(ref, ascii(10));
+assert_checkequal(prettyprint(p,"html","|"), ref);
+
 // 2) ---------
 p = poly(complex([1 0 -2],[%nan 0 -1]),"x","coeff");
 // LaTeX
@@ -281,6 +319,8 @@ assert_checkequal(prettyprint(p,"tex"), "$1+{\mathrm{NaN}}i-(2+i)x^{2} $");
 // MathML
 ref = "<mn>1</mn><mo>+</mo><mi>NaN</mi><mi>i</mi><mo>-</mo><mfenced separator=""""><mrow><mn>2</mn><mo>+</mo><mi>i</mi></mrow></mfenced><msup><mi>x</mi><mn>2</mn></msup> ";
 assert_checkequal(prettyprint(p,"mathml"), ref);
+// HTML
+assert_checkequal(prettyprint(p,"html"), "1 + NaNi - (2 + i)x<sup>2</sup> ");
 
 
 // CELLS
@@ -322,3 +362,13 @@ ref = [""
 ""];
 ref = strcat(ref, ascii(10));
 assert_checkequal(prettyprint(c, "mathml", "{"), ref);
+
+// HTML
+ref = "£<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""border-left:solid 1px; border-right:solid 1px; display:inline-table;"">£<tr align=""center"">£<td>£<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""border-left:solid 1px; border-right:solid 1px; display:inline-table;"">£<tr align=""center"">£<td>a bc</td>£</tr>£<tr align=""center"">£<td>defg</td>£</tr>£</table>£</td>£<td>T</td>£</tr>£<tr align=""center"">£<td>1-3s + 3s<sup>2</sup>  - s<sup>3</sup> </td>£<td>3.1415927</td>£</tr>£</table>£";
+ref = strsubst(ref, "£", ascii(10));
+assert_checkequal(prettyprint(c, "html", "|"), ref);
+
+// HTML again
+ref = "£<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""padding: 5px 10px; background: url(file:///"+TMP+"openParen.png) left top, url(file:///"+TMP+"closeParen.png) right top; background-size: 5px 100%; background-repeat:no-repeat; display:inline-table;"">£<tr align=""center"">£<td>£<table valign=""middle"" cellspacing=""0"" cellpadding=""3"" style=""padding: 5px 10px; background: url(file:///"+TMP+"openParen.png) left top, url(file:///"+TMP+"closeParen.png) right top; background-size: 5px 100%; background-repeat:no-repeat; display:inline-table;"">£<tr align=""center"">£<td>a bc</td>£</tr>£<tr align=""center"">£<td>defg</td>£</tr>£</table>£</td>£<td>T</td>£</tr>£<tr align=""center"">£<td>1-3s + 3s<sup>2</sup>  - s<sup>3</sup> </td>£<td>3.1415927</td>£</tr>£</table>£";
+ref = strsubst(ref, "£", ascii(10));
+assert_checkequal(prettyprint(c, "html"), ref);
