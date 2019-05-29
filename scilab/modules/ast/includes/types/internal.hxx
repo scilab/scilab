@@ -338,7 +338,7 @@ public :
     virtual int getInvokeNbIn();
     virtual int getInvokeNbOut();
 
-    virtual bool getMemory(int* _piSize, int* _piSizePlusType)
+    virtual bool getMemory(long long* _piSize, long long* _piSizePlusType)
     {
         *_piSize = 0;
         *_piSizePlusType = 0;

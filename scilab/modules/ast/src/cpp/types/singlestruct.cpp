@@ -62,13 +62,13 @@ std::vector<InternalType *> & SingleStruct::getData()
     return m_Data;
 }
 
-bool SingleStruct::getMemory(int* _piSize, int* _piSizePlusType)
+bool SingleStruct::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     *_piSize = 0;
     *_piSizePlusType = 0;
     for (auto pData : m_Data)
     {
-        int piS, piSPT;
+        long long piS, piSPT;
         if (pData->getMemory(&piS, &piSPT))
         {
             *_piSize += piS;

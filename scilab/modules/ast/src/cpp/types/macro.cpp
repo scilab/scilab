@@ -456,7 +456,7 @@ int Macro::getNbOutputArgument(void)
     return (int)m_outputArgs->size();
 }
 
-bool Macro::getMemory(int* _piSize, int* _piSizePlusType)
+bool Macro::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     ast::SerializeVisitor serialMacro(m_body);
     unsigned char* macroSerial = serialMacro.serialize(false, false);

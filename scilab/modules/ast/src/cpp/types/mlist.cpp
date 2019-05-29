@@ -27,13 +27,13 @@
 
 namespace types
 {
-bool MList::getMemory(int* _piSize, int* _piSizePlusType)
+bool MList::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     *_piSize = 0;
     *_piSizePlusType = 0;
     for (auto pData : *m_plData)
     {
-        int piS, piSPT;
+        long long piS, piSPT;
         if (pData->getMemory(&piS, &piSPT))
         {
             *_piSize += piS;

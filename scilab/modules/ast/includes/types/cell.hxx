@@ -109,7 +109,7 @@ public :
 
     virtual bool transpose(InternalType *& out);
 
-    bool getMemory(int* _piSize, int* _piSizePlusType);
+    bool getMemory(long long* _piSize, long long* _piSizePlusType);
 
 private :
     virtual InternalType*   getNullValue();

@@ -47,7 +47,7 @@ public :
         return IdList;
     }
     
-    bool                            getMemory(int* _piSize, int* _piSizePlusType);
+    bool                            getMemory(long long* _piSize, long long* _piSizePlusType);
     
     /**
     ** append(InternalType *_typedValue)

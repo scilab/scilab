@@ -208,7 +208,7 @@ void MacroFile::setLines(int _iFirstLine, int _iLastLine)
     getMacro()->setLines(_iFirstLine, _iLastLine);
 }
 
-bool MacroFile::getMemory(int* _piSize, int* _piSizePlusType)
+bool MacroFile::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     return this->getMacro()->getMemory(_piSize, _piSizePlusType);
 }

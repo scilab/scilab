@@ -102,7 +102,7 @@ String::String(int _iRows, int _iCols, wchar_t const* const* _pstData)
 #endif
 }
 
-bool String::getMemory(int* _piSize, int* _piSizePlusType)
+bool String::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     *_piSize = getSize()*sizeof(wchar_t*);
     for (int i = 0; i < getSize(); i++)

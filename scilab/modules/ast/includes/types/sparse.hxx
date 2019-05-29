@@ -81,7 +81,7 @@ struct EXTERN_AST Sparse : GenericType
     }
     void finalize();
     
-    bool getMemory(int *_piSize, int* _piSizePlusType);
+    bool getMemory(long long *_piSize, long long* _piSizePlusType);
 
     /*data management member function defined for compatibility with the Double API*/
     Sparse* set(int _iRows, int _iCols, double _dblReal, bool _bFinalize = true);
@@ -518,7 +518,7 @@ struct EXTERN_AST SparseBool : GenericType
     }
     void finalize();
 
-    bool getMemory(int *_piSize, int* _piSizePlusType);
+    bool getMemory(long long *_piSize, long long* _piSizePlusType);
 
     bool toString(std::wostringstream& ostr);
 

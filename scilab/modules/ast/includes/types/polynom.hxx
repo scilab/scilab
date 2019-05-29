@@ -119,7 +119,7 @@ public :
         return false;
     }
 
-    bool getMemory(int* _piSize, int* _piSizePlusType);
+    bool getMemory(long long* _piSize, long long* _piSizePlusType);
 
     bool transpose(InternalType *& out);
     bool adjoint(InternalType *& out);

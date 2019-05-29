@@ -82,7 +82,7 @@ public :
 
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e) override ;
 
-    bool getMemory(int* _piSize, int* _piSizePlusType);
+    bool getMemory(long long* _piSize, long long* _piSizePlusType);
 
 protected :
     inline ScilabType		getType(void)

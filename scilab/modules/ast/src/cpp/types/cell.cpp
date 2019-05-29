@@ -51,14 +51,14 @@ Cell::Cell(int _iDims, const int* _piDims, InternalType** data)
     createCell(_iDims, _piDims, data);
 }
 
-bool Cell::getMemory(int* _piSize, int* _piSizePlusType)
+bool Cell::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     *_piSize = 0;
     *_piSizePlusType = 0;
     InternalType** p = get();
     for (int i = 0; i < getSize(); i++)
     {
-        int piS, piSPT;
+        long long piS, piSPT;
         if (p[i]->getMemory(&piS, &piSPT))
         {
             *_piSize += piS;

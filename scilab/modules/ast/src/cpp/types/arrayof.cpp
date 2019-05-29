@@ -53,7 +53,7 @@ GenericType* ArrayOf<T>::createEmpty()
 }
 
 template <typename T>
-bool ArrayOf<T>::getMemory(int* _piSize, int* _piSizePlusType)
+bool ArrayOf<T>::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     *_piSize = getSize() * sizeof(T) * (isComplex() ? 2 : 1);
     *_piSizePlusType = *_piSize + sizeof(*this);

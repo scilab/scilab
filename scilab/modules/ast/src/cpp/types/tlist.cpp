@@ -55,13 +55,13 @@ TList::~TList()
 #endif
 }
 
-bool TList::getMemory(int* _piSize, int* _piSizePlusType)
+bool TList::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     *_piSize = 0;
     *_piSizePlusType = 0;
     for (auto pData : *m_plData)
     {
-        int piS, piSPT;
+        long long piS, piSPT;
         if (pData->getMemory(&piS, &piSPT))
         {
             *_piSize += piS;

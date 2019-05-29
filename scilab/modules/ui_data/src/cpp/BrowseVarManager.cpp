@@ -105,7 +105,7 @@ void SetBrowseVarData()
     char **pstAllVariableNames = new char*[iLocalVariablesUsed]();
     char **pstAllVariableVisibility = new char*[iLocalVariablesUsed]();
     char **pstAllVariableListTypes = new char*[iLocalVariablesUsed]();
-    int *piAllVariableBytes = new int[iLocalVariablesUsed]();
+    long long *piAllVariableBytes = new long long[iLocalVariablesUsed]();
     char **pstAllVariableSizes = new char*[iLocalVariablesUsed]();
     int *piAllVariableTypes = new int[iLocalVariablesUsed]();
     int *piAllVariableIntegerTypes = new int[iLocalVariablesUsed]();
@@ -251,7 +251,7 @@ void SetBrowseVarData()
             piAllVariableFromUser[i] = FALSE;
         }
 
-        int bytesWithoutOverHead;
+        long long bytesWithoutOverHead;
         pIT->getMemory(&bytesWithoutOverHead, &piAllVariableBytes[i]);
 
         ++i;
@@ -284,7 +284,7 @@ void SetBrowseVarData()
         piAllVariableNbCols[i] = 1;
         //get value and bytes
         types::GenericType* pIT = sl->m_pLib;
-        int bytesWithoutOverHead;
+        long long bytesWithoutOverHead;
         pIT->getMemory(&bytesWithoutOverHead, &piAllVariableBytes[i]);
 
         ++i;

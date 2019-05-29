@@ -90,7 +90,7 @@ public :
         return false;
     }
 
-    bool getMemory(int* _piSize, int* _piSizePlusType);
+    bool getMemory(long long* _piSize, long long* _piSizePlusType);
 
     virtual bool neg(InternalType *& /*out*/)
     {

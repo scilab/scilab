@@ -720,7 +720,7 @@ bool ImplicitList::isTrue()
     return false;
 }
 
-bool ImplicitList::getMemory(int* _piSize, int* _piSizePlusType)
+bool ImplicitList::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     *_piSize = sizeof(ImplicitList);
     *_piSizePlusType = *_piSize;

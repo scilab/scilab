@@ -86,13 +86,13 @@ std::vector<InternalType *> *List::getData()
     return m_plData;
 }
 
-bool List::getMemory(int* _piSize, int* _piSizePlusType)
+bool List::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     *_piSize = 0;
     *_piSizePlusType = 0;
     for (auto pData : *m_plData)
     {
-        int piS, piSPT;
+        long long piS, piSPT;
         if (pData->getMemory(&piS, &piSPT))
         {
             *_piSize += piS;

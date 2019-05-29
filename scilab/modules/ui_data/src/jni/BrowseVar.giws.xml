@@ -4,7 +4,7 @@
         <method name="openVariableBrowser" returnType="void" modifier="static"/>
         <method name="setVariableBrowserData" returnType="void" modifier="static">
             <parameter type="String[]" name="variableNames"/>
-            <parameter type="int[]" name="variableBytes"/>
+            <parameter type="long[]" name="variableBytes"/>
             <parameter type="int[]" name="variableTypes"/>
             <parameter type="int[]" name="variableIntegerTypes"/>
             <parameter type="String[]" name="variableListTypes"/>

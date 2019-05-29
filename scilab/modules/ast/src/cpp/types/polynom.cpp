@@ -63,7 +63,7 @@ Polynom::~Polynom()
 #endif
 }
 
-bool Polynom::getMemory(int* _piSize, int* _piSizePlusType)
+bool Polynom::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     *_piSize = 0;
     for (int i = 0; i<getSize(); i++)

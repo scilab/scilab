@@ -313,7 +313,7 @@ bool Variables::getVarsInfoForWho(std::list<std::pair<std::wstring, int>>& lstVa
             {
                 std::wstring wstrVarName(it.first.getName().c_str());
                 *iVarLenMax = std::max(*iVarLenMax, (int)wstrVarName.size());
-                int iSize, iSizePlusType;
+                long long iSize, iSizePlusType;
                 if (pIT->getMemory(&iSize, &iSizePlusType))
                 {
                     lstVar.emplace_back(wstrVarName, iSizePlusType);
@@ -338,7 +338,7 @@ bool Variables::getGlobalInfoForWho(std::list<std::pair<std::wstring, int>>& lst
         {
             std::wstring wstrVarName(it.first.getName().c_str());
             *iVarLenMax = std::max(*iVarLenMax, (int)wstrVarName.size());
-            int iSize, iSizePlusType;
+            long long iSize, iSizePlusType;
             types::InternalType* pIT = it.second->empty() ? it.second->getGlobalValue() : it.second->top()->m_pIT;
             if (pIT->getMemory(&iSize, &iSizePlusType))
             {
@@ -460,7 +460,7 @@ int Variables::getCurrentScope(std::list<std::pair<std::wstring, int>>& lst, int
             if (var.second->top()->m_iLevel == level)
             {
                 std::wstring wstrVarName(var.first.getName());
-                int iSize, iSizePlusType;
+                long long iSize, iSizePlusType;
 
                 types::InternalType* pIT = var.second->top()->m_pIT;
                 if (pIT->getMemory(&iSize, &iSizePlusType))

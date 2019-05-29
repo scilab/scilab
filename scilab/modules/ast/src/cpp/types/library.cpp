@@ -134,7 +134,7 @@ std::wstring Library::getPath()
     return m_wstPath;
 }
 
-bool Library::getMemory(int* _piSize, int* _piSizePlusType)
+bool Library::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
     *_piSize = 0;
     for (auto macro : m_macros)

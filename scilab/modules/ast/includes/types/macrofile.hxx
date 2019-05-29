@@ -58,7 +58,7 @@ public :
 
     void                    setLines(int _iFirstLine, int _iLastLine);
 
-    bool                    getMemory(int* _piSize, int* _piSizePlusType);
+    bool                    getMemory(long long* _piSize, long long* _piSizePlusType);
 
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring    getTypeStr() const

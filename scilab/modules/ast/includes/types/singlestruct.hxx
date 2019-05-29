@@ -85,7 +85,7 @@ public :
         return L"sst";
     }
 
-    bool                                    getMemory(int* _piSize, int* _piSizePlusType);
+    bool                                    getMemory(long long* _piSize, long long* _piSizePlusType);
 
 private :
 

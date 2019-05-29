@@ -159,7 +159,7 @@ public :
     virtual bool neg(InternalType *& out);
     virtual ast::Exp * getExp(const Location & loc);
 
-    bool getMemory(int* _piSize, int* _piSizePlusType);
+    bool getMemory(long long* _piSize, long long* _piSizePlusType);
 
 };
 }

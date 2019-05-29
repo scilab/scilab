@@ -47,7 +47,7 @@ public class BrowseVar {
             Messages.gettext("Value"),
             Messages.gettext("Type"),
             Messages.gettext("Visibility"),
-            Messages.gettext("Bytes"),
+            Messages.gettext("Memory"),
             Messages.gettext("User"),
             Messages.gettext("Type int value"),
             "", /* nbrows */
@@ -140,7 +140,7 @@ public class BrowseVar {
      * @param dataVisibility : local or global variable
      * @param dataFromUser : Scilab data or user data
      */
-    public static void setVariableBrowserData(String[] dataNames, int[] dataBytes, int[] dataTypes, int[] dataIntegerTypes, String[] variableListTypes, String[] dataSizes, int[] dataNbRows, int[] dataNbCols, String[] dataVisibility, boolean[] dataFromUser) {
+    public static void setVariableBrowserData(String[] dataNames, long[] dataBytes, int[] dataTypes, int[] dataIntegerTypes, String[] variableListTypes, String[] dataSizes, int[] dataNbRows, int[] dataNbCols, String[] dataVisibility, boolean[] dataFromUser) {
         Object[][] data = new Object[dataNames.length][COLUMNNAMES.length];
         for (int i = 0; i < dataNames.length; ++i) {
             data[i][ICON_COLUMN_INDEX] = getIconFromType(dataTypes[i]);
@@ -161,13 +161,32 @@ public class BrowseVar {
                 data[i][TYPE_DESC_COLUMN_INDEX] = varType + " (" + data[i][TYPE_DESC_COLUMN_INDEX] + ")";
             }
             data[i][VISIBILITY_COLUMN_INDEX] = dataVisibility[i];
-            data[i][BYTES_COLUMN_INDEX] = dataBytes[i];
+            data[i][BYTES_COLUMN_INDEX] = humanReadableByteCount(dataBytes[i], true);
             data[i][FROM_SCILAB_COLUMN_INDEX] = dataFromUser[i]; /* Tag if it is a variable from the user or from Scilab (%pi, %eps, etc) */
             data[i][TYPE_COLUMN_INDEX] = dataTypes[i];
             data[i][NB_ROWS_INDEX] = dataNbRows[i];
             data[i][NB_COLS_INDEX] = dataNbCols[i];
         }
         ScilabVariableBrowser.setVariableBrowserData(data);
+    }
+    
+    /**
+     * Convert a byte-count into a human readable string
+     * @see https://stackoverflow.com/questions/3758606/how-to-convert-byte-size-into-human-readable-format-in-java/3758880#3758880
+     * 
+     * @param bytes the number of bytes
+     * @param si true if you wish to format as International System, false for Binary System
+     * @return a formatted string
+     */
+    public static String humanReadableByteCount(long bytes, boolean si) {
+        int unit = si ? 1000 : 1024;
+        if (bytes < unit) {
+			return bytes + " B";
+		}
+
+        int exp = (int) (Math.log(bytes) / Math.log(unit));
+        String pre = (si ? "kMGTPE" : "KMGTPE").charAt(exp-1) + (si ? "" : "i");
+        return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
     }
 
     /**
