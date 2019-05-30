@@ -91,6 +91,7 @@ function xload(fil,num)
     end
     %__f__.visible="on"
     %__f__.immediate_drawing="on";
+    scf(%__f__);
 endfunction
 
 function xloadFigure(fil)

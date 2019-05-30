@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +13,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xload">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="xload">
     <refnamediv>
         <refname>xload</refname>
-        <refpurpose>load a saved graphics</refpurpose>
+        <refpurpose>
+            displays in a given window some graphical component loaded from a file.
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>xload(file_name,[win_num])</synopsis>
+        <synopsis>
+            xload(file_name)
+            xload(file_name, win_num)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,14 +36,14 @@
             <varlistentry>
                 <term>file_name</term>
                 <listitem>
-                    <para>string, name of the file.</para>
+                    <para>string: name of the binary file.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>win_num</term>
                 <listitem>
-                    <para>integer, the graphics window number. If not given, the current
-                        graphics window is used.
+                    <para>integer: the id of the targetted graphic window. By default,
+                        the current graphics window is used.
                     </para>
                 </listitem>
             </varlistentry>
@@ -44,47 +52,160 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xload</literal> reloads the graphics contained in the file
-            <literal>file_name</literal> in the graphics window <literal>win_num</literal>.
+            <literal>xload</literal> restores in the graphics window <literal>win_num</literal>
+            (or the current one) the graphics contained in the binary file <literal>file_name</literal> .
         </para>
         <para>
-            Since  Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also loaded.
+            All saved <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link>
+            are also restored.
         </para>
         <para>
-            For files containing graphics, the <literal>load</literal> function can
-            be used instead of <literal>xload</literal>. <literal>xload</literal> does not restore
-            the window number, the window size nor the window dimensions.
+            A loaded figure imposes its own properties, noticeably its colormap and axes_size,
+            only if
+            <itemizedlist>
+                <listitem>
+                    the target window is clear,
+                </listitem>
+                <listitem>
+                    and the forthcoming figure is the first graphical component to be loaded.
+                </listitem>
+            </itemizedlist>
+            Otherwise, the target window keeps its properties.
         </para>
+        <para>
+            The (last) loaded component and its parent figure or/and axes become the current ones.
+        </para>
+        <para>
+            <emphasis role="bold">Comparing xload() versus load()</emphasis>:
+        </para>
+        <para>
+            <table border="1">
+                <tr>
+                    <th></th>
+                    <th>load() behavior</th>
+                    <th>xload() behavior</th>
+                </tr>
+                <tr>
+                    <td>In addition to the rendering of graphics...</td>
+                    <td>the variables in the file are loaded in the environment, including the
+                        ones that are not graphic handles. They may overwrite existing variables
+                        not related to graphics.
+                    </td>
+                    <td>the environment is kept free of any new variables. There is no overwritting
+                        hazard.
+                    </td>
+                </tr>
+                <tr>
+                    <td>The file contains only one graphic, that is a figure.</td>
+                    <td>It is displayed in a new graphic window, whose number n+1 increments the
+                        maximal existing figure's number n.
+                    </td>
+                    <td>It is displayed in the current or given graphic window.</td>
+                </tr>
+                <tr>
+                    <td>The file contains only one graphics, that is a component of a figure.</td>
+                    <td>It is displayed in a new graphic window #n+1.</td>
+                    <td>It is merged in the current or given graphic window.</td>
+                </tr>
+                <tr>
+                    <td>
+                        The file contains several graphic figures or/and figures components.
+                    </td>
+                    <td>
+                        They are all loaded. Each figure is displayed in a new dedicated
+                        graphic window. Other loaded components that are figures children are
+                        displayed in the (last) current figure, according to their loading order.
+                    </td>
+                    <td>
+                        Only the last figure and the separate graphical components following it are
+                        displayed and merged in the current or given graphic window.
+                    </td>
+                </tr>
+            </table>
+        </para>
+        <warning>
+            <para>
+                When the file contains several variables being graphic handles or any other
+                variables of any types, the loading order of variables (and so of related
+                graphics) is the <emphasis>alphabetical order of the variables names</emphasis>.
+                So, it is usually NOT the order the variables (among which the handles) have
+                been listed in the save() statement!
+            </para>
+            <para>
+                This may yield some unexpected results when several saved graphic handles
+                have the same parent figure or are parent or children of each others, but with
+                variables names whose alphabetical order does not match the order of their
+                graphical hierarchy.
+            </para>
+        </warning>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-t=0:0.01:10;
-subplot(211),plot2d(t,sin(t))
-subplot(212),plot2d(t,sin(3*t))
-xsave(TMPDIR + "/foo.scg", gcf())
-clf()
-xload(TMPDIR + "/foo.scg")
+path = TMPDIR+"/xload/";
+mkdir(path);
+graypolar = path + "graypolar.dat";
+plotAxes  = path + "plotAxes.scg";
+clf reset
+subplot(1,2,1), plot3d()
+plotA = gca();
+save(plotAxes, "plotA"); // does not record the actual colormap used
+                         // that is a figure's property, not an Axes one.
+f = scf();
+graypolarplot();        // imposes its colormap <> the default colormap
+gca().axes_bounds = [0.5 0 0.5 1];  // puts the grayplot as subplot(1,2,2)
+gcf().axes_size = [700 350];
+save(graypolar, "f");   // records the actual colormap, as a figure's property
 
-a=gca();
-curve=a.children.children; //handle on the curve
-save(TMPDIR + "/foo.scg", "curve")
-delete(curve)
-load(TMPDIR + "/foo.scg")
+xdel(winsid())
+xload(graypolar, 7) // The first restored element is a figure in a clean window
+                    // => It imposes its colormap & axes_size.. to the figure
+xload(plotAxes)
+
+xload(plotAxes, 5) // => The default colormap is used
+xload(graypolar)   // This loaded figure does not impose its own properties: too late!
+gcf().axes_size = [700 350];
+
+scf(20)
+subplot(1,2,1), plot3d() // => The figure is no longer clear => its properties are now set.
+xload(graypolar)         // This new figure does not impose its properties: too late!
+gcf().axes_size = [700 350];
  ]]></programlisting>
+        <para/>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../images/xload_70p.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
+
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="xsave">xsave</link>
+                <link linkend="load">load</link>
             </member>
             <member>
-                <link linkend="load">load</link>
+                <link linkend="copy">copy</link>
+            </member>
+            <member>
+                <link linkend="xsave">xsave</link>
             </member>
             <member>
                 <link linkend="save">save</link>
             </member>
         </simplelist>
+    </refsection>
+
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.0</revnumber>
+                <revdescription>
+                    Saved uimenus and uicontrols are now restored as well.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
