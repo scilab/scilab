@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Simon GARESTE <simon.gareste@scilab-enterprises.com>
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,12 +19,13 @@
           xmlns:scilab="http://www.scilab.org" xml:id="atomsGetInstalledPath" xml:lang="en">
     <refnamediv>
         <refname>atomsGetInstalledPath</refname>
-        <refpurpose>Get the install path of installed external modules</refpurpose>
+        <refpurpose>Gets the install path of some installed external modules</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
             paths = atomsGetInstalledPath(modules)
+            paths = atomsGetInstalledPath(modules, section)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -33,7 +34,7 @@
             <varlistentry>
                 <term>modules</term>
                 <listitem>
-                    <para>mx2, mx3 Matrix of strings:</para>
+                    <para>m x 1, m x 2, or m x 3 Matrix of strings:</para>
                     <informaltable border="1">
                         <tr>
                             <td>
@@ -45,8 +46,7 @@
                             <td>
                                 Mandatory
                             </td>
-                            <td>
-                            </td>
+                            <td/>
                         </tr>
                         <tr>
                             <td>
@@ -56,7 +56,11 @@
                                 <emphasis role="strong">Version</emphasis>
                             </td>
                             <td>
-                                Mandatory
+                                Optional
+                            </td>
+                            <td>
+                                If this column is missing or this value is "", the first
+                                (and possibly only installed) version found is considered.
                             </td>
                         </tr>
                         <tr>
@@ -70,44 +74,97 @@
                                 Optional
                             </td>
                             <td>
-                                If this field is empty or is not present,
-                                the "all" section is used.
+                                If this column is missing or this value is "", the "all" section is
+                                used. Possible values are "user", "allusers", and "all".
                             </td>
                         </tr>
                     </informaltable>
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>section</term>
+                <para>single string among "user", "allusers", "all". It is used ony if
+                    <varname>modules</varname> has less than 3 columns. It is equivalent to
+                    <literal>modules(:,3)=section</literal>.
+                </para>
+            </varlistentry>
+            <varlistentry>
                 <term>paths</term>
-                <para>the paths of the given modules</para>
+                <para>
+                    the paths of the given modules (starting with SCI or SCIHOME),
+                    or "" for any unfound module, such that always size(paths,1)==size(modules,1).
+                </para>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
         <para>
-            <literal>atomsGetInstalledPath</literal> returns the installation path of given external modules
+            <literal>atomsGetInstalledPath</literal> returns the installation path of given
+            external modules, or "" for any unfound module.
+        </para>
+        <para>
+            If no module with the given exact case-sensitive technical name is found among installed
+            modules, the search is rerun in a case-insensitive way. If still no match is found, the
+            search is rerun in a case-insensitive way considering the provided technical name
+            as a fragment of the true name. In case of
+        </para>
+        <para>
+            If for a <literal>modules(i,:)</literal> several matches are found, only the first one
+            is considered.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-atomsSetConfig("Verbose","True");
-atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
-atomsInstall(["toolbox_5","1.0"]);
-atomsGetInstalledPath(["toolbox_5","1.0"]);
-atomsRemove("toolbox_5");
+atomsInstall SCI/modules/atoms/tests/unit_tests/toolbox_7V6_1.0-1.bin.zip user
+
+atomsGetInstalledPath toolbox_7V6       // exact name,                  no version
+atomsGetInstalledPath ToolBox_7v6       // else: case-insensitive name, no version
+atomsGetInstalledPath TOOLBOX_7         // else: fragment of name,      no version
+atomsGetInstalledPath toolbox_7 allusers  // + wrong section => "" (not found)
+atomsGetInstalledPath toolbox_7 all
+atomsGetInstalledPath(["toolbox_7", "2"])   // not this version => "" (not found)
+atomsGetInstalledPath(["toolbox_7", "1"])   // not this version => "" (not found)
+atomsGetInstalledPath(["toolbox_7", "1.0"]) // version found
+
+atomsRemove("toolbox_7V6");
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="atomsInstall">atomsInstall</link>
+                <link linkend="atomsGetLoadedPath">atomsGetLoadedPath</link>
             </member>
             <member>
-                <link linkend="atomsIsInstalled">atomsIsInstalled</link>
+                <link linkend="atomsGetLoaded">atomsGetLoaded</link>
+            </member>
+            <member>
+                <link linkend="atomsGetInstalled">atomsGetInstalled</link>
+            </member>
+            <member>
+                <link linkend="atomsAutoloadList">atomsAutoloadList</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            The technical name can now be case-insensitive, or a case-insensitive
+                            fragment of the full true technical name of each searched module.
+                        </listitem>
+                        <listitem>
+                            The version is now optional (use "" to accept any version).
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

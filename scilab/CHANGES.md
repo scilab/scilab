@@ -189,7 +189,7 @@ Feature changes and additions
 * `perms` can now build and return only unique permutations, without duplicates.
 * Most of graphic objects can be moved interactively in opened figures.
 * `circshift` is introduced.
-
+* `atomsGetInstalledPath` is no longer sensitive to the case or completeness of the modules names. Providing the modules versions is now optional.
 
 Help pages:
 -----------
@@ -268,7 +268,7 @@ Bug Fixes
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
 * [#5824](https://bugzilla.scilab.org/5824): The `datafit` algorithm was not documented.
 * [#6070](https://bugzilla.scilab.org/6070): How to make multiscaled plots was not documented.
-* [#7293](http://bugzilla.scilab.org/show_bug.cgi?id=7293): There was no function to circularly shift components, rows, columns or subarrays of an array. `circshift` introduced.
+* [#7293](https://bugzilla.scilab.org/7293): There was no function to circularly shift components, rows, columns or subarrays of an array. `circshift` introduced.
 * [#7562](https://bugzilla.scilab.org/7562): `factorial` could use a huge memory amount even for a scalar argument.
 * [#7589](https://bugzilla.scilab.org/7589): There was no function computing the binomial coefficients.
 * [#7657](https://bugzilla.scilab.org/7657): `lstsize` was a duplicate of `size` and should be removed.
@@ -341,6 +341,7 @@ Bug Fixes
 * [#15309](https://bugzilla.scilab.org/15309): `eval` was a weak duplicate of `evstr`. It should be removed.
 * [#15321](https://bugzilla.scilab.org/15321): `lu` was leaking memory.
 * [#15350](https://bugzilla.scilab.org/15350): `ric_desc` should be merged into `riccati`.
+* [#15357](https://bugzilla.scilab.org/15357): `atomsGetInstalledPath` returned "" if the provided technical name differs only by the case, or is a fragment, or failed when the version is not provided.
 * [#15359](https://bugzilla.scilab.org/15359): `twinkle` was not able to blink several independent objects.
 * [#15360](https://bugzilla.scilab.org/15360): `numer` and `denom` were poor and duplicates of the `.num` and `.den` fields of rationals. They are removed.
 * [#15368](https://bugzilla.scilab.org/15368): `freson` silently returned frequencies not corresponding to a maximum, or returned [] instead of some still computable maxima frequencies.
@@ -468,7 +469,7 @@ Bug Fixes
 * [#16232](https://bugzilla.scilab.org/16232): `colorbar` did not support `$` in `colminmax`, standing for the number of colors in the current color map.
 * [#16234](https://bugzilla.scilab.org/16234): Airy functions were not available.
 * [#16242](https://bugzilla.scilab.org/16242): `loadmatfile` could not read Octave native text data files.
-* [#16244](http://bugzilla.scilab.org/show_bug.cgi?id=16244): `perms` could freeze the whole computer. It could not ignore duplicate permutations.
+* [#16244](https://bugzilla.scilab.org/16244): `perms` could freeze the whole computer. It could not ignore duplicate permutations.
 * [#16245](https://bugzilla.scilab.org/16245): `gsort` could not sort booleans.
 * [#16246](https://bugzilla.scilab.org/16246): `isvector` was broken for sparse matrices.
 * [#16257](https://bugzilla.scilab.org/16257): `blockdiag` implemented to replace `sysdiag`, improved and extended to strings.
