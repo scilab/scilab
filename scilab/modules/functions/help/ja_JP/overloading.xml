@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="ja">
     <refnamediv>
         <refname>overloading</refname>
         <refpurpose>表示,関数および演算子オーバーロード機能</refpurpose>
@@ -181,7 +184,7 @@
             <tr>
                 <td>スクリプト関数</td>
                 <td>
-                    <literal>mc</literal>
+                    <literal>function</literal>
                 </td>
                 <td>
                     <literal>関数</literal>
@@ -524,12 +527,12 @@
         <para>
             展開構文<literal>b=a(i1,...,in)</literal>の オーバーロード関数は,
             以下のような呼び出し手順となります:
-            <literal>b=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal>
+            <literal>b=%&lt;type_of_a&gt;_e(i1,...,in,a)</literal>
         </para>
         <para>
-            そして,構文 <literal>[x1,..,xm]=a(i1,...,in)</literal> は
+            そして,構文 <literal>[x1,..,xm] = a(i1,...,in)</literal> は
             以下のような呼び出し手順となります:
-            <literal>[x1,..,xm]=%&lt;type_of_a&gt;_e_(i1,...,in,a)</literal>
+            <literal>[x1,..,xm] = %&lt;type_of_a&gt;_e(i1,...,in,a)</literal>
         </para>
         <para>
             挿入構文に関するオーバーロード関数 <literal>a(i1,...,in)=b</literal>
@@ -620,5 +623,17 @@
                 <link linkend="typename">typename</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                  <literal>function</literal> replaces <literal>mc</literal> as overloading code
+                  for functions in Scilab language.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

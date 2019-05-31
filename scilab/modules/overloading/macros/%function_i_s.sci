@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA, Serge Steer
+// Copyright (C) INRIA
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -10,8 +10,6 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r=%mc_o_st(a,b)
-    // implements r=a==b
-    // for a a function  and b a struct
-    r=%f
+function M = %function_i_s(varargin)
+    M=generic_i_s(varargin(:))
 endfunction

@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
+// Copyright (C) INRIA, Serge Steer
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
 //
@@ -10,6 +10,8 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function out=%mc_i_st(i,in,out)
-    out=generic_i_st(i,in,out)
+function r = %function_n_st(a,b)
+    // implements r=a~=b
+    // for a a function  and b a struct
+    r=%t
 endfunction

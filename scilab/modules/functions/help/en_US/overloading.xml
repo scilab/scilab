@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="en">
     <refnamediv>
         <refname>overloading</refname>
         <refpurpose>display, functions and operators overloading
@@ -170,7 +173,7 @@
                 <td/>
             </tr>
             <tr>
-                <td>compiled function</td>
+                <td>hard-coded function</td>
                 <td>
                     <literal>fptr</literal>
                 </td>
@@ -182,7 +185,7 @@
             <tr>
                 <td>script function</td>
                 <td>
-                    <literal>mc</literal>
+                    <literal>function</literal>
                 </td>
                 <td>
                     <literal>function</literal>
@@ -527,13 +530,13 @@
                 ..., in)
             </literal>
             has the following syntax: <literal>b =
-                %&lt;type_of_a&gt;_e_(i1, ..., in, a)
+                %&lt;type_of_a&gt;_e(i1, ..., in, a)
             </literal>
         </para>
         <para>
             and the syntax <literal>[x1, .., xm] = a(i1, ..., in)</literal> has
             the following syntax: <literal>[x1, .., xm] =
-                %&lt;type_of_a&gt;_e_(i1, ..., in, a)
+                %&lt;type_of_a&gt;_e(i1, ..., in, a)
             </literal>
             .
         </para>
@@ -629,5 +632,17 @@
                 <link linkend="typename">typename</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                  <literal>function</literal> replaces <literal>mc</literal> as overloading code
+                  for functions in Scilab language.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

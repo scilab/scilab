@@ -62,7 +62,7 @@
     <gateway name="sci_percent_foo_i_XMLList"       function="%i_i_XMLList"         type="0" />
     <gateway name="sci_percent_foo_i_XMLList"       function="%h_i_XMLList"         type="0" />
     <gateway name="sci_percent_foo_i_XMLList"       function="%fptr_i_XMLList"      type="0" />
-    <gateway name="sci_percent_foo_i_XMLList"       function="%mc_i_XMLList"        type="0" />
+    <gateway name="sci_percent_foo_i_XMLList"       function="%function_i_XMLList"  type="0" />
     <gateway name="sci_percent_foo_i_XMLList"       function="%l_i_XMLList"         type="0" />
     <gateway name="sci_percent_foo_i_XMLList"       function="%hm_i_XMLList"        type="0" />
     <gateway name="sci_percent_foo_i_XMLList"       function="%ptr_i_XMLList"       type="0" />

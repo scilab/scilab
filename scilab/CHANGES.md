@@ -190,6 +190,7 @@ Feature changes and additions
 * Most of graphic objects can be moved interactively in opened figures.
 * `circshift` is introduced.
 * `atomsGetInstalledPath` is no longer sensitive to the case or completeness of the modules names. Providing the modules versions is now optional.
+* `function` replaces `mc` as the new overloading code for functions in Scilab language.
 
 Help pages:
 -----------
@@ -330,6 +331,7 @@ Bug Fixes
 * [#14812](https://bugzilla.scilab.org/14812): Minor typos in messages.
 * [#14836](https://bugzilla.scilab.org/14836): Calling `exportUI` on a non dockable figure crashed scilab.
 * [#14863](https://bugzilla.scilab.org/14863): In Xcos, the default ending time was unhandily high (100000), reduced it to 30.
+* [#14900](https://bugzilla.scilab.org/14900): In Scilab 6.0, the new overloading code `function` replacing `mc` for functions in Scilab language was not documented.
 * [#14982](https://bugzilla.scilab.org/14982): `msprintf` segmentation fault was caught due to wrong size
 * [#14985](https://bugzilla.scilab.org/14985): Scilab crashed if a .bin file was not found.
 * [#15068](https://bugzilla.scilab.org/15068): `size(sum(ones(2,3,4,5),4))` was [4 2 3] instead of [2 3 4].

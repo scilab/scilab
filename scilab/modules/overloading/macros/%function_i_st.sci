@@ -10,6 +10,6 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function M=%mc_i_s(varargin)
-    M=generic_i_s(varargin(:))
+function out = %function_i_st(i,in,out)
+    out=generic_i_st(i,in,out)
 endfunction

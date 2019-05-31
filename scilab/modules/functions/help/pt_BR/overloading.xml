@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="pt">
     <refnamediv>
         <refname>overloading</refname>
         <refpurpose>capacidades de overloading ("sobrecarga") de exibições,
@@ -76,102 +79,41 @@
             caracteres associadas a cada tipo de dado como descrito na tabela
             seguinte:
         </para>
-        <informaltable border="1">
+        <informaltable>
             <tr>
-                <td>tipo de dado</td>
-                <td>código "char"</td>
-                <td>tipo de dado</td>
-                <td>código "char"</td>
-            </tr>
-            <tr>
-                <td>constante</td>
-                <td>
-                    <literal>s</literal>
-                </td>
-                <td>booleano</td>
-                <td>
-                    <literal>b</literal>
-                </td>
-            </tr>
-            <tr>
-                <td>string</td>
-                <td>
-                    <literal>c</literal>
-                </td>
-                <td>bibilioteca</td>
-                <td>
-                    <literal>f</literal>
-                </td>
-            </tr>
-            <tr>
-                <td>ponteiro de função</td>
-                <td>
-                    <literal>fptr</literal>
-                </td>
-                <td>manipulador</td>
-                <td>
-                    <literal>h</literal>
-                </td>
-            </tr>
-            <tr>
-                <td>inteiro</td>
-                <td>
-                    <literal>i</literal>
-                </td>
-                <td>lista</td>
-                <td>
-                    <literal>l</literal>
-                </td>
-            </tr>
-            <tr>
-                <td>função</td>
-                <td>
-                    <literal>m</literal>
-                </td>
-                <td>função compilada</td>
-                <td>
-                    <literal>mc</literal>
-                </td>
-            </tr>
-            <tr>
-                <td>polinômio</td>
-                <td>
-                    <literal>p</literal>
-                </td>
-                <td>esparso</td>
-                <td>
-                    <literal>sp</literal>
-                </td>
-            </tr>
-            <tr>
-                <td>esparso booleano</td>
-                <td>
-                    <literal>spb</literal>
-                </td>
-                <td>tlist</td>
-                <td>
-                    <literal>tlist_type</literal>
-                </td>
-            </tr>
-            <tr>
-                <td>lista implícita</td>
-                <td>
-                    <literal>ip</literal>
-                </td>
-                <td>matriz esparsa do Matlab</td>
-                <td>
-                    <literal>msp</literal>
-                </td>
-            </tr>
-            <tr>
-                <td>mlist</td>
-                <td>
-                    <literal>mlist_type</literal>
-                </td>
-                <td>ponteiro</td>
-                <td>
-                    <literal>ptr</literal>
-                </td>
+            <td>
+            <informaltable border="1">
+                <tr><td>tipo de dado</td>       <td>código "char"</td>          </tr>
+                <tr><td>booleano</td>           <td><literal>b</literal></td>   </tr>
+                <tr><td>esparso booleano</td>   <td><literal>spb</literal></td> </tr>
+                <tr><td>inteiro</td>            <td><literal>i</literal></td>   </tr>
+                <tr><td>número decimal</td>     <td><literal>s</literal></td>   </tr>
+                <tr><td>matriz esparsa</td>     <td><literal>sp</literal></td>  </tr>
+                <tr><td>matriz esparsa do Matlab</td><td><literal>msp</literal></td></tr>
+                <tr><td>polinômio</td>          <td><literal>p</literal></td>   </tr>
+                <tr><td>fração racional</td>    <td><literal>r</literal></td>   </tr>
+                <tr><td>texto</td>              <td><literal>c</literal></td>   </tr>
+                <tr><td>gráfico</td>            <td><literal>h</literal></td>   </tr>
+            </informaltable>
+            </td>
+            <td> </td>
+            <td>
+            <informaltable border="1">
+                <tr><td>tipo de dado</td>       <td>código "char"</td>          </tr>
+                <tr><td><literal>function</literal></td><td><literal>function</literal></td></tr>
+                <tr><td>hard-coded função</td>  <td><literal>fptr</literal></td></tr>
+                <tr><td>biblioteca</td>         <td><literal>f</literal></td>   </tr>
+                <tr><td>lista</td>              <td><literal>l</literal></td>   </tr>
+                <tr><td>tlist</td>              <td><literal>tlist_type</literal></td></tr>
+                <tr><td>mlist</td>              <td><literal>mlist_type</literal></td></tr>
+                <tr><td>lista implícita</td>    <td><literal>ip</literal></td>  </tr>
+                <tr><td>cell</td>               <td><literal>ce</literal></td> </tr>
+                <tr><td>structure</td>          <td><literal>st</literal></td> </tr>
+                <tr><td>linear dynamical system</td><td><literal>lss</literal></td> </tr>
+                <tr><td>ponteiro</td>           <td><literal>ptr</literal></td> </tr>
+                <tr><td>undefined|null object</td><td><literal>0</literal></td> </tr>
+              </informaltable>
+            </td>
             </tr>
         </informaltable>
         <para>
@@ -386,12 +328,12 @@
         </informaltable>
         <para>A função de sobrecarga para sintaxe de extração
             <literal>b=a(i1,...,in)</literal> tem a seguinte seqüência de chamamento:
-            <literal>b=%&lt;tipo_de_a&gt;_e_(i1,...,in,a)</literal>
+            <literal>b=%&lt;tipo_de_a&gt;_e(i1,...,in,a)</literal>
         </para>
         <para>
             e a sintaxe<literal>[x1,..,xm]=a(i1,...,in)</literal> tem a seguinte
             seqüência de chamamento:
-            <literal>[x1,..,xm]=%&lt;tipo_de_a&gt;_e_(i1,...,in,a)</literal>
+            <literal>[x1,..,xm]=%&lt;tipo_de_a&gt;_e(i1,...,in,a)</literal>
         </para>
         <para>A função de sobrecarga associada à sintaxe de inserção
             <literal>a(i1,...,in)=b</literal> tem a segunite seqüência de
@@ -488,5 +430,17 @@
                 <link linkend="typename">typename</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                  <literal>function</literal> replaces <literal>mc</literal> as overloading code
+                  for functions in Scilab language.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

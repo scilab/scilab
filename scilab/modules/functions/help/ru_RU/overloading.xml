@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="ru">
     <refnamediv>
         <refname>перегрузка</refname>
         <refpurpose>
@@ -24,7 +27,8 @@
     <refsection>
         <title>Описание</title>
         <para>
-            В Scilab'е вывод на экран переменной, функции и операторы могут быть определены для новых объектов с помощью функций (в Scilab-коде или примитивов).
+            В Scilab'е вывод на экран переменной, функции и операторы могут быть определены для
+            новых объектов с помощью функций (в Scilab-коде или примитивов).
         </para>
         <variablelist>
             <varlistentry>
@@ -181,7 +185,7 @@
                 <td/>
             </tr>
             <tr>
-                <td>компилированная функция</td>
+                <td>жестко закодированная функция</td>
                 <td>
                     <literal>fptr</literal>
                 </td>
@@ -191,13 +195,9 @@
                 <td/>
             </tr>
             <tr>
-                <td>сценарий, функция</td>
-                <td>
-                    <literal>mc</literal>
-                </td>
-                <td>
-                    <literal>function</literal>
-                </td>
+                <td><literal>function</literal></td>
+                <td><literal>function</literal></td>
+                <td><literal>function</literal></td>
                 <td/>
             </tr>
             <tr>
@@ -540,12 +540,12 @@
             Функция перегрузки для синтаксиса выделения
             <literal>b= a(i1, ..., in)</literal>
             имеет следующую последовательность вызова:
-            <literal>b = %&lt;тип_a&gt;;_e_(i1, ..., in, a)</literal>
+            <literal>b = %&lt;тип_a&gt;;_e(i1, ..., in, a)</literal>
         </para>
         <para>
             и синтаксис <literal>[x1, .., xm] = a(i1, ..., in)</literal>
             имеет следующую последовательность вызова:
-            <literal>[x1, .., xm] = %&lt;тип_a&gt;;_e_(i1, ..., in, a)</literal>.
+            <literal>[x1, .., xm] = %&lt;тип_a&gt;;_e(i1, ..., in, a)</literal>.
         </para>
         <para>
             Функция перегрузки, связанная с синтаксисом вставки
@@ -644,5 +644,17 @@
                 <link linkend="typename">typename</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                  <literal>function</literal> replaces <literal>mc</literal> as overloading code
+                  for functions in Scilab language.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
