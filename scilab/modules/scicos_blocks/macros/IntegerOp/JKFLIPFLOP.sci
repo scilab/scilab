@@ -40,14 +40,10 @@ function [x,y,typ] = JKFLIPFLOP(job,arg1,arg2)
         exprs=xx.graphics.exprs(1)
         model=xx.model;
         init_old= model.odstate(1)
+        presentation = _("Set JKFLIPFLOP block parameters<br><br>JK flip-flop<br><br>The ''Initial Value'' must be 0 or 1 of type int8<br>&nbsp;- Negative values are considered as int8(0)<br>&nbsp;- Positive values are considered as int8(1)<br><br>");
         while %t do
-            [ok,init,exprs0]=scicos_getvalue( ..
-            [msprintf(gettext("Set %s block parameters"), "JKFLIPFLOP" ); " ";gettext("JK flip-flop");" "; ..
-            gettext("The ''Initial Value'' must be 0 or 1 of type int8"); ..
-            gettext("&nbsp;- Negative values are considered as int8(0)"); gettext("&nbsp;- Positive values are considered as int8(1)"); " "], ..
-            gettext("Initial Value"), ..
-            list("vec",1), exprs);
-
+            [ok,init,exprs0]=scicos_getvalue(presentation, ..
+                gettext("Initial Value"), list("vec",1), exprs);
             if ~ok then
                 break,
             end

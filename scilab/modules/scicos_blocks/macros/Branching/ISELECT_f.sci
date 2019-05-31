@@ -30,14 +30,15 @@ function [x,y,typ]=ISELECT_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,nout,z0,exprs]=scicos_getvalue("Set parameters",..
-            ["number of outputs";"initial connected output"],..
-            list("vec",1,"vec",1),exprs)
+            [ok,nout,z0,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "ISELECT_f"),..
+                _(["Number of outputs" ; "Initial connected output"]),..
+                list("vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end
             if z0>nout|z0<=0 then
-                message("initial connected input is not a valid input port number")
+                message(_("The initial connected input is not a valid input port number"))
             else
                 [model,graphics,ok]=check_io(model,graphics,-1,-ones(nout,1),ones(nout,1),[])
                 if ok then

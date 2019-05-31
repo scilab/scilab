@@ -62,8 +62,8 @@ function [x,y,typ]=PDE(job,arg1,arg2)
             rdnom="PDE";
             ok1=%t;
             while %t do
-                [okk,rdnom,lab]=scicos_getvalue("PLEASE, GIVE US THE BLOCK''s NAME. ",..
-                "New block''s name: ",list("str",1),label(3));
+                [okk,rdnom,lab]=scicos_getvalue(_("PLEASE, GIVE US THE BLOCK''s NAME. "),..
+                _("New block''s name: "),list("str",1),label(3));
 
                 if okk==%f then
                     ok1=%f;
@@ -72,7 +72,8 @@ function [x,y,typ]=PDE(job,arg1,arg2)
                 label(3)=lab;
                 rdnom=stripblanks(rdnom);
                 if rdnom==emptystr() then
-                    ok1=%f;messagebox("Sorry, C file name not defined.");
+                    ok1=%f;
+                    messagebox(_("Sorry, undefined C file name."));
                 end
                 if ok1 then
                     break,
@@ -93,7 +94,7 @@ function [x,y,typ]=PDE(job,arg1,arg2)
                     elseif (signe == 0) then,
                         delta=0;
                     else
-                        messagebox(["The discriminant isn''t constant,"; "You must choose its sign in the GUI"]);
+                        messagebox(_("The discriminant isn''t constant.<br>You must choose its sign in the GUI."));
                         return;
                     end
                 else

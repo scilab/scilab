@@ -34,8 +34,11 @@ function [x,y,typ]=Switch(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,Ron,Roff,exprs]=scicos_getvalue("Set non-ideal electrical switch parameters",..
-            ["Resistance in On state (Ohm)";"Resistance in Off state (Ohm)"],list("vec",1,"vec",1),exprs)
+            [ok,Ron,Roff,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), _("non-ideal electrical switch")),..
+            _(["Resistance in On state (Ohm)";
+               "Resistance in Off state (Ohm)"]), ..
+            list("vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end

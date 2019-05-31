@@ -32,8 +32,12 @@ function [x,y,typ]=BITCLEAR(job,arg1,arg2)
         model=arg1.model;
         while %t do
 
-            [ok,Datatype,bit,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "BITCLEAR"); " ";          gettext("Clear a bit");" "],..
-            [msprintf(gettext("Data Type %s"), "(3:int32, 4:int16, 5:int8, ...)"); gettext("Index of Bit (0 is least significant)")],..
+            [ok,Datatype,bit,exprs]=scicos_getvalue(..
+                [msprintf(gettext("Set %s block parameters"), "BITCLEAR");
+                 " ";
+                 gettext("Clear a bit");" "],..
+            [gettext("Data Type %s (3:int32, 4:int16, 5:int8, ...)");
+             gettext("Index of Bit (0 is least significant)")],..
             list("vec",1,"vec",1), exprs);
 
             if ~ok then

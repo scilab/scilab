@@ -30,10 +30,13 @@ function [x,y,typ] = INTEGRAL_m(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue("Set Integral block parameters",..
-            ["Initial Condition";
-            "With re-initialization (1:yes, 0:no)";"With saturation (1:yes, 0:no)";
-            "Upper limit";"Lower limit"],..
+            [ok,x0,reinit,satur,maxp,lowp,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "INTEGRAL_m"),..
+              _(["Initial Condition" ;
+                "With re-initialization (1:yes, 0:no)" ;
+                "With saturation (1:yes, 0:no)" ;
+                "Upper limit" ;
+                "Lower limit"]), ..
             list("mat",[-1 -1],"vec",1,"vec",1,"mat",[-1 -1],"mat",[-1 -1]),exprs)
             if ~ok then
                 break,
@@ -56,13 +59,13 @@ function [x,y,typ] = INTEGRAL_m(job,arg1,arg2)
                         lowp=lowp*ones(x0),
                     end
                     if (size(x0)<>size(maxp) | size(x0)<>size(lowp)) then
-                        message("x0 and Upper limit and Lower limit must have same size")
+                        message(_("x0 and Upper limit and Lower limit must have the same size"))
                         ok=%f
                     elseif or(maxp<=lowp)  then
-                        message("Upper limits must be > Lower limits")
+                        message(_("Upper limits must be > Lower limits"))
                         ok=%f
                     elseif or(x0>maxp)|or(x0<lowp) then
-                        message("Initial condition x0 should be inside the limits")
+                        message(_("Initial condition x0 should be inside the limits"))
                         ok=%f
                     else
                         rpar=[real(maxp(:));real(lowp(:))]
@@ -77,13 +80,13 @@ function [x,y,typ] = INTEGRAL_m(job,arg1,arg2)
                         lowp=lowp*ones(x0)+%i*(lowp*ones(x0)),
                     end
                     if (size(x0)<>size(maxp) | size(x0)<>size(lowp)) then
-                        message("x0 and Upper limit and Lower limit must have same size")
+                        message(_("x0 and Upper limit and Lower limit must have same size"))
                         ok=%f
                     elseif or(real(maxp)<=real(lowp))| or(imag(maxp)<=imag(lowp)) then
-                        message("Upper limits must be > Lower limits")
+                        message(_("Upper limits must be > Lower limits"))
                         ok=%f
                     elseif or(real(x0)>real(maxp))|or(real(x0)<real(lowp))| or(imag(x0)>imag(maxp))|or(imag(x0)<imag(lowp)) then
-                        message("Initial condition x0 should be inside the limits")
+                        message(_("Initial condition x0 should be inside the limits"))
                         ok=%f
                     else
                         rpar=[real(maxp(:));real(lowp(:));imag(maxp(:));imag(lowp(:))]

@@ -36,10 +36,15 @@ function [x,y,typ]=WRITEC_f(job,arg1,arg2)
         fname=exprs(2)
         frmt=exprs(3)
         while %t do
-            [ok,in,fname1,frmt1,N,swap,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "WRITEC_f");" "; ..
-            gettext("Write to C binary file")], [gettext("Input Size"); gettext("Output File Name"); ..
-            gettext("Output Format"); gettext("Buffer Size"); gettext("Swap Mode (0:No, 1:Yes)")], ..
-            list("vec",1,"str",1,"str",1,"vec",1,"vec",1),exprs)
+            [ok,in,fname1,frmt1,N,swap,exprs] = scicos_getvalue(..
+            [msprintf(gettext("Set %s block parameters"), "WRITEC_f");" "; ..
+            gettext("Write to C binary file")], ..
+            _(["Input Size" ;
+               "Output File Name" ;
+               "Output Format" ;
+               "Buffer Size" ;
+               "Swap Mode (0:No, 1:Yes)"]), ..
+            list("vec",1,"str",1,"str",1,"vec",1,"vec",1), exprs)
 
             if ~ok then
                 break,

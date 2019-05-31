@@ -34,7 +34,8 @@ function [x,y,typ]=TrigFun(job,arg1,arg2)
         "asin";"acos";"atan";
         "sinh";"cosh";"tanh";
         "asinh";"acosh";"atanh"];
-        %GG=["Choose among "+strcat(%FF(1:4),", ");strcat(%FF(5:$),", ")]
+        %GG = _("Choose among %s,<br>%s")
+        %GG = msprintf(%GG, strcat(%FF(1:4),", "), strcat(%FF(5:$),", "))
         while %t do
             [ok,fun,exprs]=scicos_getvalue(%GG,"Function",list("str",1),exprs)
             if ~ok then

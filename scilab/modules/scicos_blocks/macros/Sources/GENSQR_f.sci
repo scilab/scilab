@@ -33,9 +33,9 @@ function [x,y,typ]=GENSQR_f(job,arg1,arg2)
             exprs=exprs(2),
         end //compatibility
         while %t do
-            [ok,Amplitude,exprs]=scicos_getvalue([
-            "Set Square generator block parameters"],..
-            ["Amplitude"],..
+            [ok,Amplitude,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"),"SQUARE WAVE generator"),..
+            _("Amplitude"),..
             list("vec",1),exprs)
             if ~ok then
                 break,

@@ -587,7 +587,7 @@ function add_list_points()
         new = get(edit_pt,"String");
         newv=evstr(new);
         if (newv < evstr(get(edita,"String"))-%eps | newv > evstr(get(editb,"String"))+%eps) then
-            messagebox("le point choisi est en dehors du domaine","modal","error");
+            messagebox(_("The chosen point is out of the domain"), "modal", "error");
             return;
         end
         if (list_points == "") then
@@ -662,7 +662,7 @@ function visualiser()
     end
     if (get(check_op7,"Value")== 1) then
         if isempty(expression) then
-            expression="Veuillez selectionner les operateurs";
+            expression = _("Please select the operators");
         else
             expression=expression+"=("+get(edita7,"String")+")*b7(t)";
         end
@@ -670,7 +670,7 @@ function visualiser()
         expression=expression+"=0";
     end
     if (expression == "=0") then
-        expression="Veuillez selectionner les operateurs";
+        expression = _("Please select the operators");
     end
     sep=["+","*","-"," "];
     expression=cformatlinedp(expression,80,sep);

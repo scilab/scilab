@@ -38,9 +38,13 @@ function [x,y,typ]=LOOKUP_c(job,arg1,arg2)
         SaveExit=%f
         while %t do
             Ask_again=%f
-            [ok,Method,xx,yy,extrapo,graf,exprs]=scicos_getvalue("Lookup table parameters",..
-            ["Spline Interpolation method (0..9)";..
-            "x";"y";"Extrapolate method (0,1)";"Launch graphic window(y/n)?"],..
+            [ok,Method,xx,yy,extrapo,graf,exprs]=scicos_getvalue(..
+            _("Lookup table parameters"),..
+            [_("Spline Interpolation method (0..9)");
+               "x";
+               "y";
+               _("Extrapolate method (0,1)");
+               _("Launch graphic window (y/n)?")],..
             list("vec",1,"vec",-1,"vec",-1,"vec",1,"str",1),exprs)
             // 9 : nearest
             // 8 : above
@@ -81,7 +85,7 @@ function [x,y,typ]=LOOKUP_c(job,arg1,arg2)
                 [nx,mx]=size(xx);
                 [ny,my]=size(yy);
                 if ~((nx==ny)&(mx==my)) then,
-                    messagebox("Incompatible size of x and y");
+                    messagebox(_("Incompatible sizes of x and y"));
                     Ask_again=%t;
                 end
             end
@@ -234,7 +238,7 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
         ixy=[];
     end;
     if size(xy,"c")<2 then
-        gcf().info_message = " No y provided";
+        gcf().info_message = _(" No [y] provided");
         return
     end
 
@@ -340,10 +344,10 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
     menu_r=[];
     menu_s=[];
     menu_o=["zero order-below","linear","order 2","not_a_knot","periodic","monotone","fast","clamped","zero order-above","zero order-nearest"]
-    menu_d=["Clear","Data Bounds","Load from text file","Save to text file","Load from Excel","Extrapolation"]
-    menu_t=["sine","sawtooth1","sawtooth2","pulse","random normal","random uniform"]
-    menu_e=["Help","Exit without save","Save/Exit"]
-    MENU=["Autoscale","Spline","Data","Standards","Exit"];
+    menu_d=_(["Clear";"Data Bounds";"Load from text file";"Save to text file";"Load from Excel";"Extrapolation"])'
+    menu_t = ["sine","sawtooth1","sawtooth2","pulse","random normal","random uniform"]
+    menu_e = _(["Help"; "Exit without save"; "Save/Exit"])';
+    MENU  =  _(["Autoscale"; "Spline" "Data"; "Standards"; "Exit"])';
     menus=list(MENU,menu_s,menu_o,menu_d,menu_t,menu_e);
 
     scam="menus(1)(1)"
@@ -394,7 +398,7 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
         N=size(xy,"r");
         [btn,xc,yc,win,Cmenu]=get_click();
         if ((win>0) & (win<>curwin)) then
-            Cmenu="Mouse click is Offside!";
+            Cmenu = _("Mouse click is offside!");
         end
         if Cmenu==[] then Cmenu="edit",end
         if (Cmenu=="Exit") |(Cmenu=="Quit" ) then,
@@ -434,15 +438,16 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
         end
         //-------------------------------------------------------------------
         select Cmenu
-        case "Data Bounds" then
+        case _("Data Bounds") then
             rectx=findrect(a);
-            [mok,xmn1,xmx1,ymn1,ymx1]=scicos_getvalue("Enter new bounds",["xmin";"xmax"; ...
-            "ymin";"ymax"],list("vec",1,"vec",1,"vec",1,"vec",1), ...
+            [mok,xmn1,xmx1,ymn1,ymx1]=scicos_getvalue(_("Enter new bounds"),..
+            ["xmin" ; "xmax" ; "ymin" ; "ymax"], ..
+            list("vec",1,"vec",1,"vec",1,"vec",1), ...
             string(rectx))
             //drawlater();
             if mok then
                 if (xmn1>xmx1|ymn1>ymx1) then
-                    gcf().info_message = "Incorrect bounds"
+                    gcf().info_message = _("Incorrect bounds")
                     mok=%f;
                 end
                 if mok then
@@ -451,17 +456,19 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             end
             //drawnow();
             //-------------------------------------------------------------------
-        case "Autoscale" then
+        case _("Autoscale") then
             [rpar,ipar]=AutoScale(a,xy,ipar,rpar)
             //-------------------------------------------------------------------
-        case "Extrapolation" then
+        case _("Extrapolation") then
             //extrapo
             if extrapo==1 then,
                 ans0="1",
             else,
                 ans0="0",
             end;
-            [mok,myans]=scicos_getvalue("Extrapolation method (just for Method 1)",["0: hold end values, 1: extrapolation"],list("vec",1),list(ans0));
+            [mok,myans]=scicos_getvalue(..
+                _("Extrapolation method (only for Method 1)"), ..
+                [_("0: hold end values, 1: extrapolation")],list("vec",1),list(ans0));
             if (mok==%t) then
                 extrapo=int(myans);
                 if extrapo<0 then
@@ -475,10 +482,14 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             end
             //-------------------------------------------------------------------
         case "sine" then
-            [mok,Amp,wp,phase,offset,np1,Sin_exprs2]=scicos_getvalue(" Sine parameters", ...
-            ["Amplitude";"Frequency(rad/sec)"; ...
-            "Phase(rad)";"Bias";"number of points"],list("vec",1,"vec",1,"vec",1, ...
-            "vec",1,"vec",1),Sin_exprs)
+            [mok,Amp,wp,phase,offset,np1,Sin_exprs2]=scicos_getvalue(..
+             _(" Sine parameters"), ...
+             _(["Amplitude" ;
+                "Frequency (rad/s)" ;
+                "Phase(rad)" ;
+                "Bias" ;
+                "Number of points"]), ..
+            list("vec",1,"vec",1,"vec",1, "vec",1,"vec",1), Sin_exprs)
             if np1< 2 then
                 np1=2;
             end
@@ -494,8 +505,9 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             end
             //-------------------------------------------------------------------
         case "sawtooth1" then
-            [mok,sAmp,sTp,sdelay,Sawt1_exprs2]=scicos_getvalue("Sawtooth signal parameters", ...
-            ["Amplitude";"Period";"delay"], ...
+            [mok,sAmp,sTp,sdelay,Sawt1_exprs2]=scicos_getvalue(..
+            _("Sawtooth signal parameters"), ...
+            _(["Amplitude" ; "Period" ; "Delay"]), ...
             list("vec",1,"vec",1,"vec",1),Sawt1_exprs)
             if mok & sTp>0 then
                 NOrder=1;
@@ -513,8 +525,9 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             end
             //-------------------------------------------------------------------
         case "sawtooth2" then
-            [mok,sAmp2,sTp2,Sawt2_exprs2]=scicos_getvalue("Sawtooth signal parameters", ...
-            ["Amplitude";"Period"],list("vec",1,"vec",1),Sawt2_exprs)
+            [mok,sAmp2,sTp2,Sawt2_exprs2]=scicos_getvalue(..
+            _("Sawtooth signal parameters"), ...
+            _(["Amplitude" ; "Period"]), list("vec",1,"vec",1), Sawt2_exprs)
             if mok & sTp2>0 then
                 NOrder=1;
                 ipar(2)=NOrder;
@@ -526,10 +539,14 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             end
             //-------------------------------------------------------------------
         case "pulse" then
-            [mok,Amp3,Tp3,Pw3,Pd3,Bias3,Pulse_exprs2]=scicos_getvalue("Square wave pulse signal", ...
-            ["Amplitude";"Period (sec)";"Pulse width(% of period)";"Phase delay (sec)";"Bias"],list("vec",1, ...
-            "vec",1,"vec",1,"vec",1,"vec", ...
-            1),Pulse_exprs)
+            [mok,Amp3,Tp3,Pw3,Pd3,Bias3,Pulse_exprs2]=scicos_getvalue(..
+            _("Square wave pulse signal"), ...
+            _(["Amplitude" ;
+               "Period (sec)" ;
+               "Pulse width (% of period)" ;
+               "Phase delay (sec)" ;
+               "Bias"]), ..
+            list("vec",1, "vec",1,"vec",1,"vec",1,"vec", 1), Pulse_exprs);
             if mok & Tp3>0  then
                 NOrder=0;
                 ipar(2)=NOrder;
@@ -560,10 +577,14 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             end
             //-------------------------------------------------------------------
         case "random normal" then
-            [mok,mean4,var4,seed4,sample4,np4,random_n_exprs2]=scicos_getvalue("Normal (Gaussian) random signal", ...
-            ["Mean";"Variance";"Initial seed";"Sample time";"Number of points"],list("vec",1, ...
-            "vec",1,"vec",1,"vec", ...
-            1,"vec",1),random_n_exprs)
+            [mok,mean4,var4,seed4,sample4,np4,random_n_exprs2]=scicos_getvalue(..
+            _("Normal (Gaussian) random signal"), ...
+            _(["Mean" ;
+              "Variance" ;
+              "Initial seed" ;
+              "Sample time" ;
+              "Number of points"]),..
+            list("vec",1, "vec",1,"vec",1,"vec", 1,"vec",1), random_n_exprs)
             if mok & sample4>0 then
                 NOrder=0;
                 ipar(2)=NOrder;
@@ -578,10 +599,14 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             end
             //-------------------------------------------------------------------
         case "random uniform" then
-            [mok,min5,max5,seed5,sample5,np5,random_u_exprs2]=scicos_getvalue("Uniform random signal", ...
-            ["Minimum";"Maximum";"Initial seed";"Sample time";"Number of points"],list("vec",1, ...
-            "vec",1,"vec",1,"vec", ...
-            1,"vec",1),random_u_exprs)
+            [mok,min5,max5,seed5,sample5,np5,random_u_exprs2]=scicos_getvalue(..
+            _("Uniform random signal"), ...
+            _(["Minimum" ;
+               "Maximum" ;
+               "Initial seed" ;
+               "Sample time" ;
+               "Number of points"]), ..
+            list("vec",1, "vec",1,"vec",1,"vec",1,"vec",1), random_u_exprs)
             if mok & sample5>0 then
                 NOrder=0;
                 ipar(2)=NOrder;
@@ -596,7 +621,7 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
 
             end
             //-------------------------------------------------------------------
-        case "Save/Exit" then
+        case _("Save/Exit") then
             NOrder=ipar(2);
             PeridicOption=ipar(3);
 
@@ -617,37 +642,39 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             delete(f);
             return
             //-------------------------------------------------------------------
-        case "Exit without save" then
+        case _("Exit without save") then
             ipar=[];
             rpar=[];
             ok=%f
             delete(f);
             return
             //-------------------------------------------------------------------
-        case "Clear" then
+        case _("Clear") then
             xy=[0,0];
             NOrder=0;
             ipar(2)=NOrder;
             [rpar,ipar]=AutoScale(a,xy,ipar,rpar)
             //----------------------------------------------------------------
-        case "Edit text data NOT IN USE" then
+        case _("Edit text data NOT IN USE") then
             //  editvar xy;
-            [mok,xt,yt]=scicos_getvalue("Enter x and y data",["x";"y"],list("vec",-1,"vec",-1),list(strcat(sci2exp(xy(:,1))),strcat(sci2exp(xy(:,2)))));
+            [mok,xt,yt]=scicos_getvalue(_("Enter x and y data"), ..
+            ["x";"y"], list("vec",-1,"vec",-1), ..
+            list(strcat(sci2exp(xy(:,1))),strcat(sci2exp(xy(:,2)))));
             if mok then,
                 xy=[xt,yt];
                 [xy]=cleandata(xy),
                 [rpar,ipar]=AutoScale(a,xy,ipar,rpar)
             end
             //---------------------------------------------------------------
-        case "Help" then
-            t1="Mouse-left click: adding a new point"
-            t2="Mouse-right click: remove a point"
-            t3="Mouse-left double click: edit a point''s coordinates"
-            t4="Mouse-left button press/drag/release: move a  point"
-            t5="Change the window size: ''Data'' menu -> ''Databounds''"
+        case _("Help") then
+            t1 = _("Mouse-left click: adding a new point")
+            t2 = _("Mouse-right click: remove a point")
+            t3 = _("Mouse-left double click: edit a point''s coordinates")
+            t4 = _("Mouse-left button press/drag/release: move a  point")
+            t5 = _("Change the window size: ''Data'' menu -> ''Databounds''")
             messagebox([t1;t2;t3;t4;t5]);
             //---------------------------------------------------------------
-        case "Load from Excel" then
+        case _("Load from Excel") then
             [tok,xytt]=ReadExcel()
             if tok then
                 xy=xytt;
@@ -656,7 +683,7 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
                 [rpar,ipar]=AutoScale(a,xy,ipar,rpar)
             end
             //---------------------------------------------------------------
-        case "Load from text file" then
+        case _("Load from text file") then
             [tok,xytt]=ReadFromFile()
             if tok then
                 xy=xytt;
@@ -665,10 +692,10 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
                 [rpar,ipar]=AutoScale(a,xy,ipar,rpar)
             end
             //---------------------------------------------------------------
-        case "Save to text file" then
+        case _("Save to text file") then
             [sok]=SaveToFile(xy)
             //---------------------------------------------------------------
-        case "Replot" then
+        case _("Replot") then       // in menu ??
             if xy<>[] then
                 drawlater();
                 points.data=xy;
@@ -715,8 +742,8 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             end
 
             if (HIT)&(btn==10) then             // change data:: double click
-                [mok,xt,yt]=scicos_getvalue("Enter new x and y",["x";"y"],list("vec", ...
-                1,"vec",1),list(sci2exp(xy(k,1)),sci2exp(xy(k,2))));
+                [mok,xt,yt]=scicos_getvalue(_("Enter new x and y"), ["x";"y"], ..
+                list("vec",1,"vec",1),list(sci2exp(xy(k,1)),sci2exp(xy(k,2))));
                 if mok then
                     xy(k,:)=[xt,yt];
                     [xy]=cleandata(xy)
@@ -753,7 +780,8 @@ function [orpar,oipar]=drawSplin(a,xy,iipar,irpar)
     else
         PERIODIC="aperiodic";
     end
-    a.title.text=[string(N)+" points,  "+"Method: "+METHOD+",  "+PERIODIC];
+    msg = _("%d points,  Method: %s,  %s");
+    a.title.text = msprintf(msg, N, METHOD, PERIODIC);
 
     if (N==0) then,
         return;
@@ -866,9 +894,9 @@ function [tok,xyo]=ReadExcel()
     xyo=[];
     tok=%f;
     while %t
-        [zok,filen,sheetN,xa,ya]=scicos_getvalue("Excel data file ",["Filename";"Sheet # ";"X[start:Stop]";"Y[start:stop]"],list("str",1, ...
-        "vec",1,"str",1, ...
-        "str",1), ...
+        [zok,filen,sheetN,xa,ya]=scicos_getvalue(_("Excel data file "), ..
+        _(["Filename";"Sheet # ";"X[start:Stop]";"Y[start:stop]"]), ..
+        list("str",1, "vec",1,"str",1, "str",1), ..
         list(["Classeur1.xls"],["1"],["C5:C25"],["D5:D25"]));
         if ~zok then
             break,
@@ -877,7 +905,8 @@ function [tok,xyo]=ReadExcel()
         try
             [fd,SST,Sheetnames,Sheetpos] = xls_open(filen);
         catch
-            gcf().info_message = "Scicos cannot find the excel file:" + filen;
+            msg = _("Scicos cannot find the excel file: %s")
+            gcf().info_message = msprintf(msg, filen);
             break;
         end
         try
@@ -897,7 +926,7 @@ function [tok,xyo]=ReadExcel()
 
             x1p=min(strindex(x1,TN));
             if x1p==[] then,
-                gcf().info_message = "Bad address in X:" + x1;
+                gcf().info_message = msprintf(_("Bad address in X: %s"), x1);
                 break,
             end
             x11=part(x1,1:x1p-1);
@@ -905,7 +934,7 @@ function [tok,xyo]=ReadExcel()
 
             x2p=min(strindex(x2,TN));
             if x2p==[] then,
-                gcf().info_message = "Bad address in X:" + x2;
+                gcf().info_message = msprintf(_("Bad address in X: %s"), x2);
                 break,
             end
             x21=part(x2,1:x2p-1);
@@ -913,7 +942,7 @@ function [tok,xyo]=ReadExcel()
 
             y1p=min(strindex(y1,TN));
             if y1p==[] then,
-                gcf().info_message = "Bad address in Y:" + y1;
+                gcf().info_message = msprintf(_("Bad address in Y: %s"), y1);
                 break,
             end
             y11=part(y1,1:y1p-1);
@@ -921,7 +950,7 @@ function [tok,xyo]=ReadExcel()
 
             y2p=min(strindex(y2,TN));
             if y2p==[] then,
-                gcf().info_message = "Bad address in Y:" + y2;
+                gcf().info_message = msprintf(_("Bad address in Y: %s"), y2);
                 break,
             end
             y21=part(y2,1:y2p-1);
@@ -958,11 +987,11 @@ function [tok,xyo]=ReadExcel()
             [mv,nv]=size(Value)
 
             if ~(xstR<=mv & xstR>0 & xenR<=mv & xenR>0&ystR<=mv & ystR>0&yenR<=mv&yenR>0 ) then
-                gcf().info_message = "error in Row data addresses";
+                gcf().info_message = _("Error in Row data addresses");
                 break
             end
             if ~(xstC<=nv & xstC>0 & xenC<=nv & xenC>0&ystC<=nv & ystC>0&yenC<=nv&yenC>0 ) then
-                gcf().info_message = "error in Column data addresses";
+                gcf().info_message = _("Error in Column data addresses");
                 break
             end
 
@@ -980,7 +1009,7 @@ function [tok,xyo]=ReadExcel()
             tok=%t;
             break,
         catch
-            gcf().info_message = " Scicos cannot read your Excel file, please verify the parameters ";
+            gcf().info_message = _(" Scicos cannot read your Excel file, please verify the parameters");
             break
         end
     end
@@ -1000,11 +1029,11 @@ function [xyo]=cleandata(xye)
     // checking for NULL data
     for i=1:N
         if (xe(i)<>xe(i)) then
-            gcf().info_message = "x contains no data:x("+string(i)+")";
+            gcf().info_message = msprintf(_(" x contains no data:x(%d)"), i);
             return;
         end
         if (ye(i)<>ye(i)) then
-            gcf().info_message = "Y contains no data:y("+string(i)+")";
+            gcf().info_message = msprintf(_(" Y contains no data:y(%d)"), i);
             return;
         end
     end
@@ -1058,7 +1087,9 @@ function [sok,xye]=ReadFromFile()
     xye=[];
     sok=%f;
     while %t
-        [sok,filen,Cformat,Cx,Cy]=scicos_getvalue("Text data file ",["Filename";"Reading [C] format";"Abscissa column";"Output column"],list("str",1,"str",1,"vec",1,"vec",1), ...
+        [sok,filen,Cformat,Cx,Cy]=scicos_getvalue(_("Text data file "), ..
+        _(["Filename";"Reading [C] format";"Abscissa column";"Output column"]), ..
+        list("str",1,"str",1,"vec",1,"vec",1), ...
         list(["mydatafile.dat"],["%g %g"],["1"],["2"]));
         if ~sok then
             break,
@@ -1066,7 +1097,7 @@ function [sok,xye]=ReadFromFile()
         px=strindex(Cformat,"%");
         NC=size(px,"*");
         if NC==[] then,
-            gcf().info_message = "Bad format in reading data file";
+            gcf().info_message = _("Bad format in reading data file");
             sok=%f;
             break;
         end
@@ -1076,18 +1107,18 @@ function [sok,xye]=ReadFromFile()
             Lx=mfscanf(-1,fd,Cformat);
             mclose(fd);
         catch
-            gcf().info_message = "Scicos cannot open the data file:" + filen;
+            gcf().info_message = msprintf(_("Scicos cannot open the data file: %s"),filen);
             break;
         end
 
         [nD,mD]=size(Lx);
         if ((mD==0) | (nD==0)) then,
-            gcf().info_message = "No data read";
+            gcf().info_message = _("No data read");
             sok=%f;
             break;
         end
         if (mD<>NC) then,
-            gcf().info_message = "Bad format";
+            gcf().info_message = _("Bad format");
             sok=%f;
             break;
         end
@@ -1105,15 +1136,16 @@ function [sok]=SaveToFile(xye)
     ye=xye(:,2)
     sok=%f;
     while %t
-        [sok,filen,Cformat]=scicos_getvalue("Text data file ",["Filename";"Writing [C] format"],list("str",1,"str",1), ...
-        list(["mydatafile.dat"],["%g %g"]));
+        [sok,filen,Cformat]=scicos_getvalue(_("Text data file "), ..
+        _(["Filename";"Writing [C] format"]), ..
+        list("str",1,"str",1), list(["mydatafile.dat"], ["%g %g"]));
         if ~sok then
             break,
         end
         px=strindex(Cformat,"%");
         NC=size(px,"*");
         if NC<>2 then,
-            gcf().info_message = "Bad format in writing data file";
+            gcf().info_message = _("Bad format in writing data file");
             sok=%f;
             break;
         end
@@ -1125,7 +1157,7 @@ function [sok]=SaveToFile(xye)
             mfprintf(fd,Cformat,xe,ye);
             mclose(fd);
         catch
-            gcf().info_message = "Scicos cannot open the data file:" + filen;
+            gcf().info_message = msprintf(_("Scicos cannot open the data file: %s"),filen);
             break;
         end
 
@@ -1243,7 +1275,7 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y,xmx,xmn,extrapo)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            gcf().info_message = "ERROR in SPLINE: " + METHOD
+            gcf().info_message = msprintf(_("ERROR in SPLINE: %s"), METHOD);
         end
 
     end
@@ -1257,7 +1289,7 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y,xmx,xmn,extrapo)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            gcf().info_message = "ERROR in SPLINE: " + METHOD
+            gcf().info_message = msprintf(_("ERROR in SPLINE: %s"), METHOD);
         end
     end
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1267,7 +1299,7 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y,xmx,xmn,extrapo)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            gcf().info_message = "ERROR in SPLINE: " + METHOD
+            gcf().info_message = msprintf(_("ERROR in SPLINE: %s"), METHOD);
         end
 
     end
@@ -1278,7 +1310,7 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y,xmx,xmn,extrapo)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            gcf().info_message = "ERROR in SPLINE:  " + METHOD
+            gcf().info_message = msprintf(_("ERROR in SPLINE: %s"), METHOD);
         end
     end
     //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -1288,7 +1320,7 @@ function [X,Y,orpar]=Do_Spline(N,order,x,y,xmx,xmn,extrapo)
             Y = interp(X, x, y, d);
             orpar=d(:);
         catch
-            gcf().info_message = "ERROR in SPLINE: " + METHOD
+            gcf().info_message = msprintf(_("ERROR in SPLINE: %s"), METHOD);
         end
     end
     if extrapo==0 then

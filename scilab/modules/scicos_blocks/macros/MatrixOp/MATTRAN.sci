@@ -35,8 +35,11 @@ function [x,y,typ]=MATTRAN(job,arg1,arg2)
             label(2)=sci2exp(1),
         end
         while %t do
-            [ok,typ,rule,exprs]=scicos_getvalue("Set MATTRAN Block",..
-            ["Datatype(1=real double 2=Complex)";"rule (1=.'' 2='')"],list("vec",1,"vec",1),label)
+            [ok,typ,rule,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "MATTRAN"), ..
+                _(["Datatype (1=real double 2=Complex)" ; 
+                   "rule (1=.'' 2='')"]), ..
+                list("vec",1,"vec",1),label)
             if ~ok then
                 break,
             end
@@ -53,7 +56,7 @@ function [x,y,typ]=MATTRAN(job,arg1,arg2)
                 ot=2;
                 it=2;
             else
-                message("Datatype is not supported");
+                message(_("Unknown datatype"));
                 ok=%f;
             end
             in=[model.in model.in2];

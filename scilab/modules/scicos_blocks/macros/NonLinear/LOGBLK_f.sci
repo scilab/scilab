@@ -33,13 +33,14 @@ function [x,y,typ]=LOGBLK_f(job,arg1,arg2)
             exprs=exprs(2),
         end //compatibility
         while %t do
-            [ok,a,exprs]=scicos_getvalue("Set log block parameters",..
-            "Basis (>1)",list("vec",1),exprs)
+            [ok,a,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "LOG"),..
+            _("Basis (>1)"), list("vec",1), exprs)
             if ~ok then
                 break,
             end
             if a<=1 then
-                message("Basis must be larger than 1")
+                message(_("Basis must be > 1"))
             else
                 if ok then
                     graphics.exprs=exprs

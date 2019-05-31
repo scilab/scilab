@@ -36,8 +36,10 @@ function [x,y,typ]=IFTHEL_f(job,arg1,arg2)
             exprs(2)=string(1);
         end
         while %t do
-            [ok,inh,nmod,exprs]=scicos_getvalue("Set parameters",..
-            ["Inherit (1: no, 0: yes)";"zero-crossing (0: no, 1: yes)"],..
+            [ok,inh,nmod,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "IFTHEL"),..
+            _(["Inherit (1: no, 0: yes)" ; 
+               "Zero-crossing (0: no, 1: yes)"]),..
             list("vec",1,"vec",1),exprs)
             if ~ok then
                 break,
@@ -61,6 +63,7 @@ function [x,y,typ]=IFTHEL_f(job,arg1,arg2)
                 break
             end
         end
+
     case "define" then
         model=scicos_model()
         model.sim=list("ifthel",-1)

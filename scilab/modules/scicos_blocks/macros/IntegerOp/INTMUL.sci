@@ -32,8 +32,11 @@ function [x,y,typ]=INTMUL(job,arg1,arg2)
         exprs=graphics.exprs
         while %t do
             [ok,Datatype,np,exprs]=scicos_getvalue( ..
-            [msprintf(gettext("Set %s block parameters"),"INTMUL"); " "; gettext("Integer matrix multiplication");" ";],..
-            [msprintf(gettext("Data Type %s"), "(3:int32, 4:int16, 5:int8, ...)"); gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")],..
+            [msprintf(gettext("Set %s block parameters"),"INTMUL");
+             " ";
+             gettext("Integer matrix multiplication");" ";],..
+            [gettext("Data Type (3:int32, 4:int16, 5:int8, ...)");
+             gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")],..
             list("vec",1,"vec",1), exprs)
             if ~ok then
                 break,

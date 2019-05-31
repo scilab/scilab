@@ -34,7 +34,11 @@ function [x,y,typ]=EXTTRI(job,arg1,arg2)
             label(9)=[],
         end //compatiblity
         while %t do
-            [ok,typ,decomptyp,lab]=scicos_getvalue("Set EXTTRI block parameters",["Datatype(1=real double  2=Complex)";"extraction type (1=lower  2=upper  3=diagonal)"],list("vec",1,"vec",1),label)
+            [ok,typ,decomptyp,lab]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "EXTTRI"),..
+                _(["Datatype (1=real double  2=Complex)" ; 
+                   "Extraction type (1=lower  2=upper  3=diagonal)"]), ..
+                list("vec",1,"vec",1), label)
             if ~ok then
                 break,
             end
@@ -47,7 +51,7 @@ function [x,y,typ]=EXTTRI(job,arg1,arg2)
                 elseif (decomptyp==3) then
                     function_name="extdiag";
                 else
-                    message("decomposition type is not supported");
+                    message(_("Unknown extraction type"));
                     ok=%f;
                 end
                 it=1;
@@ -60,13 +64,13 @@ function [x,y,typ]=EXTTRI(job,arg1,arg2)
                 elseif (decomptyp==3) then
                     function_name="extdiagz";
                 else
-                    message("decomposition type is not supported");
+                    message(_("Unknown extraction type"));
                     ok=%f;
                 end
                 it=2;
                 ot=2
             else
-                message("Datatype is not supported");
+                message(_("Unknown datatype"));
                 ok=%f;
             end
             in=[model.in model.in2];

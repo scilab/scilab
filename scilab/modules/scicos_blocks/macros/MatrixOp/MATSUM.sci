@@ -34,7 +34,11 @@ function [x,y,typ]=MATSUM(job,arg1,arg2)
             label(9)=[],
         end //compatiblity
         while %t do
-            [ok,typ,decomptyp,lab]=scicos_getvalue("Set MATSUM block parameters",["Datatype(1=real double  2=Complex)";"Sum along (0=all 1=lines  2=Columns)"],list("vec",1,"vec",1),label)
+            [ok,typ,decomptyp,lab]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "MATSUM"),..
+                _(["Datatype (1=real double  2=Complex)" ; 
+                   "Sum along (0=all 1=lines  2=Columns)"]), ..
+                list("vec",1,"vec",1),label)
             if ~ok then
                 break,
             end
@@ -50,7 +54,7 @@ function [x,y,typ]=MATSUM(job,arg1,arg2)
                     function_name="mat_sumc";
                     out=[1 -2];
                 else
-                    message("decomposition type is not supported");
+                    message(_("Unknown summation direction"));
                     ok=%f;
                 end
                 it=1;
@@ -66,13 +70,13 @@ function [x,y,typ]=MATSUM(job,arg1,arg2)
                     function_name="matz_sumc";
                     out=[1 -2];
                 else
-                    message("decomposition type is not supported");
+                    message(_("Unknown summation direction"));
                     ok=%f;
                 end
                 it=2;
                 ot=2
             else
-                message("Datatype is not supported");
+                message(_("Unknown datatype"));
                 ok=%f;
             end
             in=[model.in model.in2];

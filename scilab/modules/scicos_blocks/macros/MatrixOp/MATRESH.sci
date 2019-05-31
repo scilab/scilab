@@ -35,10 +35,10 @@ function [x,y,typ]=MATRESH(job,arg1,arg2)
         end //compatiblity
         while %t do
             [ok,typ,l1,out,lab]=..
-            scicos_getvalue("Set MATRESH block parameters",..
-            ["Datatype(1=real double  2=Complex)"
-            "input size";
-            "output size desired"],..
+            scicos_getvalue(msprintf(_("Set %s block parameters"), "MATRESH"),..
+                _(["Datatype (1=real double  2=Complex)"
+                   "Input size";
+                   "Output size desired"]), ..
             list("vec",-1,"vec",-1,"vec",-1),label)
             if ~ok then
                 break,
@@ -46,24 +46,24 @@ function [x,y,typ]=MATRESH(job,arg1,arg2)
             nout=size(out)
             nin=size(l1)
             if nout==0 then
-                message("output must have at least one element");
+                message(_("Output size > 0 expected"));
                 ok=%f;
             end
             if nin==0 then
-                message("input must have at least one element");
+                message(_("Input size > 0 expected"));
                 ok=%f;
             end
             if ok then
                 if ((out(1)>(l1(1)*l1(2)))) then
-                    message("the first dimension of the output is too big");
+                    message(_("The first dimension of the output is too big"));
                     ok=%f;
                 end
                 if ((out(2)>(l1(1)*l1(2)))) then
-                    message("the second dimension of the output is too big");
+                    message(_("The second dimension of the output is too big"));
                     ok=%f;
                 end
                 if (((out(2)*out(1))>(l1(1)*l1(2)))) then
-                    message("the dimensions of the output are too big");
+                    message(_("The dimensions of the output are too big"));
                     ok=%f;
                 end
             end
@@ -76,7 +76,7 @@ function [x,y,typ]=MATRESH(job,arg1,arg2)
                 ot=2;
                 it=2;
             else
-                message("Datatype is not supported");
+                message(_("Unknown datatype"));
                 ok=%f;
             end
             if ok then

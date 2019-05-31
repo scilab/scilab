@@ -32,7 +32,8 @@ function [x,y,typ]=Inductor(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,L,exprs]=scicos_getvalue("Set Inductor block parameter",..
+            [ok,L,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "Inductor"),..
             "L (H)",list("vec",1),exprs)
             if ~ok then
                 break,

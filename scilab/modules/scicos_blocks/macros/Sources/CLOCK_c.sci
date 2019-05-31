@@ -42,8 +42,12 @@ function [x,y,typ]=CLOCK_c(job,arg1,arg2)
         dt_old= model.rpar(1)
         model_n=model
         while %t do
-            [ok, dt, t0, exprs0]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "CLOCK_c");" "; gettext("Event clock generator");" "; ..
-            gettext("&nbsp; Do not start if ''Initialisation Time'' is negative");" "], [gettext("Period");gettext("Initialisation Time")], list("vec",1,"vec",1), exprs);
+            [ok, dt, t0, exprs0]=scicos_getvalue(..
+            [msprintf(gettext("Set %s block parameters"), "CLOCK_c");" ";
+             gettext("Event clock generator");" "; ..
+             gettext("&nbsp; Do not start if ''Initialisation Time'' is negative")],..
+             [gettext("Period"); gettext("Initialisation Time")], ..
+             list("vec",1,"vec",1), exprs);
 
             if ~ok then
                 break,
@@ -74,6 +78,7 @@ function [x,y,typ]=CLOCK_c(job,arg1,arg2)
         x=arg1
         y=needcompile
         typ=newpar
+
     case "define" then
         evtdly=EVTDLY_c("define")
         evtdly.graphics.orig=[320,232]

@@ -35,8 +35,9 @@ function [x,y,typ]=Capacitor(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,C,v,exprs]=scicos_getvalue("Set Capacitor block parameter",..
-            ["C (F)";"Initial Voltage"],list("vec",1,"vec",1),exprs)
+            [ok,C,v,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "Capacitor"),..
+            ["C (F)";_("Initial Voltage")],list("vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end

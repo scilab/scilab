@@ -30,8 +30,9 @@ function [x,y,typ]=M_freq(job,arg1,arg2)
         model=arg1.model;
         exprs=graphics.exprs
         while %t do
-            [ok,frequ,offset,exprs]=scicos_getvalue("Set block parameters",..
-            ["Sample time";"Offset"],..
+            [ok,frequ,offset,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "M_freq"),..
+            _(["Sample time";"Offset"]),..
             list("vec",-1,"vec",-1),exprs)
             if ~ok then
                 break,
@@ -39,13 +40,13 @@ function [x,y,typ]=M_freq(job,arg1,arg2)
             offset=offset(:);
             frequ=frequ(:);
             if (size(frequ,"*"))<>(size(offset,"*")) then
-                message("offset and frequency must have the same size");
+                message(_("The offset and frequency must have the same size"));
                 ok=%f;
             elseif or(frequ<0) then
-                message("Frequency must be a positif number");
+                message(_("The frequency must be a positif number"));
                 ok=%f;
             elseif or(abs(offset) > frequ) then
-                message("The |Offset| must be less than the Frequency");
+                message(_("The |Offset| must be less than the Frequency"));
                 ok=%f
             end
             if ok then

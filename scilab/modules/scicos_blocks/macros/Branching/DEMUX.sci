@@ -30,22 +30,23 @@ function [x,y,typ]=DEMUX(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,out,exprs]=scicos_getvalue("Set DEMUX block parameters",..
-            ["number of output ports or vector of sizes"],list("intvec",-1),exprs)
+            [ok,out,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "DEMUX"),..
+            [_("Number of output ports or vector of sizes")],list("intvec",-1),exprs)
             if ~ok then
                 break,
             end
             if size(out,"*")==1 then
                 if out<2|out>31 then
-                    message("Block must have at least 2 and at most 31 output ports")
+                    message(_("The block must have from 2 to 31 output ports"))
                     ok=%f
                 else
                     [model,graphics,ok]=check_io(model,graphics,0,-[1:out]',[],[])
                 end
             else
                 if size(out,"*")<2| or(out==0)|size(out,"*")>31 then
-                    message(["Block must have at least 2 and at most 31 output ports";
-                    "size 0 is not allowed"])
+                    msg = _("The block must have from 2 to 31 output ports.<br>size 0 is not allowed")
+                    message(msg)
                     ok=%f
                 else
                     if min(out)<0 then

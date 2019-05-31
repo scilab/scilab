@@ -34,7 +34,11 @@ function [x,y,typ]=MATMAGPHI(job,arg1,arg2)
             label(9)=[],
         end //compatiblity
         while %t do
-            [ok,decomptyp,lab]=scicos_getvalue("Set MATMAGPHI block parameters",["decomposition type (1=Complex2MAG&PHI 2=MAG&PHI2Complex)"],list("vec",1),label)
+            [ok,decomptyp,lab]=scicos_getvalue(..
+                [msprintf(_("Set %s block parameters"), "MATMAGPHI");
+                 " ";
+                 _("Conversion: 1=Complex→(Mag,Phi), 2=(Mag,Phi)→Complex")],..
+                _(["Conversion code (1|2)"]), list("vec",1), label)
             if ~ok then
                 break,
             end
@@ -52,7 +56,7 @@ function [x,y,typ]=MATMAGPHI(job,arg1,arg2)
                 out=[-1 -2];
                 ot=2;
             else
-                message("decomposition type is not supported");
+                message(_("Unknown conversion code"));
                 ok=%f;
             end
             funtyp=4;

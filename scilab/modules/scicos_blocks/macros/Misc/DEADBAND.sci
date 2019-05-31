@@ -30,13 +30,17 @@ function [x,y,typ]=DEADBAND(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,maxp,minp,zeroc,exprs]=scicos_getvalue("Set Deadband parameters",..
-            ["End of dead band";"Start of dead band";"zero crossing (0:no, 1:yes)"],list("vec",1,"vec",1,"vec",1),exprs)
+            [ok,maxp,minp,zeroc,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "DEADBAND"),..
+            _(["Upper limit" ; 
+               "Lower limit" ;
+               "Use zero crossing (0:no, 1:yes)"]), ..
+            list("vec",1,"vec",1,"vec",1), exprs)
             if ~ok then
                 break,
             end
             if maxp<=minp  then
-                message("Upper limit must be > Lower limit")
+                message(_("Upper limit must be > Lower limit"))
             else
                 rpar=[maxp;minp]
                 model.rpar=rpar

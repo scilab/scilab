@@ -85,14 +85,14 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
             //         list('str',-1,'str',-1,'str',-1,'str',-1,'str',-1,'str',-1,'str',-1),label(1))
             //warning here lab_1 is a list
             [ok,Tin,Tintype,Tout,Touttype,Tparam,pprop,Tfunam,lab_1]=..
-            getvalue("Set Modelica generic block parameters",..
-            ["Input variables:       ";..
+            getvalue(_("Set Modelica generic block parameters"),..
+            _(["Input variables:    ";..
             "Input variables types: ";..
             "Output variables:      ";..
             "Output variables types:";..
             "Parameters in Modelica:";..
             "Parameters properties: ";..
-            "Model name in packages:"],..
+            "Model name in packages:"]),..
             list("str",-1,"str",-1,"str",-1,"str",-1,"str",-1,..
             "vec",-1,"str",-1),lab_1)
 
@@ -120,7 +120,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
             if ierr<>0 then
                 //You lose! Try again! Insert coin!
                 //messagebox("Error, try again please!")
-                messagebox("Error in evaluation of variables.")
+                messagebox(_("Error in evaluation of variables."))
                 ok=%f
                 //break
             end
@@ -137,9 +137,10 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
                     end
                 end
                 if ~ok then
-                    messagebox(["Invalid variable name for the input "+string(i)+".";
-                    """"+in(i)+"""";
-                    "Please choose another variable name."]);
+                    msg = _("Invalid variable name for the input #%d: ""%s"".")
+                    msg = [msprintf(msg, i, in(i));
+                           _("Please choose another variable name.")]
+                    messagebox(msg);
                 end
             end
             //out
@@ -153,9 +154,10 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
                     end
                 end
                 if ~ok then
-                    messagebox(["Invalid variable name for the output "+string(i)+".";
-                    """"+out(i)+"""";
-                    "Please choose another variable name."]);
+                    msg = _("Invalid variable name for the output #%d: ""%s"".")
+                    msg = [msprintf(msg, i, out(i));
+                           _("Please choose another variable name.")]
+                    messagebox(msg);
                 end
             end
             //param
@@ -170,9 +172,10 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
                     end
                 end
                 if ~ok then
-                    messagebox(["Invalid variable name for the parameter "+string(i)+".";
-                    """"+param(i)+"""";
-                    "Please choose another variable name."]);
+                    msg = _("Invalid variable name for the parameter #%d: ""%s"".")
+                    msg = [msprintf(msg, i, param(i));
+                           _("Please choose another variable name.")]
+                    messagebox(msg);
                 end
             end
 
@@ -182,7 +185,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
                 for i=1:size(intype,"*")
                     if intype(i)<>"E"&intype(i)<>"I" then
                         //typeok=%f;
-                        messagebox("Input type should be ''E'' or ''I''!");
+                        messagebox(_("Input type should be ''E'' or ''I''!"));
                         ok=%f
                         break
                     end
@@ -197,7 +200,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
                 for i=1:size(outtype,"*")
                     if outtype(i)<>"E"&outtype(i)<>"I" then
                         //typeok=%f;
-                        messagebox("Output type should be ''E'' or ''I''!");
+                        messagebox(_("Output type should be ''E'' or ''I''!"));
                         ok=%f
                         break
                     end
@@ -208,7 +211,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
             //cross size checking
             if ok then
                 if or(size(intype)<>size(in)) then
-                    messagebox("Input variables are not well defined!");
+                    messagebox(_("Input variables are not well defined!"));
                     ok=%f
                     //break;
                 end
@@ -216,7 +219,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
 
             if ok then
                 if or(size(outtype)<>size(out)) then
-                    messagebox("Output variables are not well defined!");
+                    messagebox(_("Output variables are not well defined!"));
                     ok=%f
                     //break;
                 end
@@ -235,10 +238,8 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
 
             if ok then
                 if max(pprop)>2 | min(pprop)<0 then
-                    messagebox(["Parameters properties must be:";
-                    "0: if it is a paramater,";
-                    "1: if it is an initial value of state,";
-                    "2: it it is a fixed initial state value."])
+                    msg = _("Parameters properties must be:<br>0: if it is a paramater,<br>1: if it is an initial value of state,<br>2: if it it is a fixed initial state value.")
+                    messagebox(msg)
                     ok=%f
                     //break;
                 end
@@ -247,7 +248,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
             //check name of modelica file
             if ok then
                 if funam=="" then
-                    messagebox("The model name is not defined!")
+                    messagebox(_("The model name is not defined."))
                     ok=%f
                     //break
                 end
@@ -256,7 +257,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
             if ok then
                 [dirF,nameF,extF]=fileparts(funam);
                 if (extF<>"" )|(dirF<>"") then
-                    messagebox("Invalid model name!")
+                    messagebox(_("Invalid model name"))
                     ok=%f
                     //break
                 end
@@ -320,9 +321,9 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
 
                     //generate main getvalue cmd
                     //warning here lab_2 is a list in input and a string in output
-                    getvalue_txt = "[ok,"+lhs_txt+",lab_2]=scicos_getvalue(''Set parameters values'',["+..
-                    lab_txt+"],"+..
-                    "list("+rhs_txt+"),lab_2)"
+                    title = _("Set parameters values");
+                    getvalue_txt = "[ok,"+lhs_txt+",lab_2]=scicos_getvalue(title, ["+..
+                    lab_txt+"],"+"list("+rhs_txt+"),lab_2)"
 
                     //display the second dialog box
                     execstr(getvalue_txt)

@@ -25,27 +25,25 @@ function [x,y,typ]=BARXY(job,arg1,arg2)
         model=arg1.model;
 
         while %t do
-            [ok,xmin,xmax,ymin,ymax,thickness,exprs]=scicos_getvalue("Set Scope parameters",..
-            ["Xmin" ; "Xmax" ; "Ymin" ; "Ymax";"Segs Thickness"], ..
+            [ok,xmin,xmax,ymin,ymax,thickness,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "BARXY Scope"),..
+            ["Xmin" ; "Xmax" ; "Ymin" ; "Ymax"; _("Segs Thickness")], ..
             list("vec",1,"vec",1,"vec",1,"vec",1, "vec", 1),exprs)
             if ~ok then
                 break
             end //user cancel modification
 
-            mess=[]
+            mess = []
             if ymin>=ymax then
-                mess=[mess;"Ymax must be greater than Ymin";" "]
-                ok=%f
+                mess=[mess ; _("Ymax > Ymin is required.") ; " "]
             end
             if xmin>=xmax then
-                mess=[mess;"Xmax must be greater than Xmin";" "]
-                ok=%f
+                mess=[mess ; _("Xmax > Xmin is required.") ; " "]
             end
             if thickness <=0 then
-                mess=[mess ; "Thickness must be strictly positive."]
-                ok=%f
+                mess=[mess ; _("The lines thickness must be > 0.")]
             end
-            if ~ok then
+            if mess <> [] then
                 message(mess)
             else
                 model.rpar=[xmin ; xmax ; ymin ; ymax]
@@ -56,6 +54,7 @@ function [x,y,typ]=BARXY(job,arg1,arg2)
                 break
             end
         end
+
     case "define" then
         model=scicos_model();
         xmin = -15;

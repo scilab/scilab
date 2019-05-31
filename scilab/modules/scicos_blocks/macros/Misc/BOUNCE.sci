@@ -34,9 +34,17 @@ function [x,y,typ]=BOUNCE(job,arg1,arg2)
             exprs(9)="0";
         end
         while %t do
-            [ok,rpar1,rpar2,walls,xt,xd,y,yd,g,C,exprs]=scicos_getvalue(["Set Bounce Block"],..
-            ["Mass";"Radius";"[xmin,xmax,ymin,ymax]";"xpos";"xdpos";"ypos";..
-            "ydpos";"g (gravity)";"C (aerodynamic coeff"],..
+            [ok,rpar1,rpar2,walls,xt,xd,y,yd,g,C,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "BOUNCE"),..
+            [_("Mass");
+             _("Radius");
+             "[xmin,xmax,ymin,ymax]";
+             "xpos";
+             "xdpos";
+             "ypos";..
+             "ydpos";
+             _("g (gravity)");
+             _("C (aerodynamic coeff")],..
             list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,..
             "vec",-1,"vec",-1,"vec",1,"vec",1),exprs)
             if ~ok then
@@ -58,10 +66,10 @@ function [x,y,typ]=BOUNCE(job,arg1,arg2)
             end
             if n<>size(y,"*")|n<>size(rpar1,"*")|n<>size(rpar2,"*")|..
                 n<>size(xd,"*")|n<>size(yd,"*") then
-                message("All vectors must have equal size")
+                message(_("All vectors must have the same size"))
                 ok=%f
             elseif ~(min([rpar1;rpar2])>0) then
-                message("Mass and radius must be >0")
+                message(_("Mass and radius must be > 0"))
                 ok=%f
             end
             if ~ok then

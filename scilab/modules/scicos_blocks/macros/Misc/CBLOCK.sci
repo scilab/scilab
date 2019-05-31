@@ -31,21 +31,22 @@ function [x,y,typ]=CBLOCK(job,arg1,arg2)
         label=graphics.exprs;
         while %t do
             [ok,function_name,impli,i,o,ci,co,xx,ng,z,rpar,ipar,auto0,depu,dept,lab]=..
-            scicos_getvalue("Set C-Block2 block parameters",..
-            ["simulation function";
-            "is block implicit? (y,n)";
-            "input ports sizes";
-            "output ports sizes";
-            "input event ports sizes";
-            "output events ports sizes";
-            "initial continuous state";
-            "number of zero crossing surfaces";
-            "initial discrete state";
-            "Real parameters vector";
-            "Integer parameters vector";
-            "initial firing vector (<0 for no firing)";
-            "direct feedthrough (y or n)";
-            "time dependence (y or n)"],..
+            scicos_getvalue(..
+             msprintf(_("Set %s block parameters"), "CBLOCK"),..
+             _(["Simulation function";
+                "Is block implicit? (y,n)";
+                "Input ports sizes";
+                "Output ports sizes";
+                "Input events ports sizes ([] or 1)";
+                "Output events ports sizes ([] or 1)";
+                "Initial continuous state";
+                "Number of zero crossing surfaces";
+                "Initial discrete state";
+                "Real parameters vector";
+                "Integer parameters vector";
+                "Initial firing vector (<0 for no firing)";
+                "Direct feedthrough (y or n)";
+                "Time dependence (y or n)"]),..
             list("str",1,"str",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,..
             "vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)",..
             "str",1,"str",1),label(1))
@@ -74,7 +75,7 @@ function [x,y,typ]=CBLOCK(job,arg1,arg2)
             end
             if [ci;co]<>[] then
                 if max([ci;co])>1 then
-                    message("vector event links not supported");
+                    message(_("Input/output events ports size must be [] or 1"));
                     ok=%f;
                 end
             end

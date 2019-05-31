@@ -33,12 +33,13 @@ function [x,y,typ]=TCLSS_f(job,arg1,arg2)
             exprs=exprs([1:4,7]),
         end //compatibility
         while %t do
-            [ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",..
-            ["A matrix";
-            "B matrix";
-            "C matrix";
-            "D matrix";
-            "Initial state"],..
+            [ok,A,B,C,D,x0,exprs]=scicos_getvalue(..
+            _("Set continuous linear system parameters"),..
+             _(["A matrix";
+                "B matrix";
+                "C matrix";
+                "D matrix";
+                "Initial state"]),..
             list("mat",[-1,-1],..
             "mat",["size(%1,2)","-1"],..
             "mat",["-1","size(%1,2)"],..
@@ -58,7 +59,7 @@ function [x,y,typ]=TCLSS_f(job,arg1,arg2)
             end
             [ms,ns]=size(A)
             if ms<>ns then
-                message("A matrix must be square")
+                message(_("The matrix A must be square"))
             else
                 [model,graphics,ok]=check_io(model,graphics,[in;ms],out,1,[])
                 if ok then

@@ -84,7 +84,7 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
 
             //warning here lab_1 is a list
             [ok,Tin,Tintype,Tout,Touttype,Tparam,pprop,Tfunam,lab_1]=..
-            scicos_getvalue("Set Modelica generic block parameters",..
+            scicos_getvalue(_("Set Modelica generic block parameters"),..
             ["Input variables:       ";..
             "Input variables types: ";..
             "Output variables:      ";..
@@ -119,7 +119,7 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
             if ierr<>0 then
                 //You lose! Try again! Insert coin!
                 //messagebox("Error, try again please!","modal","error");
-                messagebox("Error in evaluation of variables.","modal","error");
+                messagebox(_("Error in evaluation of variables."),"modal","error");
                 ok=%f
                 //break
             end
@@ -136,9 +136,10 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
                     end
                 end
                 if ~ok then
-                    messagebox(["Invalid variable name for the input "+string(i)+".";
-                    """"+in(i)+"""";
-                    "Please choose another variable name."],"modal","error");
+                    msg = _("Invalid variable name for the input #%d: ""%s"".")
+                    msg = [msprintf(msg, i, in(i)) ;
+                           _("Please choose another variable name.")]
+                    messagebox(msg, "modal", "error");
                 end
             end
             //out
@@ -152,9 +153,10 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
                     end
                 end
                 if ~ok then
-                    messagebox(["Invalid variable name for the output "+string(i)+".";
-                    """"+out(i)+"""";
-                    "Please choose another variable name."],"modal","error");
+                    msg = _("Invalid variable name for the output #%d: ""%s"".")
+                    msg = [msprintf(msg, i, out(i)) ;
+                           _("Please choose another variable name.")]
+                    messagebox(msg, "modal", "error");
                 end
             end
             //param
@@ -169,9 +171,10 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
                     end
                 end
                 if ~ok then
-                    messagebox(["Invalid variable name for the parameter "+string(i)+".";
-                    """"+param(i)+"""";
-                    "Please choose another variable name."],"modal","error");
+                    msg = _("Invalid variable name for the parameter #%d: ""%s"".")
+                    msg = [msprintf(msg, i, param(i)) ;
+                           _("Please choose another variable name.")]
+                    messagebox(msg, "modal", "error");
                 end
             end
 
@@ -181,7 +184,7 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
                 for i=1:size(intype,"*")
                     if intype(i)<>"E"&intype(i)<>"I" then
                         //typeok=%f;
-                        messagebox("Input type should be ''E'' or ''I''!","modal","error");
+                        messagebox(_("Input type should be ''E'' or ''I''!"),"modal","error");
                         ok=%f
                         break
                     end
@@ -196,7 +199,7 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
                 for i=1:size(outtype,"*")
                     if outtype(i)<>"E"&outtype(i)<>"I" then
                         //typeok=%f;
-                        messagebox("Output type should be ''E'' or ''I''!","modal","error");
+                        messagebox(_("Output type should be ''E'' or ''I''!"),"modal","error");
                         ok=%f
                         break
                     end
@@ -207,7 +210,7 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
             //cross size checking
             if ok then
                 if or(size(intype)<>size(in)) then
-                    messagebox("Input variables are not well defined!","modal","error");
+                    messagebox(_("Input variables are not well defined!"),"modal","error");
                     ok=%f
                     //break;
                 end
@@ -215,7 +218,7 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
 
             if ok then
                 if or(size(outtype)<>size(out)) then
-                    messagebox("Output variables are not well defined!","modal","error");
+                    messagebox(_("Output variables are not well defined!"),"modal","error");
                     ok=%f
                     //break;
                 end
@@ -225,9 +228,8 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
             if ok then
                 pprop = pprop(:)
                 if (size(param,"*")<>size(pprop,"*")) then
-                    messagebox(["There is differences in";
-                    "size of param and size ";
-                    "of param properties."],"modal","error");
+                    msg = _("The size of param and<br>size of param properties<br>must match")
+                    messagebox(msg, "modal", "error");
                     ok=%f
                     //break;
                 end
@@ -235,10 +237,10 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
 
             if ok then
                 if max(pprop)>2 | min(pprop)<0 then
-                    messagebox(["Parameters properties must be :";
-                    "0 : for simple paramater,";
+                    messagebox(_(["Parameters properties must be :";
+                    "0 : for simple parameter,";
                     "1 : for initial state value,";
-                    "2 : for a fixed initial state value."],"modal","error");
+                    "2 : for a fixed initial state value."]),"modal","error");
                     ok=%f
                     //break;
                 end
@@ -247,7 +249,7 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
             //check name of modelica file
             if ok then
                 if funam=="" then
-                    messagebox("The filename is not defined!","modal","error");
+                    messagebox(_("The filename is not defined!"),"modal","error");
                     ok=%f
                     //break
                 end
@@ -316,7 +318,8 @@ function [x,y,typ]=MBLOCK(job,arg1,arg2)
 
                     //generate main scicos_getvalue cmd
                     //warning here lab_2 is a list in input and a string in output
-                    getvalue_txt = "[ok,"+lhs_txt+",lab_2]=scicos_getvalue(''Set parameters values'',["+..
+                    title = _("Set parameters values")
+                    getvalue_txt = "[ok,"+lhs_txt+",lab_2]=scicos_getvalue(title, ["+..
                     lab_txt+"],"+..
                     "list("+rhs_txt+"),lab_2)"
 

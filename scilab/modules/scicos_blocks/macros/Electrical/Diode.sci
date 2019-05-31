@@ -30,11 +30,13 @@ function [x,y,typ]=Diode(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,Ids,Vt,Maxexp,R,exprs]=scicos_getvalue("Set Diode block parameter",..
-            ["Saturation cuurent (A)";..
-            "Voltage equivalent to temperature (Volt)";..
-            "Max exponent for linear continuation";..
-            "R (ohm)"],	list("vec",1,"vec",1,"vec",1,"vec",1),exprs)
+            [ok,Ids,Vt,Maxexp,R,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "Diode"),..
+              _(["Saturation current (A)";
+                 "Voltage equivalent to temperature (Volt)";
+                 "Max exponent for linear continuation";
+                 "R (ohm)"]),..
+            list("vec",1,"vec",1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end

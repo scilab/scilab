@@ -30,13 +30,16 @@ function [x,y,typ]=CLKGOTO(job,arg1,arg2)
         model=arg1.model;
         exprs=graphics.exprs
         while %t do
-            [ok,tag,tagvis,exprs]=scicos_getvalue("Set block parameters",..
-            ["Tag";"Tag Visibility (1=Local 2=Scoped 3=Global)"], list("str",-1,"vec",1),exprs)
+            [ok,tag,tagvis,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "CLKGOTO"),..
+            _(["Tag" ; "Tag Visibility (1=Local 2=Scoped 3=Global)"]), ..
+            list("str",-1,"vec",1),exprs)
             if ~ok then
                 break,
             end
             if ((tagvis<1)|(tagvis>3)) then
-                message("Tag Visibility must be between 1 and 3");ok=%f;
+                message(_("Tag Visibility must be between 1 and 3"));
+                ok = %f;
             end
             tagvis=int(tagvis);
             if ok then

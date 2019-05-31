@@ -31,19 +31,20 @@ function [x,y,typ]=VARIABLE_DELAY(job,arg1,arg2)
         model=arg1.model;nin=model.in(1)
 
         while %t do
-            [ok,T,init,N,exprs]=scicos_getvalue("Set delay parameters",..
-            ["Max delay";"initial input";"Buffer size"],..
+            [ok,T,init,N,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "VARIABLE DELAY"),..
+            _(["Max delay" ; "Initial input" ; "Buffer size"]),..
             list("vec",1,"vec",1,"vec",1),..
             exprs);
             if ~ok then
                 break,
             end
             if N<2 then
-                message("Buffer must be larger than 2")
+                message(_("Buffer must be larger than 1"))
                 ok=%f
             end
             if T<=0 then
-                message("Delay must be positive")
+                message(_("Delay must be > 0"))
                 ok=%f
             end
 

@@ -32,72 +32,65 @@ function [x,y,typ]=CANIMXY3D(job,arg1,arg2)
         model=arg1.model;
         while %t do
             [ok,nbr_curves,clrs,siz,win,wpos,wdim,vec_x,vec_y,vec_z,param3ds,N,exprs]=scicos_getvalue(..
-            "Set Scope parameters",..
-            ["Number of curves";
-            "color (>0) or mark (<0)";
-            "line or mark size";
-            "Output window number (-1 for automatic)";
-            "Output window position";
-            "Output window sizes";
-            "Xmin and Xmax";
-            "Ymin and Ymax";
-            "Zmin and Zmax";
-            "Alpha and Theta";
-            "Buffer size"],..
+            msprintf(_("Set %s block parameters"), "CANIMXY3D Scope"),..
+             [_("Number of curves");
+              _("Curves styles: Colors>0 | marks<0");
+              _("Curves thicknesses or marks sizes");
+              _("Output window number (-1 for automatic)");
+              _("Output window position");
+              _("Output window sizes");
+                "Xmin, Xmax";
+                "Ymin, Ymax";
+                "Zmin, Zmax";
+                "Alpha, Theta";
+              _("Buffer size")],..
             list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),exprs)
             if ~ok then
                 break,
             end //user cancel modification
-            mess=[]
+            mess = []
             if size(wpos,"*")<>0 &size(wpos,"*")<>2 then
-                mess=[mess;"Window position must be [] or a 2 vector";" "]
-                ok=%f
+                mess=[mess ; _("''Window position'' must be [] or a 2 vector") ; " "]
             end
             if size(wdim,"*")<>0 &size(wdim,"*")<>2 then
-                mess=[mess;"Window dim must be [] or a 2 vector";" "]
-                ok=%f
+                mess=[mess ; _("''Window sizes'' must be [] or a 2 vector") ; " "]
             end
             if win<-1 then
-                mess=[mess;"Window number cannot be inferior than -1";" "]
-                ok=%f
+                mess=[mess ; _("The Window number must be ≥ -1") ; " "]
             end
             if size(clrs,"*")<>size(siz,"*") then
-                mess=[mess;"Colors and Size must have same size";" "]
-                ok=%f
+                mess=[mess ; _("The numbers of curves styles and of<br>curves thickness or marks size must match.") ; " "]
             end
             if nbr_curves<=0 then
-                mess=[mess;"Number of curves cannot be negative or null";" "]
-                ok=%f
+                mess=[mess ; _("The Number of curves must be ≥ 1") ; " "]
             end
             if size(clrs,"*")<nbr_curves then
-                mess=[mess;"You must have at least same size for clrs and the number of curves";" "]
-                ok=%f
+                msg = _("Not enough curves styles: At least %d expected.")
+                mess=[mess ; msprintf(msg, nbr_curves) ; " "]
             end
             if N<1 then
-                mess=[mess;"Buffer size must be at least 1";" "]
-                ok=%f
+                mess=[mess ; _("The Buffer size must be ≥ 1") ; " "]
             end
             if N<2
                 for i=1:nbr_curves
                     if clrs(i)>0 then
-                        mess=[mess;"Buffer size must be at least 2 or Change a color (must be <0)";" "]
-                        ok=%f
+                        mess=[mess;
+                        _("The Buffer size must be ≥ 2, or Change a color (must be <0)");
+                        " "]
                     end
                 end
             end
             if vec_y(1)>=vec_y(2) then
-                mess=[mess;"Ymax must be higher than Ymin";" "]
-                ok=%f
+                mess=[mess _("Ymax > Ymin is required") ; " "]
             end
             if vec_x(1)>=vec_x(2) then
-                mess=[mess;"Xmax must be higher than Xmin";" "]
-                ok=%f
+                mess=[mess ; _("Xmax > Xmin is required") ; " "]
             end
             if vec_z(1)>=vec_z(2) then
-                mess=[mess;"Zmax must be higher than Zmin";" "]
-                ok=%f
+                mess=[mess ; _("Zmax > Zmin is required") ; " "]
             end
-            if ~ok then
+            //
+            if mess <> [] then
                 message(mess)
             else
                 in = nbr_curves*ones(3,1);
@@ -120,6 +113,7 @@ function [x,y,typ]=CANIMXY3D(job,arg1,arg2)
                 break
             end
         end
+
     case "define" then
         win=-1;
         N=2;

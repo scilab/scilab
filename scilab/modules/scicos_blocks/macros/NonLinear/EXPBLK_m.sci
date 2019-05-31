@@ -33,13 +33,13 @@ function [x,y,typ]=EXPBLK_m(job,arg1,arg2)
             exprs=exprs(2),
         end
         while %t do
-            [ok,a,exprs]=scicos_getvalue("Set a^u  block parameters",..
-            "a (>0)",list("vec",1),exprs)
+            [ok,a,exprs]=scicos_getvalue(msprintf(_("Set %s block parameters"),"a^u"),..
+            "a (>0)", list("vec",1), exprs)
             if ~ok then
                 break,
             end
             if or(a<=0) then
-                message("a^u : a must be positive")
+                message(_("a^u : a must be > 0"))
             else
                 graphics.exprs=exprs
                 model.rpar=a;

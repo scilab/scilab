@@ -34,18 +34,18 @@ function [x,y,typ]=SCALE_CSCOPE(job,arg1,arg2)
         //dstate=model.in
         while %t do
             [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,autoscale,exprs]=scicos_getvalue(..
-            "Set Scope parameters",..
-            ["Color (>0) or mark (<0) vector (8 entries)";
+          msprintf(_("Set %s block parameters"),"SCALE_CSCOPE"),..
+         _(["Curves styles: Colors>0 | marks<0";
             "Output window number (-1 for automatic)";
             "Output window position";
             "Output window sizes";
             "Ymin";
             "Ymax";
             "Refresh period";
-            "Buffer size"
-            "Accept herited events 0/1"
-            "Name of Scope (label&Id)"
-            "Auto scaling 0/1"],..     //For autoscaling ON/OFF
+            "Buffer size";
+            "Accept herited events 0/1";
+            "Name of Scope (label&Id)";
+            "Auto scaling 0/1"]),..     //For autoscaling ON/OFF
             list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,..
             "vec",1,"vec",1,"vec",1,"vec",1,"str",1,"vec",1),..
             exprs)
@@ -54,39 +54,39 @@ function [x,y,typ]=SCALE_CSCOPE(job,arg1,arg2)
             end //user cancel modification
             mess=[]
             if size(wpos,"*")<>0 &size(wpos,"*")<>2 then
-                mess=[mess;"Window position must be [] or a 2 vector";" "]
+                mess=[mess;_("Window position must be [] or a 2 vector");" "]
                 ok=%f
             end
             if size(wdim,"*")<>0 &size(wdim,"*")<>2 then
-                mess=[mess;"Window dim must be [] or a 2 vector";" "]
+                mess=[mess;_("Window sizes must be [] or a 2 vector");" "]
                 ok=%f
             end
             if win<-1 then
-                mess=[mess;"Window number can''t be  < -1";" "]
+                mess=[mess;_("Window number can''t be  < -1");" "]
                 ok=%f
             end
             if per<=0 then
-                mess=[mess;"Refresh period must be positive";" "]
+                mess=[mess;_("The Refresh period must be > 0");" "]
                 ok=%f
             end
             if N<2 then
-                mess=[mess;"Buffer size must be at least 2";" "]
+                mess=[mess;_("The Buffer size must be >= 2");" "]
                 ok=%f
             end
             if ymin>=ymax then
-                mess=[mess;"Ymax must be greater than Ymin";" "]
+                mess=[mess;_("Ymax > Ymin is required");" "]
                 ok=%f
             end
             if ~or(heritance==[0 1]) then
-                mess=[mess;"Accept herited events must be 0 or 1";" "]
+                mess=[mess;_("''Accept herited events'' must be 0 or 1");" "]
                 ok=%f
             end
             if autoscale <> 0 & autoscale <> 1 then
-                mess=[mess;"Auto scaling must be 0:No or 1:Yes";" "]
+                mess=[mess;_("''Auto scaling'' must be 0:No or 1:Yes");" "]
                 ok=%f
             end
             if ~ok then
-                message(["Some specified values are inconsistent:";
+                message([_("Some specified values are inconsistent:");
                 " ";mess])
             end
             if ok then

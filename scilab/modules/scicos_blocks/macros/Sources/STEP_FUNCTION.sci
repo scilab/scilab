@@ -103,6 +103,7 @@ function [x,y,typ]=STEP_FUNCTION(job,arg1,arg2)
         x=arg1
         y=needcompile
         typ=newpar
+
     case "define" then
         scs_m_1=scicos_diagram();
         scs_m_1.objs(1) = STEP("define");

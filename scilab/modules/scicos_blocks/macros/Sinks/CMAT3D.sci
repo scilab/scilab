@@ -31,27 +31,27 @@ function [x,y,typ]=CMAT3D(job,arg1,arg2)
         model=arg1.model;
         while %t do
             [ok,vec_x,vec_y,colormap,cmin,cmax,exprs]=scicos_getvalue(..
-            "Set Scope parameters",..
-            ["Bounds Vector X (-1 for standard)";
-            "Bounds Vector Y (-1 for standard)";
-            "ColorMap";
-            "Zmin";
-            "Zmax"],..
+            msprintf(_("Set %s block parameters"), "CMAT3D"),..
+             [_("Bounds Vector X (-1 for standard)");
+              _("Bounds Vector Y (-1 for standard)");
+              _("ColorMap");
+                "Zmin";
+                "Zmax"],..
             list("vec",-1,"vec",-1,"vec",-1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end //user cancel modification
             mess=[]
             if size(vec_x,"*")<>size(vec_y,"*") then
-                mess=[mess;"Vector X and Vector Y must have the same size";" "]
+                mess=[mess ; _("Vectors X and Y must have the same size.") ; " "]
                 ok=%f
             end
             if cmax<=cmin then
-                mess=[mess;"Error with minimum and maximum value";" "]
+                mess=[mess ; _("Zmax > Zmin is required.") ; " "]
                 ok=%f
             end
             if ~ok then
-                message(["Some specified values are inconsistent:";" ";mess])
+                message([_("Some specified values are inconsistent:") ; " "; mess])
             end
             if ok then
                 size_x = size(vec_x,"*");

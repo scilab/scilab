@@ -30,17 +30,17 @@ function [x,y,typ]=DLRADAPT_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,p,rn,rd,g,last_u,last_y,exprs]=scicos_getvalue("Set block parameters",..
-            ["Vector of p mesh points";
-            "Numerator roots (one line for each mesh)";
-            "Denominator roots (one line for each mesh)";
-            "Vector of gain at mesh points" ;
-            "past inputs (Num degree values)";
-            "past outputs (Den degree values)"],..
+            [ok,p,rn,rd,g,last_u,last_y,exprs]=scicos_getvalue(..
+            _("Set block parameters"),..
+             _(["Vector of p mesh points";
+                "Numerator roots (one row for each mesh)";
+                "Denominator roots (one row for each mesh)";
+                "Vector of gain at mesh points" ;
+                "Past inputs (Num degree values)";
+                "Past outputs (Den degree values)"]),..
             list("vec",-1,"mat",[-1,-1],"mat",..
             ["size(%1,''*'')","-1"],"vec","size(%1,''*'')",..
             "vec","size(%2,2)","vec","size(%3,2)"),exprs)
-
 
             if ~ok then
                 break,
@@ -48,9 +48,9 @@ function [x,y,typ]=DLRADAPT_f(job,arg1,arg2)
             m=size(rn,2)
             [npt,n]=size(rd)
             if m>=n then
-                message("Transfer must be strictly proper"),
+                message(_("Transfer must be strictly proper, with<br>degree(Numerator) &lt; degree(Denominator)")),
             elseif size(rn,1)<>0&size(rn,1)<>size(p,"*") then
-                message("Numerator roots matrix row size''s is incorrect")
+                message(_("Numerator roots matrix row size''s is incorrect"))
             else
                 rpar=[p(:);real(rn(:));imag(rn(:));real(rd(:));imag(rd(:));g(:)]
                 ipar=[m;n;npt]

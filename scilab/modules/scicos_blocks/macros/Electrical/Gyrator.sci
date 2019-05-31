@@ -34,7 +34,10 @@ function [x,y,typ]=Gyrator(job,arg1,arg2)
         x=arg1
         exprs=x.graphics.exprs
         while %t do
-            [ok,G1,G2,exprs]=scicos_getvalue(["Set Gyrator block parameters:";"";"G1: Gyration conductance";"G2: Gyration conductance"],["G1";"G2"],list("vec",1,"vec",1),exprs)
+            [ok,G1,G2,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "Gyrator"),..
+            _(["G1: Gyration conductance";"G2: Gyration conductance"]),..
+            list("vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end

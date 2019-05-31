@@ -36,26 +36,26 @@ function [x,y,typ]=generic_block3(job,arg1,arg2)
         while %t do
             [ok,function_name,funtyp,in,it,out,ot,ci,co,xx,z,oz,...
             rpar,ipar,opar,nmode,nzcr,auto0,depu,dept,lab]=..
-            scicos_getvalue("Set GENERIC block parameters",..
-            ["Simulation function";
-            "Function type (0,1,2,..)";
-            "Input ports sizes";
-            "Input ports type";
-            "Output port sizes";
-            "Output ports type";
-            "Input event ports sizes";
-            "Output events ports sizes";
-            "Initial continuous state";
-            "Initial discrete state";
-            "Initial object state";
-            "Real parameters vector";
-            "Integer parameters vector";
-            "Object parameters list";
-            "Number of modes";
-            "Number of zero crossings";
-            "Initial firing vector (<0 for no firing)";
-            "Direct feedthrough (y or n)";
-            "Time dependence (y or n)"],..
+            scicos_getvalue(_("Set GENERIC block parameters"),..
+             _(["Simulation function";
+                "Function type (0,1,2,..)";
+                "Input ports sizes";
+                "Input ports type";
+                "Output port sizes";
+                "Output ports type";
+                "Input events ports sizes ([]|1)";   // ci
+                "Output events ports sizes ([]|1)";  // co
+                "Initial continuous state";
+                "Initial discrete state";
+                "Initial object state";     // oz
+                "Real parameters vector";
+                "Integer parameters vector";
+                "Object parameters list";
+                "Number of modes";
+                "Number of zero crossings";
+                "Initial firing vector (<0 for no firing)";
+                "Direct feedthrough (y or n)";
+                "Time dependence (y or n)"]),..
             list("str",1,"vec",1,"mat",[-1 2],"vec",-1,"mat",[-1 2],"vec",-1,"vec",-1,"vec",-1,..
             "vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)",..
             "str",1,"str",1),label)
@@ -72,21 +72,21 @@ function [x,y,typ]=generic_block3(job,arg1,arg2)
             co=int(co(:));
             funtyp=funtyp
             if funtyp<0 then
-                message("function type cannot be negative");
+                message(_("The function type cannot be negative"));
                 ok=%f;
             end
             if [ci;co]<>[] then
                 if max([ci;co])>1 then
-                    message("vector event links not supported");
+                    message(_("Input/output events ports sizes must be [] or 1"));
                     ok=%f;
                 end
             end
             if type(opar)<>15 then
-                message("object parameter must be a list");
+                message(_("Object parameters must be a list"));
                 ok=%f;
             end
             if type(oz)<>15 then
-                message("discrete object state must be a list");
+                message(_("Initial object state must be a list"));
                 ok=%f;
             end
             depu=stripblanks(depu);

@@ -31,8 +31,10 @@ function [x,y,typ]=MAXMIN(job,arg1,arg2)
         model=arg1.model;
         while %t do
             [ok,mm,nin,zcr,exprs]=..
-            scicos_getvalue("Set Max/Min block parameters",..
-            ["Min (1) or Max (2) ";"Number of input vectors (1 or 2)";"zero-crossing (1: yes, 0;no)"],..
+            scicos_getvalue(msprintf(_("Set %s block parameters"), "Max/Min"),..
+            _(["Min (1) or Max (2) ";
+               "Number of input vectors (1 or 2)";
+               "Use zero-crossing (1:yes, 0:no)"]),..
             list("vec",1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
@@ -44,7 +46,7 @@ function [x,y,typ]=MAXMIN(job,arg1,arg2)
                 mm=2,
             end
             if nin<>1 & nin<>2 then
-                message("Wrong number of inputs, only 1 and 2 allowed")
+                message(_("Wrong number of inputs: Only 1 and 2 allowed"))
                 ok=%f
             end
             if ok then
@@ -89,7 +91,7 @@ function [x,y,typ]=MAXMIN(job,arg1,arg2)
         gr_i=[]
 
         x=standard_define([2 2],model,exprs,gr_i)
-        x.graphics.style="MAXMIN;displayedLabel=MAX"
+        x.graphics.style = "MAXMIN;displayedLabel=MAX"
     end
 endfunction
 

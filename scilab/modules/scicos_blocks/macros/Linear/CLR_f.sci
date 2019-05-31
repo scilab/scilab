@@ -38,17 +38,16 @@ function [x,y,typ]=CLR_f(job,arg1,arg2)
         %scicos_context.s=%s //add s definition to the context
 
         while %t do
-            [ok,num,den,exprs]=scicos_getvalue("Set continuous SISO transfer parameters",..
-            ["Numerator (s)";
-            "Denominator (s)"],..
+            [ok,num,den,exprs]=scicos_getvalue(..
+            _("Set continuous SISO transfer parameters"),..
+            _(["Numerator (s)" ; "Denominator (s)"]),..
             list("pol",1,"pol",1),exprs)
-
 
             if ~ok then
                 break,
             end
             if degree(num)>degree(den) then
-                message("Transfer must be proper or strictly proper")
+                message(_("Transfer must be proper (degree(numer) ≤ degree(denom))"))
                 ok=%f
             end
             if ok then

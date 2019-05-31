@@ -36,17 +36,16 @@ function [x,y,typ]=CLR(job,arg1,arg2)
         %scicos_context=%scicos_context; //copy the semi-global variable locally
         %scicos_context.s=%s //add s definition to the context
         while %t do
-            [ok,num,den,exprs]=scicos_getvalue("Set continuous SISO transfer parameters",..
-            ["Numerator (s)";
-            "Denominator (s)"],..
+            [ok,num,den,exprs]=scicos_getvalue(..
+            _("Set continuous SISO transfer parameters"),..
+            _(["Numerator (s)" ; "Denominator (s)"]),..
             list("pol",1,"pol",1),exprs)
-
 
             if ~ok then
                 break,
             end
-            if degree(num)>degree(den) then
-                message("Transfer function must be proper or strictly proper.")
+            if degree(num) > degree(den) then
+                message(_("Transfer function must be proper (degree(numer) ≤ degree(denom))."))
                 ok=%f
             end
             if ok then

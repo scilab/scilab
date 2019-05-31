@@ -34,9 +34,8 @@ function [x,y,typ] = MATCATV(job,arg1,arg2)
         end
         while %t do
             [ok,nin,lab]=..
-            scicos_getvalue("Set MATCATV block parameters",..
-            ["Number od inputs"],..
-            list("vec",1),label)
+            scicos_getvalue(msprintf(_("Set %s block parameters"), "MATCATV"),..
+            _(["Number of inputs"]), list("vec",1), label)
             if ~ok then
                 break,
             end

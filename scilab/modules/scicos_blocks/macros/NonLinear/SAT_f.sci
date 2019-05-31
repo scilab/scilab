@@ -30,15 +30,16 @@ function [x,y,typ]=SAT_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,minp,maxp,pente,exprs]=scicos_getvalue("Set Saturation parameters",..
-            ["Min";"Max";"Slope"],list("vec",1,"vec",1,"vec",1),exprs)
+            [ok,minp,maxp,pente,exprs]=scicos_getvalue(..
+            _("Set Saturation parameters"),..
+            _(["Min";"Max";"Slope"]), list("vec",1,"vec",1,"vec",1), exprs)
             if ~ok then
                 break,
             end
             if maxp<=0  then
-                message("Max must be strictly positive")
+                message(_("Max must be > 0"))
             elseif pente<=0 then
-                message("Slope must be strictly positive")
+                message(_("Slope must be > 0"))
             else
                 rpar=[minp/pente;maxp/pente;pente]
                 model.rpar=rpar

@@ -32,14 +32,15 @@ function [x,y,typ]=CLKOUT_f(job,arg1,arg2)
         exprs=graphics.exprs;
         exprs=exprs(1) //for compatibility
         while %t do
-            [ok,prt,exprs]=scicos_getvalue("Set Event Output block parameters",..
-            "Port number",list("vec",1),exprs)
+            [ok,prt,exprs]=scicos_getvalue(..
+            _("Set Event Output block parameters"),..
+            _("Port number"), list("vec",1), exprs)
             if ~ok then
                 break,
             end
             prt=int(prt)
             if prt<=0 then
-                message("Port number must be a positive integer")
+                message(_("Port number must be an integer > 0"))
             else
                 model.ipar=prt
                 model.evtin=1

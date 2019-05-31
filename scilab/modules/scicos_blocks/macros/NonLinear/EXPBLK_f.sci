@@ -33,13 +33,13 @@ function [x,y,typ]=EXPBLK_f(job,arg1,arg2)
             exprs=exprs(2),
         end
         while %t do
-            [ok,a,exprs]=scicos_getvalue("a^u: raise the value a to the power of the input",..
+            [ok,a,exprs]=scicos_getvalue(_("a^u: raise the value a to the power of the input"),..
             "a (>0)",list("vec",1),exprs)
             if ~ok then
                 break,
             end
             if or(a<=0) then
-                message("a^u : a must be positive")
+                message(_("a^u : a must be > 0"))
             else
                 graphics.exprs=exprs
                 model.rpar=a;

@@ -35,20 +35,20 @@ function [x,y,typ]=generic_block(job,arg1,arg2)
         end //compatiblity
         while %t do
             [ok,function_name,funtyp,i,o,ci,co,xx,z,rpar,ipar,auto0,depu,dept,lab]=..
-            scicos_getvalue("Set GENERIC block parameters",..
-            ["simulation function";
-            "function type (0,1,2,..)";
-            "input ports sizes";
-            "output port sizes";
-            "input event ports sizes";
-            "output events ports sizes";
-            "initial continuous state";
-            "initial discrete state";
-            "Real parameters vector";
-            "Integer parameters vector";
-            "initial firing vector (<0 for no firing)";
-            "direct feedthrough (y or n)";
-            "time dependence (y or n)"],..
+            scicos_getvalue(_("Set GENERIC block parameters"),..
+             _(["Simulation function";
+                "Function type (0,1,2,..)";
+                "Input ports sizes";
+                "Output port sizes";
+                "Input event ports sizes ([]|1)";
+                "Output events ports sizes ([]|1)";
+                "Initial continuous state";
+                "Initial discrete state";
+                "Real parameters vector";
+                "Integer parameters vector";
+                "Initial firing vector (<0 for no firing)";
+                "Direct feedthrough (y or n)";
+                "Time dependence (y or n)"]),..
             list("str",1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,..
             "vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec","sum(%6)",..
             "str",1,"str",1),label)
@@ -67,12 +67,12 @@ function [x,y,typ]=generic_block(job,arg1,arg2)
             co=int(co(:));
             funtyp=int(funtyp)
             if funtyp<0 then
-                message("function type cannot be negative");
+                message(_("The function type cannot be negative"));
                 ok=%f;
             end
             if [ci;co]<>[] then
                 if max([ci;co])>1 then
-                    message("vector event links not supported");
+                    message(_("Input/output events ports size must be [] or 1"));
                     ok=%f;
                 end
             end

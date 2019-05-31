@@ -40,9 +40,13 @@ function [x,y,typ]=READAU_f(job,arg1,arg2)
         fname=exprs(1)
 
         while %t do
-            [ok,fname1,N,swap,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "READAU_f"); " "; ..
-            gettext("(Read Audio File)");" "; gettext("Read is done on a binary ''.au'' file")], ..
-            [gettext("Input File Name"); gettext("Buffer size"); gettext("Swap Mode (0:No, 1:Yes)")], ..
+            [ok,fname1,N,swap,exprs] = scicos_getvalue(..
+            [msprintf(gettext("Set %s block parameters"), "READAU_f"); " "; ..
+            gettext("Read an Audio File");" ";
+            gettext("Read is done on a binary ''.au'' file")], ..
+            [gettext("Input File Name");
+             gettext("Buffer size");
+             gettext("Swap Mode (0:No, 1:Yes)")], ..
             list("str",1,"vec",1,"vec",1), exprs);
             tmask1=[];
             outmask=1;

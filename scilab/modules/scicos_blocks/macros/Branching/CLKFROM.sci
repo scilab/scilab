@@ -28,8 +28,9 @@ function [x,y,typ]=CLKFROM(job,arg1,arg2)
         model=arg1.model;
         exprs=graphics.exprs
         while %t do
-            [ok,tag,exprs]=scicos_getvalue("Set block parameters",..
-            "Tag",list("str",-1),exprs)
+            [ok,tag,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "CLKFROM"),..
+            _("Tag"),list("str",-1),exprs)
             if ~ok then
                 break,
             end

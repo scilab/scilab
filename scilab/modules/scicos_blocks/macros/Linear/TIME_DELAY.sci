@@ -32,19 +32,21 @@ function [x,y,typ]=TIME_DELAY(job,arg1,arg2)
         nin=model.in(1)
 
         while %t do
-            [ok,T,init,N,exprs]=scicos_getvalue("Set delay parameters",..
-            ["Delay";"initial input";"Buffer size"],..
-            list("vec",1,"vec",1,"vec",1),..
-            exprs);
+            [ok,T,init,N,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "TIME_DELAY"),..
+                _(["Delay" ;
+                   "Initial input" ;
+                   "Buffer size"]),..
+            list("vec",1,"vec",1,"vec",1), exprs);
             if ~ok then
                 break,
             end
             if N<2 then
-                message("Buffer must be larger than 2")
+                message(_("Buffer must be larger than 1"))
                 ok=%f
             end
             if T<=0 then
-                message("Delay must be positive")
+                message(_("Delay must be > 0"))
                 ok=%f
             end
 

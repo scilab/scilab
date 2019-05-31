@@ -34,7 +34,11 @@ function [x,y,typ]=MATSING(job,arg1,arg2)
             label(9)=[],
         end //compatiblity
         while %t do
-            [ok,typ,decomptyp,lab]=scicos_getvalue("Set MATSVD block parameters",["Datatype(1=real double  2=Complex)";"decomposition type (1=singular values  2=sing values+matrix U & V)"],list("vec",1,"vec",1),label)
+            [ok,typ,decomptyp,lab]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "MATSVD"),..
+            _(["Datatype (1=real double  2=Complex)";
+               "Decomposition type (1=singular values  2=sing values+matrix U & V)"]),..
+               list("vec",1,"vec",1), label)
             if ~ok then
                 break,
             end
@@ -51,7 +55,7 @@ function [x,y,typ]=MATSING(job,arg1,arg2)
                     out=[-1 -1;-1 -2;-2 -2];
                     ot=[1 1 1];
                 else
-                    message("decomposition type is not supported");
+                    message(_("Unknown decomposition type"));
                     ok=%f;
                 end
                 it=1;
@@ -67,12 +71,12 @@ function [x,y,typ]=MATSING(job,arg1,arg2)
                     out=[-1 -1;-1 -2;-2 -2];
                     ot=[2 1 2];
                 else
-                    message("decomposition type is not supported");
+                    message(_("Unknown decomposition type"));
                     ok=%f;
                 end
                 it=2;
             else
-                message("Datatype is not supported");
+                message(_("Unknown datatype"));
                 ok=%f;
             end
             funtyp=4;
@@ -93,7 +97,6 @@ function [x,y,typ]=MATSING(job,arg1,arg2)
         function_name="mat_sing";
         funtyp=4;
         model.sim=list(function_name,funtyp)
-
         model.in=-1
         model.in2=-2
         model.intyp=1
@@ -114,4 +117,3 @@ function [x,y,typ]=MATSING(job,arg1,arg2)
         x=standard_define([2 2],model,label,gr_i)
     end
 endfunction
-

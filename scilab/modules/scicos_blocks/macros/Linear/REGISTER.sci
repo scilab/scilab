@@ -33,15 +33,15 @@ function [x,y,typ]=REGISTER(job,arg1,arg2)
             exprs=[exprs;sci2exp(1)];
         end
         while %t do
-            [ok,z0,it,exprs]=scicos_getvalue("Set delay parameters",..
-            ["Register initial condition";..
-            "Datatype (1=double 3=int32 ...)"],..
+            [ok,z0,it,exprs]=scicos_getvalue(_("Set delay parameters"),..
+             _(["Register initial condition" ;
+                "Datatype (1=double 3=int32 ...)"]),..
             list("vec",-1,"vec",1),exprs)
             if ~ok then
                 break,
             end
             if prod(size(z0))<1 then
-                message("Register length must be at least 1")
+                message(_("Register''s length must be > 0"))
                 ok=%f
             end
             if it==1 then
@@ -69,7 +69,7 @@ function [x,y,typ]=REGISTER(job,arg1,arg2)
                     model.sim=list("delay4_ui8",4)
                     z0=uint8(z0)
                 else
-                    message("Datatype is not supported");
+                    message(_("Unknown Datatype"));
                     ok=%f
                 end
                 model.odstate=list(z0);

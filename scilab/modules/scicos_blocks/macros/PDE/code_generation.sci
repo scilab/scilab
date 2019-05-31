@@ -75,28 +75,28 @@ function Code=code_generation(rdnom,equations,eq_pts_mes,flag_type,h,CI,CI1,a,..
     equations
     " }else if (flag == 1){"];
     if (type_meth == 3 & (find(oper == 2) ~= [] | find(oper == 4) ~= [])) then
-        sorties1=["   /* la première sortie */ "
+        sorties1=[_("   /* First output */ ")
         "   for (i=0;i<"+string(N)+";i++){"
         "     outptr[0][i]=x[i+"+string(N)+"];"
         "   }"];
-        sorties2=["   /* la deuxième sortie */ "];
+        sorties2=[_("   /* Second output */ ")];
         for i=1:size(eq_pts_mes,"*")
             sorties2=[sorties2
             "   outptr[1]["+string(i-1)+"]="+eq_pts_mes(i)+";"];
         end
     else
         if (kbc(1) == 1) & (DF_type == 0 | DF_type == 1) then
-            sorties1=["   /* la première sortie */ "
+            sorties1=[_("   /* Fist output */ ")
             "   for (i=1;i<"+string(Ninitiale)+";i++){"
             "     outptr[0][i]=x[i];"
             "   }"];
         else
-            sorties1=["   /* la première sortie */ "
+            sorties1=[_("   /* Fist output */ ")
             "   for (i=0;i<"+string(Ninitiale)+";i++){"
             "     outptr[0][i]=x[i];"
             "   }"];
         end
-        sorties2=["   /* la deuxième sortie */ "];
+        sorties2=[_("   /* Second output */ ")];
         for i=1:size(eq_pts_mes,"*")
             sorties2=[sorties2
             "   outptr[1]["+string(i-1)+"]="+eq_pts_mes(i)+";"];

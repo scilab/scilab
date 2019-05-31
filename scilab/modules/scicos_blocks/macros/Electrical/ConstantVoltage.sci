@@ -31,7 +31,8 @@ function [x,y,typ]=ConstantVoltage(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,V,exprs]=scicos_getvalue("Set ConstantVoltage block parameter",..
+            [ok,V,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "ConstantVoltage"),..
             "V (volt)",list("vec",1),exprs)
             if ~ok then
                 break,

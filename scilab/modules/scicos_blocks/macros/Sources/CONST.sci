@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=CONST(job,arg1,arg2)
+function [x,y,typ]=CONST(job,arg1,arg2) // Scalar constant input value
     x=[];
     y=[];
     typ=[];
@@ -30,17 +30,17 @@ function [x,y,typ]=CONST(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,C,exprs]=scicos_getvalue(["Set Contant Block"],..
-            "Constant",list("vec",-1),exprs)
+            [ok,C,exprs]=scicos_getvalue(_("Set Constant value block"),..
+            _("Value"), list("vec",-1), exprs)
             if ~ok then
                 break,
             end
             sz=size(C);
             nout=size(C,"*")
             if nout==0 then
-                message("C must have at least one element")
+                message(_("The value must be non-empty"))
             elseif and(sz > 1) then
-                message("C matrix is not supported, use CONST_m instead")
+                message(_("The input value must be scalar.<br>Please use CONST_m to set a<br>constant input vector or matrix."))
             else
                 model.rpar=C(:);model.out=nout
                 graphics.exprs=exprs;

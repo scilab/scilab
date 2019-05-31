@@ -37,8 +37,9 @@ function [x,y,typ] = PRODUCT(job,arg1,arg2)
         end
 
         while %t do
-            [ok,sgn,divideByZero,exprs]=scicos_getvalue(["Set block parameters"],...
-            ["<html>Number of inputs or sign vector<br>(multiplication is set with + 1, division with -1)</html>"; "Error on divide by zero<br>(1: yes) (0: no)"],...
+            [ok,sgn,divideByZero,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "PRODUCT"),...
+            _(["<html>Number of inputs or sign vector<br>(multiplication is set with + 1, division with -1)" ; "<html>Error on divide by zero<br> (1: yes) (0: no)"]),...
             list("vec",-1, "vec", 1),exprs)
             if ~ok then
                 break,
@@ -46,7 +47,7 @@ function [x,y,typ] = PRODUCT(job,arg1,arg2)
             sgn=sgn(:);
             if size(sgn,1)==1 then
                 if sgn<1 then
-                    message("Number of inputs must be > 0")
+                    message(_("Number of inputs must be > 0"))
                     ok=%f
                 elseif sgn==1 then
                     in=-1
@@ -59,7 +60,7 @@ function [x,y,typ] = PRODUCT(job,arg1,arg2)
                 end
             else
                 if ~and(abs(sgn)==1) then
-                    message("Signs can only be +1 or -1")
+                    message(_("Signs can only be +1 or -1"))
                     ok=%f
                 else
                     in=-ones(size(sgn,1),1)

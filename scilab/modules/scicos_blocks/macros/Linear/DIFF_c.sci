@@ -33,9 +33,11 @@ function [x,y,typ]=DIFF_c(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            ask_again=%f
-            [ok,x0,xd0,exprs]=scicos_getvalue("Set continuous linear system parameters",..
-            ["Initial state";"Initial Derivative"],list("vec",-1,"vec",-1),exprs)
+            ask_again = %f
+            [ok,x0,xd0,exprs]=scicos_getvalue(..
+            _("Set continuous linear system parameters"),..
+            _(["Initial state" ; "Initial Derivative"]), ..
+            list("vec",-1,"vec",-1),exprs)
             if ~ok then
                 break,
             end
@@ -44,11 +46,11 @@ function [x,y,typ]=DIFF_c(job,arg1,arg2)
             xd0=xd0(:);
             Nxd=size(xd0,"*");
             if (N~=Nxd) then
-                messagebox("Incompatible sizes: states and their derivatives should have the same size")
+                messagebox(_("Incompatible sizes: states and their derivatives should have the same size"))
                 ask_again=%t
             end
             if (N<=0 & ~ask_again) then
-                messagebox("Number of states must be > 0")
+                messagebox(_("Initial state must have a size > 0"))
                 ask_again=%t
             end
 

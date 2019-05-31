@@ -30,10 +30,13 @@ function [x,y,typ]=SWITCH2_m(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,ot,rule,thra,nzz,exprs]=scicos_getvalue("Set parameters",..
-            ["Datatype (1=real double  2=complex 3=int32 ...)";"pass first input if: u2>=a (0), u2>a (1), u2~=a (2)";..
-            "threshold a";"use zero crossing: yes (1), no (0)"],..
-            list("vec",1,"vec",1,"vec",1,"vec",1),exprs)
+            [ok,ot,rule,thra,nzz,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "SWITCH2_m"),..
+                _(["Datatype (1=real double  2=complex 3=int32 ...)";
+                   "Pass first input if: u2>=a (0), u2>a (1), u2~=a (2)";
+                   "Threshold a";
+                   "Use zero crossing: yes (1), no (0)"]),..
+                list("vec",1,"vec",1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end
@@ -55,7 +58,7 @@ function [x,y,typ]=SWITCH2_m(job,arg1,arg2)
                 model.nzcross=0
             end
             if ((ot<1)|(ot>8))&(ot<>-1) then
-                message("Datatype is not supported");
+                message(_("Datatype not supported"));
                 ok=%f;
             end
             if ok then

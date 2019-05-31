@@ -34,19 +34,25 @@ function [x,y,typ]= SineVoltage(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,V,ph,frq,offset,start,exprs]=scicos_getvalue("Set voltage source parameter",..
-            ["Amplitude (Volt)";"phase (rad)";"Frequency (Hz)";"Voltageoffset (V)";"Timeoffset (s)"],..
+            [ok,V,ph,frq,offset,start,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "SineVoltage"),..
+             _(["Amplitude (Volt)";
+                "phase (rad)";
+                "Frequency (Hz)";
+                "Voltageoffset (V)";
+                "Timeoffset (s)"]),..
             list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end
-            model.rpar=[V;ph;frq;offset;start]
-            model.equations.parameters(2)=list(V,ph,frq,offset,start)
+            model.rpar=[V ; ph ; frq ; offset ; start]
+            model.equations.parameters(2) = list(V,ph,frq,offset,start)
             graphics.exprs=exprs
             x.graphics=graphics;
             x.model=model
             break
         end
+
     case "define" then
         model=scicos_model()
         model.in=[1];
@@ -66,11 +72,8 @@ function [x,y,typ]= SineVoltage(job,arg1,arg2)
         mo.outputs="n";
         mo.parameters=list(["V";"phase";"freqHz";"offset";"startTime"],list(V,ph,frq,offset,start))
         model.equations=mo
-
         exprs=[string(V);string(ph);string(frq);string(offset);string(start)]
-
         gr_i=[]
-
         x=standard_define([2.2 2.2],model,exprs,gr_i)
         x.graphics.in_implicit=["I"]
         x.graphics.out_implicit=["I"]

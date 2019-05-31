@@ -41,16 +41,17 @@ function [x,y,typ]=scifunc_block_m(job,arg1,arg2)
 
         while %t do
             [ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=scicos_getvalue(..
-            ["Set scifunc_block parameters";"only regular blocks supported"],..
-            ["input ports sizes";
-            "output port sizes";
-            "input event ports sizes";
-            "output events ports sizes";
-            "initial continuous state";
-            "initial discrete state";
-            "System parameters vector";
-            "initial firing vector (<0 for no firing)";
-            "is block always active (0:no, 1:yes)"],..
+            [ msprintf(_("Set %s block parameters"), "scifunc_block");
+             _("Only regular blocks are supported")],..
+             _(["Input ports sizes";
+                "Output port sizes";
+                "Input event ports sizes";
+                "Output events ports sizes";
+                "Initial continuous state";
+                "Initial discrete state";
+                "System parameters vector";
+                "Initial firing vector (<0 for no firing)";
+                "Is block always active (0:no, 1:yes)"]),..
             list("mat",[-1 2],"mat",[-2 2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,..
             "vec",-1,"vec",-1,"vec",1),exprs(1))
             if ~ok then

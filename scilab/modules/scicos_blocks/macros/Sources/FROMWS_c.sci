@@ -30,27 +30,28 @@ function [x,y,typ] = FROMWS_c(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,varnam,Method,ZC,OutEnd,exprs]=scicos_getvalue("Set From_Workspace block parameters",..
-            ["Variable name";
-            "Interpolation Method";
-            "Enable zero crossing(0:No, 1:Yes)?";
-            "Output at end(0:Zero, 1:Hold, 2:Repeat)"],...
+            [ok,varnam,Method,ZC,OutEnd,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "From_Workspace"), ..
+            _(["Variable name";
+               "Interpolation method";
+               "Use zero crossing (0:No, 1:Yes)?";
+               "Output at end (0:Zero, 1:Hold, 2:Repeat)"]),...
             list("str",1,"vec",1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end
             if ~(Method==0 | Method==1| Method==2| Method==3) then
-                message("Interpolation method should be chosen in [0,1,2,3]");
+                message(_("''Interpolation method'' should be chosen in [0,1,2,3]"));
                 ok=%f;
             end
 
             if ~(ZC==0 | ZC==1) then
-                message("Zero crossing should be either 0 or 1");
+                message(_("''Use zero crossing'' should be either 0 or 1"));
                 ok=%f;
             end
 
             if ~(OutEnd==0 | OutEnd==1| OutEnd==2) then
-                message("Output at end option should be either 0 or 1");
+                message(_("''Output at end'' should be either 0 or 1"));
                 ok=%f;
             end
 
@@ -58,8 +59,7 @@ function [x,y,typ] = FROMWS_c(job,arg1,arg2)
             r=%f;
             ierr=execstr("r=validvar(varnam)","errcatch")
             if ~r then
-                message(["Invalid variable name.";
-                "Please choose another variable name."]);
+                message(_("Invalid variable name.<br>Please use another variable<br>or define this one."));
                 ok=%f
             end
 

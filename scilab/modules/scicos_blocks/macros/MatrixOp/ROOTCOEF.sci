@@ -34,8 +34,10 @@ function [x,y,typ]=ROOTCOEF(job,arg1,arg2)
             label(9)=[],
         end //compatiblity
         while %t do
-            [ok,typ,inp,exprs]=scicos_getvalue("Set ROOTCOEF Block",..
-            ["Datatype(1=real double  2=Complex)";"input row size";],list("vec",1,"vec",1),label)
+            [ok,typ,inp,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "ROOTCOEF"),..
+                _(["Datatype (1=real double  2=Complex)" ; "Input row size"]),..
+                list("vec",1,"vec",1), label)
             if ~ok then
                 break,
             end
@@ -48,7 +50,7 @@ function [x,y,typ]=ROOTCOEF(job,arg1,arg2)
                 ot=2;
                 it=2;
             else
-                message("Datatype is not supported");
+                message(_("Unknown datatype"));
                 ok=%f;
             end
             in=[inp model.in2];

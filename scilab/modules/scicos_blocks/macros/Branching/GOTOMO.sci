@@ -30,15 +30,17 @@ function [x,y,typ]=GOTOMO(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,tag,tagvis,exprs]=scicos_getvalue("Set parameters",..
-            ["Tag";"Tag Visibility(1=Local 2=scoped 3= global)"],..
-            list("str",-1,"vec",1),exprs)
+            [ok,tag,tagvis,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "GOTOMO"),..
+                _(["Tag" ; "Tag Visibility (1=local 2=scoped 3=global)"]),..
+                list("str",-1,"vec",1),exprs)
             if ~ok then
                 break,
             end
             tagvis=int(tagvis)
             if ((tagvis<1)|(tagvis>3)) then
-                message("Tag Visibility must be between 1 and 3");ok=%f;
+                message(_("Tag Visibility must be between 1 and 3"));
+                ok = %f;
             end
             if ok then
                 if ((model.ipar<>tagvis)|(model.opar<>list(tag))) then

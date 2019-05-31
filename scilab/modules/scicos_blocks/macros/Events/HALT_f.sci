@@ -30,8 +30,9 @@ function [x,y,typ]=HALT_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,n,exprs]=scicos_getvalue("Set Halt block parameters",..
-            ["State on halt"],list("vec",1),exprs)
+            [ok,n,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "Halt"),..
+            [_("State on halt")],list("vec",1),exprs)
             if ~ok then
                 break,
             end

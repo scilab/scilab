@@ -29,9 +29,9 @@ function [x,y,typ]=STEP(job,arg1,arg2)
         graphics=arg1.graphics;exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,temps,in,fi,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "STEP_FUNCTION");" "; ..
-            gettext("Step Function");" "], ..
-            [gettext("Step Time"); gettext("Initial Value"); gettext("Final Value")], ..
+            [ok,temps,in,fi,exprs] = scicos_getvalue(..
+            msprintf(gettext("Set %s block parameters"), "STEP"),..
+            gettext(["Step Time" ; "Initial Value" ; "Final Value"]), ..
             list("vec",1,"vec",-1,"vec",-1), exprs);
             if ~ok then
                 break,

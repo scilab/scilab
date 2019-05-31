@@ -30,13 +30,14 @@ function [x,y,typ]=GAIN_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,gain,exprs]=scicos_getvalue("Set gain block parameters",..
-            ["Gain"],list("mat",[-1,-1]),exprs(1))
+            [ok,gain,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "GAIN_f"),..
+            _(["Gain"]), list("mat",[-1,-1]),exprs(1))
             if ~ok then
                 break,
             end
             if gain==[] then
-                message("Gain must have at least one element")
+                message(_("Gain must have at least one element"))
             else
                 [out,in]=size(gain)
                 [model,graphics,ok]=check_io(model,graphics,in,out,[],[])

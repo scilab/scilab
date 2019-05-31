@@ -30,8 +30,10 @@ function [x,y,typ]=MEMORY_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,a,inh,exprs]=scicos_getvalue("Set memory block parameters",..
-            ["initial condition";"Inherit (1: no, 0: yes)"],list("vec",-1,"vec",1),exprs)
+            [ok,a,inh,exprs]=scicos_getvalue(..
+            _("Set memory block parameters"),..
+            _(["Initial condition" ; "Inherit (1: no, 0: yes)"]), ..
+            list("vec",-1,"vec",1), exprs)
             if ~ok then
                 break,
             end
@@ -44,7 +46,7 @@ function [x,y,typ]=MEMORY_f(job,arg1,arg2)
             out=size(a,"*");
             if out==0 then
                 ok=%f,
-                messagebox("Initial condition empty","modal","error");
+                messagebox(_("The initial condition is empty"),"modal","error");
             end
             in=out
             if ok then

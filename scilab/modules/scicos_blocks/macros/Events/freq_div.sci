@@ -50,9 +50,9 @@ function [x,y,typ]=freq_div(job,arg1,arg2)
         exprs=graphics.exprs
         model=xx.model;
         while %t do
-            [ok,%ph,%df,exprs]=scicos_getvalue..
-            ("Set frequency division block parameters",..
-            ["Phase (0 to division factor -1)";"Division factor"],..
+            [ok,%ph,%df,exprs]=scicos_getvalue(..
+            _("Set frequency division block parameters"),..
+            _(["Phase (0 to division factor -1)"; "Division factor"]),..
             list("vec",1,"vec",1),exprs)
             if ~ok then
                 break,
@@ -73,7 +73,6 @@ function [x,y,typ]=freq_div(job,arg1,arg2)
                 break
             end
         end
-
 
         if or(xxn<>xx) then
             model=xx.model
@@ -125,6 +124,7 @@ function [x,y,typ]=freq_div(job,arg1,arg2)
         end
         x=arg1
         typ=newpar
+
     case "define" then
         scs_m_1=scicos_diagram();
         scs_m_1.objs(1) = Modulo_Count("define");

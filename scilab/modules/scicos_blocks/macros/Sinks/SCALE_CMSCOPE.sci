@@ -36,78 +36,81 @@ function [x,y,typ]=SCALE_CMSCOPE(job,arg1,arg2)
         //pause
         while %t do
             [ok,in,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,autoscale,exprs]=scicos_getvalue(..
-            "Set Scope parameters",..
-            ["Input ports sizes";
-            "Drawing colors (>0) or mark (<0)";
-            "Output window number (-1 for automatic)";
-            "Output window position";
-            "Output window sizes";
-            "Ymin vector";
-            "Ymax vector";
-            "Refresh period";
-            "Buffer size";
-            "Accept herited events 0/1"
-            "Name of Scope (label&Id)"
-            "Auto Scale 0/1"],..
+            msprintf(_("Set %s block parameters"), "SCALE_CMSCOPE"), ..
+             _(["Input ports sizes";
+                "Curves styles: Colors>0 | marks<0";
+                "Output window number (-1 for automatic)";
+                "Output window position";
+                "Output window sizes";
+                "Ymin vector";
+                "Ymax vector";
+                "Refresh period";
+                "Buffer size";
+                "Accept herited events 0/1";
+                "Name of Scope (label&Id)";
+                "Auto Scale 0/1"]),..
             list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,..
             "vec","size(%1,''*'')","vec","size(%1,''*'')","vec","size(%1,''*'')",..
-            "vec",1,"vec",1,"str",1,"vec",1),exprs)
+            "vec",1,"vec",1,"str",1,"vec",1), exprs)
             if ~ok then
                 break,
             end //user cancel modification
             mess=[]
             if size(in,"*")<=0 then
-                mess=[mess;"Block must have at least one input port";" "]
+                mess=[mess;_("The block must have at least one input port");" "]
                 ok=%f
             end
             if min(in)<=0 then
-                mess=[mess;"Port sizes must be positive";" "]
+                mess=[mess;_("Port sizes must be > 0");" "]
                 ok=%f
             end
             if size(clrs,"*")<sum(in) then
-                mess=[mess;"Not enough colors defined (at least "+string(sum(in))+")";" "]
+                msg = _("Not enough colors defined: At least %d required.")
+                mess=[mess ; msprintf(msg, sum(in)) ; " "]
                 ok=%f
             end
             if size(wpos,"*")<>0 &size(wpos,"*")<>2 then
-                mess=[mess;"Window position must be [] or a 2 vector";" "]
+                mess=[mess;_("''Window position'' must be [] or a 2 vector");" "]
                 ok=%f
             end
             if size(wdim,"*")<>0 &size(wdim,"*")<>2 then
-                mess=[mess;"Window dim must be [] or a 2 vector";" "]
+                mess=[mess;_("''Window sizes'' must be [] or a 2 vector");" "]
                 ok=%f
             end
             if autoscale <> 0 & autoscale <> 1 then
-                mess=[mess;"Auto scaling must be 0:No or 1:Yes";" "]
+                mess=[mess;_("''Auto scaling'' must be 0:No or 1:Yes");" "]
                 ok=%f
             end
             if win<-1 then
-                mess=[mess;"Window number can''t be  < -1";" "]
+                mess=[mess;_("''Window number'' can''t be  < -1");" "]
                 ok=%f
             end
             if size(per,"*")<>size(ymin,"*") then
-                mess=[mess;"Size of Refresh Period must equal size of Ymin/Ymax vector";" "]
+                mess=[mess;
+                      _("Size of Refresh Period must equal size of Ymin/Ymax vector");
+                      " "]
                 ok=%f
             end
             for i=1:1:size(per,"*")
                 if (per(i)<=0) then
-                    mess=[mess;"Refresh Period must be positive";" "]
+                    mess=[mess; _("Refresh Period must be > 0");" "]
                     ok=%f
                 end
             end
             if N<2 then
-                mess=[mess;"Buffer size must be at least 2";" "]
+                mess=[mess;_("The Buffer size must be at least 2");" "]
                 ok=%f
             end
             if or(ymin>=ymax) then
-                mess=[mess;"Ymax must be greater than Ymin";" "]
+                mess=[mess;_("Ymax > Ymin is required");" "]
                 ok=%f
             end
             if ~or(heritance==[0 1]) then
-                mess=[mess;"Accept herited events must be 0 or 1";" "]
+                mess=[mess;_("''Accept herited events'' must be 0 or 1");" "]
                 ok=%f
             end
             if ~ok then
-                message(["Some specified values are inconsistent:";
+                message([_("Some specified values are inconsistent:");
                 " ";mess])
             end
             if ok then

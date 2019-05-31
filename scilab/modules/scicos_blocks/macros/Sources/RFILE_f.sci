@@ -49,10 +49,17 @@ function [x, y, typ] = RFILE_f(job,arg1,arg2)
         end
 
         while %t do
-            [ok,tmask1,outmask,fname1,frmt1,N,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "RFILE_f");" "; ..
-            gettext("Read from an input file"); " "; gettext("Read is done on:"); gettext("&nbsp; - A binary file if no format given"); ..
-            gettext("&nbsp; - A formatted text file if a  format (fortran type) is given")], ..
-            [gettext("Time Record Selection"); gettext("Outputs Record Selection"); gettext("Input File Name"); gettext("Input Format"); gettext("Buffer Size")], ..
+            [ok,tmask1,outmask,fname1,frmt1,N,exprs] = scicos_getvalue(..
+            [msprintf(gettext("Set %s block parameters"), "RFILE_f");
+            " ";
+            gettext("Read from an input file");
+            " "; 
+            gettext("Read is done on:<br>&nbsp; - A binary file if no format given.<br>&nbsp; - A formatted text file if a  format (fortran type) is given.<br>")], ..
+              _(["Time Record Selection" ; 
+                 "Outputs Record Selection" ; 
+                 "Input File Name" ;
+                 "Input Format" ;
+                 "Buffer Size"]), ..
             list("vec",-1,"vec",-1,"str",1,"str",1,"vec",1), exprs);
 
             if ~ok then

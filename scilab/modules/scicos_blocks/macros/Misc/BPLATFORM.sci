@@ -32,24 +32,26 @@ function [x,y,typ]=BPLATFORM(job,arg1,arg2)
         dstate=model.dstate
         while %t do
             [ok,plen,csiz,phi,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue(..
-            "Set Scope parameters",..
-            ["pendulum length";"cart size (square side)";"slope";
-            "Xmin";"Xmax";  "Ymin"; "Ymax"; ],..
+            msprintf(_("Set %s block parameters"), "BPLATFORM"),..
+            [_("Pendulum length");
+             _("Cart size (square side)");
+             _("Slope");
+             "Xmin"; "Xmax"; "Ymin"; "Ymax"],..
             list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end
             mess=[]
             if plen<=0|csiz<=0 then
-                mess=[mess;"Pendulum length and cart size must be positive.";" "]
+                mess=[mess; _("The pendulum length and cart size must be > 0.");" "]
                 ok=%f
             end
             if ymin>=ymax then
-                mess=[mess;"Ymax must be greater than Ymin";" "]
+                mess=[mess; _("Ymax > Ymin expected.");" "]
                 ok=%f
             end
             if xmin>=xmax then
-                mess=[mess;"Xmax must be greater than Xmin";" "]
+                mess=[mess; _("Xmax > Xmin expected.");" "]
                 ok=%f
             end
             if ~ok then

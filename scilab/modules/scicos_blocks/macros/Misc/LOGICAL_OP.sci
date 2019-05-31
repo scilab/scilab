@@ -34,12 +34,14 @@ function [x,y,typ]=LOGICAL_OP(job,arg1,arg2)
             exprs=[exprs;sci2exp(1);sci2exp(0)];
         end
         while %t do
-            [ok,nin,rule,Datatype,tp,exprs]=scicos_getvalue("Set parameters",..
-            ["number of inputs";..
-            "Operator: AND (0), OR (1), NAND (2), NOR (3), XOR (4), NOT (5)"
-            "Datatype (1=double 3=int32 ...)";..
-            "Bitwise Rule(0=No 1=yes)"],..
-            list("vec",1,"vec",1,"vec",1,"vec",1),exprs)
+            [ok,nin,rule,Datatype,tp,exprs]=scicos_getvalue(..
+            _([msprintf(_("Set %s block parameters"), "LOGICAL_OP");
+               "Operator codes: 0=AND  1=OR  2=NAND  3=NOR  4=XOR  5=NOT"]),..
+            _(["Number of inputs";
+               "Operator code (0..5)";
+               "Datatype (1=double 3=int32 ...)";
+               "Bitwise rule(0=No 1=yes)"]),..
+            list("vec",1,"vec",1,"vec",1,"vec",1), exprs)
             if ~ok then
                 break,
             end
@@ -47,16 +49,16 @@ function [x,y,typ]=LOGICAL_OP(job,arg1,arg2)
             rule=int(rule);
             tp=int(tp)
             if nin<1 then
-                message("Number of inputs must be >=1 ");
+                message(_("Number of inputs must be > 0"));
                 ok=%f
             elseif (rule<0)|(rule>5) then
-                message("Incorrect operator "+string(rule)+" ; must be 0 to 5.");
+                message(msprintf(_("Incorrect operator code %d ; must be 0 to 5."), rule));
                 ok=%f
             elseif (rule==5)&(nin>1) then
-                message("Only one input allowed for NOT operation")
+                message(_("Only one input allowed for NOT operation"))
                 nin=1
             elseif ((Datatype==1)&(tp~=0))
-                message ("Bitwise Rule is only activated when Data type is integer");
+                message (_("Bitwise rule is only activated when Data type is integer"));
                 ok=%f
             end
             if ok then
@@ -80,7 +82,7 @@ function [x,y,typ]=LOGICAL_OP(job,arg1,arg2)
                     elseif Datatype==8 then
                         model.sim=list("logicalop_ui8",4)
                     else
-                        message ("Datatype is not supported");
+                        message (_("Unknown datatype"));
                         ok=%f;
                     end
                     model.ipar=[rule;tp];

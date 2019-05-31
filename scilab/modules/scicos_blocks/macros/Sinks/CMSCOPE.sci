@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=CMSCOPE(job,arg1,arg2)
+function [x,y,typ] = CMSCOPE(job,arg1,arg2)
     x=[];
     y=[];
     typ=[];
@@ -29,118 +29,107 @@ function [x,y,typ]=CMSCOPE(job,arg1,arg2)
         graphics=arg1.graphics;
         exprs=graphics.exprs
 
-
         model=arg1.model;
         //dstate=model.in
         //pause
         while %t do
-            [ok,in,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=scicos_getvalue(..
-            "Set Scope parameters",..
-            ["Input ports sizes";
-            "Drawing colors (>0) or mark (<0)";
-            "Output window number (-1 for automatic)";
-            "Output window position";
-            "Output window sizes";
-            "Ymin vector";
-            "Ymax vector";
-            "Refresh period";
-            "Buffer size";
-            "Accept herited events 0/1"
-            "Name of Scope (label&Id)"],..
+            [ok,in,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=..
+            scicos_getvalue(msprintf(_("Set %s block parameters"), "CMSCOPE"),..
+             _(["Input ports sizes";
+                "Curves styles: Colors>0 | marks<0";
+                "Output window number (-1 for automatic)";
+                "Output window position";
+                "Output window sizes";
+                "Ymin vector";
+                "Ymax vector";
+                "Refresh periods";
+                "Buffer size";
+                "Accept herited events 0/1";
+                "Name of Scope (label&Id)"]),..
             list("vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,..
             "vec","size(%1,''*'')","vec","size(%1,''*'')","vec","size(%1,''*'')",..
-            "vec",1,"vec",1,"str",1),exprs)
+            "vec",1,"vec",1,"str",1), exprs)
             if ~ok then
                 break,
             end //user cancel modification
-            mess=[]
+            mess = []
             if size(in,"*")<=0 then
-                mess=[mess;"Block must have at least one input port";" "]
-                ok=%f
+                mess=[mess ; _("The block must have at least one input port"); " "]
             end
             if min(in)<=0 then
-                mess=[mess;"Port sizes must be positive";" "]
-                ok=%f
+                mess=[mess ; _("Port sizes must be > 0") ; " "]
             end
             if size(clrs,"*")<sum(in) then
-                mess=[mess;"Not enough colors defined (at least "+string(sum(in))+")";" "]
-                ok=%f
+                msg = _("At least %d curves styles expected.")
+                mess=[mess ; msprintf(msg, sum(in)) ; " "]
             end
             if size(wpos,"*")<>0 &size(wpos,"*")<>2 then
-                mess=[mess;"Window position must be [] or a 2 vector";" "]
-                ok=%f
+                mess = [mess ; _("''Window position'' must be [] or a 2 vector") ; " "]
             end
             if size(wdim,"*")<>0 &size(wdim,"*")<>2 then
-                mess=[mess;"Window dim must be [] or a 2 vector";" "]
-                ok=%f
+                mess = [mess ; _("''Window sizes'' must be [] or a 2 vector") ; " "]
             end
             if win<-1 then
-                mess=[mess;"Window number can''t be  < -1";" "]
-                ok=%f
+                mess=[mess ; _("The Window number must be ≥ -1") ; " "]
             end
             if size(per,"*")<>size(ymin,"*") then
-                mess=[mess;"Size of Refresh Period must equal size of Ymin/Ymax vector";" "]
-                ok=%f
+                mess=[mess ; 
+                      _("The size of ''Refresh Periods'' must match the Ymin|Ymax''s one");
+                      " "]
             end
-            for i=1:1:size(per,"*")
+            for i = 1:size(per,"*")
                 if (per(i)<=0) then
-                    mess=[mess;"Refresh Period must be positive";" "]
-                    ok=%f
+                    mess=[mess ; _("All Refresh Periods must be > 0") ; " "]
                 end
             end
             if N<2 then
-                mess=[mess;"Buffer size must be at least 2";" "]
-                ok=%f
+                mess=[mess ; _("The Buffer size must be ≥ 2") ; " "]
             end
             if or(ymin>=ymax) then
-                mess=[mess;"Ymax must be greater than Ymin";" "]
-                ok=%f
+                mess=[mess ; _("Ymax > Ymin is required") ; " "]
             end
             if ~or(heritance==[0 1]) then
-                mess=[mess;"Accept herited events must be 0 or 1";" "]
-                ok=%f
+                mess=[mess ; _("''Accept herited events'' must be 0 or 1") ; " "]
             end
-            if ~ok then
-                message(["Some specified values are inconsistent:";
+
+            if mess <> [] then
+                message([_("Some specified values are inconsistent:");
                 " ";mess])
-            end
-            if ok then
+            else
                 in = in(:);
                 a = size(in,1);
                 in2 = ones(a,1);
                 [model,graphics,ok]=set_io(model,graphics,list([in in2],ones(a,1)),list(),ones(1-heritance,1),[]);
-            end
-            if ok then
+
                 if wpos==[] then
                     wpos=[-1;-1];
                 end
                 if wdim==[] then
                     wdim=[-1;-1];
                 end
-                if ok then
-                    period=per(:)';
-                    yy=[ymin(:)';ymax(:)']
-                    rpar=[0;period(:);yy(:)]
-                    clrs=clrs(1:sum(in))
-                    ipar=[win;size(in,"*");N;wpos(:);wdim(:);in(:);clrs(:);heritance]
-                    //if prod(size(dstate))<>(sum(in)+1)*N+1 then
-                    //dstate=-eye((sum(in)+1)*N+1,1),
-                    //end
-                    model.evtin=ones(1-heritance,1)
-                    model.dstate=[]
-                    //model.dstate=dstate;
-                    model.rpar=rpar;
-                    model.ipar=ipar
-                    model.label=nom;
-                    graphics.id=nom;
-                    graphics.exprs=exprs;
-                    x.graphics=graphics;
-                    x.model=model
-                    //pause;
-                    break
-                end
+                period=per(:)';
+                yy=[ymin(:)';ymax(:)']
+                rpar=[0;period(:);yy(:)]
+                clrs=clrs(1:sum(in))
+                ipar=[win;size(in,"*");N;wpos(:);wdim(:);in(:);clrs(:);heritance]
+                //if prod(size(dstate))<>(sum(in)+1)*N+1 then
+                //dstate=-eye((sum(in)+1)*N+1,1),
+                //end
+                model.evtin=ones(1-heritance,1)
+                model.dstate=[]
+                //model.dstate=dstate;
+                model.rpar=rpar;
+                model.ipar=ipar
+                model.label=nom;
+                graphics.id=nom;
+                graphics.exprs=exprs;
+                x.graphics=graphics;
+                x.model=model
+                //pause;
+                break
             end
         end
+
     case "define" then
         win=-1;
         in=[1;1]

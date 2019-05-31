@@ -33,12 +33,13 @@ function [x,y,typ]=CLSS(job,arg1,arg2)
         end //compatibility
         model=arg1.model;
         while %t do
-            [ok,A,B,C,D,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",..
-            ["A matrix";
-            "B matrix";
-            "C matrix";
-            "D matrix";
-            "Initial state"],..
+            [ok,A,B,C,D,x0,exprs]=scicos_getvalue(..
+            _("Set continuous linear system parameters"),..
+            _(["A matrix" ;
+               "B matrix" ;
+               "C matrix" ;
+               "D matrix" ;
+               "Initial state"]),..
             list("mat",[-1,-1],..
             "mat",["size(%1,2)","-1"],..
             "mat",["-1","size(%1,2)"],..
@@ -67,8 +68,10 @@ function [x,y,typ]=CLSS(job,arg1,arg2)
                     okD = %f ;
                 end
             end
-            if ms<>ns|~okD then
-                message(_("Matrix A is not square or D has wrong dimension"))
+            if ms<>ns then
+                message(_("The Matrix A must be square"))
+            elseif ~okD then
+                message(_("The matrix D has some wrong size"))
             else
                 [model,graphics,ok]=check_io(model,graphics,in,out,[],[])
                 if ok then

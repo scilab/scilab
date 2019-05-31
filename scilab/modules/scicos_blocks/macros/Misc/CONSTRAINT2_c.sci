@@ -33,7 +33,12 @@ function [x,y,typ]=CONSTRAINT2_c(job,arg1,arg2)
         while %t do
             ask_again=%f
 
-            [ok,x0,xd0,id,exprs]=scicos_getvalue("Set Constraint block parameters",["Initial guess values of states x";"Initial guess values of derivative x''";"Id(i)=1: if x''(i) is present in the feedback, else Id(i)=0"],list("vec",-1,"vec",-1,"vec",-1),exprs)
+            [ok,x0,xd0,id,exprs]=scicos_getvalue(..
+            _("Set Constraint block parameters"), ..
+            _(["Initial guess values of states x" ; 
+               "Initial guess values of derivative x''" ; 
+               "Id(i)=1: if x''(i) is present in the feedback, else Id(i)=0"]),..
+            list("vec",-1,"vec",-1,"vec",-1), exprs)
             if ~ok then
                 break,
             end
@@ -44,13 +49,16 @@ function [x,y,typ]=CONSTRAINT2_c(job,arg1,arg2)
             id=id(:);
             Nid=size(id,"*");
 
-            if (N~=Nxd)|(N~=Nid) then
-                messagebox("Incompatible sizes, states, their derivatives, and ID should be the same size")
+            if (N~=Nxd)
+                messagebox(_("States and their derivatives must have the same size."))
                 ask_again=%t
             end
-
+            if N ~= Nid then
+                messagebox(_("States and ID must have the same size."))
+                ask_again=%t
+            end
             if (N<=0 & ~ask_again) then
-                messagebox("Number of states (constraints) must be > 0")
+                messagebox(_("Number of states (constraints) must be > 0"))
                 ask_again=%t
             end
 
@@ -58,7 +66,8 @@ function [x,y,typ]=CONSTRAINT2_c(job,arg1,arg2)
                 for i=1:N,
                     if ~((id(i)==0) | (id(i)==1)) then
                         ask_again=%t
-                        messagebox(["Id(i) must be either:";"0 when x''(i) is not present in the feedback";"1: when x''(i) is present in the feedback"])
+                        msg = _("Id(i) must be either:<br> 0 when x''(i) is not present in the feedback<br> 1: when x''(i) is present in the feedback")
+                        messagebox(msg)
                         break
                     end
                     if (id(i)==0) then

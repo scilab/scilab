@@ -34,26 +34,27 @@ function [x,y,typ]=MATDIV(job,arg1,arg2)
             label(9)=[],
         end //compatiblity
         while %t do
-            [ok,typ,exprs]=scicos_getvalue("Set MATDIV Block",..
-            ["Datatype(1=real double  2=Complex)"],list("vec",1),label)
+            [ok,typ,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "MATDIV"),..
+            _(["Datatype (1=real double  2=Complex)"]), list("vec",1), label)
             if ~ok then
                 break,
             end
             if (typ==1) then
-                function_name="mat_div";
-                ot=1;
-                it=[1 1];
+                function_name = "mat_div";
+                ot = 1;
+                it = [1 1];
             elseif (typ==2) then
-                function_name="matz_div";
-                ot=2;
-                it=[2 2];
+                function_name = "matz_div";
+                ot = 2;
+                it = [2 2];
             else
-                message("Datatype is not supported");
-                ok=%f;
+                message(_("Unknown datatype"));
+                ok = %f;
             end
-            in=[model.in model.in2];
-            out=[model.out model.out2];
-            funtyp=4;
+            in  = [model.in model.in2];
+            out = [model.out model.out2];
+            funtyp = 4;
             if ok then
                 label=exprs;
                 [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])

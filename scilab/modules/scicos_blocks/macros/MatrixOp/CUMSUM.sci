@@ -34,7 +34,11 @@ function [x,y,typ]=CUMSUM(job,arg1,arg2)
             label(9)=[],
         end //compatiblity
         while %t do
-            [ok,typ,decomptyp,lab]=scicos_getvalue("Set CUMSUM block parameters",["Datatype(1=real double  2=Complex)";"Sum along (0=the first non singleton dimension  1=Rows  2=Columns)"],list("vec",1,"vec",1),label)
+            [ok,typ,decomptyp,lab]=scicos_getvalue(..
+              msprintf(_("Set %s block parameters"), "CUMSUM"), ..
+              _(["Datatype (1=real double  2=Complex)" ;
+                 "Sum along (0=the first non singleton dimension  1=Rows  2=Columns)"]), ..
+               list("vec",1,"vec",1), label)
             if ~ok then
                 break,
             end
@@ -50,7 +54,7 @@ function [x,y,typ]=CUMSUM(job,arg1,arg2)
                     function_name="cumsum_c";
                     out=[1 -2];
                 else
-                    message("decomposition type is not supported");
+                    message(_("Unknown summation direction"));
                     ok=%f;
                 end
                 it=1;
@@ -63,13 +67,13 @@ function [x,y,typ]=CUMSUM(job,arg1,arg2)
                 elseif (decomptyp==2) then
                     function_name="cumsumz_c";
                 else
-                    message("decomposition type is not supported");
+                    message(_("Unknown summation direction"));
                     ok=%f;
                 end
                 it=2;
                 ot=2
             else
-                message("Datatype is not supported");
+                message(_("Unknown datatype"));
                 ok=%f;
             end
             in=[model.in model.in2];

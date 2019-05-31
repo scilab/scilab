@@ -31,8 +31,10 @@ function [x,y,typ]=CONST_m(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok, C, exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "CONST_m");" "; ..
-            gettext("Constant value generator");" "], gettext("Constant Value"), list("vec", -1), exprs)
+            [ok, C, exprs] = scicos_getvalue(..
+            [msprintf(gettext("Set %s block parameters"), "CONST_m") ; " " ;
+            gettext("Provides a CONSTant scalar, vector or Matrix")], ..
+            gettext("Value"), list("vec", -1), exprs)
 
             if ~ok then
                 break,
@@ -62,8 +64,9 @@ function [x,y,typ]=CONST_m(job,arg1,arg2)
                 elseif (typeof(C)=="uint8") then
                     ot=8
                 else
-                    block_parameter_error(msprintf(gettext("Wrong type for ''%s'' parameter"), gettext("Constant Value")), ..
-                    gettext("Value type must be a numeric type (double, complex, int, int8, ...)."));
+                    message([..
+                    msprintf(gettext("Wrong type for ''%s'' parameter"), gettext("Constant Value"));
+                    gettext("The value must be numeric<br>(double, complex, int, int8, ..uint32).")]);
                     ok=%f;
                 end
 
@@ -77,9 +80,9 @@ function [x,y,typ]=CONST_m(job,arg1,arg2)
                 end
             end
         end
+
     case "define" then
         C=[1]
-
         model=scicos_model()
         model.sim=list("cstblk4",4)
         model.in=[]

@@ -49,14 +49,8 @@ function [x,y,typ]=SOM_f(job,arg1,arg2)
             labs=["down","right","up"]
         end
 
-        str = ["This sum block is obsolete"
-        "parameters cannot be modified. Please replace it with new sum block";
-        "and gain blocks in the linear palette"
-        " "
-        "Input ports are located at up, side and  down positions."
-        "Current gains are:"];
-
-        str = [str ; (part(labs(:),1:7)+exprs(:))];
+        str = _("This sum block is obsolete<br><br>Parameters cannot be modified. Please replace it with<br>the new sum and gain blocks in the linear palette<br><br>Input ports are located at up, side and down positions.<br>Current gains are: ")
+        str = str + strcat(labs(:)+"="+exprs(:),", ")
         message(str);
 
     case "define" then

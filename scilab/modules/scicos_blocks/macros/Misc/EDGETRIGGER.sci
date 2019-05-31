@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=EDGETRIGGER(job,arg1,arg2)
+function [x,y,typ] = EDGETRIGGER(job,arg1,arg2)
     x=[];
     y=[];
     typ=[];
@@ -30,8 +30,9 @@ function [x,y,typ]=EDGETRIGGER(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,edge,exprs]=scicos_getvalue("Set edge trigger block parameters",..
-            ["rising (1), falling (-1), both (0)"],list("vec",1),exprs)
+            [ok,edge,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "EDGETRIGGER"),..
+            [_("rising (1), falling (-1), both (0)")],list("vec",1),exprs)
             if ~ok then
                 break,
             end

@@ -33,10 +33,11 @@ function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
             exprs=[exprs;sci2exp(1)];
         end
         while %t do
-            [ok,rule,zcr,Datatype,exprs]=scicos_getvalue("Set parameters",..
-            ["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)";..
-            "Use zero crossing (no: 0), (yes: 1)"
-            "Datatype (1=double 3=int32 ...)"],..
+            [ok,rule,zcr,Datatype,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "RELATIONALOP"),..
+            _(["Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)";
+               "Use zero crossing (no: 0), (yes: 1)";
+               "Datatype (1=double 3=int32 ...)"]), ..
             list("vec",1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
@@ -46,8 +47,9 @@ function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
                 zcr=1,
             end
             if (rule<0)|(rule>5) then
-                message("Incorrect operator "+string(rule)+" ; must be 0 to 5.")
-                ok=%f;
+                msg = _("Incorrect operator code #%d : must be 0 to 5.")
+                message(msprintf(msg, rule))
+                ok = %f;
             end
             if (Datatype==1) then
                 model.sim=list("relational_op",4)

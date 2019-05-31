@@ -31,15 +31,16 @@ function [x,y,typ]=SCALAR2VECTOR(job,arg1,arg2)
         model=arg1.model;
         while %t do
             [ok,nout,exprs]=..
-            scicos_getvalue("Set block parameters",..
-            ["size of output (-1: if don''t know)"],..
+            scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "SCALAR2VECTOR"),..
+            [_("Size of output (-1: if don''t know)")],..
             list("vec",1),exprs)
             if ~ok then
                 break,
             end
             nout=int(nout)
             if(nout<>-1 & (nout<=0)) then
-                message("size of output must be -1 or >0")
+                message(_("The size of output must be -1 or > 0"))
                 ok=%f
             end
             if ok then

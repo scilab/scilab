@@ -32,14 +32,15 @@ function [x,y,typ]=CLKIN_f(job,arg1,arg2)
         exprs=graphics.exprs
         exprs=exprs(1) // compatibility
         while %t do
-            [ok,prt,exprs]=scicos_getvalue("Set Event Input block parameters",..
-            "Port number",list("vec",1),exprs)
+            [ok,prt,exprs]=scicos_getvalue(..
+            _("Set Event Input block parameters"),..
+            _("Port number"), list("vec",1),exprs)
             prt=int(prt)
             if ~ok then
                 break,
             end
             if prt<=0 then
-                message("Port number must be a positive integer")
+                message(_("''Port number'' must be a positive integer."))
             else
                 model.ipar=prt
                 model.evtout=1

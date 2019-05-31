@@ -50,23 +50,20 @@ function [x,y,typ]=DELAY_f(job,arg1,arg2)
         evtdly_exprs=evtdly.graphics.exprs
         exprs=[evtdly_exprs(1);register_exprs]
         while %t do
-            [ok,dt,z0,exprs]=scicos_getvalue(["This block implements as a discretized delay";
-            "it is consist of a shift register and a clock";
-            "value of the delay is given by;"
-            "the discretization time step multiplied by the";
-            "number-1 of state of the register"],..
-            ["Discretization time step";
-            "Register initial state"],list("vec",1,"vec",-1),exprs)
+            [ok,dt,z0,exprs]=scicos_getvalue(..
+            _("This block implements a discretized delay.<br>It consists of a shift register and a clock<br>value of the delay given by the<br>discretization time step multiplied by the<br>number-1 of state of the register"),..
+            _(["Discretization time step" ; "Register initial state"]),..
+            list("vec",1,"vec",-1),exprs)
             if ~ok then
                 break,
             end
             mess=[]
             if prod(size(z0))<1 then
-                mess=[mess;"Register length must be at least 1";" "]
+                mess=[mess;_("Register''s length must be at least 1");" "]
                 ok=%f
             end
             if dt<=0 then
-                mess=[mess;"Discretization time step must be positive";" "]
+                mess=[mess;_("Discretization time step must be > 0");" "]
                 ok=%f
             end
             if ~ok then

@@ -34,8 +34,9 @@ function [x,y,typ]=VsourceAC(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,VA,FR,exprs]=scicos_getvalue("Set voltage source parameter",..
-            ["Amplitude (Volt)";"Frequency (Hz)"],..
+            [ok,VA,FR,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "VsourceAC"),..
+            _(["Amplitude (Volt)";"Frequency (Hz)"]),..
             list("vec",-1,"vec",-1),exprs)
             if ~ok then
                 break,

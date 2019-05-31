@@ -36,7 +36,14 @@ function [x,y,typ]=LOOKUP2D(job,arg1,arg2)
         while %t do
 
             Ask_again=%f
-            [ok,xx,yy,zz,Method,graf,exprs]=scicos_getvalue("2D Lookup table parameters",["Row index input values";"Column index input values";"Table data";"Lookup method(1..5)";"Launch graphic window(y/n)?"],list("vec",-1,"vec",-1,"mat",[-1,-1],"vec",1,"str",1),exprs)
+            [ok,xx,yy,zz,Method,graf,exprs]=scicos_getvalue(..
+            _("2D Lookup table parameters"), ..
+            _(["Row index input values";
+               "Column index input values";
+               "Table data";
+               "Lookup method (1..5)";
+               "Launch graphic window (y/n)?"]), ..
+               list("vec",-1,"vec",-1,"mat",[-1,-1],"vec",1,"str",1), exprs)
             // 1 : Interpolation-extrapolation (Bilinear)
             // 2 : Interpolation_endvalues
             // 3 : use input nearest
@@ -60,7 +67,7 @@ function [x,y,typ]=LOOKUP2D(job,arg1,arg2)
             exprs(5)="n";// exprs.graf='n'
             exprs(4)=sci2exp(mtd);// pour le cas methode>7 | method<0
 
-            METHOD=getmethod(mtd);
+            METHOD = getmethod(mtd);  // still used ??
             if ~Ask_again then
                 xx=xx(:);
                 yy=yy(:);
@@ -68,21 +75,21 @@ function [x,y,typ]=LOOKUP2D(job,arg1,arg2)
                 [ny,my]=size(yy);
                 [nz,mz]=size(zz);
                 if ((nx<=1)|(ny<=1)) then,
-                    messagebox("Input row/column data size should be greater than one");
+                    messagebox(_("Input row/column data size should be > 1"));
                     Ask_again=%t;
                 end
                 if ~((nx==nz)&(ny==mz)) then,
-                    messagebox("Incompatible size of x and y");
+                    messagebox(_("Incompatible size of x and y"));
                     Ask_again=%t;
                 end
                 [ok]=test_increasing(xx);
                 if (~ok) then
-                    messagebox("Row input values must be monotonically increasing");
+                    messagebox(_("Row input values must be monotonically increasing"));
                     Ask_again=%t;
                 end
                 [ok]=test_increasing(yy);
                 if (~ok) then
-                    messagebox("Column input values must be monotonically increasing");
+                    messagebox(_("Column input values must be monotonically increasing"));
                     Ask_again=%t;
                 end
             end
@@ -138,12 +145,10 @@ function [ok]=test_increasing(xx)
 
     for i=1:mx
         if (xx(i)<>xx(i)) then
-            gcf().info_message = "x contains no data in x(" + string(i) + ")";
+            gcf().info_message = msprintf(_("x contains no data in x(%d)"),i);
             return
         end
-
     end
-
     for i=1:mx-1
         if (xx(i)>xx(i+1)) then
             return;

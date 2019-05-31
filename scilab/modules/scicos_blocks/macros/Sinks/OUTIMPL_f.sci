@@ -34,8 +34,11 @@ function [x,y,typ]=OUTIMPL_f(job,arg1,arg2)
             exprs=exprs(1),
         end //compatibility
         while %t do
-            [ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"OUTIMPL_f");" ";gettext("Implicit output port")],..
-            gettext("Port number"),list("vec",1),exprs)
+            [ok,prt,exprs]=scicos_getvalue(..
+            [msprintf(gettext("Set %s block parameters"), "OUTIMPL_f");
+             " ";
+             gettext("Implicit output port:")],..
+            gettext("Port number"), list("vec",1), exprs)
             if ~ok then
                 break,
             end

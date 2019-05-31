@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=POWBLK_f(job,arg1,arg2)
+function [x,y,typ] = POWBLK_f(job,arg1,arg2)
     x=[];
     y=[];
     typ=[];
@@ -33,8 +33,9 @@ function [x,y,typ]=POWBLK_f(job,arg1,arg2)
             exprs=exprs(2),
         end //compatibility
         while %t do
-            [ok,a,exprs]=scicos_getvalue("u^a: raise each element of the input",..
-            "to the power of",list("vec",1),exprs)
+            [ok,a,exprs]=scicos_getvalue(..
+            _("u^a: raise each element of the input"),..
+            _("to the power of"), list("vec",1), exprs)
             if ~ok then
                 break,
             end

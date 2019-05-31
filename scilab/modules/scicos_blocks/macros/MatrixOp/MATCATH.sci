@@ -34,9 +34,8 @@ function [x,y,typ]=MATCATH(job,arg1,arg2)
         end
         while %t do
             [ok,nin,lab]=..
-            scicos_getvalue("Set MATCATH block parameters",..
-            ["Number of input"],..
-            list("vec",1),label);
+            scicos_getvalue(msprintf(_("Set %s block parameters"), "MATCATH"),..
+            _(["Number of inputs"]), list("vec",1), label);
             if ~ok then
                 break,
             end

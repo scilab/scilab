@@ -30,13 +30,14 @@ function [x,y,typ]=REGISTER_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,z0,exprs]=scicos_getvalue("Set delay parameters",..
-            "Register initial condition",list("vec",-1),exprs)
+            [ok,z0,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "REGISTER_f"),..
+            _("Register''s initial condition"), list("vec",-1),exprs)
             if ~ok then
                 break,
             end
             if prod(size(z0))<1 then
-                message("Register length must be at least 1")
+                message(_("Register''s length must be > 0"))
                 ok=%f
             end
             if ok then

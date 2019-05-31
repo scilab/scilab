@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=INTEGRAL_f(job,arg1,arg2)
+function [x,y,typ] = INTEGRAL_f(job,arg1,arg2)
     x=[];
     y=[];
     typ=[];
@@ -30,10 +30,9 @@ function [x,y,typ]=INTEGRAL_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,x0,exprs]=scicos_getvalue("Set continuous linear system parameters",..
-            "Initial state",list("vec",1),exprs)
-
-
+            [ok,x0,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "INTEGRAL_f"),..
+            _("Initial state"), list("vec",1),exprs)
             if ~ok then
                 break,
             end

@@ -83,7 +83,7 @@ function decision=interpret(txt_xml,delta,order)
                 decision=interpret(suite,delta,order);
             else
                 decision="";
-                disp("attention pas de decision");
+                warning(_("No decision."));
             end
         end
 

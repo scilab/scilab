@@ -39,20 +39,21 @@ function [x,y,typ]=TEXT_f(job,arg1,arg2)
         end // compatibility
 
         while %t do
-            [ok,txt,font,siz,exprs] = scicos_getvalue("Set Text block parameters",..
-            ["Text";"Font number";"Font size"], list("str",-1,"vec",1,"vec",1),exprs)
-
+            [ok,txt,font,siz,exprs] = scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "Annotation"),..
+                _(["Text" ; "Font number" ; "Font size"]), ..
+                list("str",-1,"vec",1,"vec",1), exprs)
             if ~ok then
                 break,
             end //**
 
             if font<=0|font>6 then
-                message("Font number must be greater than 0 and less than 7")
+                message(_("The font number must be in [1, 6]"))
                 ok=%f
             end
 
             if siz<0 then
-                message("Font size must be positive")
+                message(_("The font size must be positive"))
                 ok=%f
             end
 

@@ -34,10 +34,10 @@ function [x,y,typ]=GENERAL_f(job,arg1,arg2)
         out=model.evtout
         nin=sum(in)
         nout=sum(out)
-        [ok,in,out,exprs]=scicos_getvalue("Set General Zero-Crossing parameters",..
-        ["Input size";
-        "Number of event output"],..
-        list("vec",1,"vec",1),exprs)
+        [ok,in,out,exprs]=scicos_getvalue(..
+            _("Set General Zero-Crossing parameters"),..
+            _(["Input size" ; "Number of event output"]),..
+            list("vec",1,"vec",1),exprs)
         if ok then
             [model,graphics,ok]=check_io(model,graphics,in,[],[],ones(out,1))
             if ok then
@@ -49,7 +49,7 @@ function [x,y,typ]=GENERAL_f(job,arg1,arg2)
                     rp=-1*ones(nout1,2^(2*nin1))
                 end
                 n=size(rp,2)/2
-                result=x_mdialog("routing matrix",string(1:nout1),..
+                result=x_mdialog(_("Routing matrix"),string(1:nout1),..
                 string(1:2^(2*nin1)),string(rp(:,:)))
                 if result<>[] then
                     rp(1:nout1,1:2*n)=evstr(result)
@@ -62,6 +62,7 @@ function [x,y,typ]=GENERAL_f(job,arg1,arg2)
                 end
             end
         end
+
     case "define" then
         rpar=[0;0;0;0]
         in=1;

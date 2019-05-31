@@ -30,14 +30,10 @@ function [x,y,typ]=PULSE_SC(job,arg1,arg2)
         typ=list()
         graphics=arg1.graphics;
         exprs=graphics.exprs
-        Btitre=..
-        "Set Pulse Generator parameters"
-        Exprs0=..
-        ["E";"W";"F";"A"]
-        Bitems=..
-        ["Phase delay (secs):";"Pulse Width (% of period):";"Period (secs):";"Amplitude:"]
-        Ss=..
-        list("pol",-1,"pol",-1,"pol",-1,"mat",[-1 -1])
+        Btitre=_("Set Pulse Generator parameters")
+        Exprs0= ["E";"W";"F";"A"]
+        Bitems=_(["Phase delay (s)";"Pulse Width (% of period)";"Period (s)";"Amplitude"])
+        Ss = list("pol",-1,"pol",-1,"pol",-1,"mat",[-1 -1])
         scicos_context=struct();
         x=arg1
         ok=%f
@@ -73,8 +69,8 @@ function [x,y,typ]=PULSE_SC(job,arg1,arg2)
         tol=[0.0001;0.000001;1.000D-10;100001;0;0;0],..
         tf=10,..
         context=["E2=E+W/100*F";
-        "if (W<0 | W>100) then error(''Width must be between 0 and 100'');end";
-        "if (E2 >= F) then error (''Offset must be lower than (frequency*(1-Width/100))''); end"],..
+        "if (W<0 | W>100) then error(''"+_("The pulse width must be in [0,100]")+"'');end";
+        "if (E2 >= F) then error (''"+_("Offset must be < Period*(1-Width/100)")+"''); end"],..
         void1=[],..
         options=tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],..
         list([5,1],[4,1]),[0.8,0.8,0.8]),..

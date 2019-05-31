@@ -34,58 +34,50 @@ function [x,y,typ]=CANIMXY(job,arg1,arg2)
 
         while %t do
             [ok,nbr_curves,clrs,siz,win,wpos,wdim,xmin,xmax,ymin,ymax,N,exprs]=scicos_getvalue(..
-            "Set Scope parameters",..
-            ["Number of Curves";
-            "color (>0) or mark (<0)";
-            "line or mark size";
-            "Output window number (-1 for automatic)";
-            "Output window position";
-            "Output window sizes";
+            msprintf(_("Set %s block parameters"), "CANIMXY Scope"),..
+            [_("Number of Curves");
+            _("Curves styles: Colors>0 | marks<0");
+            _("Curves thicknesses | marks sizes");
+            _("Output window number (-1 for automatic)");
+            _("Output window position");
+            _("Output window sizes");
             "Xmin";
             "Xmax";
             "Ymin";
             "Ymax";
-            "Buffer size"],..
+            _("Buffer size")],..
             list("vec",1,"vec",1,"vec",1,"vec",1,"vec",-1,"vec",-1,"vec",1,..
             "vec",1,"vec",1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end //user cancel modification
 
-            mess=[]
+            mess = []
             if size(wpos,"*")<>0 &size(wpos,"*")<>2 then
-                mess=[mess;"Window position must be [] or a 2 vector";" "]
-                ok=%f
+                mess=[mess ; _("''Window position'' must be [] or a 2 vector") ; " "]
             end
             if size(wdim,"*")<>0 &size(wdim,"*")<>2 then
-                mess=[mess;"Window dim must be [] or a 2 vector";" "]
-                ok=%f
+                mess=[mess ; _("''Window sizes'' must be [] or a 2 vector") ; " "]
             end
             if win<-1 then
-                mess=[mess;"Window number cannot be inferior than -1";" "]
-                ok=%f
+                mess=[mess ; _("The Window number must be ≥ -1") ; " "]
             end
             if nbr_curves<=0 then
-                mess=[mess;"Number of curves cannot be negative or null";" "]
-                ok=%f
+                mess=[mess ; _("The Number of curves must be ≥ 1") ; " "]
             end
             if N<1 then
-                mess=[mess;"Buffer size must be at least 1";" "]
-                ok=%f
+                mess=[mess ; _("The Buffer size must be ≥ 1") ; " "]
             end
             if N==1 & clrs>0 then
-                mess=[mess;"Buffer size must be at least 2";" "]
-                ok=%f
+                mess=[mess ; _("The Buffer size must be ≥ 2") ; " "]
             end
             if ymin>=ymax then
-                mess=[mess;"Ymax must be greater than Ymin";" "]
-                ok=%f
+                mess=[mess ; _("Ymax > Ymin is required") ; " "]
             end
             if xmin>=xmax then
-                mess=[mess;"Xmax must be greater than Xmin";" "]
-                ok=%f
+                mess=[mess ; _("Xmax > Xmin is required.") ; " "]
             end
-            if ~ok then
+            if mess <> [] then
                 message(mess)
             else
                 in = nbr_curves*ones(2,1);
@@ -109,6 +101,7 @@ function [x,y,typ]=CANIMXY(job,arg1,arg2)
                 break
             end
         end
+
     case "define" then
         win=-1;
         clrs=-4;

@@ -69,8 +69,10 @@ function [x,y,typ]=PID(job,arg1,arg2)
         d_old=xx3.model.rpar
         y=0
         while %t do
-            [ok,p,i,d,exprs0]=scicos_getvalue("Set PID parameters",..
-            ["Proportional";"Integral";"Derivation"],list("vec",-1,"vec",-1,"vec",-1),exprs)
+            [ok,p,i,d,exprs0]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "PID"),..
+            _(["Proportional" ; "Integral" ; "Derivation"]),..
+            list("vec",-1,"vec",-1,"vec",-1),exprs)
             if ~ok then
                 break,
             end

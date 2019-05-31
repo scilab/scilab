@@ -31,8 +31,8 @@ function [x,y,typ]=DEBUG(job,arg1,arg2)
         textmp=exprs(2)
         ok=%t
         while 1==1
-            [txt]=dialog(["Enter scilab instructions for debugging.";
-            " Inputs are block and flag, output is block"],..
+            txt = dialog(_(["Enter scilab instructions for debugging.";
+            " Inputs are block and flag. Output is block."]),..
             textmp);
 
             if txt<>[] then
@@ -46,7 +46,7 @@ function [x,y,typ]=DEBUG(job,arg1,arg2)
                     end
                     break
                 else
-                    message(["Error in the instructions";lasterror()])
+                    message([_("Error in the instructions");lasterror()])
                 end
             else
                 ok=%f;

@@ -34,7 +34,11 @@ function [x,y,typ]=MATZREIM(job,arg1,arg2)
             label(9)=[],
         end //compatiblity
         while %t do
-            [ok,decomptyp,lab]=scicos_getvalue("Set MATZREIM block parameters",["decomposition type (1=Complex2Real&Imag 2=Real&Imag2Complex)"],list("vec",1),label)
+            [ok,decomptyp,lab]=scicos_getvalue(..
+            [msprintf(_("Set %s block parameters"), "MATZREIM");
+             "";
+             _("Conversion type: 1=complex→(Real,Imag), 2=(Real,Imag)→complex")],..
+            _(["Conversion direction (1|2)"]), list("vec",1),label)
             if ~ok then
                 break,
             end
@@ -52,7 +56,7 @@ function [x,y,typ]=MATZREIM(job,arg1,arg2)
                 out=[-1 -2];
                 ot=2;
             else
-                message("decomposition type is not supported");
+                message(_("Unknown conversion code"));
                 ok=%f;
             end
             funtyp=4;

@@ -31,17 +31,14 @@ function [x,y,typ]=GEN_SQR(job,arg1,arg2)
         typ=list()
         graphics=arg1.graphics;
         exprs=graphics.exprs
-        Btitre=..
-        "Set GEN_SQR parameters"
-        Exprs0=..
-        ["Amin";"Amax";"rule";"F"]
+        Btitre = msprintf(_("Set %s block parameters"), "GEN_SQR");
+        Exprs0 = ["Amin" ; "Amax" ; "rule" ; "F"]
         Bitems=..
-        ["Minimum Value";
-        "Maximum Value";
-        "Initial Value( 1= Minimum Value 2= Maximum Value)";
-        "Period (sec)"]
-        Ss=..
-        list("mat",[-1,-1],"mat",[-1,-1],"pol",-1,"pol",-1)
+        _(["Minimum Value";
+           "Maximum Value";
+           "Initial Value( 1= Minimum Value 2= Maximum Value)";
+           "Period (s)"])
+        Ss = list("mat",[-1,-1],"mat",[-1,-1],"pol",-1,"pol",-1)
         scicos_context=struct()
         x=arg1
         ok=%f

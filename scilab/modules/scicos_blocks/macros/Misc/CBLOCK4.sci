@@ -35,26 +35,26 @@ function [x,y,typ]=CBLOCK4(job,arg1,arg2)
         while %t do
             [ok,function_name,impli,in,it,out,ot,ci,co,xx,z,oz,...
             rpar,ipar,opar,nmode,nzcr,auto0,depu,dept,lab]=..
-            scicos_getvalue("Set C-Block4 block parameters",..
-            ["Simulation function";
-            "Is block implicit? (y,n)";
-            "Input ports sizes";
-            "Input ports type";
-            "Output port sizes";
-            "Output ports type";
-            "Input event ports sizes";
-            "Output events ports sizes";
-            "Initial continuous state";
-            "Initial discrete state";
-            "Initial object state";
-            "Real parameters vector";
-            "Integer parameters vector";
-            "Object parameters list";
-            "Number of modes";
-            "Number of zero crossings";
-            "Initial firing vector (<0 for no firing)";
-            "Direct feedthrough (y or n)";
-            "Time dependence (y or n)"],..
+            scicos_getvalue(_("Set C-Block4 block parameters"),..
+             _(["Simulation function";
+                "Is block implicit? (y,n)";
+                "Input ports sizes";
+                "Input ports type";
+                "Output port sizes";
+                "Output ports type";
+                "Input events ports sizes ([]|1)";
+                "Output events ports sizes ([]|1)";
+                "Initial continuous state";
+                "Initial discrete state";
+                "Initial object state";
+                "Real parameters vector";
+                "Integer parameters vector";
+                "Object parameters list";
+                "Number of modes";
+                "Number of zero crossings";
+                "Initial firing vector (<0 for no firing)";
+                "Direct feedthrough (y or n)";
+                "Time dependence (y or n)"]),..
             list("str",1,"str",1,"mat",[-1 2],"vec",-1,"mat",[-1 2],"vec",-1,"vec",-1,"vec",-1,..
             "vec",-1,"vec",-1,"lis",-1,"vec",-1,"vec",-1,"lis",-1,"vec",1,"vec",1,"vec","sum(%8)",..
             "str",1,"str",1),label(1))
@@ -81,7 +81,7 @@ function [x,y,typ]=CBLOCK4(job,arg1,arg2)
             end
             if [ci;co]<>[] then
                 if max([ci;co])>1 then
-                    message("vector event links not supported");
+                    message(_("Input/output events ports size must be [] or 1"));
                     ok=%f;
                 end
             end

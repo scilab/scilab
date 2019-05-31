@@ -30,7 +30,7 @@ function y = multMatVect(M, x)
 
     // Check the syntax
     if(argn(1) <> 1) then
-        error("Usage: y = multMatVect(M, x)");
+        error(_("Usage: y = multMatVect(M, x)"));
     end
     if(M == []) then
         y=[];
@@ -40,7 +40,8 @@ function y = multMatVect(M, x)
     [ij,v,mn_M]=spget(M);
     mn_x = size(x);
     if(mn_x(1) <> mn_M(2)) then
-        error("Incompatible dimensions");
+        msg = _("%s: Arguments #%d and #%d: Incompatible sizes.\n")
+        error(msprintf(msg, "multMatVect", 1, 2));
     end
     // Perform the multiplication
     y = emptystr(mn_M(1), 1);

@@ -38,26 +38,23 @@ function [x,y,typ] = MATMUL(job,arg1,arg2)
         if size(label,"*")==2 then
             label(3)=sci2exp(1);
         end //compatibility
+        presentation = _("Set MATMUL parameter<br><br>For the Multiplication rule:<br>    1= Matrix by Matrix<br>    2= Matrix by Matrix element wise <br>    3= Matrix by Scalar<br>In the third case, the second input will be the scalar<br><br>")
         while %t do
-            [ok,dtype,rule,np,exprs]=scicos_getvalue(["Set MATMUL parameter";
-            "For the Multipication rule:";
-            "    1= Matrix by Matrix";
-            "    2= Matrix by Matrix element wise ";
-            "    3= Matrix by Scalar";
-            "In the third case the second input will be the scalar"],..
-            ["Datatype(1=real double 2=Complex 3=int32 ...)";
-            "Multiplication rule";
-            "Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",1,"vec",1),label)
+            [ok,dtype,rule,np,exprs]=scicos_getvalue(presentation, ..
+                _(["Datatype (1=real double 2=Complex 3=int32 ...)";
+                   "Multiplication rule (1,2,3)";
+                   "Do on Overflow(0=Nothing 1=Saturate 2=Error)"]), ..
+               list("vec",1,"vec",1,"vec",1),label)
             if ~ok then
                 break,
             end
             rule=int(rule)
             if (dtype<1|dtype>8) then
-                message("type is not supported");
+                message(_("Unknown datatype"));
                 ok=%f;
             end
             if (rule<1|rule>3) then
-                message("Multiplication rule must be only 1,2 or 3");
+                message(_("Multiplication rule must be 1,2 or 3"));
                 ok=%f;
             end
             if (dtype==1|dtype==2) then

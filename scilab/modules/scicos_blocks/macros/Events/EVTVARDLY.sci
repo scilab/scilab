@@ -30,8 +30,8 @@ function [x,y,typ]=EVTVARDLY(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,fir,exprs]=scicos_getvalue("Set parameter of variable event delay",..
-            "Initial event firing time (<0 if absent)",..
+            [ok,fir,exprs]=scicos_getvalue(_("Set parameter of variable event delay"),..
+            _("Initial event firing time (<0 if none)"),..
             list("vec",1),exprs)
             if ~ok then
                 break,

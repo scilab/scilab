@@ -30,22 +30,23 @@ function [x,y,typ]=MUX(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,in,exprs]=scicos_getvalue("Set MUX block parameters",..
-            "number of input ports or vector of sizes",list("intvec",-1),exprs)
+            [ok,in,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "MUX"),..
+                _("Number of input ports or vector of sizes"),list("intvec",-1),exprs)
             if ~ok then
                 break,
             end
             if size(in,"*")==1 then
                 if in<2|in>31 then
-                    message("Block must have at least two input ports and at most 31")
+                    message(_("The block must have from 2 to 31 input ports"))
                     ok=%f
                 else
                     [model,graphics,ok]=check_io(model,graphics,-[1:in]',0,[],[])
                 end
             else
                 if size(in,"*")<2| or(in==0)|size(in,"*")>31 then
-                    message(["Block must have at least two input ports";
-                    "and at most 31. Size 0 is not allowed. "])
+                    msg = _("The block must have from 2 to 31 input ports.<br>size 0 is not allowed. ")
+                    message(msg)
                     ok=%f
                 else
                     if min(in)<0 then

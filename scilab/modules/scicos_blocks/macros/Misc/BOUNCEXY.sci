@@ -33,16 +33,15 @@ function [x,y,typ]=BOUNCEXY(job,arg1,arg2)
         dstate=model.dstate
         while %t do
             [ok,clrs,siz,win,imode,xmin,xmax,ymin,ymax,exprs]=scicos_getvalue(..
-            "Set Scope parameters",..
-            ["colors";
-            "radii";
-            "window number (-1 for automatic)";
-            "animation mode (0,1)";
-            "Xmin";
-            "Xmax";
-            "Ymin";
-            "Ymax";
-            ],..
+                msprintf(_("Set %s block parameters"), "BOUNCEXY"),..
+                [_("Colors");
+                 _("Radii");
+                 _("Window number (-1 for automatic)");
+                 _("Animation mode (0,1)");
+                   "Xmin";
+                   "Xmax";
+                   "Ymin";
+                   "Ymax"],..
             list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
@@ -50,19 +49,21 @@ function [x,y,typ]=BOUNCEXY(job,arg1,arg2)
 
             mess=[]
             if size(clrs,"*")<>size(siz,"*") then
-                mess=[mess;"colors and radii must have equal size (number of balls)";" "]
+                mess=[ mess;
+                      _("Colors and Radii must have the same size (number of balls)");
+                      " "]
                 ok=%f
             end
             if win<-1 then
-                mess=[mess;"Window number cannot be inferior than -1";" "]
+                mess=[mess;_("The window number cannot be &lt; -1");" "]
                 ok=%f
             end
             if ymin>=ymax then
-                mess=[mess;"Ymax must be greater than Ymin";" "]
+                mess=[mess;_("Ymax > Ymin expected");" "]
                 ok=%f
             end
             if xmin>=xmax then
-                mess=[mess;"Xmax must be greater than Xmin";" "]
+                mess=[mess;_("Xmax > Xmin expected");" "]
                 ok=%f
             end
             if ~ok then

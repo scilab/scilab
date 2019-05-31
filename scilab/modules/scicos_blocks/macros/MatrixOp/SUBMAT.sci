@@ -35,8 +35,15 @@ function [x,y,typ]=SUBMAT(job,arg1,arg2)
             label(6)=sci2exp([1 1]),
         end //compatiblity
         while %t do
-            [ok,typ,a,b,c,d,inp,exprs]=scicos_getvalue("Set SUBMAT Block",..
-            ["Datatype (1=real double  2=Complex)";"Starting Row Index";"Ending Row Index";"Starting Column Index";"Ending Column Index";"Input Dimensions"],list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label)
+            [ok,typ,a,b,c,d,inp,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "SUBMAT"),..
+            _(["Datatype (1=real double  2=Complex)" ; 
+               "Starting Row Index" ;
+               "Ending Row Index" ;
+               "Starting Column Index" ;
+               "Ending Column Index" ;
+               "Input Dimensions"]),..
+              list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",2),label)
             if ~ok then
                 break,
             end
@@ -49,27 +56,27 @@ function [x,y,typ]=SUBMAT(job,arg1,arg2)
                 ot=2;
                 it=2;
             else
-                message("Datatype is not supported");
+                message(_("Unknown Datatype"));
                 ok=%f;
             end
             if (a<=0) | (b<=0) | (c<=0) | (d<=0) then
-                message("invalid index");
+                message(_("Invalid index"));
                 ok=%f;
             end
             if b<a then
-                message("ending row must be greater than starting row");
+                message(_("Ending row index must be greater than starting one"));
                 ok=%f;
             end
             if d<c then
-                message("ending column must be greater than starting column");
+                message(_("Ending column index must be greater than starting one"));
                 ok=%f;
             end
             if b>inp(1) then
-                message ("index of ending row is out of range");
+                message (_("The index of ending row is out of range"));
                 ok=%f;
             end
             if d>inp(2) then
-                message ("index of ending column is out of range");
+                message (_("The index of ending column is out of range"));
                 ok=%f;
             end
             model.ipar=[a;b;c;d];

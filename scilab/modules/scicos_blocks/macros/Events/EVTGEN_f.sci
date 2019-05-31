@@ -30,8 +30,8 @@ function [x,y,typ]=EVTGEN_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,tt,exprs]=scicos_getvalue("Set Event time",..
-            ["Event Time"],list("vec",1),exprs)
+            [ok,tt,exprs]=scicos_getvalue(_("Set Event time"),..
+            [_("Event Time")], list("vec",1),exprs)
             if ~ok then
                 break,
             end
@@ -43,6 +43,7 @@ function [x,y,typ]=EVTGEN_f(job,arg1,arg2)
             x.model=model
             break
         end
+
     case "define" then
         tt=0
         model=scicos_model()

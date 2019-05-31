@@ -38,8 +38,8 @@ function [x,y,typ]=INVBLK(job,arg1,arg2)
 
         while %t do
             [ok,divideByZero,exprs]=..
-            scicos_getvalue("Set block parameters",..
-            ["Error on divide by zero (1: yes) (0:no)"],..
+            scicos_getvalue(msprintf(_("Set %s block parameters"), "INVBLK"),..
+            [_("Error on divide by zero (1:yes) (0:no)")],..
             list("vec",1),exprs)
             if ~ok then
                 break,

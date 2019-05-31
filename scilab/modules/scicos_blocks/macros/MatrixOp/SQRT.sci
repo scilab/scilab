@@ -31,8 +31,9 @@ function [x,y,typ]=SQRT(job,arg1,arg2)
         label=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,typ,exprs]=scicos_getvalue("Set SQRT Block",..
-            ["Datatype(1=real double  2=Complex)"],list("vec",1),label)
+            [ok,typ,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "SQRT"),..
+            _(["Datatype(1=real double  2=Complex)"]),list("vec",1),label)
             if ~ok then
                 break,
             end
@@ -41,7 +42,7 @@ function [x,y,typ]=SQRT(job,arg1,arg2)
             elseif (typ==2) then
                 function_name="matz_sqrt";
             else
-                message("type is not supported");
+                message(_("Unknown datatype"));
                 ok=%f;
             end
             it=typ

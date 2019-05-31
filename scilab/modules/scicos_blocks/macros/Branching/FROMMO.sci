@@ -30,8 +30,9 @@ function [x,y,typ]=FROMMO(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,tag,exprs]=scicos_getvalue("Set parameters",..
-            ["Tag"],..
+            [ok,tag,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "FROMMO"),..
+            [_("Tag")],..
             list("str",-1),exprs)
             if ~ok then
                 break,

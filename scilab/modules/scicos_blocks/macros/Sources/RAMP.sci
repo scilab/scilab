@@ -31,8 +31,14 @@ function [x,y,typ]=RAMP(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,slope,stt,iout,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "RAMP"); " "; gettext("Ramp function");" "], ..
-            [gettext("Slope"); gettext("Start Time"); gettext("Initial Value")], ..
+            [ok,slope,stt,iout,exprs]=scicos_getvalue(..
+            [msprintf(gettext("Set %s block parameters"), "RAMP");
+             " " ;
+             gettext("Ramp function") ;
+             " "], ..
+            [gettext("Slope");
+             gettext("Start Time");
+             gettext("Initial Value")], ..
             list("vec",1,"vec",1,"vec",1), exprs)
             if ~ok then
                 break,

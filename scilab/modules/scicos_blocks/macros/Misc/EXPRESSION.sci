@@ -37,12 +37,11 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
         ieee(2)
         while %t do
             // Prompting the user to edit parameters:
-            [ok,%nin,%exx,%usenz,exprs]=scicos_getvalue(..
-            ["Give a scalar scilab expression using inputs u1, u2,...";
-            "If only one input, input is vector [u1,u2,...] (max 8)";
-            "ex: (dd*u1+sin(u2)>0)*u3";
-            "Note that here dd must be defined in context"],..
-            ["number of inputs";"scilab expression";"use zero-crossing (0: no, 1 yes)"],..
+            msg = _("Set EXPRESSION block parameters<br><br>Give a scalar scilab expression using inputs u1, u2,...<br>If only one input, input is vector [u1,u2,...] (max 8)<br>ex: (dd*u1+sin(u2)>0)*u3<br>Note that here dd must be defined in the context<br><br>");
+            [ok,%nin,%exx,%usenz,exprs]=scicos_getvalue(msg, ..
+            _(["Number of inputs" ;
+               "Scilab expression" ;
+               "Use zero-crossing (0: no, 1 yes)"]),..
             list("vec",1,"vec",1,"vec",1),exprs)
             // %nin: number of input
             // %usenz: flag 0|1 for use zero-crossing
@@ -70,7 +69,7 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
             %head=%head+"u"+string(%nini)+")"
             ok=execstr("deff(%head,%exx)","errcatch")==0
             if ~ok then
-                message(["Erroneous expression";lasterror()])
+                message([_("Erroneous expression") ; lasterror()])
             else
                 if %nin>1 then
                     [model,graphics,ok]=check_io(model,graphics,ones(1,%nin),1,[],...
@@ -84,7 +83,7 @@ function [x,y,typ]=EXPRESSION(job,arg1,arg2)
                     [ok,%ok1,ipar,rpar,%nz]=compiler_expression(%foo)
 
                     if ~ok then
-                        message(["Erroneous expression";lasterror()])
+                        message([_("Erroneous expression") ; lasterror()])
                     else
                         if %ok1 then
                             model.rpar=rpar
@@ -240,6 +239,7 @@ function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
                 message("Variable "+%MM(%indOut)+" is not defined.")
                 ok = %f
                 return
+
             end
             %var = evstr(%MM(%indOut))
             if size(%var,"*") <> 1 then
@@ -260,7 +260,8 @@ function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
                 ierr = execstr("localVar = evstr(var(""name""))", "errcatch");
                 if ierr == 0 then
                     if size(localVar,"*") <> 1 then
-                        message("Variable "+var("name")+" is not scalar.")
+                        msg = msprintf(_("Variable %s is not scalar."), var("name"))
+                        message(msg)
                         ok=%f
                         return
                     end
@@ -268,7 +269,8 @@ function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
                     rpar(nrpar) = localVar
                     ipar = [ipar; 6; nrpar]
                 else
-                    message("Unknown variable "+var("name"))
+                    msg = msprintf(_("Unknown variable %s."), var("name"))
+                    message(msg)
                     ok = %f
                     return
                 end
@@ -283,7 +285,8 @@ function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
         %indOperator = find(f("name")==%FF)
         if %indOperator <> [] then
             if length(f("rhs")) <> %num_arg(%indOperator) then
-                message(f("name")+" must have "+string(%num_arg(%indOperator))+" arguments")
+                msg = _("%s must have %d arguments")
+                message(msprintf(msg, f("name"), %num_arg(%indOperator)))
                 ok = %f
                 return
             end
@@ -330,7 +333,8 @@ function [ok,%ipar,%rpar,%nz]=compile_expr(%foo)
                 ipar = [ipar; 5; %indOperator]
                 nz = nz+1
             else
-                message("Function "+f("name")+" not supported.")
+                msg = _("Function %s not supported.")
+                message(msprintf(msg, f("name")))
                 ok = %f
                 return
             end

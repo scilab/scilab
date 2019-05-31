@@ -30,21 +30,23 @@ function [x,y,typ]=M_SWITCH(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,nin,base,rule,exprs]=scicos_getvalue("Set parameters",..
-            ["number of inputs";"zero base indexing (0), otherwise 1";..
-            "rounding rule: int (0), round (1), ceil (2), floor (3)"],..
-            list("vec",1,"vec",1,"vec",1),exprs)
+            [ok,nin,base,rule,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "M_SWITCH"),..
+                _(["Number of inputs";
+                   "Zero base indexing (0), otherwise 1";
+                   "Rounding rule: int (0), round (1), ceil (2), floor (3)"]),..
+                list("vec",1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end
             nin=int(nin);
             base=int(base);
             if nin<1 then
-                message("Number of inputs must be >=1 ")
+                message(_("Number of inputs >=1 expected"))
             elseif ~((base==1)|(base==0)) then
-                message("base indexing must be 1 or 0")
+                message(_("The zero base indexing must be 1 or 0"))
             elseif ~((rule==1)|(rule==0)|(rule==2)|(rule==3)) then
-                message("incorrect rounding rule")
+                message(_("Unknown rounding rule"))
             else
                 if nin==1 then
                     in=[1 1;-1 1];

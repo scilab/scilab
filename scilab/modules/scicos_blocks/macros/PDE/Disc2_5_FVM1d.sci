@@ -20,24 +20,24 @@
 //
 
 function [coef1,coef2,coef21,coef22]=Disc2_5_FVM1d(h,kbc,operi,N,xn,xw,a1)
-    // Cette fonction renvoie les diff�rentes matrices de discr�tisation     //
-    // des op�rateurs du/dx et dq/dx (q pour le changement de variable dans  //
-    // le cas de l'op�rateur d2u/dx2)                                        //
+    // Cette fonction renvoie les différentes matrices de discrétisation     //
+    // des opérateurs du/dx et dq/dx (q pour le changement de variable dans  //
+    // le cas de l'opérateur d2u/dx2)                                        //
     // sorties :                                                             //
     //    - coef1 (Double) : matrice de l'integrale de du/dx sur une cellule //
-    //    - coef2 (Double) : vecteur correspond � l'impl�mentation des       //
+    //    - coef2 (Double) : vecteur correspond à l'implémentation des       //
     //      conditions aux limites                                           //
     //    - coef21 (Double) : matrice d'integrale de dq/dx sur une cellule   //
     // entr�es :                                                             //
     //    - h (Double) : est le pas de discretisation                        //
     //    - kbc (Entier) : vecteur de types des conditions au limites        //
-    //    - operi (Entier) : l'op�rateur concern� 2 ou 5                     //
+    //    - operi (Entier) : l'opérateur concerné 2 ou 5                     //
     //    - N (Entier) : est le nombre de noeuds                             //
     //    - xn (Double) : vecteur colonne representant les noeuds            //
     //    - xw (Double) : vecteur colonne representant les cellules          //
-    //      (les volumes de contr�le)                                        //
-    //    - a1 (String) : coefficient a(x) de l'op�rateur pour lequel nous   //
-    //      calculons l'int�grale.                                           //
+    //      (les volumes de contrôle)                                        //
+    //    - a1 (String) : coefficient a(x) de l'opérateur pour lequel nous   //
+    //      calculons l'intégrale.                                           //
     //-----------------------------------------------------------------------//
 
     coef1=[];

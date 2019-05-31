@@ -59,7 +59,8 @@ function do_valider()
 
     // verification du domaine
     if (get(findobj("tag","edita"),"String") == "" | get(findobj("tag","editb"),"String") == "") then
-        messagebox(["veuillez renseigner les valeurs";"du domaine de la discretisation"],"modal","error");
+        msg = _("Please provide the values<br>of the domain''s discretization")
+        messagebox(msg, "modal", "error");
         setfin(%t);
         return
     end
@@ -67,49 +68,56 @@ function do_valider()
     // Test de renseignements sur les differents champs de l'IHM
     if (get(findobj("tag","check_op1"),"Value") == 1) then
         if (get(findobj("tag","edita1"),"String") == "" | get(findobj("tag","editb1"),"String") == "") then
-            messagebox(["veuillez renseigner les coefficients";"    de l''operateur d2u/dt2"],"modal","error");
+            msg = _("Please provide the coefficients<br>    of the d2u/dt2 operator")
+            messagebox(msg, "modal", "error");
             setfin(%t);
             return
         end
     end
     if (get(findobj("tag","check_op2"),"Value")== 1) then
         if (get(findobj("tag","edita2"),"String") == "" | get(findobj("tag","editb2"),"String") == "") then
-            messagebox(["veuillez renseigner les coefficients";"    de l''operateur d2u/dx2"],"modal","error");
+            msg = _("Please provide the coefficients<br>   of the d2u/dx2 operator")
+            messagebox(msg, "modal", "error");
             setfin(%t);
             return
         end
     end
     if (get(findobj("tag","check_op3"),"Value")== 1) then
         if (get(findobj("tag","edita3"),"String") == "" | get(findobj("tag","editb3"),"String") == "") then
-            messagebox(["veuillez renseigner les coefficients";"    de l''operateur du/dt"],"modal","error");
+            msg = _("Please provide the coefficients<br>   of the du/dt operator")
+            messagebox(msg, "modal", "error");
             setfin(%t);
             return
         end
     end
     if (get(findobj("tag","check_op4"),"Value")== 1) then
         if (get(findobj("tag","edita4"),"String") == "" | get(findobj("tag","editb4"),"String") == "") then
-            messagebox(["veuillez renseigner les coefficients";"    de l''operateur d2u/dtdx"],"modal","error");
+            msg = _("Please provide the coefficients<br>   of the d2u/dtdx operator")
+            messagebox(msg, "modal", "error");
             setfin(%t);
             return
         end
     end
     if (get(findobj("tag","check_op5"),"Value")== 1) then
         if (get(findobj("tag","edita5"),"String") == "" | get(findobj("tag","editb5"),"String") == "") then
-            messagebox(["veuillez renseigner les coefficients";"    de l''operateur du/dx"],"modal","error");
+            msg = _("Please provide the coefficients<br>    of the du/dx operator")
+            messagebox(msg, "modal", "error");
             setfin(%t);
             return
         end
     end
     if (get(findobj("tag","check_op6"),"Value")== 1) then
         if (get(findobj("tag","edita6"),"String") == "" | get(findobj("tag","editb6"),"String") == "") then
-            messagebox(["veuillez renseigner les coefficients";"      de l''operateur u"],"modal","error");
+            msg = _("Please provide the coefficients<br>      of the u operator")
+            messagebox(msg, "modal", "error");
             setfin(%t);
             return
         end
     end
     if (get(findobj("tag","check_op7"),"Value")== 1) then
         if (get(findobj("tag","edita7"),"String") == "" | get(findobj("tag","editb7"),"String") == "") then
-            messagebox(["veuillez renseigner les coefficients";"      de l''operateur f"],"modal","error");
+            msg = _("Please provide the coefficients<br>      of the f operator.")
+            messagebox(msg, "modal", "error");
             setfin(%t);
             return
         end
@@ -118,7 +126,8 @@ function do_valider()
     // verification du renseignement du signe du discriminant non constant
     if (get(findobj("tag","check2"),"Value")== 1) then
         if (get(findobj("tag","liste_signe"),"Value") == 0 ) then
-            messagebox(["veuillez renseigner le signe";"du discriminant non constant"],"modal","error");
+            msg = _("Please provide the sign of<br>the non-constant discriminant.")
+            messagebox(msg, "modal", "error");
             setfin(%t);
             return
         end
@@ -127,19 +136,22 @@ function do_valider()
     // verification des informations du choix manuel
     if (get(findobj("tag","rad_manuel"),"Value")== 1) then
         if (get(findobj("tag","liste_meth"),"Value") == 0 ) then
-            messagebox(["veuillez renseigner le type";"de la methode de discretisation"],"modal","error");
+            msg = _("Please provide the type of<br>the discretization method.")
+            messagebox(msg, "modal", "error");
             setfin(%t);
             return
         end
 
         if (get(findobj("tag","editdegre"),"String") == "" ) then
-            messagebox(["veuillez renseigner le degre";"de la methode de discretisation"],"modal","error");
+            msg = _("Please provide the degree of<br>the discretization method.")
+            messagebox(msg, "modal", "error");
             setfin(%t);
             return
         end
 
         if (get(findobj("tag","editpas"),"String") == "" ) then
-            messagebox(["veuillez renseigner le nombre";"de points de discretisation"],"modal","error");
+            msg = _("Please provide the number<br>of discretisation points.")
+            messagebox(msg, "modal", "error");
             setfin(%t);
             return
         end
@@ -147,21 +159,23 @@ function do_valider()
     // verification du renseignement des conditions intiales
     if (get(findobj("tag","check_op1"),"Value")==1 | get(findobj("tag","check_op3"),"Value")== 1 | get(findobj("tag","check_op4"),"Value")== 1) then
         if (get(findobj("tag","editCI"),"String") == "" ) then
-            messagebox(["veuillez renseigner la condition";"         initiale u(x,t0)"],"modal","error");
+            msg = _("Please provide the<br>initial condition u(x,t0).")
+            messagebox(msg, "modal", "error");
             setfin(%t);
             return
         end
     end
     if (get(findobj("tag","check_op1"),"Value")== 1) then
         if (get(findobj("tag","editCI1"),"String") == "" ) then
-            messagebox(["veuillez renseigner la condition";"         initiale du/dx|t0"],"modal","error");
+            msg = _("Please provide the<br>initial condition du/dx|t0")
+            messagebox(msg, "modal", "error");
             setfin(%t);
             return
         end
     end
     // verification du renseignement des conditions aux limites
     if (get(findobj("tag","editCLa"),"String") == "" | get(findobj("tag","editCLb"),"String") == "" ) then
-        messagebox(["veuillez renseigner les conditions";"         aux limites"],"modal","error");
+        messagebox(_("Please provide the boundary conditions."), "modal", "error");
         setfin(%t);
         return
     end
@@ -178,7 +192,7 @@ function add_list_points()
         new = get(findobj("tag","edit_pt"),"String");
         newv=evstr(new);
         if (newv < evstr(get(findobj("tag","edita"),"String"))-%eps | newv > evstr(get(findobj("tag","editb"),"String"))+%eps) then
-            messagebox("le point choisi est en dehors du domaine","modal","error");
+            messagebox(_("The chosen point is out of the domain"), "modal", "error");
             return;
         end
 
@@ -197,9 +211,8 @@ endfunction
 
 function del_list_points()
     // développé par EADS-CCR
-    // cette fonction gère la supprission //
-    // d'un poit de mesure         //
-    // ----------------------------//
+    // Cette fonction gère la suppression d'un point de mesure  //
+    // -------------------------------------------------------  //
     if ~isempty(findobj("tag","edit_pt")) then
         del = get(findobj("tag","liste_pts"),"Value");
 
@@ -263,7 +276,7 @@ function visualiser()
     end
     if (get(findobj("tag","check_op7"),"Value")== 1) then
         if isempty(expression) then
-            expression="Veuillez selectionner les operateurs";
+            expression = _("Please select the operators");
         else
             expression=expression+"=("+get(findobj("tag","edita7"),"String")+")*b7(t)";
         end
@@ -271,7 +284,7 @@ function visualiser()
         expression=expression+"=0";
     end
     if (expression == "=0") then
-        expression="Veuillez selectionner les operateurs";
+        expression = _("Please select the operators");
     end
     sep=["+","*","-"," "];
     expression=cformatlinedp(expression,80,sep);

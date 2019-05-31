@@ -47,12 +47,13 @@ function [out1,out2]=m_sin(t,x,z,up,uc,clock,flag,rpar,ipar)
         model=t
         exprs=x
         if exprs==[] then
-            [ok,gain,phase,exprs1]=scicos_getvalue("Set Sin block parameters",..
-            ["Frequency";"Phase"],list("vec",1,"vec",1))
+            [ok,gain,phase,exprs1]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "Sin"),..
+            _(["Frequency";"Phase"]),list("vec",1,"vec",1))
         else
-
-            [ok,gain,phase,exprs1]=scicos_getvalue("Set Sin block parameters",..
-            ["Frequency";"Phase"],list("vec",1,"vec",1),exprs)
+            [ok,gain,phase,exprs1]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "Sin"),..
+            _(["Frequency";"Phase"]),list("vec",1,"vec",1), exprs)
         end
         if ok then
             model.rpar=[gain;phase]

@@ -36,9 +36,11 @@ function [x,y,typ]=ESELECT_f(job,arg1,arg2)
         end
         model=arg1.model;
         while %t do
-            [ok,out,inh,nmod,exprs]=scicos_getvalue("Set ESELECT block parameters",..
-            ["number of output event ports";"Inherit (1: no, 0: yes)";
-            "zero-crossing (0: no, 1: yes)"],..
+            [ok,out,inh,nmod,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "ESELECT_f"),..
+            _(["Number of output event ports"; 
+               "Inherit (1: no, 0: yes)";
+               "Zero-crossing (0: no, 1: yes)"]),..
             list("vec",1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
@@ -53,7 +55,7 @@ function [x,y,typ]=ESELECT_f(job,arg1,arg2)
             end
             out=int(out)
             if out<2 then
-                message("Block must have at least two output ports")
+                message(_("The block must have at least two output ports"))
             else
                 [model,graphics,ok]=check_io(model,graphics,1,[],inh,[ones(out,1)])
                 if ok then

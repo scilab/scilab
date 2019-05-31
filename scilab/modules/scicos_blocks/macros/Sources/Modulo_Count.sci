@@ -31,8 +31,12 @@ function [x,y,typ]=Modulo_Count(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,ini_c,base,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "Modulo_Count");" "; gettext("Modulo counter (0 to N counter)");" "], ..
-            [gettext("Initial State (zero or positive number)"); gettext("Upper Limit (positive number)")], ..
+            [ok,ini_c,base,exprs] = scicos_getvalue(..
+            [msprintf(gettext("Set %s block parameters"), "Modulo_Count") ;
+             " " ;
+             gettext("Modulo counter (0 to N counter)")], ..
+            [gettext("Initial State (zero or positive number)");
+             gettext("Upper Limit (positive number)")], ..
             list("vec",1,"vec",1), exprs);
 
             ini_c = int(ini_c);
@@ -67,7 +71,7 @@ function [x,y,typ]=Modulo_Count(job,arg1,arg2)
         model.blocktype="c"
         model.dep_ut=[%f %f]
 
-        exprs=[string(ini_c);string(base)]
+        exprs=[string(ini_c) ; string(base)]
         gr_i=[]
         x=standard_define([3 2],model,exprs,gr_i)
     end

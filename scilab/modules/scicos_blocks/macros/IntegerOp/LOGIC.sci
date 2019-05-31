@@ -30,11 +30,11 @@ function [x,y,typ]=LOGIC(job,arg1,arg2)
         graphics=arg1.graphics;
         exprs=graphics.exprs
         model=arg1.model;
+        presentation = _("Set LOGIC block parameters<br><br>Combinatorial logic:<br><br>&nbsp; Rows of the matrix are the output values.<br>&nbsp; Number of rows must be a power of two.<br>&nbsp; Number of columns gives the number of outputs.<br><br>")
         while %t do
-            [ok,mat,herit,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "LOGIC"); " ";gettext("Combinatorial logic");" ";
-            gettext("&nbsp; Rows of the matrix are the output values"); gettext("&nbsp; Number of rows must be a power of two."); ..
-            gettext("&nbsp; Number of columns gives the number of outputs.");" "], ..
-            [gettext("Truth Table (matrix of outputs)"); gettext("Accepts Inherited Events (0:No, 1:Yes)")], ..
+            [ok,mat,herit,exprs]=scicos_getvalue(presentation, ..
+            [gettext("Truth Table (matrix of outputs)"); 
+             gettext("Accepts Inherited Events (0:No, 1:Yes)")], ..
             list("mat",[-1,-2],"vec",1), exprs);
 
             if ~ok then

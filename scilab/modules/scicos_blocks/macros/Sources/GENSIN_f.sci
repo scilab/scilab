@@ -31,9 +31,10 @@ function [x,y,typ]=GENSIN_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok, M, F, P, exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "GENSIN_f");" "; ..
+            [ok, M, F, P, exprs] = scicos_getvalue(..
+            [msprintf(gettext("Set %s block parameters"), "GENSIN_f");" "; ..
             gettext("Sine wave generator");" "], ..
-            [gettext("Magnitude"); gettext("Frequency (rad/s)"); gettext("Phase (rad)")], ..
+            [gettext("Amplitude"); gettext("Frequency (rad/s)"); gettext("Phase (rad)")], ..
             list("vec",1,"vec",1,"vec",1), exprs);
             if ~ok then
                 break,

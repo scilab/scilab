@@ -30,14 +30,14 @@ function [x,y,typ]=QUANT_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t then
-            [ok,pas,meth,exprs]=scicos_getvalue("Set parameters",..
-            ["Step";"Quantization Type (1-4)"],..
+            [ok,pas,meth,exprs]=scicos_getvalue(_("Set parameters"),..
+            _(["Step";"Quantization Type (1-4)"]),..
             list("vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end
             if meth<1|meth>4 then
-                message("Quantization Type must be from 1 to 4")
+                message(_("Quantization Type must be from 1 to 4"))
             else
                 rpar=pas
                 model.rpar=rpar

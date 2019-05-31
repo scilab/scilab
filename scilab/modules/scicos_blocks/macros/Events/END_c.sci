@@ -30,8 +30,8 @@ function [x,y,typ]=END_c(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,tf,exprs]=scicos_getvalue("Set final simulation time",..
-            ["Final simulation time"],list("vec",1),exprs)
+            [ok,tf,exprs]=scicos_getvalue(_("Set final simulation time"),..
+            [_("Final simulation time")],list("vec",1),exprs)
             if ~ok then
                 break,
             end

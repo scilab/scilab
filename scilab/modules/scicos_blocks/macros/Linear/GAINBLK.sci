@@ -36,15 +36,16 @@ function [x,y,typ] = GAINBLK(job,arg1,arg2)
             exprs=[exprs;sci2exp(0)];
         end // compatibility
         while %t do
-            [ok,gain,over,exprs]=scicos_getvalue("Set gain block parameters",..
-            ["Gain";..
-            "Do On Overflow(0=Nothing 1=Saturate 2=Error)"],..
+            [ok,gain,over,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "GAINBLK"),..
+                _(["Gain" ;
+                   "Do On Overflow (0=Nothing 1=Saturate 2=Error)"]),..
             list("mat",[-1,-1],"vec",1),exprs)
             if ~ok then
                 break,
             end
             if gain==[] then
-                message("Gain must have at least one element")
+                message(_("Gain must have at least one element"))
             else
                 if typeof(gain)=="constant" then
                     if isreal(gain) then
@@ -54,7 +55,7 @@ function [x,y,typ] = GAINBLK(job,arg1,arg2)
                         model.rpar=gain(:);
                         model.opar=list();
                     else
-                        message("type is not supported");
+                        message(_("Complex gain not supported"));
                         ok=%f;
                     end
                 else
@@ -78,7 +79,7 @@ function [x,y,typ] = GAINBLK(job,arg1,arg2)
                             ot=8
                             model.sim=list("gainblk_ui8n",4)
                         else
-                            message("type is not supported.");
+                            message(_("gain''s datatype not supported."));
                             ok=%f;
                         end
                     elseif (over==1) then
@@ -101,7 +102,7 @@ function [x,y,typ] = GAINBLK(job,arg1,arg2)
                             ot=8
                             model.sim=list("gainblk_ui8s",4)
                         else
-                            message("type is not supported.");
+                            message(_("gain''s datatype not supported."));
                             ok=%f;
                         end
                     elseif (over==2) then
@@ -124,11 +125,11 @@ function [x,y,typ] = GAINBLK(job,arg1,arg2)
                             ot=8
                             model.sim=list("gainblk_ui8e",4)
                         else
-                            message("type is not an integer.");
+                            message(_("gain''s datatype: Encoded integer expected."));
                             ok=%f;
                         end
                     else
-                        message("Do on Overflow must be 0,1,2");
+                        message(_("Do on Overflow must be 0, 1, or 2"));
                         ok=%f;
                     end
                     model.rpar=[];

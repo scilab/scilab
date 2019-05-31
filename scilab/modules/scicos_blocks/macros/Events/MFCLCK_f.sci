@@ -29,8 +29,9 @@ function [x,y,typ]=MFCLCK_f(job,arg1,arg2)
         graphics=arg1.graphics;
         exprs=graphics.exprs
         model=arg1.model;
-        [ok,dt,nn,exprs]=scicos_getvalue("Set Multifrequency clock parameters",..
-        ["basic period (1/f)";"multiply by (n)"],list("vec",1,"vec",1),exprs)
+        [ok,dt,nn,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "Multifrequency clock"),..
+        _(["Basic period (1/f)";"multiply by (n)"]),list("vec",1,"vec",1),exprs)
         if ok then
             model.ipar=nn
             model.rpar=dt;

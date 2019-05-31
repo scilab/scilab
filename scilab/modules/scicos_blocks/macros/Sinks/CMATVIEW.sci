@@ -31,21 +31,21 @@ function [x,y,typ]=CMATVIEW(job,arg1,arg2)
         model=arg1.model;
         while %t do
             [ok,colormap,cmin,cmax,exprs]=scicos_getvalue(..
-            "Set Scope parameters",..
-            ["ColorMap";
-            "Minimum level range";
-            "Maximum level range"],..
+            msprintf(_("Set %s block parameters"), "CMATVIEW Scope"),..
+            _(["ColorMap";
+               "Minimum level range";
+               "Maximum level range"]),..
             list("vec",-1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end //user cancel modification
             mess=[]
             if cmax<=cmin then
-                mess=[mess;"Error with minimum and maximum value";" "]
+                mess=[mess ; _("Error with minimum and maximum values") ; " "]
                 ok=%f
             end
             if ~ok then
-                message(["Some specified values are inconsistent:";" ";mess])
+                message([_("Some specified values are inconsistent:") ; " " ; mess])
             end
             if ok then
                 size_c=size(colormap(:),1);

@@ -30,15 +30,15 @@ function [x,y,typ]=ZCROSS_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,in,exprs]=scicos_getvalue(["Set Zero-Crossing parameters";..
-            "All surfaces must cross together"],..
-            "Input size",list("vec",1),exprs)
+            [ok,in,exprs]=scicos_getvalue(..
+            _("Set Zero-Crossing parameters<br><br>All surfaces must cross together"),..
+            _("Input size"), list("vec",1), exprs)
             if ~ok then
                 break,
             end
             in=int(in)
             if in<=0 then
-                message("Block must have at least one input")
+                message(_("The block must have at least one input"))
             else
                 kk=0
                 for jj=1:in

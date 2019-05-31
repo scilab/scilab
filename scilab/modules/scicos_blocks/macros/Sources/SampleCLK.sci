@@ -30,18 +30,18 @@ function [x,y,typ]=SampleCLK(job,arg1,arg2)
         model=arg1.model;
         exprs=graphics.exprs
         while %t do
-            [ok,frequ,offset,exprs]=scicos_getvalue("Set block parameters",..
-            ["Sample time";"Offset"],..
-            list("vec",1,"vec",1),exprs)
+            [ok,frequ,offset,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "SampleCLK"),..
+            _(["Sample time" ; "Offset"]), list("vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end
             if frequ<0 then
-                message("Frequency must be a positif number");
+                message(_("''Sample time'' must be ≥ 0"));
                 ok=%f;
             end
             if abs(offset) > frequ then
-                message("The |Offset| must be less than the Frequency");
+                message(_("The |Offset| must be less than the Sample time"));
                 ok=%f
             end
             if ok then

@@ -47,7 +47,7 @@ function [x,y,typ]=LOOKUP_f(job,arg1,arg2)
             end
             n=size(xx,"*")
             if or(xx(2:n)-xx(1:n-1)<=0) then
-                message("You have not defined a function")
+                message(_("You have not defined a function"))
                 ok=%f
             end
             if ok then

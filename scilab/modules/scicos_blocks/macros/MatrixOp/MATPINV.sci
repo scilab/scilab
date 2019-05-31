@@ -34,8 +34,10 @@ function [x,y,typ]=MATPINV(job,arg1,arg2)
             label(9)=[],
         end //compatiblity
         while %t do
-            [ok,typ,exprs]=scicos_getvalue("Set MATPINV Block",..
-            ["Datatype(1=real double  2=Complex)"],list("vec",1),label)
+            [ok,typ,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "MATPINV"),..
+                _(["Datatype (1=real double  2=Complex)"]), ..
+            list("vec",1), label)
             if ~ok then
                 break,
             end
@@ -48,7 +50,7 @@ function [x,y,typ]=MATPINV(job,arg1,arg2)
                 ot=2;
                 it=2;
             else
-                message("Datatype is not supported");
+                message(_("Unknown datatype"));
                 ok=%f;
             end
             in=[model.in model.in2];

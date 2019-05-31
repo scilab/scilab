@@ -32,11 +32,11 @@ function [x,y,typ]=c_block(job,arg1,arg2)
         label=graphics.exprs;
         while %t do
             [ok,i,o,rpar,funam,lab]=..
-            scicos_getvalue("Set C_block parameters",..
-            ["input ports sizes";
-            "output port sizes";
-            "System parameters vector";
-            "function name"],..
+            scicos_getvalue(msprintf(_("Set %s block parameters"), "C_block"),..
+            _(["Input ports sizes";
+               "Output port sizes";
+               "System parameters vector";
+               "Function name"]),..
             list("vec",-1,"vec",-1,"vec",-1,"str",-1),label(1))
             if ~ok then
                 break,

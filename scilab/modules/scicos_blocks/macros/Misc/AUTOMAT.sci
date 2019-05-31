@@ -34,7 +34,7 @@ function [x,y,typ]=AUTOMAT(job,arg1,arg2)
         NX=ipar(3)
         while %t do
             CX="C1";
-            MSG0="''Jump from Mode ";
+            MSG0="''"+_("Jump from Mode ");
             MSG2=":[..;M_final(Guard=In(";
             MSG3=").i);..]''"
             MSG=MSG0+"1"+MSG2+"1"+MSG3;
@@ -45,9 +45,15 @@ function [x,y,typ]=AUTOMAT(job,arg1,arg2)
                 VEC=VEC+","+"''mat'',[-1,1]";
             end
             //===========================================
-            GTV="[ok,NMode,Minitial,NX,X0,XP,"+CX+",exprs]=scicos_getvalue(''Set Finite state machine model'',"+..
-            "[''Number (finite-state) Modes'';''Initial Mode'';''Number of continuous-time states'';''Continuous-time states initial values'';''Xproperties of continuous-time states in each Mode'';"+MSG+"],"+..
-            "list(''vec'',1,''vec'',1,''vec'',1,''mat'',[-1,-1],''mat'',[-1,-1],"+VEC+"),exprs)"
+            title = _("Set Finite state machine model");
+            items = _(["Number of finite-state Modes" ;
+                       "Initial Mode" ;
+                       "Number of continuous-time states" ;
+                       "Continuous-time states initial values" ;
+                       "Xproperties of continuous-time states in each Mode"])
+            GTV="[ok,NMode,Minitial,NX,X0,XP,"+CX+",exprs] = "+..
+                "scicos_getvalue(title, [items ; "+MSG+"],"+..
+                "list(''vec'',1,''vec'',1,''vec'',1,''mat'',[-1,-1],''mat'',[-1,-1],"+VEC+"),exprs)"
             execstr(GTV);
             if ~ok then
                 break,
@@ -64,8 +70,8 @@ function [x,y,typ]=AUTOMAT(job,arg1,arg2)
                 ModifEncore=%t;
             end
             if (NX<>size(X0,"*")) then
-                messagebox("the size of initial continuous-time states should be NX="+string(NX),"modal","error");
-                ModifEncore=%t;
+                messagebox(msprintf(_("The size of initial continuous-time states should be NX=%d"),NX), "modal", "error");
+                ModifEncore = %t;
             end
 
             [rXP,cXP]=size(XP)
@@ -73,7 +79,7 @@ function [x,y,typ]=AUTOMAT(job,arg1,arg2)
                 messagebox("Xproperty matrix is not valid: it should have NX="+string(NX)+" columns","modal","error");
                 ModifEncore=%t;
             elseif ((rXP<>NMode) & (rXP>1))
-                messagebox("Xproperty matrix is not valid: it should have NMode="+string(NMode)+" or 1 row(s)","modal","error");
+                messagebox(msprintf(_("Xproperty matrix is not valid: It should have one or NMode=%d rows"),NMode), "modal", "error");
                 ModifEncore=%t;
             elseif (rXP==1)
                 for i=1:NMode-1
@@ -107,12 +113,14 @@ function [x,y,typ]=AUTOMAT(job,arg1,arg2)
                 end
 
                 if MaxModes>NMode then
-                    messagebox(["Number of Modes should be "+string(MaxModes);..
-                    "A destination Mode in Mode#"+string(imax)+"''s targets is invalid!"],"modal","error");
+                    messagebox(..
+                   [msprintf(_("The number of modes should be %d"), MaxModes);..
+                    msprintf(_("A destination mode in Mode#%d targets is invalid!"),imax)],..
+                      "modal", "error");
                     ModifEncore=%t;
                 end
                 if MaxModes<NMode then
-                    messagebox(["There is an unused Mode or the Number of Modes should be "+string(MaxModes)],"modal","error");
+                    messagebox(msprintf(_("There is an unused Mode or the Number of Modes should be %d"), MaxModes), "modal", "error");
                     ModifEncore=%t;
                 end
             end

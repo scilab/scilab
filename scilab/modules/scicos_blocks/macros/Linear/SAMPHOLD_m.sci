@@ -31,13 +31,15 @@ function [x,y,typ]=SAMPHOLD_m(job,arg1,arg2)
         label=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,it,exprs]=scicos_getvalue("Set parameters Block",..
-            ["Datatype(1=real double 2=Complex 3=int32 ...)"],list("vec",1),label)
+            [ok,it,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "SAMPHOLD_m"),..
+            _(["Datatype (1=real double 2=Complex 3=int32 ...)"]), ..
+            list("vec",1),label)
             if ~ok then
                 break,
             end
             if ((it<1)|(it>8)) then
-                message ("Datatype is not supported");
+                message (_("Unknown Datatype"));
                 ok=%f;
             end
             if ok then

@@ -30,8 +30,9 @@ function [x,y,typ]=NRMSOM_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,nin,exprs]=scicos_getvalue("Set parameters",..
-            ["number of inputs"],list("vec",1),exprs)
+            [ok,nin,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "NRMSOM_f"),..
+            [_("number of inputs")],list("vec",1),exprs)
             if ~ok then
                 break,
             end

@@ -34,8 +34,11 @@ function [x,y,typ]=EXTRACT(job,arg1,arg2)
             label(9)=[],
         end //compatiblity
         while %t do
-            [ok,typ,a,b,exprs]=scicos_getvalue("Set EXTRACT Block",..
-            ["Datatype (1=real double  2=Complex)";"Lines to extract";"Columns to extract"],list("vec",1,"mat",[1 -1],"mat",[1 -1]),label)
+            [ok,typ,a,b,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "EXTRACT"),..
+            _(["Datatype (1=real double  2=Complex)" ; 
+               "Lines to extract" ;
+               "Columns to extract"]), list("vec",1,"mat",[1 -1],"mat",[1 -1]), label)
             a=a(:);
             b=b(:);
             if ~ok then
@@ -50,24 +53,24 @@ function [x,y,typ]=EXTRACT(job,arg1,arg2)
                 ot=2;
                 it=2;
             else
-                message("Datatype is not supported");
+                message(_("Unknown datatype"));
                 ok=%f;
             end
             ma=size(a,1);
             mb=size(b,1);
             if (ma==0 | mb==0) then
-                message ("empty field");
+                message(_("Empty field"));
                 ok=%f;
             end
             for i=1:ma,
                 if (a(i)<=0) then
-                    message("invalid index");
+                    message(_("Invalid index"));
                     ok=%f;
                 end;
             end
             for j=1:mb,
                 if(b(j)<=0) then
-                    message("invalid index");
+                    message(_("Invalid index"));
                     ok=%f;
                 end;
             end

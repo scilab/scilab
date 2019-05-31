@@ -34,8 +34,8 @@ function [x,y,typ]=DOLLAR_f(job,arg1,arg2)
             exprs(2)="0";
         end
         while %t do
-            [ok,a,inh,exprs]=scicos_getvalue("Set 1/z block parameters",..
-            ["initial condition";"Inherit (no:0, yes:1)"],...
+            [ok,a,inh,exprs]=scicos_getvalue(_("Set 1/z block parameters"),..
+            _(["Initial condition"; "Inherit (no:0, yes:1)"]),...
             list("vec",-1,"vec",-1),exprs)
             if ~ok then
                 break,

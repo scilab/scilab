@@ -30,13 +30,15 @@ function [x,y,typ]=RATELIMITER(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,maxp,minp,exprs]=scicos_getvalue("Set rate limiter parameters",..
-            ["max slope";"min slope";],list("vec",1,"vec",1),exprs)
+            [ok,maxp,minp,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "RATELIMITER"), ..
+            _(["Maximal slope (> 0)" ; "Minimal slope (&lt; 0)"]), ..
+            list("vec",1,"vec",1), exprs)
             if ~ok then
                 break,
             end
             if maxp<=minp|maxp<=0|minp>=0  then
-                message("We must have max_slope> 0 > min_slope.")
+                message(_("We must have max_slope > 0 > min_slope."))
             else
                 rpar=[maxp;minp]
                 model.rpar=rpar

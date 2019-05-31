@@ -31,10 +31,11 @@ function [x, y, typ] = TOWS_c(job, arg1, arg2)
         exprs = graphics.exprs;
 
         while %t do
-            [ok, nz, varnam, herit, exprs] = scicos_getvalue("Set Xcos buffer block", ...
-            ["Size of buffer";
-            "Scilab variable name";
-            "Inherit (no:0, yes:1)"], ...
+            [ok, nz, varnam, herit, exprs] = scicos_getvalue(..
+            msprintf(_("Set %s block parameters"),"TO_WorkSpace"), ..
+            _(["Size of buffer";
+               "Scilab variable name";
+               "Inherit (no:0, yes:1)"]), ...
             list("vec", 1, "str", 1, "vec", 1), exprs);
 
             if ~ok then
@@ -42,7 +43,7 @@ function [x, y, typ] = TOWS_c(job, arg1, arg2)
             end;
 
             if (nz <= 0) then
-                message("Size of buffer must be positive");
+                message(_("Size of buffer must be > 0"));
                 ok = %f;
             end
 
@@ -50,13 +51,14 @@ function [x, y, typ] = TOWS_c(job, arg1, arg2)
             r = %f;
             ierr = execstr("r = validvar(varnam)", "errcatch");
             if ~r | ierr <> 0 | length(varnam) > 19 then
-                message(["Invalid variable name."; "Please choose another variable name."]);
+                message(_("Invalid variable''s name.<br>Please choose another name."));
                 ok = %f;
             end
             // If varnam already exists, then it must be of type struct (17) with fields "values" and "names".
             // Otherwise, it is considered as a protected variable, an error is raised and user will be asked to enter a new name.
+            msg = _("Protected variable name.<br>Please choose another name.")
             execstr("if type("+varnam+") <> 17 | or(fieldnames("+varnam+") <> [""values""; ""time""]) then" + ...
-            " message([""Protected variable name.""; ""Please choose another variable name.""]);" + ...
+            " message(msg);" + ...
             " ok = %f;" + ...
             " end", "errcatch");
 

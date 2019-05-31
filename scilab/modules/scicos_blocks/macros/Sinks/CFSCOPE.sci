@@ -33,16 +33,16 @@ function [x,y,typ]=CFSCOPE(job,arg1,arg2)
         //dstate=model.in
         while %t do
             [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,wu,exprs]=scicos_getvalue(..
-            "Set Scope parameters",..
-            ["Color (>0) or mark (<0) vector (8 entries)";
-            "Output window number (-1 for automatic)";
-            "Output window position";
-            "Output window sizes";
-            "Ymin";
-            "Ymax";
-            "Refresh period";
-            "Buffer size"
-            "Links to view"],..
+            msprintf(_("Set %s block parameters"), "Floating SCOPE"),..
+             _(["Curves styles: Colors>0 | marks<0";
+                "Output window number (-1 for automatic)";
+                "Output window position";
+                "Output window sizes";
+                "Ymin";
+                "Ymax";
+                "Refresh period";
+                "Buffer size";
+                "Links to view"]),..
             list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,..
             "vec",1,"vec",1,"vec",1,"vec",-1),..
             exprs)
@@ -51,36 +51,36 @@ function [x,y,typ]=CFSCOPE(job,arg1,arg2)
             end //user cancel modification
             mess=[]
             if size(wpos,"*")<>0 &size(wpos,"*")<>2 then
-                mess=[mess;"Window position must be [] or a 2 vector";" "]
+                mess=[mess ; _("''Window position'' must be [] or a 2 vector");" "]
                 ok=%f
             end
             if size(wdim,"*")<>0 &size(wdim,"*")<>2 then
-                mess=[mess;"Window dim must be [] or a 2 vector";" "]
+                mess=[mess ; _("''Window sizes'' must be [] or a 2 vector");" "]
                 ok=%f
             end
             if win<-1 then
-                mess=[mess;"Window number cannot be inferior than -1";" "]
+                mess=[mess ; _("''Window number'' must be ≥ -1") ; " "]
                 ok=%f
             end
             if per<=0 then
-                mess=[mess;"Refresh period must be positive";" "]
+                mess=[mess ; _("The Refresh period must be > 0") ; " "]
                 ok=%f
             end
             if N<2 then
-                mess=[mess;"Buffer size must be at least 2";" "]
+                mess=[mess ; _("The Buffer size must be ≥ 2") ; " "]
                 ok=%f
             end
             if ymin>=ymax then
-                mess=[mess;"Ymax must be greater than Ymin";" "]
+                mess=[mess ; _("Ymax > Ymin is required.") ; " "]
                 ok=%f
             end
             if wu<0 then
-                mess=[mess;"Link to view must be positive";" "]
+                mess=[mess ; _("Link to view must be positive") ; " "]
                 ok=%f
             end
             if ~ok then
-                message(["Some specified values are inconsistent:";
-                " ";mess])
+                message([_("Some specified values are inconsistent:");
+                        " " ; mess])
             end
             if ok then
                 if wpos==[] then

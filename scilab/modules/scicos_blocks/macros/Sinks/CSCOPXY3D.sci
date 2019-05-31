@@ -31,18 +31,18 @@ function [x,y,typ]=CSCOPXY3D(job,arg1,arg2)
         model=arg1.model;
         while %t do
             [ok,nbr_curves,clrs,siz,win,wpos,wdim,vec_x,vec_y,vec_z,param3ds,N,exprs]=scicos_getvalue(..
-            "Set Scope parameters",..
-            ["Number of curves";
-            "color (>0) or mark (<0)";
-            "Line or Mark Size";
-            "Output window number (-1 for automatic)";
-            "Output window position";
-            "Output window sizes";
-            "Xmin and Xmax";
-            "Ymin and Ymax";
-            "Zmin and Zmax";
-            "Alpha and Theta";
-            "Buffer size"],..
+            msprintf(_("Set %s block parameters"), "CSCOPEXY3D"),..
+             _(["Number of curves";
+                "Curves styles: Colors>0 | marks<0";
+                "Curves thicknesses | marks sizes";
+                "Output window number (-1 for automatic)";
+                "Output window position";
+                "Output window sizes";
+                "Xmin and Xmax";
+                "Ymin and Ymax";
+                "Zmin and Zmax";
+                "Alpha and Theta";
+                "Buffer size"]),..
             list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",2,"vec",2,"vec",2,"vec",2,"vec",1),..
             exprs)
             if ~ok then
@@ -50,47 +50,47 @@ function [x,y,typ]=CSCOPXY3D(job,arg1,arg2)
             end //user cancel modification
             mess=[];
             if size(wpos,"*")<>0 &size(wpos,"*")<>2 then
-                mess=[mess;"Window position must be [] or a 2 vector";" "]
+                mess=[mess;_("''Window position'' must be [] or a 2 vector");" "]
                 ok=%f
             end
             if size(wdim,"*")<>0 &size(wdim,"*")<>2 then
-                mess=[mess;"Window dim must be [] or a 2 vector";" "]
+                mess=[mess;_("''Window sizes'' must be [] or a 2 vector");" "]
                 ok=%f
             end
             if size(clrs,"*")<>size(siz,"*") then
-                mess=[mess;"Colors and Size must have same size";" "]
+                mess=[mess;_("<html>The number of Colors or Mark styles<br>and the number of curves thicknesses or marks sizes<br>must match.");" "]
                 ok=%f
             end
             if nbr_curves<=0 then
-                mess=[mess;"Number of curves cannot be negative or null";" "]
+                mess=[mess;_("The number of curves must be > 0");" "]
                 ok=%f
             end
             if win<-1 then
-                mess=[mess;"Window number cannot be inferior than -1";" "]
+                mess=[mess;_("The Window''s number must be > -1");" "]
                 ok=%f
             end
             if N<1 then
-                mess=[mess;"Buffer size must be at least 1";" "]
+                mess=[mess;_("The Buffer size must be at least 1");" "]
                 ok=%f
             end
             if N<2
                 for i=1:size(clrs,"*")
                     if clrs(i)>0 then
-                        mess=[mess;"Buffer size must be at least 2 or Change a color (must be >0)";" "]
+                        mess=[mess;_("The Buffer size must be at least 2 or Change a color (must be >0)");" "]
                         ok=%f
                     end
                 end
             end
             if vec_y(1)>=vec_y(2) then
-                mess=[mess;"Ymax must be higher than Ymin";" "]
+                mess=[mess ; _("Ymax > Ymin is required.") ; " "]
                 ok=%f
             end
             if vec_x(1)>=vec_x(2) then
-                mess=[mess;"Xmax must be higher than Xmin";" "]
+                mess=[mess ; _("Xmax > Xmin is required.") ; " "]
                 ok=%f
             end
             if vec_z(1)>=vec_z(2) then
-                mess=[mess;"Zmax must be higher than Zmin";" "]
+                mess=[mess ; _("Zmax > Zmin is required") ; " "]
                 ok=%f
             end
             if ok then

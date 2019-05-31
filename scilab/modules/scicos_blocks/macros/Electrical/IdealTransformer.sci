@@ -34,8 +34,9 @@ function [x,y,typ]=IdealTransformer(job,arg1,arg2)
         x=arg1
         exprs=x.graphics.exprs
         while %t do
-            [ok,N,exprs]=scicos_getvalue(["Set Transformer block parameters:";"";"N:"+...
-            " Turn ratio (N1/N2)"],["N"],list("vec",1),exprs)
+            [ok,N,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters\n"), "IdealTransformer"),..
+            ["N: Turn ratio (N1/N2)"], list("vec",1),exprs)
             if ~ok then
                 break,
             end

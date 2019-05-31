@@ -34,15 +34,16 @@ function [x,y,typ]=DLR_f(job,arg1,arg2)
         %scicos_context=%scicos_context; //copy the semi-global variable locally
         %scicos_context.z=%z //add z definition to the context
         while %t do
-            [ok,num,den,exprs]=scicos_getvalue("Set discrete SISO transfer parameters",..
-            ["Numerator (z)";
-            "Denominator (z)"],..
+            [ok,num,den,exprs]=scicos_getvalue(..
+                _("Set discrete SISO transfer parameters"),..
+                _(["Numerator (z)";
+                   "Denominator (z)"]),..
             list("pol",1,"pol",1),exprs)
             if ~ok then
                 break,
             end
             if degree(num)>degree(den) then
-                message("Transfer must be proper")
+                message(_("Transfer must be proper (degree(numer) ≤  degree(denom))"))
                 ok=%f
             end
             if ok then

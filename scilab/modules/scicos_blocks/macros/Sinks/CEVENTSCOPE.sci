@@ -31,13 +31,13 @@ function [x,y,typ]=CEVENTSCOPE(job,arg1,arg2)
         model=arg1.model;
         while %t do
             [ok,nclock,clrs,win,wpos,wdim,per,exprs]=scicos_getvalue(..
-            "Set Scope parameters",..
-            ["Number of event inputs";
-            "colors c (>0) or mark (<0)";
-            "Output window number (-1 for automatic)";
-            "Output window position";
-            "Output window sizes";
-            "Refresh period"],..
+            msprintf(_("Set %s block parameters"), "CEVENT SCOPE"), ..
+             _(["Number of event inputs";
+                "Curves styles: Colors>0 | marks<0";
+                "Output window number (-1 for automatic)";
+                "Output window position";
+                "Output window sizes";
+                "Refresh period"]),..
             list("vec",1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",1),exprs);
             nclock=int(nclock)
             clrs=int(clrs)
@@ -48,34 +48,36 @@ function [x,y,typ]=CEVENTSCOPE(job,arg1,arg2)
             end //user cancel modification
             mess=[]
             if size(wpos,"*")<>0 &size(wpos,"*")<>2 then
-                mess=[mess;"Window position must be [] or a 2 vector";" "]
+                mess=[mess ; _("The Window position must be [] or a 2 vector") ; " "]
                 ok=%f
             end
             if size(wdim,"*")<>0 &size(wdim,"*")<>2 then
-                mess=[mess;"Window dim must be [] or a 2 vector";" "]
+                mess=[mess ; _("''Window sizes'' must be [] or a 2 vector") ; " "]
                 ok=%f
             end
             if nclock<=0 then
-                mess=[mess;"Block must have at least one input event";" "]
+                mess=[mess ; _("The block must have at least one input event") ; " "]
                 ok=%f
             end
             if size(clrs,"*")<>nclock then
-                mess=[mess;"Inputs color c size must be equal to Number of inputs";" "]
+                mess=[mess ;
+                      _("The number of curves styles must match the Number of inputs");
+                      " "]
                 ok=%f
             end
             if win<-1 then
-                mess=[mess;"Window number cannot be inferior than -1";" "]
+                mess=[mess ; _("The Window number must be ≥ -1") ; " "]
                 ok=%f
             end
             if per<=0 then
-                mess=[mess;"Refresh period must be positive";" "]
+                mess=[mess ; _("The Refresh period must be > 0") ; " "]
                 ok=%f
             end
             if ok then
-                [model,graphics,ok]=set_io(model,graphics,list(),list(),ones(nclock,1),[])
+                [model,graphics,ok] = set_io(model,graphics,list(),list(),ones(nclock,1),[])
             else
-                message(["Some specified values are inconsistent:";
-                " ";mess])
+                message([_("Some specified values are inconsistent:") ;
+                         " " ; mess])
             end
             if ok then
                 if wpos==[] then
@@ -94,6 +96,7 @@ function [x,y,typ]=CEVENTSCOPE(job,arg1,arg2)
                 break
             end
         end
+
     case "define" then
         nclock=1
         win=-1;

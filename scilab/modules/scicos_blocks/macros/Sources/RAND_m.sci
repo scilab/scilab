@@ -33,19 +33,19 @@ function [x,y,typ]=RAND_m(job,arg1,arg2)
             exprs(9)=[],
         end //compatiblity
         while %t do
-            [ok,typ,flag,a,b,seed_c,exprs]=scicos_getvalue([
-            "Set Random generator block parameters";
-            "flag = 0 : Uniform distribution A is min and A+B max";
-            "flag = 1 : Normal distribution A is mean and B deviation";
-            " ";
-            "A and B must be matrix with equal sizes"],..
-            ["Datatype(1=real double  2=complex)";"flag";"A";"B";"SEED"],..
+            [ok,typ,flag,a,b,seed_c,exprs]=scicos_getvalue(..
+            [ msprintf(_("Set %s block parameters"), "Random generator");
+              " ";
+              _("flag = 0 : Uniform distribution A is min and A+B max.<br>flag = 1 : Normal distribution A is mean and B deviation<br><br>A and B must be matrix with equal sizes")
+            ],..
+            [_("Datatype (1=real double  2=complex)") ;
+               "flag (0|1)"; "A" ; "B" ; _("Seed")],..
             list("vec",1,"vec",1,"mat",[-1 -2],"mat","[-1 -2]","mat",[1 2]),exprs)
             if ~ok then
                 break,
             end
             if flag<>0&flag<>1 then
-                message("flag must be equal to 1 or 0")
+                message(_("''flag'' must be equal to 0 or 1"))
             else
                 out=size(a)
                 if typ==1 then
@@ -59,7 +59,7 @@ function [x,y,typ]=RAND_m(job,arg1,arg2)
                     model.rpar=[real(a(:));imag(a(:));real(b(:));imag(b(:))]
                     model.dstate=[seed_c(:);0*[real(a(:));imag(a(:))]]
                 else
-                    message("Datatype is not supported");
+                    message(_("Unknown datatype"));
                     ok=%f;
                 end
                 if ok then

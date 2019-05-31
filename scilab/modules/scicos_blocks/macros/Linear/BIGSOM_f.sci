@@ -30,8 +30,9 @@ function [x,y,typ]=BIGSOM_f(job,arg1,arg2)
         model=arg1.model
         exprs=graphics.exprs
         while %t do
-            [ok,sgn,exprs]=scicos_getvalue("Set sum block parameters",..
-            "Inputs ports signs/gain",list("vec",-1),exprs)
+            [ok,sgn,exprs] = scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "BIGSOM_f"),..
+            _("Inputs ports signs/gain"), list("vec",-1), exprs)
             if ~ok then
                 break
             end

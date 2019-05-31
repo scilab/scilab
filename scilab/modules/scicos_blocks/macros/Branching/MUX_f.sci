@@ -30,22 +30,23 @@ function [x,y,typ]=MUX_f(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,in,exprs]=scicos_getvalue("Set MUX block parameters",..
-            "number of input ports or vector of sizes",list("vec",-1),exprs)
+            [ok,in,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "MUX_f"),..
+                _("Number of input ports or vector of sizes"),list("vec",-1),exprs)
             if ~ok then
                 break,
             end
             if size(in,"*")==1 then
                 if in<2|in>8 then
-                    message("Block must have at least two input ports and at most eight")
+                    message(_("Block must have from 2 to 8 input ports"))
                     ok=%f
                 else
                     [model,graphics,ok]=check_io(model,graphics,-[1:in]',0,[],[])
                 end
             else
                 if size(in,"*")<2| size(in,"*")>8|or(in==0) then
-                    message(["Block must have at least two input ports";
-                    "and at most eight, and size 0 is not allowed. "])
+                    msg = _("The block must have from 2 to 8 input ports.<br>size 0 is not allowed.")
+                    message(msg)
                     ok=%f
                 else
                     if min(in)<0 then

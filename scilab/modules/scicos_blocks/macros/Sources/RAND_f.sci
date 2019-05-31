@@ -37,19 +37,15 @@ function [x,y,typ]=RAND_f(job,arg1,arg2)
         end //compatibility
         while %t do
             [ok,flag,a,b,seed_c,exprs]=scicos_getvalue([
-            "Set Random generator block parameters";
-            "flag = 0 : Uniform distribution A is min and A+B max";
-            "flag = 1 : Normal distribution A is mean and B deviation";
-            " ";
-            "A and B must be vector with equal sizes";
-            "seed is the seed of random number generator (integer<2**31)"],..
-            ["flag";"A";"B";"seed"],..
+            _("Set Random generator block parameters");
+            _("flag = 0 : Uniform distribution. A is min and A+B max<br>flag = 1 : Normal distribution. A is mean and B deviation.<br><br>A and B must be vector with equal sizes.<br>Seed is the seed of random number generator (integer<2**31)")],..
+            ["flag" ; "A" ; "B" ; "Seed"],..
             list("vec",1,"vec",-1,"vec","size(%2,''*'')","vec",1),exprs)
             if ~ok then
                 break,
             end
             if flag<>0&flag<>1 then
-                message("flag must be equal to 1 or 0")
+                message(_("''flag'' must be equal to 0 or 1"))
             else
                 nout=size(a,"*")
                 graphics.exprs=exprs

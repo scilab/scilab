@@ -30,9 +30,10 @@ function [x,y,typ]=GotoTagVisibilityMO(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,tag,exprs]=scicos_getvalue("Set parameters",..
-            ["GotoTag"],..
-            list("str",-1),exprs)
+            [ok,tag,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "GotoTagVisibilityMO"),..
+                [_("Goto Tag")],..
+                list("str",-1),exprs)
             if ~ok then
                 break,
             end

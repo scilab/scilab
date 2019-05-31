@@ -30,16 +30,17 @@ function [x,y,typ]=PMOS(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,W,L,Beta,Vt,K2,K5,dW,dL,RDS,exprs]=scicos_getvalue("Set PMOS Transistor parameters",..
-            ["Width [m]";..
-            "Length [m]";..
-            "Transconductance parameter [A/(V*V)]";..
-            "Zero bias threshold voltage [V]";..
-            "Bulk threshold parameter";..
-            "Reduction of pinch-off region";..
-            "Narrowing of channel [m]";..
-            "Shortening of channel [m]";..
-            "Drain-Source-Resistance [Ohm]"],..
+            [ok,W,L,Beta,Vt,K2,K5,dW,dL,RDS,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "PMOS Transistor"),..
+              _(["Width [m]";
+                "Length [m]";
+                "Transconductance parameter [A/(V*V)]";
+                "Zero bias threshold voltage [V]";
+                "Bulk threshold parameter";
+                "Reduction of pinch-off region";
+                "Narrowing of channel [m]";
+                "Shortening of channel [m]";
+                "Drain-Source-Resistance [Ohm]"]),..
             list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1),exprs)
 
             if ~ok then

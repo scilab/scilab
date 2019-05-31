@@ -43,10 +43,18 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
         frmt = exprs(4)
 
         while %t do
-            [ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "READC_f" );
-            " "; gettext("Read from C binary file")], [gettext("Time Record Selection"); gettext("Outputs Record Selection"); ..
-            gettext("Input File Name"); gettext("Input Format"); gettext("Record Size"); gettext("Buffer Size"); ..
-            gettext("Initial Record Index"); gettext("Swap Mode (0:No, 1:Yes)")], ..
+            [ok,tmask1,outmask,fname1,frmt1,M,N,offset,swap,exprs] = scicos_getvalue(..
+            [msprintf(gettext("Set %s block parameters"), "READC_f" );
+            " ";
+            gettext("Read from C binary file")], ..
+             _(["Time Record Selection";
+                "Outputs Record Selection";
+                "Input File Name"; 
+                "Input Format"; 
+                "Record Size"; 
+                "Buffer Size"; ..
+                "Initial Record Index"; 
+                "Swap Mode (0:No, 1:Yes)"]), ..
             list("vec", -1, "vec", -1, "str", 1, "str", 1, "vec", 1, "vec", 1,"vec", 1, "vec", 1), exprs);
 
             if ~ok then

@@ -30,9 +30,10 @@ function [x,y,typ]=TKSCALE(job,arg1,arg2)
         graphics=arg1.graphics;
         exprs=graphics.exprs
         model=arg1.model;
-        [ok,a,b,f,exprs]=scicos_getvalue("Set scale block parameters",..
-        ["Min value";"Max value";"Normalization"],..
-        list("vec",1,"vec",1,"vec",1),exprs)
+        [ok,a,b,f,exprs] = scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "TKSCALE"), ..
+            _(["Min value" ; "Max value" ; "Normalization"]), ..
+            list("vec",1,"vec",1,"vec",1), exprs)
         // tk widget returns a scalar, the value is divided by
         // Normalization factor
         if ok then

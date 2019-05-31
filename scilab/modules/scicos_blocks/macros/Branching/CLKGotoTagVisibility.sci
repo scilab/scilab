@@ -30,8 +30,9 @@ function [x,y,typ] = CLKGotoTagVisibility(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,tag,exprs]=scicos_getvalue("Set parameters",..
-            ["GotoTag"],..
+            [ok,tag,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "CLKGotoTagVisibility"),..
+            [_("Goto Tag")],..
             list("str",-1),exprs)
             if ~ok then
                 break,

@@ -39,14 +39,14 @@ function [x,y,typ] = AFFICH_m(job,arg1,arg2)
 
         while %t do
             [ok,in,font,fontsize,colr,nt,nd,herit,exprs]=scicos_getvalue(..
-            "Set  parameters",..
-            ["Input Size",
-            "Font number";
-            "Font size";
-            "Color";
-            "Total number of digits";
-            "Number of rational part digits";
-            "Block inherits (1) or not (0)"],..
+            msprintf(_("Set %s block parameters"), "AFFICH_m"),..
+             _(["Input Size";
+                "Font number";
+                "Font size";
+                "Color";
+                "Total number of digits (>3)";
+                "Number of frational part digits ()";
+                "Block inherits (1) or not (0)"]),..
             list("mat",[1 2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs)
 
             if ~ok then
@@ -56,39 +56,38 @@ function [x,y,typ] = AFFICH_m(job,arg1,arg2)
             mess = [] ; //** no message
 
             if font<=0 then
-                mess=[mess;"Font number must be positive";" "]
+                mess=[mess ; _("The Font number must be > 0") ; " "]
                 ok=%f
             end
 
             if fontsize<=0 then
-                mess=[mess;"Font size must be positive";" "]
+                mess=[mess ; _("The Font size must be > 0") ; " "]
                 ok=%f
             end
 
             if nt<=3 then
-                mess=[mess;"Total number of digits must be greater than 3";" "]
+                mess=[mess; _("The Total number of digits must be > 3") ; " "]
                 ok=%f
             end
 
             if nd<0 then
-                mess=[mess;"Number of rational part digits must be "
-                "greater or equal 0";" "]
+                mess=[mess ; _("The Number of frational part digits must be ≥ 0") ; " "]
                 ok=%f
             end
 
             if ~ok then
-                message(["Some specified values are inconsistent:";
-                " ";mess]);
+                message([_("Some specified values are inconsistent:") ;
+                        " " ; mess]);
             end
 
             if ~or(herit==[0 1]) then
-                mess=[mess;"Accept inherited values are 0 and 1";" "]
+                mess=[mess ; _("Accept inherited values are 0 and 1") ; " "]
                 ok=%f
             end
 
             if ~ok then
-                message(["Some specified values are inconsistent:";
-                " ";mess])
+                message([_("Some specified values are inconsistent:") ;
+                         " " ; mess])
             end
 
             //** Positive case ->
@@ -106,9 +105,7 @@ function [x,y,typ] = AFFICH_m(job,arg1,arg2)
                 x.model = model ;
                 break
             end
-
         end
-
 
     case "define" then
         font = 1

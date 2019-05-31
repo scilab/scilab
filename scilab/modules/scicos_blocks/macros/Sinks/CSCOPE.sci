@@ -33,17 +33,17 @@ function [x,y,typ]=CSCOPE(job,arg1,arg2)
         //dstate=model.in
         while %t do
             [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs]=scicos_getvalue(..
-            "Set Scope parameters",..
-            ["Color (>0) or mark (<0) vector (8 entries)";
-            "Output window number (-1 for automatic)";
-            "Output window position";
-            "Output window sizes";
+            msprintf(_("Set %s block parameters"), "CSCOPE"),..
+            [_("Curve style: Color>0 | mark<0");
+            _("Output window number (-1 for automatic)");
+            _("Output window position");
+            _("Output window sizes");
             "Ymin";
             "Ymax";
-            "Refresh period";
-            "Buffer size"
-            "Accept herited events 0/1"
-            "Name of Scope (label&Id)"],..
+            _("Refresh period");
+            _("Buffer size");
+            _("Accept herited events 0/1");
+            _("Name of Scope (label&Id)")],..
             list("vec",8,"vec",1,"vec",-1,"vec",-1,"vec",1,..
             "vec",1,"vec",1,"vec",1,"vec",1,"str",1),..
             exprs)
@@ -52,42 +52,31 @@ function [x,y,typ]=CSCOPE(job,arg1,arg2)
             end //user cancel modification
             mess=[]
             if size(wpos,"*")<>0 &size(wpos,"*")<>2 then
-                mess=[mess;"Window position must be [] or a 2 vector";" "]
-                ok=%f
+                mess=[mess ; _("''Window position'' must be [] or a 2 vector") ; " "]
             end
             if size(wdim,"*")<>0 &size(wdim,"*")<>2 then
-                mess=[mess;"Window dim must be [] or a 2 vector";" "]
-                ok=%f
+                mess=[mess ; _("''Window sizes'' must be [] or a 2 vector") ; " "]
             end
             if win<-1 then
-                mess=[mess;"Window number can''t be  < -1";" "]
-                ok=%f
+                mess=[mess ; _("The Window number must be ≥ -1") ; " "]
             end
             if per<=0 then
-                mess=[mess;"Refresh period must be positive";" "]
-                ok=%f
+                mess=[mess ; _("The Refresh period must be > 0") ; " "]
             end
             if N<2 then
-                mess=[mess;"Buffer size must be at least 2";" "]
-                ok=%f
+                mess=[mess ; _("The Buffer size must be ≥ 2") ; " "]
             end
             if ymin>=ymax then
-                mess=[mess;"Ymax must be greater than Ymin";" "]
-                ok=%f
+                mess=[mess ; _("Ymax > Ymin is required") ; " "]
             end
             if ~or(heritance==[0 1]) then
-                mess=[mess;"Accept herited events must be 0 or 1";" "]
-                ok=%f
+                mess=[mess ; _("''Accept herited events'' must be 0 or 1") ; " "]
             end
-            if ~ok then
-                message(["Some specified values are inconsistent:";
-                " ";mess])
-            end
-            if ok then
+            if mess<>[] then
+                message([_("Some specified values are inconsistent:") ;
+                         " " ; mess])
+            else
                 [model,graphics,ok]=set_io(model,graphics,list([-1 1],1),list(),ones(1-heritance,1),[])
-            end
-
-            if ok then
                 if wpos==[] then
                     wpos=[-1;-1];
                 end
@@ -109,6 +98,7 @@ function [x,y,typ]=CSCOPE(job,arg1,arg2)
                 break
             end
         end
+
     case "define" then
         win=-1;
         wdim=[600;400]

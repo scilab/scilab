@@ -34,8 +34,9 @@ function [x,y,typ]=Resistor(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,R,exprs]=scicos_getvalue("Set Resistor block parameter",..
-            "R (ohm)",list("vec",1),exprs)
+            [ok,R,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "Resistor"),..
+            "R (ohm)", list("vec",1),exprs)
             if ~ok then
                 break,
             end

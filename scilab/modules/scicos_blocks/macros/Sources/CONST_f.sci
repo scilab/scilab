@@ -30,14 +30,14 @@ function [x,y,typ]=CONST_f(job,arg1,arg2)
         exprs=graphics.exprs;
         model=arg1.model;
         while %t do
-            [ok,C,exprs]=scicos_getvalue(["Set Contant Block"],..
-            "Constant",list("vec",-1),exprs)
+            [ok,C,exprs]=scicos_getvalue(_("Set Constant Block"),..
+            _("Value (scalar | vector | matrix)"), list("vec",-1), exprs)
             if ~ok then
                 break,
             end
             nout=size(C,"*")
             if nout==0 then
-                message("C must have at least one element")
+                message(_("The value must have at least one element."))
             else
                 model.rpar=C(:);
                 model.out=nout;

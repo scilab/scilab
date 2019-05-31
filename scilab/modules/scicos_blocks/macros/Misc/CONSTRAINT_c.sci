@@ -31,8 +31,8 @@ function [x,y,typ]=CONSTRAINT_c(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,x0,exprs]=scicos_getvalue("Set solver block parameters",..
-            "Initial guess values",list("vec",-1),exprs)
+            [ok,x0,exprs]=scicos_getvalue(_("Set solver block parameters"),..
+            _("Initial guess values"),list("vec",-1),exprs)
             if ~ok then
                 break,
             end
@@ -40,7 +40,7 @@ function [x,y,typ]=CONSTRAINT_c(job,arg1,arg2)
             N=size(x0,"*");
 
             if N<=0 then
-                message("number of states (constraints) must be > 0 ")
+                message(_("The number of states (constraints) must be > 0 "))
             else
                 [model,graphics,ok]=check_io(model,graphics,N,N,[],[])
                 if ok then

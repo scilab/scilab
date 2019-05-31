@@ -30,16 +30,19 @@ function [x,y,typ]=SELECT_m(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,typ,nin,z0,exprs]=scicos_getvalue("Set parameters",..
-            ["Datatype(1= real double  2=Complex 3=int32 ..)";"number of inputs";"initial connected input"],..
+            [ok,typ,nin,z0,exprs]=scicos_getvalue(..
+                msprintf(_("Set %s block parameters"), "SELECT_m"),..
+                _(["Datatype (1= real double  2=Complex 3=int32 ..)";
+                   "Number of inputs";
+                   "Initial connected input"]),..
             list("vec",1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end
-            if z0>nin|z0<=0 then
-                message("initial connected input is not a valid input port number")
+            if z0>nin | z0<=0 then
+                message(_("The initial connected input is not a valid input port number"))
             elseif ((typ<1)|(typ>8))& (typ<>-1) then
-                message("Datatype is not supported");
+                message(_("Unknown Datatype"));
                 ok=%f;
             else
                 it=typ*ones(1,nin)

@@ -34,7 +34,11 @@ function [x,y,typ]=MATEIG(job,arg1,arg2)
             label(9)=[],
         end //compatiblity
         while %t do
-            [ok,typ,decomptyp,lab]=scicos_getvalue("Set MATEIG block parameters",["Datatype(1=real double  2=Complex)";"decomposition type (1=eig values  2=eig values+eig vectors"],list("vec",1,"vec",1),label)
+            [ok,typ,decomptyp,lab]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "MATEIG"), ..
+            _(["Datatype (1=real double  2=Complex)" ;
+               "Decomposition type (1=eig values  2=eig values+eig vectors)"]),..
+             list("vec",1,"vec",1),label)
             if ~ok then
                 break,
             end
@@ -49,7 +53,7 @@ function [x,y,typ]=MATEIG(job,arg1,arg2)
                     out=[-1 -1;-1 -1];
                     ot=[2 2];
                 else
-                    message("decomposition type is not supported");
+                    message(_("Unknown decomposition type"));
                     ok=%f;
                 end
                 it=1;
@@ -63,12 +67,12 @@ function [x,y,typ]=MATEIG(job,arg1,arg2)
                     out=[-1 -1;-1 -1];
                     ot=[2 2];
                 else
-                    message("decomposition type is not supported");
+                    message(_("Unknown decomposition type"));
                     ok=%f;
                 end
                 it=2;
             else
-                message("Datatype is not supported");
+                message(_("Unknown datatype"));
                 ok=%f;
             end
             in=[-1 -1];

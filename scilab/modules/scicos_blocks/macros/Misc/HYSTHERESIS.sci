@@ -30,15 +30,19 @@ function [x,y,typ]=HYSTHERESIS(job,arg1,arg2)
         exprs=graphics.exprs
         model=arg1.model;
         while %t do
-            [ok,high_lim,low_lim,out_high,out_low,nzz,exprs]=scicos_getvalue("Set parameters",..
-            ["switch on at";"switch off at";"output when on";
-            "output when off";"use zero crossing: yes (1), no (0)"],..
+            [ok,high_lim,low_lim,out_high,out_low,nzz,exprs]=scicos_getvalue(..
+            msprintf(_("Set %s block parameters"), "HYSTERESIS"),..
+            _(["Switch on at";
+               "Switch off at";
+               "Output when on";
+               "Output when off";
+               "Use zero crossing: yes (1), no (0)"]),..
             list("vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs)
             if ~ok then
                 break,
             end
             if low_lim>high_lim then
-                message("switch on value must be larger than switch off value")
+                message(_("switch on value must be ≥ switch off value"))
             else
                 graphics.exprs=exprs;
                 model.rpar=[high_lim,low_lim,out_high,out_low]'

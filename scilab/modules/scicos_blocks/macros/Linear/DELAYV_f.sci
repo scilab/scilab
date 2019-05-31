@@ -35,21 +35,21 @@ function [x,y,typ]=DELAYV_f(job,arg1,arg2)
         told=z0($);
 
         while %t do
-            [ok,nin,zz0,T,exprs]=scicos_getvalue("Set delay parameters",..
-            ["Number of inputs";
-            "Register initial condition";
-            "Max delay"],..
+            [ok,nin,zz0,T,exprs]=scicos_getvalue(_("Set delay parameters"),..
+                _(["Number of inputs";
+                   "Register initial condition";
+                   "Max delay (> 0)"]),..
             list("vec",1,"vec",-1,"vec",1),..
             exprs);
             if ~ok then
                 break,
             end
             if size(zz0,"*")<2 then
-                message("Register length must be at least 2")
+                message(_("Register''s length must be > 1"))
                 ok=%f
             end
             if T<=0 then
-                message("Delay must be positive")
+                message(_("Delay must be > 0"))
                 ok=%f
             end
 

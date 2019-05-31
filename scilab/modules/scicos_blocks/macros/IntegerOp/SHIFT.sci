@@ -31,9 +31,13 @@ function [x,y,typ]=SHIFT(job,arg1,arg2)
         model=arg1.model
         exprs=graphics.exprs
         while %t do
-            [ok,Datatype,nb,np,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "SHIFT");" "; gettext("Shift/Rotates bits")], ..
-            [msprintf(gettext("Data Type %s"), "(3:int32, 4:int16, 5:int8, ...)"); gettext("Number of Bits to Shift Left (Negative number to shift right)"); ..
-            gettext("Shift Type (0:Arithmetic, 1:Circular)")], ..
+            [ok,Datatype,nb,np,exprs]=scicos_getvalue(..
+                [msprintf(gettext("Set %s block parameters"), "SHIFT");
+                 " "; 
+                 gettext("Shift/Rotates bits")], ..
+            [gettext("Data Type (3:int32, 4:int16, 5:int8, ...)");
+             gettext("Number of Bits to Shift Left (Negative number to shift right)");
+             gettext("Shift Type (0:Arithmetic, 1:Circular)")], ..
             list("vec",1,"vec",1,"vec",1), exprs);
 
             if ~ok then
