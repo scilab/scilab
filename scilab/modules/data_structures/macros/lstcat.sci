@@ -11,24 +11,41 @@
 // along with this program.
 
 
-function l=lstcat(varargin)
+function l = lstcat(varargin)
     // concat inputs in a list
 
-    rhs=argn(2);
+    rhs = argn(2);
     l = list();
-
     if rhs==0 then
         return;
     end
 
-    for i=1:rhs
+    l = varargin(1)
+    if type(l)<>15 then
+        l = list(l)
+        L = 1
+    else
+        L = length(l)
+    end
+
+    for i = 2:rhs
         var = varargin(i);
         if type(var) == 15 then
-            for j = 1 : size(var)
-                l($ + 1) = var(j);
+            Lvar = length(var)
+            if Lvar>0
+                if Lvar < 100
+                    l(L+Lvar) = var($)
+                    for j = 1:Lvar-1
+                        l(L+j) = var(j)
+                    end
+                else
+                    l = list(l(:), var(:))
+                end
+                L = L + Lvar
             end
-        elseif type(var) <= 10 then
+        else
             l($ + 1) = var;
+            L = L + 1;
         end
     end
 endfunction

@@ -307,6 +307,7 @@ Bug Fixes
 * [#16089](http://bugzilla.scilab.org/show_bug.cgi?id=16089): x=1:1e10 freezed Scilab.
 * [#16095](http://bugzilla.scilab.org/show_bug.cgi?id=16095): For a matrix of graphic handles of same types, it was no longer possible to clear a property by assigning [].
 * [#16097](http://bugzilla.scilab.org/show_bug.cgi?id=16097): `coth()` was more than twice slower than `1./tanh()`. `tanh` and `coth` did not accept sparse-encoded input.
+* [#16102](http://bugzilla.scilab.org/show_bug.cgi?id=16102): `lstcat` could not concatenate input lists with mixed objects of types>10 like 1:$, sin, sind, struct, cells, tlists or mlists. In addition, it was slow for very long inputs lists.
 * [#16104](http://bugzilla.scilab.org/show_bug.cgi?id=16104): `assert_checkequal` did not support properly or at all Nan and void in lists, Nan in sparse, implicit lists, macros, libraries, built-in functions, graphical handles. For input arrays or lists of matching typeof and sizes, the failure message did not display neither the index nor the values of the first mismatching elements.
 * [#16111](http://bugzilla.scilab.org/show_bug.cgi?id=16111): `isglobal` was not supporting non-scalar array of strings as input.
 * [#16118](http://bugzilla.scilab.org/show_bug.cgi?id=16118): `%s <> (1+%s)` returned %F.
