@@ -17,91 +17,98 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-          xmlns:scilab="http://www.scilab.org" xml:id="assert_checkequal" xml:lang="ja">
+          xmlns:scilab="http://www.scilab.org" xml:id="assert_checkequal" xml:lang="ru">
     <refnamediv>
         <refname>assert_checkequal</refname>
-        <refpurpose>計算値と予測値が等しいことを確認する.</refpurpose>
+        <refpurpose>Проверка того, что вычисленное и ожидаемое значения равны.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>呼び出し手順</title>
+        <title>Синтаксис</title>
         <synopsis>
             assert_checkequal ( computed , expected )
             flag = assert_checkequal ( computed , expected )
             [flag,errmsg] = assert_checkequal ( computed , expected )
+
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>computed:</term>
                 <listitem>
-                    <para>計算結果</para>
+                    <para> результат вычисления</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>expected :</term>
                 <listitem>
-                    <para>予測された結果</para>
+                    <para> ожидаемый результат</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>flag :</term>
                 <listitem>
-                    <para>1行1列の論理値行列で, 計算値が予測値と等しい場合に%t,そうでない場合に%f
+                    <para>
+                      логическое значение, <literal>%t</literal>, если вычисление равно ожиданию,
+                      <literal>%f</literal>, если нет.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>errmsg :</term>
                 <listitem>
-                    <para>1行1列の文字列行列で,エラーメッセージ.
-                        flag==%t の場合, errormsg==""となります.
-                        flag==%f の場合, errmsgにはエラーメッセージが出力されます.
+                    <para>
+                        строковое значение, сообщение об ошибке. Если <literal>flag==%t</literal>,
+                        тогда <literal>errormsg==""</literal>.
+                        Если <literal>flag==%f</literal>, то <varname>errmsg</varname> содержит
+                        сообщение об ошибке.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>説明</title>
+        <title>Описание</title>
         <para>
-            computedとexpectedが等しい場合,そのまま実行されます.
+            Работает молча, если <varname>computed</varname> и <varname>expected</varname> равны.
         </para>
         <para>
-            入力引数の型が共に1 (すなわち実数行列)の場合,
-            nan以外の値が等しいことが確認されます (matching Nan values are considered equal).
+            Если тип обоих входных аргументов равен 1 (т.е. матрица вещественных или комплексных
+            чисел), то мы проверяем, что не-Nan значения равны (совпадающие Nan-значения
+            считаются равными).
         </para>
         <para>
-            For complex numbers: まず実部を確認し,それが等しい場合に虚部を確認します.
+            Для комплексных чисел: мы сравниваем сначала вещественные части. В случае равенства
+            мы сравниваем мнимые части.
         </para>
         <para>
-            <literal>1/%z</literal> and <literal>2/(2*%z)</literal> are not equal: For the time
-            being, Scilab does not normalize equivalent rationals.
+            <literal>1/%z</literal> и <literal>2/(2*%z)</literal> не равны: для времени Scilab
+            не нормирует эквивалентные рациональные значения.
         </para>
         <para>
-            In two lists, matching void elements are considered equal.
+            В двух списках совпадающие пустые элементы считаются равными.
         </para>
         <para>
-            比較がcomputedがexpectedに等しくないことを示す場合,
+            Если сравнение показывает, что вычисленное равно ожидаемому, то
             <itemizedlist>
                 <listitem>
-                    <para>
-                        errmsg出力変数が使用されない場合,エラーが生成され,
+                    <para>если выходная переменная <varname>errmsg</varname> не используется,
+                         ошибка генерируется,
                     </para>
                 </listitem>
                 <listitem>
-                    <para>
-                        errmsg出力変数が使用される場合,エラーは生成されません.
+                    <para>если выходная переменная <varname>errmsg</varname> используется,
+                        то ошибка не генерируется.
                     </para>
                 </listitem>
             </itemizedlist>
         </para>
     </refsection>
     <refsection>
-        <title>例</title>
+        <title>Примеры</title>
         <para>
-            成功するテスト:
+            Тесты с успехом:
         </para>
         <programlisting role="example"><![CDATA[
 assert_checkequal ( %T , %T );
@@ -127,12 +134,12 @@ assert_checkequal ( cosinus, cosd );
 assert_checkequal( iolib, iolib );
    ]]></programlisting>
         <para>
-            失敗するテスト:
+            Тесты с провалом:
         </para>
         <programlisting role="example"><![CDATA[
 assert_checkequal ( %F , %T );
 flag = assert_checkequal ( %F , %T );
-// エラーは発生しません :
+// No error produced :
 [flag , errmsg] = assert_checkequal ( %F , %T )
 
 assert_checkequal ( [1 2], [3 4] )
@@ -176,11 +183,11 @@ assert_checkequal: Assertion failed: expected= lib@SCI\modules\core\macros\  whi
 ]]></screen>
     </refsection>
     <refsection>
-        <title>履歴</title>
+        <title>История</title>
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revdescription>関数が導入されました
+                <revdescription>Введена функция
                 </revdescription>
             </revision>
             <revision>
@@ -209,7 +216,7 @@ assert_checkequal: Assertion failed: expected= lib@SCI\modules\core\macros\  whi
         </revhistory>
     </refsection>
     <refsection>
-        <title>参考文献</title>
+        <title>Литература</title>
         <para>"Automated Software Testing for Matlab", Steven Eddins, 2009</para>
     </refsection>
 </refentry>
