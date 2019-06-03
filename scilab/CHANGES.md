@@ -438,6 +438,7 @@ Bug Fixes
 * [#16097](https://bugzilla.scilab.org/16097): `coth` was more than twice slower than `1./tanh()`. `tanh` and `coth` did not accept sparse-encoded input.
 * [#16102](https://bugzilla.scilab.org/16102): `lstcat` could not concatenate input lists with mixed objects of types>10 like 1:$, sin, sind, struct, cells, tlists or mlists. In addition, it was slow for very long inputs lists.
 * [#16104](https://bugzilla.scilab.org/16104): `assert_checkequal` did not support properly or at all Nan and void in lists, Nan in sparse, implicit lists, macros, libraries, built-in functions, graphical handles. For input arrays or lists of matching typeof and sizes, the failure message did not display neither the index nor the values of the first mismatching elements.
+* [#16108](https://bugzilla.scilab.org/16108): For the CSCOPE and CMSCOPE blocks, the Label&id parameter entered in their interface were not displayed below the block's icon.
 * [#16111](https://bugzilla.scilab.org/16111): `isglobal` was not supporting non-scalar array of strings as input.
 * [#16118](https://bugzilla.scilab.org/16118): `%s <> (1+%s)` returned %F.
 * [#16120](https://bugzilla.scilab.org/16120): `tree_show` was broken cells within containers.

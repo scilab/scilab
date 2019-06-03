@@ -541,8 +541,9 @@
     <add as="CANIMXY" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/3DSCOPE.svg"/>
     </add>
-    <add as="CSCOPE" extend="Icon">
+    <add as="CSCOPE" extend="blockWithLabel">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/ASCOPE.svg"/>
+        <add as="displayedLabel" value=""/>
     </add>
     <add as="SCALE_CSCOPE" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/SCALE_ASCOPE.svg"/>
@@ -574,8 +575,9 @@
         <add as="spacing" value="2"/>
         <add as="displayedLabel" value="Mat. View"/>
     </add>
-    <add as="CMSCOPE" extend="Icon">
+    <add as="CMSCOPE" extend="blockWithLabel">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/ASCOPE.svg"/>
+        <add as="displayedLabel" value=""/>
     </add>
     <add as="SCALE_CMSCOPE" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/SCALE_ASCOPE.svg"/>

@@ -93,6 +93,8 @@ function [x,y,typ]=CSCOPE(job,arg1,arg2)
                 model.label=nom;
                 graphics.id=nom
                 graphics.exprs=exprs;
+                graphics.style = "CSCOPE;verticalLabelPosition=bottom;" + ..
+                   "verticalAlign=top;spacing=2;displayedLabel=" + nom
                 x.graphics=graphics;
                 x.model=model
                 break

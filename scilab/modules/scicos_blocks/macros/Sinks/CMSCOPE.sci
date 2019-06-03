@@ -73,7 +73,7 @@ function [x,y,typ] = CMSCOPE(job,arg1,arg2)
                 mess=[mess ; _("The Window number must be >= -1") ; " "]
             end
             if size(per,"*")<>size(ymin,"*") then
-                mess=[mess ; 
+                mess=[mess ;
                       _("The size of ''Refresh Periods'' must match the Ymin|Ymax''s one");
                       " "]
             end
@@ -123,6 +123,8 @@ function [x,y,typ] = CMSCOPE(job,arg1,arg2)
                 model.label=nom;
                 graphics.id=nom;
                 graphics.exprs=exprs;
+                graphics.style = "CMSCOPE;verticalLabelPosition=bottom;" + ..
+                                 "verticalAlign=top;spacing=2;displayedLabel=" + nom
                 x.graphics=graphics;
                 x.model=model
                 //pause;
