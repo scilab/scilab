@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
+ * Copyright (C) 2019 - Stéphane MOTTELET
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -22,6 +23,7 @@ import java.util.concurrent.Semaphore;
 import javax.media.opengl.DebugGL2;
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.awt.GLJPanel;
 import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLContext;
 import javax.media.opengl.GLDrawableFactory;
@@ -158,16 +160,25 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
 
     @Override
     public int getWidth() {
+        if (autoDrawable instanceof GLJPanel) {
+            return ((GLJPanel)autoDrawable).getWidth();
+        }
         return autoDrawable.getSurfaceWidth();
     }
 
     @Override
     public int getHeight() {
+        if (autoDrawable instanceof GLJPanel) {
+            return ((GLJPanel)autoDrawable).getHeight();
+        }
         return autoDrawable.getSurfaceHeight();
     }
 
     @Override
     public Dimension getDimension() {
+        if (autoDrawable instanceof GLJPanel) {
+            return new Dimension( ((GLJPanel)autoDrawable).getWidth(), ((GLJPanel)autoDrawable).getHeight());
+        }
         return new Dimension(autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight());
     }
 

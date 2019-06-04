@@ -160,6 +160,7 @@ Bug Fixes
 * [#15840](http://bugzilla.scilab.org/show_bug.cgi?id=15840): `grand(1,"prm",m)` yielded an unsqueezed size([size(m) 1]) hypermatrix
 * [#15964](http://bugzilla.scilab.org/show_bug.cgi?id=15954): A complex empty sparse matrix could be obtained after insertion.
 * [#15983](http://bugzilla.scilab.org/show_bug.cgi?id=15983): `group()` regressed in 5.5.2 due to a too intrusive fix.
+* [#15984](http://bugzilla.scilab.org/show_bug.cgi?id=15984): display scale was wrong with Retina dispplays on OSX..
 * [#15995](http://bugzilla.scilab.org/show_bug.cgi?id=15995): patch was missing in surface plot (regression)
 * [#16003](http://bugzilla.scilab.org/show_bug.cgi?id=16003): Zoom with mouse scroll wheel was broken on simple surfaces.
 * [#16005](http://bugzilla.scilab.org/show_bug.cgi?id=16005): The `intdec` example was biased and not robust when changing sampling frequencies.
