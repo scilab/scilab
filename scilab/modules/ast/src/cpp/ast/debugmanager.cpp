@@ -354,7 +354,7 @@ void DebuggerManager::generateCallStack()
     FREE(tmp);
 
     //where
-    ConfigVariable::WhereVector where = ConfigVariable::getWhere();
+    const std::vector<ConfigVariable::WhereEntry>& where = ConfigVariable::getWhere();
     auto it_name = where.rbegin();
 
     // first row
@@ -370,7 +370,7 @@ void DebuggerManager::generateCallStack()
         row.functionLine = getExp()->getLocation().first_line - it_name->call->getFirstLine();
     }
 
-    if(callstackAddFile(&row, it_name->m_file_name))
+    if(callstackAddFile(&row, *it_name->m_file_name))
     {
         row.fileLine = getExp()->getLocation().first_line;
     }
@@ -388,7 +388,7 @@ void DebuggerManager::generateCallStack()
         row.functionName = tmp;
         FREE(tmp);
         row.functionLine = it_line->m_line - 1;
-        if(callstackAddFile(&row, it_name->m_file_name))
+        if(callstackAddFile(&row, *it_name->m_file_name))
         {
             row.fileLine = it_line->m_line;
             row.functionLine = -1;

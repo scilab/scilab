@@ -13,25 +13,25 @@
 *
 */
 
-#include <vector>
-#include <list>
-#include <iomanip>
-#include "context.hxx"
 #include "configvariable.hxx"
-#include "macrofile.hxx"
-#include "threadmanagement.hxx"
-#include "execvisitor.hxx"
-#include "threadId.hxx"
-#include "cell.hxx"
 #include "callable.hxx"
+#include "cell.hxx"
+#include "context.hxx"
+#include "execvisitor.hxx"
+#include "macrofile.hxx"
+#include "threadId.hxx"
+#include "threadmanagement.hxx"
+#include <iomanip>
+#include <list>
+#include <vector>
 
 extern "C"
 {
-#include "strsubst.h"
+#include "FileExist.h"
+#include "elem_common.h"
 #include "os_string.h"
 #include "sci_malloc.h"
-#include "elem_common.h"
-#include "FileExist.h"
+#include "strsubst.h"
 }
 
 /*
@@ -305,7 +305,6 @@ bool ConfigVariable::getOldEmptyBehaviour(void)
 ** \}
 */
 
-
 /*
 ** HOME
 ** \{
@@ -341,10 +340,10 @@ void ConfigVariable::clearLastError(void)
 {
     //if (m_bLastErrorCall == false)
     {
-        m_wstError          = L"";
-        m_iError            = 0;
-        m_iErrorLine        = 0;
-        m_wstErrorFunction  = L"";
+        m_wstError = L"";
+        m_iError = 0;
+        m_iErrorLine = 0;
+        m_wstErrorFunction = L"";
     }
     m_bLastErrorCall = false;
 }
@@ -474,7 +473,6 @@ bool ConfigVariable::isSilentError(void)
     return m_iSilentError;
 }
 
-
 /* Prompt Mode */
 
 int ConfigVariable::m_iPromptMode = 0;
@@ -583,7 +581,6 @@ bool ConfigVariable::togglePrintInput(void)
     return m_printInput;
 }
 
-
 void ConfigVariable::setPrintOutput(bool val)
 {
     m_printOutput = val;
@@ -599,7 +596,6 @@ bool ConfigVariable::togglePrintOutput(void)
     m_printOutput = !m_printOutput;
     return m_printOutput;
 }
-
 
 void ConfigVariable::setPrintInteractive(bool val)
 {
@@ -617,7 +613,6 @@ bool ConfigVariable::togglePrintInteractive(void)
     return m_printInteractive;
 }
 
-
 void ConfigVariable::setPrintCompact(bool val)
 {
     m_printCompact = val;
@@ -633,7 +628,6 @@ bool ConfigVariable::togglePrintCompact(void)
     m_printCompact = !m_printCompact;
     return m_printCompact;
 }
-
 
 /*
 ** \}
@@ -681,7 +675,6 @@ int ConfigVariable::getPauseLevel()
 std::vector<ConfigVariable::DynamicLibraryStr*> ConfigVariable::m_DynLibList;
 std::list<ConfigVariable::EntryPointStr*> ConfigVariable::m_EntryPointList;
 
-
 ConfigVariable::DynamicLibraryStr* ConfigVariable::getNewDynamicLibraryStr()
 {
     DynamicLibraryStr* pDL = (DynamicLibraryStr*)MALLOC(sizeof(DynamicLibraryStr));
@@ -720,14 +713,14 @@ void ConfigVariable::setEntryPointName(ConfigVariable::EntryPointStr* _pEntryPoi
         {
             FREE(_pEntryPoint->pwstEntryPointName);
         }
-        _pEntryPoint->pwstEntryPointName = os_wcsdup(_pwstEntryPointName);;
+        _pEntryPoint->pwstEntryPointName = os_wcsdup(_pwstEntryPointName);
     }
 }
 
 /* Dynamic libraries functions */
 int ConfigVariable::addDynamicLibrary(ConfigVariable::DynamicLibraryStr* _pDynamicLibrary)
 {
-    for (int i = 0 ; i < (int)m_DynLibList.size() ; i++)
+    for (int i = 0; i < (int)m_DynLibList.size(); i++)
     {
         if (m_DynLibList[i] == NULL)
         {
@@ -745,7 +738,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
     if (_iDynamicLibraryIndex < (int)m_DynLibList.size())
     {
         std::list<EntryPointStr*>::const_iterator it;
-        for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; )
+        for (it = m_EntryPointList.begin(); it != m_EntryPointList.end();)
         {
             //clear all entry points linked to removed dynamic library
             if ((*it)->iLibIndex == _iDynamicLibraryIndex)
@@ -810,7 +803,7 @@ void ConfigVariable::addEntryPoint(ConfigVariable::EntryPointStr* _pEP)
 ConfigVariable::EntryPointStr* ConfigVariable::getEntryPoint(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex)
 {
     std::list<EntryPointStr*>::const_iterator it;
-    for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
+    for (it = m_EntryPointList.begin(); it != m_EntryPointList.end(); it++)
     {
         //by pass iLibIndex check if _iDynamicLibraryIndex == -1
         if (_iDynamicLibraryIndex == -1 || (*it)->iLibIndex == _iDynamicLibraryIndex)
@@ -860,7 +853,7 @@ std::vector<std::wstring> ConfigVariable::getEntryPointNameList()
 {
     std::vector<std::wstring> EntryPointNames;
     std::list<EntryPointStr*>::const_iterator it;
-    for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
+    for (it = m_EntryPointList.begin(); it != m_EntryPointList.end(); it++)
     {
         EntryPointNames.push_back((*it)->pwstEntryPointName);
     }
@@ -912,7 +905,7 @@ DynLibHandle* ConfigVariable::getAllDynModule()
     DynLibHandle* moduleList = new DynLibHandle[m_DynModules.size()];
     std::map<std::wstring, DynLibHandle>::iterator it = m_DynModules.begin();
     std::map<std::wstring, DynLibHandle>::iterator itEnd = m_DynModules.end();
-    for (int i = 0; it != itEnd ; ++it, ++i)
+    for (int i = 0; it != itEnd; ++it, ++i)
     {
         moduleList[i] = it->second;
     }
@@ -933,9 +926,9 @@ bool ConfigVariable::m_bSerialize = false;
 void ConfigVariable::setCommandLineArgs(int _iArgs, char** _pstArgs)
 {
     m_Args.clear();
-    for (int i = 0 ; i < _iArgs ; i++)
+    for (int i = 0; i < _iArgs; i++)
     {
-        wchar_t * ws = to_wide_string(_pstArgs[i]);
+        wchar_t* ws = to_wide_string(_pstArgs[i]);
         m_Args.push_back(ws);
         FREE(ws);
     }
@@ -1049,7 +1042,7 @@ types::Callable* ConfigVariable::getSchurFunction()
 */
 
 int ConfigVariable::m_currentBaseGen = 0;
-int ConfigVariable::m_currentClcg4   = 0;
+int ConfigVariable::m_currentClcg4 = 0;
 
 void ConfigVariable::setCurrentBaseGen(int _gen)
 {
@@ -1166,26 +1159,26 @@ int ConfigVariable::getFuncprot()
 ** \{
 */
 
-ConfigVariable::WhereVector ConfigVariable::m_Where;
-ConfigVariable::WhereVector ConfigVariable::m_WhereError;
+std::vector<ConfigVariable::WhereEntry> ConfigVariable::m_Where;
+std::vector<ConfigVariable::WhereErrorEntry> ConfigVariable::m_WhereError;
 std::vector<int> ConfigVariable::m_FirstMacroLine;
 void ConfigVariable::where_begin(int _iLineNum, int _iLineLocation, types::Callable* _pCall)
 {
-    std::wstring wstrFileName = L"";
+    const std::wstring* wstrFileName = nullptr;
     types::Callable* pCall = _pCall;
     if (pCall->isMacroFile())
     {
         types::Macro* pM = pCall->getAs<types::MacroFile>()->getMacro();
-        wstrFileName = pM->getFileName();
+        wstrFileName = &pM->getFileName();
         pCall = pM;
     }
     else if (pCall->isMacro())
     {
         types::Macro* pM = pCall->getAs<types::Macro>();
-        wstrFileName = pM->getFileName();
+        wstrFileName = &pM->getFileName();
     }
 
-    m_Where.emplace_back(_iLineNum, _iLineLocation, symbol::Context::getInstance()->getScopeLevel(), pCall, wstrFileName);
+    m_Where.push_back({_iLineNum, _iLineLocation, symbol::Context::getInstance()->getScopeLevel(), pCall, wstrFileName});
 }
 
 void ConfigVariable::where_end()
@@ -1193,7 +1186,7 @@ void ConfigVariable::where_end()
     m_Where.pop_back();
 }
 
-const ConfigVariable::WhereVector& ConfigVariable::getWhere()
+const std::vector<ConfigVariable::WhereEntry>& ConfigVariable::getWhere()
 {
     return m_Where;
 }
@@ -1217,32 +1210,32 @@ int ConfigVariable::getMacroFirstLines()
 
     return m_FirstMacroLine.back();
 }
-void ConfigVariable::setFileNameToLastWhere(const std::wstring& _fileName)
+void ConfigVariable::setFileNameToLastWhere(const std::wstring* _fileName)
 {
     m_Where.back().m_file_name = _fileName;
 }
 
-void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
+void ConfigVariable::whereErrorToString(std::wostringstream& ostr)
 {
     int iLenName = 1;
     bool isExecstr = false;
     bool isExecfile = false;
 
     // get max length of functions name and check if exec or execstr have been called.
-    for (auto & where : m_WhereError)
+    for (auto& where : m_WhereError)
     {
-        if (isExecstr == false && where.call->getName() == L"execstr")
+        if (isExecstr == false && where.m_function_name == L"execstr")
         {
             isExecstr = true;
             continue;
         }
-        else if (isExecfile == false && where.call->getName() == L"exec")
+        else if (isExecfile == false && where.m_function_name == L"exec")
         {
             isExecfile = true;
             continue;
         }
 
-        iLenName = std::max((int)where.call->getName().length(), iLenName);
+        iLenName = std::max((int)where.m_function_name.length(), iLenName);
 
         // in case of bin file, the file path and line is displayed only if the associated .sci file exists
         if (where.m_file_name != L"" && where.m_file_name.find(L".bin") != std::wstring::npos)
@@ -1281,7 +1274,7 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
     // print call stack
     ostr << std::left;
     ostr.fill(L' ');
-    for (auto & where : m_WhereError)
+    for (auto& where : m_WhereError)
     {
         ostr.width(iMaxLen);
         if (where.m_line == 0)
@@ -1290,7 +1283,7 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
         }
         else
         {
-            if (where.call->getName() == L"execstr")
+            if (where.m_function_name == L"execstr")
             {
                 isExecstr = true;
                 wchar_t wcsTmp[bsiz];
@@ -1298,7 +1291,7 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
                 ostr << wcsTmp << std::endl;
                 continue;
             }
-            else if (where.call->getName() == L"exec")
+            else if (where.m_function_name == L"exec")
             {
                 wchar_t wcsTmp[bsiz];
                 os_swprintf(wcsTmp, bsiz, wstrExecFile.c_str(), where.m_line);
@@ -1314,22 +1307,24 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
         }
 
         ostr.width(iLenName);
-        ostr << where.call->getName();
+        ostr << where.m_function_name;
 
         if (where.m_file_name != L"")
         {
             // -1 because the first line of a function dec is : "function myfunc()"
-            ostr << L"( " << where.m_file_name << L" " << _W("line") << L" " << where.call->getFirstLine() + where.m_line - 1 << L" )";
+            ostr << L"( " << where.m_file_name << L" " << _W("line") << L" " << where.m_first_line + where.m_line - 1 << L" )";
         }
 
         ostr << std::endl;
     }
 
-    ostr << std::endl << std::resetiosflags(std::ios::adjustfield);
+    ostr << std::endl
+         << std::resetiosflags(std::ios::adjustfield);
 }
 
 void ConfigVariable::fillWhereError(int _iErrorLine)
 {
+
     if (m_WhereError.empty())
     {
         int iTmp = 0;
@@ -1342,8 +1337,16 @@ void ConfigVariable::fillWhereError(int _iErrorLine)
         m_WhereError.reserve(m_Where.size());
         for (auto where = m_Where.rbegin(); where != m_Where.rend(); ++where)
         {
-            m_WhereError.emplace_back(iTmp, (*where).m_absolute_line, 0, (*where).call, (*where).m_file_name);
-            iTmp = (*where).m_line;
+            if (where->m_file_name != nullptr)
+            {
+                m_WhereError.push_back({iTmp, where->m_absolute_line, where->call->getFirstLine(), where->call->getName(), *where->m_file_name});
+            }
+            else
+            {
+                m_WhereError.push_back({iTmp, where->m_absolute_line, where->call->getFirstLine(), where->call->getName(), L""});
+            }
+
+            iTmp = where->m_line;
         }
     }
 }
@@ -1553,7 +1556,6 @@ void ConfigVariable::resetExecutionBreak()
 {
     executionbreak = false;
 }
-
 
 #ifdef _DEBUG
 int ConfigVariable::recursionLimit = 25;

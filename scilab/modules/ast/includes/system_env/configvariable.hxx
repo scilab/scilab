@@ -413,33 +413,40 @@ public :
 
     // where
 public :
+    // On macro call, some information are pushed to the call stack
     struct WhereEntry
     {
         int m_line;
         int m_absolute_line;
         int m_scope_lvl;
         types::Callable* call;
-        std::wstring m_file_name;
-        WhereEntry(int line, int absolute_line, int scope_lvl, types::Callable* pCall, const std::wstring& file_name) :
-            m_line(line), m_absolute_line(absolute_line), m_scope_lvl(scope_lvl), call(pCall), m_file_name(file_name) {}
+        const std::wstring* m_file_name;
     };
 
-    typedef std::vector<WhereEntry> WhereVector;
+    // On error, every information is copied back as values from the Callable to avoid being freed on call stack return
+    struct WhereErrorEntry
+    {
+        int m_line;
+        int m_absolute_line;
+        int m_first_line;
+        std::wstring m_function_name;
+        std::wstring m_file_name;
+    };
 
     static void where_begin(int _iLineNum, int _iLineLocation, types::Callable* _pCall);
     static void where_end();
-    static const WhereVector& getWhere();
+    static const std::vector<WhereEntry>& getWhere();
     static void fillWhereError(int _iErrorLine);
     static void resetWhereError();
 
     static void macroFirstLine_begin(int _iLine);
     static void macroFirstLine_end();
     static int getMacroFirstLines();
-    static void setFileNameToLastWhere(const std::wstring& _fileName);
+    static void setFileNameToLastWhere(const std::wstring* _fileName);
     static void whereErrorToString(std::wostringstream &ostr);
 private :
-    static WhereVector m_Where;
-    static WhereVector m_WhereError;
+    static std::vector<WhereEntry> m_Where;
+    static std::vector<WhereErrorEntry> m_WhereError;
     static std::vector<int> m_FirstMacroLine;
     //module called with variable by reference
 private :

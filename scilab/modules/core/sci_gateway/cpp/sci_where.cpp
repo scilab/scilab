@@ -41,7 +41,7 @@ types::Function::ReturnValue sci_where(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    const ConfigVariable::WhereVector& where = ConfigVariable::getWhere();
+    const std::vector<ConfigVariable::WhereEntry>& where = ConfigVariable::getWhere();
     if (where.size() <= 1)
     {
         out.push_back(types::Double::Empty());

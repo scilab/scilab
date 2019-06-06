@@ -180,7 +180,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
 
         // update where to set the name of the executed file.
-        ConfigVariable::setFileNameToLastWhere(wstFile.data());
+        ConfigVariable::setFileNameToLastWhere(&wstFile);
 
         ThreadManagement::LockParser();
         parser.parseFile(pwstTemp, L"exec");

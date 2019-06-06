@@ -86,7 +86,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
 
                         // look for a breakpoint on this line and update breakpoint information when possible
                         char* functionName = wide_string_to_UTF8(lWhereAmI.back().call->getName().data());
-                        std::wstring pstrFileName = lWhereAmI.back().m_file_name;
+                        std::wstring pstrFileName = *lWhereAmI.back().m_file_name;
                         char* fileName = wide_string_to_UTF8(pstrFileName.data());
 
                         int iLine = exp->getLocation().first_line - ConfigVariable::getMacroFirstLines();
@@ -336,14 +336,14 @@ void DebuggerVisitor::visit(const SeqExp  &e)
         {
             ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
 
-            std::vector<ConfigVariable::WhereEntry> lWhereAmI = ConfigVariable::getWhere();
+            const std::vector<ConfigVariable::WhereEntry>& lWhereAmI = ConfigVariable::getWhere();
 
             //where can be empty on last stepout, on first calling expression
             if (lWhereAmI.size())
             {
-                std::wstring& filename = lWhereAmI.back().m_file_name;
+                const std::wstring* filename = lWhereAmI.back().m_file_name;
 
-                if (filename.empty())
+                if (filename == nullptr)
                 {
                     //error in a console script
                     std::wstring functionName = lWhereAmI.back().call->getName();
@@ -351,7 +351,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                 }
                 else
                 {
-                    manager->errorInFile(filename, exp);
+                    manager->errorInFile(*filename, exp);
                 }
 
                 // Debugger just restart after been stopped on an error.
