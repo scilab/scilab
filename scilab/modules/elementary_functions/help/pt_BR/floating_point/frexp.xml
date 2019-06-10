@@ -13,16 +13,19 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="frexp" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="frexp" xml:lang="pt">
     <refnamediv>
         <refname>frexp</refname>
-        <refpurpose>separa um número em ponto flutuante em potência de base 2 e
-            mantissa
+        <refpurpose>separa um número em ponto flutuante em potência de base 2 e mantissa
+            <emphasis role="bold">(deprecated)</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>[f,e]=frexp(x)</synopsis>
+        <synopsis>[f, e] = frexp(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -55,6 +58,10 @@
     </refsection>
     <refsection>
         <title>Descrição</title>
+        <warning>
+            <literal>frexp()</literal> becomes an internal function in Scilab 6.1.x.
+            Please use <literal>[f,e] = log2(x)</literal> instead.
+        </warning>
         <para>Esta função corresponde à função ANSI C frexp(). Quaisquer zeros em
             <literal>x</literal> produzem <literal>f=0</literal> e
             <literal>e=0</literal>.
@@ -82,5 +89,16 @@
                 <link linkend="log2">log2</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    frexp() becomes internal. It is publicly replaced with [f,e]=log2(x).
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

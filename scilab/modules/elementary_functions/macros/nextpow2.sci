@@ -21,7 +21,7 @@ function e = nextpow2(n)
     kf = find(~isnan(n)&n<>%inf);
     e = n;
     f = zeros(n);
-    [f(kf), e(kf)] = frexp(n(kf));
+    [f(kf), e(kf)] = log2(n(kf));
     k = find(f==0.5); // n(k) is a power of 2
     if ~isempty(k)
         e(k) = e(k)-1;

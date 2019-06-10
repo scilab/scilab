@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="nearfloat" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="nearfloat" xml:lang="ru">
     <refnamediv>
         <refname>nearfloat</refname>
         <refpurpose>
@@ -38,13 +41,9 @@
         <para>
             Эта функция вычисляет, в поэлементном смысле, соответствующих соседей
             элементов <literal>x</literal> (см. number_properties в нижеследующем
-            наборе с плавающей точкой), последующие элементы, если <literal>dir =
-                "succ"
-            </literal>
-            ,и предыдущие элементы, если <literal>dir =
-                "pred"
-            </literal>
-            .
+            наборе с плавающей точкой), последующие элементы, если
+            <literal>dir ="succ"</literal>, и предыдущие элементы, если
+            <literal>dir = "pred"</literal>.
         </para>
     </refsection>
     <refsection>
@@ -53,7 +52,7 @@
 format("e",22)
 nearfloat("succ",1) - 1
 1 - nearfloat("pred",1)
-format("v") //reset default format
+format("v") //сброс к формату по умолчанию
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -63,7 +62,7 @@ format("v") //reset default format
                 <link linkend="number_properties">number_properties</link>
             </member>
             <member>
-                <link linkend="frexp">frexp</link>
+                <link linkend="log2">log2</link>
             </member>
         </simplelist>
     </refsection>

@@ -24,8 +24,8 @@ function [tree]=sci_log2(tree)
     // Y = log2(X)
     if lhs==1 then
         tree.lhs(1).infer=X.infer
-        // [F,E] = log2(X)
     else
+        // [F,E] = log2(X)
         if is_complex(X) then
             X = Funcall("real",1,list(X),list(Variable("",X.infer)))
         elseif ~is_real(X) then
@@ -34,7 +34,7 @@ function [tree]=sci_log2(tree)
             X=newX
         end
         tree.rhs=Rhs_tlist(X)
-        tree.name="frexp"
+        tree.name="log2"
         tree.lhs(1).dims=X.dims
         tree.lhs(1).type=Type(Double,Real)
     end

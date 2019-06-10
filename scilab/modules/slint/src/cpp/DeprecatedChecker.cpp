@@ -93,16 +93,13 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     // TODO: get this list from a conf file
     std::unordered_map<std::wstring, std::wstring> map;
 
-    // Scilab 6.0.0 => 6.1.0
-    map.emplace(L"hypermat", L"matrix");
-    map.emplace(L"square", L"replot");
-
     // Scilab 6.0.x => 6.1.0
     map.emplace(L"dirname", L"fileparts");
     map.emplace(L"_d", L"_");
     map.emplace(L"dgettext", L"gettext");
     map.emplace(L"datatipToggle", L"datatipManagerMode");
     map.emplace(L"denom", L".den");
+    map.emplace(L"frexp", L"log2");
     map.emplace(L"getPreferencesValue", L"xmlGetValues");
     map.emplace(L"hypermat", L"zeros|matrix");
     map.emplace(L"lstsize", L"size");

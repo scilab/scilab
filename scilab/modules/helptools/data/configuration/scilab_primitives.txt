@@ -458,7 +458,6 @@ fire_closing_finished
 floor
 format
 freq
-frexp
 fromc
 fromjava
 fscanfMat

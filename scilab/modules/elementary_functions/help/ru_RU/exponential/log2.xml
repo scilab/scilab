@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,22 +13,39 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="log2" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="log2" xml:lang="ru">
     <refnamediv>
         <refname>log2</refname>
         <refpurpose>логарифм по основанию 2</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>y=log2(x)</synopsis>
+        <synopsis>
+            y = log2(x)
+            [f, e] = log2(u)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>x, y</term>
                 <listitem>
-                    <para>вектор или матрица</para>
+                    <para>
+                        массивы десятичных или комплексных чисел, такие, что <literal>2.^y = x</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u, m, e</term>
+                <listitem>
+                    <para>
+                        массивы десятичных чисел, такие, что <literal>u = m .* 2.^e</literal>,
+                        при <literal>sign(m)=sign(u)</literal> и <literal>0.5 ≤ abs(m) &lt; 1</literal>.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -37,14 +54,119 @@
         <title>Описание</title>
         <para>
             <literal>log2(x)</literal> является поэлементным логарифмом по основанию 2
-            <literal>y(i,j)=log2(x(i,j))</literal>.
+            <literal>y(i,j) = log2(x(i,j))</literal>.
+            <note>
+                <literal>log2(-%inf) == %inf + log2(-1)</literal>
+            </note>
+        </para>
+        <para>
+            <literal>[m,e]=log2(u)</literal> вычисляет поэлементно мантиссу по основанию 2
+            <varname>m</varname> и экспоненту <varname>e</varname> каждого элемента
+            <varname>u</varname>. Следовательно, для любого индекса <literal>k</literal> имеем
+            <literal>u(k) = m(k) .* 2.^e(k)</literal> при <literal>0.5 ≤ |m(k)| &lt; 1</literal>.
+            <note>
+                <itemizedlist>
+                    <listitem>
+                        <literal>[m,e]=log2([0 %nan -%inf %inf])</literal> возвращает
+                        <literal>m=[0  NaN -Inf Inf]</literal> и <literal>e=[0 0 0 0]</literal>.
+                    </listitem>
+                    <listitem>
+                        Этот синтаксис соответствует функции frexp() ANSI C.
+                    </listitem>
+                </itemizedlist>
+            </note>
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
+        <para>
+            Логарифм по основанию 2:
+        </para>
         <programlisting role="example"><![CDATA[
-2.^log2([1,%i,-1,-%i])
+L = log2([-1, 1, 2, %i, -%i])
+clean(2.^L)
+L = log2([0 %nan %inf])
+2 .^ L
+L = log2([0 %nan %inf -%inf]) // -%inf<0 превращает результат в комплексный вид
+2 .^ L                        // -Inf не получится
  ]]></programlisting>
+    <screen><![CDATA[
+--> L = log2([-1, 1, 2, %i, -%i])
+ L  =
+   4.5323601i   0.   1.   2.2661801i  -2.2661801i
+
+--> clean(2.^L)
+ ans  =
+  -1.   1.   2.   i   -i
+
+--> L = log2([0 %nan %inf])
+ L  =
+  -Inf   Nan   Inf
+
+--> 2 .^ L
+ ans  =
+   0.   Nan   Inf
+
+--> L = log2([0 %nan %inf -%inf]) // -%inf<0 превращает результат в комплексный вид
+ L  =
+  -Inf   Nan + Nani   Inf   Inf + 4.5323601i
+
+--> 2 .^ L                        // -Inf не получится
+ ans  =
+   0.   Nan + Nani   Inf   Nan + Nani
+]]></screen>
+        <para/>
+        <para>
+            Разложение на мантиссу по основанию 2 + экспоненту:
+        </para>
+        <programlisting role="example"><![CDATA[
+[m, e] = log2([-3, -1.5, -1, 0, 4, 1e20])
+m .* 2.^e
+ ]]></programlisting>
+    <screen><![CDATA[
+--> [m, e] = log2([-3, -1.5, -1, 0, 4, 1e20])
+ e  =
+   2.     1.     1.    0.   3.   67.
+ m  =
+  -0.75  -0.75  -0.5   0.   0.5   0.6776264
+
+--> m .* 2.^e
+ ans  =
+  -3.  -1.5  -1.   0.   4.   1.000D+20
+]]></screen>
+    <para/>
+        <programlisting role="example"><![CDATA[
+np = number_properties;
+x = [%eps np("tiniest") np("tiny") np("huge")]
+[m, e] = log2(x)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> x = [%eps np("tiniest") np("tiny") np("huge")]
+ x  =
+    2.220D-16    4.94D-324    2.22D-308    1.79D+308
+
+--> [m, e] = log2(x)
+ e  =
+  - 51.  - 1073.  - 1021.    1024.
+ m  =
+    0.5    0.5    0.5    1.
+]]></screen>
+    <para/>
+        <programlisting role="example"><![CDATA[
+[m, e] = log2([0 %nan -%inf %inf])
+m .* 2.^e
+ ]]></programlisting>
+    <screen><![CDATA[
+-->[m, e] = log2([0 %nan -%inf %inf])
+ e  =
+    0.    0.    0.    0.
+ m  =
+    0.    Nan  - Inf    Inf
+
+-->m .* 2.^e
+ ans  =
+    0.    Nan  - Inf    Inf
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
@@ -53,16 +175,19 @@
                 <link linkend="log">log</link>
             </member>
             <member>
+                <link linkend="log10">log10</link>
+            </member>
+            <member>
+                <link linkend="nextpow2">nextpow2</link>
+            </member>
+            <member>
+                <link linkend="bitstring">bitstring</link>
+            </member>
+            <member>
                 <link linkend="hat">hat</link>
             </member>
             <member>
                 <link linkend="ieee">ieee</link>
-            </member>
-            <member>
-                <link linkend="log10">log10</link>
-            </member>
-            <member>
-                <link linkend="frexp">frexp</link>
             </member>
         </simplelist>
     </refsection>

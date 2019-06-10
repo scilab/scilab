@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -21,6 +21,16 @@ function [f, e] = log2(x)
     if argn(1) == 1 then
         f = log(x) / log(2)
     else
+        if type(x)<>1
+            msg = gettext("%s: Argument #%d: Decimal numbers expected.\n")
+            error(msprintf(msg, "log2", 1))
+        end
+        if ~isreal(x,0)
+            msg = gettext("%s: Argument #%d: Complex numbers not supported.\n")
+            error(msprintf(msg, "log2", 1))
+        else
+            x = real(x)
+        end
         [f, e] = frexp(x)
     end
 endfunction

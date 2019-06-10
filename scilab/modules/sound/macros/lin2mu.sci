@@ -21,6 +21,6 @@ function [mu]=lin2mu(y)
     y = SCALE*y;
     sig = sign(y)+bool2s(y==0);
     y = min(abs(y),CLIP);
-    [f,e] = frexp(y+BIAS);
+    [f,e] = log2(y+BIAS);
     mu = 64*sig-16*e-fix(32*f)+OFFSET;
 endfunction

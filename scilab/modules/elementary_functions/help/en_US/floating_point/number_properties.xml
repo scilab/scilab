@@ -161,7 +161,7 @@ eps = number_properties("eps")
                 <link linkend="nearfloat">nearfloat</link>
             </member>
             <member>
-                <link linkend="frexp">frexp</link>
+                <link linkend="log2">log2</link>
             </member>
         </simplelist>
     </refsection>

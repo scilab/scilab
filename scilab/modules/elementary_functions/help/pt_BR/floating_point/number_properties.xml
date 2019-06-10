@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="number_properties" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="number_properties" xml:lang="pt">
     <refnamediv>
         <refname>number_properties</refname>
         <refpurpose>determina parâmetros de ponto flutuante</refpurpose>
@@ -164,7 +167,7 @@ eps = number_properties("eps")
                 <link linkend="nearfloat">nearfloat</link>
             </member>
             <member>
-                <link linkend="frexp">frexp</link>
+                <link linkend="log2">log2</link>
             </member>
         </simplelist>
     </refsection>

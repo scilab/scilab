@@ -1,14 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="frexp" xml:lang="fr">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="frexp" xml:lang="fr">
     <refnamediv>
         <refname>frexp</refname>
-        <refpurpose>calcule la représentation en base 2 (mantisse et exposant)
-            d'un nombre flottant.
+        <refpurpose>calcule la représentation en base 2 (mantisse et exposant) d'un nombre décimal
+            <emphasis role="bold">(dépréciée)</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[f,e]=frexp(x)</synopsis>
+        <synopsis>[f, e] = frexp(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -39,6 +56,10 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            <literal>frexp()</literal> devient une fonction interne à compter de Scilab 6.1.x.
+            SVP utiliser désormais <literal>[f,e] = log2(x)</literal> à la place.
+        </warning>
         <para>Cette fonction correspond à la fonction ANSI C frexp(). Chaque 0
             dans <literal>x</literal> produit <literal>f=0</literal> et
             <literal>e=0</literal>.
@@ -66,5 +87,17 @@
                 <link linkend="log2">log2</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    frexp() devient une fonction interne. Elle est publiquement remplacée par
+                    [f,e]=log2(x).
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
