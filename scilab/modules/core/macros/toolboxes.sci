@@ -65,7 +65,8 @@ function [y] = toolboxes(path)
 
     // Creating the menu and its entries
     if (contribs <> []) & (getscilabmode() == "STD") then
-        contribs = gsort(contribs, "g", "i")
+        [?, k] = gsort(convstr(contribs), "g", "i")
+        contribs = contribs(k);
         delmenu(gettext("&Toolboxes"));
         h = uimenu("parent", 0, "label", gettext("&Toolboxes"));
         for k=1:size(contribs,"*")
