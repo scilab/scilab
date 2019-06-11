@@ -22,25 +22,16 @@
 extern "C"
 {
 #include "filemanager_interface.h"
+#include "FileExist.h"
 }
 
 namespace ast
 {
 void DebuggerVisitor::visit(const SeqExp  &e)
 {
-    RunVisitor* exec = NULL;
     std::list<Exp *>::const_iterator itExp;
-    debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
-
-    if (ConfigVariable::getEnableDebug() == false)
-    {
-        //enable debugger for next execution
-        ConfigVariable::setEnableDebug(true);
-
-        ExecVisitor exec;
-        e.accept(exec);
-        return;
-    }
+    debugger::DebuggerManager* manager = debugger::DebuggerManager::getInstance();
+    manager->resetAborted();
 
     for (const auto & exp : e.getExps())
     {
@@ -62,34 +53,28 @@ void DebuggerVisitor::visit(const SeqExp  &e)
         }
 
         //debugger check !
+        int iBreakPoint = -1;
         if (ConfigVariable::getEnableDebug())
         {
-            std::vector<ConfigVariable::WhereEntry> lWhereAmI = ConfigVariable::getWhere();
-            int iLine = (exp->getLocation().first_line - ConfigVariable::getMacroFirstLines()) + 1;
-
-            //manage step next
-            if (manager->isStepNext())
-            {
-                manager->resetStepNext();
-                manager->stop(exp, -1);
-            }
-            else if (manager->isStepIn())
+            bool stopExecution = false;
+            if (manager->isStepIn())
             {
                 manager->resetStepIn();
-                manager->stop(exp, -1);
+                stopExecution = true;
             }
-            else if (manager->isStepOut())
+            else if (manager->isStepNext())
             {
-                manager->resetStepOut();
-                manager->stop(exp, -1);
+                manager->resetStepNext();
+                stopExecution = true;
             }
             else
             {
+                std::vector<ConfigVariable::WhereEntry> lWhereAmI = ConfigVariable::getWhere();
                 //set information from debugger commands
                 if (lWhereAmI.size() != 0 && manager->getBreakPointCount() != 0)
                 {
                     debugger::Breakpoints bps = manager->getAllBreakPoint();
-                    std::wstring functionName = lWhereAmI.back().call->getName();
+
                     int i = -1;
                     for (const auto & bp : bps)
                     {
@@ -99,68 +84,126 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                             continue;
                         }
 
-                        if (functionName == bp->getFunctioName())
+                        // look for a breakpoint on this line and update breakpoint information when possible
+                        char* functionName = wide_string_to_UTF8(lWhereAmI.back().call->getName().data());
+                        std::wstring pstrFileName = lWhereAmI.back().m_file_name;
+                        char* fileName = wide_string_to_UTF8(pstrFileName.data());
+
+                        int iLine = exp->getLocation().first_line - ConfigVariable::getMacroFirstLines();
+                        if (bp->hasMacro() &&
+                            bp->getFunctioName().compare(functionName) == 0)
                         {
-                            if (bp->getMacroLine() == -1)
+                            if (bp->getMacroLine() == 0)
                             {
                                 //first pass in macro.
                                 //update first line with real value
                                 bp->setMacroLine(iLine);
                             }
 
-                            if (bp->getMacroLine() == iLine)
+                            stopExecution = bp->getMacroLine() == iLine;
+                        }
+                        else if(bp->hasFile() &&
+                                bp->getFileLine() == exp->getLocation().first_line)
+                        {
+                            if(pstrFileName.rfind(L".bin") != std::string::npos)
                             {
-                                //check condition
-                                if (bp->getConditionExp() != NULL)
+                                pstrFileName.replace(pstrFileName.size() - 4, 4, L".sci");
+                                // stop on bp only if the file exist
+                                if (FileExistW(pstrFileName.data()))
                                 {
-                                    //do not use debuggervisitor !
-                                    symbol::Context* pCtx = symbol::Context::getInstance();
-                                    try
-                                    {
-                                        ExecVisitor execCond;
-                                        //protect current env during condition execution
-                                        pCtx->scope_begin();
-                                        bp->getConditionExp()->accept(execCond);
-                                        types::InternalType* pIT = pCtx->getCurrentLevel(symbol::Symbol(L"ans"));
-                                        if (pIT == NULL ||
-                                                pIT->isBool() == false ||
-                                                ((types::Bool*)pIT)->isScalar() == false ||
-                                                ((types::Bool*)pIT)->get(0) == 0)
-                                        {
-                                            pCtx->scope_end();
-                                            //not a boolean, not scalar or false
-                                            continue;
-                                        }
-
-                                        pCtx->scope_end();
-                                        //ok condition is valid and true
-                                    }
-                                    catch (ast::ScilabException &/*e*/)
-                                    {
-                                        pCtx->scope_end();
-                                        //not work !
-                                        //invalid breakpoint
-                                        continue;
-                                    }
+                                    FREE(fileName);
+                                    fileName = wide_string_to_UTF8(pstrFileName.data());
                                 }
+                            }
 
-                                //we have a breakpoint !
-                                //stop execution and wait signal from debugger to restart
-                                manager->stop(exp, i);
-
-                                //only one breakpoint can be "call" on same exp
-                                break;
+                            if(bp->getFileName().compare(fileName) == 0)
+                            {
+                                stopExecution = true;
+                                // set function information
+                                if(lWhereAmI.back().call->getFirstLine())
+                                {
+                                    bp->setFunctionName(functionName);
+                                    bp->setMacroLine(iLine);
+                                }
                             }
                         }
+
+                        FREE(functionName);
+                        FREE(fileName);
+
+                        if(stopExecution == false)
+                        {
+                            // no breakpoint for this line
+                            continue;
+                        }
+
+                        // Set the begin of line if not yet done
+                        if(bp->getBeginLine() == 0)
+                        {
+                            bp->setBeginLine(exp->getLocation().first_column);
+                        }
+                        // check if this exp is at the begin of the breakpoint line
+                        else if(bp->getBeginLine() != exp->getLocation().first_column)
+                        {
+                            // stop only if we are at the line begins
+                            stopExecution = false;
+                            continue;
+                        }
+
+                        //check condition
+                        if (bp->getConditionExp() != NULL)
+                        {
+                            //do not use debuggervisitor !
+                            symbol::Context* pCtx = symbol::Context::getInstance();
+                            try
+                            {
+                                ExecVisitor execCond;
+                                //protect current env during condition execution
+                                pCtx->scope_begin();
+                                bp->getConditionExp()->accept(execCond);
+                                types::InternalType* pIT = pCtx->getCurrentLevel(symbol::Symbol(L"ans"));
+                                if (pIT == NULL ||
+                                        pIT->isBool() == false ||
+                                        ((types::Bool*)pIT)->isScalar() == false ||
+                                        ((types::Bool*)pIT)->get(0) == 0)
+                                {
+                                    pCtx->scope_end();
+                                    //not a boolean, not scalar or false
+                                    stopExecution = false;
+                                    continue;
+                                }
+
+                                pCtx->scope_end();
+                                //ok condition is valid and true
+                            }
+                            catch (ast::ScilabException &/*e*/)
+                            {
+                                pCtx->scope_end();
+                                stopExecution = false;
+                                //not work !
+                                //invalid breakpoint
+                                continue;
+                            }
+                        }
+
+                        //we have a breakpoint !
+                        //stop execution and wait signal from debugger to restart
+                        iBreakPoint = i;
+
+                        //only one breakpoint can be "call" on same exp
+                        break;
                     }
                 }
             }
-            exec = this;
-        }
-        else
-        {
-            //change visitor to execvitor instead of debuggervisitor
-            exec = new ExecVisitor();
+
+            if(stopExecution)
+            {
+                manager->stop(exp, iBreakPoint);
+                if (manager->isAborted())
+                {
+                    throw ast::InternalAbort();
+                }
+            }
         }
 
         //copy from runvisitor::seqexp
@@ -170,7 +213,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
             setResult(NULL);
             int iExpectedSize = getExpectedSize();
             setExpectedSize(-1);
-            exp->accept(*exec);
+            exp->accept(*this);
             setExpectedSize(iExpectedSize);
             types::InternalType * pIT = getResult();
 
@@ -273,6 +316,21 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                 exp->resetReturn();
                 break;
             }
+
+            // Stop execution at the end of the seqexp of the caller
+            // Do it at the end of the seqexp will make the debugger stop
+            // even if the caller is at the last line
+            // ie: the caller is followed by endfunction
+            if(manager->isStepOut())
+            {
+                manager->resetStepOut();
+                manager->stop(exp, iBreakPoint);
+                if (manager->isAborted())
+                {
+                    throw ast::InternalAbort();
+                }
+            }
+
         }
         catch (const InternalError& ie)
         {
@@ -295,6 +353,12 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                 {
                     manager->errorInFile(filename, exp);
                 }
+
+                // Debugger just restart after been stopped on an error.
+                if (manager->isAborted())
+                {
+                    throw ast::InternalAbort();
+                }
             }
 
             throw ie;
@@ -304,11 +368,6 @@ void DebuggerVisitor::visit(const SeqExp  &e)
         // to make a cleanup in visit(ForExp) for example (e.getBody().accept(*this);)
         setResult(NULL);
 
-    }
-
-    //propagate StepNext to parent SeqExp
-    if (ConfigVariable::getEnableDebug())
-    {
     }
 }
 }

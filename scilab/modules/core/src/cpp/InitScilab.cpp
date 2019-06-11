@@ -36,6 +36,7 @@
 #include "numericconstants.hxx"
 #include "expandPathVariable.h"
 #include "execvisitor.hxx"
+#include "printvisitor.hxx"
 #include "debugmanager.hxx"
 #include "consoledebugger.hxx"
 
@@ -119,6 +120,10 @@ static int InitializeEnvironnement(void);
 static int interactiveMain(ScilabEngineInfo* _pSEI);
 static void processCommand(ScilabEngineInfo* _pSEI);
 static void stateShow(Parser::ControlStatus status);
+
+static void executeDebuggerCommand(std::string cmd);
+static void splitOnSpaces(const std::string& command, std::vector<std::string>& vCommand, std::vector<size_t>& vPos);
+static void printDebuggerHelp();
 
 using namespace ast;
 
@@ -419,12 +424,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     }
 
     ConfigVariable::setPromptMode(2);
-
     InitializePreferences(iScript);
-
-
-    //register console debugger as debugger
-    debugger::DebuggerMagager::getInstance()->addDebugger(new debugger::ConsoleDebugger());
 
     return iMainRet;
 }
@@ -779,87 +779,10 @@ void* scilabReadAndStore(void* param)
 
             if (ConfigVariable::getEnableDebug())
             {
-                bool disableDebug = false;
-                char* tmpCommand = NULL;
-                int commandsize = static_cast<int>(strlen(command));
-
-                //all commands must be prefixed by debug except e(xec) (r)un or p(rint) "something" that become "something" or disp("something")
-                if (strncmp(command, "e ", 2) == 0 || strncmp(command, "r ", 2) == 0)
-                {
-                    tmpCommand = os_strdup(command + 2);
-                }
-                else if (commandsize >= 5 && strncmp(command, "exec ", 5) == 0)
-                {
-                    tmpCommand = os_strdup(command + 5);
-                }
-                else if (commandsize >= 4 && strncmp(command, "run ", 4) == 0)
-                {
-                    tmpCommand = os_strdup(command + 5);
-                }
-
-                if (tmpCommand)
-                {
-                    if (debugger::DebuggerMagager::getInstance()->isInterrupted())
-                    {
-                        sciprint(_("Debugger is on a breakpoint\n"));
-                        sciprint(_("(c)ontinue or (a)bort current execution before execute a new command\n"));
-                        FREE(tmpCommand);
-                        continue;
-                    }
-                }
-                else if (commandsize > 1 && command[0] == 'd' && command[1] == ' ')
-                {
-                    std::string s("disp(");
-                    s += command + 2;
-                    s += ")";
-                    tmpCommand = os_strdup(s.data());
-                    disableDebug = true;
-                }
-                else if (commandsize > 5 && strncmp(command, "disp ", 5) == 0)
-                {
-                    std::string s("disp(");
-                    s += command + 5;
-                    s += ")";
-                    tmpCommand = os_strdup(s.data());
-                    disableDebug = true;
-                }
-                else if (commandsize > 1 && command[0] == 'p' && command[1] == ' ')
-                {
-                    std::string s("disp(");
-                    s += command + 2;
-                    s += ")";
-                    tmpCommand = os_strdup(s.data());
-                    disableDebug = true;
-                }
-                else if (commandsize > 6 && strncmp(command, "print ", 6) == 0)
-                {
-                    std::string s("disp(");
-                    s += command + 6;
-                    s += ")";
-                    tmpCommand = os_strdup(s.data());
-                    disableDebug = true;
-                }
-                else
-                {
-                    int iLen = (int)strlen(command) + (int)strlen("debug ") + 1;
-                    tmpCommand = (char*)MALLOC(sizeof(char) * iLen);
-#ifdef _MSC_VER
-                    os_sprintf(tmpCommand, iLen, "%s %s", "debug", command);
-#else
-                    os_sprintf(tmpCommand, "%s %s", "debug", command);
-#endif
-                    disableDebug = true;
-                }
-
-                if (disableDebug)
-                {
-                    //disable debugger time to exec debug command
-                    //it will be enable in debuggervisitor, after execution
-                    ConfigVariable::setEnableDebug(false);
-                }
-
+                executeDebuggerCommand(command);
                 FREE(command);
-                command = tmpCommand;
+                command = NULL;
+                continue;
             }
 
             ThreadManagement::LockParser();
@@ -1220,4 +1143,439 @@ static void Add_String_Constant(const std::wstring& _szName, const char *_pstStr
 {
     types::String * ps = new types::String(_pstString);
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), ps);
+}
+
+// manage debugger commands
+static void executeDebuggerCommand(std::string _command)
+{
+    debugger::DebuggerManager* manager = debugger::DebuggerManager::getInstance();
+    std::vector<std::string> vCommand;
+    std::vector<size_t> vPos;
+    splitOnSpaces(_command, vCommand, vPos);
+
+    std::string cmd = vCommand[0];
+    int iSize = vCommand.size();
+
+    // check prefix
+    if (cmd.compare("e")    == 0 ||
+        cmd.compare("exec") == 0 ||
+        cmd.compare("r")    == 0 ||
+        cmd.compare("run")  == 0)
+    {
+        if (manager->isInterrupted())
+        {
+            // try to execute a command when execution is stopped on a breakpoint
+            sciprint(_("Debugger is on a breakpoint\n"));
+            sciprint(_("(c)ontinue or (a)bort current execution before execute a new command\n"));
+            vCommand.clear();
+            return;
+        }
+
+        if(iSize == 1)
+        {
+            sciprint(_("%s: Command missing.\n"), "run");
+            sciprint("use 'h' for more information\n\n");
+            vCommand.clear();
+            return;
+        }
+
+        // execute a command
+        char* error = manager->execute(_command.erase(0, _command.find(" ")).data());
+        if(error)
+        {
+            sciprint("Debugger execution failed\n\n%s\n", error);
+            vCommand.clear();
+            return;
+        }
+    }
+    else if(cmd.compare("d")     == 0 ||
+            cmd.compare("disp")  == 0 ||
+            cmd.compare("p")     == 0 ||
+            cmd.compare("print") == 0)
+    {
+        if(iSize < 2)
+        {
+            sciprint(_("%s: Wrong number of input arguments: %d expected.\n"), "print", 2);
+            sciprint("use 'h' for more information\n\n");
+            vCommand.clear();
+            return;
+        }
+
+        manager->print(vCommand[1]);
+    }
+    else if(cmd.compare("a")      == 0 ||
+            cmd.compare("abort")  == 0)
+    {
+        manager->abort();
+    }
+    else if(cmd.compare("c")         == 0 ||
+            cmd.compare("continue")  == 0 ||
+            cmd.compare("resume")    == 0)
+    {
+        if (manager->isInterrupted() == false)
+        {
+            // cannot execute this comment if the execution is not stopped
+            sciprint("debugger is not on a breakpoint\n");
+            vCommand.clear();
+            return;
+        }
+
+        manager->resume();
+    }
+    else if(cmd.compare("b")           == 0 ||
+            cmd.compare("break")       == 0 ||
+            cmd.compare("breakpoint")  == 0)
+    {
+        if(iSize < 2)
+        {
+            sciprint(_("%s: Wrong number of input arguments: %d to %d expected.\n"), "breakpoint", 1, 3);
+            sciprint("use 'h' for more information\n\n");
+            vCommand.clear();
+            return;
+        }
+
+        debugger::Breakpoint* bp = new debugger::Breakpoint();
+
+        // set file or function name
+        bool isFile = vCommand[1].find_first_of("\\./") != std::string::npos;
+        isFile ? bp->setFileName(vCommand[1]) : bp->setFunctionName(vCommand[1]);
+
+        // set file or function line
+        if(iSize > 2)
+        {
+            try
+            {
+                int iFileFuncLine = std::stoi(vCommand[2].data());
+                isFile ? bp->setFileLine(iFileFuncLine) : bp->setMacroLine(iFileFuncLine);
+            }
+            catch(std::invalid_argument e) // std::stoi
+            {
+                sciprint(_("%s: Wrong type for input argument #%d: Integer expected.\n"), "breakpoint", 2);
+                sciprint("use 'h' for more information\n\n");
+                vCommand.clear();
+                return;
+            }
+        }
+
+        // set condition
+        if(iSize > 3)
+        {
+            char* error = bp->setCondition(_command.substr(vPos[3], _command.length() - vPos[3]));
+            if(error)
+            {
+                delete bp;
+                bp = nullptr;
+                sciprint("parsing condition failed\n\n%s\n", error);
+                FREE(error);
+                vCommand.clear();
+                return;
+            }
+        }
+
+        manager->addBreakPoint(bp);
+    }
+    else if(cmd.compare("w")     == 0 ||
+            cmd.compare("bt")    == 0 ||
+            cmd.compare("where") == 0)
+    {
+        if (manager->isInterrupted() == false)
+        {
+            // cannot execute this comment if the execution is not stopped
+            sciprint("debugger is not on a breakpoint\n");
+            vCommand.clear();
+            return;
+        }
+
+        sciprint("%s\n", _("callstack:"));
+        debugger::DebuggerManager::CallStack callstack = manager->getCallStack();
+        int i = 0;
+        sciprint("#%-5d%s\n", i++, callstack.exp.data());
+        for (auto row : callstack.stack)
+        {
+            if(row.functionLine < 0)
+            {
+                sciprint(_("#%-5d%s"), i++, row.functionName.data());
+            }
+            else
+            {
+                sciprint(_("#%-5d%s (line %d)"), i++, row.functionName.data(), row.functionLine);
+            }
+
+            if(row.hasFile)
+            {
+                sciprint("  %s:%d", row.fileName.data(), row.fileLine);
+            }
+
+            sciprint("\n");
+        }
+    }
+    else if(cmd.compare("disable") == 0)
+    {
+        if(iSize == 1)
+        {
+            manager->disableAllBreakPoints();
+        }
+        else
+        {
+            try
+            {
+                int bp = std::stoi(vCommand[1].data());
+                if (manager->getBreakPoint(bp) == NULL)
+                {
+                    sciprint(_("%s: Unable to retrieve information about breakpoint %d.\n"), "disable", bp);
+                    sciprint("use 'h' for more information\n\n");
+                    vCommand.clear();
+                    return;
+                }
+                manager->disableBreakPoint(bp);
+            }
+            catch(std::invalid_argument e) // std::stoi
+            {
+                sciprint(_("%s: Wrong type for input argument #%d: Integer expected.\n"), "disable", 1);
+                sciprint("use 'h' for more information\n\n");
+                vCommand.clear();
+                return;
+            }
+        }
+    }
+    else if(cmd.compare("enable") == 0)
+    {
+        if(iSize == 1)
+        {
+            manager->enableAllBreakPoints();
+        }
+        else
+        {
+            try
+            {
+                int bp = std::stoi(vCommand[1].data());
+                if (manager->getBreakPoint(bp) == NULL)
+                {
+                    sciprint(_("%s: Unable to retrieve information about breakpoint %d.\n"), "enable", bp);
+                    sciprint("use 'h' for more information\n\n");
+                    vCommand.clear();
+                    return;
+                }
+                manager->enableBreakPoint(bp);
+            }
+            catch(std::invalid_argument e) // std::stoi
+            {
+                sciprint(_("%s: Wrong type for input argument #%d: Integer expected.\n"), "enable", 1);
+                sciprint("use 'h' for more information\n\n");
+                vCommand.clear();
+                return;
+            }
+        }
+    }
+    else if(cmd.compare("del")   == 0 ||
+            cmd.compare("delete") == 0)
+    {
+        if(iSize == 1)
+        {
+            manager->removeAllBreakPoints();
+        }
+        else
+        {
+            try
+            {
+                int bp = std::stoi(vCommand[1].data());
+                if (manager->getBreakPoint(bp) == NULL)
+                {
+                    sciprint(_("%s: Unable to retrieve information about breakpoint %d.\n"), "delete", bp);
+                    sciprint("use 'h' for more information\n\n");
+                    vCommand.clear();
+                    return;
+                }
+                manager->removeBreakPoint(bp);
+            }
+            catch(std::invalid_argument e) // std::stoi
+            {
+                sciprint(_("%s: Wrong type for input argument #%d: Integer expected.\n"), "delete", 1);
+                sciprint("use 'h' for more information\n\n");
+                vCommand.clear();
+                return;
+            }
+        }
+    }
+    else if(cmd.compare("h")     == 0 ||
+            cmd.compare("help")  == 0)
+    {
+        if(cmd.compare("help") == 0 &&
+          (ConfigVariable::getScilabMode() == SCILAB_NW || ConfigVariable::getScilabMode() == SCILAB_STD))
+        {
+            StorePrioritaryCommand("help debug");
+            vCommand.clear();
+            return;
+        }
+
+        printDebuggerHelp();
+    }
+    else if(cmd.compare("l")     == 0 ||
+            cmd.compare("list")  == 0)
+    {
+        if (manager->isInterrupted() == false)
+        {
+            // cannot execute this comment if the execution is not stopped
+            sciprint("debugger is not on a breakpoint\n");
+            vCommand.clear();
+            return;
+        }
+
+        std::wostringstream ostr;
+        ast::PrintVisitor pp(ostr, true, true, true);
+        manager->getExp()->accept(pp);
+        sciprint(_("%ls"), ostr.str().data());
+    }
+    else if(cmd.compare("i")      == 0 ||
+            cmd.compare("in")     == 0 ||
+            cmd.compare("stepin") == 0)
+    {
+        if (manager->isInterrupted() == false)
+        {
+            // cannot execute this comment if the execution is not stopped
+            sciprint("debugger is not on a breakpoint\n");
+            vCommand.clear();
+            return;
+        }
+
+        manager->setStepIn();
+        manager->resume();
+    }
+    else if(cmd.compare("o")         == 0 ||
+            cmd.compare("out")       == 0 ||
+            cmd.compare("stepout")   == 0)
+    {
+        if (manager->isInterrupted() == false)
+        {
+            // cannot execute this comment if the execution is not stopped
+            sciprint("debugger is not on a breakpoint\n");
+            vCommand.clear();
+            return;
+        }
+
+        manager->setStepOut();
+        manager->resume();
+    }
+    else if(cmd.compare("n")         == 0 ||
+            cmd.compare("next")      == 0 ||
+            cmd.compare("stepnext")  == 0)
+    {
+        if (manager->isInterrupted() == false)
+        {
+            // cannot execute this comment if the execution is not stopped
+            sciprint("debugger is not on a breakpoint\n");
+            vCommand.clear();
+            return;
+        }
+
+        manager->setStepNext();
+        manager->resume();
+    }
+    else if(cmd.compare("q")     == 0 ||
+            cmd.compare("exit")  == 0 ||
+            cmd.compare("quit")  == 0)
+    {
+        // quit debugger
+        manager->sendQuit();
+        ConfigVariable::setEnableDebug(false);
+        ConfigVariable::setDefaultVisitor(new ast::ExecVisitor());
+        StoreConsoleCommand("abort", 1);
+        manager->removeDebugger("console");
+    }
+    else if(cmd.compare("s")     == 0 ||
+            cmd.compare("show")  == 0)
+    {
+        if(iSize == 1)
+        {
+            manager->show(-1);
+        }
+        else
+        {
+            try
+            {
+                int bp = std::stoi(vCommand[1].data());
+                if (manager->getBreakPoint(bp) == NULL)
+                {
+                    sciprint(_("%s: Unable to retrieve information about breakpoint %d.\n"), "show", bp);
+                    sciprint("use 'h' for more information\n\n");
+                    vCommand.clear();
+                    return;
+                }
+                manager->show(bp);
+            }
+            catch(std::invalid_argument e) // std::stoi
+            {
+                sciprint(_("%s: Wrong type for input argument #%d: Integer expected.\n"), "show", 1);
+                sciprint("use 'h' for more information\n\n");
+                vCommand.clear();
+                return;
+            }
+        }
+    }
+    else
+    {
+        // not a debugger command
+        sciprint("Unknown command \"%s\".\n\n", _command.data());
+        sciprint("use 'h' for more information\n\n");
+    }
+
+    vCommand.clear();
+}
+
+static void splitOnSpaces(const std::string& command, std::vector<std::string>& vCommand, std::vector<size_t>& vPos)
+{
+    size_t pos = command.find(' ');
+    size_t lastPos = 0;
+
+    while(pos != std::string::npos)
+    {
+        if(pos - lastPos)
+        {
+            vCommand.push_back(command.substr(lastPos, pos - lastPos));
+            vPos.push_back(lastPos);
+        }
+
+        lastPos = pos + 1;
+        pos = command.find(' ', lastPos);
+    }
+
+    if(lastPos != command.length())
+    {
+        vCommand.push_back(command.substr(lastPos, std::min(pos, command.size()) - lastPos + 1 ) );
+        vPos.push_back(lastPos);
+    }
+}
+
+static void printDebuggerHelp()
+{
+    sciprint(_("debug commands : \n"));
+    sciprint("  h                            : %s.\n", _("show this help"));
+    sciprint("  help                         : %s.\n", _("open debug documentation page"));
+    sciprint("\n");
+    sciprint("  (q)uit                       : %s.\n", _("stop debugging"));
+    sciprint("  (w)here or bt                : %s.\n", _("show callstack"));
+    sciprint("\n");
+    sciprint("  (e)xec cmd                   : %s.\n", _("execute cmd"));
+    sciprint("  (r)un cmd                    : %s.\n", _("execute cmd"));
+    sciprint("\n");
+    sciprint("  (d)isp var                   : %s.\n", _("display variable"));
+    sciprint("  (p)rint var                  : %s.\n", _("display variable"));
+    sciprint("\n");
+    sciprint("  (c)ontinue                   : %s.\n", _("continue execution"));
+    sciprint("  (a)bort                      : %s.\n", _("abort execution"));
+    sciprint("  step(n)ext or next           : %s.\n", _("continue to next statement"));
+    sciprint("  step(i)n or in               : %s.\n", _("step into function"));
+    sciprint("  step(o)ut or out             : %s.\n", _("step outside function"));
+    sciprint("\n");
+    sciprint("  (b)reakpoint or break\n     func [line [\"condition\"]] : %s.\n", _("add a breakpoint"));
+    sciprint("  (del)ete                     : %s.\n", _("delete all breakpoints"));
+    sciprint("  (del)ete n                   : %s.\n", _("delete a specific breakpoint"));
+    sciprint("  enable                       : %s.\n", _("enable all breakpoints"));
+    sciprint("  enable n                     : %s.\n", _("enable a specific breakpoint"));
+    sciprint("  disable                      : %s.\n", _("disable all breakpoints"));
+    sciprint("  disable n                    : %s.\n", _("disable a specific breakpoint"));
+    sciprint("  (s)how                       : %s.\n", _("show all breakpoints"));
+    sciprint("  (s)how n                     : %s.\n", _("show a specific breakpoint"));
+    sciprint("\n");
+    sciprint(_("  for more details, show help page.\n"));
 }

@@ -23,7 +23,7 @@ extern "C"
 #include "dynlib_ast.h"
 }
 
-//#define DEBUG_THREAD
+// #define DEBUG_THREAD
 
 class EXTERN_AST ThreadManagement
 {
@@ -36,6 +36,9 @@ private :
 
     static __threadSignal m_ConsoleExecDone;
     static __threadSignalLock m_ConsoleExecDoneLock;
+
+    static __threadSignal m_DebuggerExecDone;
+    static __threadSignalLock m_DebuggerExecDoneLock;
 
     static __threadSignal m_AwakeRunner;
     static __threadSignalLock m_AwakeRunnerLock;
@@ -58,6 +61,7 @@ private :
     // used to avoid "Spurious Wakeups"
     static bool m_AvailableRunnerWasSignalled;
     static bool m_ConsoleExecDoneWasSignalled;
+    static bool m_DebuggerExecDoneWasSignalled;
     static bool m_AwakeRunnerWasSignalled;
     static bool m_StartPendingWasSignalled;
     static bool m_CommandStoredWasSignalled;
@@ -86,6 +90,8 @@ public :
     static void WaitForAvailableRunnerSignal(void);
     static void SendConsoleExecDoneSignal(void);
     static void WaitForConsoleExecDoneSignal(void);
+    static void SendDebuggerExecDoneSignal(void);
+    static void WaitForDebuggerExecDoneSignal(bool bResume);
     static void SendAwakeRunnerSignal(void);
     static void WaitForAwakeRunnerSignal(void);
     static void SendStartPendingSignal(void);

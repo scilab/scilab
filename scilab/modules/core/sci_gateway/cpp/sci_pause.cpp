@@ -16,9 +16,7 @@
 
 #include "core_gw.hxx"
 #include "function.hxx"
-#include "threadmanagement.hxx"
 #include "configvariable.hxx"
-#include "runner.hxx"
 
 extern "C"
 {
@@ -26,6 +24,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
+#include "pause.h"
 }
 
 types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -36,36 +35,19 @@ types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, ty
         return types::Function::OK;
     }
 
-
     if (in.size() != 0)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "pause", 0);
         return types::Function::Error;
     }
 
-    ConfigVariable::IncreasePauseLevel();
-
     // add pause in list of macro called
     // to manage line displayed when error occured
     // or when the "where()" function is called.
     ConfigVariable::macroFirstLine_begin(2);
 
-    // unlock console thread to display prompt again
-    ThreadManagement::SendConsoleExecDoneSignal();
+    // do pause
+    pause();
 
-    //return to console so change mode to 2
-    int iOldMode = ConfigVariable::getPromptMode();
-    ConfigVariable::setPromptMode(2);
-
-    int iPauseLevel = ConfigVariable::getPauseLevel();
-    while (ConfigVariable::getPauseLevel() == iPauseLevel)
-    {
-        ThreadManagement::SendAwakeRunnerSignal();
-        ThreadManagement::WaitForRunMeSignal();
-        StaticRunner_launch();
-    }
-
-    //return from console so change mode to initial
-    ConfigVariable::setPromptMode(iOldMode);
     return types::Function::OK;
 }

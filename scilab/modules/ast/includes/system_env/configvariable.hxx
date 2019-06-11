@@ -417,10 +417,11 @@ public :
     {
         int m_line;
         int m_absolute_line;
+        int m_scope_lvl;
         types::Callable* call;
         std::wstring m_file_name;
-        WhereEntry(int line, int absolute_line, types::Callable* pCall, const std::wstring& file_name) :
-            m_line(line), m_absolute_line(absolute_line), call(pCall), m_file_name(file_name) {}
+        WhereEntry(int line, int absolute_line, int scope_lvl, types::Callable* pCall, const std::wstring& file_name) :
+            m_line(line), m_absolute_line(absolute_line), m_scope_lvl(scope_lvl), call(pCall), m_file_name(file_name) {}
     };
 
     typedef std::vector<WhereEntry> WhereVector;

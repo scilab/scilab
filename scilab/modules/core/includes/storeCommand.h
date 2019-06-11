@@ -20,8 +20,9 @@
 enum command_origin_t
 {
     NONE,
-    CONSOLE, // command from console
-    TCLSCI   // command from tclsci using ScilabEval interpreter
+    CONSOLE,  // command from console
+    TCLSCI,   // command from tclsci using ScilabEval interpreter
+    DEBUGGER  // command from debugger
 };
 
 /**
@@ -47,10 +48,19 @@ int StoreCommand(const char *command);
  * Store a prioritary and interruptible command
  *
  * @param command : the command
+ * @param iWaitFor : wait for the command execution end before return
  * @return <ReturnValue>
  */
-
 int StoreConsoleCommand(const char *command, int iWaitFor);
+
+/**
+ * Store a prioritary and interruptible command and wait for it's execution
+ *
+ * @param command : the command
+  * @return <ReturnValue>
+ */
+int StoreDebuggerCommand(const char *command);
+
 /**
  * Store a prioritary and non-interruptible command
  *

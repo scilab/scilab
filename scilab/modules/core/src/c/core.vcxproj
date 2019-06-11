@@ -248,6 +248,8 @@ cd ..
     <ClCompile Include="..\cpp\getmacrosname.cpp" />
     <ClCompile Include="..\cpp\getvariablesname.cpp" />
     <ClCompile Include="..\cpp\InitScilab.cpp" />
+    <ClCompile Include="..\cpp\parsecommand.cpp" />
+    <ClCompile Include="..\cpp\pause.cpp" />
     <ClCompile Include="..\cpp\runner.cpp" />
     <ClCompile Include="..\cpp\setformat.cpp" />
     <ClCompile Include="..\cpp\setlines.cpp" />
@@ -336,6 +338,8 @@ cd ..
     <ClInclude Include="..\..\includes\loadversion.h" />
     <ClInclude Include="..\..\includes\machine.h" />
     <ClInclude Include="..\..\includes\md5.h" />
+    <ClInclude Include="..\..\includes\parsecommand.h" />
+    <ClInclude Include="..\..\includes\pause.h" />
     <ClInclude Include="..\..\includes\sci_malloc.h" />
     <ClInclude Include="..\..\includes\PARAMS.h" />
     <ClInclude Include="..\..\includes\PATH_MAX.h" />

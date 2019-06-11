@@ -19,15 +19,24 @@
 #include <string>
 #include "macro.hxx"
 #include "exp.hxx"
-#include "tasks.hxx"
+
+extern "C"
+{
+#include "parsecommand.h"
+}
 
 namespace debugger
 {
 struct Breakpoint
 {
-    Breakpoint(const std::wstring& functionName, int iLine = -1, const std::wstring& condition = L"")
-        : _pFunctionName(functionName), _iMacroLine(iLine), _file(L""), _iFileLine(0), _condition(condition), _conditionExp(NULL), enable(true) {}
-
+    Breakpoint() :  _pFunctionName(""),
+                    _iMacroLine(0),
+                    _pFileName(""),
+                    _iFileLine(0),
+                    _iFirstColumn(0),
+                    _condition(""),
+                    _conditionExp(NULL),
+                    _enable(true) {}
     ~Breakpoint()
     {
         if (_conditionExp)
@@ -36,20 +45,20 @@ struct Breakpoint
         }
     };
 
-    void setFile(std::wstring& file)
+    void setFileName(const std::string& name)
     {
-        _file = file;
+        _pFileName = name;
     }
-    const std::wstring& getFile() const
+    const std::string& getFileName() const
     {
-        return _file;
+        return _pFileName;
     }
 
-    void setFunctionName(std::wstring& functionName)
+    void setFunctionName(const std::string& functionName)
     {
         _pFunctionName = functionName;
     }
-    const std::wstring& getFunctioName() const
+    const std::string& getFunctioName() const
     {
         return _pFunctionName;
     }
@@ -63,6 +72,15 @@ struct Breakpoint
         return _iMacroLine;
     }
 
+    void setBeginLine(int column)
+    {
+        _iFirstColumn = column;
+    }
+    int getBeginLine() const
+    {
+        return _iFirstColumn;
+    }
+
     void setFileLine(int line)
     {
         _iFileLine = line;
@@ -72,53 +90,59 @@ struct Breakpoint
         return _iFileLine;
     }
 
-    bool isMacro() const
+    bool hasMacro() const
     {
-        return _pFunctionName.empty() == false;
+        return _pFunctionName.empty() == false && _iMacroLine >= 0;
     }
 
-    bool isFile() const
+    bool hasFile() const
     {
-        return isMacro() == false;
+        return _pFileName.empty() == false && _iFileLine >= 0;
     }
 
     void setEnable()
     {
-        enable = true;
+        _enable = true;
     }
     void setDisable()
     {
-        enable = false;
+        _enable = false;
     }
     bool isEnable() const
     {
-        return enable;
+        return _enable;
     }
 
-    const std::wstring& getCondition() const
+    char* setCondition(const std::string& condition)
+    {
+        char* error = parseCommand(condition.data(), (void**)(&_conditionExp));
+        if(error)
+        {
+            return error;
+        }
+        _condition = condition;
+        return nullptr;
+    }
+
+    const std::string& getCondition() const
     {
         return _condition;
     }
 
     ast::Exp* getConditionExp()
     {
-        if (_conditionExp)
-        {
-            return _conditionExp;
-        }
-
-        _conditionExp = parseCommand(_condition);
         return _conditionExp;
     }
 
 private:
-    std::wstring _pFunctionName;
+    std::string _pFunctionName;
     int _iMacroLine;
-    std::wstring _file;
+    int _iFirstColumn;
+    std::string _pFileName;
     int _iFileLine;
-    std::wstring _condition;
+    std::string _condition;
     ast::Exp* _conditionExp;
-    bool enable;
+    bool _enable;
 };
 
 typedef std::vector<Breakpoint*> Breakpoints;

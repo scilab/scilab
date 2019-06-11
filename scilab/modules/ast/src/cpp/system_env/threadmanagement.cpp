@@ -35,6 +35,9 @@ __threadLock ThreadManagement::m_ScilabReadLock;
 __threadSignal ThreadManagement::m_ConsoleExecDone;
 __threadSignalLock ThreadManagement::m_ConsoleExecDoneLock;
 
+__threadSignal ThreadManagement::m_DebuggerExecDone;
+__threadSignalLock ThreadManagement::m_DebuggerExecDoneLock;
+
 __threadSignal ThreadManagement::m_AwakeRunner;
 __threadSignalLock ThreadManagement::m_AwakeRunnerLock;
 
@@ -52,6 +55,7 @@ __threadSignalLock ThreadManagement::m_RunMeLock;
 
 bool ThreadManagement::m_AvailableRunnerWasSignalled    = false;
 bool ThreadManagement::m_ConsoleExecDoneWasSignalled    = false;
+bool ThreadManagement::m_DebuggerExecDoneWasSignalled   = false;
 bool ThreadManagement::m_AwakeRunnerWasSignalled        = false;
 bool ThreadManagement::m_StartPendingWasSignalled       = false;
 bool ThreadManagement::m_CommandStoredWasSignalled      = false;
@@ -69,6 +73,9 @@ void ThreadManagement::initialize()
 
     __InitSignal(&m_ConsoleExecDone);
     __InitSignalLock(&m_ConsoleExecDoneLock);
+
+    __InitSignal(&m_DebuggerExecDone);
+    __InitSignalLock(&m_DebuggerExecDoneLock);
 
     __InitSignal(&m_AvailableRunner);
     __InitSignalLock(&m_AvailableRunnerLock);
@@ -239,6 +246,58 @@ void ThreadManagement::WaitForConsoleExecDoneSignal(void)
         __Wait(&m_ConsoleExecDone, &m_ConsoleExecDoneLock);
     }
     __UnLockSignal(&m_ConsoleExecDoneLock);
+}
+
+/***
+    [DebuggerExecDone Signal]
+
+    Send : A debugger command is excuted.
+    Wait : Wait for its execution.
+
+    This signal can be sent without any threads are waiting for,
+    so we have to perform the Wait for each call to WaitForDebuggerExecDoneSignal.
+    (in case of "pause", we send this signal in sci_pause and in Runner::launch)
+
+    The loop while is used to avoid spurious wakeup of __Wait.
+***/
+void ThreadManagement::SendDebuggerExecDoneSignal(void)
+{
+#ifdef DEBUG_THREAD
+    PrintDebug("SendDebuggerExecDoneSignal");
+#endif // DEBUG_THREAD
+    __LockSignal(&m_DebuggerExecDoneLock);
+    m_DebuggerExecDoneWasSignalled = true;
+    __Signal(&m_DebuggerExecDone);
+    __UnLockSignal(&m_DebuggerExecDoneLock);
+}
+
+// bResume: resume execution before wait for its end
+void ThreadManagement::WaitForDebuggerExecDoneSignal(bool bResume)
+{
+# ifdef __DEBUG_SIGNAL
+    std::cout << "WaitForDebuggerExecDoneSignal" << std::endl;
+# endif // __DEBUG_SIGNAL
+    __LockSignal(&m_DebuggerExecDoneLock);
+    if(bResume)
+    {
+        // release execution there in case of pause
+        // because a released execution can be finished
+        // before we are waiting for.
+        // we avoid this by the lock of "m_DebuggerExecDoneLock"
+        // This signal is sent only in pause case because a runner already exists
+        ThreadManagement::SendRunMeSignal();
+    }
+
+    ThreadManagement::UnlockStoreCommand();
+    m_DebuggerExecDoneWasSignalled = false;
+    while (m_DebuggerExecDoneWasSignalled == false)
+    {
+#ifdef DEBUG_THREAD
+        PrintDebug("WaitForDebuggerExecDoneSignal");
+#endif // DEBUG_THREAD
+        __Wait(&m_DebuggerExecDone, &m_DebuggerExecDoneLock);
+    }
+    __UnLockSignal(&m_DebuggerExecDoneLock);
 }
 
 /***

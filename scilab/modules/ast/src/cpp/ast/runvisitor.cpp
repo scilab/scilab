@@ -902,13 +902,6 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
     {
         if (ConfigVariable::getPauseLevel() != 0 && symbol::Context::getInstance()->getScopeLevel() == ConfigVariable::getActivePauseLevel())
         {
-            if (ConfigVariable::getEnableDebug() == true)
-            {
-                sciprint(_("%s: function is disabled in debug mode.\n"), "resume");
-                CoverageInstance::stopChrono((void*)&e);
-                return;
-            }
-
             //return or resume
             ConfigVariable::DecreasePauseLevel();
             ConfigVariable::macroFirstLine_end();

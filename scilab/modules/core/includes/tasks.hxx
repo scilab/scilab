@@ -80,12 +80,4 @@ void dumpStackTask(bool timed);
 int execScilabStartTask(bool _bSerialize);
 int execScilabQuitTask(bool _bSerialize);
 
-#ifdef __cplusplus
-extern "C"
-{
-ast::Exp* parseCommand(std::wstring _command);
-}
-#endif
-
-
 #endif /* !__TASKS_HXX__ */

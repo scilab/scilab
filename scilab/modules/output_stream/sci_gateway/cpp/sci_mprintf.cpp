@@ -78,7 +78,7 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
 
         scilabForcedWriteW(pwstOutput[i]);
 
-        fflush(NULL);
+        // fflush(NULL);
         FREE(pwstOutput[i]);
     }
 

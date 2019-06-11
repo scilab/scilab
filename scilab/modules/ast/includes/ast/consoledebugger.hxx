@@ -17,6 +17,7 @@
 #define __CONSOLE_DEBUGGER_HXX__
 
 #include "abstractdebugger.hxx"
+#include "breakpoint.hxx"
 
 extern "C"
 {
@@ -29,14 +30,21 @@ namespace debugger
 {
 class EXTERN_AST ConsoleDebugger : public AbstractDebugger
 {
+private:
 
     void printExp();
+    void printBreakPoints(debugger::Breakpoints& bps);
+
 public:
 
     ConsoleDebugger() {}
     virtual ~ConsoleDebugger() {}
 
     virtual void onStop(int index);
+    virtual void onExecution();
+    virtual void onExecutionReleased();
+    virtual void onPrint(const std::string& variable);
+    virtual void onShow(int bp);
     virtual void onResume();
     virtual void onAbort();
     virtual void onErrorInFile(const std::wstring& filemane);

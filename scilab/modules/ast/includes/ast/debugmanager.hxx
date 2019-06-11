@@ -19,29 +19,51 @@
 #include <memory>
 
 #include "abstractdebugger.hxx"
+#include "configvariable.hxx"
 #include "breakpoint.hxx"
 #include "dynlib_ast.h"
 
 namespace debugger
 {
-class EXTERN_AST DebuggerMagager
+class EXTERN_AST DebuggerManager
 {
-public :
+public:
     enum DebugAction
     {
         Continue,
+        Aborted,
         StepNext,
         StepIn,
         StepOut
     };
 
+    struct StackRow
+    {
+        std::string functionName;
+        std::string fileName;
+        int functionLine;
+        int fileLine;
+        int scope;
+        bool hasFile = false;
+    };
+
+    typedef std::vector<StackRow> Stack;
+    struct CallStack
+    {
+        std::string exp;
+        Stack stack;
+    };
+
 private:
-    static std::unique_ptr<DebuggerMagager> me;
-    DebuggerMagager() :
+    static std::unique_ptr<DebuggerManager> me;
+    DebuggerManager() :
         breakpoints(),
-        debuggers(), pExp(nullptr), interrupted(false), currentBreakPoint(-1), action(Continue), level(0) {}
+        debuggers(),
+        callstack(), pExp(nullptr), interrupted(false), currentBreakPoint(-1), action(Continue), level(0) {}
 
     Breakpoints breakpoints;
+    Watches watches;
+    CallStack callstack;
     Debuggers debuggers;
 
     ast::Exp* pExp;
@@ -50,26 +72,31 @@ private:
     DebugAction action;
     int level;
 
+    void internal_execution_released();
     void internal_stop();
+    bool callstackAddFile(StackRow* _row, const std::wstring& _fileName);
+
 public:
-    ~DebuggerMagager()
+    ~DebuggerManager()
     {
         for (auto d : debuggers)
         {
-            delete d;
+            delete d.second;
         }
         for (auto b : breakpoints)
         {
             delete b;
         }
+
+        clearCallStack();
     }
 
-    static DebuggerMagager* getInstance();
+    static DebuggerManager* getInstance();
 
     //debuggers functions
-    void addDebugger(AbstractDebugger* _debug);
-    void removeDebugger(int _iDebugger);
-    AbstractDebugger* getDebugger(int _iDebugger);
+    void addDebugger(const std::string& _name, AbstractDebugger* _debug);
+    void removeDebugger(const std::string& _name);
+    AbstractDebugger* getDebugger(const std::string& _name);
     int getDebuggerCount();
     Debuggers& getAllDebugger();
 
@@ -100,8 +127,25 @@ public:
 
         return nullptr;
     }
+
+    void generateCallStack();
+    inline void clearCallStack()
+    {
+        callstack.exp.clear();
+        callstack.stack.clear();
+    }
+
+    CallStack getCallStack()
+    {
+        return callstack;
+    }
+
     //send information to debuggers
     void sendStop(int index);
+    void sendExecution();
+    void sendExecutionReleased();
+    void sendPrint(const std::string& variable);
+    void sendShow(int bp);
     void sendResume();
     void sendAbort();
     void sendErrorInFile(const std::wstring& filename) const;
@@ -112,9 +156,11 @@ public:
     void stop(const ast::Exp* pExp, int index);
     void errorInFile(const std::wstring filename, const ast::Exp* pExp);
     void errorInScript(const std::wstring funcname, const ast::Exp* pExp);
+
     //breakpoints functions
     void addBreakPoint(Breakpoint* bp);
     void removeBreakPoint(int _iBreakPoint);
+    void setAllBreakPoints(Breakpoints& _bps);
     void removeAllBreakPoints();
     void disableAllBreakPoints();
     void disableBreakPoint(int _iBreakPoint);
@@ -125,6 +171,11 @@ public:
     int getBreakPointCount();
     Breakpoints& getAllBreakPoint();
 
+    //watches functions
+    void setWatches(Watches _w);
+    void removeWatches();
+    void updateWatches(int _iScopeLvl = -1);
+    Watches& getWatches();
 
     //actions called by debuggers
     inline void setStepIn() //enter macro
@@ -136,7 +187,18 @@ public:
     {
         int l = symbol::Context::getInstance()->getScopeLevel();
         //if stepIn failed ( not a macro ), stepIn become a stepNext
-        return action == StepIn && l >= level;
+        if(action != StepIn)
+        {
+            return false;
+        }
+
+        if(l < level)
+        {
+            action = StepNext;
+            return false;
+        }
+
+        return true;
     }
     inline void resetStepIn()
     {
@@ -149,16 +211,32 @@ public:
     inline void setStepOut() //exit macro
     {
         action = StepOut;
-        level = symbol::Context::getInstance()->getScopeLevel();
+        level = ConfigVariable::getWhere().size();
     }
     inline bool isStepOut()
     {
-        int l = symbol::Context::getInstance()->getScopeLevel();
+        int l = ConfigVariable::getWhere().size();
         return action == StepOut && l < level;
     }
     inline void resetStepOut()
     {
         if (isStepOut())
+        {
+            action = Continue;
+        }
+    }
+
+    inline void setAborted() //next statement
+    {
+        action = Aborted;
+    }
+    inline bool isAborted()
+    {
+        return action == Aborted;
+    }
+    inline void resetAborted()
+    {
+        if (isAborted())
         {
             action = Continue;
         }
@@ -190,6 +268,10 @@ public:
             action = Continue;
         }
     }
+
+    char* execute(const std::string& command); //execute a command
+    void print(const std::string& variable); //print a variable
+    void show(int bp); //print the breakpoint bp or all breakpoints (bp = -1)
     void resume(); //resume execution
     void abort(); //abort execution
 };

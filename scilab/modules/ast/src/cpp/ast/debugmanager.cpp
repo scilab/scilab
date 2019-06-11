@@ -16,161 +16,200 @@
 #include <memory>
 
 #include "debugmanager.hxx"
-#include "configvariable.hxx"
 #include "threadmanagement.hxx"
-#include "runner.hxx"
+#include "execvisitor.hxx"
+#include "printvisitor.hxx"
+#include "UTF8.hxx"
 
 #include "threadId.hxx"
 
 extern "C"
 {
 #include "Thread_Wrapper.h"
+#include "storeCommand.h"
+#include "pause.h"
+#include "FileExist.h"
 }
 
 namespace debugger
 {
-std::unique_ptr<DebuggerMagager> DebuggerMagager::me(nullptr);
+std::unique_ptr<DebuggerManager> DebuggerManager::me(nullptr);
 
 //singleton
-DebuggerMagager* DebuggerMagager::getInstance()
+DebuggerManager* DebuggerManager::getInstance()
 {
     if (me.get() == nullptr)
     {
-        me.reset(new DebuggerMagager());
+        me.reset(new DebuggerManager());
     }
 
     return me.get();
 }
 
-void DebuggerMagager::addDebugger(AbstractDebugger* _debug)
+void DebuggerManager::addDebugger(const std::string& _name, AbstractDebugger* _debug)
 {
-    debuggers.push_back(_debug);
+    debuggers[_name] = _debug;
 }
 
-void DebuggerMagager::removeDebugger(int _iDebugger)
+void DebuggerManager::removeDebugger(const std::string& _name)
 {
-    if (_iDebugger >= 0 && _iDebugger <= debuggers.size())
+    if(getDebugger(_name))
     {
-        debuggers.erase(debuggers.begin() + _iDebugger);
+        debuggers.erase(_name);
     }
 }
 
-AbstractDebugger* DebuggerMagager::getDebugger(int _iDebugger)
+AbstractDebugger* DebuggerManager::getDebugger(const std::string& _name)
 {
-    if (_iDebugger >= 0 && _iDebugger <= debuggers.size())
+    const auto& d = debuggers.find(_name);
+    if(d != debuggers.end())
     {
-        return debuggers[_iDebugger];
+        return debuggers[_name];
     }
 
     return NULL;
 }
 
-int DebuggerMagager::getDebuggerCount()
+int DebuggerManager::getDebuggerCount()
 {
     return (int)debuggers.size();
 }
 
-Debuggers& DebuggerMagager::getAllDebugger()
+Debuggers& DebuggerManager::getAllDebugger()
 {
     return debuggers;
 }
 
-void DebuggerMagager::sendStop(int index)
+void DebuggerManager::sendStop(int index)
 {
     currentBreakPoint = index;
     for (const auto& it : debuggers)
     {
-        it->onStop(index);
+        it.second->onStop(index);
     }
 }
 
-void DebuggerMagager::sendResume()
+void DebuggerManager::sendExecution()
+{
+    for (const auto& it : debuggers)
+    {
+        it.second->onExecution();
+    }
+}
+
+void DebuggerManager::sendExecutionReleased()
+{
+    for (const auto& it : debuggers)
+    {
+        it.second->onExecutionReleased();
+    }
+}
+
+void DebuggerManager::sendPrint(const std::string& variable)
+{
+    for (const auto& it : debuggers)
+    {
+        it.second->onPrint(variable);
+    }
+}
+
+void DebuggerManager::sendShow(int bp)
+{
+    for (const auto& it : debuggers)
+    {
+        it.second->onShow(bp);
+    }
+}
+
+void DebuggerManager::sendResume()
 {
     currentBreakPoint = -1;
     for (const auto& it : debuggers)
     {
-        it->onResume();
+        it.second->onResume();
     }
 }
 
-void DebuggerMagager::sendAbort()
+void DebuggerManager::sendAbort()
 {
     currentBreakPoint = -1;
     for (const auto& it : debuggers)
     {
-        it->onAbort();
+        it.second->onAbort();
     }
 }
 
-void DebuggerMagager::sendErrorInFile(const std::wstring& filename) const
+void DebuggerManager::sendErrorInFile(const std::wstring& filename) const
 {
     for (const auto& it : debuggers)
     {
-        it->onErrorInFile(filename);
+        it.second->onErrorInFile(filename);
     }
 }
 
-void DebuggerMagager::sendErrorInScript(const std::wstring& funcname) const
+void DebuggerManager::sendErrorInScript(const std::wstring& funcname) const
 {
     for (const auto& it : debuggers)
     {
-        it->onErrorInScript(funcname);
+        it.second->onErrorInScript(funcname);
     }
 }
 
-void DebuggerMagager::sendQuit()
+void DebuggerManager::sendQuit()
 {
     currentBreakPoint = -1;
     for (const auto& it : debuggers)
     {
-        it->onQuit();
+        it.second->onQuit();
     }
 }
 
-void DebuggerMagager::sendUpdate() const
+void DebuggerManager::sendUpdate() const
 {
     for (const auto& it : debuggers)
     {
-        it->updateBreakpoints();
+        it.second->updateBreakpoints();
     }
 }
 
-void DebuggerMagager::addBreakPoint(Breakpoint* bp)
+void DebuggerManager::addBreakPoint(Breakpoint* bp)
 {
     //check if breakpoint does not exist
-
-    bool add = true;
     for (const auto b : breakpoints)
     {
-        if (b->getFunctioName() != bp->getFunctioName())
+        bool isMacro = b->getFunctioName() == bp->getFunctioName() &&
+                       b->getMacroLine() != bp->getMacroLine();
+        bool isFile  = b->getFileName() == bp->getFileName() &&
+                       b->getFileLine() != bp->getFileLine();
+        bool equalCondition = b->getCondition() != bp->getCondition();
+        if ((isMacro || isFile) && equalCondition)
         {
-            continue;
+            //same breakpoint, cancel add
+            return;
         }
-
-        if (b->getMacroLine() != bp->getMacroLine())
-        {
-            continue;
-        }
-
-        if (b->getCondition() != bp->getCondition())
-        {
-            continue;
-        }
-
-        //same breakpoint, cancel add
-        add = false;
     }
 
-    if (add)
-    {
-        breakpoints.push_back(bp);
-        sendUpdate();
-    }
+    breakpoints.push_back(bp);
+    sendUpdate();
 }
 
-void DebuggerMagager::removeBreakPoint(int _iBreakPoint)
+void DebuggerManager::setAllBreakPoints(Breakpoints& _bps)
 {
-    if (_iBreakPoint >= 0 && _iBreakPoint <= breakpoints.size())
+    // remove existing breakpoints
+    for (auto bp : breakpoints)
+    {
+        delete bp;
+    }
+    breakpoints.clear();
+
+    // set new breakpoints
+    breakpoints.swap(_bps);
+    sendUpdate();
+}
+
+void DebuggerManager::removeBreakPoint(int _iBreakPoint)
+{
+    if (_iBreakPoint >= 0 && _iBreakPoint <= (int)breakpoints.size())
     {
         Breakpoints::iterator it = breakpoints.begin() + _iBreakPoint;
         delete *it;
@@ -179,7 +218,7 @@ void DebuggerMagager::removeBreakPoint(int _iBreakPoint)
     }
 }
 
-void DebuggerMagager::removeAllBreakPoints()
+void DebuggerManager::removeAllBreakPoints()
 {
     Breakpoints::iterator it = breakpoints.begin();
     for (; it != breakpoints.end(); ++it)
@@ -191,16 +230,16 @@ void DebuggerMagager::removeAllBreakPoints()
     sendUpdate();
 }
 
-void DebuggerMagager::disableBreakPoint(int _iBreakPoint)
+void DebuggerManager::disableBreakPoint(int _iBreakPoint)
 {
-    if (_iBreakPoint >= 0 && _iBreakPoint <= breakpoints.size())
+    if (_iBreakPoint >= 0 && _iBreakPoint <= (int)breakpoints.size())
     {
         breakpoints[_iBreakPoint]->setDisable();
         sendUpdate();
     }
 }
 
-void DebuggerMagager::disableAllBreakPoints()
+void DebuggerManager::disableAllBreakPoints()
 {
     for (const auto& it : breakpoints)
     {
@@ -210,15 +249,16 @@ void DebuggerMagager::disableAllBreakPoints()
     sendUpdate();
 }
 
-void DebuggerMagager::enableBreakPoint(int _iBreakPoint)
+void DebuggerManager::enableBreakPoint(int _iBreakPoint)
 {
-    if (_iBreakPoint >= 0 && _iBreakPoint <= breakpoints.size())
+    if (_iBreakPoint >= 0 && _iBreakPoint <= (int)breakpoints.size())
     {
         breakpoints[_iBreakPoint]->setEnable();
+        sendUpdate();
     }
 }
 
-void DebuggerMagager::enableAllBreakPoints()
+void DebuggerManager::enableAllBreakPoints()
 {
     for (const auto& it : breakpoints)
     {
@@ -228,9 +268,9 @@ void DebuggerMagager::enableAllBreakPoints()
     sendUpdate();
 }
 
-bool DebuggerMagager::isEnableBreakPoint(int _iBreakPoint)
+bool DebuggerManager::isEnableBreakPoint(int _iBreakPoint)
 {
-    if (_iBreakPoint >= 0 && _iBreakPoint <= breakpoints.size())
+    if (_iBreakPoint >= 0 && _iBreakPoint <= (int)breakpoints.size())
     {
         return breakpoints[_iBreakPoint]->isEnable();
     }
@@ -238,9 +278,9 @@ bool DebuggerMagager::isEnableBreakPoint(int _iBreakPoint)
     return false;
 }
 
-Breakpoint* DebuggerMagager::getBreakPoint(int _iBreakPoint)
+Breakpoint* DebuggerManager::getBreakPoint(int _iBreakPoint)
 {
-    if (_iBreakPoint >= 0 && _iBreakPoint < breakpoints.size())
+    if (_iBreakPoint >= 0 && _iBreakPoint < (int)breakpoints.size())
     {
         return breakpoints[_iBreakPoint];
     }
@@ -248,104 +288,259 @@ Breakpoint* DebuggerMagager::getBreakPoint(int _iBreakPoint)
     return NULL;
 }
 
-int DebuggerMagager::getBreakPointCount()
+int DebuggerManager::getBreakPointCount()
 {
     return (int)breakpoints.size();
 }
 
-Breakpoints& DebuggerMagager::getAllBreakPoint()
+Breakpoints& DebuggerManager::getAllBreakPoint()
 {
     return breakpoints;
 }
 
-void DebuggerMagager::resume() //resume execution
+void DebuggerManager::setWatches(Watches _w)
+{
+    watches.clear();
+    watches = _w;
+}
+
+void DebuggerManager::removeWatches()
+{
+    watches.clear();
+}
+
+void DebuggerManager::updateWatches(int _iScopeLvl)
+{
+    symbol::Context* pCtx = symbol::Context::getInstance();
+
+    if(_iScopeLvl < 0)
+    {
+        // get current scope lvl
+        _iScopeLvl = pCtx->getScopeLevel();
+    }
+
+    for(auto& w : watches)
+    {
+        types::InternalType* pIT = pCtx->getAtLevel(symbol::Symbol(scilab::UTF8::toWide(w.first)), _iScopeLvl);
+        if(pIT)
+        {
+            std::wostringstream os;
+            pIT->toString(os);
+            w.second = scilab::UTF8::toUTF8(os.str());
+        }
+        else
+        {
+            w.second.clear();
+        }
+    }
+}
+
+Watches& DebuggerManager::getWatches()
+{
+    return watches;
+}
+
+
+
+void DebuggerManager::generateCallStack()
+{
+    clearCallStack();
+
+    std::wostringstream ostr;
+    ast::PrintVisitor pp(ostr, true, true, true);
+    getExp()->accept(pp);
+    char* tmp = wide_string_to_UTF8(ostr.str().data());
+    callstack.exp = tmp;
+    FREE(tmp);
+
+    //where
+    ConfigVariable::WhereVector where = ConfigVariable::getWhere();
+    auto it_name = where.rbegin();
+
+    // first row
+    Stack cs;
+    StackRow row;
+    tmp = wide_string_to_UTF8(it_name->call->getName().data());
+    row.functionName = tmp;
+    FREE(tmp);
+
+    row.functionLine = -1;
+    if(it_name->call->getFirstLine())
+    {
+        row.functionLine = getExp()->getLocation().first_line - it_name->call->getFirstLine();
+    }
+
+    if(callstackAddFile(&row, it_name->m_file_name))
+    {
+        row.fileLine = getExp()->getLocation().first_line;
+    }
+
+    row.scope = symbol::Context::getInstance()->getScopeLevel();
+
+    cs.push_back(row);
+    ++it_name;
+
+    // next rows
+    for (auto it_line = where.rbegin(); it_name != where.rend(); it_name++, it_line++)
+    {
+        StackRow row;
+        tmp = wide_string_to_UTF8(it_name->call->getName().data());
+        row.functionName = tmp;
+        FREE(tmp);
+        row.functionLine = it_line->m_line - 1;
+        if(callstackAddFile(&row, it_name->m_file_name))
+        {
+            row.fileLine = it_line->m_line;
+            row.functionLine = -1;
+            if(it_name->call->getFirstLine())
+            {
+                row.fileLine = it_name->call->getFirstLine() + it_line->m_line - 1;
+                row.functionLine = it_line->m_line - 1;
+            }
+        }
+
+        row.scope = it_line->m_scope_lvl;
+        cs.push_back(row);
+    }
+
+    callstack.stack = cs;
+}
+
+bool DebuggerManager::callstackAddFile(StackRow* _row, const std::wstring& _fileName)
+{
+    _row->hasFile = false;
+    if(_fileName.length())
+    {
+        std::string pstrFileName = scilab::UTF8::toUTF8(_fileName);
+        _row->hasFile = true;
+        // replace .bin by .sci
+        size_t pos = pstrFileName.rfind(".bin");
+        if(pos != std::string::npos)
+        {
+            pstrFileName.replace(pos, 4, ".sci");
+            // do not add the file in the callstack if the associeted .sci is not available
+            if (FileExist(pstrFileName.data()) == false)
+            {
+                _row->hasFile = false;
+            }
+        }
+
+        if(_row->hasFile)
+        {
+            _row->fileName = pstrFileName;
+        }
+    }
+
+    return _row->hasFile;
+}
+
+void DebuggerManager::print(const std::string& variable)
+{
+    //inform debuggers
+    sendPrint(variable);
+}
+
+void DebuggerManager::show(int bp)
+{
+    //inform debuggers
+    sendShow(bp);
+}
+
+char* DebuggerManager::execute(const std::string& command)
+{
+    char* error = checkCommand(command.data());
+    if(error)
+    {
+        return error;
+    }
+
+    //inform debuggers
+    sendExecution();
+    // execute command and wait
+    StoreDebuggerCommand(command.data());
+    // send execution finished and update debugger informations
+    internal_execution_released();
+
+    return nullptr;
+}
+
+void DebuggerManager::resume() //resume execution
 {
     if (ConfigVariable::getPauseLevel() != 0)
     {
-        ConfigVariable::DecreasePauseLevel();
         //inform debuggers
         sendResume();
-    }
 
+        ConfigVariable::DecreasePauseLevel();
+        // reset callstack
+        clearCallStack();
+
+        // send "SendRunMeSignal" to unlock execution then wait
+        ThreadManagement::WaitForDebuggerExecDoneSignal(true);
+
+        // send execution finished and update debugger informations
+        internal_execution_released();
+    }
 }
 
-void DebuggerMagager::abort() //abort execution
+void DebuggerManager::abort() //abort execution
 {
     if (ConfigVariable::getPauseLevel() != 0)
     {
         //inform debuggers
         sendAbort();
 
-        throw ast::InternalAbort();
+        // this state is check by the debuggerVisitor to do abort in the main thread
+        setAborted();
+        ConfigVariable::DecreasePauseLevel();
+        // reset lasterror
+        ConfigVariable::clearLastError();
+        // reset callstack
+        clearCallStack();
+
+        ThreadManagement::WaitForDebuggerExecDoneSignal(true);
+
+        internal_execution_released();
     }
 }
 
-void DebuggerMagager::internal_stop()
+void DebuggerManager::internal_execution_released()
+{
+    // update watches at each execution released
+    updateWatches();
+    // send execution finished
+    sendExecutionReleased();
+}
+
+void DebuggerManager::internal_stop()
 {
     interrupted = true;
-
-    ConfigVariable::IncreasePauseLevel();
-
-    // unlock console thread to display prompt again
-    ThreadManagement::SendConsoleExecDoneSignal();
-
-    //return to console so change mode to 2
-    int iOldMode = ConfigVariable::getPromptMode();
-    ConfigVariable::setPromptMode(2);
-
-    int iPauseLevel = ConfigVariable::getPauseLevel();
-    while (ConfigVariable::getPauseLevel() == iPauseLevel)
-    {
-        ThreadManagement::SendAwakeRunnerSignal();
-        ThreadManagement::WaitForRunMeSignal();
-        try
-        {
-            StaticRunner_launch();
-        }
-        catch (const ast::InternalError& ie)
-        {
-            //return from console so change mode to initial
-            ConfigVariable::setPromptMode(iOldMode);
-            //clean current seqexp
-            clearExp();
-            interrupted = false;
-
-            throw ie;
-        }
-        catch (const ast::InternalAbort& ia)
-        {
-            //return from console so change mode to initial
-            ConfigVariable::setPromptMode(iOldMode);
-            //clean current seqexp
-            clearExp();
-            interrupted = false;
-
-            throw ia;
-        }
-    }
-
-    //return from console so change mode to initial
-    ConfigVariable::setPromptMode(iOldMode);
+    generateCallStack();
+    updateWatches();
+    pause();
     //clean current seqexp
     interrupted = false;
 }
 
-void DebuggerMagager::stop(const ast::Exp* pExp, int index)
+void DebuggerManager::stop(const ast::Exp* pExp, int index)
 {
     //send stop information to all debuggers
     setExp(pExp);
     sendStop(index);
+    // because stop is used only in the debuggervisitor the pause
+    // will be executed in the main thread (where is executed the command)
     internal_stop();
     clearExp();
 }
-void DebuggerMagager::errorInFile(const std::wstring filename, const ast::Exp* pExp)
+
+void DebuggerManager::errorInFile(const std::wstring filename, const ast::Exp* pExp)
 {
     setExp(pExp);
     sendErrorInFile(filename);
     internal_stop();
     clearExp();
 }
-void DebuggerMagager::errorInScript(const std::wstring funcname, const ast::Exp* pExp)
+void DebuggerManager::errorInScript(const std::wstring funcname, const ast::Exp* pExp)
 {
     setExp(pExp);
     sendErrorInScript(funcname);

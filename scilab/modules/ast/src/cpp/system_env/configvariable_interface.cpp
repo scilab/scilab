@@ -243,7 +243,7 @@ int isEnableDebug()
 
 int isDebugInterrupted()
 {
-    return debugger::DebuggerMagager::getInstance()->isInterrupted() ? 1 : 0;
+    return debugger::DebuggerManager::getInstance()->isInterrupted() ? 1 : 0;
 }
 
 int isExecutionBreak()

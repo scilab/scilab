@@ -300,21 +300,3 @@ int execScilabQuitTask(bool _bSerialize)
 
     return StaticRunner::exec(newTree, new ast::ExecVisitor()) ? 0 : 1;
 }
-
-
-ast::Exp* parseCommand(std::wstring _command)
-{
-    if (_command.empty())
-    {
-        return NULL;
-    }
-
-    Parser parse;
-    parse.parse((wchar_t*)_command.c_str());
-    if (parse.getExitStatus() != Parser::Succeded)
-    {
-        return NULL;
-    }
-
-    return parse.getTree();
-}

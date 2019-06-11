@@ -17,7 +17,7 @@
 #define __ABSTRACT_DEBUGGER_HXX__
 
 #include <string>
-#include <vector>
+#include <map>
 
 extern "C"
 {
@@ -35,6 +35,10 @@ public:
 
     //interface
     virtual void onStop(int index) = 0; //when a bp is trigger
+    virtual void onExecution() = 0;//when an execution is started
+    virtual void onExecutionReleased() = 0;//when the wait for execution is release (stop on bp or execution end)
+    virtual void onPrint(const std::string& variable) = 0;//when print a variable is asked
+    virtual void onShow(int bp) = 0;//when print a breakpoint
     virtual void onResume() = 0;//when "play" is trigger
     virtual void onAbort() = 0;//when execution is abort
     virtual void onErrorInFile(const std::wstring& filemane) = 0;//when an error is trigger in a file
@@ -45,6 +49,8 @@ public:
 
 };
 
-typedef std::vector<AbstractDebugger*> Debuggers;
+typedef std::map<std::string, AbstractDebugger*> Debuggers;
+typedef std::map<std::string, std::string> Watches;
+
 }
 #endif /* !__ABSTRACT_DEBUGGER_HXX__ */

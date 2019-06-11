@@ -1185,7 +1185,7 @@ void ConfigVariable::where_begin(int _iLineNum, int _iLineLocation, types::Calla
         wstrFileName = pM->getFileName();
     }
 
-    m_Where.emplace_back(_iLineNum, _iLineLocation, pCall, wstrFileName);
+    m_Where.emplace_back(_iLineNum, _iLineLocation, symbol::Context::getInstance()->getScopeLevel(), pCall, wstrFileName);
 }
 
 void ConfigVariable::where_end()
@@ -1342,7 +1342,7 @@ void ConfigVariable::fillWhereError(int _iErrorLine)
         m_WhereError.reserve(m_Where.size());
         for (auto where = m_Where.rbegin(); where != m_Where.rend(); ++where)
         {
-            m_WhereError.emplace_back(iTmp, (*where).m_absolute_line, (*where).call, (*where).m_file_name);
+            m_WhereError.emplace_back(iTmp, (*where).m_absolute_line, 0, (*where).call, (*where).m_file_name);
             iTmp = (*where).m_line;
         }
     }
