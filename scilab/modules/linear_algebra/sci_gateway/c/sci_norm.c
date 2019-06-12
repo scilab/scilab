@@ -12,7 +12,7 @@
  * along with this program.
  *
  */
-#include <stdio.h>
+#include <math.h>
 
 #include "doublecomplex.h"
 #include "api_scilab.h"
@@ -97,19 +97,19 @@ int sci_norm(char *fname, void* pvApiCtx)
             Scierror(202, _("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), fname, 1);
             return 0;
         }
-        
+
         for (i = 0 ; (i < iRows * iCols) & !_isnan ; i++) // Checking A for %inf or %nan, which is not supported by Lapack.
         {
             _isnan = isnan(pA[i]);
             _isinf |= isinf(pA[i]);
-        }        
+        }
     }
 
     if (_isnan)
     {
         createScalarDouble(pvApiCtx, Rhs + 1, NAN);
         AssignOutputVariable(pvApiCtx, 1) = Rhs + 1;
-        return 0;            
+        return 0;
     }
 
 
