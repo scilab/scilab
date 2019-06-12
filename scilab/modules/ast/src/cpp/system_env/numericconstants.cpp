@@ -13,6 +13,7 @@
 *
 */
 
+#include <limits>
 #include "numericconstants.hxx"
 
 double NumericConstants::eps;
@@ -25,6 +26,9 @@ double NumericConstants::exp_min;
 double NumericConstants::double_min;
 double NumericConstants::exp_max;
 double NumericConstants::double_max;
+double NumericConstants::infinity;
+double NumericConstants::neginfinity;
+double NumericConstants::nan;
 
 void NumericConstants::Initialize()
 {
@@ -38,4 +42,8 @@ void NumericConstants::Initialize()
     double_min = C2F(dlamch)("U", 1L);
     exp_max = C2F(dlamch)("L", 1L);
     double_max = C2F(dlamch)("O", 1L);
+    infinity = std::numeric_limits<double>::infinity();
+    neginfinity = -std::numeric_limits<double>::infinity();
+    nan = std::numeric_limits<double>::quiet_NaN();
+
 }

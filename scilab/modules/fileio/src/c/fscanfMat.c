@@ -32,6 +32,7 @@
 #include "mgetl.h"
 #include "mopen.h"
 #include "mclose.h"
+#include "numericconstants_interface.h"
 /*--------------------------------------------------------------------------*/
 #define EOL "\n"
 #define NanString "Nan"
@@ -63,8 +64,6 @@ static double *getDoubleValuesFromLines(char **lines, int sizelines,
 static double *getDoubleValuesInLine(char *line,
                                      char *format, char *separator,
                                      int nbColumnsMax);
-static double returnINF(BOOL bPositive);
-static double returnNAN(void);
 static BOOL checkFscanfMatFormat(char *format);
 static char *getCleanedFormat(char *format);
 static BOOL isOnlyBlankLine(const char *line);
@@ -585,7 +584,7 @@ static double *getDoubleValuesInLine(char *line,
                 int ierr = 0;
                 double dValue = 0.;
                 char *cleanedFormat = getCleanedFormat(format);
-                int iLen = strlen(cleanedFormat);
+                int iLen = (int)strlen(cleanedFormat);
                 switch (cleanedFormat[iLen - 1])
                 {
                     case 'e' :
@@ -635,17 +634,17 @@ static double *getDoubleValuesInLine(char *line,
                         {
                             if (strcmp(str, NanString) == 0)
                             {
-                                dValues[i] = returnNAN();
+                                dValues[i] = nc_nan();
                             }
 
                             if (strcmp(str, NegInfString) == 0)
                             {
-                                dValues[i] = returnINF(FALSE);
+                                dValues[i] = nc_neginf();
                             }
 
                             if (strcmp(str, InfString) == 0)
                             {
-                                dValues[i] = returnINF(TRUE);
+                                dValues[i] = nc_inf();
                             }
                         }
                         else
@@ -676,30 +675,6 @@ static double *getDoubleValuesInLine(char *line,
     }
 
     return dValues;
-}
-/*--------------------------------------------------------------------------*/
-static double returnINF(BOOL bPositive)
-{
-    double v = 0;
-    double p = 10;
-    if (!bPositive)
-    {
-        p = -10;
-    }
-    return (double) p / (double)v;
-}
-/*--------------------------------------------------------------------------*/
-static double returnNAN(void)
-{
-    static int first = 1;
-    static double nan = 1.0;
-
-    if ( first )
-    {
-        nan = (nan - (double) first) / (nan - (double) first);
-        first = 0;
-    }
-    return (nan);
 }
 /*--------------------------------------------------------------------------*/
 static BOOL checkFscanfMatFormat(char *format)

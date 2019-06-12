@@ -24,7 +24,8 @@
 #include "os_string.h"
 #include "BOOL.h"
 #include "strsubst.h"
-/* ========================================================================== */
+#include "numericconstants_interface.h"
+ /* ========================================================================== */
 #define PlusChar '+'
 #define PlusCharW L'+'
 #define LessChar '-'
@@ -60,7 +61,6 @@ static char *leftstring(const char *tx, size_t pos);
 static wchar_t* leftstringW(const wchar_t* tx, size_t pos);
 static BOOL is_unit_imaginary (const char *src, double *im);
 static BOOL is_unit_imaginaryW (const wchar_t* src, double *im);
-static double returnNAN(void);
 /* ========================================================================== */
 complexArray *stringsToComplexArray(const char **pSTRs, int nbElements,
                                     const char *decimal,
@@ -408,7 +408,7 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
             if (bConvertByNAN)
             {
                 ierrDouble = STRINGTODOUBLE_NOT_A_NUMBER;
-                *real = returnNAN();
+                *real = nc_nan();
                 *imag = 0;
             }
             else
@@ -477,7 +477,7 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
         }
         else if (inum_string[1] == 'i' || inum_string[1] == 'j') // The imaginary part looks like "%i*a". For instance if string() has been used
         {
-            int len_inum_string = strlen(inum_string);
+            int len_inum_string = (int)strlen(inum_string);
             for (i = 1; i < len_inum_string; ++i)
             {
                 inum_string[i] = inum_string[i + 1];    // Removing the "i"
@@ -493,13 +493,13 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
             if (strcmp(inum_string, "+") == 0)
             {
                 FREE(inum_string);
-                inum_string = strdup("+1");
+                inum_string = os_strdup("+1");
             }
 
             if (strcmp(inum_string, "-") == 0)
             {
                 FREE(inum_string);
-                inum_string = strdup("-1");
+                inum_string = os_strdup("-1");
             }
             haveImagI = TRUE;
         }
@@ -532,7 +532,7 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
                     if (bConvertByNAN)
                     {
                         ierr = STRINGTOCOMPLEX_NO_ERROR;
-                        *real = returnNAN();
+                        *real = nc_nan();
                         *imag = 0.;
                     }
                     else
@@ -552,7 +552,7 @@ static stringToComplexError ParseComplexValue(const char *tx, BOOL bConvertByNAN
                 if (bConvertByNAN)
                 {
                     ierr = STRINGTOCOMPLEX_NO_ERROR;
-                    *real = returnNAN();
+                    *real = nc_nan();
                     *imag = 0.;
                 }
                 else
@@ -594,7 +594,7 @@ static stringToComplexError ParseComplexValueW(const wchar_t *tx, BOOL bConvertB
             if (bConvertByNAN)
             {
                 ierrDouble = STRINGTODOUBLE_NOT_A_NUMBER;
-                *real = returnNAN();
+                *real = nc_nan();
                 *imag = 0;
             }
             else
@@ -753,7 +753,7 @@ static stringToComplexError ParseComplexValueW(const wchar_t *tx, BOOL bConvertB
                     if (bConvertByNAN)
                     {
                         ierr = STRINGTOCOMPLEX_NO_ERROR;
-                        *real = returnNAN();
+                        *real = nc_nan();
                         *imag = 0.;
                     }
                     else
@@ -773,7 +773,7 @@ static stringToComplexError ParseComplexValueW(const wchar_t *tx, BOOL bConvertB
                 if (bConvertByNAN)
                 {
                     ierr = STRINGTOCOMPLEX_NO_ERROR;
-                    *real = returnNAN();
+                    *real = nc_nan();
                     *imag = 0.;
                 }
                 else
@@ -980,16 +980,3 @@ static BOOL is_unit_imaginaryW(const wchar_t *src, double *im)
     return isUnitImag;
 }
 /* ========================================================================== */
-static double returnNAN(void)
-{
-    static int first = 1;
-    static double nan = 1.0;
-
-    if ( first )
-    {
-        nan = (nan - (double) first) / (nan - (double) first);
-        first = 0;
-    }
-    return (nan);
-}
-// =============================================================================

@@ -12,7 +12,6 @@
  * along with this program.
  *
  */
-#include <math.h>
 
 #include "doublecomplex.h"
 #include "api_scilab.h"
@@ -21,6 +20,7 @@
 #include "localization.h"
 #include "sci_malloc.h"
 #include "norm.h"
+#include "numericconstants_interface.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_norm(char *fname, void* pvApiCtx)
@@ -107,7 +107,7 @@ int sci_norm(char *fname, void* pvApiCtx)
 
     if (_isnan)
     {
-        createScalarDouble(pvApiCtx, Rhs + 1, NAN);
+        createScalarDouble(pvApiCtx, Rhs + 1, nc_nan());
         AssignOutputVariable(pvApiCtx, 1) = Rhs + 1;
         return 0;
     }
@@ -138,7 +138,7 @@ int sci_norm(char *fname, void* pvApiCtx)
         // Call normP() or normPC().
         if (_isinf)
         {
-            ret = INFINITY;
+            ret = nc_inf();
         }
         else if (isComplex)
         {
@@ -195,7 +195,7 @@ int sci_norm(char *fname, void* pvApiCtx)
 
         if (_isinf)
         {
-            ret = INFINITY;
+            ret = nc_inf();
         }
         else if (isComplex)
         {
@@ -251,7 +251,7 @@ int sci_norm(char *fname, void* pvApiCtx)
 
             if (_isinf && la_isinf(flagVal) == 0) // Infs in A and flag != -%inf
             {
-                ret = INFINITY;
+                ret = nc_inf();
             }
             else if (isComplex)
             {

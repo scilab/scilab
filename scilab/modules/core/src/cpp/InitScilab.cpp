@@ -503,7 +503,7 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
 
     //close dynamic linked libraries
     std::vector<ConfigVariable::DynamicLibraryStr*>* pDLLIst = ConfigVariable::getDynamicLibraryList();
-    int size = pDLLIst->size();
+    int size = static_cast<int>(pDLLIst->size());
     for (int i = 0; i < size; i++)
     {
         ConfigVariable::DynamicLibraryStr* pStr = ConfigVariable::getDynamicLibrary(i);
@@ -781,7 +781,7 @@ void* scilabReadAndStore(void* param)
             {
                 bool disableDebug = false;
                 char* tmpCommand = NULL;
-                int commandsize = strlen(command);
+                int commandsize = static_cast<int>(strlen(command));
 
                 //all commands must be prefixed by debug except e(xec) (r)un or p(rint) "something" that become "something" or disp("something")
                 if (strncmp(command, "e ", 2) == 0 || strncmp(command, "r ", 2) == 0)
@@ -1127,18 +1127,12 @@ static void Add_All_Variables(void)
 
 static void Add_Nan(void)
 {
-    double dbl1 = -1.0;
-    double dbl0 = fabs(dbl1 - dbl1);
-
-    Add_Double_Constant(L"%nan", dbl0 / dbl0, 0, false);
+    Add_Double_Constant(L"%nan", NumericConstants::nan, 0, false);
 }
 
 static void Add_Inf(void)
 {
-    double dbl1 = 1.0;
-    double dbl0 = dbl1 - dbl1;
-
-    Add_Double_Constant(L"%inf", dbl1 / dbl0, 0, false);
+    Add_Double_Constant(L"%inf", NumericConstants::infinity, 0, false);
 }
 
 static void Add_gui(void)

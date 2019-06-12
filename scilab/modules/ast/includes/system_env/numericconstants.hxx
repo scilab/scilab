@@ -34,7 +34,9 @@ public:
     EXTERN_AST static double double_min;                   //underflow threshold - base**(emin-1)
     EXTERN_AST static double exp_max;               //largest exponent before overflow
     EXTERN_AST static double double_max;                   //overflow threshold  - (base**emax)*(1-eps)
-
+    EXTERN_AST static double infinity;
+    EXTERN_AST static double neginfinity;
+    EXTERN_AST static double nan;
     EXTERN_AST static void Initialize();
 
 };

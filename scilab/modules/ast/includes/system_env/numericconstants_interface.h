@@ -26,6 +26,9 @@ EXTERN_AST double nc_exp_min();
 EXTERN_AST double nc_double_min();
 EXTERN_AST double nc_exp_max();
 EXTERN_AST double nc_double_max();
+EXTERN_AST double nc_inf();
+EXTERN_AST double nc_neginf();
+EXTERN_AST double nc_nan();
 
 //Fortran
 EXTERN_AST double C2F(nc_eps)();
@@ -38,3 +41,6 @@ EXTERN_AST double C2F(nc_exp_min)();
 EXTERN_AST double C2F(nc_double_min)();
 EXTERN_AST double C2F(nc_exp_max)();
 EXTERN_AST double C2F(nc_double_max)();
+EXTERN_AST double C2F(nc_inf)();
+EXTERN_AST double C2F(nc_neginf)();
+EXTERN_AST double C2F(nc_nan)();

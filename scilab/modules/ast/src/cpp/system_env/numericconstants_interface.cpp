@@ -70,6 +70,20 @@ double nc_double_max()
     return NumericConstants::double_max;
 }
 
+double nc_inf()
+{
+    return NumericConstants::infinity;
+}
+
+double nc_neginf()
+{
+    return NumericConstants::neginfinity;
+}
+
+double nc_nan()
+{
+    return NumericConstants::nan;
+}
 
 //Fortran
 double C2F(nc_eps)()
@@ -120,4 +134,19 @@ double C2F(nc_exp_max)()
 double C2F(nc_double_max)()
 {
     return NumericConstants::double_max;
+}
+
+double C2F(nc_inf)()
+{
+    return NumericConstants::infinity;
+}
+
+double C2F(nc_neginf)()
+{
+    return NumericConstants::neginfinity;
+}
+
+double C2F(nc_nan)()
+{
+    return NumericConstants::nan;
 }

@@ -25,6 +25,7 @@
 #include "core_math.h"
 #include "sci_malloc.h"
 #include "os_string.h"
+#include "numericconstants_interface.h"
 #ifndef _MSC_VER
 #ifndef stricmp
 #define stricmp strcasecmp
@@ -35,10 +36,6 @@
 /* ========================================================================== */
 #define DEFAULT_DOUBLE_MAX_DIGIT_FORMAT "%lg"
 /* ========================================================================== */
-static double returnINF(BOOL bPositive);
-static double returnNAN(void);
-/* ========================================================================== */
-
 static char* replace_D_By_E(const char* _pst)
 {
     //find and replace d and D by E for compatibility with strtod Linux/Mac
@@ -107,16 +104,16 @@ double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError 
                 (stricmp(pSTR, PosNanString) == 0) || (stricmp(pSTR, ScilabPosNanString) == 0) ||
                 (stricmp(pSTR, ScilabNanString) == 0) || (stricmp(pSTR, ScilabNegNanString) == 0))
         {
-            dValue = returnNAN();
+            dValue = nc_nan();
         }
         else if ((stricmp(pSTR, InfString) == 0) || (stricmp(pSTR, PosInfString) == 0) ||
                  (stricmp(pSTR, ScilabInfString) == 0) || (stricmp(pSTR, ScilabPosInfString) == 0))
         {
-            dValue = returnINF(TRUE);
+            dValue = nc_inf();
         }
         else if ((stricmp(pSTR, NegInfString) == 0) || (stricmp(pSTR, ScilabNegInfString) == 0))
         {
-            dValue = returnINF(FALSE);
+            dValue = nc_neginf();
         }
         else if ((stricmp(pSTR, ScilabPiString) == 0) || (stricmp(pSTR, ScilabPosPiString) == 0))
         {
@@ -151,7 +148,7 @@ double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError 
             {
                 if (bConvertByNAN)
                 {
-                    dValue = returnNAN();
+                    dValue = nc_nan();
                 }
                 else
                 {
@@ -170,7 +167,7 @@ double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError 
                 {
                     if (bConvertByNAN)
                     {
-                        dValue = returnNAN();
+                        dValue = nc_nan();
                     }
                     else
                     {
@@ -202,16 +199,16 @@ double stringToDoubleW(const wchar_t *pSTR, BOOL bConvertByNAN, stringToDoubleEr
                 (wcsicmp(pSTR, PosNanStringW) == 0) || (wcsicmp(pSTR, ScilabPosNanStringW) == 0) ||
                 (wcsicmp(pSTR, ScilabNanStringW) == 0) || (wcsicmp(pSTR, ScilabNegNanStringW) == 0))
         {
-            dValue = returnNAN();
+            dValue = nc_nan();
         }
         else if ((wcsicmp(pSTR, InfStringW) == 0) || (wcsicmp(pSTR, PosInfStringW) == 0) ||
                  (wcsicmp(pSTR, ScilabInfStringW) == 0) || (wcsicmp(pSTR, ScilabPosInfStringW) == 0))
         {
-            dValue = returnINF(TRUE);
+            dValue = nc_inf();
         }
         else if ((wcsicmp(pSTR, NegInfStringW) == 0) || (wcsicmp(pSTR, ScilabNegInfStringW) == 0))
         {
-            dValue = returnINF(FALSE);
+            dValue = nc_neginf();
         }
         else if ((wcsicmp(pSTR, ScilabPiStringW) == 0) || (wcsicmp(pSTR, ScilabPosPiStringW) == 0))
         {
@@ -246,7 +243,7 @@ double stringToDoubleW(const wchar_t *pSTR, BOOL bConvertByNAN, stringToDoubleEr
             {
                 if (bConvertByNAN)
                 {
-                    dValue = returnNAN();
+                    dValue = nc_nan();
                 }
                 else
                 {
@@ -265,7 +262,7 @@ double stringToDoubleW(const wchar_t *pSTR, BOOL bConvertByNAN, stringToDoubleEr
                 {
                     if (bConvertByNAN)
                     {
-                        dValue = returnNAN();
+                        dValue = nc_nan();
                     }
                     else
                     {
@@ -285,27 +282,5 @@ double stringToDoubleW(const wchar_t *pSTR, BOOL bConvertByNAN, stringToDoubleEr
         *ierr = STRINGTODOUBLE_MEMORY_ALLOCATION;
     }
     return dValue;
-}
-// =============================================================================
-static double returnINF(BOOL bPositive)
-{
-    double dbl1 = 1.0;
-    double dbl0 = dbl1 - dbl1;
-    int iSign = bPositive == 1 ? 1 : -1;
-
-    return iSign * dbl1 / dbl0;
-}
-// =============================================================================
-static double returnNAN(void)
-{
-    static int first = 1;
-    static double nan = 1.0;
-
-    if ( first )
-    {
-        nan = (nan - (double) first) / (nan - (double) first);
-        first = 0;
-    }
-    return (nan);
 }
 // =============================================================================
