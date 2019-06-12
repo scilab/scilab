@@ -61,6 +61,23 @@ bool ArrayOf<T>::getMemory(long long* _piSize, long long* _piSizePlusType)
 }
 
 template <typename T>
+void ArrayOf<T>::humanReadableByteCount(size_t n, char (&str)[9])
+{
+    double unit = 1024.;
+    if (n < unit)
+    {
+        std::snprintf(str, 9, "%lu B", n);
+        return;
+    }
+
+    int exp = (int) std::log(n) / std::log(unit);
+    char preUnit[] = "kMGTPE";
+    char pre = preUnit[exp - 1];
+
+    std::snprintf(str, 9, "%.1f %cB", n / std::pow(unit, exp), pre);
+}
+
+template <typename T>
 void ArrayOf<T>::getIndexes(int _iIndex, int* _piIndexes)
 {
     getIndexesWithDims(_iIndex, _piIndexes, m_piDims, m_iDims);
@@ -158,15 +175,18 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     {
         int *piSourceDims = pSource->getDimsArray();
         int sDims = pSource->getDims();
-        int j=0;
+        int j = 0;
 
-        for (int i=0; i<iDims; i++)
+        for (int i = 0; i < iDims; i++)
         {
-            if (piCountDim[i]==1)
+            if (piCountDim[i] == 1)
             {
                 continue;
             }
-            while (j<sDims && piSourceDims[j]==1) j++;
+            while (j < sDims && piSourceDims[j] == 1)
+            {
+                j++;
+            }
             if (piSourceDims[j] != piCountDim[i])
             {
                 delete[] piCountDim;
@@ -338,18 +358,18 @@ ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             {
                 bNeedToResize = true;
                 iNewDims = 2;
-                piNewDims = new int[2]{1,1};
+                piNewDims = new int[2] {1, 1};
 
                 if (isScalar() || getSize() == 0)
                 {
                     int *piSourceDims = pSource->getDimsArray();
                     // if source is scalar then resize indexed array as a column vector
                     // otherwise resize with shape of source
-                    piNewDims[(int)(piSourceDims[0] == 1 && pSource->getSize()>1)]=piMaxDim[0];
+                    piNewDims[(int)(piSourceDims[0] == 1 && pSource->getSize() > 1)] = piMaxDim[0];
                 }
                 else // resize with same shape as indexed array
                 {
-                    piNewDims[(int)(getRows() == 1)]=piMaxDim[0];
+                    piNewDims[(int)(getRows() == 1)] = piMaxDim[0];
                 }
             }
         }
@@ -642,9 +662,9 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
                     //by default, replace colon by current source dimension
                     piMaxDim[i] = piSourceDims[iSource];
                     //if there are more index dimensions left than source dimensions left
-                    if (iDims-i > iSourceDims-iSource)
+                    if (iDims - i > iSourceDims - iSource)
                     {
-                        for (int j = i+1; j < iDims - iSourceDims + iSource +1; ++j)
+                        for (int j = i + 1; j < iDims - iSourceDims + iSource + 1; ++j)
                         {
                             //when first explicit index is reached
                             if (pArg[j] != NULL)
@@ -669,7 +689,7 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
                 pArg[i] = createDoubleVector(piMaxDim[i]);
                 --iNbColon;
             }
-            else if (piCountDim[i] == piSourceDims[iSource] && (piCountDim[i]>1 || iNbColon < iSourceDims))
+            else if (piCountDim[i] == piSourceDims[iSource] && (piCountDim[i] > 1 || iNbColon < iSourceDims))
             {
                 ++iSource;
             }

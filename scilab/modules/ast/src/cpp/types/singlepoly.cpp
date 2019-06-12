@@ -117,7 +117,9 @@ double* SinglePoly::allocData(int _iSize)
     catch (std::bad_alloc &/*e*/)
     {
         char message[bsiz];
-        os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
+        char byteString[9];
+        humanReadableByteCount(((size_t) m_iSize) * sizeof(double), byteString);
+        os_sprintf(message, _("Can not allocate %s memory.\n"), byteString);
         throw ast::InternalError(message);
     }
 
@@ -136,7 +138,7 @@ int SinglePoly::getRank()
 
 double SinglePoly::getDegree()
 {
-    return m_iSize==1 && m_pRealData[0]==0 && (m_pImgData == NULL || m_pImgData[0]==0) ? -INFINITY : m_iSize - 1;
+    return m_iSize == 1 && m_pRealData[0] == 0 && (m_pImgData == NULL || m_pImgData[0] == 0) ? -INFINITY : m_iSize - 1;
 }
 
 bool SinglePoly::setRank(int _iRank, bool bSave)

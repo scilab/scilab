@@ -110,7 +110,9 @@ protected :
                 if (m_iSize != 0 && iTmpSize / m_iSize != m_piDims[i])
                 {
                     char message[bsiz];
-                    os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
+                    char byteString[9];
+                    humanReadableByteCount(((size_t) m_iSize) * ((size_t) m_piDims[i]) * sizeof(T), byteString);
+                    os_sprintf(message, _("Can not allocate %s memory.\n"), byteString);
                     throw ast::InternalError(message);
                 }
 
@@ -154,7 +156,9 @@ protected :
         catch (std::bad_alloc & /*e*/)
         {
             char message[bsiz];
-            os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(m_iSize * sizeof(T)) / 1.e6);
+            char byteString[9];
+            humanReadableByteCount(((size_t) m_iSize) * sizeof(T), byteString);
+            os_sprintf(message, _("Can not allocate %s memory.\n"), byteString);
             throw ast::InternalError(message);
         }
 
@@ -501,6 +505,8 @@ public :
     void getIndexes(int _iIndex, int* _piIndexes);
 
     virtual bool getMemory(long long* _piSize, long long* _piSizePlusType);
+
+    void humanReadableByteCount(size_t n, char (&str)[9]);
 
     ArrayOf<T>* getColumnValues(int _iPos)
     {

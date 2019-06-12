@@ -104,10 +104,10 @@ String::String(int _iRows, int _iCols, wchar_t const* const* _pstData)
 
 bool String::getMemory(long long* _piSize, long long* _piSizePlusType)
 {
-    *_piSize = getSize()*sizeof(wchar_t*);
+    *_piSize = getSize() * sizeof(wchar_t*);
     for (int i = 0; i < getSize(); i++)
     {
-        *_piSize += wcslen(get(i))*sizeof(wchar_t);
+        *_piSize += wcslen(get(i)) * sizeof(wchar_t);
     }
     *_piSizePlusType = *_piSize + sizeof(*this);
     return true;
@@ -701,7 +701,9 @@ wchar_t** String::allocData(int _iSize)
     catch (std::bad_alloc & /*e*/)
     {
         char message[bsiz];
-        os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(_iSize * sizeof(char*)) / 1.e6);
+        char byteString[9];
+        humanReadableByteCount(((size_t) m_iSize) * sizeof(char*), byteString);
+        os_sprintf(message, _("Can not allocate %s memory.\n"), byteString);
         throw ast::InternalError(message);
     }
     return pStr;
