@@ -216,13 +216,16 @@ bitget(x, [5 8 12 39])
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
+                <link linkend="bitstring">bitstring</link>
+            </member>
+            <member>
+                <link linkend="dec2bin">dec2bin</link>
+            </member>
+            <member>
                 <link linkend="bitset">bitset</link>
             </member>
             <member>
                 <link linkend="bitand">bitand</link>
-            </member>
-            <member>
-                <link linkend="dec2bin">dec2bin</link>
             </member>
             <member>
                 <link linkend="and_op">&amp;</link>

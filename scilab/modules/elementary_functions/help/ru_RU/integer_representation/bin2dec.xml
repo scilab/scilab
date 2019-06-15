@@ -14,14 +14,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bin2dec" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="bin2dec" xml:lang="ru">
     <refnamediv>
         <refname>bin2dec</refname>
         <refpurpose>преобразование из двоичной системы счисления в десятичную</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>y=bin2dec(str)</synopsis>
+        <synopsis>y = bin2dec(str)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -81,10 +84,7 @@ y=bin2dec(str)
                 <link linkend="dec2bin">dec2bin</link>
             </member>
             <member>
-                <link linkend="dec2oct">dec2oct</link>
-            </member>
-            <member>
-                <link linkend="dec2hex">dec2hex</link>
+                <link linkend="bitstring">bitstring</link>
             </member>
         </simplelist>
     </refsection>

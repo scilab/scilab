@@ -95,6 +95,7 @@ Feature changes and additions
   - For decimal numbers: bits with indices > 52 can now be retrieved (up to `log2(number_properties("huge"))` = 1024).
   - For decimal numbers `x > 2^52`, querried bits below `%eps` (indices < log2(x)-52) now return `Nan` instead of 0.
   - Several bits can now be retrieved from each component of an input array.
+* `bitstring` function added.
 * `edit` now accepts a line number as text (like "23").
 * `profileEnable`, `profileDisable`, `profileGetInfo` could be used to instrument functions and gather execution information within Scilab.
 * `prettyprint()` is upgraded:
@@ -116,7 +117,6 @@ Feature changes and additions
   - When there is no solution, [] is returned.
   - When there is an infinite number of solutions, the err flag has a specific value.
   - The output size gets the input's one.
-<<<<<<< HEAD
 * `csvRead` and `csvTextScan` are now implemented without extra copies.
 * `editvar()` GUI support copy-paste of strings removing quotes.
 * calendar() can now display formated calendars.
@@ -130,13 +130,11 @@ Feature changes and additions
   - `riccati(H)` and `riccati(H,E)` syntaxes added, to describe the Riccati equation through its Hamiltonian H or (E,H) pencil.
   - The residual is returned as new 3rd output argument.
   - When no solution is found, `X=[]` | `X1=[]` is returned instead of yielding an error.
-=======
 * `hallchart()` is upgraded:
   - The default set of modules is set automatically, according to data bounds.
   - Handles of the grids and labels are returned. Post-processing them become easy.
   - Named colors accepted ; better default colors.
   - Improved placement of labels.
->>>>>>> 839d040c90b... * Bug 16292 fixed: hallchart() debugged & improved
 
 
 Help pages:
@@ -177,11 +175,8 @@ Obsolete functions or features
 Removed Functions
 -----------------
 
-<<<<<<< HEAD
 * `getPreferencesValue` was obsolete and has been removed. Please use `xmlGetValues` instead.
-=======
 * `eval` was obsolete and has been removed. Please use `evstr` instead.
->>>>>>> 1ec71c6c514... * Bug 15309 fixed: eval() actual removal
 * `hypermat` was obsolete and has been removed. Please use `matrix` instead.
 * `square` was obsolete and has been removed.
 * `xgetech` was obsolete and has been removed. Please use `gca` instead.

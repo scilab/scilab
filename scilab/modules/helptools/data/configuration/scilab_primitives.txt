@@ -312,6 +312,7 @@ bessely
 beta
 bezout
 bfinit
+bitstring
 blkfc1i
 bool2s
 browsevar

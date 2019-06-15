@@ -13,14 +13,20 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dec2bin" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="dec2bin" xml:lang="pt">
     <refnamediv>
         <refname>dec2bin</refname>
         <refpurpose>representação binária</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>[str]=dec2bin(x[,n])</synopsis>
+        <synopsis>
+            str = dec2bin(x)
+            str = dec2bin(x, n)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -84,22 +90,19 @@ z=dec2bin(x)
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
-                <link linkend="base2dec">base2dec</link>
+                <link linkend="bitstring">bitstring</link>
             </member>
             <member>
-                <link linkend="bin2dec">bin2dec</link>
-            </member>
-            <member>
-                <link linkend="oct2dec">oct2dec</link>
-            </member>
-            <member>
-                <link linkend="hex2dec">hex2dec</link>
+                <link linkend="dec2base">dec2base</link>
             </member>
             <member>
                 <link linkend="dec2oct">dec2oct</link>
             </member>
             <member>
                 <link linkend="dec2hex">dec2hex</link>
+            </member>
+            <member>
+                <link linkend="bin2dec">bin2dec</link>
             </member>
         </simplelist>
     </refsection>
