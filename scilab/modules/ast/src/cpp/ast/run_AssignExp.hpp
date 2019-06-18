@@ -446,7 +446,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
             }
 
-            exps_t::const_reverse_iterator it;
+            exps_t::const_iterator it;
             exps_t exps = pList->getExps();
             types::InternalType** pIT = new types::InternalType*[iLhsCount];
             int i = 0;
@@ -458,7 +458,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 pIT[i]->IncreaseRef();
             }
 
-            for (i = iLhsCount - 1, it = exps.rbegin(); it != exps.rend(); it++, i--)
+            for (i = 0, it = exps.begin(); it != exps.end(); it++, i++)
             {
                 Exp* pExp = e.getRightExp().clone();
                 AssignExp pAssign((*it)->getLocation(), *(*it), *pExp, pIT[i]);
