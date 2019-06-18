@@ -38,9 +38,6 @@
         <para>
             The <link linkend="lines">lines</link> function may be used to control the output.
         </para>
-        <para>
-            <literal>disp("a",1,"c")</literal> display order: last input argument will be the first displayed (LIFO).
-        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

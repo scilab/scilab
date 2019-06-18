@@ -21,7 +21,7 @@ function demo_x_mdialog()
     labelh = col(ones(1, m))+string(1:m);
     res = evstr(x_mdialog(_("Matrix to edit"), labelv, labelh, string(mat)));
 
-    disp(res, _("Matrix entered: "));
+    disp(_("Matrix entered: "),res);
 
 endfunction
 

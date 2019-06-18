@@ -18,7 +18,7 @@ scs_m.props.tol(6) = 0;
 tic();
 try scicos_simulate(scs_m, "nw"); catch disp(lasterror()); end
 t = toc();
-disp(t, "Time with rootfinding:");
+disp("Time with rootfinding:", t);
 
 // Import the "without-ZC" diagram and augment the ending time
 importXcosDiagram("SCI/modules/xcos/examples/solvers/without_ZeroCrossingSimple.zcos");
@@ -33,4 +33,4 @@ scs_m.props.tol(6) = 0;
 tic();
 try scicos_simulate(scs_m, "nw"); catch disp(lasterror()); end
 t = toc();
-disp(t, "Time without rootfinding:");
+disp("Time without rootfinding:", t);

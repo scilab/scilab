@@ -20,6 +20,6 @@ for solver = 0:4
     tic();
     try scicos_simulate(scs_m, "nw"); catch disp(lasterror()); end;
     t = toc();
-    disp(t, "Time for " + solverName(solver+1) + ":");
+    disp("Time for " + solverName(solver) + ":",t);
 
 end

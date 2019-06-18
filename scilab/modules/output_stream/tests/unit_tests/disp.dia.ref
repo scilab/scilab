@@ -5,15 +5,15 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
-disp([1 2],3);
+disp(3,[1 2]);
     3.
     1.    2.
 disp('A string');
  A string
-disp("høyesterettsjustitiarius","disp test :");
+disp("disp test :","høyesterettsjustitiarius");
  disp test :
  høyesterettsjustitiarius
-deff('[]=%t_p(l)','disp(l(3),l(2))');
+deff('[]=%t_p(l)','disp(l(2),l(3))');
 disp(tlist('t',1,2));
     1.
     2.

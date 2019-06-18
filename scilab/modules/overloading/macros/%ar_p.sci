@@ -137,18 +137,18 @@ function armap_p(ar,out)
     if ar(3)==[] then I=[1,3];else I=1:3 ;end
     A=inv_coeff(ar(2));
     //print(out,A);
-    disp(A,"A(x) =");
+    disp("A(x) =", A);
     write(out,"  ");
     if ar(3)<>[] then
         [mb,nb]=size(ar(3));
         B=inv_coeff(ar(3),(nb/ar("nu"))-1);
         //print(out,B);
-        disp(B, "B(x) =");
+        disp("B(x) =", B);
         write(out,"  ");
     end
     D=inv_coeff(ar(4));
     //print(out,D);
-    disp(D, "D(x)");
+    disp("D(x)",D);
     write(out," ");
     write(%io(2),"  e(t)=Sig*w(t); w(t) "+string(ny)+"-dim white noise");
     write(out," ");

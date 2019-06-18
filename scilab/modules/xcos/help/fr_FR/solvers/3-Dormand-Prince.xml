@@ -162,7 +162,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Temps pour Dormand-Prince :");
+      disp("Temps pour Dormand-Prince :", t);
       ]]></programlisting>
         </para>
         <para>

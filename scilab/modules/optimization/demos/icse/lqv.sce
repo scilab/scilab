@@ -93,8 +93,8 @@ function demo_lqv()
 
     [co, u, g, itv, dtv] = icse(u, "icsemc", nap, imp);
 
-    disp(u', "Best value:")
-    disp(co, "Final cost:")
+    disp("Best value:",u')
+    disp("Final cost:",co)
 
     deletefile("libicsez0.so");
     deletefile("loader.sce");

@@ -2318,8 +2318,8 @@ function y=yex1(x,c1)
   y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
 endfunction
 
-disp(norm(z(1,:)-yex(x)),'norm(yex(x)-z(1,:))= ')
-disp(norm(z1(1,:)-yex1(x)),'norm(yex1(x)-z1(1,:))= ')
+disp('norm(yex(x)-z(1,:))= ', norm(z(1,:)-yex(x)))
+disp('norm(yex1(x)-z1(1,:))= ', norm(z1(1,:)-yex1(x)))
 clf();
 subplot(2,1,1)
 plot2d(x,z(1,:),style=[5])

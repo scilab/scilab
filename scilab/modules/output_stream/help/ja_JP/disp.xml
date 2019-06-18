@@ -41,10 +41,6 @@
             出力を制御するために<link linkend="lines">lines</link> 関数を
             使用することができます.
         </para>
-        <para>
-            <literal>disp("a",1,"c")</literal> 表示の順序:
-            最後の入力引数が最初に表示されます (LIFO).
-        </para>
     </refsection>
     <refsection>
         <title>例</title>

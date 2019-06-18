@@ -30,7 +30,7 @@
         <programlisting role="example"><![CDATA[
 function foo(a,b)
     x = checkNamedArguments();
-	disp(x, "Named Variable:");
+	disp("Named Variable:", x);
 endfunction
 
 //No additional named variable

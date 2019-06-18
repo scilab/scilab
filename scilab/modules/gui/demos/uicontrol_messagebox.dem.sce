@@ -41,7 +41,7 @@ function d = save_data()
 endfunction
 
 // display the result before the edition
-disp(data, "before")
+disp("before", data)
 
 // is modal but without burning the CPU
 f.visible = "on";
@@ -50,4 +50,4 @@ while is_handle_valid(f),
 end
 
 // display the edited result
-disp(data, "after edit")
+disp("after edit",data)

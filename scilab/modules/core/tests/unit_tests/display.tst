@@ -126,7 +126,7 @@ list(list(1:$))
 list(list(1,$),list())
 // Tlist overloaded display
 TL=tlist("x",1,2)
-deff("%x_p(x)","disp(x(3),x(2),''Mydisplay'')")
+deff("%x_p(x)","''Mydisplay'',x(2),x(3))")
 TL
 list(TL)
 list(list(TL))

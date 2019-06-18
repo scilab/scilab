@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 funcprot(0);
 
 //syntax with no explicit lhs

@@ -155,8 +155,8 @@ function demo_navet()
 
     [co, u, g, itv, dtv] = icse(u, nomf, nap, imp);
 
-    disp(u', "Best value:")
-    disp(co, "Final cost:")
+    disp("Best value:",u')
+    disp("Final cost:", co)
 
     deletefile("libicsenb.so");
     deletefile("libicsez0.so");

@@ -216,7 +216,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Temps pour BDF / Newton :");
+      disp("Temps pour BDF / Newton :", t);
       ]]></programlisting>
         </para>
         <para>

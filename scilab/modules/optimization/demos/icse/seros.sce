@@ -96,8 +96,8 @@ function demo_seros()
 
     [co, u, g, itv, dtv] = icse(u, "icsest", nap, imp);
 
-    disp(u', "Best value:")
-    disp(co, "Final cost:")
+    disp("Best value:", u')
+    disp("Final cost:", co)
 
     deletefile("libicsest.so");
     deletefile("libicsez0.so");

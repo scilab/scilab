@@ -218,7 +218,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Time for implicit Runge-Kutta:");
+      disp("Time for implicit Runge-Kutta:", t);
       ]]></programlisting>
         </para>
         <para>

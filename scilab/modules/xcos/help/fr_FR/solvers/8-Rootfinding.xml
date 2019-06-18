@@ -94,7 +94,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Temps pour LSodar :");
+      disp("Temps pour LSodar :", t);
       ]]></programlisting>
         </para>
         <para>

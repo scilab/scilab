@@ -7,10 +7,10 @@
 
 // <-- CLI SHELL MODE -->
 
-disp([1 2],3);
+disp(3,[1 2]);
 disp('A string');
-disp("høyesterettsjustitiarius","disp test :");
-deff('[]=%t_p(l)','disp(l(3),l(2))');
+disp("disp test :","høyesterettsjustitiarius");
+deff('[]=%t_p(l)','disp(l(2),l(3))');
 disp(tlist('t',1,2));
 
 

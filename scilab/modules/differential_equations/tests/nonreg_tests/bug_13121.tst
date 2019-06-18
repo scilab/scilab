@@ -63,7 +63,7 @@ function ydot=right(t,pl)
     x(1) = max(x(1),0);
     x(2) = max(x(2),0);
     //if x(2) <= 0 & t > 0 then
-    //    disp(t,"tf");
+    //    disp("tf",t);
     //end;
     ydot(1) = x(3) * cos(x(4));
     ydot(2) = x(3) * sin(x(4));

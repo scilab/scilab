@@ -178,7 +178,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Temps pour Runge-Kutta :");
+      disp("Temps pour Runge-Kutta :", t);
       ]]></programlisting>
         </para>
         <para>

@@ -228,7 +228,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Time for Crank-Nicolson:");
+      disp("Time for Crank-Nicolson:", t);
       ]]></programlisting>
         </para>
         <para>

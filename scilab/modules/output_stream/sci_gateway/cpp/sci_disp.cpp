@@ -27,18 +27,16 @@ extern "C"
 
 types::Function::ReturnValue sci_disp(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::typed_list::reverse_iterator it;
-
     if (in.empty())
     {
         Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), "disp", 1);
         return types::Function::Error;
     }
 
-    for (it = in.rbegin() ; it != in.rend() ; it++)
+    for (auto it : in)
     {
         scilabForcedWriteW(L"\n");
-        if (VariableToString(*it, SPACES_LIST) == types::Function::Error)
+        if (VariableToString(it, SPACES_LIST) == types::Function::Error)
         {
             return types::Function::Error;
         }

@@ -158,7 +158,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       tic();
       try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
       t = toc();
-      disp(t, "Time for Dormand-Prince:");
+      disp("Time for Dormand-Prince:", t);
       ]]></programlisting>
         </para>
         <para>

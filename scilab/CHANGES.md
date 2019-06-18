@@ -147,6 +147,7 @@ Bug Fixes
 ### Bugs fixed in 6.1.0:
 * [#2694](http://bugzilla.scilab.org/show_bug.cgi?id=2694): `bitget` did not accept positive integers of types int8, int16 or int32.
 * [#8784](http://bugzilla.scilab.org/show_bug.cgi?id=8784): Automatic self-adjusting blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` in Xcos.
+* [#5512](http://bugzilla.scilab.org/show_bug.cgi?id=5512): `disp()` puzzlingly displayed arguments in reverse order.
 * [#9673](http://bugzilla.scilab.org/show_bug.cgi?id=9673): Priority of colon `:` operator was too low
 * [#14498](http://bugzilla.scilab.org/show_bug.cgi?id=14498): `size([],3)` returned 1 instead of 0.
 * [#14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557): `csim` failed when the system has no state.

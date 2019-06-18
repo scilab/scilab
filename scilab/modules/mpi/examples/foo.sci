@@ -9,7 +9,7 @@ if Master then
     MPI_Send(rand(10,10), 1);
 else
     val = MPI_Recv(0, 0);
-    disp(val, rnk)
+    disp(rnk,val)
 end
 
 MPI_Finalize();
