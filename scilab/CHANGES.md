@@ -144,6 +144,7 @@ Bug Fixes
 * [#8784](http://bugzilla.scilab.org/show_bug.cgi?id=8784): Automatic self-adjusting blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` in Xcos.
 * [#9673](http://bugzilla.scilab.org/show_bug.cgi?id=9673): Priority of colon `:` operator was too low
 * [#14498](http://bugzilla.scilab.org/show_bug.cgi?id=14498): `size([],3)` returned 1 instead of 0.
+* [#14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557): `csim` failed when the system has no state.
 * [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
 * [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
 * [#14606](http://bugzilla.scilab.org/show_bug.cgi?id=14606): Memory used by variables returned by `[names,mem]=who()` was always zero.

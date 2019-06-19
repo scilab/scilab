@@ -176,6 +176,10 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         end;
         k=k+n
     end;
-    y = c*x + d*ut
+    if isempty(c)
+        y = d*ut;
+    else
+        y = c*x + d*ut
+    end
     if lhs==2 then x=v1*v2*x,end
 endfunction
