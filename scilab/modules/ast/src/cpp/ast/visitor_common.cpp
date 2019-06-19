@@ -486,6 +486,11 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 poResult->getAs<types::Double>()->append(iCurRow, iCurCol, _poSource);
                 break;
             case types::InternalType::ScilabPolynom:
+                if (poResult->getAs<types::Polynom>()->getVariableName() !=  _poSource->getAs<types::Polynom>()->getVariableName())
+                {
+                    // call overload
+                    return NULL;
+                }
                 poResult->getAs<types::Polynom>()->append(iCurRow, iCurCol, _poSource);
                 break;
             case types::InternalType::ScilabBool:
