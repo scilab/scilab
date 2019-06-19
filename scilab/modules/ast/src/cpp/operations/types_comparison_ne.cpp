@@ -2956,10 +2956,6 @@ template<>
 InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR)
 {
     Bool* pbOut = NULL;
-    bool bPoise = true;
-
-    SinglePoly** pSPL = _pL->get();
-    SinglePoly** pSPR = _pR->get();
 
     if (_pL->getVariableName() != _pR->getVariableName())
     {
@@ -2970,182 +2966,18 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
     {
         pbOut = new Bool(_pL->getDims(), _pL->getDimsArray());
         int iSize = pbOut->getSize();
-
-        if (_pL->isComplex())
+        for (int i = 0; i < iSize; i++)
         {
-            if (_pR->isComplex())
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[0]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = true;
-                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
-                        {
-                            compnoequal(pSPR[0]->get(j), pSPR[0]->getImg(j), pSPL[i]->get(j), pSPL[i]->getImg(j), &bPoise);
-                        }
-                    }
-                    pbOut->set(i, bPoise);
-
-                }
-            }
-            else
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[0]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = true;
-                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
-                        {
-                            compnoequal(pSPR[0]->get(j), (double)0, pSPL[i]->get(j), pSPL[i]->getImg(j), &bPoise);
-                        }
-                    }
-                    pbOut->set(i, bPoise);
-                }
-            }
-        }
-        else
-        {
-            if (_pR->isComplex())
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[0]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = true;
-                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
-                        {
-                            compnoequal(pSPR[0]->get(j), pSPR[0]->getImg(j), pSPL[i]->get(j), (double)0, &bPoise);
-                        }
-                    }
-                    pbOut->set(i, bPoise);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[0]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = true;
-                        for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
-                        {
-                            compnoequal(pSPR[0]->get(j), pSPL[i]->get(j), &bPoise);
-                        }
-                    }
-                    pbOut->set(i, bPoise);
-                }
-            }
+            pbOut->set(i, *(_pL->get(i)) != *( _pR->get(0)));
         }
     }
     else if (_pL->isScalar())
     {
         pbOut = new Bool(_pR->getDims(), _pR->getDimsArray());
         int iSize = pbOut->getSize();
-
-        if (pSPR[0]->getSize() != 1)
+        for (int i = 0; i < iSize; i++)
         {
-            if (_pL->isComplex())
-            {
-                if (_pR->isComplex())
-                {
-                    for (int i = 0; i < iSize; i++)
-                    {
-                        if (pSPL[0]->getSize() != pSPR[i]->getSize())
-                        {
-                            bPoise = true;
-                        }
-                        else
-                        {
-                            bPoise = true;
-                            for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
-                            {
-                                compnoequal(pSPL[0]->get(j), pSPL[0]->getImg(j), pSPR[i]->get(j), pSPR[i]->getImg(j), &bPoise);
-                            }
-                        }
-                        pbOut->set(i, bPoise);
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < iSize; i++)
-                    {
-                        if (pSPL[0]->getSize() != pSPR[i]->getSize())
-                        {
-                            bPoise = true;
-                        }
-                        else
-                        {
-                            bPoise = true;
-                            for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
-                            {
-                                compnoequal(pSPL[0]->get(j), pSPL[0]->getImg(j), pSPR[i]->get(j), (double)0, &bPoise);
-                            }
-                        }
-                        pbOut->set(i, bPoise);
-                    }
-                }
-            }
-            else
-            {
-
-                if (_pR->isComplex())
-                {
-                    for (int i = 0; i < iSize; i++)
-                    {
-                        if (pSPL[0]->getSize() != pSPR[i]->getSize())
-                        {
-                            bPoise = true;
-                        }
-                        else
-                        {
-                            bPoise = true;
-                            for (int j = 0; j < pSPL[0]->getSize() && (bPoise == true); j++)
-                            {
-                                compnoequal(pSPL[0]->get(j), (double)0, pSPR[i]->get(j), pSPR[i]->get(j), &bPoise);
-                            }
-                        }
-                        pbOut->set(i, bPoise);
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < iSize; i++)
-                    {
-                        if (pSPL[0]->getSize() != pSPR[i]->getSize())
-                        {
-                            bPoise = true;
-                        }
-                        else
-                        {
-                            bPoise = true;
-                            for (int j = 0; j < pSPR[i]->getSize() && (bPoise == true); j++)
-                            {
-                                compnoequal(pSPL[0]->get(j), pSPR[i]->get(j), &bPoise);
-                            }
-                        }
-                        pbOut->set(i, bPoise);
-                    }
-                }
-
-            }
+            pbOut->set(i, *(_pL->get(0)) != *(_pR->get(i)));
         }
     }
     else
@@ -3166,88 +2998,9 @@ InternalType* compnoequal_M_M<Polynom, Polynom, Bool>(Polynom* _pL, Polynom* _pR
 
         pbOut = new Bool(_pL->getDims(), _pL->getDimsArray());
         int iSize = pbOut->getSize();
-
-        if (_pL->isComplex())
+        for (int i = 0; i < iSize; i++)
         {
-            if (_pR->isComplex())
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[i]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = true;
-                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == true); j++)
-                        {
-                            compnoequal(pSPR[i]->get(j), pSPR[i]->getImg(j), pSPL[i]->get(j), pSPL[i]->getImg(j), &bPoise);
-                        }
-                    }
-                    pbOut->set(i, bPoise);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[i]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = true;
-                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == true); j++)
-                        {
-                            compnoequal(pSPL[i]->get(j), pSPL[i]->getImg(j), pSPR[i]->get(j), (double)0, &bPoise);
-                        }
-                    }
-                    pbOut->set(i, bPoise);
-                }
-            }
-        }
-        else
-        {
-            if (_pR->isComplex())
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[i]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = true;
-                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == true); j++)
-                        {
-                            compnoequal(pSPR[i]->get(j), pSPR[i]->getImg(j), pSPL[i]->get(j), (double)0, &bPoise);
-                        }
-                    }
-                    pbOut->set(i, bPoise);
-                }
-            }
-            else
-            {
-                for (int i = 0; i < iSize; i++)
-                {
-                    if (pSPL[i]->getSize() != pSPR[i]->getSize())
-                    {
-                        bPoise = true;
-                    }
-                    else
-                    {
-                        bPoise = true;
-                        for (int j = 0; j < pSPR[i]->getSize() && (bPoise == true); j++)
-                        {
-                            compnoequal(pSPR[i]->get(j), pSPL[i]->get(j), &bPoise);
-                        }
-                    }
-                    pbOut->set(i, bPoise);
-                }
-            }
+            pbOut->set(i, *(_pL->get(i)) != *(_pR->get(i)));
         }
     }
 
