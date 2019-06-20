@@ -396,7 +396,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 }
 
                 double val = start - 1;
-                std::generate(idx.begin(), idx.end(), [&val, step]{ double s = val; val += step; return (int)s; });
+                std::generate(idx.begin(), idx.end(), [&val, step] { double s = val; val += step; return (int)s; });
 
                 lstIdx.push_back(idx);
                 finalSize *= size;
@@ -530,10 +530,10 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             {
                 int size = pCurrentArg->getSize();
                 double* dbl = pCurrentArg->get();
-                double minIndex = _pRef==NULL || _pRef->isList()==false ? 1 : 0;
+                double minIndex = _pRef == NULL || _pRef->isList() == false ? 1 : 0;
                 for (int j = 0; j < size; ++j)
                 {
-                    if (dbl[j] < minIndex)
+                    if (dbl[j] < minIndex || isnan(dbl[j]))
                     {
                         if (pCurrentArg->isDeletable())
                         {
@@ -557,8 +557,8 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 if (_pRef == NULL)
                 {
                     if (pIL->getStep()->isDouble() &&
-                        ((getIndex(pIL->getStep()) > 0 && pIL->getStart()->isDouble() && getIndex(pIL->getStart()) < 1) ||
-                        (getIndex(pIL->getStep()) < 0 && pIL->getEnd()->isDouble() && getIndex(pIL->getEnd()) < 1)))
+                            ((getIndex(pIL->getStep()) > 0 && pIL->getStart()->isDouble() && getIndex(pIL->getStart()) < 1) ||
+                             (getIndex(pIL->getStep()) < 0 && pIL->getEnd()->isDouble() && getIndex(pIL->getEnd()) < 1)))
                     {
                         pCurrentArg = NULL;
                     }
@@ -572,42 +572,43 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     }
                 }
                 else
-                {        //evalute polynom with "MaxDim"
+                {
+                    //evalute polynom with "MaxDim"
                     int iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
-    #if defined(_SCILAB_DEBUGREF_)
+#if defined(_SCILAB_DEBUGREF_)
                     Double* pdbl = new Double(iMaxDim);
-    #else
+#else
                     Double dbl(iMaxDim);
-    #endif
+#endif
                     if (pIL->getStart()->isPoly())
                     {
                         Polynom *poPoly = pIL->getStart()->getAs<types::Polynom>();
-    #if defined(_SCILAB_DEBUGREF_)
+#if defined(_SCILAB_DEBUGREF_)
                         pIL->setStart(poPoly->evaluate(pdbl));
-    #else
+#else
                         pIL->setStart(poPoly->evaluate(&dbl));
-    #endif
+#endif
                     }
                     if (pIL->getStep()->isPoly())
                     {
                         Polynom *poPoly = pIL->getStep()->getAs<types::Polynom>();
-    #if defined(_SCILAB_DEBUGREF_)
+#if defined(_SCILAB_DEBUGREF_)
                         pIL->setStep(poPoly->evaluate(pdbl));
-    #else
+#else
                         pIL->setStep(poPoly->evaluate(&dbl));
-    #endif
+#endif
                     }
                     if (pIL->getEnd()->isPoly())
                     {
                         Polynom *poPoly = pIL->getEnd()->getAs<types::Polynom>();
-    #if defined(_SCILAB_DEBUGREF_)
+#if defined(_SCILAB_DEBUGREF_)
                         pIL->setEnd(poPoly->evaluate(pdbl));
-    #else
+#else
                         pIL->setEnd(poPoly->evaluate(&dbl));
-    #endif
+#endif
                     }
 
-    #if defined(_SCILAB_DEBUGREF_)
+#if defined(_SCILAB_DEBUGREF_)
                     pdbl->killMe();
 #endif
                 }
@@ -626,7 +627,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
         else if (pIT->isString())
         {
             String* pStr = pIT->getAs<String>();
-            if(!_pRef)
+            if (!_pRef)
             {
                 bUndefine = true;
                 continue;
