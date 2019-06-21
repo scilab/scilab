@@ -37,7 +37,7 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
     double* pdTol               = NULL;
     bool bComplexArgs           = false;
     int iRank                   = 0;
-    double dblTol               = 0.0; 
+    double dblTol               = 0.0;
 
     if (in.size() < 2 || in.size() > 3)
     {
@@ -57,8 +57,6 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    pDbl[0] = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
-
     if (in.size() <=  3)
     {
         if ((in[1]->isDouble() == false))
@@ -66,7 +64,6 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
             std::wstring wstFuncName = L"%" + in[1]->getShortTypeStr() + L"_lsq";
             return Overload::call(wstFuncName, in, _iRetCount, out);
         }
-        pDbl[1] = in[1]->getAs<types::Double>()->clone()->getAs<types::Double>();
     }
 
     if (in.size() == 3)
@@ -80,6 +77,9 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
         dblTol = in[2]->getAs<types::Double>()->get(0);
         pdTol = &dblTol;
     }
+
+    pDbl[0] = in[0]->getAs<types::Double>();
+    pDbl[1] = in[1]->getAs<types::Double>();
 
     if (pDbl[0]->getRows() != pDbl[1]->getRows())
     {
@@ -101,10 +101,18 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
     {
         bComplexArgs = true;
     }
+
+    pDbl[0] = pDbl[0]->clone();
+    pDbl[1] = pDbl[1]->clone();
+
     for (int i = 0; i < 2; i++)
     {
         if (pDbl[i]->getCols() == -1)
         {
+            for (int j=0; j<=i; j++)
+            {
+                pDbl[j]->killMe();
+            }
             Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "lsq", i + 1);
             return types::Function::Error;
         }
@@ -114,6 +122,10 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
             pData[i] = (double*)oGetDoubleComplexFromPointer(pDbl[i]->getReal(), pDbl[i]->getImg(), pDbl[i]->getSize());
             if (!pData[i])
             {
+                for (int j=0; j<=i; j++)
+                {
+                    pDbl[j]->killMe();
+                }
                 Scierror(999, _("%s: Cannot allocate more memory.\n"), "lsq");
                 return types::Function::Error;
             }
@@ -137,6 +149,9 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
 
     int iRet = iLsqM(pData[0], pDbl[0]->getRows(), pDbl[0]->getCols(), pData[1], pDbl[1]->getCols(), bComplexArgs, pResult, pdTol, ((_iRetCount == 2) ? &iRank : NULL));
 
+    pDbl[0]->killMe();
+    pDbl[1]->killMe();
+
     if (iRet != 0)
     {
         if (iRet == -1)
@@ -148,6 +163,12 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
             Scierror(999, _("%s: LAPACK error n°%d.\n"),  "lsq", iRet);
         }
 
+        if (bComplexArgs)
+        {
+            vFreeDoubleComplexFromPointer((doublecomplex*)pResult);
+            vFreeDoubleComplexFromPointer((doublecomplex*)pData[0]);
+            vFreeDoubleComplexFromPointer((doublecomplex*)pData[1]);
+        }
         pDblResult->killMe();
         return types::Function::Error;
     }
@@ -171,4 +192,3 @@ types::Function::ReturnValue sci_lsq(types::typed_list &in, int _iRetCount, type
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
-
