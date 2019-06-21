@@ -42,9 +42,10 @@ int iLuM(double* pData, int iRows, int iCols, int complexArg, double* pdblLData,
     ret = iLu(pData, iRows, iCols, complexArg, pdblLData, pdblUData, pdblEData, piPivot, piWork, pdblWork);
     if (pdblEData == NULL)
     {
-        FREE( piWork);
-        FREE( pdblWork );
+        FREE(piWork);
+        FREE(pdblWork);
     }
+    FREE(piPivot);
     return ret;
 }
 int iLu(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, double* pdblUData, double* pdblEData

@@ -65,6 +65,7 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
         if (!pData)
         {
             Scierror(999, _("%s: Cannot allocate more memory.\n"), "lu");
+            pDbl->killMe();
             return types::Function::Error;
         }
     }
@@ -81,6 +82,7 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
         {
             out.push_back(types::Double::Empty());
         }
+        pDbl->killMe();
         return types::Function::OK;
     }
 
@@ -97,6 +99,7 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
             pDblE->set(0, 1);
             out.push_back(pDblE);
         }
+        pDbl->killMe();
         return types::Function::OK;
     }
 
@@ -125,6 +128,7 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
     if (iRet != 0)
     {
         Scierror(999, _("%s: LAPACK error n°%d.\n"), "lu", iRet);
+        pDbl->killMe();
         FREE((doublecomplex*)pdL);
         FREE((doublecomplex*)pdU);
         delete pDblL;
@@ -146,6 +150,7 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
         vFreeDoubleComplexFromPointer((doublecomplex*)pData);
     }
 
+    pDbl->killMe();
     out.push_back(pDblL);
     out.push_back(pDblU);
     if (_iRetCount == 3)
