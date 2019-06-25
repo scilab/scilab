@@ -206,9 +206,8 @@
         <add as="displayedLabel" value="TK Scale"/>
     </add>
     <add as="FROMWSB" extend="blockWithLabel">
-        <!-- FIXME: update label from parameters (not as exprs) -->
-        <add as="displayedLabel" value="From workspace"/>
-        <!--<add as="displayedLabel" value="$\mathsf{\substack{From workspace\\ \Large %s}}$"/> -->
+        <add as="displayedLabel" value="From workspace&lt;BR&gt;&lt;font color=&quot;orange&quot;&gt;[&lt;b&gt; V &lt;/b&gt;]&lt;/font&gt;"/>
+        <add as="align" value="center"/>
     </add>
     <!-- CONTINUOUS -->
     <add as="DERIV" extend="blockWithLabel">
@@ -552,7 +551,8 @@
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY.svg"/>
     </add>
     <add as="TOWS_c" extend="blockWithLabel">
-        <add as="displayedLabel" value="To workspace&lt;BR&gt;%2$s [%1$s]"/>
+        <add as="displayedLabel" value="To workspace&lt;BR&gt;&lt;font color=&quot;orange&quot;&gt;&lt;b&gt; %2$s [%1$s]&lt;/b&gt;&lt;/font&gt;"/>
+        <add as="align" value="center"/>
     </add>
     <add as="CMAT3D" extend="blockWithLabel">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/ASCOPE.svg"/>

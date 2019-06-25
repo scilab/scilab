@@ -104,7 +104,10 @@ function [x,y,typ] = FROMWSB(job,arg1,arg2)
             end
         end
         x=arg1
+        x.graphics.style = "FROMWSB;displayedLabel=From workspace<BR><font color=""orange"">[ <b>" + ..
+                             xxn.graphics.exprs(1) + "</b> ]</font>;align=center";
         typ=newpar
+
     case "define" then
         scs_m_1=scicos_diagram(..
         version="scicos4.2",..

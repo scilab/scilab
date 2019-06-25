@@ -293,6 +293,7 @@ Bug Fixes
 * [#10092](https://bugzilla.scilab.org/10092): The left and right Kronecker divisions were not actually implemented nor documented.
 * [#10353](https://bugzilla.scilab.org/10353): Documentation: The referential for the uicontrol.position property was not provided. Moreover, `gca().axes_bounds` refered to `fig.figure_size` instead of `fig.axes_size`.
 * [#10553](https://bugzilla.scilab.org/10553): After calling `colorbar`, retrieving the handle of the new color bar was not trivial.
+* [#10702](https://bugzilla.scilab.org/10702): The icon of the FROMWSB xcos block did not show the name of the source variable.
 * [#10723](https://bugzilla.scilab.org/10723): `subplot`'s action was unclearly described in its help page. Page improved.
 * [#11852](https://bugzilla.scilab.org/11852): File browser didn't update after file creation or removal.
 * [#11363](https://bugzilla.scilab.org/11363): `show_window()` did not raise the current graphics window.
