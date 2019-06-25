@@ -16,12 +16,10 @@
 // <-- Short Description -->
 // lsq() is leaking memory
 
-m1 = getmemory();
 a = rand(100,100);
 b = rand(100,100);
-for i=1:20000
+for i=1:200
     x = lsq(a,b);
 end
 clear i a b x
-m2 = getmemory();
-assert_checktrue((m1-m2)/m1 <= 0);
+
