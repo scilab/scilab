@@ -930,10 +930,8 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
     if (iToDelIndex < 0)
     {
         // overall removal x(:,...,:) = []
-        int piDims[2] = {0,0};
-        pOut = createEmpty(2, piDims, false);
         cleanIndexesArguments(_pArgs, &pArg);
-        return pOut;
+        return createEmpty();
     }
 
     if (toDelIndexVect.size() == 0)
