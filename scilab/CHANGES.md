@@ -366,6 +366,7 @@ Bug Fixes
 * [#16104](https://bugzilla.scilab.org/16104): `assert_checkequal` did not support properly or at all Nan and void in lists, Nan in sparse, implicit lists, macros, libraries, built-in functions, graphical handles. For input arrays or lists of matching typeof and sizes, the failure message did not display neither the index nor the values of the first mismatching elements.
 * [#16111](https://bugzilla.scilab.org/16111): `isglobal` was not supporting non-scalar array of strings as input.
 * [#16118](https://bugzilla.scilab.org/16118): `%s <> (1+%s)` returned %F.
+* [#16129](https://bugzilla.scilab.org/16129): `uiDumpTree()` interpreted "\n" "\r" "\t" sequences in contents as special ones.
 * [#16135](https://bugzilla.scilab.org/16135): base2dec did not detect invalid numbers.
 * [#16137](https://bugzilla.scilab.org/16137): After running `playsnd` on Windows for a long sound, it was not possible to stop it.
 * [#16138](https://bugzilla.scilab.org/16138): `playsnd` could not be run in a non-modal (asynchronous) way on Linux and MacOS.
@@ -421,5 +422,5 @@ Bug Fixes
 * [#16307](https://bugzilla.scilab.org/16307): `dockable="off"` and `closerequestfcn` on figures crached Scilab.
 * [#16320](https://bugzilla.scilab.org/16320): There were unsupported UTF-8 characters in some gettext id messages.
 * [#16321](https://bugzilla.scilab.org/16321): There were typo errors in the documentation.
-* [#16323](https://bugzilla.scilab.org/16323): `conj(sparse(x))` was complex when x is real. 
-* [#16325](https://bugzilla.scilab.org/16325): `mgetl` could not read single line data which is greater than ~260,000 characters. 
+* [#16323](https://bugzilla.scilab.org/16323): `conj(sparse(x))` was complex when x is real.
+* [#16325](https://bugzilla.scilab.org/16325): `mgetl` could not read single line data which is greater than ~260,000 characters.

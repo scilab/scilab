@@ -34,55 +34,53 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[
 // ツリー作成前にノード(サブツリー)を作成する必要があります.
-leaf11 = uiCreateNode('leaf 1.1', 'iconLeaf1.1', 'callbackLeaf1.1')
-leaf12 = uiCreateNode('leaf 1.2', 'iconLeaf1.2', 'callbackLeaf1.2')
-leaf31 = uiCreateNode('leaf 3.1', 'iconLeaf3.1', 'callbackLeaf3.1')
-leaf32 = uiCreateNode('leaf 3.2', 'iconLeaf3.2', 'callbackLeaf3.2')
-node1 = uiCreateNode('Node 1', 'iconNode1', 'callbackNode1')
-node2 = uiCreateNode('Node 2', 'iconNode2', 'callbackNode2')
-node3 = uiCreateNode('Node 3', 'iconNode3', 'callbackNode3')
-root = uiCreateNode('Root', 'iconRoot', 'callbackRoot')
-treeNode1 = uiCreateTree(node1, leaf11,leaf12)
-treeNode3 = uiCreateTree(node3, leaf31,leaf32)
-treeRoot = uiCreateTree(root, node1,node2,node3)
+node1 = uiCreateNode('Node 1');
+leaf11 = uiCreateNode('leaf 1.1');
+leaf12 = uiCreateNode('leaf 1.2');
+treeNode1 = uiCreateTree(node1, leaf11, leaf12);
+
+node2 = uiCreateNode('Node 2');
+
+node3 = uiCreateNode('Node 3');
+leaf31 = uiCreateNode('leaf 3.1');
+leaf32 = uiCreateNode('leaf 3.2');
+treeNode3 = uiCreateTree(node3, leaf31, leaf32);
+
+root = uiCreateNode('Root');
+treeRoot = uiCreateTree(root, treeNode1, node2, treeNode3);
+
+// Display in the console:
 uiDumpTree(treeRoot)
  ]]></programlisting>
+    <screen><![CDATA[
+--> uiDumpTree(treeRoot)
+  |_./ Root
+  | |_./ Node 1
+  | | |_./ leaf 1.1
+  | | |_./ leaf 1.2
+  | |_./ Node 2
+  | |_./ Node 3
+  | | |_./ leaf 3.1
+  | | |_./ leaf 3.2
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="uiCreateNode">uiCreateNode</link>
-            </member>
-            <member>
-                <link linkend="uiCreateTree">uiCreateTree</link>
-            </member>
-            <member>
                 <link linkend="uiDisplayTree">uiDisplayTree</link>
             </member>
             <member>
-                <link linkend="uiInsertNode">uiInsertNode</link>
+                <link linkend="tree_show">tree_show</link>
             </member>
             <member>
-                <link linkend="uiDeleteNode">uiDeleteNode</link>
+                <link linkend="xmlDump">xmlDump</link>
             </member>
             <member>
-                <link linkend="uiConcatTree">uiConcatTree</link>
+                <link linkend="prettyprint">prettyprint</link>
             </member>
             <member>
-                <link linkend="uiEqualsTree">uiEqualsTree</link>
-            </member>
-            <member>
-                <link linkend="uiFindNode">uiFindNode</link>
-            </member>
-            <member>
-                <link linkend="uiGetParentNode">uiGetParentNode</link>
-            </member>
-            <member>
-                <link linkend="uiGetChildrenNode">uiGetChildrenNode</link>
-            </member>
-            <member>
-                <link linkend="uiGetNodePosition">uiGetNodePosition</link>
+                <link linkend="editvar">editvar</link>
             </member>
         </simplelist>
     </refsection>
