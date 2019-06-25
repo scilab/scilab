@@ -16,13 +16,15 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-          xml:lang="en" xml:id="tree_show">
+          xml:lang="ru" xml:id="tree_show">
     <refnamediv>
         <refname>tree_show</refname>
-        <refpurpose>Displays a tree view of a list, tlist, mlist, cell or structure array</refpurpose>
+        <refpurpose>
+            Отображает в виде дерева содержимое list, tlist, mlist, cell-массивы или массивы структур
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Синтаксис</title>
         <synopsis>
             tree_show(x)
             tree_show(x, rootTitle)
@@ -31,14 +33,15 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
                     <para>
-                    Container to display. Supported containers: list, mlist, tlist, array of cells,
-                    array of structures. Other containers may be nested in <varname>x</varname>.
+                        Контейнер для отображения. Поддерживаемые контейнеры list, mlist, tlist,
+                        cell-массивы или массивы структур. Другие контейнеры могут быть вложены
+                        в <varname>x</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -46,13 +49,15 @@
                 <term>rootTitle</term>
                 <listitem>
                     <para>
-                        Single string: explicit label of the tree's root, for instance the name of
-                        the <varname>x</varname> variable in the calling environment. Default = "".
+                        Отдельная строка: напрямую указанная метка корня дерева, например, имя
+                        переменной <varname>x</varname> в вызываюжщем окружении. По умолчанию
+                        <literal>""</literal>.
                     </para>
                     <note>
-                        HTML.4 styling tags can be used to change the style of the root's title.
-                        Example: "<literal>&lt;html>&lt;font color="red">&lt;b>The title&lt;/b></literal>"
-                        will display <emphasis>The title</emphasis> in bold red.
+                        Для изменения стиля названия корня могут использоваться теги стилей 
+                        HTML.4.
+                        Например: "<literal>&lt;html>&lt;font color="red">&lt;b>Название&lt;/b></literal>"
+                        отобразит <emphasis>Название</emphasis> жирным красным шрифтом.
                     </note>
                 </listitem>
             </varlistentry>
@@ -60,37 +65,36 @@
                 <term>styles</term>
                 <listitem>
                     <para>
-                        Single string = HTML.4 styling tag, including the "$" character that will
-                        be replaced with the address (fields names, lists indices..) of each data.
+                        Отдельная строка: тег стиля HTML.4, включающий символ
+                        <literal>"$"</literal>, который будет заменяться адресом данных (имена
+                        полей, индексы списков...).
                     </para>
                     <para>
-                        The <varname>styles</varname> option can be used to customize the style
-                        either of addresses, or of related contents, or both. Examples:
+                        Опция <varname>styles</varname> может исползоваться для настройки стилей
+                        либо адресов, либо соответствующее содержимое или и то и другое. Примеры:
                         <itemizedlist>
                             <listitem>
-                                <literal>"&lt;b>$&lt;/b>"</literal> : address in bold, content in
-                                normal black.
+                                <literal>"&lt;b>$&lt;/b>"</literal> : адрес жирным, содержимое нормальным чёрным шрифтом.
                             </listitem>
                             <listitem>
-                                <literal>"$&lt;i>"</literal> : address in normal black, content
-                                in italic.
+                                <literal>"$&lt;i>"</literal> : адрес нормальным, содержимое курсивным шрифтом.
                             </listitem>
                             <listitem>
-                                <literal>"&lt;i>$"</literal> : both address and content in italic.
+                                <literal>"&lt;i>$"</literal> : и адрес и содержимое курсивным шрифтом.
                             </listitem>
                             <listitem>
                                 <literal>"&lt;font color=''grey''>$&lt;/font>&lt;i>"</literal> :
-                                address in grey, content in italic.
+                                адрес серым, содержимое курсивным шрифтом.
                             </listitem>
                         </itemizedlist>
                     </para>
                     <para>
-                        Default =
+                        По умолчанию =
                         <literal>"&lt;font color=""blue"">$&lt;/font>"</literal>
-                        (address in blue, content in black).
+                        (адрес синим, содержимое чёрным шрифтом).
                     </para>
                     <para>
-                        Setting <literal>""</literal> removes styling.
+                        Установка <literal>""</literal> удаляет стилевое оформление.
                     </para>
                 </listitem>
             </varlistentry>
@@ -98,41 +102,41 @@
                 <term>arrayByFields</term>
                 <listitem>
                     <para>
-                        Single boolean, used only for arrays of structures:
+                        Отдельное логическое значение, используемое только для массивов структур:
                         <table>
                             <tr><th>%T :</th>
-                                <td>For each field of the struct, the array of its values is displayed.
+                                <td>
+                                    Для каждого поля структуры отображается массив его значений.
                                 </td>
                             </tr>
                             <tr><th>%F :</th>
                                 <td>
-                                    For each structure of the array, its fields and their values
-                                    are displayed.
+                                    Для каждой структуры массива отображаются её поля и их значения.
                                 </td>
                             </tr>
                         </table>
                     </para>
                     <para>
-                        The chosen display mode is used as well for every nested array of structures,
-                        at any depths.
+                        Выбранный режим отображения используется также для каждого вложенного
+                        массива структур на любой глубине.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            Creates a window and displays a tree view of the given container.
+            Создаёт окно и отображает указанный контейнер в виде дерева.
         </para>
         <warning>
-            The window has no handle.
+            Это окно не имеет дескриптора.
         </warning>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
     <para>
-    <emphasis role="bold">list(), including a cells array</emphasis> :
+    <emphasis role="bold">list(), включая cell-массив</emphasis> :
     </para>
     <table>
         <tr>
@@ -170,12 +174,11 @@
     </table>
 
     <para>
-    <emphasis role="bold">Using the <emphasis>rootTitle</emphasis> and <emphasis>styles</emphasis>
-        options
+    <emphasis role="bold">Использование опций <emphasis>rootTitle</emphasis> и <emphasis>styles</emphasis>
     </emphasis> :
     </para>
         <programlisting role="example"><![CDATA[
-// Data to display:
+// Данные для отображения:
 clear films
 films(1) = struct("Title", "A.I. Artificial Intelligence",..
                   "Year", 2001, ..
@@ -186,11 +189,11 @@ films(2,2) = struct("Title", "I, robot", ..
                     "Director", "Alex Proyas", ..
                     "Duration", 120);
 
-// Styling both the addresses and the contents:
+// Стилевое оформление как адресов, так и содержимого:
 mainTitle = "<html><b>Films (A)</b>";
 tree_show(films, mainTitle , "<font color=""red"">$</font><i>");
 
-// Styling only the contents:
+// Стилевое оформление только содержимого:
 mainTitle = "<html><b>Films (B)</b>";
 tree_show(films([1 4]), mainTitle, "$<font color=""green"">", %t);
  ]]></programlisting>
@@ -202,7 +205,7 @@ tree_show(films([1 4]), mainTitle, "$<font color=""green"">", %t);
     </inlinemediaobject>
 
     <para>
-    <emphasis role="bold">Array of structures</emphasis> :
+    <emphasis role="bold">Массив структур</emphasis> :
     </para>
         <programlisting role="example"><![CDATA[
 clear films
@@ -243,17 +246,17 @@ tree_show(films   ,"Films (IV)" , , %t);
     <para/>
 
     <para>
-    <emphasis role="bold">With a custom tlist or mlist</emphasis> :
+    <emphasis role="bold">С пользовательским tlist или mlist</emphasis> :
     </para>
         <programlisting role="example"><![CDATA[
-// For a mlist:
+// Для mlist:
 str = ['a','b','c','d','e','f','g','h'];
 n = matrix(str, [2,2,2]);
 v = matrix(1:8, [2,2,2]);
 Mm = mlist(['V','name','value'],n,v);
 tree_show(Mm);
 
-// For a tlist:
+// Для tlist:
 Mt = tlist(['V','name','value'],['a','b','c'],[1 2 3]);
 tree_show(Mt);
  ]]></programlisting>
@@ -261,7 +264,7 @@ tree_show(Mt);
     </refsection>
 
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="uiDisplayTree">uiDisplayTree</link>
@@ -282,17 +285,17 @@ tree_show(Mt);
     </refsection>
 
     <refsection role="history">
-        <title>History</title>
+        <title>История</title>
         <revhistory>
             <revision>
                 <revnumber>6.1.0</revnumber>
                 <revdescription>
                     <itemizedlist>
                         <listitem>
-                            rootTitle, styles, and arrayByFields input options added.
+                            Добавлены входные опции rootTitle, styles и arrayByFields.
                         </listitem>
                         <listitem>
-                            Input containers including void elements are now supported.
+                            Теперь поддерживаются входные контейнеры, включающие пустые элементы.
                         </listitem>
                     </itemizedlist>
                 </revdescription>

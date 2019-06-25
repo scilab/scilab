@@ -172,6 +172,12 @@ Feature changes and additions
   - Returned indices can now be formatted with the new option `indType`.
   - There were no unit tests. More than 100 tests are added.
 * `datafit` is now able to fit weighted data. It now supports any gap function vectorized for Data points, and so is much faster. It now accepts any matrix of parameters (not necessarily a colum). It now returns the average Mode-to-data distance, and the termination status for the quasi-Newton algo.
+* `tree_show()` is upgraded:
+  - New `rootTitle` and `styles` optional inputs.
+  - New `arrayByFields` option, to allow displaying each array component as an object in its whole.
+  - Improved layout: detailled indices for 2D arrays, simplified symbols, etc.
+  - The content of implicitlist objects, and information for Scilab functions and libraries of functions are now displayed.
+
 
 Help pages:
 -----------
@@ -388,7 +394,10 @@ Bug Fixes
 * [#16104](https://bugzilla.scilab.org/16104): `assert_checkequal` did not support properly or at all Nan and void in lists, Nan in sparse, implicit lists, macros, libraries, built-in functions, graphical handles. For input arrays or lists of matching typeof and sizes, the failure message did not display neither the index nor the values of the first mismatching elements.
 * [#16111](https://bugzilla.scilab.org/16111): `isglobal` was not supporting non-scalar array of strings as input.
 * [#16118](https://bugzilla.scilab.org/16118): `%s <> (1+%s)` returned %F.
+* [#16120](https://bugzilla.scilab.org/16120): `tree_show` was broken cells within containers.
+* [#16121](https://bugzilla.scilab.org/16121): `tree_show` void components were displayed as non-empty.
 * [#16124](https://bugzilla.scilab.org/16124): `sci2exp({})` result could not be executed.
+* [#16128](https://bugzilla.scilab.org/16128): `tree_show` need improvements.
 * [#16129](https://bugzilla.scilab.org/16129): `uiDumpTree()` interpreted "\n" "\r" "\t" sequences in contents as special ones.
 * [#16135](https://bugzilla.scilab.org/16135): base2dec did not detect invalid numbers.
 * [#16137](https://bugzilla.scilab.org/16137): After running `playsnd` on Windows for a long sound, it was not possible to stop it.
