@@ -59,6 +59,9 @@ cd(TMPDIR)
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="tempname">tempname</link>
+            </member>
+            <member>
                 <link linkend="home">home</link>
             </member>
             <member>

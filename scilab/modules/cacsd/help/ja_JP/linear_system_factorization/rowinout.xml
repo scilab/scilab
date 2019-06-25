@@ -13,14 +13,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="rowinout">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="rowinout">
     <refnamediv>
         <refname>rowinout</refname>
         <refpurpose>インナ-アウタ分解</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[Inn,X,Gbar]=rowinout(G)</synopsis>
+        <synopsis>[Inn, X, Gbar] = rowinout(G)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -76,10 +79,10 @@
         <para>
             <literal>G</literal> は以下のアウタ-インナ分解を許容します:
         </para>
-        <programlisting role=""><![CDATA[
+        <screen><![CDATA[
  G = [ Inn ] | Gbar |
              |  0   |
- ]]></programlisting>
+]]></screen>
         <para>
             ただし <literal>Inn</literal> は正方行列の
             インナ (全通過で安定),
@@ -91,21 +94,16 @@
         <para>
             注意:
         </para>
-        <programlisting role=""><![CDATA[
+        <screen><![CDATA[
       [ Gbar ]
 X*G = [  -   ]
       [  0   ]
- ]]></programlisting>
+]]></screen>
         <para>
             は <literal>G</literal> の行圧縮です.
             ただし, <literal>X</literal> = <literal>Inn</literal>
             の逆行列は全通過特性を有します.すなわち:
-        </para>
-        <programlisting role=""><![CDATA[
- T
-X (-s) X(s) = Identity
- ]]></programlisting>
-        <para>
+            <literal>X<superscript>t</superscript>(-s).X(s) = Identity</literal>
             (連続時間系の場合).
         </para>
     </refsection>

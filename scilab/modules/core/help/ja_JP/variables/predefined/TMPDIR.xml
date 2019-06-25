@@ -64,6 +64,9 @@ cd(TMPDIR)
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="tempname">tempname</link>
+            </member>
+            <member>
                 <link linkend="home">home</link>
             </member>
             <member>

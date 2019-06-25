@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_integer" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="api_integer" xml:lang="en">
     <refnamediv>
         <refname>API integer functions</refname>
         <para>This page lists all the functions to manipulate Scilab native objects containing integers</para>
@@ -40,7 +43,7 @@
             </para>
         </refsection>
         <refsection id="api_integer_scilab_isInt">
-            <literallayout>
+            <literal>
                 int <varname>scilab_isInt8</varname>(
                 <link linkend="api_types_scilabEnv">
                     <command>scilabEnv</command>
@@ -50,6 +53,9 @@
                     <command>scilabVar</command>
                 </link>
                 var)
+            </literal>
+            <para/>
+            <literal>
                 int <varname>scilab_isInt16</varname>(
                 <link linkend="api_types_scilabEnv">
                     <command>scilabEnv</command>
@@ -59,6 +65,9 @@
                     <command>scilabVar</command>
                 </link>
                 var)
+            </literal>
+            <para/>
+            <literal>
                 int <varname>scilab_isInt32</varname>(
                 <link linkend="api_types_scilabEnv">
                     <command>scilabEnv</command>
@@ -68,6 +77,9 @@
                     <command>scilabVar</command>
                 </link>
                 var)
+            </literal>
+            <para/>
+            <literal>
                 int <varname>scilab_isInt64</varname>(
                 <link linkend="api_types_scilabEnv">
                     <command>scilabEnv</command>
@@ -77,6 +89,9 @@
                     <command>scilabVar</command>
                 </link>
                 var)
+            </literal>
+            <para/>
+            <literal>
                 int <varname>scilab_isUnsignedInt8</varname>(
                 <link linkend="api_types_scilabEnv">
                     <command>scilabEnv</command>
@@ -86,6 +101,9 @@
                     <command>scilabVar</command>
                 </link>
                 var)
+            </literal>
+            <para/>
+            <literal>
                 int <varname>scilab_isUnsignedInt16</varname>(
                 <link linkend="api_types_scilabEnv">
                     <command>scilabEnv</command>
@@ -95,6 +113,9 @@
                     <command>scilabVar</command>
                 </link>
                 var)
+            </literal>
+            <para/>
+            <literal>
                 int <varname>scilab_isUnsignedInt32</varname>(
                 <link linkend="api_types_scilabEnv">
                     <command>scilabEnv</command>
@@ -104,6 +125,9 @@
                     <command>scilabVar</command>
                 </link>
                 var)
+            </literal>
+            <para/>
+            <literal>
                 int <varname>scilab_isUnsignedInt64</varname>(
                 <link linkend="api_types_scilabEnv">
                     <command>scilabEnv</command>
@@ -113,13 +137,13 @@
                     <command>scilabVar</command>
                 </link>
                 var)
-            </literallayout>
+            </literal>
             <para>
                 Return 1 if variable <varname>val</varname> is an integer otherwise 0. Precision is specified in function name.
             </para>
         </refsection>
         <refsection id="api_integer_scilab_createInteger">
-            <literallayout>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -128,6 +152,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, char val)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -136,6 +163,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, short val)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -144,6 +174,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int val)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -152,6 +185,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, long long val)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -160,6 +196,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, unsigned char val)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -168,6 +207,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, unsigned short val)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -176,6 +218,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, unsigned int val)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -184,7 +229,7 @@
                     <command>scilabEnv</command>
                 </link>
                 env, unsigned long long val)
-            </literallayout>
+            </literal>
             <para>
                 Create a scalar integer from <varname>val</varname>. Precision is specified in function name.
             </para>
@@ -204,61 +249,33 @@
                 Create an integer matrix with <varname>dim</varname> dimensions (<varname>dims</varname>[0], <varname>dims</varname>[1], ..., <varname>dims</varname>[<varname>dim</varname>-1]).
             </para>
             <para>
-                <varname>prec</varname> parameter give precision of integer :
+                The <varname>prec</varname> parameter specifies the integer precision :
+            <table>
+                <tr>
+                <td>
+                    <table>
+                        <tr><td><emphasis role="bold">SCI_INT8</emphasis></td><td>: integer 8-bits</td></tr>
+                        <tr><td><emphasis role="bold">SCI_INT16</emphasis></td><td>: Integer 16-bits</td></tr>
+                        <tr><td><emphasis role="bold">SCI_INT32</emphasis></td><td>: Integer 32-bits</td></tr>
+                        <tr><td><emphasis role="bold">SCI_INT64</emphasis></td><td>: Integer 64-bits</td></tr>
+                    </table>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <table>
+                        <tr><td><emphasis role="bold">SCI_UINT8</emphasis></td><td>: Unsigned integer 8-bits</td></tr>
+                        <tr><td><emphasis role="bold">SCI_UINT16</emphasis></td><td>: Unsigned integer 16-bits</td></tr>
+                        <tr><td><emphasis role="bold">SCI_UINT32</emphasis></td><td>: Unsigned integer 32-bits</td></tr>
+                        <tr><td><emphasis role="bold">SCI_UINT64</emphasis></td><td>: Unsigned integer 64-bits</td></tr>
+                    </table>
+                </td>
+                </tr>
+            </table>
             </para>
-            <variablelist>
-                <varlistentry>
-                    <term>SCI_INT8</term>
-                    <listitem>
-                        <para>integer 8-bits</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>SCI_INT16</term>
-                    <listitem>
-                        <para>Integer 16-bits</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>SCI_INT32</term>
-                    <listitem>
-                        <para>Integer 32-bits</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>SCI_INT64</term>
-                    <listitem>
-                        <para>Integer 64-bits</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>SCI_UINT8</term>
-                    <listitem>
-                        <para>Unsigned integer 8-bits</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>SCI_UINT16</term>
-                    <listitem>
-                        <para>Unsigned integer 16-bits</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>SCI_UINT32</term>
-                    <listitem>
-                        <para>Unsigned integer 32-bits</para>
-                    </listitem>
-                </varlistentry>
-                <varlistentry>
-                    <term>SCI_UINT64</term>
-                    <listitem>
-                        <para>Unsigned integer 64-bits</para>
-                    </listitem>
-                </varlistentry>
-            </variablelist>
         </refsection>
         <refsection id="api_integer_scilab_createIntegerXXMatrix">
-            <literallayout>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -267,6 +284,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int prec, int dim, const int* dims)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -275,6 +295,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int prec, int dim, const int* dims)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -283,6 +306,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int prec, int dim, const int* dims)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -291,6 +317,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int prec, int dim, const int* dims)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -299,6 +328,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int prec, int dim, const int* dims)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -307,6 +339,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int prec, int dim, const int* dims)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -315,6 +350,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int prec, int dim, const int* dims)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -323,7 +361,7 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int prec, int dim, const int* dims)
-            </literallayout>
+            </literal>
             <para>
                 Create an integer matrix with <varname>dim</varname> dimensions (<varname>dims</varname>[0], <varname>dims</varname>[1], ..., <varname>dims</varname>[<varname>dim</varname>-1]). Precision is specified in function name.
             </para>
@@ -347,7 +385,7 @@
             </para>
         </refsection>
         <refsection id="api_integer_scilab_createIntegerXXMatrix2d">
-            <literallayout>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -356,6 +394,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int row, int col)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -364,6 +405,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int row, int col)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -372,6 +416,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int row, int col)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -380,6 +427,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int row, int col)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -388,6 +438,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int row, int col)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -396,6 +449,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int row, int col)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -404,6 +460,9 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int row, int col)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabVar">
                     <command>scilabVar</command>
                 </link>
@@ -412,13 +471,13 @@
                     <command>scilabEnv</command>
                 </link>
                 env, int row, int col)
-            </literallayout>
+            </literal>
             <para>
                 Create an integer matrix with 2 dimensions (<varname>row</varname>, <varname>col</varname>). Precision is specified in function name.
             </para>
         </refsection>
         <refsection id="api_integer_scilab_getInteger">
-            <literallayout>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -431,6 +490,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, char* vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -443,6 +505,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, short* vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -455,6 +520,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, int* vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -467,6 +535,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, long long* vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -479,6 +550,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, unsigned char* vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -491,6 +565,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, unsigned short* vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -503,6 +580,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, unsigned int* vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -515,14 +595,14 @@
                     <command>scilabVar</command>
                 </link>
                 var, unsigned long long* vals)
-            </literallayout>
+            </literal>
             <para>Get integer value from an scalar integer variable. Precision is specified in function name.</para>
             <para>
                 precision of output must match with precision of <varname>var</varname>.
             </para>
         </refsection>
         <refsection id="api_integer_scilab_getIntegerArray">
-            <literallayout>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -535,6 +615,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, void** vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -547,6 +630,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, char** vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -559,6 +645,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, short** vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -571,6 +660,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, int** vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -583,6 +675,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, long long** vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -595,6 +690,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, unsigned char** vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -607,6 +705,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, unsigned short** vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -619,6 +720,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, unsigned int** vals)
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -631,13 +735,13 @@
                     <command>scilabVar</command>
                 </link>
                 var, unsigned long long** vals)
-            </literallayout>
+            </literal>
             <para>
                 Get pointer on internal array of integer of <varname>var</varname>.
             </para>
         </refsection>
         <refsection id="api_integer_scilab_setIntegerArray">
-            <literallayout>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -650,6 +754,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, const void* vals);
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -662,6 +769,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, const char* vals);
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -674,6 +784,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, const short* vals);
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -686,6 +799,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, const int* vals);
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -698,6 +814,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, const long long* vals);
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -710,6 +829,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, const unsigned char* vals);
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -722,6 +844,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, const unsigned short* vals);
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -734,6 +859,9 @@
                     <command>scilabVar</command>
                 </link>
                 var, const unsigned int* vals);
+            </literal>
+            <para/>
+            <literal>
                 <link linkend="api_types_scilabStatus">
                     <command>scilabStatus</command>
                 </link>
@@ -746,7 +874,7 @@
                     <command>scilabVar</command>
                 </link>
                 var, const unsigned long long* vals);
-            </literallayout>
+            </literal>
             <para>
                 Set values of integer variable <varname>var</varname>.
             </para>

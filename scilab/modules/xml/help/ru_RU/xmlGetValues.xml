@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2017 - Samuel GOUGEON
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="xmlGetValues" xml:lang="ru">
+    <refnamediv>
+        <refname>xmlGetValues</refname>
+        <refpurpose>
+            Проводит синтаксическую проверку и получает значения атрибутов выбранных тегов в
+            XML-файле настроек
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            Values = xmlGetValues(path2tag, attributes)
+            Values = xmlGetValues(path2tag, attributes, XMLsource)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>path2tag</term>
+                <listitem>
+                    <para>
+                        уникальная строка: в файле исходного XML-кода, путь, указывающий на выбранный тег,
+                        чьи атрибуты нужно прочитать. Путь является списком вложенных тегов, стоящих спереди
+                        от требуемого так, что <literal>"/a/b/c/d"</literal>, или, эквивалентно,
+                        <literal>"//b/c/d"</literal>. Регистр учитывается.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>attributes</term>
+                <listitem>
+                    <para>
+                        вектор или матрица строк: имена атрибуты выбранного тега, чьи значения нужно прочитать.
+                        Порядок атрибутов не имеет значения относительно их фактического порядка в теге.
+                        <note>
+                            <itemizedlist>
+                                <listitem>
+                                    Имена атрибутов чувствительны к регистру.
+                                </listitem>
+                                <listitem>
+                                    На самом деле имена указанного атрибута могут быть
+                                    определены несколько раз.
+                                </listitem>
+                            </itemizedlist>
+                        </note>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>XMLsource</term>
+                <listitem>
+                    <para>
+                        указывает на XML-документ из которого нужно извлечь информацию.
+                        Это может быть одно из следующих:
+                        <itemizedlist>
+                            <listitem>
+                                уникальная строка: путь до исходного XML-файла. По умолчанию
+                                рассматривается файл главных настроек
+                                <literal>SCIHOME+'/XConfiguration.xml'</literal>.
+                            </listitem>
+                            <listitem>
+                                XML-указатель типа <literal>XMLdoc</literal>, возвращаемой
+                                ранее в качестве внешней инструкции <code>xmlRead(XMLsource)</code>,
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Values</term>
+                <listitem>
+                    <para>
+                        матрица строковых значений: значения выбранных атрибутов выбранного тега:
+                        <itemizedlist>
+                            <listitem>
+                                Если набор выбранных атрибутов <varname>attributes</varname> 
+                                указан в виде матрицы с несколькими строками, то используется
+                                только первое появление выбранного тега, и <varname>Values(i,j)</varname> - это
+                                значение его атрибутов <varname>attributes(i,j)</varname>.
+                            </listitem>
+                            <listitem>
+                                В противном случае, если имена атрибутов <varname>attributes</varname>
+                                указаны в виде вектора-строки, то рассматриваются
+                                <emphasis role="italic">все появления</emphasis> выбранного тега: 
+                                результаты возвращаются с одной строкой на появление, и одним
+                                столбцом на атрибут. Таким образом, <varname>Values(i,j)</varname> - это
+                                значение атрибутов <varname>attributes(j)</varname> для
+                                <literal>i</literal>-той встречи тега в документе.
+                            </listitem>
+                        </itemizedlist>
+                        Если ожидаются какие-либо конечные значения в виде чисел, а не литералов
+                        (текста), то <code>evstr()</code> может быть применён к ним для получения
+                        ожидаемых чисел.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Когда XML-указатель, возвращённый с помощью <code>xmlRead(..)</code>, указан
+            в качестве <varname>XMLsource</varname>, то <function>xmlGetValues()</function>
+            исползует его напрямую для проверки синтаксиса  XML-документа настроек, открытого
+            ранее с помощью <code>xmlRead(..)</code>. Это полезно, когда синтаксис одного и того
+            же документа нужно проверить множеством вызовов <function>xmlGetValues()</function>,
+            обычно для обращения к разным XML-тегам. В этом случае не следует забывать
+            закрыть XML-документ после всей обработки.
+        </para>
+        <para>
+            Когда путь до XML-файла настроек указан в качестве <varname>XMLsource</varname>,
+            то <function>xmlGetValues()</function> открывает файл, строит его DOM-дерево,
+            проверяет синтаксис дерева для выбранного тега и атрибутов, и, наконец, удаляет
+            дерево и закрывает файл перед тем, как вернуть результаты. Это то, что происходит
+            по умолчанию в соответствии с файлом настроек Xconfiguration.xml, когда нет явного
+            указания <varname>XMLsource</varname>.
+        </para>
+        <para>
+            Аргумент <varname>path2tag</varname> должен быть корректным путём "XPath",
+            соответствующим <ulink url="https://www.w3.org/TR/1999/REC-xpath-19991116/">рекомендациям W3C</ulink>.
+            Далее приведены примеры. Если путь исползует промежуточный или конечный тег, который
+            не существует, или, если один из ряда атрибутов не существует, то выдаётся ошибка.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <emphasis role="bold">Пример 1:</emphasis>
+        <para>
+            Ваши интернет- и прокси-настройки для Scilab хранятся по умолчанию в файле настроек
+            <literal>SCIHOME+'/XConfiguration.xml'</literal>. Рассмотрим следующий отрывок файла:
+            <programlisting role="xml"><![CDATA[
+    <?xml version="1.0" encoding="utf-8" standalone="no"?>
+    <interface height="600" path="1/" version="0.17" width="800">
+        <general title="_(General)">
+        ...
+        </general>
+        <web title="_(Web)">
+            <body>
+                <web command-browser="" command-mailer="" default-browser="true" default-mailer="true"/>
+                <proxy enabled="false" host="" password="" port="" user=""/>
+                <previous-proxy enabled="false" host="" password="" port="" user=""/>
+            </body>
+        </web>
+        ...
+    </interface>
+              ]]></programlisting>
+        </para>
+        <para>
+            Чтобы получить информацию прокси-параметров (тег proxy), требуемый код должен быть:
+            <programlisting role="scilab"><![CDATA[
+            proxy = xmlGetValues("//web/body/proxy", ["enabled", "host", "port"]);
+     ]]></programlisting>
+        </para>
+        <para>
+            <emphasis role="bold">Пример 2:</emphasis>
+        </para>
+        <para>
+            <function>xmlGetValues()</function> может также использоваться для получения значений
+            тега, имеющих множество появлений в файле <literal>XMLsource</literal>. Например,
+            ваши настройки в редакторе Scinotes Scilab'а хэранятся в файле
+            <literal>SCIHOME\scinotesConfiguration.xml</literal>. Список последних файлов,
+            открытых в Scinotes в следующей части и пути:
+            <programlisting role="xml"><![CDATA[
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Setting version="0.42">
+    <!-- SCINOTES configuration -->
+    <Profile name="scinotes">
+        <!-- .../... -->
+        <!-- Recent Opened Files Section  -->
+        <recentFiles>
+            <document path="C:\Path\to\my\first\working\dir\ged_move_entity.sci"/>
+            <document path="C:\Path\to\my\first\working\dir\ged_loop.sci"/>
+            <document path="C:\Path\to\my\first\working\dir\test_legend_move.sce"/>
+            <document path="C:\Path\to\another\working\dir2\clf.sci"/>
+        </recentFiles>
+        <!-- .../... -->
+    </Profile>
+</Setting>
+              ]]></programlisting>
+        </para>
+        <para>
+            Тогда следующий год извлечёт, вернёт и выведет на экран столбец недавних файлов:
+            <programlisting role="example"><![CDATA[
+            scinotesFile = SCIHOME + "/scinotesConfiguration.xml";
+            recent = xmlGetValues("//Setting/Profile/recentFiles/document", "path", scinotesFile);
+            mprintf("%s\n", recent)
+     ]]></programlisting>
+            <screen><![CDATA[
+C:\Path\to\my\first\working\dir\ged_move_entity.sci
+C:\Path\to\my\first\working\dir\ged_loop.sci
+C:\Path\to\my\first\working\dir\test_legend_move.sce
+C:\Path\to\another\working\dir2\clf.sci
+]]></screen>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="setPreferencesValue">setPreferencesValue</link>
+            </member>
+            <member>
+                <link linkend="xmlXPath">xmlXPath</link>
+            </member>
+            <member>
+                <ulink url="https://www.w3.org/TR/1999/REC-xpath-19991116/">язык XML-пути</ulink>
+            </member>
+            <member>
+                <link linkend="xmlRead">xmlRead</link>
+            </member>
+            <member>
+                <link linkend="xmlDelete">xmlDelete</link>
+            </member>
+            <member>
+                <link linkend="atomsGetConfig">atomsGetConfig</link>
+            </member>
+            <member>
+                <link linkend="printsetupbox">printsetupbox</link>
+            </member>
+            <member>
+                <link linkend="csvDefault">csvDefault</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    Введена xmlGetValues(), которая раньше была getPreferencesValue().
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

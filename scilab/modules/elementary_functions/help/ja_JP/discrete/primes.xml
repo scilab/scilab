@@ -32,7 +32,7 @@
 
         <title>呼び出し手順</title>
 
-        <synopsis>[y]=primes(x)</synopsis>
+        <synopsis>y = primes(x)</synopsis>
 
     </refsynopsisdiv>
 
@@ -95,9 +95,13 @@
         <title>例</title>
 
         <programlisting role="example"><![CDATA[
-x=35
-y=primes(x)
- ]]></programlisting>
+primes(35)
+     ]]></programlisting>
+    <screen><![CDATA[
+--> primes(35)
+ ans  =
+   2.   3.   5.   7.   11.   13.   17.   19.   23.   29.   31.
+]]></screen>
 
     </refsection>
 

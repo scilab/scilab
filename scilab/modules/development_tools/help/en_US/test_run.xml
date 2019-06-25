@@ -546,6 +546,29 @@ test_run string *ascii*
             execution (<literal>LONG TIME EXECUTION</literal>) flag.
         </para>
     </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="debug">debug</link>
+            </member>
+            <member>
+                <link linkend="covStart">covStart</link>
+            </member>
+            <member>
+                <link linkend="profile">profile</link>
+            </member>
+            <member>
+                <link linkend="slint">slint</link>
+            </member>
+            <member>
+                <ulink url="https://msdn.microsoft.com/en-us/library/windows/desktop/ms681382.aspx">
+                  List of MS Windows exit codes
+                </ulink>
+            </member>
+        </simplelist>
+    </refsection>
+
     <refsection>
         <title>History</title>
         <revhistory>

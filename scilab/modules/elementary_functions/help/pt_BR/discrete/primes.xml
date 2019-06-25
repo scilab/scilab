@@ -54,9 +54,13 @@
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-x=35
-y=primes(x)
- ]]></programlisting>
+primes(35)
+     ]]></programlisting>
+    <screen><![CDATA[
+--> primes(35)
+ ans  =
+   2.   3.   5.   7.   11.   13.   17.   19.   23.   29.   31.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>

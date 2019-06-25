@@ -110,8 +110,9 @@
                 <term>Cformat</term>
                 <listitem>
                     <para>
-                        word providing a C-format formatting the display of graduated values along the colorbar. The formatting syntaxes are described in
-                        <link linkend="printf_conversion">this page</link>.
+                        word providing a C-format formatting the display of graduated values
+                        along the colorbar. The formatting syntaxes are described in the
+                        <link linkend="printf_conversion">printf_conversion</link> page.
                     </para>
                 </listitem>
             </varlistentry>

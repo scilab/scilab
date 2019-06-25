@@ -2,13 +2,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-          xml:lang="en" xml:id="corr">
+          xml:lang="ru" xml:id="corr">
     <refnamediv>
         <refname>corr</refname>
-        <refpurpose>correlation, covariance</refpurpose>
+        <refpurpose>корреляция, ковариация</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Синтаксис</title>
         <synopsis>
             [cov,Mean] = corr(x,[y],nlags)
             [cov,Mean] = corr('fft',xmacro,[ymacro],n,sect)
@@ -20,167 +20,165 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>a real vector</para>
+                    <para>вещественный вектор/</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>a real vector, default value x.</para>
+                    <para>вещественный вектор, значение по умолчанию x.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>nlags</term>
                 <listitem>
-                    <para>integer, number of correlation coefficients desired.</para>
+                    <para>целое число, желаемое количество коэффициентов корреляции.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>xmacro</term>
                 <listitem>
-                    <para>a scilab external (see below).</para>
+                    <para>внешняя программа scilab (см. ниже).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ymacro</term>
                 <listitem>
-                    <para>a scilab external (see below), default value xmacro</para>
+                    <para>внешняя программа scilab (см. ниже), значение по умолчанию xmacro.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>an integer, total size of the sequence (see below).</para>
+                    <para>целое число, общий размер последовательности (см. ниже).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>sect</term>
                 <listitem>
-                    <para>size of sections of the sequence (see below).</para>
+                    <para>размер секций последовательности (см. ниже).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>xi</term>
                 <listitem>
-                    <para>a real vector</para>
+                    <para>вещественный вектор.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>yi</term>
                 <listitem>
-                    <para>a real vector,default value xi.</para>
+                    <para>вещественный вектор, значение по умолчанию xi.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>cov</term>
                 <listitem>
-                    <para>real vector, the correlation coefficients</para>
+                    <para>вещественный вектор, коэффициенты корреляции</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Mean</term>
                 <listitem>
-                    <para>real number or vector,  the mean of x and if given y</para>
+                    <para>вещественное число или вектор, всреднее значение x и, если указано, y</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            <literal>corr(x,y,…)</literal> computes
+            <literal>corr(x,y,…)</literal> вычисляет
             <latex alt="cov(m)=sum_{k=1}^{n-m} (x(k)-mean(x))(y(m+k)-mean(y)) / n">
             cov(m)=\sum_{k=1}^{n-m} \left(x(k)-mean(x)\right)\left(y(m+k)-mean(y)\right) / n
-            </latex>
-            for <literal>m = 0, …, nlag-1</literal>.
+            </latex>,
+            где <literal>m = 0, …, nlag-1</literal>.
         </para>
         <para>
-            Note that if x and y sequences are differents corr(x,y,...) is
-            different with corr(y,x,...)
+            Обратите внимание, что, если последовательности <varname>x</varname> и
+            <varname>y</varname> разные, то <literal>corr(x,y,…)</literal> отличается
+            от <literal>corr(y,x,…)</literal>.
         </para>
         <variablelist>
             <varlistentry>
-                <term>Short sequences</term>
+                <term>Короткие последовательности</term>
                 <listitem>
                     <para>
-                        <literal>[cov,Mean]=corr(x,[y],nlags)</literal> returns the first nlags
-                        correlation coefficients and Mean = <literal>mean(x)</literal>
-                        (mean of <literal>[x,y]</literal> if <literal>y</literal> is an argument).
-                        The sequence <literal>x</literal> (resp. <literal>y</literal>) is assumed real, and <literal>x</literal>
-                        and <literal>y</literal> are of same dimension n.
+                        <literal>[cov,Mean]=corr(x,[y],nlags)</literal> возвращает первые
+                        <varname>nlags</varname> коэффициентов корреляции и <literal>Mean = mean(x)</literal>
+                        (среднее арифметическое <literal>[x,y]</literal>, если
+                        <varname>y</varname> является аргументом.
+                        Последовательность <varname>x</varname> (соответственно
+                        <varname>y</varname>) предполагается вещественной, и <varname>x</varname>
+                        и <literal>y</literal> одинакового размера <literal>n</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Long sequences</term>
+                <term>Длинные последовательности</term>
                 <listitem>
                     <para>
-                        <literal>[cov,Mean]=corr('fft',xmacro,[ymacro],n,sect)</literal>.
-                        Here <literal>xmacro</literal> is either
+                        <literal>[cov,Mean]=corr('fft',xmacro,[ymacro],n,sect)</literal>, где <varname>xmacro</varname> - это:
                     </para>
                     <itemizedlist>
                         <listitem>
                             <para>
-                                a function of type <literal>[xx]=xmacro(sect,istart)</literal> which
-                                returns a vector <literal>xx</literal> of dimension
-                                <literal>nsect</literal> containing the part of the sequence with
-                                indices from <literal>istart</literal> to
-                                <literal>istart+sect-1</literal>.
+                                функция типа <literal>[xx]=xmacro(sect,istart)</literal>, которая
+                                возвращает вектор <literal>xx</literal> размером <literal>nsect</literal>,
+                                содержащий часть последовательности с индексами от
+                                <literal>istart</literal> до <literal>istart+sect-1</literal>;
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                a fortran subroutine or C procedure which performs the same
-                                calculation. (See the source code of <literal>dgetx</literal> for an
-                                example).
+                                fortran-подпрограмма или C-процедура, которая выполняет то же вычисление (для примера см. исходный код <literal>dgetx</literal>).
                             </para>
                         </listitem>
                     </itemizedlist>
                     <para>
-                          <literal>n</literal> = total size of the sequence.
-                          <literal>sect</literal> = size of sections of the sequence.
-                          <literal>sect</literal> must be a power of 2.
-                          <literal>cov</literal> has dimension <literal>sect</literal>.
-                          Calculation is performed by FFT.
+                          <literal>n</literal> - общий размер последовательности.
+                          <literal>sect</literal> - размер секций последовательности.
+                          <literal>sect</literal> должен быть кратным степени 2.
+                          <literal>cov</literal> имеет размерность <literal>sect</literal>.
+                          Вычисление производится с помощью БПФ.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Updating method</term>
+                <term>Обновляющий метод</term>
                 <listitem>
-                    <programlisting role=""><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 [w,xu]=corr('updt',x1,[y1],w0)
 [w,xu]=corr('updt',x2,[y2],w,xu)
  ...
 wk=corr('updt',xk,[yk],w,xu)
  ]]></programlisting>
                     <para>
-                        With this syntax the calculation is updated at each
-                        call to <literal>corr</literal>.
+                        С этим синтаксисом вычисление обновляется при каждом вызове <literal>corr</literal>.
                     </para>
-                    <programlisting role=""><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 w0 = 0*ones(1,2*nlags);
 nlags = power of 2.
  ]]></programlisting>
                     <para>
-                        <literal>x1,x2,...</literal> are parts of <literal>x</literal> such that
-                        <literal>x=[x1,x2,...]</literal> and sizes of <literal>xi</literal> a power of
-                        2.  To get <literal>nlags</literal> coefficients a final fft must be
-                        performed <literal>c=fft(w,1)/n</literal>; <literal>cov=c(1nlags)</literal>
-                        (<literal>n</literal> is the size of <literal>x (y)</literal>).  Caution: this
-                        syntax assumes that <literal>xmean = ymean = 0</literal>.
+                        <literal>x1,x2,...</literal> - это части <literal>x</literal> такие, что
+                        <literal>x=[x1,x2,...]</literal> и размеры <literal>xi</literal> кратны
+                        степени 2. Чтобы получить <varname>nlags</varname> коэффициентов, должно
+                        быть выполенно заключительное БПФ <literal>c=fft(w,1)/n</literal>;
+                        <literal>cov=c(1nlags)</literal>
+                        (<literal>n</literal> - это размер <literal>x</literal> (<literal>y</literal>)).  Предупреждение: этот синтаксис предполагает, что <literal>xmean = ymean = 0</literal>.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 x=%pi/10:%pi/10:102.4*%pi;
 rand('seed');rand('normal');
@@ -195,7 +193,7 @@ rand('normal');x=rand(1,256);y=-x;
 deff('[z]=xx(inc,is)','z=x(is:is+inc-1)');
 deff('[z]=yy(inc,is)','z=y(is:is+inc-1)');
 [c,mxy]=corr(x,y,32);
-x=x-mxy(1)*ones(x);y=y-mxy(2)*ones(y);  //centring
+x=x-mxy(1)*ones(x);y=y-mxy(2)*ones(y);  //центровка
 c1=corr(x,y,32);c2=corr(x,32);
 norm(c1+c2,1)
 [c3,m3]=corr('fft',xx,yy,256,32);
@@ -214,7 +212,7 @@ zz=real(fft(w2,1))/256;c6=zz(1:32);
 norm(c6-c2,1)
 rand('unif')
 
-// test for Fortran or C external
+// тест для внешней программы Fortran или C
 //
 deff('[y]=xmacro(sec,ist)','y=sin(ist:(ist+sec-1))');
 x=xmacro(100,1);
@@ -232,7 +230,7 @@ y=ymacro(100,1);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="xcorr">xcorr</link>

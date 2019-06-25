@@ -19,11 +19,11 @@
           xmlns:scilab="http://www.scilab.org" xml:id="primes" xml:lang="en">
     <refnamediv>
         <refname>primes</refname>
-        <refpurpose>primes function</refpurpose>
+        <refpurpose>lists of primes up to a given number</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[y]=primes(x)</synopsis>
+        <synopsis>y = primes(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -46,17 +46,21 @@
         <title>Description</title>
         <para>
             Given a real <literal>x</literal>, <literal>primes(x)</literal>
-            returns in a vector <literal>y</literal> all the primes numbers included
-            between 1 and <literal>x</literal>. If <literal>x&lt;2</literal> then
+            returns in a vector <literal>y</literal> all the prime numbers in
+            <literal>[2, x]</literal>. If <literal>x&lt;2</literal> then
             <literal>primes(x)</literal> returns an empty matrix.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-x=35
-y=primes(x)
- ]]></programlisting>
+primes(35)
+     ]]></programlisting>
+    <screen><![CDATA[
+--> primes(35)
+ ans  =
+   2.   3.   5.   7.   11.   13.   17.   19.   23.   29.   31.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

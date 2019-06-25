@@ -62,9 +62,9 @@
         <title>Description</title>
         <para>
             Inductor is an electrical component that can store energy in
-            electrical circuits.  The relationship between the voltage  across
-            the ports of an inductor of inductance  and the current  passing
-            through it is given by:
+            electrical circuits.  The relationship between the voltage <emphasis>v</emphasis> across
+            the ports of an inductor of inductance <emphasis>L</emphasis> and the current's
+            intensity <emphasis>I</emphasis> passing through it is :
         </para>
         <latex align="center" alt="v = L.dI/dt"><![CDATA[$$
         v = L \times \frac{\mathrm d I}{\mathrm d t}

@@ -162,7 +162,7 @@
                     </para>
                     <table border="0">
                         <tr valign="top">
-                            <th colspan="2">Arquivos Fortran</th>
+                            <td colspan="2"><emphasis role="bold">Arquivos Fortran</emphasis></td>
                         </tr>
                         <tr valign="top">
                             <th>a</th>
@@ -179,7 +179,7 @@
                             </td>
                         </tr>
                         <tr valign="top">
-                            <th colspan="2">Arquivos C</th>
+                            <td colspan="2"><emphasis role="bold">Arquivos C</emphasis></td>
                         </tr>
                         <tr valign="top">
                             <th>a</th>

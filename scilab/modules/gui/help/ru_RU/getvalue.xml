@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="getvalue">
+    <refnamediv>
+        <refname>getvalue</refname>
+        <refpurpose>диалог xwindow для получения данных</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>[ok, x1,..,x14] = getvalue(desc, labels, typ, ini)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>desc</term>
+                <listitem>
+                    <para>
+                       вектор-столбец строковых значений, общий комментарий диалога.
+                       Любой "&lt;" символ должен быть заменён на "&amp;lt;".
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>labels</term>
+                <listitem>
+                    <para>
+                        n-вектор-столбец строковых значений, <literal>labels(i)</literal> - это
+                        метка <literal>i</literal>-го требуемого значения.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>typ</term>
+                <listitem>
+                    <para>
+                        <literal>list(typ_1,dim_1,..,typ_n,dim_n)</literal>
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>typ_i</term>
+                            <listitem>
+                                <para>
+                                    определяем тип <literal>i</literal>-го значения. По умолчанию
+                                    входные значения интерпретируются десятичными числами.
+                                    Столбцы (строки) значений должны быть разделены <literal>";"</literal>.
+                                    <varname>typ_i</varname> может иметь следующие значения:
+                                </para>
+                                <table>
+                                  <tr><th>"mat"</th><td>матрица</td></tr>
+                                  <tr><th>"col"</th><td>вектор-столбец</td></tr>
+                                  <tr><th>"row"</th><td>вектор-строка</td></tr>
+                                  <tr><th>"vec"</th><td>вектор (свободная ориентация)</td></tr>
+                                  <tr><th>"intvec"</th><td>скаляр, вектор или матрица целых чисел.</td></tr>
+                                  <tr><th>"str"</th><td>скаляр, вектор или матрица текстов, разделённых с помощью <literal>".."</literal></td></tr>
+                                  <tr><th>"lis"</th><td>список: не реализовано.</td></tr>
+                                </table>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>dim_i</term>
+                            <listitem>
+                                <para>
+                                    определяет размер <literal>i</literal>-го значения, который
+                                    должен быть целым числом или двухэлементным вектором целых
+                                    чисел, <literal>-1</literal> стоит для неопределённого
+                                    размера.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ini</term>
+                <listitem>
+                    <para>
+                        n-вектор-столбец строковых значений, <literal>ini(i)</literal> даёт
+                        подсказанный ответ для <literal>i</literal>-го запрошенного значения
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ok</term>
+                <listitem>
+                    <para>
+                        логическое значение, <literal>%t</literal>, если нажата кнопка
+                        <literal>ok</literal>, <literal>%f</literal>, если нажата кнопка
+                        <literal>cancel</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xi</term>
+                <listitem>
+                    <para>
+                        содержит <literal>i</literal>-тое значение, если
+                        <literal>ok=%t</literal>. Если левая сторона имеет больше
+                        <literal>xi</literal>, чем требуемых значений, то последний
+                        <literal>xi</literal> содержит вектор ответных строковых значений.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эта функция заключает в себе функцию <literal>x_mdialog</literal> с проверкой ошибок,
+            вычислением числового ответа, ...
+        </para>
+        <note>
+          <para>
+              Все корректные выражения могут использоваться в качестве входных. Для матриц и
+              векторов <literal>getvalues()</literal> автоматически добавляет <literal>[ ]</literal>
+              вокруг каждой группы входных значений перед их вычислением.
+          </para>
+        </note>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+labels=["magnitude" ; "frequency" ; "phase    "];
+[ok,mag,Freq,ph] = getvalue("define sine signal",labels,...
+     list("vec",1,"vec",1,"vec",1), ["0.85";"10^2";"%pi/3"])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="x_mdialog">x_mdialog</link>
+            </member>
+            <member>
+                <link linkend="x_matrix">x_matrix</link>
+            </member>
+            <member>
+                <link linkend="x_dialog">x_dialog</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="getvalue">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="getvalue">
     <refnamediv>
         <refname>getvalue</refname>
         <refpurpose>データ取得用のxwindowダイアログ</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[ok,x1,..,x14]=getvalue(desc,labels,typ,ini)</synopsis>
+        <synopsis>[ok,x1,..,x14] = getvalue(desc, labels, typ, ini)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -14,7 +17,10 @@
             <varlistentry>
                 <term>desc</term>
                 <listitem>
-                    <para>文字列の列ベクトル, ダイアログ用のコメント</para>
+                    <para>
+                       文字列の列ベクトル, ダイアログ用のコメント. Any "&lt;" character  must be
+                       replaced with "&amp;lt;".
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -37,55 +43,17 @@
                         <varlistentry>
                             <term>typ_i</term>
                             <listitem>
-                                <para>i番目の値の型を定義します.
-                                    以下の値のどれかとなります:
+                                <para>i番目の値の型を定義します.  以下の値のどれかとなります:
                                 </para>
-                                <variablelist>
-                                    <varlistentry>
-                                        <term>"mat"  </term>
-                                        <listitem>
-                                            <para>:定数行列の場合</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>"col"  </term>
-                                        <listitem>
-                                            <para>:定数列ベクトルの場合</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>"row"  </term>
-                                        <listitem>
-                                            <para>:定数行ベクトルの場合</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>"vec"  </term>
-                                        <listitem>
-                                            <para>:定数ベクトルの場合</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>"intvec"  </term>
-                                        <listitem>
-                                            <para>:整数値を有する定数ベクトル,
-                                                すなわち int(x) == x の場合
-                                            </para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>"str"  </term>
-                                        <listitem>
-                                            <para>:文字列の場合</para>
-                                        </listitem>
-                                    </varlistentry>
-                                    <varlistentry>
-                                        <term>"lis"  </term>
-                                        <listitem>
-                                            <para>:リストの場合</para>
-                                        </listitem>
-                                    </varlistentry>
-                                </variablelist>
+                                <table>
+                                  <tr><th>"mat"</th><td>:定数行列の場合</td></tr>
+                                  <tr><th>"col"</th><td>:定数列ベクトルの場合</td></tr>
+                                  <tr><th>"row"</th><td>:定数行ベクトルの場合</td></tr>
+                                  <tr><th>"vec"</th><td>:定数ベクトルの場合</td></tr>
+                                  <tr><th>"intvec"</th><td>:整数値を有する定数ベクトル, すなわち int(x) == x の場合</td></tr>
+                                  <tr><th>"str"</th><td>:文字列の場合</td></tr>
+                                  <tr><th>"lis"</th><td>:リストの場合 (not implemented)</td></tr>
+                                </table>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -138,15 +106,13 @@
             数値応答の評価,などを指定して
             <literal>x_mdialog</literal>をカプセル化したものです.
         </para>
-    </refsection>
-    <refsection>
-        <title>注意</title>
-        <para>
-            有効な式を答として使用できます;
-            行列およびベクトルの場合,
-            <literal>getvalues</literal>は数値評価の前に指定した答に
-            自動的に [ ]を追加します.
-        </para>
+        <note>
+          <para>
+              有効な式を答として使用できます. 行列およびベクトルの場合,
+              <literal>getvalues()</literal>は数値評価の前に指定した答に
+              自動的に [ ]を追加します.
+          </para>
+        </note>
     </refsection>
     <refsection>
         <title>例</title>

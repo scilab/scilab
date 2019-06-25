@@ -16,13 +16,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-          xmlns:scilab="http://www.scilab.org" xml:id="file" xml:lang="en">
+          xmlns:scilab="http://www.scilab.org" xml:id="file" xml:lang="ru">
     <refnamediv>
         <refname>file</refname>
-        <refpurpose>file management</refpurpose>
+        <refpurpose>управление файлами</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Синтаксис</title>
         <synopsis>
             [unit, err] = file("open", file-name [,status] [,access [,recl]] [,format])
             file("close", unit)
@@ -34,45 +34,46 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>file-name</term>
                 <listitem>
-                    <para>string, file name of the file to be opened</para>
+                    <para>строковое значение, имя файла, который нужно открыть</para>
                     <warning>
-                        This function can not open files whose path has non-ascii
-                        UTF characters (accented, etc). In this case, mopen() must be used.
+                        Эта функция не может открывать файлы, чьи пути имеют не-ascii
+                        UTF-символы (диакритические знаки и т.д.). В этом случае следует
+                        использовать <literal>mopen()</literal>.
                     </warning>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>status</term>
                 <listitem>
-                    <para>string, The status of the file to be opened</para>
+                    <para>строковое значение, статус файла, который следует открыть</para>
                     <variablelist>
                         <varlistentry>
                             <term>"new"</term>
                             <listitem>
-                                <para>file must not exist new file (default)</para>
+                                <para>файл не существует, новый файл (по умолчанию);</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>"old"</term>
                             <listitem>
-                                <para>file must already exists.</para>
+                                <para>файл уже существует;</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>"unknown"</term>
                             <listitem>
-                                <para>unknown status</para>
+                                <para>неизвестный статус;</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>"scratch"</term>
                             <listitem>
-                                <para>file is to be deleted at end of session</para>
+                                <para>файл должен будет удалён в конце сессии.</para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
@@ -81,18 +82,18 @@
             <varlistentry>
                 <term>access</term>
                 <listitem>
-                    <para>string, The type of access to the file</para>
+                    <para>строковое значение, тип доступа к файлу:</para>
                     <variablelist>
                         <varlistentry>
                             <term>"sequential"</term>
                             <listitem>
-                                <para>sequential access (default)</para>
+                                <para>последовательный доступ (по умолчанию);</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>"direct"</term>
                             <listitem>
-                                <para>direct access.</para>
+                                <para>прямой доступ.</para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
@@ -101,18 +102,18 @@
             <varlistentry>
                 <term>format</term>
                 <listitem>
-                    <para>string,</para>
+                    <para>строковое значение, формат файла:</para>
                     <variablelist>
                         <varlistentry>
                             <term>"formatted"</term>
                             <listitem>
-                                <para>for a formatted file (default)</para>
+                                <para>для форматированных файлов (по умолчанию);</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>"unformatted"</term>
                             <listitem>
-                                <para>binary record.</para>
+                                <para>двоичная запись.</para>
                             </listitem>
                         </varlistentry>
                     </variablelist>
@@ -121,7 +122,7 @@
             <varlistentry>
                 <term>recl</term>
                 <listitem>
-                    <para>integer,is the size of records in bytes when
+                    <para>целочисленное значение, это размер записи в байтах, в случае
                         <literal>access="direct"</literal>
                     </para>
                 </listitem>
@@ -129,66 +130,69 @@
             <varlistentry>
                 <term>unit</term>
                 <listitem>
-                    <para>integer, logical unit descriptor of the opened file</para>
+                    <para>
+                        целочисленное значение, указатель на логический модуль открытого файла
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>units</term>
                 <listitem>
-                    <para>integer vector, logical unit descriptor of the opened files.
-                        Units 5 and 6 (%io) are reserved by the system for input and output
-                        devices.
+                    <para>
+                        вектор целочисленных значений, указатель на логический модуль открытого 
+                        файла. Модули 5 и 6 (%io) зарезервированы системой для входных и выходных 
+                        устройств.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>typs</term>
                 <listitem>
-                    <para>Character string vector, type (C or Fortran) of opened
-                        files.
+                    <para>
+                        Символьный вектор-строка, тип (C или Fortran) открытых файлов.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>nams</term>
                 <listitem>
-                    <para>Character string vector, pathnames of opened files.</para>
+                    <para>Символьный вектор-строка, имена путей открытых файлов.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mod</term>
                 <listitem>
-                    <para>file opening mode. Formed by three digits abc:</para>
+                    <para>режим открытия файла. Сформированный тремя элементами abc:</para>
                     <table border="0">
                         <tr valign="top">
-                            <td colspan="2">><emphasis role="bold">Fortran files</emphasis></td>
+                            <td colspan="2">><emphasis role="bold">Файлы Fortran</emphasis></td>
                         </tr>
                         <tr valign="top">
                             <th>a</th>
-                            <td>0 stands for formatted and 1 for unformatted (binary)</td>
+                            <td>0 стоит для форматированных, а 1 - для неформатированных (двоичных)</td>
                         </tr>
                         <tr valign="top">
                             <th>b</th>
-                            <td>0 stands for sequential access and 1 for direct access</td>
+                            <td>0 стоит для последовательного доступа, а 1 - для прямого доступа</td>
                         </tr>
                         <tr valign="top">
                             <th>c</th>
-                            <td>0 stands for "new", 1 for "old", 2 for "scratch" and 3 for "unknown"</td>
+                            <td>0 стоит для "new", 1 - для "old", 2 - для "scratch" и 3 - для "unknown"</td>
                         </tr>
                         <tr valign="top">
-                            <td colspan="2"><emphasis role="bold">C files</emphasis></td>
+                            <td colspan="2"><emphasis role="bold">C-файлы</emphasis></td>
                         </tr>
                         <tr valign="top">
                             <th>a</th>
-                            <td>1 stands for "r" (read), 2 stands for "w" (write)  and 3 for "a" (append)</td>
+                            <td>1 стоит для "r" (чтение), 2 стоит для "w" (запись) и 3 - для "a" (дополнение)</td>
                         </tr>
                         <tr valign="top">
                             <th>b</th>
-                            <td>is 1 if file has been opened with a "+" (updating) mode</td>
+                            <td>равен 1, если файл открыт в режиме "+" (обновление)</td>
                         </tr>
                         <tr valign="top">
                             <th>c</th>
-                            <td>is 1 if file has been opened with a "b" (binary) mode</td>
+                            <td>равен 1, если файл открыт в режиме "b" (двоичный)</td>
                         </tr>
                     </table>
                 </listitem>
@@ -196,35 +200,37 @@
             <varlistentry>
                 <term>swap</term>
                 <listitem>
-                    <para>automatic swap switch. swap=1 if automatic swap is on. swap is
-                        always 0 for Fortran files.
+                    <para>
+                        переключатель автоматического обмена. <literal>swap=1</literal>, если
+                        автоматический обмен включён. Для Fortran-файлов <varname>swap</varname>
+                        всегда 0.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>err</term>
                 <listitem>
-                    <para>integer code returned if opening the file fails. If <varname>err</varname>
-                    is omitted, an error message is issued.
+                    <para>
+                        целочисленный код, возвращаемый, если открытие файла провалилось.
+                        Если <varname>err</varname> пропущен, то выдаётся сообщение об ошибке.
                     </para>
                     <table>
-                        <tr valign="top"><th>65</th><td>File already used</td></tr>
-                        <tr valign="top"><th>66</th><td>Too many files opened!</td></tr>
-                        <tr valign="top"><th>67</th><td>Unknown file format</td></tr>
+                        <tr valign="top"><th>65</th><td>Файл уже используется</td></tr>
+                        <tr valign="top"><th>66</th><td>Открыто слишком много файлов!</td></tr>
+                        <tr valign="top"><th>67</th><td>Неизвестный формат файла</td></tr>
                         <tr valign="top"><th>240</th>
-                                         <td>The file already exists or directory write
-                                             access denied.</td></tr>
-                        <tr valign="top"><th>241</th><td>The file does not exist or read access denied.</td></tr>
+                                         <td>Файл уже существует или запрещена запись в директорию.</td></tr>
+                        <tr valign="top"><th>241</th><td>Файл не существует или чтение запрещено.</td></tr>
                     </table>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            <literal>file(…)</literal> selects a logical unit <varname>unit</varname> and manages
-            the file <varname>file-name</varname>.
+            <literal>file(…)</literal> выбирает логический модуль <varname>unit</varname> и
+            управляет файлом <varname>file-name</varname>.
         </para>
         <variablelist>
             <varlistentry>
@@ -232,13 +238,12 @@
                 </term>
                 <listitem>
                     <para>
-                        allows to open a file with specified
-                        properties and to get the associated unit number <varname>unit</varname>.
-                        This unit number may be used for further actions on this file or as file
-                        descriptor in <function>read</function>, <function>write</function>,
-                        <function>readb</function>,
-                        <function>writb</function>,<function>save</function>, <function>load</function>
-                        function calls.
+                        позволяет открыть файл с особыми параметрами и получить номер связанного
+                        модуля <varname>unit</varname>. Этот номер модуля можно использовать для
+                        дальнейших действий с этим файлом или в качестве дескриптора файла при
+                        вызове функций <function>read</function>, <function>write</function>,
+                        <function>readb</function>, <function>writb</function>,
+                        <function>save</function>, <function>load</function>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -248,7 +253,7 @@
                 </term>
                 <listitem>
                     <para>
-                        allows to close the file, or move the current file pointer.
+                        позволяет закрыть файл или передвинуть текущий указатель файла.
                     </para>
                 </listitem>
             </varlistentry>
@@ -258,7 +263,7 @@
                 </term>
                 <listitem>
                     <para>
-                        puts the pointer at the beginning of the file.
+                        кладёт указатель в начало файла.
                     </para>
                 </listitem>
             </varlistentry>
@@ -268,7 +273,7 @@
                 </term>
                 <listitem>
                     <para>
-                        puts the pointer at the beginning of last record.
+                        кладёт указатель в начало последней записи.
                     </para>
                 </listitem>
             </varlistentry>
@@ -278,7 +283,7 @@
                 </term>
                 <listitem>
                     <para>
-                        puts the pointer after last record.
+                        кладёт указатель после последней записи.
                     </para>
                 </listitem>
             </varlistentry>
@@ -288,20 +293,22 @@
                 </term>
                 <listitem>
                     <para>
-                        returns the descriptors of the opened files.
+                        возвращает дескрипторы открытых файлов.
                     </para>
-                    <para>To test whether a file whose unit is <literal>id</literal> is opened,
-                        <literal>file(id)~=[]</literal> may be used.
+                    <para>
+                        Чтобы проверить, открыт ли файл, чей модуль равен <literal>id</literal>,
+                        можно использовать <literal>file(id)~=[]</literal>.
                     </para>
-                    <para>To close all user opened files (C or Fortran type),
-                        <literal>file("close",file())</literal> may be used.
+                    <para>
+                        Чтобы закрыть все открытые пользователем файлы (типа C или Fortran),
+                        можно использовать <literal>file("close",file())</literal>.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 u=file("open",TMPDIR+"/foo","unknown")
 for k=1:4
@@ -320,7 +327,7 @@ mclose(u2);
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="isfile">isfile</link>
@@ -352,12 +359,12 @@ mclose(u2);
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>History</title>
+        <title>История</title>
         <revhistory>
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revdescription>
-                    stderr is inserted in the output of file() as units(1)=0, typ(1)="STD" and
+                    Внесена stderr в выход file() в виде units(1)=0, typ(1)="STD" и
                     nams(1)="stderr".
                 </revdescription>
             </revision>

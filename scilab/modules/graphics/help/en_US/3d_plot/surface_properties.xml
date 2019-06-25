@@ -228,11 +228,11 @@
                                     only the surface's mesh.
                                 </listitem>
                                 <listitem>
-                                    <literal>color_mode &lt; 0</literal> displays facets bodies and
+                                    <literal>color_mode > 0</literal> displays facets bodies and
                                     edges.
                                 </listitem>
                                 <listitem>
-                                    <literal>color_mode > 0</literal> hides the mesh and displays
+                                    <literal>color_mode &lt; 0</literal> hides the mesh and displays
                                     only facets bodies.
                                 </listitem>
                             </itemizedlist>

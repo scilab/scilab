@@ -32,7 +32,7 @@
         <para>
             Временные директории создаются в виде поддиректорий системной временной директории
             и получают имя <literal>SCI_TMP_</literal>&lt;unique&gt;, где
-            &lt;unique&gt; -- некоторый номер, формируемый при запуске Scilab для того, чтобы
+            &lt;unique&gt; - некоторый номер, формируемый при запуске Scilab для того, чтобы
             имя было уникальным. Под GNU/Linux, UNIX и Mac OS X права доступа к директории ограничены
             для пользователя Scilab'а.
         </para>
@@ -58,6 +58,9 @@ cd(TMPDIR)
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="tempname">tempname</link>
+            </member>
             <member>
                 <link linkend="home">home</link>
             </member>

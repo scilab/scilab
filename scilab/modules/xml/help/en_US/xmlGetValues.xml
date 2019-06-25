@@ -71,8 +71,8 @@
                         can be one of the following:
                         <itemizedlist>
                             <listitem>
-                                unique string: path to the XML source file (where preferences are
-                                registered). By default,
+                                unique string: path to the XML source file. By default, the main
+                                preferences file
                                 <literal>SCIHOME+'/XConfiguration.xml'</literal> is considered.
                             </listitem>
                             <listitem>

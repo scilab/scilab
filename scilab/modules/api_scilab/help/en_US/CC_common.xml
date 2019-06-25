@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="api_common" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="api_common" xml:lang="en">
     <refnamediv>
         <refname>API common functions</refname>
         <para>This page lists all the functions to get information about Scilab native objects.</para>
@@ -69,7 +72,7 @@
         </para>
     </refsection>
     <refsection>
-        <literallayout>
+        <literal>
             int <varname>scilab_isDouble</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -79,6 +82,9 @@
                 <command>scilabVar</command>
             </link>
             var)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isBoolean</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -88,6 +94,9 @@
                 <command>scilabVar</command>
             </link>
             var)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isString</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -97,6 +106,9 @@
                 <command>scilabVar</command>
             </link>
             var)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isInt</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -106,6 +118,9 @@
                 <command>scilabVar</command>
             </link>
             var)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isPoly</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -115,6 +130,9 @@
                 <command>scilabVar</command>
             </link>
             var)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isList</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -124,6 +142,9 @@
                 <command>scilabVar</command>
             </link>
             var)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isTList</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -133,6 +154,9 @@
                 <command>scilabVar</command>
             </link>
             var)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isMList</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -142,6 +166,9 @@
                 <command>scilabVar</command>
             </link>
             var)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isHandle</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -151,6 +178,9 @@
                 <command>scilabVar</command>
             </link>
             var)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isStruct</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -160,6 +190,9 @@
                 <command>scilabVar</command>
             </link>
             var)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isCell</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -169,6 +202,9 @@
                 <command>scilabVar</command>
             </link>
             var)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isPointer</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -178,7 +214,8 @@
                 <command>scilabVar</command>
             </link>
             var)
-        </literallayout>
+        </literal>
+        <para/>
         <para>
             Return 1 if variable <varname>var</varname> has the right type.
         </para>
@@ -321,7 +358,7 @@
         <para>Return 1 for matrix with 2 dimensions and dimensions have the same size.</para>
     </refsection>
     <refsection id="api_common_scilab_isVector">
-        <literallayout>
+        <literal>
             int <varname>scilab_isVector</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -331,6 +368,9 @@
                 <command>scilabVar</command>
             </link>
             var)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isNVector</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -340,6 +380,9 @@
                 <command>scilabVar</command>
             </link>
             var, int n)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isRowVector</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -349,6 +392,9 @@
                 <command>scilabVar</command>
             </link>
             var)
+        </literal>
+        <para/>
+        <literal>
             int <varname>scilab_isColVector</varname>(
             <link linkend="api_types_scilabEnv">
                 <command>scilabEnv</command>
@@ -358,7 +404,8 @@
                 <command>scilabVar</command>
             </link>
             var)
-        </literallayout>
+        </literal>
+        <para/>
         <para>
             Use to check if variable <varname>var</varname> is a vector. <varname>n</varname> is the dimension to check, <code>scilab_isRowVector</code> is equivalente to <code>scilab_isNVector(env, var, 1)</code>
         </para>

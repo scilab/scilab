@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="istssession">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="istssession">
     <refnamediv>
         <refname>istssession</refname>
         <refpurpose>Determines if scilab is launched from a ms terminal service session (Windows only)</refpurpose>
@@ -40,5 +43,19 @@ if getos() == 'Windows' then
   end
 end
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fromc">fromc</link>
+            </member>
+            <member>
+                <link linkend="fromjava">fromjava</link>
+            </member>
+            <member>
+                <link linkend="getscilabmode">getscilabmode</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

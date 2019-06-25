@@ -13,14 +13,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="primes" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="primes" xml:lang="ru">
     <refnamediv>
         <refname>primes</refname>
         <refpurpose>функция простых чисел</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>[y]=primes(x)</synopsis>
+        <synopsis>y = primes(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -42,15 +45,22 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Для заданного вещественного числа <literal>x</literal> функция <literal>primes(x)</literal> возвращает в векторе <literal>y</literal> все простые числа, входящие в интервал между 1 и <literal>x</literal> (включительно). Если <literal>x&lt;2 </literal>, то <literal>primes(x)</literal> возвращает пустую матрицу.
+            Для заданного вещественного числа <literal>x</literal> функция
+            <literal>primes(x)</literal> возвращает в векторе <literal>y</literal> все простые
+            числа, входящие в интервал между 1 и <literal>x</literal> (включительно).
+           Если <literal>x&lt;2 </literal>, то <literal>primes(x)</literal> возвращает пустую матрицу.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-x=35
-y=primes(x)
- ]]></programlisting>
+primes(35)
+     ]]></programlisting>
+    <screen><![CDATA[
+--> primes(35)
+ ans  =
+   2.   3.   5.   7.   11.   13.   17.   19.   23.   29.   31.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>

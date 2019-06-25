@@ -163,7 +163,7 @@
                     </para>
                     <table border="0">
                         <tr valign="top">
-                            <th colspan="2">Fortranファイル</th>
+                            <td colspan="2"><emphasis role="bold">Fortranファイル</emphasis></td>
                         </tr>
                         <tr valign="top">
                             <th>a</th>
@@ -178,7 +178,7 @@
                             <td>0 は "new", 1 は "old", 2 は "scratch" および 3 は "unknown"を意味します</td>
                         </tr>
                         <tr valign="top">
-                            <th colspan="2">Cファイル</th>
+                            <td colspan="2"><emphasis role="bold">Cファイル</emphasis></td>
                         </tr>
                         <tr valign="top">
                             <th>a</th>
