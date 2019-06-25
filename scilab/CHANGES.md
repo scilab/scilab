@@ -282,6 +282,7 @@ Bug Fixes
 * [#8784](https://bugzilla.scilab.org/8784): Automatic self-adjusting blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` in Xcos.
 * [#5512](https://bugzilla.scilab.org/5512): `disp` puzzlingly displayed arguments in reverse order.
 * [#9007](https://bugzilla.scilab.org/9007): On Linux, `sciargs()` included twice `-nw` when `-nw` is used.
+* [#9130](https://bugzilla.scilab.org/9130): In the SigBuilder Xcos page, the parameters of the block were not described. The page refered to the CURVE_c block removed fron Scilab 5.0.0.
 * [#9529](https://bugzilla.scilab.org/9529): `assert_checkequal(list(1,,3), list(1,,3))` yielded an error.
 * [#9673](https://bugzilla.scilab.org/9673): Priority of colon `:` operator was too low
 * [#10078](https://bugzilla.scilab.org/10078): `isinf` was not reliable for polynomials.

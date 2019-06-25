@@ -4,6 +4,7 @@
  *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -82,9 +83,237 @@
                     <!-- align => Javahelp, style => Online -->
             </imageobject>
         </inlinemediaobject>
-        <para>
-            The parameters of  Sigbuilder block is the same as that of block.
-        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Spline method (0…7)</emphasis> :
+                    Accepted values are 0, 1, 2, 3, 4, 5, 6 or 7. This parameter defines the spline
+                    method for interpolating the points. The Signal builder block computes a linear
+                    or a cubic spline or sub-spline <emphasis>S</emphasis> which interpolates the
+                    (x<subscript>i</subscript>,y<subscript>i</subscript>)
+                    points, i.e., we have
+                    S(x<subscript>i</subscript>) = y<subscript>i</subscript>
+                    for all <emphasis>i=1,…,n</emphasis>. Available methods are described here-below:
+                </para>
+                <para><!-- 0 -->
+                    <emphasis role="bold">0 : "Zero order method"</emphasis>.
+                    This method generates a piecewise constant signal. i.e., for
+                    t<subscript>i</subscript> ≤ t &lt; t<subscript>i+1</subscript>,
+                    y(t) = y<subscript>i</subscript>.
+                    This method is available for all data types.
+                </para>
+                <orderedlist>
+                    <listitem><!-- 1 -->
+                        <para>
+                            <emphasis role="bold">Linear method</emphasis>. This
+                            method generates a piecewise linear signal, i.e., for
+                                t<subscript>i</subscript> ≤ t &lt; t<subscript>i+1</subscript>,
+                                y(t) = y<subscript>i</subscript> +
+                                (y<subscript>i+1</subscript> - y<subscript>i</subscript>)
+                                (t - t<subscript>i</subscript>) /
+                                (t<subscript>i+1</subscript> - t<subscript>i</subscript>).
+                        </para>
+                    </listitem>
+                    <listitem><!-- 2 -->
+                        <para>
+                            <emphasis role="bold">NATURAL method</emphasis>.
+                            The interpolation is done by passing 2-order polynomials between
+                            (x<subscript>i</subscript>, y<subscript>i</subscript>)
+                            and
+                            (x<subscript>i+1</subscript>, y<subscript>i+1</subscript>).
+                            The Derivative at
+                            (x<subscript>i</subscript>, y<subscript>i</subscript>)
+                            is identical for two adjacent polynomials. The derivative at
+                            (x<subscript>1</subscript>, y<subscript>1</subscript>)
+                            can be selected arbitrary: It is selected such that the sum of derivatives
+                            at all points be minimum. This condition provides a less fluctuated signal.
+                        </para>
+                    </listitem>
+                    <listitem><!-- 3 -->
+                        <para>
+                            <emphasis role="bold">NOT_A_KNOT method</emphasis>.
+                            The cubic spline is computed by using the following conditions
+                            (considering <emphasis>n</emphasis> points
+                            x<subscript>i</subscript>, …, x<subscript>n</subscript>) :
+                            <table align="center">
+                                <tr><td>
+                                    S<superscript>(3)</superscript>
+                                        (x<subscript>2</subscript><superscript>-</superscript>)
+                                    =
+                                    S<superscript>(3)</superscript>
+                                        (x<subscript>2</subscript><superscript>+</superscript>)
+                                    </td>
+                                </tr>
+                                <tr><td>
+                                    S<superscript>(3)</superscript>
+                                        (x<subscript>n-1</subscript><superscript>-</superscript>)
+                                    =
+                                    S<superscript>(3)</superscript>
+                                        (x<subscript>n-1</subscript><superscript>+</superscript>)
+                                    </td>
+                                </tr>
+                            </table>
+                        </para>
+                    </listitem>
+                    <listitem><!-- 4 -->
+                        <para>
+                            <emphasis role="bold">Periodic</emphasis>.
+                            A periodic cubic spline is computed (<emphasis>y</emphasis> must verify
+                            <emphasis>y<subscript>1</subscript>=y<subscript>n</subscript></emphasis>)
+                            by using the conditions:
+                            x<subscript>i</subscript>, …, x<subscript>n</subscript> :
+                            <table align="center">
+                                <tr><td align="center">
+                                    S′(x<subscript>1</subscript>) = S′(x<subscript>n</subscript>)
+                                    </td>
+                                </tr>
+                                <tr><td align="center">
+                                    S″(x<subscript>1</subscript>) = S″(x<subscript>n</subscript>)
+                                    </td>
+                                </tr>
+                            </table>
+                        </para>
+                        <para>
+                        In this case, the value of <emphasis>y<subscript>n</subscript></emphasis>
+                        is ignored and <emphasis>y<subscript>1</subscript></emphasis> is used instead.
+                        Note that, in order to generate a periodic signal, the
+                        <emphasis>Periodic</emphasis> flag must be activated.
+                        </para>
+                    </listitem>
+                    <listitem><!-- 5 -->
+                        <para>
+                            <emphasis role="bold">Monotone</emphasis>.
+                            In this case a sub-spline (<emphasis>S</emphasis> is only 1-continuously
+                            differentiable) is computed such that <emphasis>S</emphasis> is monotone
+                            on each interval:
+                            <itemizedlist>
+                                <listitem>
+                                    if y<subscript>i</subscript> ≤ y<subscript>i+1</subscript> :
+                                    <emphasis>S</emphasis> is increasing on
+                                    [x<subscript>i</subscript>, x<subscript>i+1</subscript>]
+                                </listitem>
+                                <listitem>
+                                    Otherwise: <emphasis>S</emphasis> is decreasing on
+                                       [x<subscript>i</subscript>, x<subscript>i+1</subscript>]
+                                </listitem>
+                            </itemizedlist>
+                        </para>
+                    </listitem>
+                    <listitem><!-- 6 -->
+                        <para>
+                            <emphasis role="bold">Clamped</emphasis>.
+                            In this case, the cubic spline <emphasis>S</emphasis> is computed by
+                            using the end points derivatives which are set to zero, i.e.
+                            <table align="center">
+                                <tr><td>
+                                    S′(x<subscript>1</subscript>) = S′(x<subscript>n</subscript>) = 0
+                                </td></tr>
+                            </table>
+                        </para>
+                    </listitem>
+                    <listitem><!-- 7 -->
+                        <para>
+                        <emphasis role="bold">Fast</emphasis>.
+                        In this case, a sub-spline is computed by using a simple local scheme
+                        for the derivative at <emphasis>x<subscript>i</subscript></emphasis>
+                        of the interpolation polynomial of [
+                        (x<subscript>i-1</subscript>, y<subscript>i-1</subscript>),
+                        (x<subscript>i</subscript>, y<subscript>i</subscript>),
+                        (x<subscript>i+1</subscript>, y<subscript>i+1</subscript>) ],
+                        except for the end points (derivative at these points are computed from
+                        the 3 left most points and the 3 right most points).
+                        </para>
+                    </listitem>
+                </orderedlist>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">x :</emphasis> Row or column vector of abscissae (X-axis),
+                    as decimal numbers. This vector can be also defined in the Scicos context.
+                    It can be specified by a Scilab expression.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">y :</emphasis> Row or column vector of ordinates (Y-axis),
+                    as decimal numbers. This vector can be also defined in the Scicos context.
+                    It can be specified by a Scilab expression.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Periodic signal (y/n) </emphasis>: If <literal>y</literal>
+                    is selected, the created signal will be periodic with the period of
+                    <emphasis>t<subscript>n</subscript></emphasis>. Note that if the
+                    <emphasis>Periodic</emphasis> spline method is selected, the output signal
+                    will be a continuous signal. Otherwise, the signal will be discontinuous at
+                    endpoints.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">Launch graphical window (y/n) </emphasis>:
+                    If <literal>y</literal> is selected, clicking on the <literal>OK</literal>
+                    button opens a graphical window, in whch the user can edit data points:
+                    <table>
+                        <tr><td>Mouse left click on the window</td><td>:</td>
+                            <td>Adds a new data point</td>
+                        </tr>
+                        <tr><td>Mouse right click on the window</td><td>:</td>
+                            <td>Removes a data point.</td>
+                        </tr>
+                        <tr><td>Mouse left double-click on a data point</td><td>:</td>
+                            <td>Edits a point's coordinates</td>
+                        </tr>
+                        <tr><td>Mouse left button press/drag/release</td><td>:</td>
+                            <td>Moves a data point</td>
+                        </tr>
+                        <tr><td>Autoscale menu</td><td>:</td><td>
+                            Rescales the window to show all data points properly.</td>
+                        </tr>
+                        <tr><td>Spline/Method menu</td><td>:</td>
+                            <td>Selects the spline interpolation method.</td>
+                        </tr>
+                        <tr><td>Data/Clear menu</td><td>:</td>
+                            <td>Removes all data points.</td>
+                        </tr>
+                        <tr><td>Data/Data_Bounds menu</td><td>:</td>
+                            <td>Changes the window size.</td>
+                        </tr>
+                        <tr><td>Data/Load_from_text_file menu</td><td>:</td>
+                            <td>Reads data points from a text data file (using C data format).</td>
+                        </tr>
+                        <tr><td>Data/save_to_text_file menu</td><td>:</td>
+                            <td>Saves the data points to a text data file (using C data format).</td>
+                        </tr>
+                        <tr><td>Data/Load_from_excel menu</td><td>:</td>
+                            <td>Reads data from an excel file.</td>
+                        </tr>
+                        <tr><td>Data/Periodic_signal menu</td><td>:</td>
+                            <td>Specifies weather the created signal is periodic or not.
+                                If the signal is not periodic, the signal stays constant beyond
+                                <emphasis>t<subscript>n</subscript></emphasis>.
+                                Otherwise it is clamped to
+                                <emphasis>y<subscript>1</subscript></emphasis> at
+                                <emphasis>t<subscript>n</subscript></emphasis>.
+                            </td>
+                        </tr>
+                        <tr><td>Standards/Functions menu</td><td>:</td>
+                            <td>Chooses a Sine, Sawtooth, Pulse, or random signal.</td>
+                        </tr>
+                        <tr><td>Exit/Help menu</td><td>:</td>
+                            <td>Short help on the graphic window commands.</td>
+                        </tr>
+                        <tr><td>Exit/Exit_without_save menu</td><td>:</td>
+                            <td>Closes the graphical window, discarding all modifications in data.</td>
+                        </tr>
+                        <tr><td>Exit/Exit_with_save menu</td><td>:</td>
+                            <td>Closes the graphical window and saving data points.</td>
+                        </tr>
+                    </table>
+                </para>
+            </listitem>
+        </itemizedlist>
     </refsection>
 
     <refsection id="Defaultproperties_Sigbuilder">
