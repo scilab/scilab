@@ -16,91 +16,101 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-          xml:lang="ja" xml:id="libraryinfo">
+          xml:lang="ru" xml:id="libraryinfo">
     <refnamediv>
         <refname>libraryinfo</refname>
-        <refpurpose>マクロとscilabライブラリのパスを取得</refpurpose>
+        <refpurpose>
+            получает путь и устанавливает главные функции загруженной библиотеки
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>macros = libraryinfo(libraryname)
-            [macros,path] = libraryinfo(libraryname)
+        <title>Синтаксис</title>
+        <synopsis>
+            macros = libraryinfo(libraryname)
+            [macros, libpath] = libraryinfo(libraryname)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>引数</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>libraryname</term>
                 <listitem>
-                    <para>文字列 (ライブラリ名)</para>
+                    <para>строка: имя загруженной библиотеки.</para>
                 </listitem>
             </varlistentry>
+        </variablelist>
+        <variablelist>
             <varlistentry>
                 <term>macros</term>
                 <listitem>
-                    <para>文字列行列 (ライブラリの全ての主関数)</para>
+                    <para>
+                        столбец строк: имена главных функций, принадлежащих библиотеке.
+                    </para>
                 </listitem>
             </varlistentry>
+        </variablelist>
+        <variablelist>
             <varlistentry>
-                <term>path</term>
+                <term>libpath</term>
                 <listitem>
-                    <para>文字列 (ライブラリのパス)</para>
+                    <para>строка: путь до файла в библиотеке.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>説明</title>
+        <title>Описание</title>
         <para>
-            指定したScilabライブラリの関数名とパスを取得します.
-            返される関数名は対応する .sci または .bin のファイルの名前
-            に一致します.
-            その他の名前は補助関数です.
+            Получает имена функций (написанных на языке Scilab), принадлежаних указанной
+            библиотеке, и путь до директории, где хранятся их <literal>*.sci</literal>-файлы и
+            файлы библиотеки. Вспомогательные функции, которые могут следовать за главными
+            функциями в <literal>*.sci</literal>-файлах, являются приватными и не возвращаются.
             <warning>
-                Only loaded libraries can be addressed by <literal>libraryinfo()</literal>.
+                Только загруженные библиотеки могут быть адресованы с помощью <literal>libraryinfo()</literal>.
             </warning>
         </para>
         <refsect3>
-            <title>Getting some library info from its handle</title>
+            <title>Получение некоторой информации о библиотеки из её дескриптора</title>
             <para>
-                <literal>libraryinfo()</literal> works from the literal name of the library.
-                In some cases, we may have only its handle, defined when loading the library.
-                For instance, <literal>libraryinfo("iolib")</literal> works,
-                <literal>libraryinfo(iolib)</literal> does not.
-                How to use the handle to get any info? Let's go on with the <literal>iolib</literal>
-                example:
+                <literal>libraryinfo()</literal> работает по литеральному имени библиотеки.
+                В некоторых случаях в наличии может быть только их дескриптор, определённый при
+                загрузке библиотеки. Например, <literal>libraryinfo("iolib")</literal> работает,
+                а <literal>libraryinfo(iolib)</literal> - нет. Как же использовать дескриптор для 
+                получения какой-либо информации? Продолжим с примером <literal>iolib</literal>:
                 <itemizedlist>
                     <listitem>
-                        <emphasis role="bold">Getting the path</emphasis>:
+                        <emphasis role="bold">Получение пути</emphasis>:
                         <literal>libpath = string(iolib)(1)</literal>
                     </listitem>
                     <listitem>
-                        <emphasis role="bold">Getting the column vector of members functions</emphasis>:
+                        <emphasis role="bold">Получение вектор-столбца составляющих функций</emphasis>:
                         <literal>functions = string(iolib)(2:$)</literal>
                     </listitem>
                     <listitem>
-                        <emphasis role="bold">Getting the literal name of the library</emphasis>:
+                        <emphasis role="bold">Получение литерального имени библиотеки</emphasis>:
                         <literal>libraryname = xmlGetValues("//scilablib", "name", libpath)</literal>
                     </listitem>
                 </itemizedlist>
             </para>
         </refsect3>
         <refsect3>
-            <title>Unloaded library: getting info through its path</title>
+            <title>Незагруженная библиотека: получение информации по своему пути</title>
             <para>
-                If the considered library is not loaded, neither <literal>libraryinfo()</literal>
-                nor  <literal>string()</literal> can work.
+                Если рассматриваемая библиотека не загружена, то ни
+                <literal>libraryinfo()</literal>, ни <literal>string()</literal> не будут
+                работать.
             </para>
             <para>
-                Provided that we know its libpath, we then can
+                При условии, что известен путь <varname>libpath</varname>, можно
                 <itemizedlist>
                     <listitem>
-                        <emphasis role="bold">get its literal name</emphasis>:
+                        <emphasis role="bold">получить его литеральное имя</emphasis>:
                         <literal>xmlGetValues("//scilablib", "name", libpath+"/lib")</literal>
                     </listitem>
                     <listitem>
-                        <emphasis role="bold">get the column vector of members functions</emphasis>:
+                        <emphasis role="bold">получить вектор-столбец составляющих
+                        функций</emphasis>:
                         <literal>functions = xmlGetValues("//scilablib/macro", "name", libpath+"/lib")</literal>
                     </listitem>
                 </itemizedlist>
@@ -108,9 +118,9 @@
         </refsect3>
     </refsection>
     <refsection>
-        <title>例</title>
+        <title>Примеры</title>
         <para>
-            With libraryinfo(), from the literal library name:
+            C <literal>libraryinfo()</literal> по литеральному имени библиотеки:
         </para>
         <programlisting role="example"><![CDATA[
 [f, p] = libraryinfo("iolib")
@@ -130,26 +140,26 @@
 ]]></screen>
         <para/>
         <para>
-            From the library handle:
+            По дескриптору библиотеки:
         </para>
         <programlisting role="example"><![CDATA[
-// Just for display:
+// Просто для отображения:
 iolib
 
-// Catch info into variables:
+// Перехватить информацию в переменных:
 p = string(iolib)(1)
 f = string(iolib)(2:$)
 libname = xmlGetValues("//scilablib", "name", p+"/lib")
      ]]></programlisting>
     <screen><![CDATA[
---> // Just for display:
+--> // Просто для отображения:
 --> iolib
 
  iolib  =
 Functions files location : SCI\modules\io\macros\.
 input  unix_g  unix_w  %_sodload  unix_x  unix_s
 
---> // Catch info into variables:
+--> // Перехватить информацию в переменных:
 --> p = string(iolib)(1)
  p  =
  SCI\modules\io\macros\
@@ -169,13 +179,13 @@ input  unix_g  unix_w  %_sodload  unix_x  unix_s
 ]]></screen>
     <para/>
         <para>
-            For a not-loaded library, from its path:
+            Для незагруженной библиотеки, по её пути:
         </para>
         <programlisting role="example"><![CDATA[
 path = fullpath("SCI/modules/scicos_blocks/macros/Hydraulics");
 libname = xmlGetValues("//scilablib", "name", path+"/lib")
 functions = xmlGetValues("//scilablib/macro", "name", path+"/lib")
-Hydraulicslib  // not-loaded (Xcos must have not been run)
+Hydraulicslib  // незагруженная (Xcos не должен быть запущен)
      ]]></programlisting>
     <screen><![CDATA[
 --> libname = xmlGetValues("//scilablib", "name", path+"/lib")
@@ -192,11 +202,11 @@ Hydraulicslib  // not-loaded (Xcos must have not been run)
 !VanneReglante  !
 
 --> Hydraulicslib
-未定義の変数: Hydraulicslib
+Undefined variable: Hydraulicslib
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>参照</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="string">string</link>

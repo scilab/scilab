@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="libraryinfo" xml:lang="pt">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - Scilab Consortium
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="libraryinfo" xml:lang="pt">
     <refnamediv>
         <refname>libraryinfo</refname>
-        <refpurpose>retorna macros e endereço de uma biblioteca
-            Scilab
+        <refpurpose>retorna macros e endereço de uma biblioteca Scilab
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -16,6 +32,12 @@
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
+                <term>libraryname</term>
+                <listitem>
+                    <para>string (nome da biblioteca)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>macros</term>
                 <listitem>
                     <para>uma matriz de strings (todas as funções principais da
@@ -23,20 +45,10 @@
                     </para>
                 </listitem>
             </varlistentry>
-        </variablelist>
-        <variablelist>
             <varlistentry>
                 <term>path</term>
                 <listitem>
                     <para>um string (endereço da biblioteca)</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-        <variablelist>
-            <varlistentry>
-                <term>libraryname</term>
-                <listitem>
-                    <para>string (nome da biblioteca)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -46,17 +58,153 @@
         <para>Retorna nomes de funções e o endereço de uma biblioteca Scilab. Os
             nomes de funções são aqueles que correspondem aos nomes de arquivo
             associados .sci ou .bin. Os outros são funções subsidiárias.
+            <warning>
+                Only loaded libraries can be addressed by <literal>libraryinfo()</literal>.
+            </warning>
         </para>
+        <refsect3>
+            <title>Getting some library info from its handle</title>
+            <para>
+                <literal>libraryinfo()</literal> works from the literal name of the library.
+                In some cases, we may have only its handle, defined when loading the library.
+                For instance, <literal>libraryinfo("iolib")</literal> works,
+                <literal>libraryinfo(iolib)</literal> does not.
+                How to use the handle to get any info? Let's go on with the <literal>iolib</literal>
+                example:
+                <itemizedlist>
+                    <listitem>
+                        <emphasis role="bold">Getting the path</emphasis>:
+                        <literal>libpath = string(iolib)(1)</literal>
+                    </listitem>
+                    <listitem>
+                        <emphasis role="bold">Getting the column vector of members functions</emphasis>:
+                        <literal>functions = string(iolib)(2:$)</literal>
+                    </listitem>
+                    <listitem>
+                        <emphasis role="bold">Getting the literal name of the library</emphasis>:
+                        <literal>libraryname = xmlGetValues("//scilablib", "name", libpath)</literal>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </refsect3>
+        <refsect3>
+            <title>Unloaded library: getting info through its path</title>
+            <para>
+                If the considered library is not loaded, neither <literal>libraryinfo()</literal>
+                nor  <literal>string()</literal> can work.
+            </para>
+            <para>
+                Provided that we know its libpath, we then can
+                <itemizedlist>
+                    <listitem>
+                        <emphasis role="bold">get its literal name</emphasis>:
+                        <literal>xmlGetValues("//scilablib", "name", libpath+"/lib")</literal>
+                    </listitem>
+                    <listitem>
+                        <emphasis role="bold">get the column vector of members functions</emphasis>:
+                        <literal>functions = xmlGetValues("//scilablib/macro", "name", libpath+"/lib")</literal>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </refsect3>
     </refsection>
     <refsection>
         <title>Exemplos</title>
+        <para>
+            With libraryinfo(), from the literal library name:
+        </para>
         <programlisting role="example"><![CDATA[
-[m,p]=libraryinfo('corelib')
- ]]></programlisting>
+[f, p] = libraryinfo("iolib")
+     ]]></programlisting>
+    <screen><![CDATA[
+--> [f, p] = libraryinfo("iolib")
+ p  =
+ SCI\modules\io\macros\
+
+ f  =
+!input      !
+!unix_g     !
+!unix_w     !
+!%_sodload  !
+!unix_x     !
+!unix_s     !
+]]></screen>
+        <para/>
+        <para>
+            From the library handle:
+        </para>
+        <programlisting role="example"><![CDATA[
+// Just for display:
+iolib
+
+// Catch info into variables:
+p = string(iolib)(1)
+f = string(iolib)(2:$)
+libname = xmlGetValues("//scilablib", "name", p+"/lib")
+     ]]></programlisting>
+    <screen><![CDATA[
+--> // Just for display:
+--> iolib
+
+ iolib  =
+Functions files location : SCI\modules\io\macros\.
+input  unix_g  unix_w  %_sodload  unix_x  unix_s
+
+--> // Catch info into variables:
+--> p = string(iolib)(1)
+ p  =
+ SCI\modules\io\macros\
+
+--> f = string(iolib)(2:$)
+ f  =
+!input      !
+!unix_g     !
+!unix_w     !
+!%_sodload  !
+!unix_x     !
+!unix_s     !
+
+--> libname = xmlGetValues("//scilablib", "name", p+"/lib")
+ libname  =
+ iolib
+]]></screen>
+    <para/>
+        <para>
+            For a not-loaded library, from its path:
+        </para>
+        <programlisting role="example"><![CDATA[
+path = fullpath("SCI/modules/scicos_blocks/macros/Hydraulics");
+libname = xmlGetValues("//scilablib", "name", path+"/lib")
+functions = xmlGetValues("//scilablib/macro", "name", path+"/lib")
+Hydraulicslib  // not-loaded (Xcos must have not been run)
+     ]]></programlisting>
+    <screen><![CDATA[
+--> libname = xmlGetValues("//scilablib", "name", path+"/lib")
+ libname  =
+ Hydraulicslib
+
+--> functions = xmlGetValues("//scilablib/macro", "name", path+"/lib")
+ functions  =
+!Bache          !
+!Flowmeter      !
+!PerteDP        !
+!PuitsP         !
+!SourceP        !
+!VanneReglante  !
+
+--> Hydraulicslib
+Undefined variable: Hydraulicslib
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="string">string</link>
+            </member>
+            <member>
+                <link linkend="load">load</link>
+            </member>
             <member>
                 <link linkend="librarieslist">librarieslist</link>
             </member>
