@@ -178,5 +178,6 @@ Bug Fixes
 * [#16075](http://bugzilla.scilab.org/show_bug.cgi?id=16075): `prettyprint()` was broken for cells.
 * [#16085](http://bugzilla.scilab.org/show_bug.cgi?id=16085): insertion in an empty struct was broken.
 * [#16087](http://bugzilla.scilab.org/show_bug.cgi?id=16087): Insertion of struct() in a non-empty struct crashed Scilab.
+* [#16111](http://bugzilla.scilab.org/show_bug.cgi?id=16111): `isglobal` was not supporting non-scalar array of strings as input.
 
 

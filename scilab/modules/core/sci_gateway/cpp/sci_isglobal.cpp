@@ -36,29 +36,28 @@ types::Function::ReturnValue sci_isglobal(types::typed_list &in, int _iRetCount,
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "isglobal", 1);
         return types::Function::Error;
     }
-    else
+
+    if (in[0]->isString() == false)
     {
-        if (in[0]->isString() == false)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "isglobal", 1);
-            return types::Function::Error;
-        }
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "isglobal", 1);
+        return types::Function::Error;
+    }
 
-        types::String* pS = in[0]->getAs<types::String>();
-        if (pS->isScalar() == false)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "isglobal", 1);
-            return types::Function::Error;
-        }
+    types::String* pS = in[0]->getAs<types::String>();
+    types::Bool *pOut = new types::Bool(pS->getDims(), pS->getDimsArray());
 
-        if (symbol::Context::getInstance()->isGlobalVisible(symbol::Symbol(pS->get(0))))
+    for (int i = 0; i < pS->getSize(); i++)
+    {
+        if (symbol::Context::getInstance()->isGlobalVisible(symbol::Symbol(pS->get(i))))
         {
-            out.push_back(new types::Bool(1));
+            pOut->set(i,1);
         }
         else
         {
-            out.push_back(new types::Bool(0));
+            pOut->set(i,0);
         }
     }
+
+    out.push_back(pOut);
     return types::Function::OK;
 }
