@@ -203,7 +203,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\cpp\getmode.cpp" />
-    <ClCompile Include="..\..\c\sci_dec2base.c" />
     <ClCompile Include="..\..\c\sci_isequalbitwise.c" />
     <ClCompile Include="..\..\c\sci_number_properties.c" />
     <ClCompile Include="..\..\c\sci_testmatrix.c" />
@@ -224,6 +223,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\sci_cosh.cpp" />
     <ClCompile Include="..\sci_cumprod.cpp" />
     <ClCompile Include="..\sci_cumsum.cpp" />
+    <ClCompile Include="..\sci_dec2base.cpp" />
     <ClCompile Include="..\sci_diag.cpp" />
     <ClCompile Include="..\sci_dsearch.cpp" />
     <ClCompile Include="..\sci_exp.cpp" />

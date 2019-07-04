@@ -313,6 +313,7 @@ Bug Fixes
 * [#14610](https://bugzilla.scilab.org/14610): `x = ric_desc(H,E)` always yielded an error. [x1,x2,residual] = ric_desc(..) returned a wrong `residual` value.
 * [#14642](https://bugzilla.scilab.org/14642): No more "\r" carriage return with printf.
 * [#14655](https://bugzilla.scilab.org/14655): `bitset` worked only element-wise, without accepting mixed scalar and array inputs.
+* [#14660](https://bugzilla.scilab.org/14660): `dec2base` was 53-bit limited by double and not uint64 ready
 * [#14734](https://bugzilla.scilab.org/14734): The `simulated_annealing` module was out of the `optimization` one.
 * [#14735](https://bugzilla.scilab.org/14735): The `genetic_algorithms` module was out of the `optimization` one.
 * [#14738](https://bugzilla.scilab.org14738): `hist3d` was not actually an histogram function. It is renamed `bar3d`.
