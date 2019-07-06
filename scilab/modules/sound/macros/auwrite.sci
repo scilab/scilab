@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function []=auwrite(y,Fs,nbits,method,aufile)
+function auwrite(y,Fs,nbits,method,aufile)
     //Write .au sound file.
     //auwrite(y,aufile) writes a sound file specified by the
     //string aufile.  The data should be arranged with one channel
@@ -59,25 +59,30 @@ function []=auwrite(y,Fs,nbits,method,aufile)
         Fs = Fs_pref;
     end
 
-    if ~(type(aufile)==10) then
+    // Check aufile
+    // ------------
+    if type(aufile) <> 10 then
         error(msprintf(gettext("%s: Wrong values for input argument: Filename must be a string.\n"),"auwrite"));
     end
-    if strindex(aufile,".")==[] then
-        aufile = aufile+".au";
+    // Append .au extension if it is missing
+    tmp = convstr(fileparts(aufile,"extension"))
+    if tmp=="" | (~isfile(aufile) & tmp<>".au")
+        aufile = aufile + ".au";
     end
-
     [fid,junk] = mopen(aufile,"wb",0) // Big-endian
     if junk<0 then
         error(msprintf(gettext("%s: Cannot open file %s.\n"),"auwrite",aufile));
     end
 
+    // Check y data
+    // ------------
     if length(size(y)) > 2 then
+        mclose(fid)
         error(msprintf(gettext("%s: An error occurred: %s\n"),"auwrite",gettext("Data array must have 1- or 2-dimensions only.")));
     end
     if size(y,2)==1 then
         y = y';
     end
-
     // Clip data to normalized range [-1,+1]:
     i = matrix(find(abs(y)>1),1,-1);
     if ~(i==[]) then
@@ -85,15 +90,18 @@ function []=auwrite(y,Fs,nbits,method,aufile)
         warning(gettext("Data clipped during write to file."));
     end
 
+    // Writing data
+    // ------------
     snd = write_sndhdr(fid,Fs,nbits,method,size(y));
 
-    if write_sndata(fid,snd,y) then
+    status = write_sndata(fid,snd,y)
+    mclose(fid)
+    if status
         error(msprintf(gettext("%s: An error occurred: %s\n"),"auwrite",gettext("Error while writing sound file.")));
     end
-    mclose(fid);
 endfunction
 
-function [status]=write_sndata(fid,snd,data)
+function status = write_sndata(fid,snd,data)
     status = 0;
     if snd("format")==1 then
         dtype = "uc";
@@ -121,11 +129,12 @@ function [status]=write_sndata(fid,snd,data)
     mput(data,dtype,fid);
 endfunction
 
-function [snd]=write_sndhdr(fid,Fs,nbits,method,sz)
+function snd = write_sndhdr(fid,Fs,nbits,method,sz)
     // write header part
     if method=="mu" then
         if nbits~=8 then
-            error(msprintf(gettext("%s: An error occurred: %s\n"),"auwrite",gettext("Mu-law can only be used with 8 bit data. Use method=''linear'' instead.")));
+            mclose(fid)
+            error(msprintf(gettext("%s: An error occurred: %s\n"),"auwrite/write_sndhdr", gettext("Mu-law can only be used with 8 bit data. Use method=''linear'' instead.")));
         end
         snd.format = 1;
         snd.bits = 8;
@@ -143,11 +152,13 @@ function [snd]=write_sndhdr(fid,Fs,nbits,method,sz)
             snd.format=7;  // Double-precision
             snd.bits=64;
         else
-            error(msprintf(gettext("%s: An error occurred: %s\n"),"auwrite",gettext("Unrecognized data format.")));
+            mclose(fid)
+            error(msprintf(gettext("%s: An error occurred: %s\n"),"auwrite/write_sndhdr", gettext("Unrecognized data format.")));
             return
         end
     else
-        error(msprintf(gettext("%s: An error occurred: %s\n"),"auwrite",gettext("Unrecognized data format.")));
+        mclose(fid)
+        error(msprintf(gettext("%s: An error occurred: %s\n"),"auwrite/write_sndhdr", gettext("Unrecognized data format.")));
     end
 
     // Define sound header structure:
