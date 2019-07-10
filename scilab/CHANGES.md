@@ -243,6 +243,7 @@ Bug Fixes
 * [#16104](http://bugzilla.scilab.org/show_bug.cgi?id=16104): `assert_checkequal()` did not support properly or at all Nan and void in lists, Nan in sparse, implicit lists, macros, libraries, built-in functions, graphical handles. For input arrays or lists of matching typeof and sizes, the failure message did not display neither the index nor the values of the first mismatching elements.
 * [#16111](http://bugzilla.scilab.org/show_bug.cgi?id=16111): `isglobal` was not supporting non-scalar array of strings as input.
 * [#16118](http://bugzilla.scilab.org/show_bug.cgi?id=16118): `%s <> (1+%s)` returned %F.
+* [#16135](http://bugzilla.scilab.org/show_bug.cgi?id=16135): base2dec did not detect invalid numbers.
 * [#16139](http://bugzilla.scilab.org/show_bug.cgi?id=16139): `auread()` and `auwrite()` kept the sound file open and locked when returning on errors. They poorly handled the default .au sound file extension.
 * [#16143](http://bugzilla.scilab.org/show_bug.cgi?id=16143): `clc(n)` cleared n+1 lines instead of n>0. Thus, it was not possible to clear only one line. 
 * [#16144](http://bugzilla.scilab.org/show_bug.cgi?id=16144): Addition of sparse matrices gave incorrect results.
