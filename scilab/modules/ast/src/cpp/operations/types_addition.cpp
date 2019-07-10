@@ -2427,66 +2427,23 @@ template<> InternalType* add_I_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 //sp + sp
 template<> InternalType* add_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _pR)
 {
-    Sparse* pOut = NULL;
-
     //check scalar hidden in a sparse ;)
-    /* if (_pL->getRows() == 1 && _pL->getCols() == 1)
-     {
-         //do scalar + sp
-         Double* pDbl = NULL;
-         if (_pL->isComplex())
-         {
-             std::complex<double> dbl = _pL->getImg(0, 0);
-             pDbl = new Double(dbl.real(), dbl.imag());
-         }
-         else
-         {
-             pDbl = new Double(_pL->get(0, 0));
-         }
+    if (_pL->isScalar() || _pR->isScalar())
+    {
+        // scalar + sp  or  sp + scalar
+        // call Overload
+        return NULL;
+    }
 
-         AddSparseToDouble(_pR, pDbl, (GenericType**)pOut);
-         delete pDbl;
-         return pOut;
-     }
+    if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
+    {
+        //dimensions not match
+        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+    }
 
-     if (_pR->getRows() == 1 && _pR->getCols() == 1)
-     {
-         //do sp + scalar
-         Double* pDbl = NULL;
-         if (_pR->isComplex())
-         {
-             std::complex<double> dbl = _pR->getImg(0, 0);
-             pDbl = new Double(dbl.real(), dbl.imag());
-         }
-         else
-         {
-             pDbl = new Double(_pR->get(0, 0));
-         }
-
-         AddSparseToDouble(_pL, pDbl, (GenericType**)pOut);
-         delete pDbl;
-         return 0;
-     }
-
-     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
-     {
-         //dimensions not match
-         throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
-     }
-
-     if (_pL->nonZeros() == 0)
-     {
-         //sp([]) + sp
-         return _pR;
-     }
-
-     if (_pR->nonZeros() == 0)
-     {
-         //sp + sp([])
-         return _pL;
-     }*/
-
-    return _pL->add(*_pR);
+    types::Sparse* pOut = _pL->add(*_pR);
+    pOut->finalize();
+    return pOut;
 }
 
 //d + sp
