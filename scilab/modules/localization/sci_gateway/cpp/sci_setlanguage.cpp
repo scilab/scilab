@@ -37,7 +37,7 @@ types::Function::ReturnValue sci_setlanguage(types::typed_list &in, int _piRetCo
         return types::Function::Error;
     }
 
-    if (_piRetCount != 1)
+    if (_piRetCount > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "setlanguage", 1);
         return types::Function::Error;

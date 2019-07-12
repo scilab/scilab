@@ -52,7 +52,7 @@ int sci_norm(char *fname, void* pvApiCtx)
     int _isinf = 0;
 
     CheckInputArgument(pvApiCtx, 1, 2);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     // Checking A.
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &pAAddr); // Retrieving A address.

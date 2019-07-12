@@ -13,7 +13,7 @@
 int sci_matmul(char *fname)
 {
     static int l1, m1, n1, l2, m2, n2, l3;
-    static int minlhs = 1, maxlhs = 1, minrhs = 2, maxrhs = 2;
+    static int minlhs = 0, maxlhs = 1, minrhs = 2, maxrhs = 2;
 
     /* Check number of inputs (rhs=2) and outputs (lhs=1) */
     CheckRhs(minrhs, maxrhs) ;

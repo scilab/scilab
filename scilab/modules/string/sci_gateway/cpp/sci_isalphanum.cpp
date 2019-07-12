@@ -40,7 +40,7 @@ types::Function::ReturnValue sci_isalphanum(types::typed_list &in, int _iRetCoun
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "isalphanum", 1);
         return types::Function::Error;

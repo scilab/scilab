@@ -37,15 +37,13 @@ types::Function::ReturnValue sci_mcisendstring(types::typed_list &in, int _iRetC
     int out2 = 0;
     std::wstring out3(L"OK");
 
-    wchar_t output[2048];
-
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname.data(), 1);
         return types::Function::Error;
     }
 
-    if (_iRetCount < 1 || _iRetCount > 3)
+    if (_iRetCount > 3)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), fname.data(), 1, 3);
         return types::Function::Error;

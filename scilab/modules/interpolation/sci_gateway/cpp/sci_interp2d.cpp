@@ -195,7 +195,7 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
     // *** Perform operation. ***
     pDblZp = new types::Double(pDblXp->getRows(), pDblXp->getCols());
 
-    if (_iRetCount == 1)
+    if (_iRetCount <= 1)
     {
         C2F(bicubicinterp)(pDblX->get(), pDblY->get(), pDblC->get(), &sizeOfX, &sizeOfY, pDblXp->get(), pDblYp->get(), pDblZp->get(), &sizeOfXp, &iType);
 

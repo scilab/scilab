@@ -29,7 +29,7 @@ int sci_getfilepartlevel(char *fname, void *pvApiCtx)
     char* pcOutput  = NULL;
 
     CheckInputArgument(pvApiCtx, 1, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)

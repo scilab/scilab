@@ -56,7 +56,7 @@ int sci_h5exists(char *fname, int* pvApiCtx)
     int * ret = 0;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 2, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

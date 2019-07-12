@@ -36,7 +36,7 @@ int sci_TCL_EvalStr(char *fname, void* pvApiCtx)
     char* l2 = NULL;
 
     CheckInputArgument(pvApiCtx, 1, 2);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (checkInputArgumentType(pvApiCtx, 1, sci_strings))
     {

@@ -44,7 +44,7 @@ template < class T > int sci_xmlValidationFile(char *fname, void *pvApiCtx)
 
     std::string error;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(1, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

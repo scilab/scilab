@@ -52,7 +52,7 @@ int sci_xchange(char * fname, void *pvApiCtx)
     int viewingRect[VIEWING_RECT_SIZE];
 
     CheckInputArgument(pvApiCtx, 3, 3);
-    CheckOutputArgument(pvApiCtx, 1, 3);
+    CheckOutputArgument(pvApiCtx, 0, 3);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrl3);
     if (sciErr.iErr)

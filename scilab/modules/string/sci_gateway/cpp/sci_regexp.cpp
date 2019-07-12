@@ -65,7 +65,7 @@ types::Function::ReturnValue sci_regexp(types::typed_list &in, int _iRetCount, t
     }
 
     // check output parameters
-    if (_iRetCount < 1 || _iRetCount > 4)
+    if (_iRetCount > 4)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "regexp", 1, 4);
         return types::Function::Error;

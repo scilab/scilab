@@ -68,8 +68,8 @@ int sci_hdf5_load_v2(char *fn, int* pvApiCtx)
     const int nbIn = nbInputArgument(pvApiCtx);
     int iSelectedVar = nbIn - 1;
 
-    CheckInputArgumentAtLeast(pvApiCtx, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckInputArgumentAtLeast(pvApiCtx , 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)

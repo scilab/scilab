@@ -21,7 +21,7 @@
 int sci_TCL_DoOneEvent (char *fname, void* pvApiCtx)
 {
     CheckInputArgument(pvApiCtx, 0, 0);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     // wait for events and invoke event handlers
     Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT);

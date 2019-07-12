@@ -27,7 +27,7 @@ int ScilabGateway::invoke(char * fname, const int envId, ScilabAbstractInvoker &
     int ret = 0;
     int nbArgs = Rhs;
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
     ScilabGatewayOptions & options = env.getGatewayOptions();

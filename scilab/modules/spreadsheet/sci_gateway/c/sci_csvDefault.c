@@ -59,7 +59,7 @@ int sci_csvDefault(char *fname, void* pvApiCtx)
 {
     Rhs = Max(0, Rhs);
     CheckRhs(0, 2);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     switch (Rhs)
     {

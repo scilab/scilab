@@ -237,6 +237,8 @@ static ScicosID get(types::GenericType* UIDs, int index)
 
 static types::Function::ReturnValue get(types::GenericType* UIDs, int _iRetCount, types::typed_list &out)
 {
+    _iRetCount = std::max(1, _iRetCount);
+
     if (UIDs->getSize() != _iRetCount)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: %dx%d expected.\n"), funame.data(), 1, _iRetCount, 1);
@@ -291,6 +293,8 @@ static types::Function::ReturnValue get(types::GenericType* UIDs, int _iRetCount
 
 types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    _iRetCount = std::max(1, _iRetCount);
+
     if (in.size() < 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), funame.data(), 1);

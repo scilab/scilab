@@ -124,7 +124,7 @@ int read_double(char *fname,void* pvApiCtx)
 	double* pdblImg		= NULL;
 	// 入力/出力引数を確認
     CheckInputArgument(pvApiCtx, 1, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     /************************
 	*    最初の変数    *
 	************************/

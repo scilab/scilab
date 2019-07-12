@@ -88,7 +88,7 @@ int sci_call_scifunc(char *fname)
   int pointerOnScilabFunction     = 0;
 
   CheckRhs(3,3);
-  CheckLhs(1,1);
+  CheckLhs(0,1);
 
   if (GetType(1) != sci_matrix)
   {

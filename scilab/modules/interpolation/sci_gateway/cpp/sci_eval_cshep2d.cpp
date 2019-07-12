@@ -133,7 +133,7 @@ types::Function::ReturnValue sci_eval_cshep2d(types::typed_list &in, int _iRetCo
 
     pDblF = new types::Double(pDblXp->getRows(), pDblXp->getCols());
 
-    if (_iRetCount == 1)
+    if (_iRetCount <= 1)
     {
         for (int i = 0; i < sizeOfXp; i++)
         {

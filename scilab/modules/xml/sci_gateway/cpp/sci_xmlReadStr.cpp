@@ -40,7 +40,7 @@ int sci_xmlReadStr(char *fname, void* pvApiCtx)
     bool validate = false;
     int validateParam;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(1, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

@@ -39,7 +39,7 @@ int sci_xmlDocument(char *fname, void* pvApiCtx)
     int i = 0;
     char **vars[] = { &uri, &version };
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(0, 2);
 
     for (; i < Rhs; i++)

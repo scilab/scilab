@@ -11,7 +11,7 @@ void c_sub(double *b, double *c, double *a);
 int c_intsum(char *fname, void * pvApiCtx)
 {
     int rows1 = 0, cols1 = 0,  rows2 = 0, cols2 = 0, rows3 = 1, cols3 = 1;
-    int minlhs = 1, maxlhs = 1, minrhs = 2, maxrhs = 2;
+    int minlhs = 0, maxlhs = 1, minrhs = 2, maxrhs = 2;
 
     double *pdbl1 = NULL, *pdbl2 = NULL, *pdblOut = NULL;
     int* piAddr1 = NULL;
@@ -100,7 +100,7 @@ int c_intsum(char *fname, void * pvApiCtx)
 int c_intsub(char *fname, void * pvApiCtx)
 {
     int rows1 = 0, cols1 = 0, rows2 = 0, cols2 = 0, rows3 = 1, cols3 = 1;
-    int minlhs = 1, maxlhs = 1, minrhs = 2, maxrhs = 2;
+    int minlhs = 0, maxlhs = 1, minrhs = 2, maxrhs = 2;
 
     double *pdbl1 = NULL, *pdbl2 = NULL, *pdblOut = NULL;
     int* piAddr1 = NULL;

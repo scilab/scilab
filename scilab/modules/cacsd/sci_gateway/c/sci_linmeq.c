@@ -211,7 +211,7 @@ int sci_linmeq(char *fname, void* pvApiCtx)
 
     // Check for proper number of arguments.
     CheckInputArgument(pvApiCtx, 3, 7);
-    CheckOutputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 0, 2);
 
     // Check dimensions of input parameters and read/set scalar parameters.
     //   task
@@ -766,7 +766,7 @@ int sci_linmeq(char *fname, void* pvApiCtx)
             return 1;
         }
 
-        if (nbOutputArgument(pvApiCtx) == 1)
+        if (nbOutputArgument(pvApiCtx) <= 1)
         {
             sciErr = allocMatrixOfDoubleAsInteger(pvApiCtx, ++iNbvars, iOne, iOne, &lIWORK);
             if (sciErr.iErr)

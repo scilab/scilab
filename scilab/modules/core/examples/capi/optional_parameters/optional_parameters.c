@@ -28,7 +28,7 @@ int sci_optional_parameters(char * fname)
     };
 
     int minrhs = 1, maxrhs = 1;
-    int minlhs = 1, maxlhs = 3;
+    int minlhs = 0, maxlhs = 3;
     int nopt, iopos, res;
     char buffer_name[csiz]; // csiz used for character coding
 

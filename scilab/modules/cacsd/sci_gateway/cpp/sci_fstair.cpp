@@ -46,7 +46,7 @@ types::Function::ReturnValue sci_fstair(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    if (_iRetCount < 1 || _iRetCount > 10)
+    if (_iRetCount > 10)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "fstair", 1, 10);
         return types::Function::Error;

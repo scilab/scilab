@@ -58,6 +58,8 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
         return sci_getfieldUserType(in, _iRetCount, out);
     }
 
+    _iRetCount = std::max(_iRetCount, 1);
+
     types::InternalType* pIndex = in[0];
     if (in[1]->isList() == false && in[1]->isMList() == false && in[1]->isTList() == false)
     {

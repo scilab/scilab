@@ -213,7 +213,7 @@ int read_write_bsparse(char *fname,void* pvApiCtx)
     int* piNewCol           = NULL;
     // 入力/出力引数を確認
     CheckInputArgument(pvApiCtx, 1, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     // 最初の入力引数の変数アドレスを取得
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if(sciErr.iErr)

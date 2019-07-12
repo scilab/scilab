@@ -37,7 +37,7 @@ types::Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, type
     types::Double* pDblIn   = NULL;
     types::Double* pDblN    = NULL; // numerator
     types::Double* pDblD    = NULL; // denominator
-    types::Double* pDblOut  = NULL; // if _iRetCount == 1 the result is N/D
+    types::Double* pDblOut  = NULL; // if _iRetCount <= 1 the result is N/D
 
     double dblTol  = 1.e-6;
 
@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, type
         dblTol = dblTol * dblRTol;
     }
 
-    if (_iRetCount == 1)
+    if (_iRetCount <= 1)
     {
         pDblOut = new types::Double(pDblIn->getRows(), pDblIn->getCols());
         double* pOutR = pDblOut->get();

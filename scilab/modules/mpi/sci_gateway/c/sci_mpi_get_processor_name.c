@@ -29,7 +29,7 @@ int sci_mpi_get_processor_name(char *fname, void* pvApiCtx)
     int iRet = 0;
 
     CheckInputArgument(pvApiCtx, 0, 0);
-    CheckOutputArgument(pvApiCtx, 1, 1);            // The output of the function (1 parameter)
+    CheckOutputArgument(pvApiCtx, 0, 1);            // The output of the function (1 parameter)
 
     iRet = MPI_Get_processor_name(processorName, &iSizeProcessorName);
     if (iRet != MPI_SUCCESS)

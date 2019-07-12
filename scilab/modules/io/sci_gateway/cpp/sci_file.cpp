@@ -208,7 +208,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
         int iErr = C2F(clunit)(&lunit, pstFilename, piMode, (int)strlen(pstFilename));
         if (iErr)
         {
-            if (_iRetCount == 1)
+            if (_iRetCount <= 1)
             {
                 switch (iErr)
                 {
@@ -254,7 +254,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
              wcscmp(pSAction->get(0), L"backspace") == 0 ||
              wcscmp(pSAction->get(0), L"last") == 0)
     {
-        if (_iRetCount != 1)
+        if (_iRetCount > 1)
         {
             Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "file", 1);
             return types::Function::Error;

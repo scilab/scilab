@@ -32,7 +32,7 @@ int sci_getfields(char *fname, void *pvApiCtx)
     int sizefields = 0;
 
     CheckRhs(1, 1);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)

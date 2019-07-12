@@ -44,7 +44,7 @@ int sci_testmatrix(char *fname, void* pvApiCtx)
     double *pdblRealRet = NULL;
 
     CheckRhs(2, 2);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     /*check input 1*/
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);

@@ -32,7 +32,7 @@ int sci_datatip_set_display(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 1, 2);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     int iDatatipUID     = 0;
     int* piAddr         = NULL;

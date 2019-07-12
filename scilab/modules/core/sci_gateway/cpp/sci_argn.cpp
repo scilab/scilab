@@ -82,7 +82,7 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        if (iRhs == 0 && _iRetCount == 1)
+        if (iRhs == 0 && _iRetCount <= 1)
         {
             //arng() returns lhs
             out.push_back(pOut);

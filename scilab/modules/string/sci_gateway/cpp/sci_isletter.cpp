@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_isletter(types::typed_list &in, int _iRetCount,
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "isletter", 1);
         return types::Function::Error;
     }
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "isletter", 1);
         return types::Function::Error;

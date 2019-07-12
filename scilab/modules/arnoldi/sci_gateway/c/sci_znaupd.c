@@ -80,7 +80,7 @@ int sci_znaupd(char *fname, void *pvApiCtx)
     int RWORK, mRWORK, nRWORK;
     int INFO,  mINFO,  nINFO;
 
-    int minlhs = 1, minrhs = 15, maxlhs = 9, maxrhs = 15;
+    int minlhs = 0, minrhs = 15, maxlhs = 9, maxrhs = 15;
     int LDV, LWORKL;
     int sizeWORKL = 0;
 

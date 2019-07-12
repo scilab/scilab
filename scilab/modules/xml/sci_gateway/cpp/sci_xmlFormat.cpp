@@ -24,7 +24,7 @@ extern "C"
 int sci_xmlFormat(char *fname, void* pvApiCtx)
 {
     CheckRhs(1, 1);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     OverLoad(1);
 

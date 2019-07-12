@@ -35,7 +35,7 @@ int sci_TCL_UnsetVar(char *fname, void* pvApiCtx)
     Tcl_Interp *TCLinterpreter = NULL;
 
     CheckInputArgument(pvApiCtx, 1, 2);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (checkInputArgumentType(pvApiCtx, 1, sci_strings))
     {

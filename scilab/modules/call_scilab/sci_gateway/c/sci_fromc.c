@@ -25,7 +25,7 @@
 int sci_fromc(char *fname, void* pvApiCtx)
 {
     CheckInputArgument(pvApiCtx, 0, 0);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if ( IsFromC() )
     {

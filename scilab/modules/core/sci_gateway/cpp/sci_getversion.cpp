@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
 
     if (in.size() == 0)
     {
-        if (_iRetCount != 1 && _iRetCount != 2)
+        if (_iRetCount > 2)
         {
             Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "getversion", 1, 2);
             return types::Function::Error;
@@ -77,7 +77,7 @@ types::Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCoun
             return types::Function::Error;
         }
 
-        if (_iRetCount != 1)
+        if (_iRetCount > 1)
         {
             Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getversion", 1);
             return types::Function::Error;

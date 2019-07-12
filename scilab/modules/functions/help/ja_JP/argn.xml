@@ -59,11 +59,6 @@
             通常,関数の定義においてオプションの引数を処理する際に使用されます.
         </para>
         <warning>
-            <varname>lhs</varname> は常に1以上であることに注意してください.
-            言い換えると,関数が出力引数なしにコールされた場合であっても,
-            <varname>lhs</varname> は 1 となります.
-        </warning>
-        <warning>
             Testing the existence of a named input argument with <literal>isdef(..,"l")</literal>
             is more robust that with <literal>argn()</literal>. Please see examples.
         </warning>

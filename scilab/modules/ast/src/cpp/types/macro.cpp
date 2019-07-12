@@ -31,7 +31,6 @@ extern "C"
 {
 #include "localization.h"
 #include "Scierror.h"
-#include "sciprint.h"
 #include "sci_malloc.h"
 #include "os_string.h"
 }
@@ -175,6 +174,9 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 {
     int rhs = (int)in.size();
     bool bVarargout = false;
+
+    int  iRetCount = std::max(0, _iRetCount);
+
     ReturnValue RetVal = Callable::OK;
     symbol::Context *pContext = symbol::Context::getInstance();
 
@@ -280,6 +282,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     // varargout is a list
     // varargout can containt more items than caller need
     // varargout must containt at leat caller needs
+
     if (m_outputArgs->size() >= 1 && m_outputArgs->back()->getSymbol().getName() == L"varargout")
     {
         bVarargout = true;
@@ -304,7 +307,8 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         m_pDblArgOut = m_pDblArgOut->clone();
         m_pDblArgOut->IncreaseRef();
     }
-    m_pDblArgOut->set(0, _iRetCount);
+
+    m_pDblArgOut->set(0, iRetCount);
 
     pContext->put(m_Nargin, m_pDblArgIn);
     pContext->put(m_Nargout, m_pDblArgOut);
@@ -338,7 +342,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     }
 
     //nb excepted output without varargout
-    int iRet = std::min((int)m_outputArgs->size() - (bVarargout ? 1 : 0), _iRetCount);
+    int iRet = std::min((int)m_outputArgs->size() - (bVarargout ? 1 : 0), std::max(1, iRetCount));
 
     //normal output management
     //for (std::list<symbol::Variable*>::iterator i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
@@ -397,7 +401,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         }
 
         List* pVarOut = pOut->getAs<List>();
-        const int size = std::min(pVarOut->getSize(), _iRetCount - (int)out.size());
+        const int size = std::min(pVarOut->getSize(), iRetCount - (int)out.size());
         for (int i = 0 ; i < size ; ++i)
         {
             InternalType* pIT = pVarOut->get(i);

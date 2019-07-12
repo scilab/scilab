@@ -23,7 +23,7 @@ int ScilabGateway::getEnvId(char * fname, const int envId, void * pvApiCtx)
     SciErr sciErr;
 
     CheckInputArgument(pvApiCtx, 0, 0);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
     ScilabGatewayOptions & options = env.getGatewayOptions();

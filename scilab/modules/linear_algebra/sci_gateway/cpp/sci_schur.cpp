@@ -47,6 +47,8 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
     bool bIsContinuStr              = false;
     bool bIsDiscreteStr             = false;
 
+    _iRetCount = std::max(1, _iRetCount);
+
     // *** check number of input args. ***
     if (in.size() < 1 || in.size() > 3)
     {
@@ -183,7 +185,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         }
         case 12: // double string
         {
-            if (_iRetCount >= 2 && _iRetCount <= 3)
+            if (_iRetCount != 2 && _iRetCount != 3)
             {
                 Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "schur", 2, 3);
                 return types::Function::Error;

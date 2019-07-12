@@ -35,7 +35,7 @@ types::Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, ty
     int iErrorCode = DEFAULT_ERROR_CODE;
     types::String* pStrError = NULL;
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "error", 1);
         return types::Function::Error;

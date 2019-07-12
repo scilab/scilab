@@ -15,7 +15,7 @@ int interf_template_A0(char *fname, void * pvApiCtx)
     SciErr sciErr;
 
     CheckRhs(0, 0);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
 
     sciErr = allocMatrixOfInteger32(pvApiCtx, 1, rows, cols, &piInt);
@@ -40,7 +40,7 @@ int interf_template_B0(char *fname, void * pvApiCtx)
     SciErr sciErr;
 
     CheckRhs(0, 0);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     sciErr = allocMatrixOfInteger32(pvApiCtx, Rhs + 1, rows, cols, &piInt);
     if (sciErr.iErr)

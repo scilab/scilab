@@ -73,7 +73,7 @@ int sci_my_function(char *fname, unsigned long l)
 * a = my_function(a,b,c);
 */
   CheckRhs(3,3);
-  CheckLhs(1,1);
+  CheckLhs(0,1);
 
 }
  ]]></programlisting>

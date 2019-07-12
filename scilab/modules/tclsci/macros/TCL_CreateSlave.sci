@@ -21,7 +21,7 @@ function status = TCL_CreateSlave(slaveName, isSafe)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "TCL_CreateSlave", 1, 2));
     end
 
-    if lhs<>1 then
+    if lhs > 1 then
         error(msprintf(gettext("%s: Wrong number of output argument(s): %d expected.\n"), "TCL_CreateSlave", 1));
     end
 

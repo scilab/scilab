@@ -53,7 +53,7 @@ int sci_h5label(char *fname, int* pvApiCtx)
     const int nbIn = nbInputArgument(pvApiCtx);
     int row, col;
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 4, 4);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

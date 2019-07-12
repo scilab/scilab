@@ -31,7 +31,7 @@ int sci_tempname(char *fname, void* pvApiCtx)
 
     //Rhs = Max(Rhs, 0);
     CheckRhs(0, 1);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     if (Rhs == 0)
     {

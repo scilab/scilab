@@ -11,7 +11,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function plot(varargin)
+function varargout = plot(varargin)
     // Try to build a new better parser that could manage things like:
     // plot(x,y,'X',1:10); // where X stands for Xdata (Matlab recognizes
     //it and treats it well...)
@@ -22,7 +22,7 @@ function plot(varargin)
         //LineSpec and PropertySpec examples:
         t = 0:%pi/20:2*%pi;
         tt = t';
-        clf('reset');
+        clf("reset");
         drawlater();
         subplot(211);
         plot(tt, sin(tt), "ro-.", tt, cos(tt), "cya+", tt, abs(sin(tt)), "--mo");
@@ -259,7 +259,7 @@ function plot(varargin)
                     msg1 = gettext("%s: Error : unable to evaluate input function %s.")
                     msg2 = gettext("Error %d at line %d of the function: ''%s''")
                     error(msprintf(msg1 + ascii(10) + msg2, "plot", ..
-                        err_func, err_number, err_line, err_message));
+                    err_func, err_number, err_line, err_message));
                 end
                 // All right: go on plotting:
                 ListArg(xyIndexLineSpec(i,2)) = tmp;
@@ -477,4 +477,7 @@ function plot(varargin)
     // smart drawnow
     ResetFigureDDM(current_figure, cur_draw_mode)
 
+    if lhs
+        varargout(1) = Curves;
+    end
 endfunction

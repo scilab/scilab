@@ -40,7 +40,7 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    if (_iRetCount < 1 || _iRetCount > 5)
+    if (_iRetCount > 5)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "ereduc", 1, 5);
         return types::Function::Error;

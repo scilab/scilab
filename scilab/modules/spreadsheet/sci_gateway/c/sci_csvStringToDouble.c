@@ -42,7 +42,7 @@ int sci_csvStringToDouble(char *fname, void* pvApiCtx)
     stringToComplexError ierr = STRINGTOCOMPLEX_ERROR;
 
     CheckRhs(1, 2);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     if (Rhs == 1)
     {

@@ -37,7 +37,7 @@ inline static int sci_h5isfoo(const HDF5Scilab::H5ObjectType type, char * fname,
     bool ok = false;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 1, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

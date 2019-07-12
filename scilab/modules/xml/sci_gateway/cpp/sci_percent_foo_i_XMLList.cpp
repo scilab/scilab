@@ -52,7 +52,7 @@ int sci_percent_foo_i_XMLList(char *fname, void* pvApiCtx)
     int mrhs = 1;
     int mlhs = 1;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(3, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &indexaddr);

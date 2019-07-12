@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount
         return types::Function::Error;
     }
 
-    if (in.size() == 2 && _iRetCount != 1 && _iRetCount != -1)
+    if (in.size() == 2 && _iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "fileparts", 1);
         return types::Function::Error;

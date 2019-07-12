@@ -48,7 +48,7 @@ int sci_xmlDump(char *fname, void* pvApiCtx)
     std::vector < const char *>clines;
     bool indent = true;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(1, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

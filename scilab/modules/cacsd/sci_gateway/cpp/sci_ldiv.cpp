@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "ldiv", 1);
         return types::Function::Error;

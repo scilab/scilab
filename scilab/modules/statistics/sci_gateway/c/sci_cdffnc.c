@@ -34,6 +34,6 @@ int sci_cdffnc(char* fname, void* pvApiCtx)
         {"Dfd"  , 5, 1, 5},
         {"Pnonc", 5, 1, 0}
     };
-    struct cdf_descriptor cdf = mkcdf(cdffnc, 5, 6, 1, 2, items);
+    struct cdf_descriptor cdf = mkcdf(cdffnc, 5, 6, 0, 2, items);
     return cdf_generic(fname, pvApiCtx, &cdf);
 }

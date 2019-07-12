@@ -79,7 +79,7 @@ int sci_h5write(char *fname, int* pvApiCtx)
     unsigned int rhsBegin = 0;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     // passer a 9 pr autoriser le chunking et surtout l'ajouter a la creation du dataset.
     CheckInputArgument(pvApiCtx, 3, 8);

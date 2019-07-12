@@ -55,6 +55,7 @@ std::wstring Overload::buildOverloadName(const std::wstring& _stFunctionName, ty
 
 types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, bool _isOperator)
 {
+    _iRetCount = std::max(1,_iRetCount);
     std::wstring stFunc = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator);
     if (symbol::Context::getInstance()->get(symbol::Symbol(stFunc)))
     {
@@ -83,6 +84,7 @@ types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _
 
 types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, bool _isOperator)
 {
+    _iRetCount = std::max(1,_iRetCount);
     types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(_stOverloadingFunctionName));
     types::Callable *pCall = NULL;
     try

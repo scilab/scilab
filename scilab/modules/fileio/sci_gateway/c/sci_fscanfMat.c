@@ -44,7 +44,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
     fscanfMatResult *results = NULL;
 
     CheckRhs(1, 3);
-    CheckLhs(1, 2);
+    CheckLhs(0, 2);
 
     if (Rhs == 3)
     {

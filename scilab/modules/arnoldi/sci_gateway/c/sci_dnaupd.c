@@ -73,7 +73,7 @@ int sci_dnaupd(char *fname, void *pvApiCtx)
     int WORKL, mWORKL, nWORKL;
     int INFO,  mINFO,  nINFO;
 
-    int minlhs = 1, minrhs = 14, maxlhs = 8, maxrhs = 14;
+    int minlhs = 0, minrhs = 14, maxlhs = 8, maxrhs = 14;
     int LDV, LWORKL;
     int sizeWORKL = 0;
 

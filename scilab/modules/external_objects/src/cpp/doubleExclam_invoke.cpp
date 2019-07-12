@@ -33,7 +33,7 @@ int ScilabGateway::doubleExclam_invoke(char * fname, const int envId, void * pvA
     int len = Rhs - 1;
     std::vector<int> torem;
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
     ScilabGatewayOptions & options = env.getGatewayOptions();

@@ -29,7 +29,7 @@ int ScilabGateway::getField(char * fname, const int envId, void * pvApiCtx)
     char * fieldName = 0;
 
     CheckInputArgument(pvApiCtx, 2, 3);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
     ScilabGatewayOptions & options = env.getGatewayOptions();

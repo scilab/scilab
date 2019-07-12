@@ -60,6 +60,8 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
     int iRet                = 0;
     double tol              = 0.;
 
+    _iRetCount = std::max(1, _iRetCount);
+
     if (in.size() != 1 && in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "svd", 1, 2);

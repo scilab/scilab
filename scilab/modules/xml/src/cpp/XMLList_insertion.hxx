@@ -50,7 +50,7 @@ int sci_XMLList_insertion(char * fname, void* pvApiCtx)
     int * rhsaddr = 0;
     int * lhsaddr = 0;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(3, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &indexaddr);

@@ -43,7 +43,7 @@ int sci_h5flush(char *fname, int* pvApiCtx)
     bool _local = true;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 1, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

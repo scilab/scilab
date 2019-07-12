@@ -20,7 +20,7 @@ int intfun1(char *fname, void *pvApiCtx)
     double dblIn = 0;
     double dblOut = 0;
     CheckRhs(1, 1);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr != 0)

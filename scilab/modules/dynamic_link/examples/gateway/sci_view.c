@@ -11,7 +11,7 @@
 int sci_view(char *fname)
 {
     static int l1, m1, n1, l2, m2, n2, m3, n3, l3;
-    static int minlhs = 1, maxlhs = 3, minrhs = 3, maxrhs = 3;
+    static int minlhs = 0, maxlhs = 3, minrhs = 3, maxrhs = 3;
 
     /* Check number of inputs (rhs=3) and outputs (lhs=3) */
     CheckRhs(minrhs, maxrhs) ;

@@ -61,7 +61,7 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
     csvResult *result = NULL;
 
     CheckRhs(1, 5);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     if (Rhs == 5)
     {

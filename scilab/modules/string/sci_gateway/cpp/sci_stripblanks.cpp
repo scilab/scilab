@@ -42,7 +42,7 @@ types::Function::ReturnValue sci_stripblanks(types::typed_list &in, int _iRetCou
     }
 
     // check output parameters
-    if (_iRetCount != 1 && _iRetCount != -1)
+    if (_iRetCount > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), FUNCNAME, 1);
         return types::Function::Error;

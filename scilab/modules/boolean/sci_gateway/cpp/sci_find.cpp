@@ -33,6 +33,7 @@ static void getCoordFromIndex(int _iIndex, int* _piIndexes, int* _piDims, int _i
 types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iMax = -1;
+    int iRetCount = std::max(1, _iRetCount);
 
     if (in.size() == 0 || in.size() > 2)
     {
@@ -64,7 +65,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     {
         //call overload for other types
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_find";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        return Overload::call(wstFuncName, in, iRetCount, out);
     }
 
     types::GenericType* pGT = in[0]->getAs<types::GenericType>();
@@ -143,19 +144,19 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
 
         //call overload for other types
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_find";
-        return Overload::call(wstFuncName, in, _iRetCount, out);
+        return Overload::call(wstFuncName, in, iRetCount, out);
     }
 
     if (iValues == 0)
     {
-        for (int i = 0 ; i < _iRetCount ; i++)
+        for (int i = 0 ; i < iRetCount ; i++)
         {
             out.push_back(types::Double::Empty());
         }
     }
     else
     {
-        if (_iRetCount == 1)
+        if (iRetCount <= 1)
         {
             types::Double* dbl = new types::Double(1, iValues);
             double* p = dbl->get();
@@ -173,8 +174,8 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         int* piRefDims = pGT->getDimsArray();
         int iRefDims = pGT->getDims();
 
-        int* piDims = new int[_iRetCount];
-        int iDims = _iRetCount;
+        int* piDims = new int[iRetCount];
+        int iDims = iRetCount;
 
         if (iDims == iRefDims)
         {
@@ -212,7 +213,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         int** piCoord = new int*[iValues];
         for (int i = 0 ; i < iValues ; i++)
         {
-            piCoord[i] = new int[_iRetCount];
+            piCoord[i] = new int[iRetCount];
         }
 
         for (int i = 0 ; i < iValues ; i++)
@@ -220,7 +221,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
             getCoordFromIndex(piIndex[i], piCoord[i], piDims, iDims);
         }
 
-        for (int i = 0 ; i < _iRetCount ; i++)
+        for (int i = 0 ; i < iRetCount ; i++)
         {
             types::Double* pOut = new types::Double(1, iValues);
             for (int j = 0 ; j < iValues ; j++)

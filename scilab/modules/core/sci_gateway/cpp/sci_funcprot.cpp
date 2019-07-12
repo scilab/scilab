@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_funcprot(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(77, _("%s: Wrong number of output argument(s): %d expected."), "funcprot", 1);
         return types::Function::Error;

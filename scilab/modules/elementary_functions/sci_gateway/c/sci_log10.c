@@ -50,7 +50,7 @@ int sci_log10(char *fname, void* pvApiCtx)
     int iRhs = nbInputArgument(pvApiCtx);
 
     CheckInputArgument(pvApiCtx, 1, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)

@@ -31,7 +31,7 @@ int sci_TCL_DeleteInterp(char *fname, void* pvApiCtx)
     char* l2 = NULL;
 
     CheckInputArgument(pvApiCtx, 0, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (nbInputArgument(pvApiCtx) == 1)
     {

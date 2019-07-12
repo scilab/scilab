@@ -158,7 +158,16 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         }
 
         setExpectedSize(iSaveExpectedSize);
-        iRetCount = std::max(1, iRetCount);
+
+        // override iRetCount only in relevant cases
+        if (pIT->isCallable() && e.getParent()->isSeqExp())
+        {
+            iRetCount = std::max(0, iRetCount);
+        }
+        else
+        {
+            iRetCount = std::max(1, iRetCount);
+        }
 
         for (int i = 0; i < iLoopSize; i++)
         {

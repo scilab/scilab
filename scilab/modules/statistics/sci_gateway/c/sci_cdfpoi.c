@@ -32,6 +32,6 @@ int sci_cdfpoi(char* fname, void* pvApiCtx)
         {"S"   , 3, 1, 3},
         {"Xlam", 3, 1, 0}
     };
-    struct cdf_descriptor cdf = mkcdf(cdfpoi, 3, 4, 1, 2, items);
+    struct cdf_descriptor cdf = mkcdf(cdfpoi, 3, 4, 0, 2, items);
     return cdf_generic(fname, pvApiCtx, &cdf);
 }

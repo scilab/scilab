@@ -226,7 +226,7 @@ int sci_rubberbox(char * fname, void *pvApiCtx)
     BOOL bClickMode = TRUE;
 
     CheckInputArgument(pvApiCtx, 0, 2);
-    CheckOutputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 0, 2);
     // iView == 1 => 2D
     // else 3D
     getGraphicObjectProperty(iSubwinUID, __GO_VIEW__, jni_int, (void**)&piView);

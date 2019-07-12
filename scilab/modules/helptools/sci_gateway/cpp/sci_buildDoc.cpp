@@ -66,7 +66,7 @@ extern "C"
         int iRet = 0;
 
         CheckRhs(0, 4);
-        CheckLhs(1, 1);
+        CheckLhs(0, 1);
 
         temp = getSCI();
         SciPath = std::string(temp);

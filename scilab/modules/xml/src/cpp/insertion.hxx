@@ -175,7 +175,7 @@ int sci_insertion(char * fname, void* pvApiCtx)
     char * field = 0;
     bool success;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(3, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &fieldaddr);

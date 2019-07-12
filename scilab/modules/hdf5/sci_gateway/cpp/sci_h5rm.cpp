@@ -49,7 +49,7 @@ int sci_h5rm(char *fname, int* pvApiCtx)
     std::string file;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 1, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

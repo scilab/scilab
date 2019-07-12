@@ -29,12 +29,12 @@ types::Function::ReturnValue sci_errclear(types::typed_list &in, int _iRetCount,
     /* Check the number of input argument */
     if (in.size() > 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "errclear" , 0, 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "errclear", 0, 1);
         return types::Function::Error;
     }
 
     /* Check the number of output argument */
-    if (_iRetCount != 1)
+    if (_iRetCount > 0)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "errclear", 0);
         return types::Function::Error;

@@ -71,7 +71,7 @@ int sci_hdf5_load_v1(char *fn, int* pvApiCtx)
     int iSelectedVar = Rhs - 1;
 
     CheckInputArgumentAtLeast(pvApiCtx, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     iCloseList = 0;
 

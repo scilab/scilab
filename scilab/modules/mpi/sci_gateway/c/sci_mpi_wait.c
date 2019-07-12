@@ -36,7 +36,7 @@ int sci_mpi_wait(char *fname, void* pvApiCtx)
     MPI_Comm comm = NULL;
 
     CheckInputArgument(pvApiCtx, 1, 2);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     // if no optional "comm" is given, return MPI_COMM_WORLD
     comm = getOptionalComm(pvApiCtx);

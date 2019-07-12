@@ -44,7 +44,7 @@ int sci_remez(char *fname, void *pvApiCtx)
     int *p;
 
     CheckRhs(4, 4);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     // GetRhsVarMatrixDouble(1, &rows, &cols, &argument);
     getVarAddressFromPosition(pvApiCtx, 1, &p);

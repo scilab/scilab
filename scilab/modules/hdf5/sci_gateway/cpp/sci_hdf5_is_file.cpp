@@ -37,7 +37,7 @@ int sci_hdf5_is_file(char *fname, int* pvApiCtx)
     const int nbIn = nbInputArgument(pvApiCtx);
 
     CheckInputArgument(pvApiCtx, 1, 1);
-    CheckOutputArgument(pvApiCtx, 1, 4);
+    CheckOutputArgument(pvApiCtx, 0, 4);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)

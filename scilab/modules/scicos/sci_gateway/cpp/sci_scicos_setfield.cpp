@@ -73,7 +73,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), funame.data(), 3);
         return types::Function::Error;
     }
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), funame.data(), 1);
         return types::Function::Error;

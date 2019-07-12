@@ -15,7 +15,7 @@ int sci_csum(char *fname, void *pvApiCtx)
     double* pdblOut	= NULL;
 
     CheckRhs(1, 2);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
     if (sciErr.iErr)

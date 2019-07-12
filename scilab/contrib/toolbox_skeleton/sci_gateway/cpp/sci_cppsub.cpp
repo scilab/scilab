@@ -25,7 +25,7 @@ types::Function::ReturnValue sci_cppsub(types::typed_list &in, int _iRetCount, t
     }
 
     /* check that we have only 1 output argument */
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "cpp_sub", 1);
         return types::Function::Error;

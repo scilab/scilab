@@ -139,9 +139,9 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 
                     try
                     {
-                        //in this case of calling, we can return only one value
+                        //in this case of calling, we can return at most one value
                         int iSaveExpectedSize = getExpectedSize();
-                        setExpectedSize(1);
+                        setExpectedSize(0);
 
                         pCall->invoke(in, opt, getExpectedSize(), out, **it);
                         setExpectedSize(iSaveExpectedSize);

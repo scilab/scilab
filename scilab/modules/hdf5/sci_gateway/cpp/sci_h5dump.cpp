@@ -52,7 +52,7 @@ int sci_h5dump(char *fname, int* pvApiCtx)
     bool mustDelete = true;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 1, 2);
 
     if (nbIn == 2)

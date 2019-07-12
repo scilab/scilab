@@ -60,7 +60,7 @@ int sci_h5dataset(char *fname, int* pvApiCtx)
     unsigned int size = 0;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 5, 7);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

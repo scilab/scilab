@@ -167,7 +167,7 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
     int workSize = order[1] * order[2] + 3 * std::max(order[0], std::max(order[1], order[2])) + order[2];
     double* work = new double[workSize];
 
-    if (_iRetCount == 1)
+    if (_iRetCount <= 1)
     {
         C2F(driverdb3val)(pDblXYZ[0]->get(), pDblXYZ[1]->get(), pDblXYZ[2]->get(), pDblFp->get(), &sizeOfXp,
                           pDblX->get(), pDblY->get(), pDblZ->get(), &sizeOfX, &sizeOfY, &sizeOfZ,

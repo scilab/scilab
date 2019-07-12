@@ -40,6 +40,8 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
     bool symmetric          = FALSE;
     int iRet                = 0;
 
+    _iRetCount = std::max(1, _iRetCount);
+
     if (in.size() != 1 && in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "spec", 1, 2);
@@ -117,7 +119,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
         }
 
         symmetric = isSymmetric(pDblA->getReal(), pDblA->getImg(), pDblA->isComplex(), pDblA->getRows(), pDblA->getCols()) == 1;
-        int eigenValuesCols = (_iRetCount == 1) ? 1 : pDblA->getCols();
+        int eigenValuesCols = (_iRetCount <= 1) ? 1 : pDblA->getCols();
 
         if (symmetric)
         {
@@ -160,7 +162,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
                 if (_iRetCount == 2)
                 {
-                    vGetPointerFromDoubleComplex((doublecomplex*)pDataA, pDblA->getSize() , pDblEigenVectors->getReal(), pDblEigenVectors->getImg());
+                    vGetPointerFromDoubleComplex((doublecomplex*)pDataA, pDblA->getSize(), pDblEigenVectors->getReal(), pDblEigenVectors->getImg());
                     vFreeDoubleComplexFromPointer((doublecomplex*)pDataA);
                     expandToDiagonalOfMatrix(pDblEigenValues->getReal(), pDblA->getCols());
                     out.push_back(pDblEigenVectors);
@@ -341,7 +343,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                 Scierror(999, _("%s: Cannot allocate more memory.\n"), "spec");
                 return types::Function::Error;
             }
-            
+
             if (!pDataB)
             {
                 vFreeDoubleComplexFromPointer((doublecomplex*)pDataA);

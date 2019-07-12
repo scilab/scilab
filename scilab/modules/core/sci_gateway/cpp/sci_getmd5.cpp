@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
     bool bStringMode = false;
     char* pstPath = NULL;
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getmd5", 1);
         return types::Function::Error;

@@ -51,6 +51,7 @@ types::Function::ReturnValue sci_scicosDiagramToScilab(types::typed_list &in, in
      * scicosDiagramToScilab(["/path/to/a/file", "/path/to/files"], scs_m1, scs_m2)
      */
 
+    _iRetCount = std::max(1, _iRetCount);
     if (in.size() < 1)
     {
         Scierror(77, _("%s: Wrong number of input arguments: at least %d expected.\n"), funname, 1);

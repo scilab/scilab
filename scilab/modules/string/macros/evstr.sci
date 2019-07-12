@@ -15,7 +15,7 @@
 
 function [%val, %ierr] = evstr(%str)
 
-    %lhs = argn(1);
+    %lhs = max(1,argn(1));
     %val = [];
     %ierr =  0;
 

@@ -80,7 +80,7 @@ int sci_taucs_chsolve(char* fname, void* pvApiCtx)
 
     /* Check numbers of input/output arguments */
     CheckInputArgument(pvApiCtx, 2, 3);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     /* First get arg #1 : the pointer to the Cholesky factors */
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);

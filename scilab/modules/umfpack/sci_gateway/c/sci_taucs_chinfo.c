@@ -60,7 +60,7 @@ int sci_taucs_chinfo(char* fname, void* pvApiCtx)
 
     /* Check numbers of input/output arguments */
     CheckInputArgument(pvApiCtx, 1, 1);
-    CheckOutputArgument(pvApiCtx, 1, 3);
+    CheckOutputArgument(pvApiCtx, 0, 3);
 
     /* get the pointer to the Choleski handle factor */
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);

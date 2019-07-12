@@ -42,7 +42,7 @@ int sci_xmlName(char *fname, void* pvApiCtx)
     int type;
     int size;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(1, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

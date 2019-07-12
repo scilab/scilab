@@ -37,7 +37,7 @@ int sci_chdir(char *fname, void* pvApiCtx)
     wchar_t *expandedPath = NULL;
 
     CheckRhs(0, 1);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     if (Rhs == 0)
     {

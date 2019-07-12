@@ -45,7 +45,7 @@ int sci_h5open(char *fname, int* pvApiCtx)
     size_t blockSize = 64 * 1024;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 1, 5);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

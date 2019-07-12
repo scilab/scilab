@@ -309,7 +309,7 @@ int sci_messagebox(char *fname, void* pvApiCtx)
     messageBoxDisplayAndWait(messageBoxID);
 
     /* Return the index of the button selected */
-    if (nbOutputArgument(pvApiCtx) == 1)
+    if (nbOutputArgument(pvApiCtx) <= 1)
     {
         /* Read the user answer */
         buttonNumber = getMessageBoxSelectedButton(messageBoxID);

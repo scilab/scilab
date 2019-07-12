@@ -73,7 +73,7 @@ int sci_contr(char* fname, void* pvApiCtx)
     /*     [NCONT,U,KSTAIR,V,A,B]=ab01od(A,B,[TOL])   */
 
     CheckInputArgument(pvApiCtx, 2, 3);
-    CheckOutputArgument(pvApiCtx, 1, 6);
+    CheckOutputArgument(pvApiCtx, 0, 6);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrptrA);
     if (sciErr.iErr)

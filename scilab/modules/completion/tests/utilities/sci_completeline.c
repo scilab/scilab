@@ -39,7 +39,7 @@ int sci_completeline(char *fname, void *pvApiCtx)
     char *result            = NULL;
 
     CheckInputArgument(pvApiCtx, 5, 6);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
     if (sciErr.iErr)

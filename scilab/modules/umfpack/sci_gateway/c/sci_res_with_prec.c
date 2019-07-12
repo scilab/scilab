@@ -64,7 +64,7 @@ int sci_res_with_prec(char* fname, void* pvApiCtx)
 
     /* Check numbers of input/output arguments */
     CheckInputArgument(pvApiCtx, 3, 3);
-    CheckOutputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 0, 2);
 
     /* get A the sparse matrix */
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);

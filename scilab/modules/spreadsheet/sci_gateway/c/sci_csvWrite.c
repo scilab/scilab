@@ -65,7 +65,7 @@ int sci_csvWrite(char *fname, void* pvApiCtx)
     int iType1 = 0;
 
     CheckRhs(2, 6);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     if (Rhs > 5)
     {

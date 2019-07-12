@@ -109,7 +109,7 @@ int sci_umfpack(char* fname, void* pvApiCtx)
 
     /* Check numbers of input/output arguments */
     CheckInputArgument(pvApiCtx, 3, 3);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     /* First get arg #2 : a string of length 1 */
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);

@@ -36,7 +36,7 @@ int sci_percent_XMLAttr_length(char *fname, void* pvApiCtx)
     int *addr = 0;
     XMLAttr *attrs;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(1, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

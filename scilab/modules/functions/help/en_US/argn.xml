@@ -60,10 +60,6 @@
             optional arguments.
         </para>
         <warning>
-            There is no way to detect whether a Scilab function is called without expected
-            output argument. In this case, <varname>lhs</varname> returns 1.
-        </warning>
-        <warning>
             Testing the existence of a named input argument with <literal>isdef(..,"l")</literal>
             is more robust that with <literal>argn()</literal>. Please see examples.
         </warning>

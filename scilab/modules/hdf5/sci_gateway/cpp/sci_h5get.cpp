@@ -46,7 +46,7 @@ int sci_h5get(char * fname, int* pvApiCtx)
     int _isAttr;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 2, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

@@ -74,7 +74,7 @@ int sci_taucs_chfact(char* fname, void* pvApiCtx)
 
     /* Check numbers of input/output arguments */
     CheckInputArgument(pvApiCtx, 1, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     /* get A the sparse matrix to factorize */
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);

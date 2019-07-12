@@ -99,7 +99,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     int RWORK,    mRWORK,    nRWORK;
     int INFO,     mINFO,     nINFO;
 
-    int minlhs = 1, minrhs = 21, maxlhs = 9, maxrhs = 21;
+    int minlhs = 0, minrhs = 21, maxlhs = 9, maxrhs = 21;
     int LDZ, LDV, LWORKL;
     int sizeWORKL = 0;
 

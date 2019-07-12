@@ -40,7 +40,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1 && _iRetCount != 2)
+    if (_iRetCount > 2)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "strsplit", 1, 2);
         return types::Function::Error;

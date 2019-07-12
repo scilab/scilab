@@ -30,7 +30,7 @@ int sci_TCL_ExistInterp(char *fname, void* pvApiCtx)
     char *InterpName    = NULL;
 
     CheckInputArgument(pvApiCtx, 1, 2);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (checkInputArgumentType(pvApiCtx, 1, sci_strings))
     {

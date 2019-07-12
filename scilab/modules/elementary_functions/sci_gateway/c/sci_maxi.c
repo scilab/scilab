@@ -54,7 +54,7 @@ int func_comp(char* fname, int _iMini, void* pvApiCtx)
     int iModeActive = 0;
     int *piAddr1		= NULL;
 
-    CheckLhs(1, 2);
+    CheckLhs(0, 2);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
     if (sciErr.iErr)

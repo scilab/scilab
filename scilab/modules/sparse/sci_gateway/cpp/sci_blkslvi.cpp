@@ -38,7 +38,7 @@ Function::ReturnValue sci_blkslvi(typed_list &in, int _iRetCount, typed_list &ou
         return Function::Error;
     }
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "blkslvi", 1);
         return Function::Error;

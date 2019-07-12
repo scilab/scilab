@@ -31,7 +31,7 @@ int sci_issquare(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt,
         return 1;
     }
 
-    if (nout != 1)
+    if (nout > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), fname, 1);
         return 1;

@@ -78,7 +78,7 @@ int sci_qp_solve(char *fname,  void* pvApiCtx)
 
     /*   Check rhs and lhs   */
     CheckInputArgument(pvApiCtx, 5, 5) ;
-    CheckOutputArgument(pvApiCtx, 1, 5) ;
+    CheckOutputArgument(pvApiCtx, 0, 5) ;
 
     /*Warning this interface does not support arguments passed by reference */
 

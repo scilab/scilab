@@ -46,7 +46,7 @@ int sci_percent_XMLAttr_e(char *fname, void* pvApiCtx)
     char *prefix = 0;
     const char *value;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(2, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &prefixaddr);

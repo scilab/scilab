@@ -20,7 +20,7 @@
 types::Function::ReturnValue sci_isequal(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bResult = true;
-    if (in.size() <= 1 || _iRetCount != 1)
+    if (in.size() <= 1 || _iRetCount > 1)
     {
         return types::Function::Error;
     }

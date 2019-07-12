@@ -39,8 +39,8 @@ int sci_htmlRead(char *fname, void* pvApiCtx)
 
     std::string error;
 
-    CheckLhs(1, 2);
-    CheckRhs(1, 1);
+    CheckLhs(0, 2);
+    CheckRhs(0, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);
     if (err.iErr)

@@ -75,7 +75,7 @@ int sci_hdf5_listvar_v2(char *fname, int* pvApiCtx)
     const int nbIn = nbInputArgument(pvApiCtx);
 
     CheckInputArgument(pvApiCtx, 1, 1);
-    CheckOutputArgument(pvApiCtx, 1, 4);
+    CheckOutputArgument(pvApiCtx, 0, 4);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
@@ -137,7 +137,7 @@ int sci_hdf5_listvar_v2(char *fname, int* pvApiCtx)
         pInfo = (VarInfo*)MALLOC(iNbItem * sizeof(VarInfo));
         int b;
 
-        if (Lhs == 1)
+        if (Lhs <= 1)
         {
             sciprint("Name                     Type           Size            Bytes\n");
             sciprint("---------------------------------------------------------------\n");
@@ -160,7 +160,7 @@ int sci_hdf5_listvar_v2(char *fname, int* pvApiCtx)
                 break;
             }
 
-            if (Lhs == 1)
+            if (Lhs <= 1)
             {
                 sciprint("%s\n", pInfo[i].pstInfo);
             }

@@ -26,7 +26,7 @@ int sci_bug_11538(char* fname, void* pvApiCtx)
     char* pstData = NULL;
 
     CheckRhs(1, 1);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)

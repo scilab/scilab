@@ -29,7 +29,7 @@ int sci_rankqr(char* fname, void* pvApiCtx)
     int ret = 0;
 
     CheckInputArgument(pvApiCtx, 1, 3);
-    CheckOutputArgument(pvApiCtx, 1, 5);
+    CheckOutputArgument(pvApiCtx, 0, 5);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)

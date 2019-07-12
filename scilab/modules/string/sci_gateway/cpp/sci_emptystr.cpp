@@ -35,7 +35,7 @@ types::Function::ReturnValue sci_emptystr(types::typed_list &in, int _iRetCount,
     int iRhs = static_cast<int>(in.size());
 
     // check output parameters
-    if (_iRetCount != 1 && _iRetCount != -1)
+    if (_iRetCount > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), fname.data(), 1);
         return types::Function::Error;

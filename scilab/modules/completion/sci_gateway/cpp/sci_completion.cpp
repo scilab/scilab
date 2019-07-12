@@ -64,7 +64,7 @@ types::Function::ReturnValue sci_completion(types::typed_list &in, int _iRetCoun
 
     if (in.size() == 1)
     {
-        if (_iRetCount == 1)
+        if (_iRetCount <= 1)
         {
             out.push_back(doCompletion(pcSomechars, &completion));
         }
@@ -90,7 +90,7 @@ types::Function::ReturnValue sci_completion(types::typed_list &in, int _iRetCoun
     }
     else // if(in.size() == 2)
     {
-        if (_iRetCount != 1)
+        if (_iRetCount > 1)
         {
             Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "completion", 1);
             FREE(pcSomechars);

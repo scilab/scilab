@@ -147,7 +147,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     // *** check number of output args according the methode. ***
     if (meth < 3)
     {
-        if (_iRetCount != 1 && _iRetCount != 3)
+        if (_iRetCount > 3)
         {
             Scierror(78, _("%s: Wrong number of output argument(s): %d or %d expected.\n"), "odedc", 1, 3);
             return types::Function::Error;
@@ -163,7 +163,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     }
     else // meth > 3
     {
-        if (_iRetCount != 1)
+        if (_iRetCount > 1)
         {
             Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "odedc", 1);
             return types::Function::Error;

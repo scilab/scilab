@@ -17,7 +17,7 @@ extern "C" {
         double *position = NULL; /* Where we will store the position */
 
         CheckRhs(2, 2); /* Check the number of input argument */
-        CheckLhs(1, 1); /* Check the number of output argument */
+        CheckLhs(0, 1); /* Check the number of output argument */
 
         //get string
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);

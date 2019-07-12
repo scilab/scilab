@@ -60,7 +60,7 @@ int sci_h5ln(char *fname, int* pvApiCtx)
     bool hard = false;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 3, 5);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

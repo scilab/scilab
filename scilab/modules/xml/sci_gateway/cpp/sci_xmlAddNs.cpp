@@ -37,7 +37,7 @@ int sci_xmlAddNs(char *fname, void* pvApiCtx)
     int *addr = 0;
     int i = 2;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     if (Rhs < 2)
     {
         Scierror(999, gettext("%s: Wrong number of input arguments: at least %d expected.\n"), fname, 2);

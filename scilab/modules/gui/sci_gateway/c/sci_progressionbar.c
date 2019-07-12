@@ -45,7 +45,7 @@ int sci_progressionbar(char *fname, void* pvApiCtx)
     unsigned long GraphicHandle = 0;
 
     CheckInputArgument(pvApiCtx, 1, 2);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrhandleAdr);
     if (sciErr.iErr)
@@ -156,7 +156,7 @@ int sci_progressionbar(char *fname, void* pvApiCtx)
         }
     }
 
-    if (nbOutputArgument(pvApiCtx) == 1)
+    if (nbOutputArgument(pvApiCtx) <= 1)
     {
         nbRow = 1;
         nbCol = 1;

@@ -48,7 +48,7 @@ int sci_h5readattr(char *fname, int* pvApiCtx)
     std::string name;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 1, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

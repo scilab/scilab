@@ -70,7 +70,7 @@ int sci_mpi_init(char *fname, void* pvApiCtx)
     int flag;
 
     CheckInputArgument(pvApiCtx, 0, 0);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     mpi_init_internal();
     MPI_Initialized(&flag);
     if (!flag)

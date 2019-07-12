@@ -56,7 +56,7 @@ int sci_xgetmouse(char *fname, void *pvApiCtx)
     int selPosition = 0;
 
     CheckInputArgument(pvApiCtx, 0, 1);
-    CheckOutputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 0, 2);
 
     switch (nbInputArgument(pvApiCtx))
     {

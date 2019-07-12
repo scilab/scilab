@@ -25,7 +25,7 @@ int C2F(sci_debug)(char *fname, void *pvApiCtx)
     double dPreviousDebugLevel = 0.;
 
     Rhs = Max(Rhs, 0);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(0, 1);
 
     //dPreviousDebugLevel = (double)C2F(iop).ddt;

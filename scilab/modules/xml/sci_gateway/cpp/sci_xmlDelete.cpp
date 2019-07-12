@@ -39,7 +39,7 @@ int sci_xmlDelete(char *fname, void* pvApiCtx)
     XMLValidation *vf = 0;
     char *com = 0;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     if (Rhs == 0)
     {

@@ -39,7 +39,7 @@ int sci_matfile_varwrite(char *fname, void* pvApiCtx)
     SciErr sciErr;
 
     CheckRhs(4, 4);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     /* Input argument is the index of the file to write */
 

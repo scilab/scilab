@@ -56,7 +56,7 @@ int sci_h5cp(char *fname, int* pvApiCtx)
     std::string dloc;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 2, 4);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

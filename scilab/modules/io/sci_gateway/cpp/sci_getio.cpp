@@ -31,17 +31,17 @@ static const char fname[] = "getio";
 int sci_getio(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
 {
 
-	if (nin != 0)
-	{
-		Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 0);
-		return 1;
-	}
+    if (nin != 0)
+    {
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 0);
+        return 1;
+    }
 
-	if (nout != 1)
-	{
-		Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), fname, 1);
-		return 1;
-	}
+    if (nout > 1)
+    {
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), fname, 1);
+        return 1;
+    }
 
     //get diarys count
     int diary = 0;
@@ -57,5 +57,5 @@ int sci_getio(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, in
     scilab_setDoubleArray(env, var, val.data());
     //return it to scilab
     out[0] = var;
-	return 0;
+    return 0;
 }

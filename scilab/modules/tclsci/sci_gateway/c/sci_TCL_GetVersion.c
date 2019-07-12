@@ -35,7 +35,7 @@ int sci_TCL_GetVersion(char *fname, void* pvApiCtx)
     char ReleaseType[256];
 
     CheckInputArgument(pvApiCtx, 0, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     Tcl_GetVersion(&major, &minor, &patchLevel, &type);
 

@@ -44,7 +44,7 @@ types::Function::ReturnValue sci_isnum(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "isnum", 1);
         return types::Function::Error;

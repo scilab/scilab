@@ -50,7 +50,7 @@ int sci_calendar(char *fname, void* pvApiCtx)
     //Rhs = Max(0, Rhs);
 
     CheckRhs(2, 2);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
 

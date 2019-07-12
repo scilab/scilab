@@ -35,7 +35,7 @@ types::Function::ReturnValue sci_oldEmptyBehaviour(types::typed_list &in, int _i
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "oldEmptyBehaviour", 1);
         return types::Function::Error;

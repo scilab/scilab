@@ -49,7 +49,7 @@ int sci_fprintfMat(char *fname, void* pvApiCtx)
     int i = 0;
 
     CheckRhs(2, 5);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     if (Rhs >= 3)
     {

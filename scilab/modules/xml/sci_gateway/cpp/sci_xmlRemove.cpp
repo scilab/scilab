@@ -36,7 +36,7 @@ int sci_xmlRemove(char *fname, void* pvApiCtx)
     int id;
     int *addr = 0;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(1, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

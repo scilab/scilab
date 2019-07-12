@@ -32,6 +32,6 @@ int sci_cdft(char* fname, void* pvApiCtx)
         {"T" , 3, 1, 3},
         {"Df", 3, 1, 0}
     };
-    struct cdf_descriptor cdf = mkcdf(cdft, 3, 4, 1, 2, items);
+    struct cdf_descriptor cdf = mkcdf(cdft, 3, 4, 0, 2, items);
     return cdf_generic(fname, pvApiCtx, &cdf);
 }

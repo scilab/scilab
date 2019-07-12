@@ -40,7 +40,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
     int iSwap               = 0;
 
     //check output parameters
-    if (_iRetCount != 1 && _iRetCount != 2)
+    if (_iRetCount > 2)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "mopen", 1, 2);
         return types::Function::Error;
@@ -59,7 +59,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
         types::String* pS1 = in[0]->getAs<types::String>();
         if (pS1->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "mopen" , 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "mopen", 1);
             return types::Function::Error;
         }
 
@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
             types::String* pS2 = in[1]->getAs<types::String>();
             if (pS2->getSize() != 1)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "mopen" , 2);
+                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "mopen", 2);
                 FREE(pstFilename);
                 return types::Function::Error;
             }
@@ -90,7 +90,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
                 //swap
                 if (in[2]->isDouble() == false)
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), "mopen" , 3);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), "mopen", 3);
                     FREE(pstFilename);
                     return types::Function::Error;
                 }
@@ -111,7 +111,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
 
                 if (in.size() >= 4)
                 {
-                    Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mopen" , 1, 3);
+                    Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mopen", 1, 3);
                     FREE(pstFilename);
                     return types::Function::Error;
                 }
@@ -121,7 +121,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mopen" , 1, 3);
+        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mopen", 1, 3);
         return types::Function::Error;
     }
 
@@ -131,7 +131,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
     if (iErr != MOPEN_NO_ERROR)
     {
         //mange file open errors
-        if (_iRetCount == 1)
+        if (_iRetCount <= 1)
         {
             switch (iErr)
             {

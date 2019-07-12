@@ -40,7 +40,7 @@ int read_write_bsparse(char *fname, void* pvApiCtx)
 
     //check input and output arguments
     CheckInputArgument(pvApiCtx, 1, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     //get variable address of the first input argument
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);

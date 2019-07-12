@@ -24,7 +24,7 @@ int sci_call_xerbla(char *fname)
     int retXerbla = 0;
 
     CheckRhs(2, 2);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)

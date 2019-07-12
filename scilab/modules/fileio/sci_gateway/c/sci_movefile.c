@@ -49,7 +49,7 @@ int sci_movefile(char *fname, void* pvApiCtx)
 
     /* Check Input & Output parameters */
     CheckRhs(2, 2);
-    CheckLhs(1, 2);
+    CheckLhs(0, 2);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)

@@ -30,7 +30,7 @@ int sci_amell(char *fname, void* pvApiCtx)
     int *arg;
 
     CheckRhs(2, 2);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     getVarAddressFromPosition(pvApiCtx, 1, &arg);
     if (isVarComplex(pvApiCtx, arg))
     {

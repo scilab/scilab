@@ -34,12 +34,12 @@ types::Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, typ
     /* Check the number of input argument */
     if (in.size() > 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "mode" , 0, 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "mode", 0, 1);
         return types::Function::Error;
     }
 
     /* Check the number of output argument */
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "mode", 1);
         return types::Function::Error;

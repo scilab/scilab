@@ -40,7 +40,7 @@ int sci_matfile_varreadnext(char *fname, void* pvApiCtx)
     int ret;
 
     CheckRhs(1, 1);
-    CheckLhs(1, 3);
+    CheckLhs(0, 3);
 
     /* Input argument is the index of the file to read */
 

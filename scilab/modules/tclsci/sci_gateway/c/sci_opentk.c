@@ -22,7 +22,7 @@ int sci_opentk(char *fname, void* pvApiCtx)
     Tcl_Interp *TCLinterpLocal = NULL;
 
     CheckInputArgument(pvApiCtx, 0, 0);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     TCLinterpLocal = Tcl_CreateInterp();
     Tcl_Init(TCLinterpLocal);

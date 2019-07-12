@@ -46,7 +46,7 @@ int sci_h5attr(char *fname, int* pvApiCtx)
     std::string targetType;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 4, 5);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

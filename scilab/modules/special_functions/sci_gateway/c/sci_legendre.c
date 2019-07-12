@@ -75,7 +75,7 @@ int sci_legendre(char *fname, void* pvApiCtx)
     int iType3 = 0;
 
     CheckInputArgument(pvApiCtx, 3, 4);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     /* get N */
     //get variable address of the input argument

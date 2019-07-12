@@ -41,7 +41,7 @@ int sci_matfile_open(char *fname, void* pvApiCtx)
     SciErr sciErr;
 
     CheckRhs(1, 3);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &filename_addr);
     if (sciErr.iErr)

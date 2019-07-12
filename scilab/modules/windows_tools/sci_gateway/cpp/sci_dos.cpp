@@ -49,7 +49,7 @@ int sci_dos(char *fname, void* pvApiCtx)
     BOOL ECHOMODE = FALSE;
 
     CheckRhs(1, 2);
-    CheckLhs(1, 3);
+    CheckLhs(0, 3);
 
     if (Rhs == 2)
     {
@@ -223,7 +223,7 @@ int sci_dos(char *fname, void* pvApiCtx)
         PrintOuput(Output, numberoflines);
     }
 
-    if (Lhs == 1)
+    if (Lhs <= 1)
     {
         int m_out = 1, n_out = 1;
         sciErr = createMatrixOfBoolean(pvApiCtx, Rhs + 1, m_out, n_out, StatusExit);

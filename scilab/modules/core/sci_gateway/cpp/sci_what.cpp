@@ -63,7 +63,7 @@ types::Function::ReturnValue sci_what(types::typed_list &in, int _iRetCount, typ
     }
 
     // Check output arguments
-    if (_iRetCount != 1 && _iRetCount != 2)
+    if (_iRetCount > 2)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname, 1, 2);
         return types::Function::Error;
@@ -73,7 +73,7 @@ types::Function::ReturnValue sci_what(types::typed_list &in, int _iRetCount, typ
     pOutStringFctTmp = getFunctionsName(&sizeFct);
     pOutStringCmdTmp = getcommandkeywords(&sizeCmd);
 
-    if (_iRetCount == 1)
+    if (_iRetCount <= 1)
     {
         // Print functions
         printVarList("Internal Functions", pOutStringFctTmp, sizeFct);

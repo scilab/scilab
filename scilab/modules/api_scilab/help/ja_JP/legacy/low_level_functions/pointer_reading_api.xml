@@ -81,7 +81,7 @@ int read_pointer(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	CheckInputArgument(pvApiCtx, 0, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 	if(nbInputArgument(pvApiCtx) == 0)
 	{// モードを作成
 		double* pdblData    = (double*)malloc(sizeof(double) * 2 * 2);

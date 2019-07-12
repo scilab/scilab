@@ -10,7 +10,7 @@ static void f99(double *ar, double *ac, int *ita, int *ma, int *na);
 int intex2c(char *fname, void * pvApiCtx)
 {
     static int cplx, rows, cols;
-    int minlhs = 1, minrhs = 1, maxlhs = 1, maxrhs = 1;
+    int minlhs = 0, minrhs = 1, maxlhs = 1, maxrhs = 1;
     double *pdblReal = NULL, *pdblImag = NULL;
     int* piAddr1 = NULL;
 

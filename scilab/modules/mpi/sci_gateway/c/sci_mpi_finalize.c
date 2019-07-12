@@ -32,7 +32,7 @@ int sci_mpi_finalize(char *fname, void* pvApiCtx)
 {
     int iRet = 0;
     CheckInputArgument(pvApiCtx, 0, 0);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     mpi_finalize_internal();
     iRet = MPI_Finalize();
     if (iRet != MPI_SUCCESS)

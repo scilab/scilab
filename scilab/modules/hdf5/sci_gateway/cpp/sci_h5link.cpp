@@ -44,7 +44,7 @@ int sci_h5link(char *fname, unsigned long fname_len)
     bool hard = false;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 3, 4);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

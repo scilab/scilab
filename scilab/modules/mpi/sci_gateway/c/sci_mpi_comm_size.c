@@ -28,7 +28,7 @@ int sci_mpi_comm_size(char *fname, void* pvApiCtx)
     MPI_Comm comm = NULL;
 
     CheckInputArgument(pvApiCtx, 0, 1); // Check the parameters of the function ... Here 0 or 1
-    CheckOutputArgument(pvApiCtx, 1, 1); // The output of the function (1 parameter)
+    CheckOutputArgument(pvApiCtx, 0, 1); // The output of the function (1 parameter)
 
     // return the communicator from optional argument "comm"
     // if no optional "comm" is given, return MPI_COMM_WORLD

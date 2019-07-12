@@ -42,7 +42,7 @@ int sci_mpi_isend(char *fname, void* pvApiCtx)
     MPI_Comm comm = NULL;
 
     CheckInputArgument(pvApiCtx, 3, 4);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     // return the communicator from optional argument "comm"
     // if no optional "comm" is given, return MPI_COMM_WORLD

@@ -51,7 +51,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
     BOOL selectedItalic     = FALSE;
 
     CheckInputArgument(pvApiCtx, 0, 4);
-    CheckOutputArgument(pvApiCtx, 1, 4);
+    CheckOutputArgument(pvApiCtx, 0, 4);
 
     /* Default font name */
     if (nbInputArgument(pvApiCtx) >= 1)

@@ -43,7 +43,7 @@ int sci_xmlIsValidObject(char *fname, void* pvApiCtx)
     char **vars = 0;
     int *exists = 0;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(1, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

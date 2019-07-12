@@ -26,7 +26,7 @@ types::Function::ReturnValue sci_cppmultiplybypi(types::typed_list &in, int _iRe
     }
 
     /* check that we have only 1 output argument */
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "cppmultiplybypi", 1);
         return types::Function::Error;

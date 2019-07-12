@@ -47,7 +47,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
 
     CheckInputArgument(pvApiCtx, 0, 4);
 
-    if ((nbOutputArgument(pvApiCtx) != 1) && (nbOutputArgument(pvApiCtx) != 3)) /* Bad use */
+    if ((nbOutputArgument(pvApiCtx) > 1) && (nbOutputArgument(pvApiCtx) != 3)) /* Bad use */
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d or %d expected.\n"), fname, 1, 3);
         return FALSE;
@@ -342,7 +342,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
     {
 
         nbRow = 1;
-        if (nbOutputArgument(pvApiCtx) == 1)
+        if (nbOutputArgument(pvApiCtx) <= 1)
         {
             nbCol = 3;
             sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, selectedRGB);
@@ -403,7 +403,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
     {
         nbRow = 0;
         nbCol = 0;
-        if (nbOutputArgument(pvApiCtx) == 1)
+        if (nbOutputArgument(pvApiCtx) <= 1)
         {
             /* Return [] */
             sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, &redAdr);

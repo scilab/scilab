@@ -50,7 +50,7 @@ types::Function::ReturnValue sci_scicos_debug_count(types::typed_list &in, int _
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), funname.c_str(), 1);
         return types::Function::Error;

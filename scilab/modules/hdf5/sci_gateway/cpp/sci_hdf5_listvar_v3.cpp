@@ -72,13 +72,16 @@ static const std::string fname("hdf5_listvar");
 types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int rhs = static_cast<int>(in.size());
+
+    _iRetCount = std::max(1, _iRetCount);
+
     if (rhs != 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), fname.data(), 1);
         return types::Function::Error;
     }
 
-    if (_iRetCount < 1 || _iRetCount > 4)
+    if (_iRetCount > 4)
     {
         Scierror(999, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), fname.data(), 1, 4);
         return types::Function::Error;
@@ -122,7 +125,7 @@ types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRe
         std::vector<char*> vars(items);
         items = getVariableNames6(iFile, vars.data());
 
-        if (_iRetCount == 1)
+        if (_iRetCount <= 1)
         {
             sciprint("Name                     Type           Size            Bytes\n");
             sciprint("-------------------------------------------------------------\n");
@@ -148,7 +151,7 @@ types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRe
                     break;
                 }
 
-                if (_iRetCount == 1)
+                if (_iRetCount <= 1)
                 {
                     sciprint("%s\n", info[i].info);
                 }

@@ -39,7 +39,7 @@ int sci_xmlSetAttributes(char *fname, void* pvApiCtx)
     int rows;
     int cols;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(2, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

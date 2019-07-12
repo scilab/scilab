@@ -42,13 +42,13 @@ types::Function::ReturnValue sci_macrovar(types::typed_list &in, int _iRetCount,
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "macrovar" , 1);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "macrovar", 1);
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
-        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "macrovar" , 1);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "macrovar", 1);
         return types::Function::Error;
     }
 

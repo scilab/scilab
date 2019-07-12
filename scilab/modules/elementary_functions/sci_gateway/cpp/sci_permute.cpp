@@ -20,7 +20,7 @@
 extern "C"
 {
 #include "Scierror.h"
-#include "localization.h" 
+#include "localization.h"
 }
 
 void computeOffsets(int iDims, const int* piDimsArray, const std::vector<int>& dimsVect, int* piOffset, int* piMaxOffset)
@@ -143,7 +143,7 @@ types::Function::ReturnValue sci_permute(types::typed_list& in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "permute", 1);
         return types::Function::Error;

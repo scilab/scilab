@@ -49,7 +49,7 @@ int sci_xmlValidate(char *fname, void* pvApiCtx)
     int row = 0;
     int col = 0;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(1, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

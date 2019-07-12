@@ -34,11 +34,11 @@ types::Function::ReturnValue sci_filesep(types::typed_list &in, int _iRetCount, 
 {
     if (in.size() != 0)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "filesep" , 0);
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "filesep", 0);
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1 && _iRetCount != -1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "filesep", 1);
         return types::Function::Error;

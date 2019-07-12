@@ -45,7 +45,7 @@ int sci_xmlWrite(char *fname, void* pvApiCtx)
     int indent = 1;
     int ret = 0;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(1, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

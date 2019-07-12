@@ -37,7 +37,7 @@ int sci_dec2base(char *fname, void* pvApiCtx)
     error_convertbase err = ERROR_CONVERTBASE_NOK;
 
     CheckInputArgument(pvApiCtx, 2, 3);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (nbInputArgument(pvApiCtx) == 3)
     {

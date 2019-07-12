@@ -41,7 +41,7 @@ int sci_rrankqr(char *fname, void* pvApiCtx)
 
     int minrhs = 1;
     int maxrhs = 3;
-    int minlhs = 1;
+    int minlhs = 0;
     int maxlhs = 5;
 
     char JOBQR      = 'Q';

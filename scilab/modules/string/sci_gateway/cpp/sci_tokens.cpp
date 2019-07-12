@@ -46,7 +46,7 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "tokens", 1, 2);
         return types::Function::Error;
     }
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "tokens", 1);
         return types::Function::Error;

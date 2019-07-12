@@ -56,7 +56,7 @@ int sci_xclick(char *fname, void *pvApiCtx)
     int *piFigureId = &iFigureId;
 
     CheckInputArgument(pvApiCtx, -1, 1);
-    CheckOutputArgument(pvApiCtx, 1, 5);
+    CheckOutputArgument(pvApiCtx, 0, 5);
 
     //iflag = (nbInputArgument(pvApiCtx) >= 1) ? 1 :0;
 
@@ -86,7 +86,7 @@ int sci_xclick(char *fname, void *pvApiCtx)
         userCoords2D[1] = pixelCoords[1];
     }
 
-    if (nbOutputArgument(pvApiCtx) == 1)
+    if (nbOutputArgument(pvApiCtx) <= 1)
     {
         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 

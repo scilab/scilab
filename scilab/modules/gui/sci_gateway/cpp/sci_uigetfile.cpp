@@ -117,7 +117,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
     int* piAddr4 = NULL;
 
     CheckInputArgument(pvApiCtx, 0, 4);
-    CheckOutputArgument(pvApiCtx, 1, 3);
+    CheckOutputArgument(pvApiCtx, 0, 3);
 
     //inputs checking
     /* call uigetfile with 1 arg */
@@ -374,7 +374,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
     }
 
     // Only one output then it contains path+filenames
-    if (nbOutputArgument(pvApiCtx) == 1)
+    if (nbOutputArgument(pvApiCtx) <= 1)
     {
         sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRowOutSelection, nbColOutSelection, selection);
         if (sciErr.iErr)

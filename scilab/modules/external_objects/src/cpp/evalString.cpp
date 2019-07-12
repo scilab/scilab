@@ -28,7 +28,7 @@ int ScilabGateway::evalString(char * fname, const int envId, void * pvApiCtx)
     ScilabStringStackAllocator * allocator = 0;
 
     CheckInputArgument(pvApiCtx, 1, 2);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
     ScilabGatewayOptions & options = env.getGatewayOptions();

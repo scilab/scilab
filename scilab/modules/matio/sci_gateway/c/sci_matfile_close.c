@@ -37,7 +37,7 @@ int sci_matfile_close(char *fname, void* pvApiCtx)
     SciErr sciErr;
 
     CheckRhs(1, 1);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     /* First Rhs is the index of the file to close */
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &fd_addr);

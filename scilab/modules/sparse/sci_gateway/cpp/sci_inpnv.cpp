@@ -40,9 +40,9 @@ Function::ReturnValue sci_inpnv(typed_list &in, int _iRetCount, typed_list &out)
         return Function::Error;
     }
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
-        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "inpnv", 2);
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "inpnv", 1);
         return Function::Error;
     }
 

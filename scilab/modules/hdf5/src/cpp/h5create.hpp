@@ -46,7 +46,7 @@ int h5create(char * fname, int* pvApiCtx)
     unsigned int rhsBegin;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 3, 8);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

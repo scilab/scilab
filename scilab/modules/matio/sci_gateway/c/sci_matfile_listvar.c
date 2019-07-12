@@ -39,7 +39,7 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
     int iErr = 0;
 
     CheckRhs(1, 1);
-    CheckLhs(1, 3);
+    CheckLhs(0, 3);
 
     /* First Rhs is the index of the file to read */
 

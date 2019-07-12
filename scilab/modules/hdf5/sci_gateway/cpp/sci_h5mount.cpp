@@ -43,7 +43,7 @@ int sci_h5mount(char *fname, int* pvApiCtx)
     char * str = 0;
     std::string sloc;
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 3, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

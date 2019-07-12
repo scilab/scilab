@@ -61,7 +61,7 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1 && _iRetCount > 3)
+    if (_iRetCount > 3)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d or %d expected.\n"), "arl2_ius", 1, 3);
         return types::Function::Error;

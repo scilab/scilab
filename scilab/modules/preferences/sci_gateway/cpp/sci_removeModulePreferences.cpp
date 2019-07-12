@@ -35,7 +35,7 @@ int sci_removeModulePreferences(char * fname, void *pvApiCtx)
     char * tbxName = 0;
     bool error = false;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(1, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

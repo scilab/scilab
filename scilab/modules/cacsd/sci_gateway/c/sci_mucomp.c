@@ -52,7 +52,7 @@ int sci_mucomp(char *fname, void* pvApiCtx)
 
     int minrhs = 3;
     int maxrhs = 3;
-    int minLhs = 1;
+    int minLhs = 0;
     int maxLhs = 3;
 
     int iOne  = 1;
@@ -85,7 +85,7 @@ int sci_mucomp(char *fname, void* pvApiCtx)
 
     if (N == 0)
     {
-        if (nbOutputArgument(pvApiCtx) == 1)
+        if (nbOutputArgument(pvApiCtx) <= 1)
         {
             sciErr = allocMatrixOfDouble(pvApiCtx, 2, N, iOne, &lBOUND);
             if (sciErr.iErr)
@@ -263,7 +263,7 @@ int sci_mucomp(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    if (nbOutputArgument(pvApiCtx) == 1)
+    if (nbOutputArgument(pvApiCtx) <= 1)
     {
         AssignOutputVariable(pvApiCtx, 1) = 4;
     }

@@ -30,7 +30,7 @@ extern "C"
 
 types::Function::ReturnValue sci_isfield(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "isfield", 1);
         return types::Function::Error;

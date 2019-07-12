@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
         LoggerView* logger = get_or_allocate_logger();
         enum LogLevel previous = logger->getLevel();
 
-        if (_iRetCount == 1)
+        if (_iRetCount <= 1)
         {
             out.push_back(new types::String(LoggerView::toString(previous)));
         }
@@ -142,7 +142,7 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
         enum LogLevel previous = logger->getLevel();
         logger->setLevel(logLevel);
 
-        if (_iRetCount == 1)
+        if (_iRetCount <= 1)
         {
             out.push_back(new types::String(LoggerView::toString(previous)));
         }
@@ -168,7 +168,7 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
         LoggerView* logger = get_or_allocate_logger();
         logger->log(logLevel, strMsg->get(0));
 
-        if (_iRetCount == 1)
+        if (_iRetCount <= 1)
         {
             out.push_back(new types::String(LoggerView::toString(logLevel)));
         }

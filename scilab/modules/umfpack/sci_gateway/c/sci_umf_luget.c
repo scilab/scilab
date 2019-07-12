@@ -63,7 +63,7 @@ int sci_umf_luget(char* fname, void* pvApiCtx)
 
     /* Check numbers of input/output arguments */
     CheckInputArgument(pvApiCtx, 1, 1);
-    CheckOutputArgument(pvApiCtx, 1, 5);
+    CheckOutputArgument(pvApiCtx, 0, 5);
 
     /* get the pointer to the LU factors */
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);

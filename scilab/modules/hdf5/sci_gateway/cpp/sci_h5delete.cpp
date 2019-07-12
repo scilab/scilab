@@ -38,7 +38,7 @@ int sci_h5delete(char *fname, unsigned long fname_len)
     int * addr = 0;
     char * name = 0;
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
     CheckInputArgument(pvApiCtx, 2, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

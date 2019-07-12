@@ -66,7 +66,7 @@ int sci_qld(char *fname, void* pvApiCtx)
 
     /*   Check rhs and lhs   */
     CheckInputArgument(pvApiCtx, 7, 8) ;
-    CheckOutputArgument(pvApiCtx, 1, 3) ;
+    CheckOutputArgument(pvApiCtx, 0, 3) ;
 
     /* RhsVar: qld(Q,p,C,b,lb,ub,me,eps) */
     /*             1,2,3,4,5 ,6 ,7, 8  */

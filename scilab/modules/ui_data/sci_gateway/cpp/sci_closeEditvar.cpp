@@ -38,7 +38,7 @@ types::Function::ReturnValue sci_closeEditvar(types::typed_list &in, int _iRetCo
         return types::Function::Error;
     }
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), fname.data(), 1);
         return types::Function::Error;

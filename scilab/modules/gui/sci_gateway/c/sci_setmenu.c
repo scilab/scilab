@@ -39,7 +39,7 @@ int sci_setmenu(char *fname, void* pvApiCtx)
 
     // Check parameter number
     CheckInputArgument(pvApiCtx, 1, 3);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (nbInputArgument(pvApiCtx) == 1)
     {

@@ -15,6 +15,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <algorithm>
 #include "Xcos.hxx"
 #include "GiwsException.hxx"
 #include "loadStatus.hxx"
@@ -57,6 +58,8 @@ types::Function::ReturnValue sci_xcosDiagramToScilab(types::typed_list &in, int 
      * xcosDiagramToScilab(["/path/to/a/file", "/path/to/files"], scs_m1, scs_m2)
      */
 
+    _iRetCount = (std::max)(1, _iRetCount);
+
     if (in.size() < 1)
     {
         Scierror(77, _("%s: Wrong number of input arguments: at least %d expected.\n"), funname, 1);
@@ -94,7 +97,7 @@ types::Function::ReturnValue sci_xcosDiagramToScilab(types::typed_list &in, int 
         {
             if (!in[1 + i]->isUserType())
             {
-                Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, i+2, "diagram");
+                Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, i + 2, "diagram");
                 return types::Function::Error;
             }
         }

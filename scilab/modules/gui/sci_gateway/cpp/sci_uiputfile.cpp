@@ -104,7 +104,7 @@ int sci_uiputfile(char *fname, void* pvApiCtx)
     int* piAddr3 = NULL;
 
     CheckInputArgument(pvApiCtx, 0, 3);
-    CheckOutputArgument(pvApiCtx, 1, 3);
+    CheckOutputArgument(pvApiCtx, 0, 3);
 
     //inputs checking
     /* call uiputfile with 1 arg */

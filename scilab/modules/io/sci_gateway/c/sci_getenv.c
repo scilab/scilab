@@ -42,7 +42,7 @@ int sci_getenv(char *fname, void* pvApiCtx)
     int iRhs = nbInputArgument(pvApiCtx);
 
     CheckRhs(1, 2);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     if (iRhs == 2)
     {

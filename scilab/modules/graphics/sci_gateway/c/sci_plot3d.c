@@ -31,6 +31,8 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "DefaultCommandArg.h"
+#include "CurrentObject.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_plot3d(char * fname, void *pvApiCtx)
@@ -40,7 +42,7 @@ int sci_plot3d(char * fname, void *pvApiCtx)
     double *ebox = ebox_def;
     static int iflag_def[3] = {2, 2, 4};
     int *iflag = iflag_def;
-    double  alpha_def = 35.0 , theta_def = 45.0;
+    double  alpha_def = 35.0, theta_def = 45.0;
     double *alpha = &alpha_def, *theta = &theta_def;
     int m1 = 0, n1 = 0,  m2 = 0, n2 = 0, m3 = 0, n3 = 0;
     int m3n = 0, n3n = 0, m3l = 0;
@@ -90,6 +92,7 @@ int sci_plot3d(char * fname, void *pvApiCtx)
     }
 
     CheckInputArgument(pvApiCtx, 1, 8);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (getOptionals(pvApiCtx, fname, opts) == 0)
     {
@@ -380,7 +383,22 @@ int sci_plot3d(char * fname, void *pvApiCtx)
     {
         freeAllocatedSingleString(legend);
     }
-    AssignOutputVariable(pvApiCtx, 1) = 0;
+
+    if (nbOutputArgument(pvApiCtx) == 1)
+    {
+        if (createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, getHandle(getCurrentObject())))
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    }
+    else
+    {
+        AssignOutputVariable(pvApiCtx, 1) = 0;
+    }
+
     ReturnArguments(pvApiCtx);
     return 0;
 

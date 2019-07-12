@@ -53,7 +53,7 @@ int sci_beta(char *fname, void* pvApiCtx)
     int nbInputArg = nbInputArgument(pvApiCtx);
 
     CheckInputArgument(pvApiCtx, 2, 2);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     /* get X */
     //get variable address of the input argument

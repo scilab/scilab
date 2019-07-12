@@ -38,7 +38,7 @@ int sci_xmlElement(char *fname, void* pvApiCtx)
     int *addr = 0;
     char *name = 0;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(2, 2);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

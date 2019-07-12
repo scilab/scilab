@@ -22,7 +22,7 @@ int sci_bug9264(char *fname, void* pvApiCtx)
     int rows = 0, cols = 0;
 
     CheckInputArgument(pvApiCtx, 1, 1);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (err.iErr)

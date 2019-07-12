@@ -41,7 +41,7 @@ int sci_addlocalizationdomain(char *fname, void* pvApiCtx)
 
 
     CheckInputArgument(pvApiCtx, 2, 2);
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     //get domain name
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);

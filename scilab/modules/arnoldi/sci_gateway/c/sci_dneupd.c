@@ -97,7 +97,7 @@ int sci_dneupd(char *fname, void *pvApiCtx)
     int WORKL,    mWORKL,    nWORKL;
     int INFO,     mINFO,     nINFO;
 
-    int minlhs = 1, minrhs = 22, maxlhs = 10, maxrhs = 22;
+    int minlhs = 0, minrhs = 22, maxlhs = 10, maxrhs = 22;
     int LDZ, LDV, LWORKL;
     int sizeWORKL = 0;
 

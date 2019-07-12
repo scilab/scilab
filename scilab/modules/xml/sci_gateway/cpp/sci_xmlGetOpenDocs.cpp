@@ -35,7 +35,7 @@ int sci_xmlGetOpenDocs(char *fname, void* pvApiCtx)
     SciErr err;
     int *addr = 0;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(0, 0);
 
     const std::list < org_modules_xml::XMLDocument * >&openDocs = org_modules_xml::XMLDocument::getOpenDocuments();

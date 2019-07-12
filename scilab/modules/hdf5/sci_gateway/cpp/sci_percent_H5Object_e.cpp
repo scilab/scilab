@@ -41,7 +41,7 @@ int sci_percent_H5Object_e(char * fname, int* pvApiCtx)
     unsigned int * index = 0;
     const int nbIn = nbInputArgument(pvApiCtx);
 
-    CheckOutputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (nbIn < 2)
     {

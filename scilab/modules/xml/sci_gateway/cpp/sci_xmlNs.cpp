@@ -38,7 +38,7 @@ int sci_xmlNs(char *fname, void *pvApiCtx)
     char *prefix = 0;
     char *href = 0;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(3, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

@@ -52,7 +52,7 @@ int sci_xmlXPath(char* fname, void* pvApiCtx)
     int isElem = 0;
     bool mustDelete = true;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(2, 3);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

@@ -22,7 +22,7 @@ int int_f4(char *fname)
 {
     static int l1, m1, n1;
     CheckRhs(1, 1);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     GetRhsVar(1, MATRIX_OF_INTEGER_DATATYPE, &m1, &n1, &l1);
     CheckScalar(1, m1, n1);
     *istk(l1) = foo(*istk(l1));

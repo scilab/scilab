@@ -25,7 +25,7 @@
 int sci_parallel_concurrency(char *fname, void* pvApiCtx)
 {
     CheckRhs(0, 0);
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
 
     createScalarDouble(pvApiCtx, Rhs + 1, (double)parallelConcurrency());
 

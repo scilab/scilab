@@ -28,7 +28,7 @@ types::Function::ReturnValue sci_convstr(types::typed_list &in, int _iRetCount, 
 {
     int iConvertMode = -1; // Default is TO_LOWER
 
-    if (_iRetCount != 1)
+    if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "convstr", 1);
         return types::Function::Error;

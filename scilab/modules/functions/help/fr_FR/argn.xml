@@ -60,11 +60,6 @@
             et de sortie <varname>lhs</varname>. Elle permet d'utiliser des arguments optionnels.
         </para>
         <warning>
-            Il n'est pas possible de savoir depuis une fonction Scilab si celle-ci a été appelée
-            sans aucun argument de sortie attendu. Le cas échéant, <varname>lhs</varname> vaut 1,
-            au lieu de 0.
-        </warning>
-        <warning>
             L'existence d'un argument d'entrée nommé (hors de la portée d'un éventuel varargin)
             peut être testée avec <literal>isdef(..,"l")</literal> de manière plus robuste
             qu'en utilisant <literal>argn()</literal>. Un exemple figure ci-après.

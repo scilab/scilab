@@ -66,7 +66,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
     sciErr.iErr = 0;
 
     CheckRhs(1, 8);
-    CheckLhs(1, 2);
+    CheckLhs(0, 2);
 
     if (Rhs == 8)
     {

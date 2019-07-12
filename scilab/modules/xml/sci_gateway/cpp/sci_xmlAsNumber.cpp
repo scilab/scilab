@@ -37,7 +37,7 @@ int sci_xmlAsNumber(char *fname, void* pvApiCtx)
     XMLList *list = 0;
     double *pdblReal = 0;
 
-    CheckLhs(1, 1);
+    CheckLhs(0, 1);
     CheckRhs(1, 1);
 
     err = getVarAddressFromPosition(pvApiCtx, 1, &addr);

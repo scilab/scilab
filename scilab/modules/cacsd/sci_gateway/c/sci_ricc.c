@@ -52,7 +52,7 @@ int sci_ricc(char *fname, void* pvApiCtx)
 
     int minrhs = 4;
     int maxrhs = 5;
-    int minLhs = 1;
+    int minLhs = 0;
     int maxLhs = 3;
 
     int N = 0, LWORKMIN = 0, INFO = 0;
@@ -354,7 +354,7 @@ int sci_ricc(char *fname, void* pvApiCtx)
         }
     }
 
-    if (nbOutputArgument(pvApiCtx) == 1)
+    if (nbOutputArgument(pvApiCtx) <= 1)
     {
         AssignOutputVariable(pvApiCtx, 1) = k;
     }

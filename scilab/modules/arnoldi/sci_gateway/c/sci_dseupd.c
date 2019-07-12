@@ -90,7 +90,7 @@ int sci_dseupd(char *fname, void *pvApiCtx)
     int WORKL,    mWORKL,    nWORKL;
     int INFO,     mINFO,     nINFO;
 
-    int minlhs = 1, minrhs = 19, maxlhs = 9, maxrhs = 19;
+    int minlhs = 0, minrhs = 19, maxlhs = 9, maxrhs = 19;
     int LDZ, LDV, LWORKL;
     int sizeWORKL = 0;
 
