@@ -344,10 +344,14 @@ extern "C"
     extern void ConsolePrintf(const char *);
 }
 
-static void TermPrintf(const char *text)
+static void TermError(const char *text)
 {
-    //std::cout << text;
-    printf("%s", text);
+    fprintf(stderr, "%s", text);
+}
+
+static void TermOutput(const char *text)
+{
+    fprintf(stdout, "%s", text);
 }
 
 /*
@@ -423,7 +427,8 @@ int main(int argc, char *argv[])
     {
         setScilabMode(SCILAB_NW);
         setScilabInputMethod(&getCmdLine);
-        setScilabOutputMethod(&TermPrintf);
+        setScilabErrorStreamMethod(&TermError);
+        setScilabOutputStreamMethod(&TermOutput);
 #if defined(__APPLE__)
         if (pSEI->iNoJvm == 0)
         {
@@ -463,7 +468,8 @@ int main(int argc, char *argv[])
 #else
     setScilabMode(SCILAB_NWNI);
     setScilabInputMethod(&getCmdLine);
-    setScilabOutputMethod(&TermPrintf);
+    setScilabErrorStreamMethod(&TermError);
+    setScilabOutputStreamMethod(&TermOutput);
 #endif // defined(WITHOUT_GUI)
 
 #ifdef _MSC_VER

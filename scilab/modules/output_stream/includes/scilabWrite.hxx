@@ -28,6 +28,8 @@ extern "C"
 typedef void (*SCILAB_OUTPUT_METHOD)(const char *text);
 
 OUTPUT_STREAM_IMPEXP void setScilabOutputMethod(SCILAB_OUTPUT_METHOD writer);
+OUTPUT_STREAM_IMPEXP void setScilabErrorStreamMethod(SCILAB_OUTPUT_METHOD writer);
+OUTPUT_STREAM_IMPEXP void setScilabOutputStreamMethod(SCILAB_OUTPUT_METHOD writer);
 
 OUTPUT_STREAM_IMPEXP void scilabWrite(const char* _pstText);
 
