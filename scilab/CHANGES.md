@@ -38,7 +38,9 @@ Compilation
 * GNU autotools have been updated to :
    - automake 1.15
    - autoconf 2.69
-   - libtool 2.4.6 (patched for Mac Os X)
+   - libtool 2.4.6 (patched for macOS)
+
+* Linux/macOS build defines `_GLIBCXX_USE_CXX11_ABI=0` to use a pre-C++11 ABI on Scilab and toolboxes builds.
 
 * Migration to Microsoft Visual Studio 2017 and Intel Composer 2018
 

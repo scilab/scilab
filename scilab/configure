@@ -10428,7 +10428,7 @@ $as_echo "#define HAVE_CXX11 1" >>confdefs.h
 
   fi
 
-STDCXX_11_CXXFLAGS="$CXXFLAGS"
+STDCXX_11_CXXFLAGS="$CXXFLAGS -D_GLIBCXX_USE_CXX11_ABI=0"
 CXXFLAGS="$saved_cppflags"
 
 ################
@@ -49951,7 +49951,6 @@ elif test "x$enable_address_sanitizer" == "xyes"; then
     COMPILER_CXXFLAGS="$COMPILER_CXXFLAGS -fsanitize=address"
     COMPILER_LDFLAGS="$COMPILER_LDFLAGS -fsanitize=address"
 fi
-
 
  if test "x$enable_address_sanitizer" == "xyes"; then
   USE_ADDRESS_SANITIZER_TRUE=
