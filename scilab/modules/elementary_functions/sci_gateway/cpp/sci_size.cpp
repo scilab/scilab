@@ -140,7 +140,7 @@ types::Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, typ
                     default : //"r"
                         if (iMode > iDims)
                         {
-                            pdbl[0] = 1;
+                            pdbl[0] = (piDims[0]==0)? 0 : 1;
                             out.push_back(pD);
                             return types::Function::OK;
                         }
