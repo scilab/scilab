@@ -74,9 +74,6 @@ static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *Source
     char *pStrDest = wide_string_to_UTF8(DestinationFilename);
     char *pStrSrc = wide_string_to_UTF8(SourceFilename);
 
-    char strDestFullPath[PATH_MAX * 2 + 1];
-    char strSrcFullPath[PATH_MAX * 2 + 1];
-
     int sfd = -1;
     int dfd = -1;
     struct stat st;
@@ -85,14 +82,19 @@ static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *Source
     int nread = 0, nwritten = 0;
     int status = 0;
 
-    get_full_path(strDestFullPath, pStrDest, PATH_MAX * 2);
-    get_full_path(strSrcFullPath, pStrSrc, PATH_MAX * 2);
+    char *strDestFullPath  = get_full_path(pStrDest);
+    char *strSrcFullPath = get_full_path(pStrSrc);
 
     if (strcmp(strDestFullPath, strSrcFullPath) == 0)
     {
         status = EPERM;
+        FREE(strSrcFullPath);
+        FREE(strDestFullPath);
         goto err;
     }
+
+    FREE(strSrcFullPath);
+    FREE(strDestFullPath);
 
     if ((sfd = open (pStrSrc, O_RDONLY, 0)) < 0)
     {

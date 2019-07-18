@@ -26,7 +26,7 @@
 * @return returns a pointer to a buffer containing the absolute path name (absPath).
 */
 
-FILEIO_IMPEXP char * get_full_path(char * _FullPath, const char * _Path, size_t _SizeInBytes);
+FILEIO_IMPEXP char * get_full_path(const char * _Path);
 
 /**
 * Creates an absolute or full path name for the specified relative path name.
@@ -36,7 +36,7 @@ FILEIO_IMPEXP char * get_full_path(char * _FullPath, const char * _Path, size_t 
 * @return returns a pointer to a buffer containing the absolute path name (absPath).
 * "localized" on windows (Wide char)
 */
-FILEIO_IMPEXP wchar_t * get_full_pathW(wchar_t * _wcFullPath, const wchar_t * _wcPath, size_t _SizeInBytes);
+FILEIO_IMPEXP wchar_t * get_full_pathW(const wchar_t * _wcPath);
 
 #endif
 /*--------------------------------------------------------------------------*/

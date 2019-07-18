@@ -125,8 +125,7 @@ types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-    get_full_pathW(pwstTemp, (const wchar_t*)pstFilename, PATH_MAX * 2);
+    wchar_t* pwstTemp = get_full_pathW((const wchar_t*)pstFilename);
     iErr = mopen(pwstTemp, pstMode, iSwap, &iID);
     if (iErr != MOPEN_NO_ERROR)
     {

@@ -165,8 +165,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
         FREE(pstFile);
 
-        wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-        get_full_pathW(pwstTemp, pwstFile, PATH_MAX * 2);
+        wchar_t* pwstTemp = get_full_pathW(pwstFile);
         wstFile = pwstTemp;
 
         FREE(pwstFile);

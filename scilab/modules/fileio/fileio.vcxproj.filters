@@ -69,9 +69,6 @@
     <ClCompile Include="src\c\fscanfMat.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\fullpath.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getdrives.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -178,6 +175,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\filemanager_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\fullpath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

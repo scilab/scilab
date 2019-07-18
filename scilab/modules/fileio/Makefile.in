@@ -194,7 +194,6 @@ am__objects_1 = src/c/libscifileio_algo_la-FileExist.lo \
 	src/c/libscifileio_algo_la-removedir.lo \
 	src/c/libscifileio_algo_la-cluni0.lo \
 	src/c/libscifileio_algo_la-scicurdir.lo \
-	src/c/libscifileio_algo_la-fullpath.lo \
 	src/c/libscifileio_algo_la-fileinfo.lo \
 	src/c/libscifileio_algo_la-getrelativefilename.lo \
 	src/c/libscifileio_algo_la-splitpath.lo \
@@ -211,6 +210,7 @@ am__objects_1 = src/c/libscifileio_algo_la-FileExist.lo \
 	src/c/libscifileio_algo_la-convert_tools.lo
 am__objects_2 = src/cpp/libscifileio_algo_la-expandPathVariable.lo \
 	src/cpp/libscifileio_algo_la-filemanager_interface.lo \
+	src/cpp/libscifileio_algo_la-fullpath.lo \
 	src/cpp/libscifileio_algo_la-mopen.lo \
 	src/cpp/libscifileio_algo_la-mclose.lo \
 	src/cpp/libscifileio_algo_la-mput.lo \
@@ -372,7 +372,6 @@ am__depfiles_remade =  \
 	src/c/$(DEPDIR)/libscifileio_algo_la-findfiles.Plo \
 	src/c/$(DEPDIR)/libscifileio_algo_la-fprintfMat.Plo \
 	src/c/$(DEPDIR)/libscifileio_algo_la-fscanfMat.Plo \
-	src/c/$(DEPDIR)/libscifileio_algo_la-fullpath.Plo \
 	src/c/$(DEPDIR)/libscifileio_algo_la-getFullFilename.Plo \
 	src/c/$(DEPDIR)/libscifileio_algo_la-getdrives.Plo \
 	src/c/$(DEPDIR)/libscifileio_algo_la-getlongpathname.Plo \
@@ -392,6 +391,7 @@ am__depfiles_remade =  \
 	src/cpp/$(DEPDIR)/libscifileio_algo_la-expandPathVariable.Plo \
 	src/cpp/$(DEPDIR)/libscifileio_algo_la-filemanager.Plo \
 	src/cpp/$(DEPDIR)/libscifileio_algo_la-filemanager_interface.Plo \
+	src/cpp/$(DEPDIR)/libscifileio_algo_la-fullpath.Plo \
 	src/cpp/$(DEPDIR)/libscifileio_algo_la-getfiledesc.Plo \
 	src/cpp/$(DEPDIR)/libscifileio_algo_la-getfileinfo.Plo \
 	src/cpp/$(DEPDIR)/libscifileio_algo_la-getfiletype.Plo \
@@ -786,7 +786,6 @@ FILEIO_C_SOURCES = \
     src/c/removedir.c \
     src/c/cluni0.c \
     src/c/scicurdir.c \
-    src/c/fullpath.c \
     src/c/fileinfo.c \
     src/c/getrelativefilename.c \
     src/c/splitpath.c \
@@ -856,6 +855,7 @@ GATEWAY_CPP_SOURCES = \
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \
 	src/cpp/filemanager_interface.cpp \
+	src/cpp/fullpath.cpp \
 	src/cpp/mopen.cpp \
 	src/cpp/mclose.cpp \
 	src/cpp/mput.cpp \
@@ -1128,8 +1128,6 @@ src/c/libscifileio_algo_la-cluni0.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscifileio_algo_la-scicurdir.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscifileio_algo_la-fullpath.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscifileio_algo_la-fileinfo.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscifileio_algo_la-getrelativefilename.lo:  \
@@ -1168,6 +1166,8 @@ src/cpp/libscifileio_algo_la-expandPathVariable.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscifileio_algo_la-filemanager_interface.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscifileio_algo_la-fullpath.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscifileio_algo_la-mopen.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscifileio_algo_la-mclose.lo: src/cpp/$(am__dirstamp) \
@@ -1440,7 +1440,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-findfiles.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-fprintfMat.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-fscanfMat.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-fullpath.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-getFullFilename.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-getdrives.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-getlongpathname.Plo@am__quote@ # am--include-marker
@@ -1460,6 +1459,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-expandPathVariable.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-filemanager.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-filemanager_interface.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-fullpath.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-getfiledesc.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-getfileinfo.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscifileio_algo_la-getfiletype.Plo@am__quote@ # am--include-marker
@@ -1623,13 +1623,6 @@ src/c/libscifileio_algo_la-scicurdir.lo: src/c/scicurdir.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scicurdir.c' object='src/c/libscifileio_algo_la-scicurdir.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifileio_algo_la-scicurdir.lo `test -f 'src/c/scicurdir.c' || echo '$(srcdir)/'`src/c/scicurdir.c
-
-src/c/libscifileio_algo_la-fullpath.lo: src/c/fullpath.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscifileio_algo_la-fullpath.lo -MD -MP -MF src/c/$(DEPDIR)/libscifileio_algo_la-fullpath.Tpo -c -o src/c/libscifileio_algo_la-fullpath.lo `test -f 'src/c/fullpath.c' || echo '$(srcdir)/'`src/c/fullpath.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscifileio_algo_la-fullpath.Tpo src/c/$(DEPDIR)/libscifileio_algo_la-fullpath.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fullpath.c' object='src/c/libscifileio_algo_la-fullpath.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifileio_algo_la-fullpath.lo `test -f 'src/c/fullpath.c' || echo '$(srcdir)/'`src/c/fullpath.c
 
 src/c/libscifileio_algo_la-fileinfo.lo: src/c/fileinfo.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscifileio_algo_la-fileinfo.lo -MD -MP -MF src/c/$(DEPDIR)/libscifileio_algo_la-fileinfo.Tpo -c -o src/c/libscifileio_algo_la-fileinfo.lo `test -f 'src/c/fileinfo.c' || echo '$(srcdir)/'`src/c/fileinfo.c
@@ -1829,6 +1822,13 @@ src/cpp/libscifileio_algo_la-filemanager_interface.lo: src/cpp/filemanager_inter
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/filemanager_interface.cpp' object='src/cpp/libscifileio_algo_la-filemanager_interface.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscifileio_algo_la-filemanager_interface.lo `test -f 'src/cpp/filemanager_interface.cpp' || echo '$(srcdir)/'`src/cpp/filemanager_interface.cpp
+
+src/cpp/libscifileio_algo_la-fullpath.lo: src/cpp/fullpath.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscifileio_algo_la-fullpath.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscifileio_algo_la-fullpath.Tpo -c -o src/cpp/libscifileio_algo_la-fullpath.lo `test -f 'src/cpp/fullpath.cpp' || echo '$(srcdir)/'`src/cpp/fullpath.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscifileio_algo_la-fullpath.Tpo src/cpp/$(DEPDIR)/libscifileio_algo_la-fullpath.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/fullpath.cpp' object='src/cpp/libscifileio_algo_la-fullpath.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscifileio_algo_la-fullpath.lo `test -f 'src/cpp/fullpath.cpp' || echo '$(srcdir)/'`src/cpp/fullpath.cpp
 
 src/cpp/libscifileio_algo_la-mopen.lo: src/cpp/mopen.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscifileio_algo_la-mopen.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscifileio_algo_la-mopen.Tpo -c -o src/cpp/libscifileio_algo_la-mopen.lo `test -f 'src/cpp/mopen.cpp' || echo '$(srcdir)/'`src/cpp/mopen.cpp
@@ -2489,7 +2489,6 @@ distclean: distclean-am
 	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-findfiles.Plo
 	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-fprintfMat.Plo
 	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-fscanfMat.Plo
-	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-fullpath.Plo
 	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-getFullFilename.Plo
 	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-getdrives.Plo
 	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-getlongpathname.Plo
@@ -2509,6 +2508,7 @@ distclean: distclean-am
 	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-expandPathVariable.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-filemanager.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-filemanager_interface.Plo
+	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-fullpath.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-getfiledesc.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-getfileinfo.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-getfiletype.Plo
@@ -2634,7 +2634,6 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-findfiles.Plo
 	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-fprintfMat.Plo
 	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-fscanfMat.Plo
-	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-fullpath.Plo
 	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-getFullFilename.Plo
 	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-getdrives.Plo
 	-rm -f src/c/$(DEPDIR)/libscifileio_algo_la-getlongpathname.Plo
@@ -2654,6 +2653,7 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-expandPathVariable.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-filemanager.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-filemanager_interface.Plo
+	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-fullpath.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-getfiledesc.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-getfileinfo.Plo
 	-rm -f src/cpp/$(DEPDIR)/libscifileio_algo_la-getfiletype.Plo

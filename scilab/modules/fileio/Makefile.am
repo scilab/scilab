@@ -22,7 +22,6 @@ FILEIO_C_SOURCES = \
     src/c/removedir.c \
     src/c/cluni0.c \
     src/c/scicurdir.c \
-    src/c/fullpath.c \
     src/c/fileinfo.c \
     src/c/getrelativefilename.c \
     src/c/splitpath.c \
@@ -92,6 +91,7 @@ GATEWAY_CPP_SOURCES = \
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \
 	src/cpp/filemanager_interface.cpp \
+	src/cpp/fullpath.cpp \
 	src/cpp/mopen.cpp \
 	src/cpp/mclose.cpp \
 	src/cpp/mput.cpp \
