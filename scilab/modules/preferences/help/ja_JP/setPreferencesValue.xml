@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="setPreferencesValue" xml:lang="ja">
     <refnamediv>
         <refname>setPreferencesValue</refname>
-        <refpurpose>設定値を設定</refpurpose>
+        <refpurpose>設定値を設定 <emphasis role="bold">(obsolete)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
@@ -56,6 +56,10 @@
     </refsection>
     <refsection>
         <title>説明</title>
+        <warning>
+            <literal>setPreferencesValue()</literal> is obsolete and will be removed in Scilab 6.1.x.
+            Please use <code>xmlSetValues()</code> instead.
+        </warning>
         <para>
             設定ファイル(<literal>SCIHOME+'/XConfiguration.xml'</literal>)
             の属性の値を設定します.
@@ -96,7 +100,7 @@
     </web>
     ...
 </interface>
-	      ]]></programlisting>
+          ]]></programlisting>
                 <para>
                     パスは<literal>"/interface/web/body/proxy"</literal>
                     (または簡単化するために<literal>"//web/body/proxy"</literal>)
@@ -125,5 +129,16 @@ xmlGetValues("//web/body/proxy", ["enabled", "host", "port"])
                 <link linkend="xmlGetValues">xmlGetValues</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    setPreferencesValue() declared obsolete, replaced with xmlSetValues().
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ieee" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="ieee" xml:lang="ja">
     <refnamediv>
         <refname>ieee</refname>
         <refpurpose>浮動小数点例外モードを設定</refpurpose>
@@ -83,10 +86,9 @@
                   <emphasis role="italic">General => Environment => ieee</emphasis>.
                 </listitem>
                 <listitem>
-                  Equivalently, using <code>setPreferencesValue</code> as follows
-                  (to set the mode to 1) :
+                  Equivalently, using <code>xmlSetValues</code> as follows (to set the mode to 1) :
                   <para>
-                  <literal>setPreferencesValue("//general/body/environment", ["fpe";"1"])</literal>
+                  <literal>xmlSetValues("//general/body/environment", ["fpe";"1"])</literal>
                   </para>
                 </listitem>
                 <listitem>

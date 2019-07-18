@@ -227,7 +227,7 @@ C:\Path\to\another\working\dir2\clf.sci
                 <link linkend="xmlGetValues">xmlGetValues</link>
             </member>
             <member>
-                <link linkend="setPreferencesValue">setPreferencesValue</link>
+                <link linkend="xmlSetValues">xmlSetValues</link>
             </member>
             <member>
                 <link linkend="xmlXPath">xmlXPath</link>

@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,19 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="setPreferencesValue" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="xmlSetValues" xml:lang="en">
     <refnamediv>
-        <refname>setPreferencesValue</refname>
-        <refpurpose>Set preferences value <emphasis role="bold">(obsolete)</emphasis></refpurpose>
+        <refname>xmlSetValues</refname>
+        <refpurpose>Sets some attribute=value in an XML document for a given tag/XPath</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            setPreferencesValue(xpath, key_value [, doc])
+            xmlSetValues(xpath, attributes_values)
+            xmlSetValues(xpath, attributes_values, doc)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,13 +34,13 @@
             <varlistentry>
                 <term>xpath</term>
                 <listitem>
-                    <para>a string, represents the XPath request to get the node in the preferences file.</para>
+                    <para>a string: XPath request pointing to the chosen tag in the XML document.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>key_value</term>
+                <term>attributes_values</term>
                 <listitem>
-                    <para>a 2xN matrix of strings, the key-values to set.</para>
+                    <para>a 2xN matrix of strings: the (attribute,value) pairs to set.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -44,7 +48,10 @@
             <varlistentry>
                 <term>doc</term>
                 <listitem>
-                    <para>a mlist typed XMLDoc, the XML document associated to the preference file.
+                    <para>
+                        mlist typed XMLDoc: the XML document in which to write values.
+                        By default, it is the main Scilab preferences file
+                        (<literal>SCIHOME + '/XConfiguration.xml'</literal>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,26 +59,32 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <warning>
-            <literal>setPreferencesValue()</literal> is obsolete and will be removed in Scilab 6.1.x.
-            Please use <code>xmlSetValues()</code> instead.
-        </warning>
         <para>
-            Set the values of the attributes in preferences file (<literal>SCIHOME+'/XConfiguration.xml'</literal>).
-        </para>
-        <warning>
-            Modifying incorrectly some preferences can alter Scilab's behaviour.
-        </warning>
-        <para>
-            When doc is specified, the values are searched in this document. It is useful when several requests need to be done to avoid to parse again and again the same configuration file.
+            When no explicit XML document <varname>doc</varname> is indicated,
+            <literal>xmlSetValues</literal> opens the main Scilab preferences file
+            <literal>SCIHOME + '/XConfiguration.xml'</literal>, looks for the tag pointed to by
+            <varname>xpath</varname>, updates some of its attributes and related values as
+            provided by <varname>attributes_values</varname>, and closes the file.
         </para>
         <para>
-            All valid XPath requests are possible. For example to write the XPath request to set proxy settings:
+            <literal>xmlSetValues</literal> can also be used on-the-fly on an already open XML
+            document <varname>doc</varname>. In this case, the document is kept open after
+            leaving <literal>xmlSetValues</literal>. This mode is useful when several
+            tags must be updated in the same document.
+        </para>
+        <para>
+            Attributes to update must already exist for the given tag.
+            <literal>xmlSetValues</literal> is not able to create new ones.
+        </para>
+        <para>
+            All valid XPath requests are possible. For example to write the XPath request to
+            set proxy settings in the main Scilab configuration file:
         </para>
         <simplelist type="inline">
             <member>
                 <para>
-                    Open the file <literal>SCIHOME+'/XConfiguration.xml'</literal> and gets the nodes names to access to the expected node:
+                    Opens <literal>SCIHOME+'/XConfiguration.xml'</literal> and gets the
+                    nodes names to access to the expected node:
                 </para>
                 <programlisting role="xml"><![CDATA[
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
@@ -90,9 +103,13 @@
 </interface>
           ]]></programlisting>
                 <para>
-                    The path will be <literal>"/interface/web/body/proxy"</literal> (or to simplify <literal>"//web/body/proxy"</literal>).
+                    The path will be <literal>"/interface/web/body/proxy"</literal>
+                    (or to simplify <literal>"//web/body/proxy"</literal>).
                 </para>
             </member>
+        <warning>
+            Modifying incorrectly some preferences can alter the Scilab's behaviour.
+        </warning>
         </simplelist>
     </refsection>
     <refsection>
@@ -100,13 +117,13 @@
         <programlisting role="example"><![CDATA[
 // Get the current values
 prev = xmlGetValues("//web/body/proxy", ["enabled", "host", "port"]);
-setPreferencesValue("//web/body/proxy", ["enabled", "host", "port"; "true", "my.proxy.org", "1234"]);
+xmlSetValues("//web/body/proxy", ["enabled", "host", "port"; "true", "my.proxy.org", "1234"]);
 
 // Ok that's work
 xmlGetValues("//web/body/proxy", ["enabled", "host", "port"])
 
 // We restore the previous values
-setPreferencesValue("//web/body/proxy", ["enabled", "host", "port" ; prev]);
+xmlSetValues("//web/body/proxy", ["enabled", "host", "port" ; prev]);
 xmlGetValues("//web/body/proxy", ["enabled", "host", "port"])
  ]]></programlisting>
     </refsection>
@@ -124,7 +141,7 @@ xmlGetValues("//web/body/proxy", ["enabled", "host", "port"])
             <revision>
                 <revnumber>6.1.0</revnumber>
                 <revdescription>
-                    setPreferencesValue() declared obsolete, replaced with xmlSetValues().
+                    xmlSetValues() introduced, replacing setPreferencesValue().
                 </revdescription>
             </revision>
         </revhistory>

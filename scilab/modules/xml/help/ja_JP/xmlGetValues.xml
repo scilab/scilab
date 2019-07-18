@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlGetValues" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="xmlGetValues" xml:lang="ja">
     <refnamediv>
         <refname>xmlGetValues</refname>
         <refpurpose>設定値を取得</refpurpose>
@@ -55,7 +58,7 @@
     </refsection>
     <refsection>
         <title>説明</title>
-		<warning>This page is not up-to-date. Please consider the english version.</warning>
+        <warning>This page is not up-to-date. Please consider the english version.</warning>
         <para>
             設定ファイル(<literal>SCIHOME+'/XConfiguration.xml'</literal>)の
             属性の値を取得します.
@@ -93,7 +96,7 @@
     </web>
     ...
 </interface>
-	      ]]></programlisting>
+          ]]></programlisting>
                 <para>
                     パスは<literal>"/interface/web/body/proxy"</literal>
                     (または簡単化するために<literal>"//web/body/proxy"</literal>)
@@ -112,7 +115,7 @@ xmlGetValues("//web/body/proxy", ["enabled", "host", "port"]);
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="setPreferencesValue">setPreferencesValue</link>
+                <link linkend="xmlSetValues">xmlSetValues</link>
             </member>
         </simplelist>
     </refsection>

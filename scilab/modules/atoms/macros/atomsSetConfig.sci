@@ -143,7 +143,7 @@ function nbChanges = atomsSetConfig(field, value)
     end
 
     if ~isempty(prefs_kv) then
-        setPreferencesValue("//web/body/proxy", prefs_kv);
+        xmlSetValues("//web/body/proxy", prefs_kv);
     end
 
     // Shortcut

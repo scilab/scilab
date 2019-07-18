@@ -27,7 +27,7 @@ function atomsRestoreConfig(quiet)
     end
 
     proxy_attrs = ["enabled", "host", "port", "user", "password"];
-    setPreferencesValue("//web/body/proxy", [proxy_attrs ; xmlGetValues("//web/body/previous-proxy", proxy_attrs)]);
+    xmlSetValues("//web/body/proxy", [proxy_attrs ; xmlGetValues("//web/body/previous-proxy", proxy_attrs)]);
 
     pathsystemuser = atomsPath("system", "user");
 

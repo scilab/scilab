@@ -84,10 +84,9 @@
                   <emphasis role="italic">General => Environment => ieee</emphasis>.
                 </listitem>
                 <listitem>
-                  Equivalently, using <code>setPreferencesValue</code> as follows
-                  (to set the mode to 1) :
+                  Equivalently, using <code>xmlSetValues</code> as follows (to set the mode to 1) :
                   <para>
-                  <literal>setPreferencesValue("//general/body/environment", ["fpe";"1"])</literal>
+                  <literal>xmlSetValues("//general/body/environment", ["fpe";"1"])</literal>
                   </para>
                 </listitem>
                 <listitem>

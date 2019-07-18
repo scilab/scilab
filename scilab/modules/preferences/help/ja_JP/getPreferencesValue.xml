@@ -118,7 +118,7 @@ getPreferencesValue("//web/body/proxy", ["enabled", "host", "port"]);
                 <link linkend="xmlGetValues">xmlGetValues</link>
             </member>
             <member>
-                <link linkend="setPreferencesValue">setPreferencesValue</link>
+                <link linkend="xmlSetValues">xmlSetValues</link>
             </member>
         </simplelist>
     </refsection>

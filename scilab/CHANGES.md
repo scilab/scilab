@@ -119,6 +119,7 @@ Feature changes and additions
 * `csvRead` and `csvTextScan` are now implemented without extra copies.
 * `editvar()` GUI support copy-paste of strings removing quotes.
 * calendar() can now display formated calendars.
+* `xmlSetValues()` clones `setPreferencesValue` that is now obsolete.
 
 
 Help pages:
@@ -150,6 +151,7 @@ Obsolete functions or features
 ------------------------------
 * `frexp` becomes an internal. Please use `[m,e]=log2(x)` instead.
 * `champ1()` is obsolete. Please use `champ.colored` instead.
+* `setPreferencesValue` will be removed from Scilab 6.1.x. Please use `xmlSetValues` instead.
 
 
 Removed Functions
@@ -251,6 +253,7 @@ Bug Fixes
 * [#16139](http://bugzilla.scilab.org/show_bug.cgi?id=16139): `auread()` and `auwrite()` kept the sound file open and locked when returning on errors. They poorly handled the default .au sound file extension.
 * [#16143](http://bugzilla.scilab.org/show_bug.cgi?id=16143): `clc(n)` cleared n+1 lines instead of n>0. Thus, it was not possible to clear only one line.
 * [#16144](http://bugzilla.scilab.org/show_bug.cgi?id=16144): Addition of sparse matrices gave incorrect results.
+* [#16148](http://bugzilla.scilab.org/show_bug.cgi?id=16148): `setPreferencesValue` is a general usage function and deserved to be renamed `xmlSetValues`.
 * [#16149](http://bugzilla.scilab.org/show_bug.cgi?id=16149): `fullpath` did not support symbolic links in paths
 * [#16152](http://bugzilla.scilab.org/show_bug.cgi?id=16152): For sparse or boolean sparse matrix `s`, `s([])` returned `[]` instead of `sparse([])`.
 * [#16158](http://bugzilla.scilab.org/show_bug.cgi?id=16158): When a multicolumn array of rationals was displayed wide column per column, columns #2:$ were replaced with its column #2.
@@ -277,3 +280,4 @@ Bug Fixes
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot()`, `colorbar()` displayed an empty ungraduated color bar.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
+

@@ -93,6 +93,9 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     // TODO: get this list from a conf file
     std::unordered_map<std::wstring, std::wstring> map;
 
+    // Scilab 6.1.0 => 6.1.x
+    map.emplace(L"setPreferencesValue", L"xmlSetValues");
+
     // Scilab 6.0.x => 6.1.0
     map.emplace(L"champ1", L"champ.colored");
     map.emplace(L"dirname", L"fileparts");

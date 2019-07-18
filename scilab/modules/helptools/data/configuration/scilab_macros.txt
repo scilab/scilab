@@ -40,6 +40,7 @@ xmltopdf
 xmltops
 xmltoweb
 xmlGetValues
+xmlSetValues
 edit_error
 editor
 %Block_xcosUpdateBlock

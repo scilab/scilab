@@ -82,10 +82,10 @@
                   <emphasis role="italic">Общие => Рабочая среда => ieee</emphasis>.
                 </listitem>
                 <listitem>
-                  Аналогично, используя <code>setPreferencesValue</code> следующим образом
+                  Аналогично, используя <code>xmlSetValues</code> следующим образом
                   (чтобы установить режим в 1) :
                   <para>
-                  <literal>setPreferencesValue("//general/body/environment", ["fpe";"1"])</literal>
+                  <literal>xmlSetValues("//general/body/environment", ["fpe";"1"])</literal>
                   </para>
                 </listitem>
                 <listitem>

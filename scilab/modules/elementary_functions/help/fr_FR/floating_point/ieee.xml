@@ -14,7 +14,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="ieee">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="ieee">
     <refnamediv>
         <refname>ieee</refname>
         <refpurpose>fixe ou indique le mode d'exception IEEE pour les calculs</refpurpose>
@@ -80,9 +83,9 @@
                   <emphasis role="italic">Général => Environment => ieee</emphasis>.
                 </listitem>
                 <listitem>
-                  En utilisant <code>setPreferencesValue</code> comme suit (ici pour ieee(1)) :
+                  En utilisant <code>xmlSetValues</code> comme suit (ici pour ieee(1)) :
                   <para>
-                  <literal>setPreferencesValue("//general/body/environment", ["fpe";"1"])</literal>
+                  <literal>xmlSetValues("//general/body/environment", ["fpe";"1"])</literal>
                   </para>
                 </listitem>
                 <listitem>

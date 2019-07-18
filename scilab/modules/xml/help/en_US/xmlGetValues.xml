@@ -218,7 +218,7 @@ C:\Path\to\another\working\dir2\clf.sci
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="setPreferencesValue">setPreferencesValue</link>
+                <link linkend="xmlSetValues">xmlSetValues</link>
             </member>
             <member>
                 <link linkend="xmlXPath">xmlXPath</link>

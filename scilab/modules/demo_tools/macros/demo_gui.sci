@@ -57,11 +57,11 @@ function demo_gui()
         if ~isfile(File2) then
             r = copyfile(File, File2);
             doc = xmlRead(File2);
-            setPreferencesValue("/scilabgui/figure", ..
-                                ["dockable" "on"
-                                 "infobar_visible" "on"
-                                 "menubar" "figure"
-                                 "menubar_visible" "on"]', doc);
+            xmlSetValues("/scilabgui/figure", ..
+                         ["dockable" "on"
+                          "infobar_visible" "on"
+                          "menubar" "figure"
+                          "menubar_visible" "on"]', doc);
             xmlWrite(doc);
             xmlDelete(doc);
         end
