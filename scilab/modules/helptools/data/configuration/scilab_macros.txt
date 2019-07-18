@@ -1,5 +1,4 @@
 %_EVoid_p
-getPreferencesValue
 setPreferencesValue
 tbx_build_blocks
 tbx_build_cleaner

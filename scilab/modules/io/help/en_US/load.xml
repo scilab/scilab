@@ -71,14 +71,14 @@
                 <itemizedlist>
                     <listitem>
                         <para>
-                        The list of variables stored in a file can be retrieved with the
-                        <link linkend="listvarinfile">listvarinfile</link> function.
+                            The list of variables stored in a file can be retrieved with the
+                            <link linkend="listvarinfile">listvarinfile</link> function.
                         </para>
                     </listitem>
                     <listitem>
                         <para>
-                        <literal>load()</literal> loads restores variables in the current scope
-                        (not on the global one).
+                            <literal>load()</literal> loads restores variables in the current scope
+                            (not on the global one).
                         </para>
                     </listitem>
                     <listitem>
@@ -87,8 +87,8 @@
                         </para>
                     </listitem>
                     <listitem>
-                            If a restored variable has the same name as an existing variable of
-                            the current scope, the current variable is silently overwritten.
+                        If a restored variable has the same name as an existing variable of
+                        the current scope, the current variable is silently overwritten.
                     </listitem>
                     <listitem>
                         <para>
@@ -151,7 +151,7 @@
             </para>
             <para>
                 The library's name can be retrieved with
-                <literal>getPreferencesValue("/scilablib", "name", "/path/to/lib")</literal>,
+                <literal>xmlGetValues("/scilablib", "name", "/path/to/lib")</literal>,
                 where "/path/to/lib" is replaced with the actual pathname of the lib file.
             </para>
         </refsect3>
@@ -192,7 +192,7 @@ d, i, b, t, s, p, r
 save("TMPDIR/val.dat", "%e");
 load("TMPDIR/val.dat");
      ]]></programlisting>
-    <screen><![CDATA[
+        <screen><![CDATA[
 --> load("TMPDIR/val.dat");
 Redefining permanent variable.
 ]]></screen>
@@ -208,7 +208,7 @@ save(TMPDIR+"/test.scg", "a3", "a1")
 clf reset
 load(TMPDIR+"/test.scg")
      ]]></programlisting>
-    <screen><![CDATA[
+        <screen><![CDATA[
 --> load("TMPDIR/val.dat");
 Redefining permanent variable.
 ]]></screen>
@@ -218,11 +218,11 @@ Redefining permanent variable.
         <programlisting role="example"><![CDATA[
 path = "SCI/modules/scicos_blocks/macros/Threshold/lib";
 load(path)
-getPreferencesValue("/scilablib", "name", path)
+xmlGetValues("/scilablib", "name", path)
 Thresholdlib
      ]]></programlisting>
-    <screen><![CDATA[
---> getPreferencesValue("/scilablib", "name", path)
+        <screen><![CDATA[
+--> xmlGetValues("/scilablib", "name", path)
  ans  =
  Thresholdlib
 
@@ -232,10 +232,10 @@ Functions files location : SCI\modules\scicos_blocks\macros\Threshold\.
 GENERAL_f  ZCROSS_f  NEGTOPOS_f  POSTONEG_f
 ]]></screen>
     </refsection>
-        <para>
-            <literal>xcos()</literal> must be used to load a simulation diagram:
-        </para>
-        <programlisting role="example"><![CDATA[
+    <para>
+        <literal>xcos()</literal> must be used to load a simulation diagram:
+    </para>
+    <programlisting role="example"><![CDATA[
 path = "SCI/modules/xcos/examples/derivative.zcos";
 load(path)  // => error
 xcos(path)

@@ -157,6 +157,7 @@ Obsolete functions or features
 Removed Functions
 -----------------
 
+* `getPreferencesValue` was obsolete and has been removed. Please use `xmlGetValues` instead.
 * `hypermat` was obsolete and has been removed. Please use `matrix` instead.
 * `square` was obsolete and has been removed.
 * `xgetech` was obsolete and has been removed. Please use `gca` instead.
