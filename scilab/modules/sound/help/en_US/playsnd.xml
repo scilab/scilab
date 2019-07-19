@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) ????-2006 - INRIA - Scilab
-    *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2006 - INRIA - Scilab
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,79 +11,218 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-    *
-    -->
+ *
+-->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
           xml:lang="en" xml:id="playsnd">
     <refnamediv>
         <refname>playsnd</refname>
-        <refpurpose>sound player facility</refpurpose>
+        <refpurpose>command-line sound player facility</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-          playsnd(y)
-          playsnd(y, rate, bits)
-          playsnd(y, rate, bits, command)
+            playsnd(filename)
+            playsnd(filename, speed)
+            playsnd(filename, speed, nbiter)
+            playsnd(filename, speed, nbiter, playerCmd)
+            playsnd(filename, speed, playerCmd)
+
+            playsnd(y)
+            playsnd(y, rate)
+            playsnd(y, rate, nbiter)
+            playsnd(y, rate, nbiter, playerCmd)
+            playsnd(y, rate, playerCmd)
+
+            playsnd([])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    single string: the path and name of the sound file to play.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>speed</term>
+                <listitem>
+                    real positive number: relative playing speed.
+                    <varname>speed</varname> &lt; 1 plays slower,
+                    while <varname>speed</varname> > 1 plays faster. (1.0 by default).
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>A matrix. Each line describes a channel</para>
+                    matrix of normalized linear sound data, in [-1,1]. Each row feeds a channel.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rate</term>
                 <listitem>
-                    <para>real number, sampling frequency (default value is 22050).</para>
+                    real positive number: sampling frequency in Hz (default value is 22050).
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>bits</term>
+                <term>nb_iter</term>
                 <listitem>
-                    <para>real number, number of bits (usually 8 or 16). Unused yet.</para>
+                    positive decimal integer: number of consecutive times (iterations) that
+                    the sound must be played.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>command</term>
+                <term>playerCmd</term>
                 <listitem>
-                    <para>Only used on Unix systems it gives the name of the command to use for playing sound
-                        (wav) files. The default value is <literal>play</literal>. If set <literal>/dev/audio</literal> then
-                        a 8 bits mu-law raw sound file is created and send to <literal>/dev/audio</literal>
-                    </para>
+                    Only used on Unix and MacOS systems. Single string giving the OS command
+                    to use for playing sound (wav) files. The default value is
+                    <literal>"aplay"</literal> on Linux and <literal>"afplay"</literal> on MacOS.
+                    <para/>
+                    If <varname>playerCmd</varname> is set to <literal>/dev/audio</literal>,
+                    then a 8 bits mu-law raw sound file is created and send to
+                    <literal>/dev/audio</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Plays a multi channel signal given by a Scilab matrix were sound is sampled at rate given by
-            <literal>rate</literal>.
+        <para>
+            <emphasis role="bold">playsnd(filename,..)</emphasis> or
+            <emphasis role="bold">playsnd(y,..)</emphasis>
+            cancels any running sound and then starts playing a single or multi channel signal.
+        </para>
+        <para>
+            When <varname>nb_iter</varname> is not used, the sound is played only once, and
+            <literal>playsnd(…)</literal> behaves in a non-modal way: Scilab returns to the prompt
+            or to the next instruction just after starting playing, without waiting for the end of
+            the sound.
+        </para>
+        <para>
+            Otherwise, the sound is played <varname>nb_iter</varname> consecutive times,
+            and <literal>playsnd(…)</literal> becomes modal (even for
+            <varname>nb_iter</varname>=1): Scilab returns to the prompt
+            or to the next instruction only after the end of the last time the sound is played.
+            <note>
+                The repetition is interruptible with CTRL-C or any <literal>pause</literal> or
+                <literal>abort</literal> callback instruction.
+            </note>
+        </para>
+        <para>
+            <emphasis role="bold">playsnd([])</emphasis> cancels any sound running without
+            <varname>nb_iter</varname> and not through /dev/audio.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            Playing a sound from its audio file:
+        </para>
         <programlisting role="example"><![CDATA[
 // A two channel signal
+File = "SCI/modules/sound/demos/chimes.wav";
+playsnd(File)           // Play it once at normal speed
+sleep(5)
+playsnd(File, 2)        // Play it once at speed x 2
+sleep(5)
+playsnd(File,, 3)       // Play it 3 times at normal speed
+sleep(5)
+playsnd(File, 1.5, 3)   // Play it 3 times at speed x 1.5
+sleep(5)
+playsnd(File, 0.2)      // Play it once and slowly.
+                        // Note that Scilab returns as soon as the player starts.
+// Plays a longer sound. Interrupts it 1.0 s after it started:
+playsnd(File, 0.2), sleep(1,'s'), playsnd([])
+ ]]></programlisting>
+        <para/>
+        <para>
+            Playing a sound from its data in a matrix:
+        </para>
+        <programlisting role="example"><![CDATA[
 y = loadwave("SCI/modules/sound/demos/chimes.wav");
-playsnd(y)
+playsnd(y)              // Play it once at the default 22050 Hz sampling rate
+sleep(5)
+playsnd(y, 3e4)         // Play it once at 30 kHz sampling rate
+sleep(5)
+playsnd(y,, 3)          // Play it 3 times at the default sampling rate
+sleep(5)
+playsnd(y, 44100, 3)    // Play it 3 times at 44.1 kHZ sampling rate
+ ]]></programlisting>
+        <para/>
+        <para>
+            Interrupting  with CTRL + C a repeated sound:
+        </para>
+        <programlisting role="example"><![CDATA[
+playsnd("SCI/modules/sound/demos/chimes.wav",, 20);
+// Now enter CTRL-C to interrupt the repetition
+// Then type "resume" or "abort"
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="beep">beep</link>
+            </member>
+            <member>
+                <link linkend="realtime">realtime</link>
+            </member>
+            <member>
                 <link linkend="lin2mu">lin2mu</link>
             </member>
             <member>
                 <link linkend="wavread">wavread</link>
             </member>
+            <member>
+                <link linkend="auread">auread</link>
+            </member>
+            <member>
+                <link linkend="mcisendstring">mcisendstring</link>
+            </member>
+            <member>
+                <link linkend="winopen">winopen</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            playsnd(filename,..) can now be used. The relative speed wrt the native
+                            one in the file can be specified.
+                        </listitem>
+                        <listitem>
+                            nb_iter option introduced.
+                        </listitem>
+                        <listitem>
+                            playsnd([]) is introduced to stop a sound run without repetition.
+                        </listitem>
+                        <listitem>
+                            playsnd(…) is now by default not-modal on Linux and MacOS, like on Windows.
+                        </listitem>
+                        <listitem>
+                            playsnd(…) can now be modal on any OS, through any explicit nb_iter value.
+                        </listitem>
+                        <listitem>
+                            Input argument bits removed.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

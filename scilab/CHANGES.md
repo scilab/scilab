@@ -137,6 +137,10 @@ Feature changes and additions
   - Handles of the grids and labels are returned. Post-processing them become easy.
   - Named colors accepted ; better default colors.
   - Improved placement of labels.
+* `playsnd()` is upgraded:
+  - the name of a wav file can now be specified (instead of the sound data).
+  - the input sound can now be repeated a given number of times.
+  - the modal/non-modal processing is improved.
 * `nicholschart` is improved: more neutral default frame color; improved labels positionning; colors can now be specified by their predefined name or "#RRGGBB" hexa code; a structure of handles is now returned to easily postprocess both subframes and the set of labels.
 * `sciargs()` returns a column instead of formerly a row.
 * Booleans and encoded integers can now be concatenated together, as in `[%f int8(-5)]`.
@@ -146,6 +150,7 @@ Feature changes and additions
 * `setdiff()` now supports complex numbers.
 * `twinkle` can now blink together several hierarchically independent objects, like a curve and its labels, etc.
 * `repmat()` has been rewritten. It is 7 times faster now.
+
 
 
 Help pages:
@@ -232,7 +237,7 @@ Bug Fixes
 * [#10723](http://bugzilla.scilab.org/show_bug.cgi?id=10723): `subplot`'s action was unclearly described in its help page. Page improved.
 * [#11852](http://bugzilla.scilab.org/show_bug.cgi?id=11852): File browser didn't update after file creation or remove.
 * [#11363](http://bugzilla.scilab.org/show_bug.cgi?id=11363): show_window() did not raise the current graphics window.
-* [#13738](http://bugzilla.scilab.org/show_bug.cgi?id=13738): `get_figure_handle` was a specific duplicate of the more powerful `findobj('figure_id',n)` feature. It is now obsolete. 
+* [#13738](http://bugzilla.scilab.org/show_bug.cgi?id=13738): `get_figure_handle` was a specific duplicate of the more powerful `findobj('figure_id',n)` feature. It is now obsolete.
 * [#12520](http://bugzilla.scilab.org/show_bug.cgi?id=12520): Vriable browser did not display the size of the variables.
 * [#12534](http://bugzilla.scilab.org/show_bug.cgi?id=12534): Variable browser did not display the size of the variables.
 * [#12837](http://bugzilla.scilab.org/show_bug.cgi?id=12837): `strcmpi` was an obsolete duplicate of `strcmp(,'i')`. It is removed.
@@ -343,7 +348,10 @@ Bug Fixes
 * [#16111](http://bugzilla.scilab.org/show_bug.cgi?id=16111): `isglobal` was not supporting non-scalar array of strings as input.
 * [#16118](http://bugzilla.scilab.org/show_bug.cgi?id=16118): `%s <> (1+%s)` returned %F.
 * [#16135](http://bugzilla.scilab.org/show_bug.cgi?id=16135): base2dec did not detect invalid numbers.
+* [#16137](http://bugzilla.scilab.org/show_bug.cgi?id=16137): After running `playsnd(..)` on Windows for a long sound, it was not possible to stop it.
+* [#16138](http://bugzilla.scilab.org/show_bug.cgi?id=16138): `playsnd(..)` could not be run in a non-modal (asynchronous) way on Linux and MacOS.
 * [#16139](http://bugzilla.scilab.org/show_bug.cgi?id=16139): `auread()` and `auwrite()` kept the sound file open and locked when returning on errors. They poorly handled the default .au sound file extension.
+* [#16140](http://bugzilla.scilab.org/show_bug.cgi?id=16140): `playsnd(..)` could not directly accept an audio file and could not repeat the input sound.
 * [#16143](http://bugzilla.scilab.org/show_bug.cgi?id=16143): `clc(n)` cleared n+1 lines instead of n>0. Thus, it was not possible to clear only one line.
 * [#16144](http://bugzilla.scilab.org/show_bug.cgi?id=16144): Addition of sparse matrices gave incorrect results.
 * [#16148](http://bugzilla.scilab.org/show_bug.cgi?id=16148): `setPreferencesValue` is a general usage function and deserved to be renamed `xmlSetValues`.
@@ -394,4 +402,3 @@ Bug Fixes
 * [#16307](http://bugzilla.scilab.org/show_bug.cgi?id=16307): `dockable="off"` and `closerequestfcn` on figures crached Scilab.
 * [#16320](http://bugzilla.scilab.org/show_bug.cgi?id=16320): There were unsupported UTF-8 characters in some gettext id messages.
 * [#16321](http://bugzilla.scilab.org/show_bug.cgi?id=16321): There were typo errors in the documentation.
-
