@@ -113,7 +113,7 @@ SUFFIXES += .mll .mly
 # Build the binaries, disabling parallel building as ocamldep ordering seems to fail on some systems
 
 modelicac: $(modelicac_SOURCES) $(MLS_modelicac)
-	/usr/bin/time -v $(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicac)
+	/usr/bin/time $(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $(MLS_modelicac)
 
 modelicac.ocamlc: $(modelicac_SOURCES) $(MLS_modelicac)
 	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $(MLS_modelicac)
