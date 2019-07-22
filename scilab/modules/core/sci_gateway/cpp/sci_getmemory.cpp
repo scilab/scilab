@@ -29,13 +29,13 @@ types::Function::ReturnValue sci_getmemory(types::typed_list &in, int _iRetCount
 {
     if (in.size() > 0)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected."), "funcprot", 0);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected."), "getmemory", 0);
         return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
-        Scierror(77, _("%s: Wrong number of output argument(s): %d expected."), "funcprot", 2);
+        Scierror(77, _("%s: Wrong number of output argument(s): %d expected."), "getmemory", 2);
         return types::Function::Error;
     }
 
