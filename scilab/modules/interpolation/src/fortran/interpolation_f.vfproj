@@ -80,19 +80,23 @@ lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WIN
 lib /DEF:&quot;$(InputDir)slatec_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)slatec_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
-	<Files>
-		<Filter Name="Header Files" Filter="fi;fd"/>
-		<Filter Name="Library Dependencies">
-		<File RelativePath=".\core_import.def"/>
-		<File RelativePath=".\elementary_functions_f_Import.def"/>
-		<File RelativePath=".\slatec_f_Import.def"/></Filter>
-		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
-		<File RelativePath=".\interpolation_f.rc"/></Filter>
-		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath=".\cshep2d.f"/>
-		<File RelativePath=".\dspfit.f"/>
-		<File RelativePath=".\somespline.f"/></Filter>
-		<File RelativePath=".\mesh2b.f"/></Filter>
-		<File RelativePath="..\..\sci_gateway\interpolation_gateway.xml"/>
-		<File RelativePath="..\..\Makefile.am"/></Files>
+  <Files>
+    <Filter Name="Header Files" Filter="fi;fd"/>
+    <Filter Name="Library Dependencies">
+      <File RelativePath=".\core_import.def"/>
+      <File RelativePath=".\elementary_functions_f_Import.def"/>
+      <File RelativePath=".\slatec_f_Import.def"/>
+    </Filter>
+    <Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+      <File RelativePath=".\interpolation_f.rc"/>
+    </Filter>
+    <Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+      <File RelativePath=".\cshep2d.f"/>
+      <File RelativePath=".\dspfit.f"/>
+      <File RelativePath=".\somespline.f"/>
+      <File RelativePath=".\mesh2b.f"/>
+      <File RelativePath="..\..\sci_gateway\interpolation_gateway.xml"/>
+      <File RelativePath="..\..\Makefile.am"/>
+    </Filter>
+  </Files>
 	<Globals/></VisualStudioProject>
