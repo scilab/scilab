@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="intc">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="intc">
     <refnamediv>
         <refname>intc</refname>
         <refpurpose>コーシー積分</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[y  [,err]] = intc(a, b, f [,abserr [,relerr]])</synopsis>
+        <synopsis>
+          [y, err] = intc(a, b, f)
+          [y, err] = intc(a, b, f, abserr)
+          [y, err] = intc(a, b, f, abserr, relerr)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -28,31 +35,31 @@
             <varlistentry>
                 <term>a,b</term>
                 <listitem>
-                    <para>2つの複素数スカラー</para>
+                    2つの複素数スカラー
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>"外部" 関数</para>
+                    "外部" 関数
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>abserr, rerr</term>
+                <term>abserr, relerr</term>
                 <listitem>
-                    <para>
-                        実スカラー, 絶対および相対エラー.
-                        デフォルト値: <literal>1.d-14</literal> および
-                        <literal>1d-8</literal>.
-                    </para>
+                    実スカラー, 絶対および相対エラー.
+                    デフォルト値: <literal>1.d-13</literal> および
+                    <literal>1d-8</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>err</term>
                 <listitem>
-                    <para>
-                        実数, 推定された結果の絶対誤差.
-                    </para>
+                    実数, 推定された結果の絶対誤差.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -73,6 +80,7 @@
 function y = f(z)
   y = z^(3 + %pi * %i);
 endfunction
+
 intc(1+%i, 4-%i, f)
 [r, err] = intc(1+%i, 4-%i, f, 1d-10, 1d-6)
  ]]></programlisting>
@@ -95,7 +103,12 @@ intc(1+%i, 4-%i, f)
                 <revnumber>5.5.0</revnumber>
                 <revremark>絶対および相対(入力)および絶対 (出力)
                     誤差管理が追加されました.
-
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revremark>
+                    The default abserr value is increased from 1e-14 to 1e-13.
                 </revremark>
             </revision>
         </revhistory>

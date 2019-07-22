@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * ...
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,14 +14,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="intg" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="intg" xml:lang="en">
     <refnamediv>
         <refname>intg</refname>
         <refpurpose>definite integral</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[v, err [,ierr]]=intg(a, b, f [,ea [,er]])</synopsis>
+        <synopsis>
+            [v, err] = intg(a, b, f)
+            [v, err] = intg(a, b, f, atol)
+            [v, err] = intg(a, b, f, atol, rtol)
+            [v, err, ierr] = intg(..)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -29,47 +37,47 @@
             <varlistentry>
                 <term>a, b</term>
                 <listitem>
-                    <para>real numbers.</para>
+                      Finite real numbers : bounds of the integral.
+                      <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>external (function or list or string).</para>
+                      function to be integrated, specified either by its literal name (ex:
+                      "sind") or by its identifier (ex: sind), or by a list (in case of function
+                      parameters).
+                      <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ea, er</term>
+                <term>atol</term>
                 <listitem>
-                    <para>real numbers.</para>
+                       real number: tolerance on the absolute error accepted on the result.
+                       Default value: 1.d-13.
+                      <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ea</term>
+                <term>rtol</term>
                 <listitem>
-                    <para>absolute error required on the result. Default value:
-                        1.d-13.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>er</term>
-                <listitem>
-                    <para>relative error required on the result. Default value:
-                        1.d-8.
-                    </para>
+                        real number: tolerance on the relative error accepted on the result.
+                        Default value: 1.d-8.
+                      <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>err</term>
                 <listitem>
-                    <para>estimated absolute error on the result.</para>
+                      estimated absolute error on the result.
+                      <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ierr</term>
                 <listitem>
-                    <para>error flag number (= 0 if no error occurred).</para>
+                      error flag number (= 0 if no error occurred).
+                      <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -82,7 +90,7 @@
             The function <literal>f(t)</literal> should be continuous.
         </para>
         <para>The evaluation hopefully satisfies following claim for accuracy:
-            <literal>abs(I-v)&lt;= max(ea,er*abs(I))</literal> where
+            <literal>abs(I-v)&lt;= max(atol, rtol*abs(I))</literal> where
             <literal>I</literal> stands for the exact value of the integral.
         </para>
         <para>
@@ -109,10 +117,12 @@
             double precision number.
         </para>
         <para>
-            In the C case the syntax should be <literal>double
-                f(double *x)
-            </literal>
-            .
+            In the C case the syntax should be <literal>double f(double *x)</literal>.
+        </para>
+        <para>
+            <emphasis role="bold">Used Functions</emphasis> : The associated routines
+            dqags.f and dqagse.f from quadpack can be found in the
+            SCI/modules/differential_equations/src/fortran directory.
         </para>
     </refsection>
     <refsection>
@@ -125,10 +135,10 @@
             if the spike is stiff enough.
         </para>
         <para>
-            This cannot be bypassed, it is easy to understand why when we know how the integrator operates.
-            Indeed, <literal>intg</literal> uses the 21-point Gauss-Kronrod rule,
-            so if there is a spike in-between two consecutive integration points,
-            then it will go undetected, the function will be considered smooth.
+            This cannot be bypassed. It is easy to understand why when we know how the integrator operates.
+            Indeed, <literal>intg</literal> uses the 21-point Gauss-Kronrod rule.
+            Hence, any spike in-between two consecutive integration points will be undetected,
+            and the function will be considered smooth.
         </para>
         <para>
             However, a warning message will be issued if the function is considered very smooth.
@@ -136,31 +146,35 @@
             should he think that spikes were missed.
         </para>
         <para>
-            The following graphs illustrate that phenomenon.
+            The following graphs illustrate that phenomenon:
         </para>
         <scilab:image localized="true">
             x = 0:.1:22;
             y = zeros(1,221); y(1) = 3; y(96) = 1;
-            plot(x, y);
-            xtitle("Spike missed");
-        </scilab:image>
-        <para>
-            Being in-between the 9th and 10th integration points,
-            that spike is not detected and
-            <literal>intg</literal> considers the function flat.
-            In the next image, the spike is large enough to be covered by the integration points.
-        </para>
-        <scilab:image localized="true">
+            subplot(1,2,1)
+            plot(x, y, "r");
+            title(_("Unsampled Spike => missed by intg()"), "fontsize",3);
+            xlabel(_("Indices of integration points, as seen by intg()"))
+
             x = 0:21;
             y = zeros(1,22); y(1) = 3; y(10) = 1;
-            plot(x, y);
-            xtitle("Spike detected");
+            subplot(1,2,2)
+            plot(x, y, "r");
+            title(_("Sampled spike => detected by intg()"), "fontsize",3);
+            xlabel(_("Indices of integration points, as seen by intg()"))
+
+            gcf().axes_size = [700 350];
         </scilab:image>
         <para>
-            If the user wants to display the computed solution even if the solver has encountered an error,
-            he should add the third output argument <literal>ierr</literal>, that will transform the
-            errors into warnings. This is mostly used in the case of rounding errors.
+            On the left image, the spike lays between the 9th and 10th integration points,
+            and is not detected. <literal>intg</literal> considers the function flat.
+            On the right, the spike is large enough to be covered by the integration points.
         </para>
+        <note>
+            When we want to display the computed solution even if the solver has encountered an error,
+            we should add the third output argument <literal>ierr</literal>. Then errors become
+            simple warnings. This is mostly used in the case of rounding errors.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -172,10 +186,9 @@ I=intg(0,2*%pi,f)
 abs(exact-I)
 
 // Function with an argument written in the Scilab language
-function y=f1(x,w),y=x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
-I=intg(0,2*%pi,list(f1,30))
-abs(exact-I)
-
+function y = f1(x,w), y = x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)), endfunction
+I = intg(0, 2*%pi, list(f1,30))
+abs(exact - I)
 
 // Function written in Fortran (a Fortran compiler is required)
 // define a Fortran function
@@ -189,14 +202,14 @@ F=['      double precision function ffun(x)'
 mputl(F,'ffun.f')
 
 // compile the function
-l=ilib_for_link('ffun','ffun.f',[],'f');
+l = ilib_for_link('ffun', 'ffun.f', [], 'f');
 
 // add the function to the working environment
-link(l,'ffun','f')
+link(l, 'ffun', 'f')
 
 // integrate the function
-I=intg(0,2*%pi,'ffun')
-abs(exact-I)
+I = intg(0, 2*%pi, 'ffun')
+abs(exact - I)
 
 // Function written in C (a C compiler is required)
 // define a C function
@@ -207,17 +220,17 @@ C=['#include <math.h>'
    '  y=*x/(2.0e0*pi);'
    '  return *x*sin(30.0e0**x)/sqrt(1.0e0-y*y);'
    '}'];
-mputl(C,'cfun.c')
+mputl(C, 'cfun.c')
 
 // compile the function
-l=ilib_for_link('cfun','cfun.c',[],'c');
+l = ilib_for_link('cfun', 'cfun.c', [], 'c');
 
 // add the function to the working environment
-link(l,'cfun','c')
+link(l, 'cfun', 'c')
 
 // integrate the function
-I=intg(0,2*%pi,'cfun')
-abs(exact-I)
+I = intg(0, 2*%pi, 'cfun')
+abs(exact - I)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -240,11 +253,16 @@ abs(exact-I)
             </member>
         </simplelist>
     </refsection>
-    <refsection>
-        <title>Used Functions</title>
-        <para>The associated routines can be found in SCI/modules/differential_equations/src/fortran directory
-            :
-        </para>
-        <para>dqags.f and dqagse.f from quadpack</para>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    The default value atol of the absolute tolerance is increased from
+                    10<superscript>-14</superscript> to 10<superscript>-13</superscript>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

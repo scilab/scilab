@@ -3,8 +3,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
  * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added error control
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,14 +14,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="intc">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="intc">
     <refnamediv>
         <refname>intc</refname>
-        <refpurpose>Cauchy integral</refpurpose>
+        <refpurpose>integral along a straight path in the complex plan</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[y  [,err]] = intc(a, b, f [,abserr [,relerr]])</synopsis>
+        <synopsis>
+          [y, err] = intc(a, b, f)
+          [y, err] = intc(a, b, f, abserr)
+          [y, err] = intc(a, b, f, abserr, relerr)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -29,27 +36,31 @@
             <varlistentry>
                 <term>a, b</term>
                 <listitem>
-                    <para>two complex scalars</para>
+                      two complex numbers: starting and ending points of the integral in the
+                      complex plan.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>"external" function</para>
+                    Identifier of the function to be integrated.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>abserr, rerr</term>
+                <term>abserr, relerr</term>
                 <listitem>
-                    <para>real scalars, absolute and relative errors.
-                        Default values: <literal>1.d-14</literal> and <literal>1d-8</literal>.
-                    </para>
+                    real scalars: absolute and relative errors.
+                    Default values: <literal>1.d-13</literal> and <literal>1d-8</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>err</term>
                 <listitem>
-                    <para>real number, estimated absolute error on the result.</para>
+                    real number: estimated absolute error on the result.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -58,8 +69,9 @@
         <title>Description</title>
         <para>
             If <literal>f</literal> is a complex-valued function, <literal>intc(a, b, f)</literal>
-            computes the integral from <literal>a</literal> to <literal>b</literal> of <literal>f(z)dz</literal> along the
-            straight line <literal>[a b]</literal> of the complex plane.
+            computes the integral from <literal>a</literal> to <literal>b</literal> of
+            <literal>f(z)dz</literal> along the  straight line <literal>[a b]</literal>
+            of the complex plan.
         </para>
     </refsection>
     <refsection>
@@ -91,6 +103,13 @@ intc(1+%i, 4-%i, f)
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>Absolute and relative (input) and absolute (output) errors management added.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revremark>
+                    The default abserr value becomes 10<superscript>-13</superscript> instead of
+                    10<superscript>-14</superscript>.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

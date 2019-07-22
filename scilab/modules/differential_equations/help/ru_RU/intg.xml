@@ -14,14 +14,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="intg" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="intg" xml:lang="ru">
     <refnamediv>
         <refname>intg</refname>
         <refpurpose>определённый интеграл</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>[v,err]=intg(a,b,f [,ea [,er])</synopsis>
+        <synopsis>
+            [v, err] = intg(a, b, f)
+            [v, err] = intg(a, b, f, atol)
+            [v, err] = intg(a, b, f, atol, rtol)
+            [v, err, ierr] = intg(..)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Аргументы</title>
@@ -29,45 +37,43 @@
             <varlistentry>
                 <term>a, b</term>
                 <listitem>
-                    <para>вещественные числа</para>
+                    Конечные действительные числа: границы интеграла.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>внешняя функция (функция, список или строка)</para>
+                    внешняя функция (функция, список или строка)
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ea, er</term>
+                <term>atol</term>
                 <listitem>
-                    <para>вещественные числа</para>
+                    абсолютная ошибка, требуемая для результата. Значение по умолчанию: 1.d-13.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ea</term>
+                <term>rtol</term>
                 <listitem>
-                    <para>
-                        абсолютная ошибка, требуемая для результата. Значение по
-                        умолчанию: 1.d-13.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>er</term>
-                <listitem>
-                    <para>
-                        относительная ошибка, требуемая для результата. Значение по
-                        умолчанию: 1.d-8.
-                    </para>
+                    относительная ошибка, требуемая для результата. Значение по умолчанию: 1.d-8.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>err</term>
                 <listitem>
-                    <para>
-                        оцененная абсолютная ошибка результата.
-                    </para>
+                    оцененная абсолютная ошибка результата.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ierr</term>
+                <listitem>
+                      error flag number (= 0 if no error occurred).
+                      <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -82,7 +88,7 @@
         </para>
         <para>
             Вычисление, как можно ожидать, удовлетворяет следующему условию точности:
-            <literal>abs(I-v)&lt;= max(ea,er*abs(I))</literal>, где
+            <literal>abs(I-v)&lt;= max(atol, rtol*abs(I))</literal>, где
             <literal>I</literal> -- точное значение интеграла.
         </para>
         <para>
@@ -124,21 +130,76 @@
                 </listitem>
             </itemizedlist>
         </itemizedlist>
+        <para>
+            <emphasis role="bold">Используемые функции</emphasis> :
+            Связанные подпрограммы можно найти в директории
+            SCI/modules/differential_equations/src/fortran: dqags.f и dqagse.f из quadpack.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Known Limitation</title>
+        <para>
+            Like all the integrators, <literal>intg</literal> is subject to spike missing.
+        </para>
+        <para>
+            A flat function with a spike will be seen as a fully flat function
+            if the spike is stiff enough.
+        </para>
+        <para>
+            This cannot be bypassed. It is easy to understand why when we know how the integrator operates.
+            Indeed, <literal>intg</literal> uses the 21-point Gauss-Kronrod rule.
+            Hence, any spike in-between two consecutive integration points will be undetected,
+            and the function will be considered smooth.
+        </para>
+        <para>
+            However, a warning message will be issued if the function is considered very smooth.
+            The user will then be suggested to reduce the integration interval,
+            should he think that spikes were missed.
+        </para>
+        <para>
+            The following graphs illustrate that phenomenon:
+        </para>
+        <scilab:image localized="true">
+            x = 0:.1:22;
+            y = zeros(1,221); y(1) = 3; y(96) = 1;
+            subplot(1,2,1)
+            plot(x, y, "r");
+            title(_("Unsampled Spike => missed by intg()"), "fontsize",3);
+            xlabel(_("Indices of integration points, as seen by intg()"))
+
+            x = 0:21;
+            y = zeros(1,22); y(1) = 3; y(10) = 1;
+            subplot(1,2,2)
+            plot(x, y, "r");
+            title(_("Sampled spike => detected by intg()"), "fontsize",3);
+            xlabel(_("Indices of integration points, as seen by intg()"))
+
+            gcf().axes_size = [700 350];
+        </scilab:image>
+        <para>
+            On the left image, the spike lays between the 9th and 10th integration points,
+            and is not detected. <literal>intg</literal> considers the function flat.
+            On the right, the spike is large enough to be covered by the integration points.
+        </para>
+        <note>
+            When we want to display the computed solution even if the solver has encountered an error,
+            we should add the third output argument <literal>ierr</literal>. Then errors become
+            simple warnings. This is mostly used in the case of rounding errors.
+        </note>
     </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 // Функция, написанная на языке Scilab
-function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
-exact=-2.5432596188;
-I=intg(0,2*%pi,f)
-abs(exact-I)
+function y = f(x), y = x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)), endfunction
+exact = -2.5432596188;
+I = intg(0, 2*%pi, f)
+abs(exact - I)
 
 // Функция с аргументом, написанном на языке Scilab
-function y=f1(x,w),y=x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
-I=intg(0,2*%pi,list(f1,30))
-abs(exact-I)
-
+function y = f1(x,w), y=x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)), endfunction
+I = intg(0, 2*%pi, list(f1,30))
+abs(exact - I)
 
 // Функция, написанная на Fortran (требуется компилятор Fortran)
 // определение функции Fortran
@@ -149,18 +210,18 @@ F=['      double precision function ffun(x)'
    '      ffun=x*sin(30.0d+0*x)/sqrt(1.0d+0-(x/(2.0d+0*pi))**2)'
    '      return'
    '      end'];
-mputl(F,'ffun.f')
+mputl(F, 'ffun.f')
 
 
 // компилируем функцию
- l=ilib_for_link('ffun','ffun.f',[],'f');
+ l = ilib_for_link('ffun', 'ffun.f', [], 'f');
 
 // добавляем  функцию в рабочее окружение
-link(l,'ffun','f')
+link(l, 'ffun', 'f')
 
 // интегрируем функцию
-I=intg(0,2*%pi,'ffun')
-abs(exact-I)
+I = intg(0, 2*%pi, 'ffun')
+abs(exact - I)
 
 // Функция, написанная на C (требуется компилятор C)
 // определение C-функции
@@ -171,17 +232,17 @@ C=['#include <math.h>'
    '  y=*x/(2.0e0*pi);'
    '  return *x*sin(30.0e0**x)/sqrt(1.0e0-y*y);'
    '}'];
-mputl(C,'cfun.c')
+mputl(C, 'cfun.c')
 
 //  компилируем функцию
- l=ilib_for_link('cfun','cfun.c',[],'c');
+l = ilib_for_link('cfun', 'cfun.c', [], 'c');
 
 // добавляем  функцию в рабочее окружение
-link(l,'cfun','c')
+link(l, 'cfun', 'c')
 
 // интегрируем функцию
-I=intg(0,2*%pi,'cfun')
-abs(exact-I)
+I = intg(0, 2*%pi, 'cfun')
+abs(exact - I)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -204,11 +265,16 @@ abs(exact-I)
             </member>
         </simplelist>
     </refsection>
-    <refsection>
-        <title>Используемые функции</title>
-        <para>Связанные подпрограммы можно найти в директории
-            SCI/modules/differential_equations/src/fortran:
-        </para>
-        <para>dqags.f и dqagse.f из quadpack</para>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    The default value atol of the absolute tolerance is increased from
+                    1O<superscript>-14</superscript> to 1O<superscript>-13</superscript>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

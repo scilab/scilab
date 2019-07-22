@@ -434,6 +434,7 @@ Bug Fixes
 * [#16140](https://bugzilla.scilab.org/16140): `playsnd` could not directly accept an audio file and could not repeat the input sound.
 * [#16143](https://bugzilla.scilab.org/16143): `clc(n)` cleared n+1 lines instead of n>0. Thus, it was not possible to clear only one line.
 * [#16144](https://bugzilla.scilab.org/16144): Addition of sparse matrices gave incorrect results.
+* [#16145](https://bugzilla.scilab.org/16145): `integrate` and `intg` default absolute tolerances atol were no longer the same. `integrate`'s default relative tolerance rtol was not the same in case of 3 or 4 input arguments.
 * [#16148](https://bugzilla.scilab.org/16148): `setPreferencesValue` is a general usage function and deserved to be renamed `xmlSetValues`.
 * [#16149](https://bugzilla.scilab.org/16149): `fullpath` did not support symbolic links in paths
 * [#16152](https://bugzilla.scilab.org/16152): For sparse or boolean sparse matrix `s`, `s([])` returned `[]` instead of `sparse([])`.

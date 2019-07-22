@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="intg" xml:lang="fr">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="intg" xml:lang="fr">
     <refnamediv>
         <refname>intg</refname>
         <refpurpose>intégration numérique adaptative</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[v,err [,ierr]]=intg(a,b,f [,ea [,er])</synopsis>
+        <synopsis>
+            [v, err] = intg(a, b, f)
+            [v, err] = intg(a, b, f, atol)
+            [v, err] = intg(a, b, f, atol, rtol)
+            [v, err, ierr] = intg(..)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -14,45 +37,47 @@
             <varlistentry>
                 <term>a, b</term>
                 <listitem>
-                    <para>nombres réels.</para>
+                    nombres réels finis : bornes de l'intégrale.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>fonction externe (fonction Scilab ou chaîne de caractères ou
-                        liste).
-                    </para>
+                    fonction à intégrer, spécifiée soit par son nom litéral (ex: "sind"),
+                    soit par son identifiant (ex : sind), soit par une liste (si la fonction
+                    attend en outre des paramètres).
+                      <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ea, er</term>
+                <term>atol</term>
                 <listitem>
-                    <para>nombres réels.</para>
+                      nombre réel positif : erreur absolue maximale tolérée sur le résultat
+                      (1.d-13 par défaut).
+                      <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ea</term>
+                <term>rtol</term>
                 <listitem>
-                    <para>erreur absolue désirée (1.d-13 par défaut).</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>er</term>
-                <listitem>
-                    <para>erreur relative (1.d-8 par défaut).</para>
+                      nombre réel positif : erreur relative maximale tolérée sur le résultat
+                      (1.d-8 par défaut).
+                      <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>err</term>
                 <listitem>
-                    <para>estimation de l'erreur absolue sur le résultat.</para>
+                      estimation de l'erreur absolue sur le résultat.
+                      <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>ierr</term>
                 <listitem>
-                    <para>numéro d'erreur (= 0 si absence d'erreur).</para>
+                      numéro d'erreur (= 0 si absence d'erreur).
+                      <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -66,7 +91,7 @@
         </para>
         <para>
             L'évaluation satisfait si possible <literal>abs(I-v)&lt;=
-                max(ea,er*abs(I))
+                max(atol,er*abs(I))
             </literal>
             où <literal>I</literal> représente la valeur exacte de
             l'intégrale.
@@ -97,10 +122,13 @@
             nombre double precision.
         </para>
         <para>
-            Dans la cas C la liste d'appel doit être: <literal>double f(double
-                *x)
-            </literal>
-            .
+            Dans le cas d'une fonction en C, la liste d'appel doit être:
+            <literal>double f(double *x)</literal>.
+        </para>
+        <para>
+            <emphasis role="bold">Fonctions Utilisées</emphasis> : les programmes correspondants
+            (dqags.f et dqagse.f de quadpack) se trouvent dans le répertoire
+            SCI/modules/differential_equations/src/fortran/.
         </para>
     </refsection>
     <refsection>
@@ -109,13 +137,15 @@
             Comme tous les intégrateurs, <literal>intg</literal> est susceptible de manquer des pics.
         </para>
         <para>
-            Une fonction plate contenant un pic sera considérée totalement plate si le pic est suffisamment raide.
+            Une fonction plate contenant un pic sera considérée totalement plate si le pic est
+            suffisamment raide.
         </para>
         <para>
-            Cela ne peut pas être évité, on comprend facilement pourquoi dès que l'on comprend comment l'intégrateur opère.
-            En effet, <literal>intg</literal> utilise la méthode des 21 points de Gauss-Kronrod,
-            donc s'il y a un pic entre deux points d'intégration consécutifs,
-            il ne sera pas détecté, la fonction sera considérée lisse.
+            Cela ne peut pas être évité. On comprend facilement pourquoi dès que l'on comprend
+            comment l'intégrateur opère.
+            En effet, <literal>intg</literal> utilise la méthode des 21 points de Gauss-Kronrod.
+            Ainsi, s'il y a un pic entre deux points d'intégration consécutifs,
+            il ne sera pas détecté. La fonction sera localement considérée comme lisse.
         </para>
         <para>
             Cependant, un warning s'affichera si la fonction est considérée très lisse,
@@ -123,45 +153,49 @@
             s'il pense que des pics ont été manqués.
         </para>
         <para>
-            Les graphes suivants illustrent ce phénomène.
+            Les graphes suivants illustrent ce phénomène :
         </para>
         <scilab:image localized="true">
             x = 0:.1:22;
             y = zeros(1,221); y(1) = 3; y(96) = 1;
-            plot(x, y);
-            xtitle("Pic manqué");
-        </scilab:image>
-        <para>
-            Se situant entre les 9è and 10è points d'intégration, le pic n'est pas détecté et
-            <literal>intg</literal> considère la fonction comme plate.
-            Dans l'image suivante, le pic est suffisamment large pour être détecté.
-        </para>
-        <scilab:image localized="true">
+            subplot(1,2,1)
+            plot(x, y, "r");
+            title(_("Unsampled Spike => missed by intg()"), "fontsize",3);
+            xlabel(_("Indices of integration points, as seen by intg()"))
+
             x = 0:21;
             y = zeros(1,22); y(1) = 3; y(10) = 1;
-            plot(x, y);
-            xtitle("Pic détecté");
+            subplot(1,2,2)
+            plot(x, y, "r");
+            title(_("Sampled spike => detected by intg()"), "fontsize",3);
+            xlabel(_("Indices of integration points, as seen by intg()"))
+
+            gcf().axes_size = [700 350];
         </scilab:image>
         <para>
+            Sur le graphe de gauche, le pic réside entre les points d'intégration n° 9 et 10.
+            Il n'est pas détecté. <literal>intg</literal> considère la fonction comme plate.
+            À droite, le pic est suffisamment large pour être échantillonné par intg().
+        </para>
+        <note>
             Si l'utilisateur veut afficher la solution même si le solveur a rencontré une erreur,
             il doit ajouter le troisième argument de sortie <literal>ierr</literal>, ce qui transformera
             les erreurs en warnings. Ceci est surtout utilisé dans les cas d'erreurs d'arrondi.
-        </para>
+        </note>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-//External écrit en Scilab
-function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
-exact=-2.5432596188;
-I=intg(0,2*%pi,f)
-abs(exact-I)
+// External écrit en Scilab
+function y = f(x), y = x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)), endfunction
+exact = -2.5432596188;
+I = intg(0, 2*%pi, f)
+abs(exact - I)
 
-//External écrit en Scilab avec un argument
-function y=f1(x,w),y=x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
-I=intg(0,2*%pi,list(f1,30))
-abs(exact-I)
-
+// External écrit en Scilab avec un argument
+function y = f1(x,w), y = x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)), endfunction
+I = intg(0, 2*%pi, list(f1,30))
+abs(exact - I)
 
 // External écrit en Fortran (un compilateur Fortran est nécessaire)
 // Ecriture du code fortran
@@ -172,17 +206,17 @@ F=['      double precision function ffun(x)'
    '      ffun=x*sin(30.0d+0*x)/sqrt(1.0d+0-(x/(2.0d+0*pi))**2)'
    '      return'
    '      end'];
-mputl(F,'ffun.f')
+mputl(F, 'ffun.f')
 
 // compilation du code Fortran
-l=ilib_for_link('ffun','ffun.f',[],'f');
+l = ilib_for_link('ffun','ffun.f',[],'f');
 
 // link incrémental
 link(l,'ffun','f')
 
 // integration de la fonction
-I=intg(0,2*%pi,'ffun')
-abs(exact-I)
+I = intg(0, 2*%pi, 'ffun')
+abs(exact - I)
 
 // External écrit en C (un compilateur C est nécessaire)
 // Ecriture du code C
@@ -196,14 +230,14 @@ C=['#include <math.h>'
 mputl(C,'cfun.c')
 
 // compilation du code C
-l=ilib_for_link('cfun','cfun.c',[],'c');
+l = ilib_for_link('cfun', 'cfun.c', [], 'c');
 
 // incremental linking
-link(l,'cfun','c')
+link(l, 'cfun', 'c')
 
 // integration de la fonction
-I=intg(0,2*%pi,'cfun')
-abs(exact-I)
+I = intg(0, 2*%pi, 'cfun')
+abs(exact - I)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -226,10 +260,16 @@ abs(exact-I)
             </member>
         </simplelist>
     </refsection>
-    <refsection>
-        <title>Fonctions Utilisées</title>
-        <para>Les programmes correspondants (dqags.f et dqagse.f de quadpack) se
-            trouvent dans le répertoire SCI/modules/differential_equations/src/fortran/.
-        </para>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.2</revnumber>
+                <revdescription>
+                    La valeur par défaut atol de l'erreur absolue passe de
+                    10<superscript>-14</superscript> à 10<superscript>-13</superscript>.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

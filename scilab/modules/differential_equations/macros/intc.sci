@@ -15,46 +15,48 @@ function [r, err] = intc(a, b, f, abserr, relerr)
     // If f is a complex-valued macro, intc(a, b, f) computes
     // the integral from a to b of f(z)dz along the straight
     // line a-b of the complex plane.
-    // abserr: absolute error required. Default: 1d-14.
+    // abserr: absolute error required. Default: 1d-13.
     // relerr: relative error required. Default: 1d-8.
     // err : estimated absolute error on the result.
 
     [lhs, rhs] = argn();
 
+    // CHECKING ARGUMENTS
+    // ------------------
     if rhs < 3 then
         error(msprintf(_("%s: Wrong number of input argument(s): at least %d expected.\n"), "intc", 3));
     end
-
-    if rhs == 3 then
-        abserr = 1d-14;
-        relerr = 1d-8;
-    elseif rhs == 4 then
-        if type(abserr) <> 1 then
-            error(msprintf(_("%s: Wrong type for input argument #%d: Real expected.\n"), "intc", 4));
-        end
-        if ~isscalar(abserr) then
-            error(msprintf(_("%s: Wrong size for input argument #%d: (%d,%d) expected.\n"), "intc", 4, 1, 1));
-        end
-        relerr = 1d-8;
-    else
-        if type(abserr) <> 1 then
-            error(msprintf(_("%s: Wrong type for input argument #%d: Real expected.\n"), "intc", 4));
-        end
-        if ~isscalar(abserr) then
-            error(msprintf(_("%s: Wrong size for input argument #%d: (%d,%d) expected.\n"), "intc", 4, 1, 1));
-        end
-        if type(relerr) <> 1 then
-            error(msprintf(_("%s: Wrong type for input argument #%d: Real expected.\n"), "intc", 5));
-        end
-        if ~isscalar(relerr) then
-            error(msprintf(_("%s: Wrong size for input argument #%d: (%d,%d) expected.\n"), "intc", 5, 1, 1));
-        end
+    // relerr
+    if ~isdef("relerr","l") | relerr==[] then
+        relerr = 1d-8
     end
-
+    if type(relerr) <> 1 then
+        msg = _("%s: Wrong type for input argument #%d: Real expected.\n")
+        error(msprintf(msg, "intc", 5));
+    end
+    if ~isscalar(relerr) then
+        msg = _("%s: Argument #%d: Scalar (1 element) expected.\n")
+        error(msprintf(msg, "intc", 5));
+    end
+    // abserr
+    if ~isdef("abserr","l") then
+        abserr = 1d-13
+    end
+    if type(abserr) <> 1 then
+        msg = _("%s: Wrong type for input argument #%d: Real expected.\n")
+        error(msprintf(msg, "intc", 4));
+    end
+    if ~isscalar(abserr) then
+        msg = _("%s: Argument #%d: Scalar (1 element) expected.\n")
+        error(msprintf(msg, "intc", 4));
+    end
+    // f
     if and(type(f) <> [13 130]) then
         error(msprintf(_("%s: Wrong type for input argument #%d: Scilab function expected.\n"), "intc", 3));
     end
 
+    // PROCESSING
+    // ----------
     // Define two functions which define the real part and
     // imaginary part of f(g(t))*g'(t) where g(t) is a
     // parametrization of the line a-b.

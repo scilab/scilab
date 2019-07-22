@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="intc" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="intc" xml:lang="pt">
     <refnamediv>
         <refname>intc</refname>
         <refpurpose>integral de Cauchy</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>[y]=intc(a,b,f)</synopsis>
+        <synopsis>
+          [y, err] = intc(a, b, f)
+          [y, err] = intc(a, b, f, abserr)
+          [y, err] = intc(a, b, f, abserr, relerr)
+		</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -37,6 +44,21 @@
                     <para>função externa</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>abserr, relerr</term>
+                <listitem>
+                    real scalars: absolute and relative errors.
+                    Default values: <literal>1.d-13</literal> and <literal>1d-8</literal>.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    real number: estimated absolute error on the result.
+                    <para/>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -50,6 +72,18 @@
             <literal>a b</literal> do plano complexo.
         </para>
     </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+function y = f(z)
+  y = z^(3 + %pi * %i);
+endfunction
+
+intc(1+%i, 4-%i, f)
+
+[r, err] = intc(1+%i, 4-%i, f, 1d-10, 1d-6)
+ ]]></programlisting>
+    </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
         <simplelist type="inline">
@@ -60,5 +94,21 @@
                 <link linkend="intl">intl</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Absolute and relative (input) and absolute (output) errors management added.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revremark>
+                    The default abserr value becomes 10<superscript>-13</superscript> instead of
+                    10<superscript>-14</superscript>.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
