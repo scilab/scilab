@@ -161,7 +161,7 @@ sleep(30, "s")
                 <revdescription>
                     <itemizedlist>
                         <listitem>Les fractions de millisecondes sont maintenant
-                            acceptées et prises en compte (remplace xpause(microsecondes)).
+                            acceptées et prises en compte.
                         </listitem>
                         <listitem>Syntaxe sleep(secondes,"s") ajoutée.
                         </listitem>

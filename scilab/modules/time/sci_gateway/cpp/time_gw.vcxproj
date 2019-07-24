@@ -179,7 +179,6 @@
     <ClCompile Include="..\c\sci_getdate.c" />
     <ClCompile Include="..\c\sci_realtime.c" />
     <ClCompile Include="..\c\sci_timer.c" />
-    <ClCompile Include="..\c\sci_xpause.c" />
     <ClCompile Include="sci_sleep.cpp" />
     <ClCompile Include="sci_tictoc.cpp" />
     <ClCompile Include="time_gw.cpp" />

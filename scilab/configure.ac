@@ -1265,7 +1265,7 @@ AC_SUBST(GUI_ENABLE)
 ##############################################################
 
 # Provided by unistd.h
-AC_CHECK_FUNCS([sleep] [usleep] [dup2] [getcwd] [getpagesize] [getpass])
+AC_CHECK_FUNCS([dup2] [getcwd] [getpagesize] [getpass])
 AC_CHECK_FUNCS([rmdir])
 
 AC_CHECK_FUNC([getwd],AC_DEFINE([HAVE_GETWD],[1],[Define to 1 if you have the `getwd' function.]),[AC_DEFINE([getwd(x)],[getcwd(x,1024)],[Don't use getwd but getcwd])])
@@ -1289,7 +1289,7 @@ AC_CHECK_FUNCS([endpwent])
 AC_CHECK_FUNCS([gethostbyaddr] [gethostbyname] [gethostname])
 
 # Provided by time.h
-AC_CHECK_FUNCS([gettimeofday])
+AC_CHECK_FUNCS([gettimeofday] [nanosleep])
 
 # Provided by ctype.h
 AC_CHECK_FUNCS([isascii])

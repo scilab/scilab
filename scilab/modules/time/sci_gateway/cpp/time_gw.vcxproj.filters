@@ -24,9 +24,6 @@
     <ClCompile Include="..\c\sci_calendar.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_xpause.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\c\sci_getdate.c">
       <Filter>Source Files</Filter>
     </ClCompile>

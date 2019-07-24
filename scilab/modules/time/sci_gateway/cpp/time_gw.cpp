@@ -27,7 +27,6 @@ int TimeModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"Calendar", &sci_calendar, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"timer", &sci_timer, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sleep", &sci_sleep, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"xpause", &sci_xpause, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"realtimeinit", &sci_realtimeinit, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"realtime", &sci_realtime, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tic", &sci_tic, MODULE_NAME));

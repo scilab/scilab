@@ -22,7 +22,6 @@
 /*--------------------------------------------------------------------------*/
 TIME_IMPEXP int gw_time(void);
 /*--------------------------------------------------------------------------*/
-int sci_xpause(char *fname, void* pvApiCtx);
 int sci_realtimeinit(char *fname, void* pvApiCtx);
 int sci_realtime(char *fname, void* pvApiCtx);
 int sci_getdate(char *fname, void* pvApiCtx);

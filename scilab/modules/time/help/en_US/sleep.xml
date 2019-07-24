@@ -151,7 +151,7 @@ sleep(30, "s")
                     <itemizedlist>
                         <listitem>
                             The fractional part of <varname>milliseconds</varname>
-                            is now accepted and processed (replace xpause(microseconds)).
+                            is now accepted and processed.
                         </listitem>
                         <listitem>Syntax sleep(seconds, "s") added.
                         </listitem>

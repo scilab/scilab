@@ -14,12 +14,12 @@
  */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #ifdef _MSC_VER
 #include <Windows.h>
-#define usleep(micro) Sleep(micro/1000)
 #else
-#include <unistd.h>
+#include <time.h>
 #endif
 
 #include "os_string.h"
@@ -77,7 +77,16 @@ static void *sleepAndSignal(void* in)
         //printf(".");
         //fflush(NULL);
 #endif
-        usleep(TIME_TO_SLEEP);
+#ifdef _MSC_VER
+        Sleep(TIME_TO_SLEEP / 1000)
+#else
+        struct timespec rqtp = {0};
+        rqtp.tv_nsec = TIME_TO_SLEEP * 1000;
+        if (nanosleep(&rqtp, NULL))
+        {
+            fprintf(stderr, "[TCL Daemon] Sleep canceled : %s\n", TclCommand);
+        }
+#endif
         __LockSignal(&wakeUpLock);
         __Signal(&wakeUp);
         __UnLockSignal(&wakeUpLock);

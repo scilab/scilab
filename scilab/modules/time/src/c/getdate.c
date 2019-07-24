@@ -69,7 +69,7 @@ double *getCurrentDateAsDoubleVector(int *iErr)
 #else
         struct timeval timebuffer;
         gettimeofday(&timebuffer, NULL);
-        nowstruct = localtime(&timebuffer);
+        nowstruct = localtime(&timebuffer.tv_sec);
 #endif
 
 #ifdef _MSC_VER

@@ -192,7 +192,6 @@ libscitime_la_DEPENDENCIES = libscitime-algo.la
 am__objects_2 = sci_gateway/c/libscitime_la-sci_realtime.lo \
 	sci_gateway/c/libscitime_la-sci_timer.lo \
 	sci_gateway/c/libscitime_la-sci_calendar.lo \
-	sci_gateway/c/libscitime_la-sci_xpause.lo \
 	sci_gateway/c/libscitime_la-sci_getdate.lo
 am__objects_3 = sci_gateway/cpp/libscitime_la-time_gw.lo \
 	sci_gateway/cpp/libscitime_la-sci_tictoc.lo \
@@ -221,7 +220,6 @@ am__depfiles_remade =  \
 	sci_gateway/c/$(DEPDIR)/libscitime_la-sci_getdate.Plo \
 	sci_gateway/c/$(DEPDIR)/libscitime_la-sci_realtime.Plo \
 	sci_gateway/c/$(DEPDIR)/libscitime_la-sci_timer.Plo \
-	sci_gateway/c/$(DEPDIR)/libscitime_la-sci_xpause.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libscitime_la-sci_sleep.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libscitime_la-sci_tictoc.Plo \
 	sci_gateway/cpp/$(DEPDIR)/libscitime_la-time_gw.Plo \
@@ -600,7 +598,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_realtime.c \
     sci_gateway/c/sci_timer.c \
     sci_gateway/c/sci_calendar.c \
-    sci_gateway/c/sci_xpause.c \
     sci_gateway/c/sci_getdate.c
 
 GATEWAY_CPP_SOURCES = \
@@ -838,9 +835,6 @@ sci_gateway/c/libscitime_la-sci_timer.lo:  \
 sci_gateway/c/libscitime_la-sci_calendar.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscitime_la-sci_xpause.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscitime_la-sci_getdate.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -879,7 +873,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-sci_getdate.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-sci_realtime.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-sci_timer.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-sci_xpause.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitime_la-sci_sleep.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitime_la-sci_tictoc.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitime_la-time_gw.Plo@am__quote@ # am--include-marker
@@ -958,13 +951,6 @@ sci_gateway/c/libscitime_la-sci_calendar.lo: sci_gateway/c/sci_calendar.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_calendar.c' object='sci_gateway/c/libscitime_la-sci_calendar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitime_la-sci_calendar.lo `test -f 'sci_gateway/c/sci_calendar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_calendar.c
-
-sci_gateway/c/libscitime_la-sci_xpause.lo: sci_gateway/c/sci_xpause.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitime_la-sci_xpause.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitime_la-sci_xpause.Tpo -c -o sci_gateway/c/libscitime_la-sci_xpause.lo `test -f 'sci_gateway/c/sci_xpause.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xpause.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscitime_la-sci_xpause.Tpo sci_gateway/c/$(DEPDIR)/libscitime_la-sci_xpause.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_xpause.c' object='sci_gateway/c/libscitime_la-sci_xpause.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitime_la-sci_xpause.lo `test -f 'sci_gateway/c/sci_xpause.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xpause.c
 
 sci_gateway/c/libscitime_la-sci_getdate.lo: sci_gateway/c/sci_getdate.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitime_la-sci_getdate.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitime_la-sci_getdate.Tpo -c -o sci_gateway/c/libscitime_la-sci_getdate.lo `test -f 'sci_gateway/c/sci_getdate.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getdate.c
@@ -1229,7 +1215,6 @@ distclean: distclean-am
 	-rm -f sci_gateway/c/$(DEPDIR)/libscitime_la-sci_getdate.Plo
 	-rm -f sci_gateway/c/$(DEPDIR)/libscitime_la-sci_realtime.Plo
 	-rm -f sci_gateway/c/$(DEPDIR)/libscitime_la-sci_timer.Plo
-	-rm -f sci_gateway/c/$(DEPDIR)/libscitime_la-sci_xpause.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscitime_la-sci_sleep.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscitime_la-sci_tictoc.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscitime_la-time_gw.Plo
@@ -1287,7 +1272,6 @@ maintainer-clean: maintainer-clean-am
 	-rm -f sci_gateway/c/$(DEPDIR)/libscitime_la-sci_getdate.Plo
 	-rm -f sci_gateway/c/$(DEPDIR)/libscitime_la-sci_realtime.Plo
 	-rm -f sci_gateway/c/$(DEPDIR)/libscitime_la-sci_timer.Plo
-	-rm -f sci_gateway/c/$(DEPDIR)/libscitime_la-sci_xpause.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscitime_la-sci_sleep.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscitime_la-sci_tictoc.Plo
 	-rm -f sci_gateway/cpp/$(DEPDIR)/libscitime_la-time_gw.Plo

@@ -278,9 +278,6 @@
 /* Define to 1 if you have the <sgtty.h> header file. */
 #undef HAVE_SGTTY_H
 
-/* Define to 1 if you have the `sleep' function. */
-#undef HAVE_SLEEP
-
 /* Define to 1 if you have the `socket' function. */
 #undef HAVE_SOCKET
 
@@ -410,9 +407,6 @@
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
-
-/* Define to 1 if you have the `usleep' function. */
-#undef HAVE_USLEEP
 
 /* Define to 1 if you have the <values.h> header file. */
 #undef HAVE_VALUES_H

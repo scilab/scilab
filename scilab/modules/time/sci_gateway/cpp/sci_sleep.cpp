@@ -82,23 +82,20 @@ types::Function::ReturnValue sci_sleep(types::typed_list &in, int _iRetCount, ty
     }
 #else
     {
+        struct timespec timeout;
         if (asSec)
         {
-            t *= 1000;
+            double s = std::floor(t);
+            timeout.tv_sec = (time_t) s;
+            timeout.tv_nsec = (t - s) * 10e9;
         }
-
-        if (t)
-#ifdef HAVE_USLEEP
+        else
         {
-            usleep(t * 1000);
+            double s = std::floor(t / 1e3);
+            timeout.tv_sec = (time_t) s;
+            timeout.tv_nsec = (t - (s * 1e3)) * 10e6;
         }
-#else
-#ifdef HAVE_SLEEP
-        {
-            sleep(t * 1000);
-        }
-#endif
-#endif
+        nanosleep(&timeout, NULL);
     }
 #endif
 

@@ -25444,7 +25444,7 @@ fi
 ##############################################################
 
 # Provided by unistd.h
-for ac_func in sleep usleep dup2 getcwd getpagesize getpass
+for ac_func in dup2 getcwd getpagesize getpass
 do :
   as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
 ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
@@ -25562,12 +25562,13 @@ done
 
 
 # Provided by time.h
-for ac_func in gettimeofday
+for ac_func in nanosleep gettimeofday
 do :
-  ac_fn_c_check_func "$LINENO" "gettimeofday" "ac_cv_func_gettimeofday"
-if test "x$ac_cv_func_gettimeofday" = xyes; then :
+  as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
+ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
+if eval test \"x\$"$as_ac_var"\" = x"yes"; then :
   cat >>confdefs.h <<_ACEOF
-#define HAVE_GETTIMEOFDAY 1
+#define `$as_echo "HAVE_$ac_func" | $as_tr_cpp` 1
 _ACEOF
 
 fi
