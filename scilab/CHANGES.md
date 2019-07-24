@@ -289,6 +289,7 @@ Bug Fixes
 * [#9130](https://bugzilla.scilab.org/9130): In the SigBuilder Xcos page, the parameters of the block were not described. The page refered to the CURVE_c block removed fron Scilab 5.0.0.
 * [#9529](https://bugzilla.scilab.org/9529): `assert_checkequal(list(1,,3), list(1,,3))` yielded an error.
 * [#9673](https://bugzilla.scilab.org/9673): Priority of colon `:` operator was too low
+* [#10014](https://bugzilla.scilab.org/10014): `DominationRank` could be made private in `optim_nsga2`.
 * [#10078](https://bugzilla.scilab.org/10078): `isinf` was not reliable for polynomials.
 * [#10092](https://bugzilla.scilab.org/10092): The left and right Kronecker divisions were not actually implemented nor documented.
 * [#10353](https://bugzilla.scilab.org/10353): Documentation: The referential for the uicontrol.position property was not provided. Moreover, `gca().axes_bounds` refered to `fig.figure_size` instead of `fig.axes_size`.
