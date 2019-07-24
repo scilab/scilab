@@ -689,7 +689,9 @@ GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
                 pArg[i] = createDoubleVector(piMaxDim[i]);
                 --iNbColon;
             }
-            else if (piCountDim[i] == piSourceDims[iSource] && (piCountDim[i] > 1 || iNbColon < iSourceDims))
+            else if (iSource < iSourceDims &&
+                     piCountDim[i] == piSourceDims[iSource] &&
+                     (piCountDim[i] > 1 || iNbColon < iSourceDims))
             {
                 ++iSource;
             }
@@ -905,7 +907,10 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
             pIndexesVect.erase(unique(pIndexesVect.begin(), pIndexesVect.end()), pIndexesVect.end());
             //remove index > iDimToCheck to allow a[10, 10](1, 1:100) = [] and a[10, 10]([1 5 20], :) = []
             auto lastUnique = std::find_if(pIndexesVect.begin(), pIndexesVect.end(),
-                                           [&iDimToCheck](int idx) { return idx > iDimToCheck; });
+                                           [&iDimToCheck](int idx)
+            {
+                return idx > iDimToCheck;
+            });
             pIndexesVect.erase(lastUnique, pIndexesVect.end());
 
             if (pIndexesVect.size() != iDimToCheck)
@@ -988,46 +993,46 @@ GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
 
     // find a way to copy existing data to new variable ...
     int* piViewDims = new int[iOrigDims];
-    int* piOffset = new int[iOrigDims+1];
+    int* piOffset = new int[iOrigDims + 1];
 
     // offsets
     piOffset[0] = 1;
     for (int i = 0; i < iOrigDims; i++)
     {
         piViewDims[i] = getVarMaxDim(i, iOrigDims);
-        piOffset[i+1] = piViewDims[i]*piOffset[i];
+        piOffset[i + 1] = piViewDims[i] * piOffset[i];
     }
 
     // indexes to remove -> [ 0, toDelIndexVect, piViewDims[iToDelIndex]+1 ] to facilitate loop
-    toDelIndexVect.insert(toDelIndexVect.begin(),0);
-    toDelIndexVect.push_back(piViewDims[iToDelIndex]+1);
+    toDelIndexVect.insert(toDelIndexVect.begin(), 0);
+    toDelIndexVect.push_back(piViewDims[iToDelIndex] + 1);
 
     int iStart;
     int iSize;
     int iOffset1 = piOffset[iToDelIndex];
-    int iOffset2 = piOffset[iToDelIndex+1];
-    int iNbChunks = getSize()/iOffset2;
+    int iOffset2 = piOffset[iToDelIndex + 1];
+    int iNbChunks = getSize() / iOffset2;
 
     // fast algorithm (allowing in place removal if necessary)
     for (int k = 0, iDest = 0; k < iNbChunks; k++)
     {
-        iStart = k*iOffset2;
+        iStart = k * iOffset2;
         // loop on indexes to remove
-        for (int j = 0; j < toDelIndexVect.size()-1; j++)
+        for (int j = 0; j < toDelIndexVect.size() - 1; j++)
         {
-            iSize =  (toDelIndexVect[j+1]-toDelIndexVect[j]-1)*iOffset1;
+            iSize =  (toDelIndexVect[j + 1] - toDelIndexVect[j] - 1) * iOffset1;
             if (isNativeType())
             {
-                memcpy(pOut->m_pRealData + iDest, m_pRealData + iStart, iSize*sizeof(T));
+                memcpy(pOut->m_pRealData + iDest, m_pRealData + iStart, iSize * sizeof(T));
                 if (m_pImgData != NULL)
                 {
-                    memcpy(pOut->m_pImgData + iDest, m_pImgData + iStart, iSize*sizeof(T));
+                    memcpy(pOut->m_pImgData + iDest, m_pImgData + iStart, iSize * sizeof(T));
                 }
                 iDest += iSize;
             }
             else
             {
-                for (int i = iStart; i < iStart+iSize; i++, iDest++)
+                for (int i = iStart; i < iStart + iSize; i++, iDest++)
                 {
                     pOut->set(iDest, get(i));
                     if (m_pImgData != NULL)
