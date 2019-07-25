@@ -297,6 +297,7 @@ Bug Fixes
 * [#8378](https://bugzilla.scilab.org/8378): Datatip `ContextMenu => Delete last datatip` was useless.
 * [#9221](https://bugzilla.scilab.org/9221): There was no way in Scilab to easily access to sets of unicode symbols like greek letters, etc.
 * [#9909](https://bugzilla.scilab.org/9909): In the help browser, add a way to open the online version of the current page.
+* [#10046](https://bugzilla.scilab.org/10046): By default, the `MAXMIN` block did not propose 2 input ports to work in an element-wise way (unlike MIN_f and MAX_f), which is its most original working mode.
 * [#10476](https://bugzilla.scilab.org/10476): From `browsevar`, displaying the content of lists, structures, cells, or other custom tlists or mlists was not possible.
 * [#11677](https://bugzilla.scilab.org/11677): The original Arnoldi functions were obsolete.
 * [#12418](https://bugzilla.scilab.org/12418): Using bvode() with "continuation", i.e. `ipar(9) > 1` led to an error.
