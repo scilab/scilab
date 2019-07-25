@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-18 16:36+0100\n"
+"Revision-Date: 2020-02-23 16:36+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 83
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 221
@@ -3494,7 +3494,6 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/barh.sci, line: 133
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 46
 # File: modules/graphics/macros/setPlotProperty.sci, line: 104
 # File: modules/graphics/macros/setSurfProperty.sci, line: 291
 #, c-format
@@ -3647,7 +3646,6 @@ msgstr ""
 # File: modules/graphics/macros/colordef.sci, line: 109
 # File: modules/graphics/macros/createConstraints.sci, line: 103
 # File: modules/graphics/macros/createLayoutOptions.sci, line: 59
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 50
 # File: modules/graphics/macros/edit_curv.sci, line: 72
 # File: modules/graphics/macros/legend.sci, line: 56
 #, c-format
@@ -3707,8 +3705,6 @@ msgstr ""
 #
 # File: modules/graphics/macros/contour.sci, line: 47
 # File: modules/graphics/macros/contour2d.sci, line: 24
-# File: modules/graphics/macros/datatips/datatipMove.sci, line: 17
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 20
 # File: modules/graphics/macros/errbar.sci, line: 36
 # File: modules/graphics/macros/fgrayplot.sci, line: 38
 # File: modules/graphics/macros/fplot2d.sci, line: 30
@@ -3835,22 +3831,12 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/datatips/datatipGetEntities.sci, line: 42
-# File: modules/graphics/macros/datatips/datatipMove.sci, line: 21
-# File: modules/graphics/macros/datatips/datatipMove.sci, line: 29
 # File: modules/graphics/macros/datatips/datatipSetOrientation.sci, line: 20
-# File: modules/graphics/macros/datatips/datatipSetStruct.sci, line: 19
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 27
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/datatips/datatipGetStruct.sci, line: 15
-msgid "'datatips' property"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipGetStruct.sci, line: 18
 # File: modules/graphics/macros/twinkle.sci, line: 38
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
@@ -3897,144 +3883,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/datatips/datatipSetStruct.sci, line: 37
-#, c-format
-msgid "%s: Wrong type for curve user_data field: a struct expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 32
-msgid "Square mark, boxed label"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 33
-msgid "Square mark, simple label"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 34
-msgid "Square mark, no label"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 35
-msgid "Directional arrow, boxed label"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 36
-msgid "Directional arrow, simple label"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 37
-msgid "Directional arrow, no label"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 39
-msgid "Select tip style"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 54
-# File: modules/graphics/macros/datatips/datatipSetStyle.sci, line: 58
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 53
-# File: modules/graphics/macros/getcolor.sci, line: 86
-msgid "&File"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 54
-# File: modules/graphics/macros/getcolor.sci, line: 87
-msgid "&Tools"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 55
 # File: modules/graphics/macros/getcolor.sci, line: 88
 msgid "&Edit"
 msgstr ""
 
 #
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 56
 # File: modules/graphics/macros/getcolor.sci, line: 89
 msgid "&?"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 62
-msgid "Datatips style"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 82
-msgid "Marker style:"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 96
-msgid "Square"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 119
-msgid "Arrow"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 146
-msgid "Labeled?"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 160
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 225
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 353
-msgid "Yes"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 183
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 248
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 376
-msgid "No"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 211
-msgid "Boxed?"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 275
-msgid "Positionning?"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 289
-msgid "Knots"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 312
-msgid "Interpolated"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 339
-msgid "Allow multiple datatips?"
-msgstr ""
-
-#
-# File: modules/graphics/macros/datatips/datatipsGUI.sci, line: 404
-msgid "Edit label generator"
 msgstr ""
 
 #
