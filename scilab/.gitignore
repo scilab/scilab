@@ -122,6 +122,7 @@ workspace/
 /tags
 *.swp
 /compile_commands.json
+.ccls*
 
 # MacOS files
 .DS_Store
