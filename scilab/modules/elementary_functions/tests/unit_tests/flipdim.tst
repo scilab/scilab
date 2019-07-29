@@ -1,13 +1,14 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
 // Copyright (C) 2012 - Scilab Enterprises - Sylvestre Ledru
+// Copyright (C) 2013, 2014 - Scilab Enterprises - Paul Bignier
+// Copyright (C) 2019 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
-//
+// <-- NO CHECK REF -->
 // <-- ENGLISH IMPOSED -->
 //
 // Along dimension 1:
@@ -71,3 +72,84 @@ dim = 3;
 ref = matrix([19;20;21;22;23;24;13;14;15;16;17;18;7;8;9;10;11;12;1;2;3;4;5;6;43;44;45;46;47;48;37;38;39;40;41;42;31;32;33;34;35;36;25;26;27;28;29;30], [3 2 4 2]);
 y = flipdim(x, dim);
 assert_checkequal(y, ref);
+
+// ==================
+// BlockSize argument
+// ==================
+x = [0 1 2 3 4 5 6 7 8 9 10 11];
+x = [x ; x];
+
+ref1 = [11 10 9 8 7 6 5 4 3 2 1 0];
+ref1 = [ref1 ; ref1];
+y = flipdim(x, 2, 1); // Present action.
+assert_checkequal(y, ref1);
+
+ref2 = [10 11   8 9   6 7   4 5   2 3   0 1];
+ref2 = [ref2 ; ref2];
+y = flipdim(x, 2, 2); // Block size = 2.
+assert_checkequal(y, ref2);
+
+ref3 = [9 10 11   6 7 8   3 4 5   0 1 2];
+ref3 = [ref3 ; ref3];
+y = flipdim(x, 2, 3);
+assert_checkequal(y, ref3);
+
+ref4 = [8 9 10 11   4 5 6 7   0 1 2 3];
+ref4 = [ref4 ; ref4];
+y = flipdim(x, 2, 4);
+assert_checkequal(y, ref4);
+
+ref5 = [6 7 8 9 10 11   0 1 2 3 4 5];
+ref5 = [ref5 ; ref5];
+y = flipdim(x, 2, 6);
+assert_checkequal(y, ref5);
+
+// Error checks
+// ------------
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: A divisor of the selected dimension size expected.\n"), "flipdim", 3);
+assert_checkerror("y = flipdim(x, 2, 5)", refMsg); // size(x) = [2 12] and 5 does not divide 12.
+
+// With an hypermatrix
+// -------------------
+h = matrix(1:16,2,4,2);
+// h  =
+//(:,:,1)
+//   1.   3.   5.   7.
+//   2.   4.   6.   8.
+//(:,:,2)
+//   9.    11.   13.   15.
+//   10.   12.   14.   16.
+ref = cat(3, [5 7 1 3; 6 8 2 4], [13 15 9 11; 14 16 10 12]);
+assert_checkequal(flipdim(h,2,2), ref);
+
+h = permute(h,[2 1 3]);
+// h  =
+//(:,:,1)
+//   1.   2.
+//   3.   4.
+//   5.   6.
+//   7.   8.
+//(:,:,2)
+//   9.    10.
+//   11.   12.
+//   13.   14.
+//   15.   16.
+ref = cat(3, [5 6; 7 8; 1 2; 3 4], [13 14; 15 16; 9 10; 11 12]);
+assert_checkequal(flipdim(h,1,2), ref);
+
+h = permute(h,[3 2 1]);
+// h  =
+//(:,:,1)
+//   1.   2.
+//   9.   10.
+//(:,:,2)
+//   3.    4.
+//   11.   12.
+//(:,:,3)
+//   5.    6.
+//   13.   14.
+//(:,:,4)
+//   7.    8.
+//   15.   16.
+ref = cat(3,[5 6 ; 13 14], [7 8 ; 15 16], [1 2 ; 9 10], [3 4 ; 11 12]);
+assert_checkequal(flipdim(h,3,2), ref);

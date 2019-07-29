@@ -288,6 +288,7 @@ Bug Fixes
 * [#16148](http://bugzilla.scilab.org/show_bug.cgi?id=16148): `setPreferencesValue` is a general usage function and deserved to be renamed `xmlSetValues`.
 * [#16149](http://bugzilla.scilab.org/show_bug.cgi?id=16149): `fullpath` did not support symbolic links in paths
 * [#16152](http://bugzilla.scilab.org/show_bug.cgi?id=16152): For sparse or boolean sparse matrix `s`, `s([])` returned `[]` instead of `sparse([])`.
+* [#16155](http://bugzilla.scilab.org/show_bug.cgi?id=16155): `flipdim(hypermat,dim,sb)` yielded wrong results for dim<3 and sb>1, and yielded an error for dim>2.
 * [#16158](http://bugzilla.scilab.org/show_bug.cgi?id=16158): When a multicolumn array of rationals was displayed wide column per column, columns #2:$ were replaced with its column #2.
 * [#16160](http://bugzilla.scilab.org/show_bug.cgi?id=16160): `ppol` changed values of third input variable.
 * [#16164](http://bugzilla.scilab.org/show_bug.cgi?id=16164): Help pages in elementary_functions/signal_processing were mislocated.
