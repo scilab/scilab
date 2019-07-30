@@ -298,7 +298,7 @@ Breakpoints& DebuggerManager::getAllBreakPoint()
     return breakpoints;
 }
 
-void DebuggerManager::setWatches(Watches _w)
+void DebuggerManager::setWatches(const Watches& _w)
 {
     watches.clear();
     watches = _w;

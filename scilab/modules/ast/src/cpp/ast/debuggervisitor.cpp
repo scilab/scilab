@@ -18,6 +18,8 @@
 #include "printvisitor.hxx"
 #include "execvisitor.hxx"
 #include "threadId.hxx"
+#include "macrofile.hxx"
+#include "commentexp.hxx"
 
 extern "C"
 {
@@ -35,6 +37,11 @@ void DebuggerVisitor::visit(const SeqExp  &e)
 
     for (const auto & exp : e.getExps())
     {
+        if (exp->isCommentExp())
+        {
+            continue;
+        }
+
         if (e.isBreakable())
         {
             exp->resetBreak();
@@ -69,11 +76,11 @@ void DebuggerVisitor::visit(const SeqExp  &e)
             }
             else
             {
-                std::vector<ConfigVariable::WhereEntry> lWhereAmI = ConfigVariable::getWhere();
+                const std::vector<ConfigVariable::WhereEntry>& lWhereAmI = ConfigVariable::getWhere();
                 //set information from debugger commands
                 if (lWhereAmI.size() != 0 && manager->getBreakPointCount() != 0)
                 {
-                    debugger::Breakpoints bps = manager->getAllBreakPoint();
+                    debugger::Breakpoints& bps = manager->getAllBreakPoint();
 
                     int i = -1;
                     for (const auto & bp : bps)
@@ -85,51 +92,55 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                         }
 
                         // look for a breakpoint on this line and update breakpoint information when possible
-                        char* functionName = wide_string_to_UTF8(lWhereAmI.back().call->getName().data());
-                        std::wstring pstrFileName = *lWhereAmI.back().m_file_name;
-                        char* fileName = wide_string_to_UTF8(pstrFileName.data());
-
                         int iLine = exp->getLocation().first_line - ConfigVariable::getMacroFirstLines();
-                        if (bp->hasMacro() &&
-                            bp->getFunctioName().compare(functionName) == 0)
+                        if (bp->hasMacro())
                         {
-                            if (bp->getMacroLine() == 0)
+                            char* functionName = wide_string_to_UTF8(lWhereAmI.back().call->getName().data());
+                            if (bp->getFunctioName().compare(functionName) == 0)
                             {
-                                //first pass in macro.
-                                //update first line with real value
-                                bp->setMacroLine(iLine);
-                            }
-
-                            stopExecution = bp->getMacroLine() == iLine;
-                        }
-                        else if(bp->hasFile() &&
-                                bp->getFileLine() == exp->getLocation().first_line)
-                        {
-                            if(pstrFileName.rfind(L".bin") != std::string::npos)
-                            {
-                                pstrFileName.replace(pstrFileName.size() - 4, 4, L".sci");
-                                // stop on bp only if the file exist
-                                if (FileExistW(pstrFileName.data()))
+                                if (bp->getMacroLine() == 0)
                                 {
-                                    FREE(fileName);
-                                    fileName = wide_string_to_UTF8(pstrFileName.data());
-                                }
-                            }
-
-                            if(bp->getFileName().compare(fileName) == 0)
-                            {
-                                stopExecution = true;
-                                // set function information
-                                if(lWhereAmI.back().call->getFirstLine())
-                                {
-                                    bp->setFunctionName(functionName);
+                                    //first pass in macro.
+                                    //update first line with real value
                                     bp->setMacroLine(iLine);
                                 }
+
+                                stopExecution = bp->getMacroLine() == iLine;
+                            }
+
+                            FREE(functionName);
+                        }
+                        else if (bp->hasFile())
+                        {
+                            if (bp->getFileLine() == exp->getLocation().first_line)
+                            {
+                                std::wstring pstrFileName = *lWhereAmI.back().m_file_name;
+                                char* fileName = wide_string_to_UTF8(pstrFileName.data());
+
+                                if (pstrFileName.rfind(L".bin") != std::string::npos)
+                                {
+                                    pstrFileName.replace(pstrFileName.size() - 4, 4, L".sci");
+                                    // stop on bp only if the file exist
+                                    if (FileExistW(pstrFileName.data()))
+                                    {
+                                        FREE(fileName);
+                                        fileName = wide_string_to_UTF8(pstrFileName.data());
+                                    }
+                                }
+
+                                if (bp->getFileName().compare(fileName) == 0)
+                                {
+                                    char* functionName = wide_string_to_UTF8(lWhereAmI.back().call->getName().data());
+                                    stopExecution = true;
+                                    // set function information
+                                    if (lWhereAmI.back().call->getFirstLine())
+                                    {
+                                        bp->setFunctionName(functionName);
+                                        bp->setMacroLine(iLine);
+                                    }
+                                }
                             }
                         }
-
-                        FREE(functionName);
-                        FREE(fileName);
 
                         if(stopExecution == false)
                         {
@@ -368,6 +379,49 @@ void DebuggerVisitor::visit(const SeqExp  &e)
         // to make a cleanup in visit(ForExp) for example (e.getBody().accept(*this);)
         setResult(NULL);
 
+    }
+
+    if (e.getParent() == NULL && e.getExecFrom() == SeqExp::SCRIPT && manager->isStepNext())
+    {
+        const std::vector<ConfigVariable::WhereEntry>& lWhereAmI = ConfigVariable::getWhere();
+        if (lWhereAmI.size())
+        {
+            std::wstring functionName = lWhereAmI.back().call->getName();
+            types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(functionName));
+            if (pIT && (pIT->isMacro() || pIT->isMacroFile()))
+            {
+                types::Macro* m = nullptr;
+                if (pIT->isMacroFile())
+                {
+                    types::MacroFile* mf = pIT->getAs<types::MacroFile>();
+                    m = mf->getMacro();
+                }
+                else
+                {
+                    m = pIT->getAs<types::Macro>();
+                }
+
+                //create a fake exp to represente end/enfunction
+
+                //will be deleted by CommentExp
+                std::wstring* comment = new std::wstring(L"end of function");
+                Location loc(m->getLastLine(), m->getLastLine(), 0, 0);
+                CommentExp fakeExp(loc, comment);
+                manager->stop(&fakeExp, -1);
+
+                if (manager->isAborted())
+                {
+                    throw ast::InternalAbort();
+                }
+
+                //transform stepnext after endfunction as a stepout to show line marker on current statement
+                if (manager->isStepNext())
+                {
+                    manager->resetStepNext();
+                    manager->setStepOut();
+                }
+            }
+        }
     }
 }
 }
