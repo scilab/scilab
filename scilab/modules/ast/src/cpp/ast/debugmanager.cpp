@@ -312,7 +312,6 @@ void DebuggerManager::removeWatches()
 void DebuggerManager::updateWatches(int _iScopeLvl)
 {
     symbol::Context* pCtx = symbol::Context::getInstance();
-
     if(_iScopeLvl < 0)
     {
         // get current scope lvl
@@ -321,17 +320,7 @@ void DebuggerManager::updateWatches(int _iScopeLvl)
 
     for(auto& w : watches)
     {
-        types::InternalType* pIT = pCtx->getAtLevel(symbol::Symbol(scilab::UTF8::toWide(w.first)), _iScopeLvl);
-        if(pIT)
-        {
-            std::wostringstream os;
-            pIT->toString(os);
-            w.second = scilab::UTF8::toUTF8(os.str());
-        }
-        else
-        {
-            w.second.clear();
-        }
+        w.second = pCtx->getAtLevel(symbol::Symbol(scilab::UTF8::toWide(w.first)), _iScopeLvl);
     }
 }
 

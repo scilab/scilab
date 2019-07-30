@@ -19,6 +19,8 @@
 #include <string>
 #include <map>
 
+#include <types.hxx>
+
 extern "C"
 {
 #include "dynlib_ast.h"
@@ -50,7 +52,7 @@ public:
 };
 
 typedef std::map<std::string, AbstractDebugger*> Debuggers;
-typedef std::map<std::string, std::string> Watches;
+typedef std::map<std::string, types::InternalType*> Watches;
 
 }
 #endif /* !__ABSTRACT_DEBUGGER_HXX__ */
