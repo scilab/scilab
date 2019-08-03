@@ -3,6 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -18,34 +19,175 @@
           xml:lang="en" xml:id="prbs_a">
     <refnamediv>
         <refname>prbs_a</refname>
-        <refpurpose>pseudo random binary sequences generation</refpurpose>
+        <refpurpose>Generates a pseudo random binary sequence</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
             u = prbs_a(n, nc)
             u = prbs_a(n, nc, ids)
+            u = prbs_a(n, nc, positions)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    positive integer: length of the sequence.
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nc</term>
+                <listitem>
+                    integer in [0, n-1]: number of commutations required.
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>positions</term>
+                <listitem>
+                    vector of integers in [0, n-1]: indices of required commutations in u.
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>u</term>
+                <listitem>
+                    Row vector of n values in {-1, 1}.
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
         <title>Description</title>
         <para>
-            generation of pseudo random binary sequences
-            <literal>u=[u0,u1,...,u_(n-1)]</literal>
-            u takes values in {-1,1} and changes at most nc times its sign.
-            ids can be used to fix the date at which u must change its sign
-            ids is then an integer vector with values in <literal>[1:n]</literal>.
+            <literal>prbs_a()</literal> will be usefull to simulate the behavior of a 2-state
+            random system.
+        </para>
+        <para>
+            <literal>u = prbs_a(n, nc)</literal> builds and returns a row vector
+            <varname>u</varname> made of <varname>n</varname> values -1 or +1, in which
+            <varname>nc</varname> commutations from -1 to 1 or from 1 to -1 occur at random
+            positions in the vector.
+        </para>
+        <para>
+            The initial state <literal>u(1)</literal> has an equiprobable value -1 or +1.
+        </para>
+        <para>
+            The distribution of commutations positions along <varname>u</varname> is statistically
+            uniform.
+        </para>
+        <note>
+            The positions of commutations can be retrieved with
+            <literal>find(u(2:$) &lt;> u(1:$-1))</literal>.
+        </note>
+        <para>
+            <literal>prbs_a(n,,positions)</literal> does the same, but sets commutations at the
+            given <varname>positions</varname>, instead of at random ones. <varname>nc</varname>
+            is then ignored. Setting a commutation at a position = i insures that
+            <literal>u(i+1)</literal> will be <literal>-u(i)</literal>.
+        </para>
+        <para>
+            The initial state can be imposed with a trivial post-processing of the result.
+            For instance, imposing <literal>u(1)=-1</literal> will be done with
+            <literal>if u(1)==1, u = -u; end</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-u=prbs_a(50,10);
-plot2d2("onn",(1:50)',u',1,"151",' ',[0,-1.5,50,1.5]);
+clf
+u = prbs_a(20, 7)
+subplot(1,2,1)
+plot2d2(1:20, u, rect=[0,-1.2,20,1.2]);
+find(u(2:$) <> u(1:$-1))
+
+u = prbs_a(100, 20);
+subplot(1,2,2)
+plot2d2(1:100, u, rect=[0,-1.2,100,1.2]);
  ]]></programlisting>
+    <screen><![CDATA[
+--> u = prbs_a(20, 7)
+ u  =
+   1. -1. -1. -1. -1.  1. -1.  1.  1.  1. -1. -1. -1. -1.  1.  1.  1.  1. -1. -1.
+
+--> find(u(2:$) <> u(1:$-1))
+ ans  =
+   1.   5.   6.   7.   10.   14.   18.
+]]></screen>
         <scilab:image>
-            u=prbs_a(50,10);
-            plot2d2("onn",(1:50)',u',1,"151",' ',[0,-1.5,50,1.5]);
+            u = prbs_a(20, 7)
+            subplot(1,2,1)
+            plot2d2(1:20, u, rect=[0,-1.2,20,1.2]);
+
+            u = prbs_a(100, 20);
+            subplot(1,2,2)
+            plot2d2(1:100, u, rect=[0,-1.2,100,1.2]);
+
+            gcf().axes_size = [700 300];
         </scilab:image>
+        <para/>
+        <para>
+            Example at given positions:
+        </para>
+        <programlisting role="example"><![CDATA[
+clf
+u = prbs_a(100, , [13 20 25 40 65 67 80 90 91]);
+plot2d2(1:100, u, rect=[0,-1.2,100,1.2]);
+length(u)
+find(u(2:$)<>u(1:$-1))
+ ]]></programlisting>
+    <screen><![CDATA[
+--> length(u)
+ ans =
+  100
+
+--> find(u(2:$)<>u(1:$-1))
+ ans  =
+   13.   20.   25.   40.   65.   67.   80.   90.   91.
+]]></screen>
+        <scilab:image>
+            u = prbs_a(100, , [13 20 25 40 65 67 80 90 91]);
+            plot2d2(1:100, u, rect=[0,-1.2,100,1.2]);
+
+            gcf().axes_size = [400 300];
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="noisegen">noisegen</link>
+            </member>
+            <member>
+                <link linkend="grand">grand</link>
+            </member>
+            <member>
+                <link linkend="sprand">sprand</link>
+            </member>
+            <member>
+                <link linkend="sysrand">sysrand</link>
+            </member>
+            <member>
+                <link linkend="randpencil">randpencil</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <listitem>
+                        prbs_a() now strictly complies with nc.
+                    </listitem>
+                    <listitem>
+                        The probability of the initial state u(1) is now unbiased: +1 and -1 are
+                        strictly equiprobable.
+                    </listitem>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -34,5 +34,5 @@ N=3;
 SYS1 = findABCD(S,N,1,R) ;
 SYS1.dt=0.1;
 x0 = inistate(SYS1,Y',U');
-expected = [0.180418869191; 0.180032513919; -0.069939890233];
+expected = [1.358882940201 ; -0.171852413543 ; 1.076698107654];
 assert_checkalmostequal(x0, expected);
