@@ -400,6 +400,7 @@ Bug Fixes
 * [#16155](https://bugzilla.scilab.org/16155): `flipdim(hypermat,dim,sb)` yielded wrong results for dim<3 and sb>1, and yielded an error for dim>2.
 * [#16158](https://bugzilla.scilab.org/16158): When a multicolumn array of rationals was displayed wide column per column, columns #2:$ were replaced with its column #2.
 * [#16160](https://bugzilla.scilab.org/16160): `ppol` changed values of third input variable.
+* [#16162](https://bugzilla.scilab.org/16162): `noisegen()` and `prbs_a()` deserved to be moved to the elementary_functions module, gathered with `rand()` and `grand()` in a new `elementarymatrices/random` help subsection.
 * [#16163](https://bugzilla.scilab.org/16163): `prbs_a()` did not comply with the requested number of switches. The biased number of actual switches was unpredictable, preventing to manage its statistical distribution. The probability of the initial state was biased. For instance, prbs_a(n,0) always returned ones(1,n).
 * [#16164](https://bugzilla.scilab.org/16164): Help pages in elementary_functions/signal_processing were mislocated.
 * [#16166](https://bugzilla.scilab.org/16166): `noisegen` is crooky, even threatening, and very poor. It is tagged as obsolete and will be removed from Scilab 6.1.x.
