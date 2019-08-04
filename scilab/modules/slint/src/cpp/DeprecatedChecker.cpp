@@ -110,6 +110,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"lstsize", L"size");
     map.emplace(L"nanmin", L"min");
     map.emplace(L"nanmax", L"max");
+    map.emplace(L"noisegen", L"grand");
     map.emplace(L"numer", L".num");
     map.emplace(L"ric_desc", L"riccati");
     map.emplace(L"square", L"replot");

@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="noisegen">
     <refnamediv>
         <refname>noisegen</refname>
-        <refpurpose>génération de bruit</refpurpose>
+        <refpurpose>génération de bruit <emphasis role="bold">(obsolète)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -47,6 +47,30 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            <literal>noisegen()</literal> is obsolete. It will be removed from Scilab 6.1.x.
+            Please use grand() instead. Examples (clearer, shorter, and more powerful) follow:
+            <para/>
+            <para>
+            100 10-point wide steps with random amplitudes of normal distribution
+            of mean 1 and standard deviation 0.7:
+            </para>
+            <programlisting role="example"><![CDATA[
+            u = grand(1,100,"nor",1,0.7) .*. ones(1,10);
+            clf, plot(u);
+            ]]></programlisting>
+            <para/>
+            <para>
+            40 15-point wide steps with random amplitudes of uniform distribution in [1 3],
+            with initial level 0.5 and final level hold:
+            </para>
+            <programlisting role="example"><![CDATA[
+            width = 15;
+            u = grand(1,40, "unf", 1, 3) .*. ones(1,width);
+            u = [ones(1,8*width)*0.5, u, ones(1,5*width)*u($)];
+            clf, plot(u);
+            ]]></programlisting>
+        </warning>
         <para>
             <literal>noisegen()</literal> génère une fonction Scilab <literal>b = Noise(t)</literal>
             où <literal>Noise(t)</literal> est une fonction constante par morceaux
@@ -108,5 +132,17 @@ plot2d2(t, noise);
                 <link linkend="grand">grand</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    noisegen() is obsolete. It will be removed from Scilab 6.1.x.
+                    Please replace it with grand() and .*.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

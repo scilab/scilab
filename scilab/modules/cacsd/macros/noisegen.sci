@@ -19,6 +19,8 @@ function noisegen(pas,Tmax,sig)
     // The function is constant for t<=0 and t>=Tmax.
     //!
 
+    warnobsolete("6.1.x", "grand()")
+
     dua_g=sig*rand(0:pas:Tmax,"n");
     [nn1,nn2]=size(dua_g);
     deff("[b]=Noise(t)","b=dua_g(min(max((t/"+string(Tmax)+...
