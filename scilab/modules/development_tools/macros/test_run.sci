@@ -808,7 +808,8 @@ function status = test_single(_module, _testPath, _testName)
 
     //scilab path
     if (getos() <> "Windows") & ~isfile(SCI+"/bin/scilab") then
-        SCI_BIN = strsubst(SCI,"share/scilab","");
+        // match a string wich finished by /share/scilab/ or /share/scilab
+        SCI_BIN = strsubst(SCI,"|/share/scilab/?$|","","r");
     else
         SCI_BIN = SCI;
     end
