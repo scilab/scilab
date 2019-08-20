@@ -43,8 +43,6 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
     int iSizeP = 0;
     int iColB  = 0;
 
-    bool isDeletable = false;
-
     if (in.size() != 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "ppol", 3);
@@ -75,7 +73,7 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    pDblB = in[1]->clone()->getAs<types::Double>();
+    pDblB = in[1]->getAs<types::Double>();
 
     if (pDblB->isComplex())
     {
@@ -92,7 +90,7 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    pDblA = in[0]->clone()->getAs<types::Double>();
+    pDblA = in[0]->getAs<types::Double>();
 
     if (pDblA->isComplex())
     {
@@ -119,6 +117,12 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
     }
 
     /*** perform operations ***/
+
+    pDblA = pDblA->clone();
+    pDblB = pDblB->clone();
+    pDblP = pDblP->clone();
+    pDblP->setComplex(true);
+
     types::Double* pDblOut = new types::Double(iColB, iSizeP);
 
     double* pdblG   = pDblOut->get();
@@ -129,17 +133,7 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
     int* piW        = new int[iSizeP];
 
     double* pdblPReal = pDblP->get();
-    double* pdblPImg  = NULL;
-    if (pDblP->isComplex())
-    {
-        pdblPImg = pDblP->getImg();
-    }
-    else
-    {
-        pdblPImg = new double[iSizeP];
-        memset(pdblPImg, 0x00, iSizeP * sizeof(double));
-        isDeletable = true;
-    }
+    double* pdblPImg  = pDblP->getImg();
 
     int idc = 0;
     int inc = 0;
@@ -154,12 +148,9 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
         delete[] pdblZ;
         delete[] pdblW;
         delete[] piW;
-        if (isDeletable)
-        {
-            delete[] pdblPImg;
-        }
-        delete pDblA;
-        delete pDblB;
+        pDblA->killMe();
+        pDblB->killMe();
+        pDblP->killMe();
         pDblOut->killMe();
         return types::Function::Error;
     }
@@ -175,34 +166,22 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
     C2F(polmc)( &iSizeP, &iColB, &iSizeP, &iColB, pDblA->get(), pDblB->get(), pdblG, pdblPReal, pdblPImg,
                 pdblZ, &inc, piW, &iErr, pdblW, pdblW + iColB, pdblW1, pdblW2, pdblW3, pdblW4, pdblW5);
 
-    if (iErr)
-    {
-        Scierror(999, _("%s: Uncontrollable system.\n"), "ppol");
-        delete[] pdblZ;
-        delete[] pdblW;
-        delete[] piW;
-        if (isDeletable)
-        {
-            delete[] pdblPImg;
-        }
-        delete pDblA;
-        delete pDblB;
-        pDblOut->killMe();
-        return types::Function::Error;
-    }
-
     // free memory
     delete[] pdblZ;
     delete[] pdblW;
     delete[] piW;
-    if (isDeletable)
-    {
-        delete[] pdblPImg;
-    }
-    delete pDblA;
-    delete pDblB;
+    pDblA->killMe();
+    pDblB->killMe();
+    pDblP->killMe();
 
-    /*** retrun output arguments ***/
+    if (iErr)
+    {
+        Scierror(999, _("%s: Uncontrollable system.\n"), "ppol");
+        pDblOut->killMe();
+        return types::Function::Error;
+    }
+
+    /*** return output arguments ***/
     out.push_back(pDblOut);
     return types::Function::OK;
 }
