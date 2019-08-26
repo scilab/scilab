@@ -20,12 +20,15 @@
 #include "threadId.hxx"
 #include "macrofile.hxx"
 #include "commentexp.hxx"
+#include "UTF8.hxx"
 
 extern "C"
 {
 #include "filemanager_interface.h"
 #include "FileExist.h"
 }
+
+static bool getMacroSourceFile(std::string* filename = nullptr);
 
 namespace ast
 {
@@ -68,11 +71,21 @@ void DebuggerVisitor::visit(const SeqExp  &e)
             {
                 manager->resetStepIn();
                 stopExecution = true;
+                if(getMacroSourceFile() == false)
+                {
+                    stopExecution = false;
+                    manager->setStepIn();
+                }
             }
             else if (manager->isStepNext())
             {
                 manager->resetStepNext();
                 stopExecution = true;
+                if(getMacroSourceFile() == false)
+                {
+                    stopExecution = false;
+                    manager->setStepOut();
+                }
             }
             else
             {
@@ -114,28 +127,15 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                         {
                             if (bp->getFileLine() == exp->getLocation().first_line)
                             {
-                                std::wstring pstrFileName = *lWhereAmI.back().m_file_name;
-                                char* fileName = wide_string_to_UTF8(pstrFileName.data());
-
-                                if (pstrFileName.rfind(L".bin") != std::string::npos)
+                                std::string pFileName;
+                                bool hasSource = getMacroSourceFile(&pFileName);
+                                if (hasSource && bp->getFileName() == pFileName)
                                 {
-                                    pstrFileName.replace(pstrFileName.size() - 4, 4, L".sci");
-                                    // stop on bp only if the file exist
-                                    if (FileExistW(pstrFileName.data()))
-                                    {
-                                        FREE(fileName);
-                                        fileName = wide_string_to_UTF8(pstrFileName.data());
-                                    }
-                                }
-
-                                if (bp->getFileName().compare(fileName) == 0)
-                                {
-                                    char* functionName = wide_string_to_UTF8(lWhereAmI.back().call->getName().data());
                                     stopExecution = true;
                                     // set function information
                                     if (lWhereAmI.back().call->getFirstLine())
                                     {
-                                        bp->setFunctionName(functionName);
+                                        bp->setFunctionName(scilab::UTF8::toUTF8(lWhereAmI.back().call->getName()));
                                         bp->setMacroLine(iLine);
                                     }
                                 }
@@ -335,7 +335,16 @@ void DebuggerVisitor::visit(const SeqExp  &e)
             if(manager->isStepOut())
             {
                 manager->resetStepOut();
-                manager->stop(exp, iBreakPoint);
+                if(getMacroSourceFile() == false)
+                {
+                    // no sources
+                    manager->setStepOut();
+                }
+                else
+                {
+                    manager->stop(exp, iBreakPoint);
+                }
+
                 if (manager->isAborted())
                 {
                     throw ast::InternalAbort();
@@ -381,7 +390,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
 
     }
 
-    if (e.getParent() == NULL && e.getExecFrom() == SeqExp::SCRIPT && manager->isStepNext())
+    if (e.getParent() == NULL && e.getExecFrom() == SeqExp::SCRIPT && (manager->isStepNext() || manager->isStepIn()))
     {
         const std::vector<ConfigVariable::WhereEntry>& lWhereAmI = ConfigVariable::getWhere();
         if (lWhereAmI.size())
@@ -420,8 +429,37 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                     manager->resetStepNext();
                     manager->setStepOut();
                 }
+                else if (manager->isStepIn())
+                {
+                    manager->resetStepIn();
+                    manager->setStepOut();
+                }
             }
         }
     }
 }
+}
+
+// return false if a file .sci of a file .bin doesn't exists
+// return true for others files or existing .sci
+bool getMacroSourceFile(std::string* filename)
+{
+    const std::vector<ConfigVariable::WhereEntry>& lWhereAmI = ConfigVariable::getWhere();
+    std::string file = scilab::UTF8::toUTF8(*lWhereAmI.back().m_file_name);
+    if (file.rfind(".bin") != std::string::npos)
+    {
+        file.replace(file.size() - 4, 4, ".sci");
+        // stop on bp only if the file exist
+        if (!FileExist(file.data()))
+        {
+            return false;
+        }
+    }
+
+    if(filename != nullptr)
+    {
+        filename->assign(file);
+    }
+
+    return true;
 }
