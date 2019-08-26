@@ -22,6 +22,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.AdjustmentListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -218,6 +222,10 @@ public abstract class SciConsole extends JPanel {
                 });
             }
         });
+
+        // Allows to disable autoscrolling of console when scrollbar has been moved up, and re-enable it when
+        // scrollbar is moved down to the end again.
+        new SmartScroller(jSP);
 
         sciConsole.invalidate();
         sciConsole.doLayout();

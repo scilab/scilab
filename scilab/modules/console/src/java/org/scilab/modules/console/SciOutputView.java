@@ -294,10 +294,6 @@ public class SciOutputView extends JEditorPane implements OutputView, ViewFactor
                 e.printStackTrace();
             }
         }
-
-        if (console != null) {
-            console.updateScrollPosition();
-        }
     }
 
     /**
