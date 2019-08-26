@@ -69,11 +69,22 @@ struct Printer
     {
     }
     template<typename T>
-    std::wstring emptyName( /* */) const
+    std::wstring typeName( /* */) const
     {
-        return L" zero";
+        return L"sparse";
     }
 
+    template<typename T>
+    std::wstring emptyName( /* */) const
+    {
+        return L"empty";
+    }
+
+    template<typename T>
+    std::wstring allZeroName( /* */) const
+    {
+        return L"zero";
+    }
     template<typename T>
     std::wstring operator()(T const& t) const
     {
@@ -121,11 +132,22 @@ std::wstring Printer::operator()(std::complex<double > const& c) const
 }
 
 template<>
-std::wstring Printer::emptyName<bool>() const
+std::wstring Printer::typeName<bool>() const
+{
+    return L"sparse boolean";
+}
+
+template<>
+std::wstring Printer::allZeroName<bool>() const
 {
     return L"False";
 }
 
+template<>
+std::wstring Printer::emptyName<bool>() const
+{
+    return L"empty";
+}
 
 template<typename T> std::wstring toString(T const& m, int precision)
 {
@@ -143,11 +165,15 @@ template<typename T> std::wstring toString(T const& m, int precision)
     ostr << L")";
 
     Printer p(precision);
-    if (!m.nonZeros())
+    if (m.rows()*m.cols() ==0)
     {
         ostr << (p.emptyName<typename Eigen::internal::traits<T>::Scalar>());
     }
-    ostr << L" sparse matrix\n\n";
+    else if (!m.nonZeros())
+    {
+        ostr << (p.allZeroName<typename Eigen::internal::traits<T>::Scalar>());
+    }
+    ostr << " " << p.typeName<typename Eigen::internal::traits<T>::Scalar>() << L" matrix\n\n";
 
     auto * pIColPos      = m.innerIndexPtr();
     auto * pINbItemByRow = m.outerIndexPtr();
@@ -2006,7 +2032,7 @@ GenericType* Sparse::extract(typed_list* _pArgs)
             delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
-            return Double::Empty();
+            return new types::Sparse(0,0,false);
         }
     }
 
@@ -4026,7 +4052,7 @@ GenericType* SparseBool::extract(typed_list* _pArgs)
             delete[] piMaxDim;
             delete[] piCountDim;
             //a([])
-            return Double::Empty();
+            return new types::SparseBool(0,0);
         }
     }
 
