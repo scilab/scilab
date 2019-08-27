@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2014 - Samuel GOUGEON
 //
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2014, 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -11,29 +11,54 @@
 // along with this program.
 
 function r = %s_k_s(a, b)
-    
-    // Code used by %s_k_hm(), %hm_k_s() and %hm_k_hm()
-    // Fully rewritten and factorized after bug http://bugzilla.scilab.org/13339
+    // The b block is replicated according to the a's size and values as weights
 
-    sa = size(a)
-    sb = size(b)
-    sa = [sa ones(1,ndims(b)-ndims(a))]
-    sb = [sb ones(1,ndims(a)-ndims(b))]
-    La = length(a)
-    Lb = length(b)
-    a = a(:)
-    b = b(:)
-    ia = (1:La).' .*.ones(b);
-    ib = ones(a) .*. (1:Lb).';
-    ir = (ia-1).*Lb + ib;
-    pa = ind2sub(sa, ia)
-    pb = ind2sub(sb, ib)
-    clear ia ib
-    pr = (pa-1).*repmat(sb, La*Lb, 1) + pb
-    clear pa pb
-    nir = sub2ind(sa.*sb, pr)
-    [v,k] = gsort(nir,"g","i")
-    clear pr nir v
-    r = a.*.b
-    r = matrix(r(ir(k)), sa.*sb)
+    // Code used instead of %s_k_hm(), %hm_k_s() and %hm_k_hm()
+
+    // Computes the size of the result
+    sa = size(a); na = length(sa);
+    sb = size(b); nb = length(sb);
+    m = max(na, nb);
+    if na < m
+        sa = [sa ones(1,m-na)]
+    else
+        sb = [sb ones(1,m-nb)]
+    end
+    sc = sa .* sb;
+
+    // Computes the matrice of indices shifts within each block, in the result:
+    // We use the first block
+    ijk = ind2sub(size(b), 1:size(b,"*"))
+    if na > nb then
+        ijk = [ijk ones(size(b,"*"), na-nb)]
+    end
+    shifts = sub2ind(sc, ijk) - 1;
+
+    // Computes the index of the first element of each block, for all blocks in
+    //  the result:
+    ijk = ind2sub(size(a), 1:size(a,"*")) // indices in a
+    ijk = ijk - 1
+    for u = 1:size(ijk, 2)
+        ijk(:,u) = ijk(:,u) * sb(u)
+    end
+    if na < nb then
+        ijk = [ijk zeros(size(a,"*"), nb-na)]
+    end
+    first = sub2ind(sc, ijk + 1)
+
+    // Computes new indices
+    newI = shifts(:) * ones(1, size(a,"*"))     // Replicates shifts
+    newI = newI(:) + ..
+          (ones(size(b,"*"),1) * first(:)')(:) // Replicates base indices (1st elements)
+    clear shifts first ijk
+
+    // Replicates and weights data
+    r = b(:) * matrix(a, 1, -1);
+
+    // Reallocates elements
+    r(newI) = r(:)
+    clear newI
+
+    // Reshape the result
+    r = matrix(r, sc);
 endfunction

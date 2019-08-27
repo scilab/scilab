@@ -1,11 +1,13 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2012 - DIGITEO - Antoine ELIAS
+// Copyright (C) 2019 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 r = 2;
 R = [1,2;3,4];
@@ -58,3 +60,22 @@ assert_checkequal(R .*. C, [1+2*%i,2+4*%i,2+4*%i,4+8*%i;3+6*%i,4+8*%i,6+12*%i,8+
 assert_checkequal(C .*. R, [1+2*%i,2+4*%i,2+4*%i,4+8*%i;3+6*%i,4+8*%i,6+12*%i,8+16*%i;3+6*%i,6+12*%i,4+8*%i,8+16*%i;9+18*%i,12+24*%i,12+24*%i,16+32*%i]);
 //C .*. C
 assert_checkequal(C .*. C, [-3+4*%i,-6+8*%i,-6+8*%i,-12+16*%i;-9+12*%i,-12+16*%i,-18+24*%i,-24+32*%i;-9+12*%i,-18+24*%i,-12+16*%i,-24+32*%i;-27+36*%i,-36+48*%i,-36+48*%i,-48+64*%i]);
+
+
+// With hypermatrices
+// ------------------
+r = [1 2 3];
+c = [1 2 3]';
+m = [1 2 ; 3 4];
+h = cat(3,[1 2],[3 4]);
+assert_checkequal(r.*.ones(1,2,2), cat(3,[1 1 2 2 3 3],[1 1 2 2 3 3]));
+assert_checkequal(c.*.ones(1,2,2), cat(3,[1 1;2 2;3 3],[1 1;2 2;3 3]));
+assert_checkequal(m.*.ones(1,2,2), cat(3,[1 1 2 2;3 3 4 4],[1 1 2 2;3 3 4 4]));
+assert_checkequal(h.*.ones(1,2,2), cat(3,[1 1 2 2],[1 1 2 2],[3 3 4 4],[3 3 4 4]));
+
+assert_checkequal(ones(1,2,2).*.r, cat(3,[1 2 3 1 2 3],[1 2 3 1 2 3]));
+assert_checkequal(ones(1,2,2).*.c, cat(3,[1 1;2 2;3 3],[1 1;2 2;3 3]));
+assert_checkequal(ones(1,2,2).*.m, cat(3,[1 2 1 2;3 4 3 4],[1 2 1 2;3 4 3 4]));
+assert_checkequal(ones(1,2,2).*.h, cat(3,[1 2 1 2],[3 4 3 4],[1 2 1 2],[3 4 3 4]));
+
+assert_checkequal(size(rand(2,3,4,5).*.rand(3,1,1,1,1,7)), [6 3 4 5 1 7]);
