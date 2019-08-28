@@ -236,6 +236,12 @@ User Interface improvements:
 * Used memory per variable is displayed by BrowserVar to give the user numbers on memory usage repartition and let the user `clear` the big ones first.
 * In browsevar, clicking on any function, library, list, cell, structure, custom tlist or mlist, or graphic handle now edits or displays their content.
 * Autoscroll of console in GUI mode is disabled when the user scrolls up until he scrolls to the bottom.
+* Help browser improved:
+  - The browser's language can be set independently of the session's language
+  - The menu "Online" allows to display in your web browser the online version of the current page
+  - The menu "Issues" allows to display bugzilla entries related to the feature of the current page
+  - ATOMS chapters are automatically loaded in the browser.
+  - The page left at exit is restored at next startup.
 
 Xcos
 ----
@@ -302,6 +308,7 @@ Bug Fixes
 * [#9221](https://bugzilla.scilab.org/9221): There was no way in Scilab to easily access to sets of unicode symbols like greek letters, etc.
 * [#9909](https://bugzilla.scilab.org/9909): In the help browser, add a way to open the online version of the current page.
 * [#10046](https://bugzilla.scilab.org/10046): By default, the `MAXMIN` block did not propose 2 input ports to work in an element-wise way (unlike MIN_f and MAX_f), which is its most original working mode.
+* [#10465](https://bugzilla.scilab.org/10465): At Scilab exit, the help browser is not saved nor restored.
 * [#10476](https://bugzilla.scilab.org/10476): From `browsevar`, displaying the content of lists, structures, cells, or other custom tlists or mlists was not possible.
 * [#10490](https://bugzilla.scilab.org/10490): The `mapsound` page was poor with a single interesting example.
 * [#11677](https://bugzilla.scilab.org/11677): The original Arnoldi functions were obsolete.

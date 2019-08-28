@@ -16,6 +16,9 @@ function helpbrowser_menus_cb(action, param)
     url = hb.getCurrentURL()
     [?,?,?, currentLang] = regexp(url, "/scilab_(.+?)_help.jar/")
     id = hb.getCurrentID()
+    if id==[] then
+        id = basename(url)
+    end
     isSection = grep(id, "/^section_/", "r") <> []
     tmp = msprintf("#^jar:file:/%s/modules/helptools/jar#", SCI)
     isExternal = grep(url, tmp, "r") == []
@@ -27,6 +30,13 @@ function helpbrowser_menus_cb(action, param)
         else
             global %helps
             helpbrowser(%helps(:,1), id, param, %f);
+
+            // Recording the new lang in user's profile
+            filename = SCIHOME + filesep() + "configuration.xml"
+            doc = xmlRead(filename)
+            xmlSetValues("//Setting/Profile/HelpBrowser", ["lang" ; param], doc)
+            xmlWrite(doc, filename);
+            xmlDelete(doc)
         end
     case "online"
         if isExternal
@@ -48,6 +58,7 @@ function helpbrowser_menus_cb(action, param)
         end
         url = "https://help.scilab.org/docs/%s/%s/%s.html"
         url = msprintf(url, v, currentLang, id)
+
         openURL(url)
 
     case "bugs"

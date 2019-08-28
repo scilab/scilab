@@ -61,6 +61,7 @@
         <ActionMapping>
             <Action name="HELP" className="org.scilab.modules.console.HelpAction"/>
         </ActionMapping>
+        <HelpBrowser index="Whatsnew" lang=""/>
 
     </Profile>
 

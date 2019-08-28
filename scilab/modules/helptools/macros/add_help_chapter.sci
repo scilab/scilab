@@ -134,4 +134,13 @@ function ok = add_help_chapter(helptitle,path,modulemode)
         %helps = this_help;
     end
 
+    // Update the help browser (if open)
+    // =========================================================================
+    [?, w] = where()
+    if grep(w, "atomsAutoload") == []
+        helpbrowser_update()
+    // otherwise: We update the browser from scilab.start AFTER atomsAutoload().
+    // to not make the browser blinking.
+    end
+
 endfunction

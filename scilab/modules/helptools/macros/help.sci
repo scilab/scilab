@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,53 +12,49 @@
 
 function help(varargin)
 
-    [lhs,rhs]=argn(0);
+    if findfiles("SCI/modules/helptools/jar","*_help.jar") == [] then
+        error(msprintf(gettext("%s: help file(.jar) is not installed.\n"), "help"));
+    end
+    if getscilabmode() == "NWNI" then
+        error(msprintf(gettext("%s: The help browser is disabled in %s mode.\n"), "help", getscilabmode()));
+    end
 
-    if rhs >= 1 then
+    if argn(2) >= 1 then
         key = varargin(1);
+        if type(key) <> 10 then
+            error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"help",1));
+        end
     else
         key = "";
     end
 
-    if (findfiles("SCI/modules/helptools/jar","*_help.jar") <> []) then
-
-        if getscilabmode() <> "NWNI" then
-
-            // No input argument: launch help browser
-            if argn(2)==0 then
-                global %helps
-                helpbrowser(%helps(:,1), getlanguage());
-                return
-            end
-
-            if type(key) <> 10 then
-                error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"help",1));
-            end
-
-            // Search a function name
-            key=stripblanks(key)
-
-            global %helps
-            symbols = strsplit("()[]{}%''"":*/\.<>&^|~+-")';
-            exceptions = ["%t" "%T" "%f" "%F" "%onprompt"]; // http://bugzilla.scilab.org/15356
-            if or(part(key,1)==symbols) & exists(key)==0 & and(key~=exceptions) then
-                key="symbols";
-            end
-
-            // Treat "$" apart because contrarily to the previous symbols, "$" is an existing variable in Scilab
-            if part(key,1)=="$" & (exists(key)==0 | length(key)==1) then
-                key="symbols";
-            end
-
-            helpbrowser(%helps(:,1), key, getlanguage(), %f);
-
-            // If the function name does not exist, then full-text search is done (See Java code)
-
-        else
-            error(msprintf(gettext("%s: The help browser is disabled in %s mode.\n"), "help", getscilabmode()));
-        end
-    else
-        error(msprintf(gettext("%s: help file(.jar) is not installed.\n"), "help"));
+    global %helps
+    // Retrieving the browser language and former page:
+    filename = SCIHOME + filesep() + "configuration.xml"
+    res = xmlGetValues("//Setting/Profile/HelpBrowser", ["index" "lang"], filename);
+    if key == "" then
+        key = res(1)
     end
+    if res(2) == ""
+        lang = getlanguage()
+    else
+        lang = res(2)
+    end
+
+    key = stripblanks(key)
+
+    symbols = strsplit("()[]{}%''"":*/\.<>&^|~+-")';
+    exceptions = ["%t" "%T" "%f" "%F" "%onprompt"]; // http://bugzilla.scilab.org/15356
+    if or(part(key,1)==symbols) & exists(key)==0 & and(key~=exceptions) then
+        key = "symbols";
+    end
+
+    // Treat "$" apart because contrarily to the previous symbols, "$" is an existing variable in Scilab
+    if part(key,1)=="$" & (exists(key)==0 | length(key)==1) then
+        key = "symbols";
+    end
+    // Calling the browser
+    helpbrowser(%helps(:,1), key, lang, %f);
+    // If the key is not a xml:id, then full-text search is done (See Java code)
 
 endfunction
