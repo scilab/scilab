@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2017 - 2018 - Samuel GOUGEON
+// Copyright (C) 2017 - 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -48,6 +48,7 @@ function clf(varargin)
             h = gcf()
             job = varargin(1)
         end
+
     elseif nbArg==2 then
         if type(varargin(1))==1 then     // win num given
             num = varargin(1)
@@ -59,6 +60,7 @@ function clf(varargin)
             h = varargin(1);
         end
         job = varargin(2);
+
     else
         msg = _("%s: Wrong number of input argument(s): %d to %d expected.")
         error(msprintf(msg, "clf", 0, 2))
@@ -74,13 +76,21 @@ function clf(varargin)
         return
     end
 
-    // check that all the handles are figures
+    // check that all the handles are figures or uicontrol frames
     for k = 1:nbHandles
         curFig = h(k);
         if curFig.type <> "Figure" & (curFig.type <> "uicontrol" | curFig.style <> "frame")
             msg = _("%s: Wrong type for input argument #%d: A vector of ''Figure'' or ''Frame'' handle expected.")
             error(msprintf(msg, "clf", 1))
         end
+    end
+
+    // Creation of a template figure, to get native menus to preserve or reset
+    if or(h.type=="Figure") & get(get(0),"showhiddenhandles")=="on"
+        tmpfig = figure("visible","off")
+        menus = tmpfig.children(tmpfig.children.type=="uimenu")
+    else
+        menus = []
     end
 
     // delete childrens
@@ -107,12 +117,16 @@ function clf(varargin)
             // Forces drawlater
             immediateMode = curFig.immediate_drawing;
             curFig.immediate_drawing = "off";
-            delete(curFig.children);
             curFig.info_message = "";            // Clears the infobar message
             curFig.event_handler_enable = "off"; // Disables the event handler
+            // Deletes children, but manages native menus
+            clf_clear_children(curFig, job, menus);
             // Restores the drawlater entry status:
             curFig.immediate_drawing = immediateMode;
         end
+    end
+    if isdef("tmpfig","l") then
+        close(tmpfig)
     end
 
     // reset figures to default values if needed
@@ -186,3 +200,37 @@ function clf(varargin)
     end
 endfunction
 
+// --------------------------------------------------------------------------
+
+function clf_clear_children(h, job, menus)
+    // internal only called for Figures (not for frames)
+    c = curFig.children
+    if  menus==[] then
+        delete(c)  // native menus are not seen and not deleted
+    else
+        // Native menus must be preserved
+        labels = menus.label
+        tmp = c.type <> "uimenu"
+        delete(c(tmp)) // But a default axes might have been recreated
+        c = curFig.children
+        for i = length(c):-1:1
+            if c(i).type <> "uimenu"    // Possible default axes
+                continue
+            end
+            tmp = c(i).label
+            j = find(c(i).label==menus.label)
+            if j==[]
+                delete(c(i))    // Not native menu
+            else
+                // We keep the menu. We possibly reset it
+                if job=="reset"
+                    // the template menu is inserted as children(1):
+                    // hm = copy(menus(j), h)   // yields an error
+                    // swap_handles(hm,c(i))
+                    // delete(curFig.children(1))
+                    // => How to restore default native menus?
+                end
+            end
+        end
+    end
+endfunction

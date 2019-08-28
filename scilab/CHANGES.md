@@ -456,6 +456,7 @@ Bug Fixes
 * [#16163](https://bugzilla.scilab.org/16163): `prbs_a()` did not comply with the requested number of switches. The biased number of actual switches was unpredictable, preventing to manage its statistical distribution. The probability of the initial state was biased. For instance, prbs_a(n,0) always returned ones(1,n).
 * [#16164](https://bugzilla.scilab.org/16164): Help pages in elementary_functions/signal_processing were mislocated.
 * [#16166](https://bugzilla.scilab.org/16166): `noisegen` is crooky, even threatening, and very poor. It is tagged as obsolete and will be removed from Scilab 6.1.x.
+* [#16167](https://bugzilla.scilab.org/16167): When get(0).showHiddenHandles is "on", clf('reset') unexpectedly removed native menus.
 * [#16168](https://bugzilla.scilab.org/16168): On some Linux installations, `test_run` always failed.
 * [#16174](https://bugzilla.scilab.org/16174): `libraryinfo` yielded 0x0 matrix of strings for libs without macro
 * [#16177](https://bugzilla.scilab.org/16177): In the uicontrol help page, the first example was bugged.
