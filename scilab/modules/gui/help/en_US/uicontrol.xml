@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uicontrol" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="uicontrol" xml:lang="en">
     <refnamediv>
         <refname>uicontrol</refname>
         <refpurpose>create a Graphic User Interface object</refpurpose>
@@ -50,16 +53,21 @@
             specified by uich.
         </para>
         <para>
-            All available properties and their description are given in the <link linkend="uicontrol_properties">uicontrol properties</link> help page.
+            All available properties and their description are given in the
+            <link linkend="uicontrol_properties">uicontrol properties</link> help page.
         </para>
         <para>
-            Uicontrols rendering and properties display can be customized using <link linkend="console_properties">Console properties</link>.
+            Uicontrols rendering and properties display can be customized using
+            <link linkend="console_properties">Console properties</link>.
         </para>
     </refsection>
     <refsection>
         <title>Available styles</title>
         <para>
-            The available styles are listed below. The <literal>style</literal> of an <literal>uicontrol</literal> must be set at creation using the <literal>"Style"</literal> property and can not be changed once the <literal>uicontrol</literal> is created.
+            The available styles are listed below. The <literal>style</literal> of an
+            <literal>uicontrol</literal> must be set at creation using the
+            <literal>"Style"</literal> property and can not be changed once the
+            <literal>uicontrol</literal> is created.
         </para>
         <itemizedlist>
             <listitem>
@@ -78,11 +86,14 @@
             </listitem>
             <listitem>
                 <para>
-                    Layer: a container for <literal>frame</literal> style uicontrols enabling to switch between them programmatically using the <literal>value</literal> property.
+                    Layer: a container for <literal>frame</literal> style uicontrols enabling to
+                    switch between them programmatically using the <literal>value</literal> property.
                 </para>
             </listitem>
             <listitem>
-                <para>Listbox: a control representing a list of items that can be scrolled. The items can be selected with the mouse.</para>
+                <para>Listbox: a control representing a list of items that can be scrolled.
+                    The items can be selected with the mouse.
+                </para>
             </listitem>
             <listitem>
                 <para>Popupmenu: a button which make a menu appear when clicked.</para>
@@ -92,21 +103,32 @@
                 </para>
             </listitem>
             <listitem>
-                <para>Radiobutton: a button with two states. RadioButtons are intended to be mutually exclusive.</para>
+                <para>
+                    Radiobutton: a button with two states. RadioButtons are intended to be mutually
+                    exclusive.
+                </para>
                 <para>
                     Your code must implement mutually exclusive behavior if you do not use groups
-                    (See <literal>GroupName</literal> property in <link linkend="uicontrol_properties">uicontrol properties</link>).
+                    (See <literal>GroupName</literal> property in
+                    <link linkend="uicontrol_properties">uicontrol properties</link>).
                 </para>
             </listitem>
             <listitem>
-                <para>Slider: a scale control, that is a slider used to set values between in range with the mouse.</para>
-            </listitem>
-            <listitem>
-                <para>Spinner: a component which enables the user to select/edit a value between bounds with a fixed step.</para>
+                <para>
+                    Slider: a scale control, that is a slider used to set a value in a given
+                    interval, with the mouse.
+                </para>
             </listitem>
             <listitem>
                 <para>
-                    Tab: a container for <literal>frame</literal> style uicontrols enabling to switch between them by clicking on a tab with a given title and/or icon.
+                    Spinner: a component which enables the user to select/edit a value between
+                    bounds with a fixed step.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Tab: a container for <literal>frame</literal> style uicontrols enabling to
+                    switch between them by clicking on a tab with a given title and/or icon.
                 </para>
                 <para>The font related properties set on the frame will be used for the tab label.</para>
             </listitem>
@@ -121,17 +143,17 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-f=figure();
-// create a figure
-h=uicontrol(f,'style','listbox', ...
- 'position', [10 10 150 160]);
-// create a listbox
-set(h, 'string', "item 1|item 2|item3");
-// fill the list
-set(h, 'value', [1 3]);
-// select item 1 and 3 in the list
-close(f);
-// close the figure
+// Create a figure:
+f = scf();
+
+// Create a listbox:
+h = uicontrol(f,'style','listbox','position', [10 10 150 160]);
+
+// Set labels
+h.string = "item 1|item 2|item 3";
+
+// Set (max-min)>1 to allow multiple selection, and select items 1 and 3
+set(h, "min",0, "max",2, "value", [1 3]);
  ]]></programlisting>
         <para>uicontrol function can be overloaded</para>
         <programlisting role="example"><![CDATA[

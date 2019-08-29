@@ -272,6 +272,7 @@ Bug Fixes
 * [#16160](http://bugzilla.scilab.org/show_bug.cgi?id=16160): `ppol` changed values of third input variable.
 * [#16164](http://bugzilla.scilab.org/show_bug.cgi?id=16164): Help pages in elementary_functions/signal_processing were mislocated.
 * [#16174](http://bugzilla.scilab.org/show_bug.cgi?id=16174): `libraryinfo` yielded 0x0 matrix of strings for libs without macro
+* [#16177](http://bugzilla.scilab.org/show_bug.cgi?id=16177): In the uicontrol help page, the first example was bugged.
 * [#16178](http://bugzilla.scilab.org/show_bug.cgi?id=16178): `sci2exp` yielded an error for any input macro without output argument.
 * [#16197](http://bugzilla.scilab.org/show_bug.cgi?id=16197): result of extraction was not decomplexified when applicable.
 * [#16200](http://bugzilla.scilab.org/show_bug.cgi?id=16200): Concatenation of transposed cells crashed Scilab.
@@ -294,3 +295,4 @@ Bug Fixes
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot()`, `colorbar()` displayed an empty ungraduated color bar.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
+
