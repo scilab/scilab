@@ -252,6 +252,7 @@ Bug Fixes
 * [#16003](http://bugzilla.scilab.org/show_bug.cgi?id=16003): Zoom with mouse scroll wheel was broken on simple surfaces.
 * [#16005](http://bugzilla.scilab.org/show_bug.cgi?id=16005): The `intdec` example was biased and not robust when changing sampling frequencies.
 * [#16007](http://bugzilla.scilab.org/show_bug.cgi?id=16007): Non-integer index in sparse makes Scilab crash.
+* [#16008](http://bugzilla.scilab.org/show_bug.cgi?id=16008): Uimenu .callback_type, .children, .handle_visible, .user_data properties, and using HTML styling in .label were not documented.
 * [#16011](http://bugzilla.scilab.org/show_bug.cgi?id=16011): `colorbar(umin, umax)` did not work after `plot3d2`.
 * [#16012](http://bugzilla.scilab.org/show_bug.cgi?id=16012): `[struct() struct()]` crashed Scilab.
 * [#16013](http://bugzilla.scilab.org/show_bug.cgi?id=16013): Load previously saved environment with "File/Load environment" menu failed.

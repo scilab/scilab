@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uimenu_properties" xml:lang="ja">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="uimenu_properties" xml:lang="ja">
     <refnamediv>
         <refname>uimenuプロパティ</refname>
         <refpurpose>uimenuプロパティの説明.</refpurpose>
@@ -35,17 +52,49 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Enable</term>
+                <term>Callback_Type</term>
                 <listitem>
-                    <para>{on} | off</para>
                     <para>
-                        メニューを有効または無効にします.
-                        このプロパティに <literal>"on"</literal> (デフォルト)
-                        を指定した場合,メニューは有効となり,
-                        このプロパティに<literal>"off"</literal>を
-                        指定した場合,メニューはマウスのアクションに反応せず,
-                        グレイアウトされます.
+                        Scalar. Integer code setting the way the callback string must be
+                        interpreted to perform the action:
                     </para>
+                    <table>
+                        <tr>
+                            <th>-1</th><td>:</td>
+                            <td>callback disabled.</td>
+                        </tr>
+                        <tr>
+                            <th>0</th><td>:</td>
+                            <td>
+                                (default) non prioritary (or interruptible) Scilab instructions.
+                                Example: .callback = "help(""uimenu"")"
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>1</th><td>:</td>
+                            <td>Fortran function</td>
+                        </tr>
+                        <tr>
+                            <th>2</th><td>:</td>
+                            <td>non prioritary (or interruptible) Scilab function.</td>
+                        </tr>
+                        <tr>
+                            <th>3</th><td>:</td>
+                            <td>
+                                Java reference. Example:
+                                .callback = "org.scilab.modules.gui.editor.EditorManager.start([SCILAB_FIGURE_ID])"
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>10</th><td>:</td>
+                            <td>prioritary (or non-interruptible) Scilab instructions.</td>
+                        </tr>
+                        <tr>
+                            <th>12</th><td>:</td>
+                            <td>prioritary (or non-interruptible) Scilab function</td>
+                        </tr>
+                    </table>
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -82,6 +131,31 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>Children</term>
+                <listitem>
+                    <para>vector of handles</para>
+                    <para>
+                        If the current uimenu item is a menu listing subitems, their handles are
+                        gathered in this Children property. All of them should be of type "uimenu".
+                        Otherwise, .Children is the empty matrix [].
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Enable</term>
+                <listitem>
+                    <para>{on} | off</para>
+                    <para>
+                        メニューを有効または無効にします.
+                        このプロパティに <literal>"on"</literal> (デフォルト)
+                        を指定した場合,メニューは有効となり,
+                        このプロパティに<literal>"off"</literal>を
+                        指定した場合,メニューはマウスのアクションに反応せず,
+                        グレイアウトされます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>ForegroundColor</term>
                 <listitem>
                     <para>[1 3] 実数ベクトルまたは文字列</para>
@@ -92,6 +166,20 @@
                         色は実数ベクトル,すなわち [R,G,B]または
                         "R|G|B"のように
                         各値を "|" で区切った文字列で指定できます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Handle_visible</term>
+                <listitem>
+                    <para>on | {off}</para>
+                    <para>
+                        Setting it to "on" forces the uimenu handle to be visible in the list of
+                        its parent children, even if get(0).showhiddenhandles == "off".
+                    </para>
+                    <para>
+                        Setting it to "off" does NOT force it to be hidden:
+                        get(0).showhiddenhandles == "on" is stronger.
                     </para>
                 </listitem>
             </varlistentry>
@@ -116,6 +204,12 @@
                         LaTeX式とみなされ,
                         &lt; および &gt; で括られた場合, MathML式とみなされます.
                     </para>
+                    <para>
+                        If the text value starts with <literal>&lt;html></literal>, then
+                        all HTML-4 tags used in the label afterward are interpreted.
+                        This allows for instance to use HTML styling tags like &lt;b>..&lt;/>
+                        for bold, &lt;span color="red">..&lt;/span> to use a red font, etc.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -128,6 +222,17 @@
                         これにより"名前"を指定することができます.
                         主に<literal>findobj()</literal>で指定する
                         際に使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>User_data</term>
+                <listitem>
+                    <para>Any type of data</para>
+                    <para>
+                        This property can be used to store any scilab user or application data.
+                        In order to be easily extensible and portable, using a structure with
+                        fields is advised. [] is set by default.
                     </para>
                 </listitem>
             </varlistentry>
@@ -150,13 +255,19 @@
         <title>参照</title>
         <simplelist type="inline">
             <member>
-                <link linkend="uimenu">uicontextmenu</link>
+                <link linkend="uimenu">uimenu</link>
+            </member>
+            <member>
+                <link linkend="uicontextmenu">uicontextmenu</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="console_properties">showHiddenHandles</link>
             </member>
             <member>
                 <link linkend="set">set</link>
-            </member>
-            <member>
-                <link linkend="get">get</link>
             </member>
             <member>
                 <link linkend="math_rendering_features_in_graphic">LaTeX および MathML</link>
@@ -166,6 +277,12 @@
     <refsection>
         <title>履歴</title>
         <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Handle_visible</literal> property added.
+                </revremark>
+            </revision>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>

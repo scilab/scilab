@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uimenu_properties" xml:lang="en">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="uimenu_properties" xml:lang="en">
     <refnamediv>
         <refname>uimenu properties</refname>
         <refpurpose>Description of uimenu properties.</refpurpose>
@@ -8,10 +25,14 @@
         <title>Description</title>
         <para>This page lists all available properties for menus in Scilab GUI.</para>
         <para>
-            These properties can be set at creation through <link linkend="uimenu">uimenu</link> function.
+            These properties can be set at creation through the <link linkend="uimenu">uimenu</link>
+            function, or at any time later with the <literal>handle.property = value</literal>
+            usual syntax.
         </para>
         <para>
-            Their value can also be changed using the <link linkend="set">set</link> function and read using the <link linkend="get">get</link> function.
+            Several properties can also be changed in the same time using the
+            <link linkend="set">set</link>(handle, "propName1",propValue1, "propName2",propValue2, ..)
+            function.
         </para>
     </refsection>
     <refsection>
@@ -21,8 +42,97 @@
                 <term>Callback</term>
                 <listitem>
                     <para>String</para>
-                    <para>Instruction evaluated by the Scilab interpreter when the menu
-                        is activated. Under MacOSX, the callback will not be executed for a "button menu" (a menu without children), you must specify at least a child.
+                    <para>
+                        Instruction evaluated by the Scilab interpreter when the menu is activated.
+                        Under MacOSX, the callback will not be executed for a "button menu"
+                        (a menu without children), you must specify at least a child.
+                    </para>
+                    <para>
+                        If any, every occurence of the "[SCILAB_FIGURE_ID]" substring is replaced
+                        in the callback string with the figure_id value of the parent figure,
+                        at calling time .
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Callback_Type</term>
+                <listitem>
+                    <para>
+                        Scalar. Integer code setting the way the callback string must be interpreted
+                        to perform the action:
+                    </para>
+                    <table>
+                        <tr>
+                            <th>-1</th><td>:</td>
+                            <td>callback disabled.</td>
+                        </tr>
+                        <tr>
+                            <th>0</th><td>:</td>
+                            <td>
+                                (default) non prioritary (or interruptible) Scilab instructions.
+                                Example: .callback = "help(""uimenu"")"
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>1</th><td>:</td>
+                            <td>Fortran function</td>
+                        </tr>
+                        <tr>
+                            <th>2</th><td>:</td>
+                            <td>non prioritary (or interruptible) Scilab function.</td>
+                        </tr>
+                        <tr>
+                            <th>3</th><td>:</td>
+                            <td>
+                                Java reference. Example:
+                                .callback = "org.scilab.modules.gui.editor.EditorManager.start([SCILAB_FIGURE_ID])"
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>10</th><td>:</td>
+                            <td>prioritary (or non-interruptible) Scilab instructions.</td>
+                        </tr>
+                        <tr>
+                            <th>12</th><td>:</td>
+                            <td>prioritary (or non-interruptible) Scilab function</td>
+                        </tr>
+                    </table>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Checked</term>
+                <listitem>
+                    <para>on | {off}</para>
+                    <para>
+                        Item check indicator. Setting this property to "on" the first time displays
+                        a checkbox in head of the item's label, and then checks it. Setting "off"
+                        keeps the checkbox and unchecks it. This property can be used to display
+                        items indicating the state of particular options.
+                    </para>
+                    <para>Remarks:
+                        <itemizedlist>
+                            <listitem>
+                                There is no way to remove the checkbox after its creation, but
+                                deleting the item.</listitem><listitem>By default, no interactive
+                                checking or unchecking is possible. Such interactions can be
+                                implemented through the Callback property.
+                            </listitem>
+                            <listitem>
+                                This property is ignored for parent menus.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Children</term>
+                <listitem>
+                    <para>vector of handles</para>
+                    <para>
+                        If the current uimenu item is a menu listing subitems, their handles are
+                        gathered in this Children property. All of them should be of type "uimenu".
+                        Otherwise, .Children is the empty matrix [].
                     </para>
                 </listitem>
             </varlistentry>
@@ -38,25 +148,28 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>Checked</term>
+                <term>ForegroundColor</term>
                 <listitem>
-                    <para>on | {off}</para>
-                    <para>Item check indicator. Setting this property to "on" the first time displays a checkbox in head of the item's label, and then checks it. Setting "off" keeps the checkbox and unchecks it. This property can be used to display items indicating the state of particular options.</para>
-                    <para>Remarks:
-                        <itemizedlist>
-                            <listitem>There is no way to remove the checkbox after its creation, but deleting the item.</listitem><listitem>By default, no interactive checking or unchecking is possible. Such interactions can be implemented through the Callback property.</listitem><listitem>This property is ignored for parent menus.</listitem>
-                        </itemizedlist>
+                    <para>[1,3] real vector or string</para>
+                    <para>
+                        Foreground color of the uimenu (font color). A color is specified as Red,
+                        Green and Blue values. Those values are real in [0,1]. The color can be
+                        given as a real vector, ie [R,G,B] or a string where each value is
+                        separated by a "|", ie "R|G|B".
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ForegroundColor</term>
+                <term>Handle_visible</term>
                 <listitem>
-                    <para>[1,3] real vector or string</para>
-                    <para>Foreground color of the uimenu (font color). A color is specified as
-                        Red, Green and Blue values. Those values are real in [0,1]. The
-                        color can be given as a real vector, ie [R,G,B] or a string where
-                        each value is separated by a "|", ie "R|G|B".
+                    <para>on | {off}</para>
+                    <para>
+                        Setting it to "on" forces the uimenu handle to be visible in the list of
+                        its parent children, even if get(0).showhiddenhandles == "off".
+                    </para>
+                    <para>
+                        Setting it to "off" does NOT force it to be hidden:
+                        get(0).showhiddenhandles == "on" is stronger.
                     </para>
                 </listitem>
             </varlistentry>
@@ -65,7 +178,9 @@
                 <listitem>
                     <para>String.</para>
                     <para>
-                        This property represents the relative (to <link linkend="pwd">Scilab working directory</link>) or absolute path of the image file to be used as icon for the menu.
+                        This property represents the relative
+                        (to <link linkend="pwd">Scilab working directory</link>) or absolute path
+                        of the image file to be used as icon for the menu.
                     </para>
                 </listitem>
             </varlistentry>
@@ -73,10 +188,17 @@
                 <term>Label</term>
                 <listitem>
                     <para>String.</para>
-                    <para>This property represents the text appearing in the
-                        menu. If the text is enclosed between two $ (dollar sign), then it will be
-                        considered as a LaTeX expression, and if it is enclosed between &lt; and &gt;, it will be considered
-                        as a MathML one.
+                    <para>
+                        This property represents the text appearing in the menu.
+                        If the text is enclosed between two $ (dollar sign), then it will be
+                        considered as a LaTeX expression. If it is enclosed between &lt; and &gt;,
+                        it will be considered as a MathML one.
+                    </para>
+                    <para>
+                        If the text value starts with <literal>&lt;html></literal>, then
+                        all HTML-4 tags used in the label afterward are interpreted.
+                        This allows for instance to use HTML styling tags like &lt;b>..&lt;/>
+                        for bold, &lt;span color="red">..&lt;/span> to use a red font, etc.
                     </para>
                 </listitem>
             </varlistentry>
@@ -84,9 +206,20 @@
                 <term>Tag</term>
                 <listitem>
                     <para>String</para>
-                    <para>This property is generally used to identify the menu. It
-                        allows to give it a "name". Mainly used in conjunction with
-                        <literal>findobj()</literal>.
+                    <para>
+                        This property is generally used to identify the menu. It allows to give
+                        it a "name". Mainly used in conjunction with <literal>findobj()</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>User_data</term>
+                <listitem>
+                    <para>Any type of data</para>
+                    <para>
+                        This property can be used to store any scilab user or application data.
+                        In order to be easily extensible and portable, using a structure with
+                        fields is advised. [] is set by default.
                     </para>
                 </listitem>
             </varlistentry>
@@ -95,8 +228,10 @@
                 <listitem>
                     <para>{on} | off</para>
                     <para>
-                        Set the visibility of the uimenu. If this property is set to <literal>"on"</literal> (default), the uimenu is visible,
-                        but if this property is set to <literal>"off"</literal>, the uimenu will not appear in its parent figure.
+                        Set the visibility of the uimenu. If this property is set to
+                        <literal>"on"</literal> (default), the uimenu is visible,  but if this
+                        property is set to <literal>"off"</literal>, the uimenu will not appear
+                        in its parent figure.
                     </para>
                 </listitem>
             </varlistentry>
@@ -106,13 +241,19 @@
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="uimenu">uicontextmenu</link>
+                <link linkend="uimenu">uimenu</link>
+            </member>
+            <member>
+                <link linkend="uicontextmenu">uicontextmenu</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="console_properties">showHiddenHandles</link>
             </member>
             <member>
                 <link linkend="set">set</link>
-            </member>
-            <member>
-                <link linkend="get">get</link>
             </member>
             <member>
                 <link linkend="math_rendering_features_in_graphic">LaTeX and MathML</link>
@@ -122,6 +263,12 @@
     <refsection>
         <title>History</title>
         <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Handle_visible</literal> property added.
+                </revremark>
+            </revision>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
