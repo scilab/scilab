@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA -
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2016, 2017 - Samuel GOUGEON
+// Copyright (C) 2016, 2017, 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -85,10 +85,7 @@ function t=sci2exp(a,nom,lmax)
         if named then
             name=nom;
         end
-        idx=strindex(strfun(1), "=");
-        idx2=strindex(part(strfun(1), idx:$), "(") + idx - 1;
-        str=part(strfun(1), 1:idx) + " "+ name + part(strfun(1), idx2:length(strfun(1)));
-        strfun(1)=str;
+        strfun(1) = strsubst(strfun(1), tree.name+"(", name+"(");
         strfun($)=[];
         t=strfun;
         t(1) = part(t(1),10:length(t(1)))

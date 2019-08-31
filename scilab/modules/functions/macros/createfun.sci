@@ -20,7 +20,7 @@ function %fun=createfun(t)
     end
     h=t(1)
     k=strindex(h,"=")
-    if k==[] then k1=1,else k1=k(1),end
+    if k==[] then k1=0,else k1=k(1),end
     k=strindex(h,"(")
     if k==[] then k2=length(h),else k2=k(1),end
     h=part(h,1:k1)+"%fun"+part(h,k2:length(h))
