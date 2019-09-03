@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-
- * Copyright (C) INRIA - Djalel Abdemouche
-
  *
-
-
+ * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,434 +12,308 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-
  *
-
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="set">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="set">
     <refnamediv>
-
         <refname>set</refname>
-
         <refpurpose>グラフィックエンティティオブジェクトまたは
-
             またはユーザインターフェイスオブジェクトのプロパティの値を設定する.
-
         </refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
         <synopsis>
+            set(h, prop,val)            // h(prop) = val,  h.prop = val
+            set(h, prop,val, prop2,val2, ..)
+            set(tagsPath, prop,val)
+            set(tagsPath, prop,val, prop2,val2, ..)
 
-            set(prop,val)
-
-            set(h,prop)
-
-            set(h,prop,val)
-
-            set(handlePath,prop,val[,prop2, val2, ..., propn, valn])
-
-            h.prop=val
-
+            set('current_figure', fig)  // scf(fig)
+            set('current_axes', axes)   // sca(axes)
+            set('current_entity', h)
         </synopsis>
-
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>h</term>
-
                 <listitem>
-
-                    <para>名前のあるプロパティを設定するエンティティの
-
-                        グラフィックハンドル.
-
-                        <literal>h</literal> はハンドルのベクトルとすることができ,
-
-                        この場合,プロパティを修正すると,hに含まれる全てのエンティティに
-
-                        適用されます.
-
-                    </para>
-
+                    名前のあるプロパティを設定するエンティティの
+                    グラフィックハンドル.
+                    <literal>h</literal> はハンドルのベクトルとすることができ,
+                    この場合,プロパティを修正すると,hに含まれる全てのエンティティに
+                    適用されます.
+                    <para/>
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
-                <term>handlePath</term>
-
+                <term>tagsPath</term>
                 <listitem>
-
-                    <para>
-
-                        graphicエンティティを指すパスを有する文字列.
-
-                        このパスはgraphicエンティティ<literal>"Tag"</literal> プロパティおよび
-
-                        <literal>"figuretag/entitytag"</literal> (エンティティが図の子の場合)形式による
-
-                        グラフィック階層におけるその親の<literal>"Tag"</literal>プロパティ
-
-                        から構成されます.
-
-                    </para>
-
-                    <para>
-
-                        <literal>"figuretag/entity1tag/entity2tag/entityntag/entitytag"</literal>のように
-
-                        より深い階層レベルも使用できます.
-
-                        複数のパスを検索する際にワイルドカードも使用できます.
-
-                        パスに一致した最初のエンティティが使用されます.
-
-                    </para>
-
+                    Case-sensitive character string providing the tag or the tags-path leading
+                    to the graphic component to process.
+                    このパスはgraphicエンティティ<literal>"Tag"</literal> プロパティおよび
+                    <literal>"figuretag/entitytag"</literal> (エンティティが図の子の場合)形式による
+                    グラフィック階層におけるその親の<literal>"Tag"</literal>プロパティ
+                    から構成されます.
+                    <para/>
+                    <literal>"figuretag/entity1tag/entity2tag/entityntag/entitytag"</literal>のように
+                    より深い階層レベルも使用できます.
+                    複数のパスを検索する際にワイルドカードも使用できます.
+                    パスに一致した最初のエンティティが使用されます.
+                    <para/>
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
-                <term>prop</term>
-
+                <term>prop, prop2, ...</term>
                 <listitem>
-
-                    <para>文字列, 設定するプロパティの名前.</para>
-
+                    大文字と小文字を区別しない文字列：設定するプロパティの名前.
+                    <para/>
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
-                <term>val</term>
-
+                <term>val, val2, ...</term>
                 <listitem>
-
-                    <para>プロパティに設定する値.</para>
-
+                    value to assign to the property. Its type depends on the considered property.
+                    If <varname>h</varname> and <varname>val</varname> are vectors or matrices
+                    of same size, the multiple settings are done in an element-wise way.
+                    <para/>
                 </listitem>
-
             </varlistentry>
-
+            <varlistentry>
+                <term>fig</term>
+                <listitem>
+                    Handle of a graphical figure.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>axes</term>
+                <listitem>
+                    Handle of an axes.
+                    <para/>
+                </listitem>
+            </varlistentry>
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
-        <para>このルーチンはグラフィックエンティティまたはGUIオブジェクトの
-
+        <para>
+            このルーチンはグラフィックエンティティまたはGUIオブジェクトの
             特定のプロパティの値を修正する際に使用できます.
-
             この場合,ハンドルにドット演算子を使用するのと等価です.
-
             例えば,<literal>set(h,"background",5)</literal> は <literal>h.background = 5</literal>と等価です.
-
         </para>
-
-        <para>プロパティの名前は文字列です.
-
-            設定する値はハンドルの型とプロパティに依存します.
-
-        </para>
-
         <para>存在するプロパティの全リストを取得するには,
-
             <link linkend="graphics_entities">graphics_entities</link> または
-
             (ユーザインタフェースオブジェクトについては)<link linkend="uicontrol">uicontrol</link>を
-
             参照ください.
-
         </para>
-
+        <para/>
+        <emphasis role="bold">set(h, prop, val)</emphasis> or
+        <emphasis role="bold">h(prop) = val</emphasis> or
+        <emphasis role="bold">h.prop = val</emphasis>
         <para>
-
-            <literal>set</literal> 関数はプロパティと値のみを指定するコールも可能です.
-
-            この場合,プロパティは以下のどれかとします:
-
+            sets the property <varname>prop</varname> of the handle <varname>h</varname> to the
+            value <varname>val.</varname>.
         </para>
-
-        <variablelist>
-
-            <varlistentry>
-
-                <term>current_entity または hdl</term>
-
-                <listitem>
-
-                    <para>
-
-                        <literal>set('current_entity',h)</literal> または
-
-                        <literal>set('hdl',h)</literal>は新規エンティティをカレントに設定します.
-
-                        この場合,値にはグラフィックハンドルを指定します.
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
-                <term>current_figure</term>
-
-                <listitem>
-
-                    <para>
-
-                        <literal>set('current_figure',fig)</literal> は新しいグラフィック図を
-
-                        カレントに設定します.
-
-                        これは <link linkend="scf">scf</link>と等価です. この場合,
-
-                        値には図のハンドルを指定します.
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
-            <varlistentry>
-
-                <term>current_axes</term>
-
-                <listitem>
-
-                    <para>
-
-                        <literal>set('current_axes',axes)</literal> は新しい軸をカレントに
-
-                        設定します.
-
-                        これは,<link linkend="sca">sca</link>と等価です. この場合,
-
-                        値にはAxesハンドルを指定します.
-
-                    </para>
-
-                </listitem>
-
-            </varlistentry>
-
-        </variablelist>
-
         <para>
-
-            <literal>set</literal> は引数にグラフィックハンドルとプロパティを指定して
-
-            コールすることも可能です.
-
-            ハンドルにはデフォルト図またはデフォルト軸のエンティティへのハンドルのどちらかを
-
-            指定します.
-
-            プロパティの値は, <literal>"default_values"</literal>とします.
-
-            この場合,デフォルトのエンティティはScilabの起動時にこの値にリセットされます.
-
-            <literal>set("default_values",h)</literal>は
-
-            <link linkend="sda">sda</link> または <link linkend="sdf">sdf</link>と等価です.
-
+            When <varname>h</varname> is a matrix of handles,
+            <itemizedlist>
+                <listitem>
+                    if <varname>val</varname> is a matrix of same size: assignments are done in a
+                    element-wise way: <literal>set(h, prop, val)</literal> sets
+                    <literal>h(1)(prop)=val(1)</literal>, <literal>h(2)(prop)=val(2)</literal>, ...,
+                    <literal>h($)(prop)=val($)</literal>.
+                    Most often, the simpler syntax <literal>h(tag) = val</literal> does it as well.
+                </listitem>
+                <listitem>
+                    otherwise: The same and whole <varname>val</varname> value (that may be scalar
+                    or not) is assigned to every <literal>h(i)(prop)</literal> component.
+                    <warning>
+                        If <varname>val</varname> is a cell array of same size as
+                        <varname>h</varname>, it is assigned as a whole as well. For instance,
+                        <literal>set([gcf() gca()], "user_data", {"Text", 1})</literal> will do
+                        <literal>gcf().user_data = {"Text", 1}, gca().user_data = {"Text", 1}</literal>,
+                        not <literal>gcf().user_data = "Text", gca().user_data = 1</literal>.
+                    </warning>
+                </listitem>
+            </itemizedlist>
         </para>
-
+        <para>
+            With this syntax, <varname>prop</varname> can't be an array of property names.
+            To set multiple properties with a single call to <literal>set(..)</literal>, the
+            following syntax must be used.
+        </para>
+        <para/>
+        <emphasis role="bold">set(h, prop1,val1, prop2,val2, ..)</emphasis>
+        <para>
+            sets the property <varname>prop1</varname> of the handle(s) <varname>h</varname> to the
+            value <varname>val1</varname>, its or their property <varname>prop2</varname> to the
+            value <varname>val2</varname>, etc. If <varname>h</varname> and some
+            <varname>val#</varname> are matrices of same size, element-wise assignments are done
+            for the related <varname>prop#</varname> properties, as already described for the
+            <literal>set(h, prop, val)</literal> syntax.
+        </para>
+        <para/>
+        <emphasis role="bold">set(tagsPath, prop,val)</emphasis> or
+        <emphasis role="bold">set(tagsPath, prop,val, prop2,val2, ..)</emphasis>
+        <para>
+            Identifying the targeted component(s) to be set can be done as well through their
+            .tag property instead of their handle. This is achieved through the
+            <varname>tagsPath</varname>.
+        </para>
+        <para>
+            In case of multiple entities matching the path, only the first one is processed.
+            Conversely, finding no matching entity yields an error.
+        </para>
+        <para/>
+        <emphasis role="bold">set("current_figure", fig)</emphasis>
+        <para>
+            sets the figure of handle <varname>fig</varname> as the active figure. This syntax
+            is equivalent to <literal>scf(fig)</literal> or <literal>scf(figure_id)</literal>,
+            that are shorter and may be prefered.
+        </para>
+        <para/>
+        <emphasis role="bold">set("current_axes", axes)</emphasis>
+        <para>
+            sets the axes of handle <varname>axes</varname> as the active one. This syntax
+            is equivalent to <literal>sca(axes)</literal> that is shorter and may be prefered.
+        </para>
+        <para/>
+        <emphasis role="bold">set("current_entity", h)</emphasis>
+        <para>
+            sets the graphical component whose <literal>h(1)</literal> is the handle as the
+            current component, as returned by <literal>gce()</literal>. If <varname>h</varname>
+            is a vector of handles, other components <literal>h(2:$)</literal> are ignored.
+        </para>
     </refsection>
-
     <refsection>
-
         <title>例</title>
-
         <para>
-
             <programlisting role="example"><![CDATA[
-
-clf()
-
-set("auto_clear","off") ;
-
+gda().auto_clear = "off";
+clf
 // Plot 2Dの例
-
-x=[-.2:0.1:2*%pi]';
-
-plot2d(x-.3,[sin(x-1) cos(2*x)],[1 2] );
-
-a=get("current_axes");
-
-p1=a.children.children(1);
-
-p2=a.children.children(2);
+x = [-.2:0.1:2*%pi]';
+plot2d(x-.3, [sin(x-1) cos(2*x)], [1 2] );
+a = gca();
+p1 = a.children.children(1);
+p2 = a.children.children(2);
 
 // 名前のあるプロパティをオブジェクト固有の値に設定
-
-set(p2,"foreground",13);
-
-set(p2,"polyline_style",2);
-
-set(a,'tight_limits',"on");
-
-set(a,"box","off");
-
-set(a,"sub_tics",[ 7 0 ]);
-
-set(a,"y_location","middle")
-
-set(p2,'thickness',2);
-
-set(p1,'mark_mode',"on");
-
-set(p1,'mark_style',3);
+p2.thickness = 2;
+set(p2, "foreground",13, "polyline_style",2);
+a.y_location = "middle";
+a.tight_limits = "on";
+set(a, "box","off", "sub_tics",[7 0]);
+set(p1, "mark_mode","on", "mark_style",3);
 
 plot2d(x-2,x.^2/20);
-
-p3= a.children(1).children;
-
-set([a p1 p2 p3],"foreground",5)
-
- ]]></programlisting>
-
+p3 = a.children(1).children;
+set([a p1 p2 p3], "foreground",5);
+         ]]></programlisting>
         </para>
-
         <para>
-
-            <programlisting role="example"><![CDATA[
-
-// パスを使用
-
-f = figure("dockable", "off", "menubar", "none", "toolbar", "none", "infobar_visible", "off", "tag", "mainfig");
-
-frameHandle = uicontrol("parent", f, "style", "frame", "position", [200 200 190 100], "tag", "myframe");
-
-btnHandle = uicontrol("parent", frameHandle, "position", [20 20 150 30], "string", "button", "tag", "example");
-
-
-
-set("mainfig/myframe/example", "string", "complete path");
-
-get("mainfig/myframe/example", "string")
-
-set("mainfig/*/example", "string", "wildcard path");
-
-get("mainfig/*/example", "string")
-
-set("myframe/example", "string", "partial path");
-
-get("myframe/example", "string")
-
- ]]></programlisting>
-
+        With a vector of handles:
         </para>
+        <programlisting role="example"><![CDATA[
+// With distinct element-wise inputs:
+clf, plot2d()
+[gcf() gca()].tag
+set([gcf() gca()], "tag", ["myFigure" "myAxes"]);
+[gcf() gca()].tag
+     ]]></programlisting>
+        <screen><![CDATA[
+--> [gcf() gca()].tag
+ ans  =
+!  !
+!  !
 
+--> set([gcf() gca()], "tag", ["myFigure" "myAxes"]);
+
+--> [gcf() gca()].tag
+ ans  =
+!myFigure  !
+!myAxes    !
+]]></screen>
+    <para/>
+        <programlisting role="example"><![CDATA[
+// With the same input for all recipients:
+clf, plot()
+curves = gce().children;
+set([gca() ; curves], "thickness", 2);
+curves(1:20).thickness = 1; // shorter than set(curves(1:20), "thickness", 1)
+     ]]></programlisting>
+        <para>
+            Using a tagsPath :
+        </para>
+        <para>
+            <programlisting role="example"><![CDATA[
+f = figure("dockable", "off", "menubar", "none", "toolbar", "none", "infobar_visible", "off", "tag", "mainfig");
+frameHandle = uicontrol("parent", f, "style", "frame", "position", [200 200 190 100], "tag", "myframe");
+btnHandle = uicontrol("parent", frameHandle, "position", [20 20 150 30], "string", "button", "tag", "example");
+set("mainfig/myframe/example", "string", "complete path");
+get("mainfig/myframe/example", "string")
+set("mainfig/*/example", "string", "wildcard path");
+get("mainfig/*/example", "string")
+set("myframe/example", "string", "partial path");
+get("myframe/example", "string")
+ ]]></programlisting>
+        </para>
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
                 <link linkend="get">get</link>
-
             </member>
-
             <member>
-
+                <link linkend="scf">scf</link>
+            </member>
+            <member>
+                <link linkend="sdf">sdf</link>
+            </member>
+            <member>
+                <link linkend="sca">sca</link>
+            </member>
+            <member>
+                <link linkend="sda">sda</link>
+            </member>
+            <member>
                 <link linkend="delete">delete</link>
-
             </member>
-
             <member>
-
                 <link linkend="copy">copy</link>
-
             </member>
-
             <member>
-
                 <link linkend="move">move</link>
-
             </member>
-
             <member>
-
                 <link linkend="graphics_entities">graphics_entities</link>
-
             </member>
-
-            <member>
-
-                <link linkend="uicontrol">uicontrol</link>
-
-            </member>
-
         </simplelist>
-
     </refsection>
-
     <refsection>
-
         <title>履歴</title>
-
         <revhistory>
-
             <revision>
-
                 <revnumber>5.5.0</revnumber>
-
                 <revremark>
-
                     <itemizedlist>
-
                         <listitem>
-
-                            最初の入力引数をグラフィックエンティティを指すパスとすることが
-
-                            できるようになりました.
-
+                            最初の入力引数をグラフィックエンティティを指すパスとすることが できるようになりました.
                         </listitem>
-
                         <listitem>
-
                             複数のプロパティ設定を一度に利用できるようになりました.
-
                         </listitem>
-
                     </itemizedlist>
-
                 </revremark>
-
             </revision>
-
         </revhistory>
-
     </refsection>
-
 </refentry>
-

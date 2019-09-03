@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Djalel Abdemouche
  *
+ * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,21 +14,27 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="set">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="set">
     <refnamediv>
         <refname>set</refname>
-        <refpurpose>set a property value of a graphic entity
-            object or of a User Interface object.
+        <refpurpose>
+            set properties of some graphic objects or uimenus or uicontrol interactive components
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            set(prop,val)
-            set(h,prop)
-            set(h,prop,val)
-            set(handlePath,prop,val[,prop2, val2, ..., propn, valn])
-            h.prop=val
+            set(h, prop,val)            // h(prop) = val,  h.prop = val
+            set(h, prop,val, prop2,val2, ..)
+            set(tagsPath, prop,val)
+            set(tagsPath, prop,val, prop2,val2, ..)
+
+            set('current_figure', fig)  // scf(fig)
+            set('current_axes', axes)   // sca(axes)
+            set('current_entity', h)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -36,120 +43,214 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>graphic handle of the entity which to set the named
-                        property. <literal>h</literal> can be a vector of handles, in which case
-                        set modifies the property for all entities contained in h.
-                    </para>
+                    Handle of the graphic entity whose properti(es) must be set.
+                    <literal>h</literal> can be a vector of handles. In this case, set(..) modifies
+                    the property for all <literal>h</literal> components.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>handlePath</term>
+                <term>tagsPath</term>
                 <listitem>
-                    <para>
-                        A character string containing a path pointing to the graphic entity. This path is made of the graphic entity <literal>"Tag"</literal> property and the <literal>"Tag"</literal> property of its parents in the graphics hierarchy under the format <literal>"figuretag/entitytag"</literal> (when the entity is the child of a figure).
-                    </para>
-                    <para>
-                        Deeper hierarchy levels can also be used such as <literal>"figuretag/entity1tag/entity2tag/entityntag/entitytag"</literal>. Wildcards can also be used for multi-paths search. The first entity matching the path will be used.
-                    </para>
+                    Case-sensitive character string providing the tag or the tags-path leading
+                    to the graphic component to process.
+                    This path is made of the strings recorded in the <literal>.Tag</literal>
+                    property of the parent figure and of the chain of its children down to
+                    the target, like <literal>"figuretag"</literal> to target the figure
+                    with figure.tag=="figuretag", or <literal>"figuretag/entitytag"</literal>
+                    to target one of its children (as for an axes, a main uimenu item, a
+                    block of legends,..), or <literal>"figuretag/entity1tag/entity2tag"</literal>,
+                    etc. Wildcards can also be used for multi-paths search.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>prop</term>
+                <term>prop, prop2, ...</term>
                 <listitem>
-                    <para>character string, name of the property to set.</para>
+                    Scalar characters strings: Case-insensitive name of the properties to set.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>val</term>
+                <term>val, val2, ...</term>
                 <listitem>
-                    <para>value to give to the property.</para>
+                    value to assign to the property. Its type depends on the considered property.
+                    If <varname>h</varname> and <varname>val</varname> are vectors or matrices
+                    of same size, the multiple settings are done in an element-wise way.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fig</term>
+                <listitem>
+                    Handle of a graphical figure.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>axes</term>
+                <listitem>
+                    Handle of an axes.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>This routine can be used to modify the value of a specified property from a
-            graphics entity or a GUI object. In this case it is equivalent to use the dot operator on a handle.
-            For example, <literal>set(h,"background",5)</literal> is equivalent to <literal>h.background = 5</literal>.
-        </para>
-        <para>Property names are character strings. The type of the set values depends on the handle type and property.
-        </para>
-        <para>To get the list of all existing properties
-            see <link linkend="graphics_entities">graphics_entities</link> or <link linkend="uicontrol">uicontrol</link>
-            for User Interface objects.
+        <para>
+            This function can be used to modify the value of a specified property from a graphics
+            entity or a GUI object. In this case it is equivalent to use the dot operator on a handle.
+            For example, <literal>set(h,"background",5)</literal> is equivalent to
+            <literal>h.background = 5</literal>.
         </para>
         <para>
-            <literal>set</literal> function can be also called with only a property and a value as argument. In this case,
-            the property must be one of the following:
+            To get the list of all existing properties, please see the pages of
+            <link linkend="graphics_entities">graphics_entities</link> or
+            <link linkend="uicontrol_properties">uicontrol_properties</link> for User Interface
+            objects.
         </para>
-        <variablelist>
-            <varlistentry>
-                <term>current_entity or hdl</term>
-                <listitem>
-                    <para>
-                        <literal>set('current_entity',h)</literal> or <literal>set('hdl',h)</literal> sets a new entity as current.
-                        In this case, the value must be a graphic handle.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>current_figure</term>
-                <listitem>
-                    <para>
-                        <literal>set('current_figure',fig)</literal> sets a new graphic figure as current.
-                        It is equivalent to <link linkend="scf">scf</link>. In this case, the value must be a Figure handle.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>current_axes</term>
-                <listitem>
-                    <para>
-                        <literal>set('current_axes',axes)</literal> sets a new axes entity as current.
-                        It is equivalent to <link linkend="sca">sca</link>. In this case, the value must be an Axes handle.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
+        <para/>
+        <emphasis role="bold">set(h, prop, val)</emphasis> or
+        <emphasis role="bold">h(prop) = val</emphasis> or
+        <emphasis role="bold">h.prop = val</emphasis>
         <para>
-            <literal>set</literal> can also be called with a graphic handle and property as arguments.
-            The handle must be either a handle on the default figure or the default axes entities.
-            The property must be <literal>"default_values"</literal>. In this case, the default entity
-            is reset to the value it had at Scilab startup. <literal>set("default_values",h)</literal>
-            is equivalent to <link linkend="sda">sda</link> or <link linkend="sdf">sdf</link>.
+            sets the property <varname>prop</varname> of the handle <varname>h</varname> to the
+            value <varname>val.</varname>.
+        </para>
+        <para>
+            When <varname>h</varname> is a matrix of handles,
+            <itemizedlist>
+                <listitem>
+                    if <varname>val</varname> is a matrix of same size: assignments are done in a
+                    element-wise way: <literal>set(h, prop, val)</literal> sets
+                    <literal>h(1)(prop)=val(1)</literal>, <literal>h(2)(prop)=val(2)</literal>, ...,
+                    <literal>h($)(prop)=val($)</literal>.
+                    Most often, the simpler syntax <literal>h(tag) = val</literal> does it as well.
+                </listitem>
+                <listitem>
+                    otherwise: The same and whole <varname>val</varname> value (that may be scalar
+                    or not) is assigned to every <literal>h(i)(prop)</literal> component.
+                    <warning>
+                        If <varname>val</varname> is a cell array of same size as
+                        <varname>h</varname>, it is assigned as a whole as well. For instance,
+                        <literal>set([gcf() gca()], "user_data", {"Text", 1})</literal> will do
+                        <literal>gcf().user_data = {"Text", 1}, gca().user_data = {"Text", 1}</literal>,
+                        not <literal>gcf().user_data = "Text", gca().user_data = 1</literal>.
+                    </warning>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            With this syntax, <varname>prop</varname> can't be an array of property names.
+            To set multiple properties with a single call to <literal>set(..)</literal>, the
+            following syntax must be used.
+        </para>
+        <para/>
+        <emphasis role="bold">set(h, prop1,val1, prop2,val2, ..)</emphasis>
+        <para>
+            sets the property <varname>prop1</varname> of the handle(s) <varname>h</varname> to the
+            value <varname>val1</varname>, its or their property <varname>prop2</varname> to the
+            value <varname>val2</varname>, etc. If <varname>h</varname> and some
+            <varname>val#</varname> are matrices of same size, element-wise assignments are done
+            for the related <varname>prop#</varname> properties, as already described for the
+            <literal>set(h, prop, val)</literal> syntax.
+        </para>
+        <para/>
+        <emphasis role="bold">set(tagsPath, prop,val)</emphasis> or
+        <emphasis role="bold">set(tagsPath, prop,val, prop2,val2, ..)</emphasis>
+        <para>
+            Identifying the targeted component(s) to be set can be done as well through their
+            .tag property instead of their handle. This is achieved through the
+            <varname>tagsPath</varname>.
+        </para>
+        <para>
+            In case of multiple entities matching the path, only the first one is processed.
+            Conversely, finding no matching entity yields an error.
+        </para>
+        <para/>
+        <emphasis role="bold">set("current_figure", fig)</emphasis>
+        <para>
+            sets the figure of handle <varname>fig</varname> as the active figure. This syntax
+            is equivalent to <literal>scf(fig)</literal> or <literal>scf(figure_id)</literal>,
+            that are shorter and may be prefered.
+        </para>
+        <para/>
+        <emphasis role="bold">set("current_axes", axes)</emphasis>
+        <para>
+            sets the axes of handle <varname>axes</varname> as the active one. This syntax
+            is equivalent to <literal>sca(axes)</literal> that is shorter and may be prefered.
+        </para>
+        <para/>
+        <emphasis role="bold">set("current_entity", h)</emphasis>
+        <para>
+            sets the graphical component whose <literal>h(1)</literal> is the handle as the
+            current component, as returned by <literal>gce()</literal>. If <varname>h</varname>
+            is a vector of handles, other components <literal>h(2:$)</literal> are ignored.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <para>
             <programlisting role="example"><![CDATA[
-clf()
-set("auto_clear","off") ;
-// Example of a Plot 2D
-x=[-.2:0.1:2*%pi]';
-plot2d(x-.3,[sin(x-1) cos(2*x)],[1 2] );
-a=get("current_axes");
-p1=a.children.children(1);
-p2=a.children.children(2);
+gda().auto_clear = "off";
+clf
+// Example with a Plot 2D
+x = [-.2:0.1:2*%pi]';
+plot2d(x-.3, [sin(x-1) cos(2*x)], [1 2] );
+a = gca();
+p1 = a.children.children(1);
+p2 = a.children.children(2);
+
 // set the named properties to the specified values on the objects
-set(p2,"foreground",13);
-set(p2,"polyline_style",2);
-set(a,'tight_limits',"on");
-set(a,"box","off");
-set(a,"sub_tics",[ 7 0 ]);
-set(a,"y_location","middle")
-set(p2,'thickness',2);
-set(p1,'mark_mode',"on");
-set(p1,'mark_style',3);
+p2.thickness = 2;
+set(p2, "foreground",13, "polyline_style",2);
+a.y_location = "middle";
+a.tight_limits = "on";
+set(a, "box","off", "sub_tics",[7 0]);
+set(p1, "mark_mode","on", "mark_style",3);
+
 plot2d(x-2,x.^2/20);
-p3= a.children(1).children;
-set([a p1 p2 p3],"foreground",5)
- ]]></programlisting>
+p3 = a.children(1).children;
+set([a p1 p2 p3], "foreground",5);
+         ]]></programlisting>
         </para>
         <para>
-            <programlisting role="example"><![CDATA[
-// Using path
+        With a vector of handles:
+        </para>
+        <programlisting role="example"><![CDATA[
+// With distinct element-wise inputs:
+clf, plot2d()
+[gcf() gca()].tag
+set([gcf() gca()], "tag", ["myFigure" "myAxes"]);
+[gcf() gca()].tag
+     ]]></programlisting>
+        <screen><![CDATA[
+--> [gcf() gca()].tag
+ ans  =
+!  !
+!  !
+
+--> set([gcf() gca()], "tag", ["myFigure" "myAxes"]);
+
+--> [gcf() gca()].tag
+ ans  =
+!myFigure  !
+!myAxes    !
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
+// With the same input for all recipients:
+clf, plot()
+curves = gce().children;
+set([gca() ; curves], "thickness", 2);
+curves(1:20).thickness = 1; // shorter than set(curves(1:20), "thickness", 1)
+     ]]></programlisting>
+        <para>
+            Using a tagsPath :
+        </para>
+        <para>
+        <programlisting role="example"><![CDATA[
 f = figure("dockable", "off", "menubar", "none", "toolbar", "none", "infobar_visible", "off", "tag", "mainfig");
 frameHandle = uicontrol("parent", f, "style", "frame", "position", [200 200 190 100], "tag", "myframe");
 btnHandle = uicontrol("parent", frameHandle, "position", [20 20 150 30], "string", "button", "tag", "example");
@@ -160,7 +261,7 @@ set("mainfig/*/example", "string", "wildcard path");
 get("mainfig/*/example", "string")
 set("myframe/example", "string", "partial path");
 get("myframe/example", "string")
- ]]></programlisting>
+     ]]></programlisting>
         </para>
     </refsection>
     <refsection role="see also">
@@ -168,6 +269,18 @@ get("myframe/example", "string")
         <simplelist type="inline">
             <member>
                 <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="scf">scf</link>
+            </member>
+            <member>
+                <link linkend="sdf">sdf</link>
+            </member>
+            <member>
+                <link linkend="sca">sca</link>
+            </member>
+            <member>
+                <link linkend="sda">sda</link>
             </member>
             <member>
                 <link linkend="delete">delete</link>
@@ -180,9 +293,6 @@ get("myframe/example", "string")
             </member>
             <member>
                 <link linkend="graphics_entities">graphics_entities</link>
-            </member>
-            <member>
-                <link linkend="uicontrol">uicontrol</link>
             </member>
         </simplelist>
     </refsection>
