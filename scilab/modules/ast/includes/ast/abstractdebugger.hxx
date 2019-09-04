@@ -52,7 +52,5 @@ public:
 };
 
 typedef std::map<std::string, AbstractDebugger*> Debuggers;
-typedef std::map<std::string, types::InternalType*> Watches;
-
 }
 #endif /* !__ABSTRACT_DEBUGGER_HXX__ */

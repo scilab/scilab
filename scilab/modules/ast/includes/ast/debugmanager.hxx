@@ -62,7 +62,6 @@ private:
         callstack(), pExp(nullptr), interrupted(false), currentBreakPoint(-1), action(Continue), level(0) {}
 
     Breakpoints breakpoints;
-    Watches watches;
     CallStack callstack;
     Debuggers debuggers;
 
@@ -171,12 +170,6 @@ public:
     Breakpoint* getBreakPoint(int _iBreakPoint);
     int getBreakPointCount();
     Breakpoints& getAllBreakPoint();
-
-    //watches functions
-    void setWatches(const Watches& _w);
-    void removeWatches();
-    void updateWatches(int _iScopeLvl = -1);
-    Watches& getWatches();
 
     //actions called by debuggers
     inline void setStepIn() //enter macro

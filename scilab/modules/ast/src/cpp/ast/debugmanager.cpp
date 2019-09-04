@@ -298,39 +298,6 @@ Breakpoints& DebuggerManager::getAllBreakPoint()
     return breakpoints;
 }
 
-void DebuggerManager::setWatches(const Watches& _w)
-{
-    watches.clear();
-    watches = _w;
-}
-
-void DebuggerManager::removeWatches()
-{
-    watches.clear();
-}
-
-void DebuggerManager::updateWatches(int _iScopeLvl)
-{
-    symbol::Context* pCtx = symbol::Context::getInstance();
-    if(_iScopeLvl < 0)
-    {
-        // get current scope lvl
-        _iScopeLvl = pCtx->getScopeLevel();
-    }
-
-    for(auto& w : watches)
-    {
-        w.second = pCtx->getAtLevel(symbol::Symbol(scilab::UTF8::toWide(w.first)), _iScopeLvl);
-    }
-}
-
-Watches& DebuggerManager::getWatches()
-{
-    return watches;
-}
-
-
-
 void DebuggerManager::generateCallStack()
 {
     clearCallStack();
@@ -495,8 +462,6 @@ void DebuggerManager::abort() //abort execution
 
 void DebuggerManager::internal_execution_released()
 {
-    // update watches at each execution released
-    updateWatches();
     // send execution finished
     sendExecutionReleased();
 }
@@ -505,7 +470,6 @@ void DebuggerManager::internal_stop()
 {
     interrupted = true;
     generateCallStack();
-    updateWatches();
     pause();
     //clean current seqexp
     interrupted = false;
