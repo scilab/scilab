@@ -89,7 +89,7 @@
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
@@ -117,7 +117,7 @@ lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
@@ -146,7 +146,7 @@ lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
@@ -180,7 +180,7 @@ lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
@@ -229,7 +229,7 @@ lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ResourceCompile Include="src\c\fftw.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Elementary_functions_f_Import.def" />
+    <None Include="elementary_functions_f_Import.def" />
     <None Include="core_import.def" />
     <None Include="fftw.iss" />
     <None Include="locales\fftw.pot" />

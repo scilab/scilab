@@ -741,7 +741,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="src\c\XsetXgetParameters.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Elementary_functions_f_Import.def" />
+    <None Include="elementary_functions_f_Import.def" />
     <None Include="Gui_Import.def" />
     <None Include="core_import.def" />
     <None Include="graphics.iss" />

@@ -1524,7 +1524,7 @@
     <None Include="graphics.iss" />
     <None Include="sci_gateway\graphics_gateway.xml" />
     <None Include="Makefile.am" />
-    <None Include="Elementary_functions_f_Import.def">
+    <None Include="elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="locales\graphics.pot" />

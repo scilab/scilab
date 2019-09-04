@@ -114,7 +114,7 @@
     <None Include="fftw.iss" />
     <None Include="sci_gateway\fftw_gateway.xml" />
     <None Include="Makefile.am" />
-    <None Include="Elementary_functions_f_Import.def">
+    <None Include="elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="locales\fftw.pot">
