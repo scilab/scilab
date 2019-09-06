@@ -15,7 +15,8 @@ subdemolist=[ ..
 "N link pendulum movement"           ,"anim6/anim6_gateway.sce"; ..
 "Shell"                              ,"anim7/anim7_gateway.sce"; ..
 "Riemann surface"                    ,"anim8/anim8_gateway.sce"; ..
-"Bubble Sort"                        ,"bubbleSort/bubbleSort_gateway.sce"];
+"Bubble Sort"                        ,"bubbleSort/bubbleSort_gateway.sce"; ..
+"Pong"                               ,"pong/pong_gateway.sce"];
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
 clear demopath;
