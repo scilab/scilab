@@ -297,6 +297,7 @@ Bug Fixes
 * [#16174](http://bugzilla.scilab.org/show_bug.cgi?id=16174): `libraryinfo` yielded 0x0 matrix of strings for libs without macro
 * [#16177](http://bugzilla.scilab.org/show_bug.cgi?id=16177): In the uicontrol help page, the first example was bugged.
 * [#16178](http://bugzilla.scilab.org/show_bug.cgi?id=16178): `sci2exp` yielded an error for any input macro without output argument.
+* [#16190](http://bugzilla.scilab.org/show_bug.cgi?id=16190): console width was fixed at 75 in nw and nwni mode regardless of terminal width.
 * [#16197](http://bugzilla.scilab.org/show_bug.cgi?id=16197): result of extraction was not decomplexified when applicable.
 * [#16199](http://bugzilla.scilab.org/show_bug.cgi?id=16199): In the documentation, `zpk2tf` and `zpk2ss` examples yielded an error.
 * [#16200](http://bugzilla.scilab.org/show_bug.cgi?id=16200): Concatenation of transposed cells crashed Scilab.
