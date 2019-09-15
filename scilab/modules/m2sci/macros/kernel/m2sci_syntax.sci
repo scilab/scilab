@@ -24,6 +24,7 @@ function [helppart,txt,batch]=m2sci_syntax(txt)
     //  - isacomment
     //  - isinstring
     //  - replace_brackets
+    //  - replace_end_dollar
 
     sciparam();
     quote="''"
@@ -410,6 +411,9 @@ function [helppart,txt,batch]=m2sci_syntax(txt)
 
     // Replace {..} by (..) or [..] : useful for cells translation
     txt=replace_brackets(txt)
+
+    // Replace end with $ where it is relevant
+    txt = replace_end_dollar(txt)
 
     // Place function definition line at first line
     kc=strindex(txt(first_ncl),"function")
