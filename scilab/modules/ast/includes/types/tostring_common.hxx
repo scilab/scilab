@@ -43,7 +43,9 @@
 
 typedef struct __DOUBLE_FORMAT__
 {
-    __DOUBLE_FORMAT__() : iWidth(0), iPrec(0), bExp(false), bPrintPoint(true), bPrintPlusSign(false), bPrintOne(true), bPaddSign(true), iSignLen(SIGN_LENGTH), bPrintBlank(true), bPrintComplexPlusSpace(false) {}
+    __DOUBLE_FORMAT__() : iWidth(0), iPrec(0), bExp(false), bPrintPoint(true),
+                    bPrintPlusSign(false), bPrintOne(true), bPaddSign(true), iSignLen(SIGN_LENGTH),
+                    bPrintBlank(true), bPrintComplexPlusSpace(false), bPrintTrailingZeros(false) {}
     int iWidth;
     int iPrec;
     bool bExp;
@@ -54,7 +56,8 @@ typedef struct __DOUBLE_FORMAT__
     int iSignLen;
     bool bPrintBlank;
     bool bPrintComplexPlusSpace;
-} DoubleFormat;
+    bool bPrintTrailingZeros;
+    } DoubleFormat;
 
 /*double*/
 //void getDoubleFormat(double _dblVal, int *_piWidth, int *_piPrec, bool* _pExp);

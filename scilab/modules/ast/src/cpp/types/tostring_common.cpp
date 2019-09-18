@@ -295,15 +295,15 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         }
 
         // append trailing zeros, if applicable
-        if (std::atof(str.data()) != fabs(_dblVal))
+        if (std::atof(str.data()) != fabs(_dblVal) && _pDF->bPrintTrailingZeros == true)
         {
             if (_pDF->bPrintPoint)
             {
-                /*str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()))-1, '0');*/
+                str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()))-1, '0');
             }
             else
             {
-                iWidth = 1 + str.length();
+                iWidth = 1+str.length();
             }
         }
 
@@ -423,6 +423,7 @@ void printEmptyString(std::wostringstream& ostr)
 void printDoubleValue(std::wostringstream& ostr, double val)
 {
     DoubleFormat df;
+    df.bPrintTrailingZeros = true;
     getDoubleFormat(val, &df);
     ostr << SPACE_BETWEEN_TWO_VALUES;
     addDoubleValue(&ostr, val, &df);
@@ -431,6 +432,9 @@ void printDoubleValue(std::wostringstream& ostr, double val)
 void printComplexValue(std::wostringstream& ostr, double val_r, double val_i)
 {
     DoubleFormat dfR, dfI;
+    dfR.bPrintTrailingZeros = true;
+    dfI.bPrintTrailingZeros = true;
+
     int iTotalWidth;
     getComplexFormat(ZeroIsZero(val_r), ZeroIsZero(val_i), &iTotalWidth, &dfR, &dfI);
     ostr << SPACE_BETWEEN_TWO_VALUES;

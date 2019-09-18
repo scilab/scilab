@@ -27,6 +27,10 @@ For a high-level description of the main new features of this release, please co
 In summary, the main new features are:
 * Webtools utilities added for HTTP protocol, JSON data usage
 * Profiled values are available as Scilab values 
+* Values have a cleaner display:
+   - strings are quoted
+   - complex numbers are aligned for matrices
+   - numbers (IEEE 754 double) are not rounded
 
 Installation
 ------------
