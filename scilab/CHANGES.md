@@ -242,6 +242,7 @@ Bug Fixes
 * [#16160](http://bugzilla.scilab.org/show_bug.cgi?id=16160): `ppol` changed values of third input variable.
 * [#16164](http://bugzilla.scilab.org/show_bug.cgi?id=16164): Help pages in elementary_functions/signal_processing were mislocated.
 * [#16174](http://bugzilla.scilab.org/show_bug.cgi?id=16174): `libraryinfo` yielded 0x0 matrix of strings for libs without macro
+* [#16197](http://bugzilla.scilab.org/show_bug.cgi?id=16197): result of extraction was not decomplexified when applicable.
 * [#16200](http://bugzilla.scilab.org/show_bug.cgi?id=16200): Concatenation of transposed cells crashed Scilab.
 * [#16208](http://bugzilla.scilab.org/show_bug.cgi?id=16208): Using 3D string matrix with old C-api gateways may crash Scilab.
 * [#16209](http://bugzilla.scilab.org/show_bug.cgi?id=16209): grand() causes a freeze after several consecutive calls when using default base generator.

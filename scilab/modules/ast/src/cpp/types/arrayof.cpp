@@ -1081,13 +1081,14 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         }
 
         int dims[2] = {1, 1};
-        pOut = createEmpty(2, dims, isComplex());;
+        pOut = createEmpty(2, dims, false);
         pOut->set(0, get(index));
-        if (isComplex())
+        if (isComplex() && getImg(index) !=0)
         {
+            pOut->setComplex(true);
             pOut->setImg(0, getImg(index));
         }
-
+        
         return pOut;
     }
 
@@ -1123,13 +1124,17 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 
         if (isComplex())
         {
+            bool bIsComplex = false;
             for (int i = 0; i < size; ++i)
             {
                 int index = static_cast<int>(idx) - 1;
+                T iValue = getImg(index);
                 pOut->set(i, get(index));
-                pOut->setImg(i, getImg(index));
+                pOut->setImg(i, iValue);
+                bIsComplex |= (iValue !=0);
                 idx += step;
             }
+            pOut->setComplex(bIsComplex);
         }
         else
         {
@@ -1164,6 +1169,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         int size = getSize();
         if (isComplex())
         {
+            bool bIsComplex = false;
             int idx = 0;
             for (int & i : indexes)
             {
@@ -1173,10 +1179,13 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
                     return NULL;
                 }
 
+                T iValue = getImg(i);
                 pOut->set(idx, get(i));
-                pOut->setImg(idx, getImg(i));
+                pOut->setImg(idx, iValue);
+                bIsComplex |= (iValue !=0);
                 ++idx;
             }
+            pOut->setComplex(bIsComplex);
         }
         else
         {
@@ -1345,6 +1354,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         piViewDims[i] = getVarMaxDim(i, iDims);
     }
 
+    bool bIsComplex = false;
     for (int i = 0; i < iSeqCount; i++)
     {
         //increment last dimension
@@ -1400,12 +1410,15 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         pOut->set(i, get(iPos));
         if (m_pImgData != NULL)
         {
-            pOut->setImg(i, getImg(iPos));
+            T iValue = getImg(iPos);
+            pOut->setImg(i, iValue);
+            bIsComplex |= (iValue != 0);   
         }
-
 
         piIndex[0]++;
     }
+    
+    pOut->setComplex(bIsComplex);
 
     //free pArg content
     cleanIndexesArguments(_pArgs, &pArg);
