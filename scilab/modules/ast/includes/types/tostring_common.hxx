@@ -21,6 +21,7 @@
 #include "os_string.h"
 #include "dynlib_ast.h"
 
+#define BLANK_SIZE 1
 #define SIZE_BETWEEN_TWO_VALUES         1
 #define SPACE_BETWEEN_TWO_VALUES        L" "
 #define SIZE_BOOL                       1
@@ -31,6 +32,7 @@
 #define MINUS_STRING                    L"-"
 #define PLUS_STRING                     L"+"
 #define SYMBOL_I                        L"i"
+#define SIZE_SYMBOL_I                   1
 
 
 #define MAX_LINES                       100

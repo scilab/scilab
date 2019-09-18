@@ -1,7 +1,7 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2008-2008 - DIGITEO - Antoine ELIAS
-*
+*  Copyright (C) 2019 - Stéphane MOTTELET
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -392,152 +392,22 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             ostr << std::endl;
         }
     }
-    else if (getCols() == 1)
-    {
-        //column vector
-        if (isComplex() == false)
-        {
-            for (int i = m_iRows1PrintState ; i < getRows() ; i++)
-            {
-                iCurrentLine++;
-                if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
-                {
-                    // Number of lines to print exceeds the max lines allowed
-                    // Record what line we were at
-                    m_iRows1PrintState = i;
-                    return false;
-                }
-
-                _piDims[1] = 0;
-                _piDims[0] = i;
-                int iPos = getIndex(_piDims);
-
-                printDoubleValue(ostr, m_pRealData[iPos]);
-                ostr << std::endl;
-            }
-        }
-        else
-        {
-            for (int i = m_iRows1PrintState ; i < getRows() ; i++)
-            {
-                //complex value
-                iCurrentLine++;
-                if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
-                {
-                    m_iRows1PrintState = i;
-                    return false;
-                }
-
-                _piDims[1] = 0;
-                _piDims[0] = i;
-                int iPos = getIndex(_piDims);
-
-                printComplexValue(ostr, m_pRealData[iPos], m_pImgData[iPos]);
-                ostr << std::endl;
-            }
-        }
-    }
-    else if (getRows() == 1)
-    {
-        //row vector
-        std::wostringstream ostemp;
-        int iLastVal = m_iCols1PrintState;
-
-        if (isComplex() == false)
-        {
-            int iLen = 0;
-            for (int i = m_iCols1PrintState ; i < getCols() ; i++)
-            {
-                _piDims[0] = 0;
-                _piDims[1] = i;
-                int iPos = getIndex(_piDims);
-
-                DoubleFormat df;
-                // Get the size of the column to print
-                getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
-                iLen = static_cast<int>(ostemp.str().size()) + SIZE_BETWEEN_TWO_VALUES + df.iSignLen + df.iWidth;
-                if (iLen >= iLineLen - 1 && iLastVal != i)
-                {
-                    //Max length, new line
-                    iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
-                    if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
-                    {
-                        // Number of lines to print exceeds the max lines allowed
-                        // Record what column we were at
-                        m_iCols1PrintState = iLastVal;
-                        return false;
-                    }
-
-                    addColumnString(ostr, iLastVal + 1, i);
-                    ostr << ostemp.str() << std::endl;
-                    ostemp.str(L"");
-                    iLastVal = i;
-                }
-
-                ostemp << SPACE_BETWEEN_TWO_VALUES;
-                addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
-            }
-
-            if (iLastVal != 0)
-            {
-                addColumnString(ostr, iLastVal + 1, getCols());
-            }
-            ostemp << std::endl;
-            ostr << ostemp.str();
-        }
-        else //complex case
-        {
-            int iTotalLen = 0;
-            int iLen = 0;
-
-            for (int i = m_iCols1PrintState ; i < getCols() ; i++)
-            {
-                _piDims[0] = 0;
-                _piDims[1] = i;
-                int iPos = getIndex(_piDims);
-
-                DoubleFormat dfR, dfI;
-                getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalLen, &dfR, &dfI);
-                iLen = static_cast<int>(ostemp.str().size()) + SIZE_BETWEEN_TWO_VALUES + iTotalLen;
-                if (iLen >= iLineLen - 1 && iLastVal != i)
-                {
-                    //Max length, new line
-                    iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
-                    if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
-                    {
-                        // Number of lines to print exceeds the max lines allowed
-                        // Record what column we were at
-                        m_iCols1PrintState = iLastVal;
-                        return false;
-                    }
-
-                    addColumnString(ostr, iLastVal + 1, i);
-                    ostr << ostemp.str() << std::endl;
-                    ostemp.str(L"");
-                    iLastVal = i;
-                }
-
-                ostemp << SPACE_BETWEEN_TWO_VALUES;
-                addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), iTotalLen, &dfR, &dfI);
-            }
-
-            if (iLastVal != 0)
-            {
-                addColumnString(ostr, iLastVal + 1, getCols());
-            }
-            ostemp << std::endl;
-            ostr << ostemp.str();
-        }
-    }
     else // matrix
     {
         std::wostringstream ostemp;
-        int iLen = 0;
+        int iLen = SIZE_BETWEEN_TWO_VALUES;
         int iLastCol = m_iCols1PrintState;
+        // some unchanging field is to be retrieved for later used
+        DoubleFormat df;
+        int iBlankSize = df.bPrintBlank ? BLANK_SIZE : 0;
 
         //Array with the max printed size of each col
         int *piSize = new int[getCols()];
+        int *piRSize = new int[getCols()];
+        int *piISize = new int[getCols()];
         memset(piSize, 0x00, getCols() * sizeof(int));
+        memset(piRSize, 0x00, getCols() * sizeof(int));
+        memset(piISize, 0x00, getCols() * sizeof(int));
 
         if (isComplex() == false)
         {
@@ -597,7 +467,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                         ostemp << std::endl;
                     }
 
-                    iLen = 0;
+                    iLen = SIZE_BETWEEN_TWO_VALUES;
 
                     iCurrentLine++;
                     if (m_iRows2PrintState == 0)
@@ -612,7 +482,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     m_iCols1PrintState = 0;
                 }
 
-                iLen += piSize[iCols1] + SIGN_LENGTH + SIZE_BETWEEN_TWO_VALUES;
+                iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_VALUES + iBlankSize;
             }
 
             for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
@@ -669,13 +539,10 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
 
                     DoubleFormat dfR, dfI;
                     getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
-
-                    iTotalWidth += (dfR.iWidth == 0 ? 0 : SIGN_LENGTH) + (dfI.iWidth == 0 ? 0 : SIGN_LENGTH + 1);
-                    if (iTotalWidth > piSize[iCols1])
-                    {
-                        piSize[iCols1] = iTotalWidth;
-                    }
-
+                    // keep track of real and imaginary part width for further alignment
+                    piISize[iCols1] = std::max(piISize[iCols1], dfI.iWidth);
+                    piRSize[iCols1] = std::max(piRSize[iCols1], dfR.iWidth);
+                    piSize[iCols1]  = std::max(piSize[iCols1], iTotalWidth);
                 }
             }
 
@@ -700,6 +567,8 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             m_iRows2PrintState = iRows2;
                             m_iCols1PrintState = iLastCol;
                             delete[] piSize;
+                            delete[] piRSize;
+                            delete[] piISize;
                             return false;
                         }
 
@@ -713,13 +582,16 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             DoubleFormat dfR, dfI;
                             getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
 
+                            // override with precomputed real part width for alignment of imaginary part sign
+                            dfR.iWidth = piRSize[iCols2];
+                            dfI.iWidth = piISize[iCols2];
                             ostemp << SPACE_BETWEEN_TWO_VALUES;
-                            addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
+                            addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]),  piSize[iCols2], &dfR, &dfI);
                         }
                         ostemp << std::endl;
                     }
 
-                    iLen = 0;
+                    iLen = SIZE_BETWEEN_TWO_VALUES;
 
                     iCurrentLine++;
                     if (m_iRows2PrintState == 0)
@@ -752,6 +624,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     m_iRows2PrintState = iRows2;
                     m_iCols1PrintState = iLastCol;
                     delete[] piSize;
+                    delete[] piRSize;
                     return false;
                 }
 
@@ -765,8 +638,11 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     DoubleFormat dfR, dfI;
                     getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
 
+                    // override with precomputed real part width for aligment of imaginary part sign
+                    dfR.iWidth = piRSize[iCols2];
+                    dfI.iWidth = piISize[iCols2];
                     ostemp << SPACE_BETWEEN_TWO_VALUES;
-                    addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
+                    addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]),  piSize[iCols2], &dfR, &dfI);
                 }
                 ostemp << std::endl;
             }
@@ -779,6 +655,8 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
         }
 
         delete[] piSize;
+        delete[] piRSize;
+        delete[] piISize;
     }
 
     return true;

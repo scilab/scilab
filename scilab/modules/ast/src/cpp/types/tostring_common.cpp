@@ -1,7 +1,7 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2009 - DIGITEO - Antoine ELIAS
-*  Copyright (C) 2018 - Stéphane MOTTELET
+*  Copyright (C) 2018 - 2019 - Stéphane MOTTELET
 *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -28,10 +28,8 @@ extern "C"
 #include "os_string.h"
 #include "dtoa.h"
 #include "charEncoding.h"
-#include "sciprint.h"
 }
 
-#define BLANK_SIZE 1
 #define POINT_SIZE 1
 #define EXPOSANT_SIZE 2         //exposant symbol + exposant sign
 
@@ -182,38 +180,8 @@ void getComplexFormat(double _dblR, double _dblI, int *_piTotalWidth, DoubleForm
 {
     getDoubleFormat(_dblR, _pDFR);
     getDoubleFormat(_dblI, _pDFI);
-
-    *_piTotalWidth = 0;
-    if (isRealZero(_dblI))
-    {
-        if (isRealZero(_dblR))
-        {
-            *_piTotalWidth += 1;    //"0"
-            _pDFI->iWidth = 0;
-            _pDFI->iSignLen = 0;
-        }
-        else
-        {
-            *_piTotalWidth += _pDFR->iWidth;
-            _pDFI->iWidth = 0;
-            _pDFI->iSignLen = 0;
-        }
-    }
-    else
-    {
-        if (isRealZero(_dblR))
-        {
-            *_piTotalWidth += _pDFI->iWidth;
-            _pDFR->iWidth = 0;
-        }
-        else
-        {
-            *_piTotalWidth += _pDFR->iWidth + _pDFI->iWidth;
-        }
-
-        // i character
-        *_piTotalWidth += 1;
-    }
+    
+    *_piTotalWidth = _pDFR->iWidth + _pDFI->iWidth + 2*(_pDFR->bPrintBlank ? BLANK_SIZE : 0) + BLANK_SIZE + SIZE_SYMBOL_I;
 }
 
 void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat * _pDF)
@@ -331,16 +299,16 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         {
             if (_pDF->bPrintPoint)
             {
-                /* str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()))-1, '0'); */
+                /*str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()))-1, '0');*/
             }
             else
             {
-                iWidth = 1+str.length();
+                iWidth = 1 + str.length();
             }
         }
 
         wchar_t* pwstData = to_wide_string(str.data());
-        os_swprintf(pwstOutput, 32, L"%ls%-*ls", pwstSign, iWidth-1, pwstData);
+        os_swprintf(pwstOutput, 32, L"%ls%-*ls", pwstSign, iWidth - 1, pwstData);
         FREE(pwstData);
     }
     else if (wcslen(pwstSign) != 0)
@@ -375,80 +343,36 @@ void addDoubleComplexValue(std::wostringstream * _postr, double _dblR, double _d
      */
 
     // *_postr << "|%" << _iTotalWitdh << "%|";
-    if (_dblR == 0)
+
+    //R
+    DoubleFormat df;
+
+    df.iPrec = _pDFR->iPrec;
+    df.bExp = _pDFR->bExp;
+
+    if (ISNAN(_dblR) || !finite(_dblR))
     {
-        //no real part
-        if (_dblI == 0)
-        {
-            //no imaginary part
-
-            //0
-            DoubleFormat df;
-
-            addDoubleValue(&ostemp, 0, &df);
-        }
-        else
-        {
-            //imaginary part
-
-            //I
-            DoubleFormat df;
-
-            df.iWidth = 0;
-            df.iPrec = _pDFI->iPrec;
-            df.bExp = _pDFI->bExp;
-            df.bPrintPlusSign = false;
-            df.bPrintOne = false;
-            addDoubleValue(&ostemp, _dblI, &df);
-            ostemp << std::left << SYMBOL_I;
-            if (_dblI == 1)
-            {
-                addSpaces(&ostemp, 1);
-            }
-
-        }
+        ostemp << std::left << std::setw(_pDFR->iWidth + 1);
+        addDoubleValue(&ostemp, _dblR, &df);
     }
     else
     {
-        //real part
-        if (_dblI == 0)
-        {
-            //no imaginary part
+        // following line allows to align sign of imaginary part
+        addDoubleValue(&ostemp, _dblR, &df);
+        addSpaces(&ostemp, _pDFR->iWidth - ostemp.tellp() + 1);
+    }
+    //I
+    df.iPrec = _pDFI->iPrec;
+    df.bExp = _pDFI->bExp;
+    df.bPrintPlusSign = true;
+    df.bPrintComplexPlusSpace = true;
+    df.bPrintOne = false;
 
-            //R
-            DoubleFormat df;
-
-            df.iWidth = 0;
-            df.iPrec = _pDFR->iPrec;
-            df.bExp = _pDFR->bExp;
-            addDoubleValue(&ostemp, _dblR, &df);
-        }
-        else
-        {
-            //imaginary part
-
-            //R
-            DoubleFormat df;
-
-            df.iPrec = _pDFR->iPrec;
-            df.bExp = _pDFR->bExp;
-
-            addDoubleValue(&ostemp, _dblR, &df);
-
-            //I
-            df.iPrec = _pDFI->iPrec;
-            df.bExp = _pDFI->bExp;
-            df.bPrintPlusSign = true;
-            df.bPrintComplexPlusSpace = true;
-            df.bPrintOne = false;
-
-            addDoubleValue(&ostemp, _dblI, &df);
-            ostemp << std::left << SYMBOL_I;
-            if (_dblI == 1)
-            {
-                addSpaces(&ostemp, 2);
-            }
-        }
+    addDoubleValue(&ostemp, _dblI, &df);
+    ostemp << std::left << SYMBOL_I;
+    if (_dblI == 1 && _pDFI->bExp == false)
+    {
+        addSpaces(&ostemp, 2);
     }
 
     configureStream(_postr, _iTotalWidth, 0, ' ');
@@ -507,8 +431,8 @@ void printDoubleValue(std::wostringstream& ostr, double val)
 void printComplexValue(std::wostringstream& ostr, double val_r, double val_i)
 {
     DoubleFormat dfR, dfI;
-    getDoubleFormat(ZeroIsZero(val_r), &dfR);
-    getDoubleFormat(ZeroIsZero(val_i), &dfI);
+    int iTotalWidth;
+    getComplexFormat(ZeroIsZero(val_r), ZeroIsZero(val_i), &iTotalWidth, &dfR, &dfI);
     ostr << SPACE_BETWEEN_TWO_VALUES;
-    addDoubleComplexValue(&ostr, ZeroIsZero(val_r), ZeroIsZero(val_i), dfR.iWidth + dfI.iWidth, &dfR, &dfI);
+    addDoubleComplexValue(&ostr, ZeroIsZero(val_r), ZeroIsZero(val_i), iTotalWidth, &dfR, &dfI);
 }
