@@ -433,7 +433,7 @@ void printComplexValue(std::wostringstream& ostr, double val_r, double val_i)
     dfI.bPrintTrailingZeros = true;
 
     int iTotalWidth;
-    getComplexFormat(ZeroIsZero(val_r), ZeroIsZero(val_i), &iTotalWidth, &dfR, &dfI);
+    getComplexFormat(val_r, val_i, &iTotalWidth, &dfR, &dfI);
     ostr << SPACE_BETWEEN_TWO_VALUES;
-    addDoubleComplexValue(&ostr, ZeroIsZero(val_r), ZeroIsZero(val_i), iTotalWidth, &dfR, &dfI);
+    addDoubleComplexValue(&ostr, val_r, val_i, iTotalWidth, &dfR, &dfI);
 }

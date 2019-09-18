@@ -418,7 +418,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     int iPos = getIndex(_piDims);
 
                     DoubleFormat df;
-                    getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
+                    getDoubleFormat(m_pRealData[iPos], &df);
                     piSize[iCols1] = std::max(piSize[iCols1], df.iWidth);
                 }
             }
@@ -453,12 +453,12 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             int iPos = getIndex(_piDims);
 
                             DoubleFormat df;
-                            getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
+                            getDoubleFormat(m_pRealData[iPos], &df);
 
                             ostemp << SPACE_BETWEEN_TWO_VALUES;
 
                             df.iWidth = piSize[iCols2];
-                            addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
+                            addDoubleValue(&ostemp, m_pRealData[iPos], &df);
                         }
                         ostemp << std::endl;
                     }
@@ -505,11 +505,11 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     int iPos = getIndex(_piDims);
 
                     DoubleFormat df;
-                    getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
+                    getDoubleFormat(m_pRealData[iPos], &df);
 
                     ostemp << SPACE_BETWEEN_TWO_VALUES;
                     df.iWidth = piSize[iCols2];
-                    addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
+                    addDoubleValue(&ostemp, m_pRealData[iPos], &df);
                 }
                 ostemp << std::endl;
             }
@@ -533,7 +533,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     int iPos = getIndex(_piDims);
 
                     DoubleFormat dfR, dfI;
-                    getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
+                    getComplexFormat(m_pRealData[iPos], m_pImgData[iPos], &iTotalWidth, &dfR, &dfI);
                     // keep track of real and imaginary part width for further alignment
                     piISize[iCols1] = std::max(piISize[iCols1], dfI.iWidth);
                     piRSize[iCols1] = std::max(piRSize[iCols1], dfR.iWidth);
@@ -572,13 +572,13 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                             int iPos = getIndex(_piDims);
 
                             DoubleFormat dfR, dfI;
-                            getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
+                            getComplexFormat(m_pRealData[iPos], m_pImgData[iPos], &iTotalWidth, &dfR, &dfI);
 
                             // override with precomputed real part width for alignment of imaginary part sign
                             dfR.iWidth = piRSize[iCols2];
                             dfI.iWidth = piISize[iCols2];
                             ostemp << SPACE_BETWEEN_TWO_VALUES;
-                            addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]),  piSize[iCols2], &dfR, &dfI);
+                            addDoubleComplexValue(&ostemp, m_pRealData[iPos], m_pImgData[iPos],  piSize[iCols2], &dfR, &dfI);
                         }
                         ostemp << std::endl;
                     }
@@ -626,13 +626,13 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     int iPos = getIndex(_piDims);
 
                     DoubleFormat dfR, dfI;
-                    getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
+                    getComplexFormat(m_pRealData[iPos], m_pImgData[iPos], &iTotalWidth, &dfR, &dfI);
 
                     // override with precomputed real part width for aligment of imaginary part sign
                     dfR.iWidth = piRSize[iCols2];
                     dfI.iWidth = piISize[iCols2];
                     ostemp << SPACE_BETWEEN_TWO_VALUES;
-                    addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]),  piSize[iCols2], &dfR, &dfI);
+                    addDoubleComplexValue(&ostemp, m_pRealData[iPos], m_pImgData[iPos],  piSize[iCols2], &dfR, &dfI);
                 }
                 ostemp << std::endl;
             }
