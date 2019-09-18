@@ -126,7 +126,10 @@ void RunVisitorT<T>::visitprivate(const SimpleVar & e)
             ostr << L"(" << pI->getRef() << L")";
 #endif
             ostr << std::endl;
-            ostr << std::endl;
+            if (ConfigVariable::isPrintCompact() == false)
+            {
+                ostr << std::endl;                
+            }
             scilabWriteW(ostr.str().c_str());
             std::wostringstream ostrName;
             ostrName << e.getSymbol().getName();

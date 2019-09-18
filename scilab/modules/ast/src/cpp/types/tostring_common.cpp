@@ -473,13 +473,21 @@ void configureStream(std::wostringstream * _postr, int _iWidth, int _iPrec, char
 
 void addColumnString(std::wostringstream& ostr, int _iFrom, int _iTo)
 {
+    if (ConfigVariable::isPrintCompact() == false)
+    {
+        ostr << std::endl;
+    }
     if (_iFrom == _iTo)
     {
-        ostr << std::endl << L"         column " << _iFrom << std::endl << std::endl;
+        ostr << L"         column " << _iFrom << std::endl;
     }
     else
     {
-        ostr << std::endl << L"         column " << _iFrom << L" to " << _iTo << std::endl << std::endl;
+        ostr << L"         column " << _iFrom << L" to " << _iTo << std::endl;
+    }
+    if (ConfigVariable::isPrintCompact() == false)
+    {
+        ostr << std::endl;
     }
 }
 

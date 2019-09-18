@@ -137,7 +137,11 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 std::wstring wstrName = pVar->getSymbol().getName();
                 std::wostringstream ostr;
-                ostr << L" " << wstrName << L"  = " << std::endl << std::endl;
+                ostr << L" " << wstrName << L"  = " << std::endl;
+                if (ConfigVariable::isPrintCompact() == false)
+                {
+                    ostr << std::endl;                
+                }
                 scilabWriteW(ostr.str().c_str());
                 std::wostringstream ostrName;
                 ostrName << wstrName;

@@ -988,11 +988,6 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
                 bFinish = linesmore() == 1;
             }
 
-            if (ConfigVariable::isPrintCompact() == false && ConfigVariable::isPrintInput() == false)
-            {
-                ostr << std::endl;
-            }
-
             scilabForcedWriteW(ostr.str().c_str());
             ostr.str(L"");
         }
