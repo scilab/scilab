@@ -155,8 +155,15 @@ bool Cell::transpose(InternalType *& out)
         int piDims[2] = {getCols(), getRows()};
         pC->create(piDims, 2, &pIT, NULL);
 
-        Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pC->m_pRealData);
-
+        for (int i = 0, k = 0; i < getCols(); i++, k += getRows())
+        {
+            for (int j = 0, l = 0; j < getRows(); j++, l += getCols())
+            {
+                pC->m_pRealData[i + l] = m_pRealData[j + k]->clone();
+                pC->m_pRealData[i + l]->IncreaseRef();
+            }
+        }
+     
         return true;
     }
 
