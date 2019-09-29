@@ -9,7 +9,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="zpk2ss">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="zpk2ss">
     <refnamediv>
         <refname>zpk2ss</refname>
         <refpurpose>Zero pole gain to state space</refpurpose>
@@ -21,14 +24,12 @@
     <refsection>
         <title>Arguments</title>
         <variablelist>
-
             <varlistentry>
                 <term>sys</term>
                 <listitem>
                     <para>
-                        A linear dynamical system in zero-pole-gain
-                        representation (see <link
-                        linkend="zpk">zpk</link>).
+                        A linear dynamical system in zero-pole-gain representation
+                        (see <link linkend="zpk">zpk</link>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -40,9 +41,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-
-
-
         </variablelist>
     </refsection>
     <refsection>
@@ -50,14 +48,75 @@
         <para>
             Converts a zero pole gain representation to state space.
         </para>
-
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-sys=zpk([2;1],0;-3-%i;-3+%i],2.5,"c")
-S=zpk2ss(sys)
+sys = zpk([2;1], [0;-3-%i;-3+%i], 2.5, "c")
+typeof(sys)
+
+S = zpk2ss(sys)
+typeof(S)
  ]]></programlisting>
+        <screen><![CDATA[
+--> sys = zpk([2;1], [0;-3-%i;-3+%i], 2.5, "c")
+ sys  =
+
+        (s-2) (s-1)
+   2.5 -------------
+       s (s^2+6s+10)
+
+
+--> typeof(sys)
+ ans  =
+
+  "zpk"
+
+-->
+
+--> S = zpk2ss(sys)
+ S  =
+
+
+ S(1)  (state-space system:)
+
+  "lss"  "A"  "B"  "C"  "D"  "X0"  "dt"
+
+ S(2)= A matrix =
+
+   0.   1.         -0.3162278
+   0.  -6.         -3.1622777
+   0.   3.1622777   0.
+
+ S(3)= B matrix =
+
+   0.
+   1.
+   0.
+
+ S(4)= C matrix =
+
+  -5.   2.5  -0.7905694
+
+ S(5)= D matrix =
+
+   0.
+
+ S(6)= X0 (initial state) =
+
+   0.
+   0.
+   0.
+
+ S(7)= Time domain =
+
+  "c"
+
+--> typeof(S)
+ ans  =
+
+  "state-space"
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -81,5 +140,4 @@ S=zpk2ss(sys)
             </revision>
         </revhistory>
     </refsection>
-
 </refentry>

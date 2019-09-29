@@ -286,6 +286,7 @@ Bug Fixes
 * [#16177](http://bugzilla.scilab.org/show_bug.cgi?id=16177): In the uicontrol help page, the first example was bugged.
 * [#16178](http://bugzilla.scilab.org/show_bug.cgi?id=16178): `sci2exp` yielded an error for any input macro without output argument.
 * [#16197](http://bugzilla.scilab.org/show_bug.cgi?id=16197): result of extraction was not decomplexified when applicable.
+* [#16199](http://bugzilla.scilab.org/show_bug.cgi?id=16199): In the documentation, `zpk2tf` and `zpk2ss` examples yielded an error.
 * [#16200](http://bugzilla.scilab.org/show_bug.cgi?id=16200): Concatenation of transposed cells crashed Scilab.
 * [#16208](http://bugzilla.scilab.org/show_bug.cgi?id=16208): Using 3D string matrix with old C-api gateways may crash Scilab.
 * [#16209](http://bugzilla.scilab.org/show_bug.cgi?id=16209): grand() causes a freeze after several consecutive calls when using default base generator.
@@ -307,4 +308,3 @@ Bug Fixes
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot()`, `colorbar()` displayed an empty ungraduated color bar.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
-

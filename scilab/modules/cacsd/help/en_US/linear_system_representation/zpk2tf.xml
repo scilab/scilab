@@ -9,7 +9,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="zpk2tf">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="zpk2tf">
     <refnamediv>
         <refname>zpk2tf</refname>
         <refpurpose>Zero pole gain to transfer function</refpurpose>
@@ -21,14 +24,12 @@
     <refsection>
         <title>Arguments</title>
         <variablelist>
-
             <varlistentry>
                 <term>sys</term>
                 <listitem>
                     <para>
-                        A linear dynamical system in zero-pole-gain
-                        representation (see <link
-                        linkend="zpk">zpk</link>).
+                        A linear dynamical system in zero-pole-gain  representation (see
+                        <link linkend="zpk">zpk</link>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -40,9 +41,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-
-
-
         </variablelist>
     </refsection>
     <refsection>
@@ -55,9 +53,41 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-sys=zpk([2;1],0;-3-%i;-3+%i],2.5,"c")
-S=zpk2tf(sys)
+sys = zpk([2;1], [0;-3-%i;-3+%i], 2.5, "c")
+typeof(sys)
+
+S = zpk2tf(sys)
+typeof(S)
  ]]></programlisting>
+        <screen><![CDATA[
+--> sys = zpk([2;1], [0;-3-%i;-3+%i], 2.5, "c")
+ sys  =
+
+        (s-2) (s-1)
+   2.5 -------------
+       s (s^2+6s+10)
+
+
+--> typeof(sys)
+ ans  =
+
+  "zpk"
+
+-->
+
+--> S = zpk2tf(sys)
+ S  =
+
+
+   5 -7.5s +2.5s²
+   --------------
+    10s +6s² +s³
+
+--> typeof(S)
+ ans  =
+
+  "rational"
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -81,5 +111,4 @@ S=zpk2tf(sys)
             </revision>
         </revhistory>
     </refsection>
-
 </refentry>
