@@ -58,6 +58,7 @@ modifications done by JJV
 
     a = 0.0;
     u = C2F(ranf)();
+    u = (u == 0.0) ? C2F(ranf)() : u;
     goto S30;
 S20:
     a += q[0];
