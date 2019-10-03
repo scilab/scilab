@@ -334,21 +334,20 @@ bool SinglePoly::toString(std::wostringstream& ostr)
     return true;
 }
 
-void SinglePoly::toStringReal(const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef)
+void SinglePoly::toStringReal(const std::wstring& _szVar, std::list<std::wstring>* _pListWstPoly)
 {
-    toStringInternal(m_pRealData, _szVar, _pListExp, _pListCoef);
+    toStringInternal(m_pRealData, _szVar, _pListWstPoly);
 }
 
-void SinglePoly::toStringImg(const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef)
+void SinglePoly::toStringImg(const std::wstring& _szVar, std::list<std::wstring>* _pListWstPoly)
 {
     if (isComplex() == false)
     {
-        _pListExp->clear();
-        _pListCoef->clear();
+        _pListWstPoly->clear();
         return;
     }
 
-    toStringInternal(m_pImgData, _szVar, _pListExp, _pListCoef);
+    toStringInternal(m_pImgData, _szVar, _pListWstPoly);
 }
 
 bool SinglePoly::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
@@ -356,16 +355,18 @@ bool SinglePoly::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims
     return false;
 }
 
-void SinglePoly::toStringInternal(double *_pdblVal, const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef)
+void SinglePoly::toStringInternal(double *_pdblVal, const std::wstring& _szVar, std::list<std::wstring>* _pListWstPoly)
 {
     int iLineLen = ConfigVariable::getConsoleWidth();
 
+    std::wstring strExponentDigits (L"\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079");
+    std::vector<int> iExponentsDigits = {0};
     std::wostringstream ostemp;
-    std::wostringstream ostemp2;
+    bool bFirst = true;
 
     ostemp << L" ";
-    ostemp2 << L" ";
 
+    int k;
     int iLen = 0;
     int iLastFlush = 2;
     for (int i = 0 ; i < m_iSize ; i++)
@@ -378,45 +379,50 @@ void SinglePoly::toStringInternal(double *_pdblVal, const std::wstring& _szVar, 
             if (iLen + df.iWidth + df.iSignLen >= iLineLen - 1)
             {
                 iLastFlush = i;
-                _pListExp->push_back(ostemp2.str());
-                ostemp2.str(L""); //reset stream
-                addSpaces(&ostemp2, 11); //take from scilab ... why not ...
-
-                _pListCoef->push_back(ostemp.str());
+                _pListWstPoly->push_back(ostemp.str());
                 ostemp.str(L""); //reset stream
-                addSpaces(&ostemp, 11); //take from scilab ... why not ...
+                addSpaces(&ostemp, 1); //take from scilab ... why not ...
             }
-
-            bool bFirst = ostemp.str().size() == 1;
 
             // In scientific notation case bExp == true, so we have to print point (2.000D+10s)
             // In other case don't print point (2s)
             df.bPrintPoint = df.bExp;
             df.bPrintPlusSign = bFirst == false;
             df.bPrintOne = i == 0;
+            bFirst = false;
             addDoubleValue(&ostemp, _pdblVal[i], &df);
-
+            
             if (i == 0)
             {
                 iLen = static_cast<int>(ostemp.str().size());
             }
             else if (i == 1)
             {
-                // add polynom name
+                // add polynomial variable
                 ostemp << _szVar;
                 iLen = static_cast<int>(ostemp.str().size());
             }
             else
             {
-                // add polynom name and exponent
+                // add polynomial variable and exponent
                 ostemp << _szVar;
-                iLen = static_cast<int>(ostemp.str().size());
-                addSpaces(&ostemp2, iLen - static_cast<int>(ostemp2.str().size()));
-                ostemp2 << i;
-                int iSize = static_cast<int>(ostemp2.str().size()) - iLen;
-                addSpaces(&ostemp, iSize);
-            }
+                for (auto it = iExponentsDigits.rbegin(); it != iExponentsDigits.rend(); ++it)
+                {
+                    ostemp << strExponentDigits[*it];
+                }
+                iLen = static_cast<int>(ostemp.str().size());            
+            }            
         }
+
+        for (k=0; k < iExponentsDigits.size() && iExponentsDigits[k] == 9; k++)
+        {
+            iExponentsDigits[k] = 0;
+        }
+        if (k == iExponentsDigits.size())
+        {
+            iExponentsDigits.push_back(0);
+        }
+        iExponentsDigits[k]++;
     }
 
     if (iLastFlush != 0)
@@ -424,17 +430,9 @@ void SinglePoly::toStringInternal(double *_pdblVal, const std::wstring& _szVar, 
         if (ostemp.str() == L" ")
         {
             ostemp << L"  0";
-            addSpaces(&ostemp2, static_cast<int>(ostemp.str().size()));
         }
 
-        if (ostemp2.str() == L" ")
-        {
-            // -1 because ostemp2 have already a space
-            addSpaces(&ostemp2, static_cast<int>(ostemp.str().size()) - 1);
-        }
-
-        _pListExp->push_back(ostemp2.str());
-        _pListCoef->push_back(ostemp.str());
+        _pListWstPoly->push_back(ostemp.str());
     }
 
     return;

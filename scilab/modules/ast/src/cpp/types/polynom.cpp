@@ -479,83 +479,23 @@ Polynom* Polynom::setCoef(Double *_pCoef)
 bool Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
 {
     std::wostringstream osExp;
-    std::wostringstream osCoef;
+    std::wostringstream osPoly;
 
     std::list<std::wstring>::const_iterator it_Exp;
     std::list<std::wstring>::const_iterator it_Coef;
-    std::list<std::wstring> listExpR, listCoefR, listExpI, listCoefI;
+    std::list<std::wstring> listExpR, listWstPoly, listExpI, listCoefI;
 
-
-    if (isScalar())
+    //Matrix
+    if (isComplex())
     {
-        if (isComplex())
-        {
-            ostr << L"Real part" << std::endl << std::endl << std::endl;
-            get(0)->toStringReal(getVariableName(), &listExpR, &listCoefR);
-            for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++, it_Exp++)
-            {
-                ostr << *it_Exp << std::endl << *it_Coef << std::endl;
-            }
-
-            ostr << L"Imaginary part" << std::endl << std::endl << std::endl ;
-            get(0)->toStringImg(getVariableName(), &listExpI, &listCoefI);
-            for (it_Coef = listCoefI.begin(), it_Exp = listExpI.begin() ; it_Coef != listCoefI.end() ; it_Coef++, it_Exp++)
-            {
-                ostr << *it_Exp << std::endl << *it_Coef << std::endl;
-            }
-        }
-        else
-        {
-            get(0)->toStringReal(getVariableName(), &listExpR, &listCoefR);
-
-            for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++, it_Exp++)
-            {
-                ostr << *it_Exp << std::endl << *it_Coef << std::endl;
-            }
-        }
-    }
-    else if (getRows() == 1)
-    {
-        if (isComplex())
-        {
-            ostr << L"Real part" << std::endl << std::endl;
-            ostr << getRowString(_piDims, _iDims, false);
-            ostr << L"Imaginary part" << std::endl << std::endl;
-            ostr << getRowString(_piDims, _iDims, true);
-        }
-        else
-        {
-            ostr << getRowString(_piDims, _iDims, false);
-        }
-    }
-    else if (getCols() == 1)
-    {
-        if (isComplex())
-        {
-            ostr << L"Real part" << std::endl << std::endl;
-            ostr << getColString(_piDims, _iDims, false);
-            ostr << L"Imaginary part" << std::endl << std::endl;
-            ostr << getColString(_piDims, _iDims, true);
-        }
-        else
-        {
-            ostr << getColString(_piDims, _iDims, false);
-        }
+        ostr << L"Real part" << std::endl << std::endl;
+        ostr << getMatrixString(_piDims, _iDims, false);
+        ostr << L"Imaginary part" << std::endl << std::endl;
+        ostr << getMatrixString(_piDims, _iDims, true);
     }
     else
     {
-        //Matrix
-        if (isComplex())
-        {
-            ostr << L"Real part" << std::endl << std::endl;
-            ostr << getMatrixString(_piDims, _iDims, false);
-            ostr << L"Imaginary part" << std::endl << std::endl;
-            ostr << getMatrixString(_piDims, _iDims, true);
-        }
-        else
-        {
-            ostr << getMatrixString(_piDims, _iDims, false);
-        }
+        ostr << getMatrixString(_piDims, _iDims, false);
     }
     return true;
 }
@@ -565,19 +505,14 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
     int iLineLen = ConfigVariable::getConsoleWidth();
 
     std::wostringstream ostr;
-    std::wostringstream osExp;
-    std::wostringstream osCoef;
+    std::wostringstream osPoly;
 
-    std::list<std::wstring>::const_iterator it_Exp;
     std::list<std::wstring>::const_iterator it_Coef;
-    std::list<std::wstring> listExpR, listCoefR, listExpI, listCoefI;
+    std::list<std::wstring> listWstPoly;
 
     int iLen        = 0;
     int iLastCol    = 0;
     bool bWordWarp  = false;
-
-    std::wstring szExp, szCoef;
-
 
     int *piMaxLen = new int[abs(getCols())];
     memset(piMaxLen, 0x00, sizeof(int) * abs(getCols()));
@@ -593,34 +528,19 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
             int iPos = getIndex(_piDims);
             if (_bComplex)
             {
-                get(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
+                get(iPos)->toStringImg(getVariableName(), &listWstPoly);
             }
             else
             {
-                get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
+                get(iPos)->toStringReal(getVariableName(), &listWstPoly);
             }
 
-            if (listExpR.size() > 1)
+            for (auto it : listWstPoly)
             {
-                for (it_Exp = listExpR.begin() ; it_Exp != listExpR.end() ; it_Exp++)
-                {
-                    iLength += static_cast<int>((*it_Exp).size());
-                }
-            }
-            else
-            {
-                if (listExpR.front().size() != 0)
-                {
-                    iLength = static_cast<int>(listExpR.front().size());
-                }
-                else
-                {
-                    iLength = static_cast<int>(listCoefR.front().size());
-                }
+                iLength += static_cast<int>(it.size());
             }
             piMaxLen[iCols1] = std::min(std::max(piMaxLen[iCols1], iLength), iLineLen);
-            listExpR.clear();
-            listCoefR.clear();
+            listWstPoly.clear();
         }
 
         //We know the length of the column
@@ -640,51 +560,39 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
                     int iPos = getIndex(_piDims);
                     if (_bComplex)
                     {
-                        get(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
+                        get(iPos)->toStringImg(getVariableName(),  &listWstPoly);
                     }
                     else
                     {
-                        get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
+                        get(iPos)->toStringReal(getVariableName(),  &listWstPoly);
                     }
 
-                    if (listCoefR.size() > 1)
+                    if (listWstPoly.size() > 1)
                     {
-                        for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++, it_Exp++)
+                        for (auto it : listWstPoly)
                         {
-                            osExp << *it_Exp;
-                            addSpaces(&osExp, piMaxLen[iCols2] - static_cast<int>((*it_Exp).size()));
-                            osExp << std::endl;
-                            osExp << *it_Coef;
-                            addSpaces(&osExp, piMaxLen[iCols2] - static_cast<int>((*it_Coef).size()));
-                            osExp << std::endl;
+                            osPoly << it << std::endl;
                             bMultiLine = true;
                         }
                     }
                     else
                     {
-
-                        osExp << listExpR.front();
-                        addSpaces(&osExp, piMaxLen[iCols2] - static_cast<int>(listExpR.front().size()));
-                        osCoef << listCoefR.front();
-                        addSpaces(&osCoef, piMaxLen[iCols2] - static_cast<int>(listCoefR.front().size()));
+                        osPoly << listWstPoly.front();
+                        addSpaces(&osPoly, piMaxLen[iCols2] - static_cast<int>(listWstPoly.front().size()));
                         bMultiLine = false;
                     }
-                    listExpR.clear();
-                    listCoefR.clear();
+                    listWstPoly.clear();
                 }
 
                 if (bMultiLine == false)
                 {
-                    osExp << std::endl;
-                    osCoef << std::endl;
+                    osPoly << std::endl;
                 }
-                ostemp << osExp.str();
-                ostemp << osCoef.str() << std::endl;
-                osExp.str(L"");
-                osCoef.str(L"");
+                ostemp << osPoly.str() << std::endl;
+                osPoly.str(L"");
 
             }
-            iLen    = piMaxLen[iCols1];
+            iLen = piMaxLen[iCols1];
 
             //write "column x to y"
             addColumnString(ostr, iLastCol + 1, iCols1);
@@ -714,176 +622,41 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
             int iPos = getIndex(_piDims);
             if (_bComplex)
             {
-                get(iPos)->toStringImg( getVariableName(), &listExpR, &listCoefR);
+                get(iPos)->toStringImg(getVariableName(), &listWstPoly);
             }
             else
             {
-                get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
+                get(iPos)->toStringReal(getVariableName(), &listWstPoly);
             }
 
-            if (listCoefR.size() > 1)
+            if (listWstPoly.size() > 1)
             {
-                for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++, it_Exp++)
+                for (auto it : listWstPoly)
                 {
-                    //normally useless ...
-                    osExp << *it_Exp;
-                    addSpaces(&osExp, piMaxLen[iCols2] - static_cast<int>((*it_Exp).size()));
-                    osExp << std::endl;
-
-                    osExp << *it_Coef;
-                    addSpaces(&osExp, piMaxLen[iCols2] - static_cast<int>((*it_Coef).size()));
-                    osExp << std::endl;
+                    osPoly << it << std::endl;
                 }
             }
             else
             {
-                if (listExpR.front().size() != 0)
-                {
-                    osExp << listExpR.front();
-                }
-
-                addSpaces(&osExp, piMaxLen[iCols2] - static_cast<int>(listExpR.front().size()));
-                osCoef << listCoefR.front();
-                addSpaces(&osCoef, piMaxLen[iCols2] - static_cast<int>(listCoefR.front().size()));
+                osPoly << listWstPoly.front();
+                addSpaces(&osPoly, piMaxLen[iCols2] - static_cast<int>(listWstPoly.front().size()));
             }
-            listExpR.clear();
-            listCoefR.clear();
+            listWstPoly.clear();
         }
 
-        if (osExp.str().size() != 0)
-        {
-            osExp << std::endl;
-        }
-        osCoef << std::endl;
+        osPoly << std::endl;
         if (isIdentity())
         {
             ostr << L"eye *" << std::endl << std::endl;
         }
-        ostr << osExp.str();
-        ostr << osCoef.str() << std::endl;
-        osExp.str(L"");
-        osCoef.str(L"");
+        ostr << osPoly.str() << std::endl;
+        osPoly.str(L"");
     }
 
     delete[] piMaxLen;
     return ostr.str();
 }
 
-std::wstring Polynom::getRowString(int* _piDims, int /*_iDims*/, bool _bComplex)
-{
-    int iLineLen = ConfigVariable::getConsoleWidth();
-
-    int iLen        = 0;
-    int iLastFlush  = 0;
-
-    std::wostringstream ostr;
-    std::wostringstream osExp;
-    std::wostringstream osCoef;
-
-    std::list<std::wstring>::const_iterator it_Exp;
-    std::list<std::wstring>::const_iterator it_Coef;
-    std::list<std::wstring> listExpR, listCoefR, listExpI, listCoefI;
-
-    for (int i = 0 ; i < getCols() ; i++)
-    {
-        std::wstring szExp, szCoef;
-
-        _piDims[1] = 0;
-        _piDims[0] = i;
-        int iPos = getIndex(_piDims);
-        if (_bComplex)
-        {
-            get(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
-        }
-        else
-        {
-            get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
-        }
-
-        if (iLen != 0 && static_cast<int>(listExpR.front().size()) + iLen >= iLineLen - 1)
-        {
-            //flush strean
-            addColumnString(ostr, iLastFlush + 1, i);
-            iLastFlush = i;
-            iLen = 0;
-            ostr << osExp.str() << std::endl;
-            ostr << osCoef.str() << std::endl;
-            osExp.str(L" ");
-            osCoef.str(L" ");
-        }
-
-        if (listCoefR.size() > 1)
-        {
-            for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++, it_Exp++)
-            {
-                osExp << *it_Exp << std::endl << *it_Coef << std::endl;
-            }
-        }
-        else
-        {
-            osExp << listExpR.front();
-            osCoef << listCoefR.front();
-        }
-
-        if (osExp.str().size() != 0)
-        {
-            iLen = static_cast<int>(osExp.str().size());
-        }
-        else
-        {
-            iLen = static_cast<int>(osCoef.str().size());
-        }
-
-        listCoefR.clear();
-        listExpR.clear();
-    }
-
-    if (iLastFlush != 0)
-    {
-        //last line of a multiline output
-        addColumnString(ostr, iLastFlush + 1, getSize());
-    }
-    ostr << osExp.str() << std::endl;
-    ostr << osCoef.str() << std::endl;
-    return ostr.str();
-}
-
-std::wstring Polynom::getColString(int* _piDims, int /*_iDims*/, bool _bComplex)
-{
-    std::wostringstream ostr;
-    std::wostringstream osExp;
-    std::wostringstream osCoef;
-
-    std::list<std::wstring>::const_iterator it_Exp;
-    std::list<std::wstring>::const_iterator it_Coef;
-    std::list<std::wstring> listExpR, listCoefR, listExpI, listCoefI;
-
-    for (int i = 0 ; i < getRows() ; i++)
-    {
-        std::wstring szExp, szCoef;
-
-        _piDims[0] = i;
-        _piDims[1] = 0;
-        int iPos = getIndex(_piDims);
-        if (_bComplex)
-        {
-            get(iPos)->toStringImg(getVariableName(), &listExpR, &listCoefR);
-        }
-        else
-        {
-            get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
-        }
-
-        for (it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++, it_Exp++)
-        {
-            ostr << *it_Exp << std::endl << *it_Coef << std::endl;
-        }
-        ostr << std::endl;
-        listCoefR.clear();
-        listExpR.clear();
-    }
-    return ostr.str();
-}
 
 Double* Polynom::extractCoef(int _iRank)
 {

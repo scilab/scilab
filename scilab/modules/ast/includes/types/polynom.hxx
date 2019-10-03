@@ -95,10 +95,7 @@ public :
     Polynom*                set(int _iRows, int _iCols, SinglePoly* _pS) override;
     Polynom*                set(SinglePoly** _pS) override;
 
-    std::wstring            getRowString(int* _piDims, int _iDims, bool _bComplex);
-    std::wstring            getColString(int* _piDims, int _iDims, bool _bComplex);
     std::wstring            getMatrixString(int* _piDims, int _iDims, bool _bComplex);
-
 
     bool                    operator==(const InternalType& it) override;
     bool                    operator!=(const InternalType& it) override;
