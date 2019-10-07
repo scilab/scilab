@@ -87,7 +87,7 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
     types::String *pS = ((types::InternalType*)_piAddress)->getAs<types::String>();
 
     //non cummulative length
-    int iSize = pS->getSize();
+    int iSize = (*_piRows)*(*_piCols);
     if (_pstStrings == NULL || *_pstStrings == NULL)
     {
         for (int i = 0 ; i < iSize; i++)
