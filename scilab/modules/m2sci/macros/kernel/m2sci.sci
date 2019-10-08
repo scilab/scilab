@@ -88,6 +88,8 @@ function [scitree,trad,txt,crp]=m2sci(mtlbtree,nam,Recmode,prettyprintoutput)
     varslist($+1)=M2scivar("%inf","inf",Infer(list(1,1),Type(Double,Real)))
     varslist($+1)=M2scivar("%pi","pi",Infer(list(1,1),Type(Double,Real)))
     varslist($+1)=M2scivar("%eps","eps",Infer(list(1,1),Type(Double,Real)))
+    varslist($+1)=M2scivar(":", ":", Infer(list(1,Unknown),Type(Unknown,Unknown)))
+    varslist($+1)=M2scivar("$", "$", Infer(list(1,1),Type(Double,Real)))
     varslist($+1)=M2scivar("varargout","%varargout",Infer(list(Unknown,Unknown),Type(Cell,Unknown)))
     varslist($+1)=M2scivar("%shortcircuit","%shortcircuit",Infer(list(1,1),Type(Double,Real))) // Used for short circuiting operators
 

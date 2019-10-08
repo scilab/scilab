@@ -310,6 +310,7 @@ Bug Fixes
 * [#16208](http://bugzilla.scilab.org/show_bug.cgi?id=16208): Using 3D string matrix with old C-api gateways may crash Scilab.
 * [#16209](http://bugzilla.scilab.org/show_bug.cgi?id=16209): `grand` causes a freeze after several consecutive calls when using default base generator.
 * [#16210](http://bugzilla.scilab.org/show_bug.cgi?id=16210): The uicontrol.units = "normalized" property was not described.
+* [#16215](http://bugzilla.scilab.org/show_bug.cgi?id=16215): `mfile2sci` badly converted the colon `:` into `mtlb(:)`
 * [#16227](http://bugzilla.scilab.org/show_bug.cgi?id=16227): `WSCI` was not defined as environment variable and could not be used as `%WSCI%` in commands sent with `host()` or `unix_*()`.
 * [#16230](http://bugzilla.scilab.org/show_bug.cgi?id=16230): `MSWin>scilab --help` missed displaying some options like `-args..`, `-noatomsautoload`, etc.
 * [#16234](http://bugzilla.scilab.org/show_bug.cgi?id=16234): Airy functions were not available.
