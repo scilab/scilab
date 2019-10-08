@@ -8,7 +8,6 @@
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 // <-- NO CHECK REF -->
-// <-- NOT FIXED -->      6.0.0 -> 6.0.2
 //
 // <-- Non-regression test for bug 2428 -->
 //
