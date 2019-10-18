@@ -131,7 +131,7 @@ host_triplet = @host@
 @NEED_JAVA_TRUE@am__append_3 = java
 subdir = modules/jvm
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx.m4 \
 	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
 	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
@@ -423,7 +423,7 @@ GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
 HAMCREST = @HAMCREST@
-HAVE_CXX11 = @HAVE_CXX11@
+HAVE_CXX17 = @HAVE_CXX17@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@

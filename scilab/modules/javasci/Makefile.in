@@ -127,7 +127,7 @@ host_triplet = @host@
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/javasci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx.m4 \
 	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
 	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
@@ -344,7 +344,7 @@ GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
 HAMCREST = @HAMCREST@
-HAVE_CXX11 = @HAVE_CXX11@
+HAVE_CXX17 = @HAVE_CXX17@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
@@ -1035,10 +1035,10 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
+@JAVASCI_FALSE@clean-local:
+@JAVASCI_FALSE@install-html-local:
 @JAVASCI_FALSE@install-data-local:
 @JAVASCI_FALSE@distclean-local:
-@JAVASCI_FALSE@install-html-local:
-@JAVASCI_FALSE@clean-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \

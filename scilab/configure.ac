@@ -732,11 +732,11 @@ fi
 
 AM_CONDITIONAL(IS_64_BITS_CPU, test $IS_64_BITS_CPU = true)
 
-# check if the compiler supports c++11
+# check if the compiler supports c++17
 saved_cppflags="$CXXFLAGS"
 CXXFLAGS=""
-AX_CXX_COMPILE_STDCXX_11(noext,mandatory)
-STDCXX_11_CXXFLAGS="$CXXFLAGS -D_GLIBCXX_USE_CXX11_ABI=0"
+AX_CXX_COMPILE_STDCXX(17, noext, mandatory)
+STDCXX_CXXFLAGS="$CXXFLAGS"
 CXXFLAGS="$saved_cppflags"
 
 ################
@@ -1743,6 +1743,7 @@ fi
 AC_SUBST(MATIO_ENABLE)
 AM_CONDITIONAL(MATIO, test "$with_matio" != no)
 
+
 #############################
 ## Documentation management #
 #############################
@@ -1995,7 +1996,7 @@ SCI_CFLAGS=$(echo                                             \
              $BACKTRACE_CFLAGS                                \
              $WARNING_CFLAGS                                  )
 SCI_CXXFLAGS=$(echo                                           \
-               $STDCXX_11_CXXFLAGS                            \
+               $STDCXX_CXXFLAGS                               \
                $LARGEFILE_CXXFLAGS                            \
                $CODECOVERAGE_CXXFLAGS                         \
                $DEBUG_CXXFLAGS                                \
