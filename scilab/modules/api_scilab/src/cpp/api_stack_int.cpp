@@ -185,6 +185,11 @@ SciErr getCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision, 
         default:
             return sciErr;
     }
+    if (*_piData == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_GET_INT, _("%s: Unable to get argument #%d"), "getMatrixOfInteger", getRhsFromAddress(_pvCtx, _piAddress));
+        return sciErr;
+    }
 
     return sciErr;
 }

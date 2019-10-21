@@ -122,7 +122,6 @@ scilabStatus API_PROTO(setCellValue)(scilabEnv env, scilabVar var, int* index, s
     if (bset == false)
     {
         scilab_setInternalError(env, L"setCellValue", _W("unable to set data"));
-        return STATUS_ERROR;
     }
 #endif
     return bset ? STATUS_OK : STATUS_ERROR;
@@ -145,7 +144,6 @@ scilabStatus API_PROTO(setCell2dValue)(scilabEnv env, scilabVar var, int row, in
     if (bset == false)
     {
         scilab_setInternalError(env, L"setCell2dValue", _W("unable to set data"));
-        return STATUS_ERROR;
     }
 #endif
     return bset ? STATUS_OK : STATUS_ERROR;

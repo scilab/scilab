@@ -117,7 +117,6 @@ scilabStatus API_PROTO(setHandleArray)(scilabEnv env, scilabVar var, const long 
     if (bset == false)
     {
         scilab_setInternalError(env, L"setHandleArray", _W("unable to set data"));
-        return STATUS_ERROR;
     }
 #endif
     return bset ? STATUS_OK : STATUS_ERROR;

@@ -136,7 +136,6 @@ scilabStatus API_PROTO(setBooleanArray)(scilabEnv env, scilabVar var, const int*
     if (bset == false)
     {
         scilab_setInternalError(env, L"setBooleanArray", _W("unable to set data"));
-        return STATUS_ERROR;
     }
 #endif
     return bset ? STATUS_OK : STATUS_ERROR;
