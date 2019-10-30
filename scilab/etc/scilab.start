@@ -30,6 +30,13 @@ global %modalWarning;
 %modalWarning = %F;
 clear %modalWarning;
 
+// Add WSCI as environment variable ===================================
+if getos()=="Windows" then
+    setenv("WSCI", WSCI)
+else
+    setenv("WSCI", SCI)    // for code portability
+end
+
 // Create some configuration variables ================================
 PWD = pwd();
 
