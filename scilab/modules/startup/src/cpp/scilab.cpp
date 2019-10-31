@@ -74,18 +74,28 @@ extern "C"
 static void usage(void)
 {
     std::cerr << "Usage: Scilab <options>" << std::endl;
-    std::cerr << "      -e Instruction   : execute the scilab instruction given in Instruction argument." << std::endl;
+    std::cerr << "      -args arg1 arg2..: Send directly some arg1 arg2 .. data to the session." << std::endl;
+    std::cerr << "                         arg1 arg2 .. values can then be read through sciargs()." << std::endl;
+    std::cerr << "      -e Instruction   : Execute the scilab instruction given in Instruction argument." << std::endl;
     std::cerr << "                         -e and -f arguments are mutually exclusive." << std::endl;
-    std::cerr << "      -f File          : execute the scilab script given in File argument." << std::endl;
+    std::cerr << "      -f File          : Execute the scilab script given in File argument." << std::endl;
     std::cerr << "                         -e and -f arguments are mutually exclusive." << std::endl;
-    std::cerr << "      -quit            : force scilab exit after execution of script from -e or -f argument." << std::endl;
-    std::cerr << "                         this flag is ignored if it is not used with -e or -f argument." << std::endl;
-    std::cerr << "      -l lang          : Change the language of scilab ( default : en_US )." << std::endl;
+    std::cerr << "      -quit            : Force scilab exit after execution of script from -e or -f argument." << std::endl;
+    std::cerr << "                         Flag ignored if it is not used with -e or -f argument." << std::endl;
+    std::cerr << "      -l lang          : Change the language of scilab (default : en_US)." << std::endl;
     std::cerr << "      -nw              : Enable console mode." << std::endl;
     std::cerr << "      -nwni            : Enable terminal mode." << std::endl;
-    std::cerr << "      -ns              : Don't execute etc/scilab.start." << std::endl;
-    std::cerr << "      --help           : Display this help." << std::endl;
+    std::cerr << "      -ns              : Do not execute etc/scilab.start." << std::endl;
+    std::cerr << "      -nouserstartup   : Do not execute user startup files (SCIHOME/scilab.ini|.scilab)." << std::endl;
+    std::cerr << "      -noatomsautoload : Do not autoload eligible ATOMS modules." << std::endl;
+    std::cerr << "      -nb              : Do not display the banner (no banner)." << std::endl;
     std::cerr << "      -scihome <dir>   : Force SCIHOME to <dir>." << std::endl;
+    std::cerr << "      -texmacs         : Option to use Scilab from documents through http://texmacs.org." << std::endl;
+    std::cerr << "      -version         : Display the Scilab version (no session opened)." << std::endl;
+    std::cerr << "      -display Display : Set the display to the X server Display (XWindow systems only)." << std::endl;
+    std::cerr << "                         unix:0.0 is the default." << std::endl;
+    std::cerr << "      --help           : Display this help." << std::endl;
+    std::cerr << " " << std::endl;
     std::cerr << "Developer Trace arguments:" << std::endl;
     std::cerr << "      --parse-trace    : Display bison state machine evolution." << std::endl;
     std::cerr << "      --AST-trace      : Display ASCII-art AST to be human readable." << std::endl;
@@ -515,4 +525,3 @@ int main(int argc, char *argv[])
     LocalFree(szArglist);
 #endif
 }
-
