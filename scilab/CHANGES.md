@@ -474,6 +474,7 @@ Bug Fixes
 * [#16210](https://bugzilla.scilab.org/16210): The uicontrol.units = "normalized" property was not described.
 * [#16215](https://bugzilla.scilab.org/16215): `mfile2sci` badly converted the colon `:` into `mtlb(:)`
 * [#16227](https://bugzilla.scilab.org/16227): `WSCI` was not defined as environment variable and could not be used as `%WSCI%` in commands sent with `host` or `unix_*`.
+* [#16228](https://bugzilla.scilab.org/16228): `bode` and `nyquist` inline demos did not clear and reset the current axes where to draw, what could yield an error.
 * [#16229](https://bugzilla.scilab.org/16229): Some outdated parts of the `help scilab` page were misleading.
 * [#16230](https://bugzilla.scilab.org/16230): `MSWin>scilab --help` missed displaying some options like `-args..`, `-noatomsautoload`, etc.
 * [#16232](https://bugzilla.scilab.org/16232): `colorbar` did not support `$` in `colminmax`, standing for the number of colors in the current color map.

@@ -15,6 +15,11 @@ function nyquist(varargin)
     rhs=size(varargin);
 
     if rhs == 0 then
+        // Clears and resets the current axes where to draw the example
+        ab = gca().axes_bounds
+        delete(gca())
+        xsetech(ab)
+
         //Hall chart as a grid for nyquist
         s=poly(0,"s");
         Plant=syslin("c",16000/((s+1)*(s+10)*(s+100)));

@@ -20,6 +20,12 @@ function bode(varargin)
         den = 22952.25+4117.77*s+490.63*s^2+33.06*s^3+s^4;
         h2 = syslin("c", num/den);
 
+        // Clears and resets the current axes where to draw the example
+        ab = gca().axes_bounds
+        delete(gca())
+        xsetech(ab)
+
+        // Drawing
         bode([h1; h2], 0.01, 100, ["h1"; "h2"]);
         return;
     end
