@@ -321,6 +321,7 @@ Bug Fixes
 * [#16210](http://bugzilla.scilab.org/show_bug.cgi?id=16210): The uicontrol.units = "normalized" property was not described.
 * [#16215](http://bugzilla.scilab.org/show_bug.cgi?id=16215): `mfile2sci` badly converted the colon `:` into `mtlb(:)`
 * [#16227](http://bugzilla.scilab.org/show_bug.cgi?id=16227): `WSCI` was not defined as environment variable and could not be used as `%WSCI%` in commands sent with `host()` or `unix_*()`.
+* [#16229](http://bugzilla.scilab.org/show_bug.cgi?id=16229): Some outdated parts of the `help scilab` page were misleading.
 * [#16230](http://bugzilla.scilab.org/show_bug.cgi?id=16230): `MSWin>scilab --help` missed displaying some options like `-args..`, `-noatomsautoload`, etc.
 * [#16232](http://bugzilla.scilab.org/show_bug.cgi?id=16232): `colorbar()` did not support `$` in `colminmax`, standing for the number of colors in the current color map.
 * [#16234](http://bugzilla.scilab.org/show_bug.cgi?id=16234): Airy functions were not available.
