@@ -105,7 +105,6 @@ Feature changes and additions
   - Default input arguments can be skipped instead of still having to be provided.
   - The result string is better formatted to be easily wrappable and indentable.
 * `mesh2d` has been introduced to compute a 2d mesh from vectors (x,y) of points.
-<<<<<<< HEAD
 * `loadmatfile` is upgraded:
   - Octave native text data files can now be read.
   - Automatic detection of the input data format implemented.
@@ -139,9 +138,7 @@ Feature changes and additions
   - Named colors accepted ; better default colors.
   - Improved placement of labels.
 * `nicholschart` is improved: more neutral default frame color; improved labels positionning; colors can now be specified by their predefined name or "#RRGGBB" hexa code; a structure of handles is now returned to easily postprocess both subframes and the set of labels.
-=======
 * `sciargs()` returns a column instead of formerly a row.
->>>>>>> 4b177bd2a98... [doc] sciargs() page updated & overhauled
 
 Help pages:
 -----------
@@ -206,6 +203,7 @@ Bug Fixes
 * [#8418](http://bugzilla.scilab.org/show_bug.cgi?id=8418): `unique()` was not able to return the number of occurences of returned dictinct entities.
 * [#8784](http://bugzilla.scilab.org/show_bug.cgi?id=8784): Automatic self-adjusting blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` in Xcos.
 * [#5512](http://bugzilla.scilab.org/show_bug.cgi?id=5512): `disp` puzzlingly displayed arguments in reverse order.
+* [#9007](http://bugzilla.scilab.org/show_bug.cgi?id=9007): On Linux, `sciargs()` included twice `-nw` when `-nw` is used.
 * [#9529](http://bugzilla.scilab.org/show_bug.cgi?id=9529): `assert_checkequal(list(1,,3), list(1,,3))` yielded an error.
 * [#9673](http://bugzilla.scilab.org/show_bug.cgi?id=9673): Priority of colon `:` operator was too low
 * [#10353](http://bugzilla.scilab.org/show_bug.cgi?id=10353): Documentation: The referential for the uicontrol.position property was not provided. Moreover, gca().axes_bounds refered to fig.figure_size instead of fig.axes_size.
