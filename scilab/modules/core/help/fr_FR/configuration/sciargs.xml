@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="sciargs">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="sciargs">
     <refnamediv>
         <refname>sciargs</refname>
         <refpurpose>arguments sur la ligne de commande Scilab  </refpurpose>
@@ -11,19 +28,70 @@
     <refsection>
         <title>Description</title>
         <para>
-            Cette fonction renvoie un vecteur ligne de chaînes de caractères contenant les
-            arguments de la commande de lancement de Scilab. Le premier terme du vecteur <literal>args</literal> contient le nom complet (avec le chemin) du fichier exécutable de Scilab.
+            Cette fonction renvoie un vecteur colonne de chaînes de caractères contenant les
+            arguments de la commande de lancement de Scilab. Le premier élément
+            <literal>args(1)</literal> contient le chemin absolu et le nom complet du fichier
+            exécutable de Scilab effectivement lancé (parfois via un script batch).
         </para>
         <para>
             Cette fonction correspond à la fonction <literal>getarg</literal> en langage C.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <para>
+            While the Scilab current session has been opened through the command
+        </para>
+        <screen><![CDATA[C:\Users\Me> C:\SCIdir\bin\scilab -nw -nb -noatomsautoload -args "Hello %USERNAME%" \"%cd%\"]]></screen>
+        <para>
+            nous obtenons alors
+        </para>
+        <programlisting role="example"><![CDATA[
+a = sciargs()
+     ]]></programlisting>
+        <screen><![CDATA[
+--> a = sciargs()
+ a  =
+! c:\SCIdir\bin\WScilex-cli.exe !
+! -nb                           !
+! -noatomsautoload              !
+! -args                         !
+! Hello John                    !
+! 1.2345                        !
+! "C:\Users\Me"                 !
+    ]]></screen>
+        <para>
+        <warning>
+            Notons qu'avec <literal>scilab -nw</literal>, l'option "-nw" option s'adresse et est
+            utilisée par le script batch <literal>scilab</literal> pour router l'appel effectif
+            de scilab vers <literal>WScilex-cli.exe</literal>, sans lui faire suivre "-nw".
+            Ainsi "-nw" n'apparait-elle pas dans le résultat de <literal>sciargs()</literal>.
+        </warning>
         </para>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
+                <link linkend="scilab">scilab</link>
+            </member>
+            <member>
                 <link linkend="getenv">getenv</link>
             </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    Le résultat est en colonne (précédemment un vecteur ligne).
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

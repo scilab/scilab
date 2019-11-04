@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="sciargs">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="sciargs">
     <refnamediv>
         <refname>sciargs</refname>
         <refpurpose>аргументы командной строки Scilab'а</refpurpose>
@@ -11,20 +28,69 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Эта функция возвращает вектор-строку символьных строк, содержащую аргументы командной
-            строки Scilab'а. Первый элемент <literal>args</literal> содержит путь до запущенного
-            исполняемого файла.
+            Эта функция возвращает вектор-столбец символьных строк, содержащий аргументы командной
+            строки Scilab. <literal>args(1)</literal> содержит абсолютный путь и имя файла
+            исполняемого файла, фактически запущенного (иногда через пакетный файл).
         </para>
         <para>
             Эта функция соответствует функции <literal>getarg</literal> в языке C.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <para>
+            While the current Scilab session has been opened through the command
+        </para>
+        <screen><![CDATA[C:\Users\Me> C:\SCIdir\bin\scilab -nw -nb -noatomsautoload -args "Hello %USERNAME%" \"%cd%\"]]></screen>
+        <para>
+            we then get
+        </para>
+        <programlisting role="example"><![CDATA[
+a = sciargs()
+     ]]></programlisting>
+        <screen><![CDATA[
+--> a = sciargs()
+ a  =
+! c:\SCIdir\bin\WScilex-cli.exe !
+! -nb                           !
+! -noatomsautoload              !
+! -args                         !
+! Hello John                    !
+! 1.2345                        !
+! "C:\Users\Me"                 !
+    ]]></screen>
+        <para>
+        <warning>
+            Let's note that in <literal>scilab -nw</literal> the "-nw" option is used by
+            the <literal>scilab</literal> batch file to route the call to
+            <literal>WScilex-cli.exe</literal>, without forwarding "-nw". Therefore, this one
+            is not returned by <literal>sciargs()</literal>.
+        </warning>
         </para>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
+                <link linkend="scilab">scilab</link>
+            </member>
+            <member>
                 <link linkend="getenv">getenv</link>
             </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    A column is returned, instead of formerly a row.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -105,6 +105,7 @@ Feature changes and additions
   - Default input arguments can be skipped instead of still having to be provided.
   - The result string is better formatted to be easily wrappable and indentable.
 * `mesh2d` has been introduced to compute a 2d mesh from vectors (x,y) of points.
+<<<<<<< HEAD
 * `loadmatfile` is upgraded:
   - Octave native text data files can now be read.
   - Automatic detection of the input data format implemented.
@@ -138,6 +139,9 @@ Feature changes and additions
   - Named colors accepted ; better default colors.
   - Improved placement of labels.
 * `nicholschart` is improved: more neutral default frame color; improved labels positionning; colors can now be specified by their predefined name or "#RRGGBB" hexa code; a structure of handles is now returned to easily postprocess both subframes and the set of labels.
+=======
+* `sciargs()` returns a column instead of formerly a row.
+>>>>>>> 4b177bd2a98... [doc] sciargs() page updated & overhauled
 
 Help pages:
 -----------
