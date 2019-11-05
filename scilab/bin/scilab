@@ -767,7 +767,7 @@ set_macox_specific_path()
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
-                14)
+                14|15)
                     ;;
                 13)
                     # Specific libBLAS.dylib & libz versions for 10.13
@@ -827,8 +827,8 @@ check_macosx_version()
                    # We force to install JRE on Mavericks
                    /usr/libexec/java_home --request > /dev/null
                    ;;
-                10|11|12|13|14)
-                   # ... but not on Yosemite, El Capitan, Sierra, High Sierra or Mojave:
+                10|11|12|13|14|15)
+                   # ... but not on Yosemite, El Capitan, Sierra, High Sierra, Mojave or Catalina:
                    # there will be a (better) error at launch
                    ;;
                 8)
