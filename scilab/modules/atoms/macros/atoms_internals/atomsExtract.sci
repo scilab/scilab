@@ -85,6 +85,10 @@ function dir_created = atomsExtract(archive_in,dir_out)
 
         extract_cmd = extract_cmd + " -q -o """ + archive_in + """ -d """ + pathconvert(dir_out,%F) +"""";
 
+        if getos() == "Darwin"
+            extract_cmd = extract_cmd + " -x __MACOSX/*"
+        end
+
     end
 
     [rep,stat,err] = unix_g(extract_cmd);
