@@ -83,6 +83,7 @@ Packaging & Supported Operating Systems
 Feature changes and additions
 -----------------------------
 
+* `airy()` is added: Evaluation of Airy functions of the first and second kind, and their first derivative, possibly scaled.
 * Empty strings are used as the default values on String allocation
 * HTTP get, post, put, upload, patch, delete functions added
 * JSON encoding / decoding for Scilab datatypes added
@@ -304,6 +305,7 @@ Bug Fixes
 * [#16210](http://bugzilla.scilab.org/show_bug.cgi?id=16210): The uicontrol.units = "normalized" property was not described.
 * [#16227](http://bugzilla.scilab.org/show_bug.cgi?id=16227): `WSCI` was not defined as environment variable and could not be used as `%WSCI%` in commands sent with `host()` or `unix_*()`.
 * [#16230](http://bugzilla.scilab.org/show_bug.cgi?id=16230): `MSWin>scilab --help` missed displaying some options like `-args..`, `-noatomsautoload`, etc.
+* [#16234](http://bugzilla.scilab.org/show_bug.cgi?id=16234): Airy functions were not available.
 * [#16242](http://bugzilla.scilab.org/show_bug.cgi?id=16242): `loadmatfile()` could not read Octave native text data files.
 * [#16245](http://bugzilla.scilab.org/show_bug.cgi?id=16245): `gsort` could not sort booleans.
 * [#16246](http://bugzilla.scilab.org/show_bug.cgi?id=16246): `isvector` was broken for sparse matrices.

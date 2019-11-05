@@ -23,7 +23,6 @@ function allnames=not_yet_converted()
     "addsubplot";
     "addtodate";
     "airfoil";
-    "airy";
     "align";
     "alim";
     "allchild";

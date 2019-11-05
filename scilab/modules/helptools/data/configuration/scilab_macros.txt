@@ -459,6 +459,7 @@ sci2exp
 strcmpi
 tokenpos
 tree2code
+airy
 calerf
 ellipj
 erfinv

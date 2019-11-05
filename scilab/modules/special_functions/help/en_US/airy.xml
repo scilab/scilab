@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2019 - Samuel GOUGEON - Le Mans Université
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="en" xml:id="airy">
+    <refnamediv>
+        <refname>airy</refname>
+        <refpurpose>
+            Airy functions of the first and second kind, and their derivatives
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            a = airy(z)
+            a = airy(fun, z)
+            a = airy(fun, z, scaled)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>z</term>
+                <listitem>
+                    array of decimal or complex numbers of any size, from scalr to hypermatrix.
+                </listitem>
+                <para/>
+            </varlistentry>
+            <varlistentry>
+                <term>fun</term>
+                <listitem>
+                    Selected Airy function to evaluate. It can be either a string among
+                    "Ai" "dAi" "Bi" "dBi", or an equivalent integer in [0, 3] (for compatibility
+                    with Octave and Julia)
+                    <table>
+                        <tr><td colspan="2" align="center"><emphasis role="bold">fun</emphasis></td>
+                            <td><emphasis role="bold">Description</emphasis></td></tr>
+                        <tr><td>0</td><td>"Ai"</td><td>Airy function of the first kind (default)</td></tr>
+                        <tr><td>1</td><td>"dAi"</td><td>Derivative Ai' of Ai</td></tr>
+                        <tr><td>2</td><td>"Bi"</td><td>Airy function of the second kind</td></tr>
+                        <tr><td>3</td><td>"dBi"</td><td>Derivative Bi' of Bi</td></tr>
+                    </table>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>scaled</term>
+                <listitem>
+                    Single boolean or integer 0|1. Default %F. When <varname>scaled</varname> is
+                    %T or set to 1, the raw result is scaled by the following factors before
+                    being returned:
+                    <table>
+                        <tr style="white-space:nowrap"><td valign="bottom">Ai, dAi : </td>
+                            <td valign="top"><latex fontsize="15" alt="exp(z^1.5 * 2/3)">
+                                    exp\left(2\,z^{3/2}/ 3\right)
+                                </latex>
+                            </td>
+                            <td>      </td>
+                            <td valign="bottom">Bi, dBi : </td>
+                            <td valign="top"><latex fontsize="15" alt="exp(-|real(z^1.5)| * 2/3)">
+                                    exp\left(-2\left|{\mathrm Re}\!\left(z^{3/2}\right)\right|/ 3\right)
+                                </latex>
+                            </td>
+                        </tr>
+                    </table>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            For a real <emphasis>x</emphasis> variable, the Airy functions of the first and
+            second kind -- respectively Ai(x) and Bi(x) -- are independent real solutions
+            <emphasis>y(x)</emphasis> of the Airy differential equation
+            <emphasis>y'' = x.y</emphasis>. They are defined as the convergent integrals
+            <latex style="display" alt="Ai(x) = 1/π \int_0^∞ cos(t^3/3 + xt) dt">
+                Ai(x) = {1 \over \pi} \int_0^\infty cos\left({t^3 \over 3} + xt\right)dt
+            </latex>
+            and
+            <latex style="display" alt="Bi(x) = 1/π \int_0^∞ [sin(t^3/3 + xt) + exp(-t^3/3 + xt)] dt">
+                Bi(x) = {1 \over \pi} \int_0^\infty
+                \left[ sin\left({t^3 \over 3} + xt\right) + exp\left(- {t^3 \over 3} + xt\right)\right] dt
+            </latex>
+        </para>
+        <para>
+            These definitions can be extended to the complex plane, for any <emphasis>z</emphasis>
+            complex variable, as
+            <latex style="display" fontsize="20" alt="Ai(z) = 1/2π \int_R exp(i(t^3/3 + zt)) dt">
+                Ai(z) = {1 \over 2\pi} \int_{-\infty}^\infty e^{i\left({t^3 \over 3} + zt\right)}dt
+            </latex>
+        </para>
+        <para>
+            Let us note the properties
+            <latex style="display" alt="Ai(z´)=Ai(z)´  Bi(z´)=Bi(z)´ with z´ the complex conjugate.">
+                Ai(\overline z) = \overline{Ai(z)} \quad Bi(\overline z) = \overline{Bi(z)} \quad
+                Ai'(\overline z) = \overline{Ai'(z)} \quad Bi'(\overline z) = \overline{Bi'(z)}
+            </latex>
+        </para>
+        <para>
+            In Scilab, Ai, Bi, and their first derivative are computed through Bessel and gamma
+            functions.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            With real numbers
+        </para>
+        <programlisting role="example"><![CDATA[
+x = -10:0.05:3;
+clf
+drawlater
+
+subplot(2,1,1)  // Ai, Bi
+plot(x, airy(x), "b", x, airy(2,x), "r")
+gca().margins(4) = 0.08;
+gca().data_bounds(3:4) = [-0.5 1.25];
+gca().tight_limits = "on";
+xgrid(color("grey60"),1,7)
+legend(["Ai(x)" "Bi(x)"],"in_upper_left")
+title("Airy functions", "fontsize", 3)
+
+subplot(2,1,2)  // Derivatives
+plot(x, airy(1, x), "b", x, airy(3,x), "r")
+legend(["Ai''(x)" "Bi''(x)"],"in_upper_left")
+xlabel("x", "fontsize", 3)
+gca().margins(3) = 0.08;
+gca().x_location = "top";
+gca().x_ticks.labels = emptystr(gca().x_ticks.labels);
+gca().data_bounds(3:4) = [-1 2.5];
+gca().tight_limits = "on";
+xgrid(color("grey60"),1,7)
+
+drawnow
+      ]]></programlisting>
+        <scilab:image><![CDATA[
+x = -10:0.05:3;
+clf
+drawlater
+
+subplot(2,1,1)  // Ai, Bi
+plot(x, airy(x), "b", x, airy(2,x), "r")
+gca().margins(4) = 0.08;
+gca().data_bounds(3:4) = [-0.5 1.25];
+gca().tight_limits = "on";
+xgrid(color("grey60"),1,7)
+legend(["Ai(x)" "Bi(x)"],"in_upper_left")
+title("Airy functions", "fontsize", 3)
+
+subplot(2,1,2)  // Derivatives
+plot(x, airy(1, x), "b", x, airy(3,x), "r")
+legend(["Ai''(x)" "Bi''(x)"],"in_upper_left")
+xlabel("x", "fontsize", 3)
+gca().margins(3) = 0.08;
+gca().x_location = "top";
+gca().x_ticks.labels = emptystr(gca().x_ticks.labels);
+gca().data_bounds(3:4) = [-1 2.5];
+gca().tight_limits = "on";
+xgrid(color("grey60"),1,7)
+
+drawnow
+        ]]></scilab:image>
+        <para/>
+        <para>
+            With scaling
+        </para>
+        <programlisting role="example"><![CDATA[
+x = -10:0.05:3;
+clf
+drawlater
+
+subplot(2,1,1)  // Ai, Ai scaled
+plot(x, airy("Ai",x), x, airy("Ai",x, %t), "color", ["blue" "cyan"])
+gca().margins(4) = 0.08;
+gca().data_bounds(3:4) = [-0.5 1];
+gca().tight_limits = "on";
+xgrid(color("grey60"),1,7)
+legend(["Ai(x)" "Ai(x) scaled"],"in_upper_left")
+title("Airy functions raw vs scaled", "fontsize", 3)
+
+subplot(2,1,2)  // Bi, Bi scaled
+plot(x, airy("Bi", x), x, airy("Bi",x, %t), "color", ["red" "darkorange"])
+legend(["Bi(x)" "Bi(x) scaled"],"in_upper_left")
+xlabel("x", "fontsize", 3)
+gca().margins(3) = 0.08;
+gca().x_location = "top";
+gca().x_ticks.labels = emptystr(gca().x_ticks.labels);
+gca().data_bounds(3:4) = [-0.5 1.5];
+gca().tight_limits = "on";
+xgrid(color("grey60"),1,7)
+
+gcf().children.children.children.thickness = 2;
+drawnow
+      ]]></programlisting>
+        <scilab:image><![CDATA[
+            x = -10:0.05:3;
+            clf
+            drawlater
+
+            subplot(2,1,1)  // Ai, Ai scaled
+            plot(x, airy("Ai",x), x, airy("Ai",x, %t), "color", ["blue" "cyan"])
+            gca().margins(4) = 0.08;
+            gca().data_bounds(3:4) = [-0.5 1];
+            gca().tight_limits = "on";
+            xgrid(color("grey60"),1,7)
+            legend(["Ai(x)" "Ai(x) scaled"],"in_upper_left")
+            title("Airy functions raw vs scaled", "fontsize", 3)
+
+            subplot(2,1,2)  // Bi, Bi scaled
+            plot(x, airy("Bi", x), x, airy("Bi",x, %t), "color", ["red" "darkorange"])
+            legend(["Bi(x)" "Bi(x) scaled"],"in_upper_left")
+            xlabel("x", "fontsize", 3)
+            gca().margins(3) = 0.08;
+            gca().x_location = "top";
+            gca().x_ticks.labels = emptystr(gca().x_ticks.labels);
+            gca().data_bounds(3:4) = [-0.5 1.5];
+            gca().tight_limits = "on";
+            xgrid(color("grey60"),1,7)
+
+            gcf().children.children.children.thickness = 2;
+            gcf().axes_size = [600 570];
+            drawnow
+        ]]></scilab:image>
+        <para>
+            With complex numbers
+        </para>
+        <programlisting role="example"><![CDATA[
+// Initializations
+x = -4.5:0.2:2.5;
+y = -3.5:0.2:3.5;
+[X, Y] = meshgrid(x, y);
+xph = -4.5:0.05:2.5;
+yph = -3.5:0.05:3.5;
+[Xph, Yph] = meshgrid(xph, yph);
+clf
+fig = gcf();
+drawlater
+[nc, cmin] = (100, 15);
+fig.color_map = [0.6 0.6 0.6; jetcolormap(nc-1)];
+meshColor = 1; // grey60 will be used for the mesh color
+if ~isDocked(fig) then
+    fig.axes_size = [800 600];
+end
+fr = 0.55;
+
+
+// |Ai|
+xsetech([0 0 0.5 fr])
+Z = X + %i*Y;
+Z = airy(Z);
+V = abs(Z);
+[smin, smax] = (0, 5);
+surf(x, y, V)
+S = gce();
+set(S, "color_flag",3, "color_mode",1, ..
+       "cdata_mapping","direct", "foreground",meshColor);
+c = S.data.color;
+c = cmin + (nc-cmin)*(c-smin)/(smax-smin);
+S.data.color = c;
+gca().zoom_box = [min(x) min(y) max(x) max(y) smin smax];
+gca().rotation_angles = [47 -60];
+xtitle("", "real(z)","imag(z)", "")
+title("| Ai(z) |", "fontsize",3)
+colorbar(smin, smax, [2, nc])
+
+// arg(Ai)
+xsetech([0 fr 0.5 (1-fr)])
+Z = airy(Xph + %i*Yph);
+V = atan(imag(Z),real(Z));
+grayplot(xph, yph, V.')
+xtitle("","real(z)", "imag(z)")
+title("arg( Ai(z) )", "fontsize", 3)
+gca().tight_limits = "on";
+isoview
+colorbar(,,[2 nc])
+title(fig.children(1), "[rad]")
+
+
+// |Bi|
+xsetech([0.50 0 0.5 fr])
+Z = X + %i*Y;
+Z = airy(2, Z);
+V = abs(Z);
+[smin, smax] = (0, 5);
+surf(x, y, V)
+S = gce();
+set(S, "color_flag",3, "color_mode",1, ..
+       "cdata_mapping","direct", "foreground",meshColor);
+c = S.data.color;
+c = cmin + (nc-cmin)*(c-smin)/(smax-smin);
+S.data.color = c;
+gca().zoom_box = [min(x) min(y) max(x) max(y) smin smax];
+gca().rotation_angles = [40 -130];
+xtitle("", "real(z)","imag(z)", "")
+title("| Bi(z) |", "fontsize",3)
+colorbar(smin, smax, [2, nc])
+
+// arg(Bi)
+xsetech([0.5 fr 0.5 (1-fr)])
+Z = airy(3, Xph + %i*Yph);
+V = atan(imag(Z),real(Z));
+grayplot(xph, yph, V.')
+xtitle("","real(z)", "imag(z)")
+title("arg( Bi(z) )", "fontsize", 3)
+gca().tight_limits = "on";
+isoview
+colorbar(,,[2 nc])
+title(fig.children(1), "[rad]")
+
+drawnow
+      ]]></programlisting>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../helptools/images/airy_z_numbers.png"  valign="middle"/>
+                <!--
+                <imagedata fileref="../images/airy_z_numbers.png"  valign="middle"/>
+                -->
+            </imageobject>
+        </inlinemediaobject>
+        <!-- The same automated image is poorer and 2.5x bigger (150kB instead of 61kB)
+      <scilab:image><![CDATA[
+]]></scilab:image>
+        -->
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="besseli">besseli</link>
+            </member>
+            <member>
+                <link linkend="besselj">besselj</link>
+            </member>
+            <member>
+                <link linkend="gamma">gamma</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revremark>
+                    <literal>airy()</literal> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
