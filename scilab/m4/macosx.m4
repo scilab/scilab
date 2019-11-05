@@ -5,6 +5,9 @@ AC_DEFUN([AC_GET_MACOSX_VERSION],[
     AC_MSG_CHECKING([Mac OS X Version])
     [macosx_version=`sw_vers -productVersion`]
     case $macosx_version in
+         10.15*)
+              AC_MSG_RESULT([macOS 10.15 - Catalina.])
+         ;;
          10.14*)
               AC_MSG_RESULT([macOS 10.14 - Mojave.])
          ;;
