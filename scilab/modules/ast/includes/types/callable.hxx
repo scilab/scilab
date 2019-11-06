@@ -46,7 +46,7 @@ public :
     }
     virtual             ~Callable() {}
 
-    bool                isCallable()
+    bool                isCallable() override
     {
         return true;
     }
@@ -55,22 +55,22 @@ public :
 
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e)  override;
 
-    virtual bool isInvokable() const
+    virtual bool isInvokable() const override
     {
         return true;
     }
 
-    virtual bool hasInvokeOption() const
+    virtual bool hasInvokeOption() const override
     {
         return true;
     }
 
-    virtual int getInvokeNbIn()
+    virtual int getInvokeNbIn() override
     {
         return getNbInputArgument();
     }
 
-    virtual int getInvokeNbOut()
+    virtual int getInvokeNbOut() override
     {
         return getNbOutputArgument();
     }
@@ -93,15 +93,15 @@ public :
     }
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring  getTypeStr() const
+    virtual std::wstring  getTypeStr() const override
     {
         return L"callable";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring  getShortTypeStr() const = 0;
-    virtual InternalType* clone(void) = 0;
+    virtual std::wstring  getShortTypeStr() const override = 0;
+    virtual InternalType* clone(void) override = 0;
 
-    virtual bool        isAssignable(void)
+    virtual bool        isAssignable(void) override
     {
         return true;
     }

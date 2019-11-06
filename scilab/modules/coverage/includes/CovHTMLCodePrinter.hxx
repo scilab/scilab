@@ -78,22 +78,22 @@ public:
     void handleExpStart(const ast::Exp * e) override;
     void handleExpEnd(const ast::Exp * e) override;
 
-    inline std::size_t getIndentSize() const
+    inline std::size_t getIndentSize() const override
     {
         return indentLevel * 4;
     }
 
-    inline void incIndent()
+    inline void incIndent() override
     {
         ++indentLevel;
     }
 
-    inline void decIndent()
+    inline void decIndent() override
     {
         --indentLevel;
     }
 
-    inline unsigned int getLineCharCount() const
+    inline unsigned int getLineCharCount() const override
     {
         return counter;
     }

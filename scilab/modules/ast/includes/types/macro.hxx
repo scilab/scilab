@@ -41,24 +41,24 @@ public :
     virtual                     ~Macro();
 
     // FIXME : Should not return NULL;
-    Macro*                      clone();
+    Macro*                      clone() override;
 
-    inline ScilabType           getType(void)
+    inline ScilabType           getType(void) override
     {
         return ScilabMacro;
     }
-    inline ScilabId             getId(void)
+    inline ScilabId             getId(void) override
     {
         return IdMacro;
     }
-    bool                        isMacro()
+    bool                        isMacro() override
     {
         return true;
     }
 
-    void                        whoAmI();
+    void                        whoAmI() override;
 
-    bool                        toString(std::wostringstream& ostr);
+    bool                        toString(std::wostringstream& ostr) override;
 
     Callable::ReturnValue       call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
 
@@ -66,15 +66,15 @@ public :
 
     ast::SeqExp*                getBody();
 
-    bool                        getMemory(long long* _piSize, long long* _piSizePlusType);
+    bool                        getMemory(long long* _piSize, long long* _piSizePlusType) override;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr() const
+    virtual std::wstring        getTypeStr() const override
     {
         return L"function";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr() const
+    virtual std::wstring        getShortTypeStr() const override
     {
         return L"function";
     }
@@ -92,10 +92,10 @@ public :
     std::list<symbol::Variable*>*   getInputs();
     std::list<symbol::Variable*>*   getOutputs();
 
-    virtual int getNbInputArgument(void);
-    virtual int getNbOutputArgument(void);
+    virtual int getNbInputArgument(void) override;
+    virtual int getNbOutputArgument(void) override;
 
-    bool operator==(const InternalType& it);
+    bool operator==(const InternalType& it) override;
 
     void add_submacro(const symbol::Symbol& s, Macro* macro);
 

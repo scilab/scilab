@@ -30,22 +30,22 @@ public :
 
     /*** non virtual function to prevent overriding in user derived class ***/
 
-    inline ScilabType       getType(void)
+    inline ScilabType       getType(void) override
     {
         return ScilabUserType;
     }
 
-    inline ScilabId         getId(void)
+    inline ScilabId         getId(void) override
     {
         return IdUserType;
     }
 
-    bool                    isUserType(void)
+    bool                    isUserType(void) override
     {
         return true;
     }
 
-    inline bool             isGenericType()
+    inline bool             isGenericType() override
     {
         return false;
     }
@@ -54,9 +54,9 @@ public :
     /*** User will be asked to implement the following methods      ***/
     /*** in order Scilab engine to manage correctly this user type  ***/
 
-    virtual std::wstring    getTypeStr() const = 0;
-    virtual std::wstring    getShortTypeStr() const = 0;
-    virtual UserType*       clone() = 0;
+    virtual std::wstring    getTypeStr() const override = 0;
+    virtual std::wstring    getShortTypeStr() const override = 0;
+    virtual UserType*       clone() override = 0;
 
 public :
     /*** User can overload these methods                            ***/
@@ -76,13 +76,13 @@ public :
     // and toString method is useless
     // if user overload hasToString for return true, he must overload toString method
     // bool toString(std::wostringstream& ostr)
-    virtual bool hasToString()
+    virtual bool hasToString() override
     {
         return false;
     }
 
     // overload this method if hasToString method return true
-    virtual bool toString(std::wostringstream& /*ostr*/)
+    virtual bool toString(std::wostringstream& /*ostr*/) override
     {
         return false;
     }
@@ -90,7 +90,7 @@ public :
     // insertion by value
     // _pArs is a list of scilab types:: of where we want to extract
     // _pSource is what we wan to insert
-    virtual UserType* insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
+    virtual UserType* insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/) override
     {
         return NULL;
     }
@@ -98,7 +98,7 @@ public :
     // this method is called to perform an extraction by field. ie : a = myUserType.myfield
     // name is the field name
     // out contain extraction of field
-    virtual bool extract(const std::wstring& /*name*/, InternalType *& /*out*/)
+    virtual bool extract(const std::wstring& /*name*/, InternalType *& /*out*/) override
     {
         return false;
     }
@@ -107,13 +107,13 @@ public :
     // _pArs is a list of scilab types:: of where we want to extract
     // return all element extracted, in case when multiple elements returned
     // these elements must be stored in a types::List
-    virtual InternalType* extract(typed_list* /*_pArgs*/)
+    virtual InternalType* extract(typed_list* /*_pArgs*/) override
     {
         return NULL;
     }
 
     // if return false , Scilab will never call "invoke" method
-    virtual bool isInvokable() const
+    virtual bool isInvokable() const override
     {
         return true;
     }
@@ -122,7 +122,7 @@ public :
     // ie : myUserType(a,b, opt=value, opt2=value2,...)
     // in this case, "types::optional_list& opt" will contain opt and opt2.
     // by default this method return false, the optional list is empty and the input list contains all arguments.
-    virtual bool hasInvokeOption() const
+    virtual bool hasInvokeOption() const override
     {
         return false;
     }
@@ -154,7 +154,7 @@ public :
     // used to compute the iterator in scilab loop "for"
     // when type is a two dimensions array
     // _iPos is the column position
-    virtual GenericType*  getColumnValues(int /*_iPos*/)
+    virtual GenericType*  getColumnValues(int /*_iPos*/) override
     {
         return NULL;
     }
@@ -168,7 +168,7 @@ public :
 
     //load must be done by overload %yourtype_load and must returns a pointer on your UserType
 
-    bool getMemory(long long* _piSize, long long* _piSizePlusType)
+    bool getMemory(long long* _piSize, long long* _piSizePlusType) override
     {
         *_piSize = sizeof(UserType);
         *_piSizePlusType = *_piSize;

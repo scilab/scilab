@@ -37,43 +37,43 @@ public :
     }
     virtual ~EOType() {}
 
-    inline std::wstring getTypeStr() const
+    inline std::wstring getTypeStr() const override
     {
         return L"eotype";
     }
 
-    inline std::wstring getShortTypeStr() const
+    inline std::wstring getShortTypeStr() const override
     {
         return L"eo";
     }
 
-    EOType* clone()
+    EOType* clone() override
     {
         return new EOType(id, isNew);
     }
 
-    inline bool hasToString()
+    inline bool hasToString() override
     {
         return true;
     }
 
-    inline bool toString(std::wostringstream& ostr)
+    inline bool toString(std::wostringstream& ostr) override
     {
         ostr << "eotype" << std::endl;
         return true;
     }
 
-    inline bool isInvokable() const
+    inline bool isInvokable() const override
     {
         return true;
     }
 
-    inline bool isAssignable()
+    inline bool isAssignable() override
     {
         return false;
     }
 
-    inline bool isCallable()
+    inline bool isCallable() override
     {
         return true;
     }

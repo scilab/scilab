@@ -58,28 +58,28 @@ public :
     virtual ~ImplicitList();
     ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd);
 
-    ImplicitList* clone();
+    ImplicitList* clone() override;
 
-    inline ScilabType getType(void)
+    inline ScilabType getType(void) override
     {
         return ScilabImplicitList;
     }
-    inline ScilabId getId(void)
+    inline ScilabId getId(void) override
     {
         return IdImplicitList;
     }
 
-    bool isImplicitList()
+    bool isImplicitList() override
     {
         return true;
     }
 
-    virtual bool isAssignable(void)
+    virtual bool isAssignable(void) override
     {
         return true;
     }
 
-    inline virtual bool isInvokable() const
+    inline virtual bool isInvokable() const override
     {
         return true;
     }
@@ -108,7 +108,7 @@ public :
     bool compute();
     bool isComputable();
 
-    bool toString(std::wostringstream& ostr);
+    bool toString(std::wostringstream& ostr) override;
 
 
     InternalType::ScilabType getStartType();
@@ -137,12 +137,12 @@ public :
 
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring getTypeStr() const
+    virtual std::wstring getTypeStr() const override
     {
         return L"implicitlist";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring getShortTypeStr() const
+    virtual std::wstring getShortTypeStr() const override
     {
         return L"ip";
     }
@@ -153,13 +153,13 @@ public :
     void extractFullMatrix(T *_pT);
     void extractFullMatrix(Double *_pdbl);
 
-    virtual bool isTrue();
+    virtual bool isTrue() override;
 
-    virtual bool transpose(InternalType *& out);
-    virtual bool neg(InternalType *& out);
-    virtual ast::Exp * getExp(const Location & loc);
+    virtual bool transpose(InternalType *& out) override;
+    virtual bool neg(InternalType *& out) override;
+    virtual ast::Exp * getExp(const Location & loc) override;
 
-    bool getMemory(long long* _piSize, long long* _piSizePlusType);
+    bool getMemory(long long* _piSize, long long* _piSizePlusType) override;
 
 };
 }

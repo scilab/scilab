@@ -62,8 +62,8 @@ public :
     ~Function();
 
     //FIXME : Should not return NULL
-    virtual Function*       clone();
-    virtual bool operator==(const InternalType& it);
+    virtual Function*       clone() override;
+    virtual bool operator==(const InternalType& it) override;
 
     static Function*        createFunction(const std::wstring& _wstName, GW_FUNC _pFunc, const std::wstring& _wstModule);
     static Function*        createFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, const std::wstring& _wstModule);
@@ -80,33 +80,33 @@ public :
     static Function*        createFunction(const std::wstring& _wstFunctionName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule, bool _bCloseLibAfterCall = false);
     static Function*        createFunction(const std::wstring& _wstFunctionName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, const std::wstring& _wstLoadDepsName, const std::wstring& _wstModule, bool _bCloseLibAfterCall = false);
 
-    inline ScilabType       getType(void)
+    inline ScilabType       getType(void) override
     {
         return ScilabFunction;
     }
-    inline ScilabId         getId(void)
+    inline ScilabId         getId(void) override
     {
         return IdFunction;
     }
 
-    bool                    isFunction()
+    bool                    isFunction() override
     {
         return true;
     }
 
-    void                    whoAmI();
+    void                    whoAmI() override;
 
-    bool                    toString(std::wostringstream& ostr);
+    bool                    toString(std::wostringstream& ostr) override;
 
     virtual ReturnValue     call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr() const
+    virtual std::wstring    getTypeStr() const override
     {
         return L"fptr";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr() const
+    virtual std::wstring    getShortTypeStr() const override
     {
         return L"fptr";
     }
@@ -136,7 +136,7 @@ public :
     OptFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
 
     Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
-    OptFunction*            clone();
+    OptFunction*            clone() override;
 
     GW_FUNC_OPT             getFunc()
     {
@@ -156,7 +156,7 @@ public:
     WrapFunction(const std::wstring& _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
 
     Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
-    WrapFunction*           clone();
+    WrapFunction*           clone() override;
 
     OLDGW_FUNC              getFunc()
     {
@@ -175,7 +175,7 @@ public:
     WrapCFunction(const std::wstring& _wstName, GW_C_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
 
     Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
-    WrapCFunction*          clone();
+    WrapCFunction*          clone() override;
 
     GW_C_FUNC               getFunc()
     {
@@ -194,7 +194,7 @@ public :
     WrapMexFunction(const std::wstring& _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
 
     Callable::ReturnValue call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
-    WrapMexFunction*        clone();
+    WrapMexFunction*        clone() override;
 
     MEXGW_FUNC              getFunc()
     {

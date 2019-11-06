@@ -88,12 +88,12 @@ public:
         return exps_t(std::next(_exps.begin()), _exps.end());
     }
 
-    inline bool isMemfillExp() const
+    inline bool isMemfillExp() const override
     {
         return true;
     }
 
-    virtual ExpType getType() const
+    virtual ExpType getType() const override
     {
         return MEMFILLEXP;
     }

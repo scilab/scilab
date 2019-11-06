@@ -60,25 +60,25 @@ public :
     bool                        setOnes();
 
     /*Config management*/
-    void                        whoAmI();
+    void                        whoAmI() override;
     bool                        isEmpty();
 
-    Double*                     clone();
+    Double*                     clone() override;
     bool                        fillFromCol(int _iCols, Double *_poSource);
     bool                        fillFromRow(int _iRows, Double *_poSource);
-    Double*                     append(int _iRows, int _iCols, InternalType* _poSource);
+    Double*                     append(int _iRows, int _iCols, InternalType* _poSource) override;
 
     //bool                        append(int _iRows, int _iCols, Double *_poSource);
 
-    bool                        operator==(const InternalType& it);
-    bool                        operator!=(const InternalType& it);
+    bool                        operator==(const InternalType& it) override;
+    bool                        operator!=(const InternalType& it) override;
 
-    bool                        isDouble()
+    bool                        isDouble() override
     {
         return true;
     }
 
-    bool isComplex()
+    bool isComplex() override
     {
         return (m_pImgData != NULL) || isViewAsZComplex();
     }
@@ -100,9 +100,9 @@ public :
         return true;
     }
 
-    bool isTrue();
+    bool isTrue() override;
 
-    bool neg(InternalType *& out)
+    bool neg(InternalType *& out) override
     {
         if (isEmpty())
         {
@@ -138,21 +138,21 @@ public :
     void                        convertFromZComplex();
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr() const
+    virtual std::wstring        getTypeStr() const override
     {
         return L"constant";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr() const
+    virtual std::wstring        getShortTypeStr() const override
     {
         return L"s";
     }
 
-    inline ScilabType           getType(void)
+    inline ScilabType           getType(void) override
     {
         return ScilabDouble;
     }
-    inline ScilabId             getId(void)
+    inline ScilabId             getId(void) override
     {
         return isIdentity() ? isComplex() ? IdIdentityComplex : IdIdentity
                : isEmpty() ? IdEmpty
@@ -189,7 +189,7 @@ public :
 
     }
 
-    virtual bool adjoint(InternalType *& out)
+    virtual bool adjoint(InternalType *& out) override
     {
         if (isEmpty())
         {
@@ -236,7 +236,7 @@ public :
         return false;
     }
 
-    virtual bool transpose(InternalType *& out)
+    virtual bool transpose(InternalType *& out) override
     {
         if (isEmpty())
         {
@@ -269,9 +269,9 @@ public :
         return false;
     }
 
-    virtual ast::Exp*           getExp(const Location& loc);
+    virtual ast::Exp*           getExp(const Location& loc) override;
 
-    virtual Double* set(int _iPos, const double _data)
+    virtual Double* set(int _iPos, const double _data) override
     {
         if (_iPos >= m_iSize)
         {
@@ -289,12 +289,12 @@ public :
         return this;
     }
 
-    virtual Double* set(int _iRows, int _iCols, const double _data)
+    virtual Double* set(int _iRows, int _iCols, const double _data) override
     {
         return set(_iCols * getRows() + _iRows, _data);
     }
 
-    virtual Double* set(double* _pdata)
+    virtual Double* set(double* _pdata) override
     {
         if (m_pRealData == NULL)
         {
@@ -316,7 +316,7 @@ public :
         return this;
     }
 
-    virtual Double* set(const double* _pdata)
+    virtual Double* set(const double* _pdata) override
     {
         if (m_pRealData == NULL)
         {
@@ -356,13 +356,13 @@ public :
 private:
     virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
-    virtual double              getNullValue();
-    virtual Double*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-    virtual double              copyValue(double _dblData);
-    virtual void                deleteAll();
-    virtual void                deleteImg();
-    virtual double*             allocData(int _iSize);
-    virtual void                deleteData(double /*data*/) { }
+    virtual double              getNullValue() override;
+    virtual Double*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false) override;
+    virtual double              copyValue(double _dblData) override;
+    virtual void                deleteAll() override;
+    virtual void                deleteImg() override;
+    virtual double*             allocData(int _iSize) override;
+    virtual void                deleteData(double /*data*/) override { }
 
     bool                        m_bViewAsInteger;
     bool                        m_bViewAsZComplex;

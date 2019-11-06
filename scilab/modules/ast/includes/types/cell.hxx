@@ -42,20 +42,20 @@ private :
     void createCell(int _iDims, const int* _piDims, InternalType** data);
 public :
 
-    void                whoAmI(void)
+    void                whoAmI(void) override
     {
         std::cout << "types::Cell";
     };
 
-    ScilabType            getType(void)
+    ScilabType            getType(void) override
     {
         return ScilabCell;
     }
-    ScilabId            getId(void)
+    ScilabId            getId(void) override
     {
         return IdCell;
     }
-    bool                isCell()
+    bool                isCell() override
     {
         return true;
     }
@@ -66,60 +66,60 @@ public :
     ** Clone
     ** Create a new List and Copy all values.
     */
-    Cell*               clone();
+    Cell*               clone() override;
 
-    Cell*               set(int _iRows, int _iCols, InternalType* _pIT);
+    Cell*               set(int _iRows, int _iCols, InternalType* _pIT) override;
     Cell*               set(int _iRows, int _iCols, const InternalType* _pIT);
-    Cell*               set(int _iIndex, InternalType* _pIT);
+    Cell*               set(int _iIndex, InternalType* _pIT) override;
     Cell*               set(int _iIndex, const InternalType* _pIT);
-    Cell*               set(InternalType** _pIT);
+    Cell*               set(InternalType** _pIT) override;
 
-    bool                operator==(const InternalType& it);
-    bool                operator!=(const InternalType& it);
+    bool                operator==(const InternalType& it) override;
+    bool                operator!=(const InternalType& it) override;
 
     Cell*               insertCell(typed_list* _pArgs, InternalType* _pSource);
     static Cell*        insertNewCell(typed_list* _pArgs, InternalType* _pSource);
     List*               extractCell(typed_list* _pArgs);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring getTypeStr() const
+    virtual std::wstring getTypeStr() const override
     {
         return L"cell";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring getShortTypeStr() const
+    virtual std::wstring getShortTypeStr() const override
     {
         return L"ce";
     };
-    virtual bool        isContainer(void)
+    virtual bool        isContainer(void) override
     {
         return true;
     }
     bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
-    bool isTrue()
+    bool isTrue() override
     {
         return false;
     }
 
-    virtual bool neg(InternalType *& /*out*/)
+    virtual bool neg(InternalType *& /*out*/) override
     {
         return false;
     }
 
-    virtual bool transpose(InternalType *& out);
+    virtual bool transpose(InternalType *& out) override;
 
-    bool getMemory(long long* _piSize, long long* _piSizePlusType);
+    bool getMemory(long long* _piSize, long long* _piSizePlusType) override;
 
 private :
-    virtual InternalType*   getNullValue();
-    virtual Cell*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-    virtual Cell*           createEmpty();
-    virtual InternalType*   copyValue(InternalType* _pData);
-    virtual void            deleteAll();
-    virtual void            deleteImg();
-    virtual InternalType**  allocData(int _iSize);
-    virtual void            deleteData(InternalType* _pData);
+    virtual InternalType*   getNullValue() override;
+    virtual Cell*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false) override;
+    virtual Cell*           createEmpty() override;
+    virtual InternalType*   copyValue(InternalType* _pData) override;
+    virtual void            deleteAll() override;
+    virtual void            deleteImg() override;
+    virtual InternalType**  allocData(int _iSize) override;
+    virtual void            deleteData(InternalType* _pData) override;
 };
 }
 

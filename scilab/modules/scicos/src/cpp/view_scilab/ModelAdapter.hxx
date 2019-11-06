@@ -38,8 +38,8 @@ public:
         return L"model";
     }
 
-    std::wstring getTypeStr() const;
-    std::wstring getShortTypeStr() const;
+    std::wstring getTypeStr() const override;
+    std::wstring getShortTypeStr() const override;
 };
 
 } /* namespace view_scilab */

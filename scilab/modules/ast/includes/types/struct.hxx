@@ -40,65 +40,65 @@ private :
 
 public :
 
-    void                        whoAmI(void)
+    void                        whoAmI(void) override
     {
         std::cout << "types::Struct";
     };
 
-    inline ScilabType           getType(void)
+    inline ScilabType           getType(void) override
     {
         return ScilabStruct;
     }
-    inline ScilabId             getId(void)
+    inline ScilabId             getId(void) override
     {
         return IdStruct;
     }
 
-    bool                        isStruct()
+    bool                        isStruct() override
     {
         return true;
     }
     bool                        isEmpty();
 
-    bool transpose(InternalType *& out);
+    bool transpose(InternalType *& out) override;
 
 
     /**
     ** Clone
     ** Create a new List and Copy all values.
     */
-    Struct*                     clone();
+    Struct*                     clone() override;
 
-    Struct*                     set(int _iRows, int _iCols, SingleStruct* _pIT);
+    Struct*                     set(int _iRows, int _iCols, SingleStruct* _pIT) override;
     Struct*                     set(int _iRows, int _iCols, const SingleStruct* _pIT);
-    Struct*                     set(int _iIndex, SingleStruct* _pIT);
+    Struct*                     set(int _iIndex, SingleStruct* _pIT) override;
     Struct*                     set(int _iIndex, const SingleStruct* _pIT);
-    Struct*                     set(SingleStruct** _pIT);
+    Struct*                     set(SingleStruct** _pIT) override;
 
-    bool                        operator==(const InternalType& it);
-    bool                        operator!=(const InternalType& it);
+    bool                        operator==(const InternalType& it) override;
+    bool                        operator!=(const InternalType& it) override;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring        getTypeStr() const
+    virtual std::wstring        getTypeStr() const override
     {
         return L"struct";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring        getShortTypeStr() const
+    virtual std::wstring        getShortTypeStr() const override
     {
         return L"st";
     }
-    virtual bool                isContainer(void)
+    virtual bool                isContainer(void) override
     {
         return true;
     }
 
-    bool isTrue()
+    bool isTrue() override
     {
         return false;
     }
 
-    virtual bool neg(InternalType *& /*out*/)
+    virtual bool neg(InternalType *& /*out*/) override
     {
         return false;
     }
@@ -109,14 +109,14 @@ public :
     Struct*                     addField(const std::wstring& _sKey);
     Struct*                     addFieldFront(const std::wstring& _sKey);
     Struct*                     removeField(const std::wstring& _sKey);
-    bool                        toString(std::wostringstream& ostr);
+    bool                        toString(std::wostringstream& ostr) override;
     List*                       extractFieldWithoutClone(const std::wstring& _wstField);
     typed_list                  extractFields(std::vector<std::wstring> _wstFields);
     typed_list                  extractFields(typed_list* _pArgs);
     InternalType *              extractField(const std::wstring& wstField);
 
-    Struct*                     resize(int* _piDims, int _iDims);
-    Struct*                     resize(int _iNewRows, int _iNewCols);
+    Struct*                     resize(int* _piDims, int _iDims) override;
+    Struct*                     resize(int _iNewRows, int _iNewCols) override;
 
     /*specials functions to disable clone operation during copydata*/
     InternalType*               insertWithoutClone(typed_list* _pArgs, InternalType* _pSource);
@@ -124,26 +124,26 @@ public :
     void                        setCloneInCopyValue(bool _val);
 
     using ArrayOf<SingleStruct *>::extract;
-    bool extract(const std::wstring& name, InternalType *& out);
+    bool extract(const std::wstring& name, InternalType *& out) override;
 
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e) override;
 
-    virtual int getInvokeNbOut()
+    virtual int getInvokeNbOut() override
     {
         return -1;
     }
 
-    bool                        getMemory(long long* _piSize, long long* _piSizePlusType);
+    bool                        getMemory(long long* _piSize, long long* _piSizePlusType) override;
 
 private :
-    virtual SingleStruct*       getNullValue();
-    virtual Struct*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-    virtual Struct*             createEmpty();
-    virtual SingleStruct*       copyValue(SingleStruct* _pData);
-    virtual void                deleteAll();
-    virtual void                deleteImg();
-    virtual SingleStruct**      allocData(int _iSize);
-    virtual void                deleteData(SingleStruct* data);
+    virtual SingleStruct*       getNullValue() override;
+    virtual Struct*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false) override;
+    virtual Struct*             createEmpty() override;
+    virtual SingleStruct*       copyValue(SingleStruct* _pData) override;
+    virtual void                deleteAll() override;
+    virtual void                deleteImg() override;
+    virtual SingleStruct**      allocData(int _iSize) override;
+    virtual void                deleteData(SingleStruct* data) override;
 
     bool                        m_bDisableCloneInCopyValue;
 

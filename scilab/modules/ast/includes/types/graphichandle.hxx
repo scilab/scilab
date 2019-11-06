@@ -30,66 +30,66 @@ public :
 
     virtual                 ~GraphicHandle();
 
-    GraphicHandle*          clone();
+    GraphicHandle*          clone() override;
 
-    void                    whoAmI();
+    void                    whoAmI() override;
 
-    bool                    isHandle()
+    bool                    isHandle() override
     {
         return true;
     }
 
-    bool                    isContainer()
+    bool                    isContainer() override
     {
         return true;
     }
 
-    bool                    operator==(const InternalType& it);
-    bool                    operator!=(const InternalType& it);
+    bool                    operator==(const InternalType& it) override;
+    bool                    operator!=(const InternalType& it) override;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring     getTypeStr() const
+    virtual std::wstring     getTypeStr() const override
     {
         return L"handle";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring     getShortTypeStr() const
+    virtual std::wstring     getShortTypeStr() const override
     {
         return L"h";
     }
 
-    bool                    hasToString()
+    bool                    hasToString() override
     {
         return false;
     }
 
-    bool isTrue()
+    bool isTrue() override
     {
         return false;
     }
 
-    virtual bool neg(InternalType *& /*out*/)
+    virtual bool neg(InternalType *& /*out*/) override
     {
         return false;
     }
 
-    virtual bool transpose(InternalType *& out);
+    virtual bool transpose(InternalType *& out) override;
 
-    virtual bool isFieldExtractionOverloadable() const
+    virtual bool isFieldExtractionOverloadable() const override
     {
         return true;
     }
 
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e) override ;
 
-    bool getMemory(long long* _piSize, long long* _piSizePlusType);
+    bool getMemory(long long* _piSize, long long* _piSizePlusType) override;
 
 protected :
-    inline ScilabType		getType(void)
+    inline ScilabType		getType(void) override
     {
         return ScilabHandle;
     }
-    inline ScilabId         getId(void)
+    inline ScilabId         getId(void) override
     {
         return isScalar() ? IdScalarHandle : IdHandle;
     }
@@ -97,12 +97,12 @@ protected :
 private :
     virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
-    virtual long long       getNullValue();
-    virtual GraphicHandle*  createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-    virtual long long       copyValue(long long _handle);
-    virtual void            deleteAll();
-    virtual void            deleteImg();
-    virtual long long*      allocData(int _iSize);
+    virtual long long       getNullValue() override;
+    virtual GraphicHandle*  createEmpty(int _iDims, int* _piDims, bool _bComplex = false) override;
+    virtual long long       copyValue(long long _handle) override;
+    virtual void            deleteAll() override;
+    virtual void            deleteImg() override;
+    virtual long long*      allocData(int _iSize) override;
 };
 }
 

@@ -30,24 +30,24 @@ public :
     SinglePoly(double** _pdblCoefR, double** _pdblcoefI, int _iRank);
 
     virtual                 ~SinglePoly();
-    virtual void            deleteAll();
-    virtual void            deleteImg();
+    virtual void            deleteAll() override;
+    virtual void            deleteImg() override;
 
     // FIXME : Should not return NULL;
-    SinglePoly*             clone();
+    SinglePoly*             clone() override;
     SinglePoly*             conjugate();
 
-    bool                    isSinglePoly()
+    bool                    isSinglePoly() override
     {
         return true;
     }
     /*Config management*/
-    void                    whoAmI();
+    void                    whoAmI() override;
 
-    virtual double          getNullValue();
-    virtual SinglePoly*     createEmpty(int _iDims, int* _piDims, bool _bComplex);
-    virtual double*         allocData(int _iSize);
-    virtual double          copyValue(double _dblData);
+    virtual double          getNullValue() override;
+    virtual SinglePoly*     createEmpty(int _iDims, int* _piDims, bool _bComplex) override;
+    virtual double*         allocData(int _iSize) override;
+    virtual double          copyValue(double _dblData) override;
     virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
     bool                    setZeros();
@@ -59,36 +59,36 @@ public :
     bool                    evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI);
     void                    updateRank(void);
 
-    void                    toStringReal(const std::wstring& _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
-    void                    toStringImg(const std::wstring& _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+    void                    toStringReal(const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef);
+    void                    toStringImg(const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef);
 
-    bool                    toString(std::wostringstream& ostr);
+    bool                    toString(std::wostringstream& ostr) override;
 
-    bool                    operator==(const InternalType& it);
-    bool                    operator!=(const InternalType& it);
+    bool                    operator==(const InternalType& it) override;
+    bool                    operator!=(const InternalType& it) override;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr() const
+    virtual std::wstring    getTypeStr() const override
     {
         return L"poly";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr() const
+    virtual std::wstring    getShortTypeStr() const override
     {
         return L"p";
     }
 protected :
-    inline ScilabType       getType(void)
+    inline ScilabType       getType(void) override
     {
         return ScilabSinglePolynom;
     }
-    inline ScilabId         getId(void)
+    inline ScilabId         getId(void) override
     {
         return IdSinglePolynom;
     }
 
 private :
-    void                    toStringInternal(double *_pdblVal, const std::wstring& _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+    void                    toStringInternal(double *_pdblVal, const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef);
 
 };
 

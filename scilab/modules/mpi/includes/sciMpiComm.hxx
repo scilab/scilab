@@ -48,12 +48,12 @@ public :
         return new SciMpiComm(m_piWorldIndex, m_iGroupSize);
     }
 
-    std::wstring getTypeStr() const
+    std::wstring getTypeStr() const override
     {
         return L"SciMpiComm";
     }
 
-    std::wstring getShortTypeStr() const
+    std::wstring getShortTypeStr() const override
     {
         return L"smc";
     }

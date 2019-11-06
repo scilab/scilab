@@ -49,7 +49,7 @@ public:
     Bool(int _iRows, int _iCols, int **_piData);
     ~Bool();
 
-    Bool*                   clone();
+    Bool*                   clone() override;
 
 
     /*zero or one set filler*/
@@ -57,28 +57,28 @@ public:
     Bool*                   setTrue();
 
     /*Config management*/
-    void                    whoAmI();
+    void                    whoAmI() override;
 
-    bool                    isBool()
+    bool                    isBool() override
     {
         return true;
     }
 
-    bool                    operator==(const InternalType& it);
-    bool                    operator!=(const InternalType& it);
+    bool                    operator==(const InternalType& it) override;
+    bool                    operator!=(const InternalType& it) override;
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring     getTypeStr() const
+    virtual std::wstring     getTypeStr() const override
     {
         return L"boolean";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring     getShortTypeStr() const
+    virtual std::wstring     getShortTypeStr() const override
     {
         return L"b";
     }
 
-    virtual bool transpose(InternalType *& out);
+    virtual bool transpose(InternalType *& out) override;
 
     virtual bool isNativeType() override
     {
@@ -92,26 +92,26 @@ public:
     }
 
 protected :
-    inline ScilabType       getType(void)
+    inline ScilabType       getType(void) override
     {
         return ScilabBool;
     }
-    inline ScilabId         getId(void)
+    inline ScilabId         getId(void) override
     {
         return isScalar() ? IdScalarBool : IdBool;
     }
 
-    virtual ast::Exp*       getExp(const Location& loc);
+    virtual ast::Exp*       getExp(const Location& loc) override;
 
 private :
     virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
-    virtual int             getNullValue();
-    virtual Bool*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-    virtual int             copyValue(int _iData);
-    virtual void            deleteAll();
-    virtual void            deleteImg();
-    virtual int*            allocData(int _iSize);
+    virtual int             getNullValue() override;
+    virtual Bool*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false) override;
+    virtual int             copyValue(int _iData) override;
+    virtual void            deleteAll() override;
+    virtual void            deleteImg() override;
+    virtual int*            allocData(int _iSize) override;
 };
 
 }

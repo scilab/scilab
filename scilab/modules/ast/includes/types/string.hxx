@@ -46,7 +46,7 @@ public :
 
     static wchar_t* nullValue();
 
-    void                    whoAmI();
+    void                    whoAmI() override;
 
     virtual String*         set(int _iPos, const wchar_t* _pwstData);
     virtual String*         set(int _iRows, int _iCols, const wchar_t* _pwstData);
@@ -56,67 +56,67 @@ public :
     virtual String*         set(int _iRows, int _iCols, const char* _pcData);
     virtual String*         set(const char* const* _pstrData);
 
-    bool                    operator==(const InternalType& it);
-    bool                    operator!=(const InternalType& it);
+    bool                    operator==(const InternalType& it) override;
+    bool                    operator!=(const InternalType& it) override;
 
     bool                    subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr() const
+    virtual std::wstring    getTypeStr() const override
     {
         return L"string";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr() const
+    virtual std::wstring    getShortTypeStr() const override
     {
         return L"c";
     }
-    String*                 clone();
+    String*                 clone() override;
 
-    inline ScilabType       getType()
+    inline ScilabType       getType() override
     {
         return ScilabString;
     }
-    inline ScilabId         getId()
+    inline ScilabId         getId() override
     {
         return isScalar() ? IdScalarString : IdString;
     }
-    bool                    isString()
+    bool                    isString() override
     {
         return true;
     }
 
-    bool isTrue()
+    bool isTrue() override
     {
         return false;
     }
 
-    bool getMemory(long long* _piSize, long long* _piSizePlusType);
+    bool getMemory(long long* _piSize, long long* _piSizePlusType) override;
 
-    virtual bool neg(InternalType *& /*out*/)
+    virtual bool neg(InternalType *& /*out*/) override
     {
         return false;
     }
 
-    virtual bool transpose(InternalType *& out);
+    virtual bool transpose(InternalType *& out) override;
 
-    virtual ast::Exp*       getExp(const Location& loc);
+    virtual ast::Exp*       getExp(const Location& loc) override;
 
 private :
     void                    deleteString(int _iRows, int _iCols);
     void                    deleteString(int _iPos);
 
     void                    createString(int _iDims, int* _piDims);
-    virtual wchar_t*        copyValue(wchar_t* _pwstData);
+    virtual wchar_t*        copyValue(wchar_t* _pwstData) override;
     virtual wchar_t*        copyValue(const wchar_t* _pwstData);
-    virtual String*         createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-    virtual wchar_t*        getNullValue()
+    virtual String*         createEmpty(int _iDims, int* _piDims, bool _bComplex = false) override;
+    virtual wchar_t*        getNullValue() override
     {
         return nullValue();
     };
-    virtual void            deleteAll();
-    virtual void            deleteImg();
-    virtual wchar_t**       allocData(int _iSize);
-    void                    deleteData(wchar_t* data);
+    virtual void            deleteAll() override;
+    virtual void            deleteImg() override;
+    virtual wchar_t**       allocData(int _iSize) override;
+    void                    deleteData(wchar_t* data) override;
 };
 }
 

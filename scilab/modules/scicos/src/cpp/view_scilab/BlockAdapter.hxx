@@ -40,8 +40,8 @@ public:
         return L"Block";
     }
 
-    std::wstring getTypeStr() const;
-    std::wstring getShortTypeStr() const;
+    std::wstring getTypeStr() const override;
+    std::wstring getShortTypeStr() const override;
 
     types::InternalType* getDocContent() const;
     void setDocContent(types::InternalType* v);

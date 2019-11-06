@@ -32,35 +32,35 @@ protected :
     TList(TList *_oTListCopyMe) : List(_oTListCopyMe) {}
 
 public :
-    void                            whoAmI(void)
+    void                            whoAmI(void) override
     {
         std::cout << "types::TList";
     }
 
-    ScilabType                      getType(void)
+    ScilabType                      getType(void) override
     {
         return ScilabTList;
     }
 
-    bool                            isTList()
+    bool                            isTList() override
     {
         return true;
     }
 
-    virtual TList*                  clone();
+    virtual TList*                  clone() override;
 
     bool                            exists(const std::wstring& _sKey);
     InternalType*                   getField(const std::wstring& _sKey);
     int                             getIndexFromString(const std::wstring& _sKey);
     TList*                          set(const std::wstring& _sKey, InternalType* _pIT);
-    TList*                          set(const int _iIndex, InternalType* _pIT);
+    TList*                          set(const int _iIndex, InternalType* _pIT) override;
 
     using List::extract; // to avoid this extract to hide extract in list
-    bool                            extract(const std::wstring& name, InternalType *& out);
+    bool                            extract(const std::wstring& name, InternalType *& out) override;
 
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e) override;
 
-    bool isFieldExtractionOverloadable() const
+    bool isFieldExtractionOverloadable() const override
     {
         return true;
     }
@@ -68,15 +68,15 @@ public :
     InternalType*                   extractStrings(const std::list<std::wstring>& _stFields);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring            getTypeStr() const;
+    virtual std::wstring            getTypeStr() const override;
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring            getShortTypeStr() const;
+    virtual std::wstring            getShortTypeStr() const override;
 
     String*                         getFieldNames() const;
 
-    bool                            toString(std::wostringstream& ostr);
+    bool                            toString(std::wostringstream& ostr) override;
 
-    bool                            getMemory(long long* _piSize, long long* _piSizePlusType);
+    bool                            getMemory(long long* _piSize, long long* _piSizePlusType) override;
 
 private :
 };

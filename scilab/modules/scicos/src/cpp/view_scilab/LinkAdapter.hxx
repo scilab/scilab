@@ -41,8 +41,8 @@ public:
         return L"Link";
     }
 
-    std::wstring getTypeStr() const;
-    std::wstring getShortTypeStr() const;
+    std::wstring getTypeStr() const override;
+    std::wstring getShortTypeStr() const override;
 
     // move (if possible) the partial informations to the model
     static void relink(Controller& controller, model::Link* adaptee, const std::vector<ScicosID>& children);

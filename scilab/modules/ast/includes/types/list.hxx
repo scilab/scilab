@@ -31,24 +31,24 @@ protected :
     std::vector<InternalType *>*    getData();
     List(List *_oListCopyMe);
 public :
-    int                             getSize() const;
+    int                             getSize() const override;
 
-    void                            whoAmI(void)
+    void                            whoAmI(void) override
     {
         std::cout << "types::List";
     };
 
-    inline ScilabType               getType(void)
+    inline ScilabType               getType(void) override
     {
         return ScilabList;
     }
-    inline ScilabId                 getId(void)
+    inline ScilabId                 getId(void) override
     {
         return IdList;
     }
-    
-    bool                            getMemory(long long* _piSize, long long* _piSizePlusType);
-    
+
+    bool                            getMemory(long long* _piSize, long long* _piSizePlusType) override;
+
     /**
     ** append(InternalType *_typedValue)
     ** Append the given value to the end of the List
@@ -59,17 +59,17 @@ public :
     ** Clone
     ** Create a new List and Copy all values.
     */
-    virtual List*                   clone();
+    virtual List*                   clone() override;
 
-    bool                            toString(std::wostringstream& ostr);
+    bool                            toString(std::wostringstream& ostr) override;
 
-    bool                            isList()
+    bool                            isList() override
     {
         return true;
     }
 
-    List*                           insert(typed_list* _pArgs, InternalType* _pSource);
-    InternalType*                   extract(typed_list* _pArgs);
+    List*                           insert(typed_list* _pArgs, InternalType* _pSource) override;
+    InternalType*                   extract(typed_list* _pArgs) override;
 
     virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & /*e*/) override
     {
@@ -97,22 +97,22 @@ public :
         return true;
     }
 
-    virtual bool isInvokable() const
+    virtual bool isInvokable() const override
     {
         return true;
     }
 
-    virtual bool hasInvokeOption() const
+    virtual bool hasInvokeOption() const override
     {
         return false;
     }
 
-    virtual int getInvokeNbIn()
+    virtual int getInvokeNbIn() override
     {
         return -1;
     }
 
-    virtual int getInvokeNbOut()
+    virtual int getInvokeNbOut() override
     {
         return -1;
     }
@@ -121,17 +121,17 @@ public :
     virtual List*                   set(const int _iIndex, InternalType* _pIT);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring            getTypeStr() const
+    virtual std::wstring            getTypeStr() const override
     {
         return L"list";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring            getShortTypeStr() const
+    virtual std::wstring            getShortTypeStr() const override
     {
         return L"l";
     }
 
-    virtual bool                    operator==(const InternalType& it);
+    virtual bool                    operator==(const InternalType& it) override;
 
 protected :
     std::vector<InternalType *>*    m_plData;

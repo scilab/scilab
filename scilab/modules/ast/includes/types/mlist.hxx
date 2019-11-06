@@ -27,29 +27,29 @@ public :
     MList() : TList() {}
     //Destructor uses ~TList()
 
-    virtual MList*                  clone()
+    virtual MList*                  clone() override
     {
         return new MList(this);
     }
-    void                            whoAmI(void)
+    void                            whoAmI(void) override
     {
         std::cout << "types::MList";
     };
 
-    ScilabType                      getType(void)
+    ScilabType                      getType(void) override
     {
         return ScilabMList;
     }
-    bool                            isMList()
+    bool                            isMList() override
     {
         return true;
     }
-    bool                            isTList()
+    bool                            isTList() override
     {
         return false;
     }
 
-    bool                            getMemory(long long* _piSize, long long* _piSizePlusType);
+    bool                            getMemory(long long* _piSize, long long* _piSizePlusType) override;
 
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e) override;
 
