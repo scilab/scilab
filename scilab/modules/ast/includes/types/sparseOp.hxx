@@ -169,7 +169,7 @@ Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* scalarOp(Eigen::
     result_t* res;
     if (op(Scalar1(), op2) == result_scalar())
     {
-        res = new result_t(op1.derived().unaryExpr(std::bind2nd(op, op2)));
+        res = new result_t(op1.derived().unaryExpr(std::bind(op, std::placeholders::_1, op2)));
         res->prune(&keepForSparse<result_scalar>);
     }
     else
@@ -178,7 +178,7 @@ Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* scalarOp(Eigen::
          matrix hence the need for a dense tmp :( */
         // TODO remove dense temp when Eigen provides sparse full traversal API
         Eigen::Matrix<Scalar1, Eigen::Dynamic, Eigen::Dynamic> tmp(op1);
-        res = new result_t(tmp.unaryExpr(std::bind2nd(op, op2)).sparseView());
+        res = new result_t(tmp.unaryExpr(std::bind(op, std::placeholders::_1, op2)).sparseView());
     }
     return res;
 }
@@ -199,14 +199,14 @@ Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* scalarOp(Scalar1
     result_t* res;
     if (op(op1, Scalar2()) == result_scalar())
     {
-        res = new result_t(op2.derived().unaryExpr(std::bind1st(op, op1)));
+        res = new result_t(op2.derived().unaryExpr(std::bind(op, op1, std::placeholders::_1)));
         res->prune(&keepForSparse<result_scalar>);
     }
     else
     {
         // TODO remove dense temp when Eigen provides sparse full traversal API
         Eigen::Matrix<Scalar2, Eigen::Dynamic, Eigen::Dynamic> tmp(op2);
-        res = new result_t(tmp.unaryExpr(std::bind1st(op, op1)).sparseView());
+        res = new result_t(tmp.unaryExpr(std::bind(op, op1, std::placeholders::_1)).sparseView());
     }
     return res;
 }
@@ -219,7 +219,7 @@ Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* scalarOp(Scalar1
  * @param op binary operation to perform
  * @return ptr to the new Eigen::Sparse result containing the cwise binary op with the two matrices.
  */
-template< typename Sp1, typename Sp2 , typename Op>
+template< typename Sp1, typename Sp2, typename Op>
 Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* cwiseOp(Eigen::EigenBase<Sp1> const& op1, Eigen::EigenBase<Sp2> const& op2, Op op)
 {
     if (op1.rows() == 1 && op1.cols() == 1)
@@ -241,7 +241,7 @@ Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* cwiseOp(Eigen::E
  * @param op binary operation to perform
  * @return ptr to the new Eigen::Sparse result containing the cwise binary op between the two matrices
  */
-template< typename Sp1, typename Sp2 , typename Op>
+template< typename Sp1, typename Sp2, typename Op>
 Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* cwiseOp(Eigen::EigenBase<Sp1> const& op1, Eigen::EigenBase<Sp2> const& op2, Op op, FullTraversal /*unused*/)
 {
     typedef typename Op::result_type result_scalar;
@@ -263,7 +263,7 @@ Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* cwiseOp(Eigen::E
  * @param op binary operation to perform
  * @return ptr to the new Eigen::Sparse result containing the cwise binary op with the scalar.
  */
-template< typename Sp1, typename Sp2 , typename Op>
+template< typename Sp1, typename Sp2, typename Op>
 Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* cwiseOp(Eigen::EigenBase<Sp1> const& op1, Eigen::EigenBase<Sp2> const& op2, Op op, UnionTraversal /*unused*/)
 {
     typedef typename Op::result_type result_scalar;
