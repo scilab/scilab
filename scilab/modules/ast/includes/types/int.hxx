@@ -200,16 +200,8 @@ private :
         {
             ostr << L"eye *" << std::endl << std::endl;
             int iWidth = 0;
-            if (isSigned())
-            {
-                getSignedIntFormat(ArrayOf<T>::get(0), &iWidth);
-                addSignedIntValue(&ostr, ArrayOf<T>::get(0), iWidth);
-            }
-            else
-            {
-                getUnsignedIntFormat(ArrayOf<T>::get(0), &iWidth);
-                addUnsignedIntValue(&ostr, ArrayOf<T>::get(0), iWidth);
-            }
+            getIntFormat(ArrayOf<T>::get(0), &iWidth);
+            addIntValue(&ostr, ArrayOf<T>::get(0), iWidth);
             ostr << std::endl;
         }
         else if (GenericType::isScalar())
@@ -220,16 +212,9 @@ private :
             _piDims[1]  = 0;
             int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-            if (isSigned())
-            {
-                getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                addSignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidth);
-            }
-            else
-            {
-                getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                addUnsignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidth);
-            }
+            getIntFormat(ArrayOf<T>::get(iPos), &iWidth);
+            addIntValue(&ostr, ArrayOf<T>::get(iPos), iWidth);
+
             ostr << std::endl;
         }
         else if (GenericType::getCols() == 1)
@@ -244,14 +229,7 @@ private :
                 _piDims[0] = i;
                 int iWidth = 0;
                 int iPos = ArrayOf<T>::getIndex(_piDims);
-                if (isSigned())
-                {
-                    getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                }
-                else
-                {
-                    getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                }
+                getIntFormat(ArrayOf<T>::get(iPos), &iWidth);
                 iWidthMax = (std::max)(iWidthMax, iWidth);
             }
 
@@ -268,14 +246,7 @@ private :
                 _piDims[0]  = i;
                 int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                if (isSigned())
-                {
-                    addSignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidthMax);
-                }
-                else
-                {
-                    addUnsignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidthMax);
-                }
+                addIntValue(&ostr, ArrayOf<T>::get(iPos), iWidthMax);
                 ostr << std::endl;
             }
         }
@@ -293,14 +264,7 @@ private :
                 _piDims[1]  = i;
                 int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                if (isSigned())
-                {
-                    getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                }
-                else
-                {
-                    getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                }
+                getIntFormat(ArrayOf<T>::get(iPos), &iWidth);
 
                 iLen = iWidth + static_cast<int>(ostemp.str().size());
                 if (iLen > iLineLen && iLastVal != i)
@@ -319,14 +283,7 @@ private :
                     iLastVal = i;
                 }
 
-                if (isSigned())
-                {
-                    addSignedIntValue(&ostemp, ArrayOf<T>::get(iPos), iWidth);
-                }
-                else
-                {
-                    addUnsignedIntValue(&ostemp, ArrayOf<T>::get(iPos), iWidth);
-                }
+                addIntValue(&ostemp, ArrayOf<T>::get(iPos), iWidth);
             }
 
             if (iLastVal != 0)
@@ -357,14 +314,7 @@ private :
                     _piDims[1]  = iCols1;
                     int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                    if (isSigned())
-                    {
-                        getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                    }
-                    else
-                    {
-                        getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                    }
+                    getIntFormat(ArrayOf<T>::get(iPos), &iWidth);
                     piSize[iCols1] = (std::max)(piSize[iCols1], iWidth);
                 }
 
@@ -396,14 +346,7 @@ private :
                             _piDims[1]  = iCols2;
                             int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                            if (isSigned())
-                            {
-                                addSignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
-                            }
-                            else
-                            {
-                                addUnsignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
-                            }
+                            addIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
                         }
                         ostemp << std::endl;
                     }
@@ -449,14 +392,7 @@ private :
                     _piDims[1]  = iCols2;
                     int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                    if (isSigned())
-                    {
-                        addSignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
-                    }
-                    else
-                    {
-                        addUnsignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
-                    }
+                    addIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
                 }
                 ostemp << std::endl;
             }

@@ -133,13 +133,13 @@ template<typename T> std::wstring toString(T const& m, int precision)
 
     int iWidthRows = 0;
     int iWidthCols = 0;
-    getSignedIntFormat(m.rows(), &iWidthRows);
-    getSignedIntFormat(m.cols(), &iWidthCols);
+    getIntFormat(m.rows(), &iWidthRows);
+    getIntFormat(m.cols(), &iWidthCols);
 
     ostr << L"(";
-    addUnsignedIntValue<unsigned long long>(&ostr, m.rows(), iWidthRows);
+    addIntValue<unsigned long long>(&ostr, m.rows(), iWidthRows);
     ostr << ",";
-    addUnsignedIntValue<unsigned long long>(&ostr, m.cols(), iWidthCols);
+    addIntValue<unsigned long long>(&ostr, m.cols(), iWidthCols);
     ostr << L")";
 
     Printer p(precision);
@@ -160,9 +160,9 @@ template<typename T> std::wstring toString(T const& m, int precision)
         for (size_t i = pINbItemByRow[j - 1]; i < pINbItemByRow[j]; i++)
         {
             ostr << L"(";
-            addUnsignedIntValue<unsigned long long>(&ostr, (int)j, iWidthRows);
+            addIntValue<unsigned long long>(&ostr, (int)j, iWidthRows);
             ostr << L",";
-            addUnsignedIntValue<unsigned long long>(&ostr, pIColPos[iPos] + 1, iWidthCols);
+            addIntValue<unsigned long long>(&ostr, pIColPos[iPos] + 1, iWidthCols);
             ostr << L")\t" << p(m.valuePtr()[iPos]) << std::endl;
 
             iPos++;
