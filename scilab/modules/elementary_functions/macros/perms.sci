@@ -29,7 +29,7 @@ function y = perms(x)
     if size(x,"*")==1 | size(x,"*")==0 then
         y = x;
     elseif size(x,1)<>1 & size(x,2)<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector expected.\n"),"perms"));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector expected.\n"),"perms", 1));
     else
         xsize = size(x, "*");
         indrec = perms(1:xsize-1);

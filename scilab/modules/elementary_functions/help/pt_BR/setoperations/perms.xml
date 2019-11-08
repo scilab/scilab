@@ -13,44 +13,46 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="perms" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="perms" xml:lang="pt">
     <refnamediv>
         <refname>perms</refname>
-        <refpurpose>all permutations of vector components</refpurpose>
+        <refpurpose>
+            conjunto de todas as permutações de determinados componentes
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Seqüência de Chamamento</title>
         <synopsis>y=perms(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>scalar or vector</para>
+                    <para>um escalar ou um vetor </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>matrix</para>
+                    <para>um escalar ou uma matriz</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Descrição</title>
         <para>
-            Given a vector <literal>x</literal> of length <literal>n</literal>,
-            <literal>perms</literal> returns all the permutations of the
-            <literal>n</literal> components of <literal>x</literal> (i.e
-            <literal>n!</literal> permutations). The size of <literal>y</literal>
-            is <literal> n!-by-n.</literal>
+            Dado um vetor <literal>x</literal> de comprimento
+            <literal>n</literal>, <literal>perms</literal> retorna todas as
+            permutações dos <literal>n</literal> componentes de <literal>x</literal>
+            (i.e <literal>n!</literal> permutações). O tamanho de <literal>y</literal>
+            é <literal>n!-by-n</literal>
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
 x=[4, 7, 10]
 y=perms(x)
