@@ -31,8 +31,9 @@
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>a real,an integer or a character string vector/matrix or a
-                        sparse vector.
+                    <para>
+                        scalar, vector, matrix or hypermatrix of booleans, integers, real numbers,
+                        or text, or a sparse vector of reals.
                     </para>
                 </listitem>
             </varlistentry>
@@ -228,6 +229,12 @@
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>This function allows overloading for unmanaged type (others than a real, an integer or a character string vector/matrix or a sparse vector).</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revremark>
+                    Booleans can now be sorted.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

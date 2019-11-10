@@ -31,7 +31,9 @@
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>вещественный, целочисленный или строковый вектор/матрица, либо разрежённый вектор.
+                    <para>
+                        scalar, vector, matrix or hypermatrix of booleans, integers, real numbers,
+                        or text, or a sparse vector of reals.
                     </para>
                 </listitem>
             </varlistentry>
@@ -209,6 +211,12 @@
                 <revnumber>5.4.0</revnumber>
                 <revremark>
                     Эта функция позволяет делать перегрузку для типов, которые не управляются (отличные от матриц/векторов вещественных, целочисленных или символьных значений, либо разрежённого вектора).
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revremark>
+                    Booleans can now be sorted.
                 </revremark>
             </revision>
         </revhistory>
