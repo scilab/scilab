@@ -856,7 +856,6 @@ function allnames=not_yet_converted()
     "peaks";
     "penny";
     "perl";
-    "perms";
     "permute";
     "persistent";
     "pie";

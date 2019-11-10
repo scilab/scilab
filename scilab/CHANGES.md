@@ -185,6 +185,8 @@ Feature changes and additions
   - The content of implicitlist objects, and information for Scilab functions and libraries of functions are now displayed.
 * `nchoosek` is introduced, to compute the binomial coefficients.
 * The left .\. and right ./. Kronecker divisions are now implemented, for arrays of decimal or complex numbers.
+* `perms` can now build and return only unique permutations, without duplicates.
+
 
 Help pages:
 -----------
@@ -454,6 +456,7 @@ Bug Fixes
 * [#16232](https://bugzilla.scilab.org/16232): `colorbar` did not support `$` in `colminmax`, standing for the number of colors in the current color map.
 * [#16234](https://bugzilla.scilab.org/16234): Airy functions were not available.
 * [#16242](https://bugzilla.scilab.org/16242): `loadmatfile` could not read Octave native text data files.
+* [#16244](http://bugzilla.scilab.org/show_bug.cgi?id=16244): `perms` could freeze the whole computer. It could not ignore duplicate permutations.
 * [#16245](https://bugzilla.scilab.org/16245): `gsort` could not sort booleans.
 * [#16246](https://bugzilla.scilab.org/16246): `isvector` was broken for sparse matrices.
 * [#16257](https://bugzilla.scilab.org/16257): `blockdiag` implemented to replace `sysdiag`, improved and extended to strings.
@@ -477,3 +480,4 @@ Bug Fixes
 * [#16321](https://bugzilla.scilab.org/16321): There were typo errors in the documentation.
 * [#16323](https://bugzilla.scilab.org/16323): `conj(sparse(x))` was complex when x is real.
 * [#16325](https://bugzilla.scilab.org/16325): `mgetl` could not read single line data which is greater than ~260,000 characters.
+
