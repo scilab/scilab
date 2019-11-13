@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - 2010 - DIGITEO - Michael Baudin
+ * Copyright (C) 2012 - Michael Baudin
+ * Copyright (C) 2019 - Samuel GOUGEON - Le Mans Université
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+ <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="nchoosek" xml:lang="en">
+  <refnamediv>
+    <refname>nchoosek</refname>
+    <refpurpose>
+        Computes binomial numbers (n,k) = numbers of combinations
+    </refpurpose>
+  </refnamediv>
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+    b = nchoosek(n, k)
+    logb = nchoosek(n, k, logFormat)
+    [logb, b] = nchoosek(n, k, logFormat)
+    [logb, b] = nchoosek(n, k)
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+    <title>Arguments</title>
+    <variablelist>
+        <varlistentry>
+            <term>n, k</term>
+            <listitem>
+                arrays of positive decimal integers. If both <varname>n</varname> and
+                <varname>k</varname> are not scalars, they must have the same size.
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>b</term>
+            <listitem>
+                array of positive decimal integers, with the size of the biggest array
+                <varname>n</varname> or <varname>k</varname> :
+                C<subscript>n</subscript><superscript>k</superscript>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>logb</term>
+            <listitem>
+                array of positive decimal numbers, with the size of <varname>b</varname>:
+                <literal>log10(C<subscript>n</subscript><superscript>k</superscript>)</literal>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>logFormat</term>
+            <listitem>
+                single word "log10" | "10.mant". "log10" by default.
+                <itemizedlist>
+                    <listitem>
+                        If "log10" is used, <varname>logb</varname> returns <literal>log10(b)</literal>.
+                        <para/>
+                    </listitem>
+                    <listitem>
+                        If "10.mant" is used, then <varname>logb</varname> returns
+                        <literal>int(log10(b)) + 10^(log10(b)-int(log10(b)))/10</literal>:
+                        The 10-exponent of b is the logb integer part, while its fractional part
+                        directly shows the mantissa/10 of b, in [1.0, 10)/10.
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+</refsection>
+
+<refsection>
+    <title>Description</title>
+    <para>
+        For every (n(i),k(i)) element-wise pair, nchoosek() computes the number of
+        k<subscript>i</subscript>-element subsets of an n<subscript>i</subscript>-element set.
+        It is mathematically defined by
+        <latex alt="C(n,k) = n! / [ k! (n-k)! ]" fontsize="18">C_n^k = {{n!} \over {k! \,(n-k)!}}
+        = {{(n-k+1)\cdot ..(n-1)\cdot n} \over {1\cdot 2\cdot ...(k-1)\cdot k}}</latex>.
+        The implementation, though, uses the βeta function.
+    </para>
+    <para>
+        If n &lt; 0, or k &lt; 0, or k &gt; n, then an error is generated.
+    </para>
+    <refsect3>
+        <title>Note about floating point accuracy</title>
+        <para>
+            Despite n! overflows for n>170, nchoosek(n,k) is computed within almost the %eps relative
+            accuracy for n much beyond 170.
+        </para>
+        <para>
+            For any given n value, we know that C<subscript>n</subscript><superscript>k</superscript>
+            is maximal for k=n/2. Scilab computes b = nchoosek(n,n/2) close to the %eps relative
+            accuracy for n up to 1029. Beyond this value, b=%inf is returned.
+        </para>
+        <para></para>
+        <para>
+            This narrow n=1029 limit can be overcome by computing
+            log10(C<subscript>n</subscript><superscript>k</superscript>) and returning
+            it through the second output argument logb. This allows to use still bigger n values,
+            and to get some valid information about the exponent and the mantissa of the true result.
+        </para>
+        <para>
+            However, we must keep in mind that beyond n = 1/%eps ~ 4.10<superscript>15</superscript>,
+            the numerical step between consecutive integers m and m+1 stored as floating point
+            numbers become > 1. Then <literal>n*(n-1)</literal> is numerically equal to
+            <literal>n*n</literal>, and getting reliable results becomes harder.
+       </para>
+        <para>
+            The integer part of logb represents the exponent (of 10) of
+            C<subscript>n</subscript><superscript>k</superscript>, whereas its fractional part
+            is the log10 of its mantissa. When the integer part of logb increases, the more digits
+            it takes among the 16 available ones in floating point encoding, the less remain
+            to encode the mantissa. Then,
+            knowing the mantissa of C<subscript>n</subscript><superscript>k</superscript> with
+            at least one significant digit requires
+            C<subscript>n</subscript><superscript>k</superscript>
+            &lt; 10<superscript>10<superscript>14</superscript></superscript>.
+       </para>
+       <para>
+            <emphasis role="bold">Relative accuracy on logb</emphasis>: As a rule of thumb,
+            except for special k cases, the relative uncertainty on logb is of the order of
+            %eps * n / k.
+       </para>
+    </refsect3>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <para>
+        Simple examples
+   </para>
+   <programlisting role="example"><![CDATA[
+c = nchoosek(4, 1)
+c = nchoosek(5, 0)
+c = nchoosek([4 5], [1 0])
+   ]]></programlisting>
+   <screen><![CDATA[
+--> c = nchoosek(4, 1)
+ c  =
+   4.
+
+--> c = nchoosek(5, 0)
+ c  =
+   1.
+
+--> c = nchoosek([4 5], [1 0])
+ c  =
+   4.   1.
+]]></screen>
+   <programlisting role="example"><![CDATA[
+nchoosek(10, 0:10)
+nchoosek(4:12, 4)
+   ]]></programlisting>
+   <screen><![CDATA[
+--> nchoosek(10, 0:10)
+ ans  =
+   1.  10.  45.  120.  210.  252.  210.  120.  45.  10.  1.
+
+--> nchoosek(4:12, 4)
+ ans  =
+   1.  5.  15.  35.  70.  126.  210.  330.  495.
+]]></screen>
+    <para>
+        For big values:
+    </para>
+   <programlisting role="example"><![CDATA[
+exact = 2.050083865033972676e307;
+c = nchoosek(10000, 134)
+relerror = abs(c-exact)/exact
+   ]]></programlisting>
+   <screen><![CDATA[
+--> c = nchoosek(10000, 134)
+ c  =
+   2.05D+307
+
+--> relerror = abs(c-exact)/exact
+ relerror  =
+   7.959D-14
+]]></screen>
+    <para>
+        The exact result for
+        <literal>C<subscript>n</subscript><superscript>k</superscript>(n, 2)</literal> is
+        <literal>n.(n-1)/2</literal>. Now, for values <literal>n > 1/%eps = 4e15</literal>,
+        <literal>(n-1)</literal> is numerically identical to <literal>n</literal>. In no way
+        we can expect an exact result below, but rather <literal>n^2/2</literal> :
+    </para>
+   <programlisting role="example"><![CDATA[
+n = 1e20;
+c = nchoosek(n, 2)
+c / (n*n/2) - 1    // Relative error wrt the expected numerical value
+   ]]></programlisting>
+   <screen><![CDATA[
+--> c = nchoosek(n, 2)
+ c  =
+   5.000D+39
+
+--> c /(n*n/2) - 1
+ ans  =
+  -6.661D-15
+]]></screen>
+    <para>
+    In logarithmic formats:
+    </para>
+   <programlisting role="example"><![CDATA[
+[logb, b] = nchoosek(10000, 1234);  [b, logb]
+logb = nchoosek(10000, 1234, "10.mant")
+
+[logb, b] = nchoosek(1000, 500);
+logb2 = nchoosek(1000, 500, "10.mant");
+[b, logb, logb2]
+logb = nchoosek(1000, 500, "log10")
+   ]]></programlisting>
+   <screen><![CDATA[
+--> [logb, b] = nchoosek(10000, 1234);  [b, logb]
+ ans  =
+   Inf   1620.803261
+
+--> logb = nchoosek(10000, 1234, "10.mant")
+ logb  =
+   1620.635713      // 6.35713D+1620
+
+--> [logb, b] = nchoosek(1000, 500);
+--> logb2 = nchoosek(1000, 500, "10.mant");
+--> [b, logb, logb2]
+ ans  =
+   2.7029D+299   299.4318272   299.2702882
+
+--> logb = nchoosek(1000, 500, "log10")
+ logb  =
+   299.4318272
+]]></screen>
+   <para>
+        Drawing <literal>nchoosek(n,k)</literal> on the main floating point domain, up to
+        10<superscript>300</superscript> :
+   </para>
+   <programlisting role="example"><![CDATA[
+function ax= drawCnk(n)
+    // Preparing data
+    [N,K] = meshgrid(n);
+    noOp = K>N;
+    K(noOp) = 0;
+    [logC, C] = nchoosek(N, K);
+    C(noOp) = %nan;
+    if max(n)<2000, logC = log10(C), end
+
+    // Surface of Cnk data
+    surf(N, K, logC);
+    gce().color_mode = -2; // hidding the mesh
+    plot2d([0 n],[0 n/2]);
+    gce().children.data(:,3) = max(logC(logC<>%inf))
+
+    // Axes settings
+    xgrid(25,1,7)
+    ax = gca();
+    set(ax, "view","2d", "tight_limits",["on" "on" "off"], "grid_position","foreground");
+    xtitle("","","","");
+    ax.margins(2) = 0.05;
+
+    // Color bar
+    colorbar();
+    cb = gce();
+    cb.y_ticks.labels = msprintf("$\\Large 10^{%s}$\n", cb.y_ticks.labels);
+    title(cb,"$C_n^k$", "fontsize",3)
+endfunction
+
+
+clf
+drawlater
+
+// Figure settings
+f = gcf();
+f.color_map = jetcolormap(100);
+//f.axes_size = [840 570];
+
+// Main plot
+ax = drawCnk(0:10:1500); sca(ax);
+xtitle("nchoosek(n, k)","n","k","$C_n^k$");
+set([ax.title ax.x_label ax.y_label ax.z_label], "font_size",4);
+xstring(1250, 450, "Overflow")
+gce().font_size = 4;
+
+// Inset
+xsetech([0.11 0.11 0.37 0.42]);
+ax = drawCnk(0:106);
+ax.sub_ticks = [3 3];
+gce().sub_ticks(2) = 4;
+
+drawnow
+   ]]></programlisting>
+   <scilab:image><![CDATA[
+function ax= drawCnk(n)
+    // Preparing data
+    [N,K] = meshgrid(n);
+    noOp = K>N;
+    K(noOp) = 0;
+    [logC, C] = nchoosek(N, K);
+    C(noOp) = %nan;
+    if max(n)<2000, logC = log10(C), end
+
+    // Surface of Cnk data
+    surf(N, K, logC);
+    gce().color_mode = -2; // hidding the mesh
+    plot2d([0 n],[0 n/2]);
+    gce().children.data(:,3) = max(logC(logC<>%inf))
+
+    // Axes settings
+    xgrid(25,1,7)
+    ax = gca();
+    set(ax, "view","2d", "tight_limits",["on" "on" "off"], "grid_position","foreground");
+    xtitle("","","","");
+    ax.margins(2) = 0.05;
+
+    // Color bar
+    colorbar();
+    cb = gce();
+    cb.y_ticks.labels = msprintf("$\\Large 10^{%s}$\n", cb.y_ticks.labels);
+    title(cb,"$C_n^k$", "fontsize",3)
+endfunction
+
+clf
+drawlater
+// Figure settings
+f = gcf();
+f.color_map = jetcolormap(100);
+f.axes_size = [840 570];
+
+// Main plot
+ax = drawCnk(0:10:1500); sca(ax);
+xtitle("nchoosek(n, k)","n","k","$C_n^k$");
+set([ax.title ax.x_label ax.y_label ax.z_label], "font_size",4);
+xstring(1250, 450, "Overflow")
+gce().font_size = 4;
+
+// Inset
+xsetech([0.11 0.11 0.37 0.42]);
+ax = drawCnk(0:106);
+ax.sub_ticks = [3 3];
+gce().sub_ticks(2) = 4;
+drawnow
+   ]]></scilab:image>
+   <para>
+        Going beyond, in logarithmic mode :
+   </para>
+   <programlisting role="example"><![CDATA[
+// /!\ : The drawCnk() function used here is defined in the previous example.
+
+clf
+drawlater
+
+// Figure settings
+f = gcf();
+f.color_map = jetcolormap(100);
+//f.axes_size = [840 570];
+
+// Main plot
+ax = drawCnk(0:10000:1e6); sca(ax);
+xtitle("nchoosek(n, k)","n","k","$C_n^k$");
+set([ax.title ax.x_label ax.y_label ax.z_label], "font_size",4);
+
+// Inset
+xsetech([0.12 0.11 0.37 0.42]);
+ax = drawCnk(0:1000:1e5);
+ax.sub_ticks = [3 3];
+gce().parent.sub_ticks(2) = 4;
+
+drawnow
+   ]]></programlisting>
+   <scilab:image><![CDATA[
+function ax= drawCnk(n)
+    // Preparing data
+    [N,K] = meshgrid(n);
+    noOp = K>N;
+    K(noOp) = 0;
+    [logC, C] = nchoosek(N, K);
+    C(noOp) = %nan;
+    if max(n)<2000, logC = log10(C), end
+
+    // Surface of Cnk data
+    surf(N, K, logC);
+    gce().color_mode = -2; // hidding the mesh
+    plot2d([0 n],[0 n/2]);
+    gce().children.data(:,3) = max(logC(logC<>%inf))
+
+    // Axes settings
+    xgrid(25,1,7)
+    ax = gca();
+    set(ax, "view","2d", "tight_limits",["on" "on" "off"], "grid_position","foreground");
+    xtitle("","","","");
+    ax.margins(2) = 0.05;
+
+    // Color bar
+    colorbar();
+    cb = gce().parent;
+    cb.y_ticks.labels = msprintf("$\\Large 10^{%s}$\n", cb.y_ticks.labels);
+    title(cb,"$C_n^k$", "fontsize",3)
+endfunction
+
+clf
+drawlater
+
+// Figure settings
+f = gcf();
+f.color_map = jetcolormap(100);
+f.axes_size = [840 570];
+
+// Main plot
+ax = drawCnk(0:10000:1e6+1e4); sca(ax);
+xtitle("nchoosek(n, k)","n","k","$C_n^k$");
+set([ax.title ax.x_label ax.y_label ax.z_label], "font_size",4);
+
+// Inset
+xsetech([0.12 0.11 0.37 0.42]);
+ax = drawCnk(0:1000:1e5);
+ax.sub_ticks = [3 3];
+gce().parent.sub_ticks(2) = 4;
+
+drawnow
+   ]]></scilab:image>
+   <para>
+        Top line <literal>C<subscript>n</subscript><superscript>n/2</superscript></literal> :
+        <literal>nchoosek(n, n/2)</literal> and its known close approximation
+        <latex alt="2^n /sqrt(pi.n/2)">2^n / \sqrt{\pi n/2}</latex>
+   </para>
+   <programlisting role="example"><![CDATA[
+n = round(10^(1:0.1:8))*2;
+logb = nchoosek(n, n/2, "log10");
+clf
+plot2d("ll", n, logb)
+ax = gca();
+xgrid(color("grey70"), 1, 7);
+//ax.sub_ticks = [ 8 0];
+ax.tight_limits = "on";
+ax.y_ticks.labels = msprintf("$\\Large 10^{%d}$\n", ax.y_ticks.locations);
+xlabel("n", "fontsize",4);
+xstring(60, 1000, "nchoosek(n, n/2)", 270)
+set(gce(), "clip_state", "off", "font_size",3);
+
+// Relative difference with the 2^n / sqrt(pi.n/2) approximation:
+e = abs(10.^(n*log10(2) - (log10(%pi)+log10(n/2))/2 - logb) - 1);
+
+ax = newaxes();
+ax.filled = "off";
+ax.y_location = "right";
+ax.tight_limits = ["on" "off"];
+ax.font_color = color("magenta");
+plot2d("ll", n, e, style=color("magenta"))
+ax.axes_visible(1) = "off";
+
+legend("$\large \left|{\frac{2^n}{\sqrt{\pi n/2}} / nchoosek(n, n/2)}-1\right|$", ..
+        "in_upper_left", %f);
+   ]]></programlisting>
+   <scilab:image><![CDATA[
+        n = round(10^(1:0.1:8))*2;
+        logb = nchoosek(n, n/2, "log10");
+        clf
+        plot2d("ll", n, logb)
+        ax = gca();
+        xgrid(color("grey70"), 1, 7);
+        //ax.sub_ticks = [ 8 0];
+        ax.tight_limits = "on";
+        ax.y_ticks.labels = msprintf("$\\Large 10^{%d}$\n", ax.y_ticks.locations);
+        xlabel("n", "fontsize",4);
+        xstring(60, 1000, "nchoosek(n, n/2)", 270)
+        set(gce(), "clip_state", "off", "font_size",3);
+
+        // Relative difference with the 2^n / sqrt(pi.n/2) approximation:
+        e = abs(10.^(n*log10(2) - (log10(%pi)+log10(n/2))/2 - logb)-1);
+
+        ax = newaxes();
+        ax.filled = "off";
+        ax.y_location = "right";
+        ax.tight_limits = ["on" "off"];
+        ax.font_color = color("magenta");
+        plot2d("ll", n, e, style=color("magenta"))
+        ax.axes_visible(1) = "off";
+
+        legend("$\large \left|{\frac{2^n}{\sqrt{\pi n/2}} / nchoosek(n, n/2)}-1\right|$", ..
+                "in_upper_left", %f);
+   ]]></scilab:image>
+</refsection>
+    <refsection>
+        <title>Bibliography</title>
+            <itemizedlist>
+                <listitem>
+                    <ulink url="http://en.wikipedia.org/wiki/Binomial_coefficients">Binomial coefficients (Wikipedia)</ulink>
+                </listitem>
+                <listitem>
+                    Boost C++ librairies, Binomial Coefficients, 2006 , 2007, 2008, 2009, 2010 :
+                    John Maddock, Paul A. Bristow, Hubert Holin, Xiaogang Zhang, Bruno Lalande,
+                    Johan Råde, Gautam Sewani and Thijs van den Berg.
+                </listitem>
+                <listitem>
+                    "Introduction to discrete probabilities with Scilab", Michael Baudin, 2010
+                </listitem>
+            </itemizedlist>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="factorial">factorial</link>
+            </member>
+            <member>
+                <link linkend="gamma">gamma</link>
+            </member>
+            <member>
+                <link linkend="perms">perms</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <literal>nchoosek()</literal> introduced.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

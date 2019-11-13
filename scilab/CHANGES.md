@@ -172,12 +172,12 @@ Feature changes and additions
   - Returned indices can now be formatted with the new option `indType`.
   - There were no unit tests. More than 100 tests are added.
 * `datafit` is now able to fit weighted data. It now supports any gap function vectorized for Data points, and so is much faster. It now accepts any matrix of parameters (not necessarily a colum). It now returns the average Mode-to-data distance, and the termination status for the quasi-Newton algo.
-* `tree_show()` is upgraded:
+* `tree_show` is upgraded:
   - New `rootTitle` and `styles` optional inputs.
   - New `arrayByFields` option, to allow displaying each array component as an object in its whole.
   - Improved layout: detailled indices for 2D arrays, simplified symbols, etc.
   - The content of implicitlist objects, and information for Scilab functions and libraries of functions are now displayed.
-
+* `nchoosek` is introduced, to compute the binomial coefficients.
 
 Help pages:
 -----------
@@ -254,6 +254,7 @@ Bug Fixes
 * [#5824](https://bugzilla.scilab.org/5824): The `datafit` algorithm was not documented.
 * [#6070](https://bugzilla.scilab.org/6070): How to make multiscaled plots was not documented.
 * [#7562](https://bugzilla.scilab.org/7562): `factorial` could use a huge memory amount even for a scalar argument.
+* [#7589](https://bugzilla.scilab.org/7589): There was no function computing the binomial coefficients.
 * [#7657](https://bugzilla.scilab.org/7657): `lstsize` was a duplicate of `size` and should be removed.
 * [#7724](https://bugzilla.scilab.org/7724): When a figure is created in .auto_resize="on" mode, its .axes_size sets its .figure_size accordingly, not the reverse. But this was not documented.
 * [#7732](https://bugzilla.scilab.org/7732): The `datafit` help page needed to be fixed and overhauled.
