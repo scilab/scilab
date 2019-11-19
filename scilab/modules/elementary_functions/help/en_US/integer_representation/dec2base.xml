@@ -54,7 +54,7 @@
             <literal>str = dec2base(d, base)</literal> converts the nonnegative integer values of <literal>d</literal> to the specified base <literal>base</literal>.
         </para>
         <para>
-            <literal>d</literal> must have a nonnegative integers smaller than 2^52, and <literal>base</literal> must be an integer between 2 and 36.
+            <literal>d</literal> must have nonnegative integers smaller than 2^52, and <literal>base</literal> must be an integer between 2 and 36.
         </para>
         <para>
             The returned argument <literal>str</literal> is a matrix of strings.
