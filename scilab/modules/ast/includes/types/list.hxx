@@ -32,6 +32,7 @@ protected :
     List(List *_oListCopyMe);
 public :
     int                             getSize() const override;
+    bool                            isVector() override;
 
     void                            whoAmI(void) override
     {

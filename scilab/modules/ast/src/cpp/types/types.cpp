@@ -59,6 +59,20 @@ bool GenericType::isScalar() //2 dims and each dim == 1
     return false;
 }
 
+bool GenericType::isVector()
+{
+    int iCount = 0;
+    for (int i = 0; i < m_iDims && iCount < 2; ++i)
+    {
+        if (m_piDims[i] != 1)
+        {
+            iCount++;
+        }
+    }
+
+    return iCount < 2; // a Scalar is a Vector
+}
+
 bool GenericType::isIdentity(void)
 {
     for (int i = 0; i < getDims(); i++)

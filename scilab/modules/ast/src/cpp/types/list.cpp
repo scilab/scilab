@@ -113,6 +113,11 @@ int List::getSize() const
     return static_cast<int>(m_plData->size());
 }
 
+bool List::isVector()
+{
+    return false;
+}
+
 /**
 ** append(InternalType *_typedValue)
 ** Append the given value to the end of the List

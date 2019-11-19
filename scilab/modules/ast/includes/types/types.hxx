@@ -61,6 +61,7 @@ public :
     }
 
     bool                        isScalar();
+    virtual bool                isVector();
 
     /*commun functions*/
     virtual int                  getCols()

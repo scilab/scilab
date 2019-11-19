@@ -187,28 +187,6 @@ public :
     // The function is not write here because we needs to create a Bool which inherits from ArrayOf<int>
     // so it will create a cyclic dependency... so the body of the function is in bool.hxx after the Bool definition.
     virtual bool neg(InternalType *& out) override;
-
-    virtual bool isVector() //only one dim must be != 1
-    {
-        bool bFirstChance = false;
-
-        for (int i = 0 ; i < m_iDims ; i++)
-        {
-            if (m_piDims[i] != 1)
-            {
-                if (bFirstChance == true)
-                {
-                    return false;
-                }
-                else
-                {
-                    bFirstChance = true;
-                }
-            }
-        }
-        return true;
-    }
-
     virtual bool isComplex() override
     {
         return m_pImgData != NULL;

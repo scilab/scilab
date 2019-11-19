@@ -69,7 +69,7 @@ STACK_GATEWAY_PROTOTYPE(sci_testmatrix);
 //STACK_GATEWAY_PROTOTYPE(sci_base2dec);
 STACK_GATEWAY_PROTOTYPE(sci_dec2base);
 //STACK_GATEWAY_PROTOTYPE(sci_log10);
-C_GATEWAY_PROTOTYPE(sci_isvector);
+//C_GATEWAY_PROTOTYPE(sci_isvector);
 C_GATEWAY_PROTOTYPE(sci_issquare);
 
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */

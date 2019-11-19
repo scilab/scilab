@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
+* Copyright (C) 2019 - Stéphane Mottelet
 *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,30 +14,42 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#include "function.hxx"
+#include "arrayof.hxx"
+#include "overload.hxx"
+#include "bool.hxx"
+
 extern "C"
 {
-#include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "gw_elementary_functions.h"
 }
 
-static const char fname[] = "isvector";
 /*--------------------------------------------------------------------------*/
-int sci_isvector(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
+
+types::Function::ReturnValue sci_isvector(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if (nin != 1)
+    if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
-        return 1;
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "isvector", 1);
+        return types::Function::Error;
     }
 
-    if (nout > 1)
+    if (out.size() >  1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), fname, 1);
-        return 1;
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "isvector", 1);
+        return types::Function::Error;
     }
 
-    out[0] = scilab_createBoolean(env, scilab_isVector(env, in[0]));
-    return 0;
+    if (in[0]->isTList() || in[0]->isMList() || in[0]->isGenericType() == false)
+    {
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_isvector";
+        return Overload::call(wstFuncName, in, _iRetCount, out);
+    }
+    else
+    {
+        types::GenericType *pIn = in[0]->getAs<types::GenericType>();
+        out.push_back(new types::Bool(pIn->isVector() && pIn->isScalar() == false));
+        return types::Function::OK;
+    }
 }

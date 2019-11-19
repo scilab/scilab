@@ -212,6 +212,9 @@
     <ClInclude Include="..\..\..\includes\dynlib_elementary_functions_gw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\includes\gw_elementary_functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="elementary_functions_f_Import.def">

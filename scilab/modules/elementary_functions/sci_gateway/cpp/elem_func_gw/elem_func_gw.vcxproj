@@ -272,6 +272,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\dynlib_elementary_functions_gw.h" />
     <ClInclude Include="..\..\..\includes\elem_func_gw.hxx" />
+    <ClInclude Include="..\..\..\includes\gw_elementary_functions.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="elementary_functions_f_Import.def" />

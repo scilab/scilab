@@ -305,6 +305,7 @@ Bug Fixes
 * [#16230](http://bugzilla.scilab.org/show_bug.cgi?id=16230): `MSWin>scilab --help` missed displaying some options like `-args..`, `-noatomsautoload`, etc.
 * [#16242](http://bugzilla.scilab.org/show_bug.cgi?id=16242): `loadmatfile()` could not read Octave native text data files.
 * [#16245](http://bugzilla.scilab.org/show_bug.cgi?id=16245): `gsort` could not sort booleans.
+* [#16246](http://bugzilla.scilab.org/show_bug.cgi?id=16246): `isvector` was broken for sparse matrices.
 * [#16257](http://bugzilla.scilab.org/show_bug.cgi?id=16257): `blockdiag()` implemented to replace `sysdiag()`, improved and extended to strings.
 * [#16259](http://bugzilla.scilab.org/show_bug.cgi?id=16259): * and .* multiplications involving a sparse boolean and a double, or involving 2 booleans, were not implemented.
 * [#16260](http://bugzilla.scilab.org/show_bug.cgi?id=16260): overloading `nnz` was not possible (regression).
