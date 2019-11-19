@@ -40,7 +40,7 @@ Compilation
    - autoconf 2.69
    - libtool 2.4.6 (patched for macOS)
 
-* Linux/macOS build defines `_GLIBCXX_USE_CXX11_ABI=0` to use a pre-C++11 ABI on Scilab and toolboxes builds.
+* Linux/macOS configures check if `-std=c++11` is available and use it by default. Toolboxes might increment the standard C++ version by specifying the C++ version as a `CFLAGS`.
 
 * Migration to Microsoft Visual Studio 2017 and Intel Composer 2018
 

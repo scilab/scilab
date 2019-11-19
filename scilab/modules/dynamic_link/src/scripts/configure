@@ -12919,7 +12919,7 @@ fi
 
 
 
-# Detect C++ compiler and enforce c++11 with pre-c++11 ABI
+# Detect C++ compiler and enforce c++11
 ac_ext=cpp
 ac_cpp='$CXXCPP $CPPFLAGS'
 ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
@@ -16761,7 +16761,6 @@ $as_echo "#define HAVE_CXX11 1" >>confdefs.h
 
   fi
 
-CXXFLAGS="$CXXFLAGS -D_GLIBCXX_USE_CXX11_ABI=0"
 
 # Detect Fortran Compiler (77 and 90)
 ac_ext=f
