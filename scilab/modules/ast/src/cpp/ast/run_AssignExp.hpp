@@ -237,7 +237,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 {
                     std::wostringstream ostr;
                     ostr << L" " << *getStructNameFromExp(pCell) << L"  = " << std::endl;
-                    ostr << std::endl;
+                    if (ConfigVariable::isPrintCompact() == false)
+                    {
+                        ostr << std::endl;                
+                    }
                     scilabWriteW(ostr.str().c_str());
 
                     VariableToString(pOut, ostr.str().c_str());
@@ -407,7 +410,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 std::wostringstream ostr;
                 ostr << L" " << *getStructNameFromExp(&pCall->getName()) << L"  = " << std::endl;
-                ostr << std::endl;
+                if (ConfigVariable::isPrintCompact() == false)
+                {
+                    ostr << std::endl;                
+                }
                 scilabWriteW(ostr.str().c_str());
 
                 std::wostringstream ostrName;
@@ -549,7 +555,11 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
                 types::InternalType* pPrint = ctx->get(symbol::Symbol(*pstName));
                 std::wostringstream ostr;
-                ostr << L" " << *pstName << L"  = " << std::endl << std::endl;
+                ostr << L" " << *pstName << L"  = " << std::endl;
+                if (ConfigVariable::isPrintCompact() == false)
+                {
+                    ostr << std::endl;                
+                }
                 scilabWriteW(ostr.str().c_str());
 
                 std::wostringstream ostrName;

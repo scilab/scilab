@@ -397,7 +397,7 @@ void configureStream(std::wostringstream * _postr, int _iWidth, int _iPrec, char
 
 void addColumnString(std::wostringstream& ostr, int _iFrom, int _iTo)
 {
-    if (ConfigVariable::isPrintCompact() == false)
+    if (ConfigVariable::isPrintCompact() == false && _iFrom != 1)
     {
         ostr << std::endl;
     }
