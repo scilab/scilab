@@ -9,7 +9,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>x=A\b</synopsis>
+        <synopsis>X = A \ B</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
@@ -73,16 +73,16 @@ mprintf('\ntemps nécessaire à la résolution du système avec l''opérateur ba
                 <link linkend="pinv">pinv</link>
             </member>
             <member>
-                <link linkend="percent">percent</link>
-            </member>
-            <member>
-                <link linkend="ieee">ieee</link>
-            </member>
-            <member>
                 <link linkend="linsolve">linsolve</link>
             </member>
             <member>
                 <link linkend="umfpack">umfpack</link>
+            </member>
+            <member>
+                <link linkend="krondivide">kron .\.</link>
+            </member>
+            <member>
+                <link linkend="overloading">overloading</link>
             </member>
         </simplelist>
     </refsection>

@@ -2,9 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * Copyright (C) 2014 - Samuel Gougeon : extension to hypermatrices
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2014, 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,80 +13,191 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="kron" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="kron" xml:lang="ru">
     <refnamediv>
-        <refname>kron</refname>
-        <refpurpose>произведение Кронекера (.*.)</refpurpose>
+        <refname>kron .*.</refname>
+        <refpurpose>произведение Кронекера. Взвешенное повторение массива</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            kron(A,B)
-            A.*.B
+            P = kron(A, B)
+            P = A .*. B
         </synopsis>
     </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>A, B</term>
+                <listitem>
+                    <para>
+                        Массивы размером <literal>(a1, a2, ..)</literal> и <literal>(b1, b2, ..)</literal>
+                        с любым числом размерности. Если <varname>A</varname> или <varname>B</varname>
+                        являются разрежёнными, то другоо массив не может быть гиперматрицей.
+                    </para>
+                    <para>
+                        Поддерживаемые кодируемые целые и типы: integer, real, complex, polynomial, rational,
+                        sparse.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>P</term>
+                <listitem>
+                    <para>
+                        Массив с типом данных <varname>A</varname> и <varname>B</varname>, и
+                        размером <literal>(a1*b1, a2*b2, ..)</literal>. Если <varname>A</varname> или
+                        <varname>B</varname> разрежённый массив, то <varname>P</varname> будет разрежённым.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>Описание</title>
         <para>
             <literal>kron(A,B)</literal> или <literal>A.*.B</literal> возвращает результат
             Кронекеровского тензорного произведения двух матриц или гиперматрицам <literal>A</literal> и
             <literal>B</literal>. Матрица результата имеет следующую блочную форму:
+            <latex style="display" alt="
+          [ A(1,1).B  ..  A(1,n).B ] \n
+A .✶. B = |   ⋮        ⋮     ⋮      | \n
+          [ A(m,1).B  ..  A(m,n).B ]">
+                A \; .*.\; B = \begin{pmatrix}
+                    A_{1,1}\cdot B &amp; \cdots &amp; A_{1,n}\cdot B  \\
+                          \vdots   &amp;        &amp;        \vdots   \\
+                    A_{m,1}\cdot B &amp; \cdots &amp; A_{m,n}\cdot B
+                    \end{pmatrix}
+            </latex>
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata fileref="../../mml/kron_equation_1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
         <para>
             Если матрица <literal>A</literal> имеет размер <literal>m x n</literal>, а матрица
-            <literal>B</literal> имеет размер <literal>p x q</literal>, то результат
-            <literal>A.*.B</literal> является матрицей размером <literal>(m*p) x (n*q)</literal>.
-        </para>
-        <para>
-            <literal>A</literal> и <literal>B</literal> могут быть разрежёнными матрицами.
+            <literal>B</literal> имеет размер <literal>p x q x r</literal>, то результат
+            <literal>A .*. B</literal> является матрицей размером <literal>(m*p) x (n*q) x (1xr)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-A = [1,2;3,4];
-kron(A,A)
-A.*.A
-sparse(A).*.sparse(A)
-A(1,1) = %i;
-kron(A,A)
+A = [1 3 ; 2 4]
+B = [1 10 100]
+kron(A, B)
+A .*. B
+B .*. A
+    ]]></programlisting>
+    <screen><![CDATA[
+--> A = [1 3 ; 2 4]
+ A  =
+   1.   3.
+   2.   4.
 
-// with hypermatrices
-// ------------------
+--> B = [1 10 100]
+ B  =
+   1.   10.   100.
+
+--> kron(A, B)
+ ans  =
+   1.   10.   100.   3.   30.   300.
+   2.   20.   200.   4.   40.   400.
+
+--> A .*. B
+ ans  =
+   1.   10.   100.   3.   30.   300.
+   2.   20.   200.   4.   40.   400.
+
+--> B .*. A
+ ans  =
+   1.   3.   10.   30.   100.   300.
+   2.   4.   20.   40.   200.   400.
+]]></screen>
+        <para>С разрежёнными матрицами:</para>
+        <programlisting role="example"><![CDATA[
+P = [-1 0 1 10] .*. sparse([0 1 2])
+full(P)
+    ]]></programlisting>
+    <screen><![CDATA[
+--> P = [-1 0 1 10] .*. sparse([0 1 2])
+ P  =
+(  1,  12) sparse matrix
+(  1,  2)    -1.
+(  1,  3)    -2.
+(  1,  8)     1.
+(  1,  9)     2.
+(  1,  11)    10.
+(  1,  12)    20.
+
+--> full(P)
+ ans  =
+   0.  -1.  -2.   0.   0.   0.   0.   1.   2.   0.   10.   20.
+]]></screen>
+        <para>С комплексными числами:</para>
+        <programlisting role="example"><![CDATA[
+A = [-1 1 ; -%i %i]
+A .*. A
+    ]]></programlisting>
+    <screen><![CDATA[
+--> A = [-1 1 ; -%i %i]
+ A  =
+  -1.     1.
+  -i      i
+
+--> A .*. A
+ ans  =
+   1.    -1.    -1.     1.
+   i     -i     -i      i
+   i     -i     -i      i
+  -1.     1.     1.    -1.
+]]></screen>
+        <para>
+            С гиперматрицами:
+        </para>
+        <programlisting role="example"><![CDATA[
 b = matrix(1:24, [4 3 2]);
 
-// row .*. hypermat
-clc
+// строка .*. гиперматрица
 a = 1:2, b
 a.*.b
 
-// hypermat .*. row
-clc
+// гиперматрица .*. строка
 b,a
 b .*. a
 
-// column .*. hypermat
-clc
+// столбец .*. гиперматрица
 a = [1;2], b
 a.*.b
 
-// matrix .*. hypermat
-clc
+// матрица .*. гиперматрица
 a = [-1 -2; 2 1], b
 a.*.b
 
-// hypermat .*. hypermat
-clc
+// гиперматрица .*. гиперматрица
 a = matrix([-1,-2, 1 2], [1 2 2]), b
 a.*.b
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="krondivide">kron .\. ./.</link>
+            </member>
+            <member>
+                <link linkend="star">star</link>
+            </member>
+            <member>
+                <link linkend="prod">prod</link>
+            </member>
+            <member>
+                <link linkend="cumprod">cumprod</link>
+            </member>
+            <member>
+                <link linkend="repmat">repmat</link>
+            </member>
+        </simplelist>
     </refsection>
     <refsection>
         <title>История</title>
@@ -95,7 +205,7 @@ a.*.b
             <revision>
                 <revnumber>5.5.1</revnumber>
                 <revdescription>
-                    <para>Распространение с целью гиперматрицам</para>
+                    <para>Расширение до гиперматриц</para>
                 </revdescription>
             </revision>
         </revhistory>

@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
@@ -7,6 +21,17 @@
         <refname>slash</refname>
         <refpurpose>(/) 右除算およびフィードバック</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            X = A / B        // while A = X * B
+            X = A ./ B       // while A = X .* B
+            X = A ./. B      // while A = X .*. B
+            S = G /. K
+            // on-row comment
+            /* block of multilines comments */
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>説明</title>
         <para>
@@ -58,18 +83,49 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-a=[3.,-24.,30.];
-B=[
+a = [3.,-24.,30.];
+B = [
    9.   -36.    30.
   -36.   192.  -180.
    30.  -180.   180.
 ];
-x=a/B
-x*B-a // ゼロに近い
+x = a / B
+x*B-a       // ゼロに近い
 
-a=4 / 2; // 2となります
-a=2 ./ [2,4]; //     1.    0.5
+a = 4 / 2;        // 2となります
+a = 2 ./ [2,4];   //  [1. 0.5]
+     ]]></programlisting>
+        <para>
+            Kronecker right division :
+        </para>
+        <programlisting role="example"><![CDATA[
+A = [1 100 ; 10 1000], B = [1 2 4],
+P = A .*. B
+P ./. B
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = [1 100 ; 10 1000], B = [1 2 4],
+ A  =
+   1.    100.
+   10.   1000.
+
+ B  =
+   1.   2.   4.
+
+--> P = A .*. B
+ P  =
+   1.    2.    4.    100.    200.    400.
+   10.   20.   40.   1000.   2000.   4000.
+
+--> P ./. B
+ ans  =
+   1.   100.
+   10.  1000.
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
 // コメントは有用です. コードを理解しやすくします.
+a = 1;  // Comment after some heading instructions
 /* Even long, that is to say on many lines,
 comments are useful */
  ]]></programlisting>
@@ -84,7 +140,13 @@ comments are useful */
                 <link linkend="backslash">backslash</link>
             </member>
             <member>
+                <link linkend="krondivide">kron ./.</link>
+            </member>
+            <member>
                 <link linkend="comments">comments</link>
+            </member>
+            <member>
+                <link linkend="overloading">overloading</link>
             </member>
         </simplelist>
     </refsection>

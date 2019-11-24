@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="symbols">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="symbols">
     <refnamediv>
         <refname>symbols</refname>
         <refpurpose>scilab 演算子の名前 </refpurpose>
@@ -46,7 +49,15 @@
                 </td>
             </tr>
             <tr>
-                <td>/, ./, /., ./.</td>
+                <td>
+                    <literal>.\., ./.</literal>
+                </td>
+                <td>
+                    <link linkend="krondivide">krondivide</link>
+                </td>
+            </tr>
+            <tr>
+                <td>/, ./, /.</td>
                 <td>
                     <link linkend="slash">slash</link>
                 </td>
@@ -60,7 +71,7 @@
                 </td>
             </tr>
             <tr>
-                <td>\, .\, \., .\.</td>
+                <td>\, .\, \.</td>
                 <td>
                     <link linkend="backslash">backslash</link>
                 </td>
@@ -172,6 +183,12 @@
         <simplelist type="inline">
             <member>
                 <link linkend="overloading">overloading</link>
+            </member>
+            <member>
+                <link linkend="names">names</link>
+            </member>
+            <member>
+                <link linkend="getscilabkeywords">getscilabkeywords</link>
             </member>
         </simplelist>
     </refsection>

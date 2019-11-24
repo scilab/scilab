@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="symbols" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="symbols" xml:lang="pt">
     <refnamediv>
         <refname>symbols</refname>
         <refpurpose>nomes dos operadores Scilab</refpurpose>
@@ -45,7 +48,15 @@
                 </td>
             </tr>
             <tr>
-                <td> /, ./, /., ./.</td>
+                <td>
+                    <literal>.\., ./.</literal>
+                </td>
+                <td>
+                    <link linkend="krondivide">krondivide</link>
+                </td>
+            </tr>
+            <tr>
+                <td> /, ./, /.</td>
                 <td>
                     <link linkend="slash">slash</link> (barra)
                 </td>
@@ -59,7 +70,7 @@
                 </td>
             </tr>
             <tr>
-                <td> \, .\, \., .\. </td>
+                <td> \, .\, \.</td>
                 <td>
                     <link linkend="backslash">backslash</link> (barra invertida)
                 </td>
@@ -173,6 +184,12 @@
         <simplelist type="inline">
             <member>
                 <link linkend="overloading">overloading</link>
+            </member>
+            <member>
+                <link linkend="names">names</link>
+            </member>
+            <member>
+                <link linkend="getscilabkeywords">getscilabkeywords</link>
             </member>
         </simplelist>
     </refsection>

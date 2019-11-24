@@ -178,6 +178,7 @@ Feature changes and additions
   - Improved layout: detailled indices for 2D arrays, simplified symbols, etc.
   - The content of implicitlist objects, and information for Scilab functions and libraries of functions are now displayed.
 * `nchoosek` is introduced, to compute the binomial coefficients.
+* The left .\. and right ./. Kronecker divisions are now implemented, for arrays of decimal or complex numbers.
 
 Help pages:
 -----------
@@ -271,6 +272,7 @@ Bug Fixes
 * [#9529](https://bugzilla.scilab.org/9529): `assert_checkequal(list(1,,3), list(1,,3))` yielded an error.
 * [#9673](https://bugzilla.scilab.org/9673): Priority of colon `:` operator was too low
 * [#10078](https://bugzilla.scilab.org/10078): `isinf` was not reliable for polynomials.
+* [#10092](https://bugzilla.scilab.org/10092): The left and right Kronecker divisions were not actually implemented nor documented.
 * [#10353](https://bugzilla.scilab.org/10353): Documentation: The referential for the uicontrol.position property was not provided. Moreover, `gca().axes_bounds` refered to `fig.figure_size` instead of `fig.axes_size`.
 * [#10553](https://bugzilla.scilab.org/10553): After calling `colorbar`, retrieving the handle of the new color bar was not trivial.
 * [#10723](https://bugzilla.scilab.org/10723): `subplot`'s action was unclearly described in its help page. Page improved.

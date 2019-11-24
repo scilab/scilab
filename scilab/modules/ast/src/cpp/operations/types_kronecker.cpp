@@ -100,113 +100,14 @@ int KroneckerMultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pD
 // DOUBLE ./. DOUBLE
 types::InternalType *GenericKronrdivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand)
 {
-    types::Double *pResult = NULL;
-    types::GenericType::ScilabType TypeL = _pLeftOperand->getType();
-    types::GenericType::ScilabType TypeR = _pRightOperand->getType();
-
-    if (TypeL == types::GenericType::ScilabDouble && TypeR == types::GenericType::ScilabDouble)
-    {
-        types::Double *pL = _pLeftOperand->getAs<types::Double>();
-        types::Double *pR = _pRightOperand->getAs<types::Double>();
-
-        int iErr = KroneckerRDivideDoubleByDouble(pL, pR, &pResult);
-        if (iErr == 1)
-        {
-            throw ast::InternalError(_W("Division by zero...\n"));
-        }
-        else if (iErr == 2)
-        {
-            throw ast::InternalError(_W("Bad value in the left or right operand.\n"));
-        }
-        else if (iErr == 3)
-        {
-            throw ast::InternalError(_W("Bad size for left or right operand.\n"));
-        }
-
-        return pResult;
-    }
-
     // Default case : Return NULL will Call Overloading.
     return NULL;
 }
 
-int KroneckerRDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut)
-{
-    int iErr = 0;
-    types::Double* clone = _pDouble2->clone()->getAs<types::Double>();
-
-    if (_pDouble2->isComplex())
-    {
-        iErr = conv_img_input(clone->getReal(), clone->getImg(), clone->getSize());
-    }
-    else
-    {
-        iErr = conv_real_input(clone->get(), clone->getSize());
-    }
-
-    if (iErr)
-    {
-        delete clone;
-        return iErr;
-    }
-
-    iErr = KroneckerMultiplyDoubleByDouble(_pDouble1, clone, _pDoubleOut);
-    delete clone;
-
-    return iErr;
-}
 
 // DOUBLE .\. DOUBLE
 types::InternalType *GenericKronldivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand)
 {
-    types::Double *pResult = NULL;
-    types::GenericType::ScilabType TypeL = _pLeftOperand->getType();
-    types::GenericType::ScilabType TypeR = _pRightOperand->getType();
-
-    if (TypeL == types::GenericType::ScilabDouble && TypeR == types::GenericType::ScilabDouble)
-    {
-        types::Double *pL = _pLeftOperand->getAs<types::Double>();
-        types::Double *pR = _pRightOperand->getAs<types::Double>();
-
-        int iErr = KroneckerLDivideDoubleByDouble(pL, pR, &pResult);
-        if (iErr == 1)
-        {
-            throw ast::InternalError(_W("Division by zero...\n"));
-        }
-        else if (iErr == 2)
-        {
-            throw ast::InternalError(_W("Bad value in the left operand.\n"));
-        }
-
-        return pResult;
-    }
-
     // Default case : Return NULL will Call Overloading.
     return NULL;
 }
-
-int KroneckerLDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut)
-{
-    int iErr = 0;
-    types::Double* clone = _pDouble1->clone()->getAs<types::Double>();
-    if (_pDouble1->isComplex())
-    {
-        iErr = conv_img_input(clone->getReal(), clone->getImg(), clone->getSize());
-    }
-    else
-    {
-        iErr = conv_real_input(clone->get(), clone->getSize());
-    }
-
-    if (iErr)
-    {
-        delete clone;
-        return iErr;
-    }
-
-    iErr = KroneckerMultiplyDoubleByDouble(clone, _pDouble2, _pDoubleOut);
-    delete clone;
-
-    return iErr;
-}
-

@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
@@ -7,6 +21,17 @@
         <refname>слэш (косая черта)</refname>
         <refpurpose>(/) правое деление и обратная связь</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            X = A / B        // при этом A = X * B
+            X = A ./ B       // при этом A = X .* B
+            X = A ./. B      // при этом A = X .*. B
+            S = G /. K
+            // комментарий в строке
+            /* блок многострочных комментариев */
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Описание</title>
         <para>
@@ -61,9 +86,9 @@
             <literal>//</literal>, игнорируются интерпретатором.
         </para>
         <para>
-            It is the same with <literal>/*</literal> which start to comment a  block of code and with
-            <literal>*/</literal> which end to comment this block.
-        </para>
+            Это то же самое, что <literal>/*</literal>, с которого начинается комментирование блока кода, и
+            <literal>*/</literal>, которым заканчивается комментирование этого блока.
+         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
@@ -74,15 +99,45 @@ B = [
   -36.   192.  -180.
    30.  -180.   180.
 ];
-x = a/B
+x = a / B
 x*B-a // близко к нулю
 
-a = 4 / 2; // Должно быть 2
-a = 2 ./ [2,4]; //     1.    0.5
+a = 4 / 2;        // Должно быть 2
+a = 2 ./ [2,4];   //  [1. 0.5]
+     ]]></programlisting>
+        <para>
+            Kronecker right division :
+        </para>
+        <programlisting role="example"><![CDATA[
+A = [1 100 ; 10 1000], B = [1 2 4],
+P = A .*. B
+P ./. B
+ ]]></programlisting>
+    <screen><![CDATA[
+--> A = [1 100 ; 10 1000], B = [1 2 4],
+ A  =
+   1.    100.
+   10.   1000.
 
+ B  =
+   1.   2.   4.
+
+--> P = A .*. B
+ P  =
+   1.    2.    4.    100.    200.    400.
+   10.   20.   40.   1000.   2000.   4000.
+
+--> P ./. B
+ ans  =
+   1.   100.
+   10.  1000.
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
 // Комментарии - это хорошо. Они помогают понять код
-/* Even long, that is to say on many lines,
-comments are useful */
+a = 1;  // Комментарий после некоторых инструкций в начале строки
+/* Даже длинные, то есть на множестве строк,
+комментарии полезны */
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -92,10 +147,16 @@ comments are useful */
                 <link linkend="inv">inv</link>
             </member>
             <member>
-                <link linkend="backslash">обратный слэш</link>
+                <link linkend="backslash">backslash</link>
+            </member>
+            <member>
+                <link linkend="krondivide">kron ./.</link>
             </member>
             <member>
                 <link linkend="comments">комментарии</link>
+            </member>
+            <member>
+                <link linkend="overloading">перегрузка</link>
             </member>
         </simplelist>
     </refsection>
@@ -111,7 +172,7 @@ comments are useful */
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revremark>
-                  1./B  means now 1 ./ B, no longer 1. / B
+                  1./B  теперь означает 1 ./ B, больше не интерпретируется как 1. / B
                 </revremark>
             </revision>
         </revhistory>

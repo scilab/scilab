@@ -1,126 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
           xml:lang="ja" xml:id="backslash">
-    
     <refnamediv>
-        
         <refname>backslash</refname>
-        
         <refpurpose>(\) 左行列除算.</refpurpose>
-        
     </refnamediv>
-    
     <refsynopsisdiv>
-        
         <title>呼び出し手順</title>
-        
-        <synopsis>X=A\B</synopsis>
-        
+        <synopsis>X = A \ B</synopsis>
     </refsynopsisdiv>
-    
     <refsection>
-        
         <title>説明</title>
-        
         <para>
-            
             バックスラッシュは左行列除算を定義します.
-            
             <literal>X=A\B</literal> は <literal>A*X=B</literal>の解です.
-            
         </para>
-        
         <para>
-            
             <literal>A</literal> が正方で非特異の場合,
-            
             <literal>X=A\B</literal> は <literal>X=inv(A)*B</literal>
-            
             と等価です.しかし,計算はより正確で浮動小数点演算の負荷は小さくなります.
-            
             すなわち,線形システムの方程式<code>A*X=B</code>の解を計算する際には,
-            
             バックスラッシュ演算子を使用するべきであり,<function>inv</function>関数の
-            
             使用は避けるべきです.
-            
         </para>
-        
         <para>
-            
             <literal>A</literal>が正方の場合, 解<literal>X</literal>は
-            
             LU分解または線形最小二乗ソルバのどちらかにより計算できます.
-            
             <literal>A</literal>の条件数が<code>1/(10*%eps)</code>よりも小さい場合
-            
             (つまり,<literal>A</literal>の条件が良い場合),ピボット選択付きLU分解が使用されます.
-            
             そうでない場合(<literal>A</literal>の条件が悪い場合),
-            
             <literal>X</literal> は<literal>A</literal>の完全直交分解を用いて
-            
             <literal>||A*X-B||</literal>を最小化する最小ノルム解となります
-            
             (すなわち,<literal>X</literal>は線形最小二乗問題の解です).
-            
         </para>
-        
         <para>
-            
             <literal>A</literal> が正方でない場合, <literal>X</literal> は最小二乗解となります.
-            
             すなわち, <code>norm(A*X-B)</code> は,最小値 (ユークリッドノルム)となります.
-            
             <literal>A</literal> が列フルランクの場合,最小二乗解, <literal>X=A\B</literal>, は
-            
             唯一の解 (<literal>norm(A*X-B)</literal>を最小化する唯一の
-            
             <literal>X</literal>が存在)となります.
-            
             <literal>A</literal> が列フルランクでない場合, 最小二乗解は唯一ではなくなり,
-            
             <literal>X=A\B</literal>は一般に最小ノルム解ではなくなります
-            
             (最小ノルム解は <literal>X=pinv(A)*B</literal>です).
-            
         </para>
-        
         <para>
-            
             <literal>A.\B</literal>  は<literal>(i,j)</literal> エントリが
-            
             <literal>A(i,j)\B(i,j)</literal>となる行列となります.
-            
             <literal>A.\B</literal> は
-            
             <literal>A*ones(B).\B</literal> (または <literal>A.\(B*ones(A))</literal>
-            
             と等価になります.
-            
         </para>
-        
         <para>
-            
             <literal>A\.B</literal>  は定義されていない演算子です.
-            
             この演算子は, <literal>*</literal> または <literal>/</literal> のように
-            
             新しい演算子を定義する際に使用できます
-            
             (<link linkend="overloading">オーバーロード</link>参照).
-            
         </para>
-        
     </refsection>
-    
     <refsection>
-        
         <title>例</title>
-        
         <programlisting role="example"><![CDATA[
 A=[
    9.   -36.    30.
@@ -159,9 +99,7 @@ A*x-b, A*y-b
 
 // 複数の線形ソルバのベンチマーク
 
-[A,descr,ref,mtype] = ReadHBSparse(SCI+..
-   "/modules/umfpack/demos/bcsstk24.rsa");
-
+[A,descr,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/demos/bcsstk24.rsa");
 b = zeros(size(A,1),1);
 
 tic();
@@ -176,80 +114,40 @@ tic();
 res = A\b;
 mprintf('\ntime with backslash: %.3f\n',toc());
  ]]></programlisting>
-        
     </refsection>
-    
     <refsection role="see also">
-        
         <title>参照</title>
-        
         <simplelist type="inline">
-            
             <member>
-                
                 <link linkend="slash">slash</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="inv">inv</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="pinv">pinv</link>
-                
             </member>
-            
             <member>
-                
-                <link linkend="percent">percent</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="ieee">ieee</link>
-                
-            </member>
-            
-            <member>
-                
                 <link linkend="linsolve">linsolve</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="umfpack">umfpack</link>
-                
             </member>
-            
+            <member>
+                <link linkend="krondivide">kron .\.</link>
+            </member>
+            <member>
+                <link linkend="overloading">overloading</link>
+            </member>
         </simplelist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>履歴</title>
-        
         <revhistory>
-            
             <revision>
-                
                 <revnumber>5.5.0</revnumber>
-                
                 <revremark>バックスラッシュの条件数の閾値が増加しました.</revremark>
-                
             </revision>
-            
         </revhistory>
-        
     </refsection>
-    
 </refentry>
-
-
-
