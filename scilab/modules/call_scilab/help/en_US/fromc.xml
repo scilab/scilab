@@ -25,14 +25,15 @@
     <refsection>
         <title>Description</title>
         <para>
-            Returns <literal>%t</literal>Checks if current Scilab is called from an external C program or <literal>%f</literal> if not.
+            Returns <literal>%t</literal> if the current Scilab session is opened from an external
+            C program, or <literal>%f</literal> if not.
         </para>
     </refsection>
 
     <refsection>
         <title>Example</title>
         <programlisting role="example"><![CDATA[
-fromc();
+fromc()
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

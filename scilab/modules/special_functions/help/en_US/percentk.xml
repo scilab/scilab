@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="percentk">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="percentk">
     <refnamediv>
         <refname>%k</refname>
-        <refpurpose>Jacobi's complete elliptic integral</refpurpose>
+        <refpurpose>Jacobi's complete elliptic integral of the first kind (vectorized)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[K]=%k(m)</synopsis>
+        <synopsis>K = %k(m)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -15,14 +18,14 @@
                 <term>m</term>
                 <listitem>
                     <para>
-                        parameter of the elliptic integral <literal>0&lt;m&lt;1</literal> (<literal>m</literal> can be a vector)
+                        vector of real numbers in [-∞,1): parameter of the elliptic integral.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>K</term>
                 <listitem>
-                    <para>value of the elliptic integral from 0 to 1 on the real axis</para>
+                    <para>vector of respective values of the integral.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -30,23 +33,36 @@
     <refsection>
         <title>Description</title>
         <para>
-            Calculates Jacobi's complete elliptic integral
-            of the first kind :
+            Computes and provides values of the Jacobi's complete elliptic integral of the
+            first kind, defined as
+            <latex style="display" alt="K(m) = integral_0^1 {dt / sqrt[(1 - t^2)(1 - m.t^2)]}">K(m)=\int_0^1 \frac{dt}{\sqrt{(1-t^2)(1-m\,t^2)}}</latex>
         </para>
-    </refsection>
-    <refsection>
-        <title>References</title>
         <para>
-            Abramowitz and Stegun page 598
+            <emphasis role="bold">Reference</emphasis> : Abramowitz and Stegun page 598
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-m=0.4;
-delip(1,sqrt(m))
-%k(m)
+m = 0.4;
+[%k(m) delip(1, sqrt(m))]
+%k([-%inf -10 -1 0 0.1 0.3 0.9])
+%k(0)==%pi/2
  ]]></programlisting>
+    <screen><![CDATA[
+--> m = 0.4;
+--> [%k(m) delip(1, sqrt(m))]
+ ans  =
+   1.7775194   1.7775194
+
+--> %k([-%inf -10 -1 0 0.1 0.3 0.9])
+ ans  =
+   0.   0.7908719   1.3110288   1.5707963   1.6124413   1.7138894   2.5780921
+
+--> %k(0)==%pi/2
+ ans  =
+  T
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

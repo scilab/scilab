@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="warning">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="warning">
     <refnamediv>
         <refname>warning</refname>
         <refpurpose>警告メッセージ</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>warning('string')
+        <synopsis>
+            warning('string')
+            warning(string_matrix)
             warning('off')
             warning('on')
+            warning('stop')
             mode = warning('query')
         </synopsis>
     </refsynopsisdiv>
@@ -18,19 +24,33 @@
             警告メッセージとして文字列<literal>'string'</literal>を表示します.
         </para>
         <para>
+            <literal>warning(string_matrix)</literal> prints each element of the matrix
+            <literal>string_matrix</literal> in a warning message.
+        </para>
+        <para>
             <literal>'on'</literal> は警告メッセージを有効にします.
         </para>
         <para>
             <literal>'off'</literal> は警告メッセージを無効にします.
         </para>
         <para>
+            <literal>'stop'</literal> enables warning messages and stops execution when a
+            warning is encountered.
+        </para>
+        <para>
             <literal>'query'</literal> は, <literal>'on'</literal> または
             <literal>'off'</literal> の状態を取得します.
+        </para>
+        <para>
+            <literal>warning("on")</literal>, <literal>warning("off")</literal> and
+            <literal>warning("stop")</literal> also affect hard-coded functions issuing warnings.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
+warning_prev = warning("query"); // remembering the initial warning status
+
 warning('on')
 warning('this is a warning')
 warning('off')
@@ -39,6 +59,17 @@ warning('query')
 warning('on')
 // Example with a localized message
 warning(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"myFunction",2));
+
+// Setting warning stop
+warning("stop")
+
+try
+    warning("this is a warning");
+catch
+    lasterror() // Warning message is considered an error
+end
+
+warning(warning_prev); // restoring the initial warning status
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -57,5 +88,16 @@ warning(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"
                 <link linkend="messagebox">messagebox</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revremark>
+                    <literal>"stop"</literal> option added.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

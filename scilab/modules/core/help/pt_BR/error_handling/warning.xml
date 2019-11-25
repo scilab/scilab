@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="warning" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="warning" xml:lang="pt">
     <refnamediv>
         <refname>warning</refname>
         <refpurpose>mensagens de aviso</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>warning('string')
+        <synopsis>
+            warning('string')
+            warning(string_matrix)
             warning('off')
             warning('on')
+            warning('stop')
             mode = warning('query')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Descrição</title>
         <para>
-            Imprime o string <literal>'string'</literal> em uma mensagem de
-            aviso
+            Imprime o string <literal>'string'</literal> em uma mensagem de aviso
+        </para>
+        <para>
+            <literal>warning(string_matrix)</literal> prints each element of the matrix
+            <literal>string_matrix</literal> in a warning message.
         </para>
         <para>
             <literal>'on'</literal> habilita mensagens de aviso.
+            Warning messages do not interrupt script execution.
         </para>
         <para>
             <literal>'off'</literal> desabilita mensagens de aviso.
@@ -27,10 +37,16 @@
         <para>
             <literal>'query'</literal> retorna o estado <literal>'on'</literal> ou <literal>'off'</literal>.
         </para>
+        <para>
+            <literal>warning("on")</literal>, <literal>warning("off")</literal> and
+            <literal>warning("stop")</literal> also affect hard-coded functions issuing warnings.
+        </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
+warning_prev = warning("query"); // remembering the initial warning status
+
 warning('on')
 warning('este é um aviso')
 warning('off')
@@ -39,6 +55,17 @@ warning('query')
 warning('on')
 // Example with a localized message
 warning(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"myFunction",2));
+
+// Setting warning stop
+warning("stop")
+
+try
+    warning("this is a warning");
+catch
+    lasterror() // Warning message is considered an error
+end
+
+warning(warning_prev); // restoring the initial warning status
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -57,5 +84,16 @@ warning(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"
                 <link linkend="messagebox">messagebox</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revremark>
+                    <literal>"stop"</literal> option added.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

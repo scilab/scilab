@@ -2,46 +2,50 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-          xml:lang="ja" xml:id="percentk">
+          xml:lang="ru" xml:id="percentk">
     <refnamediv>
         <refname>%k</refname>
-        <refpurpose>ヤコビの完全楕円積分</refpurpose>
+        <refpurpose>
+            Полный эллиптический интеграл Якоби первого рода (векторизованный)
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>呼び出し手順</title>
+        <title>Синтаксис</title>
         <synopsis>K = %k(m)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>m</term>
                 <listitem>
                     <para>
-                        vector of real numbers in (-∞,1): 楕円積分パラメーター
+                        вектор вещественных чисел <literal>[-∞,1)</literal>: параметр
+                        эллиптического интеграла.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>K</term>
                 <listitem>
-                    <para>vector of respective values of the integral.</para>
+                    <para>вектор соответствующих значений интеграла.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>説明</title>
+        <title>Описание</title>
         <para>
-            ヤコビの第一種完全楕円積分を計算します :
+            Вычисляет и выдаёт значения полного эллиптического интеграла Якоби первого рода,
+            определённого как
             <latex style="display" alt="K(m) = integral_0^1 {dt / sqrt[(1 - t^2)(1 - m.t^2)]}">K(m)=\int_0^1 \frac{dt}{\sqrt{(1-t^2)(1-m\,t^2)}}</latex>
         </para>
         <para>
-            <emphasis role="bold">参考文献</emphasis> : Abramowitz and Stegun page 598
+            <emphasis role="bold">Литература</emphasis> : Abramowitz and Stegun page 598
         </para>
     </refsection>
     <refsection>
-        <title>例</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 m = 0.4;
 [%k(m) delip(1, sqrt(m))]
@@ -64,7 +68,7 @@ m = 0.4;
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>参照</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="delip">delip</link>

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="warning">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="warning">
     <refnamediv>
         <refname>warning</refname>
-        <refpurpose>Messages d'avertissement à l'attention des utilisateurs</refpurpose>
+        <refpurpose>Affichage des messages d'avertissement à l'attention des utilisateurs</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -16,27 +19,34 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>warning('string')</literal> affiche le message
+            <literal>warning('string')</literal> affiche dans la console le message
             <literal>'string'</literal> comme avertissement à l'utilisateur.
         </para>
         <para>
-            <literal>warning(string_matrix)</literal> affiche chaque élément de <literal>string_matrix</literal>
-            comme avertissement à l'utilisateur.
+            <literal>warning(string_matrix)</literal> affiche chaque élément de
+            <literal>string_matrix</literal>.
         </para>
         <para>
-            <literal>'on'</literal> active les messages d'avertissement, l'exécution des scripts n'est pas interrompue après affichage d'un message d'avertissement.
+            <literal>'on'</literal> active les messages d'avertissement. L'exécution des scripts
+            n'est pas interrompue après affichage d'un message d'avertissement.
         </para>
         <para>
-            <literal>'off'</literal> désactive les messages d'avertissement, les messages d'avertissements sont ignorés (ni affichés ni bloquant l'exécution des scripts).
+            <literal>'off'</literal> désactive les messages d'avertissement. Les messages
+            d'avertissement sont ignorés (ni affichés, ni bloquant l'exécution des scripts).
         </para>
         <para>
-            <literal>'stop'</literal> active les messages d'avertissement et interrompt l'exécution d'un script dès qu'un message d'avertissement est rencontré.
+            <literal>'stop'</literal> active les messages d'avertissement. Si un avertissement
+            est rencontré, le script en cours l'ayant généré sera interrompu.
         </para>
         <para>
-            <literal>'query'</literal> récupère l'état actuel des messages d'avertissement <literal>'on'</literal>, <literal>'off'</literal> ou <literal>'stop'</literal>.
+            <literal>'query'</literal> indique le réglage en cours  pour les messages d'avertissement :
+            <literal>'on'</literal>, <literal>'off'</literal>, ou <literal>'stop'</literal>.
         </para>
         <para>
-            <literal>warning("on")</literal>, <literal>warning("off")</literal> et <literal>warning("stop")</literal> affectent aussi l'affichage des messages d'avertissement pour les fonctions programmées en dur en plus des messages d'avertissement pour les scripts.
+            <literal>warning("on")</literal>, <literal>warning("off")</literal> et
+           <literal>warning("stop")</literal> affectent l'affichage des messages d'avertissement
+           également pour les fonctions programmées en dur, en plus des messages d'avertissement
+           pour les scripts et fonctions en langage Scilab.
         </para>
     </refsection>
     <refsection>
@@ -81,6 +91,17 @@ warning(w_flag); // Repositionnement de l'état des messages d'avertissement
                 <link linkend="messagebox">messagebox</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revremark>
+                    Option <literal>"stop"</literal> ajoutée
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
 

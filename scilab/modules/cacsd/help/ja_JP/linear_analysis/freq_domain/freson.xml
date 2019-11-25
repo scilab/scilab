@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="freson">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="freson">
     <refnamediv>
         <refname>freson</refname>
         <refpurpose>ピーク周波数</refpurpose>
@@ -50,17 +53,43 @@
     </refsection>
     <refsection>
         <title>例</title>
+        <para>Continuous time system</para>
         <programlisting role="example"><![CDATA[
-h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2))
-fr=freson(h)
-bode(h)
-g=20*log(abs(repfreq(h,fr)))/log(10)
- ]]></programlisting>
-        <scilab:image>
-            h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2))
+h = syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2));
+fr = freson(h)
+clf
+bode(h);
+fig=gcf();sca(fig.children(2));
+[phi,db] = phasemag(repfreq(h,fr));
+plot(fr,db(:),'+r')
+]]></programlisting>
+        <scilab:image localized="true">
+            h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2));
             fr=freson(h)
-            bode(h)
-            g=20*log(abs(repfreq(h,fr)))/log(10)
+            clf;bode(h);
+            fig=gcf();sca(fig.children(2));
+            [phi,db]=phasemag(repfreq(h,fr));
+            plot(fr,db(:),'+r');
+        </scilab:image>
+        <para>Discrete time system</para>
+        <programlisting role="example"><![CDATA[
+h = syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2));
+hd = dscr(h, 0.05);
+fr = freson(hd)
+clf
+bode(hd);
+fig=gcf();sca(fig.children(2));
+[phi,db] = phasemag(repfreq(hd,fr));
+plot(fr,db(:),'+r');
+ ]]></programlisting>
+        <scilab:image localized="true">
+            h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2));
+            hd=dscr(h,0.05);
+            fr=freson(hd);
+            clf;bode(hd);
+            fig=gcf();sca(fig.children(2));
+            [phi,db]=phasemag(repfreq(hd,fr));
+            plot(fr,db(:),'+r');
         </scilab:image>
     </refsection>
     <refsection role="see also">
@@ -76,5 +105,18 @@ g=20*log(abs(repfreq(h,fr)))/log(10)
                 <link linkend="h_norm">h_norm</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <para>handling discrete systems and zpk
+                        representation, peak detection improved.
+                    </para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

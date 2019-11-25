@@ -54,11 +54,12 @@
         <title>Examples</title>
         <para>Continuous time system</para>
         <programlisting role="example"><![CDATA[
-h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2));
-fr=freson(h)
-clf;bode(h);
+h = syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2));
+fr = freson(h)
+clf
+bode(h);
 fig=gcf();sca(fig.children(2));
-[phi,db]=phasemag(repfreq(h,fr));
+[phi,db] = phasemag(repfreq(h,fr));
 plot(fr,db(:),'+r')
 ]]></programlisting>
         <scilab:image localized="true">
@@ -71,13 +72,14 @@ plot(fr,db(:),'+r')
         </scilab:image>
         <para>Discrete time system</para>
         <programlisting role="example"><![CDATA[
-hd=dscr(h,0.01)
-fr=freson(hd)
-clf;bode(hd);
+h = syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2));
+hd = dscr(h, 0.05);
+fr = freson(hd)
+clf
+bode(hd);
 fig=gcf();sca(fig.children(2));
-[phi,db]=phasemag(repfreq(hd,fr));
+[phi,db] = phasemag(repfreq(hd,fr));
 plot(fr,db(:),'+r');
-
  ]]></programlisting>
         <scilab:image localized="true">
             h=syslin('c',-1+%s,(3+2*%s+%s^2)*(50+0.1*%s+%s^2));

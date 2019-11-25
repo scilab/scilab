@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="warning">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="warning">
     <refnamediv>
         <refname>warning</refname>
         <refpurpose>warning messages</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>warning('string')
+        <synopsis>
+            warning('string')
             warning(string_matrix)
             warning('off')
             warning('on')
@@ -21,29 +25,32 @@
             <literal>'string'</literal> in a warning message.
         </para>
         <para>
-            <literal>warning(string_matrix)</literal> prints each element of the matrix <literal>string_matrix</literal>
-            in a warning message.
+            <literal>warning(string_matrix)</literal> prints each element of the matrix
+            <literal>string_matrix</literal> in a warning message.
         </para>
         <para>
-            <literal>'on'</literal> enables warning messages, warning messages do not interrupt script execution.
+            <literal>'on'</literal> enables warning messages.
+           Warning messages do not interrupt script execution.
         </para>
         <para>
             <literal>'off'</literal> disables warning messages, warning messages are ignored (neither displayed nor interrupting script execution).
         </para>
         <para>
-            <literal>'stop'</literal> enables warning messages and stops execution when a warning is encountered.
+            <literal>'stop'</literal> enables warning messages and stops execution when a warning
+            is encountered.
         </para>
         <para>
             <literal>'query'</literal> gets state <literal>'on'</literal>, <literal>'off'</literal> or <literal>'stop'</literal>.
         </para>
         <para>
-            <literal>warning("on")</literal>, <literal>warning("off")</literal> and <literal>warning("stop")</literal> also affect hard-coded functions issuing warnings.
+            <literal>warning("on")</literal>, <literal>warning("off")</literal> and
+            <literal>warning("stop")</literal> also affect hard-coded functions issuing warnings.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-w_flag = warning("query"); // remembering the warning flag
+warning_prev = warning("query"); // remembering the initial warning status
 
 warning('on')
 warning('this is a warning')
@@ -63,7 +70,7 @@ catch
     lasterror() // Warning message is considered an error
 end
 
-warning(w_flag); // resetting the warning flag
+warning(warning_prev); // restoring the initial warning status
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -82,5 +89,16 @@ warning(w_flag); // resetting the warning flag
                 <link linkend="messagebox">messagebox</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revremark>
+                    <literal>"stop"</literal> option added.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
