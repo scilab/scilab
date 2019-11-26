@@ -1795,6 +1795,7 @@ bitget
 bitor
 bitset
 bitxor
+blockdiag
 cat
 cell2mat
 cellstr

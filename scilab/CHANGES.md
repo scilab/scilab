@@ -105,6 +105,8 @@ Feature changes and additions
   - Automatic detection of the input data format implemented.
   - `-toStruct` option added, to return results in a structure instead of in the calling environment.
 * `jremove` is optional and `clear` could be used to release Java objects mapped to Scilab.
+* `blockdiag()` is introduced to improve, replace, and extend `sysdiag()` to strings.
+
 
 Help pages:
 -----------
@@ -203,9 +205,13 @@ Bug Fixes
 * [#16174](http://bugzilla.scilab.org/show_bug.cgi?id=16174): `libraryinfo` yielded 0x0 matrix of strings for libs without macro
 * [#16208](http://bugzilla.scilab.org/show_bug.cgi?id=16208): Using 3D string matrix with old C-api gateways may crash Scilab.
 * [#16209](http://bugzilla.scilab.org/show_bug.cgi?id=16209): grand() causes a freeze after several consecutive calls when using default base generator.
+<<<<<<< HEAD
 * [#16242](http://bugzilla.scilab.org/show_bug.cgi?id=16242): `loadmatfile()` could not read Octave native text data files.
 * [#16263](http://bugzilla.scilab.org/show_bug.cgi?id=16263): Polynomial insertion was broken for complex case.
 * [#16264](http://bugzilla.scilab.org/show_bug.cgi?id=16264): After empty for loop iterator was left uninitialized.
 * [#16271](http://bugzilla.scilab.org/show_bug.cgi?id=16271): `loadmatfile()` was never able to automatically detect the input data format.
 * [#16272](http://bugzilla.scilab.org/show_bug.cgi?id=16272): `spzeros(0,n)` and `spzeros(n,0)` were different from `sparse(0,0)`.
 
+=======
+* [#16257](http://bugzilla.scilab.org/show_bug.cgi?id=16257): `blockdiag()` implemented to replace `sysdiag()`, improved and extended to strings.
+>>>>>>> 4adc766322d... * Bug 16257: blockdiag() introduced

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2013 - A. Khorshidi
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="blockdiag" xml:lang="ru">
+    <refnamediv>
+        <refname>blockdiag</refname>
+        <refpurpose>
+            Создаёт блочную диагональную матрицу из указанных массивов. Соединение диагональной 
+            системы блоков.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>r = blockdiag(a1,a2,...,an)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>ai</term>
+                <listitem>
+                    <para>
+                        Матрицы логических значений, чисел, полиномов, рациональных или строковых
+                        значений любого размера. Принимаются разрежённые матрицы.
+                    </para>
+                    <para>
+                        Подсистемы (т.е. коэффициенты усиления, или линейные системы в 
+                        пространстве состояний или передаточной форме).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        Матрица с <literal>a1, a2, a3</literal>, ... по диагонали. 
+                        <varname>r</varname> является разрежённой, хотя бы одна из входных 
+                        <varname>ai</varname> разрёжённая.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Подав на вход <varname>A</varname>, <varname>B</varname> and <varname>C</varname>,
+            на выходе эти матрицы будут расставлены по диагонали:
+            <latex style="display">\begin{bmatrix} A \ \ 0 \ \ 0 \\ 0 \ \ B \ \ 0 \\ 0 \ \ 0 \ \ C \end{bmatrix}</latex>.
+        </para>
+        <para>
+            Если все входные матрицы квадратные, то выходная матрицы известна как блочная 
+            диагональная матрица <emphasis>block diagonal matrix</emphasis>.
+        </para>
+        <para>
+            Если указаны подсистемы, то <literal>blockdiag(..)</literal> выдаёт блочно-
+            диагональную систему, сделанную из подсистем, располженых на главной диагонали.
+            Это может быть использовано в частности для соединений системы.
+        </para>
+        <note><literal>blockdiag()</literal> может быть перегружена.</note>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <para>
+            С числами:
+        </para>
+        <programlisting role="example"><![CDATA[
+A = [1 0 ; 0 1]
+B = [3 4 5 ; 6 7 8]
+C = 7
+D = blockdiag(A, B, C)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> D = blockdiag(A, B, C)
+ D  =
+   1.   0.   0.   0.   0.   0.
+   0.   1.   0.   0.   0.   0.
+   0.   0.   3.   4.   5.   0.
+   0.   0.   6.   7.   8.   0.
+   0.   0.   0.   0.   0.   7.
+]]></screen>
+        <para>
+            С логическими значениями:
+        </para>
+        <programlisting role="example"><![CDATA[
+blockdiag([%T %T %T], [%T ; %F], [%T %F])
+     ]]></programlisting>
+        <screen><![CDATA[
+--> blockdiag([%T %T %T], [%T ; %F], [%T %F])
+ ans  =
+  T T T F F F
+  F F F T F F
+  F F F F F F
+  F F F F T F
+]]></screen>
+        <para>
+            С полиномами:
+        </para>
+        <programlisting role="example"><![CDATA[
+s = %s;
+blockdiag(s, [s^2 ; s^3], [1+s, 1-s^2 ; 4 s^4])
+     ]]></programlisting>
+        <screen><![CDATA[
+--> b = blockdiag(s, [s^2 ; s^3], [1+s, 1-s^2 ; 4 s^4])
+ b  =
+
+   s    0    0      0
+         2
+   0    s    0      0
+         3
+   0    s    0      0
+                        2
+   0    0    1 +s   1 -s
+                     4
+   0    0    4      s
+]]></screen>
+        <para>
+            С рациональными значениями:
+        </para>
+        <programlisting role="example"><![CDATA[
+s = %s;
+blockdiag([1/s 2*s/(4*s+3)], 1/(s-1)^2)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> blockdiag([1/s 2*s/(4*s+3)], 1/(s-1)^2)
+ ans  =
+
+   1     2s     0
+   --  -------  --
+   s   3 + 4s   1
+
+   0   0            1
+   --  --       -----------
+                          2
+   1   1        1 - 2s + s
+]]></screen>
+        <para>
+            С некоторыми разрежёнными матрицами на входе:
+        </para>
+        <programlisting role="example"><![CDATA[
+S = blockdiag([1 2], sparse([0 3 ; 4 0]), 5)
+full(S)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> S = blockdiag([1 2], sparse([0 3 ; 4 0]), 5)
+ S  =
+(  4,  5) sparse matrix
+(  1,  1)     1.
+(  1,  2)     2.
+(  2,  4)     3.
+(  3,  3)     4.
+(  4,  5)     5.
+
+--> full(S)
+ ans  =
+   1.   2.   0.   0.   0.
+   0.   0.   0.   3.   0.
+   0.   0.   4.   0.   0.
+   0.   0.   0.   0.   5.
+]]></screen>
+        <para>
+            С текстом:
+        </para>
+        <programlisting role="example"><![CDATA[
+blockdiag(["Scilab" "is"],"a",["scientific" ; "software"])
+     ]]></programlisting>
+        <screen><![CDATA[
+--> blockdiag(["Scilab" "is"], "a", ["scientific" ; "software"])
+ ans  =
+!Scilab  is                 !
+!            a              !
+!               scientific  !
+!               software    !
+]]></screen>
+        <para>
+            Со смешанными конкатенируемыми типами данных (см. справку по квадратным скобкам 
+            <literal>[]</literal>):
+        </para>
+        <programlisting role="example"><![CDATA[
+blockdiag([%T %F], [-1 3], (1-%z)^2)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> blockdiag([%T %F], [-1 3], (1-%z)^2)
+ ans  =
+
+   1    0    0    0    0
+
+   0    0   -1    3    0
+                               2
+   0    0    0    0    1 -2z +z
+]]></screen>
+        <para>
+            С линейной системой:
+        </para>
+        <programlisting role="example"><![CDATA[
+s = poly(0,'s')
+blockdiag(rand(2,2), 1/(s+1), [1/(s-1);1/((s-2)*(s-3))])
+blockdiag(tf2ss(1/s), 1/(s+1), [1/(s-1);1/((s-2)*(s-3))])
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="diag">diag</link>
+            </member>
+            <member>
+                <link linkend="bdiag">bdiag</link>
+            </member>
+            <member>
+                <link linkend="repmat">repmat</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets</link>
+            </member>
+            <member>
+                <link linkend="feedback">feedback</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Введена <literal>blockdiag()</literal>.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
