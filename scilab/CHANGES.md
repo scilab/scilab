@@ -294,6 +294,7 @@ Bug Fixes
 * [#16242](http://bugzilla.scilab.org/show_bug.cgi?id=16242): `loadmatfile()` could not read Octave native text data files.
 * [#16245](http://bugzilla.scilab.org/show_bug.cgi?id=16245): `gsort` could not sort booleans.
 * [#16257](http://bugzilla.scilab.org/show_bug.cgi?id=16257): `blockdiag()` implemented to replace `sysdiag()`, improved and extended to strings.
+* [#16259](http://bugzilla.scilab.org/show_bug.cgi?id=16259): * and .* multiplications involving a sparse boolean and a double, or involving 2 booleans, were not implemented.
 * [#16260](http://bugzilla.scilab.org/show_bug.cgi?id=16260): overloading `nnz` was not possible (regression).
 * [#16263](http://bugzilla.scilab.org/show_bug.cgi?id=16263): Polynomial insertion was broken for complex case.
 * [#16264](http://bugzilla.scilab.org/show_bug.cgi?id=16264): After empty for loop iterator was left uninitialized.
