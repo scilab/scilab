@@ -31,6 +31,7 @@
 #include "sparse.hxx"
 #include "int.hxx"
 #include "implicitlist.hxx"
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -312,6 +313,26 @@ types::Function::ReturnValue implicitListString(types::ImplicitList* pIL, types:
     return types::Function::OK;
 }
 
+types::Function::ReturnValue PolynomString(types::Polynom* pPol, types::typed_list &out)
+{
+    int iDims = pPol->getDims();
+    int* piDimsArray = pPol->getDimsArray();
+    types::String *pStr = new types::String(iDims, piDimsArray);
+    std::list<std::wstring> listWstPoly;
+
+    for (int iPos=0; iPos < pPol->getSize(); iPos++)
+    {
+        pPol->get(iPos)->toStringRealImg(pPol->getVariableName(), &listWstPoly, INT_MAX);
+        pStr->set(iPos,listWstPoly.front().c_str());
+        listWstPoly.clear();
+    }
+
+    out.push_back(pStr);
+    return types::Function::OK;
+}
+
+
+
 types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
@@ -480,7 +501,6 @@ types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, t
         }
         case types::InternalType::ScilabTList :
         case types::InternalType::ScilabMList :
-        case types::InternalType::ScilabPolynom :
         case types::InternalType::ScilabHandle :
         {
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_string";
@@ -516,6 +536,12 @@ types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, t
             out.push_back(new types::String(L""));
             break;
         }
+        case types::InternalType::ScilabPolynom :
+        {
+            return PolynomString(in[0]->getAs<types::Polynom>(), out);
+            break;            
+        }
+        
         default:
         {
             std::wostringstream ostr;

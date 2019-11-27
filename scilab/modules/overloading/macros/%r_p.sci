@@ -57,9 +57,13 @@ function %r_p(h)
                 for k=1:last
                     txtr=txtr+part(blank(ones(height(l),1)),1:2)
                     tlk=T(l+(k0+k-1)*m)
+                    iPad = (width(k)-max(length(tlk)))/2;
+                    if iPad>=1
+                        tlk=part(blank,1:iPad)+tlk;
+                    end
                     txtr=txtr+[part(tlk,1:width(k));emptystr(height(l)-size(tlk,1),1)]
                 end
-                txt=[txt;txtr]
+                txt=[txt;ascii(13);txtr]
             end
             // add matrix delimiter and columns title and display
             nt=size(txt,1)
@@ -91,83 +95,13 @@ function %r_p(h)
 
 endfunction
 
-function txt=p2str(p)
-    //form display of a single polynomial with complex coefficients
-    lparen="("
-    rparen=")"
-    blank=" "
-    if type(p)==1 then p=poly(p,"s","c"),end
-    d=degree(p)
-    v=stripblanks(varn(p))
-
-    c=strsubst(string(coeff(p)),"%i","i")
-    // find coefficients with displays as "0" (deleted later)
-    kz=find(c=="0")
-    // find coefficients with displays as "1"
-    k1=find(c=="1");if k1(1)==1 then k1(1)=[],end
-    if k1<>[] then c(k1)=emptystr(1,size(k1,"*")),end
-    // find coefficients with displays as "-1"
-    k1=find(c=="-1");if k1(1)==1 then k1(1)=[],end
-    if k1<>[] then c(k1)="-",end
-    // find coefficients with real AND imaginary part (to be parenthezied)
-    kc=find(imag(coeff(p))<>0&real(coeff(p))<>0)
-    w=ones(1,size(kc,"*"))
-    if kc<>[] then c(kc)=lparen(w)+c(kc)+rparen(w),end
-    // add formal variable name
-    c=c+[emptystr(),v(ones(1:d))]
-
-    // form exponents
-    expo1=[" "," ",string(2:d)]
-
-    //delete coeffiecients and exponents corresponding to "0"s
-    c(kz)=[]
-    expo1(kz)=[]
-    if c==[] then
-        c="0"
-        expo1=emptystr()
-    end
-
-    // change coefficients sign display and adjust length of exponents
-    le=0
-    expo=emptystr(c)
-    for kc=1:size(c,"*")
-        if kc>1 then
-            if part(c(kc),1)<>"-" then
-                c(kc)=" + "+c(kc),
-            else
-                c(kc)=" - "+part(c(kc),2:length(c(kc)))
-            end
-        end
-        expo(kc)=part(blank,ones(1,length(c(kc))-le))
-        le=length(expo1(kc))
-    end
-    expo=expo+expo1(1:size(c,"*"))
-
-    //Handle long lines
-    ll=lines()
-    nn=size(expo,"*")
-    txt=[]
-    count=0
-    while %t
-        L=cumsum(length(expo))
-        last=find(L<ll(1)-3);last=last($)
-        txt=[txt;
-        part(blank,ones(1,count))+strcat(expo(1:last));
-        strcat(c(1:last))]
-        expo(1:last)=[]
-        c(1:last)=[]
-        if c==[] then break,end
-        count=count+1
-    end
-
-endfunction
 function txt=r2str(h)
     //form display of a single rational with complex coefficients
-    dash="-"
+    dash=ascii([226 148 128]);
     blank=" "
 
-    t1=p2str(h("num")) //display of numerator
-    t2=p2str(h("den")) //display of denominator
+    t1=string(h("num")) //display of numerator
+    t2=string(h("den")) //display of denominator
 
     //add fraction bar and center
     l1=max(length(t1))

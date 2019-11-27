@@ -480,25 +480,9 @@ Polynom* Polynom::setCoef(Double *_pCoef)
 
 bool Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
 {
-    std::wostringstream osExp;
-    std::wostringstream osPoly;
 
-    std::list<std::wstring>::const_iterator it_Exp;
-    std::list<std::wstring>::const_iterator it_Coef;
-    std::list<std::wstring> listExpR, listWstPoly, listExpI, listCoefI;
-
-    //Matrix
-    if (isComplex())
-    {
-        ostr << L"Real part" << std::endl << std::endl;
-        ostr << getMatrixString(_piDims, _iDims, false);
-        ostr << L"Imaginary part" << std::endl << std::endl;
-        ostr << getMatrixString(_piDims, _iDims, true);
-    }
-    else
-    {
-        ostr << getMatrixString(_piDims, _iDims, false);
-    }
+    ostr << getMatrixString(_piDims, _iDims, false);
+    
     return true;
 }
 
@@ -509,7 +493,6 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
     std::wostringstream ostr;
     std::wostringstream osPoly;
 
-    std::list<std::wstring>::const_iterator it_Coef;
     std::list<std::wstring> listWstPoly;
 
     int iLen        = 0;
@@ -528,15 +511,8 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
             _piDims[0] = iRows1;
             _piDims[1] = iCols1;
             int iPos = getIndex(_piDims);
-            if (_bComplex)
-            {
-                get(iPos)->toStringImg(getVariableName(), &listWstPoly);
-            }
-            else
-            {
-                get(iPos)->toStringReal(getVariableName(), &listWstPoly);
-            }
-
+            get(iPos)->toStringRealImg(getVariableName(), &listWstPoly, iLineLen);
+            
             for (auto it : listWstPoly)
             {
                 iLength += static_cast<int>(it.size());
@@ -546,7 +522,7 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
         }
 
         //We know the length of the column
-        if (static_cast<int>(iLen + piMaxLen[iCols1]) >= iLineLen && iLen != 0)
+        if (static_cast<int>(iLen + piMaxLen[iCols1]) + 2 >= iLineLen && iLen != 0)
         {
             //if the max length exceeded
             std::wostringstream ostemp;
@@ -560,14 +536,7 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
                     _piDims[1] = iCols2;
 
                     int iPos = getIndex(_piDims);
-                    if (_bComplex)
-                    {
-                        get(iPos)->toStringImg(getVariableName(),  &listWstPoly);
-                    }
-                    else
-                    {
-                        get(iPos)->toStringReal(getVariableName(),  &listWstPoly);
-                    }
+                    get(iPos)->toStringRealImg(getVariableName(),  &listWstPoly, iLineLen);
 
                     if (listWstPoly.size() > 1)
                     {
@@ -579,7 +548,7 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
                     }
                     else
                     {
-                        osPoly << listWstPoly.front();
+                        osPoly << L"  " << listWstPoly.front();
                         addSpaces(&osPoly, piMaxLen[iCols2] - static_cast<int>(listWstPoly.front().size()));
                         bMultiLine = false;
                     }
@@ -622,14 +591,7 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
             _piDims[1] = iCols2;
 
             int iPos = getIndex(_piDims);
-            if (_bComplex)
-            {
-                get(iPos)->toStringImg(getVariableName(), &listWstPoly);
-            }
-            else
-            {
-                get(iPos)->toStringReal(getVariableName(), &listWstPoly);
-            }
+            get(iPos)->toStringRealImg(getVariableName(), &listWstPoly, iLineLen);
 
             if (listWstPoly.size() > 1)
             {
@@ -640,7 +602,7 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
             }
             else
             {
-                osPoly << listWstPoly.front();
+                osPoly << L"  " << listWstPoly.front();
                 addSpaces(&osPoly, piMaxLen[iCols2] - static_cast<int>(listWstPoly.front().size()));
             }
             listWstPoly.clear();

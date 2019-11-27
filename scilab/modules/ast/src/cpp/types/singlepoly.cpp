@@ -25,6 +25,7 @@ extern "C"
 #include "log.h"
 #include "exp.h"
 #include "elem_common.h"
+#include "sciprint.h"
 }
 
 namespace types
@@ -334,20 +335,9 @@ bool SinglePoly::toString(std::wostringstream& ostr)
     return true;
 }
 
-void SinglePoly::toStringReal(const std::wstring& _szVar, std::list<std::wstring>* _pListWstPoly)
+void SinglePoly::toStringRealImg(const std::wstring& _szVar, std::list<std::wstring>* _pListWstPoly, int iLineLen)
 {
-    toStringInternal(m_pRealData, _szVar, _pListWstPoly);
-}
-
-void SinglePoly::toStringImg(const std::wstring& _szVar, std::list<std::wstring>* _pListWstPoly)
-{
-    if (isComplex() == false)
-    {
-        _pListWstPoly->clear();
-        return;
-    }
-
-    toStringInternal(m_pImgData, _szVar, _pListWstPoly);
+    toStringInternal(m_pRealData, m_pImgData, _szVar, _pListWstPoly, iLineLen);
 }
 
 bool SinglePoly::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
@@ -355,26 +345,29 @@ bool SinglePoly::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims
     return false;
 }
 
-void SinglePoly::toStringInternal(double *_pdblVal, const std::wstring& _szVar, std::list<std::wstring>* _pListWstPoly)
+void SinglePoly::toStringInternal(double *_pdblR, double *_pdblI, const std::wstring& _szVar, std::list<std::wstring>* _pListWstPoly, int iLineLen)
 {
-    int iLineLen = ConfigVariable::getConsoleWidth();
+    int k;
+    int iLen = 0;
+    int iLastFlush = 2;
+    int iParenthLen = 2;
 
     std::wstring strExponentDigits (L"\u2070\u00B9\u00B2\u00B3\u2074\u2075\u2076\u2077\u2078\u2079");
     std::vector<int> iExponentsDigits = {0};
     std::wostringstream ostemp;
     bool bFirst = true;
 
-    ostemp << L" ";
+//    ostemp << L" ";
 
-    int k;
-    int iLen = 0;
-    int iLastFlush = 2;
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        if (_pdblVal[i] != 0)
+        double dblR = _pdblR[i];
+        double dblI = _pdblI == NULL ? 0 : _pdblI[i];    
+        
+        if (dblR != 0 && dblI == 0)
         {
             DoubleFormat df;
-            getDoubleFormat(_pdblVal[i], &df);
+            getDoubleFormat(dblR, &df);
 
             if (iLen + df.iWidth + df.iSignLen >= iLineLen - 1)
             {
@@ -387,22 +380,84 @@ void SinglePoly::toStringInternal(double *_pdblVal, const std::wstring& _szVar, 
             // In scientific notation case bExp == true, so we have to print point (2.000D+10s)
             // In other case don't print point (2s)
             df.bPrintPoint = df.bExp;
-            df.bPrintPlusSign = bFirst == false;
+            df.bPrintPlusSign = ! bFirst;
+            df.bPaddSign = ! bFirst;
+            df.bPrintBlank = false;
             df.bPrintOne = i == 0;
+            addDoubleValue(&ostemp, dblR, &df);
+        }
+        else if (dblR != 0 || dblI != 0)
+        {
+            DoubleFormat dfR, dfI;
+            dfR.bPrintPoint = dfR.bExp;
+            dfR.bPrintBlank = false;
+            dfR.bPrintPlusSign = false;
+            dfR.bPaddSign = false;             
+            dfI.bPrintPoint = dfI.bExp;
+            dfI.bPrintBlank = false;
+            dfI.bPaddSign = true;             
+            dfI.bPrintOne = false;
+            if (dblR != 0)
+             {
+                 getDoubleFormat(dblR, &dfR);
+                 dfR.bPaddSign = false;
+                 dfI.bPrintPlusSign = true;
+                 iLen += (i!= 0 ? iParenthLen : 0);
+             }
+             else
+             {
+                 dfI.bPrintPlusSign = ! bFirst;
+                 dfI.bPaddSign = ! bFirst;
+             }
+             getDoubleFormat(dblI, &dfI);
+
+             if (iLen + dfR.iWidth + dfR.iSignLen + dfI.iWidth + dfI.iSignLen + _szVar.length() + iExponentsDigits.size() >= iLineLen - 1)
+             {
+                 iLastFlush = i;
+                 _pListWstPoly->push_back(ostemp.str());
+                 ostemp.str(L""); //reset stream
+                 addSpaces(&ostemp, 1); //take from scilab ... why not ...
+             }
+
+             if (dblR != 0)
+             {
+                 if (bFirst == false)
+                 {
+                     if (dblR > 0)
+                     {
+                         ostemp << L"+";     
+                     }
+                     else
+                     {
+                         dblR = -dblR;
+                         dblI = -dblI;
+                         ostemp << L"-"; 
+                     }   
+                 }
+                 if (i != 0)
+                 {
+                     ostemp << L"(";
+                 }
+                 addDoubleValue(&ostemp, dblR, &dfR);
+             }
+             addDoubleValue(&ostemp, dblI, &dfI);
+             ostemp << L"i";
+             
+             if (dblR != 0 & i != 0)
+             {
+                 ostemp << L")";
+             }
+        }
+        
+        if (dblR != 0 || dblI != 0)
+        {            
             bFirst = false;
-            addDoubleValue(&ostemp, _pdblVal[i], &df);
-            
-            if (i == 0)
-            {
-                iLen = static_cast<int>(ostemp.str().size());
-            }
-            else if (i == 1)
+            if (i == 1)
             {
                 // add polynomial variable
                 ostemp << _szVar;
-                iLen = static_cast<int>(ostemp.str().size());
             }
-            else
+            else if (i != 0)
             {
                 // add polynomial variable and exponent
                 ostemp << _szVar;
@@ -410,8 +465,12 @@ void SinglePoly::toStringInternal(double *_pdblVal, const std::wstring& _szVar, 
                 {
                     ostemp << strExponentDigits[*it];
                 }
-                iLen = static_cast<int>(ostemp.str().size());            
-            }            
+            }
+            if (i < m_iSize-1)
+            {
+                ostemp << L" ";
+            }
+            iLen = static_cast<int>(ostemp.str().size());
         }
 
         for (k=0; k < iExponentsDigits.size() && iExponentsDigits[k] == 9; k++)
@@ -427,9 +486,9 @@ void SinglePoly::toStringInternal(double *_pdblVal, const std::wstring& _szVar, 
 
     if (iLastFlush != 0)
     {
-        if (ostemp.str() == L" ")
+        if (ostemp.str() == L"")
         {
-            ostemp << L"  0";
+            ostemp << L"0";
         }
 
         _pListWstPoly->push_back(ostemp.str());
