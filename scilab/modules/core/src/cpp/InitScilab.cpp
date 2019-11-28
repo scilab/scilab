@@ -237,6 +237,8 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         if (scilabMode == SCILAB_NW || scilabMode == SCILAB_NWNI)
         {
             SaveConsoleColors();
+            SaveConsoleFont();
+            UpdateConsoleFont();
             if (scilabMode == SCILAB_NW)
             {
                 RenameConsole();

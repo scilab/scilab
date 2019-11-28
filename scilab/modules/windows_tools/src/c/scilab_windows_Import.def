@@ -7,6 +7,7 @@ EXPORTS
 ; --------------------------------------- 
 getScilexConsoleName
 RestoreConsoleColors
+RestoreConsoleFont
 closeInnosetupMutex
 RestoreExitButton
 ClosePipeInfo

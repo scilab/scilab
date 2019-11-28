@@ -30,6 +30,7 @@
 #define NameConsole "Console"
 /*--------------------------------------------------------------------------*/
 static CONSOLE_SCREEN_BUFFER_INFO csbiInfoSave;
+static UINT savedCodePage;
 static char ScilexConsoleName[MAX_PATH];
 /*--------------------------------------------------------------------------*/
 void UpdateConsoleColors(void)
@@ -41,11 +42,11 @@ void UpdateConsoleColors(void)
     Coord.X = 0;
     Coord.Y = 0;
 
-    FillConsoleOutputAttribute( hConsole,
-                                BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_INTENSITY,
-                                csbiInfoSave.dwSize.X * csbiInfoSave.dwSize.Y,
-                                Coord,
-                                &cWritten);
+    FillConsoleOutputAttribute(hConsole,
+        BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_INTENSITY,
+        csbiInfoSave.dwSize.X * csbiInfoSave.dwSize.Y,
+        Coord,
+        &cWritten);
 
     SetConsoleTextAttribute(hConsole, BACKGROUND_BLUE | BACKGROUND_GREEN | BACKGROUND_RED | BACKGROUND_INTENSITY);
 
@@ -65,12 +66,28 @@ void RestoreConsoleColors(void)
     Coord.X = 0;
     Coord.Y = 0;
 
-    FillConsoleOutputAttribute( hConsole,
-                                csbiInfoSave.wAttributes,
-                                csbiInfoSave.dwSize.X * csbiInfoSave.dwSize.Y,
-                                Coord,
-                                &cWritten);
+    FillConsoleOutputAttribute(hConsole,
+        csbiInfoSave.wAttributes,
+        csbiInfoSave.dwSize.X * csbiInfoSave.dwSize.Y,
+        Coord,
+        &cWritten);
     SetConsoleTextAttribute(hConsole, csbiInfoSave.wAttributes);
+}
+/*--------------------------------------------------------------------------*/
+void UpdateConsoleFont(void)
+{
+    //change codepage to cp65001
+    SetConsoleOutputCP(65001);
+}
+/*--------------------------------------------------------------------------*/
+void SaveConsoleFont(void)
+{
+    savedCodePage = GetConsoleCP();
+}
+/*--------------------------------------------------------------------------*/
+void RestoreConsoleFont(void)
+{
+    SetConsoleCP(savedCodePage);
 }
 /*--------------------------------------------------------------------------*/
 void RenameConsole(void)

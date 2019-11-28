@@ -33,8 +33,8 @@ BOOL TerminateWindows_tools(void)
             //CloseScilabConsole();
             closeInnosetupMutex();
             bOK = TRUE;
+            break;
         }
-        break;
 
         case SCILAB_NW:
         {
@@ -42,7 +42,14 @@ BOOL TerminateWindows_tools(void)
             RestoreExitButton();
             bOK = TRUE;
         }
-        break;
+        //continue
+
+        case SCILAB_NWNI: 
+        {
+            RestoreConsoleFont();
+            break;
+        }
+
 
         default:
             break;

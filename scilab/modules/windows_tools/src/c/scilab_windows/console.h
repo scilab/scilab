@@ -35,6 +35,21 @@ SCILAB_WINDOWS_IMPEXP void SaveConsoleColors(void);
 SCILAB_WINDOWS_IMPEXP void RestoreConsoleColors(void);
 
 /**
+* Update font of console
+*/
+SCILAB_WINDOWS_IMPEXP void UpdateConsoleFont(void);
+
+/**
+* Save v before  creation
+*/
+SCILAB_WINDOWS_IMPEXP void SaveConsoleFont(void);
+
+/**
+* Restore font of console
+*/
+SCILAB_WINDOWS_IMPEXP void RestoreConsoleFont(void);
+
+/**
 * Restore Exit button
 */
 SCILAB_WINDOWS_IMPEXP void RestoreExitButton(void);
