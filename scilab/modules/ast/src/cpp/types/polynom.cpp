@@ -235,12 +235,14 @@ void Polynom::setVariableName(const std::wstring& _szVarName)
 
 bool Polynom::isComplex()
 {
-    if (m_iSize && m_pRealData[0])
-    {
-        return m_pRealData[0]->isComplex();
-    }
-
-    return false;
+        for (int i = 0 ; i < getSize() ; i++)
+        {
+            if  (m_pRealData[i] && m_pRealData[i]->isComplex())
+            {
+                return true;
+            }
+        }
+        return false;
 }
 
 Polynom* Polynom::setComplex(bool _bComplex)
