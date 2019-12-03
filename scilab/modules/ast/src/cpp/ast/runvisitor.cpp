@@ -759,6 +759,11 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             }
         }
 
+        if (size == 0)
+        {
+            ctx->put(var, types::Double::Empty());
+        }
+
         //unlock loop index
         pIL->DecreaseRef();
         pIL->killMe();
