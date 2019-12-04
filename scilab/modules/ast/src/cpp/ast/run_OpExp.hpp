@@ -395,6 +395,10 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
         {
             // We did not have any algorithm matching, so we try to call OverLoad
             e.getRight().accept(*this);
+            if (pITR)
+            {
+                pITR->killMe();
+            }
             pITR = getResult();
             if (isSingleResult() == false)
             {

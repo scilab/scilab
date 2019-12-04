@@ -38,6 +38,7 @@ public:
     Call(const std::wstring & _name, const TIType & _arg) : name(_name), args(1, _arg) { }
     Call(const std::wstring & _name) : name(_name) { }
     Call(Call && call) : name(call.name), args(call.args) { }
+    virtual ~Call() = default;
 
     inline const std::wstring & getName() const
     {

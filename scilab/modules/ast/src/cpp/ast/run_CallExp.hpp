@@ -65,8 +65,23 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     types::typed_list in;
     types::optional_list opt;
 
+    int iInvokeNbOut = 0;
+    try
+    {
+        // getInvokeNbOut will parse the file in case of macrofile
+        // this could throw an exception
+        iInvokeNbOut = pIT->getInvokeNbOut();
+    }
+    catch (const InternalError& ie)
+    {
+        clearResult();
+        cleanIn(inTmp, outTmp);
+        CoverageInstance::stopChrono((void*)&e);
+        throw ie;
+    }
+
     // manage case [a,b]=foo() where foo is defined as a=foo()
-    if (pIT->getInvokeNbOut() != -1 && pIT->getInvokeNbOut() < iRetCount)
+    if (iInvokeNbOut != -1 && iInvokeNbOut < iRetCount)
     {
         clearResult();
         cleanIn(inTmp, outTmp);

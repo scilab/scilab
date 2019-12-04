@@ -17,6 +17,6 @@
 A=sparse([1 1; 2 2; 3 3],[%t %f %t],[3 3]);
 A(:)
  ans  =
-(  9,  1) sparse matrix
+(  9,  1) sparse boolean matrix
 (  1,  1)	T
 (  9,  1)	T

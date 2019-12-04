@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_linspace(types::typed_list &in, int _iRetCount,
 
     if (in.size() != 2 & in.size() != 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "linspace", 2,3);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "linspace", 2, 3);
         return types::Function::Error;
     }
 
@@ -56,7 +56,7 @@ types::Function::ReturnValue sci_linspace(types::typed_list &in, int _iRetCount,
     }
 
     types::Double* pDbl[2];
-    for (int i=0; i<2; i++)
+    for (int i = 0; i < 2; i++)
     {
         if (in[i]->isDouble())
         {
@@ -77,14 +77,14 @@ types::Function::ReturnValue sci_linspace(types::typed_list &in, int _iRetCount,
     int* piDims1 = pDbl[1]->getDimsArray();
     if (iDims0 != iDims1)
     {
-        Scierror(999, _("%s: Arguments %d and %d must have same dimensions.\n"), "linspace",1,2);
+        Scierror(999, _("%s: Arguments %d and %d must have same dimensions.\n"), "linspace", 1, 2);
         return types::Function::Error;
     }
     for (int i = 0; i < iDims0; i++)
     {
         if (piDims0[i] != piDims1[i])
         {
-            Scierror(999, _("%s: Arguments %d and %d must have same dimensions.\n"), "linspace",1,2);
+            Scierror(999, _("%s: Arguments %d and %d must have same dimensions.\n"), "linspace", 1, 2);
             return types::Function::Error;
         }
     }
@@ -107,7 +107,7 @@ types::Function::ReturnValue sci_linspace(types::typed_list &in, int _iRetCount,
         }
         else
         {
-            Scierror(999, _("%s: Argument #%d: An integer value expected.\n"), "linspace",3);
+            Scierror(999, _("%s: Argument #%d: An integer value expected.\n"), "linspace", 3);
             return types::Function::Error;
         }
     }
@@ -128,7 +128,7 @@ types::Function::ReturnValue sci_linspace(types::typed_list &in, int _iRetCount,
     // generation is done by considering array as a column vector
     int iRows =  pDbl[0]->getSize();
     // pDblOut is resized later
-    pDblOut = new types::Double(iRows,iCols);
+    pDblOut = new types::Double(iRows, iCols);
 
     if (!fillRange(pDblOut->get(), pDbl[0]->get(), pDbl[1]->get(), iRows, iCols))
     {
@@ -140,7 +140,8 @@ types::Function::ReturnValue sci_linspace(types::typed_list &in, int _iRetCount,
     if (pDbl[0]->isComplex() || pDbl[1]->isComplex())
     {
         int iReal;
-        for (iReal = 0; iReal < 2; iReal++) {
+        for (iReal = 0; iReal < 2; iReal++)
+        {
             if (!pDbl[iReal]->isComplex())
             {
                 pDbl[iReal] = pDbl[iReal]->clone();
@@ -153,7 +154,7 @@ types::Function::ReturnValue sci_linspace(types::typed_list &in, int _iRetCount,
         bool status = fillRange(pDblOut->getImg(), pDbl[0]->getImg(), pDbl[1]->getImg(), iRows, iCols);
         if (iReal < 2)
         {
-              pDbl[iReal]->killMe();
+            pDbl[iReal]->killMe();
         }
         if (status != true) // if Infs or NaNs
         {
@@ -162,14 +163,14 @@ types::Function::ReturnValue sci_linspace(types::typed_list &in, int _iRetCount,
         }
     }
 
-    int *piNewDims = new int[iDims0+1];
+    int *piNewDims = new int[iDims0 + 1];
     // keep the first dimension unchanged
     piNewDims[0] = piDims0[0];
     int iDim = 1;
-    for (int i=1; i<iDims0; i++)
+    for (int i = 1; i < iDims0; i++)
     {
         // squeeze subsequent single dimensions
-        if (piDims0[i]>1)
+        if (piDims0[i] > 1)
         {
             piNewDims[iDim++] = piDims0[i];
         }
@@ -180,33 +181,34 @@ types::Function::ReturnValue sci_linspace(types::typed_list &in, int _iRetCount,
     pDblOut->reshape(piNewDims, iDim);
     out.push_back(pDblOut);
 
+    delete[] piNewDims;
     return types::Function::OK;
 }
 
 bool fillRange(double* pdblOut, double* pdblMin, double* pdblMax, int iRows, int iCols)
 {
     double* step = new double[iRows];
-    for (int j = 0, k = (iCols-1)*iRows; j < iRows; j++)
+    for (int j = 0, k = (iCols - 1) * iRows; j < iRows; j++)
     {
-        step[j] = (pdblMax[j]-pdblMin[j])/(iCols-1);
+        step[j] = (pdblMax[j] - pdblMin[j]) / (iCols - 1);
         // checking Infs and NaNs
         int indInfOrNan = std::isinf(pdblMin[j]) || std::isnan(pdblMin[j]) ? 1 : 0;
         indInfOrNan = indInfOrNan == 0 ? (std::isinf(pdblMax[j]) || std::isnan(pdblMax[j]) ? 2 : 0) : indInfOrNan;
         if (indInfOrNan > 0)
         {
             delete[] step;
-            Scierror(999, _("%s: Argument #%d: %%nan and %%inf values are forbidden.\n"), "linspace",indInfOrNan);
+            Scierror(999, _("%s: Argument #%d: %%nan and %%inf values are forbidden.\n"), "linspace", indInfOrNan);
             return false;
         }
         // last column is enforced (http://bugzilla.scilab.org/10966)
         pdblOut[k++] = pdblMax[j];
     }
     // doing the linear range generation
-    for (int i = 0; i<iCols-1; i++)
+    for (int i = 0; i < iCols - 1; i++)
     {
         for (int j = 0; j < iRows; j++)
         {
-              *(pdblOut++) = pdblMin[j]+i*step[j];
+            *(pdblOut++) = pdblMin[j] + i * step[j];
         }
     }
     delete[] step;

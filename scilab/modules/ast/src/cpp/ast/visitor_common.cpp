@@ -616,7 +616,7 @@ types::InternalType* callOverload(const ast::Exp& e, const std::wstring& _strTyp
 
     types::InternalType* pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
     if (pFunc == NULL &&
-            (_source->getShortTypeStr().size() > 8 || _dest && _dest->getShortTypeStr().size() > 8))
+            (_source->getShortTypeStr().size() > 8 || (_dest && _dest->getShortTypeStr().size() > 8)))
     {
         if (_source->getShortTypeStr().size() > 8)
         {
@@ -2109,9 +2109,8 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                                 pStructRet->addField(pStrInsertFieldsName->get(i));
                             }
                         }
-
-                        pStrInsertFieldsName->killMe();
                     }
+                    pStrInsertFieldsName->killMe();
                 }
                 else if (_pInsert->isStruct())
                 {
