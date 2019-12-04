@@ -43,10 +43,6 @@ public:
     {
     }
 
-    Location(const Location & l) : first_line(l.first_line), first_column(l.first_column), last_line(l.last_line), last_column(l.last_column)
-    {
-    }
-
     Location* clone()
     {
         Location* ret = new Location();
