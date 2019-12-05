@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
-// unit tests for detr function 
+// unit tests for detr function
 // =============================================================================
 assert_checkfalse(execstr("detr()"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong number of input argument: %d expected.\n"), "detr", 1);

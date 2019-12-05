@@ -20,7 +20,6 @@ x = int8([ 10    60   80  100
 assert_checkequal(median(x), int8(-110));
 assert_checkequal(median(x,"c"), int8([70 -70 -123 -124]'));
 assert_checkequal(median(x,"r"), int8([-65 -91 -102 -113]));
-
 // with hypermatrices
 clear x
 x(:,:,1) = int8([
@@ -42,7 +41,6 @@ expected = int8([
  -66 -91 -103 -113
  ]);
 assert_checkequal(median(x,3), expected);
-
 //
 //see http://bugzilla.scilab.org/14647
 //b = int64(2)^62;

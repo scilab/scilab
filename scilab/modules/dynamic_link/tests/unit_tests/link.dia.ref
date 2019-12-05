@@ -32,9 +32,9 @@ cur_dir = pwd();
 chdir(TMP_DIR);
 //creating the shared library: a Makefile and a loader are 
 //generated, the code is compiled and a shared library built.
-ilib_for_link('fooc', 'fooc.c', [], "c"); 
+ilib_for_link('fooc', 'fooc.c', [], "c");
 // load the shared library 
-exec('loader.sce'); 
+exec('loader.sce');
 link('show');
 // call the new linked entry point
 a = linspace(0, %pi, 10);

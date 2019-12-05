@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-
 // <-- CLI SHELL MODE -->
 // ============================================================================
 // Unitary tests for mxCalloc mex function
@@ -36,6 +35,5 @@ ilib_mex_build("libmextest",["mxCalloc","mxCalloc","cmex"], "mxCalloc.c",[]);
 exec("loader.sce");
 [res1, res2] = mxCalloc();
 Buffer is Not NULL.
-
 assert_checkfalse(res1);
 assert_checktrue(res2);

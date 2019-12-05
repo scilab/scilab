@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- CLI SHELL MODE -->
 // <-- Non-regression test for bug 9161 -->
 //
@@ -13,13 +12,11 @@
 //
 // <-- Short Description -->
 //  Wrong insertions in sparse when repeated index
-
 A = sparse(33);
 B = sparse([1 0 3]');
 ind = [1 1 1];
 A(ind) = B;
 assert_checkequal(A, sparse(3));
-
 A = sparse([33 -10]);
 ind = [2 1 2];
 A(ind) = B;

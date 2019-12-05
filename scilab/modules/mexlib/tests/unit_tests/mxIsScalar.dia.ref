@@ -4,12 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-
 // <-- CLI SHELL MODE -->
 // ============================================================================
 // Unitary tests for mxIsScalar mex function
 // ============================================================================
-
 cd(TMPDIR);
 ilib_verbose(0);
 ieee(2);
@@ -22,7 +20,6 @@ mputl(["#include ""mex.h""";
 "}"],"mexisScalar.c");
 ilib_mex_build("libmextest",["isScalar","mexisScalar","cmex"], "mexisScalar.c",[]);
 exec("loader.sce");
-
 assert_checktrue(isScalar([1]));
 assert_checktrue(isScalar(1/0));
 assert_checktrue(isScalar(9));

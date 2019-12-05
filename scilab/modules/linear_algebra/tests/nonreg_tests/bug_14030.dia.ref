@@ -19,13 +19,13 @@ H=[1.    1.    1.    0.;
 0.    1.    2.   -1];
 ww=spec(H)
  ww  = 
-    2.7320508
-  - 2.7320508
-    0.7320508
-  - 0.7320508
+   2.7320508 + 0.i
+  -2.7320508 + 0.i
+   0.7320508 + 0.i
+  -0.7320508 + 0.i
 function [flg]=sel(x,y)
-   flg=%f
-   if abs(x/y-ww(3))<0.0001|abs(x/y-ww(4))<0.00001 then flg=%t,end
+    flg=%f
+    if abs(x/y-ww(3))<0.0001|abs(x/y-ww(4))<0.00001 then flg=%t,end
 endfunction
 [X,d]=schur(H,eye(H),sel);
 assert_checkfalse(norm(X*X'-eye(X), 1)> 200*%eps);

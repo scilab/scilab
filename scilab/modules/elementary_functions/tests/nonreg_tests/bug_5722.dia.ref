@@ -15,9 +15,9 @@
 ieee(0)
 t1=tand(30)
  t1  = 
-    0.5773503
+   0.5773503
 ieee(2)
 t2=tand(30)
  t2  = 
-    0.5773503
+   0.5773503
 if t1<>t2 then bugmes();quit;end

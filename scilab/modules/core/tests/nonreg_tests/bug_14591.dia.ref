@@ -15,7 +15,6 @@
 // <-- Short Description -->
 // <= and >= operators comparing 2 hypermatrices of decimal numbers or encoded
 //  integers were inverted
-
 a = ones(2,2,2);
 r = ones(2,2,2)>0;
 assert_checkequal(a<=2*a, r);

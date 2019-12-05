@@ -63,9 +63,8 @@ Shared archive loaded.
 Link done.
 chdir(curdir),
  ans  =
- 
-  T  
+  T
 n=44;
 A=eye(n,n);B=(1:n)';
-[X, LU, IPIV, INFO] = msolve(A,B); 
+[X, LU, IPIV, INFO] = msolve(A,B);
 if norm(A*X-B)>1d-15 then bugmes();quit;end

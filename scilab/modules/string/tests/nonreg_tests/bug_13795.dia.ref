@@ -6,14 +6,14 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 // Non regression test for bug 13795
-// grep with regular expressions options did not properly match the empty string "" 
+// grep with regular expressions options did not properly match the empty string ""
 res = grep("", "/^$/","r")
  res  = 
-    1.
+   1.
 assert_checkequal(res, 1);
 res = grep("", "/^\s*$/","r")
  res  = 
-    1.
+   1.
 assert_checkequal(res, 1);
 A = [" ", "", " ", ""];
 res = grep(A, "@\s*@", "r");

@@ -11,7 +11,7 @@
 // http://bugzilla.scilab.org/592
 //
 // <-- Short Description -->
-//    linspace(a, b, n<=0) returned b instead of []. Same problem with logspage 
+//    linspace(a, b, n<=0) returned b instead of []. Same problem with logspage
 //    function.
 assert_checkequal(linspace(1, 2, 0), []);
 assert_checkequal(linspace(1, 2, -3), []);

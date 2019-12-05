@@ -33,8 +33,8 @@ mputl("a=1;b=2",TMPDIR+"/myscript");
 // execute it
 exec(TMPDIR+"/myscript")
 a=1;b=2
-b  = 
-    2.
+ b  = 
+   2.
 if isdef("a")<> %t then bugmes();quit;end
 if isdef("b")<> %t then bugmes();quit;end
 assert_checkequal(a, 1);
@@ -52,8 +52,8 @@ clear k y
 deff("script()","a=x+1;y=a^2");
 x=4; //create x to make it known by script
 exec(script);
-y  = 
-    25.
+ y  = 
+   25.
 if isdef("y")<> %t then bugmes();quit;end
 if isdef("a")<> %t then bugmes();quit;end
 assert_checkequal(y, 25);

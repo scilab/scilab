@@ -16,7 +16,6 @@
 // <-- Short Description -->
 //    Appended comments are considered as a new physical line
 //
-
 //test of line numbering in  functions, handling initial comments
 // ================ Test 1 =====================================================
 function foo,endfunction

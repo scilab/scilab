@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-
 // <-- CLI SHELL MODE -->
 // ============================================================================
 // Unitary tests for mxCreateNumericMatrix mex function
@@ -37,7 +36,7 @@ exec("loader.sce");
 [n2, m2] = size(b);
 assert_checkequal([n1, m1], [2, 3]);
 assert_checkequal([n2, m2], [4, 5]);
-comp1 = zeros(2,3);                                                         
-comp2 = zeros(4,5);                                                         
-assert_checkequal(a, int8(comp1));                                      
+comp1 = zeros(2,3);
+comp2 = zeros(4,5);
+assert_checkequal(a, int8(comp1));
 assert_checkequal(b, int8(comp2));

@@ -14,13 +14,11 @@
 //
 // <-- Short Description -->
 // overloading did not support type names longer than 8 characters
-
 t = tlist(['myLongTypename','x','y'],2.0,3.0);
 deff("r = %myLongTypename_sin(t)","r = sin(t.x * t.y)");
 deff("r = %myLongTypename_o_myLongTypename(t1,t2)","r = (t1.x == t2.y)");
 assert_checktrue(execstr("sin(t)", "errcatch")==0);
 assert_checktrue(execstr("t<>t", "errcatch")==0);
-
 t = mlist(['myLongTypename','x','y'],2.0,3.0);
 assert_checktrue(execstr("sin(t)", "errcatch")==0);
 assert_checktrue(execstr("t==t", "errcatch")==0);

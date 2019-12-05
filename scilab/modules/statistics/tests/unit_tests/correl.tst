@@ -7,7 +7,7 @@
 
 // <-- CLI SHELL MODE -->
 
-// unit tests for correl function 
+// unit tests for correl function
 // =============================================================================
 
 assert_checkfalse(execstr("correl()"   ,"errcatch") == 0);
@@ -68,10 +68,10 @@ assert_checkalmostequal(r, -0.9897433, [], 1.e-8);
 r = correl([1 4 9 7 2], [6 3 0], [0.3 0.5 0.7;0.1 1 0.4;0.3 0.6 0.4;0.2 0.2 0.3;0.8 0.4 0.5]);
 assert_checkalmostequal(r, -0.0089969, [], 1.e-7);
 
-r = correl([1 4 9 7 2], [2 5 10 8 3])
+r = correl([1 4 9 7 2], [2 5 10 8 3]);
 assert_checkalmostequal(r, 1, 2*%eps);
 
-r = correl([1 4 9 7 2], [-0 -3 -8 -6 -1])
+r = correl([1 4 9 7 2], [-0 -3 -8 -6 -1]);
 assert_checkalmostequal(r, -1, 2*%eps);
 
 x = [24.2; 22.7;30.5;28.6;25.5;32.0;28.6;26.5;25.3;26.0;24.4;24.8;20.6;25.1;21.4;23.7;23.9;25.2;27.4;28.3;28.8;26.6];

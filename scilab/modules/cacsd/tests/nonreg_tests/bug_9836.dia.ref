@@ -31,4 +31,4 @@ matrix is close to singular or badly scaled. rcond = 9.83089e-18
 S2=tf2ss(H);
 assert_checkequal(execstr("repfreq(S2,f)","errcatch"),0);
 Warning :
-matrix is close to singular or badly scaled. rcond = 2.54341e-17
+matrix is close to singular or badly scaled. rcond = 2.12006e-17

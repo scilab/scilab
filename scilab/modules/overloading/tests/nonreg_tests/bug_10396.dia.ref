@@ -17,8 +17,8 @@ a.toto = zeros(1,100000);
 a.titi = zeros(1,100000);
 tic();
 a
-a  = 
-  toto: [1x100000 constant]
-  titi: [1x100000 constant]
+ a  = 
+   toto: [1x100000 constant]
+   titi: [1x100000 constant]
 timeSpent=toc();
 assert_checktrue(timeSpent<1);

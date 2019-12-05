@@ -158,7 +158,7 @@ nm = neldermead_destroy(nm);
 // Check the display system
 nm = neldermead_new ();
 nm
-nm  = 
+ nm  = 
 Nelder-Mead Object:
 ======================
 Simplex0 Method : axes

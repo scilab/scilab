@@ -141,7 +141,7 @@ assert_checkequal ( typeof(str) , "string" )
  ans  =
   T
 nm
-nm  = 
+ nm  = 
 Nelder-Mead Object:
 ======================
 Simplex0 Method : axes
@@ -355,7 +355,7 @@ assert_checkequal ( typeof(str) , "string" )
  ans  =
   T
 nm
-nm  = 
+ nm  = 
 Nelder-Mead Object:
 ======================
 Simplex0 Method : axes
