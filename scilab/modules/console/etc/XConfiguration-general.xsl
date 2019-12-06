@@ -66,10 +66,23 @@
                         <xsl:call-template name="context"/>
                     </actionPerformed>
                 </NumericalSpinner>
+                <Label gridx="1" gridy="5" weightx="0" text="_(Containers display depth: )"/>
+                <NumericalSpinner gridx="3" gridy="5"
+                          weightx="0"
+                          min-value="0"
+                          max-value="10"
+                          increment="1"
+                          length="2"
+                          listener="ActionListener"
+                          value="{@container_disp_max_depth}">
+                    <actionPerformed choose="container_disp_max_depth">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                </NumericalSpinner>
             </Grid>
         </Title>
     </xsl:template>
-    
+
     <xsl:template match="languages">
         <xsl:if test="$OS='Windows'">
             <VSpace height="10"/>
@@ -96,7 +109,7 @@
             </Title>
         </xsl:if>
     </xsl:template>
-    
+
     <xsl:template match="java-heap-memory" mode="tooltip"> and java heap size.</xsl:template>
     <xsl:template match="java-heap-memory">
         <VSpace height="10"/>
@@ -129,19 +142,19 @@
                         <xsl:call-template name="context"/>
                     </actionPerformed>
                 </Radiobutton>
-                
+
                 <Radiobutton value="{@use}" expected-value="previous" listener="ActionListener" text="_(Use previous working directory)" gridx="1" gridy="2" fill="none" weightx="0" anchor="west">
                     <actionPerformed choose="use">
                         <xsl:call-template name="context"/>
                     </actionPerformed>
                 </Radiobutton>
-                
+
                 <Radiobutton value="{@use}" expected-value="default" listener="ActionListener" text="_(Use default directory)" gridx="1" gridy="3" fill="none" weightx="0" anchor="west">
                     <actionPerformed choose="use">
                         <xsl:call-template name="context"/>
                     </actionPerformed>
                 </Radiobutton>
-                
+
                 <FileSelector gridx="2" gridy="3" weightx="1" anchor="above_baseline"
                               listener="EntryListener"
                               href="{@default}"
@@ -160,7 +173,7 @@
             </Grid>
         </Title>
     </xsl:template>
-    
+
     <xsl:template match="tools">
         <Title text="_(Confirmation dialogs)">
             <Grid>
@@ -179,7 +192,7 @@
             </Grid>
         </Title>
     </xsl:template>
-    
+
     <xsl:template match="layouts">
         <xsl:variable name="id" select="@id"/>
         <Title text="_(Desktop Layout)">
@@ -221,7 +234,7 @@
             </Grid>
         </Title>
     </xsl:template>
-    
+
     <xsl:template match="actions">
         <xsl:variable name="name" select="@name"/>
         <xsl:variable name="current-item" select="action-folder[@name=$name]/action[number(@item)]"/>

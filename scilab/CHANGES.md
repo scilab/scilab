@@ -301,6 +301,7 @@ Bug Fixes
 * [#16263](http://bugzilla.scilab.org/show_bug.cgi?id=16263): Polynomial insertion was broken for complex case.
 * [#16264](http://bugzilla.scilab.org/show_bug.cgi?id=16264): After empty for loop iterator was left uninitialized.
 * [#16265](http://bugzilla.scilab.org/show_bug.cgi?id=16265): The translated pages of the `warning` documentation were not up-to-date.
+* [#16269](http://bugzilla.scilab.org/show_bug.cgi?id=16269): Scalar structures were poorly displayed.
 * [#16271](http://bugzilla.scilab.org/show_bug.cgi?id=16271): `loadmatfile()` was never able to automatically detect the input data format.
 * [#16272](http://bugzilla.scilab.org/show_bug.cgi?id=16272): `spzeros(0,n)` and `spzeros(n,0)` were different from `sparse(0,0)`.
 * [#16273](http://bugzilla.scilab.org/show_bug.cgi?id=16273): `calendar()` had no formated display mode.

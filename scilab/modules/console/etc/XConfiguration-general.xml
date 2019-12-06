@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <general title="_(General)">
     <body>
-        <environment fpe="2" printing-format="v" width="10" recursion-limit="1000">
+        <environment fpe="2" printing-format="v" width="10" recursion-limit="1000" container_disp_max_depth="2">
             <fpe code="0" floating-point-exception="_(Produces an error)"/>
             <fpe code="1" floating-point-exception="_(Produces a warning)"/>
             <fpe code="2" floating-point-exception="_(Produces Inf or NaN)"/>
@@ -88,7 +88,7 @@
           <action key="" description="_(Preferences)" name="console-prefs"/>
           <action key="" description="_(Show/Hide toolbar)" name="console-sh-toolbar"/>
           <action key="" description="_(Clear history)" name="console-clear-history"/>
-	  <action key="" description="_(Resume)" name="console-resume"/>
+          <action key="" description="_(Resume)" name="console-resume"/>
           <action key="" description="_(Abort)" name="console-abort"/>
           <action key="" description="_(Interrupt)" name="console-interrupt"/>
           <action key="" description="_(Launch SciNotes)" name="console-scinotes"/>
