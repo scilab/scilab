@@ -1,0 +1,298 @@
+# Created by Octave 5.1.0, Sun Dec 08 01:35:55 2019 GMT <unknown@Samuel-PC>
+# name: ste
+# type: scalar struct
+# ndims: 2
+ 1 1
+# length: 0
+
+
+# name: ste2
+# type: struct
+# ndims: 2
+ 1 0
+# length: 2
+# name: r
+# type: cell
+# rows: 1
+# columns: 0
+
+
+# name: b
+# type: cell
+# rows: 1
+# columns: 0
+
+
+
+
+# name: sts
+# type: scalar struct
+# ndims: 2
+ 1 1
+# length: 3
+# name: r
+# type: complex matrix
+# rows: 1
+# columns: 3
+ (3.1415926535897931,0) (2.7182818284590451,0) (0,1)
+
+
+# name: b
+# type: bool
+0
+
+
+# name: t
+# type: cell
+# rows: 1
+# columns: 2
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 3
+abc
+
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 3
+ABC
+
+
+
+
+
+
+
+# name: stm
+# type: struct
+# ndims: 2
+ 2 2
+# length: 2
+# name: r
+# type: cell
+# rows: 2
+# columns: 2
+# name: <cell-element>
+# type: complex scalar
+(0,1)
+
+
+# name: <cell-element>
+# type: scalar
+2.7182818284590451
+
+
+
+# name: <cell-element>
+# type: scalar
+-1
+
+
+# name: <cell-element>
+# type: complex scalar
+(-0,-1)
+
+
+
+
+
+# name: b
+# type: cell
+# rows: 2
+# columns: 2
+# name: <cell-element>
+# type: bool
+0
+
+
+# name: <cell-element>
+# type: bool
+1
+
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 1
+# columns: 2
+ 1 0
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 2
+# columns: 1
+ 0
+ 0
+
+
+
+
+
+
+
+# name: stm2
+# type: struct
+# ndims: 2
+ 2 2
+# length: 3
+# name: r
+# type: cell
+# rows: 2
+# columns: 2
+# name: <cell-element>
+# type: complex scalar
+(0,1)
+
+
+# name: <cell-element>
+# type: scalar
+2.7182818284590451
+
+
+
+# name: <cell-element>
+# type: scalar
+-1
+
+
+# name: <cell-element>
+# type: complex scalar
+(-0,-1)
+
+
+
+
+
+# name: b
+# type: cell
+# rows: 2
+# columns: 2
+# name: <cell-element>
+# type: bool
+0
+
+
+# name: <cell-element>
+# type: bool
+1
+
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 1
+# columns: 2
+ 1 0
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 2
+# columns: 1
+ 0
+ 0
+
+
+
+
+
+# name: n
+# type: cell
+# rows: 2
+# columns: 2
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: struct
+# ndims: 2
+ 2 2
+# length: 2
+# name: r
+# type: cell
+# rows: 2
+# columns: 2
+# name: <cell-element>
+# type: complex scalar
+(0,1)
+
+
+# name: <cell-element>
+# type: scalar
+2.7182818284590451
+
+
+
+# name: <cell-element>
+# type: scalar
+-1
+
+
+# name: <cell-element>
+# type: complex scalar
+(-0,-1)
+
+
+
+
+
+# name: b
+# type: cell
+# rows: 2
+# columns: 2
+# name: <cell-element>
+# type: bool
+0
+
+
+# name: <cell-element>
+# type: bool
+1
+
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 1
+# columns: 2
+ 1 0
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 2
+# columns: 1
+ 0
+ 0
+
+
+
+
+
+
+
+
+
+
+
+

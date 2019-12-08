@@ -1,0 +1,224 @@
+# Created by Octave 5.1.0, Sat Dec 07 17:19:29 2019 GMT <unknown@Samuel-PC>
+# name: te
+# type: string
+# elements: 0
+
+
+# name: ts
+# type: string
+# elements: 1
+# length: 7
+Bonjour
+
+
+# name: ts2
+# type: string
+# elements: 1
+# length: 9
+ Bonjour 
+
+
+# name: ts3
+# type: sq_string
+# elements: 1
+# length: 16
+Bonjour
+	=> ABCD 
+
+
+# name: tc
+# type: string
+# elements: 3
+# length: 5
+Hello
+# length: 5
+Allo 
+# length: 5
+Hola 
+
+
+# name: tr
+# type: cell
+# rows: 1
+# columns: 5
+# name: <cell-element>
+# type: null_string
+# elements: 0
+
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 2
+  
+
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 5
+ ABC 
+
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 4
+ABC 
+
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 4
+AB C
+
+
+
+
+
+# name: tm
+# type: cell
+# rows: 2
+# columns: 3
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 5
+Hello
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 7
+Bonjour
+
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 2
+Hi
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 5
+Salut
+
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 12
+Good evening
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 7
+Bonsoir
+
+
+
+
+
+# name: th
+# type: cell
+# ndims: 3
+ 2 3 2
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 5
+Hello
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 7
+Bonjour
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 2
+Hi
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 5
+Salut
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 12
+Good evening
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 7
+Bonsoir
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 4
+ABCD
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 4
+abcd
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 3
+ABC
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 3
+abc
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 2
+AB
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 2
+ab
+
+
+
+

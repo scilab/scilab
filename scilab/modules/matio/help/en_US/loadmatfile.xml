@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-    * Copyright (C) 2002-2007 - INRIA - Serge STEER
-    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
-    *
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2002-2007 - INRIA - Serge STEER
+ * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,18 +12,25 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-    *
-    -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="loadmatfile">
+ *
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="loadmatfile">
     <refnamediv>
         <refname>loadmatfile</refname>
-        <refpurpose>loads a Matlab V6 MAT-file (binary or ASCII) into Scilab</refpurpose>
+        <refpurpose>loads some variables from an Octave or a Matlab MAT binary or ASCII data file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>loadmatfile(format,filename[,var1[,var2[,...]]])
-            loadmatfile(filename[,format[,var1[,var2[,...]]]])
-            loadmatfile(filename[,var1[,var2,[,...[,format]]]])
+        <synopsis>
+            loadmatfile(filename)
+            loadmatfile(filename, var1, var2, ...)
+            loadmatfile(format, filename, ...)
+            loadmatfile(filename, format, ...)
+            loadmatfile(filename, var1, var2, .., format)
+            struc = loadmatfile(.., "-toStruct")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,33 +39,58 @@
             <varlistentry>
                 <term>filename</term>
                 <listitem>
-                    <para>character string containing the path of the file (needed)</para>
+                    <para>character string containing the path of the file.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>format</term>
                 <listitem>
-                    <para>file format (if not given and file has extension ".mat", file is considered to be binary)</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>"-mat"</term>
-                            <listitem>
-                                <para>binary file</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"-ascii"</term>
-                            <listitem>
-                                <para>option to force Scilab to read file as an ASCII file</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <para>
+                        Explicit file format. If it is not given, loadmatfile() tries to determine
+                        the format from the file header, etc. If the data format is still unknown
+                        and the file name has the ".mat" extension, the file is considered to be
+                        a Matlab binary data file.
+                        Available explicit formats are:</para>
+                    <table>
+                        <tr><th align="left">"-mat"</th><td>Matlab binary file.</td></tr>
+                        <tr><th align="left">"-octave"</th><td>Octave native text file.</td></tr>
+                        <tr><th align="left">"-ascii"</th>
+                            <td>ASCII file as got from Matlab or Octave with the
+                                <literal>save -ascii</literal> option.
+                            </td>
+                        </tr>
+                    </table>
+                    <para>
+                        The <varname>format</varname> can be provided anywhere in the list of inputs.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>var1, var2</term>
                 <listitem>
-                    <para>character strings containing the name of the variables to load (only for binary files)</para>
+                    <para>
+                        Strings. Names of the variables that must be loaded from the file.
+                        If no name is provided, all the variables stored in the file are loaded.
+                        Ignored if <literal>-ascii</literal> is used.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"-toStruct</term>
+                <listitem>
+                    <para>
+                        Input keyword used if the read variables must be returned as fields of
+                        an output structure, instead of directly into the calling environment.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>struc</term>
+                <listitem>
+                    <para>
+                        Structure whos fields are the names of variables read from the file,
+                        with their respective values.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -66,21 +98,178 @@
     <refsection>
         <title>Description</title>
         <para>
-            loads a Matlab MAT-file into Scilab. The Matlab data types are
-            converted into the Scilab equivalents.
+            <emphasis role="bold">loadmatfile(filename)</emphasis> reads all the variables
+            names and values stored in the given Matlab or Octave data file, and returns
+            them in the calling environment.
         </para>
+        <para>
+            <emphasis role="bold">struc = loadmatfile(filename, "-toStruct")</emphasis> does the
+            same, but provides the read variables through the <varname>struc</varname> output
+            structure. Any read variable <emphasis>varname = value</emphasis> can then be accessed
+            through <literal>struc.varname</literal>. Only <varname>struc</varname> is returned
+            to the calling environment.
+            <note>
+                This option avoids unexpectedly overwriting a variable existing in the calling
+                environment with an homonymous variable from the file.
+            </note>
+        </para>
+        <para>
+            <emphasis role="bold">loadmatfile(filename, .., var2, var2, ..)</emphasis>
+            reads from the file only variables whose names <varname>var1, var2, ..</varname>
+            are provided.
+        </para>
+        <para>
+            <emphasis role="bold">loadmatfile(filename, ..,"-mat")</emphasis> forces the file
+            to be read as a Matlab binary data file.
+        </para>
+        <para>
+            <emphasis role="bold">loadmatfile(filename, ..,"-octave")</emphasis> forces the file
+            to be read as an Octave native text data file (default Octave format).
+        </para>
+        <para>
+            <emphasis role="bold">loadmatfile(filename, ..,"-ascii")</emphasis> forces the file
+            to be read as a Matlab ASCII data file (very poor format). In this case, only one
+            variable is read and returned. Its name is set to the basename of the file
+            (with forbidden characters removed).
+        </para>
+        <para>
+            In all ways, the Octave or Matlab data types are converted into the Scilab equivalents.
+        </para>
+		<refsect3>
+			<title>Remarks</title>
+			<para>
+				<emphasis role="bold">About native Octave 5.1 text data files:</emphasis>
+				<itemizedlist>
+					<listitem>
+						Supported input data types: dense and sparse booleans, signed and unsigned
+						encoded integers (from int8 to uint64), real and complex numbers (including
+						Inf, NaN and NA special values) in sparse and dense encodings, strings,
+						arrays of cells of strings, any cell array or hyperarray of any dimension,
+						scalar or array of structures.
+					</listitem>
+					<listitem>
+						NA values are converted into NaN.
+					</listitem>
+					<listitem>
+						The mantissa of single precision real and complex numbers is truncated to their
+						8 most significant figures.
+					</listitem>
+					<listitem>
+						Any cells array of scalar strings is automatically converted into a regular
+						Scilab array of strings.
+					</listitem>
+					<listitem>
+						In any input column of strings, appended padding spaces are left as is,
+						without being trimmed.
+					</listitem>
+					<listitem>
+						In strings, ascii(13) characters are read as ascii(10).
+					</listitem>
+					<listitem>
+						Cells and structures must contain only supported input data types. Otherwise,
+						an error occurs.
+					</listitem>
+					<listitem>
+						Nested containers (cells, structures) are supported.
+					</listitem>
+					<listitem>
+						Known limitation: int64 or uint64 integers bigger than 2<superscript>53</superscript>
+						can't be read properly (loss of precision).
+					</listitem>
+				</itemizedlist>
+			</para>
+		</refsect3>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            From a .mat Matlab file:
+        </para>
         <programlisting role="example"><![CDATA[
-A = rand(10,10);
-B = sprand(100,100,0.1);
-savematfile('test_matfile.mat','A','B','-v6');
-clear;
-loadmatfile('test_matfile.mat');
+A = grand(4, 6, "uin", 0, 10);
+B = sprand(10,12,0.1);
+filename = TMPDIR + "/test_matfile.mat";
+savematfile(filename, 'A', 'B', '-v6');
+clear A B
+loadmatfile(filename);
 disp(A)
 disp(B)
  ]]></programlisting>
+        <para>
+            From an Octave file:
+        </para>
+        <programlisting role="example"><![CDATA[
+filename = pathconvert("SCI/modules/matio/tests/unit_tests/octave/octave_struct.txt");
+
+// Read all variables, with automatic format detection:
+clear ste ste2 sts stm stm2
+r = loadmatfile(filename,"-toStruct")
+isdef(["ste" "sts"])
+
+// Read only a subset of stored variables:
+r = loadmatfile(filename,"-toStruct", "ste", "sts")
+isdef(["ste" "sts"])
+
+// Returns the data in the calling environment:
+ste = "This will be overwritten"
+loadmatfile(filename,"ste", "sts");
+ste, sts
+ ]]></programlisting>
+    <screen><![CDATA[
+--> clear ste ste2 sts stm stm2
+--> r = loadmatfile(filename,"-toStruct")
+ r  =
+  ste: [0x0 struct] with no field
+
+  ste2: [0x0 struct] with no field
+
+  sts: [1x1 struct] with fields:
+      r = [3.1415927,2.7182818,%i]
+      b = %f
+      t = ["abc","ABC"]
+
+  stm: [2x2 struct] with fields:
+        r
+        b
+
+  stm2: [2x2 struct] with fields:
+        r
+        b
+        n
+
+--> isdef(["ste" "sts"])
+ ans  =
+  F F
+
+--> // Read only a subset of stored variables:
+--> r = loadmatfile(filename,"-toStruct", "ste", "sts")
+ r  =
+  ste: [0x0 struct] with no field
+
+  sts: [1x1 struct] with fields:
+      r = [3.1415927,2.7182818,%i]
+      b = %f
+      t = ["abc","ABC"]
+
+--> isdef(["ste" "sts"])
+ ans  =
+  F F
+
+--> // Returns the data in the calling environment:
+--> ste = "This will be overwritten"
+ ste  =
+ This will be overwritten
+
+--> loadmatfile(filename,"ste", "sts");
+--> ste, sts
+ ste  =
+  0x0 struct with no field
+
+ sts  =
+  r = [3.1415927,2.7182818,%i]
+  b = %f
+  t = ["abc","ABC"]
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -105,11 +294,32 @@ disp(B)
     <refsection>
         <title>Bibliography</title>
         <para>
-            This function uses MATIO library (
+            The binary mode of this function is based on the MATIO library (
             <literal>
                 <ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink>
             </literal>
             ).
         </para>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <literal>"-octave"</literal> option introduced.
+                        </listitem>
+                        <listitem>
+                            Automatic input format detection added.
+                        </listitem>
+                        <listitem>
+                            Input <literal>"-toStruct"</literal> option and output argument added.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

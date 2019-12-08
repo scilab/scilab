@@ -1,0 +1,402 @@
+# Created by Octave 5.1.0, Sat Dec 07 19:25:40 2019 GMT <unknown@Samuel-PC>
+# name: cele
+# type: cell
+# rows: 0
+# columns: 0
+
+
+# name: cels
+# type: cell
+# rows: 1
+# columns: 1
+# name: <cell-element>
+# type: scalar
+2.7182818284590451
+
+
+
+
+
+# name: cels2
+# type: cell
+# rows: 1
+# columns: 1
+# name: <cell-element>
+# type: null_matrix
+# rows: 0
+# columns: 0
+
+
+
+
+
+# name: celr
+# type: cell
+# rows: 1
+# columns: 3
+# name: <cell-element>
+# type: null_matrix
+# rows: 0
+# columns: 0
+
+
+
+# name: <cell-element>
+# type: scalar
+Inf
+
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 2
+# columns: 2
+ 1 0
+ 0 1
+
+
+
+
+
+# name: celr2
+# type: cell
+# rows: 1
+# columns: 5
+# name: <cell-element>
+# type: null_matrix
+# rows: 0
+# columns: 0
+
+
+
+# name: <cell-element>
+# type: scalar
+Inf
+
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 2
+# columns: 2
+ 1 0
+ 0 1
+
+
+
+# name: <cell-element>
+# type: matrix
+# rows: 0
+# columns: 0
+
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 4
+ABCD
+
+
+
+
+
+# name: celc
+# type: cell
+# rows: 3
+# columns: 1
+# name: <cell-element>
+# type: null_matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: scalar
+Inf
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 2
+# columns: 2
+ 1 0
+ 0 1
+
+
+
+
+
+# name: celm
+# type: cell
+# rows: 3
+# columns: 3
+# name: <cell-element>
+# type: null_matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: cell
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 4
+abcd
+
+
+
+# name: <cell-element>
+# type: scalar
+Inf
+
+
+# name: <cell-element>
+# type: cell
+# rows: 1
+# columns: 1
+# name: <cell-element>
+# type: scalar
+2.7182818284590451
+
+
+
+
+
+# name: <cell-element>
+# type: int8 scalar
+-47
+
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 2
+# columns: 2
+ 1 0
+ 0 1
+
+
+# name: <cell-element>
+# type: cell
+# rows: 1
+# columns: 3
+# name: <cell-element>
+# type: null_matrix
+# rows: 0
+# columns: 0
+
+
+
+# name: <cell-element>
+# type: scalar
+Inf
+
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 2
+# columns: 2
+ 1 0
+ 0 1
+
+
+
+
+
+# name: <cell-element>
+# type: sparse matrix
+# nnz: 2
+# rows: 1
+# columns: 3
+1 1 2
+1 3 3
+
+
+
+
+
+# name: celh
+# type: cell
+# ndims: 3
+ 3 3 2
+# name: <cell-element>
+# type: null_matrix
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: cell
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 4
+abcd
+
+
+# name: <cell-element>
+# type: scalar
+Inf
+
+
+# name: <cell-element>
+# type: cell
+# rows: 1
+# columns: 1
+# name: <cell-element>
+# type: scalar
+2.7182818284590451
+
+
+
+
+
+# name: <cell-element>
+# type: int8 scalar
+-47
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 2
+# columns: 2
+ 1 0
+ 0 1
+
+
+# name: <cell-element>
+# type: cell
+# rows: 1
+# columns: 3
+# name: <cell-element>
+# type: null_matrix
+# rows: 0
+# columns: 0
+
+
+
+# name: <cell-element>
+# type: scalar
+Inf
+
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 2
+# columns: 2
+ 1 0
+ 0 1
+
+
+
+
+
+# name: <cell-element>
+# type: sparse matrix
+# nnz: 2
+# rows: 1
+# columns: 3
+1 1 2
+1 3 3
+
+
+# name: <cell-element>
+# type: sparse matrix
+# nnz: 2
+# rows: 1
+# columns: 3
+1 1 2
+1 3 3
+
+
+# name: <cell-element>
+# type: cell
+# rows: 1
+# columns: 3
+# name: <cell-element>
+# type: null_matrix
+# rows: 0
+# columns: 0
+
+
+
+# name: <cell-element>
+# type: scalar
+Inf
+
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 2
+# columns: 2
+ 1 0
+ 0 1
+
+
+
+
+
+# name: <cell-element>
+# type: bool matrix
+# rows: 2
+# columns: 2
+ 1 0
+ 0 1
+
+
+# name: <cell-element>
+# type: int8 scalar
+-47
+
+
+# name: <cell-element>
+# type: cell
+# rows: 1
+# columns: 1
+# name: <cell-element>
+# type: scalar
+2.7182818284590451
+
+
+
+
+
+# name: <cell-element>
+# type: scalar
+Inf
+
+
+# name: <cell-element>
+# type: string
+# elements: 1
+# length: 4
+abcd
+
+
+# name: <cell-element>
+# type: cell
+# rows: 0
+# columns: 0
+
+
+# name: <cell-element>
+# type: null_matrix
+# rows: 0
+# columns: 0
+
+
+
+
