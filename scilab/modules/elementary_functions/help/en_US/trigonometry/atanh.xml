@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -29,15 +29,9 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>x, t</term>
                 <listitem>
-                    <para>a real or complex vector/matrix.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t</term>
-                <listitem>
-                    <para>a real or complex vector/matrix.</para>
+                    <para>Arrays of real or complex numbers, of same sizes.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,58 +39,66 @@
     <refsection>
         <title>Description</title>
         <para>
-            The components of vector <varname>t</varname> are the hyperbolic
-            tangent inverse of the corresponding entries of vector
-            <varname>x</varname>. Definition domain is <literal>[-1,1]</literal> for
-            the real function (see Remark).
-        </para>
-    </refsection>
-    <refsection>
-        <title>Remark</title>
-        <para>
-            In Scilab (as in some others numerical software) when you try to
-            evaluate an elementary mathematical function outside its definition domain
-            in the real case, then the complex extension is used (with a complex
-            result). The most famous example being the <function>sqrt</function> function (try
-            <code>sqrt(-1)</code>!).
-        </para>
-        <para>
-            This approach has some drawbacks when you
-            evaluate the function at a singular point which may lead to different
-            results when the point is considered as real or complex.
-        </para>
-        <para>
-            For <literal>atanh()</literal>, this occurs for <literal>-1</literal> and
-            <literal>1</literal>, because at these points the imaginary part does not
-            converge and so <literal>atanh(1) = +Inf + i NaN</literal> while
-            <literal>atanh(1) = +Inf</literal> for the real case (as lim <literal>x-&gt;1</literal>
-            of <code>atanh(x)</code>).
-        </para>
-        <para>
-            So when you evaluate this function on the vector <literal>[1 2]</literal>
-            then like <literal>2</literal> is outside the definition
-            domain, the complex extension is used for all the vector and you get
-            <literal>atanh(1) = +Inf + i NaN</literal> while you get
-            <literal>atanh(1) = +Inf</literal> with <literal>[1, 0.5]</literal> for instance.
+            The components of vector <varname>t</varname> are the hyperbolic tangent inverse of
+            the corresponding entries of vector <varname>x</varname>.
+            The result <varname>t</varname> is real for <varname>x</varname> in
+            <literal>[-1,1]</literal>, and complex otherwise.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
+        <para>
+            With input real numbers:
+        </para>
         <programlisting role="example"><![CDATA[
-// example 1
-x=[0,%i,-%i]
-tanh(atanh(x))
-
-// example 2
-x = [-%inf -3 -2 -1 0 1 2 3 %inf]
-ieee(2)
-atanh(tanh(x))
-
-// example 3 (see Remark)
-ieee(2)
-atanh([1 2])
-atanh([1 0.5])
+x = [-%inf -2 -1 -0.5 0 0.5 1 2 3 %inf];
+[x ; atanh(tanh(x))]
+atanh(x')
  ]]></programlisting>
+    <screen><![CDATA[
+--> [x ; atanh(tanh(x))]
+ ans  =
+  -Inf  -2.  -1.  -0.5   0.   0.5   1.   2.   3.   Inf
+  -Inf  -2.  -1.  -0.5   0.   0.5   1.   2.   3.   Inf
+
+--> atanh(x')
+ ans  =
+   0.        + 1.5707963i
+  -0.5493061 + 1.5707963i
+  -Inf       + 0.i       
+  -0.5493061 + 0.i       
+   0.        + 0.i       
+   0.5493061 + 0.i       
+   Inf       + 0.i       
+   0.5493061 + 1.5707963i
+   0.3465736 + 1.5707963i
+   0.        + 1.5707963i
+]]></screen>
+        <para>
+            With input complex numbers:
+        </para>
+        <programlisting role="example"><![CDATA[
+x = [-1-%i, -%i, 0, %i, %i+1];
+[x; tanh(atanh(x)) ; atanh(tanh(x))]
+atanh(x.')
+ ]]></programlisting>
+    <screen><![CDATA[
+--> [x; tanh(atanh(x)) ; atanh(tanh(x))]
+ ans  =
+
+  -1. - i     0. - i     0. + 0.i   0. + i     1. + i  
+  -1. - i     0. - i     0. + 0.i   0. + i     1. + i  
+  -1. - i     0. - i     0. + 0.i   0. + i     1. + i  
+
+--> atanh(x.')
+ ans  =
+
+  -0.4023595 - 1.017222i
+   0.        - 0.7853982i
+   0.        + 0.i      
+   0.        + 0.7853982i
+   0.4023595 + 1.017222i
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -104,9 +106,25 @@ atanh([1 0.5])
             <member>
                 <link linkend="tanh">tanh</link>
             </member>
-            <member>
-                <link linkend="ieee">ieee</link>
-            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <literal>atanh(-1)</literal> is now always <literal>-Inf</literal>, and
+                            <literal>atanh(1)</literal> always <literal>Inf</literal>.
+                        </listitem>
+                        <listitem>
+                            For any real x>1, imag(atanh(x)) is now > 0.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

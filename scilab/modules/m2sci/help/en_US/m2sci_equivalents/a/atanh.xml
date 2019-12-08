@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_atanh">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="m2sci_atanh">
     <refnamediv>
         <refname>atanh (Matlab function)</refname>
         <refpurpose>Inverse hyperbolic tangent</refpurpose>
@@ -31,12 +34,12 @@
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 atanh
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
+                    <programlisting role="no-scilab-exec"><![CDATA[
 atanh
 ]]></programlisting>
                 </td>
@@ -45,33 +48,32 @@ atanh
     </refsection>
     <refsection>
         <title>Particular cases</title>
-        <para>In y=atanh(x), for real elements of x outside the domain [-1,1], the complex part of Scilab y value is the opposite of Matlab y value.</para>
-    </refsection>
-    <refsection>
-        <title>Examples</title>
+        <para>
+            In y=atanh(x), for real elements of x &lt; -1, the complex part of Scilab y value is the
+            opposite of Matlab y value.
+        </para>
+        <para>
+          Examples
         <informaltable border="1" width="100%">
             <tr>
-                <td align="center">
-                    <emphasis role="bold">Matlab</emphasis>
-                </td>
-                <td align="center">
-                    <emphasis role="bold">Scilab</emphasis>
-                </td>
+                <th>Matlab</th>
+                <th>Scilab</th>
             </tr>
             <tr>
                 <td>
-                    <programlisting role="example"><![CDATA[
-y = atanh(2)
-y = 0.5493 + 1.5708i
+                    <programlisting role="no-scilab-exec"><![CDATA[
+y = atanh(-2)
+y = -0.5493 - 1.5708i
 ]]></programlisting>
                 </td>
                 <td>
-                    <programlisting role="example"><![CDATA[
-y = atanh(2)
-y = 0.5493061 - 1.5707963i
+                    <programlisting role="no-scilab-exec"><![CDATA[
+y = atanh(-2)
+y = -0.5493061 + 1.5707963i
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
+        </para>
     </refsection>
 </refentry>

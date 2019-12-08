@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atanh" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="atanh" xml:lang="ru">
     <refnamediv>
         <refname>atanh</refname>
         <refpurpose>гиперболический арктангенс</refpurpose>
@@ -26,13 +29,7 @@
         <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>вещественный или комплексный вектор/матрица.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>t</term>
+                <term>x, t</term>
                 <listitem>
                     <para>вещественный или комплексный вектор/матрица.</para>
                 </listitem>
@@ -42,41 +39,65 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Компоненты вектора  <varname>t</varname> являются гиперболическим арктангенсом соответствующих элементов вектора <varname>x</varname>. Область определения для вещественной функции <literal>[-1,1]</literal> (см. Примечание).
-        </para>
-    </refsection>
-    <refsection>
-        <title>Примечание</title>
-        <para>
-            В Scilab (как и в некоторых других вычислительных программах), когда вы пытаетесь вычислить элементарную математическую функцию вне её области определения для вещественных значений, то используется комплексное расширение (с комплексным результатом). Самый знаменитый пример - это функция квадратного корня (попробуйте найти <code>sqrt(-1)</code>!).
-            Этот подход имеет недостатки, когда вы вычисляете функцию в неопределённой точке, что может привести к различным результатам, когда точка считается вещественной или комплексной.
-            Для <function>atanh</function> это происходит для <literal>-1</literal> и
-            <literal>1</literal>, поскольку в этих точках мнимая часть не сходится и поэтому
-            <literal>atanh(1) = +Inf + i NaN</literal>, в то время как
-            <literal>atanh(1) = +Inf</literal> для вещественных значений (в качестве предела <literal>x-&gt;1</literal> функции <code>atanh(x)</code>). Поэтому, когда вы вычисляете эту функцию для вектора <literal>[1 2]</literal>, то, поскольку <literal>2</literal> лежит вне области определения, используется комплексное расширение для всего вектора и вы получите
-            <literal>atanh(1) = +Inf + i NaN</literal>, хотя вы получаете <literal>atanh(1)
-                = +Inf
-            </literal>
-            и, например, <literal>[1 0.5]</literal>.
+            Компоненты вектора  <varname>t</varname> являются гиперболическим арктангенсом
+            соответствующих элементов вектора <varname>x</varname>.
+            Область определения для вещественной функции <literal>[-1,1]</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
+        <para>
+            С вещественными числами на входе:
+        </para>
         <programlisting role="example"><![CDATA[
-// пример 1
-x=[0,%i,-%i]
-tanh(atanh(x))
-
-// пример 2
-x = [-%inf -3 -2 -1 0 1 2 3 %inf]
-ieee(2)
-atanh(tanh(x))
-
-// пример 3 (см. Примечание)
-ieee(2)
-atanh([1 2])
-atanh([1 0.5])
+x = [-%inf -2 -1 -0.5 0 0.5 1 2 3 %inf];
+[x ; atanh(tanh(x))]
+atanh(x')
  ]]></programlisting>
+    <screen><![CDATA[
+--> [x ; atanh(tanh(x))]
+ ans  =
+  -Inf  -2.  -1.  -0.5   0.   0.5   1.   2.   3.   Inf
+  -Inf  -2.  -1.  -0.5   0.   0.5   1.   2.   3.   Inf
+
+--> atanh(x')
+ ans  =
+   0.        + 1.5707963i
+  -0.5493061 + 1.5707963i
+  -Inf       + 0.i       
+  -0.5493061 + 0.i       
+   0.        + 0.i       
+   0.5493061 + 0.i       
+   Inf       + 0.i       
+   0.5493061 + 1.5707963i
+   0.3465736 + 1.5707963i
+   0.        + 1.5707963i
+]]></screen>
+        <para>
+            С комплексными числами на входе:
+        </para>
+        <programlisting role="example"><![CDATA[
+x = [-1-%i, -%i, 0, %i, %i+1];
+[tanh(atanh(x)) ; atanh(tanh(x))]
+atanh(x.')
+ ]]></programlisting>
+    <screen><![CDATA[
+--> [x; tanh(atanh(x)) ; atanh(tanh(x))]
+ ans  =
+
+  -1. - i     0. - i     0. + 0.i   0. + i     1. + i  
+  -1. - i     0. - i     0. + 0.i   0. + i     1. + i  
+  -1. - i     0. - i     0. + 0.i   0. + i     1. + i  
+
+--> atanh(x.')
+ ans  =
+
+  -0.4023595 - 1.017222i
+   0.        - 0.7853982i
+   0.        + 0.i      
+   0.        + 0.7853982i
+   0.4023595 + 1.017222i
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
@@ -84,9 +105,25 @@ atanh([1 0.5])
             <member>
                 <link linkend="tanh">tanh</link>
             </member>
-            <member>
-                <link linkend="ieee">ieee</link>
-            </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <literal>atanh(-1)</literal> теперь всегда <literal>-Inf</literal>, а
+                            <literal>atanh(1)</literal> всегда <literal>Inf</literal>.
+                        </listitem>
+                        <listitem>
+                            Теперь для любого вещественного x>1 imag(atanh(x)) > 0.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
