@@ -31,5 +31,5 @@ function txt = %r_string(r)
     // We reshape and justify the result
     s = size(r)
     s(1) = -1
-    txt = justify(matrix(txt,s),"c")
+    txt = matrix(justify(matrix(txt,3,-1),"c"),s)
 endfunction
