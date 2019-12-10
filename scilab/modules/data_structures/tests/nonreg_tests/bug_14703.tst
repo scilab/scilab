@@ -16,4 +16,4 @@
 // type(linspace) (or other unloaded macros in libs) returned 11 instead of 13
 
 assert_checkequal(type(dec2bin), 13);
-assert_checkequal(type(linspace), 13);
+assert_checkequal(type(issparse), 13);

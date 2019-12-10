@@ -10,7 +10,7 @@
 // who_user
 
 clear
-a    = linspace(1,2,3);
+a    = issparse(1);
 %expo = 2;              // starting like the predefined %e
 v = who_user(%f);
-assert_checkequal(v,["%expo" "a" "linspace"]');
+assert_checkequal(v,["%expo" "a" "issparse"]');

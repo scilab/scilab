@@ -19,6 +19,22 @@ extern "C"
 #include "localization.h"
 }
 
+template<typename T>
+int convertTypeToInt32(T* pVal)
+{
+    typename T::type TVal = pVal->get(0);
+    if (TVal >= INT_MAX)
+    {
+        return INT_MAX;
+    }
+    else
+    {
+        return TVal < 0 ? 0 :  (static_cast<int> (TVal));
+    }
+}
+
+int convertToSize(types::InternalType *pIT);
+
 bool fillRange(double* pdblOut, double* pdblMin, double* pdblMax, int iRows, int iCols);
 
 /* ==================================================================== */
@@ -75,22 +91,19 @@ types::Function::ReturnValue sci_linspace(types::typed_list &in, int _iRetCount,
 
     if (in.size() == 3)
     {
-        if (in[2]->isDouble() && in[2]->getAs<types::Double>()->isComplex() == false
-            && in[2]->getAs<types::Double>()->getSize() == 1)
+        if (in[2]->isGenericType() && in[2]->getAs<types::GenericType>()->isScalar() &&
+            (in[2]->isInt() || (in[2]->isDouble() && in[2]->getAs<types::Double>()->isComplex() == false) ))
         {
-            double dblCols = in[2]->getAs<types::Double>()->get(0);
-            if (std::floor(dblCols) != dblCols)
+            if (in[2]->isDouble())
             {
-                Scierror(999, _("%s: Argument #%d: An integer value expected.\n"), "linspace",3);
-                return types::Function::Error;
+                double dblCols = in[2]->getAs<types::Double>()->get(0);
+                if (std::floor(dblCols) != dblCols)
+                {
+                    Scierror(999, _("%s: Argument #%d: An integer value expected.\n"), "linspace",3);
+                    return types::Function::Error;
+                }
             }
-            if (dblCols <= 0)
-            {
-                // empty matrix case
-                out.push_back(types::Double::Empty());
-                return types::Function::OK;
-            }
-            iCols = (int) dblCols;
+            iCols = convertToSize(in[2]);
         }
         else
         {
@@ -99,9 +112,15 @@ types::Function::ReturnValue sci_linspace(types::typed_list &in, int _iRetCount,
         }
     }
 
-    // yet another empty matrix case
-    if (pDbl[0]->getSize() == 0)
+    if (iCols == INT_MAX)
     {
+         Scierror(999, _("%s: Wrong values for input argument #%d: Must be less than %d.\n"),"linspace",3,INT_MAX);
+         return types::Function::Error;
+    }
+
+    if (iCols == 0 || (pDbl[0]->getSize() == 0))
+    {
+        // empty matrix case
         out.push_back(types::Double::Empty());
         return types::Function::OK;
     }
@@ -195,4 +214,46 @@ bool fillRange(double* pdblOut, double* pdblMin, double* pdblMax, int iRows, int
     return true;
 }
 
+int convertToSize(types::InternalType *pIT)
+{
+    switch (pIT->getType())
+    {
+        case types::InternalType::ScilabDouble:
+        {
+            return convertTypeToInt32(pIT->getAs<types::Double>());
+        }
+        case types::InternalType::ScilabInt8:
+        {
+            return convertTypeToInt32(pIT->getAs<types::Int8>());
+        }
+        case types::InternalType::ScilabInt16:
+        {
+            return convertTypeToInt32(pIT->getAs<types::Int16>());
+        }
+        case types::InternalType::ScilabInt32:
+        {
+            return convertTypeToInt32(pIT->getAs<types::Int32>());
+        }
+        case types::InternalType::ScilabInt64:
+        {
+            return convertTypeToInt32(pIT->getAs<types::Int64>());
+        }
+        case types::InternalType::ScilabUInt8:
+        {
+            return convertTypeToInt32(pIT->getAs<types::UInt8>());
+        }
+        case types::InternalType::ScilabUInt16:
+        {
+            return convertTypeToInt32(pIT->getAs<types::UInt16>());
+        }
+        case types::InternalType::ScilabUInt32:
+        {
+            return convertTypeToInt32(pIT->getAs<types::UInt32>());
+        }
+        case types::InternalType::ScilabUInt64:
+        {
+            return convertTypeToInt32(pIT->getAs<types::UInt64>());
+        }
+    }
+}
 
