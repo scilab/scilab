@@ -157,6 +157,12 @@ size(lter) - size(lbis) - size(l)  // must be zero
                 <link linkend="lstcat">lstcat</link>
             </member>
             <member>
+                <link linkend="list2vec">list2vec</link>
+            </member>
+            <member>
+                <link linkend="vec2list">vec2list</link>
+            </member>
+            <member>
                 <link linkend="tlist">tlist</link>
             </member>
             <member>
