@@ -34,7 +34,7 @@ if getos() == "Windows" then
 
 elseif isdir(lib1include)
     // Unix source version
-    libs   = SCI + "/modules/" + lib1 + "/.libs/libsci" + lib1;
+    libs = [];
     cflags = "-I " + lib1include;
 else
     // Unix binary version
