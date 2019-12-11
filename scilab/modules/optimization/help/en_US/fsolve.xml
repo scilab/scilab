@@ -14,14 +14,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fsolve" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="fsolve" xml:lang="en">
     <refnamediv>
         <refname>fsolve</refname>
         <refpurpose>find a zero of a system of n nonlinear functions</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[x [,v [,info]]]=fsolve(x0,fct [,fjac] [,tol])</synopsis>
+        <synopsis>
+            [x, v, info] = fsolve(x0, fct)
+            [x, v, info] = fsolve(x0, fct, fjac)
+            [x, v, info] = fsolve(x0, fct, fjac, tol)
+            [x, v, info] = fsolve(x0, fct, tol)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -57,57 +65,29 @@
             <varlistentry>
                 <term>x :</term>
                 <listitem>
-                    <para>real vector (final value of function argument, estimated
-                        zero).
+                    <para>real vector (final value of function argument, estimated zero).
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>v :</term>
                 <listitem>
-                    <para>real vector (value of function at x).</para>
+                    <para>optional real vector: value of function at x.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>info</term>
                 <listitem>
-                    <para>termination indicator</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>0</term>
-                            <listitem>
-                                <para>improper input parameters.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>1</term>
-                            <listitem>
-                                <para>algorithm estimates that the relative error between x
-                                    and the solution is at most tol.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>2</term>
-                            <listitem>
-                                <para>number of calls to fcn reached</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>3</term>
-                            <listitem>
-                                <para>tol is too small. No further improvement in the
-                                    approximate solution x is possible.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>4</term>
-                            <listitem>
-                                <para>iteration is not making good progress.</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <para>optional termination indicator:</para>
+                    <table>
+                        <tr><th>0</th><td>improper input parameters.</td></tr>
+                        <tr><th>1</th><td>algorithm estimates that the relative error between x
+                                          and the solution is at most tol.</td></tr>
+                        <tr><th>2</th><td>number of calls to fcn reached</td></tr>
+                        <tr><th>3</th><td>tol is too small. No further improvement in the
+                                          approximate solution x is possible.</td></tr>
+                        <tr><th>4</th><td>iteration is not making good progress.</td></tr>
+                    </table>
                 </listitem>
             </varlistentry>
         </variablelist>

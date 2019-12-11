@@ -13,14 +13,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fsolve" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="fsolve" xml:lang="ja">
     <refnamediv>
         <refname>fsolve</refname>
         <refpurpose>n個の非線形関数システムのゼロを見つける</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[x [,v [,info]]]=fsolve(x0,fct [,fjac] [,tol])</synopsis>
+        <synopsis>
+            [x, v, info] = fsolve(x0, fct)
+            [x, v, info] = fsolve(x0, fct, fjac)
+            [x, v, info] = fsolve(x0, fct, fjac, tol)
+            [x, v, info] = fsolve(x0, fct, tol)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -69,42 +77,13 @@
                 <term>info</term>
                 <listitem>
                     <para>終了インジケータ</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>0</term>
-                            <listitem>
-                                <para>入力パラメータが適切ではありませｎ.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>1</term>
-                            <listitem>
-                                <para>アルゴリズムは,xと解の間の相対誤差が
-                                    tol以下であると指定しています.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>2</term>
-                            <listitem>
-                                <para>コール回数がfcnに達しましたn</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>3</term>
-                            <listitem>
-                                <para>tolが小さすぎます. 近似解 x の
-                                    改善が不可能です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>4</term>
-                            <listitem>
-                                <para>反復により解が改善されませんでした.</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                    <table>
+                        <tr><th>0</th><td>入力パラメータが適切ではありませｎ.</td></tr>
+                        <tr><th>1</th><td>アルゴリズムは,xと解の間の相対誤差がtol以下であると指定しています.</td></tr>
+                        <tr><th>2</th><td>コール回数がfcnに達しましたn.</td></tr>
+                        <tr><th>3</th><td>tolが小さすぎます. 近似解 x の 改善が不可能です.</td></tr>
+                        <tr><th>4</th><td>反復により解が改善されませんでした.</td></tr>
+                    </table>
                 </listitem>
             </varlistentry>
         </variablelist>

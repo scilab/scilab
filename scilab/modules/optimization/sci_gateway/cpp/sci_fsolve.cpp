@@ -224,6 +224,27 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
         }
+        else if (in.size() == 3)
+        {
+            if (in[2]->isDouble())
+            {
+                pDblTol = in[2]->getAs<types::Double>();
+                if (pDblTol->isScalar() == false)
+                {
+                    Scierror(999, _("%s: Argument #%d: Scalar (1 element) expected.\n"), "fsolve", 3);
+                    Optimization::removeOptimizationFunctions();
+                    return types::Function::Error;
+                }
+
+                dTol = pDblTol->get(0);
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A jacobian or a real expected.\n"), "fsolve", 3);
+                Optimization::removeOptimizationFunctions();
+                return types::Function::Error;
+            }
+        }
     }
 
     if (in.size() == 4)
@@ -233,7 +254,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
             pDblTol = in[3]->getAs<types::Double>();
             if (pDblTol->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "fsolve", 4);
+                Scierror(999, _("%s: Argument #%d: Scalar (1 element) expected.\n"), "fsolve", 4);
                 Optimization::removeOptimizationFunctions();
                 return types::Function::Error;
             }
