@@ -260,17 +260,21 @@ final class BlockModelElement extends BlockPartsElement {
     }
 
     private VectorOfDouble toVectorOfDouble(ScilabDouble value) {
-        VectorOfDouble ret = new VectorOfDouble(value.getHeight());
-        for (int i = 0; i < value.getWidth(); i++) {
-            ret.set(i, value.getRealElement(i, 0));
+        VectorOfDouble ret = new VectorOfDouble(value.getHeight() * value.getWidth());
+        for (int i = 0; i < value.getHeight(); i++) {
+            for (int j = 0; j < value.getWidth(); j++) {
+                ret.set(i*value.getWidth() + j, value.getRealElement(i, j));
+            }
         }
         return ret;
     }
 
     private VectorOfInt toVectorOfInt(ScilabDouble value) {
-        VectorOfInt ret = new VectorOfInt(value.getHeight());
-        for (int i = 0; i < value.getWidth(); i++) {
-            ret.set(i, (int) value.getRealElement(i, 0));
+        VectorOfInt ret = new VectorOfInt(value.getHeight() * value.getWidth());
+        for (int i = 0; i < value.getHeight(); i++) {
+            for (int j = 0; j < value.getWidth(); j++) {
+                ret.set(i*value.getWidth() + j, (int) value.getRealElement(i, j));
+            }
         }
         return ret;
     }
