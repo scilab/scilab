@@ -37,9 +37,20 @@ BOOL clc(int nblines)
         {
 #ifdef  _MSC_VER
             clrscrPart_nw(nblines);
+            if (getPromptMode() != 2) /* Add extra newline for other modes besides mode 2 */
+            {
+                printf("\n");
+            }
             bOK = TRUE;
 #else
-            printf("\033[%dA\033[J", nblines + 2);
+            if (getPromptMode() == 2) /* Check for output mode(2) and move the cursor up for extra 1 line */
+            {
+                printf("\033[%dA\033[J\033[A", nblines + 1);
+            }
+            else
+            {
+                printf("\033[%dA\033[J", nblines + 1);
+            }
             bOK = TRUE;
 #endif
         }

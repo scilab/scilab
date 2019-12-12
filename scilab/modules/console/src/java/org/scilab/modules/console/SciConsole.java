@@ -435,6 +435,9 @@ public abstract class SciConsole extends JPanel {
                 // We have to remove the command entered by the user
                 int totalNumberOfLines = nbLines + LINE_NUMBER_IN_PROMPT;
 
+                //  We add a space to add a line to make it consistent clc for all mode
+                config.getOutputView().append(" ");
+
                 Document outputDoc = ((JEditorPane) config.getOutputView()).getDocument();
                 String outputTxt =  outputDoc.getText(0, outputDoc.getLength());
 
@@ -455,6 +458,10 @@ public abstract class SciConsole extends JPanel {
                         }
                     }
                 }
+
+                // Bring the prompt back to the left
+                config.getOutputView().append("\r");
+
             } catch (BadLocationException e) {
                 e.printStackTrace();
             }

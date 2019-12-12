@@ -186,6 +186,7 @@ Bug Fixes
 * [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
 * [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
 * [#14606](http://bugzilla.scilab.org/show_bug.cgi?id=14606): Memory used by variables returned by `[names,mem]=who()` was always zero.
+* [#14642](http://bugzilla.scilab.org/show_bug.cgi?id=14642): No more "\r" carriage return with printf.
 * [#14741](http://bugzilla.scilab.org/show_bug.cgi?id=14741): The syntax `[m,e]=log2(x)` was not documented. As public function `frexp()` was in duplicate with `[m,e]=log2(x)`.
 * [#14746](http://bugzilla.scilab.org/show_bug.cgi?id=14746): Tiny numbers were sometimes displayed as 0.
 * [#14791](http://bugzilla.scilab.org/show_bug.cgi?id=14791): `sleep 1` crashed Scilab.
@@ -224,7 +225,7 @@ Bug Fixes
 * [#16012](http://bugzilla.scilab.org/show_bug.cgi?id=16012): `[struct() struct()]` crashed Scilab.
 * [#16013](http://bugzilla.scilab.org/show_bug.cgi?id=16013): Load previously saved environment with "File/Load environment" menu failed.
 * [#16014](http://bugzilla.scilab.org/show_bug.cgi?id=16014): after `x.a=1; x(:)=[]` x.a was an empty list.
-* [#16015](http://bugzilla.scilab.org/show_bug.cgi?id=116015): `intg(a,b,f)` called f(x) with x outside [a,b].
+* [#16015](http://bugzilla.scilab.org/show_bug.cgi?id=16015): `intg(a,b,f)` called f(x) with x outside [a,b].
 * [#16021](http://bugzilla.scilab.org/show_bug.cgi?id=16021): `tand([-90 90])` answered [Nan Nan] instead of [-Inf, Inf]. `cotd([-90 90])` answered [Nan Nan] instead of [0 0]. `1 ./cosd([-90 90])` answered [Inf -Inf] instead of [Inf Inf].
 * [#16026](http://bugzilla.scilab.org/show_bug.cgi?id=16026): For `atanh()`, neither the documentation pages nor the `m2sci` converter were up to date.
 * [#16051](http://bugzilla.scilab.org/show_bug.cgi?id=16051): undefined list elements could be of 2 distinct typeof "void" or "listundefined" according to the way they are created.
@@ -239,6 +240,7 @@ Bug Fixes
 * [#16111](http://bugzilla.scilab.org/show_bug.cgi?id=16111): `isglobal` was not supporting non-scalar array of strings as input.
 * [#16118](http://bugzilla.scilab.org/show_bug.cgi?id=16118): `%s <> (1+%s)` returned %F.
 * [#16139](http://bugzilla.scilab.org/show_bug.cgi?id=16139): `auread()` and `auwrite()` kept the sound file open and locked when returning on errors. They poorly handled the default .au sound file extension.
+* [#16143](http://bugzilla.scilab.org/show_bug.cgi?id=16143): `clc(n)` cleared n+1 lines instead of n>0. Thus, it was not possible to clear only one line. 
 * [#16144](http://bugzilla.scilab.org/show_bug.cgi?id=16144): Addition of sparse matrices gave incorrect results.
 * [#16152](http://bugzilla.scilab.org/show_bug.cgi?id=16152): For sparse or boolean sparse matrix `s`, `s([])` returned `[]` instead of `sparse([])`.
 * [#16158](http://bugzilla.scilab.org/show_bug.cgi?id=16158): When a multicolumn array of rationals was displayed wide column per column, columns #2:$ were replaced with its column #2.
