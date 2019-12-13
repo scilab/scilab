@@ -36,6 +36,7 @@ public :
 
 CPP_GATEWAY_PROTOTYPE(sci_tic);
 CPP_GATEWAY_PROTOTYPE(sci_toc);
+CPP_GATEWAY_PROTOTYPE(sci_sleep);
 
 
 #endif /* !__TIME_GW_HXX__ */

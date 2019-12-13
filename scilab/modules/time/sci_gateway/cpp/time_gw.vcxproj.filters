@@ -33,10 +33,10 @@
     <ClCompile Include="..\c\sci_realtime.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_sleep.c">
+    <ClCompile Include="..\c\sci_timer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_timer.c">
+    <ClCompile Include="sci_sleep.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
