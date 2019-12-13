@@ -119,6 +119,12 @@ lcm(V)
                 <link linkend="lcm">lcm</link>
             </member>
             <member>
+                <link linkend="diophant">diophant</link>
+            </member>
+            <member>
+                <link linkend="sylm">sylm</link>
+            </member>
+            <member>
                 <link linkend="poly">poly</link>
             </member>
             <member>

@@ -13,20 +13,23 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sylm" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="sylm" xml:lang="pt">
     <refnamediv>
         <refname>sylm</refname>
         <refpurpose>matriz de Sylvester</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>[S]=sylm(a,b)</synopsis>
+        <synopsis>S = sylm(a, b)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
-                <term>a,b</term>
+                <term>a, b</term>
                 <listitem>
                     <para>duas matrizes de polinômios </para>
                 </listitem>
@@ -47,22 +50,21 @@
             <literal>S</literal> tal que:
         </para>
         <para>
-            <literal>coeff( a*x + b*y )' = S *
-                [coeff(x)';coeff(y)']
-            </literal>
-            .
+            <literal>coeff( a*x + b*y )' = S * [coeff(x)';coeff(y)']</literal>.
         </para>
         <para>
-            A dimensão de <literal>S</literal> é igual a
-            <literal>degree(a)+degree(b)</literal>.
+            A dimensão de <literal>S</literal> é igual a <literal>degree(a)+degree(b)</literal>.
         </para>
         <para>
-            Se <literal>a</literal> e <literal>b</literal> são polinômios primos
-            entre si, então
+            Se <literal>a</literal> e <literal>b</literal> são polinômios primos entre si, então
         </para>
         <para>
-            <literal>rank(sylm(a,b))=degree(a)+degree(b))</literal> e as
-            instruções
+            <literal>rank(sylm(a,b))=degree(a)+degree(b))</literal> e as instruções
+            <screen><![CDATA[
+u = sylm(a,b) \ eye(na+nb,1)
+x = poly(u(1:nb),'z','coeff')
+y = poly(u(nb+1:na+nb),'z','coeff')
+]]></screen>
         </para>
         <programlisting role=""><![CDATA[
 u = sylm(a,b) \ eye(na+nb,1)
@@ -71,9 +73,38 @@ y = poly(u(nb+1:na+nb),'z','coeff')
  ]]></programlisting>
         <para>
             computam os fatores de Bezout <literal>x</literal> e
-            <literal>y</literal> de graus mínimos tais que <literal>a*x+b*y =
-                1
-            </literal>
+            <literal>y</literal> de graus mínimos tais que <literal>a*x+b*y = 1</literal>
         </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+x = poly(0,"x");
+y = poly ([1, 2, 3], "x", "coeff")
+sylm(x, y)
+]]></programlisting>
+    <screen><![CDATA[
+--> x = poly(0, "x");
+--> y = poly([1, 2, 3], "x","coeff")
+ y  =
+  1 +2x +3x²
+
+--> sylm(x, y)
+ ans  =
+   0.   0.   1.
+   1.   0.   2.
+   0.   1.   3.
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bezout">bezout</link>
+            </member>
+            <member>
+                <link linkend="diophant">diophant</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

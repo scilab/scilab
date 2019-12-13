@@ -180,6 +180,7 @@ Bug Fixes
 * [#15715](http://bugzilla.scilab.org/show_bug.cgi?id=15715): `%nan` indices crashed Scilab.
 * [#15581](http://bugzilla.scilab.org/show_bug.cgi?id=15581): display of complex matrix was ugly.
 * [#15680](http://bugzilla.scilab.org/show_bug.cgi?id=15680): `loadmatfile()` could not return variables in a structure instead of into the calling environment.
+* [#15744](http://bugzilla.scilab.org/show_bug.cgi?id=15744): `sylm(a,b)` yielded an error when degree(a)==0 or degree(b)==0.
 * [#15812](http://bugzilla.scilab.org/show_bug.cgi?id=15812): On assigning variables the source variable may become become corrupted
 * [#15840](http://bugzilla.scilab.org/show_bug.cgi?id=15840): `grand(1,"prm",m)` yielded an unsqueezed size([size(m) 1]) hypermatrix
 * [#15964](http://bugzilla.scilab.org/show_bug.cgi?id=15954): A complex empty sparse matrix could be obtained after insertion.
