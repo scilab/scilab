@@ -202,6 +202,7 @@ Bug Fixes
 * [#16139](http://bugzilla.scilab.org/show_bug.cgi?id=16139): `auread()` and `auwrite()` kept the sound file open and locked when returning on errors. They poorly handled the default .au sound file extension.
 * [#16144](http://bugzilla.scilab.org/show_bug.cgi?id=16144): Addition of sparse matrices gave incorrect results.
 * [#16152](http://bugzilla.scilab.org/show_bug.cgi?id=16152): For sparse or boolean sparse matrix `s`, `s([])` returned `[]` instead of `sparse([])`.
+* [#16158](http://bugzilla.scilab.org/show_bug.cgi?id=16158): When a multicolumn array of rationals was displayed wide column per column, columns #2:$ were replaced with its column #2.
 * [#16174](http://bugzilla.scilab.org/show_bug.cgi?id=16174): `libraryinfo` yielded 0x0 matrix of strings for libs without macro
 * [#16208](http://bugzilla.scilab.org/show_bug.cgi?id=16208): Using 3D string matrix with old C-api gateways may crash Scilab.
 * [#16209](http://bugzilla.scilab.org/show_bug.cgi?id=16209): grand() causes a freeze after several consecutive calls when using default base generator.

@@ -70,7 +70,7 @@ bool Polynom::getMemory(long long* _piSize, long long* _piSizePlusType)
     {
         *_piSize += (get(i)->getRank()+1)*sizeof(double);
     }
-    
+
     *_piSize = *_piSize * (isComplex() ? 2 : 1);
     *_piSizePlusType = *_piSize + getSize()*sizeof(SinglePoly *) + sizeof(*this);
     return true;
@@ -482,7 +482,7 @@ bool Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iD
 {
 
     ostr << getMatrixString(_piDims, _iDims, false);
-    
+
     return true;
 }
 
@@ -512,7 +512,7 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
             _piDims[1] = iCols1;
             int iPos = getIndex(_piDims);
             get(iPos)->toStringRealImg(getVariableName(), &listWstPoly, iLineLen);
-            
+
             for (auto it : listWstPoly)
             {
                 iLength += static_cast<int>(it.size());
@@ -542,7 +542,7 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
                     {
                         for (auto it : listWstPoly)
                         {
-                            osPoly << it << std::endl;
+                            osPoly << L"  " << it << std::endl;
                             bMultiLine = true;
                         }
                     }
@@ -559,7 +559,12 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
                 {
                     osPoly << std::endl;
                 }
-                ostemp << osPoly.str() << std::endl;
+                if (iRows2 < abs(getRows())-1 &&  ConfigVariable::isPrintCompact() == false)
+                {
+                    osPoly << std::endl;
+                }
+
+                ostemp << osPoly.str() ;
                 osPoly.str(L"");
 
             }
@@ -585,6 +590,7 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
     //print the end
     for (int iRows2 = 0 ; iRows2 < abs(getRows()) ; iRows2++)
     {
+        bool bMultiLine = false;
         for (int iCols2 = iLastCol ; iCols2 < abs(getCols()) ; iCols2++)
         {
             _piDims[0] = iRows2;
@@ -597,7 +603,8 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
             {
                 for (auto it : listWstPoly)
                 {
-                    osPoly << it << std::endl;
+                    osPoly << L"  " << it << std::endl;
+                    bMultiLine = true;
                 }
             }
             else
@@ -608,12 +615,20 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
             listWstPoly.clear();
         }
 
-        osPoly << std::endl;
+        if (bMultiLine == false)
+        {
+            osPoly << std::endl;
+        }
+        if (iRows2 < abs(getRows())-1 &&  ConfigVariable::isPrintCompact() == false )
+        {
+            osPoly << std::endl;
+        }
+
         if (isIdentity())
         {
             ostr << L"eye *" << std::endl << std::endl;
         }
-        ostr << osPoly.str() << std::endl;
+        ostr << osPoly.str() ;
         osPoly.str(L"");
     }
 

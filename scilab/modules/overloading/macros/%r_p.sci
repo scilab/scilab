@@ -48,60 +48,70 @@ function %r_p(h)
         //manage column display
         while %t
             // find how many columns can be displayed simultaneously
-            last=find(cumsum(width+2)<ll(1)-3);last=last($);
+            last = find(cumsum(width+2)<ll(1)-3);
+            last = last($);
             if last==[] then last=1,end
             // form display of these columns
             txt=[]
-            for l=1:m
+            for l=1:m  // loopon rows
                 txtr=emptystr(height(l),1)
-                for k=1:last
-                    txtr=txtr+part(blank(ones(height(l),1)),1:2)
-                    tlk=T(l+(k0+k-1)*m)
+                for k=1:last  // loop on columns of the current block of columns
+                    txtr = txtr+part(blank(ones(height(l),1)),1:2)
+                    tlk = T(l+(k0+k-1)*m)
                     iPad = (width(k)-max(length(tlk)))/2;
-                    if iPad>=1
-                        tlk=part(blank,1:iPad)+tlk;
+                    if iPad >= 1
+                        tlk = part(blank,1:iPad)+tlk;
                     end
                     txtr=txtr+[part(tlk,1:width(k));emptystr(height(l)-size(tlk,1),1)]
                 end
-                txt=[txt;ascii(13);txtr]
+                txt=[txt;emptystr(1);txtr]
             end
             // add matrix delimiter and columns title and display
-            nt=size(txt,1)
-            txt=part(txt,1:max(length(txt)))
-
-            if k0==0&last==n then
-                r = del(ones(nt,1))+txt+blank(ones(nt,1))+del(ones(nt,1));
-                for i=1:size(r,"*")
-                    mprintf("%s\n", r(i))
-                end
-            else
+            nt = size(txt,1)
+            txt = part(txt,1:max(length(txt)))
+            r = del(ones(nt,1))+txt+blank(ones(nt,1))+del(ones(nt,1));
+            if k0>0 | last<n then  // add columns headers
                 if last==1 then
-                    leg="column "+string(k0+1)
+                    leg = msprintf("         "+_("column %d"), k0+1)
                 else
-                    leg="column "+string(k0+1)+" to "+string(k0+last)
+                    leg = msprintf("         "+_("columns %d to %d"), k0+1, k0+last)
                 end
-
-                r = [" "; leg; " ";del(ones(nt,1))+txt+blank(ones(nt,1))+del(ones(nt,1))];
-                for i=1:size(r,"*")
-                    mprintf("%s\n", r(i))
-                end
+                r = [" "; leg ; " " ; r];
+            end
+            for i=1:size(r,"*")
+                mprintf("%s\n", r(i))
             end
             width(1:last)=[]
-            k0=last
+            k0 = k0 + last
             if width==[] then break,end
         end
-
     end
+endfunction
 
+function txt=p2str(p)
+    //Handle long lines
+    txt=[]
+    pString = string(p);
+    monomLength = cumsum(2+length(strsplit(pString,[' +';' -'])))-2;
+    while %t
+        last = find(monomLength<lines()(1)-3)($)
+        toPrint = part(pString,1:monomLength(last));
+        txt = [txt; toPrint];
+        if last == sum(coeff(p)<>0)
+           break
+        end
+        pString = part(pString,monomLength(last)+1:$);
+        monomLength = monomLength - length(toPrint);
+    end
 endfunction
 
 function txt=r2str(h)
     //form display of a single rational with complex coefficients
-    dash=ascii([226 148 128]);
+    dash="-";
     blank=" "
 
-    t1=string(h("num")) //display of numerator
-    t2=string(h("den")) //display of denominator
+    t1=p2str(h("num")) //display of numerator
+    t2=p2str(h("den")) //display of denominator
 
     //add fraction bar and center
     l1=max(length(t1))
