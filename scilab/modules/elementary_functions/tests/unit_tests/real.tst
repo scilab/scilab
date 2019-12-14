@@ -1,13 +1,19 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2016, 2019 - Samuel GOUGEON
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // Unit test for real
 assert_checkequal(real([]),[]);
+// With integers
+i = [1 2 3 4 ; 5 6 7 8];
+for it = list(int8, uint8, int16, uint16, int32, uint32, int64, uint64)
+    assert_checkequal(real(it(i)), it(i));
+end
 // with scalar real numbers
 assert_checkequal(real(%pi),%pi);
 assert_checkequal(real(%inf),%inf);

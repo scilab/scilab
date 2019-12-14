@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2016 - Samuel GOUGEON
+// Copyright (C) 2016, 2019 - Samuel GOUGEON
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
@@ -9,6 +9,11 @@
 //
 // Unit test for imag
 assert_checkequal(imag([]),[]);
+// With integers
+i = [1 2 3 4 ; 5 6 7 8];
+for it = list(int8, uint8, int16, uint16, int32, uint32, int64, uint64)
+    assert_checkequal(imag(it(i)), it(zeros(i)));
+end
 // with scalar real numbers
 assert_checkequal(imag(%pi),0);
 assert_checkequal(imag(%inf),0);
