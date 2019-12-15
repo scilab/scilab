@@ -17,7 +17,7 @@
 // <-- Short Description -->
 // Failing unit and NR tests after deg(0*%s) = -%inf
 
-sys = cont_frm(1,0*%s) 
+sys = cont_frm(1,0*%s)
 assert_checktrue(isnan(sys.D))
 assert_checkequal(dtsi(syslin('c',0*%s,0*%s)),syslin('c',0,1))
 assert_checkerror("evans(0*%s,1)","evans: The given system has no poles and no zeros.")
@@ -33,7 +33,7 @@ assert_checkerror("[0*%s]^-2","%p_p_s: Division by zero...")
 assert_checkerror("[0*%s].^-2","%p_j_s: Division by 0...")
 assert_checkerror("[0*%s/(1+0*%s)]^-2","Division by zero")
 assert_checkerror("[0*%s/(1+0*%s)].^-2","Division by zero")
-assert_checkequal(diophant(%s*[0 0],0*%s),%s*[0;0])
+assert_checkequal(diophant(%s*[0 0],0*%s),%s*[0 0]+1)
 assert_checkequal(horner([0 0]*%s,[0 0]),zeros(1,4))
 assert_checkerror("sylm(0*%s,0*%s)","Invalid index.")
 assert_checkequal(trans(%z*0/(1+%z),'lp',[.1 .2]),rlist(0,1,'d'))

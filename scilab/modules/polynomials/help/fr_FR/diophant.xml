@@ -1,35 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="diophant">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="diophant">
     <refnamediv>
         <refname>diophant</refname>
-        <refpurpose>équation diophantienne de Bezout  </refpurpose>
+        <refpurpose>Résoud l'équation diophantienne (Bezout) p1*x1 + p2*x2 = b</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
-        <synopsis>[x,err]=diophant(p1p2,b)</synopsis>
+        <title>Syntaxe</title>
+        <synopsis>[x1x2, err] = diophant(p1p2, b)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>p1p2  </term>
+                <term>p1p2, x</term>
                 <listitem>
                     <para>
-                        vecteur de polynômes <literal>p1p2 = [p1 p2]</literal>
+                        Vecteurs de deux nombres ou polynômes <literal>p1p2 = [p1 p2]</literal>
+                        et <literal>x1x2 = [x1 x2]</literal>,
+                        de mêmes tailles et types (entiers, nombres, polynômes).
+                    </para>
+                    <para>
+                        La réponse <varname>x1x2 = []</varname> est fournie lorsqu'il n'y a aucune
+                        solution.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>b  </term>
+                <term>b</term>
                 <listitem>
-                    <para>polynôme
-                    </para>
+                    <para>Nombre ou polynôme.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x  </term>
+                <term>err</term>
                 <listitem>
-                    <para>vecteur de polynômes  [x1;x2]
+                    <para>
+                        Nombre décimal : indicateur d'erreur :
+                        <table>
+                            <tr><th align="left">0</th>
+                                <td>Aucun erreur.</td>
+                            </tr>
+                            <tr><th align="left">-%inf</th>
+                                <td>Il y a une infinité de solutions.</td>
+                            </tr>
+                            <tr><th align="left">%nan</th>
+                                <td><varname>p1==0</varname>, <varname>p2==0</varname>, et
+                                    <varname>b &lt;> 0</varname> : aucune solution.
+                                </td>
+                            </tr>
+                            <tr><th align="left">> 0</th>
+                                <td>Aucune solution.
+                                   <literal>err = ||coeff(b - int(b/g)*g)|| / ||coef(b)||</literal>
+                                    avec <literal>g = gcd(p1,p2)</literal>.
+                                </td>
+                            </tr>
+                        </table>
                     </para>
                 </listitem>
             </varlistentry>
@@ -38,23 +80,87 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal> diophant</literal> résout l'équation de Bezout :
+            <literal>diophant</literal> résoud l'équation de Bezout <literal>p1*x1 + p2*x2 = b</literal>
+            pour des polynômes, des entiers encodés, ou des décimaux.
         </para>
         <para>
-            <literal>p1*x1+p2*x2=b</literal> où <literal>p1p2</literal> est un vecteur de polynômes.
-            Si l'équation n'est pas soluble
+            Si les arguments d'entrée sont des entiers encodés, seules des solutions entières sont
+            recherchées.
         </para>
         <para>
-            sinon <literal>err=0</literal>
+            Si les argumenst d'entrée sont des nombres décimaux ou des polynômes constants, il y a
+            toujours une infinité de solutions.
+        </para>
+        <para>
+            Lorsque qu'une infinité de solutions existe, une seule solution [x1 x2] est produite.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-s=poly(0,'s');p1=(s+3)^2;p2=(1+s);
-x1=s;x2=(2+s);
-[x,err]=diophant([p1,p2],p1*x1+p2*x2);
-p1*x1+p2*x2-p1*x(1)-p2*x(2)
+[X, e] = diophant(int8([4, 7]), 5)          // int8([10 -5])
+[X, e] = diophant(int16([1234 5321]), 543); // int16([30533 -2339])
+sum(X .* [1234 5321])
+
+s = %s;
+p = (1+s)*(s-1) + (1-s^2)*s;
+[X, e] = diophant([1+s ; 1-s^2], -1+s+s^2-s^3); // [-1+2*s-s^2 ; 0]
+sum(X .* [1+s ; 1-s^2])
  ]]></programlisting>
+    <para>
+        Aucune solution ::
+    </para>
+        <programlisting role="example"><![CDATA[
+s = %s;
+[X, e] = diophant([0, 0], 1)
+[X, e] = diophant([s^3, s^2], s)
+[X, e] = diophant([1+s ; 1-s^2], 1-s+s^2)
+[X, e] = diophant(int8([2 0]), int8(1))  // No integer solution
+ ]]></programlisting>
+    <para>
+        Une infinité de solutions existent :
+    </para>
+        <programlisting role="example"><![CDATA[
+[X, e] = diophant([4, 7], 5)      // [0 5/7]
+s = %s;
+[X, e] = diophant([0, 0]*s, 0)
+[X, e] = diophant([0, 1]*s, 2*s)
+[X, e] = diophant([0, s]*(1-s^2), s^2*(1-s^2))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bezout">bezout</link>
+            </member>
+            <member>
+                <link linkend="sylm">sylm</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Entiers encodés acceptés.
+                        </listitem>
+                        <listitem>
+                            La réponse x1x2=[] est désormais produite lorsqu'il n'y a pas de solution.
+                        </listitem>
+                        <listitem>
+                            err=-%inf est désormais produit lorqu'il y a une infinité de solutions.
+                        </listitem>
+                        <listitem>
+                            size(x1x2) et size(p1p2) sont désormais toujours égales (sauf si x1x2=[]).
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

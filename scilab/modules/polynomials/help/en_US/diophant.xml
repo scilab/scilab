@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2019 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,36 +13,65 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="diophant">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="diophant">
     <refnamediv>
         <refname>diophant</refname>
-        <refpurpose>diophantine (Bezout) equation</refpurpose>
+        <refpurpose>Solves the diophantine (Bezout) equation p1*x1 + p2*x2 = b</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[x,err]=diophant(p1p2,b)</synopsis>
+        <synopsis>[x1x2, err] = diophant(p1p2, b)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>p1p2</term>
+                <term>p1p2, x1x2</term>
                 <listitem>
                     <para>
-                        polynomial vector <literal>p1p2 = [p1 p2]</literal>
+                        Vectors of two numbers or polynomials <literal>p1p2 = [p1 p2]</literal>
+                        and <literal>x1x2 = [x1 x2]</literal>,
+                        with the same size and type (integers, numbers, polynomials).
+                    </para>
+                    <para>
+                        When there is no solution, <varname>x1x2 = []</varname>
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>b</term>
                 <listitem>
-                    <para>polynomial</para>
+                    <para>single number or polynomial</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x</term>
+                <term>err</term>
                 <listitem>
-                    <para>polynomial vector [x1; x2]</para>
+                    <para>
+                        Single real number: error flag:
+                        <table>
+                            <tr><th align="left">0</th>
+                                <td>No error.</td>
+                            </tr>
+                            <tr><th align="left">-%inf</th>
+                                <td>There is an infinite number of solutions.</td>
+                            </tr>
+                            <tr><th align="left">%nan</th>
+                                <td><varname>p1==0</varname>, <varname>p2==0</varname>, while
+                                    <varname>b &lt;> 0</varname> : No solution.
+                                </td>
+                            </tr>
+                            <tr><th align="left">> 0</th>
+                                <td>There is no solution.
+                                   <literal>err = ||coeff(b - int(b/g)*g)|| / ||coef(b)||</literal>
+                                    where <literal>g = gcd(p1,p2)</literal>.
+                                </td>
+                            </tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -50,26 +79,86 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>diophant</literal> solves the bezout equation:
+            <literal>diophant</literal> solves the bezout equation <literal>p1*x1 + p2*x2 = b</literal>
+            for polynomials, encoded integers, or numbers.
         </para>
         <para>
-            <literal>p1*x1+p2*x2=b</literal> with  <literal>p1p2</literal> a polynomial vector.
-            If the equation is not solvable, <literal>err = ||p1*x1 + p2*x2 - b|| / ||b||</literal>
+            If input arguments are encoded integers, only integer solutions are searched.
         </para>
         <para>
-            else <literal>err = 0</literal>.
+            If input arguments are decimal numbers or constant polynomials, there is always an
+            infinite number of solutions.
+        </para>
+        <para>
+            When there is an infinite number of solutions, only one [x1 x2] solution is returned.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-s = poly(0, 's');
-p1 = (s+3)^2;
-p2 = (1+s);
-x1 = s;
-x2 = (2+s);
-[x,err] = diophant([p1 p2], p1*x1 + p2*x2);
-p1*x1 + p2*x2 - p1*x(1) - p2*x(2)
+[X, e] = diophant(int8([4, 7]), 5)          // int8([10 -5])
+[X, e] = diophant(int16([1234 5321]), 543); // int16([30533 -2339])
+sum(X .* [1234 5321])
+
+s = %s;
+p = (1+s)*(s-1) + (1-s^2)*s;
+[X, e] = diophant([1+s ; 1-s^2], -1+s+s^2-s^3); // [-1+2*s-s^2 ; 0]
+sum(X .* [1+s ; 1-s^2])
  ]]></programlisting>
+    <para>
+        No solution exists:
+    </para>
+        <programlisting role="example"><![CDATA[
+s = %s;
+[X, e] = diophant([0, 0], 1)
+[X, e] = diophant([s^3, s^2], s)
+[X, e] = diophant([1+s ; 1-s^2], 1-s+s^2)
+[X, e] = diophant(int8([2 0]), int8(1))  // No integer solution
+ ]]></programlisting>
+    <para>
+        An infinite number of solutions exists:
+    </para>
+        <programlisting role="example"><![CDATA[
+[X, e] = diophant([4, 7], 5)      // [0 5/7]
+s = %s;
+[X, e] = diophant([0, 0]*s, 0)
+[X, e] = diophant([0, 1]*s, 2*s)
+[X, e] = diophant([0, s]*(1-s^2), s^2*(1-s^2))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bezout">bezout</link>
+            </member>
+            <member>
+                <link linkend="sylm">sylm</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            Input encoded integers are now supported.
+                        </listitem>
+                        <listitem>
+                            x1x2 = [] is now returned when there is no solution.
+                        </listitem>
+                        <listitem>
+                            err = -%inf is now returned when there is an infinite number of solutions.
+                        </listitem>
+                        <listitem>
+                            size(x1x2) now matches size(p1p2) (excepted when x1x2=[]).
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

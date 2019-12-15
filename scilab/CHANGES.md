@@ -109,6 +109,11 @@ Feature changes and additions
 * `assert_checkequal()` is upgraded:
   - support added for Nan and void in lists, Nan in sparses, implicit lists, graphic handles, macros, libraries, and built-in.
   - For arrays of matching typeof and sizes, and for lists of matching lengths, the failure message now indicates the index and values of the first mismatching elements.
+* `diophant()` is improved: Now,
+  - Encoded integers are accepted, in addition to decimal numbers. Only integer solutions are then searched.
+  - When there is no solution, [] is returned.
+  - When there is an infinite number of solutions, the err flag has a specific value.
+  - The output size gets the input's one.
 
 
 Help pages:
@@ -188,6 +193,7 @@ Bug Fixes
 * [#15581](http://bugzilla.scilab.org/show_bug.cgi?id=15581): display of complex matrix was ugly.
 * [#15680](http://bugzilla.scilab.org/show_bug.cgi?id=15680): `loadmatfile()` could not return variables in a structure instead of into the calling environment.
 * [#15744](http://bugzilla.scilab.org/show_bug.cgi?id=15744): `sylm(a,b)` yielded an error when degree(a)==0 or degree(b)==0.
+* [#15745](http://bugzilla.scilab.org/show_bug.cgi?id=15745): `diophant(0,0,m)`, `diophant([p 0],q)`, `diophant([0 p],q)` with m<>0 and p>q were wrong. There was no flag for cases with an infinite number of solutions. When there is no solution, some values were returned anyway, instead of []. In this case, the documented definition of the err value was dubious. Decimal numbers and integers were accepted, but not encoded integers. Inf and NaN input coefficients were not rejected.
 * [#15812](http://bugzilla.scilab.org/show_bug.cgi?id=15812): On assigning variables the source variable may become become corrupted
 * [#15840](http://bugzilla.scilab.org/show_bug.cgi?id=15840): `grand(1,"prm",m)` yielded an unsqueezed size([size(m) 1]) hypermatrix
 * [#15964](http://bugzilla.scilab.org/show_bug.cgi?id=15954): A complex empty sparse matrix could be obtained after insertion.
