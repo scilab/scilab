@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uicontrol_properties" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="uicontrol_properties" xml:lang="ja">
     <refnamediv>
         <refname>uicontrolプロパティ</refname>
         <refpurpose>uicontrolプロパティの説明.</refpurpose>
@@ -363,21 +366,43 @@
             <varlistentry>
                 <term>Position</term>
                 <listitem>
-                    <para>[1,4] 実数ベクトルまたは文字列.</para>
                     <para>
-                        このプロパティは,
-                        コントロールの形状を設定または取得する際に使用されます.
-                        このプロパティはベクトル [x y w h]です.
-                        ただし,各文字は左上隅のx位置,左上隅のy位置,
-                        uicontrolの幅および高さを表します.
-                        "x|y|w|h"のように
-                        各文字を"|"で区切った文字列で表すこともできます.
-                        単位は,"Units"プロパティで定義されます.
+                        [x y w h] numerical vector (as stored) or a "x|y|w|h" string.
                     </para>
                     <para>
-                        幅と高さはスライダの向きを定義します.
-                        幅が高さよりも大きい場合,スライダは水平の向きとなり,
-                        それ以外の場合は垂直に配置されます.
+                        Sets or gets the position and size of the component, the referential being
+                        <itemizedlist>
+                          <listitem>
+                            .parent.axes_size, if .parent is a Figure
+                          </listitem>
+                          <listitem>
+                            .parent.position, if .parent is a uicontrol Frame.
+                          </listitem>
+                       </itemizedlist>
+                    </para>
+                    <para>
+                       The value is a vector [x y w h] where
+                       <itemizedlist>
+                          <listitem>
+                            x is the horizontal position of the left side of the component with
+                            respect to the left edge of the referential.
+                          </listitem>
+                          <listitem>
+                            y is the vertical position of the bottom side of the component with
+                            respect to the bottom edge of the referential.
+                          </listitem>
+                          <listitem>
+                            w and h are the width and height of the uicontrol component.
+                          </listitem>
+                       </itemizedlist>
+                       x, y, w, h can also be set through a "x|y|w|h" single string, with "|"
+                       used as separator.
+                    </para>
+                    <para>
+                        The unit is set by the .Units property.
+                    </para>
+                    <para>
+                        For sliders: w > h sets the slider horizontally, and vertically otherwise.
                     </para>
                 </listitem>
             </varlistentry>
@@ -454,7 +479,7 @@
                 <listitem>
                     <para>文字列.</para>
                     <para>
-                        このプロパティは(FrameおよびSliderスタイルを除く)
+                        このプロパティは(Except for Frame, Slider, and Spinner styles)
                         uicontrolに表示されるテキストを表します.
                         表の場合,この値は文字列の行列です.
                         ListBoxesおよびPopupMenusの場合,
@@ -558,7 +583,19 @@
                 <term>Units</term>
                 <listitem>
                     <para>{points} | pixels | normalized</para>
-                    <para>"Position"プロパティを指定するために使用される単位を設定します.</para>
+                    <para>"Position"プロパティを指定するために使用される単位を設定します.
+                         Normalized positions and sizes are in [0, 1]:
+                         <itemizedlist>
+                             <listitem>
+                               If .parent is a "figure", they are within and refer to the
+                               .parent.axes_size area.
+                             </listitem>
+                             <listitem>
+                               If .parent is an uicontrol of style "frame", they are within and
+                               refer to the .parent.position area.
+                             </listitem>
+                         </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -597,8 +634,7 @@
                         <listitem>
                             <para>
                                 <literal>slider</literal> および
-                                <literal>spinner</literal> uicontrols:
-                                要素により指定された値.
+                                <literal>spinner</literal> uicontrols: コンポーネントによって表示される数値。
                             </para>
                         </listitem>
                         <listitem>
@@ -748,27 +784,22 @@ counter_main_fig.visible = "on";
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="console_properties">hidden handles / properties</link>
+            </member>
+            <member>
                 <link linkend="set">set</link>
             </member>
             <member>
                 <link linkend="get">get</link>
-            </member>
-            <member>
-                <link linkend="uicontrol">uicontrol</link>
             </member>
         </simplelist>
     </refsection>
     <refsection>
         <title>履歴</title>
         <revhistory>
-            <revision>
-                <revnumber>6.0.0</revnumber>
-                <revremark>
-                    <para>
-                        By default, callback_type property is now interruptible but non prioritary.
-                    </para>
-                </revremark>
-            </revision>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
@@ -794,6 +825,12 @@ counter_main_fig.visible = "on";
                             オペレーティングシステム固有の値を管理するようになりました.
                         </listitem>
                     </itemizedlist>
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    By default, callback_type property is now interruptible but non prioritary.
                 </revremark>
             </revision>
         </revhistory>

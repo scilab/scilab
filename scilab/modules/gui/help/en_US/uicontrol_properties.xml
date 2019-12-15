@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uicontrol_properties" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="uicontrol_properties" xml:lang="en">
     <refnamediv>
         <refname>uicontrol properties</refname>
         <refpurpose>Description of the uicontrol properties.</refpurpose>
@@ -33,7 +36,8 @@
                 <listitem>
                     <para>A Border object.</para>
                     <para>
-                        Only used for <literal>frame</literal> style uicontrols, this object is created using <link linkend="createBorder">createBorder</link>.
+                        Only used for <literal>frame</literal> style uicontrols, this object is
+                        created using <link linkend="createBorder">createBorder</link>.
                     </para>
                     <para>
                         Setting this value to <literal>[]</literal> removes the border of the frame.
@@ -44,9 +48,13 @@
                 <term>Callback</term>
                 <listitem>
                     <para>String</para>
-                    <para>Instruction evaluated by the Scilab interpreter when an uicontrol is activated (for example when you click on a button).</para>
                     <para>
-                        This property is not used for <literal>layer</literal>, <literal>frame</literal> and <literal>text</literal> style uicontrols.
+                        Instruction evaluated by the Scilab interpreter when an uicontrol
+                        is activated (for example when you click on a button).
+                    </para>
+                    <para>
+                        This property is not used for <literal>layer</literal>,
+                        <literal>frame</literal> and <literal>text</literal> style uicontrols.
                     </para>
                 </listitem>
             </varlistentry>
@@ -113,7 +121,8 @@
                     <para>A Constraints object.</para>
                     <para>
                         This object is created using <link linkend="createConstraints">createConstraints</link>
-                        and describes the constraints on the position and size of the uicontrol regarding to its parent.
+                        and describes the constraints on the position and size of the uicontrol
+                        regarding to its parent.
                     </para>
                     <para>
                         Setting this value to <literal>[]</literal> clears the constraints.
@@ -125,8 +134,10 @@
                 <listitem>
                     <para>{on} | off</para>
                     <para>
-                        Enable or disable the uicontrol. If this property is set to <literal>"on"</literal> (default), the uicontrol is operational,
-                        but if this property is set to <literal>"off"</literal>, the uicontrol will not respond to the mouse actions and will be grayed out.
+                        Enable or disable the uicontrol. If this property is set to
+                        <literal>"on"</literal> (default), the uicontrol is operational,
+                        but if this property is set to <literal>"off"</literal>, the uicontrol
+                        will not respond to the mouse actions and will be grayed out.
                     </para>
                 </listitem>
             </varlistentry>
@@ -141,7 +152,9 @@
                 <term>FontSize</term>
                 <listitem>
                     <para>Scalar</para>
-                    <para>For a control containing some text, this property sets the size of the font in FontUnits.
+                    <para>
+                        For a control containing some text, this property sets the size of the
+                        font in FontUnits.
                     </para>
                 </listitem>
             </varlistentry>
@@ -326,16 +339,44 @@
             <varlistentry>
                 <term>Position</term>
                 <listitem>
-                    <para>[1,4] real vector or string.</para>
-                    <para>This property is used to set or get the geometrical
-                        configuration of a control. It is a vector [x y w h] where the
-                        letters stand for the x location of the left bottom corner, the y
-                        location of the left bottom corner, the width and the height of the
-                        uicontrol or a character string where each value is separated by a
-                        "|", ie "x|y|w|h". The units are determined by the "Units"
-                        property.
+                    <para>
+                        [x y w h] numerical vector (as stored) or a "x|y|w|h" string.
                     </para>
-                    <para>The width and height values determine the orientation of sliders. If width is greater than height, then the slider is oriented horizontally, otherwise the slider is oriented vertically.</para>
+                    <para>
+                        Sets or gets the position and size of the component, the referential being
+                        <itemizedlist>
+                          <listitem>
+                            .parent.axes_size, if .parent is a Figure
+                          </listitem>
+                          <listitem>
+                            .parent.position, if .parent is a uicontrol Frame.
+                          </listitem>
+                       </itemizedlist>
+                    </para>
+                    <para>
+                       The value is a vector [x y w h] where
+                       <itemizedlist>
+                          <listitem>
+                            x is the horizontal position of the left side of the component with
+                            respect to the left edge of the referential.
+                          </listitem>
+                          <listitem>
+                            y is the vertical position of the bottom side of the component with
+                            respect to the bottom edge of the referential.
+                          </listitem>
+                          <listitem>
+                            w and h are the width and height of the uicontrol component.
+                          </listitem>
+                       </itemizedlist>
+                       x, y, w, h can as well be set through a "x|y|w|h" single string with "|"
+                       used as separator.
+                    </para>
+                    <para>
+                        The unit is set by the .Units property.
+                    </para>
+                    <para>
+                        For sliders: w > h sets the slider horizontally, and vertically otherwise.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -343,9 +384,12 @@
                 <listitem>
                     <para>{default} | flat | groove | raised | ridge | solid | sunken</para>
                     <para>
-                        Appearance of the border of the uicontrol. <literal>"default"</literal> means that the application look and feel will be used to set the relief.
+                        Appearance of the border of the uicontrol. <literal>"default"</literal>
+                        means that the application look and feel will be used to set the relief.
                     </para>
-                    <para>When using the deprecated skin for uicontrols, default values are related to uicontrol style:</para>
+                    <para>
+                      When using the deprecated skin for uicontrols, default values are related
+                      to uicontrol style:</para>
                     <itemizedlist>
                         <listitem>
                             <para>
@@ -404,7 +448,8 @@
                     <para>String.</para>
                     <para>
                         This property represents the text appearing in a uicontrol
-                        (Except for Frame and Slider styles). For tables, the value is a string matrix. For ListBoxes and PopupMenus,
+                        (Except for Frame, Slider, and Spinner styles).
+                        For tables, the value is a string matrix. For ListBoxes and PopupMenus,
                         the value can be a vector of string or a string where the items are
                         separated by a "|". For Text uicontrols, this string can contain HTML code to format the text.
                     </para>
@@ -428,7 +473,8 @@
                         </listitem>
                         <listitem>
                             <para>
-                                For <literal>table</literal> uicontrols, the value specifies the whole table data: <literal>[IGNORED COL1-HEADER...COLN-HEADER;ROW1-HEADER, ROW1COL1-DATA, ROW1COLN-DATA;...;ROWM-HEADER, ROWMCOL1-DATA, ROWMCOLN-DATA]</literal>.
+                                For <literal>table</literal> uicontrols, the value specifies the
+                                ole table data: <literal>[IGNORED COL1-HEADER...COLN-HEADER;ROW1-HEADER, ROW1COL1-DATA, ROW1COLN-DATA;...;ROWM-HEADER, ROWMCOL1-DATA, ROWMCOLN-DATA]</literal>.
                             </para>
                         </listitem>
                         <listitem>
@@ -443,7 +489,7 @@
                             </para>
                         </listitem>
                     </itemizedlist>
-                    
+
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -471,7 +517,8 @@
                     <para>Boolean</para>
                     <para>
                         Indicates whether the tabs of a <literal>tab</literal> style uicontrol
-                        must be wrapped (<literal>title_scroll=%F</literal>) or scrolled (<literal>title_scroll=%T</literal>).
+                        must be wrapped (<literal>title_scroll=%F</literal>) or scrolled
+                        (<literal>title_scroll=%T</literal>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -480,7 +527,8 @@
                 <listitem>
                     <para>String or String vector</para>
                     <para>
-                        This property represents the text of the uicontrol tooltip appearing when the mouse is over the uicontrol.
+                        This property represents the text of the uicontrol tooltip appearing
+                        when the mouse is over the uicontrol.
                     </para>
                 </listitem>
             </varlistentry>
@@ -488,7 +536,19 @@
                 <term>Units</term>
                 <listitem>
                     <para>{points} | pixels | normalized</para>
-                    <para>Set the units used to specify the "Position" property.</para>
+                    <para>Set the units used to specify the "Position" property. Normalized
+                         positions and sizes are in [0, 1]:
+                         <itemizedlist>
+                             <listitem>
+                               If .parent is a "figure", they are within and refer to the
+                               .parent.axes_size area.
+                             </listitem>
+                             <listitem>
+                               If .parent is an uicontrol of style "frame", they are within and
+                               refer to the .parent.position area.
+                             </listitem>
+                         </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -510,29 +570,33 @@
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>checkbox</literal> and <literal>radiobutton</literal> uicontrols: value is set to Max (see above)
-                                when on and Min when off.
+                                <literal>checkbox</literal> and <literal>radiobutton</literal>
+                                uicontrols: value is set to Max (see above) when on and Min when off.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>listbox</literal> and <literal>popupmenu</literal> uicontrols: value is a vector of indexes
-                                corresponding to the indexes of the selected entries in the list. 1 is the first item of the list.
+                                <literal>listbox</literal> and <literal>popupmenu</literal>
+                                uicontrols: value is a vector of indexes corresponding to the indexes
+                                of the selected entries in the list. 1 is the first item of the list.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>slider</literal> and <literal>spinner</literal> uicontrols: value indicated by the component.
+                                <literal>slider</literal> and <literal>spinner</literal> uicontrols:
+                                numerical value indicated by the component.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>layer</literal> and <literal>tab</literal> uicontrols: index of displayed component.
+                                <literal>layer</literal> and <literal>tab</literal> uicontrols:
+                                index of displayed component.
                             </para>
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>image</literal> uicontrols: value is used to set some image properties <literal>[X-Scale Y-Scale X-Shear Y-Shear RotationAngle]</literal>
+                                <literal>image</literal> uicontrols: value is used to set some
+                                image properties <literal>[X-Scale Y-Scale X-Shear Y-Shear RotationAngle]</literal>
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -664,27 +728,22 @@ counter_main_fig.visible = "on";
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="console_properties">hidden handles / properties</link>
+            </member>
+            <member>
                 <link linkend="set">set</link>
             </member>
             <member>
                 <link linkend="get">get</link>
-            </member>
-            <member>
-                <link linkend="uicontrol">uicontrol</link>
             </member>
         </simplelist>
     </refsection>
     <refsection>
         <title>History</title>
         <revhistory>
-            <revision>
-                <revnumber>6.0.0</revnumber>
-                <revremark>
-                    <para>
-                        By default, callback_type property is now interruptible but non prioritary.
-                    </para>
-                </revremark>
-            </revision>
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
@@ -704,6 +763,12 @@ counter_main_fig.visible = "on";
                         </listitem>
                         <listitem>Backgroundcolor and Foregroundcolor properties now manage Operating System specific values.</listitem>
                     </itemizedlist>
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    By default, callback_type property is now interruptible but non prioritary.
                 </revremark>
             </revision>
         </revhistory>
