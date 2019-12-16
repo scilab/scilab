@@ -13,7 +13,6 @@
  *
  */
 
-#include <unistd.h>
 #include "time_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -21,6 +20,10 @@
 
 extern "C"
 {
+#ifndef _MSC_VER
+#include <unistd.h>
+#endif
+#include <time.h>
 #include "Scierror.h"
 #include "localization.h"
 }
@@ -55,8 +58,8 @@ types::Function::ReturnValue sci_sleep(types::typed_list &in, int _iRetCount, ty
     if (iRhs == 2)
     {
         if (in[1]->isString() == false ||
-            in[1]->getAs<types::String>()->isScalar() == false ||
-            wcscmp(in[1]->getAs<types::String>()->get()[0], L"s") != 0)
+                in[1]->getAs<types::String>()->isScalar() == false ||
+                wcscmp(in[1]->getAs<types::String>()->get()[0], L"s") != 0)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: 's' expected.\n"), fname, 2);
             return types::Function::Error;
