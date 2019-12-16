@@ -268,7 +268,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     for (int i = 0; i < sumM; i++)
     {
         int ib = sumM + 1 - i;
-        if (pDblZeta->get(ib - 1) >= aright)
+        if (pDblZeta->getSize() >= ib && pDblZeta->get(ib - 1) >= aright)
         {
             nrec = i;
         }
