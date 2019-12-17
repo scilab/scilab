@@ -86,17 +86,23 @@ bool MacroFile::parse(void)
 {
     if (m_pMacro == NULL)
     {
-        //load file, only for the first call
         char* pstPath = wide_string_to_UTF8(m_stPath.c_str());
+        //load file, only for the first call
+#ifdef _MSC_VER
+        std::ifstream f(m_stPath.c_str(), std::ios::in | std::ios::binary | std::ios::ate);
+#else
         std::ifstream f(pstPath, std::ios::in | std::ios::binary | std::ios::ate);
+#endif
+
         if (f.is_open() == false)
         {
-            Scierror(999, _("Unable to open : %s.\n"), pstPath);
+            char errorMsg[bsiz];
+            snprintf(errorMsg, bsiz, _("Unable to open : %s.\n"), pstPath);
             FREE(pstPath);
-            return false;
+            throw ast::InternalError(errorMsg);
         }
-        FREE(pstPath);
 
+        FREE(pstPath);
         int size = (int)f.tellg();
         unsigned char* binAst = new unsigned char[size];
         f.seekg(0);
