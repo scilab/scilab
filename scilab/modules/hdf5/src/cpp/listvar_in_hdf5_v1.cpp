@@ -44,17 +44,17 @@ typedef struct __VAR_INFO_V1__
     __VAR_INFO_V1__() : iType(0), iSize(0), iDims(0) {}
 } VarInfo_v1;
 
-static bool read_data_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
-static bool read_double_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
-static bool read_string_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
-static bool read_boolean_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
-static bool read_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
-static bool read_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
-static bool read_boolean_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
-static bool read_poly_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
-static bool read_list_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
-static bool read_void_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
-static bool read_undefined_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
+static bool read_data_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
+static bool read_double_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
+static bool read_string_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
+static bool read_boolean_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
+static bool read_integer_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
+static bool read_sparse_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
+static bool read_boolean_sparse_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
+static bool read_poly_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
+static bool read_list_v1(int* pvCtx, hid_t _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
+static bool read_void_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
+static bool read_undefined_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo);
 
 static void generateInfo_v1(VarInfo_v1* _pInfo, const char* _pstType);
 
@@ -63,7 +63,7 @@ int sci_listvar_in_hdf5_v1(char *fname, int* pvCtx)
     SciErr sciErr;
     int *piAddr     = NULL;
     char* pstFile   = NULL;
-    int iFile       = 0;
+    hid_t iFile       = 0;
     int iNbItem     = 0;
     VarInfo_v1* pInfo  = NULL;
 
@@ -116,7 +116,7 @@ int sci_listvar_in_hdf5_v1(char *fname, int* pvCtx)
         iNbItem = getVariableNames_v1(iFile, pstVarNameList);
         for (int i = 0; i < iNbItem; i++)
         {
-            int iDataSetId = getDataSetIdFromName_v1(iFile, pstVarNameList[i]);
+            hid_t iDataSetId = getDataSetIdFromName_v1(iFile, pstVarNameList[i]);
             if (iDataSetId == 0)
             {
                 break;
@@ -229,7 +229,7 @@ int sci_listvar_in_hdf5_v1(char *fname, int* pvCtx)
     return 0;
 }
 
-static bool read_data_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
+static bool read_data_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
 {
     bool bRet = false;
 
@@ -298,7 +298,7 @@ static bool read_data_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAdd
     return bRet;
 }
 
-static bool read_double_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
+static bool read_double_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
 {
     int iRet = 0;
     int iRows = 0;
@@ -317,7 +317,7 @@ static bool read_double_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
     return true;
 }
 
-static bool read_string_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
+static bool read_string_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
 {
     int iRet = 0;
     int iRows = 0;
@@ -350,7 +350,7 @@ static bool read_string_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
     return true;
 }
 
-static bool read_boolean_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
+static bool read_boolean_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
 {
     int iRet = 0;
     int iRows = 0;
@@ -367,7 +367,7 @@ static bool read_boolean_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_pi
     return true;
 }
 
-static bool read_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
+static bool read_integer_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
 {
     int iRet = 0;
     int iRows = 0;
@@ -386,7 +386,7 @@ static bool read_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_pi
     return true;
 }
 
-static bool read_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
+static bool read_sparse_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
 {
     int iRet = 0;
     int iRows = 0;
@@ -411,7 +411,7 @@ static bool read_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
     return true;
 }
 
-static bool read_boolean_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
+static bool read_boolean_sparse_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
 {
     int iRet = 0;
     int iRows = 0;
@@ -434,7 +434,7 @@ static bool read_boolean_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, i
     return true;
 }
 
-static bool read_poly_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
+static bool read_poly_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
 {
     int iRet = 0;
     int iRows = 0;
@@ -493,7 +493,7 @@ static bool read_poly_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAdd
     return true;
 }
 
-static bool read_list_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
+static bool read_list_v1(int* pvCtx, hid_t _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
 {
     int iRet = 0;
     int iItems = 0;
@@ -525,7 +525,7 @@ static bool read_list_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemP
 
     for (int i = 0; i < iItems; i++)
     {
-        int iItemDataset = 0;
+        hid_t iItemDataset = 0;
 
         iRet = getListItemDataset_v1(_iDatasetId, piItemRef, i, &iItemDataset);
         if (iRet || iItemDataset == 0)
@@ -558,13 +558,13 @@ static bool read_list_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemP
     return true;
 }
 
-static bool read_void_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
+static bool read_void_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
 {
     _pInfo->iSize = 1;
     return true;
 }
 
-static bool read_undefined_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
+static bool read_undefined_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, VarInfo_v1* _pInfo)
 {
     _pInfo->iSize = 1;
     return true;

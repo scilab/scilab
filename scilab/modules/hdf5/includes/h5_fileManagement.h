@@ -18,10 +18,12 @@
 
 #include "dynlib_hdf5_scilab.h"
 
+#include <hdf5.h>
+
 HDF5_SCILAB_IMPEXP void HDF5cleanup(void);
-HDF5_SCILAB_IMPEXP int createHDF5File(const char *name);
-HDF5_SCILAB_IMPEXP int openHDF5File(const char *name, int _iAppendMode);
-HDF5_SCILAB_IMPEXP void closeHDF5File(int file);
+HDF5_SCILAB_IMPEXP hid_t createHDF5File(const char *name);
+HDF5_SCILAB_IMPEXP hid_t openHDF5File(const char *name, int _iAppendMode);
+HDF5_SCILAB_IMPEXP void closeHDF5File(hid_t file);
 HDF5_SCILAB_IMPEXP int isHDF5File(const char* _pstFilename);
 
 #endif /* !__H5_FILEMANAGEMENT_H__ */

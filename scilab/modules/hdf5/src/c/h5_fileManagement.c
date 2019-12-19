@@ -49,9 +49,9 @@ void HDF5ErrorCleanup()
     H5Eclear(H5Eget_current_stack());
 }
 /*--------------------------------------------------------------------------*/
-int createHDF5File(const char *name)
+hid_t createHDF5File(const char *name)
 {
-    hid_t       file;
+    hid_t file;
     hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
     char *pathdest = getPathFilename(name);
     char *currentpath = NULL;
@@ -103,9 +103,9 @@ int createHDF5File(const char *name)
     return file;
 }
 /*--------------------------------------------------------------------------*/
-int openHDF5File(const char *name, int _iAppendMode)
+hid_t openHDF5File(const char *name, int _iAppendMode)
 {
-    hid_t           file;
+    hid_t file;
     char *pathdest = getPathFilename(name);
     char *currentpath = NULL;
     char *filename = getFilenameWithExtension(name);
@@ -200,7 +200,7 @@ int isHDF5File(const char* _pstFilename)
     return iRet > 0 ? 1 : 0;
 }
 
-void closeHDF5File(int file)
+void closeHDF5File(hid_t file)
 {
     herr_t status = 0;
 

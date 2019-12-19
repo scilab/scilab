@@ -42,19 +42,19 @@ static int iCloseList = 0;
 
 void print_tree_v1(char *_pstMsg);
 
-static bool import_variable_v1(int* pvCtx, int _iFile, char* _pstVarName);
-static bool import_data_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
-static bool import_double_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
-static bool import_string_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
-static bool import_boolean_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
-static bool import_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
-static bool import_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
-static bool import_boolean_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
-static bool import_poly_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
-static bool import_list_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname);
-static bool import_hypermat_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname);
-static bool import_void_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
-static bool import_undefined_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_variable_v1(int* pvCtx, hid_t _iFile, char* _pstVarName);
+static bool import_data_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_double_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_string_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_boolean_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_integer_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_sparse_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_boolean_sparse_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_poly_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_list_v1(int* pvCtx, hid_t _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_hypermat_v1(int* pvCtx, hid_t _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_void_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_undefined_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 
 static const std::string fname("load");
 
@@ -95,7 +95,7 @@ int sci_hdf5_load_v1(char *fn, int* pvApiCtx)
 
     //open hdf5 file
     pstExpandedFilename = expandPathVariable(pstFilename);
-    int iFile = openHDF5File(pstExpandedFilename, 0);
+    hid_t iFile = openHDF5File(pstExpandedFilename, 0);
     if (iFile < 0)
     {
         FREE(pstExpandedFilename);
@@ -194,9 +194,9 @@ int sci_hdf5_load_v1(char *fn, int* pvApiCtx)
     return 0;
 }
 
-static bool import_variable_v1(int* pvCtx, int _iFile, char* _pstVarName)
+static bool import_variable_v1(int* pvCtx, hid_t _iFile, char* _pstVarName)
 {
-    int iDataSetId = getDataSetIdFromName_v1(_iFile, _pstVarName);
+    hid_t iDataSetId = getDataSetIdFromName_v1(_iFile, _pstVarName);
     if (iDataSetId == 0)
     {
         return false;
@@ -205,7 +205,7 @@ static bool import_variable_v1(int* pvCtx, int _iFile, char* _pstVarName)
     return import_data_v1(pvCtx, iDataSetId, 0, NULL, _pstVarName);
 }
 
-static bool import_data_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
+static bool import_data_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
 {
     bool bRet = false;
 
@@ -287,7 +287,7 @@ static bool import_data_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
     return bRet;
 }
 
-static bool import_void_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
+static bool import_void_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
 {
     SciErr sciErr;
 
@@ -308,7 +308,7 @@ static bool import_void_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
     return true;
 }
 
-static bool import_undefined_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
+static bool import_undefined_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
 {
     SciErr sciErr;
 
@@ -329,7 +329,7 @@ static bool import_undefined_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int 
     return true;
 }
 
-static bool import_double_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
+static bool import_double_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
 {
     int iRet = 0;
     double *pdblReal = NULL;
@@ -444,7 +444,7 @@ static bool import_double_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_p
     return true;
 }
 
-static bool import_string_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
+static bool import_string_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
 {
     int iRet = 0;
     int i = 0;
@@ -529,7 +529,7 @@ static bool import_string_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_p
     return true;
 }
 
-static bool import_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
+static bool import_integer_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
 {
     int iRet = 0;
     int iRows = 0;
@@ -763,7 +763,7 @@ static bool import_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_
     return true;
 }
 
-static bool import_boolean_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
+static bool import_boolean_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
 {
     int iRet = 0;
     int *piData = NULL;
@@ -814,7 +814,7 @@ static bool import_boolean_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_
     return true;
 }
 
-static bool import_poly_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
+static bool import_poly_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
 {
     int iRet = 0;
     int iRows = 0;
@@ -930,7 +930,7 @@ static bool import_poly_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
     return true;
 }
 
-static bool import_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
+static bool import_sparse_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
 {
     int iRet = 0;
     int iRows = 0;
@@ -1029,7 +1029,7 @@ static bool import_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_p
     return true;
 }
 
-static bool import_boolean_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
+static bool import_boolean_sparse_v1(int* pvCtx, hid_t _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname)
 {
     int iRet = 0;
     int iRows = 0;
@@ -1082,7 +1082,7 @@ static bool import_boolean_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos,
     return true;
 }
 
-static bool import_list_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname)
+static bool import_list_v1(int* pvCtx, hid_t _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname)
 {
     int iRet = 0;
     int i = 0;
@@ -1161,7 +1161,7 @@ static bool import_list_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iIte
     iTab++;
     for (i = 0; i < iItems; i++)
     {
-        int iItemDataset = 0;
+        hid_t iItemDataset = 0;
 
         iRet = getListItemDataset_v1(_iDatasetId, piItemRef, i, &iItemDataset);
         if (iRet || iItemDataset == 0)
@@ -1207,7 +1207,7 @@ void print_tree(char *_pstMsg)
     printf("%s\n", _pstMsg);
 #endif
 }
-static bool import_hypermat_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname)
+static bool import_hypermat_v1(int* pvCtx, hid_t _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname)
 {
     int iRet = 0;
     int iRows = 0;
@@ -1240,7 +1240,7 @@ static bool import_hypermat_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _
     }
 
     // get first item
-    int iItemDataset = 0;
+    hid_t iItemDataset = 0;
     iRet = getListItemDataset_v1(_iDatasetId, piItemRef, 0, &iItemDataset);
     if (iRet || iItemDataset == 0)
     {
@@ -1339,7 +1339,7 @@ static bool import_hypermat_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _
     }
 
     // reshape data with size of hypermatrix
-    if(pIT->isGenericType() == false)
+    if (pIT->isGenericType() == false)
     {
         delete[] piDimsArray;
         return false;

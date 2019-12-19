@@ -38,12 +38,12 @@ extern "C"
 #include "HandleManagement.h"
 }
 
-extern types::InternalType* import_data(int dataset);
-extern int export_data(int parent, const std::string& name, types::InternalType* data, hid_t xfer_plist_id);
+extern types::InternalType* import_data(hid_t dataset);
+extern int export_data(hid_t parent, const std::string& name, types::InternalType* data, hid_t xfer_plist_id);
 
-static int getHandleInt(int dataset, const std::string& prop, int* val)
+static int getHandleInt(hid_t dataset, const std::string& prop, int* val)
 {
-    int node = 0;
+    hid_t node = 0;
     node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
@@ -54,9 +54,9 @@ static int getHandleInt(int dataset, const std::string& prop, int* val)
     return 0;
 }
 
-static int getHandleIntVector(int dataset, const std::string& prop, int* row, int* col, int** vals)
+static int getHandleIntVector(hid_t dataset, const std::string& prop, int* row, int* col, int** vals)
 {
-    int node = 0;
+    hid_t node = 0;
     node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
@@ -89,9 +89,9 @@ static int getHandleIntVector(int dataset, const std::string& prop, int* row, in
     return 0;
 }
 
-static int getHandleBool(int dataset, const std::string& prop, int* val)
+static int getHandleBool(hid_t dataset, const std::string& prop, int* val)
 {
-    int node = 0;
+    hid_t node = 0;
     node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
@@ -102,9 +102,9 @@ static int getHandleBool(int dataset, const std::string& prop, int* val)
     return 0;
 }
 
-static int getHandleBoolVector(int dataset, const std::string& prop, int* row, int* col, int** vals)
+static int getHandleBoolVector(hid_t dataset, const std::string& prop, int* row, int* col, int** vals)
 {
-    int node = 0;
+    hid_t node = 0;
     node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
@@ -138,9 +138,9 @@ static int getHandleBoolVector(int dataset, const std::string& prop, int* row, i
     return 0;
 }
 
-static int getHandleDouble(int dataset, const std::string& prop, double* val)
+static int getHandleDouble(hid_t dataset, const std::string& prop, double* val)
 {
-    int node = 0;
+    hid_t node = 0;
     node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
@@ -151,9 +151,9 @@ static int getHandleDouble(int dataset, const std::string& prop, double* val)
     return 0;
 }
 
-static int getHandleDoubleVector(int dataset, const std::string& prop, int* row, int* col, double** vals)
+static int getHandleDoubleVector(hid_t dataset, const std::string& prop, int* row, int* col, double** vals)
 {
-    int node = 0;
+    hid_t node = 0;
     node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
@@ -187,9 +187,9 @@ static int getHandleDoubleVector(int dataset, const std::string& prop, int* row,
     return 0;
 }
 
-static int getHandleString(int dataset, const std::string& prop, char** val)
+static int getHandleString(hid_t dataset, const std::string& prop, char** val)
 {
-    int node = 0;
+    hid_t node = 0;
     node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
@@ -219,9 +219,9 @@ static int getHandleString(int dataset, const std::string& prop, char** val)
     return node;
 }
 
-static int getHandleStringVector(int dataset, const std::string& prop, int* row, int* col, char*** vals)
+static int getHandleStringVector(hid_t dataset, const std::string& prop, int* row, int* col, char*** vals)
 {
-    int node = 0;
+    hid_t node = 0;
     node = getDataSetIdFromName(dataset, prop.data());
     if (node < 0)
     {
@@ -255,12 +255,12 @@ static int getHandleStringVector(int dataset, const std::string& prop, int* row,
     return node;
 }
 
-static int import_handle_generic(int dataset, int uid, int parent, const HandleProp& props, bool childrenFirst);
+static int import_handle_generic(hid_t dataset, int uid, int parent, const HandleProp& props, bool childrenFirst);
 
-static void import_userdata(int dataset, int uid)
+static void import_userdata(hid_t dataset, int uid)
 {
     types::InternalType* ud = nullptr;
-    int node = 0;
+    hid_t node = 0;
     node = getDataSetIdFromName(dataset, "userdata");
     if (node < 0)
     {
@@ -309,7 +309,7 @@ static void import_userdata(int dataset, int uid)
     setGraphicObjectProperty(uid, __GO_USER_DATA__, &ud, jni_int_vector, size);
 }
 
-static void import_handle_tag(int dataset, int uid)
+static void import_handle_tag(hid_t dataset, int uid)
 {
     char* tag = nullptr;
     int node = getHandleString(dataset, "tag", &tag);
@@ -317,17 +317,17 @@ static void import_handle_tag(int dataset, int uid)
     freeStringMatrix(node, &tag);
 }
 
-static int import_handle_children(int dataset, int parent)
+static int import_handle_children(hid_t dataset, int parent)
 {
     //reload children
-    int children = getDataSetIdFromName(dataset, "children");
+    hid_t children = getDataSetIdFromName(dataset, "children");
     int childcount = 0;
     getListDims6(children, &childcount);
 
     //reverse order
     for (int i = childcount - 1; i >= 0; --i)
     {
-        int c = getDataSetIdFromName(children, std::to_string(i).data());
+        hid_t c = getDataSetIdFromName(children, std::to_string(i).data());
         int newChild = import_handle(c, parent);
     }
 
@@ -335,7 +335,7 @@ static int import_handle_children(int dataset, int parent)
     return parent;
 }
 
-static int import_handle_generic(int dataset, int uid, int parent, const HandleProp& props, bool childrenFirst)
+static int import_handle_generic(hid_t dataset, int uid, int parent, const HandleProp& props, bool childrenFirst)
 {
     //link current handle with its parent
     if (parent != -1)
@@ -461,15 +461,15 @@ static int import_handle_generic(int dataset, int uid, int parent, const HandleP
     return uid;
 }
 
-static int import_handle_border(int dataset);
+static int import_handle_border(hid_t dataset);
 
-static int import_handle_border_none(int dataset, int border)
+static int import_handle_border_none(hid_t dataset, int border)
 {
     closeList6(dataset);
     return border;
 }
 
-static int import_handle_border_line(int dataset, int border)
+static int import_handle_border_line(hid_t dataset, int border)
 {
     int status = 0;
     //color
@@ -498,7 +498,7 @@ static int import_handle_border_line(int dataset, int border)
     return border;
 }
 
-static int import_handle_border_bevel(int dataset, int border)
+static int import_handle_border_bevel(hid_t dataset, int border)
 {
     char* data = nullptr;
     int node = 0;
@@ -551,12 +551,12 @@ static int import_handle_border_bevel(int dataset, int border)
     return border;
 }
 
-static int import_handle_border_soft_bevel(int dataset, int border)
+static int import_handle_border_soft_bevel(hid_t dataset, int border)
 {
     return import_handle_border_bevel(dataset, border);
 }
 
-static int import_handle_border_etched(int dataset, int border)
+static int import_handle_border_etched(hid_t dataset, int border)
 {
     int status = 0;
     char* data = nullptr;
@@ -594,14 +594,14 @@ static int import_handle_border_etched(int dataset, int border)
     return border;
 }
 
-static int import_handle_border_titled(int dataset, int border)
+static int import_handle_border_titled(hid_t dataset, int border)
 {
     char* data = nullptr;
     int node = 0;
     int status = 0;
 
     //title border
-    int title_border = getDataSetIdFromName(dataset, "title_border");
+    hid_t title_border = getDataSetIdFromName(dataset, "title_border");
     if (title_border != -1)
     {
         int hidden = 1;
@@ -689,7 +689,7 @@ static int import_handle_border_titled(int dataset, int border)
     return border;
 }
 
-static int import_handle_border_empty(int dataset, int border)
+static int import_handle_border_empty(hid_t dataset, int border)
 {
     int row = 0;
     int col = 0;
@@ -706,10 +706,10 @@ static int import_handle_border_empty(int dataset, int border)
     return border;
 }
 
-static int import_handle_border_compound(int dataset, int border)
+static int import_handle_border_compound(hid_t dataset, int border)
 {
     //out_border
-    int out_border = getDataSetIdFromName(dataset, "out_border");
+    hid_t out_border = getDataSetIdFromName(dataset, "out_border");
     if (out_border != -1)
     {
         int hidden = 1;
@@ -720,7 +720,7 @@ static int import_handle_border_compound(int dataset, int border)
     }
 
     //in_border
-    int in_border = getDataSetIdFromName(dataset, "in_border");
+    hid_t in_border = getDataSetIdFromName(dataset, "in_border");
     if (in_border != -1)
     {
         int hidden = 1;
@@ -734,7 +734,7 @@ static int import_handle_border_compound(int dataset, int border)
     return border;
 }
 
-static int import_handle_border_matte(int dataset, int border)
+static int import_handle_border_matte(hid_t dataset, int border)
 {
     int row = 0;
     int col = 0;
@@ -754,7 +754,7 @@ static int import_handle_border_matte(int dataset, int border)
     return border;
 }
 
-static int import_handle_border(int dataset)
+static int import_handle_border(hid_t dataset)
 {
     int border = createGraphicObject(__GO_UI_FRAME_BORDER__);
     int style = 0;
@@ -786,7 +786,7 @@ static int import_handle_border(int dataset)
     }
 }
 
-static int import_handle_uicontrol(int dataset, int parent)
+static int import_handle_uicontrol(hid_t dataset, int parent)
 {
     int style = 0;
     getHandleInt(dataset, "style", &style);
@@ -868,7 +868,7 @@ static int import_handle_uicontrol(int dataset, int parent)
     delete[] string;
 
     //border
-    int dborder = getDataSetIdFromName(dataset, "border");
+    hid_t dborder = getDataSetIdFromName(dataset, "border");
     int border = import_handle_border(dborder);
     setGraphicObjectProperty(uic, __GO_UI_FRAME_BORDER__, &border, jni_int, 1);
 
@@ -886,7 +886,7 @@ static int import_handle_uicontrol(int dataset, int parent)
     return uic;
 }
 
-static int import_handle_uicontextmenu(int dataset, int parent)
+static int import_handle_uicontextmenu(hid_t dataset, int parent)
 {
     int menu = createGraphicObject(__GO_UICONTEXTMENU__);
 
@@ -897,7 +897,7 @@ static int import_handle_uicontextmenu(int dataset, int parent)
     return menu;
 }
 
-static int import_handle_uimenu(int dataset, int parent)
+static int import_handle_uimenu(hid_t dataset, int parent)
 {
     int menu = createGraphicObject(__GO_UIMENU__);
 
@@ -908,7 +908,7 @@ static int import_handle_uimenu(int dataset, int parent)
     return menu;
 }
 
-static int import_handle_light(int dataset, int parent)
+static int import_handle_light(hid_t dataset, int parent)
 {
     int light = createGraphicObject(__GO_LIGHT__);
 
@@ -919,7 +919,7 @@ static int import_handle_light(int dataset, int parent)
     return light;
 }
 
-static int import_handle_axis(int dataset, int parent)
+static int import_handle_axis(hid_t dataset, int parent)
 {
     int axis = createGraphicObject(__GO_AXIS__);
 
@@ -930,7 +930,7 @@ static int import_handle_axis(int dataset, int parent)
     return axis;
 }
 
-static int import_handle_text(int dataset, int parent)
+static int import_handle_text(hid_t dataset, int parent)
 {
     int t = createGraphicObject(__GO_TEXT__);
 
@@ -950,7 +950,7 @@ static int import_handle_text(int dataset, int parent)
     return t;
 }
 
-static int import_handle_legend(int dataset, int parent)
+static int import_handle_legend(hid_t dataset, int parent)
 {
     int legend = createGraphicObject(__GO_LEGEND__);
 
@@ -970,7 +970,7 @@ static int import_handle_legend(int dataset, int parent)
 
     //to retore links we need to have the entire hierarchie loaded.
     //store links information in a "global" variable and update variable at the end of process.
-    int node = getDataSetIdFromName(dataset, "links");
+    hid_t node = getDataSetIdFromName(dataset, "links");
     int count = 0;
     getListDims6(node, &count);
 
@@ -1000,7 +1000,7 @@ static int import_handle_legend(int dataset, int parent)
     return legend;
 }
 
-static int import_handle_fec(int dataset, int parent)
+static int import_handle_fec(hid_t dataset, int parent)
 {
     int fec = createGraphicObject(__GO_FEC__);
     createDataObject(fec, __GO_FEC__);
@@ -1041,7 +1041,7 @@ static int import_handle_fec(int dataset, int parent)
     return fec;
 }
 
-static int import_handle_matplot(int dataset, int parent)
+static int import_handle_matplot(hid_t dataset, int parent)
 {
     int plot = createGraphicObject(__GO_MATPLOT__);
     createDataObject(plot, __GO_MATPLOT__);
@@ -1093,7 +1093,7 @@ static int import_handle_matplot(int dataset, int parent)
     return plot;
 }
 
-static int import_handle_grayplot(int dataset, int parent)
+static int import_handle_grayplot(hid_t dataset, int parent)
 {
     int plot = createGraphicObject(__GO_GRAYPLOT__);
     createDataObject(plot, __GO_GRAYPLOT__);
@@ -1128,7 +1128,7 @@ static int import_handle_grayplot(int dataset, int parent)
     return plot;
 }
 
-static int import_handle_segs(int dataset, int parent)
+static int import_handle_segs(hid_t dataset, int parent)
 {
     int segs = createGraphicObject(__GO_SEGS__);
 
@@ -1139,7 +1139,7 @@ static int import_handle_segs(int dataset, int parent)
     return segs;
 }
 
-static int import_handle_arc(int dataset, int parent)
+static int import_handle_arc(hid_t dataset, int parent)
 {
     int arc = createGraphicObject(__GO_ARC__);
 
@@ -1150,7 +1150,7 @@ static int import_handle_arc(int dataset, int parent)
     return arc;
 }
 
-static int import_handle_rectangle(int dataset, int parent)
+static int import_handle_rectangle(hid_t dataset, int parent)
 {
     int rect = createGraphicObject(__GO_RECTANGLE__);
 
@@ -1161,7 +1161,7 @@ static int import_handle_rectangle(int dataset, int parent)
     return rect;
 }
 
-static int import_handle_compound(int dataset, int parent)
+static int import_handle_compound(hid_t dataset, int parent)
 {
     int compound = createGraphicObject(__GO_COMPOUND__);
 
@@ -1172,7 +1172,7 @@ static int import_handle_compound(int dataset, int parent)
     return compound;
 }
 
-static int import_handle_datatip(int dataset, int parent)
+static int import_handle_datatip(hid_t dataset, int parent)
 {
     int datatip = createGraphicObject(__GO_DATATIP__);
     //set parent manually, these no real releationship between datatip and parent
@@ -1194,16 +1194,16 @@ static int import_handle_datatip(int dataset, int parent)
     return datatip;
 }
 
-static int import_handle_datatips(int dataset, int uid)
+static int import_handle_datatips(hid_t dataset, int uid)
 {
-    int datatip = getDataSetIdFromName(dataset, "datatips");
+    hid_t datatip = getDataSetIdFromName(dataset, "datatips");
     int count = 0;
     getListDims6(datatip, &count);
 
     std::vector<int> datatips(count);
     for (int i = 0; i < count; ++i)
     {
-        int d = getDataSetIdFromName(datatip, std::to_string(i).data());
+        hid_t d = getDataSetIdFromName(datatip, std::to_string(i).data());
         datatips[i] = import_handle_datatip(d, uid);
     }
 
@@ -1213,7 +1213,7 @@ static int import_handle_datatips(int dataset, int uid)
     return uid;
 }
 
-static int import_polyline_shift(int dataset, int uid, const std::string& name, int go_set, int go_data)
+static int import_polyline_shift(hid_t dataset, int uid, const std::string& name, int go_set, int go_data)
 {
     int row = 0;
     int col = 0;
@@ -1306,7 +1306,7 @@ void MiniMaxi(const double vect[], int n, double * const min, double * const max
 }
 
 
-static int import_handle_polyline(int dataset, int parent)
+static int import_handle_polyline(hid_t dataset, int parent)
 {
     int polyline = createGraphicObject(__GO_POLYLINE__);
     createDataObject(polyline, __GO_POLYLINE__);
@@ -1400,14 +1400,14 @@ static int import_handle_polyline(int dataset, int parent)
     return polyline;
 }
 
-static int import_handle_surface(int dataset, int uid, int parent)
+static int import_handle_surface(hid_t dataset, int uid, int parent)
 {
     //import "standards" properties
     import_handle_generic(dataset, uid, parent, SurfaceHandle::getPropertyList(), true);
     return uid;
 }
 
-static int import_handle_plot3d(int dataset, int parent)
+static int import_handle_plot3d(hid_t dataset, int parent)
 {
     int plot = createGraphicObject(__GO_PLOT3D__);
     createDataObject(plot, __GO_PLOT3D__);
@@ -1448,7 +1448,7 @@ static int import_handle_plot3d(int dataset, int parent)
     return plot;
 }
 
-static int import_handle_fac3d(int dataset, int parent)
+static int import_handle_fac3d(hid_t dataset, int parent)
 {
     int fac = createGraphicObject(__GO_FAC3D__);
     createDataObject(fac, __GO_FAC3D__);
@@ -1503,7 +1503,7 @@ static int import_handle_fac3d(int dataset, int parent)
 }
 
 
-static int import_handle_champ(int dataset, int parent)
+static int import_handle_champ(hid_t dataset, int parent)
 {
     //need to get properties and call a "creator" :x
 
@@ -1547,7 +1547,7 @@ static int import_handle_champ(int dataset, int parent)
     closeList6(dataset);
     return champ;
 }
-static int import_handle_label(int dataset, int uid)
+static int import_handle_label(hid_t dataset, int uid)
 {
     //import "standards" properties
     //do not create releationship between parent
@@ -1567,7 +1567,7 @@ static int import_handle_label(int dataset, int uid)
     return uid;
 }
 
-static int import_handle_axes(int dataset, int parent)
+static int import_handle_axes(hid_t dataset, int parent)
 {
     //how to manage call by %h_copy ?
 
@@ -1583,28 +1583,28 @@ static int import_handle_axes(int dataset, int parent)
     //title
     int title = 0;
     int *ptitle = &title;
-    int nodeTitle = getDataSetIdFromName(dataset, "title");
+    hid_t nodeTitle = getDataSetIdFromName(dataset, "title");
     getGraphicObjectProperty(axes, __GO_TITLE__, jni_int, (void **)&ptitle);
     import_handle_label(nodeTitle, title);
 
     //x_label
     int x_label = 0;
     int *px_label = &x_label;
-    int nodeX = getDataSetIdFromName(dataset, "x_label");
+    hid_t nodeX = getDataSetIdFromName(dataset, "x_label");
     getGraphicObjectProperty(axes, __GO_X_AXIS_LABEL__, jni_int, (void **)&px_label);
     import_handle_label(nodeX, x_label);
 
     //y_label
     int y_label = 0;
     int *py_label = &y_label;
-    int nodeY = getDataSetIdFromName(dataset, "y_label");
+    hid_t nodeY = getDataSetIdFromName(dataset, "y_label");
     getGraphicObjectProperty(axes, __GO_Y_AXIS_LABEL__, jni_int, (void **)&py_label);
     import_handle_label(nodeY, y_label);
 
     //z_label
     int z_label = 0;
     int *pz_label = &z_label;
-    int nodeZ = getDataSetIdFromName(dataset, "z_label");
+    hid_t nodeZ = getDataSetIdFromName(dataset, "z_label");
     getGraphicObjectProperty(axes, __GO_Z_AXIS_LABEL__, jni_int, (void **)&pz_label);
     import_handle_label(nodeZ, z_label);
 
@@ -1616,7 +1616,7 @@ static int import_handle_axes(int dataset, int parent)
     return axes;
 }
 
-static int import_handle_layout_options(int dataset, int frame)
+static int import_handle_layout_options(hid_t dataset, int frame)
 {
     int layout_type = 0;
     getHandleInt(dataset, "layout", &layout_type);
@@ -1628,7 +1628,7 @@ static int import_handle_layout_options(int dataset, int frame)
     {
         case 2: //grid
         {
-            int node = getDataSetIdFromName(dataset, "layout_options");
+            hid_t node = getDataSetIdFromName(dataset, "layout_options");
             getHandleIntVector(node, "grid", &row, &col, &data);
             if (data && row * col == 2)
             {
@@ -1652,7 +1652,7 @@ static int import_handle_layout_options(int dataset, int frame)
         }
         case 3: //border
         {
-            int node = getDataSetIdFromName(dataset, "layout_options");
+            hid_t node = getDataSetIdFromName(dataset, "layout_options");
             getHandleIntVector(node, "padding", &row, &col, &data);
             if (data && row * col == 2)
             {
@@ -1670,7 +1670,7 @@ static int import_handle_layout_options(int dataset, int frame)
     return frame;
 }
 
-static int import_handle_figure(int dataset, int parent)
+static int import_handle_figure(hid_t dataset, int parent)
 {
     //some properties must be set @ creation time
     int menubar = 0;
@@ -1721,7 +1721,7 @@ static int import_handle_figure(int dataset, int parent)
     return fig;
 }
 
-int import_handle(int dataset, int parent)
+int import_handle(hid_t dataset, int parent)
 {
     //get type
     int type = 0;
@@ -1919,17 +1919,17 @@ static void getHandleStringVectorProperty(int uid, int prop, char*** vals)
     getGraphicObjectProperty(uid, prop, jni_string_vector, (void **)vals);
 }
 
-static bool export_handle_generic(int parent, int uid, const HandleProp& props, hid_t xfer_plist_id);
-static bool export_handle_layout_options(int parent, int uid, hid_t xfer_plist_id);
-static bool export_handle_userdata(int parent, int uid, hid_t xfer_plist_id);
-static bool export_handle_tag(int parent, int uid, hid_t xfer_plist_id);
-static bool export_handle_figure(int parent, int uid, hid_t xfer_plist_id);
-static bool export_handle_axes(int parent, int uid, hid_t xfer_plist_id);
-static bool export_handle_label(int parent, int uid, hid_t xfer_plist_id);
-static bool export_handle_champ(int parent, int uid, hid_t xfer_plist_id);
-static bool export_handle_children(int parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_generic(hid_t parent, int uid, const HandleProp& props, hid_t xfer_plist_id);
+static bool export_handle_layout_options(hid_t parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_userdata(hid_t parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_tag(hid_t parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_figure(hid_t parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_axes(hid_t parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_label(hid_t parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_champ(hid_t parent, int uid, hid_t xfer_plist_id);
+static bool export_handle_children(hid_t parent, int uid, hid_t xfer_plist_id);
 
-static bool export_handle_generic(int parent, int uid, const HandleProp& props, hid_t xfer_plist_id)
+static bool export_handle_generic(hid_t parent, int uid, const HandleProp& props, hid_t xfer_plist_id)
 {
     for (auto & prop : props)
     {
@@ -2059,7 +2059,7 @@ static bool export_handle_generic(int parent, int uid, const HandleProp& props, 
     return true;
 }
 
-static bool export_handle_layout_options(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_layout_options(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     int layout_type = 0;
     getHandleIntProperty(uid, __GO_LAYOUT__, &layout_type);
@@ -2069,7 +2069,7 @@ static bool export_handle_layout_options(int parent, int uid, hid_t xfer_plist_i
         return true;
     }
 
-    int layout = openList6(parent, "layout_options", g_SCILAB_CLASS_HANDLE);
+    hid_t layout = openList6(parent, "layout_options", g_SCILAB_CLASS_HANDLE);
 
     switch (layout_type)
     {
@@ -2102,7 +2102,7 @@ static bool export_handle_layout_options(int parent, int uid, hid_t xfer_plist_i
 
     return true;
 }
-static bool export_handle_tag(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_tag(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     char* tag = nullptr;
     getHandleStringProperty(uid, __GO_TAG__, &tag);
@@ -2114,7 +2114,7 @@ static bool export_handle_tag(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_userdata(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_userdata(hid_t parent, int uid, hid_t xfer_plist_id)
 {
 
     int size = 0;
@@ -2152,11 +2152,11 @@ static bool export_handle_userdata(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_datatips(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_datatips(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     int count = 0;
     getHandleIntProperty(uid, __GO_DATATIPS_COUNT__, &count);
-    int node = openList6(parent, "datatips", g_SCILAB_CLASS_HANDLE);
+    hid_t node = openList6(parent, "datatips", g_SCILAB_CLASS_HANDLE);
     int* datatips = nullptr;
 
     if (count != 0)
@@ -2179,16 +2179,16 @@ static bool export_handle_datatips(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_border(int dataset, int uid, hid_t xfer_plist_id);
+static bool export_handle_border(hid_t dataset, int uid, hid_t xfer_plist_id);
 
-static bool export_handle_border_none(int dataset, int uid, hid_t xfer_plist_id)
+static bool export_handle_border_none(hid_t dataset, int uid, hid_t xfer_plist_id)
 {
     //nothing to do
     closeList6(dataset);
     return true;
 }
 
-static bool export_handle_border_line(int dataset, int uid, hid_t xfer_plist_id)
+static bool export_handle_border_line(hid_t dataset, int uid, hid_t xfer_plist_id)
 {
     bool ret = false;
     int dims[2];
@@ -2221,7 +2221,7 @@ static bool export_handle_border_line(int dataset, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_border_bevel(int dataset, int uid, hid_t xfer_plist_id)
+static bool export_handle_border_bevel(hid_t dataset, int uid, hid_t xfer_plist_id)
 {
     bool ret = false;
     int dims[2];
@@ -2272,12 +2272,12 @@ static bool export_handle_border_bevel(int dataset, int uid, hid_t xfer_plist_id
     return true;
 }
 
-static bool export_handle_border_soft_bevel(int dataset, int uid, hid_t xfer_plist_id)
+static bool export_handle_border_soft_bevel(hid_t dataset, int uid, hid_t xfer_plist_id)
 {
     return export_handle_border_bevel(dataset, uid, xfer_plist_id);
 }
 
-static bool export_handle_border_etched(int dataset, int uid, hid_t xfer_plist_id)
+static bool export_handle_border_etched(hid_t dataset, int uid, hid_t xfer_plist_id)
 {
     bool ret = false;
     int dims[2];
@@ -2313,7 +2313,7 @@ static bool export_handle_border_etched(int dataset, int uid, hid_t xfer_plist_i
     return true;
 }
 
-static bool export_handle_border_titled(int dataset, int uid, hid_t xfer_plist_id)
+static bool export_handle_border_titled(hid_t dataset, int uid, hid_t xfer_plist_id)
 {
     bool ret = false;
     int dims[2];
@@ -2326,7 +2326,7 @@ static bool export_handle_border_titled(int dataset, int uid, hid_t xfer_plist_i
     ret = getHandleIntProperty(uid, __GO_UI_FRAME_BORDER_TITLE__, &title);
     if (ret)
     {
-        int node = openList6(dataset, "title_border", g_SCILAB_CLASS_HANDLE);
+        hid_t node = openList6(dataset, "title_border", g_SCILAB_CLASS_HANDLE);
         export_handle_border(node, title, xfer_plist_id);
     }
 
@@ -2402,7 +2402,7 @@ static bool export_handle_border_titled(int dataset, int uid, hid_t xfer_plist_i
     return true;
 }
 
-static bool export_handle_border_empty(int dataset, int uid, hid_t xfer_plist_id)
+static bool export_handle_border_empty(hid_t dataset, int uid, hid_t xfer_plist_id)
 {
     int dims[2];
     dims[0] = 1;
@@ -2421,7 +2421,7 @@ static bool export_handle_border_empty(int dataset, int uid, hid_t xfer_plist_id
     return true;
 }
 
-static bool export_handle_border_compound(int dataset, int uid, hid_t xfer_plist_id)
+static bool export_handle_border_compound(hid_t dataset, int uid, hid_t xfer_plist_id)
 {
     bool ret = false;
     //out_border
@@ -2430,7 +2430,7 @@ static bool export_handle_border_compound(int dataset, int uid, hid_t xfer_plist
     ret = getHandleIntProperty(uid, __GO_UI_FRAME_BORDER_OUT_BORDER__, &out_border);
     if (ret)
     {
-        int node = openList6(dataset, "out_border", g_SCILAB_CLASS_HANDLE);
+        hid_t node = openList6(dataset, "out_border", g_SCILAB_CLASS_HANDLE);
         export_handle_border(node, out_border, xfer_plist_id);
 
         //title_border
@@ -2444,7 +2444,7 @@ static bool export_handle_border_compound(int dataset, int uid, hid_t xfer_plist
     return true;
 }
 
-static bool export_handle_border_matte(int dataset, int uid, hid_t xfer_plist_id)
+static bool export_handle_border_matte(hid_t dataset, int uid, hid_t xfer_plist_id)
 {
     int dims[2];
     dims[0] = 1;
@@ -2470,7 +2470,7 @@ static bool export_handle_border_matte(int dataset, int uid, hid_t xfer_plist_id
     return true;
 }
 
-static bool export_handle_border(int dataset, int uid, hid_t xfer_plist_id)
+static bool export_handle_border(hid_t dataset, int uid, hid_t xfer_plist_id)
 {
     int style = 0;
     getHandleIntProperty(uid, __GO_UI_FRAME_BORDER_STYLE__, &style);
@@ -2504,7 +2504,7 @@ static bool export_handle_border(int dataset, int uid, hid_t xfer_plist_id)
     }
 }
 
-static bool export_handle_uicontrol(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_uicontrol(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     bool ret = false;
     if (export_handle_generic(parent, uid, UicontrolHandle::getPropertyList(), xfer_plist_id) == false)
@@ -2545,7 +2545,7 @@ static bool export_handle_uicontrol(int parent, int uid, hid_t xfer_plist_id)
     ret = getHandleIntProperty(uid, __GO_UI_FRAME_BORDER__, &border);
     if (ret)
     {
-        int ub = openList6(parent, "border", g_SCILAB_CLASS_HANDLE);
+        hid_t ub = openList6(parent, "border", g_SCILAB_CLASS_HANDLE);
         export_handle_border(ub, border, xfer_plist_id);
     }
 
@@ -2553,7 +2553,7 @@ static bool export_handle_uicontrol(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_uicontextmenu(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_uicontextmenu(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, UicontextmenuHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -2564,7 +2564,7 @@ static bool export_handle_uicontextmenu(int parent, int uid, hid_t xfer_plist_id
     return true;
 }
 
-static bool export_handle_uimenu(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_uimenu(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, UimenuHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -2575,7 +2575,7 @@ static bool export_handle_uimenu(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_light(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_light(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, LightHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -2586,7 +2586,7 @@ static bool export_handle_light(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_axis(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_axis(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, AxisHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -2597,7 +2597,7 @@ static bool export_handle_axis(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_text(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_text(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, TextHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -2658,7 +2658,7 @@ bool get_entity_path(int entity, std::vector<int>& path)
     return true;
 }
 
-static bool export_handle_legend(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_legend(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, LegendHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -2666,7 +2666,7 @@ static bool export_handle_legend(int parent, int uid, hid_t xfer_plist_id)
     }
 
     //links
-    int node = openList6(parent, "links", g_SCILAB_CLASS_HANDLE);
+    hid_t node = openList6(parent, "links", g_SCILAB_CLASS_HANDLE);
     int link = 0;
     getHandleIntProperty(uid, __GO_LINKS_COUNT__, &link);
     int* links = nullptr;
@@ -2696,7 +2696,7 @@ static bool export_handle_legend(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_fec(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_fec(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, FecHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -2721,7 +2721,7 @@ static bool export_handle_fec(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_matplot(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_matplot(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, MatplotHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -2804,7 +2804,7 @@ static bool export_handle_matplot(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_grayplot(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_grayplot(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, GrayplotHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -2841,7 +2841,7 @@ static bool export_handle_grayplot(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_segs(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_segs(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, SegsHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -2852,7 +2852,7 @@ static bool export_handle_segs(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_arc(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_arc(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, ArcHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -2863,7 +2863,7 @@ static bool export_handle_arc(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_rectangle(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_rectangle(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, RectangleHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -2874,7 +2874,7 @@ static bool export_handle_rectangle(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_datatip(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_datatip(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, DatatipHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -2885,7 +2885,7 @@ static bool export_handle_datatip(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_polyline_shift(int parent, int uid, const std::string& name, int go_set, int go_data, hid_t xfer_plist_id)
+static bool export_handle_polyline_shift(hid_t parent, int uid, const std::string& name, int go_set, int go_data, hid_t xfer_plist_id)
 {
     int set = 0;
     getHandleBoolProperty(uid, go_set, &set);
@@ -2914,7 +2914,7 @@ static bool export_handle_polyline_shift(int parent, int uid, const std::string&
     return true;
 }
 
-static bool export_handle_polyline(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_polyline(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_datatips(parent, uid, xfer_plist_id) == false)
     {
@@ -2996,12 +2996,12 @@ static bool export_handle_polyline(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_surface(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_surface(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     return export_handle_generic(parent, uid, SurfaceHandle::getPropertyList(), xfer_plist_id);
 }
 
-static bool export_handle_plot3d(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_plot3d(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     bool ret = export_handle_surface(parent, uid, xfer_plist_id);
     if (ret)
@@ -3050,7 +3050,7 @@ static bool export_handle_plot3d(int parent, int uid, hid_t xfer_plist_id)
     return ret;
 }
 
-static bool export_handle_fac3d(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_fac3d(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     bool ret = export_handle_surface(parent, uid, xfer_plist_id);
     if (ret)
@@ -3122,7 +3122,7 @@ static bool export_handle_fac3d(int parent, int uid, hid_t xfer_plist_id)
 }
 
 
-static bool export_handle_champ(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_champ(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, ChampHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -3170,7 +3170,7 @@ static bool export_handle_champ(int parent, int uid, hid_t xfer_plist_id)
     closeList6(parent);
     return true;
 }
-static bool export_handle_label(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_label(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, LabelHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -3193,7 +3193,7 @@ static bool export_handle_label(int parent, int uid, hid_t xfer_plist_id)
     closeList6(parent);
     return true;
 }
-static bool export_handle_axes(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_axes(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, AxesHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -3225,7 +3225,7 @@ static bool export_handle_axes(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_figure(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_figure(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, FigureHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -3239,7 +3239,7 @@ static bool export_handle_figure(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-static bool export_handle_compound(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_compound(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     if (export_handle_generic(parent, uid, CompoundHandle::getPropertyList(), xfer_plist_id) == false)
     {
@@ -3250,14 +3250,14 @@ static bool export_handle_compound(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-bool export_handle(int parent, const std::string& name, int uid, hid_t xfer_plist_id)
+bool export_handle(hid_t parent, const std::string& name, int uid, hid_t xfer_plist_id)
 {
     //get handle type
     int type = 0;
     getHandleIntProperty(uid, __GO_TYPE__, &type);
 
     //create handle node in __refs__
-    int h = openList6(parent, name.data(), g_SCILAB_CLASS_HANDLE);
+    hid_t h = openList6(parent, name.data(), g_SCILAB_CLASS_HANDLE);
 
     bool ret = false;
     switch (type)
@@ -3381,11 +3381,11 @@ bool export_handle(int parent, const std::string& name, int uid, hid_t xfer_plis
     return ret;
 }
 
-static bool export_handle_children(int parent, int uid, hid_t xfer_plist_id)
+static bool export_handle_children(hid_t parent, int uid, hid_t xfer_plist_id)
 {
     int count = 0;
     getHandleIntProperty(uid, __GO_CHILDREN_COUNT__, &count);
-    int node = openList6(parent, "children", g_SCILAB_CLASS_HANDLE);
+    hid_t node = openList6(parent, "children", g_SCILAB_CLASS_HANDLE);
     int* children = nullptr;
 
     if (count != 0)
@@ -3417,7 +3417,7 @@ static bool export_handle_children(int parent, int uid, hid_t xfer_plist_id)
     return true;
 }
 
-int add_current_entity(int dataset)
+int add_current_entity(hid_t dataset)
 {
     int type = 0;
     getHandleInt(dataset, "type", &type);

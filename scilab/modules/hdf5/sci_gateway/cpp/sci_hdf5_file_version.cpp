@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_hdf5_file_version(types::typed_list &in, int _i
     FREE(wfilename);
     FREE(cfilename);
 
-    int iFile = openHDF5File(filename.data(), 0);
+    hid_t iFile = openHDF5File(filename.data(), 0);
     if (iFile < 0)
     {
         Scierror(999, _("%s: Unable to open file: %s\n"), fname.data(), filename.data());

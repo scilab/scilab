@@ -47,25 +47,25 @@ typedef struct __VAR_INFO6__
     std::vector<int> pdims;
 } VarInfo6;
 
-static bool read_data(int dataset, VarInfo6& info);
-static bool read_short_data(int dataset, VarInfo6& info);
-static bool read_double(int dataset, VarInfo6& info);
-static bool read_string(int dataset, VarInfo6& info);
-static bool read_boolean(int dataset, VarInfo6& info);
-static bool read_integer(int dataset, VarInfo6& info);
-static bool read_sparse(int dataset, VarInfo6& info);
-static bool read_boolean_sparse(int dataset, VarInfo6& info);
-static bool read_poly(int dataset, VarInfo6& info);
-static bool read_list(int dataset, VarInfo6& info, std::string type);
-static bool read_void(int dataset, VarInfo6& info);
-static bool read_undefined(int dataset, VarInfo6& info);
-static bool read_struct(int dataset, VarInfo6& info);
-static bool read_cell(int dataset, VarInfo6& info);
-static bool read_handles(int dataset, VarInfo6& info);
-static bool read_macro(int dataset, VarInfo6& info);
+static bool read_data(hid_t dataset, VarInfo6& info);
+static bool read_short_data(hid_t dataset, VarInfo6& info);
+static bool read_double(hid_t dataset, VarInfo6& info);
+static bool read_string(hid_t dataset, VarInfo6& info);
+static bool read_boolean(hid_t dataset, VarInfo6& info);
+static bool read_integer(hid_t dataset, VarInfo6& info);
+static bool read_sparse(hid_t dataset, VarInfo6& info);
+static bool read_boolean_sparse(hid_t dataset, VarInfo6& info);
+static bool read_poly(hid_t dataset, VarInfo6& info);
+static bool read_list(hid_t dataset, VarInfo6& info, std::string type);
+static bool read_void(hid_t dataset, VarInfo6& info);
+static bool read_undefined(hid_t dataset, VarInfo6& info);
+static bool read_struct(hid_t dataset, VarInfo6& info);
+static bool read_cell(hid_t dataset, VarInfo6& info);
+static bool read_handles(hid_t dataset, VarInfo6& info);
+static bool read_macro(hid_t dataset, VarInfo6& info);
 
 static void generateInfo(VarInfo6& info);
-static int getDimsNode(int dataset, int* complex, std::vector<int>& dims);
+static int getDimsNode(hid_t dataset, int* complex, std::vector<int>& dims);
 
 static const std::string fname("hdf5_listvar");
 
@@ -98,7 +98,7 @@ types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRe
     FREE(wfilename);
     FREE(cfilename);
 
-    int iFile = openHDF5File(filename.data(), 0);
+    hid_t iFile = openHDF5File(filename.data(), 0);
     if (iFile < 0)
     {
         Scierror(999, _("%s: Unable to open file: %s\n"), fname.data(), filename.data());
@@ -134,7 +134,7 @@ types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRe
             FREE(vars[i]);
             info[i].size = 0;
 
-            int dset = getDataSetIdFromName(iFile, info[i].name.data());
+            hid_t dset = getDataSetIdFromName(iFile, info[i].name.data());
             if (dset == 0)
             {
                 break;
@@ -233,7 +233,7 @@ types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRe
     return types::Function::OK;
 }
 
-static bool read_short_data(int dataset, VarInfo6& info)
+static bool read_short_data(hid_t dataset, VarInfo6& info)
 {
     char* ctype = getScilabTypeFromDataSet6(dataset);
     std::string type(ctype);
@@ -318,7 +318,7 @@ static bool read_short_data(int dataset, VarInfo6& info)
     return true;
 }
 
-static bool read_data(int dataset, VarInfo6& info)
+static bool read_data(hid_t dataset, VarInfo6& info)
 {
     bool bRet = false;
 
@@ -427,7 +427,7 @@ static bool read_data(int dataset, VarInfo6& info)
     return false;
 }
 
-static bool read_double(int dataset, VarInfo6& info)
+static bool read_double(hid_t dataset, VarInfo6& info)
 {
     int complex = 0;
     int ret = getDatasetInfo(dataset, &complex, &info.dims, NULL);
@@ -451,7 +451,7 @@ static bool read_double(int dataset, VarInfo6& info)
     return true;
 }
 
-static bool read_string(int dataset, VarInfo6& info)
+static bool read_string(hid_t dataset, VarInfo6& info)
 {
     int complex = 0;
     int ret = getDatasetInfo(dataset, &complex, &info.dims, NULL);
@@ -483,7 +483,7 @@ static bool read_string(int dataset, VarInfo6& info)
     return true;
 }
 
-static bool read_boolean(int dataset, VarInfo6& info)
+static bool read_boolean(hid_t dataset, VarInfo6& info)
 {
     int complex = 0;
     int ret = getDatasetInfo(dataset, &complex, &info.dims, NULL);
@@ -507,7 +507,7 @@ static bool read_boolean(int dataset, VarInfo6& info)
     return true;
 }
 
-static bool read_integer(int dataset, VarInfo6& info)
+static bool read_integer(hid_t dataset, VarInfo6& info)
 {
     int complex = 0;
     int ret = getDatasetInfo(dataset, &complex, &info.dims, NULL);
@@ -535,7 +535,7 @@ static bool read_integer(int dataset, VarInfo6& info)
     return true;
 }
 
-static bool read_sparse(int dataset, VarInfo6& info)
+static bool read_sparse(hid_t dataset, VarInfo6& info)
 {
     int complex = 0;
     std::vector<int> pdims;
@@ -543,7 +543,7 @@ static bool read_sparse(int dataset, VarInfo6& info)
 
     //get non zeros count
     int nnz = 0;
-    int datannz = getDataSetIdFromName(dataset, "__nnz__");
+    hid_t datannz = getDataSetIdFromName(dataset, "__nnz__");
     readInteger32Matrix(datannz, &nnz);
 
     info.dims = 2;
@@ -558,7 +558,7 @@ static bool read_sparse(int dataset, VarInfo6& info)
     return true;
 }
 
-static bool read_boolean_sparse(int dataset, VarInfo6& info)
+static bool read_boolean_sparse(hid_t dataset, VarInfo6& info)
 {
     int complex = 0;
     std::vector<int> pdims;
@@ -566,7 +566,7 @@ static bool read_boolean_sparse(int dataset, VarInfo6& info)
 
     //get non zeros count
     int nnz = 0;
-    int datannz = getDataSetIdFromName(dataset, "__nnz__");
+    hid_t datannz = getDataSetIdFromName(dataset, "__nnz__");
     readInteger32Matrix(datannz, &nnz);
 
     info.dims = 2;
@@ -581,19 +581,19 @@ static bool read_boolean_sparse(int dataset, VarInfo6& info)
     return true;
 }
 
-static bool read_poly(int dataset, VarInfo6& info)
+static bool read_poly(hid_t dataset, VarInfo6& info)
 {
     int complex = 0;
     int size = getDimsNode(dataset, &complex, info.pdims);
     info.size = 0;
 
     //open __refs__ node
-    int refs = getDataSetIdFromName(dataset, "__refs__");
+    hid_t refs = getDataSetIdFromName(dataset, "__refs__");
 
     for (int i = 0; i < size; ++i)
     {
         std::string polyname(std::to_string(i));
-        int poly = getDataSetIdFromName(refs, polyname.data());
+        hid_t poly = getDataSetIdFromName(refs, polyname.data());
 
         //get dims
         complex = 0;
@@ -621,7 +621,7 @@ static bool read_poly(int dataset, VarInfo6& info)
     return true;
 }
 
-static bool read_list(int dataset, VarInfo6& info, std::string type)
+static bool read_list(hid_t dataset, VarInfo6& info, std::string type)
 {
     int ret = 0;
     int items = 0;
@@ -639,7 +639,7 @@ static bool read_list(int dataset, VarInfo6& info, std::string type)
 
     for (int i = 0; i < items; i++)
     {
-        int data = getDataSetIdFromName(dataset, std::to_string(i).data());
+        hid_t data = getDataSetIdFromName(dataset, std::to_string(i).data());
         if (data <= 0)
         {
             closeList6(dataset);
@@ -662,21 +662,21 @@ static bool read_list(int dataset, VarInfo6& info, std::string type)
     return true;
 }
 
-static bool read_void(int dataset, VarInfo6& info)
+static bool read_void(hid_t dataset, VarInfo6& info)
 {
     info.size = 0;
     closeDataSet(dataset);
     return true;
 }
 
-static bool read_undefined(int dataset, VarInfo6& info)
+static bool read_undefined(hid_t dataset, VarInfo6& info)
 {
     info.size = 0;
     closeDataSet(dataset);
     return true;
 }
 
-static bool read_struct(int dataset, VarInfo6& info)
+static bool read_struct(hid_t dataset, VarInfo6& info)
 {
     int complex = 0;
     int size = getDimsNode(dataset, &complex, info.pdims);
@@ -698,7 +698,7 @@ static bool read_struct(int dataset, VarInfo6& info)
     }
 
     //open __refs__ node
-    int refs = getDataSetIdFromName(dataset, "__refs__");
+    hid_t refs = getDataSetIdFromName(dataset, "__refs__");
     H5O_info_t oinfo;
     for (int i = 0; i < fieldCount; ++i)
     {
@@ -711,7 +711,7 @@ static bool read_struct(int dataset, VarInfo6& info)
 
         if (cname != "__dims__" && cname != "__refs__" && cname != "__fields__")
         {
-            int dataref = getDataSetIdFromName(dataset, cname.data());
+            hid_t dataref = getDataSetIdFromName(dataset, cname.data());
             if (dataref < 0)
             {
                 closeList6(dataset);
@@ -738,11 +738,11 @@ static bool read_struct(int dataset, VarInfo6& info)
             //import field
             for (int j = 0; j < refcount; ++j)
             {
-                int data = H5Rdereference(refs,
+                hid_t data = H5Rdereference(refs,
 #if H5_VERSION_GE(1,10,0)
-                                          H5P_DATASET_ACCESS_DEFAULT,
+                                            H5P_DATASET_ACCESS_DEFAULT,
 #endif
-                                          H5R_OBJECT, &vrefs[j]);
+                                            H5R_OBJECT, &vrefs[j]);
                 if (data < 0)
                 {
                     return false;
@@ -769,7 +769,7 @@ static bool read_struct(int dataset, VarInfo6& info)
     return true;
 }
 
-static bool read_cell(int dataset, VarInfo6& info)
+static bool read_cell(hid_t dataset, VarInfo6& info)
 {
     //get cell dimensions
     int complex = 0;
@@ -785,10 +785,10 @@ static bool read_cell(int dataset, VarInfo6& info)
     }
 
     //open __refs__ node
-    int refs = getDataSetIdFromName(dataset, "__refs__");
+    hid_t refs = getDataSetIdFromName(dataset, "__refs__");
     for (int i = 0; i < size; ++i)
     {
-        int ref = getDataSetIdFromName(refs, std::to_string(i).data());
+        hid_t ref = getDataSetIdFromName(refs, std::to_string(i).data());
         VarInfo6 info2;
         if (read_data(ref, info2) == false)
         {
@@ -807,7 +807,7 @@ static bool read_cell(int dataset, VarInfo6& info)
     return true;
 }
 
-static bool read_handles(int dataset, VarInfo6& info)
+static bool read_handles(hid_t dataset, VarInfo6& info)
 {
     //get cell dimensions
     int complex = 0;
@@ -828,7 +828,7 @@ static bool read_handles(int dataset, VarInfo6& info)
     return true;
 }
 
-static bool read_macro(int dataset, VarInfo6& info)
+static bool read_macro(hid_t dataset, VarInfo6& info)
 {
     info.size = 0;
     info.dims = 2;
@@ -855,10 +855,10 @@ static void generateInfo(VarInfo6& info)
     sprintf(info.info, "%-*s%-*s%-*s%-*d", 25, info.name.data(), 15, info.ctype.data(), 16, ostr.str().data(), 10, info.size);
 }
 
-static int getDimsNode(int dataset, int* complex, std::vector<int>& dims)
+static int getDimsNode(hid_t dataset, int* complex, std::vector<int>& dims)
 {
     dims.clear();
-    int id = getDataSetIdFromName(dataset, "__dims__");
+    hid_t id = getDataSetIdFromName(dataset, "__dims__");
     if (id < 0)
     {
         return 0;

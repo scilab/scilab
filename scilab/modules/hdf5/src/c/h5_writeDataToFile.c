@@ -27,6 +27,7 @@
 #include "h5_readDataFromFile.h"
 #include "h5_attributeConstants.h"
 #include "doublecomplex.h"
+#include "sciprint.h"
 
 static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t * _piDims)
 {
@@ -112,7 +113,7 @@ static hsize_t* convertDims(int* _piRank, int* _piDims, int* _piSize)
     return piDims;
 }
 
-static herr_t addIntAttribute(int _iDatasetId, const char *_pstName, const int _iVal)
+static herr_t addIntAttribute(hid_t _iDatasetId, const char *_pstName, const int _iVal)
 {
     hsize_t attributeDims[1] = { 1 };
     hid_t attributeTypeId, attributeSpace;
@@ -150,7 +151,7 @@ static herr_t addIntAttribute(int _iDatasetId, const char *_pstName, const int _
     return 0;
 }
 
-static herr_t addAttribute(int _iDatasetId, const char *_pstName, const char *_pstValue)
+static herr_t addAttribute(hid_t _iDatasetId, const char *_pstName, const char *_pstValue)
 {
     hsize_t attributeDims[1] = { 1 };
     hid_t attributeTypeId, attributeSpace, attr;
@@ -203,7 +204,7 @@ static herr_t addAttribute(int _iDatasetId, const char *_pstName, const char *_p
 }
 
 
-int updateScilabVersion(int _iFile)
+int updateScilabVersion(hid_t _iFile)
 {
     herr_t status;
     //try to read attribute
@@ -236,7 +237,7 @@ int updateScilabVersion(int _iFile)
     return status;
 }
 
-int updateFileVersion(int _iFile)
+int updateFileVersion(hid_t _iFile)
 {
     herr_t status;
     //try to read attribute
@@ -253,7 +254,7 @@ int updateFileVersion(int _iFile)
     return addIntAttribute(_iFile, g_SCILAB_CLASS_SOD_VERSION, SOD_FILE_VERSION);
 }
 
-int writeStringMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDims, char **data)
+int writeStringMatrix(hid_t _iFile, char *_pstDatasetName, int _iDims, int* _piDims, char **data)
 {
     int iSize = 0;
     hsize_t* piDims = NULL;
@@ -369,7 +370,7 @@ char* createPathName(char *_pstGroupName, int _iIndex)
     return pstPathName;
 }
 
-int writeVoid(int _iFile, char *_pstDatasetName)
+int writeVoid(hid_t _iFile, char *_pstDatasetName)
 {
     hsize_t piDims[1] = { 1 };
     herr_t status = 0;
@@ -431,7 +432,7 @@ int writeVoid(int _iFile, char *_pstDatasetName)
     return 0;
 }
 
-int writeUndefined(int _iFile, char *_pstDatasetName)
+int writeUndefined(hid_t _iFile, char *_pstDatasetName)
 {
     hsize_t piDims[1] = { 1 };
     herr_t status = 0;
@@ -493,7 +494,7 @@ int writeUndefined(int _iFile, char *_pstDatasetName)
     return 0;
 }
 
-int writeDoubleMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDims, double *_pdblData)
+int writeDoubleMatrix(hid_t _iFile, char *_pstDatasetName, int _iDims, int* _piDims, double *_pdblData)
 {
     hid_t space = 0;
     hid_t dset = 0;
@@ -611,7 +612,7 @@ int writeDoubleMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDim
     return status;
 }
 
-int writeDoubleComplexMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDims, double *_pdblReal, double *_pdblImg)
+int writeDoubleComplexMatrix(hid_t _iFile, char *_pstDatasetName, int _iDims, int* _piDims, double *_pdblReal, double *_pdblImg)
 {
     hid_t space = 0;
     hid_t dset = 0;
@@ -694,7 +695,7 @@ int writeDoubleComplexMatrix(int _iFile, char *_pstDatasetName, int _iDims, int*
     return status;
 }
 
-int writeBooleanMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDims, int *_piData)
+int writeBooleanMatrix(hid_t _iFile, char *_pstDatasetName, int _iDims, int* _piDims, int *_piData)
 {
     int iSize = 0;
     hsize_t* piDims = NULL;
@@ -759,7 +760,7 @@ int writeBooleanMatrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDi
     return 0;
 }
 
-static int writeCommonPolyMatrix(int _iFile, char *_pstDatasetName, char *_pstVarName, int _iComplex, int _iDims, int* _piDims, int *_piNbCoef, double **_pdblReal, double **_pdblImg)
+static int writeCommonPolyMatrix(hid_t _iFile, char *_pstDatasetName, char *_pstVarName, int _iComplex, int _iDims, int* _piDims, int *_piNbCoef, double **_pdblReal, double **_pdblImg)
 {
     int i = 0;
     hsize_t* piDims = NULL;
@@ -901,18 +902,18 @@ static int writeCommonPolyMatrix(int _iFile, char *_pstDatasetName, char *_pstVa
     return 0;
 }
 
-int writePolyMatrix(int _iFile, char *_pstDatasetName, char *_pstVarName, int _iDims, int* _piDims, int *_piNbCoef, double **_pdblReal)
+int writePolyMatrix(hid_t _iFile, char *_pstDatasetName, char *_pstVarName, int _iDims, int* _piDims, int *_piNbCoef, double **_pdblReal)
 {
     return writeCommonPolyMatrix(_iFile, _pstDatasetName, _pstVarName, 0, _iDims, _piDims, _piNbCoef, _pdblReal, NULL);
 }
 
-int writePolyComplexMatrix(int _iFile, char *_pstDatasetName, char *_pstVarName, int _iDims, int* _piDims, int *_piNbCoef, double **_pdblReal,
+int writePolyComplexMatrix(hid_t _iFile, char *_pstDatasetName, char *_pstVarName, int _iDims, int* _piDims, int *_piNbCoef, double **_pdblReal,
                            double **_pdblImg)
 {
     return writeCommonPolyMatrix(_iFile, _pstDatasetName, _pstVarName, 1, _iDims, _piDims, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-int writeInteger8Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDims, char *_pcData)
+int writeInteger8Matrix(hid_t _iFile, char *_pstDatasetName, int _iDims, int* _piDims, char *_pcData)
 {
     hsize_t* piDims = NULL;
     herr_t status = 0;
@@ -937,6 +938,7 @@ int writeInteger8Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piD
 
     dprop = H5Pcreate(H5P_DATASET_CREATE);
     H5Pset_obj_track_times(dprop, 0);
+
     iDataset = H5Dcreate(_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress, dprop, H5P_DEFAULT);
     if (iDataset < 0)
     {
@@ -984,7 +986,7 @@ int writeInteger8Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piD
     return 0;
 }
 
-int writeInteger16Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDims, short *_psData)
+int writeInteger16Matrix(hid_t _iFile, char *_pstDatasetName, int _iDims, int* _piDims, short *_psData)
 {
     hsize_t* piDims = NULL;
     herr_t status = 0;
@@ -1055,7 +1057,7 @@ int writeInteger16Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _pi
     return 0;
 }
 
-int writeInteger32Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDims, int *_piData)
+int writeInteger32Matrix(hid_t _iFile, char *_pstDatasetName, int _iDims, int* _piDims, int *_piData)
 {
     hsize_t* piDims = NULL;
     herr_t status = 0;
@@ -1127,7 +1129,7 @@ int writeInteger32Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _pi
     return 0;
 }
 
-int writeInteger64Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDims, long long *_pllData)
+int writeInteger64Matrix(hid_t _iFile, char *_pstDatasetName, int _iDims, int* _piDims, long long *_pllData)
 {
     hsize_t* piDims = NULL;
     herr_t status = 0;
@@ -1199,7 +1201,7 @@ int writeInteger64Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _pi
     return 0;
 }
 
-int writeUnsignedInteger8Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDims, unsigned char *_pucData)
+int writeUnsignedInteger8Matrix(hid_t _iFile, char *_pstDatasetName, int _iDims, int* _piDims, unsigned char *_pucData)
 {
     hsize_t* piDims = NULL;
     herr_t status = 0;
@@ -1271,7 +1273,7 @@ int writeUnsignedInteger8Matrix(int _iFile, char *_pstDatasetName, int _iDims, i
     return 0;
 }
 
-int writeUnsignedInteger16Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDims, unsigned short *_pusData)
+int writeUnsignedInteger16Matrix(hid_t _iFile, char *_pstDatasetName, int _iDims, int* _piDims, unsigned short *_pusData)
 {
     hsize_t* piDims = NULL;
     herr_t status = 0;
@@ -1343,7 +1345,7 @@ int writeUnsignedInteger16Matrix(int _iFile, char *_pstDatasetName, int _iDims, 
     return 0;
 }
 
-int writeUnsignedInteger32Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDims, unsigned int *_puiData)
+int writeUnsignedInteger32Matrix(hid_t _iFile, char *_pstDatasetName, int _iDims, int* _piDims, unsigned int *_puiData)
 {
     hsize_t* piDims = NULL;
     herr_t status = 0;
@@ -1415,7 +1417,7 @@ int writeUnsignedInteger32Matrix(int _iFile, char *_pstDatasetName, int _iDims, 
     return 0;
 }
 
-int writeUnsignedInteger64Matrix(int _iFile, char *_pstDatasetName, int _iDims, int* _piDims, unsigned long long *_pullData)
+int writeUnsignedInteger64Matrix(hid_t _iFile, char *_pstDatasetName, int _iDims, int* _piDims, unsigned long long *_pullData)
 {
     hsize_t* piDims = NULL;
     herr_t status = 0;
@@ -1487,7 +1489,7 @@ int writeUnsignedInteger64Matrix(int _iFile, char *_pstDatasetName, int _iDims, 
     return 0;
 }
 
-int writeCommonSparseComplexMatrix(int _iFile, char *_pstDatasetName, int _iComplex, int _iRows, int _iCols, int _iNbItem, int *_piNbItemRow,
+int writeCommonSparseComplexMatrix(hid_t _iFile, char *_pstDatasetName, int _iComplex, int _iRows, int _iCols, int _iNbItem, int *_piNbItemRow,
                                    int *_piColPos, double *_pdblReal, double *_pdblImg)
 {
     hsize_t dims[1] = { 3 };
@@ -1670,18 +1672,18 @@ int writeCommonSparseComplexMatrix(int _iFile, char *_pstDatasetName, int _iComp
     return 0;
 }
 
-int writeSparseMatrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, int _iNbItem, int *_piNbItemRow, int *_piColPos, double *_pdblReal)
+int writeSparseMatrix(hid_t _iFile, char *_pstDatasetName, int _iRows, int _iCols, int _iNbItem, int *_piNbItemRow, int *_piColPos, double *_pdblReal)
 {
     return writeCommonSparseComplexMatrix(_iFile, _pstDatasetName, 0, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
 }
 
-int writeSparseComplexMatrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, int _iNbItem, int *_piNbItemRow, int *_piColPos,
+int writeSparseComplexMatrix(hid_t _iFile, char *_pstDatasetName, int _iRows, int _iCols, int _iNbItem, int *_piNbItemRow, int *_piColPos,
                              double *_pdblReal, double *_pdblImg)
 {
     return writeCommonSparseComplexMatrix(_iFile, _pstDatasetName, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-int writeBooleanSparseMatrix(int _iFile, char *_pstDatasetName, int _iRows, int _iCols, int _iNbItem, int *_piNbItemRow, int *_piColPos)
+int writeBooleanSparseMatrix(hid_t _iFile, char *_pstDatasetName, int _iRows, int _iCols, int _iNbItem, int *_piNbItemRow, int *_piColPos)
 {
     hsize_t dims[1] = { 2 };
     herr_t status = 0;
@@ -1829,7 +1831,7 @@ int writeBooleanSparseMatrix(int _iFile, char *_pstDatasetName, int _iRows, int 
 }
 
 //create a group and create hobj_ref_t array
-void *openList(int _iFile, char *pstDatasetName, int _iNbItem)
+void *openList(hid_t _iFile, char *pstDatasetName, int _iNbItem)
 {
     herr_t status = 0;
     hid_t group = 0;
@@ -1851,14 +1853,14 @@ void *openList(int _iFile, char *pstDatasetName, int _iNbItem)
     return pobjArray;
 }
 
-int addItemInList(int _iFile, void *_pvList, int _iPos, char *_pstItemName)
+int addItemInList(hid_t _iFile, void *_pvList, int _iPos, char *_pstItemName)
 {
     hobj_ref_t *pobjArray = (hobj_ref_t *) _pvList;
 
     return H5Rcreate(&pobjArray[_iPos], _iFile, _pstItemName, H5R_OBJECT, -1);
 }
 
-int closeList(int _iFile, void *_pvList, char *_pstListName, int _iNbItem, int _iVarType)
+hid_t closeList(hid_t _iFile, void *_pvList, char *_pstListName, int _iNbItem, int _iVarType)
 {
     herr_t status = 0;
     hsize_t dims[1] = { _iNbItem };
@@ -1991,7 +1993,7 @@ int closeList(int _iFile, void *_pvList, char *_pstListName, int _iNbItem, int _
     return 0;
 }
 
-static int deleteHDF5group(int _iFile, const char* _pstName)
+static int deleteHDF5group(hid_t _iFile, const char* _pstName)
 {
     H5G_info_t groupInfo;
     hid_t status = 0;
@@ -2054,7 +2056,7 @@ static int deleteHDF5group(int _iFile, const char* _pstName)
 
 //According to 5.5.2. Deleting a Dataset from a File and Reclaiming Space of http://www.hdfgroup.org/HDF5/doc/UG/10_Datasets.html
 //it is actually impossible to really remove data from HDF5 file so unlink dataset to main group
-int deleteHDF5Var(int _iFile, const char* _pstName)
+int deleteHDF5Var(hid_t _iFile, const char* _pstName)
 {
     int ret = 0;
     void *oldclientdata = NULL;
@@ -2085,7 +2087,7 @@ int deleteHDF5Var(int _iFile, const char* _pstName)
 }
 
 /*Scilab 6*/
-int writeDoubleMatrix6(int parent, const char* name, int dims, int* pdims, double* data, hid_t xfer_plist_id)
+int writeDoubleMatrix6(hid_t parent, const char* name, int dims, int* pdims, double* data, hid_t xfer_plist_id)
 {
     hid_t space = 0;
     hid_t dset = 0;
@@ -2178,7 +2180,7 @@ int writeDoubleMatrix6(int parent, const char* name, int dims, int* pdims, doubl
     return dset;
 }
 
-HDF5_SCILAB_IMPEXP int writeDoubleComplexMatrix6(int parent, const char* name, int dims, int* pdims, double* real, double* img, hid_t xfer_plist_id)
+HDF5_SCILAB_IMPEXP int writeDoubleComplexMatrix6(hid_t parent, const char* name, int dims, int* pdims, double* real, double* img, hid_t xfer_plist_id)
 {
     hid_t space = 0;
     hid_t dset = 0;
@@ -2261,7 +2263,7 @@ HDF5_SCILAB_IMPEXP int writeDoubleComplexMatrix6(int parent, const char* name, i
     return dset;
 }
 
-int writeStringMatrix6(int parent, const char* name, int dims, int* pdims, char** data, hid_t xfer_plist_id)
+int writeStringMatrix6(hid_t parent, const char* name, int dims, int* pdims, char** data, hid_t xfer_plist_id)
 {
     int iSize = 0;
     hsize_t* piDims = NULL;
@@ -2360,7 +2362,7 @@ int writeStringMatrix6(int parent, const char* name, int dims, int* pdims, char*
     return dset;
 }
 
-int writeBooleanMatrix6(int parent, const char* name, int dims, int* pdims, int* data, hid_t xfer_plist_id)
+int writeBooleanMatrix6(hid_t parent, const char* name, int dims, int* pdims, int* data, hid_t xfer_plist_id)
 {
     int iSize = 0;
     hsize_t* piDims = NULL;
@@ -2427,7 +2429,7 @@ int writeBooleanMatrix6(int parent, const char* name, int dims, int* pdims, int*
     return dset;
 }
 
-int writeIntegerMatrix6(int parent, const char* name, int type, const char* prec, int dims, int* pdims, void* data, hid_t xfer_plist_id)
+int writeIntegerMatrix6(hid_t parent, const char* name, hid_t type, const char* prec, int dims, int* pdims, void* data, hid_t xfer_plist_id)
 {
     hsize_t* piDims = NULL;
     herr_t status = 0;
@@ -2463,8 +2465,10 @@ int writeIntegerMatrix6(int parent, const char* name, int type, const char* prec
     }
     else
     {
+
         //Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
         space = H5Screate_simple(dims, piDims, NULL);
+
         if (space < 0)
         {
             FREE(piDims);
@@ -2477,6 +2481,7 @@ int writeIntegerMatrix6(int parent, const char* name, int type, const char* prec
         dprop = H5Pcreate(H5P_DATASET_CREATE);
         H5Pset_obj_track_times(dprop, 0);
         dset = H5Dcreate(parent, name, type, space, compress, dprop, H5P_DEFAULT);
+
         if (dset < 0)
         {
             return -1;
@@ -2523,10 +2528,10 @@ int writeIntegerMatrix6(int parent, const char* name, int type, const char* prec
     return 0;
 }
 
-int openList6(int parent, const char *name, const char* type)
+hid_t openList6(hid_t parent, const char *name, const char* type)
 {
     //First create a group to store all referenced objects.
-    int group = H5Gcreate(parent, name, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
+    hid_t group = H5Gcreate(parent, name, H5P_DEFAULT, H5P_DEFAULT, H5P_DEFAULT);
     //Add attribute SCILAB_Class = string to dataset
     if (addAttribute(group, g_SCILAB_CLASS, type) < 0)
     {
@@ -2536,7 +2541,7 @@ int openList6(int parent, const char *name, const char* type)
     return group;
 }
 
-int closeList6(int lst)
+int closeList6(hid_t lst)
 {
     if (H5Gclose(lst) < 0)
     {
@@ -2546,7 +2551,7 @@ int closeList6(int lst)
     return 0;
 }
 
-int addItemStruct6(int dataset, hobj_ref_t * refs, int pos, const char *name)
+int addItemStruct6(hid_t dataset, hobj_ref_t * refs, int pos, const char *name)
 {
     herr_t status = H5Rcreate(&refs[pos], dataset, name, H5R_OBJECT, -1);
     if (status < 0)
@@ -2557,7 +2562,7 @@ int addItemStruct6(int dataset, hobj_ref_t * refs, int pos, const char *name)
     return status;
 }
 
-int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_ref_t * refs, hid_t xfer_plist_id)
+int writeStructField6(hid_t parent, const char* name, int dims, int* pdims, hobj_ref_t * refs, hid_t xfer_plist_id)
 {
     hid_t space = 0;
     hid_t dset = 0;
@@ -2618,7 +2623,7 @@ int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_r
     return dset;
 }
 
-int writeVoid6(int parent, const char* name, hid_t xfer_plist_id)
+int writeVoid6(hid_t parent, const char* name, hid_t xfer_plist_id)
 {
     hsize_t piDims[1] = {1};
     herr_t status = 0;
@@ -2680,7 +2685,7 @@ int writeVoid6(int parent, const char* name, hid_t xfer_plist_id)
     return 0;
 }
 
-int writeUndefined6(int parent, const char* name, hid_t xfer_plist_id)
+int writeUndefined6(hid_t parent, const char* name, hid_t xfer_plist_id)
 {
     hsize_t piDims[1] = {1};
     herr_t status = 0;
