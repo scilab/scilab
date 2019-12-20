@@ -954,17 +954,12 @@ function varargout = %_sodload(%__varnameList__)
 
     function macro = createMacro(macroStr, macroName)
         macroSt = macroStr(3);
-        if macroStr(2) == %t then
-            flag = "c";
-        else
-            flag = "n";
-        end
         header = strsubst(macroSt(1), "function ", "");
         body = macroSt(2:$-1);
         if body == [] then
             body = "";
         end
-        deff(header, body, flag);
+        deff(header, body);
         execstr("macro = " + macroName);
     endfunction
 
