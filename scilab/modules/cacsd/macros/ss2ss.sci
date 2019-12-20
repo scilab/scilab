@@ -62,7 +62,7 @@ function [Sl1,right,left]=ss2ss(Sl,T,F,G,flag)
             // 	[ C+D*F1	       , (D   , 0)]
             //
             // We have then the following property
-            // Sl1 equiv  left*sysdiag(sys,eye(p,p))*right
+            // Sl1 equiv  left*blockdiag(sys,eye(p,p))*right
             //
             //
             n=size(A,"r");p=size(C,"r");
@@ -86,7 +86,7 @@ function [Sl1,right,left]=ss2ss(Sl,T,F,G,flag)
             // 	[ C+D*F   	, (D   , 0)]
             // this is a generalization of the case 4
             // We have then the following property
-            // Sl1 equiv left*sysdiag(sys*right,eye(p,p)))
+            // Sl1 equiv left*blockdiag(sys*right,eye(p,p)))
             //
             p = size(C,"r");
             A1=A+B*F+G*C+G*D*F;

@@ -60,7 +60,7 @@ function demo_lqg()
     Plant=syslin('d',Plant);
     mode(-1)
   end
-  
+
   mode(1)
 
   //Nominal Plant
@@ -74,23 +74,23 @@ function demo_lqg()
   rep=x_matrix('u-weighting matrix',eye(nu,nu));
   if rep==[] then return,end
   Qu=evstr(rep);
-  bigQ=sysdiag(Qx,Qu);
+  bigQ=blockdiag(Qx,Qu);
   rep=x_matrix('x-noise covariance matrix',eye(nx,nx))
   if rep==[] then return,end
   Rx=evstr(rep);
   rep=x_matrix('y-noise covariance matrix',eye(ny,ny))
   if rep==[] then return,end
   Ry=evstr(rep);
-  bigR=sysdiag(Rx,Ry);
+  bigR=blockdiag(Rx,Ry);
   [Plqg,r]=lqg2stan(P22,bigQ,bigR);     //LQG pb as a standard problem
   Klqg=lqg(Plqg,r);                     //LQG compensator
-  
+
   disp(spec(h_cl(Plqg,r,Klqg)),'closed loop eigenvalues:');    //Check internal stability
   [Slqg,Rlqg,Tlqg]=sensi(P22,Klqg);  //Sensitivity functions
 
   disp(clean(ss2tf(Slqg)),'Sensitivity function');
   disp(clean(ss2tf(Tlqg)),'Complementary sensitivity function');
-  
+
   mode(-1);
 
   messagebox('Closed-loop response',"modal");

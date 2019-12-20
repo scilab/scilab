@@ -69,7 +69,7 @@
             Если <literal>vm</literal> является разрежённой матрицей, то    <literal>diag(vm,k)</literal> возвращает разряжённую матрицу.
         </para>
         <para>
-            Чтобы построить диагональную линейную систему, используйте    <literal>sysdiag</literal>.
+            Чтобы построить диагональную линейную систему, используйте    <literal>blockdiag</literal>.
         </para>
         <para>
             Заметьте, что <literal>eye(A).*A</literal> возвращает диагональную матрицу, построенную с диагональными элементами из <literal>A</literal>. Это правильно для любой матрицы (констант, полиномиальной, рациональной, линейной системы пространств-состояний, ...).
@@ -100,7 +100,7 @@ m=5;diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
                 <link linkend="eye">eye</link>
             </member>
             <member>
-                <link linkend="sysdiag">sysdiag</link>
+                <link linkend="blockdiag">blockdiag</link>
             </member>
             <member>
                 <link linkend="spec">spec</link>

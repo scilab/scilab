@@ -109,6 +109,9 @@ a=rand(5,5);[ab,x,bs]=bdiag(a);ab
             <member>
                 <link linkend="spec">spec</link>
             </member>
+            <member>
+                <link linkend="blockdiag">blockdiag</link>
+            </member>
         </simplelist>
     </refsection>
 </refentry>

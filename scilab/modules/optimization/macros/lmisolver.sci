@@ -257,13 +257,13 @@ function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
         %Z0 = %Z0 / (%Id'*%Z0(1:%ka));    // make Tr Z0 = 1
 
         if %f then //for checking semidef
-            Z=sysdiag(matrix(%Z0(1:16),4,-1),%Z0(17))
-            F0=full(sysdiag(matrix(%I0v,4,-1), %M-%Id'*%I0v));
+            Z=blockdiag(matrix(%Z0(1:16),4,-1),%Z0(17))
+            F0=full(blockdiag(matrix(%I0v,4,-1), %M-%Id'*%I0v));
             for i=1:10,
-                Fi=full(sysdiag(matrix(%I(:,i),4,-1),-%Id'*%I(:,i)));
+                Fi=full(blockdiag(matrix(%I(:,i),4,-1),-%Id'*%I(:,i)));
                 mprintf("i=%d %e\n",i,abs(trace(Fi*Z)-%c(i)));
             end
-            F11=sysdiag(matrix(%Id,4,-1),0);
+            F11=blockdiag(matrix(%Id,4,-1),0);
             mprintf("i=%d %e\n",11,abs(trace(F11*Z)-%c(11)))
 
         end

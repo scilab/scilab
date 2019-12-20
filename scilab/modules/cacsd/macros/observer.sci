@@ -41,7 +41,7 @@ function [Obs,U,m]=observer(Sys,flag,alfa)
     // [Obs,U,m]=observer(Sys);  Stable observer (default)
     // W=U';H=W(m+1:nx,:);[A,B,C,D]=abcd(Sys);  //H*U=[0,eye(no,no)];
     // Sys2=ss2tf(syslin('c',A,B,H))  //Transfer u-->z
-    // Idu=eye(nu,nu);ss2tf(Obs*sysdiag(Idu,Sys)*[Idu;Idu])
+    // Idu=eye(nu,nu);ss2tf(Obs*blockdiag(Idu,Sys)*[Idu;Idu])
     // Transfer u-->[u;u]-->w=[u;y=Sys*u]-->Obs*w  i.e. u-->output of Obs
     // this transfer must equal Sys2, the u-->z transfer  (H2=eye).
 

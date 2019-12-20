@@ -158,6 +158,7 @@ Obsolete functions or features
 * `champ1()` is obsolete. Please use `champ.colored` instead.
 * `setPreferencesValue` will be removed from Scilab 6.1.x. Please use `xmlSetValues` instead.
 * `%sn()` is obsolete. Please use `ellipj()` instead.
+* `sysdiag()` is obsolete. Please use `blockdiag()` instead.
 
 
 Removed Functions

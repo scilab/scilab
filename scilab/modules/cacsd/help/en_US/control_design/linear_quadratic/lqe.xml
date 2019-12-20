@@ -301,7 +301,7 @@ Q_ww=Pd.B*Q_e*Pd.B'; //input noise adds to regular input u
 Ko=lqe(Pd,Q_ww,R_vv); //observer gain
 
 //----syntax [K,X]=lqe(P21)---
-bigR =sysdiag(Q_ww, R_vv);
+bigR =blockdiag(Q_ww, R_vv);
 [W,Wt]=fullrf(bigR);
 Bw=W(1:size(Pd.B,1),:);
 Dw=W(($+1-size(Pd.C,1)):$,:);
@@ -371,7 +371,7 @@ Q_ww=Pd.B*Q_e*Pd.B'; //input noise adds to regular input u
 Ko=lqe(Pd,Q_ww,R_vv); //observer gain
 
 //----syntax [K,X]=lqe(P21)---
-bigR =sysdiag(Q_ww, R_vv);
+bigR =blockdiag(Q_ww, R_vv);
 [W,Wt]=fullrf(bigR);
 Bw=W(1:size(Pd.B,1),:);
 Dw=W(($+1-size(Pd.C,1)):$,:);

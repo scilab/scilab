@@ -42,7 +42,7 @@ function [Xp,dima,dimb,dim]=spantwo(A,B)
         //   Which is better?
         B1B2=B1B2B3(1:dima,:);[W,dimb0]=rowcomp(B1B2);W=W(dima:-1:1,:);
         [n1,n2]=size(A);
-        Xp=sysdiag(W,eye(n1-dima,n1-dima))*Xp;
+        Xp=blockdiag(W,eye(n1-dima,n1-dima))*Xp;
         return;
     end
     Q=[eye(dima,dima),zeros(dima,dim-dima);

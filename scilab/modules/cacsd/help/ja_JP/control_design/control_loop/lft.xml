@@ -145,7 +145,7 @@ lft(W,[1,1],K); ss2tf(lft(tf2ss(W),[1,1],tf2ss(K)))
                 <link linkend="feedback">feedback</link>
             </member>
             <member>
-                <link linkend="sysdiag">sysdiag</link>
+                <link linkend="blockdiag">blockdiag</link>
             </member>
         </simplelist>
     </refsection>

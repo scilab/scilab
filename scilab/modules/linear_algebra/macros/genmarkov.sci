@@ -23,7 +23,7 @@ function M=genmarkov(rec,tr,flag)
     for k=rec
         m=rand(k,k,"u");
         m=m./(sum(m,"c")*ones(1,k));
-        M=sysdiag(M,m);
+        M=blockdiag(M,m);
     end
     if type(tr) ~= 15 then
         n=r+tr;
@@ -36,7 +36,7 @@ function M=genmarkov(rec,tr,flag)
         Q=[];
         for kk=1:l
             nt=tr(1+2*(kk-1));
-            Q=sysdiag(Q,rand(nt,nt));
+            Q=blockdiag(Q,rand(nt,nt));
         end
         Nt=size(Q,1);
         L=[];

@@ -373,7 +373,7 @@ options=[10,1.d-10,1.d-10,0,50];
 // Unpack CZ
 Z=unpack(CZ,blocksizes);
 w=vec2list(Z,[blocksizes;blocksizes]);
-Z=sysdiag(w(1),w(2))
+Z=blockdiag(w(1),w(2))
 
 c'*x+trace(F0*Z)
 // Check that the eigenvalues of the matrix are positive

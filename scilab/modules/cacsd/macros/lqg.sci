@@ -98,7 +98,7 @@ function K=lqg(P,varargin)
             if norm(Qi.'-Qi,1)>100*%eps*norm(Qi,1) then
                 error(msprintf(_("%s: Wrong value for input argument #%d: Must be symmetric.\n"),"lqg",4))
             end
-            Kc=lqi(P,sysdiag(Qxu(1:nx,1:nx),Qi),Qxu(nx+1:$,nx+1:$),...
+            Kc=lqi(P,blockdiag(Qxu(1:nx,1:nx),Qi),Qxu(nx+1:$,nx+1:$),...
             [Qxu(1:nx,nx+1:nx+nu);zeros(ny,nu)]);
             // Form the controller
             //O=observer(P,Kf)

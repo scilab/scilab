@@ -27,6 +27,8 @@ function r=sysdiag(varargin)
 
 
     //!
+    warnobsolete("blockdiag()","6.1.x")
+
     r=varargin(1);
     [m1,n1]=size(r);
     for k = 2:size(varargin)

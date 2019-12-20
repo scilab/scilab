@@ -115,7 +115,7 @@ P = [ 0 |  I]   -->'T'  (K*G*input sensitivity)
         </para>
         <para>
             重み関数は,
-            <literal> P = sysdiag(W1,W2,W3,eye(G))*P</literal>のように
+            <literal> P = blockdiag(W1,W2,W3,eye(G))*P</literal>のように
             <literal>P</literal>に適当な次元の対角システムを
             左から乗じることにより得られます.
         </para>

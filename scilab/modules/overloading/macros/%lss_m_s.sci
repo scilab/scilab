@@ -31,7 +31,7 @@ function s=%lss_m_s(s1,D2)
             return;
         end
         w=s1;
-        for k=2:mq, w=sysdiag(w,s1);end
+        for k=2:mq, w=blockdiag(w,s1);end
         s=w*M;s=Q*s;
         return;
     end

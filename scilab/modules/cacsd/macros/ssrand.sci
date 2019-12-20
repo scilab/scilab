@@ -161,7 +161,7 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
         sl=ss2ss(syslin("c",a,b,c),U);
     case "ncno"
         cno=flag(2);ncno=flag(3);co=flag(4);nco=flag(5);
-        a=sysdiag(rand(cno,cno),rand(ncno,ncno),rand(co,co),rand(nco,nco));
+        a=blockdiag(rand(cno,cno),rand(ncno,ncno),rand(co,co),rand(nco,nco));
         b=[rand(cno,nin);
         zeros(ncno,nin);
         rand(co,nin);
@@ -171,7 +171,7 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
         sl=ss2ss(syslin("c",a,b,c),U);
     case "st"
         [nc,ns,ns0]=flag(2:4);nsc=ns-nc;nsc0=ns0-ns;nxs=nstate-ns;
-        a=sysdiag(rand(nc,nc),imag_axis(ns-nc,ns0-ns,nstate-ns0)),
+        a=blockdiag(rand(nc,nc),imag_axis(ns-nc,ns0-ns,nstate-ns0)),
         b=[rand(nc,nin);zeros(nstate-nc,nin)];
         c=rand(nout,nstate);
         U=rand(nstate,nstate);
@@ -179,14 +179,14 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
     case "dt"
         [n1,n2,n3]=flag(2:4);
         w=imag_axis(n3-n2,n2-n1,n1,"uis");
-        a=sysdiag(w,rand(nstate-n3,nstate-n3));
+        a=blockdiag(w,rand(nstate-n3,nstate-n3));
         c=[zeros(nout,n3),rand(nout,nstate-n3)];b=rand(nstate,nin);
         U=rand(nstate,nstate);
         sl=ss2ss(syslin("c",a,b,c),U);
     case "on"
         [nr,ng,ng0,nv,rk]=flag(2:6);
         p1=1;p2=1;
-        a11=sysdiag(rand(nr,nr),imag_axis(ng-nr,ng0-ng,nv-ng0));
+        a11=blockdiag(rand(nr,nr),imag_axis(ng-nr,ng0-ng,nv-ng0));
         a12=rand(nv,nstate-nv);
         a21=rand(nstate-nv,nv);a22=rand(nstate-nv,nstate-nv);
         b11=zeros(nv,rk);b12=[rand(nr,nin-rk);zeros(nv-nr,nin-rk)];
@@ -224,7 +224,7 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
     case "ui"
         [nw,nwu,nwui,nwuis,rk]=flag(2:6)
         a11=rand(nw,nw);
-        a22=sysdiag(imag_axis(nwu-nw,nwui-nwu,nwuis-nwui,"uis"),...
+        a22=blockdiag(imag_axis(nwu-nw,nwui-nwu,nwuis-nwui,"uis"),...
         rand(nstate-nwuis,nstate-nwuis))
         a12=rand(nw,nstate-nw);
         b1=rand(nw,nin);
@@ -262,12 +262,12 @@ function w=imag_axis(ns,nn,nu,flag);
         w=[];k=int(nn/2);
         rand("normal");
         //rand('seed',0);
-        w=sysdiag(w,st_able(rand(ns,ns),margin));
+        w=blockdiag(w,st_able(rand(ns,ns),margin));
         x=rand(1,k);
         for u=x
-        w=sysdiag(w,[u,-2*u;u,-u]);end
-        if abs(2*k-nn)>1.d-5 then w=sysdiag(w,0);end
-        w=sysdiag(w,-st_able(rand(nu,nu),margin));
+        w=blockdiag(w,[u,-2*u;u,-u]);end
+        if abs(2*k-nn)>1.d-5 then w=blockdiag(w,0);end
+        w=blockdiag(w,-st_able(rand(nu,nu),margin));
         rand("uniform");
         //rand('seed',0);
         return
@@ -283,12 +283,12 @@ function w=imag_axis(ns,nn,nu,flag);
         w=[];k=int(nn/2);
         rand("normal");
         //rand('seed',0);
-        w=sysdiag(w,-st_able(rand(nu,nu),margin));
+        w=blockdiag(w,-st_able(rand(nu,nu),margin));
         x=rand(1,k);
         for u=x
-        w=sysdiag(w,[u,-2*u;u,-u]);end
-        if abs(2*k-nn)>1.d-5 then w=sysdiag(w,0);end
-        w=sysdiag(w,st_able(rand(ns,ns),margin));
+        w=blockdiag(w,[u,-2*u;u,-u]);end
+        if abs(2*k-nn)>1.d-5 then w=blockdiag(w,0);end
+        w=blockdiag(w,st_able(rand(ns,ns),margin));
         rand("uniform");
         //rand('seed',0);
     end

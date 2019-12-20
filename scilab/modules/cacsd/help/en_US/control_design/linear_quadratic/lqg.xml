@@ -229,11 +229,11 @@
       Q_e=1; //additive input noise variance
       R_vv=0.0001*eye(2,2); //measurement noise variance
       Q_ww=Pd.B*Q_e*Pd.B'; //input noise adds to regular input u
-      Qwv=sysdiag(Q_ww,R_vv);
+      Qwv=blockdiag(Q_ww,R_vv);
       //The compensator weights
       Q_xx=diag([0.1 0 5 0]); //Weights on states
       R_uu   = 0.3; //Weight on input
-      Qxu=sysdiag(Q_xx,R_uu);
+      Qxu=blockdiag(Q_xx,R_uu);
 
       //----syntax [K,X]=lqg(P,Qxu,Qwv)---
       J=lqg(Pd,Qxu,Qwv);
@@ -275,11 +275,11 @@
                 Q_e=1; //additive input noise variance
                 R_vv=0.0001*eye(2,2); //measurement noise variance
                 Q_ww=Pd.B*Q_e*Pd.B'; //input noise adds to regular input u
-                Qwv=sysdiag(Q_ww,R_vv);
+                Qwv=blockdiag(Q_ww,R_vv);
                 //The compensator weights
                 Q_xx=diag([0.1 0 5 0]); //Weights on states
                 R_uu   = 0.3; //Weight on input
-                Qxu=sysdiag(Q_xx,R_uu);
+                Qxu=blockdiag(Q_xx,R_uu);
 
                 //----syntax [K,X]=lqg(P,Qxu,Qwv)---
                 J=lqg(Pd,Qxu,Qwv);
@@ -325,11 +325,11 @@
       Q_e=1; //additive input noise variance
       R_vv=0.0001; //measurement noise variance
       Q_ww=Pd.B*Q_e*Pd.B'; //input noise adds to regular input u
-      Qwv=sysdiag(Q_ww,R_vv);
+      Qwv=blockdiag(Q_ww,R_vv);
       //The compensator weights
       Q_xx=diag([0.1 0 1 0]); //Weights on states
       R_uu   = 0.1; //Weight on input
-      Qxu=sysdiag(Q_xx,R_uu);
+      Qxu=blockdiag(Q_xx,R_uu);
 
       //Control of the second mass position (y2)
       Qi=50;
@@ -364,11 +364,11 @@
                 Q_e=1; //additive input noise variance
                 R_vv=0.0001; //measurement noise variance
                 Q_ww=Pd.B*Q_e*Pd.B'; //input noise adds to regular input u
-                Qwv=sysdiag(Q_ww,R_vv);
+                Qwv=blockdiag(Q_ww,R_vv);
                 //The compensator weights
                 Q_xx=diag([0.1 0 1 0]); //Weights on states
                 R_uu   = 0.1; //Weight on input
-                Qxu=sysdiag(Q_xx,R_uu);
+                Qxu=blockdiag(Q_xx,R_uu);
 
                 //Control of the second mass position (y2)
                 Qi=50;

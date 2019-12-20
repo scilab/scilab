@@ -112,6 +112,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"nanmax", L"max");
     map.emplace(L"numer", L".num");
     map.emplace(L"square", L"replot");
+    map.emplace(L"sysdiag", L"blockdiag");
     map.emplace(L"with_tk", L"with_module('tclsci')");
     map.emplace(L"xgetech", L"gca");
     map.emplace(L"xinfo", L"gcf().info_message");

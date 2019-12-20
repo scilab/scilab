@@ -149,7 +149,7 @@
     //LQI compensator
 
     wy=100;
-    Q= wy*sysdiag(G.C'*G.C,1);
+    Q= wy*blockdiag(G.C'*G.C,1);
     R=1/wy;
     Kc=lqi(G,Q,R);
     //full controller

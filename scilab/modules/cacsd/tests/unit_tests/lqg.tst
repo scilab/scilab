@@ -1,18 +1,20 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - INRIA - Serge Steer
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+//
 A=[0 1 0;0 0 1;1 0 0];
 B=[0.3 1;0 1;-0.3 0.9];
 C=[1.9 1.3 1];
 D=[0.53 -0.61];
 Q_ww=[4 2 0;2 1 0;0 0 1];
 R_vv=0.7;
-Q_wv=sysdiag(Q_ww,R_vv);
-Q_xu=sysdiag(0.1*eye(3,3),[1 0;0 2]);
+Q_wv=blockdiag(Q_ww,R_vv);
+Q_xu=blockdiag(0.1*eye(3,3),[1 0;0 2]);
 
 Qi=1;
 // continuous time----------------------------------------

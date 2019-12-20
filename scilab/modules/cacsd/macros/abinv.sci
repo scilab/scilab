@@ -185,7 +185,7 @@ function [X,dims,F,U,k,Z]=abinv(Sl,Alfa,Beta,flag)
     F1t=stabil(A11,B11,Alfa);
 
     F=[U*[F1t;F1bar],F2]*X';
-    X=X*sysdiag(eye(Ur),U2);
+    X=X*blockdiag(eye(Ur),U2);
     select flag
     case "ge"
         dims=[dimR,dimVg,dimV,dimV+nc2,dimV+ns2];

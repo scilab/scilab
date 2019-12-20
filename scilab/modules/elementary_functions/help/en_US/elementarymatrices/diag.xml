@@ -76,7 +76,7 @@
             If <literal>vm</literal> is a sparse matrix
             <literal>diag(vm,k)</literal> returns a sparse matrix.
         </para>
-        <para>To construct a diagonal linear system, use <literal>sysdiag</literal>.
+        <para>To construct a diagonal linear system, use <literal>blockdiag</literal>.
         </para>
         <para>
             Note that <literal>eye(A).*A</literal> returns a diagonal matrix
@@ -110,7 +110,7 @@ m=5;diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
                 <link linkend="eye">eye</link>
             </member>
             <member>
-                <link linkend="sysdiag">sysdiag</link>
+                <link linkend="blockdiag">blockdiag</link>
             </member>
             <member>
                 <link linkend="spec">spec</link>

@@ -113,7 +113,7 @@ P = [ 0 |  I]   -->'T'  (K*G*input sensitivity)
         <para>
             Note that weighting functions can be introduced by left-multiplying
             <literal>P</literal> by a diagonal system of appropriate dimension, e.g.,
-            <literal> P = sysdiag(W1,W2,W3,eye(G))*P</literal>.
+            <literal> P = blockdiag(W1,W2,W3,eye(G))*P</literal>.
         </para>
         <para>
             Sensitivity functions can be calculated by <literal>lft</literal>. One has:

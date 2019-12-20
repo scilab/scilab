@@ -1,10 +1,12 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2016 - INRIA - Serge Steer
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
+//
 A=[0 1 0;0 0 1;1 0 0];
 B=[0.3 1;0 1;-0.3 0.9];
 C=[1.9 1.3 1;0 1 1];
@@ -13,8 +15,8 @@ D=[0.53 -0.61;0 0];
 Q_xx=0.1*eye(3,3);
 R_uu=[1 0;0 2];
 Q_i=eye(2,2);
-Q_xu=sysdiag(0.1*eye(3,3),[1 0;0 2]);
-Q_zz=sysdiag(Q_xx,Q_i);
+Q_xu=blockdiag(0.1*eye(3,3),[1 0;0 2]);
+Q_zz=blockdiag(Q_xx,Q_i);
 
 // continuous time----------------------------------------
 P=syslin("c",A,B,C,D);

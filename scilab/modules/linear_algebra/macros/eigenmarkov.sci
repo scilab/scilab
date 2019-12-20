@@ -45,7 +45,7 @@ function [M,Q]=eigenmarkov(P)
         p=p+rec1(kk);
         Mres=Mn(classe,classe);
         w=kernel((Mres-eye())')';
-        M=sysdiag(M,w./sum(w));
+        M=blockdiag(M,w./sum(w));
     end
     M=[M,zeros(size(M,1),size(P,1)-size(M,2))];
     M=M(:,perminv);

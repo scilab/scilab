@@ -1,10 +1,12 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
+// <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 4731 -->
 //
@@ -16,7 +18,7 @@
 
 A=[0.5 0.3;0.3 0.9];B=[0.9; 0.3];
 Q=diag([2,5]);R=2;
-Big=sysdiag(Q,R);
+Big=blockdiag(Q,R);
 [w,wp]=fullrf(Big);C1=wp(:,1:2);D12=wp(:,3:$);
 P=syslin(1,A,B,C1,D12);
 [K,X]=lqr(P);

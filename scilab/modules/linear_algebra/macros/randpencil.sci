@@ -44,7 +44,7 @@ function F=randpencil(eps,infi,fin,eta)
 
     J=[];
     for kk=infi;
-        J=sysdiag(J,%jdrn(kk));
+        J=blockdiag(J,%jdrn(kk));
     end
     if J==[] then Infin=[],else Infin=%s*J-eye();end
 
@@ -55,7 +55,7 @@ function F=randpencil(eps,infi,fin,eta)
     if ~flageps then
         for k=seps;
             if k==0 then [p,q]=size(Eps); Eps=[Eps,zeros(p,1)];end
-            if k<>0 then Eps=sysdiag(Eps,%epsilon(k));end
+            if k<>0 then Eps=blockdiag(Eps,%epsilon(k));end
         end
     end
 
@@ -66,11 +66,11 @@ function F=randpencil(eps,infi,fin,eta)
     if ~flageta then
         for k=seta;
             if k==0 then [p,q]=size(Eta); Eta=[Eta;zeros(1,q)];end
-            if k<>0 then Eta=sysdiag(Eta,%eta(k));end
+            if k<>0 then Eta=blockdiag(Eta,%eta(k));end
         end
     end
 
-    F=sysdiag(Eps,Infin,Fin,Eta);
+    F=blockdiag(Eps,Infin,Fin,Eta);
 
     [p,q]=size(F);ncols=q;
 

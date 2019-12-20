@@ -130,7 +130,7 @@
                     以下の特徴を有します:
                 </para>
                 <programlisting role=""><![CDATA[
-Sl1 = left*sysdiag(sys,eye(p,p))*right
+Sl1 = left*blockdiag(sys,eye(p,p))*right
  ]]></programlisting>
             </listitem>
             <listitem>
@@ -144,7 +144,7 @@ Sl1 = left*sysdiag(sys,eye(p,p))*right
                     <literal>left</literal>は以下の特徴を有します:
                 </para>
                 <programlisting role=""><![CDATA[
- Sl1 = left*sysdiag(sys*right,eye(p,p)))
+ Sl1 = left*blockdiag(sys*right,eye(p,p)))
  ]]></programlisting>
             </listitem>
         </itemizedlist>
@@ -162,13 +162,13 @@ p=1,m=2,n=2; sys=ssrand(p,m,n);
 F1=rand(m,n);
 G=rand(n,p);
 [sys1,right,left]=ss2ss(sys,rand(n,n),F1,G,2);
-// Sl1 equiv left*sysdiag(sys*right,eye(p,p)))
-res=clean(ss2tf(sys1) - ss2tf(left*sysdiag(sys*right,eye(p,p))))
+// Sl1 equiv left*blockdiag(sys*right,eye(p,p)))
+res=clean(ss2tf(sys1) - ss2tf(left*blockdiag(sys*right,eye(p,p))))
 // output injection then feedback (m+p,n)
 F2=rand(p,n); F=[F1;F2];
 [sys2,right,left]=ss2ss(sys,rand(n,n),F,G,1);
-// Sl1 equiv left*sysdiag(sys,eye(p,p))*right
-res=clean(ss2tf(sys2)-ss2tf(left*sysdiag(sys,eye(p,p))*right))
+// Sl1 equiv left*blockdiag(sys,eye(p,p))*right
+res=clean(ss2tf(sys2)-ss2tf(left*blockdiag(sys,eye(p,p))*right))
 // when F2= 0; sys1 and sys2 are the same
 F2=0*rand(p,n);F=[F1;F2];
 [sys2,right,left]=ss2ss(sys,rand(n,n),F,G,1);

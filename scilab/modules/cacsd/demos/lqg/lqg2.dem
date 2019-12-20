@@ -19,7 +19,7 @@ function demo_lqg2()
   Klqg=lqg(Plqg,r);          //Controller
   spec(h_cl(Plqg,r,Klqg))    //Check internal stability
   [Slqg,Rlqg,Tlqg]=sensi(P22,Klqg);  //Sensitivity functions
-  frq=logspace(-3,3);     //10^-3  to 10^3 
+  frq=logspace(-3,3);     //10^-3  to 10^3
   y=svplot(Slqg);       //Computes singular values;
   clf();
   scf(100001);
@@ -27,7 +27,7 @@ function demo_lqg2()
   w1=1/(s+1);
   w2=100;
   [Ptmp,r]=augment(P22,'SR');         //"S/KS" problem
-  Pinf=sysdiag(w1,w2,1)*Ptmp;        //Weighting functions
+  Pinf=blockdiag(w1,w2,1)*Ptmp;        //Weighting functions
   [Kinf,ro]=h_inf(Pinf,r,0,0.1,50);
   [Sinf,Rinf,Tinf]=sensi(P22,Kinf);  //Sensitivity functions
   y=svplot(Sinf);       //Computes singular values;
@@ -37,8 +37,8 @@ function demo_lqg2()
 
   clf();t=0:0.01:30;u=sin(t);
   plot2d([t',t'],[u',(flts(u,dscr(Tlqg,0.1))')])
-  
+
 endfunction
-  
+
 demo_lqg2();
-clear demo_lqg2  
+clear demo_lqg2

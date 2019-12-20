@@ -48,6 +48,6 @@ function A = companion(p)
             B=diag(ones(1,n-2),-1);
             B(1,:) = -c(2:n)/c(1);
         end
-        A=sysdiag(A,B);
+        A=blockdiag(A,B);
     end
 endfunction

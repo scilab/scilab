@@ -80,7 +80,7 @@
             <literal>diag(vm,k)</literal> renvoie une matrice creuse.
         </para>
         <para>Pour construire un système linéaire diagonal, utilisez
-            <literal>sysdiag</literal>.
+            <literal>blockdiag</literal>.
         </para>
         <para>
             Notez que <literal>eye(A).*A</literal> renvoie une matrice diagonale
@@ -114,7 +114,7 @@ m=5;diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
                 <link linkend="eye">eye</link>
             </member>
             <member>
-                <link linkend="sysdiag">sysdiag</link>
+                <link linkend="blockdiag">blockdiag</link>
             </member>
             <member>
                 <link linkend="spec">spec</link>
