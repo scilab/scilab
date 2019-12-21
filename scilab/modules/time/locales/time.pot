@@ -232,7 +232,7 @@ msgstr ""
 
 #
 # File: modules/time/macros/calendar.sci, line: 55
-msgid "   M      Tu     W      Th     F     Sat     Sun"
+msgid "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
 msgstr ""
 
 #

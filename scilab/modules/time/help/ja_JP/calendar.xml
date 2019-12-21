@@ -24,10 +24,46 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
+            calendar display;
+            calendar(y, m, "display");
             c = calendar()
             c = calendar(y,m)
         </synopsis>
     </refsynopsisdiv>
+    <refsection>
+        <title>設定</title>
+        <variablelist>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>integer in [1800 3000]: The Gregorian year.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>integer in [1, 12]: The month.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>list, with
+                        <table>
+                            <tr><th>c(1):</th><td>single string: The calendar title</td></tr>
+                            <tr><th>c(2):</th><td>single string: Days names</td></tr>
+                            <tr><th>c(3):</th><td>6x7 matrix of days indices in the month
+                                                    (0 for days out of the month)</td>
+                            </tr>
+                        </table>
+                    </para>
+                    <para>
+                        The title and days names are translated according to the current language.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
     <refsection>
         <title>説明</title>
         <para>c = calendar() は現在の月に関するカレンダーを含むリストを返します.
@@ -36,51 +72,75 @@
         <para>c = calendar(y,m), ただし, y および m は整数で, 指定した年の
             指定した月のカレンダーを返します.
         </para>
+        <para>
+            <emphasis role="bold">calendar display</emphasis>; displays in the console the
+            calendar of the current month.
+        </para>
+        <para>
+            <emphasis role="bold">calendar(y,m,"display")</emphasis>; displays in the console the
+            calendar of the month <varname>m</varname> for the year <varname>y</varname>.
+        </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-calendar()
+calendar
  ]]></programlisting>
       <screen><![CDATA[
 --> calendar
  ans  =
        ans(1)
- 3月 2019
+ 12月 2019
 
        ans(2)
-    月      火      水      木      金      土      日
+ 月   火   水    木   金    土   日
 
        ans(3)
-   0.    0.    0.    0.    1.    2.    3.
-   4.    5.    6.    7.    8.    9.    10.
-   11.   12.   13.   14.   15.   16.   17.
-   18.   19.   20.   21.   22.   23.   24.
-   25.   26.   27.   28.   29.   30.   31.
-   0.    0.    0.    0.    0.    0.    0.
+   0.    0.    0.    0.    0.    0.    1. 
+   2.    3.    4.    5.    6.    7.    8. 
+   9.    10.   11.   12.   13.   14.   15.
+   16.   17.   18.   19.   20.   21.   22.
+   23.   24.   25.   26.   27.   28.   29.
+   30.   31.   0.    0.    0.    0.    0. 
 ]]></screen>
         <para/>
         <programlisting role="example"><![CDATA[
-c = calendar(1973, 8);
-mprintf("\n %s\n%s\n",c(1),c(2));mprintf(strcat(emptystr(1,7)+"  %2d    ")+"\n",c(3));
+calendar display;
  ]]></programlisting>
       <screen><![CDATA[
---> c = calendar(1973, 8);
---> mprintf("\n %s\n%s\n",c(1),c(2));mprintf(strcat(emptystr(1,7)+"  %2d    ")+"\n",c(3));
-
- 8月 1973
-   月      火      水      木      金      土      日
-   0       0       1       2       3       4       5
-   6       7       8       9      10      11      12
-  13      14      15      16      17      18      19
-  20      21      22      23      24      25      26
-  27      28      29      30      31       0       0
-   0       0       0       0       0       0       0
+--> calendar display
+ 
+             12月 2019
+ 月   火   水    木   金    土   日
+                                1
+  2    3    4    5    6    7    8
+  9   10   11   12   13   14   15
+ 16   17   18   19   20   21   22
+ 23   24   25   26   27   28   29
+ 30   31                         
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
+calendar(1973, 8, "display");
+ ]]></programlisting>
+      <screen><![CDATA[
+--> calendar(1973, 8, "display");
+ 
+             8月 1973
+ 月   火   水    木   金    土   日
+            1    2    3    4    5
+  6    7    8    9   10   11   12
+ 13   14   15   16   17   18   19
+ 20   21   22   23   24   25   26
+ 27   28   29   30   31          
 ]]></screen>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="weekday">weekday</link>
+            </member>
             <member>
                 <link linkend="datevec">datevec</link>
             </member>
@@ -88,5 +148,16 @@ mprintf("\n %s\n%s\n",c(1),c(2));mprintf(strcat(emptystr(1,7)+"  %2d    ")+"\n",
                 <link linkend="datenum">datenum</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revdescription>
+                    "display" option added.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

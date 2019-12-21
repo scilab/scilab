@@ -24,17 +24,64 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>
+            calendar display;
+            calendar(y, m, "display");
             c = calendar()
             c = calendar(y,m)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        Nombre entier dans l'intervalle [1800, 3000] : l'année choisie,
+                        dans le calendrier grégorien.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>Nombre entier dans [1,12] : le mois.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>liste, avec
+                        <table>
+                            <tr><th>c(1):</th><td>Intitulé du calendrier (texte unique)</td></tr>
+                            <tr><th>c(2):</th><td>Intitulés brefs des jours de la semaine (texte unique)</td></tr>
+                            <tr><th>c(3):</th><td>Matrice 6x7 des n° des jours dans le mois
+                                                 (0 pour les jours hors du mois)</td></tr>
+                        </table>
+                    </para>
+                    <para>
+                        Les intitulés sont traduits dans la langue de la session courante.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
         <title>Description</title>
-        <para>c = calendar() retourne une liste contenant le calendrier pour le mois en cours.
-           Les semaines commencent le lundi et se terminent le dimanche.
+        <para>
+            <emphasis role="bold">calendar display</emphasis>; affiche dans la console le
+            calendrier du mois en cours.
+            Les semaines commencent le lundi et se terminent le dimanche.
         </para>
-        <para>c = calendar(y, m), où y et m sont des entiers, retourne le calendrier pour le mois
-           <literal>m</literal> de l'année <literal>y</literal> spécifiés.
+        <para>
+            <emphasis role="bold">calendar(y,m,"display")</emphasis>; affiche dans la console
+            le calendrier du mois <varname>m</varname> pour l'année <varname>y</varname>.
+        </para>
+        <para>
+            c = calendar() fournit une liste contenant le calendrier pour le mois en cours.
+        </para>
+        <para>
+            c = calendar(y, m) fournit le calendrier pour le mois et l'année spécifiés.
         </para>
     </refsection>
     <refsection>
@@ -46,40 +93,57 @@ calendar
 --> calendar
  ans  =
        ans(1)
- Mars 2019
+ Déc. 2019
 
        ans(2)
-    L  Ma M  Je V Sam Dim
+ Lun  Mar  Mer  Jeu  Ven  Sam  Dim
 
        ans(3)
-   0.    0.    0.    0.    1.    2.    3.
-   4.    5.    6.    7.    8.    9.    10.
-   11.   12.   13.   14.   15.   16.   17.
-   18.   19.   20.   21.   22.   23.   24.
-   25.   26.   27.   28.   29.   30.   31.
-   0.    0.    0.    0.    0.    0.    0.
+   0.    0.    0.    0.    0.    0.    1.
+   2.    3.    4.    5.    6.    7.    8.
+   9.    10.   11.   12.   13.   14.   15.
+   16.   17.   18.   19.   20.   21.   22.
+   23.   24.   25.   26.   27.   28.   29.
+   30.   31.   0.    0.    0.    0.    0.
 ]]></screen>
         <para/>
         <programlisting role="example"><![CDATA[
-c = calendar(1973, 8);
-mprintf("\n %s\n%s\n",c(1),c(2));mprintf(strcat(emptystr(1,7)+" %2d")+"\n",c(3));
+calendar display;
  ]]></programlisting>
       <screen><![CDATA[
---> mprintf("\n %s\n%s\n",c(1),c(2));mprintf(strcat(emptystr(1,7)+" %2d")+"\n",c(3));
+--> calendar display;
 
- Août 1973
-  L  Ma M  Je V Sam Dim
-  0  0  1  2  3  4  5
-  6  7  8  9 10 11 12
- 13 14 15 16 17 18 19
- 20 21 22 23 24 25 26
- 27 28 29 30 31  0  0
-  0  0  0  0  0  0  0
+            Déc. 2019
+ Lun  Mar  Mer  Jeu  Ven  Sam  Dim
+                                1
+  2    3    4    5    6    7    8
+  9   10   11   12   13   14   15
+ 16   17   18   19   20   21   22
+ 23   24   25   26   27   28   29
+ 30   31                         
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
+calendar(1973, 8, "display");
+ ]]></programlisting>
+      <screen><![CDATA[
+--> calendar(1973, 8, "display");
+
+         Août 1973
+ Lun  Mar  Mer  Jeu  Ven  Sam  Dim
+            1    2    3    4    5
+  6    7    8    9   10   11   12
+ 13   14   15   16   17   18   19
+ 20   21   22   23   24   25   26
+ 27   28   29   30   31          
 ]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="weekday">weekday</link>
+            </member>
             <member>
                 <link linkend="datevec">datevec</link>
             </member>
@@ -87,5 +151,16 @@ mprintf("\n %s\n%s\n",c(1),c(2));mprintf(strcat(emptystr(1,7)+" %2d")+"\n",c(3))
                 <link linkend="datenum">datenum</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1</revnumber>
+                <revdescription>
+                    Option "display" ajoutée.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

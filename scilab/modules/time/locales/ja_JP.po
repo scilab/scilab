@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 15:40+0000\n"
+"PO-Revision-Date: 2020-01-10 15:40+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "Language: ja\n"
@@ -188,8 +188,8 @@ msgstr "12月"
 
 #
 # File: macros/calendar.sci, line: 52
-msgid "   M      Tu     W      Th     F     Sat     Sun"
-msgstr "   月     火     水      木    金     土       日"
+msgid  "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
+msgstr "月   火   水    木   金    土   日"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
