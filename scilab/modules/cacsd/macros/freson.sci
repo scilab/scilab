@@ -29,13 +29,13 @@ function fr = freson(h)
         msg = gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n")
         error(msprintf(msg, "freson", 1))
     end
-
+    h0 = h
+    dt = h.dt
     if typeof(h)=="state-space" then
         h=ss2tf(h)
     elseif typeof(h)=="zpk" then
         h=zpk2tf(h)
     end
-    dt = h.dt
     [n,d] = h(["num","den"]);
     if type(n)==1 then
         n=poly(n,varn(d),"c");
@@ -48,23 +48,35 @@ function fr = freson(h)
     //look for  omega such that derivative of magn. is zero
     if dt=="c" then
         //find frequencies which zeros the magnitude derivative
-        hh = h*horner(h,-%s)
+        hh = h*horner(h, -%s);
+        hh = clean(hh, 0, %eps);    // http://bugzilla.scilab.org/15368
         r = roots(derivat(hh).num)
-        // k=find(imag(r)>0&abs(real(r))<%eps*abs(r)); // http://bugzilla.scilab.org/15368
-        k = find(imag(r)>0 & abs(real(r))<1.e-14*abs(r));
+        k = find(imag(r)>0 & abs(real(r)) < %eps*abs(r));
         fr = imag(r(k))/(2*%pi)
     else
         if dt=="d" | dt==[] then dt = 1; end
         //find frequencies which zeros the magnitude derivative
-        hh = h*horner(h,1/%z)
-        r = roots(derivat(hh).num);
-        k = find(abs(abs(r)-1)<=sqrt(%eps)*abs(r));
-        r = imag(log(r(k)));
-        fr = r(r>0&r<0.999*%pi)/(2*%pi*dt)
+        hh = h*horner(h, 1/%z)
+        r = roots(derivat(hh).num)
+        k = find(abs(abs(r)-1) <= %eps^(1/size(r,1))*abs(r))
+        r = imag(log(r(k)))
+        fr = r(r>0 & r < 0.999*%pi) / (2*%pi*dt)
     end
     if fr==[] then return;end
 
     //find frequencies that correspond to a magnitude peak and sort them:
-    k = find(abs(repfreq(h,fr))-abs(repfreq(h,fr*0.999))>0)
+    k = find(abs(repfreq(h,fr)) - abs(repfreq(h,fr*0.999))>0)
     fr = gsort(fr(k),"g","d");
+
+    // Checking                 // http://bugzilla.scilab.org/15368
+    f = fr(:)'
+    f = [f*0.99 ; f ; f*1.01];
+    [f,repf] = repfreq(h0, f(:));
+    [?,mag] = phasemag(repf);
+    mag = matrix(mag, 3, -1);
+    i = find(mag(2,:)>mag(1,:) & mag(3,:)<mag(2,:))
+    if length(i) < length(fr) then
+        fr = fr(i)
+        warning(_("freson: Some maxima frequencies may be undetected."))
+    end
 endfunction
