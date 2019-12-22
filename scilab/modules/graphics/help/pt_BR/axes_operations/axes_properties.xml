@@ -353,6 +353,18 @@
                                     desenhados também. Se a propriedade for
                                     <literal>"on"</literal> , a caixa toda é desenhada.
                                 </para>
+                                <scilab:image><![CDATA[
+                                    box = ["on" "back_half" "hidden_axes" "off"];
+                                    for i = 1:4
+                                        subplot(1,4,i)
+                                        plot3d([0 1],[0 1],[0 1])
+                                        a = gca();
+                                        a.box = box(i);
+                                        a.rotation_angles = [235 326];
+                                        title(msprintf("%s", box(i)), "fontsize",3)
+                                    end
+                                    gcf().axes_size = [840 222];
+                                ]]></scilab:image>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -471,12 +483,74 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>rotation_angles:</term>
+                            <term>rotation_angles: </term>
                             <listitem>
                                 <para>
-                                    este campo é o vetor <literal>[alpha,theta]</literal>.
-                                    Estes dois valores fornecem as coordenadas esféricas de
-                                    obsevação (em graus).
+                                    Coordenadas esféricas <literal>[alpha, theta]</literal> =
+                                    <literal>[polAngle, azimuth]</literal> de obsevação (em graus):
+                                    <itemizedlist>
+                                        <listitem>
+                                            <emphasis role="bold">theta</emphasis>: azimuth angle
+                                            in the (x,y) plane. Particular angles, for (x,y) seen
+                                            from (O,z):
+                                            <table>
+                                                <tr><td>270 </td><td>: (O,x) to right</td></tr>
+                                                <tr><td>0 </td><td>: (O,x) to bottom</td></tr>
+                                                <tr><td>90 </td><td>: (O,x) to left</td></tr>
+                                                <tr><td>180 </td><td>: (O,x) to top</td></tr>
+                                            </table>
+                                            <scilab:image><![CDATA[
+                                            // gca().rotation_angles:
+                                            // Azimuth:
+                                            // --------
+                                            x = linspace(0,30,100);
+                                            y = exp(-x/7).*sin(x);
+                                            scf(1);
+                                            clf
+                                            i = 1;
+                                            for a = [270 315 0 90 180]
+                                                subplot(1,5,i)
+                                                plot(x, y, "b")
+                                                gca().rotation_angles(2) = a;
+                                                gca().margins = [0.17 0.17 0.25 0.15];
+                                                gca().box = "on";
+                                                gca().cube_scaling = "on";
+                                                title(msprintf("theta = %d\n\r", a), "fontsize",3, "color",color("magenta3"))
+                                                i = i + 1;
+                                            end
+                                            gcf().axes_size = [810 200];
+                                            ]]></scilab:image>
+                                        </listitem>
+                                        <listitem>
+                                            <emphasis role="bold">alpha</emphasis>: polar angle from
+                                            (Oz), in planes orthogonal to (x,y). Particular values:
+                                            <table>
+                                                <tr><td>0</td><td>= North pole (O,z)</td><td> view from above</td></tr>
+                                                <tr><td>90</td><td>= Equator (x,y)</td><td> view from side</td></tr>
+                                                <tr><td>180</td><td>= South pole (O,-z)</td><td> view from below</td></tr>
+                                            </table>
+                                            <scilab:image><![CDATA[
+                                            // gca().rotation_angles:
+                                            // polar angle
+                                            // -----------
+                                            scf(2);
+                                            clf
+                                            i = 1
+                                            for a = [0 30 60 90 120]
+                                                subplot(1,5,i)
+                                                plot3d()
+                                                gce().color_mode = -2;
+                                                gca().rotation_angles = [a 300];
+                                            //    gca().margins = [0.17 0.17 0.25 0.15];
+                                            //    gca().box = "on";
+                                                gca().cube_scaling = "on";
+                                                title(msprintf("alpha = %d\n", a), "fontsize",3, "color",color("magenta3"))
+                                                i = i + 1;
+                                            end
+                                            gcf().axes_size = [810 220];
+                                            ]]></scilab:image>
+                                        </listitem>
+                                    </itemizedlist>
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -489,6 +563,24 @@
                                     podem ser <literal>'n'</literal> para escala linear ou
                                     <literal>'l'</literal> para escala logarítmica.
                                 </para>
+                                <scilab:image><![CDATA[
+                                    x = linspace(0,10,100)(2:$);
+                                    m = ["nn" "ln" "nl" "ll"];
+                                    clf
+                                    for i = 1:4
+                                        subplot(1,4,i)
+                                        plot2d(m(i), x, x.^2)
+                                        xgrid(color("grey75"),1,7)
+                                        title(msprintf("""%s""",m(i)),"fontsize",3)
+                                        select i
+                                        case 1, gca().sub_ticks = [3 3];
+                                        case 2, gca().sub_ticks = [8 3];
+                                        case 3, gca().sub_ticks = [3 8];
+                                        case 4, gca().sub_ticks = [8 8];
+                                        end
+                                    end
+                                    gcf().axes_size = [800 220];
+                                ]]></scilab:image>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -567,8 +659,7 @@
                                 </para>
                                 <para>
                                     These numbers are relative to the
-                                    <literal>gca().parent.figure_size(3:4)</literal>
-                                    or to the <literal>gca().parent.position(3:4)</literal>
+                                    <literal>gca().parent.position(3:4)</literal> [width, height]
                                     dimensions of the figure or of the Uicontrol frame
                                     embedding the axes.
                                 </para>
