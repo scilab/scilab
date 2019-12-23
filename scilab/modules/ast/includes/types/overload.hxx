@@ -33,12 +33,12 @@ public:
     /**
      */
     static types::Function::ReturnValue generateNameAndCall(const std::wstring& _stFunctionName, types::typed_list &in, int _iRetCount,
-            types::typed_list &out, bool _isOperator = false);
+            types::typed_list &out, bool _isOperator = false, bool errorOnUndefined = true);
 
     /**
      */
     static types::Function::ReturnValue call(const std::wstring& _stFunctionName, types::typed_list &in, int _iRetCount,
-            types::typed_list &out, bool _isOperator = false);
+            types::typed_list &out, bool _isOperator = false, bool errorOnUndefined = true);
 
     static std::wstring getNameFromOper(const int);
 

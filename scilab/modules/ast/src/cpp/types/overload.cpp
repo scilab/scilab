@@ -53,7 +53,7 @@ std::wstring Overload::buildOverloadName(const std::wstring& _stFunctionName, ty
     return _stFunctionName;
 }
 
-types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, bool _isOperator)
+types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _stFunctionName, types::typed_list& in, int _iRetCount, types::typed_list& out, bool _isOperator, bool errorOnUndefined)
 {
     _iRetCount = std::max(1,_iRetCount);
     std::wstring stFunc = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator);
@@ -79,18 +79,24 @@ types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _
     }
 
     // get exeception with overloading error
-    return call(stFunc, in, _iRetCount, out, _isOperator);
+    return call(stFunc, in, _iRetCount, out, _isOperator, errorOnUndefined);
 }
 
-types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, bool _isOperator)
+types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFunctionName, types::typed_list& in, int _iRetCount, types::typed_list& out, bool _isOperator, bool errorOnUndefined)
 {
     _iRetCount = std::max(1,_iRetCount);
     types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(_stOverloadingFunctionName));
-    types::Callable *pCall = NULL;
+    types::Callable* pCall = NULL;
     try
     {
         if (pIT == NULL || pIT->isCallable() == false)
         {
+            if (!errorOnUndefined)
+            {
+                // don't report an error if requested
+                return types::Function::ReturnValue::OK_NoResult;
+            }
+
             char pstError1[512];
             char pstError2[512];
             char *pstFuncName = wide_string_to_UTF8(_stOverloadingFunctionName.c_str());

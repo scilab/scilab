@@ -39,7 +39,7 @@ MList::~MList()
 
     try
     {
-        Overload::generateNameAndCall(L"clear", in, 0, out);
+        Overload::generateNameAndCall(L"clear", in, 0, out, false, false);
     }
     catch (ast::InternalError& /*se*/)
     {
