@@ -7,4 +7,4 @@
 subdemolist = [_("Simulated Annealing"),                   "SAdemo.sce"; ..
 _("Simulated Annealing and Ising problem"), "SAIsing2ddemo.sce"];
 
-subdemolist(:,2) = SCI + "/modules/simulated_annealing/demos/" + subdemolist(:,2)
+subdemolist(:,2) = SCI + "/modules/optimization/demos/annealing/" + subdemolist(:,2)

@@ -65,7 +65,6 @@
 <module name="umfpack" activate="@UMFPACK_ENABLE@"/>
 <module name="module_skeleton" activate="no"/>
 <!-- comments -->
-<module name="simulated_annealing" activate="yes"/>
 <module name="parameters" activate="yes"/>
 <module name="atoms" activate="yes"/>
 <module name="matio" activate="@MATIO_ENABLE@"/>

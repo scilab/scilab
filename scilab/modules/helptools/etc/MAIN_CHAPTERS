@@ -14,7 +14,6 @@ statistics
 sparse
 umfpack
 optimization
-simulated_annealing
 xml
 hdf5
 fileio

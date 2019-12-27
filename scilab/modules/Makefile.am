@@ -78,7 +78,6 @@ development_tools \
 helptools \
 umfpack \
 demo_tools \
-simulated_annealing \
 parameters \
 matio \
 atoms \

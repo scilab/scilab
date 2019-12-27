@@ -259,7 +259,6 @@ Bug Fixes
 ---------
 
 ### Bugs fixed in 6.1.0:
-<<<<<<< HEAD
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
 * [#5824](https://bugzilla.scilab.org/5824): The `datafit` algorithm was not documented.
 * [#6070](https://bugzilla.scilab.org/6070): How to make multiscaled plots was not documented.
@@ -309,6 +308,7 @@ Bug Fixes
 * [#14610](https://bugzilla.scilab.org/14610): `x = ric_desc(H,E)` always yielded an error. [x1,x2,residual] = ric_desc(..) returned a wrong `residual` value.
 * [#14642](https://bugzilla.scilab.org/14642): No more "\r" carriage return with printf.
 * [#14655](https://bugzilla.scilab.org/14655): `bitset` worked only element-wise, without accepting mixed scalar and array inputs.
+* [#14734](https://bugzilla.scilab.org/14734): The `simulated_annealing` module was out of the `optimization` one.
 * [#14735](https://bugzilla.scilab.org/14735): The `genetic_algorithms` module was out of the `optimization` one.
 * [#14738](https://bugzilla.scilab.org14738): `hist3d` was not actually an histogram function. It is renamed `bar3d`.
 * [#14741](https://bugzilla.scilab.org/14741): The syntax `[m,e]=log2(x)` was not documented. As public function `frexp` was in duplicate with `[m,e]=log2(x)`.

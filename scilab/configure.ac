@@ -2095,7 +2095,6 @@ modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile
 modules/demo_tools/Makefile
-modules/simulated_annealing/Makefile
 modules/parameters/Makefile
 modules/matio/Makefile
 modules/atoms/Makefile

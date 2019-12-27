@@ -567,6 +567,12 @@ msgid "An error occurred while getting OptimizationFunctions object.\n"
 msgstr ""
 "Під час спроби отримання об’єкта OptimizationFunctions сталася помилка.\n"
 
+msgid "Please wait ..."
+msgstr "Зачекайте, будь ласка…"
+
+msgid "Simulated Annealing and Ising problem"
+msgstr "Імітована нормалізація і задача Ізінґа"
+
 msgid "Non linear data fitting"
 msgstr "Нелінійна апроксимація даних"
 
@@ -930,6 +936,25 @@ msgstr "ICSE"
 
 msgid "Simulated Annealing"
 msgstr "Імітована нормалізація"
+
+#, c-format
+msgid "%s: cit_f is mandatory"
+msgstr "%s: параметр cit_f є обов’язковим"
+
+#, c-format
+msgid "%s: error - wrong accept type"
+msgstr "%s: помилковий тип прийняття помилкового рішення"
+
+msgid "optim_sa: sa_f is mandatory"
+msgstr "optim_sa: параметр sa_f є обов’язковим"
+
+#, c-format
+msgid ""
+"%s: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = "
+"%f\n"
+msgstr ""
+"%s: крок за температурою %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f "
+"f_best = %f\n"
 
 #, c-format
 msgid "%s: More than 20 equations are not allowed"

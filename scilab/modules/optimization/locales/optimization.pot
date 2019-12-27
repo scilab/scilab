@@ -805,6 +805,22 @@ msgstr ""
 msgid "An error occurred while getting OptimizationFunctions object.\n"
 msgstr ""
 
+#
+# File: modules/optimization/demos/annealing/SAIsing2ddemo.sce, line: 10
+# File: modules/optimization/demos/annealing/SAdemo.sce, line: 10
+msgid "Please wait ..."
+msgstr ""
+
+#
+# File: modules/optimization/demos/annealing/simulated_annealing.dem.gateway.sce, line: 7
+msgid "Simulated Annealing"
+msgstr ""
+
+#
+# File: modules/optimization/demos/annealing/simulated_annealing.dem.gateway.sce, line: 8
+msgid "Simulated Annealing and Ising problem"
+msgstr ""
+
 # File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 8
 # File: modules/optimization/demos/optimization.dem.gateway.sce, line: 13
 msgid "Non linear data fitting"
@@ -1473,8 +1489,28 @@ msgid "ICSE"
 msgstr ""
 
 #
-# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 23
-msgid "Simulated Annealing"
+# File: modules/optimization/macros/annealing/compute_initial_temp.sci, line: 23
+#, c-format
+msgid "%s: cit_f is mandatory"
+msgstr ""
+
+#
+# File: modules/optimization/macros/annealing/compute_initial_temp.sci, line: 63
+#, c-format
+msgid "%s: error - wrong accept type"
+msgstr ""
+
+#
+# File: modules/optimization/macros/annealing/optim_sa.sci, line: 62
+msgid "optim_sa: sa_f is mandatory"
+msgstr ""
+
+#
+# File: modules/optimization/macros/annealing/optim_sa.sci, line: 131
+#, c-format
+msgid ""
+"%s: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = "
+"%f\n"
 msgstr ""
 
 #

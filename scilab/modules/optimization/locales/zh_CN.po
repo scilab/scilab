@@ -478,6 +478,12 @@ msgstr ""
 msgid "An error occurred while getting OptimizationFunctions object.\n"
 msgstr ""
 
+msgid "Please wait ..."
+msgstr "请等待……"
+
+msgid "Simulated Annealing and Ising problem"
+msgstr "模拟退火和伊辛问题"
+
 msgid "Non linear data fitting"
 msgstr ""
 
@@ -825,6 +831,24 @@ msgstr ""
 
 msgid "Simulated Annealing"
 msgstr ""
+
+#, c-format
+msgid "%s: cit_f is mandatory"
+msgstr "%s：cit_f是强制性的"
+
+#, c-format
+msgid "%s: error - wrong accept type"
+msgstr "%s：错误 - 接受类型错误"
+
+msgid "optim_sa: sa_f is mandatory"
+msgstr "optim_sa：sa_f是强制性的"
+
+#, c-format
+msgid ""
+"%s: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = "
+"%f\n"
+msgstr ""
+"%s：温度步长 %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = %f\n"
 
 #, c-format
 msgid "%s: More than 20 equations are not allowed"

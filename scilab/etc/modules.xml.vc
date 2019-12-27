@@ -63,7 +63,6 @@
     <module name="fftw" activate="yes"/>
     <module name="umfpack" activate="yes"/>
     <module name="module_skeleton" activate="no"/>
-    <module name="simulated_annealing" activate="yes"/>
     <module name="parameters" activate="yes"/>
     <module name="matio" activate="yes"/>
     <module name="atoms" activate="yes"/>

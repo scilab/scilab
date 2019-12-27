@@ -22,7 +22,7 @@ function subdemolist = demo_gateway()
 
     if with_module("simulated_annealing") then
         subdemolist = [subdemolist; ..
-        _("Simulated Annealing"), "../../simulated_annealing/demos/simulated_annealing.dem.gateway.sce"];
+        _("Simulated Annealing"), "annealing/simulated_annealing.dem.gateway.sce"];
     end
 
     subdemolist(:,2) = demopath + subdemolist(:,2);

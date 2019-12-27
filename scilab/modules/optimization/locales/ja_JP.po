@@ -581,6 +581,12 @@ msgstr ""
 msgid "An error occurred while getting OptimizationFunctions object.\n"
 msgstr "OptimizationFunctionsオブジェクトを取得中にエラーが発生しました.\n"
 
+msgid "Please wait ..."
+msgstr "お待ちください ..."
+
+msgid "Simulated Annealing and Ising problem"
+msgstr "焼きなまし法とlsing問題"
+
 msgid "Non linear data fitting"
 msgstr "非線形データ調整"
 
@@ -935,6 +941,29 @@ msgstr "ICSE"
 
 msgid "Simulated Annealing"
 msgstr "焼きなまし法"
+
+# File: macros/compute_initial_temp.sci, line: 20
+#, c-format
+msgid "%s: cit_f is mandatory"
+msgstr "%s: cit_f は必須です"
+
+#
+# File: macros/compute_initial_temp.sci, line: 60
+#, c-format
+msgid "%s: error - wrong accept type"
+msgstr "%s:エラー - 不正な型を受け付けました"
+
+#
+# File: macros/optim_sa.sci, line: 57
+msgid "optim_sa: sa_f is mandatory"
+msgstr "optim_sa: sa_f は必須です"
+
+#, c-format
+msgid ""
+"%s: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = "
+"%f\n"
+msgstr ""
+"%s: 温度の増分 %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = %f\n"
 
 #, c-format
 msgid "%s: More than 20 equations are not allowed"

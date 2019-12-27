@@ -155,7 +155,8 @@ libscioptimization_la_rootdir = $(mydatadir)
 libscioptimization_la_root_DATA =  license.txt
 
 #### optimization : Macros ####
-MACROSDIRSEXT =  macros/genetic \
+MACROSDIRSEXT =  macros/annealing \
+    macros/genetic \
     macros/neldermead \
     macros/optimbase \
     macros/optimsimplex
