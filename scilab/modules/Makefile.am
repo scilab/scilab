@@ -78,7 +78,6 @@ development_tools \
 helptools \
 umfpack \
 demo_tools \
-genetic_algorithms \
 simulated_annealing \
 parameters \
 matio \

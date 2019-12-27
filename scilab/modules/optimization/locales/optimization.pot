@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-01-14 14:21+0100\n"
+"Revision-Date: 2020-02-06 09:13+0100\n"
 
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 89
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 115
@@ -756,42 +756,42 @@ msgid "User function '%s' have not been set.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 437
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 446
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 497
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 506
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 587
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 676
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 776
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 873
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 444
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 453
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 504
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 513
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 597
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 689
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 796
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 900
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 463
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 472
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 470
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 479
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 480
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 487
 #, c-format
 msgid "%s: Wrong size for output argument #%d: %d element(s) expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 596
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 685
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 606
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 698
 #, c-format
 msgid ""
 "%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 785
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 882
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 805
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 909
 #, c-format
 msgid "%s: Wrong size for output argument #%d: A vector of %d expected.\n"
 msgstr ""
@@ -819,6 +819,43 @@ msgstr ""
 #
 # File: modules/optimization/demos/datafit/demo_datafit.sci, line: 49
 msgid "Fitting function"
+msgstr ""
+
+#
+# File: modules/optimization/demos/genetic/GAIsing2ddemo.sce, line: 63
+# File: modules/optimization/demos/genetic/GAdemo.sce, line: 86
+# File: modules/optimization/demos/genetic/GAdemo.sce, line: 132
+# File: modules/optimization/demos/genetic/MOGAdemo.sce, line: 83
+# File: modules/optimization/demos/genetic/NSGA2demo.sce, line: 83
+# File: modules/optimization/demos/genetic/NSGAdemo.sce, line: 85
+#, c-format
+msgid "%s: optimization starting, please wait ...\n"
+msgstr ""
+
+#
+# File: modules/optimization/demos/genetic/genetic_algorithms.dem.gateway.sce, line: 12
+# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 20
+msgid "Genetic algorithms"
+msgstr ""
+
+#
+# File: modules/optimization/demos/genetic/genetic_algorithms.dem.gateway.sce, line: 13
+msgid "Genetic algorithms and Ising problem"
+msgstr ""
+
+#
+# File: modules/optimization/demos/genetic/genetic_algorithms.dem.gateway.sce, line: 14
+msgid "MultiObjective Genetic Algorithm"
+msgstr ""
+
+#
+# File: modules/optimization/demos/genetic/genetic_algorithms.dem.gateway.sce, line: 15
+msgid "Niched Sharing Genetic Algorithm"
+msgstr ""
+
+#
+# File: modules/optimization/demos/genetic/genetic_algorithms.dem.gateway.sce, line: 16
+msgid "Niched Sharing Genetic Algorithm II"
 msgstr ""
 
 #
@@ -1436,11 +1473,6 @@ msgid "ICSE"
 msgstr ""
 
 #
-# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 20
-msgid "Genetic algorithms"
-msgstr ""
-
-#
 # File: modules/optimization/demos/optimization.dem.gateway.sce, line: 25
 msgid "Simulated Annealing"
 msgstr ""
@@ -1499,6 +1531,67 @@ msgstr ""
 # File: modules/optimization/macros/datafit.sci, line: 113
 #, c-format
 msgid "%s: With hard coded function, user must give output size of G."
+msgstr ""
+
+#
+# File: modules/optimization/macros/genetic/coding_ga_binary.sci, line: 49
+# File: modules/optimization/macros/genetic/coding_ga_identity.sci, line: 21
+#, c-format
+msgid "%s: wrong direction"
+msgstr ""
+
+#
+# File: modules/optimization/macros/genetic/optim_ga.sci, line: 32
+#, c-format
+msgid "%s: ga_f is mandatory"
+msgstr ""
+
+#
+# File: modules/optimization/macros/genetic/optim_moga.sci, line: 32
+# File: modules/optimization/macros/genetic/optim_nsga.sci, line: 31
+msgid "optim_moga: ga_f is mandatory"
+msgstr ""
+
+#
+# File: modules/optimization/macros/genetic/optim_moga.sci, line: 59
+# File: modules/optimization/macros/genetic/optim_nsga.sci, line: 64
+# File: modules/optimization/macros/genetic/optim_nsga2.sci, line: 56
+#, c-format
+msgid "%s: Initialization of the population\n"
+msgstr ""
+
+#
+# File: modules/optimization/macros/genetic/optim_nsga2.sci, line: 29
+msgid "optim_nsga2: ga_f is mandatory"
+msgstr ""
+
+#
+# File: modules/optimization/macros/genetic/output_ga_default.sci, line: 16
+# File: modules/optimization/macros/genetic/output_moga_default.sci, line: 16
+# File: modules/optimization/macros/genetic/output_nsga_default.sci, line: 16
+#, c-format
+msgid "%s: iteration %d / %d \n"
+msgstr ""
+
+#
+# File: modules/optimization/macros/genetic/output_ga_default.sci, line: 17
+# File: modules/optimization/macros/genetic/output_moga_default.sci, line: 17
+# File: modules/optimization/macros/genetic/output_nsga2_default.sci, line: 17
+# File: modules/optimization/macros/genetic/output_nsga_default.sci, line: 17
+#, c-format
+msgid "    min / max value found = %f / %f\n"
+msgstr ""
+
+#
+# File: modules/optimization/macros/genetic/output_nsga2_default.sci, line: 16
+#, c-format
+msgid "%s: iteration %d / %d\n"
+msgstr ""
+
+#
+# File: modules/optimization/macros/genetic/pareto_filter.sci, line: 17
+#, c-format
+msgid "%s: F_in is mandatory"
 msgstr ""
 
 #

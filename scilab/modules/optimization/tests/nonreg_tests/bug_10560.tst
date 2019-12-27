@@ -15,5 +15,5 @@
 // <-- Short Description -->
 // genetic algorithms demos failed
 
-ierr = exec("SCI/modules/genetic_algorithms/demos/GAdemo.sce", "errcatch", -1);
+ierr = exec("SCI/modules/optimization/demos/genetic/GAdemo.sce", "errcatch", -1);
 assert_checkequal(ierr, 0);

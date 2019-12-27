@@ -15,10 +15,8 @@ function subdemolist = demo_gateway()
     _("fminsearch"),              "neldermead/neldermead.dem.gateway.sce"; ..
     _("ICSE"),              "icse/icse.dem.gateway.sce"];
 
-    if with_module("genetic_algorithms") then
-        subdemolist = [subdemolist; ..
-        _("Genetic algorithms"), "../../genetic_algorithms/demos/genetic_algorithms.dem.gateway.sce"];
-    end
+    subdemolist = [subdemolist; ..
+    _("Genetic algorithms"), "genetic/genetic_algorithms.dem.gateway.sce"];
 
     if with_module("simulated_annealing") then
         subdemolist = [subdemolist; ..

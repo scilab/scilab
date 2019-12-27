@@ -544,6 +544,25 @@ msgstr "Экспериментальные данные"
 msgid "Fitting function"
 msgstr "Функция аппроксимации"
 
+#, c-format
+msgid "%s: optimization starting, please wait ...\n"
+msgstr "%s: началась оптимизация, пожалуйста, подождите...\n"
+
+msgid "Genetic algorithms"
+msgstr "Генетические алгоритмы"
+
+msgid "Genetic algorithms and Ising problem"
+msgstr "Генетические алгоритмы и проблема Изинга"
+
+msgid "MultiObjective Genetic Algorithm"
+msgstr "Многокритериальный генетический алгоритм"
+
+msgid "Niched Sharing Genetic Algorithm"
+msgstr ""
+
+msgid "Niched Sharing Genetic Algorithm II"
+msgstr ""
+
 msgid "LQV"
 msgstr ""
 
@@ -865,9 +884,6 @@ msgstr ""
 msgid "ICSE"
 msgstr ""
 
-msgid "Genetic algorithms"
-msgstr "Генетические алгоритмы"
-
 msgid "Simulated Annealing"
 msgstr "Алгоритм имитации отжига"
 
@@ -909,6 +925,40 @@ msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
 "%s: Для жёстко запрограммированной функции пользователь должен указывать "
 "выходной размер G."
+
+#, c-format
+msgid "%s: wrong direction"
+msgstr "%s: неверное направление"
+
+#, c-format
+msgid "%s: ga_f is mandatory"
+msgstr "%s: ga_f обязателен"
+
+msgid "optim_moga: ga_f is mandatory"
+msgstr "optim_moga: ga_f обязателен"
+
+#, c-format
+msgid "%s: Initialization of the population\n"
+msgstr "%s: Инициализация популяции\n"
+
+msgid "optim_nsga2: ga_f is mandatory"
+msgstr "optim_nsga2: ga_f обязателен"
+
+#, c-format
+msgid "%s: iteration %d / %d \n"
+msgstr "%s: итерация %d / %d \n"
+
+#, c-format
+msgid "    min / max value found = %f / %f\n"
+msgstr "    найденное мин. / макс. значение = %f / %f\n"
+
+#, c-format
+msgid "%s: iteration %d / %d\n"
+msgstr "%s: итерация %d / %d\n"
+
+#, c-format
+msgid "%s: F_in is mandatory"
+msgstr "%s: F_in обязателен"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"

@@ -231,6 +231,7 @@ Bug Fixes
 * [#14606](http://bugzilla.scilab.org/show_bug.cgi?id=14606): Memory used by variables returned by `[names,mem]=who()` was always zero.
 * [#14610](http://bugzilla.scilab.org/show_bug.cgi?id=14610): `x = ric_desc(H,E)` always yielded an error. [x1,x2,residual] = ric_desc(..) returned a wrong `residual` value.
 * [#14642](http://bugzilla.scilab.org/show_bug.cgi?id=14642): No more "\r" carriage return with printf.
+* [#14735](http://bugzilla.scilab.org/show_bug.cgi?id=14735): The `genetic_algorithms` module was out of the `optimization` one.
 * [#14741](http://bugzilla.scilab.org/show_bug.cgi?id=14741): The syntax `[m,e]=log2(x)` was not documented. As public function `frexp` was in duplicate with `[m,e]=log2(x)`.
 * [#14746](http://bugzilla.scilab.org/show_bug.cgi?id=14746): Tiny numbers were sometimes displayed as 0.
 * [#14791](http://bugzilla.scilab.org/show_bug.cgi?id=14791): `sleep 1` crashed Scilab.

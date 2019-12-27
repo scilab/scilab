@@ -590,6 +590,25 @@ msgstr "実験データ"
 msgid "Fitting function"
 msgstr "調整関数"
 
+#, c-format
+msgid "%s: optimization starting, please wait ...\n"
+msgstr "%s: 最適化が開始されました, お待ちください ...\n"
+
+msgid "Genetic algorithms"
+msgstr "遺伝的アルゴリズム"
+
+msgid "Genetic algorithms and Ising problem"
+msgstr "遺伝的アルゴリズムとlsing問題"
+
+msgid "MultiObjective Genetic Algorithm"
+msgstr "多目的遺伝的アルゴリズム"
+
+msgid "Niched Sharing Genetic Algorithm"
+msgstr "Niched Sharing 遺伝的アルゴリズム"
+
+msgid "Niched Sharing Genetic Algorithm II"
+msgstr "Niched Sharing 遺伝的アルゴリズム II"
+
 msgid "LQV"
 msgstr "LQV"
 
@@ -914,9 +933,6 @@ msgstr "fminsearch"
 msgid "ICSE"
 msgstr "ICSE"
 
-msgid "Genetic algorithms"
-msgstr "遺伝的アルゴリズム"
-
 msgid "Simulated Annealing"
 msgstr "焼きなまし法"
 
@@ -959,6 +975,40 @@ msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
 "%s: ハードコーディングされた関数の場合, ユーザはGの出力の大きさを指定する必要"
 "があります."
+
+#, c-format
+msgid "%s: wrong direction"
+msgstr "%s: 不正な方向"
+
+#, c-format
+msgid "%s: ga_f is mandatory"
+msgstr "%s: ga_f は必須です"
+
+msgid "optim_moga: ga_f is mandatory"
+msgstr "optim_moga: ga_f は必須です"
+
+#, c-format
+msgid "%s: Initialization of the population\n"
+msgstr "%s: 総数の初期化\n"
+
+msgid "optim_nsga2: ga_f is mandatory"
+msgstr "optim_nsga2: ga_f は必須です"
+
+#, c-format
+msgid "%s: iteration %d / %d \n"
+msgstr "%s: 繰り返し %d / %d \n"
+
+#, c-format
+msgid "    min / max value found = %f / %f\n"
+msgstr "    見つかった最小/最大値 = %f / %f\n"
+
+#, c-format
+msgid "%s: iteration %d / %d\n"
+msgstr "%s: 繰り返し %d / %d\n"
+
+#, c-format
+msgid "%s: F_in is mandatory"
+msgstr "%s: F_in は必須です"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"

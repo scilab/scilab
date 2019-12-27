@@ -171,7 +171,7 @@
             <listitem>
                 <para>This function implements the classical "Niched Sharing Genetic
                     Algorithm". For a demonstration, see
-                    SCI/modules/genetic_algorithms/examples/NSGA2demo.sce.
+                    SCI/modules/optimization/demos/genetic/NSGA2demo.sce.
                 </para>
             </listitem>
         </itemizedlist>

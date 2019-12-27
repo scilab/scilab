@@ -576,6 +576,25 @@ msgstr "Експериментальні дані"
 msgid "Fitting function"
 msgstr "Функція наближення"
 
+#, c-format
+msgid "%s: optimization starting, please wait ...\n"
+msgstr "%s: розпочинаємо оптимізацію, будь ласка, зачекайте…\n"
+
+msgid "Genetic algorithms"
+msgstr "Генетичні алгоритми"
+
+msgid "Genetic algorithms and Ising problem"
+msgstr "Генетичні алгоритми і задача Ізінґа"
+
+msgid "MultiObjective Genetic Algorithm"
+msgstr "Багатоцільовий генетичний алгоритм"
+
+msgid "Niched Sharing Genetic Algorithm"
+msgstr "Генетичний алгоритм зі спільними нішами"
+
+msgid "Niched Sharing Genetic Algorithm II"
+msgstr "Генетичний алгоритм зі спільними нішами II"
+
 msgid "LQV"
 msgstr "LQV"
 
@@ -909,9 +928,6 @@ msgstr "fminsearch"
 msgid "ICSE"
 msgstr "ICSE"
 
-msgid "Genetic algorithms"
-msgstr "Генетичні алгоритми"
-
 msgid "Simulated Annealing"
 msgstr "Імітована нормалізація"
 
@@ -952,6 +968,40 @@ msgstr "%s: вагова матриця має бути квадратною."
 msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
 "%s: якщо функцію задано явно, користувач має вказати вихідний розмір G."
+
+#, c-format
+msgid "%s: wrong direction"
+msgstr "%s: помилковий напрям"
+
+#, c-format
+msgid "%s: ga_f is mandatory"
+msgstr "%s: параметр ga_f є обов’язковим"
+
+msgid "optim_moga: ga_f is mandatory"
+msgstr "optim_moga: параметр ga_f є обов’язковим"
+
+#, c-format
+msgid "%s: Initialization of the population\n"
+msgstr "%s: ініціалізація популяції\n"
+
+msgid "optim_nsga2: ga_f is mandatory"
+msgstr "optim_nsga2: параметр ga_f є обов’язковим"
+
+#, c-format
+msgid "%s: iteration %d / %d \n"
+msgstr "%s: ітерація %d з %d \n"
+
+#, c-format
+msgid "    min / max value found = %f / %f\n"
+msgstr "    знайдено мінімальне / максимальне значення = %f / %f\n"
+
+#, c-format
+msgid "%s: iteration %d / %d\n"
+msgstr "%s: ітерація %d з %d\n"
+
+#, c-format
+msgid "%s: F_in is mandatory"
+msgstr "%s: параметр F_in є обов’язковим"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"

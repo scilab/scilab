@@ -17,5 +17,4 @@ load('SCI/modules/optimization/macros/lib');
 load('SCI/modules/optimization/macros/neldermead/lib');
 load('SCI/modules/optimization/macros/optimbase/lib');
 load('SCI/modules/optimization/macros/optimsimplex/lib');
-
-
+load('SCI/modules/optimization/macros/genetic/lib');

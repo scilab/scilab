@@ -508,6 +508,25 @@ msgstr ""
 msgid "Fitting function"
 msgstr ""
 
+#, c-format
+msgid "%s: optimization starting, please wait ...\n"
+msgstr "%s : Démarrage de l'optimisation, veuillez patienter...\n"
+
+msgid "Genetic algorithms"
+msgstr "Algorithmes génétiques"
+
+msgid "Genetic algorithms and Ising problem"
+msgstr "Algorithmes génétiques et problème d'Ising"
+
+msgid "MultiObjective Genetic Algorithm"
+msgstr "Algorithme génétique multiobjectif"
+
+msgid "Niched Sharing Genetic Algorithm"
+msgstr "Algorithme génétique de partage de niches"
+
+msgid "Niched Sharing Genetic Algorithm II"
+msgstr "Algorithme génétique de partage de niches II"
+
 msgid "LQV"
 msgstr ""
 
@@ -825,9 +844,6 @@ msgstr ""
 msgid "ICSE"
 msgstr ""
 
-msgid "Genetic algorithms"
-msgstr ""
-
 msgid "Simulated Annealing"
 msgstr ""
 
@@ -874,6 +890,40 @@ msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
 "%s : Avec une fonction codée en dur, l'utilisateur doit donner la taille de "
 "la sortie de G."
+
+#, c-format
+msgid "%s: wrong direction"
+msgstr "%s : Mauvaise direction"
+
+#, c-format
+msgid "%s: ga_f is mandatory"
+msgstr "%s : ga_f est obligatoire"
+
+msgid "optim_moga: ga_f is mandatory"
+msgstr "optim_moga : ga_f est obligatoire"
+
+#, c-format
+msgid "%s: Initialization of the population\n"
+msgstr "%s : Initialisation de la population\n"
+
+msgid "optim_nsga2: ga_f is mandatory"
+msgstr "optim_nsga2 : ga_f est obligatoire"
+
+#, c-format
+msgid "%s: iteration %d / %d \n"
+msgstr "%s : itération %d / %d \n"
+
+#, c-format
+msgid "    min / max value found = %f / %f\n"
+msgstr "    valeur min / max trouvée = %f / %f\n"
+
+#, c-format
+msgid "%s: iteration %d / %d\n"
+msgstr "%s : Itération %d / %d\n"
+
+#, c-format
+msgid "%s: F_in is mandatory"
+msgstr "%s : F_in est obligatoire"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"

@@ -14,7 +14,6 @@ statistics
 sparse
 umfpack
 optimization
-genetic_algorithms
 simulated_annealing
 xml
 hdf5

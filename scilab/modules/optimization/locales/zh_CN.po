@@ -487,6 +487,25 @@ msgstr ""
 msgid "Fitting function"
 msgstr ""
 
+#, c-format
+msgid "%s: optimization starting, please wait ...\n"
+msgstr "%s：正在启动优化过程，请等待......\n"
+
+msgid "Genetic algorithms"
+msgstr "遗传算法"
+
+msgid "Genetic algorithms and Ising problem"
+msgstr "遗传算法和伊辛问题"
+
+msgid "MultiObjective Genetic Algorithm"
+msgstr "多目标遗传算法"
+
+msgid "Niched Sharing Genetic Algorithm"
+msgstr ""
+
+msgid "Niched Sharing Genetic Algorithm II"
+msgstr ""
+
 msgid "LQV"
 msgstr ""
 
@@ -804,9 +823,6 @@ msgstr ""
 msgid "ICSE"
 msgstr ""
 
-msgid "Genetic algorithms"
-msgstr ""
-
 msgid "Simulated Annealing"
 msgstr ""
 
@@ -845,6 +861,40 @@ msgstr ""
 #, c-format
 msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
+
+#, c-format
+msgid "%s: wrong direction"
+msgstr "%s：错误的目录"
+
+#, c-format
+msgid "%s: ga_f is mandatory"
+msgstr "%s：ga_f是强制的"
+
+msgid "optim_moga: ga_f is mandatory"
+msgstr "optim_moga：ga_f是强制的"
+
+#, c-format
+msgid "%s: Initialization of the population\n"
+msgstr "%s：种群初始化\n"
+
+msgid "optim_nsga2: ga_f is mandatory"
+msgstr "optim_nsga2：ga_f是强制的"
+
+#, c-format
+msgid "%s: iteration %d / %d \n"
+msgstr "%s：迭代 %d / %d \n"
+
+#, c-format
+msgid "    min / max value found = %f / %f\n"
+msgstr "    发现最小/最大值 = %f / %f\n"
+
+#, c-format
+msgid "%s: iteration %d / %d\n"
+msgstr "%s：迭代 %d / %d\n"
+
+#, c-format
+msgid "%s: F_in is mandatory"
+msgstr "%s：F_in是强制的"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"

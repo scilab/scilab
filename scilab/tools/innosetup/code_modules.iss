@@ -87,7 +87,6 @@ begin
     ModulesXmlFileLines[i] := '<module name="spreadsheet" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="call_scilab" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="umfpack" activate="yes"/>'; i := i + 1;
-    ModulesXmlFileLines[i] := '<module name="genetic_algorithms" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="simulated_annealing" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="parameters" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="matio" activate="yes"/>'; i := i + 1;

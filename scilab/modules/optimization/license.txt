@@ -1,5 +1,6 @@
 Copyright:
 Copyright (c) 2008 - DIGITEO
+Copyright (c) 2008 - Yann Collette
 Copyright (c) 1989-2008 - INRIA
 Copyright (c) Bruno Pincon
 

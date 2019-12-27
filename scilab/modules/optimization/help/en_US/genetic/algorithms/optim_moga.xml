@@ -13,16 +13,14 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optim_nsga" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optim_moga" xml:lang="en">
     <refnamediv>
-        <refname>optim_nsga</refname>
-        <refpurpose>A multi-objective Niched Sharing Genetic
-            Algorithm
-        </refpurpose>
+        <refname>optim_moga</refname>
+        <refpurpose>multi-objective genetic algorithm</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[pop_opt,fobj_pop_opt,pop_init,fobj_pop_init] = optim_nsga(ga_f,pop_size,nb_generation,p_mut,p_cross,Log,param,sigma,pow)</synopsis>
+        <synopsis>[pop_opt,fobj_pop_opt,pop_init,fobj_pop_init] = optim_moga(ga_f,pop_size,nb_generation,p_mut,p_cross,Log,param)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -30,9 +28,16 @@
             <varlistentry>
                 <term>ga_f</term>
                 <listitem>
-                    <para>the function to be optimized. The prototype if y = f(x) or y =
-                        list(f,p1,p2,...).
+                    <para>the function to be optimized. The header of the function is
+                        the following :
                     </para>
+                    <programlisting role=""><![CDATA[
+y = f(x)
+ ]]></programlisting>
+                    <para>or</para>
+                    <programlisting role=""><![CDATA[
+y = list(f,p1,p2,...)
+ ]]></programlisting>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -77,10 +82,10 @@
             <varlistentry>
                 <term>param</term>
                 <listitem>
-                    <para>a list of parameters. </para>
+                    <para>a list of parameters.</para>
                     <itemizedlist>
                         <listitem>
-                            <para> 'codage_func': the function which will perform the coding
+                            <para>'codage_func': the function which will perform the coding
                                 and decoding of individuals (default function: <link linkend="coding_ga_identity">coding_ga_identity</link>).
                             </para>
                         </listitem>
@@ -115,9 +120,9 @@
                             </para>
                         </listitem>
                         <listitem>
-                            <para> 'nb_couples': the number of couples which will be
-                                selected so as to perform the crossover and mutation (default
-                                value: 100).
+                            <para>'nb_couples': the number of couples which will be selected
+                                so as to perform the crossover and mutation (default value:
+                                100).
                             </para>
                         </listitem>
                         <listitem>
@@ -129,22 +134,10 @@
                             <para>
                                 "output_func": a callback function called after each
                                 generation if <varname>Log</varname> is %T (default
-                                function <literal>output_nsga_default</literal>).
+                                function <literal>output_moga_default</literal>).
                             </para>
                         </listitem>
                     </itemizedlist>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>sigma</term>
-                <listitem>
-                    <para>the radius of the sharing area.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>pow</term>
-                <listitem>
-                    <para>the power coefficient of the penalty formula.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -156,8 +149,8 @@
             <varlistentry>
                 <term>fobj_pop_opt</term>
                 <listitem>
-                    <para>the set of objective function values associated to pop_opt
-                        (optional).
+                    <para>the set of multi-objective function values associated to
+                        pop_opt (optional).
                     </para>
                 </listitem>
             </varlistentry>
@@ -170,8 +163,8 @@
             <varlistentry>
                 <term>fobj_pop_init</term>
                 <listitem>
-                    <para>the set of objective function values associated to pop_init
-                        (optional).
+                    <para>the set of multi-objective function values associated to
+                        pop_init (optional).
                     </para>
                 </listitem>
             </varlistentry>
@@ -181,13 +174,14 @@
         <title>Description</title>
         <itemizedlist>
             <listitem>
-                <para>This function implements the classical "Niched Sharing Genetic
-                    Algorithm". For a demonstration, see
-                    SCI/modules/genetic_algorithms/demos/NSGAdemo.sce
+                <para>This function implements the classical "Multi-Objective Genetic
+                    Algorithm". For a demonstration: see
+                    SCI/modules/optimization/demos/genetic/MOGAdemo.sce.
                 </para>
             </listitem>
         </itemizedlist>
     </refsection>
+
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
@@ -214,7 +208,7 @@ ga_params = add_param(ga_params,'dimension',2);
 ga_params = add_param(ga_params,'minbound',zeros(2,1));
 ga_params = add_param(ga_params,'maxbound',ones(2,1));
 
-[pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga(deb_1, PopSize,NbGen, Proba_mut, Proba_cross, Log, ga_params)
+[pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_moga(deb_1, PopSize,NbGen, Proba_mut, Proba_cross, Log, ga_params)
 
  ]]></programlisting>
     </refsection>
@@ -223,13 +217,13 @@ ga_params = add_param(ga_params,'maxbound',ones(2,1));
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="optim_moga">optim_moga</link>
+                <link linkend="optim_ga"> optim_ga </link>
             </member>
             <member>
-                <link linkend="optim_ga">optim_ga</link>
+                <link linkend="optim_nsga"> optim_nsga </link>
             </member>
             <member>
-                <link linkend="optim_nsga2">optim_nsga2</link>
+                <link linkend="optim_nsga2"> optim_nsga2 </link>
             </member>
         </simplelist>
     </refsection>
