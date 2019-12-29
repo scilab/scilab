@@ -131,7 +131,7 @@ intg(0,1,f)    // OK puisque la solution est réelle !
                 <link linkend="ellipj">ellipj</link>
             </member>
             <member>
-                <link linkend="percentsn">%sn</link>
+                <link linkend="percentk">%k</link>
             </member>
         </simplelist>
     </refsection>

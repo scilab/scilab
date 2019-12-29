@@ -52,7 +52,7 @@
             <literal>k</literal> é o parâmetro e <literal>u</literal> é o argumento.
             Se <literal>u</literal> é um vetor <literal>sn</literal> é o vetor dos
             valores computados (elemento a elemento) . Usado na função
-            <literal>%sn</literal>.
+            <literal>ellipj()</literal>.
         </para>
     </refsection>
     <refsection role="see also">
@@ -65,7 +65,7 @@
                 <link linkend="ellipj">ellipj</link>
             </member>
             <member>
-                <link linkend="percentsn">%sn</link>
+                <link linkend="percentk">%k</link>
             </member>
         </simplelist>
     </refsection>

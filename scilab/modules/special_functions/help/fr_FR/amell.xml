@@ -40,7 +40,7 @@
             Calcule la fonction elliptique de Jacobi <literal>am(u,k)</literal>
             où <literal>k</literal> est le paramètre et <literal>u</literal> l'argument. Si <literal>u</literal>
             est un vecteur <literal>sn</literal> est le vecteur des valeurs calculées (élément par élément).
-            Utilisé dans la fonction <literal>%sn</literal>.
+            Utilisé dans la fonction <literal>ellipj()</literal>.
         </para>
     </refsection>
     <refsection role="see also">
@@ -53,7 +53,7 @@
                 <link linkend="ellipj">ellipj</link>
             </member>
             <member>
-                <link linkend="percentsn">%sn</link>
+                <link linkend="percentk">%k</link>
             </member>
         </simplelist>
     </refsection>

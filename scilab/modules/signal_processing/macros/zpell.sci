@@ -44,12 +44,12 @@ function [ze,po,gain]=zpell(epsilon,A,omegac,omegar)
     un=ones(1:max(size(v)));
     zlambda=-un*Kt+%i*v;
     plambda= u0*un+%i*v;
-    ze=%i*imag(%i*omegac*%sn(-%i*zlambda,m));
+    ze=%i*imag(%i*omegac*ellipj(-%i*zlambda,m));
     ze=[ze,conj(ze)];
-    po=%i*omegac*%sn(-%i*plambda,m);
+    po=%i*omegac*ellipj(-%i*plambda,m);
     po=[po,conj(po)];
     if order<>even then,
-        po=[po,%i*omegac*%sn(-%i*u0,m)];
+        po=[po,%i*omegac*ellipj(-%i*u0,m)];
     end,
     gain=abs(real(prod(po))/real(prod(ze)));
     if order==even then,

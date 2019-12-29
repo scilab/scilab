@@ -2,11 +2,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="percentsn">
     <refnamediv>
         <refname>%sn</refname>
-        <refpurpose>ヤコビ楕円関数</refpurpose>
+        <refpurpose>ヤコビ楕円関数 <emphasis role="bold">(obsolete)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[y]=%sn(x,m)</synopsis>
+        <synopsis>y = %sn(x, m)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -38,6 +38,11 @@
     </refsection>
     <refsection>
         <title>説明</title>
+        <warning>
+            <para>
+                %sn() is obsolete and will be removed from Scilab 6.1.x. Please use ellipj() instead.
+            </para>
+        </warning>
         <para>
             パラメータ<literal>m</literal>を指定した
             ヤコビの楕円関数:
@@ -70,11 +75,25 @@ xgrid(3)
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="ellipj">ellipj</link>
+            </member>
+            <member>
                 <link linkend="delip">delip</link>
             </member>
             <member>
                 <link linkend="percentk">%k</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    %sn() is declared obsolete. ellipj() must be used instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [y]=%sn(x,m)
+function y = %sn(x, m)
     //Jacobi 's elliptic function with parameter m
     //which computes the inverse of the elliptic
     //integral for the parameter m.
@@ -24,6 +24,8 @@ function [y]=%sn(x,m)
     //
     //!
 
+    warnobsolete("ellipj()", "6.1.x")
+
     [n1,n2]=size(x);
     n=n1*n2;
     a=amell(real(x),sqrt(m));
@@ -36,4 +38,5 @@ function [y]=%sn(x,m)
     c1=cos(a1);
     d1=sqrt(ones(n1,n2)-m1*s1.*s1);
     y=(s.*d1+%i*c.*d.*s1.*c1)./(c1.*c1+m*s.*s.*s1.*s1);
+
 endfunction

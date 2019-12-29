@@ -52,7 +52,7 @@
             ただし,
             <literal>k</literal> はパラメータ, <literal>u</literal> は引数です. <literal>u</literal>
             はベクトル, <literal>sn</literal> は(要素毎の)計算値のベクトルです.
-            関数<literal>%sn</literal>で使用されます.
+            関数<literal>ellipj()</literal>で使用されます.
         </para>
     </refsection>
     <refsection role="see also">
@@ -65,7 +65,7 @@
                 <link linkend="ellipj">ellipj</link>
             </member>
             <member>
-                <link linkend="percentsn">%sn</link>
+                <link linkend="percentk">%k</link>
             </member>
         </simplelist>
     </refsection>

@@ -46,7 +46,7 @@
         <para>
             楕円フィルタの二乗振幅を得る際に使用される関数.
             通常は,<literal>m1=eps*eps/(a*a-1)</literal>です.
-            <literal>s=%sn(z,m1)</literal>として,
+            <literal>s=ellipj(z,m1)</literal>として,
             <literal>v=real(ones(z)./(ones(z)+eps*eps*s.*s))</literal>を返します.
         </para>
     </refsection>

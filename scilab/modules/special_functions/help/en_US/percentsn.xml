@@ -2,11 +2,11 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="percentsn">
     <refnamediv>
         <refname>%sn</refname>
-        <refpurpose>Jacobi's elliptic function</refpurpose>
+        <refpurpose>Jacobi's elliptic function <emphasis role="bold">(obsolete)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[y]=%sn(x,m)</synopsis>
+        <synopsis>y = %sn(x, m)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -37,6 +37,11 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            <para>
+                %sn() is obsolete and will be removed from Scilab 6.1.x. Please use ellipj() instead.
+            </para>
+        </warning>
         <para>
             Jacobi 's sn elliptic function with parameter <literal>m</literal>: the inverse
             of the elliptic integral for the parameter <literal>m</literal>.
@@ -90,11 +95,25 @@ xgrid(3)
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="ellipj">ellipj</link>
+            </member>
+            <member>
                 <link linkend="delip">delip</link>
             </member>
             <member>
                 <link linkend="percentk">%k</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    %sn() is declared obsolete. ellipj() must be used instead.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

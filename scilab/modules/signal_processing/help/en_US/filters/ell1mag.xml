@@ -46,7 +46,7 @@
         <para>
             Function used for squared magnitude of an elliptic filter.
             Usually <literal>m1=eps*eps/(a*a-1)</literal>. Returns
-            <literal>v=real(ones(z)./(ones(z)+eps*eps*s.*s))</literal> for <literal>s=%sn(z,m1)</literal>.
+            <literal>v=real(ones(z)./(ones(z)+eps*eps*s.*s))</literal> for <literal>s=ellipj(z,m1)</literal>.
         </para>
     </refsection>
     <refsection>

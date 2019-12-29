@@ -51,7 +51,7 @@
             Computes Jacobi's elliptic function <literal>am(u,k)</literal>
             where <literal>k</literal> is the parameter and <literal>u</literal> is the argument. If <literal>u</literal>
             is a vector <literal>sn</literal> is the vector of the (element wise) computed values.
-            Used in function <literal>%sn</literal>.
+            Used in function <literal>ellipj()</literal>.
         </para>
     </refsection>
     <refsection role="see also">
@@ -64,7 +64,7 @@
                 <link linkend="ellipj">ellipj</link>
             </member>
             <member>
-                <link linkend="percentsn">%sn</link>
+                <link linkend="percentk">%k</link>
             </member>
         </simplelist>
     </refsection>
