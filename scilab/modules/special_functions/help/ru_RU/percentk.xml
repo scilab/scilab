@@ -73,6 +73,9 @@ m = 0.4;
             <member>
                 <link linkend="delip">delip</link>
             </member>
+            <member>
+                <link linkend="ellipj">ellipj</link>
+            </member>
         </simplelist>
     </refsection>
 </refentry>

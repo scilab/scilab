@@ -128,6 +128,9 @@ intg(0,1,f)    // OK puisque la solution est réelle !
                 <link linkend="amell">amell</link>
             </member>
             <member>
+                <link linkend="ellipj">ellipj</link>
+            </member>
+            <member>
                 <link linkend="percentsn">%sn</link>
             </member>
         </simplelist>

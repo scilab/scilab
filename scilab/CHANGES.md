@@ -124,6 +124,7 @@ Feature changes and additions
   - return the number of occurences of distinct entities found in the input array.
   - return distinct entities in their initial order (rather than sorted), with the `"keepOrder"` option.
   - consider all `Nan` values as the same one, with the `"uniqueNan"` option.
+* `ellipj()` function introduced, to compute the `sn`, `cn`, `dn`, `ns`, `nc` and `nd` Jacobi elliptic functions.
 
 
 Help pages:
@@ -215,12 +216,12 @@ Bug Fixes
 * [#15425](http://bugzilla.scilab.org/show_bug.cgi?id=15425): The Kronecker product `a.*.b` failed when `a` or `b` or both are hypermatrices, with one or both being polynomials or rationals.
 * [#15451](http://bugzilla.scilab.org/show_bug.cgi?id=15451): The code was not adapted to use `lucene 4.10` in Debian.
 * [#15514](http://bugzilla.scilab.org/show_bug.cgi?id=15514): The `set()` documentation page needed to be overhauled.
-* [#15522](http://bugzilla.scilab.org/show_bug.cgi?id=15522): `unique()` was not able to consider all Nan values as the same value. A `uniqueNan` option now allows it. 
+* [#15522](http://bugzilla.scilab.org/show_bug.cgi?id=15522): `unique()` was not able to consider all Nan values as the same value. A `uniqueNan` option now allows it.
 * [#15523](http://bugzilla.scilab.org/show_bug.cgi?id=15523): `%ODEOPTIONS(1)=2` didn't work with solvers 'rk' and 'rkf'
 * [#15248](http://bugzilla.scilab.org/show_bug.cgi?id=15248): `lsq()`was leaking memory.
 * [#15577](http://bugzilla.scilab.org/show_bug.cgi?id=15577): `edit` did not accept a line number as text, as with `edit linspace 21`.
 * [#15580](http://bugzilla.scilab.org/show_bug.cgi?id=15580): `det(sparse([],[]))` yielded an error.
-* [#15595](http://bugzilla.scilab.org/show_bug.cgi?id=15595): `unique()` was not able to return distinct values in their original order, without sorting them. A `keepOrder` option now allows it. 
+* [#15595](http://bugzilla.scilab.org/show_bug.cgi?id=15595): `unique()` was not able to return distinct values in their original order, without sorting them. A `keepOrder` option now allows it.
 * [#15668](http://bugzilla.scilab.org/show_bug.cgi?id=15668): `save(filename)` saved all predefined Scilab constants %e %pi etc.. (regression)
 * [#15715](http://bugzilla.scilab.org/show_bug.cgi?id=15715): `%nan` indices crashed Scilab.
 * [#15742](http://bugzilla.scilab.org/show_bug.cgi?id=15742): The `compatibility_functions` module should be merged in the `m2sci` one.
@@ -288,6 +289,8 @@ Bug Fixes
 * [#16272](http://bugzilla.scilab.org/show_bug.cgi?id=16272): `spzeros(0,n)` and `spzeros(n,0)` were different from `sparse(0,0)`.
 * [#16273](http://bugzilla.scilab.org/show_bug.cgi?id=16273): `calendar()` had no formated display mode.
 * [#16275](http://bugzilla.scilab.org/show_bug.cgi?id=16275): `fsolve(x0, fun, tol)` no longer took `tol` into account.
+* [#16290](http://bugzilla.scilab.org/show_bug.cgi?id=16290): The `cn`, `dn`, `ns`, `nc` and `nd` Jacobi elliptic functions were not available.
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot()`, `colorbar()` displayed an empty ungraduated color bar.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
+*

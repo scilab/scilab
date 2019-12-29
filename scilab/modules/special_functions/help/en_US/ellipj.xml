@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) 2019 - Samuel GOUGEON - Le Mans Université
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="ellipj">
+    <refnamediv>
+        <refname>ellipj</refname>
+        <refpurpose>Jacobi elliptic functions</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+        sn = ellipj(x, m)
+        [sn, cn] = ellipj(x, m)
+        [sn, cn, dn] = ellipj(x, m)
+        struc = ellipj(funames, x, m)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    Array of real or complex numbers inside the fundamental rectangle
+                    defined by the elliptic integral.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    Scalar decimal number in <literal>[0,1]</literal>: Parameter of the
+                    elliptic integral.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sn, cn, dn</term>
+                <listitem>
+                    Arrays of real or complex numbers, of the size of <varname>x</varname>:
+                    the x-element-wise values of the sn, cn and dn Jacobi elliptic functions.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>funames</term>
+                <listitem>
+                    vector of case-sensitive keywords among
+                    <literal>"cn", "dn", "sn", "nc", "nd", "ns"</literal>: Name(s) of Jacobi
+                    elliptic functions whose values must be computed and returned.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>struc</term>
+                <listitem>
+                    Structure with fields named with the elements of <varname>funames</varname>.
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If <varname>x</varname> is real, <literal>sn = ellipj(x, m)</literal>
+            computes <varname>sn</varname> such that
+            <latex style="inline" alt="x = integral_0^{sn} du/sqrt{(1-u^2)(1-m.u^2)}">
+                \int_0^{sn}\frac{du}{\sqrt{(1-u^2)(1-m\,u^2)}}=x
+            </latex>
+        </para>
+        <para>
+            Then, if <literal>0 ≤ x ≤ x<subscript>M</subscript></literal> where
+            <literal>x<subscript>M</subscript></literal> is the position of the first
+            <literal>sn</literal> maximum,
+            we have <literal>x==delip(sn, sqrt(m))</literal>;
+            if <literal>-x<subscript>M</subscript> ≤ x ≤ 0</literal>,
+            we get <literal>x==-delip(-sn, sqrt(m))</literal>.
+        </para>
+        <para>
+            <literal>[sn,cn] = ellipj(x,m)</literal> and <literal>[sn,cn,dn] = ellipj(x,m)</literal>
+            additionally compute <literal>cn = cos(am)</literal> and
+            <literal>dn=(1-m.sn<superscript>2</superscript>)<superscript>1/2</superscript></literal>,
+            where <literal>am</literal> is the Jacobi elliptic amplitude function as computed with
+            <literal>amell()</literal>.
+        </para>
+        <para>
+            <literal>st = ellipj("dn", x, m)</literal> computes values of the <literal>dn</literal>
+            Jacobi elliptic function for given <varname>x</varname> values, and returns them in the
+            <literal>st.dn</literal> field.
+        </para>
+        <para>
+            Three other <literal>nc, nd, ns</literal> Jacobi
+            elliptic functions can be computed and returned with this syntax, as
+            <literal>nc = 1/cn</literal>, <literal>nd = 1/dn</literal>, and <literal>ns = 1/sn</literal>.
+        </para>
+        <para>
+            To compute values of all available Jacobi elliptic functions, we may use
+            <literal>st = ellipj(["cn" "nc" "dn" "nd" "sn" "ns"], x, m)</literal>.
+        </para>
+        <para>
+          <emphasis>Remark : </emphasis> for complex input numbers <varname>x</varname>,
+          <literal>amell()</literal> is used to compute the elliptic amplitude separately of
+          the real and imaginary parts of <varname>x</varname>. Then, addition formulae are used
+          to compute the complex <literal>sn</literal>, <literal>cn</literal> etc
+          [<ulink url="https://researchspace.auckland.ac.nz/bitstream/handle/2292/5042/390.pdf">Tee, 1997</ulink>].
+        </para>
+        <warning>
+            <para>
+                The relative numerical accuracy on <emphasis>sn</emphasis> roughly goes as
+                <literal>x * [1 to 50] * %eps</literal>.
+                Therefore, numerical results for <literal>x > 10<superscript>14</superscript></literal>
+                are not relevant.
+            </para>
+            <para>
+                <literal>ellipj(%inf, m)</literal> is set to NaN.
+            </para>
+        </warning>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            With some real input numbers:
+        </para>
+        <programlisting role="example"><![CDATA[
+sn = ellipj(0:0.5:2, 0.4)
+delip(sn, sqrt(0.4))
+
+[sn, cn, dn] = ellipj(-1:0.5:1.5, 0.4)
+ ]]></programlisting>
+        <screen><![CDATA[
+--> sn = ellipj(0:0.5:2, 0.4)
+ sn  =
+   0.   0.4724822   0.8109471   0.9767495   0.9850902
+
+--> delip(sn, sqrt(0.4))
+ ans  =
+   0.   0.5   1.   1.5   1.5550387
+
+--> [sn, cn, dn] = ellipj(-1:0.5:1.5, 0.4)
+ sn  =
+  -0.8109471  -0.4724822   0.   0.4724822   0.8109471   0.9767495
+
+ cn  =
+   0.5851194   0.8813402   1.   0.8813402   0.5851194   0.2143837
+
+ dn  =
+   0.8584555   0.9543082   1.   0.9543082   0.8584555   0.786374
+]]></screen>
+        <para/>
+        <programlisting role="example"><![CDATA[
+// Input data
+x = linspace(-6,6,300)';
+m = [0.2 0.4 0.6 0.8 0.9];
+f = ["sn" "dn" "cn" "nd"];
+
+// Computation
+st = struct();
+for i = 1:length(m)
+    st(i) = ellipj(f,x,m(i));
+end
+
+// Plot
+clf
+for i = 1:size(f,"*")
+    subplot(2,2,i)
+    y = matrix(list2vec(st(f(i))), -1, length(m));
+    plot2d(x, y,[1 14 28 18 6])
+    title(f(i), "fontsize",4)
+    xgrid(color("grey75"),1,7)
+end
+
+legend(gca(), msprintf("m =%4.1f\n",m'),1, %f);
+lg = gce();
+lg.legend_location = "by_coordinates";
+lg.position = [-0.095 -0.08];
+ ]]></programlisting>
+        <scilab:image><![CDATA[
+            // Input data
+            x = linspace(-6,6,300)';
+            m = [0.2 0.4 0.6 0.8 0.9];
+            f = ["sn" "dn" "cn" "nd"];
+
+            // Computation
+            st = struct();
+            for i = 1:length(m)
+                st(i) = ellipj(f,x,m(i));
+            end
+
+            // Plot
+            clf
+            for i = 1:size(f,"*")
+                subplot(2,2,i)
+                y = matrix(list2vec(st(f(i))), -1, length(m));
+                plot2d(x, y,[1 14 28 18 6])
+                title(f(i), "fontsize",4)
+                xgrid(color("grey75"),1,7)
+            end
+
+            legend(gca(), msprintf("m =%4.1f\n",m'),1, %f);
+            lg = gce();
+            lg.legend_location = "by_coordinates";
+            lg.position = [-0.095 -0.08];
+
+            gcf().axes_size = [850 500];
+            ]]>
+        </scilab:image>
+        <para>
+            With some complex input numbers:
+        </para>
+        <programlisting role="example"><![CDATA[
+x = linspace(-6,6,300)';
+m = 0.1:0.1:0.9;
+sn = [];
+for i = 1:length(m)
+    sn(:,i) = ellipj(x+1.4*%i, m(i));
+end
+
+clf
+plot2d(imag(sn), real(sn))
+title("sn(-6:6 + 1.4i)", "fontsize",4)
+xlabel("imag(sn)", "fontsize",2);
+ylabel("real(sn)", "fontsize",2);
+colordef(gcf(),"none")
+gca().data_bounds(1:2) = [-5 5];
+gca().tight_limits(1) = "on";
+isoview
+legend(gca(), msprintf("m =%4.1f\n",m'),"out_upper_right");
+     ]]></programlisting>
+        <para/>
+        <scilab:image><![CDATA[
+            x = linspace(-6,6,300)';
+            m = 0.1:0.1:0.9;
+            sn = [];
+            for i = 1:length(m)
+                sn(:,i) = ellipj(x+1.4*%i, m(i));
+            end
+
+            clf
+            plot2d(imag(sn), real(sn))
+            title("sn(-6:6 + 1.4i)", "fontsize",4)
+            xlabel("imag(sn)", "fontsize",2);
+            ylabel("real(sn)", "fontsize",2);
+            colordef(gcf(),"none")
+            gca().data_bounds(1:2) = [-5 5];
+            gca().tight_limits(1) = "on";
+            isoview
+            legend(gca(), msprintf("m =%4.1f\n",m'),"out_upper_right");
+            gcf().axes_size = [600 350];
+    ]]> </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="amell">amell</link>
+            </member>
+            <member>
+                <link linkend="delip">delip</link>
+            </member>
+            <member>
+                <link linkend="percentk">%k</link>
+            </member>
+            <member>
+                <ulink url="https://researchspace.auckland.ac.nz/bitstream/handle/2292/5042/390.pdf">
+                Tee, Garry J.</ulink>: Continuous branches of inverses of the 12 Jacobi elliptic
+                functions for real argument”. 1997
+            </member>
+
+
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    ellipj() introduced.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

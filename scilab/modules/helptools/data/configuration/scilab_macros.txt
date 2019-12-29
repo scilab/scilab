@@ -455,6 +455,7 @@ strcmpi
 tokenpos
 tree2code
 calerf
+ellipj
 erfinv
 %bicg
 %bicgstab
