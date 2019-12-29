@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2018 - Samuel GOUGEON
+// Copyright (C) 2018 - 2019 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -144,7 +144,7 @@ colorbar(,,[64 128]);  // graduations on [0 , 0.3]
 
 // 3.3) umin & umax set according to partial colormap as fraction / whole u-range
 z = plotSphere();
-colorbar(,,[2.97 5]/6);   // ticks on [9, 0.2]
+colorbar(,,[2.97 5]/6);   // ticks on [0, 0.2]
                           // colors in [orange, yellow] must match figure #10 ones
 
 // 3.4) after graypolarplot()
@@ -191,3 +191,12 @@ colorbar(,,[100 200]);  // graduations from 0 to 1
 // 4.5) Same as above, with colors given as fractions inside the whole colormap
 plotSample();
 colorbar(,,[0.6 0.8]);  // values from 0.2 to 0.6
+
+// 4.6) Same as 4.4), with colors given with $
+plotSample();
+colorbar(,,[$/2 $]);  // values from 0 to 1
+
+
+// CHECKING gce()
+// ==============
+twinkle(gce())  // The colorbar of the last test must twinkle

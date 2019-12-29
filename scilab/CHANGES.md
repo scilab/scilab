@@ -209,6 +209,7 @@ Bug Fixes
 * [#9673](http://bugzilla.scilab.org/show_bug.cgi?id=9673): Priority of colon `:` operator was too low
 * [#10078](http://bugzilla.scilab.org/show_bug.cgi?id=10078): `isinf()` was not reliable for polynomials.
 * [#10353](http://bugzilla.scilab.org/show_bug.cgi?id=10353): Documentation: The referential for the uicontrol.position property was not provided. Moreover, gca().axes_bounds refered to fig.figure_size instead of fig.axes_size.
+* [#10553](http://bugzilla.scilab.org/show_bug.cgi?id=10553): After calling `colorbar()`, retrieving the handle of the new color bar was not trivial.
 * [#10723](http://bugzilla.scilab.org/show_bug.cgi?id=10723): `subplot`'s action was unclearly described in its help page. Page improved.
 * [#11852](http://bugzilla.scilab.org/show_bug.cgi?id=11852): File browser didn't update after file creation or remove.
 * [#11363](http://bugzilla.scilab.org/show_bug.cgi?id=11363): show_window() did not raise the current graphics window.
@@ -321,6 +322,7 @@ Bug Fixes
 * [#16215](http://bugzilla.scilab.org/show_bug.cgi?id=16215): `mfile2sci` badly converted the colon `:` into `mtlb(:)`
 * [#16227](http://bugzilla.scilab.org/show_bug.cgi?id=16227): `WSCI` was not defined as environment variable and could not be used as `%WSCI%` in commands sent with `host()` or `unix_*()`.
 * [#16230](http://bugzilla.scilab.org/show_bug.cgi?id=16230): `MSWin>scilab --help` missed displaying some options like `-args..`, `-noatomsautoload`, etc.
+* [#16232](http://bugzilla.scilab.org/show_bug.cgi?id=16232): `colorbar()` did not support `$` in `colminmax`, standing for the number of colors in the current color map.
 * [#16234](http://bugzilla.scilab.org/show_bug.cgi?id=16234): Airy functions were not available.
 * [#16242](http://bugzilla.scilab.org/show_bug.cgi?id=16242): `loadmatfile()` could not read Octave native text data files.
 * [#16245](http://bugzilla.scilab.org/show_bug.cgi?id=16245): `gsort` could not sort booleans.

@@ -84,26 +84,26 @@
                 <term>colminmax</term>
                 <listitem>
                     <para>
-                        <literal>colminmax</literal> aims to provide the range of colors
-                        that will be spanned on the colorbar, and that will correspond
-                        to the data bounds provided through <literal>umin</literal> and
-                        <literal>umax</literal>.
+                        implicit or explicit vector <literal>[colmin, colmax]</literal> specifying
+                        the range of colors that span on the colorbar, corresponding to the
+                        <literal>[umin, umax]</literal> chosen data bounds.
                     </para>
                     <para>
-                        It is an implicit or explicit vector
-                        <literal>[colmin, colmax]</literal>
-                        being indices of bounding colors. The color of index
-                        <literal>colmin</literal> in the current colormap will
-                        represent the <literal>umin</literal> data value. Similarly,
-                        the color of index <literal>colmax</literal> will represent
-                        <literal>umax</literal>, with
+                        <literal>colmin</literal> and <literal>colmax</literal> are indices
+                        of colors in the current colormap, with
                         <literal>1 ≤ colmin &lt; colmax ≤ Nc</literal>.
                     </para>
                     <para>Default setting: <literal>[1,Nc]</literal></para>
                     <para>
-                        Fractional bounds may also be specified, as well as using the special
-                        value <literal>colminmax=-1</literal>. Please see the description
-                        section for more details.
+                        The dollar $ symbol can be used, standing for Nc.
+                        For example, <literal>colminmax=[1 $/2]</literal> will use the first half
+                        of the colormap, and <literal>colminmax=[$/2+1, $]</literal> will use the
+                        second half.
+                    </para>
+                    <para>
+                        Fractional bounds <literal>[fmin, fmax]</literal> may also be specified,
+                        as well as using the special value <literal>colminmax=-1</literal>.
+                        Please see the description section for more details.
                     </para>
                 </listitem>
             </varlistentry>
@@ -143,9 +143,8 @@
             .image_type=="index" is specifically processed.
         </para>
         <note>
-            Just after calling <literal>colorbar(…)</literal>,
-            <literal>colbar = gcf().children(1)</literal> as well as
-            <literal>gce().parent</literal> return the graphical handle of the color bar.
+            Just after calling <literal>colorbar(…)</literal>, <literal>gce()</literal> returns
+            the graphical handle of the color bar.
         </note>
         <para>
             The possible syntaxes are the following:
@@ -174,34 +173,18 @@
         </para>
         <para><emphasis role="bold">colorbar(,, [colmin colmax])</emphasis></para>
         <para>
-            with integers such that <literal>1 ≤ colmin &lt; colmax ≤ Nc</literal>.
+            with integers such that <literal>1 ≤ colmin &lt; colmax ≤ Nc</literal> or using
+            <literal>$</literal> standing for <literal>Nc</literal>.
             Conversely to the previous one, this syntax sets
             <literal>umin</literal> and <literal>umax</literal>
-            such that "[umin,umax]/[minU,maxU]" maps "[colmin,colmax]/[1,Nc]"
-            ratio.
+            such that "[umin,umax]/[minU,maxU]" maps "[colmin,colmax]/[1,Nc]".
         </para>
         <para><emphasis role="bold">colorbar(,, [fmin fmax])</emphasis></para>
         <para>
-            The previous syntax <literal>colorbar(,,[colmin colmax])</literal> needs to know the
-            colormap range to specify <literal>colmin</literal>
-            and <literal>colmax</literal> conveniently. This is not very
-            handy when we just want to target a fractional part of the colormap
-            whatever is its actual length. <literal>fmin</literal> and
-            <literal>fmax</literal> with <literal>0 ≤ fmin &lt; fmax ≤ 1</literal>
-            allow such a more robust specification.
-        </para>
-        <para>
-            This syntax sets
-            <itemizedlist>
-                <listitem>
-                    <literal>umin</literal> and <literal>umax</literal> such that the relative
-                    range "[umin umax]/[min(U) max(U]" maps "[fmin, fmax]".
-                </listitem>
-                <listitem>
-                    <literal>[colmin colmax]</literal> such that the relative range
-                    "[colmin,colmax]/[1,Nc]" maps <literal>[fmin,fmax]</literal>.
-                </listitem>
-            </itemizedlist>
+            with <literal>0 ≤ fmin &lt; fmax ≤ 1</literal>, uses actual colors bounds
+            <literal>1+[fmin fmax]*(Nc-1)</literal>, and uses proportional
+            <literal>umin</literal> and <literal>umax</literal> accordingly,
+            such that the relative range "[umin umax]/[min(U) max(U]" maps "[fmin, fmax]".
         </para>
         <para><emphasis role="bold">colorbar(-%inf, %inf, ..)</emphasis></para>
         <para>
@@ -212,12 +195,16 @@
         <title>Examples</title>
         <refsect3>
             <title>Example #1</title>
-            without underlaying U data :
-            Direct umin and umax specifications. General colorbar() behavior.
+            <para>
+                Without underlaying U data :
+                Direct umin and umax specifications.
+            </para>
         <programlisting role="example"><![CDATA[
 clf reset                           // clears and resets the figure
 gcf().color_map = jetcolormap(100); // sets its color map
-subplot(1,2,2), plotframe([0 0 1 1])// fake axes on the right
+
+// Axes on the left
+// ----------------
 subplot(1,2,1)                      // Now the default current axes
 ax0 = gca();                        //  is on the half left
 ax0.axes_bounds(3)  //  Here is its initial width
@@ -233,15 +220,12 @@ gca() == ax0
 // colorbar on its right side.
 gca().axes_bounds
 
-// gce() returns the handle of the colored area, and
-// gce().parent is the handle to the axes defining the color bar
-colbar1 = gce().parent;
+// gce() returns the handle of the color bar, to postprocess and customize it.
+colbar1 = gce();
 colbar1.type
-colbar1 == gcf().children(1)  // Another way to retrieve the handle
-// This handle allows to postprocess and customize the colorbar.
 ylabel(colbar1, "Temperature [°C]") // Let's add a label
 title("°C")                         // or as title
-colbar1.title.font_size = 3;   // .. with a bigger font
+colbar1.title.font_size = 3;        // .. with a bigger font
 // Beware: xlabel(), ylabel() title() moves the focus to the bar.
 sca(ax0); // Reset the focus to ax0 before going on
 
@@ -250,28 +234,42 @@ plotframe([0 0 1 1])
 
 // Then add some other color bars, still for the current axes
 colorbar(-2, 5, [1 70])
-// Set the labelsin magenta
-gcf().children(1).font_color = color("red");
+// Set the labels in red
+gce().font_color = color("red");
 
 // The current axes is shrunk. The bar's width is decreased accordingly.
 
-// A last one: top half of the colormap, with another data scale:
-colorbar(0, 1.5, [0.5 1])  // colminmax = [fmin fmax]
-// Let decrease its font size:
-colbar3 = gcf().children(1);
+// axes on the right
+// -----------------
+subplot(1,2,2), plotframe([0 0 1 1])
+ax1 = gca();
+// top half of the colormap, with another data scale:
+colorbar(0, 1.5, [$/2+1 $])
+
+// Color bar post-processing
+colbar3 = gce();
+//      decrease its font size:
 set(colbar3, "fractional_font","on","font_size", 0.5);
-// And vertically extend the bar, to match ax0's height
-colbar3.axes_bounds([2 4]) = ax0.axes_bounds([2 4]);
-colbar3.margins([3 4]) = ax0.margins([3 4]);
+//      vertically extend the bar, to match the axes height:
+colbar3.axes_bounds([2 4]) = ax1.axes_bounds([2 4]);
+colbar3.margins([3 4]) = ax1.margins([3 4]);
+//      reverse its graduations top-down:
+colbar3.axes_reverse(2) = "on";
+//      put its graduations on the left side:
+colbar3.y_location = "left";
 
 // Color bars are automatically redrawn and regraduated
 // when resizing the figure. Try it!
      ]]></programlisting>
+        <para>
+            ➞ Customized color bar style:
+        </para>
         <scilab:image>
             clf reset                           // clears and resets the figure
             gcf().color_map = jetcolormap(100); // sets its color map
-            gcf().figure_size = [730 420];
-            subplot(1,2,2), plotframe([0 0 1 1])// fake axes on the right
+
+            // Axes on the left
+            // ----------------
             subplot(1,2,1)                      // Now the default current axes
             ax0 = gca();                        //  is on the half left
             ax0.axes_bounds(3)  //  Here is its initial width
@@ -287,15 +285,12 @@ colbar3.margins([3 4]) = ax0.margins([3 4]);
             // colorbar on its right side.
             gca().axes_bounds
 
-            // gce() returns the handle of the colored area, and
-            // gce().parent is the handle to the axes defining the color bar
-            colbar1 = gce().parent;
+            // gce() returns the handle of the color bar, to postprocess and customize it.
+            colbar1 = gce();
             colbar1.type
-            colbar1 == gcf().children(1)  // Another way to retrieve the handle
-            // This handle allows to postprocess and customize the colorbar.
             ylabel(colbar1, "Temperature [°C]") // Let's add a label
             title("°C")                         // or as title
-            colbar1.title.font_size = 3;   // .. with a bigger font
+            colbar1.title.font_size = 3;        // .. with a bigger font
             // Beware: xlabel(), ylabel() title() moves the focus to the bar.
             sca(ax0); // Reset the focus to ax0 before going on
 
@@ -304,22 +299,34 @@ colbar3.margins([3 4]) = ax0.margins([3 4]);
 
             // Then add some other color bars, still for the current axes
             colorbar(-2, 5, [1 70])
-            // Set the labelsin magenta
-            gcf().children(1).font_color = color("red");
+            // Set the labels in red
+            gce().font_color = color("red");
 
             // The current axes is shrunk. The bar's width is decreased accordingly.
 
-            // A last one: top half of the colormap, with another data scale:
-            colorbar(0, 1.5, [0.5 1])  // colminmax = [fmin fmax]
-            // Let decrease its font size:
-            colbar3 = gcf().children(1);
+            // axes on the right
+            // -----------------
+            subplot(1,2,2), plotframe([0 0 1 1])
+            ax1 = gca();
+            // top half of the colormap, with another data scale:
+            colorbar(0, 1.5, [$/2+1 $])
+
+            // Color bar post-processing
+            colbar3 = gce();
+            //      decrease its font size:
             set(colbar3, "fractional_font","on","font_size", 0.5);
-            // And vertically extend the bar, to match ax0's height
-            colbar3.axes_bounds([2 4]) = ax0.axes_bounds([2 4]);
-            colbar3.margins([3 4]) = ax0.margins([3 4]);
+            //      vertically extend the bar, to match the axes height:
+            colbar3.axes_bounds([2 4]) = ax1.axes_bounds([2 4]);
+            colbar3.margins([3 4]) = ax1.margins([3 4]);
+            //      reverse its graduations top-down:
+            colbar3.axes_reverse(2) = "on";
+            //      put its graduations on the left side:
+            colbar3.y_location = "left";
 
             // Color bars are automatically redrawn and regraduated
             // when resizing the figure. Try it!
+
+            gcf().axes_size = [770 440];
         </scilab:image>
         <screen><![CDATA[
 --> ax0.axes_bounds(3)  //  Here is its initial width
@@ -339,8 +346,8 @@ colbar3.margins([3 4]) = ax0.margins([3 4]);
    0.   0.   0.425   1.
 
 --> ...
---> // gce().parent is the handle to the axes defining the color bar
---> colbar1 = gce().parent;
+--> // gce() returns the handle of the color bar
+--> colbar1 = gce();
 --> colbar1.type
  ans  =
  Axes
@@ -526,10 +533,10 @@ subplot(2,2,3)
 plotSphere();
 colorbar(,,[60 120]);  // graduations on [0, 0.3]
 
-// 3.3) Selection of a colormap relative part. umin & umax set accordingly
+// 3.3) Selection of the first half of the colormap. umin & umax set accordingly
 subplot(2,2,4)
 plotSphere();
-colorbar(,,[0 0.5]);  // graduations on [-0.3, 0]
+colorbar(,,[1 $/2]);  // graduations on [-0.3, 0]
             ]]></programlisting>
             <scilab:image><![CDATA[
 function [zz, zz1] = plotSphere()
@@ -567,10 +574,10 @@ subplot(2,2,3)
 plotSphere();
 colorbar(,,[50 100]);  // graduations on [0, 0.3]
 
-// 3.3) Selection of a colormap relative part. umin & umax set accordingly
+// 3.3) Selection of the first half of the colormap. umin & umax set accordingly
 subplot(2,2,4)
 plotSphere();
-colorbar(,,[0 0.5]);  // graduations on [-0.3, 0]
+colorbar(,,[1 $/2]);  // graduations on [-0.3, 0]
             ]]></scilab:image>
             </para>
         </refsect3>
@@ -678,6 +685,19 @@ exec("SCI/modules/graphics/demos/colormap/colormaps.dem.sce",-1)
                         </listitem>
                         <listitem>
                             umin=-%inf and umax=%inf semantics are now available.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            $ can be used in colminmax.
+                        </listitem>
+                        <listitem>
+                            After calling colorbar(), gce() provides the color bar's handle.
                         </listitem>
                     </itemizedlist>
                 </revdescription>
