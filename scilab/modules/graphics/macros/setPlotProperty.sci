@@ -169,110 +169,64 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
         /////////////////////////
     case "markforeground"        // <=> MarkerEdgeColor
         /////////////////////////
-        if (type(PropertyValue)==10)
 
-            index = getColorIndex(PropertyValue);
-
-            ColorVal   = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white" "none"]
-
-            markmodeON = find(Curves.mark_mode=="on");
-
-            if index == 10
-                // 'none' specified
-                a=gca(); // pick up the background color of the parent axes
+        markmodeON = find(Curves.mark_mode=="on");
+        tmp = "/^"+PropertyValue+"/"
+        if type(PropertyValue)==10 & size(PropertyValue,"*")==1 & ..
+                                        grep(["none" "auto"], tmp, "r") <> []
+            if grep("none", tmp, "r") <> []
                 if markmodeON <> []
-                    Curves(markmodeON).mark_foreground = a.background;
+                    Curves(markmodeON).mark_foreground = gca().background;
                 end
-            elseif index == 11
-                // 'auto' specified
+            else // 'auto' specified
                 if markmodeON <> []
                     Curves(markmodeON).mark_foreground =  Curves.foreground;
                 end
-            else
-                if (index==-1)
-                    warning(msprintf(gettext("%s: Wrong value for input argument #%d: A color of the colormap expected.\n"),"setPlotProperty",2));
-                    ResetFigureDDM(current_figure, cur_draw_mode);
-                    return;
-                else
-                    if markmodeON <> []
-                        Curves(markmodeON).mark_foreground = color(ColorVal(index));
-                    end
-                end
             end
-        elseif (type(PropertyValue)==1)
-            if (size(PropertyValue,"*")==3)
-
-                markmodeON = find(Curves.mark_mode=="on");
-                if markmodeON <> []
-                    Curves(markmodeON).mark_foreground = addcolor(PropertyValue);
-                end
-            else
-                warning(msprintf(gettext("%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"),"setPlotProperty",2));
-                ResetFigureDDM(current_figure, cur_draw_mode);
-                return;
-            end
-
         else
-            warning(msprintf(gettext("%s: Wrong type for input argument #%d: Vector or index in the colormap expected.\n"),"setPlotProperty",2));
-            ResetFigureDDM(current_figure, cur_draw_mode);
-            return;
+            co = iscolor(PropertyValue)
+            if or(isnan(co(:,1)))
+                msg = gettext("%s: Argument #%d: Wrong color specification.\n")
+                warning(msprintf(msg, "setPlotProperty", 2))
+                ResetFigureDDM(current_figure, cur_draw_mode)
+                return
+            end
+            if markmodeON <> []
+                if size(co,2)==1
+                    Curves(markmodeON).mark_foreground = co;
+                else
+                    Curves(markmodeON).mark_foreground = addcolor(co);
+                end
+            end
         end
-
 
         /////////////////////////
     case "markbackground"        // <=> MarkerFaceColor
         /////////////////////////
-        if (type(PropertyValue)==10)
 
-            index = getColorIndex(PropertyValue);
-
-            ColorVal   = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white" "none"]
-
-            markmodeON = find(Curves.mark_mode=="on");
-
-            if index == 10
-                // 'none' specified
-                a=gca(); // pick up the background color of the parent axes
-                if markmodeON <> []
-                    Curves(markmodeON).mark_background = a.background;
-                end
-            elseif index == 11
-                // 'auto' specified
-                a=gca();
-                if markmodeON <> []
-                    Curves(markmodeON).mark_background = a.background;
-                end
-            else
-                if (index==-1)
-                    warning(msprintf(gettext("%s: Wrong value for input argument #%d: A color of the colormap expected.\n"),"setPlotProperty",2));
-                    ResetFigureDDM(current_figure, cur_draw_mode);
-                    return;
-                else
-                    if markmodeON <> []
-                        Curves(markmodeON).mark_background = color(ColorVal(index));
-                    end
-                end
+        markmodeON = find(Curves.mark_mode=="on");
+        tmp = "/^"+PropertyValue+"/"
+        if type(PropertyValue)==10 & size(PropertyValue,"*")==1 & ..
+                                        grep(["none" "auto"], tmp, "r") <> []
+            if markmodeON <> []
+                Curves(markmodeON).mark_background = gca().background;
             end
-        elseif (type(PropertyValue)==1)
-
-            if (size(PropertyValue,"*")==3)
-
-                markmodeON = find(Curves.mark_mode=="on");
-                if markmodeON <> []
-                    Curves(markmodeON).mark_background = addcolor(PropertyValue);
-                end
-            else
-                warning(msprintf(gettext("%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"),"setPlotProperty",2));
-                ResetFigureDDM(current_figure, cur_draw_mode);
-                return;
-            end
-
         else
-            warning(msprintf(gettext("%s: Wrong type for input argument #%d: Vector or index in the colormap expected.\n"),"setPlotProperty",2));
-            ResetFigureDDM(current_figure, cur_draw_mode);
-            return;
+            co = iscolor(PropertyValue)
+            if or(isnan(co(:,1)))
+                msg = gettext("%s: Argument #%d: Wrong color specification.\n")
+                warning(msprintf(msg, "setPlotProperty", 2))
+                ResetFigureDDM(current_figure, cur_draw_mode)
+                return
+            end
+            if markmodeON <> []
+                if size(co,2)==1
+                    Curves(markmodeON).mark_background = co;
+                else
+                    Curves(markmodeON).mark_background = addcolor(co);
+                end
+            end
         end
-
 
         /////////////////////////
     case "marksize"        // <=> MarkerSize
@@ -343,8 +297,5 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
             end
         end
 
-
-
     end
-
 endfunction
