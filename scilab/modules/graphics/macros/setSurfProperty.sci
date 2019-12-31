@@ -1,8 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
-// Copyright (C) 2018 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018, 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -248,7 +247,7 @@ function fail = setSurfProperty(PropertyName, PropertyValue, Surface, X, Y, Z, C
             if type(PropertyValue) == 10
                 if PropertyValue=="auto"        // NOT DOCUMENTED
                     Surface(markmodeON).mark_foreground =  Surface.foreground;
-                    // If Surface may really be a vector of Surface handles, 
+                    // If Surface may really be a vector of Surface handles,
                     // this original assignment should not work...
                     return
                 elseif PropertyValue=="none"    // NOT DOCUMENTED
@@ -337,20 +336,14 @@ function k=getIndexInStringTable(pattern,table)
 endfunction
 
 function co = getColorIndFromProp(PropertyValue, current_figure, cur_draw_mode)
-    c = iscolor(PropertyValue); // "colorName" | "#RRGGBB" | [r,g,b] | indCmap accepted
-    co = [];
-    if find(c(:,1)~=-1)~=[]
-        co = addcolor(c(1,:));
-    else    // maybe an abbreviate colorname?
-        index = getColorIndex(PropertyValue);
-        if index > 0 & index < 10
-            Colors = ["red" "green" "blue" "cyan" "magenta" "yellow" "black" "black" "white"]
-            co = color(Colors(index));
-        else
-            msg = gettext("%s: Argument #%d: Wrong color specification.\n")
-            warning(msprintf(msg, "setSurfProperty", 2));
-            ResetFigureDDM(current_figure, cur_draw_mode);
-            return;
-        end
+    co = iscolor(PropertyValue); // "colorName" | "#RRGGBB" | [r,g,b] | indCmap accepted
+    if or(isnan(co(:,1))) then
+        msg = gettext("%s: Argument #%d: Wrong color specification.\n")
+        warning(msprintf(msg, "setSurfProperty", 2));
+        ResetFigureDDM(current_figure, cur_draw_mode);
+        return
+    end
+    if size(co,2)==3 then
+        co = addcolor(co(1,:));
     end
 endfunction

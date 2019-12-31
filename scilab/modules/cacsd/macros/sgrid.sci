@@ -74,20 +74,22 @@ function sgrid(varargin)
     // colors
     // ------
     if length(varargin)>=j
-        rgb = iscolor(varargin(j), "1#a")
+        colors = iscolor(varargin(j), "1#a")
         if new & new<=j, j = j+1, end
-        if size(rgb,1)>2
+        if size(colors,1)>2
             msg = _("%s: Argument #%d: Scalar or vector with %d components expected.\n")
             error(msprintf(msg, "sgrid", j, 2));
         end
-        if or(rgb==-1)
+        if or(isnan(colors))
             msg = _("%s: Argument #%d: Wrong color specification.\n")
             error(msprintf(msg, "sgrid", j));
         end
-        if size(rgb,1)==1 then
-            rgb = [1;1]*rgb
-        end
-        colors = addcolor(rgb)
+        if size(colors,2)==3   // RGB
+            if size(colors,1)==1 then
+                colors = [1;1]*colors
+            end
+            colors = addcolor(colors)
+        end                  // else: Indices => OK
     end
 
     // Graphics initializations

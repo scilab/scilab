@@ -169,7 +169,7 @@ function  bar(varargin)
                 error(msprintf(msg, fname, kw+1));
             end
             c = iscolor(COLOR, "a#")
-            if or(c(:,1)==-1)
+            if or(isnan(c(:,1)))
                 error(msprintf(msg, fname, kw+1));
             end
             if nColors~=1 & nColors<size(Y,2) then

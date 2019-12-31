@@ -1,8 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2004-2006 - INRIA - Fabrice Leray
-// Copyright (C) 2018 - Samuel GOUGEON
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2018, 2019 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -36,7 +35,7 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
     case "foreground"         // <=> Color
         /////////////////////////
         c = iscolor(PropertyValue);
-        if or(c(:,1)==-1)
+        if or(isnan(c(:,1)))
             msg = _("%s: Argument #%d: Wrong color specification.\n")
             warning(msprintf(msg, "setPlotProperty", 2));
             ResetFigureDDM(current_figure, cur_draw_mode);
@@ -49,7 +48,11 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
             return
         end
         Curves.line_mode = "on";
-        ind = addcolor(c(1:length(Curves),:));
+        if size(c,2) > 1    // c is RGB
+            ind = addcolor(c(1:length(Curves),:));
+        else
+            ind = c
+        end
         for i = 1:length(ind)
             Curves($-i+1).foreground = ind(i);
             Curves($-i+1).mark_foreground = ind(i);
