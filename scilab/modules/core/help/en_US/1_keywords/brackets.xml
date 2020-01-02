@@ -280,13 +280,9 @@
                                     </member>
                                 </simplelist>
                             </listitem>
-                            <listitem>The same variable may be used several times
-                                in the list. Then, multiple assignments are done from
-                                <emphasis role="italic">right to left (!)</emphasis>
-                                and overwrite the previous ones.
-                                Example :
-                                <literal>[a,b,a] = (%pi, %z, "Allo")</literal>
-                                is equivalent to <literal>a = %pi, b = %z</literal>.
+                            <listitem>
+                                <literal>[a,b,a] = (%pi, %z, "Allo")</literal> performs assignments
+                                from left to right, such that finally <literal>a = "Allo"</literal>.
                             </listitem>
                         </itemizedlist>
                     </para>
@@ -360,7 +356,7 @@ u = schur(M)      // we expect and store only the first result u
 // Direct RHS list
 [a, b, c] = (%pi, %t, "test")
 [a, b] = (%e, %f, "Hello")
-[a, b, a] = (%pi, %t, "test");
+[a, b, a] = (%pi, %t, "test"); a
 
 // Explicit RHS list
 L = list(%z, %i, %t, %pi, "Text");
@@ -378,25 +374,25 @@ s.r([2 4 6])
 [r, s+3 ] = myfun(a,b)   // Expressions mixing literals and symbols like "s+3" can't be LHS recipients
 ]]></programlisting>
         <screen><![CDATA[--> [a, b, c] = (%pi, %t, "test")
- c  =
- test
+ a  =
+   3.1415927
 
  b  =
   T
 
- a  =
-   3.1415927
+ c  =
+ test
 
 --> [a, b] = (%e, %f, "Hello")
- b  =
-  F
-
  a  =
    2.7182818
 
+ b  =
+  F
+
 --> [a, b, a] = (%pi, %t, "test"); a
  a  =
-   3.1415927
+ test
 ]]></screen>
     </refsection>
     <refsection role="see also">
@@ -438,7 +434,15 @@ s.r([2 4 6])
             <revision>
                 <revnumber>6.1</revnumber>
                 <revdescription>
-                    Booleans and encoded integers can now be concatenated together, as in [%t, int8(-5)].
+                    <itemizedlist>
+                        <listitem>
+                            Booleans and encoded integers can now be concatenated together,
+                            as in [%t, int8(-5)].
+                        </listitem>
+                        <listitem>
+                            [a, b, ..] = (A, B,..) now performs assignments from left to right.
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

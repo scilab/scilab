@@ -13,10 +13,16 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="get_figure_handle">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="get_figure_handle">
     <refnamediv>
         <refname>get_figure_handle</refname>
-        <refpurpose>Retrouve une figure graphique à partir de son identifiant.</refpurpose>
+        <refpurpose>
+            Retrouve une figure graphique à partir de son identifiant
+            <emphasis role="bold">(obsolète)</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -41,6 +47,10 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            <emphasis role="bold">Cette fonction est obsolète</emphasis> et sera retirée de
+            Scilab 6.1.x. SVP désormais utiliser <emphasis role="bold">findobj("figure_id",n)</emphasis>.
+        </warning>
         <para>
             La function <literal>get_figure_handle</literal> permet de retrouver le handle
             d'une figure graphique à partir de son identifiant. Si une figure avec l'identifiant
@@ -83,5 +93,17 @@ f42 = get_figure_handle(42);
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    get_figure_handle(n) est déclarée obsolète.
+                    findobj("figure_id",n) la remplace.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

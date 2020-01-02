@@ -86,8 +86,7 @@
    0.   2.   4.   6.
    0.   2.   4.   6.
    0.   2.   4.   6.
-]]>
-    </screen>
+]]></screen>
     <para>
         Les coordonnées du noeud node(i,j) dans l'espace 2D seront alors
         simplement <literal>[x(i), y(j)]</literal> maintenant données par

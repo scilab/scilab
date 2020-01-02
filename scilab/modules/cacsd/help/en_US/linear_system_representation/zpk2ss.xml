@@ -61,60 +61,48 @@ typeof(S)
         <screen><![CDATA[
 --> sys = zpk([2;1], [0;-3-%i;-3+%i], 2.5, "c")
  sys  =
-
         (s-2) (s-1)
    2.5 -------------
        s (s^2+6s+10)
 
-
 --> typeof(sys)
  ans  =
-
   "zpk"
 
--->
 
 --> S = zpk2ss(sys)
  S  =
-
 
  S(1)  (state-space system:)
 
   "lss"  "A"  "B"  "C"  "D"  "X0"  "dt"
 
  S(2)= A matrix =
-
    0.   1.         -0.3162278
    0.  -6.         -3.1622777
    0.   3.1622777   0.
 
  S(3)= B matrix =
-
    0.
    1.
    0.
 
  S(4)= C matrix =
-
   -5.   2.5  -0.7905694
 
  S(5)= D matrix =
-
    0.
 
  S(6)= X0 (initial state) =
-
    0.
    0.
    0.
 
  S(7)= Time domain =
-
   "c"
 
 --> typeof(S)
  ans  =
-
   "state-space"
 ]]></screen>
     </refsection>

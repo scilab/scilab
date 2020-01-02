@@ -61,6 +61,9 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
+        <para>
+            Avec des nombres réels ou complexes :
+        </para>
         <programlisting role="example"><![CDATA[
 [i, inf, nan] = (%i, %inf, %nan);
 isinf([-1  0.01 -inf  inf  nan])
@@ -89,8 +92,7 @@ isinf(inf-nan*i)
         <literal>%inf - %nan*complex(0,1) == %inf - complex(%nan*0, %nan*1) == %inf - complex(%nan, %nan)
             == complex(%inf-%nan, -%nan) == complex(%nan, %nan)
         </literal>
-        ,où Inf est effacé par Nan et
-        n'apparait plus.
+        , où Inf est effacé par Nan et n'apparait plus.
         <para/>
         <para>
             Avec des polynômes :
@@ -104,22 +106,18 @@ isinf([p q r])
         <screen><![CDATA[
 --> p = poly([%nan -2 0 3],"x","coeff")
  p  =
-
   Nan -2x +3x³
 
 --> q = poly([0 %inf %i],"x","coeff")
  q  =
-
   Infx +ix²
 
 --> r = poly([%nan %inf*%i 1],"x","coeff")
  r  =
-
   Nan -(Nan-Infi)x +x²
 
 --> isinf([p q r])
  ans  =
-
   F T F
 ]]></screen>
     </refsection>

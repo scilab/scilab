@@ -57,9 +57,8 @@ a = sciargs()
 ! -noatomsautoload              !
 ! -args                         !
 ! Hello John                    !
-! 1.2345                        !
 ! "C:\Users\Me"                 !
-    ]]></screen>
+]]></screen>
         <para>
         <warning>
             Notons qu'avec <literal>scilab -nw</literal>, l'option "-nw" option s'adresse et est

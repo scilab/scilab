@@ -50,6 +50,11 @@
                         translated. A column of literal texts explicitly separated with
                         semi-colons may also be specified.
                     </para>
+                    <warning>
+                        Only standard ASCII characters can be used. Any other extended ASCII or
+                        UTF-8 characters would make gettext() failing.
+                    </warning>
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -59,6 +64,10 @@
                         single or array of messages identifiers (in english) to be translated,
                         in a variable.
                     </para>
+                    <warning>
+                        Only standard ASCII characters can be used.
+                    </warning>
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -70,6 +79,11 @@
                         version in english is returned. The input and output arrays have
                         the same sizes.
                     </para>
+                    <note>
+                        These messages are defined in the ./locales/*.po files. They can include
+                        extended ASCII or UTF-8 characters.
+                    </note>
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>

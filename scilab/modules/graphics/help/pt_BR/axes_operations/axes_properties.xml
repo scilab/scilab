@@ -560,8 +560,10 @@
                                 <para>string de três caracteres que ajusta a escala (linear ou
                                     logarítmica) o longo dos eixos. Cada caractere especifica a
                                     escala para os eixos x, y e z respectivamente. Os valores
-                                    podem ser <literal>'n'</literal> para escala linear ou
-                                    <literal>'l'</literal> para escala logarítmica.
+                                    podem ser <literal>'n'</literal> para escala
+                                    <emphasis role="bold">n</emphasis>ormal, ou
+                                    <literal>'l'</literal> para escala
+                                    <emphasis role="bold">l</emphasis>ogarítmica.
                                 </para>
                                 <scilab:image><![CDATA[
                                     x = linspace(0,10,100)(2:$);

@@ -77,27 +77,25 @@ atanh(x')
         </para>
         <programlisting role="example"><![CDATA[
 x = [-1-%i, -%i, 0, %i, %i+1];
-[tanh(atanh(x)) ; atanh(tanh(x))]
+[x; tanh(atanh(x)) ; atanh(tanh(x))]
 atanh(x.')
  ]]></programlisting>
     <screen><![CDATA[
---> [x ; atanh(tanh(x))]
+--> [x; tanh(atanh(x)) ; atanh(tanh(x))]
  ans  =
-  -Inf  -2.  -1.  -0.5   0.   0.5   1.   2.   3.   Inf
-  -Inf  -2.  -1.  -0.5   0.   0.5   1.   2.   3.   Inf
 
---> atanh(x')
+  -1. - i     0. - i     0. + 0.i   0. + i     1. + i  
+  -1. - i     0. - i     0. + 0.i   0. + i     1. + i  
+  -1. - i     0. - i     0. + 0.i   0. + i     1. + i  
+
+--> atanh(x.')
  ans  =
-   0.        + 1.5707963i
-  -0.5493061 + 1.5707963i
-  -Inf       + 0.i       
-  -0.5493061 + 0.i       
-   0.        + 0.i       
-   0.5493061 + 0.i       
-   Inf       + 0.i       
-   0.5493061 + 1.5707963i
-   0.3465736 + 1.5707963i
-   0.        + 1.5707963i
+
+  -0.4023595 - 1.017222i
+   0.        - 0.7853982i
+   0.        + 0.i      
+   0.        + 0.7853982i
+   0.4023595 + 1.017222i
 ]]></screen>
     </refsection>
     <refsection role="see also">

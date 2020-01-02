@@ -219,7 +219,7 @@
                     </para>
                     <para>
                     <table>
-                    <tr>
+                    <tr valign="top">
                     <td>
                     <table>
                         <tr><td><literal>det([])</literal></td>     <td><literal>1</literal></td></tr>
@@ -246,6 +246,8 @@
                     <td></td>
                     <td>
                     <table>
+                        <tr><td><literal>cumprod([])</literal></td> <td><literal>[]</literal></td></tr>
+                        <tr><td><literal>cumsum([])</literal></td>  <td><literal>[]</literal></td></tr>
                         <tr><td><literal>sum([])</literal></td>     <td><literal>0</literal></td></tr>
                         <tr><td><literal>prod([])</literal></td>    <td><literal>1</literal></td></tr>
                         <tr><td><literal>mean([])</literal></td>    <td><literal>Nan</literal></td></tr>

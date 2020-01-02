@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Entrada/Saída de Arquivos Matlab Binários",SCI+"/modules/matio/help/pt_BR",%T);
+add_help_chapter("Matlab : Arquivos de dados (R/W)",SCI+"/modules/matio/help/pt_BR",%T);
 

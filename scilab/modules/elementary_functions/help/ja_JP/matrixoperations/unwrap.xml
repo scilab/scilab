@@ -283,15 +283,16 @@ drawnow()
         <para>2次元面をアンラップ:</para>
         <programlisting role="example"><![CDATA[
 // 2次元の例
-// -----------
+// -------
 ax = gda();
 ax.title.font_size = 2;
 f = scf();
 f.color_map = hotcolormap(100);
-f.figure_size = [475 1050];
+f.axes_size = [900 450];
 f.figure_position(2) = 0;
 f.figure_name = "unwrap()" + _(": 2-D examples");
 drawlater()
+
 nx = 300;
 ny = 400;
 rmax = 8.8;
@@ -306,29 +307,33 @@ for ex=0:1   // 例
     else
         z = sqrt(0.3+sinc(sqrt(z)*3))*17-7;
     end
+
     // 3次元でプロットします
-    subplot(4,2,1+ex)
+    subplot(2,4,1+4*ex)
     surf(x, y, z)
     title("Original profile Z")
     e = gce();
     e.thickness = 0; // メッシュを削除
     e.parent.tight_limits = "on";
+
     // ラップされた面 (平面)
     m = 2.8;
     zw = pmodulo(z, m); // ラップする
-    subplot(4,2,3+ex)
+    subplot(2,4,2+4*ex)
     grayplot(x, y, zw')
     title(msprintf("Zw = pmodulo(Z, %g)  (flat)",m))
     ax0 = gca();
     ax0.tight_limits = "on";
+
     // アンラップされた面 (平面):
     // in both directions:
     u = unwrap(zw, 0);
-    subplot(4,2,5+ex)
+    subplot(2,4,3+4*ex)
     grayplot(x, y, u')
     title(msprintf("unwrap(Zw, %g)  (flat)", 0))
     ax3 = gca();
     ax3.tight_limits = "on";
+
     if ex==0 then
         direc = "r";
     else
@@ -336,7 +341,7 @@ for ex=0:1   // 例
     end
     // 一方向にアンラップ:
     u = unwrap(zw, m, direc);
-    subplot(4,2,7+ex)
+    subplot(2,4,4+4*ex)
     grayplot(x, y, u')
     title(msprintf("unwrap(Zw, %g, ""%s"")  (flat)",m,direc))
     ax1 = gca();
@@ -345,9 +350,12 @@ end
 sda();
 drawnow()
         ]]></programlisting>
-        <!--<scilab:image>
-            %_unwrap("2D")
-        </scilab:image>-->
+        <para/>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../../../../helptools/images/unwrap_2D.png"/>
+            </imageobject>
+        </inlinemediaobject>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

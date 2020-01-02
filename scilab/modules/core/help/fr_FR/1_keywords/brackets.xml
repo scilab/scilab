@@ -300,16 +300,11 @@
                                         produit une erreur, car <literal>c</literal>
                                         attend du contenu.
                                     </member>
-                                </simplelist>
-                            </listitem>
+                                </simplelist>                            </listitem>
                             <listitem>
-                                La même variable peut être utilisée plusieurs fois dans la liste
-                                de gauche entre crochets. Le cas échéant, les affectations
-                                successives sont réalisées
-                              <emphasis role="italic">de droite à gauche (!)</emphasis> dans la
-                              liste, et écrasent les contenus pré-existants. Exemple :
-                                <literal>[a,b,a] = (%pi, %z, "Allo")</literal>
-                                est équivalent à <literal>a = %pi, b = %z</literal>.
+                                <literal>[a,b,a] = (%pi, %z, "Allo")</literal> réalise les
+                                affectations de la gauche vers la droite, de sorte que finalement
+                                <literal>a = "Allo"</literal>.
                             </listitem>
                         </itemizedlist>
                     </para>
@@ -384,7 +379,7 @@ u = schur(M)      // Nous attendons et stockons uniquement u
 // Liste directe (implicite) d'objets à affecter
 [a, b, c] = (%pi, %t, "test")
 [a, b] = (%e, %f, "Hello")
-[a, b, a] = (%pi, %t, "test");
+[a, b, a] = (%pi, %t, "test"); a
 
 // Liste explicite d'objets à affecter
 L = list(%z, %i, %t, %pi, "Text");
@@ -403,25 +398,25 @@ s.r([2 4 6])
 [r, s+3 ] = myfun(a,b)   // "s+3" est une expression mixte, non un nom de variable
  ]]></programlisting>
         <screen><![CDATA[--> [a, b, c] = (%pi, %t, "test")
- c  =
- test
+ a  =
+   3.1415927
 
  b  =
   T
 
- a  =
-   3.1415927
+ c  =
+ test
 
 --> [a, b] = (%e, %f, "Hello")
- b  =
-  F
-
  a  =
    2.7182818
 
+ b  =
+  F
+
 --> [a, b, a] = (%pi, %t, "test"); a
  a  =
-   3.1415927
+ test
 ]]></screen>
     </refsection>
     <refsection role="see also">
@@ -463,8 +458,16 @@ s.r([2 4 6])
             <revision>
                 <revnumber>6.1</revnumber>
                 <revdescription>
-                    Booléens et entiers encodés peuvent désormais être concaténés ensemble,
-                    comme dans [%t, int8(-5)].
+                    <itemizedlist>
+                        <listitem>
+                            Booléens et entiers encodés peuvent désormais être concaténés ensemble,
+                            comme dans [%t, int8(-5)].
+                        </listitem>
+                        <listitem>
+                            [a, b, ..] = (A, B,..) réalise désormais les affectations de la gauche
+                            vers la droite.
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

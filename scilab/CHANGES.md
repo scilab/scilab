@@ -400,6 +400,7 @@ Bug Fixes
 * [#16292](http://bugzilla.scilab.org/show_bug.cgi?id=16292): `hallchart()` had bugs and a poor rendering.
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot`, `colorbar` displayed an empty ungraduated color bar.
+* [#16300](http://bugzilla.scilab.org/show_bug.cgi?id=16300): Short description in while help page has been updated.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
 * [#16307](http://bugzilla.scilab.org/show_bug.cgi?id=16307): `dockable="off"` and `closerequestfcn` on figures crached Scilab.
 * [#16320](http://bugzilla.scilab.org/show_bug.cgi?id=16320): There were unsupported UTF-8 characters in some gettext id messages.

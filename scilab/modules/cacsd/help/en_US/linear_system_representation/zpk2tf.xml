@@ -48,7 +48,6 @@
         <para>
             Converts a  zero pole gain representation to  rational transfer function
         </para>
-
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -62,22 +61,16 @@ typeof(S)
         <screen><![CDATA[
 --> sys = zpk([2;1], [0;-3-%i;-3+%i], 2.5, "c")
  sys  =
-
         (s-2) (s-1)
    2.5 -------------
        s (s^2+6s+10)
 
-
 --> typeof(sys)
  ans  =
-
   "zpk"
-
--->
 
 --> S = zpk2tf(sys)
  S  =
-
 
    5 -7.5s +2.5s²
    --------------
@@ -85,7 +78,6 @@ typeof(S)
 
 --> typeof(S)
  ans  =
-
   "rational"
 ]]></screen>
     </refsection>

@@ -653,8 +653,10 @@
                                 <para>
                                     3 character string that sets the scale (linear or logarithmic) along the axes.
                                     Each character specifies the scale for respectively the X, Y and Z axes.
-                                    They should take a value between <literal>'n'</literal> for linear scale or
-                                    <literal>'l'</literal> for logarithmic scale.
+                                    They can be either <literal>'n'</literal> for the
+                                    <emphasis role="bold">n</emphasis>ormal scale, or
+                                    <literal>'l'</literal> for the
+                                    <emphasis role="bold">l</emphasis>ogarithmic one.
                                 </para>
                                 <scilab:image><![CDATA[
                                     x = linspace(0,10,100)(2:$);
