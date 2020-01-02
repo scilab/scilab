@@ -14,44 +14,53 @@
  * along with this program.
  *
  -->
+<!--  module: integer  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-        xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab"
-        xml:lang="en" xml:id="int8">
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="int8" xml:lang="pt">
     <refnamediv>
         <refname>int8</refname>
-        <refpurpose> conversion to one byte integer representation</refpurpose>
+        <refpurpose>conversão para representação de inteiro de 1 byte
+        </refpurpose>
     </refnamediv>
     <refnamediv xml:id="int16">
         <refname>int16</refname>
-        <refpurpose> conversion to 2 bytes integer representation</refpurpose>
+        <refpurpose>conversão para representação de inteiro de 2 bytes
+        </refpurpose>
     </refnamediv>
     <refnamediv xml:id="int32">
         <refname>int32</refname>
-        <refpurpose> conversion to 4 bytes integer representation</refpurpose>
+        <refpurpose>conversão para representação de inteiro de 4 bytes
+        </refpurpose>
     </refnamediv>
     <refnamediv xml:id="int64">
         <refname>int64</refname>
-        <refpurpose> conversion to 8 bytes integer representation</refpurpose>
+        <refpurpose>conversão para representação de inteiro de 8 bytes
+        </refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint8">
         <refname>uint8</refname>
-        <refpurpose> conversion to one byte unsigned integer representation</refpurpose>
+        <refpurpose>conversão para representação de inteiro de 1 byte sem sinal
+        </refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint16">
         <refname>uint16</refname>
-        <refpurpose> conversion to 2 bytes unsigned integer representation</refpurpose>
+        <refpurpose>conversão para representação de inteiro de 2 bytes sem sinal
+        </refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint32">
         <refname>uint32</refname>
-        <refpurpose> conversion to 4 bytes unsigned integer representation</refpurpose>
+        <refpurpose>conversão para representação de inteiro de 4 bytes sem sinal
+        </refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint64">
-        <refname>uint64</refname>
-        <refpurpose> conversion to 8 bytes unsigned integer representation</refpurpose>
+        <refname>uint32</refname>
+        <refpurpose>conversão para representação de inteiro de 8 bytes sem sinal
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Seqüência de Chamamento</title>
         <synopsis>
             y = int8(X)
             y = int16(X)
@@ -64,32 +73,31 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
                     <para>
-                        matrix of booleans, of encoded integers, or of decimal real or complex numbers.
+                        matriz de booleanos, de inteiros codificados, ou de números reais ou
+                        complexos decimais.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
-                <listitem>
                     <para>
-                        matrix of integers encoded on 1, 2, 4 or 8 bytes. Its sizes are X ones.
+                        matriz de inteiros codificados em 1, 2, 4 ou 8 bytes. Seus tamanhos são os
+                        de X.
                     </para>
-                </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
-        <para>
-            These functions convert and store data to one, two, four, or eight bytes integers.
-            These data types are especially useful to store big objects such as images,
-            long signals,...
+        <title>Descrição</title>
+        <para>Converte e armazena dados em interos de 1, 2 ou 4 bytes. Estes tipos
+            de dados são especialmente úteis para armazenar objetos grandes como
+            imagens, sinais longos,...
         </para>
         <warning>
             <para>
@@ -166,7 +174,7 @@
         </para>
     </refsection>
     <refsection role="examples">
-        <title>Examples</title>
+        <title>Exemplos</title>
         <para>
             Rounding to 0 and wrapping, and special values:
         </para>
@@ -299,7 +307,7 @@ typeof(i)
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>Ver Também</title>
         <simplelist type="inline">
             <member>
                 <link linkend="iconvert">iconvert</link>
@@ -319,7 +327,7 @@ typeof(i)
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>History</title>
+        <title>Histórico</title>
         <revhistory>
             <revision>
                 <revnumber>6.0</revnumber>

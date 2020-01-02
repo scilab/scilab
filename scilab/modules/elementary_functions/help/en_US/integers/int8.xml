@@ -14,44 +14,45 @@
  * along with this program.
  *
  -->
+<!--  module: integer  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-        xml:lang="ja" xml:id="int8">
+        xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab"
+        xml:lang="en" xml:id="int8">
     <refnamediv>
         <refname>int8</refname>
-        <refpurpose>1バイト整数形式に変換する</refpurpose>
+        <refpurpose> conversion to one byte integer representation</refpurpose>
     </refnamediv>
     <refnamediv xml:id="int16">
         <refname>int16</refname>
-        <refpurpose>2バイト整数形式に変換する</refpurpose>
+        <refpurpose> conversion to 2 bytes integer representation</refpurpose>
     </refnamediv>
     <refnamediv xml:id="int32">
         <refname>int32</refname>
-        <refpurpose>4バイト整数形式に変換する</refpurpose>
+        <refpurpose> conversion to 4 bytes integer representation</refpurpose>
     </refnamediv>
     <refnamediv xml:id="int64">
         <refname>int64</refname>
-        <refpurpose>8バイト整数形式に変換する</refpurpose>
+        <refpurpose> conversion to 8 bytes integer representation</refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint8">
         <refname>uint8</refname>
-        <refpurpose>1バイト符号なし整数形式に変換する</refpurpose>
+        <refpurpose> conversion to one byte unsigned integer representation</refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint16">
         <refname>uint16</refname>
-        <refpurpose>2バイト符号なし整数形式に変換する</refpurpose>
+        <refpurpose> conversion to 2 bytes unsigned integer representation</refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint32">
         <refname>uint32</refname>
-        <refpurpose>4バイト符号なし整数形式に変換する</refpurpose>
+        <refpurpose> conversion to 4 bytes unsigned integer representation</refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint64">
         <refname>uint64</refname>
-        <refpurpose>8バイト符号なし整数形式に変換する</refpurpose>
+        <refpurpose> conversion to 8 bytes unsigned integer representation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>呼び出し手順</title>
+        <title>Syntax</title>
         <synopsis>
             y = int8(X)
             y = int16(X)
@@ -64,7 +65,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
@@ -85,11 +86,11 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>説明</title>
+        <title>Description</title>
         <para>
-            1,2,4または8バイト整数に変換,保存します.
-            これらのデータ型は画像,長い信号,...など大きなオブジェクトを
-            保存する際に特に有用です.
+            These functions convert and store data to one, two, four, or eight bytes integers.
+            These data types are especially useful to store big objects such as images,
+            long signals,...
         </para>
         <warning>
             <para>
@@ -166,7 +167,7 @@
         </para>
     </refsection>
     <refsection role="examples">
-        <title>例</title>
+        <title>Examples</title>
         <para>
             Rounding to 0 and wrapping, and special values:
         </para>
@@ -299,7 +300,7 @@ typeof(i)
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>参照</title>
+        <title>See also</title>
         <simplelist type="inline">
             <member>
                 <link linkend="iconvert">iconvert</link>
@@ -319,7 +320,7 @@ typeof(i)
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>履歴</title>
+        <title>History</title>
         <revhistory>
             <revision>
                 <revnumber>6.0</revnumber>
@@ -333,13 +334,13 @@ typeof(i)
                         </listitem>
                         <listitem>
                             <table>
-                                <tr><th>This</th>           <th>is now</th>     <th>instead of</th></tr>
+                                <tr><th>This</th>               <th>is now</th>     <th>instead of</th></tr>
                                 <tr><td>int8([-%inf, %inf])</td><td>[-128, 127]</td><td>[0, 0]</td></tr>
                                 <tr><td>int16([-%inf, %inf])</td><td>[-32768, 32767]</td><td>[0, 0]</td></tr>
-                                <tr><td>int32(%inf)</td>    <td>2147483647</td> <td>-2147483648</td></tr>
-                                <tr><td>uint8(%inf)</td>    <td>255</td>        <td>0</td></tr>
-                                <tr><td>uint16(%inf)</td>   <td>65535</td>      <td>0</td></tr>
-                                <tr><td>uint32(%inf)</td>   <td>4294967295</td> <td>0</td></tr>
+                                <tr><td>int32(%inf)</td>        <td>2147483647</td> <td>-2147483648</td></tr>
+                                <tr><td>uint8(%inf)</td>        <td>255</td>        <td>0</td></tr>
+                                <tr><td>uint16(%inf)</td>       <td>65535</td>      <td>0</td></tr>
+                                <tr><td>uint32(%inf)</td>       <td>4294967295</td> <td>0</td></tr>
                             </table>
                         </listitem>
                     </itemizedlist>

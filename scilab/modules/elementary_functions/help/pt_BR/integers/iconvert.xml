@@ -14,51 +14,49 @@
  * along with this program.
  *
  -->
+<!--  module: integer  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-        xml:lang="fr" xml:id="iconvert">
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+        xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+        xmlns:scilab="http://www.scilab.org" xml:id="iconvert" xml:lang="pt">
     <refnamediv>
-        <refname>iconvert </refname>
-        <refpurpose>conversion en entiers encodés sur 1, 2, 4 ou 8 octets</refpurpose>
+        <refname>iconvert</refname>
+        <refpurpose>conversão para representação inteira de 1 a 8 bytes
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
+        <title>Seqüência de Chamamento</title>
         <synopsis>y = iconvert(X, itype)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>
-                      matrice de nombres décimaux ou d'entiers encodés ou de booléens.
-                      Les nombres complexes ne sont pas acceptés.
+                    <para>matriz de números decimais ou inteiros codificados. Os números complexos
+                      não são aceitos
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>
-                        matrice d'entiers encodés sur 1, 2, 4 ou 8 octets, de mêmes tailles que
-                        <varname>X</varname>.
-                    </para>
+                    <para>matriz de inteiros codificados em 1, 2, 4 ou 8 bytes </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Descrição</title>
         <para>
-            Convertit et stocke sous forme d'entiers à 1, 2, 4 ou 8 octets. Pour plus d'information,
-            voir la page de <link linkend="int8">int8()</link>.
+            Converte e armazena dados para inteiros de 1, 2, 4 ou 8 bytes.
+            Please refer to the <link linkend="int8">int8()</link> page for a detailled description.
         </para>
         <para>
             <table>
-                <tr><th>itype</th><th>y typeof</th> <th>Résultat sur</th></tr>
-                <tr><th>0</th>  <td>(décimaux)</td> <td></td></tr>
+                <tr><th>itype</th><th>y typeof</th> <th>range</th></tr>
+                <tr><th>0</th>  <td>(reals)</td>    <td></td></tr>
                 <tr><th>1</th>  <td>int8</td>   <td>[-128, 127]</td></tr>
                 <tr><th>2</th>  <td>int16</td>  <td>[-32768, 32767]</td></tr>
                 <tr><th>4</th>  <td>int32</td>  <td>[-2147483648, 2147483647]</td></tr>
@@ -70,15 +68,15 @@
             </table>
         </para>
         <warning>
-            La conversion de <literal>[]</literal> ne change rien : son type 1 == inttype 0
-            est toujours conservé (type numérique décimal).
+            Converting <literal>[]</literal> always keeps it as is, of type 1 == inttype 0
+           (decimal type).
         </warning>
     </refsection>
     <refsection>
-        <title>Exemples</title>
+        <title>Exemplos</title>
         <programlisting role="example"><![CDATA[
-b=int32([1 -120 127 312])
-y=iconvert(b,1)
+b = int32([1 -120 127 312])
+y = iconvert(b,1)
  ]]></programlisting>
     <para/>
     <programlisting role="example"><![CDATA[
@@ -121,7 +119,7 @@ iconvert(-1, 18)
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>Voir aussi</title>
+        <title>Ver Também</title>
         <simplelist type="inline">
             <member>
                 <link linkend="int8">int8</link>
@@ -141,18 +139,18 @@ iconvert(-1, 18)
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>Historique</title>
+        <title>Histórico</title>
         <revhistory>
             <revision>
                 <revnumber>6.0</revnumber>
                 <revdescription>
                     <itemizedlist>
                         <listitem>
-                            Ajout des conversions depuis/en int64 and uint64.
+                            Support to int64 and uint64 encodings added.
                         </listitem>
                         <listitem>
                             <table>
-                                <tr><th>Ceci</th>              <th>vaut désormais</th>     <th>au lieu de</th></tr>
+                                <tr><th>This</th>              <th>is now</th>     <th>instead of</th></tr>
                                 <tr><td>iconvert([-%inf,%inf], 1)</td><td>[-128, 127]</td><td>[0, 0]</td></tr>
                                 <tr><td>iconvert([-%inf,%inf], 2)</td><td>[-32768, 32767]</td><td>[0, 0]</td></tr>
                                 <tr><td>iconvert(%inf, 4)</td>  <td>2147483647</td> <td>-2147483648</td></tr>

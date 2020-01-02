@@ -14,39 +14,49 @@
  * along with this program.
  *
  -->
+<!--  module: integer  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-    xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-    xml:lang="ja" xml:id="iconvert">
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab"
+        xml:lang="ru" xml:id="iconvert">
     <refnamediv>
         <refname>iconvert</refname>
-        <refpurpose>1または8バイト整数表現に変換する</refpurpose>
+        <refpurpose>преобразование в 1- или 8-байтное представление целого числа</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>y = iconvert(X,itype)</synopsis>
+        <title>Синтаксис</title>
+        <synopsis>y = iconvert(X, itype)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>浮動小数点数または整数の行列. Complex numbers are not accepted.</para>
+                    <para> матрица десятичных чисел или кодированных целых чисел.
+                      Комплексные числа не поддерживаются.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>itype</term>
+                <listitem>
+                    <para>целое число, тип преобразования.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>1,2,4または8バイト整数の行列.</para>
+                    <para>матрица целых чисел, закодированных в 1, 2, 4 или 8 байтах.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>説明</title>
+        <title>Описание</title>
         <para>
-            1, 2, 4, または 8バイト整数に変換し,保存します.
+            Функция <function>iconvert</function> преобразует и хранит данные в виде 1-,
+            2-, 4- или 8-байтных целых чисел.
             Please refer to the <link linkend="int8">int8()</link> page for a detailled description.
         </para>
         <para>
@@ -69,10 +79,13 @@
         </warning>
     </refsection>
     <refsection>
-        <title>例</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-b=int32([1 -120 127 312])
-y=iconvert(b,1)
+b = int32([1 -120 127 312])
+y = iconvert(b,1)
+
+typeof(b)
+typeof(y)
  ]]></programlisting>
     <para/>
     <programlisting role="example"><![CDATA[
@@ -115,7 +128,7 @@ iconvert(-1, 18)
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>参照</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="int8">int8</link>
@@ -135,7 +148,7 @@ iconvert(-1, 18)
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>履歴</title>
+        <title>История</title>
         <revhistory>
             <revision>
                 <revnumber>6.0</revnumber>
@@ -161,3 +174,4 @@ iconvert(-1, 18)
         </revhistory>
     </refsection>
 </refentry>
+

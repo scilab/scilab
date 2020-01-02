@@ -14,43 +14,45 @@
  * along with this program.
  *
  -->
+<!--  module: integer  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
-    xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ru" xml:id="int8">
+        xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+        xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+        xml:lang="ja" xml:id="int8">
     <refnamediv>
         <refname>int8</refname>
-        <refpurpose>преобразование в однобайтное представление целого числа</refpurpose>
+        <refpurpose>1バイト整数形式に変換する</refpurpose>
     </refnamediv>
     <refnamediv xml:id="int16">
         <refname>int16</refname>
-        <refpurpose>преобразование в двухбайтное представление целого числа</refpurpose>
+        <refpurpose>2バイト整数形式に変換する</refpurpose>
     </refnamediv>
     <refnamediv xml:id="int32">
         <refname>int32</refname>
-        <refpurpose>преобразование в четырёхбайтное представление целого числа</refpurpose>
+        <refpurpose>4バイト整数形式に変換する</refpurpose>
     </refnamediv>
     <refnamediv xml:id="int64">
         <refname>int64</refname>
-        <refpurpose>conversion to 8 bytes integer representation</refpurpose>
+        <refpurpose>8バイト整数形式に変換する</refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint8">
         <refname>uint8</refname>
-        <refpurpose>преобразование в однобайтное представление беззнакового целого числа</refpurpose>
+        <refpurpose>1バイト符号なし整数形式に変換する</refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint16">
         <refname>uint16</refname>
-        <refpurpose>преобразование в двухбайтное представление беззнакового целого числа</refpurpose>
+        <refpurpose>2バイト符号なし整数形式に変換する</refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint32">
         <refname>uint32</refname>
-        <refpurpose>преобразование в четырёхбайтное представление беззнакового целого числа</refpurpose>
+        <refpurpose>4バイト符号なし整数形式に変換する</refpurpose>
     </refnamediv>
     <refnamediv xml:id="uint64">
         <refname>uint64</refname>
-        <refpurpose> conversion to 8 bytes unsigned integer representation</refpurpose>
+        <refpurpose>8バイト符号なし整数形式に変換する</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Синтаксис</title>
+        <title>呼び出し手順</title>
         <synopsis>
             y = int8(X)
             y = int16(X)
@@ -63,14 +65,13 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Аргументы</title>
+        <title>パラメータ</title>
         <variablelist>
             <varlistentry>
                 <term>X</term>
                 <listitem>
                     <para>
-                        матрица логических чисел, закодированных целых чисел или десятичных
-                        вещественных или комплексных чисел.
+                        matrix of booleans, of encoded integers, or of decimal real or complex numbers.
                     </para>
                 </listitem>
             </varlistentry>
@@ -78,19 +79,18 @@
                 <term>y</term>
                 <listitem>
                     <para>
-                        матрица целых чисел, закодированная по 1, 2, 4 или 8 байтам.
-                        Его размеры - размеры X.
+                        matrix of integers encoded on 1, 2, 4 or 8 bytes. Its sizes are X ones.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Описание</title>
+        <title>説明</title>
         <para>
-            Эти функции преобразуют и хранят данные в виде одно-, двух- или четырёхбайтных целых чисел.
-            Эти типы данных особо полезны для хранения больших объектов таких, как изображения,
-            длинные сигналы,...
+            1,2,4または8バイト整数に変換,保存します.
+            これらのデータ型は画像,長い信号,...など大きなオブジェクトを
+            保存する際に特に有用です.
         </para>
         <warning>
             <para>
@@ -167,7 +167,7 @@
         </para>
     </refsection>
     <refsection role="examples">
-        <title>Примеры</title>
+        <title>例</title>
         <para>
             Rounding to 0 and wrapping, and special values:
         </para>
@@ -300,7 +300,7 @@ typeof(i)
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>Смотрите также</title>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="iconvert">iconvert</link>
@@ -320,7 +320,7 @@ typeof(i)
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>История</title>
+        <title>履歴</title>
         <revhistory>
             <revision>
                 <revnumber>6.0</revnumber>
@@ -334,13 +334,13 @@ typeof(i)
                         </listitem>
                         <listitem>
                             <table>
-                                <tr><th>This</th>               <th>is now</th>     <th>instead of</th></tr>
+                                <tr><th>This</th>           <th>is now</th>     <th>instead of</th></tr>
                                 <tr><td>int8([-%inf, %inf])</td><td>[-128, 127]</td><td>[0, 0]</td></tr>
                                 <tr><td>int16([-%inf, %inf])</td><td>[-32768, 32767]</td><td>[0, 0]</td></tr>
-                                <tr><td>int32(%inf)</td>        <td>2147483647</td> <td>-2147483648</td></tr>
-                                <tr><td>uint8(%inf)</td>        <td>255</td>        <td>0</td></tr>
-                                <tr><td>uint16(%inf)</td>       <td>65535</td>      <td>0</td></tr>
-                                <tr><td>uint32(%inf)</td>       <td>4294967295</td> <td>0</td></tr>
+                                <tr><td>int32(%inf)</td>    <td>2147483647</td> <td>-2147483648</td></tr>
+                                <tr><td>uint8(%inf)</td>    <td>255</td>        <td>0</td></tr>
+                                <tr><td>uint16(%inf)</td>   <td>65535</td>      <td>0</td></tr>
+                                <tr><td>uint32(%inf)</td>   <td>4294967295</td> <td>0</td></tr>
                             </table>
                         </listitem>
                     </itemizedlist>
@@ -349,4 +349,3 @@ typeof(i)
         </revhistory>
     </refsection>
 </refentry>
-
