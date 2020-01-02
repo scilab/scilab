@@ -17,5 +17,5 @@ if (isdef("genlib") == %f) then
     exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 //------------------------------------
-//genlib("consolelib","SCI/modules/console/macros",%f,%t);
+genlib("consolelib","SCI/modules/console/macros",%f,%t);
 //------------------------------------
