@@ -4,6 +4,12 @@
 //
 // This file is distributed under the same license as the Scilab package.
 //
+if or(getscilabmode()==["STD" "NW"]) then
+    messagebox(_("Press &lt;enter> in the console to proceed step by step"))
+end
+mode(4)
+//To quit this demo, enter CTRL+C, then type "abort"
+
 A=diag([2,3,4]);
 B=[1 0;0 1;0 0];
 C=[1 -1 0];
@@ -15,8 +21,6 @@ Mp=[p,1-%z;1,%z*p]          //2 x 2 polynomial matrix
 Sl=syslin("c",A,B,C,D,x0)   //Standard state-space linear system
 F=Mp/poly([1+%i 1-%i 1],"z")   //rational matrix
 
-mode(7)
-//To quit this demo, enter CTRL+C, then type "abort"
 [ma,na] = size(A);
 //                  OPERATIONS
 v=1:5;W=v'*v                 //constant matrix multiplication

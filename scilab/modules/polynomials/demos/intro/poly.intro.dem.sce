@@ -4,8 +4,11 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
+if or(getscilabmode()==["STD" "NW"]) then
+    messagebox(_("Press &lt;enter> in the console to proceed step by step"))
+end
 m = mode();
-mode(7);
+mode(4);
 
 // This is a small introduction to the polynomials objects in
 // Scilab.
@@ -89,12 +92,6 @@ mode(m);
 
 // clear variables
 
-clear       n; clear         d;
-clear  typeof; clear       p11; clear        p9; clear %p_r_p;
-clear    lnum; clear         g; clear   factors; clear roots1;
-clear   comp1; clear companion; clear  theroots; clear p10;
-clear derivat; clear    coeff1; clear are12diff; clear are12equal;
-clear      p8; clear        p7; clear        p6; clear p5;
-clear      p4; clear  mymatrix; clear        p3; clear myroots;
-clear      p2; clear   mycoeff; clear        p1; clear x;
-clear       m;
+clear d g lnum m n x p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 %p_r_p 
+clear comp1 mymatrix myroots roots1 mycoeff theroots 
+clear companion derivat factors typeof coeff1 are12diff are12equal

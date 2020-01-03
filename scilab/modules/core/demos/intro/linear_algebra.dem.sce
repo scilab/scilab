@@ -4,7 +4,10 @@
 //
 // This file is distributed under the same license as the Scilab package.
 //
-mode(7)
+if or(getscilabmode()==["STD" "NW"]) then
+    messagebox(_("Press &lt;enter> in the console to proceed step by step"))
+end
+mode(4)
 //To quit this demo, enter CTRL+C, then type "abort"
 
 //               LINEAR ALGEBRA
