@@ -122,6 +122,7 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 
     subplot(1,2,1);
     plot3d(xi,yi,zi,theta,alpha,"Re(z)@Im(z)@",[2 6 4]);
+    gce().color_mode = color("magenta");
     xtitle("Im("+StrFunc+"(z))");
 
     // plot Re(z) + the real restriction
@@ -129,6 +130,7 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 
     subplot(1,2,2);
     plot3d(xr,yr,zr,theta,alpha,"Re(z)@Im(z)@",[ 2 6 4]);
+    gce().color_mode = color("magenta");
     xtitle("Re("+StrFunc+"(z))");
 
     // real function in yellow
@@ -145,7 +147,7 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
         captions(yellow_line, "the real "+StrFunc+" function", "lower_caption");
     end
 
-
+    isoview(gcf(), "off");
 
     drawnow();
 
