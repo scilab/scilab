@@ -116,6 +116,7 @@ Feature changes and additions
   - When there is no solution, [] is returned.
   - When there is an infinite number of solutions, the err flag has a specific value.
   - The output size gets the input's one.
+<<<<<<< HEAD
 * `csvRead` and `csvTextScan` are now implemented without extra copies.
 * `editvar()` GUI support copy-paste of strings removing quotes.
 * calendar() can now display formated calendars.
@@ -129,6 +130,13 @@ Feature changes and additions
   - `riccati(H)` and `riccati(H,E)` syntaxes added, to describe the Riccati equation through its Hamiltonian H or (E,H) pencil.
   - The residual is returned as new 3rd output argument.
   - When no solution is found, `X=[]` | `X1=[]` is returned instead of yielding an error.
+=======
+* `hallchart()` is upgraded:
+  - The default set of modules is set automatically, according to data bounds.
+  - Handles of the grids and labels are returned. Post-processing them become easy.
+  - Named colors accepted ; better default colors.
+  - Improved placement of labels.
+>>>>>>> 839d040c90b... * Bug 16292 fixed: hallchart() debugged & improved
 
 
 Help pages:
@@ -307,6 +315,7 @@ Bug Fixes
 * [#16273](http://bugzilla.scilab.org/show_bug.cgi?id=16273): `calendar()` had no formated display mode.
 * [#16275](http://bugzilla.scilab.org/show_bug.cgi?id=16275): `fsolve(x0, fun, tol)` no longer took `tol` into account.
 * [#16290](http://bugzilla.scilab.org/show_bug.cgi?id=16290): The `cn`, `dn`, `ns`, `nc` and `nd` Jacobi elliptic functions were not available.
+* [#16292](http://bugzilla.scilab.org/show_bug.cgi?id=16292): `hallchart()` had bugs and a poor rendering.
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot()`, `colorbar()` displayed an empty ungraduated color bar.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
