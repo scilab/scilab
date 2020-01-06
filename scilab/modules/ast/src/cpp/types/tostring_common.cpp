@@ -294,17 +294,14 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
             iWidth--;
         }
 
-        // append trailing zeros, if applicable
-        if (std::atof(str.data()) != fabs(_dblVal) && _pDF->bPrintTrailingZeros == true)
+        // trim or append trailing zeros, if applicable
+        if (_pDF->bPrintPoint == false)
         {
-            if (_pDF->bPrintPoint)
-            {
-                str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()))-1, '0');
-            }
-            else
-            {
-                iWidth = 1+str.length();
-            }
+            iWidth = 1+str.length();
+        }
+        else if (std::atof(str.data()) != fabs(_dblVal) && _pDF->bPrintTrailingZeros == true)
+        {
+            str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()))-1, '0');
         }
 
         wchar_t* pwstData = to_wide_string(str.data());
