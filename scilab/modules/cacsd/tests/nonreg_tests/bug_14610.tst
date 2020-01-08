@@ -1,24 +1,20 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2012 - INRIA - Serge Steer
+// Copyright (C) 2020 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- CLI SHELL MODE -->
-// <-- ENGLISH IMPOSED -->
 // <-- NO CHECK REF -->
 //
-//
-// <-- Non-regression test for bug 11092 -->
+// <-- Non-regression test for bug 14610 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=11092 
+// http://bugzilla.scilab.org/14610
 //
 // <-- Short Description -->
-//Incorrect argument check in h_inf
+// x = riccati(h,e) yielded an error
 
-
-G=syslin("c",1/%s^3);
-[P,r]=macglov(G);
-assert_checktrue(execstr("[K,ro]=h_inf(P,r,0,1,30)","errcatch")==0); 
+h = rand(2,2);
+e = rand(2,2);
+assert_checkequal(execstr("x = riccati(h, e)", "errcatch"), 0);

@@ -109,7 +109,7 @@ X=F'*X*F-F'*X*G1*((G2+G1'*X*G1)^-1)*G1'*X*F+H
             <literal>(F,G1)</literal>は可安定, <literal>(C,F)</literal> は
             <literal>H</literal>のフルランク分解 <literal>C'*C</literal>を
             用いて可検出であることとする.
-            より適する場合, <literal>ric_desc</literal> を使用すること.
+            より適する場合, <literal>riccati()</literal> を使用すること.
         </para>
         <para>
             C, D は対象行列である.
@@ -159,9 +159,6 @@ norm(X2-X,1)
         <simplelist type="inline">
             <member>
                 <link linkend="riccati">riccati</link>
-            </member>
-            <member>
-                <link linkend="ric_desc">ric_desc</link>
             </member>
             <member>
                 <link linkend="schur">schur</link>

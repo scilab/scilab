@@ -33,6 +33,6 @@ function [Z,H]=gfare(Sl)
     Ar=A-B*Si*D'*C;
     H=[Ar',-C'*Ri*C;
     -B*Si*B',-Ar];
-    Z=ric_desc(H);
+    Z=riccati(H);
     H=-(B*D'+Z*C')*Ri
 endfunction

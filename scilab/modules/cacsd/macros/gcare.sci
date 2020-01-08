@@ -28,6 +28,6 @@ function [X,F]=gcare(Sl)
     Ar=A-B*Si*D'*C;
     H=[Ar,-B*Si*B';
     -C'*inv(R)*C,-Ar'];
-    X=ric_desc(H);
+    X=riccati(H);
     F=-Si*(D'*C+B'*X)
 endfunction

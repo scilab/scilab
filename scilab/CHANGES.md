@@ -125,6 +125,10 @@ Feature changes and additions
   - return distinct entities in their initial order (rather than sorted), with the `"keepOrder"` option.
   - consider all `Nan` values as the same one, with the `"uniqueNan"` option.
 * `ellipj()` function introduced, to compute the `sn`, `cn`, `dn`, `ns`, `nc` and `nd` Jacobi elliptic functions.
+* `riccati()` is upgraded:
+  - `riccati(H)` and `riccati(H,E)` syntaxes added, to describe the Riccati equation through its Hamiltonian H or (E,H) pencil.
+  - The residual is returned as new 3rd output argument.
+  - When no solution is found, `X=[]` | `X1=[]` is returned instead of yielding an error.
 
 
 Help pages:
@@ -159,6 +163,7 @@ Obsolete functions or features
 * `setPreferencesValue` will be removed from Scilab 6.1.x. Please use `xmlSetValues` instead.
 * `%sn()` is obsolete. Please use `ellipj()` instead.
 * `sysdiag()` is obsolete. Please use `blockdiag()` instead.
+* `ric_desc` is obsolete and will be removed from Scilab 6.1.x. Please use `riccati` instead.
 
 
 Removed Functions
@@ -200,6 +205,7 @@ Bug Fixes
 * [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
 * [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
 * [#14606](http://bugzilla.scilab.org/show_bug.cgi?id=14606): Memory used by variables returned by `[names,mem]=who()` was always zero.
+* [#14610](http://bugzilla.scilab.org/show_bug.cgi?id=14610): `x = ric_desc(H,E)` always yielded an error. [x1,x2,residual] = ric_desc(..) returned a wrong `residual` value.
 * [#14642](http://bugzilla.scilab.org/show_bug.cgi?id=14642): No more "\r" carriage return with printf.
 * [#14741](http://bugzilla.scilab.org/show_bug.cgi?id=14741): The syntax `[m,e]=log2(x)` was not documented. As public function `frexp()` was in duplicate with `[m,e]=log2(x)`.
 * [#14746](http://bugzilla.scilab.org/show_bug.cgi?id=14746): Tiny numbers were sometimes displayed as 0.
@@ -213,6 +219,7 @@ Bug Fixes
 * [#15269](http://bugzilla.scilab.org/show_bug.cgi?id=15269): `xgetech` was poor and stiff compared to any combination of `gca()` properties `.axes_bounds`, `.data_bounds`, `.log_flags`, and `.margins`. It is removed.
 * [#15271](http://bugzilla.scilab.org/show_bug.cgi?id=15271): `bitget` needed to be upgraded.
 * [#15321](http://bugzilla.scilab.org/show_bug.cgi?id=15321): `lu()` was leaking memory.
+* [#15350](http://bugzilla.scilab.org/show_bug.cgi?id=15350): `ric_desc()` should be merged into `riccati()`.
 * [#15368](http://bugzilla.scilab.org/show_bug.cgi?id=15368): `freson()` silently returned frequencies not corresponding to a maximum, or returned [] instead of some still computable maxima frequencies.
 * [#15392](http://bugzilla.scilab.org/show_bug.cgi?id=15392): `comet` and `comet3d` did not allow specifying colors with colors names.
 * [#15425](http://bugzilla.scilab.org/show_bug.cgi?id=15425): The Kronecker product `a.*.b` failed when `a` or `b` or both are hypermatrices, with one or both being polynomials or rationals.

@@ -16,7 +16,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="ric_desc">
     <refnamediv>
         <refname>ric_desc</refname>
-        <refpurpose>リカッチ方程式</refpurpose>
+        <refpurpose>リカッチ方程式 <emphasis role="bold">(obsolete)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
@@ -49,6 +49,12 @@
     </refsection>
     <refsection>
         <title>説明</title>
+        <warning>
+            <para>
+                This function is obsolete and will be removed from Scilab 6.1.x. Please use
+                <literal>riccati(H)</literal> or <literal>riccati(H,E)</literal> instead.
+            </para>
+        </warning>
         <para>
             ハミルトン行列を入力とするリカッチソルバ.
         </para>
@@ -116,5 +122,17 @@ E=[eye(n,n),G;               H=[A, 0*ones(n,n);
                 <link linkend="riccati">riccati</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <literal>ric_desc()</literal> is declared obsolete. <literal>riccati()</literal>
+                    replaces it.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

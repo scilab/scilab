@@ -16,11 +16,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="ric_desc">
     <refnamediv>
         <refname>ric_desc</refname>
-        <refpurpose>Riccati equation</refpurpose>
+        <refpurpose>Riccati equation <emphasis role="bold">(obsolete)</emphasis></refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>X=ric_desc(H [,E))
+        <synopsis>
+            X=ric_desc(H [,E))
             [X1,X2,zero]=ric_desc(H [,E])
         </synopsis>
     </refsynopsisdiv>
@@ -49,6 +50,12 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            <para>
+                This function is obsolete and will be removed from Scilab 6.1.x. Please use
+                <literal>riccati(H)</literal> or <literal>riccati(H,E)</literal> instead.
+            </para>
+        </warning>
         <para>
             Riccati solver with hamiltonian matrices as inputs.
         </para>
@@ -122,5 +129,17 @@ x=ric_desc(h)
                 <link linkend="riccati">riccati</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    <literal>ric_desc()</literal> is declared obsolete. <literal>riccati()</literal>
+                    replaces it.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

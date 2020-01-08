@@ -41,6 +41,7 @@ function [X1,X2,zero]=ric_desc(H,E)
     //
     //  (solution X is also given by X=riccati(A,G,C,'d')  with G=B/R*B')
     //!
+    warnobsolete("riccati()", "6.1.x")
 
     [LHS,RHS]=argn(0);
     if RHS==1 then

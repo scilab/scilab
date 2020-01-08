@@ -32,6 +32,6 @@ function [gm]=fspecg(g)
     b=-b;
     h=[-a',c'*c;
     0*eye(a),a];
-    x=ric_desc(h);h=[]
+    x=riccati(h);h=[]
     gm=syslin("c",-a'+c'*c*x,-c',b'-d'*c*x,d')';
 endfunction

@@ -1,4 +1,3 @@
-//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Serge Steer
@@ -7,6 +6,9 @@
 // =============================================================================
 
 // <-- Non-regression test for bug 4596 -->
+//
+//<-- CLI SHELL MODE -->
+//<-- NO CHECK REF -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=4596

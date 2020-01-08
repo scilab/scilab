@@ -395,7 +395,7 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
         indic=1;test=1;
     end
     if indic ==0 then
-        [X1,X2,errx]=ric_desc(H);
+        [X1,X2,errx]=riccati(H);
         if errx > 1.d-4 then
             mprintf(gettext("%s: Riccati solution inaccurate: equation error = %g.\n"),"h_inf",errx);
         end
@@ -420,7 +420,7 @@ function [P6,Kinf,tv,Uc#i,Yc#i]=h_test(P2,r,mu)
             indic=1 ;test=1;
         end
         if indic==0 then
-            [Y1,Y2,erry]=ric_desc(J);
+            [Y1,Y2,erry]=riccati(J);
             if erry > 1.d-4 then
                 mprintf(gettext("%s: Riccati solution inaccurate: equation error = %g.\n"),"h_inf",erry);
             end
@@ -520,7 +520,7 @@ function [Sk,polesH,polesJ]=h_contr(P,r,mu,U2i,Y2i)
         mprintf(gettext("%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"),"h_inf","H");
 
     end
-    [X1,X2,errx]=ric_desc(H);
+    [X1,X2,errx]=riccati(H);
     if errx > 1.d-4 then
         mprintf(gettext("%s: Riccati solution inaccurate: equation error = %g.\n"),"h_inf",errx);
     end
@@ -537,7 +537,7 @@ function [Sk,polesH,polesJ]=h_contr(P,r,mu,U2i,Y2i)
     if dy < 1.d-6 then
         mprintf(gettext("%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"),"h_inf","J");
     end
-    [Y1,Y2,erry]=ric_desc(J);
+    [Y1,Y2,erry]=riccati(J);
     if erry > 1.d-4 then
         mprintf(gettext("%s: Riccati solution inaccurate: equation error = %g.\n"),"h_inf",erry);
     end
