@@ -110,7 +110,7 @@
         </para>
         <para>
             Если вы желаете раскрасить стрелки в зависимости от интенсивности
-            поля, то используйте <function>champ1</function>.
+            поля, то используйте <literal>gce().colored = "on"</literal>.
         </para>
         <para>
             Введите команду <code>champ()</code> для просмотра демонстрации.
@@ -138,13 +138,16 @@ champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="champ1">champ1</link>
+                <link linkend="champ_properties">champ_properties</link>
             </member>
             <member>
                 <link linkend="fchamp">fchamp</link>
             </member>
             <member>
-                <link linkend="plot2d">plot2d</link>
+                <link linkend="xarrows">xarrows</link>
+            </member>
+            <member>
+                <link linkend="polyline_properties">Arrowed polyline</link>
             </member>
         </simplelist>
     </refsection>

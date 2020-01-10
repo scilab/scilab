@@ -204,9 +204,6 @@ a.data_bounds=[-5,-5;5,5];
                 <link linkend="champ">champ</link>
             </member>
             <member>
-                <link linkend="champ1">champ1</link>
-            </member>
-            <member>
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>

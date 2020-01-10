@@ -418,12 +418,6 @@ a.data_bounds=[-5,-5;5,5];
 
             <member>
 
-                <link linkend="champ1">champ1</link>
-
-            </member>
-
-            <member>
-
                 <link linkend="graphics_entities">graphics_entities</link>
 
             </member>

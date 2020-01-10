@@ -147,6 +147,7 @@ API modification
 Obsolete functions or features
 ------------------------------
 * `frexp` becomes an internal. Please use `[m,e]=log2(x)` instead.
+* `champ1()` is obsolete. Please use `champ.colored` instead.
 
 
 Removed Functions
@@ -167,6 +168,7 @@ Bug Fixes
 ### Bugs fixed in 6.1.0:
 * [#2694](http://bugzilla.scilab.org/show_bug.cgi?id=2694): `bitget` did not accept positive integers of types int8, int16 or int32.
 * [#7724](http://bugzilla.scilab.org/show_bug.cgi?id=7724): When a figure is created in .auto_resize="on" mode, its .axes_size sets its .figure_size accordingly, not the reverse. But this was not documented.
+* [#7765](http://bugzilla.scilab.org/show_bug.cgi?id=7765): `champ1()` is useless. `champ().colored` is available for a long time. 
 * [#8307](http://bugzilla.scilab.org/show_bug.cgi?id=8307): `list2vec()` and `vec2list()` were located in the [optimization] module instead of in [data_structures], and were missing in the `See also` section of `list()`.
 * [#8784](http://bugzilla.scilab.org/show_bug.cgi?id=8784): Automatic self-adjusting blocks `SCALE_CSCOPE` & `SCALE_CMSCOPE` in Xcos.
 * [#5512](http://bugzilla.scilab.org/show_bug.cgi?id=5512): `disp()` puzzlingly displayed arguments in reverse order.

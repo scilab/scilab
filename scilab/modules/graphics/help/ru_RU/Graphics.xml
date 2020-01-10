@@ -110,20 +110,6 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="champ1">champ1</link>
-                </term>
-                <listitem>
-                    <para>Двумерное векторное поле с цветными стрелками</para>
-                    <para>
-                        <emphasis role="bold">Пример:</emphasis>
-                    </para>
-                    <para>
-                        <scilab:image>champ1();</scilab:image>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>
                     <link linkend="fchamp">fchamp</link>
                 </term>
                 <listitem>

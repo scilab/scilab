@@ -6,7 +6,7 @@
 
         <refname>champ1</refname>
 
-        <refpurpose>色付の矢印を有する2次元ベクトルフィールドのプロット</refpurpose>
+        <refpurpose>色付の矢印を有する2次元ベクトルフィールドのプロット <emphasis role="bold">(obsolete)</emphasis></refpurpose>
 
     </refnamediv>
 
@@ -171,6 +171,12 @@
     <refsection>
 
         <title>説明</title>
+        <para>
+            <warning>
+                <literal>champ1() is obsolete and will be removed from Scilab 6.1.x</literal>.
+                Please use the <literal>champ().colored</literal> property instead.
+            </warning>
+        </para>
 
         <para>
 
@@ -284,6 +290,17 @@ champ1(x,y,fx',fy'); //転置したfxおよびfyを使用
 
         </simplelist>
 
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    champ1() is declared obsolete. The champ().colored property replaces it.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 
 </refentry>

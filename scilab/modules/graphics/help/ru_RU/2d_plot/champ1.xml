@@ -3,7 +3,7 @@
     <refnamediv>
         <refname>champ1</refname>
         <refpurpose>
-            двумерный график векторного поля с цветными стрелками
+            двумерный график векторного поля с цветными стрелками <emphasis role="bold">(obsolete)</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -96,6 +96,12 @@
     <refsection>
         <title>Описание</title>
         <para>
+            <warning>
+                <literal>champ1() is obsolete and will be removed from Scilab 6.1.x</literal>.
+                Please use the <literal>champ().colored</literal> property instead.
+            </warning>
+        </para>
+        <para>
             <function>champ1</function> рисует двумерное векторное поле с
             цветными стрелками. Цвет стрелок зависит от интенсивности поля.
         </para>
@@ -129,5 +135,16 @@ champ1(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
                 <link linkend="plot2d">plot2d</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    champ1() is declared obsolete. The champ().colored property replaces it.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

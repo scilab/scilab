@@ -61,12 +61,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>champ1</term>
-                <listitem>
-                    <para>campo vetorial 2d com setas coloridas</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>fchamp</term>
                 <listitem>
                     <para>campo direcional de uma EDO 2d de primeira ordem</para>

@@ -26,6 +26,7 @@
 #include "BuildObjects.h"
 #include "DefaultCommandArg.h"
 #include "Champ.h"
+#include "sciprint.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
@@ -36,6 +37,9 @@ int sci_champ (char *fname, void *pvApiCtx)
 /*--------------------------------------------------------------------------*/
 int sci_champ1 (char *fname, void *pvApiCtx)
 {
+    sciprint(_("%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"), _("Warning"), "champ1()", "6.1.x");
+    sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "champ().colored");
+
     return sci_champ_G(fname, C2F(champ1), pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/

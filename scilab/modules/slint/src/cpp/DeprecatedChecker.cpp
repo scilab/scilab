@@ -94,6 +94,7 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     std::unordered_map<std::wstring, std::wstring> map;
 
     // Scilab 6.0.x => 6.1.0
+    map.emplace(L"champ1", L"champ.colored");
     map.emplace(L"dirname", L"fileparts");
     map.emplace(L"_d", L"_");
     map.emplace(L"dgettext", L"gettext");

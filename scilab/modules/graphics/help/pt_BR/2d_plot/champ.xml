@@ -98,7 +98,7 @@
             das setas é proporcional é proporcional à intensidade do campo.
         </para>
         <para>Se você quiser setas coloridas com a cor das setas dependendo da
-            intensidade do campo, use <literal>champ1</literal>.
+            intensidade do campo, use <literal>gce().colored = "on"</literal>.
         </para>
         <para>
             Entre com o comando <literal>champ()</literal> para visualizar uma
@@ -119,13 +119,13 @@ champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
-                <link linkend="champ1">champ1</link>
-            </member>
-            <member>
                 <link linkend="fchamp">fchamp</link>
             </member>
             <member>
-                <link linkend="plot2d">plot2d</link>
+                <link linkend="xarrows">xarrows</link>
+            </member>
+            <member>
+                <link linkend="polyline_properties">Arrowed polyline</link>
             </member>
         </simplelist>
     </refsection>

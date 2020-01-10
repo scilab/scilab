@@ -2,8 +2,8 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="champ1">
     <refnamediv>
         <refname>champ1</refname>
-        <refpurpose>2D vector field plot with colored
-            arrows
+        <refpurpose>
+            2D vector field plot with colored arrows <emphasis role="bold">(obsolete)</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -93,6 +93,12 @@
     <refsection>
         <title>Description</title>
         <para>
+            <warning>
+                <literal>champ1() is obsolete and will be removed from Scilab 6.1.x</literal>.
+                Please use the <literal>champ().colored</literal> property instead.
+            </warning>
+        </para>
+        <para>
             <function>champ1</function> draws a 2D vector field with colored
             arrows. The color of the arrows depends on the intensity of the
             field.
@@ -149,5 +155,16 @@ champ1(x,y,fx',fy'); //here we have transposed fx and fy
                 <link linkend="plot2d">plot2d</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    champ1() is declared obsolete. The champ().colored property replaces it.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

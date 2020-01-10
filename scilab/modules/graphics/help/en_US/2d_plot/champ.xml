@@ -109,7 +109,7 @@
         </para>
         <para>
             If you want colored arrows with the color of the arrows depending on
-            the intensity of the field, use <function>champ1</function>.
+            the intensity of the field, set <literal>gce().colored = "on"</literal>.
         </para>
         <para>
             Enter the command <code>champ()</code> to see a demo.
@@ -159,13 +159,13 @@ champ(x,y,fx',fy'); //here we have transposed fx and fy
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="champ1">champ1</link>
-            </member>
-            <member>
                 <link linkend="fchamp">fchamp</link>
             </member>
             <member>
-                <link linkend="plot2d">plot2d</link>
+                <link linkend="xarrows">xarrows</link>
+            </member>
+            <member>
+                <link linkend="polyline_properties">Arrowed polyline</link>
             </member>
         </simplelist>
     </refsection>

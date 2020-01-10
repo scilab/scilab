@@ -196,7 +196,7 @@
 
         <para>フィールドのインテンシティに依存した色を有する色付の矢印を
 
-            使用したい場合,<literal>champ1</literal>を使用してください.
+            使用したい場合,<literal>gce().colored = "on"</literal>を使用してください.
 
         </para>
 
@@ -276,9 +276,10 @@ champ(x,y,fx',fy'); //転置した fx および fyを使用
             </member>
 
             <member>
-
-                <link linkend="plot2d">plot2d</link>
-
+                <link linkend="xarrows">xarrows</link>
+            </member>
+            <member>
+                <link linkend="polyline_properties">Arrowed polyline</link>
             </member>
 
         </simplelist>
