@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 15:52+0000\n"
+"PO-Revision-Date: 2020-01-20 15:52+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "Language: uk\n"
@@ -43,6 +43,280 @@ msgstr "Будь ласка, вкажіть наявний каталог вхі
 
 msgid "About_M2SCI_tools"
 msgstr "Про_інструменти_M2SCI"
+
+#, c-format
+msgid ""
+"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра: елементи комірок мають бути масивами "
+"символів.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: цю можливість ще не реалізовано.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Cell expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра: слід використовувати тип комірки.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів: слід використовувати «string».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s, %s, '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати %s, %s, "
+"%s, «%s», «%s» або «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input arguments: Dimensions given as first argument do not match "
+"specified cell contents.\n"
+msgstr ""
+"%s: помилкові вхідні параметри: розмірності, вказані за допомогою першого "
+"параметра, не відповідають вказаному вмісту комірок.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgstr "%s: цю можливість не реалізовано: підтримка гіперматриць.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"рядків.\n"
+
+#, c-format
+msgid "%s: Wrong size for '%s': Vector expected.\n"
+msgstr "%s: помилкова розмірність «%s»: слід використовувати вектор.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s: цю можливість не реалізовано: %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for affectation to '%s'.\n"
+msgstr "%s: помилкове надання значення «%s».\n"
+
+#, c-format
+msgid "%s: '%s' only used in 3d mode."
+msgstr "%s: «%s» використовується лише у режимі 3d."
+
+#, c-format
+msgid "%s: This feature has not been implemented: Argument of type %d.\n"
+msgstr "%s: цю можливість не реалізовано: параметр типу %d.\n"
+
+msgid "Close"
+msgstr "Закрити"
+
+#, c-format
+msgid "%s: '%s' ignored.\n"
+msgstr "%s: «%s» проігноровано.\n"
+
+#, c-format
+msgid "%s: All windows deleted.\n"
+msgstr "%s: всі вікна вилучено.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати квадратну "
+"матрицю.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати %s, %s, "
+"«%s» або «%s».\n"
+
+msgid "Jan"
+msgstr "січ"
+
+msgid "Feb"
+msgstr "лют"
+
+msgid "Mar"
+msgstr "бер"
+
+msgid "Apr"
+msgstr "кві"
+
+msgid "May"
+msgstr "тра"
+
+msgid "Jun"
+msgstr "чер"
+
+msgid "Jul"
+msgstr "лип"
+
+msgid "Aug"
+msgstr "сер"
+
+msgid "Sep"
+msgstr "вер"
+
+msgid "Oct"
+msgstr "жов"
+
+msgid "Nov"
+msgstr "лис"
+
+msgid "Dec"
+msgstr "гру"
+
+#, c-format
+msgid "%s: Not yet implemented.\n"
+msgstr "%s: ще не реалізовано.\n"
+
+#, c-format
+msgid "%s: Cannot open file '%s'.\n"
+msgstr "%s: не вдалося відкрити файл «%s».\n"
+
+#, c-format
+msgid "%s: Unknown type.\n"
+msgstr "%s: невідомий тип.\n"
+
+#, c-format
+msgid "%s: Unknown type '%s': IGNORED.\n"
+msgstr "%s: невідомий тип «%s»: проігноровано.\n"
+
+#, c-format
+msgid "%s: %s is not implemented.\n"
+msgstr "%s: %s не реалізовано.\n"
+
+#, c-format
+msgid ""
+"%s: %s Scilab function does not work with more than one row variables.\n"
+msgstr "%s: функція Scilab %s не працює з декількома рядковими змінними.\n"
+
+#, c-format
+msgid "%s: The format '%s' is unknown.\n"
+msgstr "%s: формат «%s» не належить до відомих.\n"
+
+#, c-format
+msgid "%s: The format '%s' is not yet handled.\n"
+msgstr "%s: обробки формату «%s» ще не передбачено.\n"
+
+#, c-format
+msgid "%s: End of file reached before all matrix is read.\n"
+msgstr ""
+"%s: читання матриці було перервано несподіваним завершенням файла даних.\n"
+
+#, c-format
+msgid "%s: No equivalent for '%s' property.\n"
+msgstr "%s: у властивості «%s» немає еквівалентів.\n"
+
+#, c-format
+msgid "%s: No minor grid in Scilab.\n"
+msgstr "%s: у Scilab не передбачено додаткової ґратки.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s» або «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"вектор з рядків Matlab.\n"
+
+#, c-format
+msgid "%s: Unhandled class '%s'.\n"
+msgstr "%s: непридатний для обробки клас «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer value expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати додатне "
+"ціле значення.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: '%s' option ignored.\n"
+msgstr "%s: параметр «%s» проігноровано.\n"
+
+#, c-format
+msgid "%s: Unknown line style found in '%s' -> set to 6.\n"
+msgstr "%s: у «%s» виявлено невідомий стиль лінії -> встановлено значення 6.\n"
+
+#, c-format
+msgid "%s: Unknown color found in '%s' -> set to black.\n"
+msgstr "%s: у «%s» виявлено невідомий колір -> встановлено чорний.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: pencil is not diagonalizable.\n"
+msgstr "%s: діагоналізація неможлива.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип вектора-"
+"стовпчика.\n"
+
+#, c-format
+msgid "%s: This particular case is not implemented.\n"
+msgstr "%s: цей частковий випадок не реалізовано.\n"
+
+#, c-format
+msgid "%s: '%s' not implemented.\n"
+msgstr "%s: «%s» не реалізовано.\n"
+
+#, c-format
+msgid "%s: End of string reached before data has been read.\n"
+msgstr "%s: читання даних було перервано несподіваним завершенням рядка.\n"
+
+#, c-format
+msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
+msgstr "%s: не вдалося відкрити ні «%s», ні «%s», ні «%s».\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: The normalization m - 1 factor is zero.\n"
+msgstr "%s: коефіцієнт нормування m - 1 дорівнює нулеві.\n"
+
+#, c-format
+msgid "%s: The normalization n - 1 factor is zero.\n"
+msgstr "%s: коефіцієнт нормування n - 1 дорівнює нулеві.\n"
 
 msgid "Not yet implemented."
 msgstr "Ще не реалізовано."
@@ -402,9 +676,6 @@ msgstr "Інструмент перетворення команд Matlab на �
 msgid "File"
 msgstr "Файл"
 
-msgid "Close"
-msgstr "Закрити"
-
 msgid "?"
 msgstr "Довідка"
 
@@ -652,6 +923,14 @@ msgstr ""
 "Якщо %s не належатиме проміжку [-1,1],\n"
 "   дійсна частина виводу %s матиме протилежний знак щодо значення у Matlab."
 
+#, fuzzy, c-format
+msgid ""
+"If %s < -1, complex part of output of %s will be the opposite of Matlab one."
+msgstr ""
+"Якщо %s не перебуває у проміжку [-1,1]\n"
+"   комплексна частина вихідного значення %s матиме знак, протилежний до "
+"визначеного у Matlab."
+
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling використовується лише у режимі 3d."
 
@@ -872,13 +1151,11 @@ msgstr "%s: вихідне значення встановлено у значе
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
 
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
 #~ msgid "%s: %s module is not installed.\n"
 #~ msgstr "%s: модуль %s не встановлено.\n"
-
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
-#~ "до %d.\n"
 
 #~ msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 #~ msgstr ""

@@ -12,5 +12,6 @@
 
 //Load  functions libraries
 // =============================================================================
-load('SCI/modules/m2sci/macros/lib');
+load("SCI/modules/m2sci/macros/lib");
+load("SCI/modules/m2sci/macros/compat_functions/lib");
 

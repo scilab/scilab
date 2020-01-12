@@ -27,7 +27,7 @@ function [tree]=%a2sci(tree)
     // WARNING : translation does not work for codes like var=+'a'
     // In this case, user have to modify M-file and replace +'a' by 0+'a' for example
 
-    // Overloading functions in $SCI/modules/compatibility_functions/macros/:
+    // Overloading functions in $SCI/modules/m2sci/macros/compat_functions/:
     // - %b_a_s.sci
     // - %s_a_b.sci
 

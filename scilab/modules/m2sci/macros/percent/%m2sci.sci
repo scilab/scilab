@@ -16,7 +16,7 @@ function [tree]=%m2sci(tree)
     // Input: tree = Matlab operation tree
     // Output: tree = Scilab equivalent for tree
 
-    // Overloading functions in $SCI/modules/compatibility_functions/macros/:
+    // Overloading functions in $SCI/modules/m2sci/macros/compat_functions/:
     // - %b_m_s.sci
     // - %s_m_b.sci
 

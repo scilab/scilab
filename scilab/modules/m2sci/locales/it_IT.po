@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 15:52+0000\n"
+"PO-Revision-Date: 2020-01-20 15:52+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "Language: it\n"
@@ -43,6 +43,293 @@ msgstr ""
 
 msgid "About_M2SCI_tools"
 msgstr "Riguardo_strumenti_M2SCI"
+
+#, c-format
+msgid ""
+"%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
+msgstr ""
+"%s: L'argomento in ingresso è di tipo sbagliato: gli elementi delle cella "
+"devono essere array di caratteri.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: Questa caratteristica non è stata sviluppata.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Cell expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso è di tipo sbagliato: era attesa una cella.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso sono di tipo sbagliato: erano attese delle "
+"stringhe.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s, %s, '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore errato: era atteso %s, %s, %s, "
+"'%s', '%s' o '%s'\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input arguments: Dimensions given as first argument do not match "
+"specified cell contents.\n"
+msgstr ""
+"%s: Gli argomenti in ingresso sono sbagliati: le dimensioni inserite come "
+"primo argomento non corrispondono ai contenuti della cella specificata.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgstr ""
+"%s: La seguente caratteristica non è stata sviluppata: supporto per le "
+"ipermatrici.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"di stringhe.\n"
+
+#, c-format
+msgid "%s: Wrong size for '%s': Vector expected.\n"
+msgstr "%s: La dimensione di '%s' è sbagliata: era atteso un vettore.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s: La seguente caratteristica non è stata sviluppata: %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for affectation to '%s'.\n"
+msgstr "%s: Il valore è sbagliato per approssimazione presunta a '%s'\n"
+
+#, c-format
+msgid "%s: '%s' only used in 3d mode."
+msgstr "%s: '%s' è usato solo in modalità 3d"
+
+#, c-format
+msgid "%s: This feature has not been implemented: Argument of type %d.\n"
+msgstr ""
+"%s: Questa caratteristica non è stata sviluppata: argomento di tipo %d:\n"
+
+msgid "Close"
+msgstr "Chiudere"
+
+#, c-format
+msgid "%s: '%s' ignored.\n"
+msgstr "%s: '%s' è stato ignorato.\n"
+
+#, c-format
+msgid "%s: All windows deleted.\n"
+msgstr "%s: Tutte le finestre sono state eliminate.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"quadrata.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso %s, %s, "
+"'%s' o '%s'.\n"
+
+msgid "Jan"
+msgstr "Gen"
+
+msgid "Feb"
+msgstr "Feb"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "Apr"
+msgstr "Apr"
+
+msgid "May"
+msgstr "Mag"
+
+msgid "Jun"
+msgstr "Giu"
+
+msgid "Jul"
+msgstr "Lug"
+
+msgid "Aug"
+msgstr "Ago"
+
+msgid "Sep"
+msgstr "Set"
+
+msgid "Oct"
+msgstr "Ott"
+
+msgid "Nov"
+msgstr "Nov"
+
+msgid "Dec"
+msgstr "Dic"
+
+#, c-format
+msgid "%s: Not yet implemented.\n"
+msgstr "%s: Non ancora sviluppato.\n"
+
+#, c-format
+msgid "%s: Cannot open file '%s'.\n"
+msgstr "%s: Non è possibile aprire il file '%s'.\n"
+
+#, c-format
+msgid "%s: Unknown type.\n"
+msgstr "%s: Tipo sconosciuto.\n"
+
+#, c-format
+msgid "%s: Unknown type '%s': IGNORED.\n"
+msgstr "%s: Il tipo sconosciuto '%s' è stato ignorato.\n"
+
+#, c-format
+msgid "%s: %s is not implemented.\n"
+msgstr "%s: %s non è ancora sviluppato.\n"
+
+#, c-format
+msgid ""
+"%s: %s Scilab function does not work with more than one row variables.\n"
+msgstr ""
+"%s: La funzione di Scilab %s non lavora con più di una variabile di tipo "
+"riga.\n"
+
+#, c-format
+msgid "%s: The format '%s' is unknown.\n"
+msgstr "%s: Il formato '%s' è sconosciuto.\n"
+
+#, c-format
+msgid "%s: The format '%s' is not yet handled.\n"
+msgstr "%s: Il formato \"%s\" non è ancora gestito.\n"
+
+#, c-format
+msgid "%s: End of file reached before all matrix is read.\n"
+msgstr ""
+"%s: È stata raggiunta la fine del file prima che tutta la matrice fosse "
+"stata letta.\n"
+
+#, c-format
+msgid "%s: No equivalent for '%s' property.\n"
+msgstr "%s: Non c'è nessun equivalente per la proprietà '%s'.\n"
+
+#, c-format
+msgid "%s: No minor grid in Scilab.\n"
+msgstr "%s: Non c'è una griglia minore in Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s', "
+"'%s' o '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
+msgstr ""
+"%s L'argomento in ingresso #%d ha una grandezza sbagliata: era atteso un "
+"vettore di stringhe creato con Matlab.\n"
+
+#, c-format
+msgid "%s: Unhandled class '%s'.\n"
+msgstr "%s: La classe \"%s\" non è gestita.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer value expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un valore "
+"intero positivo.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
+
+#, c-format
+msgid "%s: '%s' option ignored.\n"
+msgstr "%s: l'opzione '%s' è stata ignorata.\n"
+
+#, c-format
+msgid "%s: Unknown line style found in '%s' -> set to 6.\n"
+msgstr ""
+"%s: È stato trovato in '%s' uno stile di linea sconosciuto -> impostato a "
+"6.\n"
+
+#, c-format
+msgid "%s: Unknown color found in '%s' -> set to black.\n"
+msgstr ""
+"%s: È stato trovato un colore sconosciuto in '%s' -> impostato a nero.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso %d o %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti di uscita  è sbagliato: era atteso da %d a "
+"%d.\n"
+
+#, c-format
+msgid "%s: pencil is not diagonalizable.\n"
+msgstr "%s: la matita non è diagonalizzabile.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
+"colonna.\n"
+
+#, c-format
+msgid "%s: This particular case is not implemented.\n"
+msgstr "%s: Questo caso particolare non è sviluppato.\n"
+
+#, c-format
+msgid "%s: '%s' not implemented.\n"
+msgstr "%s: '%s' non è sviluppato.\n"
+
+#, c-format
+msgid "%s: End of string reached before data has been read.\n"
+msgstr ""
+"%s: È stata raggiunta la fine della stringa prima che venissero letti dei "
+"dati.\n"
+
+#, c-format
+msgid "%s: Could not open neither '%s' nor '%s' nor '%s'.\n"
+msgstr "%s: Non è possibile aprire né '%s' né '%s' né '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+"%d.\n"
+
+#, c-format
+msgid "%s: The normalization m - 1 factor is zero.\n"
+msgstr "%s: Il fattore di normalizzazione m - 1 è zero.\n"
+
+#, c-format
+msgid "%s: The normalization n - 1 factor is zero.\n"
+msgstr "%s: Il fattore di normalizzazione n - 1 è zero.\n"
 
 msgid "Not yet implemented."
 msgstr "Non è ancora sviluppato."
@@ -410,9 +697,6 @@ msgstr "Strumento di conversione da Matlab a Scilab"
 msgid "File"
 msgstr "File"
 
-msgid "Close"
-msgstr "Chiudi"
-
 msgid "?"
 msgstr "?"
 
@@ -662,6 +946,14 @@ msgstr ""
 "Se %s è fuori da [-1,1]\n"
 "   la parte reale del risultato di %s sarà l'opposto di quello di Matlab."
 
+#, fuzzy, c-format
+msgid ""
+"If %s < -1, complex part of output of %s will be the opposite of Matlab one."
+msgstr ""
+"Se %s è fuori dall'intervallo [-1,1]\n"
+"\n"
+"   la parte complessa del risultato di %s sarà l'opposto di quella di Matlab."
+
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling è utilizzato solo in modalità 3D."
 
@@ -893,13 +1185,13 @@ msgstr "%s valore in uscita impostato a 'on'."
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
 
+#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+#~ "%d.\n"
+
 #~ msgid "%s: %s module is not installed.\n"
 #~ msgstr "%s: il modulo %s non è installato.\n"
-
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-#~ msgstr ""
-#~ "%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
-#~ "%d.\n"
 
 #~ msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 #~ msgstr ""

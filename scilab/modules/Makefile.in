@@ -286,7 +286,7 @@ DIST_SUBDIRS = prebuildjava threads output_stream arnoldi \
 	commons jvm types action_binding graphic_objects renderer gui \
 	graphic_export graphics optimization randlib interpolation \
 	sound overloading m2sci development_tools \
-	compatibility_functions helptools umfpack demo_tools \
+	helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms graph ast \
 	scinotes parallel modules_manager ui_data history_browser \
 	preferences xml external_objects slint coverage webtools \
@@ -622,7 +622,7 @@ SUBDIRS = prebuildjava threads output_stream arnoldi \
 	commons jvm types action_binding graphic_objects renderer gui \
 	graphic_export graphics optimization randlib interpolation \
 	sound overloading m2sci development_tools \
-	compatibility_functions helptools umfpack demo_tools \
+	helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
 	hdf5 graph ast scinotes parallel modules_manager ui_data \
 	history_browser preferences xml external_objects slint \

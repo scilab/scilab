@@ -78,7 +78,6 @@ begin
     ModulesXmlFileLines[i] := '<module name="windows_tools" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="statistics" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="arnoldi" activate="yes"/>'; i := i + 1;
-    ModulesXmlFileLines[i] := '<module name="compatibility_functions" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="m2sci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="mexlib" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="sound" activate="yes"/>'; i := i + 1;

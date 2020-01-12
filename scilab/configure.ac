@@ -2091,7 +2091,6 @@ modules/dynamic_link/Makefile
 modules/overloading/Makefile
 modules/javasci/Makefile
 modules/m2sci/Makefile
-modules/compatibility_functions/Makefile
 modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile

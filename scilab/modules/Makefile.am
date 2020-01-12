@@ -75,7 +75,6 @@ sound \
 overloading \
 m2sci \
 development_tools \
-compatibility_functions \
 helptools \
 umfpack \
 demo_tools \

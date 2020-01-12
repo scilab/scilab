@@ -11,7 +11,7 @@ libm2sci_la_rootdir = $(mydatadir)
 libm2sci_la_root_DATA =  license.txt 
 
 #### m2sci : Macros ####
-MACROSDIRSEXT =  macros/kernel macros/percent macros/sci_files
+MACROSDIRSEXT =  macros/kernel macros/percent macros/sci_files macros/compat_functions
 
 ####�m2sci : init scripts #### 
 libm2sci_la_etcdir = $(mydatadir)/etc

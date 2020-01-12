@@ -10,5 +10,5 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-add_help_chapter("Matlab to Scilab Conversion Tips",SCI+"/modules/m2sci/help/ru_RU",%T);
+add_help_chapter("Code Matlab => Scilab",SCI+"/modules/m2sci/help/ru_RU",%T);
 
