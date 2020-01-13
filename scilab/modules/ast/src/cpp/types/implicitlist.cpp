@@ -243,6 +243,11 @@ bool ImplicitList::compute()
                 return true;
             }
 
+            if ((dblEnd-dblStart)/dblStep > INT_MAX)
+            {
+                throw ast::InternalError(_W("Cannot allocate memory"));
+            }
+
             double dblVal = dblStart; // temp value
             double dblEps = NumericConstants::eps;
             double dblPrec = 2 * std::max(fabs(dblStart), fabs(dblEnd)) * dblEps;
@@ -269,7 +274,7 @@ bool ImplicitList::compute()
                 long long llStart   = convert_input(m_poStart);
                 long long llStep    = convert_input(m_poStep);
                 long long llEnd     = convert_input(m_poEnd);
-                
+
                 // step null
                 if (llStep == 0) // return []
                 {
