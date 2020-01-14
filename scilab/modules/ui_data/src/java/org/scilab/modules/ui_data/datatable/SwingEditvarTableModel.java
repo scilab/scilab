@@ -391,7 +391,8 @@ public class SwingEditvarTableModel extends DefaultTableModel {
                 }
             }
         }
-
+        
+        value = escapeQuotes(value);
         ((Vector) dataVector.elementAt(row)).setElementAt(value, col);
 
         if (col >= scilabMatrixColCount || row >= scilabMatrixRowCount) {
@@ -404,6 +405,29 @@ public class SwingEditvarTableModel extends DefaultTableModel {
         }
 
         return defaultAdded;
+    }
+
+    /**
+     * Escape quotes when applicable
+     * @param value user-provided string to set
+     * @return value without its first and last quotes
+     */
+    private Object escapeQuotes(Object value) {
+        if (EditVar.STRING.equals(type))
+        {
+            String strValue = value.toString();
+            if (strValue.length() > 1)
+            {
+                char first = strValue.charAt(0);
+                char last = strValue.charAt(strValue.length() - 1);
+                
+                if (first == last && (first == '\"' || first == '\''))
+                {
+                    value = strValue.substring(1, strValue.length() - 1);
+                }
+            }
+        }
+        return value;
     }
 
     /**

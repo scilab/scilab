@@ -117,6 +117,8 @@ Feature changes and additions
   - When there is an infinite number of solutions, the err flag has a specific value.
   - The output size gets the input's one.
 * `csvRead` and `csvTextScan` are now implemented without extra copies.
+* `editvar()` GUI support copy-paste of strings removing quotes.
+
 
 Help pages:
 -----------
