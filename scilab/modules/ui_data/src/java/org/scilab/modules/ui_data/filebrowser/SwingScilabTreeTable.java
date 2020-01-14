@@ -317,7 +317,7 @@ public class SwingScilabTreeTable extends JTable {
         combobox.setBaseDir(baseDir);
         if (model != null) {
             File f = new File(baseDir);
-            if (cancelled || (!baseDir.equals(model.getBaseDir()) && f.exists() && f.isDirectory() && f.canRead())) {
+            if (cancelled || (f.exists() && f.isDirectory() && f.canRead())) {
                 tree.setModel(null);
                 if (addInHistory) {
                     history.addPathInHistory(baseDir);
