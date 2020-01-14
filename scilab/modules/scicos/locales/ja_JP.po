@@ -269,8 +269,8 @@ msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be one of %ls.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 集合{%ls}の中とする必要があります.\n"
 
@@ -1005,10 +1005,6 @@ msgid "Wrong type for field %s.%s .\n"
 msgstr "フィールド %s.%sの型が間違っています.\n"
 
 #, c-format
-msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
-msgstr "フィールド %s.%sの値が間違っています: ポート番号が更新されました.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
 
@@ -1299,10 +1295,10 @@ msgstr ""
 "トを有しています.\n"
 "このリンクの大きさは何ですか?"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
-"It should be a colon vector of size %d."
+"It should be a column vector of size %d."
 msgstr ""
 "%sブロックのdep_utの大きさが不正確です.\n"
 "大きさ%dの列ベクトルとする必要があります."
@@ -1533,3 +1529,7 @@ msgid ""
 msgstr ""
 "%s に指定された回答は\n"
 "間違っています: %s.\n"
+
+#, c-format
+#~ msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
+#~ msgstr "フィールド %s.%sの値が間違っています: ポート番号が更新されました.\n"

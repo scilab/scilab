@@ -434,16 +434,12 @@ msgid "     norm of the residual    = "
 msgstr "     残差のノルム = "
 
 #, c-format
-msgid "     same but with refinment = "
+msgid "     same but with refinement = "
 msgstr "     改善処理付きの残差のノルム = "
 
 #, c-format
 msgid "     norm of the residual     = "
 msgstr "     残差のノルム = "
-
-#, c-format
-msgid "     same but with refinement = "
-msgstr "     改善処理付きの残差のノルム = "
 
 msgid "Now we will see how to use the taucs snmf stuff on the matrix A2."
 msgstr "次に行列A2のtaucs snmf処理の使用法を示します."
@@ -643,3 +639,7 @@ msgstr "condestsp の小テスト"
 # File: macros/scisptdemo.sci, line: 61
 msgid "Click to choose a demo"
 msgstr "クリックしてデモを選んで下さい"
+
+#, c-format
+#~ msgid "     same but with refinment = "
+#~ msgstr "     改善処理付きの残差のノルム = "

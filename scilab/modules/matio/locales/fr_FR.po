@@ -173,9 +173,21 @@ msgstr ""
 msgid "%s: This feature has not been implemented: %s."
 msgstr "%s : Cette fonctionnalité n'a pas été implémentée : %s."
 
+#
+# File: modules/matio/macros/matfile2sci.sci, line: 24
+#, fuzzy, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr "%s: le module %s n'est pas installé.\n"
+
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s : Impossible d'ouvrir le fichier %s.\n"
+
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 179
+#, c-format
+msgid "%s: Unsupported input file data type: '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -183,6 +195,16 @@ msgid ""
 msgstr ""
 "%s : Impossible de lire le fichier '%s'. Veuillez vérifier qu'il n'est pas "
 "corrompu.\n"
+
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 216
+# File: modules/matio/macros/loadmatfile.sci, line: 365
+# File: modules/matio/macros/loadmatfile.sci, line: 409
+# File: modules/matio/macros/loadmatfile.sci, line: 428
+# File: modules/matio/macros/loadmatfile.sci, line: 436
+#, c-format
+msgid "loadmatfile: Error in input file at line #%d: '%s' expected.\n"
+msgstr ""
 
 #
 # File: modules/matio/macros/matfile2sci.sci, line: 24
@@ -196,13 +218,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr ""
-"%s : Argument n°%d : matrice booléenne attendue.\n"
+msgstr "%s : Argument n°%d : matrice booléenne attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-"%s : Argument n°%d : matrice %d×%d attendue.\n"
+msgstr "%s : Argument n°%d : matrice %d×%d attendue.\n"
 
 #, c-format
 msgid "%s: Could not read variables in %s"
@@ -224,13 +244,13 @@ msgid ""
 "%s: Name conflict: it is not possible to save variable with name %s "
 "(ignored)."
 msgstr ""
-"%s : Conflit de nom : enregistrement de la variable %s impossible "
-"(ignorée)."
+"%s : Conflit de nom : enregistrement de la variable %s impossible (ignorée)."
 
 #
 msgid "Attempt to write an unsupported data type to a binary file."
 msgstr ""
-"Tentative d'écriture dans un fichier binaire d'un type de données non supporté."
+"Tentative d'écriture dans un fichier binaire d'un type de données non "
+"supporté."
 
 #
 # File: modules/matio/macros/savematfile.sci, line: 301

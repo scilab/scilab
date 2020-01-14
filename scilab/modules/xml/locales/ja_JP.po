@@ -255,11 +255,6 @@ msgstr ""
 "はXMLSetを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matrix nx2 or nx3 of strings "
 "expected.\n"
@@ -387,3 +382,50 @@ msgstr "%s: フィールド %s の変更権限がありません: %s\n"
 
 msgid "CML read"
 msgstr "CML読み込み"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています:  %d 以上の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid %s file.\n"
+msgstr "ファイルが不正です"
+
+#, fuzzy, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: XMLListが存在しません.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: %s を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid XPath request.\n"
+msgstr ""
+"%s: XPathクエリが間違っています:\n"
+"%s"
+
+#, fuzzy, c-format
+msgid "%s: Invalid XPath request."
+msgstr ""
+"%s: XPathクエリが間違っています:\n"
+"%s"
+
+#
+# File: modules/xml/macros/xmlGetValues.sci, line: 79
+#, c-format
+msgid "%s: Target node is not a XML_ELEMENT_NODE."
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Invalid attribute name: %s."
+msgstr "ファイル名が無効です: "
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"

@@ -178,6 +178,13 @@ msgstr ""
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
+#
+# File: modules/polynomials/macros/diophant.sci, line: 24
+# File: modules/polynomials/macros/diophant.sci, line: 30
+#, c-format
+msgid "%s: Argument #%d: Inf or NaN coefficients not supported.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
@@ -254,8 +261,8 @@ msgstr ""
 msgid ""
 "%s: Wrong type for argument #%d: Array of integers or polynomials expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento #%d: esperava-se um "
-"matriz de inteiros ou polinômios.\n"
+"%s: Tipo incorreto para o argumento #%d: esperava-se um matriz de inteiros "
+"ou polinômios.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"

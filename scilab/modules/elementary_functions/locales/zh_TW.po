@@ -110,6 +110,13 @@ msgstr ""
 msgid "%s: variable size exceeded : less than %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}"
+msgstr "%s: 輸入參數 #%d 數值錯誤: 應該是 [%s, %s] 的區間.\n"
+
+msgid "Invalid index.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr ""
@@ -127,6 +134,16 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 msgstr ""
+
+#
+# File: macros/meshgrid.sci, line: 18
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected."
+msgstr "%s: 輸出參數數目錯誤: %d预期参数."
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
@@ -180,9 +197,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d : A square matrix expected.\n"
 msgstr ""
 
-msgid "Invalid index.\n"
-msgstr ""
-
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
@@ -199,6 +213,17 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] expected.\n"
 msgstr "%s: 第 %d 輸入參數的資料數值錯誤: 應該是  ['g' 'r' 'c' 'lc' 'lr'] .\n"
+
+#
+# File: modules/elementary_functions/sci_gateway/cpp/sci_linspace.cpp, line: 80
+# File: modules/elementary_functions/sci_gateway/cpp/sci_linspace.cpp, line: 87
+#, c-format
+msgid "%s: Arguments %d and %d must have same dimensions.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong values for input argument #%d: Must be less than %d.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間.\n"
 
 #, c-format
 msgid ""
@@ -253,12 +278,6 @@ msgid ""
 "size.\n"
 msgstr ""
 
-#
-# File: macros/meshgrid.sci, line: 18
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr "%s: 輸出參數數目錯誤: %d预期参数."
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A constant scalar expected.\n"
 msgstr ""
@@ -292,6 +311,22 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Column expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Number(s) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
@@ -356,18 +391,6 @@ msgid ""
 "expected.\n"
 msgstr ""
 
-#
-# File: modules/elementary_functions/macros/%sp_max.sci, line: 151
-#, c-format
-msgid "%s: Argument #%d: the scalar must be negative.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/macros/%sp_min.sci, line: 150
-#, c-format
-msgid "%s: Argument #%d: the scalar must be positive.\n"
-msgstr ""
-
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
@@ -411,10 +434,6 @@ msgid "%s: unknown bitwise function %s.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Argument #%d: Integers >=0 expected.\n"
 msgstr ""
 
@@ -431,9 +450,9 @@ msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間.\n"
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr "%s: 輸入參數長度錯誤: 應為相同長度.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-negative integers expected.\n"
+msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
 
 #
 # File: macros/bitxor.sci, line: 32
@@ -460,9 +479,21 @@ msgid ""
 "integers expected.\n"
 msgstr ""
 
+#
+# File: modules/elementary_functions/macros/blockdiag.sci, line: 29
+#, c-format
+msgid ""
+"Function not defined for given argument type(s),\n"
+"  Check arguments or define the overloading function %s().\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為正實數.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: 輸入參數長度錯誤: 應為相同長度.\n"
 
 #
 # File: macros/bitxor.sci, line: 28
@@ -562,25 +593,9 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: %d,'%s',%d or 應為 '%s'\n"
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
 
-#, c-format
-msgid "%s: Argument #%d: Column expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: Number(s) expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: An integer value expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal numbers expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應該是矩陣型態.\n"
 
 #
 # File: macros/logm.sci, line: 22

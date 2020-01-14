@@ -176,10 +176,12 @@ msgstr ""
 msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
 
+#
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1217
 #, c-format
 msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Low and High must be "
-"integers and (high - low + 1) <=  2147483561.\n"
+"%s: Wrong value for input arguments #%d and #%d: Low and High must be a 32 "
+"bits integer value and (high - low + 1) <=  2147483561.\n"
 msgstr ""
 
 #, c-format

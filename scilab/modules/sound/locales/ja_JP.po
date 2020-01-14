@@ -71,6 +71,10 @@ msgstr "%s: ファイル %s がオープンできません。\n"
 msgid "Index range must be specified as a scalar or a 2 elements vector."
 msgstr "添字範囲はスカラーまたは2要素のベクトルで指定する必要があります."
 
+#, fuzzy, c-format
+msgid "%s: File '%s': Unrecognized data format.\n"
+msgstr "データ形式を認識できません."
+
 msgid "Sample limit vector must have 2 elements."
 msgstr "サンプル制限ベクトルは2要素としてください."
 
@@ -82,6 +86,12 @@ msgstr "サンプル制限は昇順で指定してください."
 
 msgid "Error in file format."
 msgstr "ファイル形式エラー:"
+
+#
+# File: modules/sound/macros/auread.sci, line: 174
+#, c-format
+msgid "%s: File '%s' is not a .au sound file.\n"
+msgstr ""
 
 msgid "Error while reading sound file."
 msgstr "サウンドファイル読み込み時にエラー発生:"

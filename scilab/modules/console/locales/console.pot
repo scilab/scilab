@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:13+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
 # File: modules/console/sci_gateway/c/sci_tohome.c, line: 32
 # File: modules/console/sci_gateway/cpp/sci_clc.cpp, line: 62
@@ -1522,7 +1522,7 @@ msgstr ""
 #
 # File: modules/console/src/console_fake_xml.c, line: 1267
 # File: modules/console/src/console_fake_xml.c, line: 1589
-msgid "(Modify the layout requires to restart Scilab)"
+msgid "(Modifying the layout requires to restart Scilab)"
 msgstr ""
 
 #

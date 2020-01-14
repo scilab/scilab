@@ -174,9 +174,21 @@ msgstr ""
 msgid "%s: This feature has not been implemented: %s."
 msgstr "%s: цю можливість не реалізовано: %s."
 
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 74
+#, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: не вдалося відкрити файл %s.\n"
+
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 179
+#, c-format
+msgid "%s: Unsupported input file data type: '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -184,6 +196,16 @@ msgid ""
 msgstr ""
 "%s: з файла «%s» не прочитано жодної змінної. Перевірте, чи не пошкоджено це "
 "файл.\n"
+
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 216
+# File: modules/matio/macros/loadmatfile.sci, line: 365
+# File: modules/matio/macros/loadmatfile.sci, line: 409
+# File: modules/matio/macros/loadmatfile.sci, line: 428
+# File: modules/matio/macros/loadmatfile.sci, line: 436
+#, c-format
+msgid "loadmatfile: Error in input file at line #%d: '%s' expected.\n"
+msgstr ""
 
 #
 # File: modules/matio/macros/matfile2sci.sci, line: 24

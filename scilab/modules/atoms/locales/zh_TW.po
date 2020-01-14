@@ -370,26 +370,30 @@ msgstr ""
 msgid "\tRemoving %s (%s)(%s)... "
 msgstr "\t移除 %s (%s)(%s) 中... "
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
-"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
+"SCIHOME.\n"
+"\tFor security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
 "%s: 此套件的目錄 (%s-%s) 不在 SCI 或 SCIHOME 內. 為了安全性理由, ATOMS 拒絕刪"
 "除此目錄.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: The directory of this package (%s-%s) cannot been deleted, please check "
-"if you have write access on this directory : %s.\n"
-msgstr "%s: 此套件的目錄 (%s-%s) 無法刪除, 請檢査是否有寫入 %s. 目錄之權限.\n"
+"%s: The package (%s - %s) directory %s cannot be deleted.\n"
+"\tIt may be used and locked. Please also check that you have write "
+"permission on it.\n"
+msgstr "%s: 無法建立 %s 目錄, 請檢查你是否有存取該目錄的權限.\n"
 
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 314
 #, c-format
 msgid ""
-"%s: The root directory of this package (%s-%s) cannot been deleted, please "
-"check if you have write access on this directory : %s.\n"
+"%s: The package (%s - %s) has been removed from its root directory %s.\n"
+"\tHowever, this empty directory cannot be deleted. It may be used and "
+"locked, or you may have no write permission on it.\n"
 msgstr ""
-"%s: 套件 (%s-%s)  的根目錄未曾刪除, 請檢查你是否有寫入以下目錄的權限: %s.\n"
 
 #, c-format
 msgid ""
@@ -1040,3 +1044,18 @@ msgstr "%s: 第  %d 輸入參數數值錯誤: 版本錯誤.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ASC  或 DESC .\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
+#~ "check if you have write access on this directory : %s.\n"
+#~ msgstr ""
+#~ "%s: 此套件的目錄 (%s-%s) 無法刪除, 請檢査是否有寫入 %s. 目錄之權限.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
+#~ "please check if you have write access on this directory : %s.\n"
+#~ msgstr ""
+#~ "%s: 套件 (%s-%s)  的根目錄未曾刪除, 請檢查你是否有寫入以下目錄的權限: "
+#~ "%s.\n"

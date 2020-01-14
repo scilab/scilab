@@ -207,10 +207,10 @@ msgstr ""
 "%s: Неверные значения входных аргументов №%d и №%d: ожидалось, что Low < "
 "High.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Low and High must be "
-"integers and (high - low + 1) <=  2147483561.\n"
+"%s: Wrong value for input arguments #%d and #%d: Low and High must be a 32 "
+"bits integer value and (high - low + 1) <=  2147483561.\n"
 msgstr ""
 "%s: Неверные значения входных аргументов №%d и №%d: Low и High должны быть "
 "целыми и (high - low + 1) <=  2147483561.\n"

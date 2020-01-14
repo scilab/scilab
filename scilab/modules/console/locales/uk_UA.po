@@ -769,7 +769,8 @@ msgstr "Компонування"
 msgid "Select a layout"
 msgstr "Виберіть компонування"
 
-msgid "(Modify the layout requires to restart Scilab)"
+#, fuzzy
+msgid "(Modifying the layout requires to restart Scilab)"
 msgstr "(Зміна компонування потребуватиме перезапуску Scilab)"
 
 msgid "Save layout on exiting"

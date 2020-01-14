@@ -272,12 +272,6 @@ msgstr ""
 "«XMLAttr», «XMLElem», «XMLList» або «XMLSet».\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
-"рядків.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matrix nx2 or nx3 of strings "
 "expected.\n"
@@ -413,3 +407,54 @@ msgstr "%s: не можна змінювати значення у полі %s: 
 
 msgid "CML read"
 msgstr "Читання CML"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути вказано принаймні %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid %s file.\n"
+msgstr "Некоректний файл"
+
+#, fuzzy, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: XMLList не існує.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: слід використовувати %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid XPath request.\n"
+msgstr ""
+"%s: помилковий запит XPath:\n"
+"%s"
+
+#, fuzzy, c-format
+msgid "%s: Invalid XPath request."
+msgstr ""
+"%s: помилковий запит XPath:\n"
+"%s"
+
+#
+# File: modules/xml/macros/xmlGetValues.sci, line: 79
+#, c-format
+msgid "%s: Target node is not a XML_ELEMENT_NODE."
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Invalid attribute name: %s."
+msgstr "Некоректна назва файла: "
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+#~ "рядків.\n"

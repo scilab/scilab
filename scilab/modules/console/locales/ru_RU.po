@@ -761,7 +761,8 @@ msgstr "Конфигурация рабочего стола"
 msgid "Select a layout"
 msgstr "Выбрать конфигурацию"
 
-msgid "(Modify the layout requires to restart Scilab)"
+#, fuzzy
+msgid "(Modifying the layout requires to restart Scilab)"
 msgstr "(Изменение конфигурации требует перезапуска Scilab'а)"
 
 msgid "Save layout on exiting"

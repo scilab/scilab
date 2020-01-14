@@ -146,9 +146,21 @@ msgstr ""
 msgid "%s: This feature has not been implemented: %s."
 msgstr "%s: この機能は実装されていません: %s."
 
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 74
+#, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: ファイル %s を開けません.\n"
+
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 179
+#, c-format
+msgid "%s: Unsupported input file data type: '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -156,6 +168,16 @@ msgid ""
 msgstr ""
 "%s: ファイル '%s'から変数を読込めません. ファイルが壊れていないか確認してくだ"
 "さい.\n"
+
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 216
+# File: modules/matio/macros/loadmatfile.sci, line: 365
+# File: modules/matio/macros/loadmatfile.sci, line: 409
+# File: modules/matio/macros/loadmatfile.sci, line: 428
+# File: modules/matio/macros/loadmatfile.sci, line: 436
+#, c-format
+msgid "loadmatfile: Error in input file at line #%d: '%s' expected.\n"
+msgstr ""
 
 #
 # File: modules/matio/macros/matfile2sci.sci, line: 24

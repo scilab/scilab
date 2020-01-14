@@ -406,29 +406,32 @@ msgstr ""
 msgid "\tRemoving %s (%s)(%s)... "
 msgstr "\tUsuwanie %s (%s)(%s)... "
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
-"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
+"SCIHOME.\n"
+"\tFor security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
 "%s: Katalog tego pakietu (%s-%s) nie znajduje się w  SCI ani w SCIHOME. Ze "
 "względów bezpieczeństwa, ATOMS odmówił usunięcia tego katalogu.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: The directory of this package (%s-%s) cannot been deleted, please check "
-"if you have write access on this directory : %s.\n"
+"%s: The package (%s - %s) directory %s cannot be deleted.\n"
+"\tIt may be used and locked. Please also check that you have write "
+"permission on it.\n"
 msgstr ""
-"%s: Katalog tego pakietu (%s-%s) nie może zostać usunięty, sprawdź czy masz "
-"prawa zapisu do tego katalogu : %s.\n"
+"%s: Katalog %s nie może zostać utworzony, sprawdź czy posiadasz prawa zapisu "
+"do tego katalogu.\n"
 
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 314
 #, c-format
 msgid ""
-"%s: The root directory of this package (%s-%s) cannot been deleted, please "
-"check if you have write access on this directory : %s.\n"
+"%s: The package (%s - %s) has been removed from its root directory %s.\n"
+"\tHowever, this empty directory cannot be deleted. It may be used and "
+"locked, or you may have no write permission on it.\n"
 msgstr ""
-"%s: katalog główny dla tego pakietu (%s-%s) nie może zostać usunięty, "
-"sprawdź czy masz prawo dostępu do zapisu do tego katalogu : %s.\n"
 
 #, c-format
 msgid ""
@@ -1124,3 +1127,19 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr "%s: Zła wartość parametru wejściowego #%d: Oczekiwano ASC lub DESC.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
+#~ "check if you have write access on this directory : %s.\n"
+#~ msgstr ""
+#~ "%s: Katalog tego pakietu (%s-%s) nie może zostać usunięty, sprawdź czy "
+#~ "masz prawa zapisu do tego katalogu : %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
+#~ "please check if you have write access on this directory : %s.\n"
+#~ msgstr ""
+#~ "%s: katalog główny dla tego pakietu (%s-%s) nie może zostać usunięty, "
+#~ "sprawdź czy masz prawo dostępu do zapisu do tego katalogu : %s.\n"

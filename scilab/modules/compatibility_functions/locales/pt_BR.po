@@ -239,13 +239,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: número incorreto de argumentos de entrada: %d ou %d esperados.\n"
+msgstr "%s: número incorreto de argumentos de entrada: %d ou %d esperados.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: número errado de argumentos de saída: %d a %d esperados.\n"
+msgstr "%s: número errado de argumentos de saída: %d a %d esperados.\n"
 
 #, c-format
 msgid "%s: pencil is not diagonalizable.\n"

@@ -46,3 +46,24 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: html output only.\n"
 msgstr ""
+
+#
+# File: modules/coverage/sci_gateway/cpp/sci_profileDisable.cpp, line: 70
+# File: modules/coverage/sci_gateway/cpp/sci_profileGetInfo.cpp, line: 349
+#, c-format
+msgid "%s: profile is disabled.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A macro or library expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d个或%d个。\n"
+
+#
+# File: modules/coverage/sci_gateway/cpp/sci_profileEnable.cpp, line: 53
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s：输入参数的数目错误，应该为%d个。\n"

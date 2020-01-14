@@ -110,6 +110,14 @@ msgstr ""
 msgid "%s: variable size exceeded : less than %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser entre %d i %d."
+
+msgid "Invalid index.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr ""
@@ -127,6 +135,16 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected."
+msgstr "%s: El nombre d'arguments de sortida és incorrecte: Han de ser %d."
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s' or "
+"'%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
@@ -180,9 +198,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d : A square matrix expected.\n"
 msgstr ""
 
-msgid "Invalid index.\n"
-msgstr ""
-
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
@@ -201,6 +216,19 @@ msgid ""
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ['g' 'r' 'c' "
 "'lc' 'lr'].\n"
+
+#
+# File: modules/elementary_functions/sci_gateway/cpp/sci_linspace.cpp, line: 80
+# File: modules/elementary_functions/sci_gateway/cpp/sci_linspace.cpp, line: 87
+#, c-format
+msgid "%s: Arguments %d and %d must have same dimensions.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong values for input argument #%d: Must be less than %d.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha d'estar entre %d i "
+"%d.\n"
 
 #, c-format
 msgid ""
@@ -258,11 +286,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr ""
-"%s: El nombre d'arguments de sortida és incorrecte: Han de ser %d."
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : A constant scalar expected.\n"
 msgstr ""
 
@@ -296,6 +319,22 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s' or "
 "'%s'.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Column expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Number(s) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
@@ -351,18 +390,6 @@ msgid ""
 "expected.\n"
 msgstr ""
 
-#
-# File: modules/elementary_functions/macros/%sp_max.sci, line: 151
-#, c-format
-msgid "%s: Argument #%d: the scalar must be negative.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/macros/%sp_min.sci, line: 150
-#, c-format
-msgid "%s: Argument #%d: the scalar must be positive.\n"
-msgstr ""
-
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
@@ -407,10 +434,6 @@ msgid "%s: unknown bitwise function %s.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Argument #%d: Integers >=0 expected.\n"
 msgstr ""
 
@@ -433,11 +456,11 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha d'estar entre %d i "
 "%d.\n"
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-negative integers expected.\n"
 msgstr ""
-"%s: Els arguments d'entrada tenen una mida incorrecta: Ha de tenir la "
-"mateixa mida.\n"
+"%s: L'argument d'entrada #%d és incorrecte: Ha de ser un nombre enter sense "
+"signe.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -455,11 +478,25 @@ msgid ""
 "integers expected.\n"
 msgstr ""
 
+#
+# File: modules/elementary_functions/macros/blockdiag.sci, line: 29
+#, c-format
+msgid ""
+"Function not defined for given argument type(s),\n"
+"  Check arguments or define the overloading function %s().\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte:  Ha de ser un nombre "
 "real positiu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada tenen una mida incorrecta: Ha de tenir la "
+"mateixa mida.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Same types expected.\n"
@@ -573,25 +610,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: L'argument d'entrada #%d és d'un tipus incorrecte.\n"
 
-#, c-format
-msgid "%s: Argument #%d: Column expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal numbers expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: Number(s) expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: An integer value expected.\n"
-msgstr ""
+"%s: L'argument d'entrada #%d és incorrecte: Ha de ser un nombre enter sense "
+"signe.\n"
 
 #, c-format
 msgid "%s: Log of a singular matrix.\n"

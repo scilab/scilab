@@ -61,9 +61,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"texto.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -87,6 +89,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -124,25 +130,6 @@ msgid "%s: Incorrect function in file %s.\n"
 msgstr "%s: Função incorreta no arquivo %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
-
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: Variável indefinida %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se o nome de "
-"uma função Scilab.\n"
-
-msgid "No comment available."
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
 
@@ -161,3 +148,22 @@ msgstr "Por favor, utilize %s no lugar."
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Esta função será permanentemente removida no Scilab %s"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A character string expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
+#~ "texto.\n"
+
+#, c-format
+#~ msgid "%s: Undefined variable %s.\n"
+#~ msgstr "%s: Variável indefinida %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Name of a Scilab function "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se o nome "
+#~ "de uma função Scilab.\n"

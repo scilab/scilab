@@ -109,6 +109,32 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, fuzzy, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: не вдалося відкрити файл %s.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати коректну "
+"назву існуючого файла.\n"
+
+#
+# File: modules/helptools/macros/head_comments.sci, line: 59
+msgid "No comment available."
+msgstr ""
+
 #, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr "%s: у режимі %s перегляд довідки вимкнено.\n"

@@ -237,16 +237,18 @@ msgstr ""
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s : Argument d'entrée %d erroné.\n"
 
+#
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 429
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 648
 #, c-format
-msgid "End of file at line %d.\n"
-msgstr "Fin de fichier à la ligne %d.\n"
+msgid "%s: Input missing from console.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real matrix or column vector "
 "expected.\n"
-msgstr ""
-"%s : Argument n°%d : colonne ou matrice de nombres réels attendue.\n"
+msgstr "%s : Argument n°%d : colonne ou matrice de nombres réels attendue.\n"
 
 #, c-format
 msgid "Undefined environment variable %s.\n"
@@ -311,3 +313,7 @@ msgid ""
 msgstr ""
 "%s : La commande a échoué avec pour code d'erreur %s et le message "
 "suivant :\n"
+
+#, c-format
+#~ msgid "End of file at line %d.\n"
+#~ msgstr "Fin de fichier à la ligne %d.\n"

@@ -241,13 +241,12 @@ msgstr "%s: Color desconegut a '%s' -> S'ha posat a negre.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver %d o %d.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver %d o %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments de sortida: "
-"Hi ha d'haver entre %d i %d.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments de sortida: Hi ha d'haver entre %d i %d.\n"
 
 #, c-format
 msgid "%s: pencil is not diagonalizable.\n"

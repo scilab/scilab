@@ -63,6 +63,10 @@ msgstr ""
 "La gamme des index doit être spécifiée comme un scalaire ou un vecteur à 2 "
 "éléments."
 
+#, fuzzy, c-format
+msgid "%s: File '%s': Unrecognized data format.\n"
+msgstr "Format de données non reconnu."
+
 msgid "Sample limit vector must have 2 elements."
 msgstr "Le vecteur des limites de l'échantillon doit avoir 2 éléments."
 
@@ -74,6 +78,12 @@ msgstr "Les limites de l'échantillon doivent être données par ordre croissant
 
 msgid "Error in file format."
 msgstr "Erreur de format de fichier."
+
+#
+# File: modules/sound/macros/auread.sci, line: 174
+#, c-format
+msgid "%s: File '%s' is not a .au sound file.\n"
+msgstr ""
 
 msgid "Error while reading sound file."
 msgstr "Erreur à la lecture du fichier son."

@@ -88,6 +88,15 @@ msgid "Invalid name"
 msgstr "Некоректна назва"
 
 #, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr ""
+"Помилковий тип вхідного параметра №%d: мало бути використано зовнішній "
+"об’єкт."
+
+msgid "Incompatible External Object"
+msgstr "Несумісний зовнішній об’єкт"
+
+#, c-format
 msgid "Wrong type for input argument #%d: A String expected."
 msgstr ""
 "Помилковий тип вхідного параметра №%d: слід використовувати тип «string»."
@@ -112,15 +121,6 @@ msgstr ""
 
 msgid "Invalid variable: cannot create the data"
 msgstr "Некоректна змінна: не вдалося створити дані"
-
-#, c-format
-msgid "Wrong type for input argument #%d: External Object expected."
-msgstr ""
-"Помилковий тип вхідного параметра №%d: мало бути використано зовнішній "
-"об’єкт."
-
-msgid "Incompatible External Object"
-msgstr "Несумісний зовнішній об’єкт"
 
 #, c-format
 msgid "Wrong type for input argument #%d: string expected."

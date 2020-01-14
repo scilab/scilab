@@ -92,6 +92,12 @@ msgstr ""
 "%s: 入力引数 #%d の値が間違っています: '%s', '%s' または '%s' を指定してくだ"
 "さい.\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
+#, c-format
+msgid "%s: must be call from a function.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
@@ -108,107 +114,13 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
-#, c-format
-msgid "%s: Debugger can be activated only at console scope level\n"
+#, fuzzy, c-format
+msgid "%s: Debugger cannot be activated in pause\n"
 msgstr "%s: デバッガはコンソールスコープレベルでのみ有効にできます\n"
 
 #, c-format
-msgid "%s: Debugger is not running. Call \"%s\" without parameter first.\n"
-msgstr ""
-"%s: デバッガが実行中です. パラメータfirstを指定せずに \"%s\" をコールしてくだ"
-"さい.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 正のスカラー整数を指定してください.\n"
-
-#, c-format
-msgid "%s: Unable to retrieve information about breakpoint %d.\n"
-msgstr "%s: ブレークポイント %d に関する情報を取得できません.\n"
-
-#, c-format
-msgid "%ls"
-msgstr "%ls"
-
-msgid "callstack:"
-msgstr "コールスタック:"
-
-msgid "debug commands : \n"
-msgstr "デバッグコマンド: \n"
-
-msgid "show this help"
-msgstr "このヘルプを表示"
-
-msgid "open debug documentation page"
-msgstr "デバッグのページをオープン"
-
-msgid "stop debugging"
-msgstr "デバッグを停止"
-
-msgid "show callstack"
-msgstr "コールスタックを表示"
-
-msgid "execute cmd"
-msgstr "コマンドを実行"
-
-msgid "display variable"
-msgstr "変数を表示"
-
-msgid "continue execution"
-msgstr "実行を継続"
-
-msgid "abort execution"
-msgstr "実行をアボート"
-
-msgid "continue to next statement"
-msgstr "次の命令を実行"
-
-msgid "step into function"
-msgstr "ステップ実行(関数内)"
-
-msgid "step outside function"
-msgstr "ステップ実行(関数外)"
-
-msgid "add a breakpoint"
-msgstr "ブレークポイントを追加"
-
-msgid "delete all breakpoints"
-msgstr "ブレークポイントを全て削除"
-
-msgid "delete a specific breakpoint"
-msgstr "指定したブレークポイントを削除"
-
-msgid "enable all breakpoints"
-msgstr "全てのブレークポイントを有効化"
-
-msgid "enable a specific breakpoint"
-msgstr "指定したブレークポイントを有効化"
-
-msgid "disable all breakpoints"
-msgstr "全てのブレークポイントを無効化"
-
-msgid "disable a specific breakpoint"
-msgstr "指定したブレークポイントを無効化"
-
-msgid "show all breakpoints"
-msgstr "全てのブレークポイントを表示"
-
-msgid "show a specific breakpoint"
-msgstr "指定したブレークポイントを表示"
-
-msgid "  for more details, show help page.\n"
-msgstr "  詳細については, ヘルプを参照.\n"
+msgid "%s: Debugger can be activated only at console scope level\n"
+msgstr "%s: デバッガはコンソールスコープレベルでのみ有効にできます\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -566,6 +478,110 @@ msgstr "デバッガがブレークポイント上にあります\n"
 msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr "新規コマンドを実行する前に (c)ontinue または (a)bort current を実行\n"
 
+#
+# File: modules/core/src/cpp/InitScilab.cpp, line: 1176
+#, c-format
+msgid "%s: Command missing.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください."
+
+msgid "callstack:"
+msgstr "コールスタック:"
+
+#
+# File: modules/core/src/cpp/InitScilab.cpp, line: 1297
+#, c-format
+msgid "#%-5d%s"
+msgstr ""
+
+#
+# File: modules/core/src/cpp/InitScilab.cpp, line: 1301
+#, c-format
+msgid "#%-5d%s (line %d)"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to retrieve information about breakpoint %d.\n"
+msgstr "%s: ブレークポイント %d に関する情報を取得できません.\n"
+
+#, c-format
+msgid "%ls"
+msgstr "%ls"
+
+msgid "debug commands : \n"
+msgstr "デバッグコマンド: \n"
+
+msgid "show this help"
+msgstr "このヘルプを表示"
+
+msgid "open debug documentation page"
+msgstr "デバッグのページをオープン"
+
+msgid "stop debugging"
+msgstr "デバッグを停止"
+
+msgid "show callstack"
+msgstr "コールスタックを表示"
+
+msgid "execute cmd"
+msgstr "コマンドを実行"
+
+msgid "display variable"
+msgstr "変数を表示"
+
+msgid "continue execution"
+msgstr "実行を継続"
+
+msgid "abort execution"
+msgstr "実行をアボート"
+
+msgid "continue to next statement"
+msgstr "次の命令を実行"
+
+msgid "step into function"
+msgstr "ステップ実行(関数内)"
+
+msgid "step outside function"
+msgstr "ステップ実行(関数外)"
+
+msgid "add a breakpoint"
+msgstr "ブレークポイントを追加"
+
+msgid "delete all breakpoints"
+msgstr "ブレークポイントを全て削除"
+
+msgid "delete a specific breakpoint"
+msgstr "指定したブレークポイントを削除"
+
+msgid "enable all breakpoints"
+msgstr "全てのブレークポイントを有効化"
+
+msgid "enable a specific breakpoint"
+msgstr "指定したブレークポイントを有効化"
+
+msgid "disable all breakpoints"
+msgstr "全てのブレークポイントを無効化"
+
+msgid "disable a specific breakpoint"
+msgstr "指定したブレークポイントを無効化"
+
+msgid "show all breakpoints"
+msgstr "全てのブレークポイントを表示"
+
+msgid "show a specific breakpoint"
+msgstr "指定したブレークポイントを表示"
+
+msgid "  for more details, show help page.\n"
+msgstr "  詳細については, ヘルプを参照.\n"
+
 msgid ""
 "\n"
 "Call stack:\n"
@@ -766,6 +782,24 @@ msgstr "サイズ"
 
 msgid "Bytes"
 msgstr "バイト"
+
+#, c-format
+#~ msgid "%s: Debugger is not running. Call \"%s\" without parameter first.\n"
+#~ msgstr ""
+#~ "%s: デバッガが実行中です. パラメータfirstを指定せずに \"%s\" をコールして"
+#~ "ください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar positive integer "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の値が間違っています: 正のスカラー整数を指定してくださ"
+#~ "い.\n"
 
 #~ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 #~ msgstr "%s: 入力引数 #%d の型が間違っています: double を指定してください.\n"

@@ -447,8 +447,8 @@ msgstr ""
 #, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"%s: Неверные значения входного параметра №%d: должна принадлежать "
-"множеству {%s}.\n"
+"%s: Неверные значения входного параметра №%d: должна принадлежать множеству "
+"{%s}.\n"
 
 #, c-format
 msgid "%s: Filter order too small.\n"

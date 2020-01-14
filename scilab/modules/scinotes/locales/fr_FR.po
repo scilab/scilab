@@ -1174,18 +1174,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : au moins %d arguments d'entrée attendus.\n"
+msgstr "%s : au moins %d arguments d'entrée attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s : Argument n°%d : type texte attendu.\n"
+msgstr "%s : Argument n°%d : type texte attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
-"%s : argument n°%d : nombre attendu.\n"
+msgstr "%s : argument n°%d : nombre attendu.\n"
 
 #
 # File: modules/scinotes/macros/edit.sci, line: 51

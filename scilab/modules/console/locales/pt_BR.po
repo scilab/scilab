@@ -760,7 +760,10 @@ msgstr ""
 msgid "Select a layout"
 msgstr ""
 
-msgid "(Modify the layout requires to restart Scilab)"
+#
+# File: modules/console/src/console_fake_xml.c, line: 1267
+# File: modules/console/src/console_fake_xml.c, line: 1589
+msgid "(Modifying the layout requires to restart Scilab)"
 msgstr ""
 
 msgid "Save layout on exiting"

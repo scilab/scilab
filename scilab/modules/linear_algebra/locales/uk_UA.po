@@ -29,12 +29,6 @@ msgstr ""
 "комплексних значень.\n"
 
 #, c-format
-msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
-msgstr ""
-"%s: помилкове значення параметра №%d: у значенні не повинне міститися "
-"записів NaN або Inf.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано рядок або "
@@ -491,3 +485,9 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: потрібний ранг перевищує "
 "розмірність матриці.\n"
 "."
+
+#, c-format
+#~ msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення параметра №%d: у значенні не повинне міститися "
+#~ "записів NaN або Inf.\n"

@@ -341,8 +341,7 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 
 #, c-format
 msgid "%s: %s is obsolete and will be removed from Scilab %s\n"
-msgstr ""
-"%s: Эта возможность %s будет навсегда удалена в Scilab %s\n"
+msgstr "%s: Эта возможность %s будет навсегда удалена в Scilab %s\n"
 
 #, c-format
 msgid "%s: Wrong number for input argument: %d or %d expected.\n"

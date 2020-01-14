@@ -28,8 +28,14 @@ msgstr "матриця близька до виродженої або пога�
 msgid "computing least squares solution. (see lsq).\n"
 msgstr "обчислюємо розв’язок методом найменших квадратів. (див. lsq).\n"
 
-#, c-format
-msgid "debugger stop on breakpoint(%d) in function %ls line %d\n"
+#, fuzzy, c-format
+msgid "debugger stop on breakpoint(%d) in function %s at line %d\n"
+msgstr ""
+"засіб діагностики зупинив виконання на точці зупинки (%d) у функції %ls, "
+"рядок %d\n"
+
+#, fuzzy, c-format
+msgid "debugger stop on breakpoint(%d) in file %s at line %d\n"
 msgstr ""
 "засіб діагностики зупинив виконання на точці зупинки (%d) у функції %ls, "
 "рядок %d\n"
@@ -78,10 +84,6 @@ msgstr "для виразу можливе керування лише одно-
 
 msgid "for expression : Wrong type for loop iterator.\n"
 msgstr "для виразу: помилковий тип ітератора циклу.\n"
-
-#, c-format
-msgid "%s: function is disabled in debug mode.\n"
-msgstr "%s: функцію вимкнено у діагностичному режимі.\n"
 
 msgid "With input arguments, return / resume expects output arguments.\n"
 msgstr ""
@@ -393,8 +395,8 @@ msgstr "Вхідні параметри повинні мати ту саму ф
 msgid "Can not allocate negative size (%d).\n"
 msgstr "Не можна отримувати від’ємний обсяг пам’яті (%d).\n"
 
-#, c-format
-msgid "Can not allocate %.2f MB memory.\n"
+#, fuzzy, c-format
+msgid "Can not allocate %s memory.\n"
 msgstr "Не вдалося отримати %.2f МБ пам’яті.\n"
 
 msgid "Unable to insert multiple item in a struct.\n"
@@ -413,6 +415,10 @@ msgstr "Поля «%ls» не існує\n"
 #, c-format
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr "перевищено розмірність змінної: мало бути менше за %d.\n"
+
+#, c-format
+#~ msgid "%s: function is disabled in debug mode.\n"
+#~ msgstr "%s: функцію вимкнено у діагностичному режимі.\n"
 
 #~ msgid "variables don't have the same formal variable"
 #~ msgstr "у змінних немає спільної формальної змінної"

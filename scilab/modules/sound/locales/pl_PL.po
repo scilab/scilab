@@ -63,6 +63,10 @@ msgstr "%s: Nie można otworzyć pliku %s.\n"
 msgid "Index range must be specified as a scalar or a 2 elements vector."
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: File '%s': Unrecognized data format.\n"
+msgstr "Nierozpoznany format danych."
+
 msgid "Sample limit vector must have 2 elements."
 msgstr ""
 
@@ -73,6 +77,12 @@ msgid "Sample limits must be given in ascending order."
 msgstr ""
 
 msgid "Error in file format."
+msgstr ""
+
+#
+# File: modules/sound/macros/auread.sci, line: 174
+#, c-format
+msgid "%s: File '%s' is not a .au sound file.\n"
 msgstr ""
 
 msgid "Error while reading sound file."

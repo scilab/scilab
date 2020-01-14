@@ -26,10 +26,6 @@ msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 

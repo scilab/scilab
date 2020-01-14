@@ -59,9 +59,9 @@ msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串向量。\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s：输出参数的数目错误：应该为%d个。\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -86,6 +86,10 @@ msgstr "%s：输入参数的类型错误：应该为宏。\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该至少%d个。\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
 msgid "Checking: %s.\n"
@@ -120,22 +124,6 @@ msgid "%s: Incorrect function in file %s.\n"
 msgstr "%s：文件 %s 中存在不正确的函数。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
-
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s：没定义的变量 %s。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
-
-msgid "No comment available."
-msgstr "没有有效注释。"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为‘%s’。\n"
 
@@ -155,5 +143,20 @@ msgstr "请使用 %s 替代。"
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "该函数将被永久地从 Scilab %s 中移除。"
 
-#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-#~ msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A character string expected.\n"
+#~ msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+
+#, c-format
+#~ msgid "%s: Undefined variable %s.\n"
+#~ msgstr "%s：没定义的变量 %s。\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Name of a Scilab function "
+#~ "expected.\n"
+#~ msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
+
+#~ msgid "No comment available."
+#~ msgstr "没有有效注释。"

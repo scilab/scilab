@@ -276,6 +276,18 @@ msgid "%s: Inconsistent multiplication.\n"
 msgstr ""
 
 #
+# File: modules/overloading/macros/%r_p.sci, line: 75
+#, c-format
+msgid "column %d"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_p.sci, line: 77
+#, c-format
+msgid "columns %d to %d"
+msgstr ""
+
+#
 msgid "Not implemented"
 msgstr "Не реализовано."
 
@@ -374,8 +386,8 @@ msgstr "%s: Неверный размер входного параметра �
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: "
-"ожидалась матрица целочисленных значений.\n"
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица целочисленных "
+"значений.\n"
 
 #, c-format
 msgid "%s: Concatenated arrays must have the same number of dimensions.\n"

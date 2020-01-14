@@ -86,6 +86,13 @@ msgid "Invalid name"
 msgstr "Neplatný název"
 
 #, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr "Špatný typ vstupního argumentu #%d: Očekáván externí objekt."
+
+msgid "Incompatible External Object"
+msgstr "Nekompatibilní externí objekt"
+
+#, c-format
 msgid "Wrong type for input argument #%d: A String expected."
 msgstr "Špatný typ vstupního argumentu #%d: Očekáván řetězec."
 
@@ -105,13 +112,6 @@ msgstr "Neplatné rozměry: argumenty #2 a #3 musí být stejné."
 
 msgid "Invalid variable: cannot create the data"
 msgstr "Neplatná proměnná: nelze vytvořit data"
-
-#, c-format
-msgid "Wrong type for input argument #%d: External Object expected."
-msgstr "Špatný typ vstupního argumentu #%d: Očekáván externí objekt."
-
-msgid "Incompatible External Object"
-msgstr "Nekompatibilní externí objekt"
 
 #, c-format
 msgid "Wrong type for input argument #%d: string expected."

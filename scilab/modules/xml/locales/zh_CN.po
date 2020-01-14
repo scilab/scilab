@@ -225,10 +225,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matrix nx2 or nx3 of strings "
 "expected.\n"
@@ -343,4 +339,50 @@ msgid "%s: Field %s is not modifiable: %s\n"
 msgstr ""
 
 msgid "CML read"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
+
+#
+# File: modules/xml/macros/xmlGetValues.sci, line: 42
+#, c-format
+msgid "%s: Invalid %s file.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s：XML对象不存在。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为双精度型。\n"
+
+#
+# File: modules/xml/macros/xmlGetValues.sci, line: 60
+#, c-format
+msgid "%s: Invalid XPath request.\n"
+msgstr ""
+
+#
+# File: modules/xml/macros/xmlGetValues.sci, line: 68
+#, c-format
+msgid "%s: Invalid XPath request."
+msgstr ""
+
+#
+# File: modules/xml/macros/xmlGetValues.sci, line: 79
+#, c-format
+msgid "%s: Target node is not a XML_ELEMENT_NODE."
+msgstr ""
+
+#
+# File: modules/xml/macros/xmlGetValues.sci, line: 93
+#, c-format
+msgid "%s: Invalid attribute name: %s."
 msgstr ""

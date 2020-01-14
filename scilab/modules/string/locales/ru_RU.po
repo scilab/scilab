@@ -429,10 +429,6 @@ msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
 msgstr "%s: Неверный тип аргумента №%d: ожидалось логическое значение.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d"
-
-#, c-format
 msgid "%s: Wrong export format: %s"
 msgstr "%s: Неверный формат экспорта: %s"
 
@@ -454,6 +450,10 @@ msgid ""
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидался символ или вектор "
 "символов.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected"
+#~ msgstr "%s: Неверное количество входных аргументов: ожидалось от %d до %d"
 
 #~ msgid ""
 #~ "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "

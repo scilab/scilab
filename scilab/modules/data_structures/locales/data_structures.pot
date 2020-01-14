@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:13+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
 #
 # File: modules/data_structures/sci_gateway/cpp/sci_definedfields.cpp, line: 44
@@ -78,7 +78,7 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
-# File: modules/data_structures/sci_gateway/cpp/sci_getfield.cpp, line: 282
+# File: modules/data_structures/sci_gateway/cpp/sci_getfield.cpp, line: 283
 #, c-format
 msgid "%s: Wrong value for input argument #%d: At most %d expected.\n"
 msgstr ""
@@ -128,20 +128,6 @@ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
 msgstr ""
 
 #
-# File: modules/data_structures/macros/hypermat.sci, line: 26
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be non-negative "
-"integers.\n"
-msgstr ""
-
-#
-# File: modules/data_structures/macros/hypermat.sci, line: 45
-#, c-format
-msgid "%s: Number of entries does not match product of dimensions"
-msgstr ""
-
-#
 # File: modules/data_structures/macros/iscellstr.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
@@ -181,4 +167,10 @@ msgstr ""
 # File: modules/data_structures/macros/tree_show.sci, line: 25
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/data_structures/macros/vec2list.sci, line: 20
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""

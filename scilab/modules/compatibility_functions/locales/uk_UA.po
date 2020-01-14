@@ -238,8 +238,7 @@ msgstr "%s: у «%s» виявлено невідомий колір -> вста
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: помилкова кількість вхідних параметрів: "
-"слід використовувати %d або %d.\n"
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"

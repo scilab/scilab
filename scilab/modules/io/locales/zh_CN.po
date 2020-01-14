@@ -208,9 +208,12 @@ msgstr "%s：第%d个输入参数的维度错误：应该为整数标量。\n"
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s：输入参数%d错误。\n"
 
+#
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 429
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 648
 #, c-format
-msgid "End of file at line %d.\n"
-msgstr "文件结束于第%d行。\n"
+msgid "%s: Input missing from console.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -276,3 +279,7 @@ msgstr "%s：%s在执行过程中发生错误"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr "%s：命令执行失败，其错误代码为%s，错误消息为：\n"
+
+#, c-format
+#~ msgid "End of file at line %d.\n"
+#~ msgstr "文件结束于第%d行。\n"

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:14+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
 # File: modules/scicos_blocks/src/c/convert.c, line: 1214
 # File: modules/scicos_blocks/src/c/convert.c, line: 1239
@@ -157,30 +157,30 @@ msgid "Could not open /dev/audio!\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 142
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 141
 #, c-format
 msgid "The '%s' variable does not exist.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 153
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 152
 #, c-format
 msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 163
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 168
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 162
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 167
 msgid "Erroneous saved file.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 198
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 197
 msgid "Invalid variable type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 208
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 207
 #, c-format
 msgid ""
 "Data dimensions are inconsistent:\n"
@@ -189,74 +189,74 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 223
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 222
 msgid "Output should be of Real type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 233
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 232
 msgid "Output should be of complex type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 249
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 248
 msgid "Output should be of int8 type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 259
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 258
 msgid "Output should be of int16 type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 269
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 268
 msgid "Output should be of int32 type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 279
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 278
 msgid "Output should be of uint8 type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 289
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 288
 msgid "Output should be of uint16 type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 299
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 298
 msgid "Output should be of uint32 type.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 372
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 371
 msgid "Cannot read the values field.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 394
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 393
 msgid "The Time vector type is not double.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 409
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 408
 msgid "The Time vector type is complex.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 420
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 419
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 436
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 435
 msgid "Cannot read the time field.\n"
 msgstr ""
 
 #
-# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 453
+# File: modules/scicos_blocks/src/cpp/fromws_c.cpp, line: 452
 msgid "The time vector should be an increasing vector.\n"
 msgstr ""
 

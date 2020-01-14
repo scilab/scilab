@@ -431,31 +431,33 @@ msgstr ""
 msgid "\tRemoving %s (%s)(%s)... "
 msgstr "\tSuppression de %s (%s)(%s)..."
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
-"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
+"SCIHOME.\n"
+"\tFor security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
 "%s : Le répertoire de ce package (%s-%s) n'est situé ni dans SCI ni dans "
 "SCIHOME. Pour des question de sécurité, ATOMS refuse de supprimer ce "
 "répertoire.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: The directory of this package (%s-%s) cannot been deleted, please check "
-"if you have write access on this directory : %s.\n"
+"%s: The package (%s - %s) directory %s cannot be deleted.\n"
+"\tIt may be used and locked. Please also check that you have write "
+"permission on it.\n"
 msgstr ""
-"%s : Le répertoire de ce package (%s-%s) ne peut pas être supprimé, veuillez "
-"vérifier que vous disposez des droits d'écriture dans ce répertoire : %s.\n"
+"%s : Le répertoire %s ne peux pas être créé, veuillez vérifier que vous "
+"disposez des droits d'écriture sur ce répertoire.\n"
 
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 314
 #, c-format
 msgid ""
-"%s: The root directory of this package (%s-%s) cannot been deleted, please "
-"check if you have write access on this directory : %s.\n"
+"%s: The package (%s - %s) has been removed from its root directory %s.\n"
+"\tHowever, this empty directory cannot be deleted. It may be used and "
+"locked, or you may have no write permission on it.\n"
 msgstr ""
-"%s : Le répertoire racine de ce package (%s-%s) ne peut pas être supprimé, "
-"veuillez vérifier que vous disposez des droits d'écriture dans ce "
-"répertoire : %s.\n"
 
 #, c-format
 msgid ""
@@ -1183,3 +1185,21 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : ASC ou DESC attendu.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
+#~ "check if you have write access on this directory : %s.\n"
+#~ msgstr ""
+#~ "%s : Le répertoire de ce package (%s-%s) ne peut pas être supprimé, "
+#~ "veuillez vérifier que vous disposez des droits d'écriture dans ce "
+#~ "répertoire : %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
+#~ "please check if you have write access on this directory : %s.\n"
+#~ msgstr ""
+#~ "%s : Le répertoire racine de ce package (%s-%s) ne peut pas être "
+#~ "supprimé, veuillez vérifier que vous disposez des droits d'écriture dans "
+#~ "ce répertoire : %s.\n"

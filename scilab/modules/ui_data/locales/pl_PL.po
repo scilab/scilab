@@ -40,10 +40,6 @@ msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano ciągu znaków.\n"
 
 #, c-format
-msgid "%s: ans cannot be edited.\n"
-msgstr "%s: nie można edytować ans.\n"
-
-#, c-format
 msgid "%s: Undefined variable: %s.\n"
 msgstr "%s: Niezdefiniowana zmienna: %s.\n"
 
@@ -80,8 +76,10 @@ msgstr "Typ"
 msgid "Visibility"
 msgstr "Widoczność"
 
-msgid "Bytes"
-msgstr "Bajtów"
+#
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 50
+msgid "Memory"
+msgstr ""
 
 msgid "User"
 msgstr "Użytkownik"
@@ -365,9 +363,6 @@ msgstr ""
 msgid "Scilab type:"
 msgstr "Typ Scilab:"
 
-msgid "Bytes:"
-msgstr ""
-
 msgid "Type not supported for this operation"
 msgstr ""
 
@@ -390,6 +385,13 @@ msgstr "&?"
 
 msgid "&About Scilab..."
 msgstr "&Informacje o Scilab..."
+
+#, c-format
+#~ msgid "%s: ans cannot be edited.\n"
+#~ msgstr "%s: nie można edytować ans.\n"
+
+#~ msgid "Bytes"
+#~ msgstr "Bajtów"
 
 #~ msgid "Compiled function"
 #~ msgstr "Funkcja skompilowana"

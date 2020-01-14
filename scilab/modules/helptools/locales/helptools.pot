@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:13+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
 # File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 88
 # File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 127
@@ -32,19 +32,19 @@ msgid "%s: Could find or create the working directory %s.\n"
 msgstr ""
 
 #
-# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 270
+# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 275
 #, c-format
 msgid "%s: Error while building documentation: %s.\n"
 msgstr ""
 
 #
-# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 271
+# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 276
 #, c-format
 msgid "%s: Execution Java stack: %s.\n"
 msgstr ""
 
 #
-# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 274
+# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 279
 msgid ""
 "If Scilab is started in a chroot, you might want to try to set the two "
 "environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
@@ -141,6 +141,36 @@ msgstr ""
 # File: modules/helptools/macros/del_help_chapter.sci, line: 45
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+
+#
+# File: modules/helptools/macros/head_comments.sci, line: 17
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#
+# File: modules/helptools/macros/head_comments.sci, line: 21
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+
+#
+# File: modules/helptools/macros/head_comments.sci, line: 25
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr ""
+
+#
+# File: modules/helptools/macros/head_comments.sci, line: 29
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgstr ""
+
+#
+# File: modules/helptools/macros/head_comments.sci, line: 59
+msgid "No comment available."
 msgstr ""
 
 #

@@ -755,7 +755,8 @@ msgstr "Rozložení plochy"
 msgid "Select a layout"
 msgstr "Zvolit rozložení"
 
-msgid "(Modify the layout requires to restart Scilab)"
+#, fuzzy
+msgid "(Modifying the layout requires to restart Scilab)"
 msgstr "(Změna rozvržení vyžaduje retart)"
 
 msgid "Save layout on exiting"

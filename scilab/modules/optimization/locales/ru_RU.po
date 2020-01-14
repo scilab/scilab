@@ -137,9 +137,14 @@ msgid ""
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась матрица или функция.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s: Неверный размер выходного аргумента №%d: ожидалось %d элементов.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A jacobian or a real expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -252,6 +257,10 @@ msgid "%s: Wrong type for input argument #%d: Scalar string expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалось скалярное строковое "
 "значение.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid "Can not allocate %.2f MB memory.\n"
@@ -1788,5 +1797,5 @@ msgstr ""
 "значение.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"

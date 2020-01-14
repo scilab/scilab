@@ -753,7 +753,8 @@ msgstr "界面布局"
 msgid "Select a layout"
 msgstr "选择布局"
 
-msgid "(Modify the layout requires to restart Scilab)"
+#, fuzzy
+msgid "(Modifying the layout requires to restart Scilab)"
 msgstr "（修改布局需要重启Scilab）"
 
 msgid "Save layout on exiting"

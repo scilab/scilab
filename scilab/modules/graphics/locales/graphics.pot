@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-02-12 12:13+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 83
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 221
@@ -66,10 +66,10 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xgraduate.c, line: 129
 # File: modules/graphics/sci_gateway/c/sci_xgraduate.c, line: 142
 # File: modules/graphics/sci_gateway/c/sci_xgraduate.c, line: 155
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 148
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 170
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 326
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 346
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 151
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 173
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 329
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 349
 # File: modules/graphics/sci_gateway/c/sci_xrects.c, line: 123
 # File: modules/graphics/sci_gateway/cpp/sci_contour2dm.cpp, line: 214
 # File: modules/graphics/sci_gateway/cpp/sci_contour2dm.cpp, line: 222
@@ -119,8 +119,8 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_get.c, line: 265
 # File: modules/graphics/sci_gateway/c/sci_move.c, line: 66
 # File: modules/graphics/sci_gateway/c/sci_xchange.c, line: 67
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 101
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 283
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 104
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 286
 # File: modules/graphics/sci_gateway/c/sci_xname.c, line: 58
 # File: modules/graphics/sci_gateway/c/sci_xpoly.c, line: 121
 # File: modules/graphics/sci_gateway/c/sci_xstring.c, line: 76
@@ -160,10 +160,10 @@ msgstr ""
 # File: modules/graphics/src/c/Format.c, line: 1168
 # File: modules/graphics/src/c/Format.c, line: 1245
 # File: modules/graphics/src/c/Gray.c, line: 209
-# File: modules/graphics/src/c/Gray.c, line: 360
-# File: modules/graphics/src/c/Gray.c, line: 513
-# File: modules/graphics/src/c/Gray.c, line: 553
-# File: modules/graphics/src/c/Gray.c, line: 588
+# File: modules/graphics/src/c/Gray.c, line: 365
+# File: modules/graphics/src/c/Gray.c, line: 523
+# File: modules/graphics/src/c/Gray.c, line: 563
+# File: modules/graphics/src/c/Gray.c, line: 598
 # File: modules/graphics/src/c/InitObjects.c, line: 160
 # File: modules/graphics/src/c/Plo2dn.c, line: 405
 # File: modules/graphics/src/c/Plo2dn.c, line: 437
@@ -306,7 +306,7 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xgrid.c, line: 66
 # File: modules/graphics/sci_gateway/c/sci_xgrid.c, line: 113
 # File: modules/graphics/sci_gateway/c/sci_xgrid.c, line: 158
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 300
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 303
 # File: modules/graphics/sci_gateway/c/sci_xpoly.c, line: 80
 # File: modules/graphics/sci_gateway/c/sci_xpoly.c, line: 96
 # File: modules/graphics/sci_gateway/c/sci_xpoly.c, line: 160
@@ -418,33 +418,6 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 102
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
-msgstr ""
-
-#
-# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 169
-# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 361
-# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 394
-# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 131
-# File: modules/graphics/sci_gateway/c/sci_geom3d.c, line: 123
-# File: modules/graphics/sci_gateway/c/sci_geom3d.c, line: 130
-# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 144
-# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 151
-# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 144
-# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 240
-# File: modules/graphics/sci_gateway/c/sci_xarrows.c, line: 90
-# File: modules/graphics/sci_gateway/c/sci_xchange.c, line: 115
-# File: modules/graphics/sci_gateway/c/sci_xchange.c, line: 195
-# File: modules/graphics/sci_gateway/c/sci_xfpoly.c, line: 92
-# File: modules/graphics/sci_gateway/c/sci_xfpolys.c, line: 116
-# File: modules/graphics/sci_gateway/c/sci_xfpolys.c, line: 152
-# File: modules/graphics/sci_gateway/c/sci_xgetmouse.c, line: 106
-# File: modules/graphics/sci_gateway/c/sci_xpoly.c, line: 103
-# File: modules/graphics/sci_gateway/c/sci_xpolys.c, line: 102
-# File: modules/graphics/sci_gateway/c/sci_xsegs.c, line: 95
-# File: modules/graphics/sci_gateway/c/sci_xsegs.c, line: 187
-# File: modules/graphics/sci_gateway/cpp/sci_contour2dm.cpp, line: 89
-#, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
 
 #
@@ -571,7 +544,7 @@ msgstr ""
 #
 # File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 93
 # File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 178
-# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 315
+# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 321
 # File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 223
 # File: modules/graphics/sci_gateway/c/sci_xarrows.c, line: 198
 # File: modules/graphics/sci_gateway/c/sci_xrect.c, line: 86
@@ -586,8 +559,8 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 148
 # File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 163
 # File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 198
-# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 352
-# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 385
+# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 358
+# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 391
 # File: modules/graphics/sci_gateway/c/sci_xarc.c, line: 82
 # File: modules/graphics/sci_gateway/c/sci_xarc.c, line: 105
 # File: modules/graphics/sci_gateway/c/sci_xarc.c, line: 128
@@ -614,7 +587,8 @@ msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 304
+# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 310
+#, c-format
 msgid "%s: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr ""
 
@@ -832,8 +806,8 @@ msgstr ""
 #
 # File: modules/graphics/sci_gateway/c/sci_rubberbox.c, line: 116
 # File: modules/graphics/sci_gateway/c/sci_xgetmouse.c, line: 99
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 226
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 255
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 229
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 258
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
@@ -880,8 +854,8 @@ msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/c/sci_rubberbox.c, line: 317
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 210
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 240
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 213
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 243
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
@@ -1041,26 +1015,26 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 182
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 358
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 185
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 361
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid fontname expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 311
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 314
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-negative int expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 363
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 366
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 378
+# File: modules/graphics/sci_gateway/c/sci_xlfont.c, line: 381
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
 msgstr ""
@@ -1401,8 +1375,8 @@ msgstr ""
 #
 # File: modules/graphics/src/c/FeC.c, line: 220
 # File: modules/graphics/src/c/Gray.c, line: 199
-# File: modules/graphics/src/c/Gray.c, line: 350
-# File: modules/graphics/src/c/Gray.c, line: 503
+# File: modules/graphics/src/c/Gray.c, line: 355
+# File: modules/graphics/src/c/Gray.c, line: 513
 # File: modules/graphics/src/c/Plo2dn.c, line: 395
 msgid "Warning: Nax does not work with logarithmic scaling.\n"
 msgstr ""
@@ -2003,31 +1977,31 @@ msgid "'%s' property does not exist for this handle.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/CheckTicksProperty.c, line: 39
+# File: modules/graphics/src/c/getHandleProperty/CheckTicksProperty.c, line: 40
 msgid "Tlist could not be created, check ticks location and label vectors.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/CheckTicksProperty.c, line: 45
+# File: modules/graphics/src/c/getHandleProperty/CheckTicksProperty.c, line: 46
 #, c-format
 msgid "%s should be a vector of double.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/CheckTicksProperty.c, line: 57
-# File: modules/graphics/src/c/getHandleProperty/CheckTicksProperty.c, line: 75
+# File: modules/graphics/src/c/getHandleProperty/CheckTicksProperty.c, line: 58
+# File: modules/graphics/src/c/getHandleProperty/CheckTicksProperty.c, line: 80
 msgid "Ticks location and label vectors must have the same size.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/CheckTicksProperty.c, line: 66
+# File: modules/graphics/src/c/getHandleProperty/CheckTicksProperty.c, line: 67
 #, c-format
 msgid "%s should be a string vector.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/getHandleProperty/GetHashTable.c, line: 306
-# File: modules/graphics/src/c/getHandleProperty/SetHashTable.c, line: 305
+# File: modules/graphics/src/c/getHandleProperty/GetHashTable.c, line: 307
+# File: modules/graphics/src/c/getHandleProperty/SetHashTable.c, line: 306
 #, c-format
 msgid "Unknown property: %s.\n"
 msgstr ""
@@ -3395,7 +3369,7 @@ msgstr ""
 # File: modules/graphics/macros/bar.sci, line: 121
 # File: modules/graphics/macros/bar.sci, line: 176
 # File: modules/graphics/macros/setPlotProperty.sci, line: 46
-# File: modules/graphics/macros/surf.sci, line: 127
+# File: modules/graphics/macros/surf.sci, line: 123
 #, c-format
 msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
 msgstr ""
@@ -3709,6 +3683,8 @@ msgstr ""
 # File: modules/graphics/macros/contour2d.sci, line: 32
 # File: modules/graphics/macros/contourf.sci, line: 58
 # File: modules/graphics/macros/contourf.sci, line: 62
+# File: modules/graphics/macros/implicitplot.sci, line: 38
+# File: modules/graphics/macros/implicitplot.sci, line: 50
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
@@ -3740,6 +3716,8 @@ msgstr ""
 # File: modules/graphics/macros/contour2d.sci, line: 48
 # File: modules/graphics/macros/contourf.sci, line: 111
 # File: modules/graphics/macros/contourf.sci, line: 115
+# File: modules/graphics/macros/implicitplot.sci, line: 41
+# File: modules/graphics/macros/implicitplot.sci, line: 53
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real vector expected.\n"
 msgstr ""
@@ -4251,6 +4229,39 @@ msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 
 #
+# File: modules/graphics/macros/implicitplot.sci, line: 44
+# File: modules/graphics/macros/implicitplot.sci, line: 56
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 63
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 73
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 102
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 148
+#, c-format
+msgid "Error %d : in plot called by implicitplot"
+msgstr ""
+
+#
 # File: modules/graphics/macros/iscolor.sci, line: 42
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
@@ -4442,14 +4453,14 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/rotate.sci, line: 28
-# File: modules/graphics/macros/surf.sci, line: 452
-# File: modules/graphics/macros/surf.sci, line: 458
-# File: modules/graphics/macros/surf.sci, line: 490
-# File: modules/graphics/macros/surf.sci, line: 526
-# File: modules/graphics/macros/surf.sci, line: 563
-# File: modules/graphics/macros/surf.sci, line: 569
-# File: modules/graphics/macros/surf.sci, line: 615
-# File: modules/graphics/macros/surf.sci, line: 660
+# File: modules/graphics/macros/surf.sci, line: 448
+# File: modules/graphics/macros/surf.sci, line: 454
+# File: modules/graphics/macros/surf.sci, line: 486
+# File: modules/graphics/macros/surf.sci, line: 522
+# File: modules/graphics/macros/surf.sci, line: 559
+# File: modules/graphics/macros/surf.sci, line: 565
+# File: modules/graphics/macros/surf.sci, line: 611
+# File: modules/graphics/macros/surf.sci, line: 656
 #, c-format
 msgid "%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
 msgstr ""
@@ -4595,38 +4606,37 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/surf.sci, line: 108
-# File: modules/graphics/macros/surf.sci, line: 118
+# File: modules/graphics/macros/surf.sci, line: 114
 #, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 112
-# File: modules/graphics/macros/surf.sci, line: 122
+# File: modules/graphics/macros/surf.sci, line: 118
 #, c-format
 msgid "%s: Argument #%d: At least %d components expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 143
+# File: modules/graphics/macros/surf.sci, line: 139
 #, c-format
 msgid "%s: Argument #%d: Wrong list() specification.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 176
+# File: modules/graphics/macros/surf.sci, line: 172
 #, c-format
 msgid "%s: Argument #%d : Unable to evaluate Z: Error %d at line %d in %s: '%s"
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 188
+# File: modules/graphics/macros/surf.sci, line: 184
 #, c-format
 msgid "%s: Argument #%d: Inconsistent size of the result.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 213
+# File: modules/graphics/macros/surf.sci, line: 209
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix "
@@ -4634,15 +4644,15 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 281
-# File: modules/graphics/macros/surf.sci, line: 292
-# File: modules/graphics/macros/surf.sci, line: 303
+# File: modules/graphics/macros/surf.sci, line: 277
+# File: modules/graphics/macros/surf.sci, line: 288
+# File: modules/graphics/macros/surf.sci, line: 299
 #, c-format
 msgid "%s: Wrong type for input argument '%s': A Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 307
+# File: modules/graphics/macros/surf.sci, line: 303
 #, c-format
 msgid ""
 "%s: Wrong size for input argument '%s': A matrix of size greater than %d-by-"
@@ -4650,15 +4660,15 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 471
-# File: modules/graphics/macros/surf.sci, line: 477
-# File: modules/graphics/macros/surf.sci, line: 496
-# File: modules/graphics/macros/surf.sci, line: 520
-# File: modules/graphics/macros/surf.sci, line: 589
-# File: modules/graphics/macros/surf.sci, line: 595
-# File: modules/graphics/macros/surf.sci, line: 621
-# File: modules/graphics/macros/surf.sci, line: 654
-# File: modules/graphics/macros/surf.sci, line: 690
+# File: modules/graphics/macros/surf.sci, line: 467
+# File: modules/graphics/macros/surf.sci, line: 473
+# File: modules/graphics/macros/surf.sci, line: 492
+# File: modules/graphics/macros/surf.sci, line: 516
+# File: modules/graphics/macros/surf.sci, line: 585
+# File: modules/graphics/macros/surf.sci, line: 591
+# File: modules/graphics/macros/surf.sci, line: 617
+# File: modules/graphics/macros/surf.sci, line: 650
+# File: modules/graphics/macros/surf.sci, line: 686
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments '%s' and '%s': Matrices of same size "
@@ -4666,7 +4676,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/surf.sci, line: 548
+# File: modules/graphics/macros/surf.sci, line: 544
 #, c-format
 msgid "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""

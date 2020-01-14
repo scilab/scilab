@@ -290,7 +290,18 @@ msgstr "%s: підтримки гіперматриць не передбаче�
 msgid "%s: Inconsistent multiplication.\n"
 msgstr "%s: множення несумісних значень.\n"
 
-#,
+#
+# File: modules/overloading/macros/%r_p.sci, line: 75
+#, c-format
+msgid "column %d"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_p.sci, line: 77
+#, c-format
+msgid "columns %d to %d"
+msgstr ""
+
 msgid "Not implemented"
 msgstr "не реалізовано."
 

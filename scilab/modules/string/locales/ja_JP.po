@@ -573,10 +573,6 @@ msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
 msgstr "%s: 引数 #%d の型が間違っています: 論理値を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s: 入力引数の数が間違っています: %dから%d個の引数を指定してください."
-
-#, c-format
 msgid "%s: Wrong export format: %s"
 msgstr "%s: エキスポート形式が間違っています: %s"
 
@@ -597,6 +593,11 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: 入力引数 #%d で不正なサイズ: 文字列、または、文字ベクトルを想定します。\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %dから%d個の引数を指定してください."
 
 #
 # File: macros/evstr.sci, line: 45

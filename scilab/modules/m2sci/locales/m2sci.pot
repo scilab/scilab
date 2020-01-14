@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:14+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
 # File: modules/m2sci/macros/cb_m2sci_gui.sci, line: 34
 # File: modules/m2sci/macros/m2sci_gui.sci, line: 283
@@ -736,96 +736,96 @@ msgid "Convert a whole directory"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 71
+# File: modules/m2sci/macros/mfile2sci.sci, line: 72
 msgid "OFF"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 72
 # File: modules/m2sci/macros/mfile2sci.sci, line: 73
+# File: modules/m2sci/macros/mfile2sci.sci, line: 74
 msgid "NO"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 74
-# File: modules/m2sci/macros/mfile2sci.sci, line: 76
+# File: modules/m2sci/macros/mfile2sci.sci, line: 75
+# File: modules/m2sci/macros/mfile2sci.sci, line: 77
 msgid "YES"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 75
+# File: modules/m2sci/macros/mfile2sci.sci, line: 76
 msgid "ON"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 132
+# File: modules/m2sci/macros/mfile2sci.sci, line: 133
 msgid "****** Beginning of mfile2sci() session ******"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 133
+# File: modules/m2sci/macros/mfile2sci.sci, line: 134
 msgid "File to convert:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 134
+# File: modules/m2sci/macros/mfile2sci.sci, line: 135
 msgid "Result file path:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 135
+# File: modules/m2sci/macros/mfile2sci.sci, line: 136
 msgid "Recursive mode:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 136
+# File: modules/m2sci/macros/mfile2sci.sci, line: 137
 msgid "Only double values used in M-file:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 137
+# File: modules/m2sci/macros/mfile2sci.sci, line: 138
 msgid "Verbose mode:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 138
+# File: modules/m2sci/macros/mfile2sci.sci, line: 139
 msgid "Generate formatted code:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 142
+# File: modules/m2sci/macros/mfile2sci.sci, line: 143
 msgid "M-file reading..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 144
+# File: modules/m2sci/macros/mfile2sci.sci, line: 145
 msgid "M-file reading: Done"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 150
+# File: modules/m2sci/macros/mfile2sci.sci, line: 151
 #, c-format
 msgid "File %s is an empty file.\n"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 156
+# File: modules/m2sci/macros/mfile2sci.sci, line: 157
 msgid "Syntax modification..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 165
+# File: modules/m2sci/macros/mfile2sci.sci, line: 166
 msgid "Syntax modification: Done"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 212
+# File: modules/m2sci/macros/mfile2sci.sci, line: 213
 #, c-format
 msgid "%s: %s does not exist or is not the macro name.\n"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 218
+# File: modules/m2sci/macros/mfile2sci.sci, line: 219
 #, c-format
 msgid ""
 "Warning: file %s defines function %s instead of %s\n"
@@ -833,56 +833,56 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 244
+# File: modules/m2sci/macros/mfile2sci.sci, line: 245
 msgid "Macro to tree conversion..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 270
-# File: modules/m2sci/macros/mfile2sci.sci, line: 273
-# File: modules/m2sci/macros/mfile2sci.sci, line: 276
-# File: modules/m2sci/macros/mfile2sci.sci, line: 280
-# File: modules/m2sci/macros/mfile2sci.sci, line: 321
+# File: modules/m2sci/macros/mfile2sci.sci, line: 271
+# File: modules/m2sci/macros/mfile2sci.sci, line: 274
+# File: modules/m2sci/macros/mfile2sci.sci, line: 277
+# File: modules/m2sci/macros/mfile2sci.sci, line: 281
+# File: modules/m2sci/macros/mfile2sci.sci, line: 322
 msgid "resumelogfile.dat"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 278
+# File: modules/m2sci/macros/mfile2sci.sci, line: 279
 msgid "resume"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 307
+# File: modules/m2sci/macros/mfile2sci.sci, line: 308
 #, c-format
 msgid "****** %s: Functions of mfile2sci() session ******"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 309
+# File: modules/m2sci/macros/mfile2sci.sci, line: 310
 #, c-format
 msgid ""
 "%d Matlab Function(s) not yet converted, original calling sequence used:"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 312
+# File: modules/m2sci/macros/mfile2sci.sci, line: 313
 #, c-format
 msgid "%d Matlab Toolbox(es) Functions, original calling sequence used :"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 315
+# File: modules/m2sci/macros/mfile2sci.sci, line: 316
 #, c-format
 msgid "%d Unknown Function(s), original calling sequence used :"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 324
+# File: modules/m2sci/macros/mfile2sci.sci, line: 325
 msgid "Macro to tree conversion: Done"
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 359
+# File: modules/m2sci/macros/mfile2sci.sci, line: 360
 msgid ""
 "Translation may be improved: see the //! comments and for all mtlb_<funname> "
 "function call\n"
@@ -891,17 +891,17 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 362
+# File: modules/m2sci/macros/mfile2sci.sci, line: 363
 msgid "Translation may be wrong (see the //!! comments)."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 368
+# File: modules/m2sci/macros/mfile2sci.sci, line: 369
 msgid "File contains no instruction, no translation made..."
 msgstr ""
 
 #
-# File: modules/m2sci/macros/mfile2sci.sci, line: 372
+# File: modules/m2sci/macros/mfile2sci.sci, line: 373
 msgid "****** End of mfile2sci() session ******"
 msgstr ""
 

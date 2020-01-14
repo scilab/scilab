@@ -407,29 +407,32 @@ msgstr ""
 msgid "\tRemoving %s (%s)(%s)... "
 msgstr "\tOdstraňování %s (%s)(%s)... "
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
-"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
+"SCIHOME.\n"
+"\tFor security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
 "%s: Adresář tohoto balíčku (%s-%s) je není umístěn ani v SCI ani ve SCIHOME. "
 "Z bezpečnostních důvodů ATOMS odmítá smazat tento adresář.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: The directory of this package (%s-%s) cannot been deleted, please check "
-"if you have write access on this directory : %s.\n"
+"%s: The package (%s - %s) directory %s cannot be deleted.\n"
+"\tIt may be used and locked. Please also check that you have write "
+"permission on it.\n"
 msgstr ""
-"%s: Adresář tohoto balíčku (%s-%s) nelze smazat, zkontrolujte, prosím, zdali "
-"máte přístup pro zápis do tohoto adresáře : %s.\n"
+"%s: Adresář %s nelze vytvořit, zkontrolujte, prosím, jestli máte do této "
+"složky přístup k zápisu.\n"
 
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 314
 #, c-format
 msgid ""
-"%s: The root directory of this package (%s-%s) cannot been deleted, please "
-"check if you have write access on this directory : %s.\n"
+"%s: The package (%s - %s) has been removed from its root directory %s.\n"
+"\tHowever, this empty directory cannot be deleted. It may be used and "
+"locked, or you may have no write permission on it.\n"
 msgstr ""
-"%s: Kořenový adresář tohoto balíčku (%s-%s) nelze smazat, zkontrolujte, "
-"prosím, zdali máte přístup pro zápis do tohoto adresáře : %s.\n"
 
 #, c-format
 msgid ""
@@ -1123,3 +1126,19 @@ msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno ASC (vzestupně) nebo "
 "DESC (sestupně).\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
+#~ "check if you have write access on this directory : %s.\n"
+#~ msgstr ""
+#~ "%s: Adresář tohoto balíčku (%s-%s) nelze smazat, zkontrolujte, prosím, "
+#~ "zdali máte přístup pro zápis do tohoto adresáře : %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
+#~ "please check if you have write access on this directory : %s.\n"
+#~ msgstr ""
+#~ "%s: Kořenový adresář tohoto balíčku (%s-%s) nelze smazat, zkontrolujte, "
+#~ "prosím, zdali máte přístup pro zápis do tohoto adresáře : %s.\n"

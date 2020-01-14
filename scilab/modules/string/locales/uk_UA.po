@@ -480,11 +480,6 @@ msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати тип «boolean».\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до %d"
-
-#, c-format
 msgid "%s: Wrong export format: %s"
 msgstr "%s: помилковий формат експорту: %s"
 
@@ -506,6 +501,12 @@ msgid ""
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
 "символ або вектор символів.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d"
 
 #~ msgid ""
 #~ "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "

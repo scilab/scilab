@@ -1216,6 +1216,11 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Gain infini à la fréquence "
 "zéro.\n"
 
+#
+# File: modules/cacsd/macros/freson.sci, line: 80
+msgid "freson: Some maxima frequencies may be undetected."
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr ""
@@ -1614,10 +1619,9 @@ msgstr "Pôles"
 msgid "Transmission zeros and poles"
 msgstr "Zéros et pôles de transmission"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
-msgstr ""
-"%s : Argument n°%d : matrice réelle attendue.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: real matrix expected.\n"
+msgstr "%s : Argument n°%d : matrice réelle attendue.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"

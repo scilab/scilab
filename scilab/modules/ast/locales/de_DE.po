@@ -27,9 +27,13 @@ msgstr ""
 msgid "computing least squares solution. (see lsq).\n"
 msgstr ""
 
-#, c-format
-msgid "debugger stop on breakpoint(%d) in function %ls line %d\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "debugger stop on breakpoint(%d) in function %s at line %d\n"
+msgstr "Debugger-Halt wegen Fehler in Funktion %ls Zeile %d\n"
+
+#, fuzzy, c-format
+msgid "debugger stop on breakpoint(%d) in file %s at line %d\n"
+msgstr "Debugger-Halt wegen Fehler in Datei %ls Zeile %d\n"
 
 msgid "Execution aborted.\n"
 msgstr "Ausführung abgebrochen.\n"
@@ -72,10 +76,6 @@ msgstr ""
 
 msgid "for expression : Wrong type for loop iterator.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: function is disabled in debug mode.\n"
-msgstr "%s: Funktion ist im Debug-Modus deaktiviert.\n"
 
 msgid "With input arguments, return / resume expects output arguments.\n"
 msgstr "Return / resume erwarten mit Eingabeargumenten Ausgabeargumente.\n"
@@ -366,8 +366,11 @@ msgstr ""
 msgid "Can not allocate negative size (%d).\n"
 msgstr ""
 
+#
+# File: modules/ast/src/cpp/types/singlepoly.cpp, line: 123
+# File: modules/ast/src/cpp/types/string.cpp, line: 706
 #, c-format
-msgid "Can not allocate %.2f MB memory.\n"
+msgid "Can not allocate %s memory.\n"
 msgstr ""
 
 msgid "Unable to insert multiple item in a struct.\n"
@@ -386,3 +389,7 @@ msgstr ""
 #, c-format
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr ""
+
+#, c-format
+#~ msgid "%s: function is disabled in debug mode.\n"
+#~ msgstr "%s: Funktion ist im Debug-Modus deaktiviert.\n"

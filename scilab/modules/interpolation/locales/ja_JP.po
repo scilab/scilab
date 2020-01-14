@@ -24,16 +24,8 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -198,6 +190,64 @@ msgstr "%s: フィッティングのための点が不足しています.\n"
 msgid "%ls: Warning: Rank deficiency of the least square matrix.\n"
 msgstr "%ls: 警告: 最小二乗行列ランク欠損.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: incorrect element #%d\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または実数を指定してください.\n"
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 90
+#, c-format
+msgid "%s: last connected component of boundary is not closed\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: some points are identical.\n"
+msgstr "%s: フィッティングのための点が不足しています.\n"
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 126
+#, c-format
+msgid "%s: wrong boundary array.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 127
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 130
+#, c-format
+msgid "%s: crossed boundary.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 128
+#, c-format
+msgid "%s: wrong orientation of the boundary.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 129
+#, c-format
+msgid "%s: size limitation.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 131
+#, c-format
+msgid "%s: an interior point is on the boundary.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 132
+#, c-format
+msgid "%s: an interior point is too close to the boundary.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 133
+#, c-format
+msgid "%s: some points are identical or size limitation.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : At least a size of 2 expected.\n"
@@ -279,8 +329,8 @@ msgid ""
 "%s: Wrong value for element %d of input argument #%d : At least 2 and at "
 "most %d expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の要素 %d の大きさが間違っています:  2以上、%d以下で指定し"
-"てください.\n"
+"%s: 入力引数 #%d の要素 %d の大きさが間違っています:  2以上、%d以下で指定して"
+"ください.\n"
 
 #, c-format
 msgid "%s: Problem with 'flag' = %d\n"
@@ -329,3 +379,27 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
 msgstr "%s: 入力引数#%d の数が間違っています : 2つの行を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
+
+#
+# File: modules/interpolation/macros/mesh2d.sci, line: 68
+#, c-format
+msgid "%s: all points are coincident.\n"
+msgstr ""
+
+#, c-format
+#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+#~ msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"

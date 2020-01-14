@@ -153,8 +153,7 @@ msgstr "%s : Argument n°%d : matrice vide [] attendue.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
-msgstr ""
-"%s : Argument n°%d : entiers positifs attendus.\n"
+msgstr "%s : Argument n°%d : entiers positifs attendus.\n"
 
 #
 # File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 163

@@ -94,8 +94,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: "
-"ne erano attesi almeno %d.\n"
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+"almeno %d.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Decimal number(s) expected.\n"

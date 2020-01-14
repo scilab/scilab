@@ -229,9 +229,12 @@ msgstr ""
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s: 入力引数 %d が間違っています.\n"
 
+#
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 429
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 648
 #, c-format
-msgid "End of file at line %d.\n"
-msgstr "ファイルの終端(%d行目).\n"
+msgid "%s: Input missing from console.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -298,3 +301,7 @@ msgstr "%s: %s 実行中にエラーが発生しました"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr "%s: コマンドはエラーコード %s および以下のメッセージで終了しました:\n"
+
+#, c-format
+#~ msgid "End of file at line %d.\n"
+#~ msgstr "ファイルの終端(%d行目).\n"

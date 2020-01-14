@@ -39,10 +39,6 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: ans cannot be edited.\n"
-msgstr "%s: ans は編集できません.\n"
-
-#, c-format
 msgid "%s: Undefined variable: %s.\n"
 msgstr "%s: 変数が未定義です: %s.\n"
 
@@ -77,8 +73,10 @@ msgstr "型"
 msgid "Visibility"
 msgstr "可視性"
 
-msgid "Bytes"
-msgstr "バイト数"
+#
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 50
+msgid "Memory"
+msgstr ""
 
 msgid "User"
 msgstr "ユーザ"
@@ -362,9 +360,6 @@ msgstr "フィルタを実行"
 msgid "Scilab type:"
 msgstr "Scilab型:"
 
-msgid "Bytes:"
-msgstr "バイト数:"
-
 msgid "Type not supported for this operation"
 msgstr "型がこの処理でサポートされていません"
 
@@ -387,6 +382,16 @@ msgstr "&?"
 
 msgid "&About Scilab..."
 msgstr "Scilabバージョン情報(&A)..."
+
+#, c-format
+#~ msgid "%s: ans cannot be edited.\n"
+#~ msgstr "%s: ans は編集できません.\n"
+
+#~ msgid "Bytes"
+#~ msgstr "バイト数"
+
+#~ msgid "Bytes:"
+#~ msgstr "バイト数:"
 
 #~ msgid "Compiled function"
 #~ msgstr "コンパイル済みの関数"

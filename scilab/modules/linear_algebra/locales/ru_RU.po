@@ -28,11 +28,6 @@ msgstr ""
 "матрица.\n"
 
 #, c-format
-msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
-msgstr ""
-"%s: Неверное значение аргумента №%d: не должно содержать NaN или Inf.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалось строковое или "
@@ -450,3 +445,8 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного параметра №%d: запрошенный ранг больше "
 "размерности матрицы."
+
+#, c-format
+#~ msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение аргумента №%d: не должно содержать NaN или Inf.\n"

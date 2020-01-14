@@ -416,29 +416,32 @@ msgstr ""
 msgid "\tRemoving %s (%s)(%s)... "
 msgstr "\t%s (%s)(%s) を削除中... "
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
-"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
+"SCIHOME.\n"
+"\tFor security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
 "%s: このパッケージ(%s-%s)のディレクトリはSCIまたはSCIHOME以下に配置されていま"
 "せん.セキュリティ上の理由により,ATOMSはこのディレクトリ削除しません.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: The directory of this package (%s-%s) cannot been deleted, please check "
-"if you have write access on this directory : %s.\n"
+"%s: The package (%s - %s) directory %s cannot be deleted.\n"
+"\tIt may be used and locked. Please also check that you have write "
+"permission on it.\n"
 msgstr ""
-"%s: このパッケージ(%s-%s)のディレクトリを削除できません、このディレクトリーで"
-"書き込みアクセス権を持つかどうか確かめて下さい : %s\n"
+"%s: ディレクトリー %s を作成できません. このディレクトリーへの書き込みアクセ"
+"ス権の有無を確認ください.\n"
 
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 314
 #, c-format
 msgid ""
-"%s: The root directory of this package (%s-%s) cannot been deleted, please "
-"check if you have write access on this directory : %s.\n"
+"%s: The package (%s - %s) has been removed from its root directory %s.\n"
+"\tHowever, this empty directory cannot be deleted. It may be used and "
+"locked, or you may have no write permission on it.\n"
 msgstr ""
-"%s: このパッケージ(%s-%s)のルート・ディレクトリを削除できません、このディレク"
-"トリーで書き込みアクセス権を持つかどうか確かめて下さい : %s\n"
 
 #, c-format
 msgid ""
@@ -1142,3 +1145,19 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: ASCまたはDESCを指定してください.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
+#~ "check if you have write access on this directory : %s.\n"
+#~ msgstr ""
+#~ "%s: このパッケージ(%s-%s)のディレクトリを削除できません、このディレクト"
+#~ "リーで書き込みアクセス権を持つかどうか確かめて下さい : %s\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
+#~ "please check if you have write access on this directory : %s.\n"
+#~ msgstr ""
+#~ "%s: このパッケージ(%s-%s)のルート・ディレクトリを削除できません、このディ"
+#~ "レクトリーで書き込みアクセス権を持つかどうか確かめて下さい : %s\n"

@@ -116,11 +116,6 @@ msgstr ""
 "позиции %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d: ожидалась матрица %d на %d.\n"
-
-#, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: Неверный размер входных параметров: размеры несовместимы.\n"
 
@@ -183,6 +178,7 @@ msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидается вещественный скаляр.\n"
 
+#, c-format
 msgid "%s: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%s: Неверное значение %s «%c»: Ожидалось «%s», «%s» и «%s».\n"
 
@@ -2138,6 +2134,35 @@ msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалось вещественное число.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось допустимое "
+"свойство.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась вещественная матрица или "
+"функция Scilab.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr ""
+"%s: Неверный размер входного  аргумента №%d: ожидался строковый скаляр.\n"
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 102
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Error %d : in plot called by implicitplot"
+msgstr "Ошибка %d : в plot2d, вызванной в contour2d"
+
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
 msgstr "%s: Аргумент №%d: ожидались числа или текст.\n"
@@ -2479,6 +2504,11 @@ msgstr "%s: Неверный размер входных аргументов: �
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: Для %s дано неверное значение."
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного аргумента №%d: ожидалась матрица %d на %d.\n"
 
 #~ msgid "polarplot(): Only quadrant(s) reached by data are displayed"
 #~ msgstr ""

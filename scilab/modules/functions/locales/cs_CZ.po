@@ -59,9 +59,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -85,6 +85,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -120,23 +124,6 @@ msgid "%s: Incorrect function in file %s.\n"
 msgstr "%s: Nesprávná funkce v souboru %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec znaku.\n"
-
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: Neurčená proměnná %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno jméno funkce Scilab.\n"
-
-msgid "No comment available."
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
 
@@ -155,3 +142,20 @@ msgstr "Použijte místo toho %s prosím."
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Tato funkce bude navždy odstraněna ve Scilab %s"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A character string expected.\n"
+#~ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec znaku.\n"
+
+#, c-format
+#~ msgid "%s: Undefined variable %s.\n"
+#~ msgstr "%s: Neurčená proměnná %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Name of a Scilab function "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno jméno funkce "
+#~ "Scilab.\n"

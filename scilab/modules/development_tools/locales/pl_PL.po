@@ -64,10 +64,6 @@ msgid "%s: Assertion failed: expected = %s while computed = %s"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
 
@@ -85,9 +81,54 @@ msgstr "%s: Obliczona wartość jest liczbą rzeczywistą, oczekiwano zespolonej
 msgid "%s: Computed is complex, but expected is real."
 msgstr "%s: Obliczona wartość jest liczbą zespoloną, oczekiwano rzeczywistej."
 
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 79
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 85
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 102
+#, c-format
+msgid "%s: Assertion failed: expected= %s  while computed= %s"
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 90
 #, c-format
 msgid ""
-"%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"
+"%s: Assertion failed: expected and computed are two distinct built-in "
+"functions."
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 175
+#, c-format
+msgid "expected(%d)= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 176
+#, c-format
+msgid "computed(%d)= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 178
+msgid "expected= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 179
+msgid "computed= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 184
+#, c-format
+msgid "%s: Assertion failed: %s  while %s (mean diff = %s)"
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 186
+#, c-format
+msgid "%s: Assertion failed: %s  while %s"
 msgstr ""
 
 #, c-format
@@ -317,3 +358,7 @@ msgstr ""
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "Brak zmiennej %s_ref w pliku referencyjnym"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument: %d expected.\n"
+#~ msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"

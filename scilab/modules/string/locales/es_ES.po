@@ -389,8 +389,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: Matrix of character strings or list "
 "expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento #%d : "
-"Se espera una matriz de texto o una lista.\n"
+"%s: Tipo incorrecto del argumento #%d : Se espera una matriz de texto o una "
+"lista.\n"
 
 #, c-format
 msgid "%s: Given expression has no value.\n"
@@ -398,8 +398,7 @@ msgstr "%s: La expresión dada no tiene valor.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s: Tamaño incorrecto del argumento #%d: Se esperaba un string.\n"
+msgstr "%s: Tamaño incorrecto del argumento #%d: Se esperaba un string.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
@@ -419,10 +418,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
 msgstr ""
 
 #, c-format

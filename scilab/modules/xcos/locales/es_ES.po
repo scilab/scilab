@@ -1246,8 +1246,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unable to load block from %s: Missing file.\n"
-msgstr ""
-"%s: Imposible cargar el bloque desde %s: Falta el archivo hdf5.\n"
+msgstr "%s: Imposible cargar el bloque desde %s: Falta el archivo hdf5.\n"
 
 #, c-format
 msgid ""

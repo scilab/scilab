@@ -113,10 +113,6 @@ msgstr ""
 "%s: Argumento opcional mal colocado: #%d debe estar en la posición %d\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 
@@ -178,6 +174,7 @@ msgstr "%s: Tamaño incorrecto de argumento de entrada #%d: Se esperaba %d.\n"
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
+#, c-format
 msgid "%s: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%s: Valor incorrecto de %s '%c': Se esperaba '%s', '%s' y '%s'.\n"
 
@@ -1558,8 +1555,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Non-empty matrix expected.\n"
-msgstr ""
-"%s: Argumento de entrada #%d: Se esperaba una matriz no vacia.\n"
+msgstr "%s: Argumento de entrada #%d: Se esperaba una matriz no vacia.\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
@@ -1574,13 +1570,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Non-negative values expected.\n"
-msgstr ""
-"%s: Argumento #%d: Se esperaba valores no negativos.\n"
+msgstr "%s: Argumento #%d: Se esperaba valores no negativos.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval %s.\n"
-msgstr ""
-"%s: Argumento #%d: los valores deben pertenecer al intervalo %s.\n"
+msgstr "%s: Argumento #%d: los valores deben pertenecer al intervalo %s.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"
@@ -2068,6 +2062,37 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: Se esperaba una "
+"propiedad válida.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un booleano o "
+"un vector fila real.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 102
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 148
+#, c-format
+msgid "Error %d : in plot called by implicitplot"
+msgstr ""
+
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
 msgstr ""
@@ -2249,8 +2274,9 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A marker style expected.\n"
-msgstr "%s: Argumento de #%d: "
-"número de identificación de un símbolo de datos esperado.\n"
+msgstr ""
+"%s: Argumento de #%d: número de identificación de un símbolo de datos "
+"esperado.\n"
 
 #, c-format
 msgid ""

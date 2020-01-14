@@ -432,16 +432,12 @@ msgid "     norm of the residual    = "
 msgstr "     норма нев’язки    = "
 
 #, c-format
-msgid "     same but with refinment = "
+msgid "     same but with refinement = "
 msgstr "     те саме, але з уточненням = "
 
 #, c-format
 msgid "     norm of the residual     = "
 msgstr "     норма нев’язки     = "
-
-#, c-format
-msgid "     same but with refinement = "
-msgstr "     те саме, але з уточненням = "
 
 msgid "Now we will see how to use the taucs snmf stuff on the matrix A2."
 msgstr ""
@@ -648,3 +644,7 @@ msgstr "невеличкі тести condestsp"
 
 msgid "Click to choose a demo"
 msgstr "Клацніть, щоб обрати приклад"
+
+#, c-format
+#~ msgid "     same but with refinment = "
+#~ msgstr "     те саме, але з уточненням = "

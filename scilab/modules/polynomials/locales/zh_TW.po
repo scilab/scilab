@@ -174,6 +174,13 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一方陣.\n"
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
+#
+# File: modules/polynomials/macros/diophant.sci, line: 24
+# File: modules/polynomials/macros/diophant.sci, line: 30
+#, c-format
+msgid "%s: Argument #%d: Inf or NaN coefficients not supported.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: 第 %d 輸入參數長度錯誤: 應為一多項式.\n"

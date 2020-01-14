@@ -38,10 +38,6 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid "%s: ans cannot be edited.\n"
-msgstr "%s: ans nemůže být upraven.\n"
-
-#, c-format
 msgid "%s: Undefined variable: %s.\n"
 msgstr "%s: Neurčená proměnná: %s.\n"
 
@@ -77,8 +73,10 @@ msgstr "Typ"
 msgid "Visibility"
 msgstr "Viditelnost"
 
-msgid "Bytes"
-msgstr "Bajty"
+#
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 50
+msgid "Memory"
+msgstr ""
 
 msgid "User"
 msgstr "Uživatel"
@@ -362,9 +360,6 @@ msgstr ""
 msgid "Scilab type:"
 msgstr "Typ Scilab:"
 
-msgid "Bytes:"
-msgstr "Bajty:"
-
 msgid "Type not supported for this operation"
 msgstr "Typ není podporován pro tuto operaci"
 
@@ -387,6 +382,16 @@ msgstr "&?"
 
 msgid "&About Scilab..."
 msgstr "&O Scilabu..."
+
+#, c-format
+#~ msgid "%s: ans cannot be edited.\n"
+#~ msgstr "%s: ans nemůže být upraven.\n"
+
+#~ msgid "Bytes"
+#~ msgstr "Bajty"
+
+#~ msgid "Bytes:"
+#~ msgstr "Bajty:"
 
 #~ msgid "Compiled function"
 #~ msgstr "Zkompilovaná funkce"

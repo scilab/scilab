@@ -65,6 +65,10 @@ msgstr ""
 "Диапазон индексов должен быть определён в виде скаляра или 2-элементным "
 "вектором."
 
+#, fuzzy, c-format
+msgid "%s: File '%s': Unrecognized data format.\n"
+msgstr "Неизвестный формат данных."
+
 msgid "Sample limit vector must have 2 elements."
 msgstr "Вектор пределов выборки должен иметь 2 элемента."
 
@@ -76,6 +80,12 @@ msgstr "Пределы выборки должны быть указаны в п
 
 msgid "Error in file format."
 msgstr "Ошибка в формате файла."
+
+#
+# File: modules/sound/macros/auread.sci, line: 174
+#, c-format
+msgid "%s: File '%s' is not a .au sound file.\n"
+msgstr ""
 
 msgid "Error while reading sound file."
 msgstr "Ошибка во время чтения звукового файла."

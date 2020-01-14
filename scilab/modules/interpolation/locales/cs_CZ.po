@@ -22,16 +22,8 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána reálná matice.\n"
 
 #, c-format
 msgid ""
@@ -172,6 +164,64 @@ msgstr "%s: Není dostatek bodů k umístění.\n"
 msgid "%ls: Warning: Rank deficiency of the least square matrix.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: incorrect element #%d\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: očekáváno %s nebo reálné číslo.\n"
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 90
+#, c-format
+msgid "%s: last connected component of boundary is not closed\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: some points are identical.\n"
+msgstr "%s: Není dostatek bodů k umístění.\n"
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 126
+#, c-format
+msgid "%s: wrong boundary array.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 127
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 130
+#, c-format
+msgid "%s: crossed boundary.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 128
+#, c-format
+msgid "%s: wrong orientation of the boundary.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 129
+#, c-format
+msgid "%s: size limitation.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 131
+#, c-format
+msgid "%s: an interior point is on the boundary.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 132
+#, c-format
+msgid "%s: an interior point is too close to the boundary.\n"
+msgstr ""
+
+#
+# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 133
+#, c-format
+msgid "%s: some points are identical or size limitation.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : At least a size of 2 expected.\n"
@@ -281,3 +331,21 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekávány dvě řady.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor.\n"
+
+#
+# File: modules/interpolation/macros/mesh2d.sci, line: 68
+#, c-format
+msgid "%s: all points are coincident.\n"
+msgstr ""
+
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+#~ msgstr "%s: Špatný typ argumentu %d: Očekávána reálná matice.\n"

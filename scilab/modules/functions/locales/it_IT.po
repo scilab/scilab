@@ -61,9 +61,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -87,6 +89,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -125,26 +131,6 @@ msgid "%s: Incorrect function in file %s.\n"
 msgstr "%s: C'è una funzione non corretta nel file %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa "
-"di caratteri.\n"
-
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: La variabile %s non è definita.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso il nome "
-"di una funzione di Scilab.\n"
-
-msgid "No comment available."
-msgstr "Nessun commento disponibile."
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr ""
 
@@ -166,7 +152,24 @@ msgstr "Usare %s invece."
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Questa funzione sarà rimossa in modo permanente in Scilab %s"
 
-#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A character string expected.\n"
 #~ msgstr ""
-#~ "%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
-#~ "%d.\n"
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+#~ "stringa di caratteri.\n"
+
+#, c-format
+#~ msgid "%s: Undefined variable %s.\n"
+#~ msgstr "%s: La variabile %s non è definita.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Name of a Scilab function "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso il "
+#~ "nome di una funzione di Scilab.\n"
+
+#~ msgid "No comment available."
+#~ msgstr "Nessun commento disponibile."

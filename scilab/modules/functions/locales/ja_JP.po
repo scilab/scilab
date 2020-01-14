@@ -68,9 +68,10 @@ msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 文字列のベクトルを指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -95,6 +96,10 @@ msgstr "%s: 入力引数の型が間違っています: マクロを指定して
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています:  %d 以上の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "Checking: %s.\n"
@@ -135,25 +140,6 @@ msgid "%s: Incorrect function in file %s.\n"
 msgstr "%s: ファイル %s に正しくない関数があります.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#
-# File: macros/head_comments.sci, line: 17
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: 変数 %s は定義されていません。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: Scilab関数の名前を指定してください.\n"
-
-msgid "No comment available."
-msgstr "コメントがありません."
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: '%s' を指定してください.\n"
 
@@ -175,6 +161,24 @@ msgstr "代わりに %s を使用してください."
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "この関数は Scilab %s  以降では削除される予定です."
 
-#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A character string expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#
+# File: macros/head_comments.sci, line: 17
+#, c-format
+#~ msgid "%s: Undefined variable %s.\n"
+#~ msgstr "%s: 変数 %s は定義されていません。\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Name of a Scilab function "
+#~ "expected.\n"
 #~ msgstr ""
-#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+#~ "%s: 入力引数 #%d の値が間違っています: Scilab関数の名前を指定してくださ"
+#~ "い.\n"
+
+#~ msgid "No comment available."
+#~ msgstr "コメントがありません."

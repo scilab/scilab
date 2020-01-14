@@ -15,60 +15,53 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:13+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 57
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 61
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 75
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 95
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 79
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 97
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 84
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 103
-#, c-format
-msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
-msgstr ""
-
-#
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 155
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 168
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 163
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 176
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 170
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 183
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s, %s, or %s expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 178
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 231
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 191
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 248
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s, %s or %s expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 201
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 218
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 207
+# File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 224
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
@@ -108,7 +101,7 @@ msgstr ""
 # File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 63
 # File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 87
 # File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 104
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 117
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 129
 # File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 67
 # File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 70
 # File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 98
@@ -123,9 +116,9 @@ msgstr ""
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 125
 # File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 95
-# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 117
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 148
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 127
+# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 118
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 163
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 130
 # File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 173
 #, c-format
 msgid "%s: LAPACK error n%d.\n"
@@ -167,7 +160,7 @@ msgstr ""
 
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 132
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 144
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 159
 # File: modules/linear_algebra/sci_gateway/cpp/sci_rcond.cpp, line: 87
 #, c-format
 msgid "%s: Allocation failed.\n"
@@ -196,7 +189,7 @@ msgstr ""
 
 #
 # File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 80
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 108
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 116
 # File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 106
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 74
 # File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 94
@@ -225,7 +218,7 @@ msgid "%s: Problem is singular.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 76
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 73
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
 msgstr ""

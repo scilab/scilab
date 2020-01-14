@@ -103,6 +103,12 @@ msgstr ""
 "%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
+#, c-format
+msgid "%s: must be call from a function.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
@@ -122,111 +128,13 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
 
-#, c-format
-msgid "%s: Debugger can be activated only at console scope level\n"
+#, fuzzy, c-format
+msgid "%s: Debugger cannot be activated in pause\n"
 msgstr "%s: засіб діагностики можна задіяти лише на рівні консолі\n"
 
 #, c-format
-msgid "%s: Debugger is not running. Call \"%s\" without parameter first.\n"
-msgstr ""
-"%s: засіб діагностики не запущено. Спочатку віддайте команду «%s» без "
-"параметрів.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати додатне "
-"ціле значення.\n"
-
-#, c-format
-msgid "%s: Unable to retrieve information about breakpoint %d.\n"
-msgstr "%s: не вдалося отримати інформацію щодо точки зупинки %d.\n"
-
-#, c-format
-msgid "%ls"
-msgstr "%ls"
-
-msgid "callstack:"
-msgstr "стек викликів:"
-
-msgid "debug commands : \n"
-msgstr "команди діагностикиs : \n"
-
-msgid "show this help"
-msgstr "показати цю довідкову інформацію"
-
-msgid "open debug documentation page"
-msgstr "відкрити сторінку документації щодо діагностики"
-
-msgid "stop debugging"
-msgstr "припинити діагностику"
-
-msgid "show callstack"
-msgstr "показати стек викликів"
-
-msgid "execute cmd"
-msgstr "виконати команду"
-
-msgid "display variable"
-msgstr "показати змінну"
-
-msgid "continue execution"
-msgstr "продовжити виконання"
-
-msgid "abort execution"
-msgstr "перервати виконання"
-
-msgid "continue to next statement"
-msgstr "продовжити до наступної інструкції"
-
-msgid "step into function"
-msgstr "увійти у функцію"
-
-msgid "step outside function"
-msgstr "вийти з функції"
-
-msgid "add a breakpoint"
-msgstr "додати точку зупинки"
-
-msgid "delete all breakpoints"
-msgstr "вилучити усі точки зупинки"
-
-msgid "delete a specific breakpoint"
-msgstr "вилучити певну точкну зупинки"
-
-msgid "enable all breakpoints"
-msgstr "увімкнути усі точки зупинки"
-
-msgid "enable a specific breakpoint"
-msgstr "увімкнути певну точку зупинки"
-
-msgid "disable all breakpoints"
-msgstr "вимкнути усі точки зупинки"
-
-msgid "disable a specific breakpoint"
-msgstr "вимкнути певну точку зупинки"
-
-msgid "show all breakpoints"
-msgstr "показати усі точки зупинки"
-
-msgid "show a specific breakpoint"
-msgstr "показати певну точку зупинки"
-
-msgid "  for more details, show help page.\n"
-msgstr "  докладніші відомості на сторінці довідки.\n"
+msgid "%s: Debugger can be activated only at console scope level\n"
+msgstr "%s: засіб діагностики можна задіяти лише на рівні консолі\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -603,6 +511,111 @@ msgstr ""
 "продовжити (c) чи перервати (a) виконання поточної дії до виконання "
 "наступної команди\n"
 
+#
+# File: modules/core/src/cpp/InitScilab.cpp, line: 1176
+#, c-format
+msgid "%s: Command missing.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число."
+
+msgid "callstack:"
+msgstr "стек викликів:"
+
+#
+# File: modules/core/src/cpp/InitScilab.cpp, line: 1297
+#, c-format
+msgid "#%-5d%s"
+msgstr ""
+
+#
+# File: modules/core/src/cpp/InitScilab.cpp, line: 1301
+#, c-format
+msgid "#%-5d%s (line %d)"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to retrieve information about breakpoint %d.\n"
+msgstr "%s: не вдалося отримати інформацію щодо точки зупинки %d.\n"
+
+#, c-format
+msgid "%ls"
+msgstr "%ls"
+
+msgid "debug commands : \n"
+msgstr "команди діагностикиs : \n"
+
+msgid "show this help"
+msgstr "показати цю довідкову інформацію"
+
+msgid "open debug documentation page"
+msgstr "відкрити сторінку документації щодо діагностики"
+
+msgid "stop debugging"
+msgstr "припинити діагностику"
+
+msgid "show callstack"
+msgstr "показати стек викликів"
+
+msgid "execute cmd"
+msgstr "виконати команду"
+
+msgid "display variable"
+msgstr "показати змінну"
+
+msgid "continue execution"
+msgstr "продовжити виконання"
+
+msgid "abort execution"
+msgstr "перервати виконання"
+
+msgid "continue to next statement"
+msgstr "продовжити до наступної інструкції"
+
+msgid "step into function"
+msgstr "увійти у функцію"
+
+msgid "step outside function"
+msgstr "вийти з функції"
+
+msgid "add a breakpoint"
+msgstr "додати точку зупинки"
+
+msgid "delete all breakpoints"
+msgstr "вилучити усі точки зупинки"
+
+msgid "delete a specific breakpoint"
+msgstr "вилучити певну точкну зупинки"
+
+msgid "enable all breakpoints"
+msgstr "увімкнути усі точки зупинки"
+
+msgid "enable a specific breakpoint"
+msgstr "увімкнути певну точку зупинки"
+
+msgid "disable all breakpoints"
+msgstr "вимкнути усі точки зупинки"
+
+msgid "disable a specific breakpoint"
+msgstr "вимкнути певну точку зупинки"
+
+msgid "show all breakpoints"
+msgstr "показати усі точки зупинки"
+
+msgid "show a specific breakpoint"
+msgstr "показати певну точку зупинки"
+
+msgid "  for more details, show help page.\n"
+msgstr "  докладніші відомості на сторінці довідки.\n"
+
 msgid ""
 "\n"
 "Call stack:\n"
@@ -778,6 +791,26 @@ msgstr "Розмір"
 
 msgid "Bytes"
 msgstr "Байти"
+
+#, c-format
+#~ msgid "%s: Debugger is not running. Call \"%s\" without parameter first.\n"
+#~ msgstr ""
+#~ "%s: засіб діагностики не запущено. Спочатку віддайте команду «%s» без "
+#~ "параметрів.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+#~ "«string».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar positive integer "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати "
+#~ "додатне ціле значення.\n"
 
 #~ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 #~ msgstr ""

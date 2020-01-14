@@ -96,6 +96,30 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: falsche Anzahl für Eingangsargumente: %d erwartet.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: ein Integer erwartet.\n"
+
+#, fuzzy, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: kann Datei nicht öffnen %s.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: ein gültige existierende Datei "
+"wird erwartet.\n"
+
+#
+# File: modules/helptools/macros/head_comments.sci, line: 59
+msgid "No comment available."
+msgstr ""
+
 #, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr "%s: der Hilfebrowser ist im %s Modus deaktiviert.\n"

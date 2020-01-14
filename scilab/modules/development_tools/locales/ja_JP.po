@@ -66,10 +66,6 @@ msgid "%s: Assertion failed: expected = %s while computed = %s"
 msgstr "%s: アサーションが失敗しました: %s の予定でしたが,計算値は %s でした"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
@@ -86,11 +82,46 @@ msgstr "%s: 計算結果は実数ですが, 予定は複素数でした."
 msgid "%s: Computed is complex, but expected is real."
 msgstr "%s: 計算値は複素数ですが, 実数となる必要があります."
 
-#, c-format
+#, fuzzy, c-format
+msgid "%s: Assertion failed: expected= %s  while computed= %s"
+msgstr "%s: アサーションが失敗しました: %s の予定でしたが,計算値は %s でした"
+
+#, fuzzy, c-format
 msgid ""
-"%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"
+"%s: Assertion failed: expected and computed are two distinct built-in "
+"functions."
+msgstr "%s: アサーションが失敗しました: %s の予定でしたが,計算値は %s でした"
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 175
+#, c-format
+msgid "expected(%d)= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 176
+#, c-format
+msgid "computed(%d)= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 178
+msgid "expected= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 179
+msgid "computed= "
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Assertion failed: %s  while %s (mean diff = %s)"
 msgstr ""
 "%s: アサーションに失敗しました:  予想値 = %s , 計算値 = %s (差の平均 = %s)"
+
+#, fuzzy, c-format
+msgid "%s: Assertion failed: %s  while %s"
+msgstr "%s: アサーションが失敗しました: %s の予定でしたが,計算値は %s でした"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -345,3 +376,7 @@ msgstr ""
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "参照ファイルの変数　%s_ref はありません"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument: %d expected.\n"
+#~ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"

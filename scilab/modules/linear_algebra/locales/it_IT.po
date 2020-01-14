@@ -28,12 +28,6 @@ msgstr ""
 "reale o complessa.\n"
 
 #, c-format
-msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: non deve contenere "
-"un NaN o un Inf.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa "
@@ -451,3 +445,9 @@ msgid ""
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: il rango richiesto è "
 "maggiore della dimensione della matrice."
+
+#, c-format
+#~ msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha un valore sbagliato: non deve "
+#~ "contenere un NaN o un Inf.\n"

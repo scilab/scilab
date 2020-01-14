@@ -110,6 +110,15 @@ msgstr ""
 msgid "%s: variable size exceeded : less than %d expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Debe estar en el "
+"intervalo [%s, %s].\n"
+
+msgid "Invalid index.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr ""
@@ -127,6 +136,15 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected."
+msgstr "%s: Número incorrecto de argumentos de salida: Se esperaban %d."
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s' o '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
@@ -180,9 +198,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d : A square matrix expected.\n"
 msgstr ""
 
-msgid "Invalid index.\n"
-msgstr ""
-
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
@@ -193,8 +208,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s expected.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s'.\n"
+msgstr "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s'.\n"
 
 #, c-format
 msgid ""
@@ -202,6 +216,18 @@ msgid ""
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba ['g' 'r' 'c' "
 "'lc' 'lr'].\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments %d and %d must have same dimensions.\n"
+msgstr ""
+"%s: Argumentos de entrada #%d y #%d incompatibles: Se los esperaba del mismo "
+"número de columnas.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong values for input argument #%d: Must be less than %d.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Debe estar entre %d y "
+"%d.\n"
 
 #, c-format
 msgid ""
@@ -258,11 +284,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr ""
-"%s: Número incorrecto de argumentos de salida: Se esperaban %d."
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : A constant scalar expected.\n"
 msgstr ""
 
@@ -297,6 +318,24 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s' o '%s'.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Column expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Number(s) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
+msgstr ""
+"%s: Argumentos de entrada #%d y #%d incompatibles: Se los esperaba del mismo "
+"tipo de enteros.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
@@ -352,18 +391,6 @@ msgid ""
 "expected.\n"
 msgstr ""
 
-#
-# File: modules/elementary_functions/macros/%sp_max.sci, line: 151
-#, c-format
-msgid "%s: Argument #%d: the scalar must be negative.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/macros/%sp_min.sci, line: 150
-#, c-format
-msgid "%s: Argument #%d: the scalar must be positive.\n"
-msgstr ""
-
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
@@ -410,10 +437,6 @@ msgid "%s: unknown bitwise function %s.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Argument #%d: Integers >=0 expected.\n"
 msgstr ""
 
@@ -435,11 +458,11 @@ msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Debe estar entre %d y "
 "%d.\n"
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-negative integers expected.\n"
 msgstr ""
-"%s: Tipo incorrecto de argumentos de entrada: Se los esperaba del mismo "
-"tamaño.\n"
+"%s: Argumentos de entrada #%d y #%d incompatibles: Se los esperaba del mismo "
+"tipo de enteros.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -457,11 +480,25 @@ msgid ""
 "integers expected.\n"
 msgstr ""
 
+#
+# File: modules/elementary_functions/macros/blockdiag.sci, line: 29
+#, c-format
+msgid ""
+"Function not defined for given argument type(s),\n"
+"  Check arguments or define the overloading function %s().\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un real "
 "positivo.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr ""
+"%s: Tipo incorrecto de argumentos de entrada: Se los esperaba del mismo "
+"tamaño.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Same types expected.\n"
@@ -576,27 +613,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Tipo incorrecto para el argumento de entrada #%d.\n"
 
-#, c-format
-msgid "%s: Argument #%d: Column expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: Number(s) expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal numbers expected.\n"
 msgstr ""
 "%s: Argumentos de entrada #%d y #%d incompatibles: Se los esperaba del mismo "
-"tipo de enteros.\n"
-
-#, c-format
-msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: An integer value expected.\n"
-msgstr ""
+"número de filas.\n"
 
 #, c-format
 msgid "%s: Log of a singular matrix.\n"
@@ -805,14 +826,14 @@ msgstr ""
 #, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
 msgstr ""
-"%s: Argumentos de entrada #%d y #%d incompatibles: "
-"Se los esperaba del mismo número de columnas.\n"
+"%s: Argumentos de entrada #%d y #%d incompatibles: Se los esperaba del mismo "
+"número de columnas.\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
 msgstr ""
-"%s: Argumentos de entrada #%d y #%d incompatibles: "
-"Se los esperaba del mismo número de filas.\n"
+"%s: Argumentos de entrada #%d y #%d incompatibles: Se los esperaba del mismo "
+"número de filas.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"

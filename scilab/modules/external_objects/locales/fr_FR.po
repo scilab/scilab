@@ -86,6 +86,13 @@ msgid "Invalid name"
 msgstr "Nom invalide"
 
 #, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr "Type erroné de l'argument d'entrée n°%d : Un objet externe attendu."
+
+msgid "Incompatible External Object"
+msgstr "Objet externe incompatible"
+
+#, c-format
 msgid "Wrong type for input argument #%d: A String expected."
 msgstr ""
 "Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères attendue."
@@ -111,13 +118,6 @@ msgstr ""
 
 msgid "Invalid variable: cannot create the data"
 msgstr "Variable invalide : Impossible de créer les données"
-
-#, c-format
-msgid "Wrong type for input argument #%d: External Object expected."
-msgstr "Type erroné de l'argument d'entrée n°%d : Un objet externe attendu."
-
-msgid "Incompatible External Object"
-msgstr "Objet externe incompatible"
 
 #, c-format
 msgid "Wrong type for input argument #%d: string expected."

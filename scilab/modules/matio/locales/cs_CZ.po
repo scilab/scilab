@@ -145,9 +145,21 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězc�
 msgid "%s: This feature has not been implemented: %s."
 msgstr "%s: Tato funkce ení ještě zavedena: %s."
 
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 74
+#, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Nelze otevřít soubor %s.\n"
+
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 179
+#, c-format
+msgid "%s: Unsupported input file data type: '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -155,6 +167,16 @@ msgid ""
 msgstr ""
 "%s: V souboru '%s' není žádná proměnná read, Zkontrolujte, zda není Váš "
 "soubor poškozen.\n"
+
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 216
+# File: modules/matio/macros/loadmatfile.sci, line: 365
+# File: modules/matio/macros/loadmatfile.sci, line: 409
+# File: modules/matio/macros/loadmatfile.sci, line: 428
+# File: modules/matio/macros/loadmatfile.sci, line: 436
+#, c-format
+msgid "loadmatfile: Error in input file at line #%d: '%s' expected.\n"
+msgstr ""
 
 #
 # File: modules/matio/macros/matfile2sci.sci, line: 24
@@ -195,7 +217,6 @@ msgid ""
 "(ignored)."
 msgstr "%s : Konflikt v názvu: není možné uložit proměnnou %s (ignorováno)."
 
-#,
 msgid "Attempt to write an unsupported data type to a binary file."
 msgstr "Pokus o zápis nepodporovaného typu dat do souboru binárního."
 

@@ -768,7 +768,8 @@ msgstr "デスクトップのレイアウト"
 msgid "Select a layout"
 msgstr "レイアウトを選択"
 
-msgid "(Modify the layout requires to restart Scilab)"
+#, fuzzy
+msgid "(Modifying the layout requires to restart Scilab)"
 msgstr "(レイアウトの変更にはScilabの再起動が必要です)"
 
 msgid "Save layout on exiting"

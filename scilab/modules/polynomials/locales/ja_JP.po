@@ -203,6 +203,13 @@ msgstr ""
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
+#
+# File: modules/polynomials/macros/diophant.sci, line: 24
+# File: modules/polynomials/macros/diophant.sci, line: 30
+#, c-format
+msgid "%s: Argument #%d: Inf or NaN coefficients not supported.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 多項式を指定してください.\n"

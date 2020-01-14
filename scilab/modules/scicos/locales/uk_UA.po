@@ -295,8 +295,8 @@ msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be one of %ls.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
 "з набору {%ls}\n"
@@ -1048,10 +1048,6 @@ msgid "Wrong type for field %s.%s .\n"
 msgstr "Помилковий тип поля %s.%s.\n"
 
 #, c-format
-msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
-msgstr "Помилкове значення поля %s.%s: порт FIXME не оновлено.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
@@ -1360,10 +1356,10 @@ msgstr ""
 "розмірностями, які не можна визначити з контексту.\n"
 "Якою є розмірність цього зв’язку?"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
-"It should be a colon vector of size %d."
+"It should be a column vector of size %d."
 msgstr ""
 "розмірність dep_ut блоку %s є некоректною.\n"
 "Це мав бути вектор-стовпчик розмірності %d."
@@ -1597,3 +1593,7 @@ msgid ""
 msgstr ""
 "Відповідь, вказана для %s \n"
 " є помилковою: %s.\n"
+
+#, c-format
+#~ msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
+#~ msgstr "Помилкове значення поля %s.%s: порт FIXME не оновлено.\n"

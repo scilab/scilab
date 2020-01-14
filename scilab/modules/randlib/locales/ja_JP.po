@@ -130,8 +130,8 @@ msgstr "%s: setgmn は状態 %d を返します.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be between %.1E and %d.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています:  %.1E および %d の間の値を指定してくださ"
-"い.\n"
+"%s: 入力引数 #%d の値が間違っています:  %.1E および %d の間の値を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid ""
@@ -202,10 +202,10 @@ msgstr ""
 "%s: 入力引数 #%dと #%d の値が間違っています:  Low < High となるように指定して"
 "ください.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Low and High must be "
-"integers and (high - low + 1) <=  2147483561.\n"
+"%s: Wrong value for input arguments #%d and #%d: Low and High must be a 32 "
+"bits integer value and (high - low + 1) <=  2147483561.\n"
 msgstr ""
 "%s: 入力引数 #%dと #%d の値が間違っています:  Low および High は整数値で "
 "(high - low + 1) <= 2147483561である必要があります.\n"

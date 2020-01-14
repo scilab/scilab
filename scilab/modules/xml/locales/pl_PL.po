@@ -243,12 +243,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana macierz ciągów "
-"znaków.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matrix nx2 or nx3 of strings "
 "expected.\n"
@@ -366,3 +360,55 @@ msgstr ""
 
 msgid "CML read"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano przynajmniej "
+"%d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana jest wartość "
+"typu string.\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid %s file.\n"
+msgstr "Nieprawidłowy plik"
+
+#, fuzzy, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: XMLList nie istnieje.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
+msgstr "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano %s.\n"
+
+#
+# File: modules/xml/macros/xmlGetValues.sci, line: 60
+#, c-format
+msgid "%s: Invalid XPath request.\n"
+msgstr ""
+
+#
+# File: modules/xml/macros/xmlGetValues.sci, line: 68
+#, c-format
+msgid "%s: Invalid XPath request."
+msgstr ""
+
+#
+# File: modules/xml/macros/xmlGetValues.sci, line: 79
+#, c-format
+msgid "%s: Target node is not a XML_ELEMENT_NODE."
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Invalid attribute name: %s."
+msgstr "Nieprawidłowa nazwa pliku: "
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana macierz "
+#~ "ciągów znaków.\n"

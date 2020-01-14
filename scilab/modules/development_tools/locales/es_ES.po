@@ -68,10 +68,6 @@ msgid "%s: Assertion failed: expected = %s while computed = %s"
 msgstr "%s: Fallo de aserción: se esperaba = %s pero se calculó = %s"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s Número incorrecto de argumentos de entrada: Se esperaban %d\n"
 
@@ -89,10 +85,45 @@ msgstr "%s: El resultado es real pero esperaba un complejo."
 msgid "%s: Computed is complex, but expected is real."
 msgstr "%s: El resultado es un complejo, pero se esperaba un real."
 
-#, c-format
+#, fuzzy, c-format
+msgid "%s: Assertion failed: expected= %s  while computed= %s"
+msgstr "%s: Fallo de aserción: se esperaba = %s pero se calculó = %s"
+
+#, fuzzy, c-format
 msgid ""
-"%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"
+"%s: Assertion failed: expected and computed are two distinct built-in "
+"functions."
+msgstr "%s: Fallo de aserción: se esperaba = %s pero se calculó = %s"
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 175
+#, c-format
+msgid "expected(%d)= "
 msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 176
+#, c-format
+msgid "computed(%d)= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 178
+msgid "expected= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 179
+msgid "computed= "
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Assertion failed: %s  while %s (mean diff = %s)"
+msgstr "%s: Fallo de aserción: se esperaba = %s pero se calculó = %s"
+
+#, fuzzy, c-format
+msgid "%s: Assertion failed: %s  while %s"
+msgstr "%s: Fallo de aserción: se esperaba = %s pero se calculó = %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -334,3 +365,7 @@ msgstr ""
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "No hay variable %s_ref en el archivo de referencia"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument: %d expected.\n"
+#~ msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"

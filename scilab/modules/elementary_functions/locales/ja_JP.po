@@ -121,6 +121,14 @@ msgid "%s: variable size exceeded : less than %d expected.\n"
 msgstr ""
 "%s: 変数の大きさが超えました : %d より小さい大きさを指定してください.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: {%s} の範囲で設定してください.\n"
+
+msgid "Invalid index.\n"
+msgstr "添字が間違っています.\n"
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 関数の特異点.\n"
@@ -140,6 +148,14 @@ msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 msgstr ""
 "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさとしてくださ"
 "い.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected."
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください."
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
@@ -205,9 +221,6 @@ msgid "%s: Wrong size for input argument #%d : A square matrix expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています:  正方行列を指定してください.\n"
 
-msgid "Invalid index.\n"
-msgstr "添字が間違っています.\n"
-
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
@@ -227,6 +240,16 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています:　 ['g' 'r' 'c' 'lc' 'lr'] を指定してく"
 "ださい.\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments %d and %d must have same dimensions.\n"
+msgstr "%s: 引数 #%d および #%d: 同じ大きさを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong values for input argument #%d: Must be less than %d.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid ""
@@ -289,10 +312,6 @@ msgstr ""
 "い.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s): %d expected."
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください."
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d : A constant scalar expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています:  定数スカラーを指定してください.\n"
@@ -330,6 +349,22 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Column expected.\n"
+msgstr "%s: 引数 #%d: 列を指定してください.\n"
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s: 引数 #%d および #%d: 同じ大きさを指定してください.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Number(s) expected.\n"
+msgstr "%s: 引数 #%d: 数値を指定してください.\n"
+
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
@@ -381,14 +416,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Argument #%d: the scalar must be negative.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: the scalar must be positive.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
@@ -437,10 +464,6 @@ msgid "%s: unknown bitwise function %s.\n"
 msgstr "%s: 未知のビット操作関数 %s.\n"
 
 #, c-format
-msgid "%s: Arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s: 引数 #%d および #%d: 同じ大きさを指定してください.\n"
-
-#, c-format
 msgid "%s: Argument #%d: Integers >=0 expected.\n"
 msgstr "%s: 引数 #%d: 整数 >= 0 を指定してください.\n"
 
@@ -461,9 +484,9 @@ msgstr ""
 "%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してくだ"
 "さい.\n"
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr "%s: 入力引数 の大きさが間違っています: 同じ大きさで指定してください.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-negative integers expected.\n"
+msgstr "%s: 引数 #%d: 整数値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -481,9 +504,21 @@ msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 符号無し整数のスカラー/行列/ハイパー行"
 "列を指定してください.\n"
 
+#
+# File: modules/elementary_functions/macros/blockdiag.sci, line: 29
+#, c-format
+msgid ""
+"Function not defined for given argument type(s),\n"
+"  Check arguments or define the overloading function %s().\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 正の実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same size expected.\n"
+msgstr "%s: 入力引数 の大きさが間違っています: 同じ大きさで指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Same types expected.\n"
@@ -604,25 +639,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています.\n"
 
-#, c-format
-msgid "%s: Argument #%d: Column expected.\n"
-msgstr "%s: 引数 #%d: 列を指定してください.\n"
-
-#, c-format
-msgid "%s: Argument #%d: Number(s) expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal numbers expected.\n"
 msgstr "%s: 引数 #%d: 数値を指定してください.\n"
-
-#, c-format
-msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
-msgstr "%s: 引数 #%d: 値 %%nan および %%inf は使用できません.\n"
-
-#, c-format
-msgid "%s: Argument #%d: An integer value expected.\n"
-msgstr "%s: 引数 #%d: 整数値を指定してください.\n"
 
 #
 # File: macros/logm.sci, line: 34
@@ -919,6 +938,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: 入力引数の大きさが間違っています: 大きさに互換性がありません.\n"
+
+#, c-format
+#~ msgid "%s: Argument #%d: %%nan and %%inf values are forbidden.\n"
+#~ msgstr "%s: 引数 #%d: 値 %%nan および %%inf は使用できません.\n"
 
 #~ msgid "%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"
 #~ msgstr ""

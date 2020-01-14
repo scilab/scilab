@@ -252,6 +252,18 @@ msgid "%s: Inconsistent multiplication.\n"
 msgstr ""
 
 #
+# File: modules/overloading/macros/%r_p.sci, line: 75
+#, c-format
+msgid "column %d"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_p.sci, line: 77
+#, c-format
+msgid "columns %d to %d"
+msgstr ""
+
+#
 # File: modules/overloading/macros/%r_p_s.sci, line: 43
 msgid "Not implemented"
 msgstr ""

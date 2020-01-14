@@ -15,11 +15,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:13+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
 # File: modules/atoms/macros/atomsAutoload.sci, line: 50
 # File: modules/atoms/macros/atomsLoad.sci, line: 41
-# File: modules/atoms/macros/atoms_internals/atomsError.sci, line: 25
+# File: modules/atoms/macros/atoms_internals/atomsError.sci, line: 26
 # File: modules/atoms/macros/atoms_internals/atomsOrphanList.sci, line: 27
 # File: modules/atoms/macros/atoms_internals/atomsRemoveList.sci, line: 51
 #, c-format
@@ -72,8 +72,8 @@ msgstr ""
 # File: modules/atoms/macros/atomsRemove.sci, line: 49
 # File: modules/atoms/macros/atomsRepositoryAdd.sci, line: 76
 # File: modules/atoms/macros/atomsRepositoryDel.sci, line: 43
-# File: modules/atoms/macros/atomsSetConfig.sci, line: 37
-# File: modules/atoms/macros/atomsSetConfig.sci, line: 41
+# File: modules/atoms/macros/atomsSetConfig.sci, line: 36
+# File: modules/atoms/macros/atomsSetConfig.sci, line: 40
 # File: modules/atoms/macros/atomsShow.sci, line: 38
 # File: modules/atoms/macros/atomsTest.sci, line: 42
 # File: modules/atoms/macros/atomsTest.sci, line: 50
@@ -157,8 +157,8 @@ msgstr ""
 # File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 37
 # File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 41
 # File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 56
-# File: modules/atoms/macros/atoms_internals/atomsError.sci, line: 31
-# File: modules/atoms/macros/atoms_internals/atomsError.sci, line: 45
+# File: modules/atoms/macros/atoms_internals/atomsError.sci, line: 32
+# File: modules/atoms/macros/atoms_internals/atomsError.sci, line: 46
 # File: modules/atoms/macros/atoms_internals/atomsExtract.sci, line: 30
 # File: modules/atoms/macros/atoms_internals/atomsExtract.sci, line: 34
 # File: modules/atoms/macros/atoms_internals/atomsGetAvailable.sci, line: 73
@@ -241,7 +241,7 @@ msgstr ""
 
 #
 # File: modules/atoms/macros/atomsAutoloadAdd.sci, line: 139
-# File: modules/atoms/macros/atomsLoad.sci, line: 113
+# File: modules/atoms/macros/atomsLoad.sci, line: 116
 # File: modules/atoms/macros/atomsTest.sci, line: 117
 #, c-format
 msgid "%s: Module '%s' is not installed ('%s' section).\n"
@@ -249,7 +249,7 @@ msgstr ""
 
 #
 # File: modules/atoms/macros/atomsAutoloadAdd.sci, line: 147
-# File: modules/atoms/macros/atomsLoad.sci, line: 122
+# File: modules/atoms/macros/atomsLoad.sci, line: 128
 # File: modules/atoms/macros/atomsTest.sci, line: 126
 #, c-format
 msgid "%s: Module '%s - %s' is not installed.\n"
@@ -280,7 +280,7 @@ msgstr ""
 
 #
 # File: modules/atoms/macros/atomsAutoloadAdd.sci, line: 184
-# File: modules/atoms/macros/atomsLoad.sci, line: 153
+# File: modules/atoms/macros/atomsLoad.sci, line: 162
 # File: modules/atoms/macros/atomsTest.sci, line: 150
 #, c-format
 msgid "%s: The following modules are not installed:\n"
@@ -356,7 +356,7 @@ msgstr ""
 # File: modules/atoms/macros/atoms_internals/atomsDepTreeFlat.sci, line: 81
 # File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 48
 # File: modules/atoms/macros/atoms_internals/atomsDownload.sci, line: 52
-# File: modules/atoms/macros/atoms_internals/atomsError.sci, line: 35
+# File: modules/atoms/macros/atoms_internals/atomsError.sci, line: 36
 # File: modules/atoms/macros/atoms_internals/atomsExtract.sci, line: 41
 # File: modules/atoms/macros/atoms_internals/atomsExtract.sci, line: 45
 # File: modules/atoms/macros/atoms_internals/atomsGetDepChilds.sci, line: 53
@@ -473,7 +473,7 @@ msgstr ""
 # File: modules/atoms/macros/atomsDepTreeShow.sci, line: 41
 # File: modules/atoms/macros/atomsGetLoadedPath.sci, line: 24
 # File: modules/atoms/macros/atomsIsLoaded.sci, line: 44
-# File: modules/atoms/macros/atomsSetConfig.sci, line: 30
+# File: modules/atoms/macros/atomsSetConfig.sci, line: 29
 # File: modules/atoms/macros/atomsShow.sci, line: 31
 # File: modules/atoms/macros/atoms_internals/atomsAutoloadCheck.sci, line: 32
 # File: modules/atoms/macros/atoms_internals/atomsAutoloadLoad.sci, line: 27
@@ -695,9 +695,9 @@ msgid "%s: Module '%s' is not installed.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsLoad.sci, line: 187
-# File: modules/atoms/macros/atomsLoad.sci, line: 250
-# File: modules/atoms/macros/atomsLoad.sci, line: 275
+# File: modules/atoms/macros/atomsLoad.sci, line: 198
+# File: modules/atoms/macros/atomsLoad.sci, line: 261
+# File: modules/atoms/macros/atomsLoad.sci, line: 286
 #, c-format
 msgid ""
 "%s: Several versions of a package (%s) cannot be loaded at the same scilab "
@@ -705,48 +705,48 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsLoad.sci, line: 188
-# File: modules/atoms/macros/atomsLoad.sci, line: 189
-# File: modules/atoms/macros/atomsLoad.sci, line: 280
+# File: modules/atoms/macros/atomsLoad.sci, line: 199
+# File: modules/atoms/macros/atomsLoad.sci, line: 200
+# File: modules/atoms/macros/atomsLoad.sci, line: 291
 #, c-format
 msgid "\t - You've asked '%s - %s'\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsLoad.sci, line: 213
-# File: modules/atoms/macros/atomsLoad.sci, line: 215
+# File: modules/atoms/macros/atomsLoad.sci, line: 224
+# File: modules/atoms/macros/atomsLoad.sci, line: 226
 #, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsLoad.sci, line: 251
+# File: modules/atoms/macros/atomsLoad.sci, line: 262
 #, c-format
 msgid "\t - '%s - %s' is already loaded\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsLoad.sci, line: 252
-# File: modules/atoms/macros/atomsLoad.sci, line: 276
+# File: modules/atoms/macros/atomsLoad.sci, line: 263
+# File: modules/atoms/macros/atomsLoad.sci, line: 287
 #, c-format
 msgid "\t - '%s - %s' is needed by '%s - %s'\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsLoad.sci, line: 284
+# File: modules/atoms/macros/atomsLoad.sci, line: 295
 #, c-format
 msgid "\t - '%s - %s' is needed by '%s'\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsLoad.sci, line: 335
+# File: modules/atoms/macros/atomsLoad.sci, line: 346
 #, c-format
 msgid ""
 "%s: The file '%s' from (%s - %s) does not exist or is not read accessible.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsLoad.sci, line: 345
+# File: modules/atoms/macros/atomsLoad.sci, line: 356
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
 msgstr ""
@@ -794,33 +794,33 @@ msgid "%s: You have not enough rights to remove the package %s (%s).\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsRemove.sci, line: 199
+# File: modules/atoms/macros/atomsRemove.sci, line: 202
 #, c-format
 msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsRemove.sci, line: 217
+# File: modules/atoms/macros/atomsRemove.sci, line: 225
 #, c-format
 msgid ""
 "\t%s (%s) will be removed from the '%s' section and its package fully deleted"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsRemove.sci, line: 219
+# File: modules/atoms/macros/atomsRemove.sci, line: 227
 #, c-format
 msgid "\t%s (%s) will be removed from the '%s' section"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsRemove.sci, line: 222
+# File: modules/atoms/macros/atomsRemove.sci, line: 230
 #, c-format
 msgid "\t%s (%s) cannot be removed from the '%s' section and will be broken"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsRemove.sci, line: 247
+# File: modules/atoms/macros/atomsRemove.sci, line: 255
 #, c-format
 msgid ""
 "\tthe package %s (%s) is currently loaded, It will be removed at next Scilab "
@@ -828,37 +828,40 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsRemove.sci, line: 251
+# File: modules/atoms/macros/atomsRemove.sci, line: 259
 #, c-format
 msgid "\tRemoving %s (%s)(%s)... "
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsRemove.sci, line: 272
+# File: modules/atoms/macros/atomsRemove.sci, line: 280
 #, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
-"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
+"SCIHOME.\n"
+"\tFor security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsRemove.sci, line: 285
+# File: modules/atoms/macros/atomsRemove.sci, line: 294
 #, c-format
 msgid ""
-"%s: The directory of this package (%s-%s) cannot been deleted, please check "
-"if you have write access on this directory : %s.\n"
-msgstr ""
-
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 304
-#, c-format
-msgid ""
-"%s: The root directory of this package (%s-%s) cannot been deleted, please "
-"check if you have write access on this directory : %s.\n"
+"%s: The package (%s - %s) directory %s cannot be deleted.\n"
+"\tIt may be used and locked. Please also check that you have write "
+"permission on it.\n"
 msgstr ""
 
 #
 # File: modules/atoms/macros/atomsRemove.sci, line: 314
+#, c-format
+msgid ""
+"%s: The package (%s - %s) has been removed from its root directory %s.\n"
+"\tHowever, this empty directory cannot be deleted. It may be used and "
+"locked, or you may have no write permission on it.\n"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 324
 #, c-format
 msgid ""
 "Deleting archives files for %s.\n"
@@ -893,7 +896,7 @@ msgid "config file saved to %s"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsSetConfig.sci, line: 48
+# File: modules/atoms/macros/atomsSetConfig.sci, line: 47
 # File: modules/atoms/macros/atoms_internals/atomsInstallRegister.sci, line: 62
 # File: modules/atoms/macros/atoms_internals/atomsInstallRegister.sci, line: 66
 # File: modules/atoms/macros/atoms_internals/atomsInstallUnregister.sci, line: 54
@@ -905,14 +908,14 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsSetConfig.sci, line: 81
+# File: modules/atoms/macros/atomsSetConfig.sci, line: 80
 #, c-format
 msgid ""
 "%s: Wrong value for input configuration argument: True or False expected.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsSetConfig.sci, line: 92
+# File: modules/atoms/macros/atomsSetConfig.sci, line: 91
 #, c-format
 msgid "%s: Wrong key for input configuration argument.\n"
 msgstr ""
@@ -1577,7 +1580,7 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsError.sci, line: 39
+# File: modules/atoms/macros/atoms_internals/atomsError.sci, line: 40
 #, c-format
 msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
@@ -1603,7 +1606,7 @@ msgid "%s: The directory %s does not exist.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atoms_internals/atomsExtract.sci, line: 94
+# File: modules/atoms/macros/atoms_internals/atomsExtract.sci, line: 98
 #, c-format
 msgid "%s: The extraction of the archive '%s' has failed.\n"
 msgstr ""

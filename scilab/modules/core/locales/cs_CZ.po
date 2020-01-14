@@ -87,6 +87,12 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: '%s', '%s' nebo '%s'.\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
+#, c-format
+msgid "%s: must be call from a function.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
@@ -102,102 +108,14 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 47
 #, c-format
-msgid "%s: Debugger can be activated only at console scope level\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Debugger is not running. Call \"%s\" without parameter first.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Debugger cannot be activated in pause\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to retrieve information about breakpoint %d.\n"
-msgstr ""
-
-#, c-format
-msgid "%ls"
-msgstr ""
-
-msgid "callstack:"
-msgstr ""
-
-msgid "debug commands : \n"
-msgstr ""
-
-msgid "show this help"
-msgstr ""
-
-msgid "open debug documentation page"
-msgstr ""
-
-msgid "stop debugging"
-msgstr ""
-
-msgid "show callstack"
-msgstr ""
-
-msgid "execute cmd"
-msgstr ""
-
-msgid "display variable"
-msgstr ""
-
-msgid "continue execution"
-msgstr ""
-
-msgid "abort execution"
-msgstr ""
-
-msgid "continue to next statement"
-msgstr ""
-
-msgid "step into function"
-msgstr ""
-
-msgid "step outside function"
-msgstr ""
-
-msgid "add a breakpoint"
-msgstr ""
-
-msgid "delete all breakpoints"
-msgstr ""
-
-msgid "delete a specific breakpoint"
-msgstr ""
-
-msgid "enable all breakpoints"
-msgstr ""
-
-msgid "enable a specific breakpoint"
-msgstr ""
-
-msgid "disable all breakpoints"
-msgstr ""
-
-msgid "disable a specific breakpoint"
-msgstr ""
-
-msgid "show all breakpoints"
-msgstr ""
-
-msgid "show a specific breakpoint"
-msgstr ""
-
-msgid "  for more details, show help page.\n"
+msgid "%s: Debugger can be activated only at console scope level\n"
 msgstr ""
 
 #, c-format
@@ -511,6 +429,109 @@ msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
 msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
+msgstr ""
+
+#
+# File: modules/core/src/cpp/InitScilab.cpp, line: 1176
+#, c-format
+msgid "%s: Command missing.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+msgid "callstack:"
+msgstr ""
+
+#
+# File: modules/core/src/cpp/InitScilab.cpp, line: 1297
+#, c-format
+msgid "#%-5d%s"
+msgstr ""
+
+#
+# File: modules/core/src/cpp/InitScilab.cpp, line: 1301
+#, c-format
+msgid "#%-5d%s (line %d)"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to retrieve information about breakpoint %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%ls"
+msgstr ""
+
+msgid "debug commands : \n"
+msgstr ""
+
+msgid "show this help"
+msgstr ""
+
+msgid "open debug documentation page"
+msgstr ""
+
+msgid "stop debugging"
+msgstr ""
+
+msgid "show callstack"
+msgstr ""
+
+msgid "execute cmd"
+msgstr ""
+
+msgid "display variable"
+msgstr ""
+
+msgid "continue execution"
+msgstr ""
+
+msgid "abort execution"
+msgstr ""
+
+msgid "continue to next statement"
+msgstr ""
+
+msgid "step into function"
+msgstr ""
+
+msgid "step outside function"
+msgstr ""
+
+msgid "add a breakpoint"
+msgstr ""
+
+msgid "delete all breakpoints"
+msgstr ""
+
+msgid "delete a specific breakpoint"
+msgstr ""
+
+msgid "enable all breakpoints"
+msgstr ""
+
+msgid "enable a specific breakpoint"
+msgstr ""
+
+msgid "disable all breakpoints"
+msgstr ""
+
+msgid "disable a specific breakpoint"
+msgstr ""
+
+msgid "show all breakpoints"
+msgstr ""
+
+msgid "show a specific breakpoint"
+msgstr ""
+
+msgid "  for more details, show help page.\n"
 msgstr ""
 
 msgid ""

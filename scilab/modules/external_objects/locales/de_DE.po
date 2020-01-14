@@ -86,6 +86,13 @@ msgid "Invalid name"
 msgstr "Ungültiger Name"
 
 #, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr ""
+
+msgid "Incompatible External Object"
+msgstr ""
+
+#, c-format
 msgid "Wrong type for input argument #%d: A String expected."
 msgstr ""
 
@@ -108,13 +115,6 @@ msgstr ""
 "sein."
 
 msgid "Invalid variable: cannot create the data"
-msgstr ""
-
-#, c-format
-msgid "Wrong type for input argument #%d: External Object expected."
-msgstr ""
-
-msgid "Incompatible External Object"
 msgstr ""
 
 #, c-format

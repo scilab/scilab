@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:14+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
 # File: modules/spreadsheet/sci_gateway/c/gw_csv_helpers.c, line: 75
 # File: modules/spreadsheet/sci_gateway/c/gw_csv_helpers.c, line: 141
@@ -36,7 +36,7 @@ msgstr ""
 # File: modules/spreadsheet/sci_gateway/c/gw_csv_helpers.c, line: 162
 # File: modules/spreadsheet/sci_gateway/c/gw_csv_helpers.c, line: 455
 # File: modules/spreadsheet/sci_gateway/c/sci_csvDefault.c, line: 144
-# File: modules/spreadsheet/sci_gateway/c/sci_csvDefault.c, line: 294
+# File: modules/spreadsheet/sci_gateway/c/sci_csvDefault.c, line: 297
 # File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 306
 # File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 333
 # File: modules/spreadsheet/sci_gateway/c/sci_csvRead.c, line: 371
@@ -61,7 +61,7 @@ msgstr ""
 
 #
 # File: modules/spreadsheet/sci_gateway/c/gw_csv_helpers.c, line: 195
-# File: modules/spreadsheet/sci_gateway/c/sci_csvDefault.c, line: 269
+# File: modules/spreadsheet/sci_gateway/c/sci_csvDefault.c, line: 272
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double expected.\n"
 msgstr ""
@@ -107,14 +107,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/spreadsheet/sci_gateway/c/sci_csvDefault.c, line: 286
+# File: modules/spreadsheet/sci_gateway/c/sci_csvDefault.c, line: 289
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A double (value %d to %d) expected.\n"
 msgstr ""
 
 #
-# File: modules/spreadsheet/sci_gateway/c/sci_csvDefault.c, line: 368
+# File: modules/spreadsheet/sci_gateway/c/sci_csvDefault.c, line: 371
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' , '%s', '%s', '%s', "
@@ -395,7 +395,7 @@ msgid "%s: End of file.\n"
 msgstr ""
 
 #
-# File: modules/spreadsheet/src/c/csvRead.c, line: 378
+# File: modules/spreadsheet/src/c/csvRead.c, line: 373
 #, c-format
 msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
@@ -403,7 +403,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/spreadsheet/src/c/csvRead.c, line: 378
+# File: modules/spreadsheet/src/c/csvRead.c, line: 373
 msgid "Warning"
 msgstr ""
 

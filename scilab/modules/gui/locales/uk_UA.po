@@ -384,8 +384,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: %s is obsolete and will be removed from Scilab %s\n"
-msgstr ""
-"%s: цю можливість %s буде остаточно вилучено з Scilab %s\n"
+msgstr "%s: цю можливість %s буде остаточно вилучено з Scilab %s\n"
 
 #, c-format
 msgid "%s: Wrong number for input argument: %d or %d expected.\n"

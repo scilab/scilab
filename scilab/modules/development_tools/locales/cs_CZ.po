@@ -60,10 +60,6 @@ msgid "%s: Assertion failed: expected = %s while computed = %s"
 msgstr "%s: Selhání výroku: očekáváno = %s ale spočítáno = %s"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Špatný počet vstupního argumentu: Očekáváno %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"
 
@@ -80,11 +76,46 @@ msgstr "%s: Spočítané je reálné, ale očekávané bylo komplexní."
 msgid "%s: Computed is complex, but expected is real."
 msgstr "%s: Spočítané je komplexní, ale očekávané bylo reálné."
 
-#, c-format
+#, fuzzy, c-format
+msgid "%s: Assertion failed: expected= %s  while computed= %s"
+msgstr "%s: Selhání výroku: očekáváno = %s ale spočítáno = %s"
+
+#, fuzzy, c-format
 msgid ""
-"%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"
+"%s: Assertion failed: expected and computed are two distinct built-in "
+"functions."
+msgstr "%s: Selhání výroku: očekáváno = %s ale spočítáno = %s"
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 175
+#, c-format
+msgid "expected(%d)= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 176
+#, c-format
+msgid "computed(%d)= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 178
+msgid "expected= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 179
+msgid "computed= "
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Assertion failed: %s  while %s (mean diff = %s)"
 msgstr ""
 "%s: Selhání výrazu: očekáváno = %s ale spočítáno = %s (průměrný rozdíl = %s)"
+
+#, fuzzy, c-format
+msgid "%s: Assertion failed: %s  while %s"
+msgstr "%s: Selhání výroku: očekáváno = %s ale spočítáno = %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -328,3 +359,7 @@ msgstr ""
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "Neexistující proměnná %s_ref v referenčním souboru"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument: %d expected.\n"
+#~ msgstr "%s: Špatný počet vstupního argumentu: Očekáváno %d.\n"

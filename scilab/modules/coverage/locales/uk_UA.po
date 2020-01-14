@@ -54,3 +54,26 @@ msgstr "%s: немає активного покриття: запис немо�
 msgid "%s: Wrong value for input argument #%d: html output only.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: лише виведення до html.\n"
+
+#
+# File: modules/coverage/sci_gateway/cpp/sci_profileDisable.cpp, line: 70
+# File: modules/coverage/sci_gateway/cpp/sci_profileGetInfo.cpp, line: 349
+#, c-format
+msgid "%s: profile is disabled.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A macro or library expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"рядків.\n"
+
+#
+# File: modules/coverage/sci_gateway/cpp/sci_profileEnable.cpp, line: 53
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"

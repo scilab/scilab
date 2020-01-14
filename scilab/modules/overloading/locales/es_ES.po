@@ -257,6 +257,18 @@ msgid "%s: Inconsistent multiplication.\n"
 msgstr ""
 
 #
+# File: modules/overloading/macros/%r_p.sci, line: 75
+#, c-format
+msgid "column %d"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%r_p.sci, line: 77
+#, c-format
+msgid "columns %d to %d"
+msgstr ""
+
+#
 # File: modules/overloading/macros/%r_p_s.sci, line: 43
 msgid "Not implemented"
 msgstr ""
@@ -322,8 +334,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
-"%s: tamaño incorrecto para el argumento #%d: "
-"se esperaba una matriz cuadrada.\n"
+"%s: tamaño incorrecto para el argumento #%d: se esperaba una matriz "
+"cuadrada.\n"
 
 #
 # File: modules/overloading/macros/%s_pow.sci, line: 66
@@ -356,8 +368,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: Argumento de entrada #%d: Se esperaba un entero.\n"
+msgstr "%s: Argumento de entrada #%d: Se esperaba un entero.\n"
 
 #, c-format
 msgid "%s: Concatenated arrays must have the same number of dimensions.\n"

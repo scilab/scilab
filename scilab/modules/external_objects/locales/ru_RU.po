@@ -86,6 +86,13 @@ msgid "Invalid name"
 msgstr "Недопустимое имя"
 
 #, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr "Неверный тип входного аргумента №%d: ожидался внешний объект."
+
+msgid "Incompatible External Object"
+msgstr "Несовместимый внешний объект"
+
+#, c-format
 msgid "Wrong type for input argument #%d: A String expected."
 msgstr "Неверный тип входного аргумента №%d: ожидалась строка."
 
@@ -108,13 +115,6 @@ msgstr ""
 
 msgid "Invalid variable: cannot create the data"
 msgstr "Недопустимая переменная: невозможно создать данные"
-
-#, c-format
-msgid "Wrong type for input argument #%d: External Object expected."
-msgstr "Неверный тип входного аргумента №%d: ожидался внешний объект."
-
-msgid "Incompatible External Object"
-msgstr "Несовместимый внешний объект"
 
 #, c-format
 msgid "Wrong type for input argument #%d: string expected."

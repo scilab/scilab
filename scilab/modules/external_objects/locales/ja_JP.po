@@ -86,6 +86,13 @@ msgid "Invalid name"
 msgstr "名前が無効です"
 
 #, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr "入力引数 #%d の型が間違っています: 外部オブジェクトを指定してください."
+
+msgid "Incompatible External Object"
+msgstr "外部オブジェクトの互換性がありません"
+
+#, c-format
 msgid "Wrong type for input argument #%d: A String expected."
 msgstr "引数 #%d の型が間違っています:  文字列を指定してください"
 
@@ -105,13 +112,6 @@ msgstr "次元が間違っています: 引数 #2 および #3 は同じ次元�
 
 msgid "Invalid variable: cannot create the data"
 msgstr "変数が無効です: データを作成できません"
-
-#, c-format
-msgid "Wrong type for input argument #%d: External Object expected."
-msgstr "入力引数 #%d の型が間違っています: 外部オブジェクトを指定してください."
-
-msgid "Incompatible External Object"
-msgstr "外部オブジェクトの互換性がありません"
 
 #, c-format
 msgid "Wrong type for input argument #%d: string expected."

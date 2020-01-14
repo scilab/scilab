@@ -28,11 +28,6 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument n°%d : Ne doit pas contenir Nan ou Inf.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
@@ -471,3 +466,9 @@ msgid ""
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Le rang demandé est plus "
 "grand que la dimension de la matrice."
+
+#, c-format
+#~ msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
+#~ msgstr ""
+#~ "%s : Valeur erronée de l'argument n°%d : Ne doit pas contenir Nan ou "
+#~ "Inf.\n"

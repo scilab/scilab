@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:14+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
 #
 # File: modules/signal_processing/sci_gateway/c/sci_amell.c, line: 56
@@ -91,7 +91,7 @@ msgstr ""
 #
 # File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 40
 # File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 72
-# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 408
+# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 409
 # File: modules/signal_processing/sci_gateway/cpp/sci_rpem.cpp, line: 74
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -102,36 +102,36 @@ msgstr ""
 # File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 91
 # File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 111
 # File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 130
-# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 416
+# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 417
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
 # File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 152
-# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 294
-# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 353
+# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 295
+# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 354
 msgid "fft call : needs power of two!"
 msgstr ""
 
 #
 # File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 193
 # File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 211
-# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 426
-# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 434
-# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 450
+# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 427
+# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 435
+# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 451
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 442
+# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 443
 #, c-format
 msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 464
+# File: modules/signal_processing/sci_gateway/cpp/sci_corr.cpp, line: 465
 #, c-format
 msgid "%s: Too many coefficients are required.\n"
 msgstr ""
@@ -213,13 +213,13 @@ msgstr ""
 
 #
 # File: modules/signal_processing/sci_gateway/cpp/sci_rpem.cpp, line: 149
-# File: modules/signal_processing/sci_gateway/cpp/sci_rpem.cpp, line: 158
+# File: modules/signal_processing/sci_gateway/cpp/sci_rpem.cpp, line: 161
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/sci_gateway/cpp/sci_rpem.cpp, line: 163
+# File: modules/signal_processing/sci_gateway/cpp/sci_rpem.cpp, line: 169
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same column dimensions "
@@ -227,8 +227,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/signal_processing/sci_gateway/cpp/sci_rpem.cpp, line: 184
-# File: modules/signal_processing/sci_gateway/cpp/sci_rpem.cpp, line: 196
+# File: modules/signal_processing/sci_gateway/cpp/sci_rpem.cpp, line: 193
+# File: modules/signal_processing/sci_gateway/cpp/sci_rpem.cpp, line: 205
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-by-%d matrix expected.\n"
 msgstr ""
@@ -757,7 +757,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/group.sci, line: 60
+# File: modules/signal_processing/macros/group.sci, line: 58
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or polynomial matrix or a "
@@ -765,7 +765,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/signal_processing/macros/group.sci, line: 63
+# File: modules/signal_processing/macros/group.sci, line: 61
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A discrete system expected.\n"
 msgstr ""

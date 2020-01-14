@@ -38,10 +38,6 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr "%s: 第 %d  輸入參數型態錯誤: 應為一字串.\n"
 
 #, c-format
-msgid "%s: ans cannot be edited.\n"
-msgstr "%s： 無法編輯ans。\n"
-
-#, c-format
 msgid "%s: Undefined variable: %s.\n"
 msgstr ""
 
@@ -74,8 +70,10 @@ msgstr ""
 msgid "Visibility"
 msgstr ""
 
-msgid "Bytes"
-msgstr "位元組"
+#
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 50
+msgid "Memory"
+msgstr ""
 
 msgid "User"
 msgstr ""
@@ -359,9 +357,6 @@ msgstr ""
 msgid "Scilab type:"
 msgstr ""
 
-msgid "Bytes:"
-msgstr ""
-
 msgid "Type not supported for this operation"
 msgstr ""
 
@@ -384,3 +379,10 @@ msgstr "&?"
 
 msgid "&About Scilab..."
 msgstr "有關 Scilab( &A)"
+
+#, c-format
+#~ msgid "%s: ans cannot be edited.\n"
+#~ msgstr "%s： 無法編輯ans。\n"
+
+#~ msgid "Bytes"
+#~ msgstr "位元組"

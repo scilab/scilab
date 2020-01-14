@@ -214,8 +214,7 @@ msgstr "integermatrix"
 
 #, c-format
 msgid "%s: Unable to get precision of variable \"%s\""
-msgstr ""
-"%s: Die Genauigkeit der Variablen '%s' konnte nicht ermittelt werden."
+msgstr "%s: Die Genauigkeit der Variablen '%s' konnte nicht ermittelt werden."
 
 #, c-format
 msgid "%s: Unable to get item number of list"

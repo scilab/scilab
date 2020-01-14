@@ -120,12 +120,6 @@ msgstr ""
 "ん.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してくださ"
-"い.\n"
-
-#, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: 入力引数の大きさが間違っています: 大きさに互換性がありません.\n"
 
@@ -190,6 +184,7 @@ msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 実数のスカラーを1つ指定してくださ"
 "い.\n"
 
+#, c-format
 msgid "%s: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr ""
 "%s:  %s '%c' の値が間違っています: '%s', '%s' および '%s' を指定してくださ"
@@ -2561,6 +2556,34 @@ msgstr "厳密なガウス分布密度"
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 有効なプロパティを指定してください.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実行列またはScilab関数を指定してくださ"
+"い.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr ""
+"%s: 入力引数 #%dの大きさが間違っています: スカラー文字列を指定してください.\n"
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 102
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Error %d : in plot called by implicitplot"
+msgstr "エラー %d: contour2d によりコールされたplot2dで発生"
+
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
 msgstr "%s: 引数 #%d: 数値または文字列を指定してください.\n"
@@ -2777,7 +2800,8 @@ msgstr "%s MarkStyleの値が間違っています.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A marker style expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています:  マーカーのスタイルを指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています:  マーカーのスタイルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
@@ -2905,6 +2929,12 @@ msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: %s に指定された値が間違っています."
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してくだ"
+#~ "さい.\n"
 
 #~ msgid "polarplot(): Only quadrant(s) reached by data are displayed"
 #~ msgstr "polarplot(): データが存在する象限のみが表示されます"

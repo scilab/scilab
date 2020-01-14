@@ -119,9 +119,16 @@ msgid ""
 "%s: Wrong type for input argument #%d: A matrix or a function expected.\n"
 msgstr ""
 
+#
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 234
+# File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 257
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A jacobian or a real expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为列数%d。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -215,6 +222,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #, c-format
@@ -1617,8 +1628,4 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""

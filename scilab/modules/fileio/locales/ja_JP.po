@@ -557,6 +557,111 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 15
+msgid "Import data"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 65
+msgid "Select a file"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 71
+msgid "File has a header"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 78
+msgid "Show all columns"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 79
+msgid "It can take a long time"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 86
+msgid "Separator"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 92
+msgid "Colon"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 92
+# File: modules/fileio/macros/importgui/importgui.sci, line: 107
+msgid "Comma"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 92
+msgid "Pipe"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 92
+msgid "Semicolon"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 92
+msgid "Space"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 92
+msgid "Tab"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 101
+msgid "Decimal"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 107
+msgid "Point"
+msgstr ""
+
+#, fuzzy
+msgid "Conversion"
+msgstr "変換が不正です."
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 122
+msgid "Convert to double"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 122
+msgid "Keep as strings"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 144
+msgid "Import as variable"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 152
+msgid "Quit"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui.sci, line: 158
+msgid "Copy function to clipboard"
+msgstr ""
+
+#
+# File: modules/fileio/macros/importgui/importgui_preview.sci, line: 36
+msgid "Cancel preview"
+msgstr ""
+
 #, c-format
 msgid "%s: Options ignored.\n"
 msgstr "%s: オプションが無視されました.\n"

@@ -87,7 +87,8 @@ msgstr ""
 #, c-format
 msgid "%s: Argument #%d: Decimal number(s) expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaban números reales.\n"
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaban números "
+"reales.\n"
 
 # File: modules/special_functions/macros/%s_gamma.sci, line: 21
 #, c-format

@@ -1184,6 +1184,11 @@ msgstr ""
 "%s: Неверное значение входного аргумента №%d: бесконечное усиление на "
 "нулевой частоте.\n"
 
+#
+# File: modules/cacsd/macros/freson.sci, line: 80
+msgid "freson: Some maxima frequencies may be undetected."
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидалась линейная система.\n"
@@ -1564,9 +1569,10 @@ msgstr "Полюса"
 msgid "Transmission zeros and poles"
 msgstr "Передача нулей и полюсов"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: real matix expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: real matrix expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась вещественная матрица.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"

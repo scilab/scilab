@@ -283,8 +283,8 @@ msgstr ""
 "%s : Taille erronée de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be one of %ls.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée #%d : doit être dans l'ensemble "
 "[%ls].\n"
@@ -1037,11 +1037,6 @@ msgid "Wrong type for field %s.%s .\n"
 msgstr "Type erroné du champ %s.%s.\n"
 
 #, c-format
-msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
-msgstr ""
-"Valeur erronée du champ %s.%s : le port FIXME n'a pas été mis à jour.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s : Nombre d'argument(s) d'entrée erroné : Au moins %d attendus.\n"
 
@@ -1341,7 +1336,7 @@ msgstr ""
 #, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
-"It should be a colon vector of size %d."
+"It should be a column vector of size %d."
 msgstr ""
 
 msgid ""
@@ -1567,3 +1562,8 @@ msgid ""
 msgstr ""
 "La solution donnée pour %s \n"
 " est erronée : %s.\n"
+
+#, c-format
+#~ msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
+#~ msgstr ""
+#~ "Valeur erronée du champ %s.%s : le port FIXME n'a pas été mis à jour.\n"

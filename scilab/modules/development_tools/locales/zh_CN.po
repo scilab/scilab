@@ -58,10 +58,6 @@ msgid "%s: Assertion failed: expected = %s while computed = %s"
 msgstr "%s：断言失败：期待值为%s，计算值为%s"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d个。\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s：输入参数的数目错误，应该为%d个。\n"
 
@@ -77,10 +73,45 @@ msgstr "%s：计算值为实数，应为复数。"
 msgid "%s: Computed is complex, but expected is real."
 msgstr "%s：计算值为复数，应为实数。"
 
-#, c-format
+#, fuzzy, c-format
+msgid "%s: Assertion failed: expected= %s  while computed= %s"
+msgstr "%s：断言失败：期待值为%s，计算值为%s"
+
+#, fuzzy, c-format
 msgid ""
-"%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"
+"%s: Assertion failed: expected and computed are two distinct built-in "
+"functions."
+msgstr "%s：断言失败：期待值为%s，计算值为%s"
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 175
+#, c-format
+msgid "expected(%d)= "
 msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 176
+#, c-format
+msgid "computed(%d)= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 178
+msgid "expected= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 179
+msgid "computed= "
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Assertion failed: %s  while %s (mean diff = %s)"
+msgstr "%s：断言失败：期待值为%s，计算值为%s"
+
+#, fuzzy, c-format
+msgid "%s: Assertion failed: %s  while %s"
+msgstr "%s：断言失败：期待值为%s，计算值为%s"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -300,3 +331,7 @@ msgstr ""
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "在reference文件中没有 %s_ref 变量"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument: %d expected.\n"
+#~ msgstr "%s：输入参数的数目错误：应该为%d个。\n"

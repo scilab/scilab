@@ -283,6 +283,7 @@ msgstr ""
 #, c-format
 msgid "\t%s (%s) will be installed in the '%s' section"
 msgstr "\t%s (%s) será instalado na seção '%s'"
+
 #
 # File: modules/atoms/macros/atomsInstall.sci, line: 259
 #, c-format
@@ -434,30 +435,33 @@ msgstr ""
 msgid "\tRemoving %s (%s)(%s)... "
 msgstr "\tRemovendo %s (%s)(%s)... "
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
-"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
+"SCIHOME.\n"
+"\tFor security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
 "%s: O diretório deste pacote (%s-%s) não está localizado nem no SCI nem no "
 "SCIHOME. Por motivos de segurança, ATOMS se recusa a excluir esse "
 "diretório.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: The directory of this package (%s-%s) cannot been deleted, please check "
-"if you have write access on this directory : %s.\n"
+"%s: The package (%s - %s) directory %s cannot be deleted.\n"
+"\tIt may be used and locked. Please also check that you have write "
+"permission on it.\n"
 msgstr ""
-"%s: O diretório deste pacote (%s-%s) não pode ser excluído. Por favor, "
-"confira se você tem permissão de escrita neste diretório : %s.\n"
+"%s: O diretório %s não pode ser criado. Por favor, verifique se você possui "
+"permissão de escrita neste diretório.\n"
 
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 314
 #, c-format
 msgid ""
-"%s: The root directory of this package (%s-%s) cannot been deleted, please "
-"check if you have write access on this directory : %s.\n"
+"%s: The package (%s - %s) has been removed from its root directory %s.\n"
+"\tHowever, this empty directory cannot be deleted. It may be used and "
+"locked, or you may have no write permission on it.\n"
 msgstr ""
-"%s: O diretório raiz deste pacote (%s-%s) não pode ser excluído. Por favor, "
-"verifique se você tem permissão de escrita neste diretório : %s.\n"
 
 #, c-format
 msgid ""
@@ -1172,3 +1176,19 @@ msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: Valor incorreto para o %dº argumento de entrada: esperava-se ASC ou "
 "DESC.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
+#~ "check if you have write access on this directory : %s.\n"
+#~ msgstr ""
+#~ "%s: O diretório deste pacote (%s-%s) não pode ser excluído. Por favor, "
+#~ "confira se você tem permissão de escrita neste diretório : %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
+#~ "please check if you have write access on this directory : %s.\n"
+#~ msgstr ""
+#~ "%s: O diretório raiz deste pacote (%s-%s) não pode ser excluído. Por "
+#~ "favor, verifique se você tem permissão de escrita neste diretório : %s.\n"

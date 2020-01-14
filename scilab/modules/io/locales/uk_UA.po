@@ -240,9 +240,12 @@ msgstr ""
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s: помилковий вхідний параметр %d.\n"
 
+#
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 429
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 648
 #, c-format
-msgid "End of file at line %d.\n"
-msgstr "Кінець файла у рядку %d.\n"
+msgid "%s: Input missing from console.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -317,3 +320,7 @@ msgid ""
 msgstr ""
 "%s: спроба виконати команду завершилася помилкою з кодом %s та таким "
 "повідомленням:\n"
+
+#, c-format
+#~ msgid "End of file at line %d.\n"
+#~ msgstr "Кінець файла у рядку %d.\n"

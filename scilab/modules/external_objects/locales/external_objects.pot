@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:13+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
 # File: modules/external_objects/sci_gateway/cpp/sci_doubleExclam_invoke_.cpp, line: 35
 # File: modules/external_objects/sci_gateway/cpp/sci_doubleExclam_invoke_.cpp, line: 40
@@ -58,6 +58,8 @@ msgstr ""
 # File: modules/external_objects/src/cpp/cast.cpp, line: 51
 # File: modules/external_objects/src/cpp/cast.cpp, line: 64
 # File: modules/external_objects/src/cpp/classExtract.cpp, line: 38
+# File: modules/external_objects/src/cpp/clear.cpp, line: 38
+# File: modules/external_objects/src/cpp/clear.cpp, line: 55
 # File: modules/external_objects/src/cpp/compile.cpp, line: 56
 # File: modules/external_objects/src/cpp/compile.cpp, line: 63
 # File: modules/external_objects/src/cpp/compile.cpp, line: 76
@@ -152,6 +154,7 @@ msgstr ""
 # File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_4_foo.cpp, line: 33
 # File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_5.cpp, line: 33
 # File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_a_foo.cpp, line: 33
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_clear.cpp, line: 31
 # File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_d_foo.cpp, line: 33
 # File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_disp.cpp, line: 33
 # File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_e.cpp, line: 34
@@ -286,6 +289,19 @@ msgid "Invalid name"
 msgstr ""
 
 #
+# File: modules/external_objects/src/cpp/clear.cpp, line: 43
+# File: modules/external_objects/src/cpp/display.cpp, line: 45
+#, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr ""
+
+#
+# File: modules/external_objects/src/cpp/clear.cpp, line: 49
+# File: modules/external_objects/src/cpp/display.cpp, line: 51
+msgid "Incompatible External Object"
+msgstr ""
+
+#
 # File: modules/external_objects/src/cpp/compile.cpp, line: 69
 # File: modules/external_objects/src/cpp/deff.cpp, line: 81
 # File: modules/external_objects/src/cpp/import.cpp, line: 72
@@ -322,17 +338,6 @@ msgstr ""
 #
 # File: modules/external_objects/src/cpp/deff.cpp, line: 157
 msgid "Invalid variable: cannot create the data"
-msgstr ""
-
-#
-# File: modules/external_objects/src/cpp/display.cpp, line: 45
-#, c-format
-msgid "Wrong type for input argument #%d: External Object expected."
-msgstr ""
-
-#
-# File: modules/external_objects/src/cpp/display.cpp, line: 51
-msgid "Incompatible External Object"
 msgstr ""
 
 #

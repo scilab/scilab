@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:13+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
 # File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 35
 # File: modules/dynamic_link/sci_gateway/cpp/sci_call.cpp, line: 61
@@ -514,7 +514,7 @@ msgstr ""
 # File: modules/dynamic_link/macros/ilib_build.sci, line: 64
 # File: modules/dynamic_link/macros/ilib_for_link.sci, line: 46
 # File: modules/dynamic_link/macros/ilib_gen_Make.sci, line: 41
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 172
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 140
 # File: modules/dynamic_link/macros/ilib_mex_build.sci, line: 37
 # File: modules/dynamic_link/macros/windows/dlwGenerateMakefile.sci, line: 184
 #, c-format
@@ -690,14 +690,14 @@ msgstr ""
 
 #
 # File: modules/dynamic_link/macros/ilib_compile.sci, line: 175
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 239
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 207
 #, c-format
 msgid "Output: %s\n"
 msgstr ""
 
 #
 # File: modules/dynamic_link/macros/ilib_compile.sci, line: 176
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 241
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 209
 #, c-format
 msgid "stderr: %s\n"
 msgstr ""
@@ -753,27 +753,27 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 91
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 84
 #, c-format
 msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 146
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 177
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 114
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 145
 #, c-format
 msgid "   %s: Copy %s to TMPDIR\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 151
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 119
 #, c-format
 msgid ""
 "   %s: Did not copy %s: Source and target directories are the same (%s).\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 156
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 124
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: existing file(s) expected. Provided: "
@@ -781,73 +781,73 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 184
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 152
 #, c-format
 msgid "   %s: File %s ignored.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 198
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 166
 #, c-format
 msgid "   %s: Need to run the compiler detection (configure).\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 208
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 176
 #, c-format
 msgid "   %s: Use the previous detection of compiler.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 228
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 196
 #, c-format
 msgid "   %s: Modification of the Makefile in TMPDIR.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 236
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 204
 #, c-format
 msgid "   %s: Substitute the reference by the actual file.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 237
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 205
 #, c-format
 msgid "   Command: %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 246
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 214
 #, c-format
 msgid "%s: Error while modifying the reference Makefile:\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 267
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 235
 #, c-format
 msgid "   %s: configure : Generate Makefile.\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 275
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 243
 #, c-format
 msgid "   %s: Command: %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 276
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 244
 #, c-format
 msgid "   Output: %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 277
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 245
 #, c-format
 msgid "   stderr: %s\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 284
+# File: modules/dynamic_link/macros/ilib_gen_Make_unix.sci, line: 252
 #, c-format
 msgid ""
 "%s: An error occurred during the detection of the compiler(s). Set "

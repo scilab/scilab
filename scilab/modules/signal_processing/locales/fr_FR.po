@@ -19,8 +19,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
-msgstr ""
-"%s : Argument n°%d : valeur attendue dans [%s, %s].\n"
+msgstr "%s : Argument n°%d : valeur attendue dans [%s, %s].\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -432,8 +431,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s : Argument n°%d : valeur parmi {%s} attendue.\n"
+msgstr "%s : Argument n°%d : valeur parmi {%s} attendue.\n"
 
 #, c-format
 msgid "%s: Filter order too small.\n"

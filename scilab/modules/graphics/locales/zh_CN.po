@@ -102,10 +102,6 @@ msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s：可选参数位置错误：参数 #%d 必须置于位置 %d。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 
@@ -164,6 +160,7 @@ msgstr "%s：输入参数 #%d 的大小错误：应该为 %d。\n"
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
+#, c-format
 msgid "%s: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%s: %s '%c' 的值错误： 应该是'%s'，'%s'和'%s'.\n"
 
@@ -1904,6 +1901,32 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr "%s：输入参数 #%d 的类型错误：应该为实标量。\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr "%s：输入参数 #%d 的类型错误：应该为实行向量或一个布尔型。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 102
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 148
+#, c-format
+msgid "Error %d : in plot called by implicitplot"
 msgstr ""
 
 #, c-format

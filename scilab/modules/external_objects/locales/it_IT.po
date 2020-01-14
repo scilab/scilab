@@ -86,6 +86,15 @@ msgid "Invalid name"
 msgstr "Nome non valido"
 
 #, c-format
+msgid "Wrong type for input argument #%d: External Object expected."
+msgstr ""
+"L'argomento in ingresso #%d è di tipo sbagliato: era atteso un oggetto "
+"esterno."
+
+msgid "Incompatible External Object"
+msgstr "Oggetto esterno non compatibile"
+
+#, c-format
 msgid "Wrong type for input argument #%d: A String expected."
 msgstr "L'argomento #%d è di tipo sbagliato: era attesa una stringa."
 
@@ -109,15 +118,6 @@ msgstr "Dimensioni non valide: gli argomenti #2 e #3 devono averle uguali."
 
 msgid "Invalid variable: cannot create the data"
 msgstr "Variabile non valida: impossibile creare i dati"
-
-#, c-format
-msgid "Wrong type for input argument #%d: External Object expected."
-msgstr ""
-"L'argomento in ingresso #%d è di tipo sbagliato: era atteso un oggetto "
-"esterno."
-
-msgid "Incompatible External Object"
-msgstr "Oggetto esterno non compatibile"
 
 #, c-format
 msgid "Wrong type for input argument #%d: string expected."

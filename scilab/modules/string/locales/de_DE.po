@@ -409,10 +409,6 @@ msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong export format: %s"
 msgstr ""
 

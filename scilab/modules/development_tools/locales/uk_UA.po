@@ -70,10 +70,6 @@ msgid "%s: Assertion failed: expected = %s while computed = %s"
 msgstr "%s: помилка порівняння. Мало бути %s, обчислене значення — %s"
 
 #, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
@@ -92,12 +88,47 @@ msgid "%s: Computed is complex, but expected is real."
 msgstr ""
 "%s: обчислено комплексне значення, а потрібне значення має бути дійсним."
 
-#, c-format
+#, fuzzy, c-format
+msgid "%s: Assertion failed: expected= %s  while computed= %s"
+msgstr "%s: помилка порівняння. Мало бути %s, обчислене значення — %s"
+
+#, fuzzy, c-format
 msgid ""
-"%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"
+"%s: Assertion failed: expected and computed are two distinct built-in "
+"functions."
+msgstr "%s: помилка порівняння. Мало бути %s, обчислене значення — %s"
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 175
+#, c-format
+msgid "expected(%d)= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 176
+#, c-format
+msgid "computed(%d)= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 178
+msgid "expected= "
+msgstr ""
+
+#
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 179
+msgid "computed= "
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Assertion failed: %s  while %s (mean diff = %s)"
 msgstr ""
 "%s: помилка під час перевірки: мало бути = %s, результат обчислень = %s "
 "(середня різниця = %s)"
+
+#, fuzzy, c-format
+msgid "%s: Assertion failed: %s  while %s"
+msgstr "%s: помилка порівняння. Мало бути %s, обчислене значення — %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -363,3 +394,7 @@ msgstr ""
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "У еталонному файлі немає змінної %s_ref"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument: %d expected.\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"

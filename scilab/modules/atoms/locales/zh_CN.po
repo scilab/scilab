@@ -366,26 +366,30 @@ msgstr ""
 msgid "\tRemoving %s (%s)(%s)... "
 msgstr ""
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
-"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
+"SCIHOME.\n"
+"\tFor security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
 "%s：这个包 （%s-%s） 的路径既不在 SCI ，也不在 SCIHOME。出于安全原因，ATOMS "
 "拒绝删除这个路径。\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: The directory of this package (%s-%s) cannot been deleted, please check "
-"if you have write access on this directory : %s.\n"
-msgstr ""
+"%s: The package (%s - %s) directory %s cannot be deleted.\n"
+"\tIt may be used and locked. Please also check that you have write "
+"permission on it.\n"
+msgstr "%s：路径 %s 不能被创建，请检查您是否在这个路径上写了访问。\n"
 
+#
+# File: modules/atoms/macros/atomsRemove.sci, line: 314
 #, c-format
 msgid ""
-"%s: The root directory of this package (%s-%s) cannot been deleted, please "
-"check if you have write access on this directory : %s.\n"
+"%s: The package (%s - %s) has been removed from its root directory %s.\n"
+"\tHowever, this empty directory cannot be deleted. It may be used and "
+"locked, or you may have no write permission on it.\n"
 msgstr ""
-"%s：这个包 （%s-%s） 的根目录不能被删除，请您检查是否能读取这个目录：%s。\n"
 
 #, c-format
 msgid ""
@@ -1025,3 +1029,11 @@ msgstr "%s：输入参数 #%d 的值出错：这是一个无效的版本。\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为 ASC 或 DESC。\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
+#~ "please check if you have write access on this directory : %s.\n"
+#~ msgstr ""
+#~ "%s：这个包 （%s-%s） 的根目录不能被删除，请您检查是否能读取这个目录："
+#~ "%s。\n"

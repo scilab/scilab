@@ -38,10 +38,6 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: ans cannot be edited.\n"
-msgstr "%s: Переменная «ans» не может быть изменена.\n"
-
-#, c-format
 msgid "%s: Undefined variable: %s.\n"
 msgstr "%s: Неопределённая переменная: %s.\n"
 
@@ -78,8 +74,10 @@ msgstr "Тип"
 msgid "Visibility"
 msgstr "Видимость"
 
-msgid "Bytes"
-msgstr "Байт"
+#
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 50
+msgid "Memory"
+msgstr ""
 
 msgid "User"
 msgstr "Пользователь"
@@ -363,9 +361,6 @@ msgstr "Запустить фильтр"
 msgid "Scilab type:"
 msgstr "Тип Scilab:"
 
-msgid "Bytes:"
-msgstr "Байты:"
-
 msgid "Type not supported for this operation"
 msgstr "Для этой операции такой тип не поддерживается"
 
@@ -388,6 +383,16 @@ msgstr "&Справка"
 
 msgid "&About Scilab..."
 msgstr "&О Scilab"
+
+#, c-format
+#~ msgid "%s: ans cannot be edited.\n"
+#~ msgstr "%s: Переменная «ans» не может быть изменена.\n"
+
+#~ msgid "Bytes"
+#~ msgstr "Байт"
+
+#~ msgid "Bytes:"
+#~ msgstr "Байты:"
 
 #~ msgid "Compiled function"
 #~ msgstr "Compiled function"

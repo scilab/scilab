@@ -27,8 +27,13 @@ msgstr "行列が特異に近いかスケーリング異常です. rcond=%1.4E\n
 msgid "computing least squares solution. (see lsq).\n"
 msgstr "最小二乗解を計算中. (lsq 参照).\n"
 
-#, c-format
-msgid "debugger stop on breakpoint(%d) in function %ls line %d\n"
+#, fuzzy, c-format
+msgid "debugger stop on breakpoint(%d) in function %s at line %d\n"
+msgstr ""
+"デバッガがブレークポイント (%d)  で停止しました ( 関数 %ls ,  %d 行目)\n"
+
+#, fuzzy, c-format
+msgid "debugger stop on breakpoint(%d) in file %s at line %d\n"
 msgstr ""
 "デバッガがブレークポイント (%d)  で停止しました ( 関数 %ls ,  %d 行目)\n"
 
@@ -73,10 +78,6 @@ msgstr "for式は、1または2次元の変数のみを扱えます\n"
 
 msgid "for expression : Wrong type for loop iterator.\n"
 msgstr "for 式: 反復イタレータの型が間違っています.\n"
-
-#, c-format
-msgid "%s: function is disabled in debug mode.\n"
-msgstr "%s: 関数がデバッグモードで無効になりました.\n"
 
 msgid "With input arguments, return / resume expects output arguments.\n"
 msgstr "入力引数を指定した場合, return / resume には出力引数を指定します.\n"
@@ -372,8 +373,8 @@ msgstr "入力引数は同じ形式の変数名を有する必要があります
 msgid "Can not allocate negative size (%d).\n"
 msgstr "負の大きさ (%d) を確保することはできません.\n"
 
-#, c-format
-msgid "Can not allocate %.2f MB memory.\n"
+#, fuzzy, c-format
+msgid "Can not allocate %s memory.\n"
 msgstr "%.2f MBのメモリを確保することはできません.\n"
 
 msgid "Unable to insert multiple item in a struct.\n"
@@ -392,6 +393,10 @@ msgstr "フィールド \"%ls\" は存在しません.\n"
 #, c-format
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr "変数の大きさを超えました: %d 未満にしてください.\n"
+
+#, c-format
+#~ msgid "%s: function is disabled in debug mode.\n"
+#~ msgstr "%s: 関数がデバッグモードで無効になりました.\n"
 
 #~ msgid "variables don't have the same formal variable"
 #~ msgstr "変数は同じ形式の変数を有しません."

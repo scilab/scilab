@@ -272,12 +272,6 @@ msgstr ""
 "XMLAttr ou um XMLElem ou um XMLList ou um XMLSet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de textos.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matrix nx2 or nx3 of strings "
 "expected.\n"
@@ -409,3 +403,54 @@ msgstr "%s: O campo %s não é modificável: %s\n"
 
 msgid "CML read"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se no mínimo "
+"%d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid %s file.\n"
+msgstr "Arquivo inválido"
+
+#, fuzzy, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: XMLList inexistente.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
+msgstr "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid XPath request.\n"
+msgstr ""
+"%s: Consulta XPath inválida:\n"
+"%s"
+
+#, fuzzy, c-format
+msgid "%s: Invalid XPath request."
+msgstr ""
+"%s: Consulta XPath inválida:\n"
+"%s"
+
+#
+# File: modules/xml/macros/xmlGetValues.sci, line: 79
+#, c-format
+msgid "%s: Target node is not a XML_ELEMENT_NODE."
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Invalid attribute name: %s."
+msgstr "Nome de arquivo incorreto: "
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma "
+#~ "matriz de textos.\n"

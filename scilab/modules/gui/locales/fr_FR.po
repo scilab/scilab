@@ -361,8 +361,7 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n
 
 #, c-format
 msgid "%s: %s is obsolete and will be removed from Scilab %s\n"
-msgstr ""
-"%s : la fonction %s() sera définitivement supprimée dans Scilab %s\n"
+msgstr "%s : la fonction %s() sera définitivement supprimée dans Scilab %s\n"
 
 #, c-format
 msgid "%s: Wrong number for input argument: %d or %d expected.\n"

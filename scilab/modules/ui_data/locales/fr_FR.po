@@ -40,10 +40,6 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "%s: ans cannot be edited.\n"
-msgstr "%s : ans ne peut être édité.\n"
-
-#, c-format
 msgid "%s: Undefined variable: %s.\n"
 msgstr "%s : Variable non définie : %s.\n"
 
@@ -78,8 +74,10 @@ msgstr "Type"
 msgid "Visibility"
 msgstr "Visibilité"
 
-msgid "Bytes"
-msgstr "Octets"
+#
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 50
+msgid "Memory"
+msgstr ""
 
 msgid "User"
 msgstr "Utilisateur"
@@ -363,9 +361,6 @@ msgstr "Exécuter le filtre"
 msgid "Scilab type:"
 msgstr "Type Scilab :"
 
-msgid "Bytes:"
-msgstr "Octets :"
-
 msgid "Type not supported for this operation"
 msgstr "Le type n'est pas pris en charge pour cette opération"
 
@@ -388,6 +383,16 @@ msgstr "&?"
 
 msgid "&About Scilab..."
 msgstr "&À propos de Scilab..."
+
+#, c-format
+#~ msgid "%s: ans cannot be edited.\n"
+#~ msgstr "%s : ans ne peut être édité.\n"
+
+#~ msgid "Bytes"
+#~ msgstr "Octets"
+
+#~ msgid "Bytes:"
+#~ msgstr "Octets :"
 
 #~ msgid "Compiled function"
 #~ msgstr "Fonction compilée"

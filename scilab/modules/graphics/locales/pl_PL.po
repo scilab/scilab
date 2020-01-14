@@ -115,10 +115,6 @@ msgstr ""
 "pozycji %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 
@@ -182,6 +178,7 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
+#, c-format
 msgid "%s: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość dla %s '%c': '%s', oczekiwana jest '%s' i '%s' .\n"
@@ -1595,7 +1592,8 @@ msgstr ""
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval %s.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być w przedziale %s.\n"
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być w przedziale "
+"%s.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"
@@ -2083,6 +2081,38 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany jest skalar "
+"wartości real.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany jest wektor "
+"wierszowy wartości real lub wartość logiczna.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
+"znaków.\n"
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 102
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 148
+#, c-format
+msgid "Error %d : in plot called by implicitplot"
 msgstr ""
 
 #, c-format

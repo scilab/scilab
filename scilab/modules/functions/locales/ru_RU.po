@@ -64,9 +64,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался вектор строк.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -91,6 +91,10 @@ msgstr "%s: Неверный тип входных аргументов: ожи�
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "Checking: %s.\n"
@@ -125,24 +129,6 @@ msgid "%s: Incorrect function in file %s.\n"
 msgstr "%s: Неверная функция в файле %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась символьная строка.\n"
-
-#, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: Переменная %s не определена.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось имя функции Scilab.\n"
-
-msgid "No comment available."
-msgstr "Комментарий недоступен."
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался '%s'.\n"
 
@@ -162,6 +148,23 @@ msgstr "Используйте %s."
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Эта функция будет окончательно удалена в Scilab %s"
 
-#~ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A character string expected.\n"
 #~ msgstr ""
-#~ "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+#~ "%s: Неверный тип входного параметра №%d: ожидалась символьная строка.\n"
+
+#, c-format
+#~ msgid "%s: Undefined variable %s.\n"
+#~ msgstr "%s: Переменная %s не определена.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Name of a Scilab function "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалось имя функции "
+#~ "Scilab.\n"
+
+#~ msgid "No comment available."
+#~ msgstr "Комментарий недоступен."

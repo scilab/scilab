@@ -765,7 +765,8 @@ msgstr "Agencement du bureau"
 msgid "Select a layout"
 msgstr "Sélectionner un agencement"
 
-msgid "(Modify the layout requires to restart Scilab)"
+#, fuzzy
+msgid "(Modifying the layout requires to restart Scilab)"
 msgstr "(Modifier la disposition des fenêtres nécessite de redémarrer Scilab)"
 
 msgid "Save layout on exiting"

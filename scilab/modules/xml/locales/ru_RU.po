@@ -257,12 +257,6 @@ msgstr ""
 "XMLList или XMLSet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: Ожидалась матрица строковых "
-"значений.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matrix nx2 or nx3 of strings "
 "expected.\n"
@@ -391,3 +385,51 @@ msgstr "%s: Поле %s нельзя изменять: %s\n"
 
 msgid "CML read"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid %s file.\n"
+msgstr "Недопустимый файл"
+
+#, fuzzy, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: XMLList не существует.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался %s.\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid XPath request.\n"
+msgstr ""
+"%s: Плохой запрос XPath:\n"
+"%s"
+
+#, fuzzy, c-format
+msgid "%s: Invalid XPath request."
+msgstr ""
+"%s: Плохой запрос XPath:\n"
+"%s"
+
+#
+# File: modules/xml/macros/xmlGetValues.sci, line: 79
+#, c-format
+msgid "%s: Target node is not a XML_ELEMENT_NODE."
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Invalid attribute name: %s."
+msgstr "Некорректное имя файла: "
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного аргумента №%d: Ожидалась матрица строковых "
+#~ "значений.\n"

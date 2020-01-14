@@ -116,10 +116,6 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 
@@ -185,6 +181,7 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
+#, c-format
 msgid "%s: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%s: valore sbagliato per %s '%c': erano attesi '%s', '%s' e '%s'.\n"
 
@@ -1605,13 +1602,14 @@ msgstr ""
 #, c-format
 msgid "%s: Argument #%d: Non-negative values expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi attesi.\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: Valori non negativi "
+"attesi.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval %s.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
-"nel l'intervallo %s.\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere nel "
+"l'intervallo %s.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"
@@ -2104,6 +2102,38 @@ msgstr "Esatta densità gaussiana"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
+"proprietà valida.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
+"riga reale o un booleano.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 102
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 148
+#, c-format
+msgid "Error %d : in plot called by implicitplot"
 msgstr ""
 
 #, c-format

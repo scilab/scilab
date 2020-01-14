@@ -249,8 +249,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso %d o "
-"%d.\n"
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso %d o %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"

@@ -112,10 +112,6 @@ msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s: Argumento opcional deslocado: %dº deve estar na posição %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 
@@ -180,6 +176,7 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
+#, c-format
 msgid "%s: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%s: Valor incorreto para %s '%c': esperava-se '%s', '%s' e '%s'.\n"
 
@@ -1593,8 +1590,7 @@ msgstr "%s: argumento #%d: valores não negativos esperados.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval %s.\n"
-msgstr ""
-"%s: %dº argumento de entrada : tem que estar no intervalo %s.\n"
+msgstr "%s: %dº argumento de entrada : tem que estar no intervalo %s.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"
@@ -1708,8 +1704,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
-"%s: Tipo errado para o %dº argumento de entrada: esperava-se %s.\n"
+msgstr "%s: Tipo errado para o %dº argumento de entrada: esperava-se %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
@@ -2107,6 +2102,36 @@ msgstr "Densidade gaussiana exata"
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
+msgstr ""
+"%s: Valor incorreto para o %dº argumento de entrada: esperava-se uma "
+"propriedade válida.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
+"function expected.\n"
+msgstr ""
+"%s: Tipo errado para argumento de entrada #%d: matriz real ou função Scilab "
+"esperada.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o %dº argumento de entrada: esperava-se um "
+"texto.\n"
+
+#
+# File: modules/graphics/macros/implicitplot.sci, line: 102
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "Error %d : in plot called by implicitplot"
+msgstr "Erro %d: em plot2d chamado por contour2d"
+
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
 msgstr ""
@@ -2288,8 +2313,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A marker style expected.\n"
-msgstr ""
-"%s: %dº argumento : número de um símbolo de curva esperado.\n"
+msgstr "%s: %dº argumento : número de um símbolo de curva esperado.\n"
 
 #, c-format
 msgid ""
@@ -2336,8 +2360,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
+msgstr "%s: Tipo incorreto para o argumento %d: esperava-se números reais.\n"
 
 #, c-format
 msgid "%s: Argument #%d: At least %d components expected.\n"

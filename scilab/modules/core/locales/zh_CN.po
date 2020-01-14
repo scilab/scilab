@@ -85,6 +85,12 @@ msgstr "%s：第%d个输入参数的类型错误：应该为标量。\n"
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr "%s：第%d个输入参数值错误：‘%s’、‘%s’或‘%s’。\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
+#, c-format
+msgid "%s: must be call from a function.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s：第%d个输入参数的类型错误，应该为字符串矩阵。\n"
@@ -100,102 +106,14 @@ msgstr "%s：输入参数的数目错误，应该为%d个。\n"
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
+#
+# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 47
 #, c-format
-msgid "%s: Debugger can be activated only at console scope level\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Debugger is not running. Call \"%s\" without parameter first.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
-msgstr "%s：第%d个输入参数的值错误：应该为正整数标量。\n"
-
-#, c-format
-msgid "%s: Unable to retrieve information about breakpoint %d.\n"
+msgid "%s: Debugger cannot be activated in pause\n"
 msgstr ""
 
 #, c-format
-msgid "%ls"
-msgstr "%ls"
-
-msgid "callstack:"
-msgstr ""
-
-msgid "debug commands : \n"
-msgstr "debug commands : \n"
-
-msgid "show this help"
-msgstr "显示帮助"
-
-msgid "open debug documentation page"
-msgstr "打开调试文档"
-
-msgid "stop debugging"
-msgstr "停止调试"
-
-msgid "show callstack"
-msgstr ""
-
-msgid "execute cmd"
-msgstr ""
-
-msgid "display variable"
-msgstr "显示变量"
-
-msgid "continue execution"
-msgstr "继续执行"
-
-msgid "abort execution"
-msgstr "终止执行"
-
-msgid "continue to next statement"
-msgstr ""
-
-msgid "step into function"
-msgstr ""
-
-msgid "step outside function"
-msgstr ""
-
-msgid "add a breakpoint"
-msgstr "添加断点"
-
-msgid "delete all breakpoints"
-msgstr "删除所有断点"
-
-msgid "delete a specific breakpoint"
-msgstr "删除指定断点"
-
-msgid "enable all breakpoints"
-msgstr "启用所有断点"
-
-msgid "enable a specific breakpoint"
-msgstr "启用指定断点"
-
-msgid "disable all breakpoints"
-msgstr "禁用所有断点"
-
-msgid "disable a specific breakpoint"
-msgstr "禁用指定断点"
-
-msgid "show all breakpoints"
-msgstr "显示所有断点"
-
-msgid "show a specific breakpoint"
-msgstr "显示指定断点"
-
-msgid "  for more details, show help page.\n"
+msgid "%s: Debugger can be activated only at console scope level\n"
 msgstr ""
 
 #, c-format
@@ -505,6 +423,109 @@ msgstr ""
 msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
+#
+# File: modules/core/src/cpp/InitScilab.cpp, line: 1176
+#, c-format
+msgid "%s: Command missing.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为整数。"
+
+msgid "callstack:"
+msgstr ""
+
+#
+# File: modules/core/src/cpp/InitScilab.cpp, line: 1297
+#, c-format
+msgid "#%-5d%s"
+msgstr ""
+
+#
+# File: modules/core/src/cpp/InitScilab.cpp, line: 1301
+#, c-format
+msgid "#%-5d%s (line %d)"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to retrieve information about breakpoint %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%ls"
+msgstr "%ls"
+
+msgid "debug commands : \n"
+msgstr "debug commands : \n"
+
+msgid "show this help"
+msgstr "显示帮助"
+
+msgid "open debug documentation page"
+msgstr "打开调试文档"
+
+msgid "stop debugging"
+msgstr "停止调试"
+
+msgid "show callstack"
+msgstr ""
+
+msgid "execute cmd"
+msgstr ""
+
+msgid "display variable"
+msgstr "显示变量"
+
+msgid "continue execution"
+msgstr "继续执行"
+
+msgid "abort execution"
+msgstr "终止执行"
+
+msgid "continue to next statement"
+msgstr ""
+
+msgid "step into function"
+msgstr ""
+
+msgid "step outside function"
+msgstr ""
+
+msgid "add a breakpoint"
+msgstr "添加断点"
+
+msgid "delete all breakpoints"
+msgstr "删除所有断点"
+
+msgid "delete a specific breakpoint"
+msgstr "删除指定断点"
+
+msgid "enable all breakpoints"
+msgstr "启用所有断点"
+
+msgid "enable a specific breakpoint"
+msgstr "启用指定断点"
+
+msgid "disable all breakpoints"
+msgstr "禁用所有断点"
+
+msgid "disable a specific breakpoint"
+msgstr "禁用指定断点"
+
+msgid "show all breakpoints"
+msgstr "显示所有断点"
+
+msgid "show a specific breakpoint"
+msgstr "显示指定断点"
+
+msgid "  for more details, show help page.\n"
+msgstr ""
+
 msgid ""
 "\n"
 "Call stack:\n"
@@ -682,6 +703,16 @@ msgstr "大小"
 
 msgid "Bytes"
 msgstr "字节"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+#~ msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar positive integer "
+#~ "expected.\n"
+#~ msgstr "%s：第%d个输入参数的值错误：应该为正整数标量。\n"
 
 #~ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 #~ msgstr "%s：第%d个输入参数的类型错误：应该为双精度型。\n"

@@ -70,17 +70,6 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s: Valores incorretos para o argumento de entrada #%d: esperava-se números "
-"inteiros não negativos.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
 "%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
 msgstr ""
 
@@ -89,6 +78,28 @@ msgstr ""
 
 #, c-format
 msgid "%s: Please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: esperava-se números "
+"inteiros não negativos.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
+
+#
+# File: modules/time/sci_gateway/cpp/sci_sleep.cpp, line: 54
+#, c-format
+msgid "%s: Argument #%d: the scalar must be positive.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
 msgstr ""
 
 #, c-format
@@ -141,7 +152,7 @@ msgstr "Nov"
 msgid "Dec"
 msgstr "Dez"
 
-msgid  "   M      Tu     W      Th     F     Sat     Sun"
+msgid "   M      Tu     W      Th     F     Sat     Sun"
 msgstr "  Seg     Ter    Qua    Qui    Sex   Sáb     Dom"
 
 #, c-format

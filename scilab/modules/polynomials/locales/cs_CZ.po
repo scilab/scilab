@@ -177,6 +177,13 @@ msgstr ""
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 
+#
+# File: modules/polynomials/macros/diophant.sci, line: 24
+# File: modules/polynomials/macros/diophant.sci, line: 30
+#, c-format
+msgid "%s: Argument #%d: Inf or NaN coefficients not supported.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván mnohočlen.\n"

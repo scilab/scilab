@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:14+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
 # File: modules/sound/sci_gateway/c/sci_PlaySound.c, line: 51
 # File: modules/sound/sci_gateway/c/sci_PlaySound.c, line: 59
@@ -85,8 +85,8 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sound/macros/auread.sci, line: 46
-# File: modules/sound/macros/auwrite.sci, line: 71
+# File: modules/sound/macros/auread.sci, line: 47
+# File: modules/sound/macros/auwrite.sci, line: 74
 # File: modules/sound/macros/loadwave.sci, line: 35
 # File: modules/sound/macros/savewave.sci, line: 245
 # File: modules/sound/macros/wavread.sci, line: 52
@@ -95,71 +95,83 @@ msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: modules/sound/macros/auread.sci, line: 68
+# File: modules/sound/macros/auread.sci, line: 70
 msgid "Index range must be specified as a scalar or a 2 elements vector."
 msgstr ""
 
 #
-# File: modules/sound/macros/auread.sci, line: 110
+# File: modules/sound/macros/auread.sci, line: 104
+#, c-format
+msgid "%s: File '%s': Unrecognized data format.\n"
+msgstr ""
+
+#
+# File: modules/sound/macros/auread.sci, line: 115
 msgid "Sample limit vector must have 2 elements."
 msgstr ""
 
 #
-# File: modules/sound/macros/auread.sci, line: 113
+# File: modules/sound/macros/auread.sci, line: 119
 # File: modules/sound/macros/wavread.sci, line: 300
 msgid "Sample limits out of range."
 msgstr ""
 
 #
-# File: modules/sound/macros/auread.sci, line: 116
+# File: modules/sound/macros/auread.sci, line: 123
 msgid "Sample limits must be given in ascending order."
 msgstr ""
 
 #
-# File: modules/sound/macros/auread.sci, line: 124
+# File: modules/sound/macros/auread.sci, line: 132
 msgid "Error in file format."
 msgstr ""
 
 #
-# File: modules/sound/macros/auread.sci, line: 180
+# File: modules/sound/macros/auread.sci, line: 174
+#, c-format
+msgid "%s: File '%s' is not a .au sound file.\n"
+msgstr ""
+
+#
+# File: modules/sound/macros/auread.sci, line: 190
 msgid "Error while reading sound file."
 msgstr ""
 
 #
-# File: modules/sound/macros/auread.sci, line: 212
-# File: modules/sound/macros/auwrite.sci, line: 146
-# File: modules/sound/macros/auwrite.sci, line: 150
+# File: modules/sound/macros/auread.sci, line: 223
+# File: modules/sound/macros/auwrite.sci, line: 156
+# File: modules/sound/macros/auwrite.sci, line: 161
 msgid "Unrecognized data format."
 msgstr ""
 
 #
-# File: modules/sound/macros/auread.sci, line: 217
+# File: modules/sound/macros/auread.sci, line: 229
 msgid "Truncated data file."
 msgstr ""
 
 #
-# File: modules/sound/macros/auwrite.sci, line: 63
+# File: modules/sound/macros/auwrite.sci, line: 65
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
 msgstr ""
 
 #
-# File: modules/sound/macros/auwrite.sci, line: 75
+# File: modules/sound/macros/auwrite.sci, line: 81
 msgid "Data array must have 1- or 2-dimensions only."
 msgstr ""
 
 #
-# File: modules/sound/macros/auwrite.sci, line: 85
+# File: modules/sound/macros/auwrite.sci, line: 90
 msgid "Data clipped during write to file."
 msgstr ""
 
 #
-# File: modules/sound/macros/auwrite.sci, line: 91
+# File: modules/sound/macros/auwrite.sci, line: 100
 msgid "Error while writing sound file."
 msgstr ""
 
 #
-# File: modules/sound/macros/auwrite.sci, line: 128
+# File: modules/sound/macros/auwrite.sci, line: 137
 msgid "Mu-law can only be used with 8 bit data. Use method='linear' instead."
 msgstr ""
 
@@ -216,7 +228,7 @@ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sound/macros/sound.sci, line: 44
+# File: modules/sound/macros/sound.sci, line: 50
 msgid "Requires 2-D values only."
 msgstr ""
 

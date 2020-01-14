@@ -30,11 +30,6 @@ msgstr ""
 "い.\n"
 
 #, c-format
-msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
-msgstr ""
-"%s: 引数 #%d の値が間違っています:  NaN または Inf を含めてはいけません.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています:  文字列または整数を指定してください.\n"
@@ -453,3 +448,8 @@ msgid ""
 msgstr ""
 "%s: 入力引数 #%d の値が正しくありません: 指定された階数は行列の次元を超えてい"
 "ます."
+
+#, c-format
+#~ msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
+#~ msgstr ""
+#~ "%s: 引数 #%d の値が間違っています:  NaN または Inf を含めてはいけません.\n"

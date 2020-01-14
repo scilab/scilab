@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2019-01-23 12:13+0100\n"
+"Revision-Date: 2020-01-14 14:21+0100\n"
 
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 55
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 49
@@ -40,12 +40,12 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 122
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 142
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 227
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 433
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 482
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 515
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 532
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 635
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 648
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 434
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 483
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 516
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 533
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 636
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 649
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 166
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 217
 # File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 71
@@ -63,10 +63,10 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 83
 # File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 125
 # File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 74
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 130
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 163
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 229
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 367
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 131
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 164
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 230
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 368
 # File: modules/gui/sci_gateway/cpp/sci_loadGui.cpp, line: 62
 # File: modules/gui/sci_gateway/cpp/sci_saveGui.cpp, line: 103
 # File: modules/gui/sci_gateway/cpp/sci_saveGui.cpp, line: 125
@@ -94,8 +94,8 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 160
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 198
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 253
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 328
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 620
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 329
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 621
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 204
 # File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 95
 # File: modules/gui/sci_gateway/c/sci_unsetmenu.c, line: 159
@@ -105,7 +105,7 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 135
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 182
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 300
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 343
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 344
 # File: modules/gui/sci_gateway/cpp/sci_printfigure.cpp, line: 63
 # File: modules/gui/sci_gateway/cpp/sci_raise_window.cpp, line: 52
 # File: modules/gui/sci_gateway/cpp/sci_uigetcolor.cpp, line: 73
@@ -134,7 +134,7 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 141
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 188
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 306
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 351
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 352
 # File: modules/gui/sci_gateway/cpp/sci_printfigure.cpp, line: 70
 # File: modules/gui/sci_gateway/cpp/sci_uigetcolor.cpp, line: 228
 # File: modules/gui/sci_gateway/cpp/sci_uigetcolor.cpp, line: 263
@@ -149,9 +149,9 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 66
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 122
 # File: modules/gui/sci_gateway/c/sci_toolbar.c, line: 125
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 230
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 365
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 666
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 231
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 366
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 667
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 235
 # File: modules/gui/sci_gateway/c/sci_uiwait.c, line: 58
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 204
@@ -193,7 +193,7 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 215
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 472
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 506
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 159
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 160
 # File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 141
 # File: modules/gui/sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 167
 # File: modules/gui/sci_gateway/cpp/sci_datatip_set_display.cpp, line: 57
@@ -232,12 +232,12 @@ msgstr ""
 #
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 111
 # File: modules/gui/sci_gateway/c/sci_figure.c, line: 160
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 183
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 286
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 249
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 266
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 184
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 287
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 250
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 267
 # File: modules/gui/sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 86
-# File: modules/gui/sci_gateway/cpp/sci_getlookandfeel.cpp, line: 81
+# File: modules/gui/sci_gateway/cpp/sci_getlookandfeel.cpp, line: 86
 # File: modules/gui/sci_gateway/cpp/sci_setlookandfeel.cpp, line: 69
 # File: modules/gui/sci_gateway/cpp/sci_setlookandfeel.cpp, line: 122
 # File: modules/gui/sci_gateway/cpp/sci_toprint.cpp, line: 245
@@ -312,19 +312,19 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 168
 # File: modules/gui/sci_gateway/c/sci_toolbar.c, line: 220
 # File: modules/gui/sci_gateway/c/sci_uicontextmenu.c, line: 54
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 202
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 737
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 203
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 738
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 285
 # File: modules/gui/sci_gateway/c/sci_uiwait.c, line: 93
 # File: modules/gui/sci_gateway/c/sci_waitbar.c, line: 398
 # File: modules/gui/sci_gateway/c/sci_x_choose.c, line: 157
 # File: modules/gui/sci_gateway/c/sci_x_choose_modeless.c, line: 159
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 90
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 198
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 305
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 396
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 91
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 199
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 306
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 397
 # File: modules/gui/sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 77
-# File: modules/gui/sci_gateway/cpp/sci_getlookandfeel.cpp, line: 58
+# File: modules/gui/sci_gateway/cpp/sci_getlookandfeel.cpp, line: 63
 # File: modules/gui/sci_gateway/cpp/sci_printfigure.cpp, line: 90
 # File: modules/gui/sci_gateway/cpp/sci_printsetupbox.cpp, line: 53
 # File: modules/gui/sci_gateway/cpp/sci_setlookandfeel.cpp, line: 59
@@ -343,25 +343,25 @@ msgstr ""
 # File: modules/gui/sci_gateway/cpp/sci_uigetcolor.cpp, line: 437
 # File: modules/gui/sci_gateway/cpp/sci_uigetcolor.cpp, line: 446
 # File: modules/gui/sci_gateway/cpp/sci_uigetdir.cpp, line: 158
-# File: modules/gui/sci_gateway/cpp/sci_uigetdir.cpp, line: 184
-# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 331
-# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 344
-# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 359
-# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 378
-# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 393
+# File: modules/gui/sci_gateway/cpp/sci_uigetdir.cpp, line: 194
+# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 333
+# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 347
+# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 363
+# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 383
+# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 399
 # File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 250
-# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 265
-# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 279
-# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 293
-# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 313
-# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 326
-# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 339
-# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 352
-# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 250
-# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 263
-# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 278
-# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 296
-# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 310
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 266
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 280
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 294
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 314
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 327
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 340
+# File: modules/gui/sci_gateway/cpp/sci_uigetfont.cpp, line: 353
+# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 282
+# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 302
+# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 324
+# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 356
+# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 384
 # File: modules/gui/sci_gateway/cpp/sci_usecanvas.cpp, line: 89
 # File: modules/gui/sci_gateway/cpp/sci_x_dialog.cpp, line: 123
 # File: modules/gui/sci_gateway/cpp/sci_x_mdialog.cpp, line: 232
@@ -449,8 +449,8 @@ msgstr ""
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 72
 # File: modules/gui/sci_gateway/c/sci_progressionbar.c, line: 128
 # File: modules/gui/sci_gateway/c/sci_toolbar.c, line: 131
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 224
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 321
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 225
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 322
 # File: modules/gui/sci_gateway/c/sci_uiwait.c, line: 64
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -506,23 +506,23 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 192
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 193
 # File: modules/gui/sci_gateway/cpp/sci_loadGui.cpp, line: 78
 #, c-format
 msgid "%s: can not read file %s.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 256
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 680
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 257
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 681
 # File: modules/gui/sci_gateway/c/sci_uimenu.c, line: 259
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 262
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 269
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 263
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 270
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
@@ -530,35 +530,35 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 337
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 375
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 388
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 338
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 376
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 389
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 357
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 358
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 458
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 459
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 505
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 506
 #, c-format
 msgid "%s: Wrong type for argument #%d: string or boolean expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 562
+# File: modules/gui/sci_gateway/c/sci_uicontrol.c, line: 563
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr ""
@@ -658,20 +658,20 @@ msgid "Scilab Choose Message"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 406
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 407
 # File: modules/gui/sci_gateway/cpp/sci_printfigure.cpp, line: 100
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 427
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 428
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 434
+# File: modules/gui/sci_gateway/cpp/sci_ClipBoard.cpp, line: 435
 # File: modules/gui/sci_gateway/cpp/sci_printfigure.cpp, line: 112
 #, c-format
 msgid "%s: Function not available in NWNI mode.\n"
@@ -687,8 +687,8 @@ msgstr ""
 # File: modules/gui/sci_gateway/cpp/sci_setlookandfeel.cpp, line: 46
 # File: modules/gui/sci_gateway/cpp/sci_setlookandfeel.cpp, line: 98
 # File: modules/gui/sci_gateway/cpp/sci_uigetdir.cpp, line: 146
-# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 316
-# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 235
+# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 318
+# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 267
 # File: modules/gui/sci_gateway/cpp/sci_usecanvas.cpp, line: 71
 # File: modules/gui/sci_gateway/cpp/sci_usecanvas.cpp, line: 83
 # File: modules/gui/sci_gateway/cpp/sci_useeditor.cpp, line: 113
@@ -902,13 +902,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_getlookandfeel.cpp, line: 75
+# File: modules/gui/sci_gateway/cpp/sci_getlookandfeel.cpp, line: 80
 #, c-format
 msgid "%s: An error occurred: %s.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_getlookandfeel.cpp, line: 75
+# File: modules/gui/sci_gateway/cpp/sci_getlookandfeel.cpp, line: 80
 msgid "Impossible to get current look and feel"
 msgstr ""
 
@@ -1057,15 +1057,15 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 126
-# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 83
+# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 128
+# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 115
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 162
-# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 119
+# File: modules/gui/sci_gateway/cpp/sci_uigetfile.cpp, line: 164
+# File: modules/gui/sci_gateway/cpp/sci_uiputfile.cpp, line: 151
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
 msgstr ""
@@ -1147,6 +1147,7 @@ msgstr ""
 # File: modules/gui/src/cpp/GetUicontrolPosition.cpp, line: 32
 # File: modules/gui/src/cpp/GetUicontrolRelief.cpp, line: 32
 # File: modules/gui/src/cpp/GetUicontrolSliderStep.cpp, line: 37
+# File: modules/gui/src/cpp/GetUicontrolSnapToTicks.cpp, line: 28
 # File: modules/gui/src/cpp/GetUicontrolUnits.cpp, line: 34
 # File: modules/gui/src/cpp/GetUicontrolValue.cpp, line: 34
 # File: modules/gui/src/cpp/GetUicontrolValue.cpp, line: 49
@@ -1175,6 +1176,7 @@ msgstr ""
 # File: modules/gui/src/cpp/SetUicontrolPosition.cpp, line: 109
 # File: modules/gui/src/cpp/SetUicontrolRelief.cpp, line: 67
 # File: modules/gui/src/cpp/SetUicontrolSliderStep.cpp, line: 68
+# File: modules/gui/src/cpp/SetUicontrolSnapToTicks.cpp, line: 32
 # File: modules/gui/src/cpp/SetUicontrolString.cpp, line: 35
 # File: modules/gui/src/cpp/SetUicontrolString.cpp, line: 44
 # File: modules/gui/src/cpp/SetUicontrolString.cpp, line: 92

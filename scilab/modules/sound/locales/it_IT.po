@@ -65,6 +65,10 @@ msgstr ""
 "L'intervallo dell'indice deve essere specificato come uno scalare o un "
 "vettore a 2 elementi."
 
+#, fuzzy, c-format
+msgid "%s: File '%s': Unrecognized data format.\n"
+msgstr "Formato di dati non riconosciuto."
+
 msgid "Sample limit vector must have 2 elements."
 msgstr "Il vettore limite di esempio deve avere 2 elementi"
 
@@ -76,6 +80,12 @@ msgstr "I limiti di esempio devono essere forniti in ordine crescente."
 
 msgid "Error in file format."
 msgstr "Errore nel formato del file."
+
+#
+# File: modules/sound/macros/auread.sci, line: 174
+#, c-format
+msgid "%s: File '%s' is not a .au sound file.\n"
+msgstr ""
 
 msgid "Error while reading sound file."
 msgstr "Errore nella lettura del file audio."

@@ -29,8 +29,13 @@ msgstr ""
 msgid "computing least squares solution. (see lsq).\n"
 msgstr "calcul de la solution des moindres carrés (voir lsq).\n"
 
-#, c-format
-msgid "debugger stop on breakpoint(%d) in function %ls line %d\n"
+#, fuzzy, c-format
+msgid "debugger stop on breakpoint(%d) in function %s at line %d\n"
+msgstr ""
+"halte du débogger au point d'arrêt (%d) dans la fonction %ls ligne %d\n"
+
+#, fuzzy, c-format
+msgid "debugger stop on breakpoint(%d) in file %s at line %d\n"
 msgstr ""
 "halte du débogger au point d'arrêt (%d) dans la fonction %ls ligne %d\n"
 
@@ -75,10 +80,6 @@ msgstr "l'expression 'for' n'accepte que des variables à 1 ou 2 dimensions\n"
 
 msgid "for expression : Wrong type for loop iterator.\n"
 msgstr "Type erroné pour l'itérateur de la boucle for.\n"
-
-#, c-format
-msgid "%s: function is disabled in debug mode.\n"
-msgstr "%s : la fonction est désactivée en mode débogage.\n"
 
 msgid "With input arguments, return / resume expects output arguments.\n"
 msgstr ""
@@ -385,8 +386,8 @@ msgstr "Les arguments d'entrée doivent avoir le même nom de variable formel.\n
 msgid "Can not allocate negative size (%d).\n"
 msgstr "Impossible d'allouer une taille négative (%d).\n"
 
-#, c-format
-msgid "Can not allocate %.2f MB memory.\n"
+#, fuzzy, c-format
+msgid "Can not allocate %s memory.\n"
 msgstr "Impossible d'allouer %.2f MB de mémoire.\n"
 
 msgid "Unable to insert multiple item in a struct.\n"
@@ -405,6 +406,10 @@ msgstr "Le champ \"\"%ls\"\" n'existe pas\n"
 #, c-format
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr "taille de variable excédée : moins que %d attendu.\n"
+
+#, c-format
+#~ msgid "%s: function is disabled in debug mode.\n"
+#~ msgstr "%s : la fonction est désactivée en mode débogage.\n"
 
 #~ msgid "variables don't have the same formal variable"
 #~ msgstr "les variables n'ont pas la même variable formelle"

@@ -74,8 +74,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : At least %.0E expected.\n"
-msgstr ""
-"%s : Argument n°%d : valeur ≥ %.0E attendue.\n"
+msgstr "%s : Argument n°%d : valeur ≥ %.0E attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Positive integer expected.\n"
@@ -144,8 +143,7 @@ msgstr "%s : setgmn retourne avec l'état %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Must be between %.1E and %d.\n"
-msgstr ""
-"%s : Argument n°%d : valeur entre  %.1E et %d attendue.\n"
+msgstr "%s : Argument n°%d : valeur entre  %.1E et %d attendue.\n"
 
 #, c-format
 msgid ""
@@ -221,10 +219,10 @@ msgstr ""
 "%s : Valeur erronée pour les arguments d'entrée n°%d et n°%d : Low < High "
 "attendu.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Low and High must be "
-"integers and (high - low + 1) <=  2147483561.\n"
+"%s: Wrong value for input arguments #%d and #%d: Low and High must be a 32 "
+"bits integer value and (high - low + 1) <=  2147483561.\n"
 msgstr ""
 "%s : Valeur erronée pour les arguments d'entrée n°%d et n°%d : Low et High "
 "doivent être des entiers et (high - low + 1) <= 2147483561.\n"

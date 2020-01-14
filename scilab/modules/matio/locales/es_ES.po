@@ -158,9 +158,21 @@ msgstr ""
 msgid "%s: This feature has not been implemented: %s."
 msgstr "%s: Esta función aun no está implementada: %s."
 
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 74
+#, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: No se puede abrir el archivo %s.\n"
+
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 179
+#, c-format
+msgid "%s: Unsupported input file data type: '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -168,6 +180,16 @@ msgid ""
 msgstr ""
 "%s: No se pudo leer la variable del archivo '%s'. Revise si su archivo no "
 "está corrupto.\n"
+
+#
+# File: modules/matio/macros/loadmatfile.sci, line: 216
+# File: modules/matio/macros/loadmatfile.sci, line: 365
+# File: modules/matio/macros/loadmatfile.sci, line: 409
+# File: modules/matio/macros/loadmatfile.sci, line: 428
+# File: modules/matio/macros/loadmatfile.sci, line: 436
+#, c-format
+msgid "loadmatfile: Error in input file at line #%d: '%s' expected.\n"
+msgstr ""
 
 #
 # File: modules/matio/macros/matfile2sci.sci, line: 24
@@ -193,8 +215,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: String expected.\n"
-msgstr ""
-"%s: Argumento #%d: Se esperaba strings.\n"
+msgstr "%s: Argumento #%d: Se esperaba strings.\n"
 
 #, c-format
 msgid "Option %s not implemented: IGNORED."
@@ -210,9 +231,9 @@ msgid ""
 msgstr ""
 "%s: Conflicto de nombrado: no es posible guardar la variable %s (ignorada)."
 
-#,
 msgid "Attempt to write an unsupported data type to a binary file."
-msgstr "Se intentó escribir un tipo de datos no soportado en un archivo binario."
+msgstr ""
+"Se intentó escribir un tipo de datos no soportado en un archivo binario."
 
 #
 # File: modules/matio/macros/savematfile.sci, line: 301
@@ -232,8 +253,8 @@ msgid ""
 "%s: Variable %s can not be saved in MAT-file version %s (type %d "
 "unsupported): IGNORED.\n"
 msgstr ""
-"%s: Variable %s ignorada. No puede ser almacenada en un archivo .mat "
-"de nivel %s (tipo %d não suportado).\n"
+"%s: Variable %s ignorada. No puede ser almacenada en un archivo .mat de "
+"nivel %s (tipo %d não suportado).\n"
 
 #~ msgid "All inputs must be character strings."
 #~ msgstr "Todas las entradas deben ser caracteres string."

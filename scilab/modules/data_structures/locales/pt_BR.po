@@ -87,18 +87,6 @@ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be non-negative "
-"integers.\n"
-msgstr ""
-"%s: Valores incorretos para o argumento de entrada #%d: os elementos devem "
-"ser inteiros não-negativos.\n"
-
-#, c-format
-msgid "%s: Number of entries does not match product of dimensions"
-msgstr "%s: A quantidade de entradas não confere com o produto das dimensões"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d"
 
@@ -124,4 +112,23 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d a %d.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d a %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d a %d.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong values for input argument #%d: Elements must be non-negative "
+#~ "integers.\n"
+#~ msgstr ""
+#~ "%s: Valores incorretos para o argumento de entrada #%d: os elementos "
+#~ "devem ser inteiros não-negativos.\n"
+
+#, c-format
+#~ msgid "%s: Number of entries does not match product of dimensions"
+#~ msgstr ""
+#~ "%s: A quantidade de entradas não confere com o produto das dimensões"

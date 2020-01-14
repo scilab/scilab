@@ -42,10 +42,6 @@ msgstr ""
 "«string».\n"
 
 #, c-format
-msgid "%s: ans cannot be edited.\n"
-msgstr "%s: ans не можна редагувати.\n"
-
-#, c-format
 msgid "%s: Undefined variable: %s.\n"
 msgstr "%s: невизначена змінна, %s.\n"
 
@@ -82,8 +78,10 @@ msgstr "Тип"
 msgid "Visibility"
 msgstr "Видимість"
 
-msgid "Bytes"
-msgstr "Байти"
+#
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 50
+msgid "Memory"
+msgstr ""
 
 msgid "User"
 msgstr "Користувач"
@@ -367,9 +365,6 @@ msgstr "Виконати фільтрування"
 msgid "Scilab type:"
 msgstr "Тип Scilab:"
 
-msgid "Bytes:"
-msgstr "Байтів:"
-
 msgid "Type not supported for this operation"
 msgstr "Для цієї дії такий тип не підтримується"
 
@@ -392,6 +387,16 @@ msgstr "&Довідка"
 
 msgid "&About Scilab..."
 msgstr "П&ро Scilab..."
+
+#, c-format
+#~ msgid "%s: ans cannot be edited.\n"
+#~ msgstr "%s: ans не можна редагувати.\n"
+
+#~ msgid "Bytes"
+#~ msgstr "Байти"
+
+#~ msgid "Bytes:"
+#~ msgstr "Байтів:"
 
 #~ msgid "Compiled function"
 #~ msgstr "Компільована функція"
