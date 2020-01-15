@@ -15,11 +15,16 @@ package org.scilab.modules.xcos.palette;
 
 import java.io.File;
 import java.io.IOException;
+import static java.util.Comparator.reverseOrder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import static java.util.Map.Entry.comparingByValue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
 import javax.swing.JScrollPane;
 import javax.swing.tree.TreeModel;
@@ -94,14 +99,24 @@ public final class PaletteSearchManager {
             indexIsOutdated = false;
         }
 
-        List<Document> found = paletteSearcher.search(query);
-        for (Document doc : found) {
-            PaletteBlock block = nameToPalette.get(doc.get("refname"));
+        List<Document> found = paletteSearcher.search(query.toLowerCase());
+        // sort results per maximum frequency of the block name
+        Map<String, Long> freq = found.stream()
+                .map(doc -> doc.get("refname"))
+                .collect(groupingBy(x->x, counting()));
+        List<String> foundNames = freq.entrySet()
+                .stream()
+                .sorted(comparingByValue(reverseOrder()))
+                .map(Map.Entry::getKey)
+                .collect(toList());
+        
+        for (String b : foundNames) {
+            PaletteBlock block = nameToPalette.get(b);
             if (block != null) {
                 view.addBlock(block);
             }
         }
-        view.setText(queryLabel + found.size() + " " + XcosMessages.MATCHES);
+        view.setText(queryLabel + foundNames.size() + " " + XcosMessages.MATCHES);
         view.revalidate();
         scrollPane.revalidate();
     }

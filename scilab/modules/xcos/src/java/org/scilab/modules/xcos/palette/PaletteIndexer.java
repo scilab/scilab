@@ -24,6 +24,7 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -70,11 +71,8 @@ public final class PaletteIndexer {
     public void createIndex(Map<String, PaletteBlock> blockNameToPalette) {
         try {
             mgr.getIndexWriter().deleteAll();
-
-            // insert all block names
-            for (String blk : blockNameToPalette.keySet()) {
-                index(blk);
-            }
+            
+            HashSet<String> blocks = new HashSet<>(blockNameToPalette.keySet());
 
             // insert all help pages
             for (File r : roots) {
@@ -98,7 +96,8 @@ public final class PaletteIndexer {
                             }
                         } else if (fname.endsWith(".html")) {
                             // this is a regular file
-                            if (blockNameToPalette.containsKey(basename)) {
+                            if (blocks.contains(basename)) {
+                                blocks.remove(basename);
                                 index(basename, file.toUri().toURL());
                             }
                         }
@@ -106,6 +105,11 @@ public final class PaletteIndexer {
                         return FileVisitResult.CONTINUE;
                     }
                 });
+            }
+            
+            // insert all missing block names
+            for (String blk : blocks) {
+                index(blk);
             }
 
             mgr.getIndexWriter().commit();
@@ -161,8 +165,7 @@ public final class PaletteIndexer {
             Document doc = new Document();
 
             // add the block name
-            Field refname = new TextField("refname", basename, Field.Store.YES);
-            refname.setBoost(100f);
+            Field refname = new StringField("refname", basename, Field.Store.YES);
             doc.add(refname);
 
             // add the refpurpose
@@ -171,21 +174,20 @@ public final class PaletteIndexer {
 
                 Field refpurpose;
                 if (found.isPresent()) {
-                    refpurpose = new TextField("refpurpose", found.get(), Field.Store.YES);
+                    refpurpose = new TextField("refpurpose", found.get(), Field.Store.NO);
                 } else {
-                    refpurpose = new TextField("refpurpose", "", Field.Store.YES);
+                    refpurpose = new TextField("refpurpose", "", Field.Store.NO);
                 }
 
-                refpurpose.setBoost(10f);
                 doc.add(refpurpose);
             }
 
             // add the html content
             try (BufferedReader r = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"))) {
                 doc.add(new TextField("content", r));
+                
+                mgr.getIndexWriter().addDocument(doc);
             }
-
-            mgr.getIndexWriter().addDocument(doc);
         } catch (IOException e) {
             Logger.getLogger(PaletteIndexer.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -195,8 +197,8 @@ public final class PaletteIndexer {
         try {
             Document doc = new Document();
             doc.add(new StringField("refname", block, Field.Store.YES));
-            doc.add(new StringField("refpurpose", block, Field.Store.YES));
-            doc.add(new TextField("content", block, Field.Store.YES));
+            doc.add(new TextField("refpurpose", block, Field.Store.NO));
+            doc.add(new TextField("content", block, Field.Store.NO));
 
             mgr.getIndexWriter().addDocument(doc);
         } catch (IOException e) {

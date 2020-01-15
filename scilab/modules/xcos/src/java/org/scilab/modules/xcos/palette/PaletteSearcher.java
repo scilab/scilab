@@ -51,13 +51,13 @@ public final class PaletteSearcher {
      * @return paths to the found blocks
      */
     public List<Document> search(String str) {
-        List<Document> found = new ArrayList<>();
+        
+        ArrayList<Document> found = new ArrayList<>();
         try (IndexReader reader = DirectoryReader.open(mgr.getDirectory())) {
             IndexSearcher searcher = new IndexSearcher(reader);
 
             StandardQueryParser queryParserHelper = new StandardQueryParser();
             queryParserHelper.setAllowLeadingWildcard(true);
-            queryParserHelper.setLowercaseExpandedTerms(true);
             queryParserHelper.setAnalyzer(mgr.getAnalyzer());
             queryParserHelper.setMultiFields(new String[] {"refname", "refpurpose", "content"});
 
@@ -78,6 +78,7 @@ public final class PaletteSearcher {
         } catch (IOException | QueryNodeException e) {
             Logger.getLogger(PaletteSearcher.class.getName()).log(Level.SEVERE, null, e);
         }
+        
         return found;
     }
 }
