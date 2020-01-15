@@ -34,12 +34,12 @@ Source: modules\{#FILEIO}\etc\{#FILEIO}.start; DestDir: {app}\modules\{#FILEIO}\
 Source: modules\{#FILEIO}\includes\getFullFilename.h; DestDir: {app}\modules\{#FILEIO}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\includes\dynlib_fileio.h; DestDir: {app}\modules\{#FILEIO}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#FILEIO}\macros\buildmacros.sce; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#FILEIO}\macros\buildmacros.bat; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#FILEIO}\macros\cleanmacros.bat; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#FILEIO}\macros\lib; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#FILEIO}\macros\*.sci; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#FILEIO}\macros\*.bin; DestDir: {app}\modules\{#FILEIO}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\macros\buildmacros.sce; DestDir: {app}\modules\{#FILEIO}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\macros\buildmacros.bat; DestDir: {app}\modules\{#FILEIO}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\macros\cleanmacros.bat; DestDir: {app}\modules\{#FILEIO}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\macros\lib; DestDir: {app}\modules\{#FILEIO}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\macros\*.sci; DestDir: {app}\modules\{#FILEIO}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#FILEIO}\macros\*.bin; DestDir: {app}\modules\{#FILEIO}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#FILEIO}\demos\*.*; DestDir: {app}\modules\{#FILEIO}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
