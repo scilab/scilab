@@ -66,7 +66,7 @@ BEGIN
             VALUE "FileDescription", "commons module"
             VALUE "FileVersion", "6, 0, 2, 0"
             VALUE "InternalName", "commons module"
-            VALUE "LegalCopyright", "Copyright (C) 2019"
+            VALUE "LegalCopyright", "Copyright (C) 2020"
             VALUE "OriginalFilename", "commons.dll"
             VALUE "ProductName", "commons module"
             VALUE "ProductVersion", "6, 0, 2, 0"

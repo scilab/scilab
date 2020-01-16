@@ -77,7 +77,7 @@ BEGIN
             VALUE "FileDescription", "Scilab 6.0.2 (GUI)"
             VALUE "FileVersion", "6, 0, 2, 0"
             VALUE "InternalName", "WScilex"
-            VALUE "LegalCopyright", "Copyright (C) 2019"
+            VALUE "LegalCopyright", "Copyright (C) 2020"
             VALUE "OriginalFilename", "WScilex.exe"
             VALUE "ProductName", "Scilab 6.x Application"
             VALUE "ProductVersion", "6, 0, 2, 0"
