@@ -43,7 +43,7 @@ types::Function::ReturnValue sci_linspace(types::typed_list &in, int _iRetCount,
     int iCols = 100;
     types::Double* pDblOut;
 
-    if (in.size() != 2 & in.size() != 3)
+    if (in.size() != 2 && in.size() != 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "linspace", 2, 3);
         return types::Function::Error;
