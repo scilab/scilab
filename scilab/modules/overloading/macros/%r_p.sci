@@ -92,13 +92,13 @@ function txt=p2str(p)
     //Handle long lines
     txt=[]
     pString = string(p);
-    monomLength = cumsum(2+length(strsplit(pString,[' +';' -'])))-2;
+    monomLength = cumsum(2+length(strsplit(pString,[" +";" -"])))-2;
     while %t
         last = find(monomLength<lines()(1)-3)($)
         toPrint = part(pString,1:monomLength(last));
         txt = [txt; toPrint];
-        if last == sum(coeff(p)<>0)
-           break
+        if degree(p) == -%inf || last == sum(coeff(p)<>0)
+            break
         end
         pString = part(pString,monomLength(last)+1:$);
         monomLength = monomLength - length(toPrint);
