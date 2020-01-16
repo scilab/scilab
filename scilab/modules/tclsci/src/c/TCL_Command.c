@@ -78,7 +78,7 @@ static void *sleepAndSignal(void* in)
         //fflush(NULL);
 #endif
 #ifdef _MSC_VER
-        Sleep(TIME_TO_SLEEP / 1000)
+        Sleep(TIME_TO_SLEEP / 1000);
 #else
         struct timespec rqtp = {0};
         rqtp.tv_nsec = TIME_TO_SLEEP * 1000;
