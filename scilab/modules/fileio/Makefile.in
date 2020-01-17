@@ -933,6 +933,9 @@ libscifileio_la_include_HEADERS = includes/getFullFilename.h \
 includes/dynlib_fileio.h
 
 
+#### fileio : CSV import GUI library
+MACROSDIRSEXT = macros/importgui
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
