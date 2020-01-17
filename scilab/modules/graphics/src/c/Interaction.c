@@ -461,6 +461,7 @@ int Objmove (int iObjUID, double d[], int m, BOOL opt)
 /*---------------------------------------------------------------------------------*/
 void showWindow(int iFigureUID)
 {
-    // @TODO: Call SwingView to raise window.
+    BOOL bTrue = TRUE;
+    setGraphicObjectProperty(iFigureUID, __GO_VISIBLE__, &bTrue, jni_bool, 1);
 }
 

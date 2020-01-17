@@ -204,6 +204,7 @@ Bug Fixes
 * [#10353](http://bugzilla.scilab.org/show_bug.cgi?id=10353): Documentation: The referential for the uicontrol.position property was not provided. Moreover, gca().axes_bounds refered to fig.figure_size instead of fig.axes_size.
 * [#10723](http://bugzilla.scilab.org/show_bug.cgi?id=10723): `subplot`'s action was unclearly described in its help page. Page improved.
 * [#11852](http://bugzilla.scilab.org/show_bug.cgi?id=11852): File browser didn't update after file creation or remove.
+* [#11363](http://bugzilla.scilab.org/show_bug.cgi?id=11363): show_window() did not raise the current graphics window.
 * [#12520](http://bugzilla.scilab.org/show_bug.cgi?id=12520): Vriable browser did not display the size of the variables.
 * [#12534](http://bugzilla.scilab.org/show_bug.cgi?id=12534): Variable browser did not display the size of the variables.
 * [#13766](http://bugzilla.scilab.org/show_bug.cgi?id=13766): Minimal values for `.figure_size` were not documented.
