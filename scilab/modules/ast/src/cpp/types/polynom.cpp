@@ -110,6 +110,8 @@ Polynom* Polynom::set(int _iPos, SinglePoly* _pS)
         return pIT;
     }
 
+    bool bComplex = isComplex();
+
     if (m_pRealData[_iPos])
     {
         delete m_pRealData[_iPos];
@@ -117,7 +119,6 @@ Polynom* Polynom::set(int _iPos, SinglePoly* _pS)
 
     m_pRealData[_iPos] = copyValue(_pS);
 
-    bool bComplex = isComplex();
     if (_pS->isComplex() && bComplex == false)
     {
         setComplex(true);
@@ -235,14 +236,12 @@ void Polynom::setVariableName(const std::wstring& _szVarName)
 
 bool Polynom::isComplex()
 {
-        for (int i = 0 ; i < getSize() ; i++)
-        {
-            if  (m_pRealData[i] && m_pRealData[i]->isComplex())
-            {
-                return true;
-            }
-        }
-        return false;
+    if (m_iSize && m_pRealData[0])
+    {
+        return m_pRealData[0]->isComplex();
+    }
+
+    return false;
 }
 
 Polynom* Polynom::setComplex(bool _bComplex)
