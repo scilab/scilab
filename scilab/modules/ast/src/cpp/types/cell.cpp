@@ -149,21 +149,16 @@ bool Cell::transpose(InternalType *& out)
 
     if (m_iDims == 2)
     {
-        Cell * pC = new Cell();
+        Cell * pC = new Cell(getCols(), getRows());
         out = pC;
-        InternalType** pIT = NULL;
-        int piDims[2] = {getCols(), getRows()};
-        pC->create(piDims, 2, &pIT, NULL);
-
         for (int i = 0, k = 0; i < getCols(); i++, k += getRows())
         {
             for (int j = 0, l = 0; j < getRows(); j++, l += getCols())
             {
-                pC->m_pRealData[i + l] = m_pRealData[j + k]->clone();
-                pC->m_pRealData[i + l]->IncreaseRef();
+                pC->set(i + l, m_pRealData[j + k]);
             }
         }
-     
+
         return true;
     }
 

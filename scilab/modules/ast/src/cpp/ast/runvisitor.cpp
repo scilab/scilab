@@ -128,7 +128,7 @@ void RunVisitorT<T>::visitprivate(const SimpleVar & e)
             ostr << std::endl;
             if (ConfigVariable::isPrintCompact() == false)
             {
-                ostr << std::endl;                
+                ostr << std::endl;
             }
             scilabWriteW(ostr.str().c_str());
             std::wostringstream ostrName;
@@ -1577,7 +1577,19 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             (pEnd->isPoly() || pEnd->isDouble()))
     {
         // No need to kill piStart, ... because Implicit list ctor will incref them
-        setResult(new types::ImplicitList(pStart, pStep, pEnd));
+        types::ImplicitList* pIL = new types::ImplicitList(pStart, pStep, pEnd);
+        try
+        {
+            pIL->compute();
+        }
+        catch (const InternalError& ie)
+        {
+            // happends when compute() of ImplicitList cannot allocate memory
+            pIL->killMe();
+            throw ie;
+        }
+
+        setResult(pIL);
         CoverageInstance::stopChrono((void*)&e);
         return;
     }
@@ -1593,7 +1605,19 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                  pStep->isDouble()))
         {
             // No need to kill piStart, ... because Implicit list ctor will incref them
-            setResult(new types::ImplicitList(pStart, pStep, pEnd));
+            types::ImplicitList* pIL = new types::ImplicitList(pStart, pStep, pEnd);
+            try
+            {
+                pIL->compute();
+            }
+            catch (const InternalError& ie)
+            {
+                // happends when compute() of ImplicitList cannot allocate memory
+                pIL->killMe();
+                throw ie;
+            }
+
+            setResult(pIL);
             CoverageInstance::stopChrono((void*)&e);
             return;
         }

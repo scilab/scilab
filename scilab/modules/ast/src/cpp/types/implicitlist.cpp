@@ -107,7 +107,7 @@ ImplicitList::ImplicitList(InternalType* _poStart, InternalType* _poStep, Intern
     setStart(_poStart);
     setStep(_poStep);
     setEnd(_poEnd);
-    compute();
+
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
