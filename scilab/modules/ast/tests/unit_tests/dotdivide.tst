@@ -6,6 +6,7 @@
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 s = %s;
 empty = [];
@@ -274,7 +275,7 @@ assert_checkequal(SPC .\ empty, []);
 assert_checkequal(SPC .\ r, sparse([1, 2; 3, 10; 4, 5],[2/17-%i* 8/17; 2/51-%i* 8/51; 1/17-%i* 4/17],[4, 10]));
 assert_checkequal(SPC .\ c, sparse([1, 2; 3, 10; 4, 5],[9/17-%i* 2/17; 3/17-%i* 2/51; 9/34-%i* 1/17],[4, 10]));
 assert_checkequal(SPC .\ SP, sparse([1, 2; 3, 10; 4, 5],[1/17-%i* 4/17; 1/17-%i* 4/17; 1/17-%i* 4/17],[4, 10]));
-assert_checkequal(SPC .\ SPC, sparse([1, 2; 3, 10; 4, 5],[1; 1; 1],[4, 10]));
+assert_checkequal(SPC .\ SPC, sparse([1, 2; 3, 10; 4, 5],[1+0*%i; 1+0*%i; 1+0*%i],[4, 10]));
 assert_checkequal(SPC .\ SP1, sparse([1, 2; 3, 10; 4, 5],[10/17-%i* 40/17; 10/51-%i* 40/51; 10/34-%i* 20/17],[4, 10]));
 assert_checkequal(SPC .\ SPC1, sparse([1, 2; 3, 10; 4, 5],[26/17-%i* 2/17; 26/51-%i* 2/51; 13/17-%i* 1/17],[4, 10]));
 
@@ -296,7 +297,7 @@ assert_checkalmostequal(SPC1 .\ C, [0.35-%i* 0.05, 0.7-%i* 0.1; 1.05-%i* 0.15, 1
 assert_checkalmostequal(SPC1 .\ SP, sparse([1, 2; 3, 10; 4, 5],[0.05-%i* 0.15; 0.15-%i* 0.45; 0.1-%i* 0.3],[4, 10]));
 assert_checkalmostequal(SPC1 .\ SPC, sparse([1, 2; 3, 10; 4, 5],[0.65+%i* 0.05; 1.95+%i* 0.15; 1.3+%i* 0.1],[4, 10]));
 assert_checkalmostequal(SPC1 .\ SP1, sparse([1, 1], 0.5-%i* 1.5,[1, 1]));
-assert_checkequal(SPC1 .\ SPC1, sparse([1, 1], 1,[1, 1]));
+assert_checkequal(SPC1 .\ SPC1, sparse([1, 1], 1+0*%i,[1, 1]));
 
 assert_checkequal(i8 .\ r, int8(0));
 assert_checkequal(i8 .\ R, int8([0, 0; 0, 0]));
@@ -711,7 +712,7 @@ assert_checkequal(SPC ./ empty, []);
 assert_checkequal(SPC ./ r, sparse([1, 2; 3, 10; 4, 5],[0.5+%i* 2; 1.5+%i* 6; 1+%i* 4],[4, 10]));
 assert_checkequal(SPC ./ c, sparse([1, 2; 3, 10; 4, 5],[1.8+%i* 0.4; 5.4+%i* 1.2; 3.6+%i* 0.8],[4, 10]));
 assert_checkequal(SPC ./ SP, sparse([1, 2; 3, 10; 4, 5],[1+%i* 4; 1+%i* 4; 1+%i* 4],[4, 10]));
-assert_checkequal(SPC ./ SPC, sparse([1, 2; 3, 10; 4, 5],[1; 1; 1],[4, 10]));
+assert_checkequal(SPC ./ SPC, sparse([1, 2; 3, 10; 4, 5] ,[1+0*%i; 1+0*%i; 1+0*%i],[4, 10]));
 assert_checkequal(SPC ./ SP1, sparse([1, 2; 3, 10; 4, 5],[0.1+%i* 0.4; 0.3+%i* 1.2; 0.2+%i* 0.8],[4, 10]));
 assert_checkalmostequal(SPC ./ SPC1, sparse([1, 2; 3, 10; 4, 5],[0.65+%i* 0.05; 1.95+%i* 0.15; 1.3+%i* 0.1],[4, 10]));
 
@@ -733,7 +734,7 @@ assert_checkequal(SPC1 ./ C, [2.8+%i* 0.4, 1.4+%i* 0.2; 14/15+%i* 2/15, 0.7+%i* 
 assert_checkequal(SPC1 ./ SP, sparse([1, 2; 3, 10; 4, 5],[2+%i* 6; (2/3)+%i* 2; 1+%i* 3],[4, 10]));
 assert_checkequal(SPC1 ./ SPC, sparse([1, 2; 3, 10; 4, 5],[26/17-%i* 2/17; 26/51-%i* 2/51; 13/17-%i* 1/17],[4, 10]));
 assert_checkequal(SPC1 ./ SP1, sparse([1, 1], 0.2+%i* 0.6,[1, 1]));
-assert_checkequal(SPC1 ./ SPC1, sparse([1, 1], 1,[1, 1]));
+assert_checkequal(SPC1 ./ SPC1, sparse([1, 1], 1+0*%i,[1, 1]));
 
 assert_checkequal(i8 ./ r, int8(- 4));
 assert_checkequal(i8 ./ R, int8([- 8, - 4; - 2, - 2]));

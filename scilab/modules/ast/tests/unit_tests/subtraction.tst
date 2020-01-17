@@ -6,6 +6,7 @@
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 s = %s;
 empty = [];
@@ -240,7 +241,7 @@ assert_checkequal(SPC - c, [-1-%i*2,%i*2,-1-%i*2,-1-%i*2,-1-%i*2,-1-%i*2,-1-%i*2
 assert_checkequal(SPC - e, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[-1; 1+%i*4;-1;-1; 3+%i*12;-1; 2+%i*8],[4,10]));
 assert_checkequal(SPC - ec, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[-5-%i; 1+%i*4;-5-%i;-5-%i; 3+%i*12;-5-%i; 2+%i*8],[4,10]));
 assert_checkequal(SPC - SP, sparse([1,2;3,10;4,5],[%i*4;%i*12;%i*8],[4,10]));
-assert_checkequal(SPC - SPC, sparse([],[],[4,10]));
+assert_checkequal(SPC - SPC, sparse([1,2;3,10;4,5],[0+0*%i, 0+0*%i, 0+0*%i],[4,10]));
 
 assert_checkequal(i8 - empty, []);
 assert_checkequal(i8 - r, int8(-10));
