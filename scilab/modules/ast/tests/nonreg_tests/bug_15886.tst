@@ -16,4 +16,4 @@
 // <-- Short Description -->
 // display of polynomials is broken
 
-assert_checkequal(string((1-%s)^3),["           2   3";"1 - 3s + 3s - s"]);
+assert_checkequal(string((1-%s)^3),["1 -3s +3s² -s³"]);
