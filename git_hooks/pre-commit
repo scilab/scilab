@@ -190,7 +190,7 @@ __indent_scilab() {
         scilab/bin/scilab -nw -f $TMPFILE || return 2
     else
         if test -f scilab/bin/WScilex.exe; then
-            scilab/bin/scilex.exe -f $TMPFILE || return 2
+            scilab/bin/wscilex.exe -nw -f $TMPFILE || return 2
         else
             echo "Scilab has not been built."
             rm $TMPFILE
