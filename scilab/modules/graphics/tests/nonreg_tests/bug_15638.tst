@@ -36,7 +36,7 @@ gce().children.children(1:2:$-1).foreground=-1; // contours in black
 
 
 function z = f(x,y)
-    z = cos(2*%pi*x)*sin(2*%pi*y);
+    z = cos(2*%pi*x)'*sin(2*%pi*y);
 endfunction
 clf()
 gcf().color_map = jetcolormap(4);
