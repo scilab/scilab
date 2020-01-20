@@ -2058,8 +2058,9 @@ GenericType* Sparse::extract(typed_list* _pArgs)
             double* pIdx = pArg[0]->getAs<Double>()->get();
             if (isComplex())
             {
-                CplxSparse_t* cplx = new CplxSparse_t(iNewRows, iNewCols);
+                bool bIsReal = true;
                 std::vector<CplxTriplet_t> tripletList;
+                std::vector<RealTriplet_t> realTripletList;
                 int row = getRows();
                 for (int i = 0; i < iSeqCount; i++)
                 {
@@ -2073,11 +2074,25 @@ GenericType* Sparse::extract(typed_list* _pArgs)
                     {
                         //only non zero values
                         tripletList.emplace_back(iRowWrite, iColWrite, dbl);
+                        bIsReal &= (dbl.imag() == 0);
+                        if (bIsReal)
+                        {
+                            realTripletList.emplace_back(iRowWrite, iColWrite, dbl.real());
+                        }
                     }
                 }
-
-                cplx->setFromTriplets(tripletList.begin(), tripletList.end(), DupFunctor<std::complex<double>>());
-                pOut = new Sparse(nullptr, cplx);
+                if (bIsReal)
+                {
+                    RealSparse_t* real = new RealSparse_t(iNewRows, iNewCols);
+                    real->setFromTriplets(realTripletList.begin(), realTripletList.end(), DupFunctor<double>());
+                    pOut = new Sparse(real, nullptr);
+                }
+                else
+                {
+                    CplxSparse_t* cplx = new CplxSparse_t(iNewRows, iNewCols);
+                    cplx->setFromTriplets(tripletList.begin(), tripletList.end(), DupFunctor<std::complex<double>>());
+                    pOut = new Sparse(nullptr, cplx);
+                }
             }
             else
             {
@@ -2124,8 +2139,10 @@ GenericType* Sparse::extract(typed_list* _pArgs)
 
             if (isComplex())
             {
-                CplxSparse_t* cplx = new CplxSparse_t(iNewRows, iNewCols);
+                bool bIsReal = true;
                 std::vector<CplxTriplet_t> tripletList;
+                std::vector<RealTriplet_t> realTripletList;
+
                 for (int iRow = 0; iRow < iNewRows; iRow++)
                 {
                     for (int iCol = 0; iCol < iNewCols; iCol++)
@@ -2135,12 +2152,26 @@ GenericType* Sparse::extract(typed_list* _pArgs)
                         {
                             //only non zero values
                             tripletList.emplace_back(iRow, iCol, dbl);
+                            bIsReal &= (dbl.imag() == 0.);
+                            if (bIsReal)
+                            {
+                                realTripletList.emplace_back(iRow, iCol, dbl.real());
+                            }
                         }
                     }
                 }
-
-                cplx->setFromTriplets(tripletList.begin(), tripletList.end(), DupFunctor<std::complex<double>>());
-                pOut = new Sparse(nullptr, cplx);
+                if (bIsReal)
+                {
+                    RealSparse_t* real = new RealSparse_t(iNewRows, iNewCols);
+                    real->setFromTriplets(realTripletList.begin(), realTripletList.end(), DupFunctor<double>());
+                    pOut = new Sparse(real, nullptr);
+                }
+                else
+                {
+                    CplxSparse_t* cplx = new CplxSparse_t(iNewRows, iNewCols);
+                    cplx->setFromTriplets(tripletList.begin(), tripletList.end(), DupFunctor<std::complex<double>>());
+                    pOut = new Sparse(nullptr, cplx);
+                }
             }
             else
             {
