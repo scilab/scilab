@@ -24,8 +24,8 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            calendar display;
-            calendar(y, m, "display");
+            calendar
+            calendar(y, m)
             c = calendar()
             c = calendar(y,m)
         </synopsis>
@@ -67,11 +67,11 @@
     <refsection>
         <title>Description</title>
         <para>
-            <emphasis role="bold">calendar display</emphasis>; displays in the console the
+            <emphasis role="bold">calendar</emphasis> displays in the console the
             calendar of the current month.
         </para>
         <para>
-            <emphasis role="bold">calendar(y,m,"display")</emphasis>; displays in the console the
+            <emphasis role="bold">calendar(y, m)</emphasis> displays in the console the
             calendar of the month <varname>m</varname> for the year <varname>y</varname>.
         </para>
         <para>
@@ -86,18 +86,18 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-calendar
+c = calendar()
  ]]></programlisting>
       <screen><![CDATA[
---> calendar
- ans  =
-       ans(1)
+--> c = calendar()
+ c  =
+       c(1)
  Dec 2019
 
-       ans(2)
+       c(2)
  Mon  Tue  Wed  Thu  Fri  Sat  Sun
 
-       ans(3)
+       c(3)
    0.    0.    0.    0.    0.    0.    1.
    2.    3.    4.    5.    6.    7.    8.
    9.    10.   11.   12.   13.   14.   15.
@@ -107,10 +107,10 @@ calendar
 ]]></screen>
         <para/>
         <programlisting role="example"><![CDATA[
-calendar display;
+calendar
  ]]></programlisting>
       <screen><![CDATA[
---> calendar display;
+--> calendar
 
              Dec 2019
  Mon  Tue  Wed  Thu  Fri  Sat  Sun
@@ -123,10 +123,10 @@ calendar display;
 ]]></screen>
         <para/>
         <programlisting role="example"><![CDATA[
-calendar(1973, 8, "display");
+calendar(1973, 8)
  ]]></programlisting>
       <screen><![CDATA[
---> calendar(1973, 8, "display");
+--> calendar(1973, 8)
  
              Aug 1973
  Mon  Tue  Wed  Thu  Fri  Sat  Sun
@@ -157,7 +157,7 @@ calendar(1973, 8, "display");
             <revision>
                 <revnumber>6.1</revnumber>
                 <revdescription>
-                    "display" option added.
+                    Formated display in the console added.
                 </revdescription>
             </revision>
         </revhistory>

@@ -23,4 +23,4 @@ assert_checkequal(cal(1), title_ref);
 assert_checkequal(cal(2), week_ref);
 assert_checkequal(cal(3), cal_ref);
 
-calendar(2019, 12, "display");
+calendar(2019, 12)

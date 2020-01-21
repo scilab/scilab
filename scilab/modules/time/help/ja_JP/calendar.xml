@@ -24,8 +24,8 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            calendar display;
-            calendar(y, m, "display");
+            calendar
+            calendar(y, m)
             c = calendar()
             c = calendar(y,m)
         </synopsis>
@@ -66,36 +66,36 @@
     </refsection>
     <refsection>
         <title>説明</title>
+        <para>
+            <emphasis role="bold">calendar</emphasis> displays in the console the
+            calendar of the current month.
+        </para>
+        <para>
+            <emphasis role="bold">calendar(y, m)</emphasis> displays in the console the
+            calendar of the month <varname>m</varname> for the year <varname>y</varname>.
+        </para>
         <para>c = calendar() は現在の月に関するカレンダーを含むリストを返します.
             週は月曜日に始まり、日曜日に終わる.
         </para>
         <para>c = calendar(y,m), ただし, y および m は整数で, 指定した年の
             指定した月のカレンダーを返します.
         </para>
-        <para>
-            <emphasis role="bold">calendar display</emphasis>; displays in the console the
-            calendar of the current month.
-        </para>
-        <para>
-            <emphasis role="bold">calendar(y,m,"display")</emphasis>; displays in the console the
-            calendar of the month <varname>m</varname> for the year <varname>y</varname>.
-        </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-calendar
+c = calendar()
  ]]></programlisting>
       <screen><![CDATA[
---> calendar
- ans  =
-       ans(1)
+--> c = calendar()
+ c  =
+       c(1)
  12月 2019
 
-       ans(2)
+       c(2)
  月   火   水    木   金    土   日
 
-       ans(3)
+       c(3)
    0.    0.    0.    0.    0.    0.    1. 
    2.    3.    4.    5.    6.    7.    8. 
    9.    10.   11.   12.   13.   14.   15.
@@ -105,10 +105,10 @@ calendar
 ]]></screen>
         <para/>
         <programlisting role="example"><![CDATA[
-calendar display;
+calendar
  ]]></programlisting>
       <screen><![CDATA[
---> calendar display
+--> calendar
  
              12月 2019
  月   火   水    木   金    土   日
@@ -121,10 +121,10 @@ calendar display;
 ]]></screen>
         <para/>
         <programlisting role="example"><![CDATA[
-calendar(1973, 8, "display");
+calendar(1973, 8)
  ]]></programlisting>
       <screen><![CDATA[
---> calendar(1973, 8, "display");
+--> calendar(1973, 8)
  
              8月 1973
  月   火   水    木   金    土   日
@@ -155,7 +155,7 @@ calendar(1973, 8, "display");
             <revision>
                 <revnumber>6.1</revnumber>
                 <revdescription>
-                    "display" option added.
+                    Formated display in the console added.
                 </revdescription>
             </revision>
         </revhistory>

@@ -24,8 +24,8 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>
-            calendar display;
-            calendar(y, m, "display");
+            calendar
+            calendar(y, m)
             c = calendar()
             c = calendar(y,m)
         </synopsis>
@@ -69,12 +69,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            <emphasis role="bold">calendar display</emphasis>; affiche dans la console le
+            <emphasis role="bold">calendar</emphasis> affiche dans la console le
             calendrier du mois en cours.
             Les semaines commencent le lundi et se terminent le dimanche.
         </para>
         <para>
-            <emphasis role="bold">calendar(y,m,"display")</emphasis>; affiche dans la console
+            <emphasis role="bold">calendar(y, m)</emphasis> affiche dans la console
             le calendrier du mois <varname>m</varname> pour l'année <varname>y</varname>.
         </para>
         <para>
@@ -87,18 +87,18 @@
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-calendar
+c = calendar()
  ]]></programlisting>
       <screen><![CDATA[
---> calendar
- ans  =
-       ans(1)
+--> c = calendar()
+ c  =
+       c(1)
  Déc. 2019
 
-       ans(2)
+       c(2)
  Lun  Mar  Mer  Jeu  Ven  Sam  Dim
 
-       ans(3)
+       c(3)
    0.    0.    0.    0.    0.    0.    1.
    2.    3.    4.    5.    6.    7.    8.
    9.    10.   11.   12.   13.   14.   15.
@@ -108,10 +108,10 @@ calendar
 ]]></screen>
         <para/>
         <programlisting role="example"><![CDATA[
-calendar display;
+calendar
  ]]></programlisting>
       <screen><![CDATA[
---> calendar display;
+--> calendar
 
             Déc. 2019
  Lun  Mar  Mer  Jeu  Ven  Sam  Dim
@@ -124,10 +124,10 @@ calendar display;
 ]]></screen>
         <para/>
         <programlisting role="example"><![CDATA[
-calendar(1973, 8, "display");
+calendar(1973, 8)
  ]]></programlisting>
       <screen><![CDATA[
---> calendar(1973, 8, "display");
+--> calendar(1973, 8)
 
          Août 1973
  Lun  Mar  Mer  Jeu  Ven  Sam  Dim
@@ -158,7 +158,7 @@ calendar(1973, 8, "display");
             <revision>
                 <revnumber>6.1</revnumber>
                 <revdescription>
-                    Option "display" ajoutée.
+                    Ajout de l'affichage formaté dans la console.
                 </revdescription>
             </revision>
         </revhistory>
