@@ -208,7 +208,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\..\c\sci_base2dec.c" />
     <ClCompile Include="..\..\c\sci_dec2base.c" />
     <ClCompile Include="..\..\c\sci_isequalbitwise.c" />
-    <ClCompile Include="..\..\c\sci_log10.c" />
     <ClCompile Include="..\..\c\sci_number_properties.c" />
     <ClCompile Include="..\..\c\sci_testmatrix.c" />
     <ClCompile Include="..\elem_func_gw.cpp" />

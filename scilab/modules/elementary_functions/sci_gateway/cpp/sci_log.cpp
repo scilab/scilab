@@ -26,34 +26,54 @@ extern "C"
 #include "localization.h"
 #include "elem_common.h"
 #include "log.h"
-    int C2F(wlog)(double*, double*, double*, double*);
+int C2F(wlog)(double*, double*, double*, double*);
+int C2F(dscal)(int*, double*, double*, int*);
 }
+
 /*
 clear a;nb = 2500;a = rand(nb, nb);tic();log(a);toc
 clear a;nb = 2500;a = -rand(nb, nb);tic();log(a);toc
 clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();log(a);toc
 */
 
+types::Function::ReturnValue log_or_log10(types::typed_list &in, int _iRetCount, types::typed_list &out, bool bLog10);
+
 /*--------------------------------------------------------------------------*/
+
 types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    return log_or_log10(in, _iRetCount, out, false);
+}
+
+types::Function::ReturnValue sci_log10(types::typed_list &in, int _iRetCount, types::typed_list &out)
+{
+    return log_or_log10(in, _iRetCount, out, true);
+}
+
+/*--------------------------------------------------------------------------*/
+
+types::Function::ReturnValue log_or_log10(types::typed_list &in, int _iRetCount, types::typed_list &out, bool bLog10)
+{
+    double inverseLog10 = 0.434294481903251827651128918916605082294397005803666566114;
+    auto fname = bLog10 ? "log10" : "log";
+
     int iAlert = 1;
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "log", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "log", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_log";
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + (bLog10 ? L"_log10" : L"_log");
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
@@ -74,14 +94,14 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
             {
                 if (ConfigVariable::getIeee() == 0)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), fname, 1);
                     return types::Function::Error;
                 }
                 else if (ConfigVariable::getIeee() == 1)
                 {
                     if (ConfigVariable::getWarningMode())
                     {
-                        sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                        sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), fname, 1);
                     }
                 }
 
@@ -89,6 +109,13 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
             }
 
             C2F(wlog)(pInR + i, pInI + i, pOutR + i, pOutI + i);
+        }
+
+        if (bLog10)
+        {
+            int iOne = 1;
+            C2F(dscal)(&size, &inverseLog10, pOutR, &iOne);
+            C2F(dscal)(&size, &inverseLog10, pOutI, &iOne);
         }
     }
     else
@@ -100,16 +127,17 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
             {
                 if (ConfigVariable::getIeee() == 0)
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                    Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), fname, 1);
                     return types::Function::Error;
                 }
                 else if (ConfigVariable::getIeee() == 1)
                 {
                     if (ConfigVariable::getWarningMode())
                     {
-                        sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log", 1);
+                        sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), fname, 1);
                     }
                 }
+
                 iAlert = 0;
             }
             else if (pInR[i] < 0)
@@ -128,12 +156,25 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
             {
                 C2F(wlog)(pInR + i, &zero, pOutR + i, pOutI + i);
             }
+
+            if (bLog10)
+            {
+                int iOne = 1;
+                C2F(dscal)(&size, &inverseLog10, pOutR, &iOne);
+                C2F(dscal)(&size, &inverseLog10, pOutI, &iOne);
+            }
         }
         else
         {
             for (int i = 0; i < size; i++)
             {
                 pOutR[i] = std::log(pInR[i]);
+            }
+
+            if (bLog10)
+            {
+                int iOne = 1;
+                C2F(dscal)(&size, &inverseLog10, pOutR, &iOne);
             }
         }
     }

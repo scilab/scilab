@@ -165,9 +165,6 @@
     <ClCompile Include="..\sci_sign.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\c\sci_log10.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\sci_cosh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -202,6 +199,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\sci_bitstring.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_linspace.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
