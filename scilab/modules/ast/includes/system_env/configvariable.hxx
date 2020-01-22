@@ -530,6 +530,12 @@ public :
     static void resetRecursionLevel();
     static bool increaseRecursion();
     static void decreaseRecursion();
+private: 
+    static bool webMode;
+public:
+    static bool getWebMode();
+    static void setWebMode(bool);
+
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

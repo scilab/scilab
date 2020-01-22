@@ -251,6 +251,8 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     createInnosetupMutex();
 #endif
 
+    ConfigVariable::setWebMode(_pSEI->iWebMode != 0);
+
     //open scope lvl 0 for gateway from modules and first variables ( SCI, HOME, TMPDIR, ...)
     symbol::Context::getInstance()->scope_begin();
 
@@ -273,7 +275,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     {
         InitializeTclTk();
         InitializeJVM();
-        InitializeGUI(_pSEI->iWebMode == 0 ? TRUE : FALSE);
+        InitializeGUI();
 
         /* create needed data structure if not already created */
         loadGraphicModule();

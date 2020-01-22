@@ -87,4 +87,7 @@ EXTERN_AST void setExecutionBreak();
 EXTERN_AST void resetExecutionBreak();
 
 EXTERN_AST int setRecursionLimit(int);
+
+EXTERN_AST int getWebMode();
 #endif /* !__CONFIGVARIABLE_INTERFACE_H__ */
+

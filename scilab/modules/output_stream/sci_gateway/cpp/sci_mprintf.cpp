@@ -21,6 +21,7 @@
 #include "function.hxx"
 #include "string.hxx"
 #include "overload.hxx"
+#include "configvariable.hxx"
 
 #include <iterator>
 
@@ -78,7 +79,11 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
 
         scilabForcedWriteW(pwstOutput[i]);
 
-        // fflush(NULL);
+        if (ConfigVariable::getWebMode() == false)
+        {
+            fflush(NULL);
+        }
+
         FREE(pwstOutput[i]);
     }
 
