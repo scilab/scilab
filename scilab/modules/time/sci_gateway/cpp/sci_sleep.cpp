@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2019 - ESI Group - Antoine ELIAS
+ *  Copyright (C) 2020 - ESI Group - Antoine ELIAS
  *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
@@ -13,6 +13,8 @@
  *
  */
 
+#include <thread>
+#include <chrono>
 #include "time_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -20,10 +22,6 @@
 
 extern "C"
 {
-#ifndef _MSC_VER
-#include <unistd.h>
-#endif
-#include <time.h>
 #include "Scierror.h"
 #include "localization.h"
 }
@@ -33,7 +31,6 @@ static char fname[] = "sleep";
 types::Function::ReturnValue sci_sleep(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iRhs = static_cast<int>(in.size());
-    bool asSec = false;
     double t = 0;
 
     if (iRhs < 1 || iRhs > 2)
@@ -51,7 +48,7 @@ types::Function::ReturnValue sci_sleep(types::typed_list &in, int _iRetCount, ty
     t = in[0]->getAs<types::Double>()->get()[0];
     if (t < 0)
     {
-        Scierror(999, _( "%s: Argument #%d: the scalar must be positive.\n"), fname, 1);
+        Scierror(999, _("%s: Argument #%d: the scalar must be positive.\n"), fname, 1);
         return types::Function::Error;
     }
 
@@ -65,40 +62,15 @@ types::Function::ReturnValue sci_sleep(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
 
-        asSec = true;
+        t *= 1000.;
     }
 
-#ifdef _MSC_VER
+    if (t > 0.)
     {
-        if (asSec)
-        {
-            t *= 1000; /* convert seconds into milliseconds */
-        }
-
-        if (t)
-        {
-            Sleep((DWORD)t);    /* Number of milliseconds to sleep. */
-        }
+        // a floating point milliseconds duration type
+        using DoubleMilliseconds = std::chrono::duration<double, std::milli>;
+        std::this_thread::sleep_for(DoubleMilliseconds(t));
     }
-#else
-    {
-        struct timespec timeout;
-        if (asSec)
-        {
-            double s = std::floor(t);
-            timeout.tv_sec = (time_t) s;
-            timeout.tv_nsec = (t - s) * 10e9;
-        }
-        else
-        {
-            double s = std::floor(t / 1e3);
-            timeout.tv_sec = (time_t) s;
-            timeout.tv_nsec = (t - (s * 1e3)) * 10e6;
-        }
-        nanosleep(&timeout, NULL);
-    }
-#endif
 
     return types::Function::OK;
 }
-
