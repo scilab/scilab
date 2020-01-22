@@ -121,7 +121,6 @@ Feature changes and additions
 * calendar() can now display formated calendars.
 
 
-
 Help pages:
 -----------
 
@@ -134,6 +133,7 @@ User Interface improvements:
 * The `ans` variable is editable as any other variable
 * Commands history is saved before executing a command to have the correct history on crash.
 * Used memory per variable is displayed by BrowserVar to give the user numbers on memory usage repartition and let the user `clear` the big ones first.
+* Autoscroll of console in GUI mode is disabled when the user scroll up until he scrolls to bottom.
 
 Xcos
 ----
