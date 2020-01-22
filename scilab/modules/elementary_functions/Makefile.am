@@ -280,8 +280,7 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_number_properties.c \
     sci_gateway/c/sci_testmatrix.c \
     sci_gateway/c/sci_isequalbitwise.c \
-    sci_gateway/c/sci_dec2base.c \
-    sci_gateway/c/sci_log10.c
+    sci_gateway/c/sci_dec2base.c
 
 GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_isequal.cpp \
