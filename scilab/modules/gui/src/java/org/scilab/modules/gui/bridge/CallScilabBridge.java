@@ -249,8 +249,9 @@ public class CallScilabBridge {
      * @param status true to set the menu enabled
      */
     public static void setMenuEnabled(int parentUID, String menuName, boolean status) {
-        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(parentUID);
-        if (parentTab != null) { /** Parent must exist */
+        SwingViewObject view = SwingView.getFromId(parentUID);
+        if (view != null && view instanceof SwingScilabDockablePanel) { /** Parent must exist */
+            SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) view;
             parentTab.getMenuBar().getAsSimpleMenuBar().setMenuEnabled(menuName, status);
         }
     }
@@ -263,8 +264,9 @@ public class CallScilabBridge {
      * @param status true to set the menu enabled
      */
     public static void setSubMenuEnabled(int parentUID, String parentMenuName, int menuItemPosition, boolean status) {
-        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(parentUID);
-        if (parentTab != null) { /** Parent must exist */
+        SwingViewObject view = SwingView.getFromId(parentUID);
+        if (view != null && view instanceof SwingScilabDockablePanel) { /** Parent must exist */
+            SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) view;
             parentTab.getMenuBar().getAsSimpleMenuBar().setSubMenuEnabled(parentMenuName, menuItemPosition, status);
         }
     }
@@ -281,8 +283,9 @@ public class CallScilabBridge {
      * @param menuName the name of the menu
      */
     public static void removeMenu(int parentUID, String menuName) {
-        SwingScilabPanel parentTab = (SwingScilabPanel) SwingView.getFromId(parentUID);
-        if (parentTab != null) { /** Parent must exist */
+        SwingViewObject view = SwingView.getFromId(parentUID);
+        if (view != null && view instanceof SwingScilabDockablePanel) { /** Parent must exist */
+            SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) view;
             parentTab.getMenuBar().getAsSimpleMenuBar().removeMenu(menuName);
         }
     }
@@ -894,7 +897,7 @@ public class CallScilabBridge {
                 Figure figure = (Figure) GraphicController.getController().getObjectFromId(figID);
                 int figureID = figure.getId();
                 BufferedImage bimage = null;
-                if (figure.getVisible()) {
+                if (figure.getVisible() && SwingView.getFromId(figID) instanceof SwingScilabDockablePanel) {
                     bimage = ((SwingScilabDockablePanel) SwingView.getFromId(figID)).getContentCanvas().dumpAsBufferedImage();
                 } else {
                     try {
@@ -1357,8 +1360,11 @@ public class CallScilabBridge {
     /******************/
 
     public static void fireClosingFinished(int figUID) {
-        SwingScilabDockablePanel parentTab = (SwingScilabDockablePanel) SwingView.getFromId(figUID);
-        ClosingOperationsManager.removeFromDunnoList(parentTab);
+        SwingViewObject view = SwingView.getFromId(figUID);
+        if (view instanceof SwingScilabDockablePanel)
+        {
+            ClosingOperationsManager.removeFromDunnoList((SwingScilabDockablePanel) view);
+        }
     }
     
     public static void registerSwingView() {

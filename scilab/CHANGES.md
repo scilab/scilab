@@ -228,6 +228,7 @@ Bug Fixes
 * [#12520](http://bugzilla.scilab.org/show_bug.cgi?id=12520): Vriable browser did not display the size of the variables.
 * [#12534](http://bugzilla.scilab.org/show_bug.cgi?id=12534): Variable browser did not display the size of the variables.
 * [#12837](http://bugzilla.scilab.org/show_bug.cgi?id=12837): `strcmpi` was an obsolete duplicate of `strcmp(,'i')`. It is removed.
+* [#13683](http://bugzilla.scilab.org/show_bug.cgi?id=13683): unsetmenu for a dockable="off" figure crashed Scilab.
 * [#13766](http://bugzilla.scilab.org/show_bug.cgi?id=13766): Minimal values for `.figure_size` were not documented.
 * [#14015](http://bugzilla.scilab.org/show_bug.cgi?id=14015): Nan terms added to a polynomial were ignored.
 * [#14422](http://bugzilla.scilab.org/show_bug.cgi?id=14422): `clc(0)` did nothing, now clears last console entry. Remove leading blank after a `clc()`.
@@ -235,7 +236,8 @@ Bug Fixes
 * [#14501](http://bugzilla.scilab.org/show_bug.cgi?id=14501): `strsubst` crashed on consecutive occurrences.
 * [#14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557): `csim` failed when the system has no state.
 * [#14498](http://bugzilla.scilab.org/show_bug.cgi?id=14498): `size([],3)` returned 1 instead of 0.
-* [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr` is 40x slower with 6.0.0 wrt 5.5.2
+* [#14502](http://bugzilla.scilab.org/show_bug.cgi?id=14502): `Demo > GUI > Uicontrols 2` could not be exported to a file.
+* [#14604](http://bugzilla.scilab.org/show_bug.cgi?id=14604): `emptystr()` is 40x slower with 6.0.0 wrt 5.5.2
 * [#14605](http://bugzilla.scilab.org/show_bug.cgi?id=14605): fixed - `bench_run` was too strict about the specification of tests names.
 * [#14606](http://bugzilla.scilab.org/show_bug.cgi?id=14606): Memory used by variables returned by `[names,mem]=who()` was always zero.
 * [#14610](http://bugzilla.scilab.org/show_bug.cgi?id=14610): `x = ric_desc(H,E)` always yielded an error. [x1,x2,residual] = ric_desc(..) returned a wrong `residual` value.
@@ -245,6 +247,7 @@ Bug Fixes
 * [#14746](http://bugzilla.scilab.org/show_bug.cgi?id=14746): Tiny numbers were sometimes displayed as 0.
 * [#14791](http://bugzilla.scilab.org/show_bug.cgi?id=14791): `sleep 1` crashed Scilab.
 * [#14812](http://bugzilla.scilab.org/show_bug.cgi?id=14812): Minor typos in messages.
+* [#14836](http://bugzilla.scilab.org/show_bug.cgi?id=14836): calling `exportUI()` on a non dockable figure crashed scilab.
 * [#14863](http://bugzilla.scilab.org/show_bug.cgi?id=14863): In Xcos, the default ending time was unhandily high (100000), reduced it to 30.
 * [#14982](http://bugzilla.scilab.org/show_bug.cgi?id=14982): `msprintf` segmentation fault was caught due to wrong size
 * [#14985](http://bugzilla.scilab.org/show_bug.cgi?id=14985): scilab crashed if a .bin file was not found.
@@ -375,3 +378,5 @@ Bug Fixes
 * [#16293](http://bugzilla.scilab.org/show_bug.cgi?id=16293): Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.
 * [#16299](http://bugzilla.scilab.org/show_bug.cgi?id=16299): After `graypolarplot`, `colorbar` displayed an empty ungraduated color bar.
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
+* [#16307](http://bugzilla.scilab.org/show_bug.cgi?id=16307): `dockable="off"` and `closerequestfcn` on figures crached Scilab.
+
