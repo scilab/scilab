@@ -291,6 +291,14 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         pContext->put(m_Varargout, pL);
     }
 
+    // iRetCount = 0 is granted to the macro (as argn(0))
+    // when there is no formal output argument
+    // or if varargout is the only formal output argument.
+    if ( m_outputArgs->size() - (bVarargout ? 1 : 0) >= 1 )
+    {
+        iRetCount = std::max(1, iRetCount);
+    }
+
     //common part with or without varargin/varargout
 
     // Declare nargin & nargout in function context.
