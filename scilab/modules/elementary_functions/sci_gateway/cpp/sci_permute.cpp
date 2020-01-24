@@ -25,12 +25,13 @@ extern "C"
 
 void computeOffsets(int iDims, const int* piDimsArray, const std::vector<int>& dimsVect, int* piOffset, int* piMaxOffset)
 {
+    int iOffset = 1;
     for (int i = 0; i < iDims; ++i)
     {
-        int iOffset = i > 0 ? iOffset * piDimsArray[dimsVect[i - 1] - 1] : 1;
         int j = dimsVect[i] - 1;
         piOffset[j] = iOffset;
         piMaxOffset[j] = iOffset * piDimsArray[j];
+        iOffset *= piDimsArray[dimsVect[i] - 1];
     }
 }
 
