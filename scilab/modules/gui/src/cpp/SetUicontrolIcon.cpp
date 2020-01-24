@@ -27,7 +27,6 @@ extern "C" {
 int SetUicontrolIcon(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     char* expandedpath = NULL;
-    char *absolutepath = NULL;
 
     if (valueType != sci_strings)
     {
@@ -43,7 +42,7 @@ int SetUicontrolIcon(void* _pvCtx, int iObjUID, void* _pvData, int valueType, in
         char* iconPath = org_scilab_modules_commons_gui::FindIconHelper::findIcon(getScilabJavaVM(), (char*)_pvData, 0);
         if (iconPath == NULL)
         {
-            absolutepath = get_full_path(expandedpath);
+            char* absolutepath = get_full_path(expandedpath);
 
             //it is a absolute path, put it only in model
             if (strcmp(expandedpath, absolutepath))
@@ -54,6 +53,8 @@ int SetUicontrolIcon(void* _pvCtx, int iObjUID, void* _pvData, int valueType, in
                 //add it to FindIconHelper java class
                 org_scilab_modules_commons_gui::FindIconHelper::addThemePath(getScilabJavaVM(), pwd);
             }
+
+            FREE(absolutepath);
         }
         else
         {
@@ -61,17 +62,14 @@ int SetUicontrolIcon(void* _pvCtx, int iObjUID, void* _pvData, int valueType, in
         }
     }
 
-    strcpy(absolutepath, expandedpath);
-    FREE(expandedpath);
-
-    if (setGraphicObjectProperty(iObjUID, __GO_UI_ICON__, absolutepath, jni_string, 1) == FALSE)
+    if (setGraphicObjectProperty(iObjUID, __GO_UI_ICON__, expandedpath, jni_string, 1) == FALSE)
     {
-        FREE(absolutepath);
+        FREE(expandedpath);
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "icon");
         return SET_PROPERTY_ERROR;
     }
 
-    FREE(absolutepath);
+    FREE(expandedpath);
     return SET_PROPERTY_SUCCEED;
 }
 /*------------------------------------------------------------------------*/
