@@ -197,7 +197,7 @@ public class ScilabFileBrowserHistory {
     private static final void chDir(String path) {
         File f = new File(path);
         if (f.exists() && f.isDirectory() && f.canRead()) {
-            InterpreterManagement.requestScilabExec("chdir('" + path + "')");
+            InterpreterManagement.requestScilabExec("chdir('" + path + "');");
         }
     }
 

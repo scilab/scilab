@@ -91,13 +91,14 @@ public class SwingScilabTreeTable extends JTable {
 
     private SwingWorker dirRefresher;
     private ScilabFileBrowserModel model;
+    private boolean resetScrollBar = true;
 
     private Method isLocationInExpandControl;
 
     protected ScilabTreeTableCellRenderer tree;
     protected ScilabFileSelectorComboBox combobox;
     protected ScilabFileBrowserHistory history;
-
+    
     /**
      * Default Constructor
      * @param treeTableModel the tree table model
@@ -318,10 +319,12 @@ public class SwingScilabTreeTable extends JTable {
         if (model != null) {
             File f = new File(baseDir);
             if (cancelled || (f.exists() && f.isDirectory() && f.canRead())) {
+                boolean sameDir = baseDir.equals(model.getBaseDir());
                 tree.setModel(null);
-                if (addInHistory) {
+                if (!sameDir && addInHistory) {
                     history.addPathInHistory(baseDir);
                 }
+                resetScrollBar = !sameDir;
                 model.setBaseDir(baseDir, this);
             }
         }
@@ -348,7 +351,10 @@ public class SwingScilabTreeTable extends JTable {
         tree.setLargeModel(true);
         TreePath path = new TreePath(model.getRoot());
         tree.collapsePath(path);
-        ((JScrollPane) SwingUtilities.getAncestorOfClass(JScrollPane.class, this)).getVerticalScrollBar().setValue(0);
+        if (resetScrollBar) {
+            ((JScrollPane) SwingUtilities.getAncestorOfClass(JScrollPane.class, this)).getVerticalScrollBar().setValue(0);
+        }
+        resetScrollBar = true;
         tree.expandPath(path);
         if (getRowCount() >= 1) {
             repaint(tree.getRowBounds(0));
