@@ -159,11 +159,12 @@ int StaticRunner::launch()
             pCtx->scope_end();
         }
 
+        // debugger leave with abort state
+        manager->setAborted();
+
         // send the good signal about the end of execution
         sendExecDoneSignal();
 
-        // debugger leave with abort state
-        manager->setAborted();
         throw ia;
     }
 

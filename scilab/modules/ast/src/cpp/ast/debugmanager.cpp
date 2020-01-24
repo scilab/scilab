@@ -410,7 +410,10 @@ char* DebuggerManager::execute(const std::string& command)
         return error;
     }
 
-    //inform debuggers
+    // reset abort flag befor a new exection
+    resetAborted();
+
+    // inform debuggers
     sendExecution();
     // execute command and wait
     StoreDebuggerCommand(command.data());
@@ -441,14 +444,20 @@ void DebuggerManager::resume() //resume execution
 
 void DebuggerManager::abort() //abort execution
 {
-    if (ConfigVariable::getPauseLevel() != 0)
-    {
-        //inform debuggers
-        sendAbort();
+    //inform debuggers
+    sendAbort();
 
-        // this state is check by the debuggerVisitor to do abort in the main thread
-        setAborted();
-        ConfigVariable::DecreasePauseLevel();
+    // this state is check by the debuggerVisitor to do abort in the main thread
+    setAborted();
+
+    // abort in a pause
+    if(isInterrupted())
+    {
+        if (ConfigVariable::getPauseLevel() != 0)
+        {
+            ConfigVariable::DecreasePauseLevel();
+        }
+
         // reset lasterror
         ConfigVariable::clearLastError();
         // reset callstack

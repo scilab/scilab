@@ -35,8 +35,13 @@ namespace ast
 void DebuggerVisitor::visit(const SeqExp  &e)
 {
     std::list<Exp *>::const_iterator itExp;
+
     debugger::DebuggerManager* manager = debugger::DebuggerManager::getInstance();
-    manager->resetAborted();
+    if(manager->isAborted())
+    {
+        // abort a running execution
+        throw ast::InternalAbort();
+    }
 
     for (const auto & exp : e.getExps())
     {
