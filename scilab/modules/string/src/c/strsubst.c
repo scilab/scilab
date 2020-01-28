@@ -457,7 +457,7 @@ wchar_t *wcssub(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wch
         {
             piStart[iOccurs++]  = pwstPos - _pwstInput;
             iOffset             += iReplace - iSearch;
-            pwstPos++;
+            pwstPos             += iSearch;
         }
     }
 
