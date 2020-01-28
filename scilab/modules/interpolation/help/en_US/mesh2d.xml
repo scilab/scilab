@@ -100,7 +100,7 @@ function displayTri(X, Y, Tr)
   [m, n] = size(Tr);
   xpols = matrix(X(Tr), m, n); 
   ypols = matrix(Y(Tr), m, n);
-  xfpolys(xpols, ypols, [n/4:n/4+n-1]);
+  xpolys(xpols, ypols, color("blue")*ones(n,1));
 endfunction 
 
 r1 = 1;
@@ -122,86 +122,79 @@ yr = (rand(1, 100)-.5)*2*r2;
 r = sqrt(xr.^2+yr.^2);
 
 clf
-gcf().color_map = rand(400, 3); 
 gcf().position(4)=300
 
 // [t, bdy] = mesh2d(x, y) syntax
 subplot(1, 2, 1)
-k = find(r < = r2);
+k = find(r <= r2);
 [t, bdy] = mesh2d(xr(k), yr(k));
 displayTri(xr(k), yr(k), t)
-plot(xr(k(bdy)), yr(k(bdy)),"-ok","thickness",2)
+plot(xr(k(bdy)), yr(k(bdy)),"r-o")
 xtitle("[triEdges, bdy] = mesh2d(x, y)")
 isoview
 
-
 // t = mesh2d(x, y, bdy) syntax
 subplot(1, 2, 2)
-k = find((r > =  r1) & (r < =  r2));
+k = find((r >=  r1) & (r <=  r2));
 x = [xc1 xc2 xr(k)];
 y = [yc1 yc2 yr(k)];
 t = mesh2d(x, y, [bdy1 bdy2]);
 displayTri(x, y, t)
-plot(x(bdy1), y(bdy1),"-ok","thickness",2)
-plot(x(bdy2), y(bdy2),"-ok","thickness",2)
+plot(x(bdy1), y(bdy1),"r-o")
+plot(x(bdy2), y(bdy2),"r-o")
 xtitle("triEdges = mesh2d(x, y, bdy)")
 isoview
  ]]></programlisting>
  <scilab:image>
 function displayTri(X, Y, Tr)
-  plot(0,0,rect=[-1 -1 2 2])
+  plot(0, 0, rect=[-1 -1 2 2])
   [m, n] = size(Tr);
   xpols = matrix(X(Tr), m, n); 
   ypols = matrix(Y(Tr), m, n);
-  xfpolys(xpols, ypols, [n/4:n/4+n-1]);
+  xpolys(xpols, ypols, color("blue") * ones(n, 1));
 endfunction 
 
 r1 = 1;
 n1 = 20;
-u = linspace(2*%pi, 0, n1);
-xc1 = r1*cos(u(1:$-1));
-yc1 = r1*sin(u(1:$-1));
+u = linspace(2 * %pi, 0, n1);
+xc1 = r1 * cos(u(1:$-1));
+yc1 = r1 * sin(u(1:$-1));
 bdy1 = [1:n1-1, 1];
 
 r2 = 2;
 n2 = 40;
 v = linspace(0, 2*%pi, n2);
-xc2 = r2*cos(v(1:$-1));
-yc2 = r2*sin(v(1:$-1));
-bdy2 = n1-1+[1:n2-1, 1];
+xc2 = r2 * cos(v(1:$-1));
+yc2 = r2 * sin(v(1:$-1));
+bdy2 = n1 - 1 + [1:n2-1, 1];
 
-xr = (rand(1, 100)-.5)*2*r2;
-yr = (rand(1, 100)-.5)*2*r2;
-r = sqrt(xr.^2+yr.^2);
+xr = (rand(1, 100) - .5) * 2 * r2;
+yr = (rand(1, 100)-.5) * 2 * r2;
+r = sqrt(xr .^ 2 + yr .^ 2);
 
 clf
-gcf().color_map = rand(400, 3); 
-gcf().position(4)=300
+gcf().position(4) = 300
 
 // [t, bdy] = mesh2d(x, y) syntax
 subplot(1, 2, 1)
-k = find(r &lt; = r2);
+k = find(r &lt;= r2);
 [t, bdy] = mesh2d(xr(k), yr(k));
 displayTri(xr(k), yr(k), t)
-plot(xr(k(bdy)), yr(k(bdy)),"-ok","thickness",2)
+plot(xr(k(bdy)), yr(k(bdy)), "r-o")
 xtitle("[triEdges, bdy] = mesh2d(x, y)")
 isoview
 
-
 // t = mesh2d(x, y, bdy) syntax
 subplot(1, 2, 2)
-k = find((r &gt; =  r1) &amp; (r &lt; =  r2));
+k = find((r &gt;=  r1) &amp; (r &lt;=  r2));
 x = [xc1 xc2 xr(k)];
 y = [yc1 yc2 yr(k)];
 t = mesh2d(x, y, [bdy1 bdy2]);
 displayTri(x, y, t)
-plot(x(bdy1), y(bdy1),"-ok","thickness",2)
-plot(x(bdy2), y(bdy2),"-ok","thickness",2)
+plot(x(bdy1), y(bdy1),"r-o")
+plot(x(bdy2), y(bdy2),"r-o")
 xtitle("triEdges = mesh2d(x, y, bdy)")
 isoview
-
-
-
  </scilab:image>
   </refsection>
   <refsection>
