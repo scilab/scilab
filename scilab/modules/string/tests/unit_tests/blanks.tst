@@ -6,28 +6,29 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 //==============================================================================
 // blank unit tests
 //==============================================================================
 
-disp(["xxx" blanks(20) "yyy"]);
+x = (["xxx" blanks(20) "yyy"]);
+assert_checkequal(x, ["xxx" "                    " "yyy"]);
 
 // Test 1
-//LEN_MAX = 20000000; too slow
-
-LEN_MAX = 2000;
+//LEN_MAX = 20000000;
+LEN_MAX = 20000000;
 r = blanks(LEN_MAX);
 l = length(r);
-if ( l <> LEN_MAX) then pause,end
+assert_checkequal(l, LEN_MAX);
 
 // Test 2
 // check first and last characters
 
 FIRST_CHAR = part(r,1);
 LAST_CHAR = part(r,LEN_MAX);
-if (FIRST_CHAR <> " ") then pause,end
-if (LAST_CHAR <> " ") then pause,end
+assert_checkequal(FIRST_CHAR, " ");
+assert_checkequal(LAST_CHAR, " ");
 
 // Test 3
 
@@ -39,10 +40,10 @@ D = floor(abs(2^7  * rand()));
 E = floor(abs(2^15 * rand()));
 F = floor(abs(2^15 * rand()));
 
-if blanks(A) <> blanks(uint8(A))  then pause, end
-if blanks(B) <> blanks(uint16(B)) then pause, end
-if blanks(C) <> blanks(uint32(C)) then pause, end
+assert_checkequal(blanks(A), blanks(uint8(A)));
+assert_checkequal(blanks(B), blanks(uint16(B)));
+assert_checkequal(blanks(C), blanks(uint32(C)));
 
-if blanks(D) <> blanks(int8(D))  then pause, end
-if blanks(E) <> blanks(int16(E)) then pause, end
-if blanks(F) <> blanks(int32(F)) then pause, end
+assert_checkequal(blanks(D), blanks(int8(D)));
+assert_checkequal(blanks(E), blanks(int16(E)));
+assert_checkequal(blanks(F), blanks(int32(F)));

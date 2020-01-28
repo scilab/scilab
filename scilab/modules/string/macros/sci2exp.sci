@@ -409,8 +409,12 @@ function t = glist2exp(listType, l, lmax)
         if listType ~= "mlist"
             lk = l(k)
         else
-            lk = getfield(k,l)
+            try
+                lk = getfield(k,l)
+            catch
+            end
         end
+        
         if ~isdef("lk","local")
             t1 = ""
         else
