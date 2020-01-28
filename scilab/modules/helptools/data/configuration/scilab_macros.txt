@@ -1701,6 +1701,7 @@ plot
 plot3d2
 plot3d3
 plotframe
+plotimplicit
 polarplot
 projaff
 rainbowcolormap

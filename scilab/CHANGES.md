@@ -158,6 +158,7 @@ Feature changes and additions
 * `twinkle` can now blink together several hierarchically independent objects, like a curve and its labels, etc.
 * `repmat` has been rewritten. It is 7 times faster now.
 * `plot` can now work in semi or bi-logarithmic mode with some input logflag.
+* `plotimplicit()` function added.
 
 
 Help pages:

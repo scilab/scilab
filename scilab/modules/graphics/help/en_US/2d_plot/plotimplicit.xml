@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Pierre-Aimé Agnel
+ * Copyright (C) 2020 - Samuel GOUGEON
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="plotimplicit">
+    <refnamediv>
+        <refname>plotimplicit</refname>
+        <refpurpose>Plots the (x,y) lines solving an implicit equation or Function(x,y)=0</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            plotimplicit(fun)
+            plotimplicit(fun, x_grid)
+            plotimplicit(fun, x_grid, y_grid)
+            plotimplicit(fun, x_grid, y_grid, plotOptions)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>fun</term>
+                <listitem>
+                    <para>
+                        It may be one of the following:
+                        <itemizedlist>
+                            <listitem>
+                                A single Scilab-executable string expression of literal scalar
+                                variables "x" and "y" representing two scalar real numbers.
+                                Examples: <literal>"x^3 + 3*y^2 = 1/(2+x*y)"</literal>,
+                                <literal>"(x-y)*(sin(x)-sin(y))"</literal> (implicitly = 0).
+                            </listitem>
+                            <listitem>
+                                The identifier of an existing function of two variables x and y.
+                                Example: <literal>besselj</literal> (not <literal>"besselj"</literal>).
+                            </listitem>
+                            <listitem>
+                                A list, gathering a Scilab or built-in function identifier,
+                                followed by the series of its parameters.
+                                Example: After
+                                <literal>function r = test(x,y,a), r = x.*(y-a), endfunction</literal>,
+                                <varname>fun</varname> can be <literal>list(test, 3.5)</literal>
+                                to consider and compute <literal>test(x, y, 3.5)</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x_grid, y_grid</term>
+                <listitem>
+                    <para>
+                        <varname>x_grid</varname> and <varname>y_grid</varname> define the cartesian
+                        grid of nodes where <varname>fun</varname>(x,y) must be computed.
+                    </para>
+                    <para>
+                        By default, <literal>x_grid = [-1,1]</literal> and
+                        <literal>y_grid = x_grid</literal> are used. To use default values,
+                        just specify nothing. Example skipping <varname>y_grid</varname>:
+                        <literal>plotimplicit(fun, x_grid, , plotOptions)</literal>.
+                    </para>
+                    <para>
+                        Explicit <varname>x_grid</varname> and <varname>y_grid</varname> values
+                        can be specified as follow:
+                        <itemizedlist>
+                            <listitem>
+                                A vector of 2 real numbers = bounds of the x or y domain. Example:
+                                <literal>[-2, 3.5]</literal>. Then the given interval is sampled
+                                with 201 points.
+                            </listitem>
+                            <listitem>
+                                A vector of more than 2 real numbers = values where the function
+                                is computed. Example: <literal>-1:0.1:2</literal>.
+                            </listitem>
+                            <listitem>
+                                The colon <literal>:</literal>. Then the considered interval
+                                is given by the data bounds of the current or default axes.
+                                This allows to overplot solutions of multiple equations on a shared
+                                (x,y) domain, with as many call to <literal>plotimplicit(..)</literal>
+                                as required.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        <warning>
+                            The bounds of the 1st plot drawn by <literal>plotimplicit(..)</literal>
+                            are set according to the bounds <emphasis>of the solutions of
+                            <varname>fun</varname></emphasis>. Most often they are (much) narrower
+                            than <varname>x_grid</varname> and <varname>y_grid</varname> bounds.
+                        </warning>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>plotOptions</term>
+                <listitem>
+                        List of <link linkend="plot">plot()</link> line-styling options used when
+                        plotting the solutions curves.
+                    <para/>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>plotimplicit(fun, x_grid, y_grid)</literal> evaluates <literal>fun</literal>
+            on the nodes (<varname>x_grid</varname>, <varname>y_grid</varname>), and then
+            draws the (x,y) contours solving the equation <literal>fun</literal> or such that
+            <literal>fun(x,y) = 0</literal>.
+        </para>
+        <para>
+            When no root curve exists on the considered grid, <literal>plotimplicit</literal>
+            yields a warning and plots an empty axes.
+        </para>
+        <note>
+            <itemizedlist>
+                <listitem>
+                    <literal>plotimplicit(..)</literal> can be used in a subplot.
+                    <para/>
+                </listitem>
+                <listitem>
+                    <literal>plotimplicit(..)</literal> can be called several times for the same
+                    axes, to overplot the solutions of several implicit equations (and show their
+                    possible intersections).
+                    <para/>
+                </listitem>
+                <listitem>
+                    Before returning, <literal>plotimplicit</literal> bundles all plotted curves
+                    into a graphical compound addressable as <literal>gce().children</literal>.
+                    If no solution exists, <literal>gce()</literal> is set to <literal>gca()</literal>.
+                    <para/>
+                </listitem>
+            </itemizedlist>
+        </note>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            <emphasis role="bold">
+                With the literal expression of the cartesian equation to plot:
+            </emphasis>
+        </para>
+        <programlisting role="example"><![CDATA[
+            // Draw a circle of radius 1 according to its cartesian equation:
+            plotimplicit "x^2 + y^2 = 1"
+
+            xgrid(color("grey"),1,7)
+            isoview
+     ]]></programlisting>
+        <scilab:image>
+            plotimplicit "x^2 + y^2 = 1"
+            xgrid(color("grey"),1,7)
+            isoview
+            gcf().axes_size = [420 420];
+        </scilab:image>
+        <para/>
+        <para>
+            <emphasis role="bold">With the identifier of the function</emphasis> whose root lines
+            must be plotted:
+        </para>
+        <programlisting role="example"><![CDATA[
+            clf
+            // 1) With a function in Scilab language (macro)
+            function z = F(x, y)
+                z = x.*(x.^2 + y.^2) - 5*(x.^2 - y.^2);
+            endfunction
+
+            // Draw the curve in the [-3 6] x [-5 5] range
+            subplot(1,2,1)
+            plotimplicit(F, -3:0.1:6, -5:0.1:5)
+
+            title("$\text{macro:  }x.(x^2 + y^2) - 5(x^2 - y^2) = 0$", "fontsize",4)
+            xgrid(color("grey"),1,7)
+
+            // 2) With a native Scilab builtin
+            subplot(1,2,2)
+            plotimplicit(besselj, -15:0.1:15, 0.1:0.1:19.9)
+
+            title("$\text{built-in:  } besselj(x,y) = 0$", "fontsize",4)
+            xgrid(color("grey"),1,7)
+    ]]></programlisting>
+        <scilab:image>
+            clf
+            // 1) With a function in Scilab language (macro)
+            function z = F(x, y)
+                z = x.*(x.^2 + y.^2) - 5*(x.^2 - y.^2);
+            endfunction
+
+            // Draw the curve in the [-3 6] x [-5 5] range
+            subplot(1,2,1)
+            plotimplicit(F, -3:0.1:6, -5:0.1:5)
+
+            title("$\text{macro:  }x.(x^2 + y^2) - 5(x^2 - y^2) = 0$", "fontsize",4)
+            xgrid(color("grey"),1,7)
+
+            // 2) With a native Scilab builtin
+            subplot(1,2,2)
+            plotimplicit(besselj, -15:0.1:15, 0.1:0.1:19.9)
+
+            title("$\text{built-in:  } besselj(x,y) = 0$", "fontsize",4)
+            xgrid(color("grey"),1,7)
+
+            gcf().axes_size = [800 420];
+        </scilab:image>
+        <para/>
+        <para>
+            <emphasis role="bold">
+                Using the default x_grid, a plotting option, and some post-processing
+            </emphasis>:
+        </para>
+        <programlisting role="example"><![CDATA[
+            equation = "3*x^2*exp(x) - x*y^2 +  exp(y)/(y^2 + 1) = 1"
+            plotimplicit(equation, , -10:0.1:10, "r--")
+
+            // Increase the contours thickness afterwards:
+            gce().children.thickness = 2;
+
+            // Setting titles and grids
+            title("$3x^2 e^x - x y^2 +  {{e^y}\over{(y^2 + 1)}} - 1 = 0$", "fontsize",4)
+            xgrid(color("grey"),1,7)
+     ]]></programlisting>
+        <scilab:image>
+            expression = "3*x^2*exp(x) - x*y^2 +  exp(y)/(y^2 + 1) = 1"
+            plotimplicit(expression, , -10:0.1:10, "r--")
+
+            // Get the contours identifiers, and use them to increase contours thickness:
+            gce().children.thickness = 2;
+
+            // Setting titles and grids
+            title("$3x^2 e^x - x y^2 +  {{e^y}\over{(y^2 + 1)}} - 1 = 0$", "fontsize",4)
+            xgrid(color("grey"),1,7)
+            gcf().axes_size = [600 440];
+        </scilab:image>
+        <para/>
+        <para>
+            <emphasis role="bold">
+                Overplotting
+            </emphasis>:
+        </para>
+        <programlisting role="example"><![CDATA[
+clf
+plotimplicit("x*sin(x) = y^2*cos(y)", [-2,2])
+
+t1 = gca().title.text;
+c1 = gce().children(1);
+title("")
+
+plotimplicit("y*sin(y) = x^2*cos(x)", [-2,2], ,"r")
+t2 = gca().title.text;
+c2 = gce().children(1);
+title("$plotimplicit()$")
+
+legend([c1 c2],[t1 t2]);
+gce().font_size = 3;
+xgrid(color("grey"),1,7)
+    ]]></programlisting>
+        <scilab:image>
+        clf
+        plotimplicit("x*sin(x) = y^2*cos(y)", [-2,2])
+
+        t1 = gca().title.text;
+        c1 = gce().children(1);
+        title("")
+
+        plotimplicit("y*sin(y) = x^2*cos(x)", [-2,2], ,"r")
+        t2 = gca().title.text;
+        c2 = gce().children(1);
+        title("$plotimplicit()$")
+
+        legend([c1 c2],[t1 t2]);
+        gce().font_size = 3;
+        xgrid(color("grey"),1,7)
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fsolve">fsolve</link>
+            </member>
+            <member>
+                <link linkend="contour">contour2d</link>
+            </member>
+            <member>
+                <link linkend="contour2di">contour2di</link>
+            </member>
+            <member>
+                <link linkend="contour2dm">contour2dm</link>
+            </member>
+            <member>
+                <link linkend="LineSpec">LineSpec</link>
+            </member>
+            <member>
+                <link linkend="GlobalProperty">GlobalProperty</link>
+            </member>
+            <member>
+                <link linkend="plot">plot</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    Function introduced.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
