@@ -33,6 +33,7 @@ In summary, the main new features are:
    - complex numbers are aligned for matrices
    - numbers (IEEE 754 double) are not rounded
 * importgui function has been added to easily interface csvRead
+* function calls with zero output arguments can be detected with `argn`
 
 
 Installation
@@ -175,9 +176,14 @@ Xcos
 * `CURVE_c` settings did not always display a window.
 * Exporting all layers from a diagram will generate one unique file per layer.
 
-API modification
+API/ABI modification
 ----------------
 
+* Functions could return zeros arguments, the following gateway functions have been updated:
+ - on APIv5 C `CheckOutputArgument(ctx, min, max)` the `min` argument should be set to `0` if needed.
+ - on APIv5 C `getNbOutputArgument(ctx)` the return value could be `0`
+ - on APIv6 C++ the `_iRetCount` argument value could be `0`.
+* On APIv6 C++, a virtual method has been added on internal types which break the ABI. Toolboxes need to be recompiled.
 
 Obsolete functions or features
 ------------------------------
