@@ -53,17 +53,23 @@ Struct::Struct(int _iRows, int _iCols)
 #endif
 }
 
-Struct::Struct(int _iDims, const int* _piDims)
+// _bFillIt: true, fill the struct by empty SingleStructs.
+// _bFillIt: false, Only alocate the array and fill each element by NULL.
+//           that mean you have to fill it by SingleStructs with ref set to 1.
+Struct::Struct(int _iDims, const int* _piDims, bool _bFillIt)
 {
     m_bDisableCloneInCopyValue = false;
-    SingleStruct** pIT  = NULL;
-    SingleStruct *p = new SingleStruct();
+    SingleStruct** pIT = NULL;
     create(_piDims, _iDims, &pIT, NULL);
-    for (int i = 0 ; i < getSize() ; i++)
+    if(_bFillIt)
     {
-        set(i, p);
+        SingleStruct *p = new SingleStruct();
+        for (int i = 0 ; i < getSize() ; i++)
+        {
+            set(i, p);
+        }
+        p->killMe();
     }
-    p->killMe();
 
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -141,16 +147,18 @@ bool Struct::transpose(InternalType *& out)
     if (m_iDims == 2)
     {
         int piDims[2] = {getCols(), getRows()};
-        Struct * pSt = new Struct(2, piDims);
-        out = pSt;
+        // dont fill the struct, transpose will do it.
+        Struct * pSt = new Struct(2, piDims, false);
+
+        Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pSt->get());
+
         for (int i = 0; i < m_iSize; ++i)
         {
-            pSt->m_pRealData[i]->DecreaseRef();
-            pSt->m_pRealData[i]->killMe();
+            // Transposition::transpose_clone will increase ref of datas content in each SingleStruct but not the ref of itself.
+            pSt->get(i)->IncreaseRef();
         }
 
-        Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pSt->m_pRealData);
-
+        out = pSt;
         return true;
     }
 
@@ -253,7 +261,7 @@ Struct* Struct::set(int _iIndex, SingleStruct* _pIT)
         m_pRealData[_iIndex] = copyValue(_pIT);
         if (m_bDisableCloneInCopyValue == false)
         {
-            //only in clone mode
+            // only in clone mode
             m_pRealData[_iIndex]->IncreaseRef();
         }
 

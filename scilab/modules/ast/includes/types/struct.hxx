@@ -33,7 +33,7 @@ public :
     ~Struct();
     Struct();
     Struct(int _iRows, int _iCols);
-    Struct(int _iDims, const int* _piDims);
+    Struct(int _iDims, const int* _piDims, bool _bFillIt = true);
 
 private :
     Struct(Struct* _oCellCopyMe);
