@@ -37,18 +37,18 @@ namespace types
 Cell::Cell()
 {
     int piDims[2] = {0, 0};
-    createCell(2, piDims, nullptr);
+    createCell(2, piDims, nullptr, false);
 }
 
-Cell::Cell(int _iRows, int _iCols, InternalType** data)
+Cell::Cell(int _iRows, int _iCols, InternalType** data, bool _bInit)
 {
     int piDims[2] = {_iRows, _iCols};
-    createCell(2, piDims, data);
+    createCell(2, piDims, data, _bInit);
 }
 
-Cell::Cell(int _iDims, const int* _piDims, InternalType** data)
+Cell::Cell(int _iDims, const int* _piDims, InternalType** data, bool _bInit)
 {
-    createCell(_iDims, _piDims, data);
+    createCell(_iDims, _piDims, data, _bInit);
 }
 
 bool Cell::getMemory(long long* _piSize, long long* _piSizePlusType)
@@ -69,11 +69,11 @@ bool Cell::getMemory(long long* _piSize, long long* _piSizePlusType)
     return true;
 }
 
-void Cell::createCell(int _iDims, const int* _piDims, InternalType** data)
+void Cell::createCell(int _iDims, const int* _piDims, InternalType** data, bool _bInit)
 {
     InternalType** pIT = NULL;
     create(_piDims, _iDims, &pIT, NULL);
-    if( m_iSizeMax == 0)
+    if(m_iSizeMax == 0 || _bInit == false)
     {
         return;
     }
@@ -149,16 +149,16 @@ bool Cell::transpose(InternalType *& out)
 
     if (m_iDims == 2)
     {
-        Cell * pC = new Cell(getCols(), getRows());
-        out = pC;
-        for (int i = 0, k = 0; i < getCols(); i++, k += getRows())
+        // dont fill the Cell, transpose will do it.
+        Cell * pC = new Cell(getCols(), getRows(), nullptr, false);
+        Transposition::transpose(getRows(), getCols(), m_pRealData, pC->get());
+        for(int i = 0; i < getSize(); ++i)
         {
-            for (int j = 0, l = 0; j < getRows(); j++, l += getCols())
-            {
-                pC->set(i + l, m_pRealData[j + k]);
-            }
+            // Transposition::transpose doesn't increase the ref.
+            pC->get(i)->IncreaseRef();
         }
 
+        out = pC;
         return true;
     }
 

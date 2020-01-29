@@ -35,33 +35,34 @@ Struct::Struct()
 #endif
 }
 
-Struct::Struct(int _iRows, int _iCols)
+Struct::Struct(int _iRows, int _iCols, bool _bInit)
 {
     m_bDisableCloneInCopyValue = false;
     SingleStruct** pIT  = NULL;
-    SingleStruct *p = new SingleStruct();
     int piDims[2] = {_iRows, _iCols};
     create(piDims, 2, &pIT, NULL);
-    for (int i = 0 ; i < getSize() ; i++)
-    {
-        set(i, p);
-    }
 
-    p->killMe();
+    if(_bInit)
+    {
+        SingleStruct *p = new SingleStruct();
+        for (int i = 0 ; i < getSize() ; i++)
+        {
+            set(i, p);
+        }
+
+        p->killMe();
+    }
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
 }
 
-// _bFillIt: true, fill the struct by empty SingleStructs.
-// _bFillIt: false, Only alocate the array and fill each element by NULL.
-//           that mean you have to fill it by SingleStructs with ref set to 1.
-Struct::Struct(int _iDims, const int* _piDims, bool _bFillIt)
+Struct::Struct(int _iDims, const int* _piDims, bool _bInit)
 {
     m_bDisableCloneInCopyValue = false;
     SingleStruct** pIT = NULL;
     create(_piDims, _iDims, &pIT, NULL);
-    if(_bFillIt)
+    if(_bInit)
     {
         SingleStruct *p = new SingleStruct();
         for (int i = 0 ; i < getSize() ; i++)
@@ -146,15 +147,12 @@ bool Struct::transpose(InternalType *& out)
 
     if (m_iDims == 2)
     {
-        int piDims[2] = {getCols(), getRows()};
-        // dont fill the struct, transpose will do it.
-        Struct * pSt = new Struct(2, piDims, false);
-
-        Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pSt->get());
-
+        // dont fill the Struct, transpose will do it.
+        Struct * pSt = new Struct(getCols(), getRows(), false);
+        Transposition::transpose(getRows(), getCols(), m_pRealData, pSt->get());
         for (int i = 0; i < m_iSize; ++i)
         {
-            // Transposition::transpose_clone will increase ref of datas content in each SingleStruct but not the ref of itself.
+            // Transposition::transpose doesn't increase the ref.
             pSt->get(i)->IncreaseRef();
         }
 

@@ -32,8 +32,11 @@ class EXTERN_AST Struct : public ArrayOf<SingleStruct*>
 public :
     ~Struct();
     Struct();
-    Struct(int _iRows, int _iCols);
-    Struct(int _iDims, const int* _piDims, bool _bFillIt = true);
+    // _bInit: true, fill the struct by empty SingleStructs.
+    // _bInit: false, Only alocate the array and fill each element by NULL.
+    //           that mean you have to fill it by SingleStructs and increase there ref.
+    Struct(int _iRows, int _iCols, bool _bInit = true);
+    Struct(int _iDims, const int* _piDims, bool _bInit = true);
 
 private :
     Struct(Struct* _oCellCopyMe);

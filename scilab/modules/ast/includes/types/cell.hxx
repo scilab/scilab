@@ -34,12 +34,15 @@ class EXTERN_AST Cell : public ArrayOf<InternalType*>
 public :
     ~Cell();
     Cell();
-    Cell(int _iRows, int _iCols, InternalType** data = nullptr);
-    Cell(int _iDims, const int* _piDims, InternalType** data = nullptr);
+    // _bInit: true, fill the struct by empty SingleStructs.
+    // _bInit: false, Only alocate the array and fill each element by NULL.
+    //           that mean you have to fill it by InternalTypes and increase there ref.
+    Cell(int _iRows, int _iCols, InternalType** data = nullptr, bool _bInit = true);
+    Cell(int _iDims, const int* _piDims, InternalType** data = nullptr, bool _bInit = true);
 
 private :
     Cell(Cell* _oCellCopyMe);
-    void createCell(int _iDims, const int* _piDims, InternalType** data);
+    void createCell(int _iDims, const int* _piDims, InternalType** data, bool _bInit);
 public :
 
     void                whoAmI(void) override
