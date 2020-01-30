@@ -415,10 +415,7 @@ public abstract class SciConsole extends JPanel {
             e.printStackTrace();
         }
         config.getOutputView().reset();
-        /* Bug 4014 */
-        /* We add a space to add a line */
-        /* clc , F2 and menus have same position */
-        config.getOutputView().append(" ");
+
     }
 
     /**
@@ -434,45 +431,40 @@ public abstract class SciConsole extends JPanel {
             sciConsole.doLayout();
         }
 
-        if (nbLines == 0) {
-            // Clear the prompt
-            config.getInputCommandView().reset();
-        } else {
-            // Clear lines in output command view
-            try {
-                // We have to remove the command entered by the user
-                int totalNumberOfLines = nbLines + LINE_NUMBER_IN_PROMPT;
+        // Clear lines in output command view
+        try {
+            // We have to remove the command entered by the user
+            int totalNumberOfLines = nbLines + LINE_NUMBER_IN_PROMPT;
 
-                //  We add a space to add a line to make it consistent clc for all mode
-                config.getOutputView().append(" ");
+            //  We add a space to add a line to make it consistent clc for all mode
+            config.getOutputView().append(" ");
 
-                Document outputDoc = ((JEditorPane) config.getOutputView()).getDocument();
-                String outputTxt =  outputDoc.getText(0, outputDoc.getLength());
+            Document outputDoc = ((JEditorPane) config.getOutputView()).getDocument();
+            String outputTxt =  outputDoc.getText(0, outputDoc.getLength());
 
-                // Are there enough lines in the output view ?
-                String[] allLines = outputTxt.split(StringConstants.NEW_LINE);
-                if (allLines.length < totalNumberOfLines) {
-                    // Delete lines
-                    config.getOutputView().reset();
-                    config.getOutputView().append(Messages.gettext("Out of Screen"));
-                } else {
-                    // Delete lines
-                    int lastEOL;
-                    for (int i = 0; i < totalNumberOfLines; i++) {
-                        outputTxt = outputDoc.getText(0, outputDoc.getLength());
-                        lastEOL = outputTxt.lastIndexOf(StringConstants.NEW_LINE);
-                        if (lastEOL != -1) {
-                            outputDoc.remove(lastEOL, outputDoc.getLength() - lastEOL);
-                        }
+            // Are there enough lines in the output view ?
+            String[] allLines = outputTxt.split(StringConstants.NEW_LINE);
+            if (allLines.length < totalNumberOfLines) {
+                // Delete lines
+                config.getOutputView().reset();
+                config.getOutputView().append(Messages.gettext("Out of Screen"));
+            } else {
+                // Delete lines
+                int lastEOL;
+                for (int i = 0; i < totalNumberOfLines; i++) {
+                    outputTxt = outputDoc.getText(0, outputDoc.getLength());
+                    lastEOL = outputTxt.lastIndexOf(StringConstants.NEW_LINE);
+                    if (lastEOL != -1) {
+                        outputDoc.remove(lastEOL, outputDoc.getLength() - lastEOL);
                     }
                 }
-
-                // Bring the prompt back to the left
-                config.getOutputView().append("\r");
-
-            } catch (BadLocationException e) {
-                e.printStackTrace();
             }
+
+            // Bring the prompt back to the left
+            config.getOutputView().append("\r");
+
+        } catch (BadLocationException e) {
+            e.printStackTrace();
         }
     }
 

@@ -214,6 +214,7 @@ Bug Fixes
 * [#12534](http://bugzilla.scilab.org/show_bug.cgi?id=12534): Variable browser did not display the size of the variables.
 * [#13766](http://bugzilla.scilab.org/show_bug.cgi?id=13766): Minimal values for `.figure_size` were not documented.
 * [#14015](http://bugzilla.scilab.org/show_bug.cgi?id=14015): Nan terms added to a polynomial were ignored.
+* [#14422](http://bugzilla.scilab.org/show_bug.cgi?id=14422): `clc(0)` did nothing, now clears last console entry. Remove leading blank after a `clc()`.
 * [#14498](http://bugzilla.scilab.org/show_bug.cgi?id=14498): `size([],3)` returned 1 instead of 0.
 * [#14501](http://bugzilla.scilab.org/show_bug.cgi?id=14501): `strsubst` crashed on consecutive occurrences.
 * [#14557](http://bugzilla.scilab.org/show_bug.cgi?id=14557): `csim` failed when the system has no state.
