@@ -348,7 +348,7 @@ struct state
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Real matrix expected.\n"), "model", "state");
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Real vector expected.\n"), "model", "state");
             return false;
         }
 
@@ -356,7 +356,7 @@ struct state
         // Only allow vectors and empty matrices
         if (!current->isVector() && current->getSize() != 0)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong size for field %s.%s : %d-by-%d expected.\n"), "model", "state");
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong size for field %s.%s : Real vector expected.\n"), "model", "state");
             return false;
         }
 
