@@ -350,7 +350,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
                                           + "gcbo = getcallbackobject(" + getId() + ");"
                                           + closeRequestFcn + ";fire_closing_finished();"
                                           + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
-                    InterpreterManagement.putCommandInScilabQueue(closeCommand);
+                    InterpreterManagement.requestScilabExec(closeCommand);
                     return -1;
                 } else {
                     closeAction.actionPerformed(null);
