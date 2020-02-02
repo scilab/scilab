@@ -556,7 +556,6 @@ case "$CXX" in
             DEBUG_CXXFLAGS="-DNDEBUG -g1 -O2"
         fi
         COMPILER_CXXFLAGS="$COMPILER_CXXFLAGS -fno-stack-protector " # bug 3131
-        COMPILER_CXXFLAGS="$COMPILER_CXXFLAGS -lstdc++fs" # required on Ubuntu
     ;;
 
 esac
@@ -1970,7 +1969,6 @@ fi
 #########
 AC_CHECK_STDCPP_STATIC()
 AC_CHECK_ADDRESS_SANTIZER()
-
 
 #################
 ## stop on warning

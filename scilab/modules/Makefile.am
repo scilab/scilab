@@ -264,4 +264,7 @@ libscilab_cli_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
 # Core modules
 libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS) $(FLIBS) $(LAPACK_LIBS) $(BLAS_LIBS)
 
+# Compiler specific support
+libscilab_cli_la_LIBADD += -lstdc++fs # needed before gcc 9 (Ubuntu 18.04)
+
 .NOTPARALLEL: libscilab-cli.la libscilab.la
