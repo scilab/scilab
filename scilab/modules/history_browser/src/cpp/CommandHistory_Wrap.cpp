@@ -32,7 +32,15 @@ void CommandHistoryAppendLine (char* _pstLine)
     {
         if (strlen(_pstLine) != 0)
         {
-            CommandHistory::appendLine(getScilabJavaVM(), _pstLine);
+            try
+            {
+                CommandHistory::appendLine(getScilabJavaVM(), _pstLine);
+            }
+            catch (const GiwsException::JniException& e)
+            {
+                // don't do anything, something gets really wrong there!
+                return;
+            }
         }
     }
 }

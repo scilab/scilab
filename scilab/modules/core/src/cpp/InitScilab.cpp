@@ -547,7 +547,15 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     FileManager::destroy();
 
     /* Remove TMPDIR before exit */
-    clearTMPDIR();
+    try
+    {
+        clearTMPDIR();
+    }
+    catch (const ast::InternalError& /*ie*/)
+    {
+        // unable to delete the directory, let's continue
+    }
+
 
     //Unload dynamic modules
     UnloadModules();

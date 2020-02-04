@@ -92,7 +92,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
     {
         case SCSREAL_N:
         {
-            if (~pIT->isDouble())
+            if (!pIT->isDouble())
             {
                 return pIT;
             }
@@ -105,7 +105,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
         }
         case SCSCOMPLEX_N:
         {
-            if (~pIT->isDouble())
+            if (!pIT->isDouble())
             {
                 return pIT;
             }
@@ -119,7 +119,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
         }
         case SCSINT8_N:
         {
-            if (~pIT->isInt8())
+            if (!pIT->isInt8())
             {
                 return pIT;
             }
@@ -132,7 +132,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
         }
         case SCSINT16_N:
         {
-            if (~pIT->isInt16())
+            if (!pIT->isInt16())
             {
                 return pIT;
             }
@@ -145,7 +145,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
         }
         case SCSINT32_N:
         {
-            if (~pIT->isInt32())
+            if (!pIT->isInt32())
             {
                 return pIT;
             }
@@ -158,7 +158,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
         }
         case SCSUINT8_N:
         {
-            if (~pIT->isUInt8())
+            if (!pIT->isUInt8())
             {
                 return pIT;
             }
@@ -171,7 +171,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
         }
         case SCSUINT16_N:
         {
-            if (~pIT->isUInt16())
+            if (!pIT->isUInt16())
             {
                 return pIT;
             }
@@ -184,7 +184,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
         }
         case SCSUINT32_N:
         {
-            if (~pIT->isUInt32())
+            if (!pIT->isUInt32())
             {
                 return pIT;
             }
@@ -578,7 +578,7 @@ types::InternalType* createblklist(const scicos_block* const Blocks, const int f
 /*--------------------------------------------------------------------------*/
 types::InternalType* refreshblklist(types::InternalType* pIT, const scicos_block* const Blocks, const int flag_imp, const int /*funtyp*/)
 {
-    if (~pIT->isTList())
+    if (!pIT->isTList())
     {
         return pIT;
     }

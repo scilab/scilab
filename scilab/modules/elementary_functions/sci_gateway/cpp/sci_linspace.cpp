@@ -256,6 +256,8 @@ int convertToSize(types::InternalType *pIT)
         {
             return convertTypeToInt32(pIT->getAs<types::UInt64>());
         }
+        default:
+            return 0;
     }
 }
 

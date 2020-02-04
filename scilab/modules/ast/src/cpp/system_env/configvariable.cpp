@@ -210,14 +210,9 @@ int ConfigVariable::getConsoleWidth(void)
         {
             return tgetnum((char *)"co");
         }
-        else
-        {
-            return m_iConsoleWidth;
-        }
-    }    
-#else
-    return m_iConsoleWidth;
+    }
 #endif
+    return m_iConsoleWidth;
 }
 /*
 ** \}
