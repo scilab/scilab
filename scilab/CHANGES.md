@@ -257,6 +257,7 @@ Bug Fixes
 * [#14642](http://bugzilla.scilab.org/show_bug.cgi?id=14642): No more "\r" carriage return with printf.
 * [#14735](http://bugzilla.scilab.org/show_bug.cgi?id=14735): The `genetic_algorithms` module was out of the `optimization` one.
 * [#14741](http://bugzilla.scilab.org/show_bug.cgi?id=14741): The syntax `[m,e]=log2(x)` was not documented. As public function `frexp` was in duplicate with `[m,e]=log2(x)`.
+* [#14742](http://bugzilla.scilab.org/show_bug.cgi?id=14742): `mprintf`, `msprintf` a non finite number displayed nothing. 
 * [#14746](http://bugzilla.scilab.org/show_bug.cgi?id=14746): Tiny numbers were sometimes displayed as 0.
 * [#14791](http://bugzilla.scilab.org/show_bug.cgi?id=14791): `sleep 1` crashed Scilab.
 * [#14812](http://bugzilla.scilab.org/show_bug.cgi?id=14812): Minor typos in messages.
