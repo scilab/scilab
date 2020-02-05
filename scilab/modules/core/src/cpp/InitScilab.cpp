@@ -270,9 +270,10 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     InitializeWindows_tools();
 #endif
 
+    BOOL bRet = TRUE;
     if (_pSEI->iNoJvm == 0) // With JVM
     {
-        InitializeTclTk();
+        bRet = InitializeTclTk();
         InitializeJVM();
         InitializeGUI();
 
@@ -283,6 +284,12 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
         //update %gui to true
         Add_Boolean_Constant(L"%gui", true);
+    }
+
+    if(bRet == FALSE)
+    {
+        std::wcerr << ConfigVariable::getLastErrorMessage() << std::endl;
+        return 1;
     }
 
     // Make sure the default locale is applied at startup

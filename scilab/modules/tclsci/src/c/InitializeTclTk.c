@@ -22,10 +22,7 @@ BOOL InitializeTclTk(void)
     if ( getScilabMode() != SCILAB_NWNI )
     {
         setTkStarted(TRUE);
-        if ( OpenTCLsci() != 0 )
-        {
-            setTkStarted(FALSE);
-        }
+        OpenTCLsci();
     }
     return isTkStarted();
 }
