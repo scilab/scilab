@@ -442,6 +442,15 @@ detect_java_vm() {
                     echo "Cannot find $JAVA_HOME/bin/java"
                     exit 1
                 fi
+        elif test "$DEVENV" -eq 1 -a -d "$SCI/java/jre" ; then
+                export JAVA_HOME=$SCI/java/jre
+                if test $SCIVERBOSE -ne 0; then
+                    echo "Using thirdparty vm: $JAVA_HOME"
+                fi
+                if test ! -x "$JAVA_HOME/bin/java" ; then
+                    echo "Cannot find $JAVA_HOME/bin/java"
+                    exit 1
+                fi
         else
 
             case $OS in
