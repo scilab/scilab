@@ -69,6 +69,7 @@ public :
     }
 
     bool isComplex(void) override;
+    bool isComplexElement(int i) override;
 
     bool isDollar() override;
     inline bool             isPoly() override

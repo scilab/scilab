@@ -244,6 +244,16 @@ bool Polynom::isComplex()
     return false;
 }
 
+bool Polynom::isComplexElement(int i)
+{
+    if (i < getSize())
+    {
+        return get(i)->hasComplexCoef();
+    }
+
+    return isComplex();
+}
+
 Polynom* Polynom::setComplex(bool _bComplex)
 {
     if (_bComplex == isComplex())

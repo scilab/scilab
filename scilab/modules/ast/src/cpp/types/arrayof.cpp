@@ -1083,12 +1083,19 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         int dims[2] = {1, 1};
         pOut = createEmpty(2, dims, false);
         pOut->set(0, get(index));
-        if (isComplex() && getImg(index) !=0)
+        bool c = isNativeType() ? getImg(index) != 0 : isComplexElement(index);
+        if (isComplex() && c)
         {
             pOut->setComplex(true);
             pOut->setImg(0, getImg(index));
         }
+        else
+        {
+            pOut->setComplex(false);
+        }
+
         
+
         return pOut;
     }
 
@@ -1131,9 +1138,17 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
                 T iValue = getImg(index);
                 pOut->set(i, get(index));
                 pOut->setImg(i, iValue);
-                bIsComplex |= (iValue !=0);
+                if (isNativeType())
+                {
+                    bIsComplex |= (iValue != 0);
+                }
+                else
+                {
+                    bIsComplex |= (isComplexElement(index) != 0);
+                }
                 idx += step;
             }
+
             pOut->setComplex(bIsComplex);
         }
         else
@@ -1182,7 +1197,15 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
                 T iValue = getImg(i);
                 pOut->set(idx, get(i));
                 pOut->setImg(idx, iValue);
-                bIsComplex |= (iValue !=0);
+                if (isNativeType())
+                {
+                    bIsComplex |= (iValue != 0);
+                }
+                else
+                {
+                    bIsComplex |= (isComplexElement(i) != 0);
+                }
+
                 ++idx;
             }
             pOut->setComplex(bIsComplex);
@@ -1408,11 +1431,18 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
         }
 
         pOut->set(i, get(iPos));
-        if (m_pImgData != NULL)
+        if (isComplex())
         {
             T iValue = getImg(iPos);
             pOut->setImg(i, iValue);
-            bIsComplex |= (iValue != 0);   
+            if (isNativeType())
+            {
+                bIsComplex |= (iValue != 0);
+            }
+            else
+            {
+                bIsComplex |= (isComplexElement(iPos) != 0);
+            }
         }
 
         piIndex[0]++;

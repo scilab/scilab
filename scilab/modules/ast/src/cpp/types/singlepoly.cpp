@@ -127,6 +127,22 @@ double* SinglePoly::allocData(int _iSize)
     return pDbl;
 }
 
+bool SinglePoly::hasComplexCoef()
+{
+    if (m_pImgData)
+    {
+        for (int i = 0; i < m_iSize; ++i)
+        {
+            if (m_pImgData[i] != 0)
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
 double SinglePoly::copyValue(double _dblData)
 {
     return _dblData;

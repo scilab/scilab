@@ -33,7 +33,6 @@ public :
     virtual void            deleteAll() override;
     virtual void            deleteImg() override;
 
-    // FIXME : Should not return NULL;
     SinglePoly*             clone() override;
     SinglePoly*             conjugate();
 
@@ -41,6 +40,8 @@ public :
     {
         return true;
     }
+
+    bool                    hasComplexCoef();
     /*Config management*/
     void                    whoAmI() override;
 

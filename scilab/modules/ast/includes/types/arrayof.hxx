@@ -192,6 +192,11 @@ public :
         return m_pImgData != NULL;
     }
 
+    virtual bool isComplexElement(int idx)
+    {
+        return isComplex();
+    }
+
     //type does not need to delete or clone ( int, double, ... )
     virtual bool isNativeType()
     {
