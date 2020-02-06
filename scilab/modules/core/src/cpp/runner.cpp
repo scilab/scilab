@@ -243,6 +243,16 @@ command_origin_t StaticRunner::getCommandOrigin()
     return m_RunMe.load()->getCommandOrigin();
 }
 
+command_origin_t StaticRunner::getCurrentCommandOrigin()
+{
+    return m_CurrentRunner.load()->getCommandOrigin();
+}
+
+void StaticRunner::setCurrentCommandOrigin(command_origin_t origin)
+{
+    m_CurrentRunner.load()->setCommandOrigin(origin);
+}
+
 void StaticRunner::execAndWait(ast::Exp* _theProgram, ast::RunVisitor *_visitor,
                                bool /*_isPrioritaryThread*/, bool _isInterruptible, command_origin_t _iCommandOrigin)
 {
@@ -303,4 +313,14 @@ void StaticRunner_setInterruptibleCommand(int val)
 command_origin_t StaticRunner_getCommandOrigin(void)
 {
     return StaticRunner::getCommandOrigin();
+}
+
+command_origin_t StaticRunner_getCurrentCommandOrigin(void)
+{
+    return StaticRunner::getCurrentCommandOrigin();
+}
+
+void StaticRunner_setCurrentCommandOrigin(command_origin_t _origin)
+{
+    StaticRunner::setCurrentCommandOrigin(_origin);
 }

@@ -58,6 +58,11 @@ public :
         return m_iCommandOrigin;
     }
 
+    void setCommandOrigin(command_origin_t _origin)
+    {
+        m_iCommandOrigin = _origin;
+    }
+
     bool isInterruptible()
     {
         return m_isInterruptible;
@@ -83,6 +88,8 @@ public:
     static bool isInterruptibleCommand(void);
     static void setInterruptibleCommand(bool _isInterruptible);
     static command_origin_t getCommandOrigin();
+    static command_origin_t getCurrentCommandOrigin();
+    static void setCurrentCommandOrigin(command_origin_t _origin);
     static void execAndWait(ast::Exp* _theProgram, ast::RunVisitor *_visitor,
                             bool _isInterruptible, bool _isPrioritary, command_origin_t _iCommandOrigin);
     static bool exec(ast::Exp* _theProgram, ast::RunVisitor *_visitor);
@@ -101,6 +108,8 @@ extern "C"
     int StaticRunner_isInterruptibleCommand(void);
     void StaticRunner_setInterruptibleCommand(int val);
     command_origin_t StaticRunner_getCommandOrigin(void);
+    command_origin_t StaticRunner_getCurrentCommandOrigin(void);
+    void StaticRunner_setCurrentCommandOrigin(command_origin_t origin);
 }
 
 #endif /* !__RUNNER_HXX__ */

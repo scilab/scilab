@@ -65,8 +65,12 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
         // interrupt me to execute a prioritary command
         while (StaticRunner_isInterruptibleCommand() == 1 && StaticRunner_isRunnerAvailable() == 1)
         {
+            // save the origin of the actual running command
+            command_origin_t origin = StaticRunner_getCurrentCommandOrigin();
             StaticRunner_launch();
             StaticRunner_setInterruptibleCommand(1);
+            // restore the origin of the actual running command
+            StaticRunner_setCurrentCommandOrigin(origin);
         }
 
         if (file)
