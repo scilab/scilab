@@ -8,6 +8,8 @@ StaticRunner_launch
 StaticRunner_isRunnerAvailable
 StaticRunner_isInterruptibleCommand
 StaticRunner_setInterruptibleCommand
+StaticRunner_getCurrentCommandOrigin
+StaticRunner_setCurrentCommandOrigin
 StoreConsoleCommand
 StorePrioritaryCommand
 StoreDebuggerCommand
