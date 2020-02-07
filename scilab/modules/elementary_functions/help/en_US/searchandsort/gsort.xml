@@ -344,6 +344,7 @@ gsort(D, "g", ["i" "d"], list(int, get_frac))
         <para>
             Sorting elements in rows:
         </para>
+        <para>
         <programlisting role="example"><![CDATA[
 m = [ 0.  2.  1.  2.  1.  0.
       1.  1.  3.  1.  0.  3.
@@ -363,10 +364,11 @@ m = [ 0.  2.  1.  2.  1.  0.
    3.   6.   1.   2.   4.   5.
    2.   3.   1.   4.   5.   6.
 ]]></screen>
-        <para/>
+        </para>
         <para>
             Lexicographic sorting of rows:
         </para>
+        <para>
         <programlisting role="example"><![CDATA[
 v = ['Scilab' '3.1'
      'xcos'   '4.0'
@@ -390,11 +392,11 @@ v = ['Scilab' '3.1'
  ans  =
    4.   1.   6.   5.   3.   2.
 ]]></screen>
-        <para/>
-        <para/>
+        </para>
         <para>
             Lexicographic sorting of columns:
         </para>
+        <para>
         <programlisting role="example"><![CDATA[
 m  = [ 0.  1.  0.  1.  1.  1.  0.  1.
        0.  0.  1.  1.  1.  1.  0.  0.
@@ -413,6 +415,7 @@ m  = [ 0.  1.  0.  1.  1.  1.  0.  1.
  k  =
    1.   7.   3.   2.   8.   5.   6.   4.
 ]]></screen>
+        </para>
     <refsect3>
         <title>Multilevel sorting</title>
         <para>
@@ -420,6 +423,7 @@ m  = [ 0.  1.  0.  1.  1.  1.  0.  1.
             Sorting first: by increasing integer parts,
             second: by decreasing fractional parts.
         </para>
+        <para>
         <programlisting role="example"><![CDATA[
 // Function getting the fractional parts
 function r = get_frac(d)
@@ -435,7 +439,7 @@ d = [
    0.1   2.2   2.1   0.2   1.1   0.3
   ];
 // Sorting
-[r, k] = %gsort_multilevel(d, "g", ["i" "d"], list(int, get_frac))
+[r, k] = gsort(d, "g", ["i" "d"], list(int, get_frac))
 ]]>     </programlisting>
         <screen><![CDATA[
  r  =
@@ -452,18 +456,19 @@ d = [
    20.   21.   7.    26.   12.   15.
    3.    24.   8.    13.   19.   27.
 ]]></screen>
-        <para/>
+        </para>
         <para>
             <emphasis role="bold">With complex numbers</emphasis>:
             Sorting, first: by increasing real parts, second: by increasing imaginary parts.
         </para>
+        <para>
         <programlisting role="example"><![CDATA[
 //c = [-1 1 ; -1 0; 0 2; 0 %nan; 0 -1; 0 %inf ; 0 1; 1 %nan ; 1 1; 1 -1 ; -1 %nan ; 1 -%inf]
 //c = matrix(squeeze(grand(1,"prm",complex(c(:,1), c(:,2)))), [3,4])
 s = "complex([0,0,-1,-1;0,-1,1,1;1,1,0,0]," + ..
             "[%inf,2,%nan,1;-1,0,-1,%nan;1,-%inf,1,%nan])";
 c = evstr(s)
-[r, k] = %gsort_multilevel(c, "g", ["i" "i"], list(real, imag))
+[r, k] = gsort(c, "g", ["i" "i"], list(real, imag))
 ]]>     </programlisting>
     <screen><![CDATA[
 --> c = evstr(s)
@@ -482,11 +487,12 @@ c = evstr(s)
    10.   9.   12.   3.
    7.    4.   6.    11.
 ]]></screen>
-        <para/>
+        </para>
         <para>
             <emphasis role="bold">With some texts:</emphasis>
             Sorting rows in columns, first by increasing lengths, second by alphabetical order
         </para>
+        <para>
         <programlisting role="example"><![CDATA[
 t = [
   "cc"    "ca"    "ab"    "bbca"  "b"     "ccbc"  "aab"   "bca"
@@ -497,10 +503,10 @@ t = [
   "cba"   "cc"    "a"     "abbb"  "ab"    "cc"    "bba"   "caaa"
   ];
 
-[r, k] = %gsort_multilevel(t, "r", ["i" "i"], list(length, :))
+[r, k] = gsort(t, "r", ["i" "i"], list(length, :))
 ]]>     </programlisting>
         <screen><![CDATA[
---> [r, k] = %gsort_multilevel(t, "r", ["i" "i"], list(length, :))
+--> [r, k] = gsort(t, "r", ["i" "i"], list(length, :))
  r  =
   "c"     "b"    "a"     "a"     "a"    "bc"    "b"    "b"
   "ac"    "ac"   "b"     "bb"    "b"    "cc"    "aa"   "b"
@@ -517,6 +523,7 @@ t = [
    5.   6.   4.   3.   4.   4.   5.   1.
    3.   2.   5.   5.   5.   1.   6.   6.
 ]]></screen>
+        </para>
 <!--  Display up to 6.0.2 (without extra blank lines)
  r  =
 !c     b    a     a     a    bc    b    b     !
@@ -526,11 +533,11 @@ t = [
 !cbb   cc   cbb   bbca  aab  abbb  acb  bca   !
 !aaaa  bba  cabb  bccc  aba  ccbc  bba  caaa  !
 -->
-        <para/>
         <para>
             <emphasis role="bold">With some polynomials:</emphasis>
             Sorting first: by decreasing values of x^0, second: by increasing degrees.
         </para>
+        <para>
         <programlisting role="example"><![CDATA[
 function c = get_coef(p, d)
     // d : degree of the coeffs to return
@@ -544,7 +551,7 @@ P = ["[-x,1-2*x,2+2*x,1-x,2,-1-x;"
 x = varn(%s,"x");
 P = evstr(P)
 
-[r, k] = %gsort_multilevel(P, "g", ["d" "i"], list(list(get_coef, 0), degree))
+[r, k] = gsort(P, "g", ["d" "i"], list(list(get_coef, 0), degree))
 ]]>     </programlisting>
         <screen><![CDATA[
 --> P = evstr(P)
@@ -553,7 +560,7 @@ P = evstr(P)
    1 -x  -1 +x   -1       x      1 +2x   2x
   -2 +x   1      -2       2 +x   -x     -1 -x
 
---> [r, k] = %gsort_multilevel(P, "g", ["d" "i"], list(list(get_coef, 0), degree))
+--> [r, k] = gsort(P, "g", ["d" "i"], list(list(get_coef, 0), degree))
  r  =
   2      1      1 -x   x   -1     -1 -x
   2 +2x  1 -x   1 +2x  -x  -1 +x  -2
@@ -564,6 +571,7 @@ P = evstr(P)
    7.    2.   14.   15.   5.    9.
    12.   4.   1.    17.   16.   3.
 ]]></screen>
+        </para>
     </refsect3>
     </refsection>
     <refsection role="see also">

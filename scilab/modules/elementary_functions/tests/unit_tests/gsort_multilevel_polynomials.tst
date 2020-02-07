@@ -52,7 +52,7 @@ p = evstr(p);
 
 // "g" multilevel sorting
 // ----------------------
-[r, k] = %gsort_multilevel(p, "g", ["i" "i"], crit);
+[r, k] = gsort(p, "g", ["i" "i"], crit);
 ref = [
   "[0*x,2+x,2+2*x,x+x^2,2*x+x^2,2*x^2;"
   "0*x,2+x,2+x^2,2+x+x^2,x+x^2,2*x+2*x^2;"
@@ -81,7 +81,7 @@ kref = [
 assert_checkequal(r, ref);
 assert_checkequal(k, kref);
 //
-[r, k] = %gsort_multilevel(p, "g", ["i" "d"], crit);
+[r, k] = gsort(p, "g", ["i" "d"], crit);
 ref = [
   "[0*x,1+2*x,2+x,1+x+2*x^2,1+2*x+x^2,1+2*x+x^2;"
   "0*x,2*x,1+2*x^2,2*x+2*x^2,1+2*x+x^2,2+2*x+x^2;"
@@ -112,7 +112,7 @@ assert_checkequal(k, kref);
 
 // "r" and "c" multilevel sorting
 // ------------------------------
-[r, k] = %gsort_multilevel(p, "c", ["i" "i"], crit);
+[r, k] = gsort(p, "c", ["i" "i"], crit);
 ref = [
   "[0*x,2+x,2*x,1+2*x+x^2,2*x+x^2,1+2*x+2*x^2;"
   "0*x,2+x^2,2*x+x^2,2*x^2,1+x+2*x^2,2*x+2*x^2;"
@@ -141,7 +141,7 @@ kref = [
 assert_checkequal(r, ref);
 assert_checkequal(k, kref);
 //
-[r, k] = %gsort_multilevel(p, "c", ["d" "i"], crit);
+[r, k] = gsort(p, "c", ["d" "i"], crit);
 ref = [
   "[1+2*x+x^2,2*x+x^2,1+2*x+2*x^2,2+x,2*x,0*x;"
   "2+x^2,2*x+x^2,2*x^2,1+x+2*x^2,2*x+2*x^2,0*x;"
@@ -170,7 +170,7 @@ kref = [
 assert_checkequal(r, ref);
 assert_checkequal(k, kref);
 //
-[r, k] = %gsort_multilevel(p, "r", ["i" "i"], crit);
+[r, k] = gsort(p, "r", ["i" "i"], crit);
 ref = [
   "[x,x,0*x,2+x,1,0*x;"
   "2*x,2*x,1+x+x^2,1+2*x,2,2+x;"
@@ -199,7 +199,7 @@ kref = [
 assert_checkequal(r, ref);
 assert_checkequal(k, kref);
 //
-[r, k] = %gsort_multilevel(p, "r", ["d" "i"], crit);
+[r, k] = gsort(p, "r", ["d" "i"], crit);
 ref = [
   "[2+x^2,1+2*x+x^2,1+x+x^2,2+2*x+x^2,2*x+x^2,2+2*x+x^2;"
   "2*x+x^2,2*x+x^2,1+2*x+x^2,2*x^2,x+x^2,2*x+2*x^2;"
@@ -246,10 +246,11 @@ p = evstr(p);
   2 +2x  1 +2x  x      1     0      2 +x
   2      1 +2x  1 +2x  x     x      1 +2x
   1      2      1 +x   2     1      0
+
   1 +x   2x     1      1     2 +2x  x
   2 +x   0      2 +x   0     2x     x
 */
-[r, k] = %gsort_multilevel(p, "lr", ["i" "i"], crit);
+[r, k] = gsort(p, "lr", ["i" "i"], crit);
 ref = [
   "[0*x,x,2*x,2,2+x,1+x;"
   "1,2,1+x,2,1,0*x;"
@@ -273,7 +274,7 @@ assert_checkequal(r, ref);
 assert_checkequal(k', [2  5  4  7  6  3  1]);
 
 //
-[r, k] = %gsort_multilevel(p, "lr", ["d" "i"], crit);
+[r, k] = gsort(p, "lr", ["d" "i"], crit);
 ref = [
   "[1+x,2*x,1,1,2+2*x,x;"
   "2+x,0*x,2+x,0*x,2*x,x;"
@@ -296,7 +297,7 @@ ref = evstr(ref);
 assert_checkequal(r, ref);
 assert_checkequal(k', [6  7  1  3  5  4  2]);
 //
-[r, k] = %gsort_multilevel(p, "lc", ["i" "i"], crit);
+[r, k] = gsort(p, "lc", ["i" "i"], crit);
 ref = [
   "[1+x,2+x,2+2*x,1+2*x,1+2*x,2+2*x;"
   "2,2*x,0*x,2+x,1+x,x;"
@@ -319,7 +320,7 @@ ref = evstr(ref);
 assert_checkequal(r, ref);
 assert_checkequal(k, [4  3  1  5  6  2]);
 //
-[r, k] = %gsort_multilevel(p, "lc", ["d" "i"], crit);
+[r, k] = gsort(p, "lc", ["d" "i"], crit);
 ref = [
   "[2+x,1+x,1+2*x,2+2*x,1+2*x,2+2*x;"
   "2*x,2,1+x,x,2+x,0*x;"

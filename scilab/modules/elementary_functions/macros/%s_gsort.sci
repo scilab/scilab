@@ -61,4 +61,7 @@ function [sorted, indin] = %s_gsort(array, method, sortdir, criteria)
     // Indices are computed anyway.
    [sorted, indin] = %gsort_multilevel(array, method, sortdir, criteria)
 
+   if ~isreal(array) & isreal(sorted) then
+       sorted = complex(sorted, 0)
+   end
 endfunction

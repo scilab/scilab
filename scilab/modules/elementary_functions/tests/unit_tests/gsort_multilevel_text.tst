@@ -14,17 +14,17 @@
 //====================================================================
 
 t = [
-  "cc"    "ca"    "ab"    "bbca"  "b"     "ccbc"  "aab"   "bca" 
-  "ac"    "bba"   "aba"   "bb"    "a"     "cac"   "b"     "b"   
-  "aaaa"  "ac"    "b"     "bbca"  "bb"    "bc"    "aa"    "ca"  
-  "c"     "ba"    "cbb"   "a"     "aab"   "abbb"  "ac"    "c"   
-  "cbb"   "b"     "cabb"  "bccc"  "aba"   "acb"   "acb"   "b"   
+  "cc"    "ca"    "ab"    "bbca"  "b"     "ccbc"  "aab"   "bca"
+  "ac"    "bba"   "aba"   "bb"    "a"     "cac"   "b"     "b"
+  "aaaa"  "ac"    "b"     "bbca"  "bb"    "bc"    "aa"    "ca"
+  "c"     "ba"    "cbb"   "a"     "aab"   "abbb"  "ac"    "c"
+  "cbb"   "b"     "cabb"  "bccc"  "aba"   "acb"   "acb"   "b"
   "cba"   "cc"    "a"     "abbb"  "ab"    "cc"    "bba"   "caaa"
   ];
 
 // "g" multilevel sorting
 // ----------------------
-[r, k] = %gsort_multilevel(t, "g", ["i" "i"], list(length,:));
+[r, k] = gsort(t, "g", ["i" "i"], list(length,:));
 ref = [
   "a"  "b"   "ab"  "bb"  "cc"   "acb"  "cba"   "bbca"
   "a"  "b"   "ab"  "bb"  "cc"   "acb"  "cbb"   "bbca"
@@ -44,7 +44,7 @@ kref = [
 assert_checkequal(r, ref);
 assert_checkequal(k, kref);
 //
-[r, k] = %gsort_multilevel(t, "g", ["i" "d"], list(length,:));
+[r, k] = gsort(t, "g", ["i" "d"], list(length,:));
 ref = [
   "c"  "b"   "cc"  "bb"  "ab"   "bca"  "aba"   "bccc"
   "c"  "b"   "cc"  "ba"  "aa"   "bba"  "aab"   "bbca"
@@ -66,10 +66,10 @@ assert_checkequal(k, kref);
 
 // "r" and "c" multilevel sorting
 // ------------------------------
-[r, k] = %gsort_multilevel(t, "c", ["i" "i"], list(length,:));
+[r, k] = gsort(t, "c", ["i" "i"], list(length,:));
 ref = [
   "b"  "ab"  "ca"   "cc"   "aab"  "bca"  "bbca"  "ccbc"
-  "a"  "b"   "b"    "ac"   "bb"   "aba"  "bba"   "cac" 
+  "a"  "b"   "b"    "ac"   "bb"   "aba"  "bba"   "cac"
   "b"  "aa"  "ac"   "bb"   "bc"   "ca"   "aaaa"  "bbca"
   "a"  "c"   "c"    "ac"   "ba"   "aab"  "cbb"   "abbb"
   "b"  "b"   "aba"  "acb"  "acb"  "cbb"  "bccc"  "cabb"
@@ -86,7 +86,7 @@ kref = [
 assert_checkequal(r, ref);
 assert_checkequal(k, kref);
 //
-[r, k] = %gsort_multilevel(t, "c", ["d" "i"], list(length,:));
+[r, k] = gsort(t, "c", ["d" "i"], list(length,:));
 ref = [
   "bbca"  "ccbc"  "aab"  "bca"  "ab"   "ca"   "cc"  "b"
   "aba"   "bba"   "cac"  "ac"   "bb"   "a"    "b"   "b"
@@ -106,13 +106,13 @@ kref = [
 assert_checkequal(r, ref);
 assert_checkequal(k, kref);
 //
-[r, k] = %gsort_multilevel(t, "r", ["i" "i"], list(length,:));
+[r, k] = gsort(t, "r", ["i" "i"], list(length,:));
 ref = [
-  "c"     "b"    "a"     "a"     "a"    "bc"    "b"    "b"   
-  "ac"    "ac"   "b"     "bb"    "b"    "cc"    "aa"   "b"   
-  "cc"    "ba"   "ab"    "abbb"  "ab"   "acb"   "ac"   "c"   
-  "cba"   "ca"   "aba"   "bbca"  "bb"   "cac"   "aab"  "ca"  
-  "cbb"   "cc"   "cbb"   "bbca"  "aab"  "abbb"  "acb"  "bca" 
+  "c"     "b"    "a"     "a"     "a"    "bc"    "b"    "b"
+  "ac"    "ac"   "b"     "bb"    "b"    "cc"    "aa"   "b"
+  "cc"    "ba"   "ab"    "abbb"  "ab"   "acb"   "ac"   "c"
+  "cba"   "ca"   "aba"   "bbca"  "bb"   "cac"   "aab"  "ca"
+  "cbb"   "cc"   "cbb"   "bbca"  "aab"  "abbb"  "acb"  "bca"
   "aaaa"  "bba"  "cabb"  "bccc"  "aba"  "ccbc"  "bba"  "caaa"
   ];
 kref = [
@@ -126,14 +126,14 @@ kref = [
 assert_checkequal(r, ref);
 assert_checkequal(k, kref);
 //
-[r, k] = %gsort_multilevel(t, "r", ["d" "i"], list(length,:));
+[r, k] = gsort(t, "r", ["d" "i"], list(length,:));
 ref = [
   "aaaa"  "bba"  "cabb"  "abbb"  "aab"  "abbb"  "aab"  "caaa"
-  "cba"   "ac"   "aba"   "bbca"  "aba"  "ccbc"  "acb"  "bca" 
-  "cbb"   "ba"   "cbb"   "bbca"  "ab"   "acb"   "bba"  "ca"  
-  "ac"    "ca"   "ab"    "bccc"  "bb"   "cac"   "aa"   "b"   
-  "cc"    "cc"   "a"     "bb"    "a"    "bc"    "ac"   "b"   
-  "c"     "b"    "b"     "a"     "b"    "cc"    "b"    "c"   
+  "cba"   "ac"   "aba"   "bbca"  "aba"  "ccbc"  "acb"  "bca"
+  "cbb"   "ba"   "cbb"   "bbca"  "ab"   "acb"   "bba"  "ca"
+  "ac"    "ca"   "ab"    "bccc"  "bb"   "cac"   "aa"   "b"
+  "cc"    "cc"   "a"     "bb"    "a"    "bc"    "ac"   "b"
+  "c"     "b"    "b"     "a"     "b"    "cc"    "b"    "c"
   ];
 kref = [
   3  2  5  6  4  4  1  6
@@ -150,61 +150,61 @@ assert_checkequal(k, kref);
 // --------------------------------
 t = [
   "aa"  "bb"  "b"   "aa"  "b"   "b"   "bb"  "bb"
-  "b"   "b"   "b"   "aa"  "a"   "a"   "ab"  "a" 
-  "bb"  "b"   "bb"  "b"   "a"   "b"   "ba"  "b" 
+  "b"   "b"   "b"   "aa"  "a"   "a"   "ab"  "a"
+  "bb"  "b"   "bb"  "b"   "a"   "b"   "ba"  "b"
   "b"   "b"   "ba"  "a"   "b"   "b"   "ba"  "bb"
   "ba"  "aa"  "ba"  "ba"  "ba"  "ab"  "a"   "aa"
-  "b"   "a"   "bb"  "a"   "aa"  "b"   "ab"  "b" 
+  "b"   "a"   "bb"  "a"   "aa"  "b"   "ab"  "b"
   "b"   "ab"  "aa"  "ba"  "ab"  "b"   "a"   "ba"
-  "b"   "aa"  "bb"  "aa"  "bb"  "a"   "bb"  "a" 
+  "b"   "aa"  "bb"  "aa"  "bb"  "a"   "bb"  "a"
     ];
-[r, k] = %gsort_multilevel(t, "lr", ["i" "i"], list(length,:));
+[r, k] = gsort(t, "lr", ["i" "i"], list(length,:));
 ref = [
-  "b"   "a"   "bb"  "a"   "aa"  "b"   "ab"  "b" 
-  "b"   "b"   "b"   "aa"  "a"   "a"   "ab"  "a" 
+  "b"   "a"   "bb"  "a"   "aa"  "b"   "ab"  "b"
+  "b"   "b"   "b"   "aa"  "a"   "a"   "ab"  "a"
   "b"   "b"   "ba"  "a"   "b"   "b"   "ba"  "bb"
-  "b"   "aa"  "bb"  "aa"  "bb"  "a"   "bb"  "a" 
+  "b"   "aa"  "bb"  "aa"  "bb"  "a"   "bb"  "a"
   "b"   "ab"  "aa"  "ba"  "ab"  "b"   "a"   "ba"
   "aa"  "bb"  "b"   "aa"  "b"   "b"   "bb"  "bb"
   "ba"  "aa"  "ba"  "ba"  "ba"  "ab"  "a"   "aa"
-  "bb"  "b"   "bb"  "b"   "a"   "b"   "ba"  "b" 
+  "bb"  "b"   "bb"  "b"   "a"   "b"   "ba"  "b"
   ];
 assert_checkequal(r, ref);
 assert_checkequal(k', [6  2  4  8  7  1  5  3]);
 
 //
-[r, k] = %gsort_multilevel(t, "lr", ["d" "i"], list(length,:));
+[r, k] = gsort(t, "lr", ["d" "i"], list(length,:));
 ref = [
   "aa"  "bb"  "b"   "aa"  "b"   "b"   "bb"  "bb"
   "ba"  "aa"  "ba"  "ba"  "ba"  "ab"  "a"   "aa"
-  "bb"  "b"   "bb"  "b"   "a"   "b"   "ba"  "b" 
-  "b"   "aa"  "bb"  "aa"  "bb"  "a"   "bb"  "a" 
+  "bb"  "b"   "bb"  "b"   "a"   "b"   "ba"  "b"
+  "b"   "aa"  "bb"  "aa"  "bb"  "a"   "bb"  "a"
   "b"   "ab"  "aa"  "ba"  "ab"  "b"   "a"   "ba"
-  "b"   "a"   "bb"  "a"   "aa"  "b"   "ab"  "b" 
+  "b"   "a"   "bb"  "a"   "aa"  "b"   "ab"  "b"
   "b"   "b"   "ba"  "a"   "b"   "b"   "ba"  "bb"
-  "b"   "b"   "b"   "aa"  "a"   "a"   "ab"  "a" 
+  "b"   "b"   "b"   "aa"  "a"   "a"   "ab"  "a"
   ];
 assert_checkequal(r, ref);
 assert_checkequal(k', [1  5  3  8  7  6  4  2]);
 //
-[r, k] = %gsort_multilevel(t, "lc", ["i" "i"], list(length,:));
+[r, k] = gsort(t, "lc", ["i" "i"], list(length,:));
 ref = [
   "b"   "b"   "b"   "aa"  "aa"  "bb"  "bb"  "bb"
   "a"   "a"   "b"   "b"   "aa"  "a"   "b"   "ab"
   "a"   "b"   "bb"  "bb"  "b"   "b"   "b"   "ba"
   "b"   "b"   "ba"  "b"   "a"   "bb"  "b"   "ba"
-  "ba"  "ab"  "ba"  "ba"  "ba"  "aa"  "aa"  "a" 
+  "ba"  "ab"  "ba"  "ba"  "ba"  "aa"  "aa"  "a"
   "aa"  "b"   "bb"  "b"   "a"   "b"   "a"   "ab"
-  "ab"  "b"   "aa"  "b"   "ba"  "ba"  "ab"  "a" 
+  "ab"  "b"   "aa"  "b"   "ba"  "ba"  "ab"  "a"
   "bb"  "a"   "bb"  "b"   "aa"  "a"   "aa"  "bb"
   ];
 assert_checkequal(r, ref);
 assert_checkequal(k, [5  6  3  1  4  8  2  7]);
 //
-[r, k] = %gsort_multilevel(t, "lc", ["d" "i"], list(length,:));
+[r, k] = gsort(t, "lc", ["d" "i"], list(length,:));
 ref = [
-  "aa"  "aa"  "bb"  "bb"  "bb"  "b"   "b"   "b" 
-  "aa"  "b"   "ab"  "a"   "b"   "a"   "a"   "b" 
+  "aa"  "aa"  "bb"  "bb"  "bb"  "b"   "b"   "b"
+  "aa"  "b"   "ab"  "a"   "b"   "a"   "a"   "b"
   "b"   "bb"  "ba"  "b"   "b"   "a"   "b"   "bb"
   "a"   "b"   "ba"  "bb"  "b"   "b"   "b"   "ba"
   "ba"  "ba"  "a"   "aa"  "aa"  "ba"  "ab"  "ba"

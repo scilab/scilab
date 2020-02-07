@@ -110,6 +110,9 @@ function [sorted, K] = %gsort_multilevel(array, sortype, sortdir, criteria)
                 sorted = array(:, K)
             end
         end
+        if type(array)==1 & ~isreal(array) & isreal(sorted)
+            sorted = complex(sorted, 0)
+        end
         return
     end
 
@@ -165,6 +168,9 @@ function [sorted, K] = %gsort_multilevel(array, sortype, sortdir, criteria)
         sorted = array(:,K)
     end
 
+    if type(array)==1 & ~isreal(array) & isreal(sorted)
+        sorted = complex(sorted, 0)
+    end
 endfunction
 // ------------------------------------------------------
 function v = %gsort_eval(a, fun)
