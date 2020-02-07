@@ -1383,6 +1383,10 @@ msgstr ""
 "Hinfノルムはおそらく sv(D)の最大値となっています.\n"
 "このシステムはおそらく全域通過特性を有しています."
 
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr ""
+
 msgid "Hall chart"
 msgstr "ホール図"
 
@@ -1557,6 +1561,13 @@ msgstr "位相(y) (度)"
 msgid "magnitude(y) (dB)"
 msgstr "振幅(y) (dB)"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument %s: real floating point array expected\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています : 実数の浮動小数点数の配列を指定してく"
+"ださい\n"
+
 msgid "Nyquist plot"
 msgstr "ナイキスト線図"
 
@@ -1650,8 +1661,12 @@ msgstr "%s: 引数 #%d: 状態空間または伝達関数でシステムを指�
 msgid "%s: Stationary Riccati solver failed.\n"
 msgstr "%s: 定常リカッチソルバが失敗しました.\n"
 
-#, c-format
-msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %s expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: No solution found. Dimension(stable subspace)=%d. %d expected.\n"
 msgstr "%s: 安定な部分空間の次元 (%d)が不正です: %d としてください.\n"
 
 #, c-format
@@ -1682,10 +1697,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
 msgstr ""
 
 #, c-format

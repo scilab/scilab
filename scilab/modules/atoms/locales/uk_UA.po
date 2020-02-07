@@ -1196,7 +1196,6 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «ASC» "
 "або «DESC».\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
 #~ "check if you have write access on this directory : %s.\n"
@@ -1205,7 +1204,6 @@ msgstr ""
 #~ "перевірте, чи є у вас права доступу на запис до відповідного каталогу: "
 #~ "%s.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
 #~ "please check if you have write access on this directory : %s.\n"

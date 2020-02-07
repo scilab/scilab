@@ -1133,7 +1133,6 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr "%s: Falscher Wert für Eingangsargument #%d: ASC oder DESC erwartet.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
 #~ "check if you have write access on this directory : %s.\n"
@@ -1142,7 +1141,6 @@ msgstr "%s: Falscher Wert für Eingangsargument #%d: ASC oder DESC erwartet.\n"
 #~ "überprüfen Sie bitte, ob Sie Schreibzugriffsrechte zu diesem Verzeichnis "
 #~ "haben: %s.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
 #~ "please check if you have write access on this directory : %s.\n"

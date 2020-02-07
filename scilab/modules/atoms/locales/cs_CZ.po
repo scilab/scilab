@@ -1127,7 +1127,6 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno ASC (vzestupně) nebo "
 "DESC (sestupně).\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
 #~ "check if you have write access on this directory : %s.\n"
@@ -1135,7 +1134,6 @@ msgstr ""
 #~ "%s: Adresář tohoto balíčku (%s-%s) nelze smazat, zkontrolujte, prosím, "
 #~ "zdali máte přístup pro zápis do tohoto adresáře : %s.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
 #~ "please check if you have write access on this directory : %s.\n"

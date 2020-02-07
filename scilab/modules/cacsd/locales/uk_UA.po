@@ -1398,6 +1398,10 @@ msgstr ""
 "sv(D).\n"
 "Система може бути всепрохідною (all-pass)."
 
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr ""
+
 msgid "Hall chart"
 msgstr "Частотна діаграма"
 
@@ -1580,6 +1584,13 @@ msgstr "фаза (y) (у градусах)"
 msgid "magnitude(y) (dB)"
 msgstr "magnitude(y) (дБ)"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument %s: real floating point array expected\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано масив "
+"дійсних значень з плаваючою крапкою\n"
+
 msgid "Nyquist plot"
 msgstr "діаграма Найквіста"
 
@@ -1673,8 +1684,12 @@ msgid "%s: Stationary Riccati solver failed.\n"
 msgstr ""
 "%s: спроба розв’язання стаціонарного рівняння Рікатті зазнала невдачі.\n"
 
-#, c-format
-msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %s expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: No solution found. Dimension(stable subspace)=%d. %d expected.\n"
 msgstr ""
 "%s: помилкова розмірність (%d) підпростору стійкості: мала бути розмірність "
 "%d.\n"
@@ -1712,10 +1727,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
 msgstr ""
 
 #, c-format

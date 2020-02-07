@@ -320,6 +320,10 @@ msgstr "Impossible de charger la librairie %s\n"
 msgid "Impossible to load %s function in %s library: %s\n"
 msgstr "Impossible de charger la fonction %s de la librairie %s : %s\n"
 
+#, fuzzy
+msgid "Cannot allocate memory"
+msgstr "Impossible d'allouer %.2f MB de mémoire.\n"
+
 #, c-format
 msgid "Functions files location : %s.\n"
 msgstr "Emplacement des fichiers des fonctions : %s.\n"
@@ -407,7 +411,6 @@ msgstr "Le champ \"\"%ls\"\" n'existe pas\n"
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr "taille de variable excédée : moins que %d attendu.\n"
 
-#, c-format
 #~ msgid "%s: function is disabled in debug mode.\n"
 #~ msgstr "%s : la fonction est désactivée en mode débogage.\n"
 

@@ -1128,7 +1128,6 @@ msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ASC o DESC.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
 #~ "check if you have write access on this directory : %s.\n"
@@ -1136,7 +1135,6 @@ msgstr ""
 #~ "%s: No es pot eliminar el directori d'aquest paquet (%s-%s). Comproveu "
 #~ "que teniu accés d'escriptura a aquest directori: %s.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
 #~ "please check if you have write access on this directory : %s.\n"

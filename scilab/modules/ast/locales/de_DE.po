@@ -303,6 +303,11 @@ msgstr ""
 msgid "Impossible to load %s function in %s library: %s\n"
 msgstr ""
 
+#
+# File: modules/ast/src/cpp/types/implicitlist.cpp, line: 248
+msgid "Cannot allocate memory"
+msgstr ""
+
 #, c-format
 msgid "Functions files location : %s.\n"
 msgstr ""
@@ -390,6 +395,5 @@ msgstr ""
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr ""
 
-#, c-format
 #~ msgid "%s: function is disabled in debug mode.\n"
 #~ msgstr "%s: Funktion ist im Debug-Modus deaktiviert.\n"

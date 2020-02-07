@@ -1030,7 +1030,6 @@ msgstr "%s：输入参数 #%d 的值出错：这是一个无效的版本。\n"
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为 ASC 或 DESC。\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
 #~ "please check if you have write access on this directory : %s.\n"

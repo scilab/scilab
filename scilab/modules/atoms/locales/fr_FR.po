@@ -1186,7 +1186,6 @@ msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : ASC ou DESC attendu.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
 #~ "check if you have write access on this directory : %s.\n"
@@ -1195,7 +1194,6 @@ msgstr ""
 #~ "veuillez vérifier que vous disposez des droits d'écriture dans ce "
 #~ "répertoire : %s.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
 #~ "please check if you have write access on this directory : %s.\n"

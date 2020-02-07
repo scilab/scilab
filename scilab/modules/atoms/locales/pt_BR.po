@@ -1177,7 +1177,6 @@ msgstr ""
 "%s: Valor incorreto para o %dº argumento de entrada: esperava-se ASC ou "
 "DESC.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
 #~ "check if you have write access on this directory : %s.\n"
@@ -1185,7 +1184,6 @@ msgstr ""
 #~ "%s: O diretório deste pacote (%s-%s) não pode ser excluído. Por favor, "
 #~ "confira se você tem permissão de escrita neste diretório : %s.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
 #~ "please check if you have write access on this directory : %s.\n"

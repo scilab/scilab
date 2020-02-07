@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-01-14 14:21+0100\n"
+"Revision-Date: 2020-02-07 09:15+0100\n"
 
 # File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 34
 # File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 61
@@ -72,8 +72,8 @@ msgstr ""
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 89
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 107
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 131
-# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 82
-# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 99
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 80
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 97
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 86
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 102
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 117
@@ -867,9 +867,9 @@ msgstr ""
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 81
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 99
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 123
-# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 64
-# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 74
-# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 91
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 62
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 72
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 89
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 78
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 94
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 234
@@ -881,7 +881,7 @@ msgstr ""
 #
 # File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 50
 # File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 52
-# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 56
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 54
 # File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 60
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 68
 #, c-format
@@ -905,7 +905,7 @@ msgstr ""
 # File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 493
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 146
 # File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 154
-# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 111
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 109
 # File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 133
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 259
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 274
@@ -976,8 +976,8 @@ msgid "%s: Wrong size for argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 153
-# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 180
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 147
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 179
 #, c-format
 msgid "%s: Uncontrollable system.\n"
 msgstr ""
@@ -1933,7 +1933,7 @@ msgstr ""
 
 #
 # File: modules/cacsd/macros/evans.sci, line: 140
-# File: modules/cacsd/macros/hallchart.sci, line: 53
+# File: modules/cacsd/macros/hallchart.sci, line: 99
 # File: modules/cacsd/macros/plzr.sci, line: 112
 # File: modules/cacsd/macros/plzr.sci, line: 120
 msgid "Real axis"
@@ -1941,7 +1941,7 @@ msgstr ""
 
 #
 # File: modules/cacsd/macros/evans.sci, line: 141
-# File: modules/cacsd/macros/hallchart.sci, line: 54
+# File: modules/cacsd/macros/hallchart.sci, line: 100
 # File: modules/cacsd/macros/plzr.sci, line: 113
 # File: modules/cacsd/macros/plzr.sci, line: 121
 msgid "Imaginary axis"
@@ -2037,7 +2037,6 @@ msgstr ""
 # File: modules/cacsd/macros/formatGainplotTip.sci, line: 16
 # File: modules/cacsd/macros/formatHallModuleTip.sci, line: 15
 # File: modules/cacsd/macros/formatNicholsGainTip.sci, line: 15
-# File: modules/cacsd/macros/hallchart.sci, line: 91
 msgid "dB"
 msgstr ""
 
@@ -2315,7 +2314,15 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/macros/hallchart.sci, line: 55
+# File: modules/cacsd/macros/hallchart.sci, line: 74
+# File: modules/cacsd/macros/nicholschart.sci, line: 76
+# File: modules/cacsd/macros/sgrid.sci, line: 84
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/hallchart.sci, line: 101
 msgid "Hall chart"
 msgstr ""
 
@@ -2567,18 +2574,26 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/macros/nicholschart.sci, line: 31
+# File: modules/cacsd/macros/nicholschart.sci, line: 34
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/nicholschart.sci, line: 32
+# File: modules/cacsd/macros/nicholschart.sci, line: 35
 msgid "phase(y) (degree)"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/nicholschart.sci, line: 33
+# File: modules/cacsd/macros/nicholschart.sci, line: 36
 msgid "magnitude(y) (dB)"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/nicholschart.sci, line: 55
+# File: modules/cacsd/macros/nicholschart.sci, line: 64
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: real floating point array expected\n"
 msgstr ""
 
 #
@@ -2713,17 +2728,21 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/cacsd/macros/ric_desc.sci, line: 59
+# File: modules/cacsd/macros/ric_desc.sci, line: 60
 #, c-format
 msgid "%s: Stationary Riccati solver failed.\n"
 msgstr ""
 
 #
-# File: modules/cacsd/macros/riccati.sci, line: 37
-# File: modules/cacsd/macros/riccati.sci, line: 45
-# File: modules/cacsd/macros/riccati.sci, line: 53
+# File: modules/cacsd/macros/riccati.sci, line: 33
 #, c-format
-msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
+msgid "%s: Wrong number of input arguments: %s expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/riccati.sci, line: 36
+#, c-format
+msgid "%s: No solution found. Dimension(stable subspace)=%d. %d expected.\n"
 msgstr ""
 
 #
@@ -2772,12 +2791,6 @@ msgstr ""
 # File: modules/cacsd/macros/sgrid.sci, line: 80
 #, c-format
 msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
-msgstr ""
-
-#
-# File: modules/cacsd/macros/sgrid.sci, line: 84
-#, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
 msgstr ""
 
 #

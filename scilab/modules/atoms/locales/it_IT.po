@@ -1186,7 +1186,6 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ASC o "
 "DESC.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
 #~ "check if you have write access on this directory : %s.\n"
@@ -1194,7 +1193,6 @@ msgstr ""
 #~ "%s: La directory di questo pacchetto (%s-%s) non può essere eliminata, "
 #~ "controllare i permessi di accesso in scrittura alla directory : %s.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
 #~ "please check if you have write access on this directory : %s.\n"

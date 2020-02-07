@@ -1146,7 +1146,6 @@ msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: ASCまたはDESCを指定してください.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
 #~ "check if you have write access on this directory : %s.\n"
@@ -1154,7 +1153,6 @@ msgstr ""
 #~ "%s: このパッケージ(%s-%s)のディレクトリを削除できません、このディレクト"
 #~ "リーで書き込みアクセス権を持つかどうか確かめて下さい : %s\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
 #~ "please check if you have write access on this directory : %s.\n"

@@ -328,6 +328,10 @@ msgstr "Не вдалося завантажити бібліотеку %s\n"
 msgid "Impossible to load %s function in %s library: %s\n"
 msgstr "Не вдалося завантажити функцію %s у бібліотеці %s: %s\n"
 
+#, fuzzy
+msgid "Cannot allocate memory"
+msgstr "Не вдалося отримати %.2f МБ пам’яті.\n"
+
 #, c-format
 msgid "Functions files location : %s.\n"
 msgstr "Розташування файлів функції: %s.\n"
@@ -416,7 +420,6 @@ msgstr "Поля «%ls» не існує\n"
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr "перевищено розмірність змінної: мало бути менше за %d.\n"
 
-#, c-format
 #~ msgid "%s: function is disabled in debug mode.\n"
 #~ msgstr "%s: функцію вимкнено у діагностичному режимі.\n"
 

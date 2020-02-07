@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-01-14 14:21+0100\n"
+"Revision-Date: 2020-02-07 09:15+0100\n"
 
 # File: modules/ast/src/c/operations/matrix_power.c, line: 544
 # File: modules/ast/src/c/operations/matrix_power.c, line: 684
@@ -104,16 +104,16 @@ msgstr ""
 # File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1430
 # File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 1879
 # File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 2020
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 2149
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 2148
 # File: modules/ast/src/cpp/types/arrayof.cpp, line: 494
-# File: modules/ast/src/cpp/types/arrayof.cpp, line: 1782
-# File: modules/ast/src/cpp/types/implicitlist.cpp, line: 619
-# File: modules/ast/src/cpp/types/macro.cpp, line: 386
-# File: modules/ast/src/cpp/types/sparse.cpp, line: 2230
-# File: modules/ast/src/cpp/types/sparse.cpp, line: 4187
+# File: modules/ast/src/cpp/types/arrayof.cpp, line: 1795
+# File: modules/ast/src/cpp/types/implicitlist.cpp, line: 624
+# File: modules/ast/src/cpp/types/macro.cpp, line: 399
+# File: modules/ast/src/cpp/types/sparse.cpp, line: 2261
+# File: modules/ast/src/cpp/types/sparse.cpp, line: 4218
 # File: modules/ast/src/cpp/types/types_tools.cpp, line: 296
 # File: modules/ast/src/cpp/types/types_tools.cpp, line: 394
-# File: modules/ast/src/cpp/types/types_tools.cpp, line: 838
+# File: modules/ast/src/cpp/types/types_tools.cpp, line: 844
 msgid "Invalid index.\n"
 msgstr ""
 
@@ -172,7 +172,7 @@ msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 1989
+# File: modules/ast/src/cpp/ast/runvisitor.cpp, line: 2013
 #, c-format
 msgid "Recursion limit reached (%d).\n"
 msgstr ""
@@ -238,7 +238,7 @@ msgid "Submatrix incorrectly defined.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 2328
+# File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 2327
 msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
 msgstr ""
 
@@ -296,7 +296,7 @@ msgstr ""
 # File: modules/ast/src/cpp/operations/types_power.cpp, line: 101
 # File: modules/ast/src/cpp/operations/types_power.cpp, line: 117
 # File: modules/ast/src/cpp/operations/types_power.cpp, line: 136
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 663
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 669
 # File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 845
 # File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 873
 # File: modules/ast/src/cpp/operations/types_subtraction.cpp, line: 933
@@ -434,8 +434,8 @@ msgstr ""
 
 #
 # File: modules/ast/src/cpp/operations/types_power.cpp, line: 527
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 613
-# File: modules/ast/src/cpp/operations/types_power.cpp, line: 668
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 619
+# File: modules/ast/src/cpp/operations/types_power.cpp, line: 674
 msgid "Invalid exponent.\n"
 msgstr ""
 
@@ -514,30 +514,30 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1256
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1274
 msgid "in builtin "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1257
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1275
 #, c-format
 msgid "at line % 5d of function "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1258
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1276
 #, c-format
 msgid "at line % 5d of executed string "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1259
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1277
 #, c-format
 msgid "at line % 5d of executed file "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1315
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1333
 msgid "line"
 msgstr ""
 
@@ -577,13 +577,13 @@ msgid "Error: Could not create %s: %s\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/function.cpp, line: 45
+# File: modules/ast/src/cpp/types/function.cpp, line: 44
 #, c-format
 msgid "Scilab '%s' function disabled in -nogui or -nwni mode.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/function.cpp, line: 709
+# File: modules/ast/src/cpp/types/function.cpp, line: 710
 #, c-format
 msgid ""
 "%s: Library name must not be empty\n"
@@ -591,22 +591,27 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/function.cpp, line: 748
-# File: modules/ast/src/cpp/types/function.cpp, line: 752
+# File: modules/ast/src/cpp/types/function.cpp, line: 749
+# File: modules/ast/src/cpp/types/function.cpp, line: 753
 #, c-format
 msgid "An error has been detected while loading %s: %s\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/function.cpp, line: 762
+# File: modules/ast/src/cpp/types/function.cpp, line: 763
 #, c-format
 msgid "Impossible to load %s library\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/function.cpp, line: 811
+# File: modules/ast/src/cpp/types/function.cpp, line: 812
 #, c-format
 msgid "Impossible to load %s function in %s library: %s\n"
+msgstr ""
+
+#
+# File: modules/ast/src/cpp/types/implicitlist.cpp, line: 248
+msgid "Cannot allocate memory"
 msgstr ""
 
 #
@@ -617,45 +622,45 @@ msgstr ""
 
 #
 # File: modules/ast/src/cpp/types/library.cpp, line: 98
-# File: modules/ast/src/cpp/types/struct.cpp, line: 169
+# File: modules/ast/src/cpp/types/struct.cpp, line: 175
 #, c-format
 msgid "Unknown field : %ls.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/list.cpp, line: 253
+# File: modules/ast/src/cpp/types/list.cpp, line: 258
 msgid "Unable to insert multiple item in a list.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/list.cpp, line: 293
+# File: modules/ast/src/cpp/types/list.cpp, line: 298
 msgid "Index out of bounds.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/macro.cpp, line: 242
+# File: modules/ast/src/cpp/types/macro.cpp, line: 245
 msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/macro.cpp, line: 246
+# File: modules/ast/src/cpp/types/macro.cpp, line: 249
 msgid "Wrong number of input arguments.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/macro.cpp, line: 372
+# File: modules/ast/src/cpp/types/macro.cpp, line: 385
 #, c-format
 msgid "Undefined variable '%s' in function '%s'.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/macro.cpp, line: 394
+# File: modules/ast/src/cpp/types/macro.cpp, line: 407
 #, c-format
 msgid "%s: Wrong type for %s: A list expected.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/macro.cpp, line: 414
+# File: modules/ast/src/cpp/types/macro.cpp, line: 427
 #, c-format
 msgid "List element number %d is Undefined.\n"
 msgstr ""
@@ -667,7 +672,7 @@ msgid "Unable to open : %s.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/overload.cpp, line: 73
+# File: modules/ast/src/cpp/types/overload.cpp, line: 74
 #, c-format
 msgid ""
 "Warning : please rename your overloaded function\n"
@@ -675,29 +680,29 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/overload.cpp, line: 98
+# File: modules/ast/src/cpp/types/overload.cpp, line: 106
 #, c-format
 msgid "check or define function %s for overloading.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/overload.cpp, line: 99
+# File: modules/ast/src/cpp/types/overload.cpp, line: 107
 msgid "Undefined operation for the given operands.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/overload.cpp, line: 103
+# File: modules/ast/src/cpp/types/overload.cpp, line: 111
 #, c-format
 msgid "  check arguments or define function %s for overloading.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/overload.cpp, line: 104
+# File: modules/ast/src/cpp/types/overload.cpp, line: 112
 msgid "Function not defined for given argument type(s),\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/polynom.cpp, line: 798
+# File: modules/ast/src/cpp/types/polynom.cpp, line: 797
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr ""
 
@@ -709,7 +714,7 @@ msgstr ""
 
 #
 # File: modules/ast/src/cpp/types/singlepoly.cpp, line: 123
-# File: modules/ast/src/cpp/types/string.cpp, line: 706
+# File: modules/ast/src/cpp/types/string.cpp, line: 520
 #, c-format
 msgid "Can not allocate %s memory.\n"
 msgstr ""
@@ -725,12 +730,12 @@ msgid "Assignment between unlike types is not allowed.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/string.cpp, line: 587
+# File: modules/ast/src/cpp/types/string.cpp, line: 401
 msgid "Can not allocate data.\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/struct.cpp, line: 202
+# File: modules/ast/src/cpp/types/struct.cpp, line: 208
 #, c-format
 msgid "Field \"%ls\" does not exists\n"
 msgstr ""

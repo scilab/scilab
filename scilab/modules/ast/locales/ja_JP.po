@@ -309,6 +309,10 @@ msgstr "%s ライブラリを読み込むことはできません\n"
 msgid "Impossible to load %s function in %s library: %s\n"
 msgstr "%s 関数を読み込めません(ライブラリ %s) : %s\n"
 
+#, fuzzy
+msgid "Cannot allocate memory"
+msgstr "%.2f MBのメモリを確保することはできません.\n"
+
 #, c-format
 msgid "Functions files location : %s.\n"
 msgstr "関数ファイルの位置: %s.\n"
@@ -394,7 +398,6 @@ msgstr "フィールド \"%ls\" は存在しません.\n"
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr "変数の大きさを超えました: %d 未満にしてください.\n"
 
-#, c-format
 #~ msgid "%s: function is disabled in debug mode.\n"
 #~ msgstr "%s: 関数がデバッグモードで無効になりました.\n"
 

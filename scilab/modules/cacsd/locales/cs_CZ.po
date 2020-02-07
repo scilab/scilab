@@ -1237,6 +1237,12 @@ msgstr ""
 "Hinfnorm je pravděpodobně přesný max sv(D)\n"
 "Systém může být vše propustný"
 
+#
+# File: modules/cacsd/macros/sgrid.sci, line: 84
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr ""
+
 msgid "Hall chart"
 msgstr "Hallův graf"
 
@@ -1395,6 +1401,12 @@ msgstr "fáze(y) (stupeň)"
 msgid "magnitude(y) (dB)"
 msgstr "rozsah(y) (dB)"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument %s: real floating point array expected\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné desetinné pole\n"
+
 msgid "Nyquist plot"
 msgstr "Frekvenční charakteristika"
 
@@ -1482,8 +1494,12 @@ msgstr ""
 msgid "%s: Stationary Riccati solver failed.\n"
 msgstr "%s: Řešitel stálého Riccatiho selhal.\n"
 
-#, c-format
-msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %s expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: No solution found. Dimension(stable subspace)=%d. %d expected.\n"
 msgstr "%s: Špatný rozměr (%d) stabilního podprostoru: Očekáváno %d.\n"
 
 #, c-format
@@ -1512,12 +1528,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
-msgstr ""
-
-#
-# File: modules/cacsd/macros/sgrid.sci, line: 84
-#, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
 msgstr ""
 
 #, c-format

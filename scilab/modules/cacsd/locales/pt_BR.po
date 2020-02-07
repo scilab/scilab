@@ -1281,6 +1281,12 @@ msgstr ""
 "Hinfnorm provavelmente é exatamente max sv(D)\n"
 "O sistema pode ser passa-tudo."
 
+#
+# File: modules/cacsd/macros/sgrid.sci, line: 84
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr ""
+
 msgid "Hall chart"
 msgstr "Carta de Hall"
 
@@ -1447,6 +1453,13 @@ msgstr "fase(y) (grau)"
 msgid "magnitude(y) (dB)"
 msgstr "magnitude(y) (dB)"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument %s: real floating point array expected\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de números reais\n"
+
 msgid "Nyquist plot"
 msgstr "Diagrama de Nyquist"
 
@@ -1536,8 +1549,12 @@ msgstr ""
 msgid "%s: Stationary Riccati solver failed.\n"
 msgstr "%s: O solucionador estacionário de Riccati falhou.\n"
 
-#, c-format
-msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %s expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: No solution found. Dimension(stable subspace)=%d. %d expected.\n"
 msgstr "%s: Dimensão errada (%d) de subespaço estável: esperava-se %d.\n"
 
 #, c-format
@@ -1573,12 +1590,6 @@ msgstr ""
 #, c-format
 msgid "%s: Argument #%d: Scalar or vector with %d components expected.\n"
 msgstr "%s: argumento #%d: escalar ou vector com %d componentes esperados.\n"
-
-#
-# File: modules/cacsd/macros/sgrid.sci, line: 84
-#, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"

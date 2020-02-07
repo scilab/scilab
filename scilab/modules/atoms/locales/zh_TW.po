@@ -1045,14 +1045,12 @@ msgstr "%s: 第  %d 輸入參數數值錯誤: 版本錯誤.\n"
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ASC  或 DESC .\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
 #~ "check if you have write access on this directory : %s.\n"
 #~ msgstr ""
 #~ "%s: 此套件的目錄 (%s-%s) 無法刪除, 請檢査是否有寫入 %s. 目錄之權限.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
 #~ "please check if you have write access on this directory : %s.\n"

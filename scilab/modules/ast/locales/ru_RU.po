@@ -316,6 +316,10 @@ msgstr "Невозможно загрузить библиотеку %s\n"
 msgid "Impossible to load %s function in %s library: %s\n"
 msgstr "Невозможно загрузить функцию %s в библиотеке %s: %s\n"
 
+#, fuzzy
+msgid "Cannot allocate memory"
+msgstr "Нельзя распределить %.2f MB памяти.\n"
+
 #, c-format
 msgid "Functions files location : %s.\n"
 msgstr "Расположение файлов функций : %s.\n"
@@ -404,7 +408,6 @@ msgstr "Поле \"%ls\" не существует\n"
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr "размер переменной превышен : ожидалось менее %d.\n"
 
-#, c-format
 #~ msgid "%s: function is disabled in debug mode.\n"
 #~ msgstr "%s: функция отключена в режиме отладки.\n"
 

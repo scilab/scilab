@@ -1128,7 +1128,6 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr "%s: Zła wartość parametru wejściowego #%d: Oczekiwano ASC lub DESC.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
 #~ "check if you have write access on this directory : %s.\n"
@@ -1136,7 +1135,6 @@ msgstr "%s: Zła wartość parametru wejściowego #%d: Oczekiwano ASC lub DESC.\
 #~ "%s: Katalog tego pakietu (%s-%s) nie może zostać usunięty, sprawdź czy "
 #~ "masz prawa zapisu do tego katalogu : %s.\n"
 
-#, c-format
 #~ msgid ""
 #~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
 #~ "please check if you have write access on this directory : %s.\n"
