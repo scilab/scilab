@@ -132,7 +132,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A jacobian or a real expected.\n"
 msgstr ""
-"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
