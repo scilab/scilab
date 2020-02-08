@@ -83,7 +83,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../../includes;../../../src/cpp;../../../../../libs/intl;../../../../functions_manager/includes;../../../../core/includes;../../../../localization/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../console/includes;../../../../dynamic_link/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -107,7 +106,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../../includes;../../../src/cpp;../../../../../libs/intl;../../../../functions_manager/includes;../../../../core/includes;../../../../localization/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../console/includes;../../../../dynamic_link/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>

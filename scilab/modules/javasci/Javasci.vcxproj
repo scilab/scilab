@@ -82,7 +82,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>src/c;includes;$(SCILAB_JDK32)/include/;$(SCILAB_JDK32)/include/win32;../../libs/intl;../tclsci/includes/tcltk/include;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../call_scilab/includes;../localization/includes;../graphic_objects/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -121,7 +120,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>src/c;includes;$(SCILAB_JDK64)/include/;$(SCILAB_JDK64)/include/win32;../../libs/intl;../tclsci/includes/tcltk/include;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../call_scilab/includes;../localization/includes;../graphic_objects/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>

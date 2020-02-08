@@ -80,7 +80,6 @@
       <AdditionalIncludeDirectories>includes;../../libs/libxml2;../../libs/intl;../core/includes;../fileio/includes;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../console/includes;../dynamic_link/includes;../xcos/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>includes;../../libs/libxml2;../../libs/intl;../core/includes;../fileio/includes;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../console/includes;../dynamic_link/includes;../xcos/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;../tclsci/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -107,7 +106,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>includes;../../libs/libxml2;../../libs/intl;../core/includes;../fileio/includes;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../console/includes;../dynamic_link/includes;../xcos/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;../tclsci/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>

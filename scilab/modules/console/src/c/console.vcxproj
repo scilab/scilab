@@ -88,7 +88,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;../../includes;../../src/c/windows;../jni;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../../libs/intl;../../../dynamic_link/includes;../../../core/includes;../../../jvm/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../history_manager/includes;../../../api_scilab/includes;../../../completion/includes;../../../output_stream/includes;../../../threads/includes;../../../windows_tools/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../commons/src/jni;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -127,7 +126,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;../../includes;../../src/c/windows;../jni;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../../libs/intl;../../../dynamic_link/includes;../../../core/includes;../../../jvm/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../history_manager/includes;../../../api_scilab/includes;../../../completion/includes;../../../output_stream/includes;../../../threads/includes;../../../windows_tools/includes;../../../ui_data/includes;../../../windows_tools/src/c/scilab_windows;../../../commons/src/jni;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>

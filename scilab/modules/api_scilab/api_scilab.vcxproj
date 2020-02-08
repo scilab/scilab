@@ -84,7 +84,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../elementary_functions/includes;../threads/includes;../console/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -135,7 +134,6 @@ cd .. &gt;nul
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>includes;src/c;src/cpp;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../elementary_functions/includes;../threads/includes;../console/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>

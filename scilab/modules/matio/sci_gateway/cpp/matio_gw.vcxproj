@@ -83,7 +83,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../src/c;../../includes;../../../functions_manager/includes;../../../elementary_functions/includes;../../../core/includes;../../../ast/includes/operations;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/matio;../../../../libs/zlib;../../../output_stream/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;MATIO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -107,7 +106,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>../../src/c;../../includes;../../../functions_manager/includes;../../../elementary_functions/includes;../../../core/includes;../../../ast/includes/operations;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/matio;../../../../libs/zlib;../../../output_stream/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;MATIO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>

@@ -84,7 +84,6 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;..;../../../includes;../../cpp/scilab_windows;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -122,7 +121,6 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;..;../../../includes;../../cpp/scilab_windows;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
