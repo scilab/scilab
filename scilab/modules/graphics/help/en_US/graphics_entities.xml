@@ -67,7 +67,7 @@
                     </para>
                     <para>
                         On Windows, some additional screen, windowing and mouse parameters may be
-                        retrieved throught the <link linkend="getsystemmetrics">getsystemmetrics</link>
+                        retrieved through the <link linkend="getsystemmetrics">getsystemmetrics</link>
                         function.
                     </para>
                 </listitem>

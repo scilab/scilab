@@ -542,7 +542,7 @@
                             <para>-10: IPARAM(7) must be 1, 2, 3, 4.</para>
                         </listitem>
                         <listitem>
-                            <para>-11: IPARAM(7) = 1 and BMAT = 'G' are incompatable.</para>
+                            <para>-11: IPARAM(7) = 1 and BMAT = 'G' are incompatible.</para>
                         </listitem>
                         <listitem>
                             <para>-12: IPARAM(1) must be equal to 0 or 1.</para>

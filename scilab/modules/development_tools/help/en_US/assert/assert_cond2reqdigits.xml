@@ -73,7 +73,7 @@
             <itemizedlist>
                 <listitem>
                     Consider the case where an excellent algorithm is able to make accurate computations,
-                    even for an ill-conditionned problem.
+                    even for an ill-conditioned problem.
                     In this case, we may require more accuracy (positive offset).
                 </listitem>
                 <listitem>
@@ -115,12 +115,12 @@ condition = [0,1,10,100,1000,1.D13,1.D14,1.D15,1.D16,1.D17,1.D18];
 assert_cond2reqdigits ( condition )
 
 // Using offset
-// Netative offset : decrease number of required digits (requires less accuracy)
+// Negative offset : decrease number of required digits (requires less accuracy)
 assert_cond2reqdigits ( 1.e2 , [0 -1] ) // [13.95459    12.95459]
 // Positive offset : increase number of required digits (requires more accuracy)
 // See that the impact of offset is constrained.
 assert_cond2reqdigits ( 1.e2 , [0 1 2 3] ) // [13.95459    14.95459    15.95459    15.95459]
-// Netative offset (requires less accuracy)
+// Negative offset (requires less accuracy)
 // See that the impact of offset is constrained.
 assert_cond2reqdigits ( 1.e14 , [0 -1 -2 -3] ) // [1.9545898    0.9545898    0.    0.]
 

@@ -85,7 +85,7 @@
             While <emphasis>explicit</emphasis> methods only use data available on the current step, the <emphasis>implicit</emphasis> ones will attempt to compute derivatives at further times. In order to do this, they use nonlinear solvers such as fixed-point iterations, functional iterations (nonstiff) or modified Newton methods (stiff).
         </para>
         <para>
-            The family choice is usually determined by the <emphasis>stiffness</emphasis> of the problem, which is, when there is a big gap between the biggest and the smallest eigen values modules of the jacobian matrix (when it is ill-conditionned). It is generally a system that is sensitive to discontinuitues, meaning that the required precision is not constant.
+            The family choice is usually determined by the <emphasis>stiffness</emphasis> of the problem, which is, when there is a big gap between the biggest and the smallest eigen values modules of the jacobian matrix (when it is ill-conditioned). It is generally a system that is sensitive to discontinuities, meaning that the required precision is not constant.
         </para>
         <para>
             <emphasis role="bold">Implicit</emphasis> solvers:

@@ -98,9 +98,9 @@
                             <listitem>
                                 Otherwise, if the names of <varname>attributes</varname> are
                                 provided in a row vector, then
-                                <emphasis role="italic">all occurences</emphasis> of the chosen tag
+                                <emphasis role="italic">all occurrences</emphasis> of the chosen tag
                                 are considered: Results are returned with one row per occurrence,
-                                and one colum per attribute. Thus, <varname>Values(i,j)</varname>
+                                and one column per attribute. Thus, <varname>Values(i,j)</varname>
                                 is the value of the <varname>attributes(j)</varname> for the
                                 <literal>
                                     i<superscript>th</superscript>
@@ -136,7 +136,7 @@
         </para>
         <para>
             The <varname>path2tag</varname> argument must be a valid "XPath" according to the
-            <ulink url="https://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommandations</ulink>.
+            <ulink url="https://www.w3.org/TR/1999/REC-xpath-19991116/">W3C recommendations</ulink>.
             Examples are given herebelow. If the path uses a intermediate or a final tag that does
             not exist, or if one of the queried attributes does not exist, an error is yielded.
         </para>

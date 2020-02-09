@@ -224,7 +224,7 @@ end
     </refsection>
     <refsection>
         <title>List of docbook supported tags</title>
-        <para>Sectionning and referencing tags:
+        <para>Sectioning and referencing tags:
             <informaltable border="1">
                 <tr>
                     <td>

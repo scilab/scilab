@@ -33,7 +33,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>atomsRestoreConfig</literal> checks that a config.bak file exists, and set it as the main confiuration file. The backup file is deleted in the process.
+            <literal>atomsRestoreConfig</literal> checks that a config.bak file exists, and set it as the main configuration file. The backup file is deleted in the process.
         </para>
     </refsection>
     <!-- ===================================================================== -->

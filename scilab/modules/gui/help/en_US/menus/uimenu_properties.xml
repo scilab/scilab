@@ -48,7 +48,7 @@
                         (a menu without children), you must specify at least a child.
                     </para>
                     <para>
-                        If any, every occurence of the "[SCILAB_FIGURE_ID]" substring is replaced
+                        If any, every occurrence of the "[SCILAB_FIGURE_ID]" substring is replaced
                         in the callback string with the figure_id value of the parent figure,
                         at calling time .
                     </para>

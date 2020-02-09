@@ -46,7 +46,7 @@
                 <term>language</term>
                 <listitem>
                     <para>character string :with possible value "fr_FR" or "en_US" the
-                        defaultis "en_US"
+                        default is "en_US"
                     </para>
                 </listitem>
             </varlistentry>

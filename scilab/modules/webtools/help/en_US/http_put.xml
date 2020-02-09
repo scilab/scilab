@@ -12,7 +12,10 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="http_put">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="http_put">
     <refnamediv>
         <refname>http_put</refname>
         <refpurpose>
@@ -22,7 +25,9 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            [result, status] = http_put(url [,data, &lt;opt_args&gt;])
+            [result, status] = http_put(url)
+            [result, status] = http_put(url, data)
+            [result, status] = http_put(url, data, &lt;opt_args>)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,8 +37,9 @@
                 <term>url</term>
                 <listitem>
                     <para>
-                        A string containing the server adresse following by the optional port, the route of the request and query datas.
-                        syntax: "adresse:port/route?queryfield=querydata"
+                        A string containing the server address following by the optional port,
+                        the route of the request and query datas.
+                        syntax: "address:port/route?queryfield=querydata"
                     </para>
                 </listitem>
             </varlistentry>
@@ -42,7 +48,7 @@
                 <listitem>
                     <para>
                         This argument represent data sent by the request.
-                        Can be a scilab variable wich will be converted
+                        Can be a scilab variable which will be converted
                         into JSON format if possible or sent as a string.
                     </para>
                 </listitem>
@@ -60,12 +66,17 @@
                         <varlistentry>
                             <term>cert</term>
                             <listitem>
-                                <para>This option determines whether Scilab verifies the authenticity of the peer's certificate.
+                                <para>
+                                    This option determines whether Scilab verifies the
+                                    authenticity of the peer's certificate.
                                     If <literal>none</literal> is given, no verification is performed.
                                     <warning>
-                                        Disabling verification of the certificate allows bad guys to man-in-the-middle the communication without you knowing it.
+                                        Disabling verification of the certificate allows bad guys
+                                        to man-in-the-middle the communication without you knowing it.
                                         Disabling verification makes the communication insecure.
-                                        Just having encryption on a transfer is not enough as you cannot be sure that you are communicating with the correct end-point.
+                                        Just having encryption on a transfer is not enough as you
+                                        cannot be sure that you are communicating with the correct
+                                        end-point.
                                     </warning>
                                 </para>
                             </listitem>
@@ -74,14 +85,17 @@
                             <term>follow</term>
                             <listitem>
                                 <para>
-                                    By default, <literal>follow</literal> is false. Set <literal>follow=%t</literal> to follow eventual redirections.
+                                    By default, <literal>follow</literal> is false.
+                                    Set <literal>follow=%t</literal> to follow eventual redirections.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>auth</term>
                             <listitem>
-                                <para>Username and password can be specified for the websites which required authentication.</para>
+                                <para>
+                                    Username and password can be specified for the websites
+                                    which required authentication.</para>
                                 <para>
                                     The syntax is <literal>auth="username:password"</literal>
                                 </para>
@@ -105,7 +119,7 @@
                 <term>result</term>
                 <listitem>
                     <para>
-                        Result is a string wich contain the server answer or
+                        Result is a string which contain the server answer or
                         a scilab variable if the answer is in JSON format.
                     </para>
                 </listitem>
@@ -123,7 +137,9 @@
     <refsection>
         <title>Description</title>
         <para>This function will perform an HTTP PUT request.</para>
-        <para>The proxy configuration is used if it's enabled in the Preferences under the rubric "Internet".</para>
+        <para>
+          The proxy configuration is used if it's enabled in the Preferences under the rubric "Internet".
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

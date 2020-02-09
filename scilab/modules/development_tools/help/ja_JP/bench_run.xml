@@ -90,7 +90,7 @@
                         File path to the result of the <function>bench_run</function> in xml format. By default, or if <literal>"", "[]"</literal> or <literal>[]</literal> is given, the output directory is <literal>TMPDIR/benchmarks/</literal>.
                     </para>
                     <para>
-                        If <literal>exportToFile</literal> is a directory, creates a timestamped output file is the directory, otherwize creates the file <literal>exportToFile</literal>. If the file could not be created a warning is issued and the file is created under <literal>TMPDIR/benchmarks/</literal> instead.
+                        If <literal>exportToFile</literal> is a directory, creates a timestamped output file is the directory, otherwise creates the file <literal>exportToFile</literal>. If the file could not be created a warning is issued and the file is created under <literal>TMPDIR/benchmarks/</literal> instead.
                     </para>
                 </listitem>
             </varlistentry>

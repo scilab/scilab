@@ -113,7 +113,7 @@
             NaN will never be in the result <literal>M</literal>.
         </warning>
         <para>
-            <literal>[M, ka, kb] = intersect(a,b)</literal> additionnaly returns the vectors
+            <literal>[M, ka, kb] = intersect(a,b)</literal> additionally returns the vectors
             <literal>ka</literal> and <literal>kb</literal> of indices in <literal>a</literal>
             and <literal>b</literal> of selected components firstly met, such that
             <literal>M=a(ka)</literal> and <literal>M=b(kb)</literal>.
@@ -133,7 +133,7 @@
             [] is returned without comparing the values.
         </para>
         <para>
-            <literal>[M,ka,kb] = intersect(a,b,"r")</literal> additionnaly returns the vectors
+            <literal>[M,ka,kb] = intersect(a,b,"r")</literal> additionally returns the vectors
             <literal>ka</literal> and <literal>kb</literal> of the minimal indices of common rows,
             respectively in <literal>a</literal> and <literal>b</literal>,
             such that <literal>M=a(ka,:)</literal> and <literal>M=b(kb,:)</literal>.

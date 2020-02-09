@@ -54,7 +54,7 @@
                 looks for a <varname>toolbox_path</varname><literal>/src/builder*.sce</literal> script, if found, executes it;
             </listitem>
             <listitem>
-                otherwize, looks for a <literal>builder</literal> script in each subdirectory of <literal>src/</literal> and executes them;
+                otherwise, looks for a <literal>builder</literal> script in each subdirectory of <literal>src/</literal> and executes them;
             </listitem>
             <listitem>
                 for <literal>c, cpp, java, fortran</literal> subdirectories, if no <literal>builder</literal> script is found, a default compilation process is done:

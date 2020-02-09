@@ -171,7 +171,7 @@
                                 <th align="left">background</th>
                                 <th align="left">backgroundcolor</th>
                                 <td>
-                                    Filling color of the box background, behing the text (*).
+                                    Filling color of the box background, behind the text (*).
                                     The box is then automatically turned "on".
                                 </td>
                             </tr>

@@ -109,7 +109,7 @@
             in total.
         </para>
         <para>
-            Althought the solver works fine for <link linkend="Simulatemenu_Menu_entries">max step size</link> up to
+            Although the solver works fine for <link linkend="Simulatemenu_Menu_entries">max step size</link> up to
             <emphasis>
                 10<superscript>-3</superscript>
             </emphasis>
@@ -193,7 +193,7 @@ Time for Dormand-Prince:
             ]]></screen>
         </para>
         <para>
-            These results show that on a nonstiff problem, for relatively same precision required and forcing the same step size, <emphasis>Dormand-Prince</emphasis>'s computational overhead (compared to <emphasis>Runge-Kutta</emphasis>) is significant and is close to <emphasis>Adams/Functional</emphasis>. Its error to the solution is althought much smaller than the regular <emphasis>Runge-Kutta 4(5)</emphasis>, for a small overhead in time.
+            These results show that on a nonstiff problem, for relatively same precision required and forcing the same step size, <emphasis>Dormand-Prince</emphasis>'s computational overhead (compared to <emphasis>Runge-Kutta</emphasis>) is significant and is close to <emphasis>Adams/Functional</emphasis>. Its error to the solution is although much smaller than the regular <emphasis>Runge-Kutta 4(5)</emphasis>, for a small overhead in time.
         </para>
         <para>
             Variable-size step ODE solvers are not appropriate for deterministic real-time applications because the computational overhead of taking a time step varies over the course of an application.

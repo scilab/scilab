@@ -67,7 +67,7 @@
             specific tk/tcl features. There are two main reasons for this. First of
             all, there is no simple way to manipulate Scilab objects from within a
             tcl/tk script. Thus, the interface designer has to write two sets of
-            callbacks routines. One to describe the changes occuring in the interface
+            callbacks routines. One to describe the changes occurring in the interface
             when the user acts on the widgets. The second set of call routines will
             perform the (pure) Scilab reactions to the user actions.
         </para>

@@ -64,7 +64,7 @@
                             <para>
                             If <varname>normalization</varname> is %T: Probability densities on the
                             bins defined by <varname>n</varname> or <varname>x</varname>, such that
-                            the bins areas are proportionnal to their populations.
+                            the bins areas are proportional to their populations.
                             </para>
                         </listitem>
                         <listitem>

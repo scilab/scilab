@@ -55,7 +55,7 @@
             is minimal (Static <literal>H_infinity</literal> four blocks problem).
         </para>
         <para>
-            D is partionned as <literal>D=[D11 D12; D21 D22]</literal>
+            D is partitioned as <literal>D=[D11 D12; D21 D22]</literal>
             where <literal>size(D22)=r=[r1 r2]</literal>
         </para>
     </refsection>

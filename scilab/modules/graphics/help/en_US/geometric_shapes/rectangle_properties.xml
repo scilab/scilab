@@ -30,7 +30,7 @@
                 <term>parent: </term>
                 <listitem>
                     <para>This field contains the handle of the parent. The parent of the
-                        rectancle entity should be of the type <literal>"Axes"</literal> or
+                        rectangle entity should be of the type <literal>"Axes"</literal> or
                         <literal>"Compound"</literal>.
                     </para>
                 </listitem>

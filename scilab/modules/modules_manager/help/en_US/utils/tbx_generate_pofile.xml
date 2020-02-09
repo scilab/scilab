@@ -101,7 +101,7 @@ edit(path+"/locales/en_US.po")
                 <revnumber>6.0.1</revnumber>
                 <revdescription>
                     <para>_() and gettext() references are now detected.</para>
-                    <para>Litteral double '' are now simplified in the msgid.</para>
+                    <para>Literal double '' are now simplified in the msgid.</para>
                     <para>Files paths in comments are no longer absolute and refer to the toolbox root.</para>
                 </revdescription>
             </revision>

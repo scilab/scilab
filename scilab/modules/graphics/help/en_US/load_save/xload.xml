@@ -91,7 +91,7 @@
                         ones that are not graphic handles. They may overwrite existing variables
                         not related to graphics.
                     </td>
-                    <td>the environment is kept free of any new variables. There is no overwritting
+                    <td>the environment is kept free of any new variables. There is no overwriting
                         hazard.
                     </td>
                 </tr>

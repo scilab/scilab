@@ -42,7 +42,7 @@
         </simplelist>
     </refsection>
     <refsection role="description">
-        Checking codes and default parameters are defined in the <literal>SCI/modules/slint/etc/slint.xml</literal> file. In the same file, each criterium may be enabled (default) or disabled.
+        Checking codes and default parameters are defined in the <literal>SCI/modules/slint/etc/slint.xml</literal> file. In the same file, each criterion may be enabled (default) or disabled.
         <!-- ==============================================================-->
         <refsect2 id="slint_codetable">
             <title>Checking id</title>
@@ -481,7 +481,7 @@
                     <term>Too long line (00015)</term>
                     <listitem>
                     <para>
-                        Checks the line length. Scilab code style recommands a 80-char maximal length. This is the default value for slint.
+                        Checks the line length. Scilab code style recommends a 80-char maximal length. This is the default value for slint.
                     </para>
                     </listitem>
                 </varlistentry>

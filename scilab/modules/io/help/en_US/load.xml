@@ -117,7 +117,7 @@
             <title>Graphic figures *.scg</title>
             <para>
                 Any graphic figure can be saved in its whole either with <literal>save()</literal>
-                through its identifier as a variable (as decribed hereabove), or with
+                through its identifier as a variable (as described hereabove), or with
                 <literal>xsave()</literal> or the <emphasis>File => Save</emphasis> figure's Menu,
                 that do the same. The preferred (but not mandatory) file extension is
                 <emphasis role="bold">.scg</emphasis> (for SCilab Graphics).

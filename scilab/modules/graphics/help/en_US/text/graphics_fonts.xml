@@ -124,7 +124,7 @@
                     </informaltable>
                     <para>
                         The font used by a graphic entities can be modified with its <literal>font_style</literal> property.
-                        This is a positive integer referecing one of the loaded fonts. Its value must be between 0, referecing the first font,
+                        This is a positive integer referencing one of the loaded fonts. Its value must be between 0, referencing the first font,
                         and the number of loaded fonts minus one, referencing the last font.
                     </para>
                     <para>

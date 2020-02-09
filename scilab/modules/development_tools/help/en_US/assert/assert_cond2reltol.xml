@@ -67,7 +67,7 @@
                 <listitem>
                     <para>
                         Consider the case where an excellent algorithm is able to make accurate computations,
-                        even for an ill-conditionned problem.
+                        even for an ill-conditioned problem.
                         In this case, we may require more accuracy (positive offset).
                     </para>
                 </listitem>

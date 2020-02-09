@@ -12,7 +12,10 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="toJSON">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="toJSON">
     <refnamediv>
         <refname>toJSON</refname>
         <refpurpose>
@@ -22,7 +25,9 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            result = toJSON(var [,filename, indent])
+            result = toJSON(var)
+            result = toJSON(var, filename)
+            result = toJSON(var, filename, indent)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -40,7 +45,7 @@
                 <term>filename</term>
                 <listitem>
                     <para>
-                        If a file name is given, the convertion is writen in this file.
+                        If a file name is given, the conversion is written in this file.
                     </para>
                 </listitem>
             </varlistentry>
@@ -56,7 +61,7 @@
                 <term>result</term>
                 <listitem>
                     <para>
-                        Result is a string wich contain the data converted to JSON.
+                        Result is a string which contain the data converted to JSON.
                         If a filename is given, no result is returned.
                     </para>
                 </listitem>

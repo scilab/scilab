@@ -389,4 +389,5 @@ Bug Fixes
 * [#16303](http://bugzilla.scilab.org/show_bug.cgi?id=16303): log10(x) had wrong dimensions when x is an hypermatrix.
 * [#16307](http://bugzilla.scilab.org/show_bug.cgi?id=16307): `dockable="off"` and `closerequestfcn` on figures crached Scilab.
 * [#16320](http://bugzilla.scilab.org/show_bug.cgi?id=16320): There were unsupported UTF-8 characters in some gettext id messages.
+* [#16321](http://bugzilla.scilab.org/show_bug.cgi?id=16321): There were typo errors in the documentation.
 

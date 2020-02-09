@@ -76,7 +76,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <varname>nopt</varname>: number of optional paramters.
+                            <varname>nopt</varname>: number of optional parameters.
                         </para>
                     </listitem>
                     <listitem>
@@ -96,7 +96,7 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <varname>nout</varname>: number of expected output paramters.
+                            <varname>nout</varname>: number of expected output parameters.
                         </para>
                     </listitem>
                     <listitem>

@@ -59,7 +59,7 @@
                 looks for a <varname>toolbox_path</varname><literal>/sci_gateway/builder*.sce</literal> script, if found, executes it;
             </listitem>
             <listitem>
-                otherwize, looks for a <literal>builder</literal> script in each subdirectory of <literal>sci_gateway/</literal> and executes them;
+                otherwise, looks for a <literal>builder</literal> script in each subdirectory of <literal>sci_gateway/</literal> and executes them;
             </listitem>
             <listitem>
                 for <literal>c</literal> subdirectory, if no <literal>builder</literal> script is found, a default compilation process is done:

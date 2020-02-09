@@ -72,7 +72,7 @@ h = NUM/chi + Ds
         <para>
             With <literal>rmax</literal> or <literal>"b"</literal> argument uses a block diagonalization of
             sl.A matrix and applies "Leverrier" algorithm on blocks.
-            If given, <literal>rmax</literal> controls the conditionning (see bdiag).
+            If given, <literal>rmax</literal> controls the conditioning (see bdiag).
         </para>
     </refsection>
     <refsection>

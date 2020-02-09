@@ -58,11 +58,11 @@ imag(c)
 s = sprand(3,3,0.3) + sprand(3,3,0.3)*%i
 imag(s)
 
-// Polynomials with complex coeficients:
+// Polynomials with complex coefficients:
 A = [1-%i*%z (%z-%i)^2]
 imag(A)
 
-// Rationals with complex coeficients:
+// Rationals with complex coefficients:
 A = [ %z/(1-%z)  (1-%z)/%z^2];
 B = A(1,[2 1]);
 C = A + %i*B

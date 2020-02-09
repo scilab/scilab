@@ -182,7 +182,7 @@ plot2d(x(im)',y(jm)',-9,"000")
                                         <term>type=3</term>
                                         <listitem>
                                             <para>3d isometric with box bounds given by optional
-                                                <literal>ebox</literal>, similarily to
+                                                <literal>ebox</literal>, similarly to
                                                 <literal>type=1</literal>
                                             </para>
                                         </listitem>
@@ -190,8 +190,8 @@ plot2d(x(im)',y(jm)',-9,"000")
                                     <varlistentry>
                                         <term>type=4</term>
                                         <listitem>
-                                            <para>3d isometric bounds  derived from the data, to
-                                                similarily<literal>type=2</literal>
+                                            <para>3d isometric bounds derived from the data, similarly to
+                                                <literal>type=2</literal>
                                             </para>
                                         </listitem>
                                     </varlistentry>
@@ -199,7 +199,7 @@ plot2d(x(im)',y(jm)',-9,"000")
                                         <term>type=5</term>
                                         <listitem>
                                             <para>3d expanded isometric bounds  with box bounds given
-                                                by optional <literal>ebox</literal>, similarily to
+                                                by optional <literal>ebox</literal>, similarly to
                                                 <literal>type=1</literal>
                                             </para>
                                         </listitem>
@@ -208,7 +208,7 @@ plot2d(x(im)',y(jm)',-9,"000")
                                         <term>type=6</term>
                                         <listitem>
                                             <para>3d expanded isometric bounds  derived from the data,
-                                                similarily to <literal>type=2</literal>
+                                                similarly to <literal>type=2</literal>
                                             </para>
                                         </listitem>
                                     </varlistentry>

@@ -225,7 +225,8 @@
                             <listitem>
                                 <para>
                                     An object attached to the Axes entity and returning a graphic
-                                    handle on a Label structure (see <link linkend="label_properties">label_properties</link>).
+                                    handle on a Label structure
+                                    (see <link linkend="label_properties">label_properties</link>).
                                     This field defines a title with options on this label.
                                 </para>
                             </listitem>
@@ -235,7 +236,8 @@
                             <listitem>
                                 <para>
                                     An object attached to the Axes entity and returning a graphic
-                                    handle on a Label structure (see <link linkend="label_properties">label_properties</link>).
+                                    handle on a Label structure
+                                    (see <link linkend="label_properties">label_properties</link>).
                                     This field defines a label on x axis with options on this
                                     label.
                                 </para>
@@ -246,7 +248,8 @@
                             <listitem>
                                 <para>
                                     An object attached to the Axes entity and returning a graphic
-                                    handle on a Label structure (see <link linkend="label_properties">label_properties</link>).
+                                    handle on a Label structure
+                                    (see <link linkend="label_properties">label_properties</link>).
                                     This field defines a label on y axis with options on this
                                     label.
                                 </para>
@@ -257,7 +260,8 @@
                             <listitem>
                                 <para>
                                     An object attached to the Axes entity and returning a graphic
-                                    handle on a Label structure (see <link linkend="label_properties">label_properties</link>).
+                                    handle on a Label structure
+                                    (see <link linkend="label_properties">label_properties</link>).
                                     This field defines a label on z axis with options on this
                                     label.
                                 </para>
@@ -305,10 +309,17 @@
                                         <varlistentry>
                                             <term>Locations</term>
                                             <listitem>
-                                                is a real vector containing the locations of graduations along and according to the data scale of the given x or y or z axis.
-                                                When the number of ticks does not need to be changed, their locations can be set or changed through
-                                                the syntax (e.g. along x) <literal>Haxes.x_ticks.locations = Locations</literal> where <literal>Haxes = gca();</literal>
-                                                and <literal>Locations</literal> is the complete vector of updated ticks positions. To change just the ith location, just use:
+                                                is a real vector containing the locations of
+                                                graduations along and according to the data scale
+                                                of the given x or y or z axis.
+                                                When the number of ticks does not need to be changed,
+                                                their locations can be set or changed through
+                                                the syntax (e.g. along x)
+                                                <literal>Haxes.x_ticks.locations = Locations</literal>
+                                                where <literal>Haxes = gca();</literal> and
+                                                <literal>Locations</literal> is the complete vector
+                                                of updated ticks positions. To change just the ith
+                                                location, just use:
                                                 <literal>Haxes.x_ticks.locations(i) = newLoc</literal>
                                             </listitem>
                                         </varlistentry>
@@ -456,11 +467,15 @@
                             <term>filled: </term>
                             <listitem>
                                 <para>
-                                    This property specifies whether the axes background should be drawn or not.
+                                    This property specifies whether the axes background should be
+                                    drawn or not.
                                     Its value can be either <literal>"off"</literal> or
-                                    <literal>"on".</literal> If the property is <literal>"off"</literal>, the background
-                                    is not drawn, the axes box is transparent. If the property is <literal>"on"</literal> the
-                                    background is drawn using the color specified by the <literal>background</literal> property.
+                                    <literal>"on".</literal>
+                                    If the property is <literal>"off"</literal>, the background
+                                    is not drawn, the axes box is transparent. If the property is
+                                    <literal>"on"</literal> the
+                                    background is drawn using the color specified by the
+                                    <literal>background</literal> property.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -479,8 +494,9 @@
                             <term>font_style: </term>
                             <listitem>
                                 <para>
-                                    Specifies the font used for displaying tics labels. This is a positive integer referecing one of the loaded fonts.
-                                    Its value must be between 0, referecing the first font,
+                                    Specifies the font used for displaying tics labels. This is a
+                                    positive integer referencing one of the loaded fonts.
+                                    Its value must be between 0, referencing the first font,
                                     and the number of loaded fonts minus one, referencing the last font.
                                     For more information see <link linkend="graphics_fonts">graphics_fonts</link>.
                                 </para>
@@ -510,7 +526,8 @@
                                     This property specify whether ticks labels are displayed using fractional font sizes.
                                     Its value must be either <literal>"on"</literal> or <literal>"off"</literal>.
                                     If <literal>"on"</literal> the floating point value of <literal>font_size</literal>
-                                    is used for display and the font is anti-aliased. If <literal>"off"</literal> only the integer part is used
+                                    is used for display and the font is anti-aliased.
+                                    If <literal>"off"</literal> only the integer part is used
                                     and the font is not smoothed.
                                 </para>
                             </listitem>
@@ -523,8 +540,8 @@
                                     z axes (for example to make the display of the curve sin(x) versus
                                     cos(x) be a circle not an ellipse). Its value should be
                                     <literal>"on"</literal> or <literal>"off"</literal>. If the value is
-                                    <literal>"on"</literal>, the axes <literal>data_bounds</literal> automatically
-                                    change according to the corresponding figure
+                                    <literal>"on"</literal>, the axes <literal>data_bounds</literal>
+                                    automatically change according to the corresponding figure
                                     <literal>figure_size</literal> property values.
                                 </para>
                             </listitem>

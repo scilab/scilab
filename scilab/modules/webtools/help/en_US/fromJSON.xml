@@ -22,35 +22,32 @@
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            result = fromJSON(arg [,type])
+            result = fromJSON(jsonData)
+            result = fromJSON(jsonFilename, "file")
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>arg</term>
+                <term>jsonData</term>
                 <listitem>
-                    <para>
-                        A string wich contain JSON data, or a filename if the argument "type" is given.
-                    </para>
+                    A string containing JSON data.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>type</term>
+                <term>jsonFilename</term>
                 <listitem>
-                    <para>
-                        A scalar string wich contain "file".
-                        If this argument is given, the arguement "arg" is the filename wich contain JSON data.
-                    </para>
+                    Path and name of the file containing input JSON data.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>result</term>
                 <listitem>
-                    <para>
-                        If the string is a correct JSON, result contain the scilab variable.
-                    </para>
+                    If the string is a correct JSON, result contain the scilab variable.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>

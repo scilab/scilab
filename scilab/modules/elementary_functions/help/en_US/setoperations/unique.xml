@@ -74,7 +74,7 @@
                 <term>k</term>
                 <listitem>
                     <para>
-                      Vector of indices of first encountered occurences, such that
+                      Vector of indices of first encountered occurrences, such that
                       <literal>N(i) = M(k(i))</literal> or <literal>N(i,:) = M(k(i),:)</literal>
                       or <literal>N(:,i) = M(:,k(i))</literal>.
                     </para>
@@ -89,7 +89,7 @@
                 <listitem>
                     <para>
                       Vector of integers > 0, with the same <varname>k</varname> shape:
-                      Numbers of occurences in <varname>M</varname> of respective unduplicated
+                      Numbers of occurrences in <varname>M</varname> of respective unduplicated
                       entities (components, rows, columns) returned in <varname>N</varname>.
                     </para>
                 </listitem>

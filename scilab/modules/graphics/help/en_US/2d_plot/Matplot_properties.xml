@@ -69,7 +69,7 @@
                         <literal>nc = 1|3|4</literal> channels to be plotted.
                         The color encoding/decoding is set by the <varname>image_type</varname> property.
                         The color associated to <literal>data(i,j,:)</literal> is used do draw and fill
-                        a small rectangle of fixed sizes touching its neighboors and centered at the
+                        a small rectangle of fixed sizes touching its neighbors and centered at the
                         <literal>(i,j)</literal> location.
                     </para>
                 </listitem>
@@ -112,7 +112,7 @@
                         "rgb332", "rgb444", "rgb555", "rgb4444", "rgb5551".
                     </para>
                     <para>
-                        Colors are determinated by the data type and by <varname>image_type</varname>:
+                        Colors are determined by the data type and by <varname>image_type</varname>:
                     </para>
                     <variablelist>
                         <varlistentry>

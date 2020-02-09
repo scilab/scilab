@@ -86,7 +86,7 @@ b = rand(size(A,1),1); // a random rhs
 x = umf_lusolve(Lup,b);
 norm(A*x - b)
 
-// now the same thing with iterative refiment
+// now the same thing with iterative refinement
 x = umf_lusolve(Lup,b,"Ax=b",A);
 norm(A*x - b)
 

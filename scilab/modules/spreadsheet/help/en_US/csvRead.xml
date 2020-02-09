@@ -77,7 +77,7 @@
                         meaning no replacements). The first column
                         <literal>substitute(:,1)</literal> contains the searched strings and
                         the second column <literal>substitute(:,2)</literal> contains the
-                        replace strings. Every occurence of a searched string in the file is
+                        replace strings. Every occurrence of a searched string in the file is
                         replaced.
                     </para>
                 </listitem>

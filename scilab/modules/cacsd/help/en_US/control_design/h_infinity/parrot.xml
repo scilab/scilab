@@ -44,7 +44,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Given a matrix <literal>D</literal> partionned as <literal>[D11 D12; D21 D22]</literal>
+            Given a matrix <literal>D</literal> partitioned as <literal>[D11 D12; D21 D22]</literal>
             where <literal>size(D22)=r=[r1,r2]</literal>
             compute a matrix <literal>K</literal> such that
             largest singular value of <literal>[D11 D12; D21 D22+K]</literal>

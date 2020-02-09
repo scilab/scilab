@@ -74,7 +74,7 @@
             Cody, W.D. (1993). "ALGORITHM 715: SPECFUN - A Portable FORTRAN
             Package of Special Function Routines and Test Drivers"
             acm Transactions on Mathematical Software. 19, 22-32.
-            is used to calulate the  cumulative standard normal distribution.
+            is used to calculate the cumulative standard normal distribution.
         </para>
         <para>
             The rational functions from pages  90-95  of Kennedy and Gentle,

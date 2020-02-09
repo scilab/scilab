@@ -101,8 +101,8 @@
         </itemizedlist>
         <itemizedlist>
             <listitem>
-                <para>The value that the integrator shall initate to, at each trigger
-                    signal on the redly marked trigger port,  shall be connected to the integral
+                <para>The value that the integrator shall initiate to, at each trigger
+                    signal on the red marked trigger port, shall be connected to the integral
                     block port number 2. (the port in the lower left corner of the integral block).
                 </para>
             </listitem>

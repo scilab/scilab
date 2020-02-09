@@ -89,7 +89,7 @@ triEdges = mesh2d(x, y, bdy)</synopsis>
   </refsection>
   <refsection>
     <title>Warning</title>
-    <para>The triangulation computed by <literal>mesh2d</literal> is not garanteed to be a Delaunay triangulation of points <literal>(x,y)</literal>.
+    <para>The triangulation computed by <literal>mesh2d</literal> is not guaranteed to be a Delaunay triangulation of points <literal>(x,y)</literal>.
     </para>
   </refsection>
   <refsection>
