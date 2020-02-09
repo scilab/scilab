@@ -70,7 +70,7 @@ function [x,y,typ] = CMSCOPE(job,arg1,arg2)
                 mess = [mess ; _("''Window sizes'' must be [] or a 2 vector") ; " "]
             end
             if win<-1 then
-                mess=[mess ; _("The Window number must be ≥ -1") ; " "]
+                mess=[mess ; _("The Window number must be >= -1") ; " "]
             end
             if size(per,"*")<>size(ymin,"*") then
                 mess=[mess ; 
@@ -83,7 +83,7 @@ function [x,y,typ] = CMSCOPE(job,arg1,arg2)
                 end
             end
             if N<2 then
-                mess=[mess ; _("The Buffer size must be ≥ 2") ; " "]
+                mess=[mess ; _("The Buffer size must be >= 2") ; " "]
             end
             if or(ymin>=ymax) then
                 mess=[mess ; _("Ymax > Ymin is required") ; " "]

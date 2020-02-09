@@ -27,7 +27,7 @@ function hist3d(f,theta,alpha,leg,flags,ebox)
     if rhs<=0 then  //demo
         towns = ["Agen" "Bastia" "Chamonix" "Cognac" "Hyères" "Le Mans" "Le Puy" ..
         "Lille" "Lorient" "Mende" ]
-        months = [_("January") _("Febuary") _("March") _("April") _("May") _("June")..
+        months = [_("January") _("February") _("March") _("April") _("May") _("June")..
         _("July") _("August") _("September") _("October") _("November") ..
         _("December") _("Average") ]
         months = "$\scalebox{1.3}{\rotatebox{90}{\mbox{" + months + "}}}$"

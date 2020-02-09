@@ -1193,7 +1193,7 @@ a.ticks_st = [1 1;0 m(2)];
         </para>
         <programlisting role="example" id="axes_properties_vertical_xticks"><![CDATA[
 rain_Nice  = [51  45  39 69 45 34 12 18 73 133 104 93 ];
-months = _(["January" "Febuary" "March" "April" "May" "June" "July" ...
+months = _(["January" "February" "March" "April" "May" "June" "July" ...
             "August" "September" "October" "November" "December"]);
 clf
 bar(rain_Nice,1,"cyan");
@@ -1205,7 +1205,7 @@ gcf().axes_size = [460 320];
 ]]></programlisting>
     <scilab:image localized="true">
 rain_Nice  = [51  45  39 69 45 34 12 18 73 133 104 93 ];
-months = _(["January" "Febuary" "March" "April" "May" "June" "July" ..
+months = _(["January" "February" "March" "April" "May" "June" "July" ..
             "August" "September" "October" "November" "December"]);
 clf
 bar(rain_Nice, 1, "cyan")

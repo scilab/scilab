@@ -29,7 +29,7 @@ function [x,y,typ]=EVTDLY_f(job,arg1,arg2)
         graphics=arg1.graphics;
         exprs=graphics.exprs
         model=arg1.model;
-        presentation = _("Set Event Delay  block parameters<br><br>Delay  is the delay between an input event<br>and the generated output event.<br>Block may initially generate an output event<br> before any input event.<br>''Date of initial output event'' gives the date of this event.<br>&nbsp;&nbsp;Set a negative value if no initial event is required.<br><br>")
+        presentation = _("Set Event Delay block parameters<br><br>Delay is the delay between an input event<br>and the generated output event.<br>Block may initially generate an output event<br> before any input event.<br>''Date of initial output event'' gives the date of this event.<br>&nbsp;&nbsp;Set a negative value if no initial event is required.<br><br>")
         while %t do
             [ok,dt,ff,exprs]=scicos_getvalue(presentation, ..
             _(["Delay";"Date of initial output event"]),..

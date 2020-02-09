@@ -37,7 +37,7 @@ function [x,y,typ]=SampleCLK(job,arg1,arg2)
                 break,
             end
             if frequ<0 then
-                message(_("''Sample time'' must be ≥ 0"));
+                message(_("''Sample time'' must be >= 0"));
                 ok=%f;
             end
             if abs(offset) > frequ then

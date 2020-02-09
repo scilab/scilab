@@ -37,7 +37,7 @@ function [x,y,typ]=MATZREIM(job,arg1,arg2)
             [ok,decomptyp,lab]=scicos_getvalue(..
             [msprintf(_("Set %s block parameters"), "MATZREIM");
              "";
-             _("Conversion type: 1=complex→(Real,Imag), 2=(Real,Imag)→complex")],..
+             _("Conversion type: 1=complex->(Real,Imag), 2=(Real,Imag)->complex")],..
             _(["Conversion direction (1|2)"]), list("vec",1),label)
             if ~ok then
                 break,

@@ -54,7 +54,7 @@ public class MessagesGED {
     public static final String tick = Messages.gettext("Tick");
     public static final String lines = Messages.gettext("Lines");
     public static final String nurbs = Messages.gettext("Nurbs");
-    public static final String anti_alising = Messages.gettext("Anti-alising");
+    public static final String anti_alising = Messages.gettext("Anti-aliasing");
     public static final String auto_clear = Messages.gettext("Auto Clear");
     public static final String auto_orientation = Messages.gettext("Auto Orientation");
     public static final String auto_scale = Messages.gettext("Auto Scale");

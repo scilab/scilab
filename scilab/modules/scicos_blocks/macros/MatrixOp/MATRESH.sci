@@ -36,7 +36,7 @@ function [x,y,typ]=MATRESH(job,arg1,arg2)
         while %t do
             [ok,typ,l1,out,lab]=..
             scicos_getvalue(msprintf(_("Set %s block parameters"), "MATRESH"),..
-                _(["Datatype (1=real double  2=Complex)"
+                _(["Datatype (1=real double  2=Complex)";
                    "Input size";
                    "Output size desired"]), ..
             list("vec",-1,"vec",-1,"vec",-1),label)

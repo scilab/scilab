@@ -37,7 +37,7 @@ function [x,y,typ]=MATMAGPHI(job,arg1,arg2)
             [ok,decomptyp,lab]=scicos_getvalue(..
                 [msprintf(_("Set %s block parameters"), "MATMAGPHI");
                  " ";
-                 _("Conversion: 1=Complex→(Mag,Phi), 2=(Mag,Phi)→Complex")],..
+                 _("Conversion: 1=Complex->(Mag,Phi), 2=(Mag,Phi)->Complex")],..
                 _(["Conversion code (1|2)"]), list("vec",1), label)
             if ~ok then
                 break,

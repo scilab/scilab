@@ -99,7 +99,7 @@ function demo_sparse_matrices()
     printf(_("     x = umf_lusolve(lup,b)\n     or  x = umf_lusolve(lup,b,""Ax=b"",A)  to add an iterative refinement step\n"))
     disp(_("  3/ to solve A''*x=b you may use:"));
     printf(_("     x = umf_lusolve(lup,b,""Ax''''=b"")\n     or  x = umf_lusolve(lup,b,""Ax''''=b"",A)  to add an iterative refinement step\n"))
-    disp(_("  4/ you may also compute the 1-norm condition number quicky with:"));
+    disp(_("  4/ you may also compute the 1-norm condition number quickly with:"));
     printf(_("     K1 = condestsp(A,lup)\n     K1 = condestsp(A) also works but in this case the lu factors are re-computed inside\n"))
     disp(_("  5/ if you don''t need the lu factors anymore, it is recommended to free them with:"));
     printf(_("     umf_ludel(lup)\n     if you have lost your pointer you may use umf_ludel() which frees all the current umf lu factors\n"))

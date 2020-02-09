@@ -59,7 +59,7 @@ function [x,y,typ]=CFSCOPE(job,arg1,arg2)
                 ok=%f
             end
             if win<-1 then
-                mess=[mess ; _("''Window number'' must be ≥ -1") ; " "]
+                mess=[mess ; _("''Window number'' must be >= -1") ; " "]
                 ok=%f
             end
             if per<=0 then
@@ -67,7 +67,7 @@ function [x,y,typ]=CFSCOPE(job,arg1,arg2)
                 ok=%f
             end
             if N<2 then
-                mess=[mess ; _("The Buffer size must be ≥ 2") ; " "]
+                mess=[mess ; _("The Buffer size must be >= 2") ; " "]
                 ok=%f
             end
             if ymin>=ymax then

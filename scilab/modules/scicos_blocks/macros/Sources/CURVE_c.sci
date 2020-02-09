@@ -640,7 +640,7 @@ function [rpar,ipar,ok] = poke_point(ixy,iparin,rparin)
             t2 = _("Mouse-right click: remove a point")
             t3 = _("Mouse-left double click: edit a point''s coordinates")
             t4 = _("Mouse-left button press/drag/release: move a  point")
-            t5 = _("Change the window size: ''Data'' menu -> ''Databounds''")
+            t5 = _("Change the window size: Data menu -> Databounds")
             messagebox([t1;t2;t3;t4;t5],"modal","info");
             //---------------------------------------------------------------
         case _("Load from Excel") then

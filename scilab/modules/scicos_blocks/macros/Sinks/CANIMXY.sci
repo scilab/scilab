@@ -60,16 +60,16 @@ function [x,y,typ]=CANIMXY(job,arg1,arg2)
                 mess=[mess ; _("''Window sizes'' must be [] or a 2 vector") ; " "]
             end
             if win<-1 then
-                mess=[mess ; _("The Window number must be ≥ -1") ; " "]
+                mess=[mess ; _("The Window number must be >= -1") ; " "]
             end
             if nbr_curves<=0 then
-                mess=[mess ; _("The Number of curves must be ≥ 1") ; " "]
+                mess=[mess ; _("The Number of curves must be >= 1") ; " "]
             end
             if N<1 then
-                mess=[mess ; _("The Buffer size must be ≥ 1") ; " "]
+                mess=[mess ; _("The Buffer size must be >= 1") ; " "]
             end
             if N==1 & clrs>0 then
-                mess=[mess ; _("The Buffer size must be ≥ 2") ; " "]
+                mess=[mess ; _("The Buffer size must be >= 2") ; " "]
             end
             if ymin>=ymax then
                 mess=[mess ; _("Ymax > Ymin is required") ; " "]

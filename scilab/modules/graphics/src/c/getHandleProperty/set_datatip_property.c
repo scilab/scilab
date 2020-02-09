@@ -113,7 +113,7 @@ int set_datatip_display_mode_property(void* _pvCtx, int iObj, void* _pvData, int
         getGraphicObjectProperty(iObj, __GO_TYPE__, jni_int, (void **)&piType);
         if (type == __GO_POLYLINE__)
         {
-            Scierror(999, _("Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"), "datatip_display_mode");
+            Scierror(999, _("Invalid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"), "datatip_display_mode");
         }
         else
         {

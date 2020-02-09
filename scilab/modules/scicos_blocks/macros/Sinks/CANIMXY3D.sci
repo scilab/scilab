@@ -56,26 +56,26 @@ function [x,y,typ]=CANIMXY3D(job,arg1,arg2)
                 mess=[mess ; _("''Window sizes'' must be [] or a 2 vector") ; " "]
             end
             if win<-1 then
-                mess=[mess ; _("The Window number must be ≥ -1") ; " "]
+                mess=[mess ; _("The Window number must be >= -1") ; " "]
             end
             if size(clrs,"*")<>size(siz,"*") then
                 mess=[mess ; _("The numbers of curves styles and of<br>curves thickness or marks size must match.") ; " "]
             end
             if nbr_curves<=0 then
-                mess=[mess ; _("The Number of curves must be ≥ 1") ; " "]
+                mess=[mess ; _("The Number of curves must be >= 1") ; " "]
             end
             if size(clrs,"*")<nbr_curves then
                 msg = _("Not enough curves styles: At least %d expected.")
                 mess=[mess ; msprintf(msg, nbr_curves) ; " "]
             end
             if N<1 then
-                mess=[mess ; _("The Buffer size must be ≥ 1") ; " "]
+                mess=[mess ; _("The Buffer size must be >= 1") ; " "]
             end
             if N<2
                 for i=1:nbr_curves
                     if clrs(i)>0 then
                         mess=[mess;
-                        _("The Buffer size must be ≥ 2, or Change a color (must be <0)");
+                        _("The Buffer size must be >= 2, or Change a color (must be <0)");
                         " "]
                     end
                 end

@@ -347,7 +347,7 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
     menu_d=_(["Clear";"Data Bounds";"Load from text file";"Save to text file";"Load from Excel";"Extrapolation"])'
     menu_t = ["sine","sawtooth1","sawtooth2","pulse","random normal","random uniform"]
     menu_e = _(["Help"; "Exit without save"; "Save/Exit"])';
-    MENU  =  _(["Autoscale"; "Spline" "Data"; "Standards"; "Exit"])';
+    MENU  =  _(["Autoscale"; "Spline"; "Data"; "Standards"; "Exit"])';
     menus=list(MENU,menu_s,menu_o,menu_d,menu_t,menu_e);
 
     scam="menus(1)(1)"
@@ -671,7 +671,7 @@ function [rpar,ipar,ok]=poke_point(ixy,iparin,rparin)
             t2 = _("Mouse-right click: remove a point")
             t3 = _("Mouse-left double click: edit a point''s coordinates")
             t4 = _("Mouse-left button press/drag/release: move a  point")
-            t5 = _("Change the window size: ''Data'' menu -> ''Databounds''")
+            t5 = _("Change the window size: Data menu -> Databounds")
             messagebox([t1;t2;t3;t4;t5]);
             //---------------------------------------------------------------
         case _("Load from Excel") then

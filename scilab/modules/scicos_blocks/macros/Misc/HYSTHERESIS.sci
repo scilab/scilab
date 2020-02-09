@@ -42,7 +42,7 @@ function [x,y,typ]=HYSTHERESIS(job,arg1,arg2)
                 break,
             end
             if low_lim>high_lim then
-                message(_("switch on value must be ≥ switch off value"))
+                message(_("switch on value must be >= switch off value"))
             else
                 graphics.exprs=exprs;
                 model.rpar=[high_lim,low_lim,out_high,out_low]'

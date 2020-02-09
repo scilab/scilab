@@ -43,7 +43,7 @@ function [x,y,typ]=M_freq(job,arg1,arg2)
                 message(_("The offset and frequency must have the same size"));
                 ok=%f;
             elseif or(frequ<0) then
-                message(_("The frequency must be a positif number"));
+                message(_("The frequency must be a positive number"));
                 ok=%f;
             elseif or(abs(offset) > frequ) then
                 message(_("The |Offset| must be less than the Frequency"));

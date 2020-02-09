@@ -44,7 +44,7 @@ function [x,y,typ]=BOUNCE(job,arg1,arg2)
              "ypos";..
              "ydpos";
              _("g (gravity)");
-             _("C (aerodynamic coeff")],..
+             _("C (aerodynamic coeff)")],..
             list("vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,..
             "vec",-1,"vec",-1,"vec",1,"vec",1),exprs)
             if ~ok then

@@ -45,7 +45,7 @@ function [x,y,typ] = AFFICH_m(job,arg1,arg2)
                 "Font size";
                 "Color";
                 "Total number of digits (>3)";
-                "Number of frational part digits ()";
+                "Number of fractional part digits ()";
                 "Block inherits (1) or not (0)"]),..
             list("mat",[1 2],"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs)
 
@@ -71,7 +71,7 @@ function [x,y,typ] = AFFICH_m(job,arg1,arg2)
             end
 
             if nd<0 then
-                mess=[mess ; _("The Number of frational part digits must be ≥ 0") ; " "]
+                mess=[mess ; _("The Number of fractional part digits must be >= 0") ; " "]
                 ok=%f
             end
 

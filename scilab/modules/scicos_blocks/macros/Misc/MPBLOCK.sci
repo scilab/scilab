@@ -238,7 +238,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
 
             if ok then
                 if max(pprop)>2 | min(pprop)<0 then
-                    msg = _("Parameters properties must be:<br>0: if it is a paramater,<br>1: if it is an initial value of state,<br>2: if it it is a fixed initial state value.")
+                    msg = _("Parameters properties must be:<br>0: if it is a parameter,<br>1: if it is an initial value of state,<br>2: if it is a fixed initial state value.")
                     messagebox(msg)
                     ok=%f
                     //break;

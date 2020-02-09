@@ -66,7 +66,7 @@ function [x,y,typ]=CEVENTSCOPE(job,arg1,arg2)
                 ok=%f
             end
             if win<-1 then
-                mess=[mess ; _("The Window number must be ≥ -1") ; " "]
+                mess=[mess ; _("The Window number must be >= -1") ; " "]
                 ok=%f
             end
             if per<=0 then
