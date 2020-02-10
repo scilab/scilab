@@ -41,7 +41,7 @@ BOOL TK_Started = FALSE;
 
 /*--------------------------------------------------------------------------*/
 static char *GetSciPath(void);
-static char *releaseTclInterpOnError(void)
+static void releaseTclInterpOnError(void)
 {
     __LockSignal(&InterpReadyLock);
     __Signal(&InterpReady);
