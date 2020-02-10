@@ -53,7 +53,7 @@ template<typename T>
 Double* convertIndex(T* pI)
 {
     int size = pI->getSize();
-    Double* pCurrentArg = new Double(1, size);
+    Double* pCurrentArg = new Double(pI->getDims(), pI->getDimsArray());
     double* pdbl = pCurrentArg->get();
     for (int l = 0; l < size; l++)
     {
