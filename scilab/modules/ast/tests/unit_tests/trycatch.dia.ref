@@ -22,7 +22,7 @@ function foo()
     disp("should not display")
 endfunction
 foo()
- should display
+  "should display"
 function bar()
     try
         disp("should display")
@@ -32,4 +32,4 @@ function bar()
     disp("should not display")
 endfunction
 bar()
- should display
+  "should display"

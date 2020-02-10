@@ -31,7 +31,7 @@ l=list(2, a, "test")
        l(2)
 This is my type.
        l(3)
- test
+  "test"
 // overload call
 b = newtype(%f);
 function %nt_p(h)
@@ -39,14 +39,14 @@ function %nt_p(h)
 end
 b
  b  = 
- %nt_p: This is my type.
+  "%nt_p: This is my type."
 disp(b)
- %nt_p: This is my type.
+  "%nt_p: This is my type."
 l=list(2, b, "test")
  l  = 
        l(1)
    2.
        l(2)
- %nt_p: This is my type.
+  "%nt_p: This is my type."
        l(3)
- test
+  "test"

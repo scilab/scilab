@@ -18,7 +18,7 @@
 a = mlist('A');
 deff('y=%A_e(name,a)','disp(name);if name~=''e'' then y=mlist(''A''), else y=clc, end')
 a.b.c.d.e()
- b
- c
- d
- e
+  "b"
+  "c"
+  "d"
+  "e"

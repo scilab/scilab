@@ -25,5 +25,5 @@ assert_checkequal(execstr("elementary_functionslib.atand(1,0)", "errcatch"), 0);
 assert_checkequal(elementary_functionslib.atand(1,0), 90);
 
 // 3 argins
-assert_checkequal(execstr("elementary_functionslib.linspace(0,1,3)", "errcatch"), 0);
-assert_checkequal(elementary_functionslib.linspace(0,1,3), linspace(0,1,3));
+assert_checkequal(execstr("elementary_functionslib.setdiff([1 2;3 4], [1, 2], ""r"")", "errcatch"), 0);
+assert_checkequal(elementary_functionslib.setdiff([1 2;3 4], [1, 2], "r"), setdiff([1 2;3 4], [1, 2], "r"));
