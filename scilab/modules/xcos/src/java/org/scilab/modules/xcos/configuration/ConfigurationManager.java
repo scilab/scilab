@@ -16,6 +16,7 @@
 
 package org.scilab.modules.xcos.configuration;
 
+import java.awt.GraphicsEnvironment;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.File;
@@ -131,9 +132,11 @@ public final class ConfigurationManager {
                 final JAXBElement<SettingType> config = unmarshaller.unmarshal(new StreamSource(f), SettingType.class);
                 return config.getValue();
             } catch (JAXBException e) {
-                Logger.getLogger(ConfigurationManager.class.getName()).warning("user configuration file is not valid.\n" + "Switching to the default one." + e);
-
-                ScilabModalDialog.show(null, XcosMessages.ERR_CONFIG_INVALID, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+                if (GraphicsEnvironment.isHeadless()) {
+                    Logger.getLogger(ConfigurationManager.class.getName()).warning("user configuration file is not valid.\n" + "Switching to the default one." + e);
+                } else {
+                    ScilabModalDialog.show(null, XcosMessages.ERR_CONFIG_INVALID, XcosMessages.XCOS_ERROR, IconType.ERROR_ICON);
+                }
 
                 try {
                     f = new File(ScilabConstants.SCI.getAbsoluteFile() + XcosConstants.XCOS_ETC + INSTANCE_FILENAME);
