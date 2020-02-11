@@ -288,6 +288,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     if(bRet == FALSE)
     {
+        std::wcerr << "TCL Initialization failed." << std::endl;
         std::wcerr << ConfigVariable::getLastErrorMessage() << std::endl;
         return 1;
     }
