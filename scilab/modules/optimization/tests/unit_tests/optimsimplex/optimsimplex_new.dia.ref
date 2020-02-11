@@ -121,17 +121,12 @@ coords = [
 s1 = optimsimplex_new ( coords , rosenbrock );
 string(s1)
  ans  =
-!Optim Simplex Object:  !
-!                       !
-!=====================  !
-!                       !
-!nbve: 5                !
-!                       !
-!n: 2                   !
-!                       !
-!x: 5-by-2 matrix       !
-!                       !
-!fv: 5-by-1 matrix      !
+  "Optim Simplex Object:"
+  "====================="
+  "nbve: 5"              
+  "n: 2"                 
+  "x: 5-by-2 matrix"     
+  "fv: 5-by-1 matrix"    
 s1
  s1  = 
 Optim Simplex Object:
