@@ -27,6 +27,6 @@ function test_overload(safe)
     disp("OK");
 endfunction
 test_overload("safe");
- OK
+  "OK"
 test_overload("unsafe");
- OK
+  "OK"

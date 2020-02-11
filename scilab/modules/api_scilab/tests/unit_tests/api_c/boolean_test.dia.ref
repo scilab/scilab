@@ -27,6 +27,6 @@ function test_boolean(safe)
     disp("OK");
 endfunction
 test_boolean("safe");
- OK
+  "OK"
 test_boolean("unsafe");
- OK
+  "OK"

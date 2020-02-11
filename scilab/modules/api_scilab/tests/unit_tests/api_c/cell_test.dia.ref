@@ -28,6 +28,6 @@ function test_cell(safe)
     disp("OK");
 endfunction
 test_cell("safe");
- OK
+  "OK"
 test_cell("unsafe");
- OK
+  "OK"

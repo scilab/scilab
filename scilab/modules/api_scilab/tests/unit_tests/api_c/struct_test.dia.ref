@@ -29,6 +29,6 @@ function test_struct(safe)
     disp("OK");
 endfunction
 test_struct("safe");
- OK
+  "OK"
 test_struct("unsafe");
- OK
+  "OK"

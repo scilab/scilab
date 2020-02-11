@@ -20,13 +20,13 @@ exec("SCI/modules/api_scilab/tests/nonreg_tests/build_bug_12426_gateway.sce");
 exec(TMPDIR + "/bug_12426_gateway/loader.sce");
 n = int32(1);
 disp("add 1 error message");
- add 1 error message
+  "add 1 error message"
 addErrorMessage(n);
 API Error:
 	in Error 1
 n = int32(4);
 disp("add 4 error messages");
- add 4 error messages
+  "add 4 error messages"
 addErrorMessage(n);
 API Error:
 	in Error 4
@@ -35,7 +35,7 @@ API Error:
 	in Error 1
 n = int32(5);
 disp("add 5 error messages");
- add 5 error messages
+  "add 5 error messages"
 addErrorMessage(n);
 API Error:
 	in Error 5
@@ -45,7 +45,7 @@ API Error:
 	in Error 1
 n = int32(6);
 disp("add 6 error messages");
- add 6 error messages
+  "add 6 error messages"
 addErrorMessage(n);
 API Error:
 	in Error 6

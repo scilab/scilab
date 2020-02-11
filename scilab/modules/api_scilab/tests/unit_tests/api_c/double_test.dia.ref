@@ -29,6 +29,6 @@ function test_double(safe)
     disp("OK");
 endfunction
 test_double("safe");
- OK
+  "OK"
 test_double("unsafe");
- OK
+  "OK"

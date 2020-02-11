@@ -26,6 +26,6 @@ function test_string(safe)
     disp("OK");
 endfunction
 test_string("safe");
- OK
+  "OK"
 test_string("unsafe");
- OK
+  "OK"

@@ -29,6 +29,6 @@ function test_int(safe)
     disp("OK");
 endfunction
 test_int("safe");
- OK
+  "OK"
 test_int("unsafe");
- OK
+  "OK"

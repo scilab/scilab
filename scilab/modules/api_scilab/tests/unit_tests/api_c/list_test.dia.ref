@@ -29,6 +29,6 @@ function test_list(safe)
     disp("OK");
 endfunction
 test_list("safe");
- OK
+  "OK"
 test_list("unsafe");
- OK
+  "OK"

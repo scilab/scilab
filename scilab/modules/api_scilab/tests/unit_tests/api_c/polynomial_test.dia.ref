@@ -24,6 +24,6 @@ function test_polynomial(safe)
     disp("OK");
 endfunction
 test_polynomial("safe");
- OK
+  "OK"
 test_polynomial("unsafe");
- OK
+  "OK"
