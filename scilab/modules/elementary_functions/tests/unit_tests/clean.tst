@@ -15,7 +15,7 @@ small = 1;
 a1 = [small big];
 b1 = [0 big];
 a2 = [complex(small,small) big];
-b2 = [0 big];
+b2 = [complex(0,0) big];
 a3 = [complex(0,big) small complex(big,small)];
 b3 = [complex(0,big) 0 big];
 //double
@@ -39,7 +39,7 @@ epsR = 1e-2;
 a1 = [big small];
 b1 = [big 0];
 a2 = [big complex(small,small)];
-b2 = [big 0];
+b2 = [big complex(0,0)];
 a3 = [complex(0,big) small complex(big,small)];
 b3 = [complex(0,big) 0 big];
 //double
@@ -61,7 +61,7 @@ assert_checkequal(clean(sparse(a1),epsA),sparse(a1));
 assert_checkequal(clean(sparse(a2),epsA),sparse(a2));
 assert_checkequal(clean(sparse(a3),epsA),sparse(a3));
 assert_checkequal(clean(sparse(a1),epsA,epsR),sparse(b1));
-assert_checkequal(clean(sparse(a2),epsA,epsR),sparse(b2));
+assert_checkequal(clean(sparse(a2),epsA,epsR), sparse(b2));
 assert_checkequal(clean(sparse(a3),epsA,epsR),sparse(b3));
 
 

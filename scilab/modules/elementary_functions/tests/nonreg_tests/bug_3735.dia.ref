@@ -13,11 +13,8 @@ A = ["First Row";"Second Row"];
 B = ["Third Row";"Fourth Row"];
 result = cat(1,A,B)
  result  = 
-!First Row   !
-!            !
-!Second Row  !
-!            !
-!Third Row   !
-!            !
-!Fourth Row  !
+  "First Row" 
+  "Second Row"
+  "Third Row" 
+  "Fourth Row"
 if result <> ["First Row";"Second Row";"Third Row";"Fourth Row"] then bugmes();quit;end
