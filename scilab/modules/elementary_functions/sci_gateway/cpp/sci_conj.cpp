@@ -18,6 +18,7 @@
 #include "double.hxx"
 #include "overload.hxx"
 #include "polynom.hxx"
+#include "sparse.hxx"
 
 extern "C"
 {
@@ -56,6 +57,17 @@ types::Function::ReturnValue sci_conj(types::typed_list &in, int _iRetCount, typ
     {
         pPolyOut = in[0]->clone()->getAs<types::Polynom>();
         pDblOut = pPolyOut->getCoef();
+    }
+    else if (in[0]->isSparse())
+    {
+        types::Sparse *pSparseOut = in[0]->clone()->getAs<types::Sparse>();
+        if (pSparseOut->isComplex() == true)
+        {
+            std::complex<double>* data = pSparseOut->getImg();
+            std::transform(data, data + pSparseOut->nonZeros(), data, [](const std::complex<double>& c) -> std::complex<double> { return std::conj(c); });
+        }
+        out.push_back(pSparseOut);
+        return types::Function::OK;
     }
     else
     {

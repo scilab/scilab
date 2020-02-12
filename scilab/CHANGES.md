@@ -403,3 +403,4 @@ Bug Fixes
 * [#16307](http://bugzilla.scilab.org/show_bug.cgi?id=16307): `dockable="off"` and `closerequestfcn` on figures crached Scilab.
 * [#16320](http://bugzilla.scilab.org/show_bug.cgi?id=16320): There were unsupported UTF-8 characters in some gettext id messages.
 * [#16321](http://bugzilla.scilab.org/show_bug.cgi?id=16321): There were typo errors in the documentation.
+* [#16323](http://bugzilla.scilab.org/show_bug.cgi?id=16323): `conj(sparse(x))` was complex when x is real. 
