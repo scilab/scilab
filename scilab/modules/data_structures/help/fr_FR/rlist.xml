@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[r] = rlist()
+        <synopsis>
             [r] = rlist(N, D [,dom])
         </synopsis>
     </refsynopsisdiv>
@@ -83,5 +83,14 @@ r == S1bis
                 <link linkend="tf2ss">tf2ss</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+            <title>History</title>
+            <revhistory>
+                <revision>
+                    <revnumber>6.1</revnumber>
+                    <revremark>rlist() removed.</revremark>
+                </revision>
+            </revhistory>
     </refsection>
 </refentry>

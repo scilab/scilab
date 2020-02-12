@@ -29,9 +29,9 @@ extern "C"
 /*-----------------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_rlist(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if (in.size() == 1)
+    if (in.size() != 2 && in.size() != 3)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): At most %d expected.\n"), "rlist", 2);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), "rlist", 2, 3);
         return types::Function::Error;
     }
 

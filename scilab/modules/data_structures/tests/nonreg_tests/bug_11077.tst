@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 11077 -->
 //
@@ -15,7 +16,5 @@
 // <-- Short Description -->
 // rlist() returned an error
 
-
-rlist()
-
-
+msg = msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"),"rlist",2,3);
+assert_checkerror("rlist()", msg);

@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>rlist()
+        <synopsis>
             rlist(a1,....an)
         </synopsis>
     </refsynopsisdiv>
@@ -47,5 +47,14 @@
                 <link linkend="syslin">syslin</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+            <title>History</title>
+            <revhistory>
+                <revision>
+                    <revnumber>6.1</revnumber>
+                    <revremark>rlist() removed.</revremark>
+                </revision>
+            </revhistory>
     </refsection>
 </refentry>

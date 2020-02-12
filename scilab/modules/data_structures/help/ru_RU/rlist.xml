@@ -22,7 +22,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>rlist()
+        <synopsis>
             rlist(a1 ,..., an)
         </synopsis>
     </refsynopsisdiv>
@@ -60,6 +60,15 @@ rlist(Num,Den,[])
                 <link linkend="rational">rational</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+            <title>History</title>
+            <revhistory>
+                <revision>
+                    <revnumber>6.1</revnumber>
+                    <revremark>rlist() removed.</revremark>
+                </revision>
+            </revhistory>
     </refsection>
 </refentry>
 
