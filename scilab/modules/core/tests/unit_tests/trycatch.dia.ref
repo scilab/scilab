@@ -273,29 +273,18 @@ if test() then bugmes();quit;end
 deff("test()",["try a=2; try a=xxxx; catch a=a+1,end; catch;b=2;end"])
 tree2code(macr2tree(test))
  ans  =
-!function test()  !
-!                 !
-!try              !
-!                 !
-!  a = 2;  try    !
-!                 !
-!    a = xxxx;    !
-!                 !
-!  catch          !
-!                 !
-!    a = a+1      !
-!                 !
-!  end;           !
-!                 !
-!catch            !
-!                 !
-!  b = 2;         !
-!                 !
-!end;             !
-!                 !
-!endfunction      !
-!                 !
-!                 !
+  "function test()"
+  "try "           
+  "  a = 2;  try " 
+  "    a = xxxx;"  
+  "  catch "       
+  "    a = a+1"    
+  "  end;"         
+  "catch "         
+  "  b = 2;"       
+  "end;"           
+  "endfunction"    
+  ""               
 deff("r=test()",[
 "try a=2;try a=xxxx+33; catch a=a+1,end;catch;b=2;end"
 "r=exists(''a'')==0|exists(''b'')==1"

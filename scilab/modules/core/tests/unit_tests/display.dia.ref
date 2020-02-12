@@ -226,49 +226,42 @@ rlist(n1,d1)
 //display of strings
 digits="abcdefghijklmnopqrstuvwxyz"
  digits  = 
- abcdefghijklmnopqrstuvwxyz
+  "abcdefghijklmnopqrstuvwxyz"
 numbers="1234567890"
  numbers  = 
- 1234567890
+  "1234567890"
 majuscules="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
  majuscules  = 
- ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 symbols=",./;''[] \ =-!\$%^&*()_+~:""[]| @"
  symbols  = 
- ,./;'[] \ =-!\$%^&*()_+~:"[]| @
+  ",./;'[] \ =-!\$%^&*()_+~:"[]| @"
 [numbers;digits]
  ans  =
-!1234567890                  !
-!                            !
-!abcdefghijklmnopqrstuvwxyz  !
+  "1234567890"                
+  "abcdefghijklmnopqrstuvwxyz"
 [numbers digits;digits numbers]
  ans  =
-!1234567890                  abcdefghijklmnopqrstuvwxyz  !
-!                                                        !
-!abcdefghijklmnopqrstuvwxyz  1234567890                  !
+  "1234567890"                  "abcdefghijklmnopqrstuvwxyz"
+  "abcdefghijklmnopqrstuvwxyz"  "1234567890"                
 [numbers digits+digits+digits]
  ans  =
          column 1
-!1234567890  !
+  "1234567890"
          column 2
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr!
-!stuvwxyz                                                              !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 ans';
 [ans ans]
  ans  =
          column 1
-!1234567890                                                            !
-!                                                                      !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr!
-!stuvwxyz                                                              !
+  "1234567890"                                                         
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
          column 2
-!1234567890                                                            !
-!                                                                      !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr!
-!stuvwxyz                                                              !
+  "1234567890"                                                         
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 ""
  ans  =
- 
+  ""
 oldlines = lines();
 lines(0,50);
 digits="abcdefghijklmnopqrstuvwxyz";
@@ -277,260 +270,183 @@ n = "1234567890";
 // scalar
 n
  n  = 
- 1234567890
+  "1234567890"
 n+n+n+n+n
  ans  =
- 123456789012345678901234567890123456789012345678 
- 90                                              
+  "12345678901234567890123456789012345678901234567890"
 d
  d  = 
- abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv 
- wxyzabcdefghijklmnopqrstuvwxyz                  
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 d+d+d+d
  ans  =
- abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv 
- wxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr 
- stuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmn 
- opqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghij 
- klmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdef 
- ghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzab 
- cdefghijklmnopqrstuvwxyz                        
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 // column vector
 [n; n; n; n; n]
  ans  =
-!1234567890  !
-!            !
-!1234567890  !
-!            !
-!1234567890  !
-!            !
-!1234567890  !
-!            !
-!1234567890  !
+  "1234567890"
+  "1234567890"
+  "1234567890"
+  "1234567890"
+  "1234567890"
 [d; d; d; d; d]
  ans  =
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 [n+n; n+n; n+n]
  ans  =
-!12345678901234567890  !
-!                      !
-!12345678901234567890  !
-!                      !
-!12345678901234567890  !
+  "12345678901234567890"
+  "12345678901234567890"
+  "12345678901234567890"
 [n+n; n+n+n; n+n]
  ans  =
-!12345678901234567890            !
-!                                !
-!123456789012345678901234567890  !
-!                                !
-!12345678901234567890            !
+  "12345678901234567890"          
+  "123456789012345678901234567890"
+  "12345678901234567890"          
 [n+n; d+d; n+n]
  ans  =
-!12345678901234567890                            !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr!
-!stuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmn!
-!opqrstuvwxyz                                    !
-!                                                !
-!12345678901234567890                            !
+  "12345678901234567890"                         
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "12345678901234567890"                         
 [d; d]
  ans  =
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 [d; n]
  ans  =
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
-!                                                !
-!1234567890                                      !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "1234567890"                                   
 [n; d]
  ans  =
-!1234567890                                      !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "1234567890"                                   
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 [n; n]
  ans  =
-!1234567890  !
-!            !
-!1234567890  !
+  "1234567890"
+  "1234567890"
 // row vector
 [n n n n n]
  ans  =
-         column 1 to 4
-!1234567890  1234567890  1234567890  1234567890  !
-         column 5
-!1234567890  !
+         column 1 to 3
+  "1234567890"  "1234567890"  "1234567890"
+         column 4 to 5
+  "1234567890"  "1234567890"
 [d d d d d]
  ans  =
          column 1
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
          column 2
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
          column 3
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
          column 4
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
          column 5
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 [n+n n+n n+n]
  ans  =
          column 1 to 2
-!12345678901234567890  12345678901234567890  !
+  "12345678901234567890"  "12345678901234567890"
          column 3
-!12345678901234567890  !
+  "12345678901234567890"
 [n+n n+n+n n+n]
  ans  =
          column 1
-!12345678901234567890  !
+  "12345678901234567890"
          column 2
-!123456789012345678901234567890  !
+  "123456789012345678901234567890"
          column 3
-!12345678901234567890  !
+  "12345678901234567890"
 [d d]
  ans  =
          column 1
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
          column 2
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 [d n]
  ans  =
          column 1
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
          column 2
-!1234567890  !
+  "1234567890"
 [n d]
  ans  =
          column 1
-!1234567890  !
+  "1234567890"
          column 2
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 [n n]
  ans  =
-!1234567890  1234567890  !
+  "1234567890"  "1234567890"
 // matrix
 nd = [n d];
 dn = [d n];
 [nd nd]
  ans  =
          column 1
-!1234567890  !
+  "1234567890"
          column 2
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
          column 3
-!1234567890  !
+  "1234567890"
          column 4
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 [nd; nd]
  ans  =
          column 1
-!1234567890  !
-!            !
-!1234567890  !
+  "1234567890"
+  "1234567890"
          column 2
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 [nd' nd']
  ans  =
          column 1
-!1234567890                                      !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "1234567890"                                   
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
          column 2
-!1234567890                                      !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "1234567890"                                   
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 [nd'; nd']
  ans  =
-!1234567890                                      !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
-!                                                !
-!1234567890                                      !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "1234567890"                                   
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "1234567890"                                   
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
 [dn dn]
  ans  =
          column 1
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
          column 2
-!1234567890  !
+  "1234567890"
          column 3
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
          column 4
-!1234567890  !
+  "1234567890"
 [dn; dn]
  ans  =
          column 1
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
          column 2
-!1234567890  !
-!            !
-!1234567890  !
+  "1234567890"
+  "1234567890"
 [dn' dn']
  ans  =
          column 1
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
-!                                                !
-!1234567890                                      !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "1234567890"                                   
          column 2
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
-!                                                !
-!1234567890                                      !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "1234567890"                                   
 [dn'; dn']
  ans  =
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
-!                                                !
-!1234567890                                      !
-!                                                !
-!abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv!
-!wxyzabcdefghijklmnopqrstuvwxyz                  !
-!                                                !
-!1234567890                                      !
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "1234567890"                                   
+  "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"
+  "1234567890"                                   
 lines(oldlines);
 // display of list
 list()
@@ -591,7 +507,7 @@ list(list(1,$),list())
 TL=tlist("x",1,2)
  TL  = 
        TL(1)
- x
+  "x"
        TL(2)
    1.
        TL(3)
@@ -599,44 +515,44 @@ TL=tlist("x",1,2)
 deff("%x_p(x)","disp(''Mydisplay'',x(2),x(3))")
 TL
  TL  = 
- Mydisplay
+  "Mydisplay"
    1.
    2.
 list(TL)
  ans  =
        ans(1)
- Mydisplay
+  "Mydisplay"
    1.
    2.
 list(list(TL))
  ans  =
        ans(1)
               ans(1)(1)
- Mydisplay
+  "Mydisplay"
    1.
    2.
 TL=tlist("x",1:$,2)
  TL  = 
- Mydisplay
+  "Mydisplay"
  1:1:$
    2.
 list(TL)
  ans  =
        ans(1)
- Mydisplay
+  "Mydisplay"
  1:1:$
    2.
 list(list(TL))
  ans  =
        ans(1)
               ans(1)(1)
- Mydisplay
+  "Mydisplay"
  1:1:$
    2.
 TL(2)=TL
  TL  = 
- Mydisplay
- Mydisplay
+  "Mydisplay"
+  "Mydisplay"
  1:1:$
    2.
    2.

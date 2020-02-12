@@ -55,7 +55,7 @@ foo();
    2.
    3.
    4.
- Replot
+  "Replot"
 exec(foo);
    1.
    2.
@@ -63,4 +63,4 @@ exec(foo);
    4.
    3.
    4.
- Replot
+  "Replot"

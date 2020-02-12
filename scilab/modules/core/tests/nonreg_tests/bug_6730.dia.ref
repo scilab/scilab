@@ -18,28 +18,28 @@ a=mlist('foo');
 b=mlist(['foo','hello'],myfun);
 c=mlist(['foo','hello'],list('xxxx','yyyyy','zzzzz'));
 [x,y,z]=b.hello()
- z  = 
-   3.
- y  = 
-   2.
  x  = 
      ()
+ y  = 
+   2.
+ z  = 
+   3.
 if x<>list()|y<>2|z<>3 then bugmes();quit;end
 [x,y,z]=a.hello()
- z  = 
-   3.
- y  = 
-   2.
  x  = 
      ()
+ y  = 
+   2.
+ z  = 
+   3.
 if x<>list()|y<>2|z<>3 then bugmes();quit;end
 [x,y,z]=c.hello(1:3)
- z  = 
- zzzzz
- y  = 
- yyyyy
  x  = 
- xxxx
+  "xxxx"
+ y  = 
+  "yyyyy"
+ z  = 
+  "zzzzz"
 if x<>'xxxx'|y<>'yyyyy'|z<>'zzzzz' then bugmes();quit;end
 function [x,y,z]=myfun(varargin), x=varargin,y=2;z=3;,endfunction
 function fun=%foo_e(name,M);  fun=myfun;endfunction

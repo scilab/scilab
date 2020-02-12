@@ -25,9 +25,8 @@ end
 WARNING: this is a warning
 str //display str
  str  = 
-!*** Execution stopped after a warning. ***                !
-!                                                          !
-!Set warning("on") to continue execution after a warning.  !
+  "*** Execution stopped after a warning. ***"              
+  "Set warning("on") to continue execution after a warning."
 assert_checktrue(str <> "");
 //Testing waring on mode
 warning("on");
@@ -40,7 +39,7 @@ end
 WARNING: this is a warning
 str //display str
  str  = 
- 
+  ""
 assert_checktrue(str == "");
 //Testing waring off mode
 warning("on");
@@ -53,5 +52,5 @@ end
 WARNING: this is a warning
 str //display str
  str  = 
- 
+  ""
 assert_checktrue(str == "");

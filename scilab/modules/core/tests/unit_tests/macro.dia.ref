@@ -484,11 +484,9 @@ text=["deff(''[x]=b(a)'',''if a==1 then x=1,else x=a,prod([1 1]),end''),"
 "b,"
 "x=b(n),"]
  text  = 
-!deff('[x]=b(a)','if a==1 then x=1,else x=a,prod([1 1]),end'),  !
-!                                                               !
-!b,                                                             !
-!                                                               !
-!x=b(n),                                                        !
+  "deff('[x]=b(a)','if a==1 then x=1,else x=a,prod([1 1]),end'),"
+  "b,"                                                           
+  "x=b(n),"                                                      
 deff("[x]=t8(n)",text')
 y=t8(10);
 if y<>10 then bugmes();quit;end
@@ -539,7 +537,7 @@ if cplist(hrn , rlist(z+1,z-1,[]))==0 then bugmes();quit;end
 //
 text=["aa=1,if a==2 then aa=b(a),end"]
  text  = 
- aa=1,if a==2 then aa=b(a),end
+  "aa=1,if a==2 then aa=b(a),end"
 fic=file("open",TMPDIR+"/test_macro_exec","unknown");
 write(fic,text)
 file("close",fic)

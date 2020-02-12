@@ -103,15 +103,16 @@ assert_checkequal(ones(c),[1,1,1,1;1,1,1,1]);
 assert_checkequal(ones(3,3),[1,1,1;1,1,1;1,1,1]);
 assert_checkequal(ones(3,2),[1,1;1,1;1,1]);
 //
+rand("seed", 0);
 rand(a)
 rand(c)
 rand(3,3)
 rand(3,2)
 rand()
-rand('uniform')
-rand('normal')
-rand('seed',5)
-rand('seed',0)
+rand("uniform")
+rand("normal")
+rand("seed", 5)
+rand("seed", 0)
 //
 abs(c)
 abs(a)
