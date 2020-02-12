@@ -9,7 +9,7 @@
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 oldDepth = xmlGetValues("//general/body/environment","container_disp_max_depth");
-setPreferencesValue("//general/body/environment", ["container_disp_max_depth"; "3"]);
+xmlSetValues("//general/body/environment", ["container_disp_max_depth"; "3"]);
 // ----------------------------------------------------------------
 clear s
 s.f = [%i/%s, %s/(1-%s), 1/(1-%s)^2];
@@ -19,7 +19,7 @@ s.b = rand(1,5)<0.5;
 s.iL = $-4:2:$;
 s.fun = linspace;
 s.L = list(rand(2,3),{},(1-%z)^3,,%pi, %t, "abcd");
-s.lib = corelib;
+//s.lib = corelib;
 s.tlist = tlist(["myTlist" "bool" "int" "num" "txt" "list"],..
           rand(3,4,2)<0.5, int8((rand(3,5)-0.5)*200), ..
           grand(3,4,"uin",-100,100), ["This" "is" "a" "test"], list(%pi,"number"));
@@ -44,7 +44,6 @@ s
       (5) = 3.1415927
       (6) = %t
       (7) = "abcd"
-  lib: corelib library with 16 functions @ SCI\modules\core\macros\
   tlist: [myTlist] tlist with fields:
       bool: [3x4x2 boolean]
       int: [3x5 int8]
@@ -82,14 +81,14 @@ s.t.b.r = %e;
 s.t.L2 = list("Hello", list(1-%z+%z^2, list(-4,%t)));
 s.t.b.s.a = "Level 3";
 s.t.b.s.p = (1-%z)^3;
-setPreferencesValue("//general/body/environment", ["container_disp_max_depth";"0"]);
+xmlSetValues("//general/body/environment", ["container_disp_max_depth";"0"]);
 s
  s  = 
   root = "Hello 0"
   L: list with 3 elements.
   t: struct with fields:
-      [a, r, tl, b, L2]
-setPreferencesValue("//general/body/environment", ["container_disp_max_depth";"1"]);
+      ["a", "r", "tl", "b", "L2"]
+xmlSetValues("//general/body/environment", ["container_disp_max_depth";"1"]);
 s
  s  = 
   root = "Hello 0"
@@ -103,9 +102,9 @@ s
       tl: [myTlist] tlist with fields:
           [a, b, c]
       b: struct with fields:
-          [a, r, s]
+          ["a", "r", "s"]
       L2: list with 2 elements.
-setPreferencesValue("//general/body/environment", ["container_disp_max_depth";"2"]);
+xmlSetValues("//general/body/environment", ["container_disp_max_depth";"2"]);
 s
  s  = 
   root = "Hello 0"
@@ -126,11 +125,11 @@ s
           a = "Level 2"
           r = 2.7182818
           s: struct with fields:
-              [a, p]
+              ["a", "p"]
       L2: list:
           (1) = "Hello"
           (2) : list with 2 elements.
-setPreferencesValue("//general/body/environment", ["container_disp_max_depth";"3"]);
+xmlSetValues("//general/body/environment", ["container_disp_max_depth";"3"]);
 s
  s  = 
   root = "Hello 0"
@@ -163,4 +162,4 @@ s
               (1) = 1-%z+%z^2
               (2) : list with 2 elements.
 // ----------------------------------------------------------------
-setPreferencesValue("//general/body/environment", ["container_disp_max_depth"; oldDepth]);
+xmlSetValues("//general/body/environment", ["container_disp_max_depth"; oldDepth]);

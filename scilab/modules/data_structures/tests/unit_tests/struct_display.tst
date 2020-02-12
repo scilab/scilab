@@ -12,7 +12,7 @@
 // <-- ENGLISH IMPOSED -->
 
 oldDepth = xmlGetValues("//general/body/environment","container_disp_max_depth");
-setPreferencesValue("//general/body/environment", ["container_disp_max_depth"; "3"]);
+xmlSetValues("//general/body/environment", ["container_disp_max_depth"; "3"]);
 
 // ----------------------------------------------------------------
 clear s
@@ -23,7 +23,7 @@ s.b = rand(1,5)<0.5;
 s.iL = $-4:2:$;
 s.fun = linspace;
 s.L = list(rand(2,3),{},(1-%z)^3,,%pi, %t, "abcd");
-s.lib = corelib;
+//s.lib = corelib;
 s.tlist = tlist(["myTlist" "bool" "int" "num" "txt" "list"],..
           rand(3,4,2)<0.5, int8((rand(3,5)-0.5)*200), ..
           grand(3,4,"uin",-100,100), ["This" "is" "a" "test"], list(%pi,"number"));
@@ -47,14 +47,14 @@ s.t.L2 = list("Hello", list(1-%z+%z^2, list(-4,%t)));
 s.t.b.s.a = "Level 3";
 s.t.b.s.p = (1-%z)^3;
 
-setPreferencesValue("//general/body/environment", ["container_disp_max_depth";"0"]);
+xmlSetValues("//general/body/environment", ["container_disp_max_depth";"0"]);
 s
-setPreferencesValue("//general/body/environment", ["container_disp_max_depth";"1"]);
+xmlSetValues("//general/body/environment", ["container_disp_max_depth";"1"]);
 s
-setPreferencesValue("//general/body/environment", ["container_disp_max_depth";"2"]);
+xmlSetValues("//general/body/environment", ["container_disp_max_depth";"2"]);
 s
-setPreferencesValue("//general/body/environment", ["container_disp_max_depth";"3"]);
+xmlSetValues("//general/body/environment", ["container_disp_max_depth";"3"]);
 s
 // ----------------------------------------------------------------
 
-setPreferencesValue("//general/body/environment", ["container_disp_max_depth"; oldDepth]);
+xmlSetValues("//general/body/environment", ["container_disp_max_depth"; oldDepth]);
