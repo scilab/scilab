@@ -23,6 +23,7 @@
 #include "sci_malloc.h"
 #include "cliDisplayManagement.h"
 #include "initConsoleMode.h"
+#include "scilines.h"
 
 static void canonicMode(struct termios *t)
 {
@@ -121,6 +122,9 @@ int initConsoleMode(int bin)
         /* We are in a pipe, no need to init the console */
         return 0;
     }
+
+    // set default lines at startup
+    scilinesdefault();
 
     return setAttr(bin);
 }

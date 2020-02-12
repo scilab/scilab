@@ -32,9 +32,6 @@ extern "C"
 #include "os_string.h"
 #include "sci_malloc.h"
 #include "strsubst.h"
-#ifdef HAVE_TERMCAP_H
-#include <termcap.h>
-#endif
 }
 
 /*
@@ -202,16 +199,6 @@ void ConfigVariable::setConsoleWidth(int _iConsoleWidth)
 
 int ConfigVariable::getConsoleWidth(void)
 {
-#ifndef _MSC_VER
-    if (getScilabMode() == SCILAB_NWNI || getScilabMode() == SCILAB_NW)
-    {
-        char tc_buf[1024];       /* holds termcap buffer */
-        if (tgetent(tc_buf, getenv("TERM")) == 1)
-        {
-            return tgetnum((char *)"co");
-        }
-    }
-#endif
     return m_iConsoleWidth;
 }
 /*

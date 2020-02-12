@@ -36,6 +36,7 @@
 #include <unistd.h>             /* gethostname */
 
 #include "csignal.h"
+#include "resizesignal.h"
 #include "localization.h"
 #include "backtrace.h"
 #include "signal_mgmt.h"
@@ -464,6 +465,7 @@ void base_error_init(void)
     sigaction(SIGCONT, &ToContinue, NULL);
     /* Signal handlers */
     csignal();
+    resizesignal();
     memset(&act, 0, sizeof(act));
     act.sa_sigaction = sig_fatal;
     act.sa_flags = SA_SIGINFO;

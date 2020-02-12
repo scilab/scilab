@@ -28,14 +28,6 @@ void controlC_handler(int sig)
 
 int csignal(void)
 {
-
-#ifdef _MSC_VER
-    if (signal(SIGINT, controlC_handler) == SIG_ERR)
-    {
-        fprintf(stderr, "Could not set the signal SIGINT to the handler.\n");
-        return -1;
-    }
-#else
     struct sigaction act_controlC;
 
     memset(&act_controlC, 0, sizeof(act_controlC));
@@ -45,6 +37,6 @@ int csignal(void)
         fprintf(stderr, "Could not set the signal SIGINT to the handler.\n");
         return -1;
     }
-#endif
+
     return 0;
 }
