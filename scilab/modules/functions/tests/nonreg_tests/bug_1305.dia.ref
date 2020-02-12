@@ -12,5 +12,5 @@
 // tree2code doesn't indent the body of the function code in beautify mode; moreover, it adds a blank line before endfunction
 function b=bobo(); a=7; if a>1 then; b=5; end; endfunction
 txt = tree2code(macr2tree(bobo),%t);
-txtref = ["function [b] = bobo()";"  a = 7;";"  if a>1 then";"    b = 5;";"  end;";"endfunction";""];
+txtref = ["function [b] = bobo()";"    a = 7;";"    if a>1 then";"      b = 5;";"    end;";"endfunction";""];
 if or(txt<>txtref) then bugmes();quit;end

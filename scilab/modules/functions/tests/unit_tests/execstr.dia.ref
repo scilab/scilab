@@ -24,7 +24,7 @@ ierr = execstr('a=[1 2 3)','errcatch');
 if ierr <> 999 then bugmes();quit;end
 // variable1 does not exist
 if execstr('variable1;','errcatch')<>0 then disp("Trigger an error"),end
- Trigger an error
+  "Trigger an error"
 // variable2 exists ... no error is triggered by execstr
 variable2 = [2,3];
 if execstr('variable2;','errcatch')<>0 then 
@@ -32,4 +32,4 @@ if execstr('variable2;','errcatch')<>0 then
 else
    disp("execstr is happy");
 end
- execstr is happy
+  "execstr is happy"

@@ -13,5 +13,5 @@
 // <-- Short Description -->
 // getd loading a script containing clear yielded an error
 ierr = execstr("getd(SCI + ""/modules/functions/tests/nonreg_tests/test_getd/"")", "errcatch");
- I am executed
+  "I am executed"
 assert_checktrue(ierr == 0);

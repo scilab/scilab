@@ -17,6 +17,6 @@ function b=bobo(); a=7; if a>1 then; b=5; end; endfunction
 
 txt = tree2code(macr2tree(bobo),%t);
 
-txtref = ["function [b] = bobo()";"  a = 7;";"  if a>1 then";"    b = 5;";"  end;";"endfunction";""];
+txtref = ["function [b] = bobo()";"    a = 7;";"    if a>1 then";"      b = 5;";"    end;";"endfunction";""];
 
 if or(txt<>txtref) then pause; end

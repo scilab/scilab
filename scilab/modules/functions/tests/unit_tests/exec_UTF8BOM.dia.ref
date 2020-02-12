@@ -22,12 +22,12 @@ for i = 1 : size(tab_ref,'*')
   mdelete(TMPDIR + filesep() + tab_ref(i) + filesep() + tab_ref(i) + '.sce');
   rmdir(TMPDIR + filesep() + tab_ref(i));
 end
- OK
- OK
- OK
- OK
- OK
- OK
+  "OK"
+  "OK"
+  "OK"
+  "OK"
+  "OK"
+  "OK"
 // create a script file
 mputl('a=1;b=2',TMPDIR+'/myscript')
  ans  =
