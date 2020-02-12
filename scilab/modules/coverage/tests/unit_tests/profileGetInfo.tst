@@ -17,7 +17,7 @@ function foo()
     2
 endfunction
 profileDisable();
-profileEnable(foo)
+profileEnable(foo);
 
 prof = profileGetInfo();
 expectedProf = tlist(["ProfilerStatistics" ; "FunctionTable" ; "FunctionCoverage" ; "LineCoverage"], struct(), struct(), list());
@@ -51,7 +51,7 @@ function with_inner()
     endfunction
     6
 endfunction
-profileEnable(with_inner)
+profileEnable(with_inner);
 
 prof = profileGetInfo();
 expectedProf = tlist(["ProfilerStatistics" ; "FunctionTable" ; "FunctionCoverage" ; "LineCoverage"], struct(), struct(), list());
@@ -68,7 +68,7 @@ expectedProf.FunctionCoverage.InstructionsCount = uint64([1 1 ; 3 3 ; 1 1]);
 expectedProf.FunctionCoverage.BranchesCount = uint64([0 0 ; 0 0 ; 0 0]);
 expectedProf.FunctionCoverage.PathsCount = uint64([0 ; 0 ; 0]);
 
-expectedProf.LineCoverage = list()
+expectedProf.LineCoverage = list();
 expectedProf.LineCoverage(1) = [-1 0 ; 0 0 ; -1 0];
 expectedProf.LineCoverage(2) = [-1 0 ; 0 0 ; -1 0 ; -1 0 ; -1 0 ; 0 0 ; -1 0];
 expectedProf.LineCoverage(3) = [-1 0 ; -1 0 ; -1 0 ; 0 0 ; -1 0 ; -1 0 ; -1 0];
@@ -84,7 +84,7 @@ profileDisable();
 
 profileEnable(iscolumn)
 iscolumn(1);
-prof = profileGetInfo()
+prof = profileGetInfo();
 profileDisable();
 
 // assert property list
@@ -114,9 +114,9 @@ assert_checktrue(sum(prof.LineCoverage(1)(:,1) == 0) <= double(prof.FunctionCove
 // Macro with sub-function defined
 //
 
-profileEnable(assert_checkequal)
-assert_checkequal(1, 1);
-prof = profileGetInfo()
+profileEnable(assert_checkalmostequal)
+assert_checkalmostequal(1, 1);
+prof = profileGetInfo();
 profileDisable();
 
 // there is one bin file containing 1 main function and 2 sub-functions
@@ -124,5 +124,5 @@ assert_checkequal(prof.FunctionTable.FileName(1), prof.FunctionTable.FileName(2)
 assert_checkequal(prof.FunctionTable.FileName(1), prof.FunctionTable.FileName(3));
 assert_checkequal(prof.FunctionTable.FirstLine(1), prof.FunctionTable.FirstLine(2));
 assert_checkequal(prof.FunctionTable.FirstLine(1), prof.FunctionTable.FirstLine(3));
-assert_checkequal(prof.FunctionTable.ParentIndex, [0 ; 1 ; 1]);
-assert_checkequal(prof.FunctionTable.LibraryName, ["assertlib" ; "script" ; "script"]);
+assert_checkequal(prof.FunctionTable.ParentIndex, [0 ; 1 ; 1; 1]);
+assert_checkequal(prof.FunctionTable.LibraryName, ["assertlib" ; "script" ; "script" ; "script"]);
