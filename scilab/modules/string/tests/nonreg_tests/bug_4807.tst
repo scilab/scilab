@@ -6,7 +6,6 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
-// <-- NOT FIXED -->   6.0.1 -> 6.0.2
 //
 // <-- Non-regression test for bug 4807 -->
 //
@@ -16,7 +15,7 @@
 // <-- Short Description -->
 //strsubst does not check if second argument is a valid pattern when there is 'r' as
 // fourth argument
-//======================================================================================== 
+//========================================================================================
 ierr = execstr("strsubst(''pattern -- pattern __ pattern '',''pattern'',''replace'',''r'');","errcatch");
 if ierr <> 999 then pause,end
 

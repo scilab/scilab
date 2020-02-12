@@ -302,6 +302,7 @@ wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const
             pcre_error("strsubst", iPcreStatus);
             FREE(arriStart);
             FREE(arriEnd);
+            *_piErr = iPcreStatus;
             return NULL;
         }
     }
