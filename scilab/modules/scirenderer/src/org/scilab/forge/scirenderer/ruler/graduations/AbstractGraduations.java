@@ -27,6 +27,7 @@ import java.text.DecimalFormatSymbols;
 public abstract class AbstractGraduations implements Graduations {
 
     protected static final double PRECISION = 1e-8;
+    protected static final int MAX_NUMBER_OF_GRADUATION = 256;
 
     /** The left bracket used by {@link #toString()} */
     private static final String LEFT_BRACKET = "[";

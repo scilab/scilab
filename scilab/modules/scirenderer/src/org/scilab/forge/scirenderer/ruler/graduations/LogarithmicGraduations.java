@@ -16,7 +16,7 @@
 package org.scilab.forge.scirenderer.ruler.graduations;
 
 import java.util.Collections;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -60,7 +60,7 @@ public final class LogarithmicGraduations extends AbstractGraduations implements
             stepExponent = 1;
         } else {
             stepExponent = 0;
-            allValues = new LinkedList<Double>();
+            allValues = new ArrayList<Double>();
             allValues.add(lowerBound);
         }
     }
@@ -80,7 +80,7 @@ public final class LogarithmicGraduations extends AbstractGraduations implements
     @Override
     public List<Double> getAllValues() {
         if (allValues == null) {
-            allValues = new LinkedList<Double>();
+            allValues = new ArrayList<Double>();
             int currentExponent = (int) Math.ceil(Math.log10(getLowerBound()));
             double currentValue = Math.pow(10, currentExponent);
             final double step = Math.pow(10, stepExponent);
@@ -136,10 +136,10 @@ public final class LogarithmicGraduations extends AbstractGraduations implements
         if (subValues == null) {
             List<Double> ticksValue = getAllValues();
             if (N == 0 || ticksValue.size() == 0) {
-                subValues = new LinkedList<Double>();
+                subValues = new ArrayList<Double>();
             } else {
                 Collections.sort(ticksValue);
-                subValues = new LinkedList<Double>();
+                subValues = new ArrayList<Double>();
 
                 for (int i = 0; i < ticksValue.size() - 1; i++) {
                     final double first = Math.log10(ticksValue.get(i));
@@ -203,7 +203,7 @@ public final class LogarithmicGraduations extends AbstractGraduations implements
         @Override
         public List<Double> getAllValues() {
             if (allValues == null) {
-                allValues = new LinkedList<Double>();
+                allValues = new ArrayList<Double>();
                 for (Graduations graduations : graduationsList) {
                     allValues.addAll(graduations.getAllValues());
                 }
@@ -216,7 +216,7 @@ public final class LogarithmicGraduations extends AbstractGraduations implements
         @Override
         public List<Double> getNewValues() {
             if (newValues == null) {
-                newValues = new LinkedList<Double>();
+                newValues = new ArrayList<Double>();
                 if (getParentGraduations() instanceof LogarithmicGraduations) {
                     for (Graduations graduations : graduationsList) {
                         newValues.addAll(graduations.getAllValues());
@@ -233,7 +233,7 @@ public final class LogarithmicGraduations extends AbstractGraduations implements
         @Override
         public Graduations getMore() {
             if (moreLLGraduation == null) {
-                List<Graduations> moreList = new LinkedList<Graduations>();
+                List<Graduations> moreList = new ArrayList<Graduations>();
                 for (Graduations graduations : graduationsList) {
                     Graduations more = graduations.getMore();
                     if (more != null) {
@@ -250,7 +250,7 @@ public final class LogarithmicGraduations extends AbstractGraduations implements
         @Override
         public Graduations getAlternative() {
             if (alternativeLLGraduation == null) {
-                List<Graduations> alternativeList = new LinkedList<Graduations>();
+                List<Graduations> alternativeList = new ArrayList<Graduations>();
                 for (Graduations graduations : graduationsList) {
                     Graduations alternative = graduations.getAlternative();
                     if (alternative != null) {
@@ -267,7 +267,7 @@ public final class LogarithmicGraduations extends AbstractGraduations implements
         @Override
         public Graduations getSubGraduations() {
             if (subLLGraduation == null) {
-                List<Graduations> subList = new LinkedList<Graduations>();
+                List<Graduations> subList = new ArrayList<Graduations>();
                 for (Graduations graduations : graduationsList) {
                     Graduations sub = graduations.getSubGraduations();
                     if (sub != null) {
@@ -289,7 +289,7 @@ public final class LogarithmicGraduations extends AbstractGraduations implements
         }
 
         private List<Graduations> computeGraduationsList() {
-            List<Graduations> list = new LinkedList<Graduations>();
+            List<Graduations> list = new ArrayList<Graduations>();
 
             /**
              * Let a and b a power of 10.

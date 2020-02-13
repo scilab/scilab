@@ -15,7 +15,7 @@
 
 package org.scilab.forge.scirenderer.ruler.graduations;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -70,8 +70,8 @@ public final class LinearGraduations extends AbstractGraduations implements Grad
         } else {
             stepExponent = 0;
             stepMantissa = 0;
-            newValues = new LinkedList<Double>();
-            allValues = new LinkedList<Double>();
+            newValues = new ArrayList<Double>();
+            allValues = new ArrayList<Double>();
             allValues.add(lowerBound);
         }
     }
@@ -173,6 +173,11 @@ public final class LinearGraduations extends AbstractGraduations implements Grad
                 return ((index * stepMantissa) % 2) != 0;
         }
     }
+    
+    private final boolean canAdd(List<Double> container)
+    {
+        return container.size() < MAX_NUMBER_OF_GRADUATION;
+    }
 
     @Override
     public List<Double> getNewValues() {
@@ -181,7 +186,7 @@ public final class LinearGraduations extends AbstractGraduations implements Grad
         }
 
         if (newValues == null) {
-            newValues = new LinkedList<Double>();
+            newValues = new ArrayList<Double>();
             final double lb = getLowerBound();
 
             long currentIndex = getIndex(lb);
@@ -193,7 +198,7 @@ public final class LinearGraduations extends AbstractGraduations implements Grad
                 currentIndex++;
             }
 
-            while (containRelative(value) && !Double.isInfinite(lb + value)) {
+            while (canAdd(newValues) && containRelative(value) && !Double.isInfinite(lb + value)) {
                 if (isNewIndex(currentIndex)) {
                     newValues.add(lb + value);
                 }
@@ -209,7 +214,7 @@ public final class LinearGraduations extends AbstractGraduations implements Grad
     public List<Double> getAllValues() {
         if (allValues == null) {
             final double lb = getLowerBound();
-            allValues = new LinkedList<Double>();
+            allValues = new ArrayList<Double>();
             double currentValue = getStepValue() * getIndex(lb);
             double value = currentValue - lb;
 
@@ -217,7 +222,7 @@ public final class LinearGraduations extends AbstractGraduations implements Grad
                 value += getStepValue();
             }
 
-            while (containRelative(value) && !Double.isInfinite(lb + value)) {
+            while (canAdd(allValues) && containRelative(value) && !Double.isInfinite(lb + value)) {
                 allValues.add(lb + value);
                 value += getStepValue();
             }
