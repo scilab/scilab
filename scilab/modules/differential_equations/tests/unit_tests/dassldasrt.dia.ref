@@ -162,45 +162,26 @@ res22=[...
 '      RETURN';
 '      END';]
  res22  = 
-!      SUBROUTINE RES22(T,Y,YDOT,DELTA,IRES,RPAR,IPAR)    !
-!                                                         !
-!      IMPLICIT DOUBLE PRECISION (A-H,O-Z)                !
-!                                                         !
-!      INTEGER NEQ                                        !
-!                                                         !
-!      DIMENSION Y(*), YDOT(*), DELTA(*)                  !
-!                                                         !
-!      NEQ=2                                              !
-!                                                         !
-!      CALL F2(NEQ,T,Y,DELTA)                             !
-!                                                         !
-!      DO 10 I = 1,NEQ                                    !
-!                                                         !
-!         DELTA(I) = YDOT(I) - DELTA(I)                   !
-!                                                         !
-! 10   CONTINUE                                           !
-!                                                         !
-!      RETURN                                             !
-!                                                         !
-!      END                                                !
-!                                                         !
-!      SUBROUTINE F2 (NEQ, T, Y, YDOT)                    !
-!                                                         !
-!      IMPLICIT DOUBLE PRECISION (A-H,O-Z)                !
-!                                                         !
-!      INTEGER NEQ                                        !
-!                                                         !
-!      DOUBLE PRECISION T, Y, YDOT                        !
-!                                                         !
-!      DIMENSION Y(*), YDOT(*)                            !
-!                                                         !
-!      YDOT(1) = Y(2)                                     !
-!                                                         !
-!      YDOT(2) = 100.0D0*(1.0D0 - Y(1)*Y(1))*Y(2) - Y(1)  !
-!                                                         !
-!      RETURN                                             !
-!                                                         !
-!      END                                                !
+  "      SUBROUTINE RES22(T,Y,YDOT,DELTA,IRES,RPAR,IPAR)"  
+  "      IMPLICIT DOUBLE PRECISION (A-H,O-Z)"              
+  "      INTEGER NEQ"                                      
+  "      DIMENSION Y(*), YDOT(*), DELTA(*)"                
+  "      NEQ=2"                                            
+  "      CALL F2(NEQ,T,Y,DELTA)"                           
+  "      DO 10 I = 1,NEQ"                                  
+  "         DELTA(I) = YDOT(I) - DELTA(I)"                 
+  " 10   CONTINUE"                                         
+  "      RETURN"                                           
+  "      END"                                              
+  "      SUBROUTINE F2 (NEQ, T, Y, YDOT)"                  
+  "      IMPLICIT DOUBLE PRECISION (A-H,O-Z)"              
+  "      INTEGER NEQ"                                      
+  "      DOUBLE PRECISION T, Y, YDOT"                      
+  "      DIMENSION Y(*), YDOT(*)"                          
+  "      YDOT(1) = Y(2)"                                   
+  "      YDOT(2) = 100.0D0*(1.0D0 - Y(1)*Y(1))*Y(2) - Y(1)"
+  "      RETURN"                                           
+  "      END"                                              
 jac22=[...
 '      SUBROUTINE JAC22 (T, Y, ydot, PD, CJ, RPAR, IPAR)';
 ' ';
@@ -220,39 +201,23 @@ jac22=[...
 '      RETURN';
 '      END';]
  jac22  = 
-!      SUBROUTINE JAC22 (T, Y, ydot, PD, CJ, RPAR, IPAR)  !
-!                                                         !
-!                                                         !
-!                                                         !
-!      IMPLICIT DOUBLE PRECISION (A-H,O-Z)                !
-!                                                         !
-!      INTEGER  NROWPD                                    !
-!                                                         !
-!      DOUBLE PRECISION T, Y, PD                          !
-!                                                         !
-!      PARAMETER (NROWPD=2)                               !
-!                                                         !
-!      DIMENSION Y(2), PD(NROWPD,2)                       !
-!                                                         !
-!      PD(1,1) = 0.0D0                                    !
-!                                                         !
-!      PD(1,2) = 1.0D0                                    !
-!                                                         !
-!      PD(2,1) = -200.0D0*Y(1)*Y(2) - 1.0D0               !
-!                                                         !
-!      PD(2,2) = 100.0D0*(1.0D0 - Y(1)*Y(1))              !
-!                                                         !
-!      PD(1,1) = CJ - PD(1,1)                             !
-!                                                         !
-!      PD(1,2) =    - PD(1,2)                             !
-!                                                         !
-!      PD(2,1) =    - PD(2,1)                             !
-!                                                         !
-!      PD(2,2) = CJ - PD(2,2)                             !
-!                                                         !
-!      RETURN                                             !
-!                                                         !
-!      END                                                !
+  "      SUBROUTINE JAC22 (T, Y, ydot, PD, CJ, RPAR, IPAR)"
+  " "                                                      
+  "      IMPLICIT DOUBLE PRECISION (A-H,O-Z)"              
+  "      INTEGER  NROWPD"                                  
+  "      DOUBLE PRECISION T, Y, PD"                        
+  "      PARAMETER (NROWPD=2)"                             
+  "      DIMENSION Y(2), PD(NROWPD,2)"                     
+  "      PD(1,1) = 0.0D0"                                  
+  "      PD(1,2) = 1.0D0"                                  
+  "      PD(2,1) = -200.0D0*Y(1)*Y(2) - 1.0D0"             
+  "      PD(2,2) = 100.0D0*(1.0D0 - Y(1)*Y(1))"            
+  "      PD(1,1) = CJ - PD(1,1)"                           
+  "      PD(1,2) =    - PD(1,2)"                           
+  "      PD(2,1) =    - PD(2,1)"                           
+  "      PD(2,2) = CJ - PD(2,2)"                           
+  "      RETURN"                                           
+  "      END"                                              
 gr22=[...
 '      SUBROUTINE GR22 (NEQ, T, Y, NG, GROOT, RPAR, IPAR)';
 '      IMPLICIT DOUBLE PRECISION (A-H,O-Z)';
@@ -263,21 +228,14 @@ gr22=[...
 '      RETURN';
 '      END';]
  gr22  = 
-!      SUBROUTINE GR22 (NEQ, T, Y, NG, GROOT, RPAR, IPAR)  !
-!                                                          !
-!      IMPLICIT DOUBLE PRECISION (A-H,O-Z)                 !
-!                                                          !
-!      INTEGER NEQ, NG                                     !
-!                                                          !
-!      DOUBLE PRECISION T, Y, GROOT                        !
-!                                                          !
-!      DIMENSION Y(*), GROOT(*)                            !
-!                                                          !
-!      GROOT(1) = Y(1)                                     !
-!                                                          !
-!      RETURN                                              !
-!                                                          !
-!      END                                                 !
+  "      SUBROUTINE GR22 (NEQ, T, Y, NG, GROOT, RPAR, IPAR)"
+  "      IMPLICIT DOUBLE PRECISION (A-H,O-Z)"               
+  "      INTEGER NEQ, NG"                                   
+  "      DOUBLE PRECISION T, Y, GROOT"                      
+  "      DIMENSION Y(*), GROOT(*)"                          
+  "      GROOT(1) = Y(1)"                                   
+  "      RETURN"                                            
+  "      END"                                               
 //Uncomment lines below: link may be machine dependent if some f77 libs are 
 //needed for linking
 //unix_g('cd /tmp;rm -f /tmp/res22.f');unix_g('cd /tmp;rm -f /tmp/gr22.f');
