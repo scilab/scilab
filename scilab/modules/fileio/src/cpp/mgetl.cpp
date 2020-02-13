@@ -38,10 +38,10 @@ extern "C"
 static const unsigned char UTF8_BOM[] = {0xEF, 0xBB, 0xBF, 0x00};
 
 //remove \r
-inline void rtrim(char* s)
+inline void rtrim(wchar_t* s)
 {
-    size_t n = strlen(s);
-    if (n && s[n - 1] == '\r')
+    size_t n = wcslen(s);
+    if (n && s[n - 1] == L'\r')
     {
         s[n - 1] = 0;
     }
@@ -96,14 +96,12 @@ int mgetl(int iFileID, int iLineCount, wchar_t*** pwstLines)
     std::ifstream ifs(fd);
 #endif
 
-#define MAX_READ_LEN 262144
-    char str[MAX_READ_LEN];
-    std::vector<wchar_t*> lst;
+    std::string str;
+    std::vector<std::string> lst;
 
-    while ((iLineCount == -1 || lst.size() < iLineCount) && ifs.getline(str, MAX_READ_LEN))
+    while ((iLineCount == -1 || lst.size() < iLineCount) && std::getline(ifs, str))
     {
-        rtrim(str);
-        lst.push_back(to_wide_string(str));
+        lst.push_back(str);
     }
 
     int nbLinesOut = (int)lst.size();
@@ -120,7 +118,9 @@ int mgetl(int iFileID, int iLineCount, wchar_t*** pwstLines)
 
     for (int i = 0; i < nbLinesOut; ++i)
     {
-        (*pwstLines)[i] = lst[i];
+        wchar_t* str = to_wide_string(lst[i].data());
+        rtrim(str);
+        (*pwstLines)[i] = str;
     }
 
 #ifndef _MSC_VER

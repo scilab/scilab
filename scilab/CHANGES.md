@@ -405,3 +405,4 @@ Bug Fixes
 * [#16320](http://bugzilla.scilab.org/show_bug.cgi?id=16320): There were unsupported UTF-8 characters in some gettext id messages.
 * [#16321](http://bugzilla.scilab.org/show_bug.cgi?id=16321): There were typo errors in the documentation.
 * [#16323](http://bugzilla.scilab.org/show_bug.cgi?id=16323): `conj(sparse(x))` was complex when x is real. 
+* [#16325](http://bugzilla.scilab.org/show_bug.cgi?id=16325): `mgetl` could not read single line data which is greater than ~260,000 characters. 
