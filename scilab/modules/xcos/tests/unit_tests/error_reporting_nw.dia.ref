@@ -19,9 +19,9 @@ try
     scicos_simulate(scs_m, "nw");
 catch
 end
- Input ports are not numbered properly.
- scicos_flat: Input ports are not numbered properly.
- c_pass1: flat failed
+  "Input ports are not numbered properly."
+  "scicos_flat: Input ports are not numbered properly."
+  "c_pass1: flat failed"
 //-----------------------------------------------------------------------------
 // on do_eval (context evaluation)
 //-----------------------------------------------------------------------------

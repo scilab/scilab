@@ -8,13 +8,10 @@
 // White-box test for the xcosPal macro.
 fields=["name";"blockNames";"icons";"style"]
  fields  = 
-!name        !
-!            !
-!blockNames  !
-!            !
-!icons       !
-!            !
-!style       !
+  "name"      
+  "blockNames"
+  "icons"     
+  "style"     
 name = "My palette";
 exec(SCI + "/modules/scicos/palettes/Lookup_Tables.cosf", -1); // getting an scs_m
 pal = xcosPal();

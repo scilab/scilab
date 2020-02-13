@@ -20,6 +20,4 @@ status = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_9810.zcos
 if ~status then bugmes();quit;end
 // compile and simulate
 xcos_simulate(scs_m, 4);
- <html><body>Simulation problem: <br/>The LU factorization has been com 
- pleted, but the factor <br/>U is exactly singular : U(1,1) is exactly  
- zero.</body></html>                                                   
+  "<html><body>Simulation problem: <br/>The LU factorization has been completed, but the factor <br/>U is exactly singular : U(1,1) is exactly zero.</body></html>"

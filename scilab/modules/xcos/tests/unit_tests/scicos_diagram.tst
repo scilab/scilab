@@ -49,7 +49,7 @@ function assert_check_props(props)
     assert_checkequal(props.tol(:)', [0.000001,0.000001,1.000D-10,100001,0,1,0]);
 
     // check tf
-    assert_checkequal(props.tf, 100000);
+    assert_checkequal(props.tf, 30);
 
     // check context
     assert_checkequal(props.context, []);

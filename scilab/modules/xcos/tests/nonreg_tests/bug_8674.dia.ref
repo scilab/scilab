@@ -25,15 +25,9 @@ function result = dialog(labels,valueini)
 endfunction
 funcprot(prot);
 %cpr = xcos_simulate(scs_m, 4);
-!messagebox: Not enough information to find port sizes.  !
-!                                                        !
-!messagebox: I try to find the problem.                  !
- <html><body><em>Please update the diagram to avoid this warning.</em>< 
- br />Block output port has a non-determined size:<ul><li>Output port 1 
-  size is: 1</li><li>Input port 1 size is: 1</li></ul></body></html>   
- <html><body><em>Please update the diagram to avoid this warning.</em>< 
- br />Block input port has a non-determined size:<ul><li>Output port 1  
- size is: 1</li><li>Input port 1 size is: 1</li></ul></body></html>    
- The 'V' variable does not exist.
- <html><body>Initialisation problem: <br/>The 'V' variable does not exi 
- st.</body></html>                                                     
+  "messagebox: Not enough information to find port sizes."
+  "messagebox: I try to find the problem."                
+  "<html><body><em>Please update the diagram to avoid this warning.</em><br />Block output port has a non-determined size:<ul><li>Output port 1 size is: 1</li><li>Input port 1 size is: 1</li></ul></body></html>"
+  "<html><body><em>Please update the diagram to avoid this warning.</em><br />Block input port has a non-determined size:<ul><li>Output port 1 size is: 1</li><li>Input port 1 size is: 1</li></ul></body></html>"
+  "The 'V' variable does not exist."
+  "<html><body>Initialisation problem: <br/>The 'V' variable does not exist.</body></html>"

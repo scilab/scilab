@@ -36,6 +36,5 @@ mputl(mo_content, fd);
 mclose(fd);
 // modelicac call
 ok = modelicac(src_file, function_file, xml_file, %t, c_file, %f);
- messagebox: Fatal error: exception Failure("The number of equations do 
- esn't match the number of variables: 2 equations and 3 variables.")   
+  "messagebox: Fatal error: exception Failure("The number of equations doesn't match the number of variables: 2 equations and 3 variables.")"
 assert_checkequal(ok, %f);
