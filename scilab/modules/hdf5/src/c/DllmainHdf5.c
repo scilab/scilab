@@ -70,7 +70,8 @@ void load_hdf5(void)
 
 void unload_hdf5(void)
 {
-    Finalize_HDF5();
+    // this finalize lead to a double free in HDF5
+    //Finalize_HDF5();
 }
 #endif
 /*--------------------------------------------------------------------------*/
