@@ -21,8 +21,7 @@
 //
 //    Jacques-Deric
 disp ("4.21.51A");
- 
- 4.21.51A   
+  "4.21.51A"
 hf                = scf (1);
 hf.figure_name    = "4.21.51A";
 hf.background     = 32;

@@ -48,7 +48,7 @@ function TitleLabel(varargin)
             arginPos = arginPos + 1;
         else
             msg = gettext("%s: Wrong size or type for input argument #%d: string expected.\n")
-            error(msprintf(msg, fname, shift+1));
+            error(msprintf(msg, fname, arginPos+1));
         end
     end
 

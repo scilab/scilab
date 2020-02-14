@@ -16,8 +16,7 @@ x=linspace(0,2*%pi,500);
 s=sin(10*x);
 driver("PPM")
  ans  =
- 
- Rec   
+  "Rec"
 xinit("testplot.ppm")
 plot2d(x,s)
 // crash here in Scilab 3.0

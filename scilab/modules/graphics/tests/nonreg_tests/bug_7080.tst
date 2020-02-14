@@ -21,7 +21,7 @@ f2="barh";
 f3="barhomogenize";
 f4="getColorIndex";
 f13="Sgrayplot";
-f14="TitleLabel";
+f14="title";
 
 //bar
 msgerr11=msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"),f1,1,6);
@@ -59,4 +59,4 @@ assert_checkerror("Sgrayplot(%i,%i,[%i,%i])", msgerr132);
 
 //TitleLabel
 msgerr141=msprintf(gettext("%s: Wrong size or type for input argument #%d: string expected.\n"),f14,1);
-assert_checkerror("TitleLabel(""Scale n°3"",1)",msgerr141);
+assert_checkerror("title(1)",msgerr141);

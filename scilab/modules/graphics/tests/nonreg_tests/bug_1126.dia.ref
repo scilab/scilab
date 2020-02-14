@@ -28,6 +28,5 @@ xtitle("new mode is used: 800 x 600 picture ?")
 xend();
 driver("Rec")
  ans  =
- 
- GIF   
-// Then open toto.gif in a image viewer.
+  "GIF"
+// Then open toto.gif in a image viewer. 
