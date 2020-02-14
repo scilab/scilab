@@ -8,7 +8,6 @@
 // <-- CLI SHELL MODE -->
 //
 // Set the seed to always get the same random numbers
-rand("seed", 0);
 grand("setsd", 0);
 
 //
@@ -145,6 +144,7 @@ assert_checkequal ( members(Ps, string(2:40)), ones(Ps) );
 //
 // Of Booleans.
 //
+rand("seed", 0);
 Xb = floor(10*rand(2, 9, 2));
 Xb = Xb<5;
 Pb = grand(2,"prm",Xb);
