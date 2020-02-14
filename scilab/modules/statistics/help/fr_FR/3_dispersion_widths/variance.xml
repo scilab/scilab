@@ -53,7 +53,7 @@
                         variance selon les lignes ou les colonnes de <varname>x</varname>. Les valeurs possibles sont
                         <itemizedlist>
                             <listitem>
-                                1 or "r" : calcul par colonne. Le résultat est un vecteur <varname>r</varname>angée (ligne)
+                                1 or "r" : calcul par colonne. Le résultat est un vecteur ligne
                             </listitem>
                             <listitem>
                                 2 or "c" : calcul par ligne. Le résultat est une <varname>c</varname>olonne

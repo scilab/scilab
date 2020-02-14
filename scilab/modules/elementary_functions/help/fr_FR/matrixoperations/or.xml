@@ -97,10 +97,10 @@
                         <itemizedlist>
                             <listitem>
                                 n = 1 | "r" : <function>or()</function> est
-                                appliqué entre les rangées de <varname>A</varname>.
+                                appliqué entre les lignes de <varname>A</varname>.
                                 Si <varname>A</varname> est une matrice,
                                 <varname>b</varname> est alors une
-                                <emphasis role="bold">r</emphasis>angée, avec
+                                ligne, avec
                                 <literal>b(j) = or(A(:,j))</literal>
                             </listitem>
                             <listitem>

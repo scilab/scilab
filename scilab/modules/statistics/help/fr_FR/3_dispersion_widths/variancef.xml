@@ -61,7 +61,7 @@
                 <listitem>
                     <para>l'orientation du calcul. Les valeurs acceptées sont:
                         <itemizedlist>
-                            <listitem>1 ou "r" : le résultat est une rangée, après un calcul en colonne.</listitem>
+                            <listitem>1 ou "r" : le résultat est une ligne, après un calcul en colonne.</listitem>
                             <listitem>2 ou "c" : le résultat est une colonne, après un calcul en ligne.</listitem>
                             <listitem>
                                 "*" : calcul tous les éléments de <varname>x</varname> confondus (mode utilisé par défaut); utile si le 3ème paramètre <varname>m</varname> doit par ailleurs être indiqué.

@@ -38,7 +38,7 @@
                 <term>N</term>
                 <listitem>
                     <para>
-                        Matrice ou hypermatrice dont les éléments, rangées ou colonnes doivent être recherchés. Il peut s'agir de booléens, d'entiers encodés, de nombres décimaux réels ou complexes, de polynômes ou de textes. En mode "rows" ou "cols", l'hypermatrice n'est pas acceptée. Un élément donné (ou une rangée ou colonne) peut apparaitre plusieurs fois dans <literal>N</literal>.
+                        Matrice ou hypermatrice dont les éléments, lignes ou colonnes doivent être recherchés. Il peut s'agir de booléens, d'entiers encodés, de nombres décimaux réels ou complexes, de polynômes ou de textes. En mode "rows" ou "cols", l'hypermatrice n'est pas acceptée. Un élément donné (ou une ligne ou colonne) peut apparaitre plusieurs fois dans <literal>N</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -67,7 +67,7 @@
                                 <term>"rows", "cols"</term>
                                 <listitem>
                                     <para>
-                                        Par défaut, chaque élément individuel <literal>N(i, j, ..)</literal> de <literal>N</literal> est recherché dans <literal>H</literal>. Si <literal>"rows"</literal> est indiquée, chaque rangée de <literal>N</literal> est recherchée parmi les rangées de <literal>H</literal>. De même, si <literal>"cols"</literal> est indiquée, chaque colonne de <literal>N</literal> est recherchée parmi les colonnes de <literal>H.</literal>.
+                                        Par défaut, chaque élément individuel <literal>N(i, j, ..)</literal> de <literal>N</literal> est recherché dans <literal>H</literal>. Si <literal>"rows"</literal> est indiquée, chaque ligne de <literal>N</literal> est recherchée parmi les lignes de <literal>H</literal>. De même, si <literal>"cols"</literal> est indiquée, chaque colonne de <literal>N</literal> est recherchée parmi les colonnes de <literal>H.</literal>.
                                     </para>
                                 </listitem>
                             </varlistentry>
@@ -75,7 +75,7 @@
                                 <term>"shuffle"</term>
                                 <listitem>
                                     <para>
-                                        En mode <literal>"rows"</literal> ou <literal>"cols"</literal>, par défaut l'ordre des éléments d'une rangée ou d'une colonne est pris en compte : par exemple, <literal>[ 7 3 5 ]</literal> dans <literal>N</literal> et <literal>[ 3 5 7]</literal> dans <literal>H</literal> ne correspondront pas. Lorsque l'option <literal>"shuffle"</literal> est utilisée, toute permutation de --disons--<literal>[3 5 7]</literal> sera reconnue dans H comme correspondant à la rangée <literal>[3 5 7]</literal> dans <literal>N</literal>. Cette option est ignorée pour les polynômes.
+                                        En mode <literal>"rows"</literal> ou <literal>"cols"</literal>, par défaut l'ordre des éléments d'une ligne ou d'une colonne est pris en compte : par exemple, <literal>[ 7 3 5 ]</literal> dans <literal>N</literal> et <literal>[ 3 5 7]</literal> dans <literal>H</literal> ne correspondront pas. Lorsque l'option <literal>"shuffle"</literal> est utilisée, toute permutation de --disons--<literal>[3 5 7]</literal> sera reconnue dans H comme correspondant à la ligne <literal>[3 5 7]</literal> dans <literal>N</literal>. Cette option est ignorée pour les polynômes.
                                     </para>
                                 </listitem>
                             </varlistentry>
@@ -90,7 +90,7 @@
                         En mode normal : <literal>nb(i, j, ..)</literal> (décimaux) retourne le nombre d'occurences dans <literal>H</literal> de <literal>N(i, j, ..)</literal>. <literal>nb</literal> et <literal>N</literal> ont le même format. Si <literal>H</literal> est vide [], une matrice de zéros est retournée. Si <literal>N</literal> est vide, la matrice vide <literal>[]</literal> est retournée.
                     </para>
                     <para>
-                        En mode <literal>"rows"</literal> ou <literal>"cols"</literal> : <literal>nb</literal> est un vecteur ligne de décimaux avec autant d'élements que <literal>N</literal> a de rangées ou colonnes. <literal>nb(i)</literal> retourne le nombre d'occurences dans <literal>H(1:$, :)</literal> de <literal>N(i, :)</literal> (ou de <literal>N(:, i)</literal> dans <literal>H(:, 1:$)</literal> ).
+                        En mode <literal>"rows"</literal> ou <literal>"cols"</literal> : <literal>nb</literal> est un vecteur ligne de décimaux avec autant d'élements que <literal>N</literal> a de lignes ou colonnes. <literal>nb(i)</literal> retourne le nombre d'occurences dans <literal>H(1:$, :)</literal> de <literal>N(i, :)</literal> (ou de <literal>N(:, i)</literal> dans <literal>H(:, 1:$)</literal> ).
                     </para>
                 </listitem>
             </varlistentry>
@@ -101,7 +101,7 @@
                         En mode normal : <literal>loc</literal> et <literal>N</literal> ont le même format. <literal>loc(i, j, ..)</literal> retourne le n°(linéarisé) dans <literal>H</literal> le plus petit auquel <literal>N(i, j, ..)</literal> advient : <literal>H(loc(i, j, ..))==N(i, j, ..)</literal>. Si l'option <literal>"last"</literal> est utilisée, le n° le plus grand vérifiant la même condition est retourné à la place. Si <literal>N(i, j, ..)</literal> n'est pas présent dans <literal>H</literal>, <literal>loc(i, j, ..)</literal> est mis à <literal>0</literal>.
                     </para>
                     <para>
-                        En mode <literal>"rows"</literal> ou <literal>"cols"</literal> : <literal>loc</literal> est un vecteur ligne de décimaux, avec autant d'éléments que <literal>N</literal> a respectivement de rangées ou de colonnes. <literal>loc(i)</literal> retourne le n° de la 1ère ligne <literal>H(loc(i), :)</literal> identifiable à <literal>N(i, :)</literal> (ou le n° de la 1ère colonne <literal>H(:, loc(i))</literal> identifiable à <literal>N(:, i)</literal>). Si l'option <literal>"shuffle"</literal> est en outre utilisée, l'ordre des éléments de <literal>N(i, :)</literal> est ignoré et toutes les permutations de <literal>N(i, :)</literal> identifiables en rangées de <literal>H</literal> sont considérées.
+                        En mode <literal>"rows"</literal> ou <literal>"cols"</literal> : <literal>loc</literal> est un vecteur ligne de décimaux, avec autant d'éléments que <literal>N</literal> a respectivement de lignes ou de colonnes. <literal>loc(i)</literal> retourne le n° de la 1ère ligne <literal>H(loc(i), :)</literal> identifiable à <literal>N(i, :)</literal> (ou le n° de la 1ère colonne <literal>H(:, loc(i))</literal> identifiable à <literal>N(:, i)</literal>). Si l'option <literal>"shuffle"</literal> est en outre utilisée, l'ordre des éléments de <literal>N(i, :)</literal> est ignoré et toutes les permutations de <literal>N(i, :)</literal> identifiables en lignes de <literal>H</literal> sont considérées.
                     </para>
                 </listitem>
             </varlistentry>
@@ -110,9 +110,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>nb = members(N, H [,"rows"|"cols"])</literal> retourne le nombre d'occurences de chaque élément ou rangée ou colonne de <literal>N</literal> identifiables dans <literal>H</literal>. Si aucune correspondance n'est trouvée, 0 est retourné pour le composant considéré.
+            <literal>nb = members(N, H [,"rows"|"cols"])</literal> retourne le nombre d'occurences de chaque élément ou ligne ou colonne de <literal>N</literal> identifiables dans <literal>H</literal>. Si aucune correspondance n'est trouvée, 0 est retourné pour le composant considéré.
             La position dans <literal>H</literal> de la 1ère (par défaut) ou de la dernière (avec <literal>"last"</literal>) occurence des <literal>N(i, j, ...)</literal> peut être obtenue via la seconde variable de sortie <literal>loc</literal>.
-            Si des rangées ou colonnes correspondantes sont recherchées, l'ordre de leurs éléments peut être ignoré en utilisant l'option <literal>"shuffle"</literal>.
+            Si des lignes ou colonnes correspondantes sont recherchées, l'ordre de leurs éléments peut être ignoré en utilisant l'option <literal>"shuffle"</literal>.
         </para>
         <para>
             Les valeurs spéciales <literal>%inf</literal> et <literal>-%inf</literal> sont admises dans <literal>N</literal> comme dans <literal>H</literal>.
@@ -158,7 +158,7 @@ H = [ "Hello" "Bonjour" "Allo"
       "Hi"    "Hé"    "Salud" ];
 [nb, loc] = members(N, H, "last")
 
-// Recherche de rangées :
+// Recherche de lignes :
  H = [
   3  3  0
   4  1  0
