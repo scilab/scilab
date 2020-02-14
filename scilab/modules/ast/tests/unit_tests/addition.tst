@@ -6,6 +6,7 @@
 // ============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 s = %s;
 empty = [];
@@ -23,6 +24,8 @@ p = 1 + %s - %s**2;
 pc = 1 + %s - %s**2 + ( 2 - 3 * %s + 4 * %s**2 ) * %i;
 P = [2*p, -3*p;4*p,-5*p];
 PC = [2*pc, -3*pc;4*pc,-5*pc];
+SP1 = sparse(2);
+SP1C = sparse(2 + 3*%i);
 SP = sparse([1,2;4,5;3,10],[1,2,3]);
 SPC = sparse([1,2;4,5;3,10],[1,2,3]) * ( 1 + 4*%i);
 
@@ -58,6 +61,8 @@ assert_checkequal(empty + P, []);
 assert_checkequal(empty + PC, []);
 assert_checkequal(empty + SP, []);
 assert_checkequal(empty + SPC, []);
+assert_checkequal(empty + SP1, []);
+assert_checkequal(empty + SP1C, []);
 assert_checkequal(empty + i8, []);
 assert_checkequal(empty + I8, []);
 assert_checkequal(empty + ui8, []);
@@ -84,6 +89,8 @@ assert_checkequal(r + P, [4+2*s-2*s^2,-1-3*s+3*s^2;6+4*s-4*s^2,-3-5*s+5*s^2]);
 assert_checkequal(r + PC, [4+%i*4+(2-%i*6)*s+(-2+%i*8)*s^2,-1-%i*6+(-3+%i*9)*s+(3-%i*12)*s^2;6+%i*8+(4-%i*12)*s+(-4+%i*16)*s^2,-3-%i*10+(-5+%i*15)*s+(5-%i*20)*s^2]);
 assert_checkequal(r + SP, [2,3,2,2,2,2,2,2,2,2;2,2,2,2,2,2,2,2,2,2;2,2,2,2,2,2,2,2,2,5;2,2,2,2,4,2,2,2,2,2]);
 assert_checkequal(r + SPC, [ 2, 3+%i*4, 2, 2, 2, 2, 2, 2, 2, 2; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2; 2, 2, 2, 2, 2, 2, 2, 2, 2, 5+%i*12; 2, 2, 2, 2, 4+%i*8, 2, 2, 2, 2, 2]);
+assert_checkequal(r + SP1, 4);
+assert_checkequal(r + SP1C, 4 + 3*%i);
 assert_checkequal(r + i8, int8(-6));
 assert_checkequal(r + I8, int8([-6,-14;-22,-30]));
 assert_checkequal(r + ui8, uint8(10));
@@ -110,6 +117,8 @@ assert_checkequal(c + P, [3+%i*2+2*s-2*s^2,-2+%i*2-3*s+3*s^2;5+%i*2+4*s-4*s^2,-4
 assert_checkequal(c + PC, [3+%i*6+(2-%i*6)*s+(-2+%i*8)*s^2,-2-%i*4+(-3+%i*9)*s+(3-%i*12)*s^2;5+%i*10+(4-%i*12)*s+(-4+%i*16)*s^2,-4-%i*8+(-5+%i*15)*s+(5-%i*20)*s^2]);
 assert_checkequal(c + SP, [ 1+%i*2, 2+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 4+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 3+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2]);
 assert_checkequal(c + SPC, [ 1+%i*2, 2+%i*6, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 4+%i*14; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 3+%i*10, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2]);
+assert_checkequal(c + SP1,  3+%i*2);
+assert_checkequal(c + SP1C,  3+%i*5);
 
 assert_checkequal(R + empty, []);
 assert_checkequal(R + r, [3,4;5,6]);
@@ -160,6 +169,8 @@ assert_checkequal(e + P, [3+2*s-2*s^2,-3-3*s+3*s^2;4+4*s-4*s^2,-4-5*s+5*s^2]);
 assert_checkequal(e + PC, [3+%i*4+(2-%i*6)*s+(-2+%i*8)*s^2,-3-%i*6+(-3+%i*9)*s+(3-%i*12)*s^2;4+%i*8+(4-%i*12)*s+(-4+%i*16)*s^2,-4-%i*10+(-5+%i*15)*s+(5-%i*20)*s^2]);
 assert_checkequal(e + SP, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[1;1;1;1;3;1;2],[4,10]));
 assert_checkequal(e + SPC, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[ 1; 1+%i*4; 1; 1; 3+%i*12; 1; 2+%i*8],[4,10]));
+assert_checkequal(e + SP1, sparse(3));
+assert_checkequal(e + SP1C, sparse(3 + 3*%i));
 
 assert_checkequal(ec + empty, []);
 assert_checkequal(ec + r,  7+%i);
@@ -174,6 +185,8 @@ assert_checkequal(ec + P, [7+%i+2*s-2*s^2,-3-3*s+3*s^2;4+4*s-4*s^2,%i-5*s+5*s^2]
 assert_checkequal(ec + PC, [7+%i*5+(2-%i*6)*s+(-2+%i*8)*s^2,-3-%i*6+(-3+%i*9)*s+(3-%i*12)*s^2;4+%i*8+(4-%i*12)*s+(-4+%i*16)*s^2,-%i*9+(-5+%i*15)*s+(5-%i*20)*s^2]);
 assert_checkequal(ec + SP, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[ 5+%i; 1; 5+%i; 5+%i; 3; 5+%i; 2],[4,10]));
 assert_checkequal(ec + SPC, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[ 5+%i; 1+%i*4; 5+%i; 5+%i; 3+%i*12; 5+%i; 2+%i*8],[4,10]));
+assert_checkequal(ec + SP1, sparse(7 + %i));
+assert_checkequal(ec + SP1C, sparse(7 + 4*%i));
 
 assert_checkequal(p + empty, []);
 assert_checkequal(p + r, 3+s-s^2);
@@ -230,6 +243,8 @@ assert_checkequal(SP + e, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[1;1;1;1;3;1;2],
 assert_checkequal(SP + ec, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[ 5+%i; 1; 5+%i; 5+%i; 3; 5+%i; 2],[4,10]));
 assert_checkequal(SP + SP, sparse([1,2;3,10;4,5],[2;6;4],[4,10]));
 assert_checkequal(SP + SPC, sparse([1,2;3,10;4,5],[ 2+%i*4; 6+%i*12; 4+%i*8],[4,10]));
+assert_checkequal(SP + SP1, full(SP) + full(SP1));
+assert_checkequal(SP + SP1C, full(SP) + full(SP1C));
 
 assert_checkequal(SPC + empty, []);
 assert_checkequal(SPC + r, [ 2, 3+%i*4, 2, 2, 2, 2, 2, 2, 2, 2; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2; 2, 2, 2, 2, 2, 2, 2, 2, 2, 5+%i*12; 2, 2, 2, 2, 4+%i*8, 2, 2, 2, 2, 2]);
@@ -238,6 +253,13 @@ assert_checkequal(SPC + e, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[ 1; 1+%i*4; 1;
 assert_checkequal(SPC + ec, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[ 5+%i; 1+%i*4; 5+%i; 5+%i; 3+%i*12; 5+%i; 2+%i*8],[4,10]));
 assert_checkequal(SPC + SP, sparse([1,2;3,10;4,5],[ 2+%i*4; 6+%i*12; 4+%i*8],[4,10]));
 assert_checkequal(SPC + SPC, sparse([1,2;3,10;4,5],[ 2+%i*8; 6+%i*24; 4+%i*16],[4,10]));
+assert_checkequal(SPC + SP1, full(SPC) + full(SP1));
+assert_checkequal(SPC + SP1C, full(SPC) + full(SP1C));
+
+assert_checkequal(SP1 + SP1, sparse(4));
+assert_checkequal(SP1 + SP1C, sparse(4 + 3*%i));
+
+assert_checkequal(SP1C + SP1C, sparse(4 + 6*%i));
 
 assert_checkequal(i8 + empty, []);
 assert_checkequal(i8 + r, int8(-6));
