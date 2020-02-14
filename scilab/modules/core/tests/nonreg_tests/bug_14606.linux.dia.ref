@@ -84,8 +84,10 @@ global bug_14606_var
 whos -name bug_14606_var
 Name                     Type           Size           Bytes        
  
+bug_14606_var            constant       10x10          1008         
 bug_14606_var            constant*      10x10          1008         
 clear bug_14606_var
 whos -name bug_14606_var
 Name                     Type           Size           Bytes        
  
+bug_14606_var            constant*      10x10          1008         
