@@ -14,8 +14,7 @@
 // Export to SVG converted texts in shapes.
 driver("SVG")
  ans  =
- 
- Rec   
+  "Rec"
 xinit(TMPDIR+"/plop.svg")
 xtitle('this appears as bezier','x','y')
 xend();

@@ -14,8 +14,7 @@
 // Vectorial export used too much memory for grayplot
 driver("png")
  ans  =
- 
- Rec   
+  "Rec"
 xinit(TMPDIR+"/plop.png")
 m = rand(500,500);
 grayplot(1:500, 1:500, m);

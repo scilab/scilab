@@ -14,8 +14,7 @@
 // A graphic window was opened with two xend()
 driver("JPEG")
  ans  =
- 
- Rec   
+  "Rec"
 xinit(TMPDIR+"/plot3d.jpg")
 plot3d()
 xend()

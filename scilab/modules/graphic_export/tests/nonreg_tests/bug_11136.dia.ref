@@ -14,8 +14,7 @@
 // A graphic export was crashing when using legends
 driver("GIF")
  ans  =
- 
- Rec   
+  "Rec"
 xinit(TMPDIR+"/plop.gif")
 t=0:0.1:2*%pi;
 plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);
