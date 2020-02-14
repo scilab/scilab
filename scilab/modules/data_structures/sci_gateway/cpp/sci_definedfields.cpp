@@ -45,21 +45,27 @@ types::Function::ReturnValue sci_definedfields(types::typed_list &in, int _iRetC
         return types::Function::Error;
     }
 
-    double* res = new double[pL->getSize()];
-    int idx = 0;
-    for (int i = 0 ; i < pL->getSize() ; i++)
+    int size = pL->getSize();
+    std::vector<double> res;
+    res.reserve(size);
+
+    for (int i = 0; i < size; ++i)
     {
         types::InternalType* pIT = pL->get(i);
-        if (pIT->getType() != types::InternalType::ScilabListUndefinedOperation)
+        switch (pIT->getType())
         {
-            res[idx++] = i + 1;
+            case types::InternalType::ScilabListUndefinedOperation:
+            case types::InternalType::ScilabVoid:
+                break;
+            default:
+                res.push_back(i + 1);
+                break;
         }
     }
 
-    types::Double* pDbl = new types::Double(1, idx);
-    pDbl->set(res);
+    types::Double* pDbl = new types::Double(1, res.size());
+    pDbl->set(res.data());
     out.push_back(pDbl);
-    delete[] res;
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
