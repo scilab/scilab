@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 13509 -->
 //
@@ -16,8 +17,8 @@
 // It was not possible to have an empty prefix with xmlNs
 //
 
-s = "<root><a/><b/></root>"
-doc = xmlReadStr(s)
+s = "<root><a/><b/></root>";
+doc = xmlReadStr(s);
 ns=xmlNs(doc.root,"","http://name.space");
 xmlAddNs(doc.root.children(1),ns);
 xmlAddNs(doc.root.children(2),ns);
@@ -27,8 +28,8 @@ assert_checkequal(out(3), "  <a xmlns:=""http://name.space""/>");
 
 xmlDelete(doc)
 
-s = "<root><a/><b/></root>"
-doc = xmlReadStr(s)
+s = "<root><a/><b/></root>";
+doc = xmlReadStr(s);
 ns=xmlNs(doc.root,[],"http://name.space");
 xmlAddNs(doc.root.children(1),ns);
 xmlAddNs(doc.root.children(2),ns);
