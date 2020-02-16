@@ -10,7 +10,7 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function [x, k, nb] = unique(x, varargin)
+function [x, ki, ko, nb] = unique(x, varargin)
     // extract unique components of a vector
     // varargin : orient=1|2|"r"|"c", "uniqueNan", "keepOrder"
     //
@@ -24,7 +24,8 @@ function [x, k, nb] = unique(x, varargin)
     uniqueNan = %f
     orient = "*"
     newInf = [] // init Inf substitute in case of "uniqueNan" and or(x==%inf)
-    k = []
+    ki = []
+    ko = []
     nb = []
 
     // CHECKING INPUT ARGUMENTS
@@ -77,7 +78,7 @@ function [x, k, nb] = unique(x, varargin)
 
     sz = size(x);
     if size(x, orient)==1 then
-        k = 1
+        ki = 1
         return
     end
     if uniqueNan
@@ -89,7 +90,7 @@ function [x, k, nb] = unique(x, varargin)
     // [] trivial case
     // ---------------
     if isempty(x) then
-        return  // k, nb are already []. x is [] or sparse([])
+        return  // ki, nb are already []. x is [] or sparse([])
     end
 
     // PROCESSING complex numbers
@@ -104,13 +105,13 @@ function [x, k, nb] = unique(x, varargin)
                     if ~getK
                         x = unique(x,"r")
                     else
-                        [x, k, nb] = unique(x,"r")
+                        [x, ki, ko, nb] = unique(x,"r")
                     end
                     x = complex(x(:,1),x(:,2));
                     if sz(1)==1 // => put results in row
                         x = x.'
                         if getK
-                            k = k'
+                            ki = ki'
                             nb = nb'
                         end
                     end
@@ -119,7 +120,7 @@ function [x, k, nb] = unique(x, varargin)
                     if ~getK
                         x = unique(x,"r")
                     else
-                        [x, k, nb] = unique(x,"r")
+                        [x, ki, ko, nb] = unique(x,"r")
                     end
                     x = complex(x(:,1:sz(2)), x(:,sz(2)+1:$));
                 elseif orient=="c" | orient==2
@@ -127,7 +128,7 @@ function [x, k, nb] = unique(x, varargin)
                     if ~getK
                         x = unique(x,"c")
                     else
-                        [x, k, nb] = unique(x,"c")
+                        [x, ki, ko, nb] = unique(x,"c")
                     end
                     x = complex(x(1:sz(1),:), x(sz(1)+1:$,:));
                 end
@@ -135,7 +136,7 @@ function [x, k, nb] = unique(x, varargin)
                     x = uniqueProcessNan(x, newInf, "restoreNan")
                 end
                 if keepOrder
-                    [k, kk] = gsort(k,"g","i")
+                    [ki, kk] = gsort(ki,"g","i")
                     select orient
                     case "*"
                         x = x(kk)
@@ -155,7 +156,7 @@ function [x, k, nb] = unique(x, varargin)
     // -----------------------------------------
     if orient=="*" then
         if getK then
-            [x,k] = gsort(x,"g","i");
+            [x,ki] = gsort(x,"g","i");
             keq = x(2:$) == x(1:$-1);
             if argn(1)>2
                 nb = [0 find(~keq) size(x,"*")]
@@ -164,10 +165,10 @@ function [x, k, nb] = unique(x, varargin)
             keq = find(keq);
             if keq<>[] then keq = keq+1;end
             x(keq) = [];
-            k(keq) = [];
+            ki(keq) = [];
             if size(x,1)>1 | ndims(x)>2
                 x = x(:)
-                k = k(:)
+                ki = ki(:)
                 nb = nb(:)
             end
         else
@@ -177,7 +178,7 @@ function [x, k, nb] = unique(x, varargin)
         end
     elseif  orient==1|orient=="r" then
         if getK then
-            [x,k] = gsort(x,"lr","i");
+            [x,ki] = gsort(x,"lr","i");
             keq = and(x(2:$,:) == x(1:$-1,:),"c")
             if argn(1)>2
                 nb = [0 find(~keq) size(x,1)]
@@ -187,14 +188,14 @@ function [x, k, nb] = unique(x, varargin)
             keq = find(keq)
             if keq<>[] then keq = keq+1;end
             x(keq,:) = [];
-            k(keq,:) = [];
+            ki(keq,:) = [];
         else
             x = gsort(x,"lr","i");
             x( find(and(x(2:$,:) == x(1:$-1,:),"c")),:) = [];
         end
     elseif  orient==2|orient=="c" then
         if getK then
-            [x,k] = gsort(x,"lc","i");
+            [x,ki] = gsort(x,"lc","i");
             keq = and(x(:,2:$) == x(:,1:$-1),"r")
             if argn(1)>2
                 nb = [0 find(~keq) size(x,2)]
@@ -203,7 +204,7 @@ function [x, k, nb] = unique(x, varargin)
             keq = find(keq)
             if keq<>[] then keq = keq+1;end
             x(:,keq) = [];
-            k(:,keq) = [];
+            ki(:,keq) = [];
         else
             x = gsort(x,"lc","i");
             x(:, find(and(x(:,2:$) == x(:,1:$-1),"r")) ) = [];
@@ -213,7 +214,7 @@ function [x, k, nb] = unique(x, varargin)
         x = uniqueProcessNan(x, newInf, "restoreNan")
     end
     if keepOrder
-        [k, kk] = gsort(k,"g","i")
+        [ki, kk] = gsort(ki,"g","i")
         select orient
         case "*"
             x = x(kk)

@@ -24,10 +24,10 @@
     <refsynopsisdiv>
         <title>Синтаксис</title>
         <synopsis>
-            [N, k, nb] = unique(M)
-            [N, k, nb] = unique(M, orient)
-            [N, k, nb] = unique(.., "keepOrder")
-            [N, k, nb] = unique(.., "uniqueNan")
+            [N, km, kn, nb] = unique(M)
+            [N, km, kn, nb] = unique(M, orient)
+            [N, km, kn, nb] = unique(.., "keepOrder")
+            [N, km, kn, nb] = unique(.., "uniqueNan")
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
@@ -86,6 +86,16 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>kn</term>
+                <listitem>
+                    Not yet implemented.
+                    Vector of indices of first encountered occurrences, such that
+                    <literal>M(i) = N(kn(i))</literal> or <literal>M(i,:) = N(kn(i),:)</literal>
+                    or <literal>M(:,i) = N(:,kn(i))</literal>.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>nb</term>
                 <listitem>
                     <para>
@@ -130,11 +140,8 @@
 M = int8([2  0  2  2  1  1  1  2  1  1  0  1  1  0  1  1
           0  1  2  0  1  2  2  0  1  1  2  0  1  0  0  0
           ])
-[u, k] = unique(M)
-[uc, kc] = unique(M, "c")
-
-// Получим недублированные столбцы в исходном порядке:
-M(:, gsort(kc,"g","i"))
+[u, km] = unique(M)
+[uc, kmc] = unique(M, "c")
  ]]></programlisting>
     <screen><![CDATA[
 --> M
@@ -142,30 +149,24 @@ M(:, gsort(kc,"g","i"))
   2  0  2  2  1  1  1  2  1  1  0  1  1  0  1  1
   0  1  2  0  1  2  2  0  1  1  2  0  1  0  0  0
 
---> [u, k] = unique(M)
+--> [u, km] = unique(M)
  u  =
   0
   1
   2
 
- k  =
+ km  =
    2.
    4.
    1.
 
---> [uc, kc] = unique(M, "c")
+--> [uc, kmc] = unique(M, "c")
  uc  =
   0  0  0  1  1  1  2  2
   0  1  2  0  1  2  0  2
 
- kc  =
+ kmc  =
    14.   2.   11.   12.   5.   6.   1.   3.
-
---> // Получим недублированные столбцы в исходном порядке:
---> M(:, gsort(kc,"g","i"))
- ans  =
-  2  0  2  1  1  0  1  0
-  0  1  2  1  2  2  0  0
 ]]></screen>
         <para>С комплексными числами:</para>
         <programlisting role="example"><![CDATA[
@@ -193,10 +194,10 @@ t = ["BA" "BB" "AB" "BA" "AB" "BA" "AB" "AB" "BA" "AA" "AB" "BA" "BA" "BA" "AA"
      "AA" "AB" "AA" "AA" "BB" "BB" "BB" "BA" "AB" "AB" "BB" "BB" "AB" "AB" "AA"
     ]
 u = unique(t)'
-[u, k, nb] = unique(t(1,:))
-[u, k] = unique(t(1,:), "keepOrder")  // сохранение исходного порядка элементов строки №1
-[uc, kc, nb] = unique(t, "c")
-[uc, kc, nb] = unique(t, "c", "keepOrder")  // сохранение исходного порядка столбцов
+[u, kt, ku, nb] = unique(t(1,:))
+[u, kt] = unique(t(1,:), "keepOrder")  // сохранение исходного порядка элементов строки №1
+[uc, ktc, kuc, nb] = unique(t, "c")
+[uc, ktc, kuc, nb] = unique(t, "c", "keepOrder")  // сохранение исходного порядка столбцов
  ]]></programlisting>
     <screen><![CDATA[
 --> t = ["BA" "BB" "AB" "BA" "AB" "BA" "AB" "AB" "BA" "AA" "AB" "BA" "BA" "BA" "AA"
@@ -210,40 +211,40 @@ u = unique(t)'
  u  =
 !AA  AB  BA  BB  !
 
---> [u, k, nb] = unique(t(1,:))
+--> [u, kt, ku, nb] = unique(t(1,:))
  u  =
 !AA  AB  BA  BB  !
 
- k  =
+ kt  =
    10.   3.   1.   2.
 
  nb  =
    2.   5.   7.   1.
 
---> [u, k] = unique(t(1,:), "keepOrder")  // сохранение исходного порядка
+--> [u, kt] = unique(t(1,:), "keepOrder")  // сохранение исходного порядка
  u  =
 !BA  BB  AB  AA  !
 
- k  =
+ kt  =
    1.   2.   3.   10.
 
---> [uc, kc, nb] = unique(t, "c")
- nb  =
-   1.   1.   1.   1.   3.   2.   3.   2.   1.
-
- kc  =
-   15.   10.   3.   8.   5.   1.   9.   6.   2.
-
+--> [uc, ktc, kuc, nb] = unique(t, "c")
  uc  =
 !AA  AA  AB  AB  AB  BA  BA  BA  BB  !             сортированные столбцы
 !AA  AB  AA  BA  BB  AA  AB  BB  AB  !
 
---> [uc, kc, nb] = unique(t, "c", "keepOrder")  // сохранение исходного порядка
+ ktc  =
+   15.   10.   3.   8.   5.   1.   9.   6.   2.
+
+ nb  =
+   1.   1.   1.   1.   3.   2.   3.   2.   1.
+
+--> [uc, ktc, kuc, nb] = unique(t, "c", "keepOrder")  // сохранение исходного порядка
  uc  =
 !BA  BB  AB  AB  BA  AB  BA  AA  AA  !
 !AA  AB  AA  BB  BB  BA  AB  AB  AA  !
 
- kc  =
+ ktc  =
    1.   2.   3.   5.   6.   8.   9.   10.   15.
 
  nb  =
@@ -255,10 +256,10 @@ u = unique(t)'
 M = [2  2  %nan  1     2  0     1  %nan  0    %nan
      1  0  1     %nan  0  %inf  0  1     %inf 1
     ];
-[v,k,n] = unique(M); v',n'
-[v,k,n] = unique(M, "uniqueNan"); v',n'
+[v, km, kv, n] = unique(M); v',n'
+[v, km, kv, n] = unique(M, "uniqueNan"); v',n'
 unique(M, "c")
-[v, k, n] = unique(M, "c", "uniqueNan")
+[v, kmc, kvc, n] = unique(M, "c", "uniqueNan")
  ]]></programlisting>
     <screen><![CDATA[
 --> M
@@ -266,14 +267,14 @@ unique(M, "c")
    2.   2.   Nan   1.    2.   0.    1.   Nan   0.    Nan
    1.   0.   1.    Nan   0.   Inf   0.   1.    Inf   1.
 
---> [v,k,n] = unique(M); v',n'
+--> [v, km, kv, n] = unique(M); v',n'
  ans  =
    0.   1.   2.   Inf   Nan   Nan   Nan   Nan
 
  ans  =
    5.   6.   3.   2.   1.   1.   1.   1.
 
---> [v,k,n] = unique(M, "uniqueNan"); v',n'
+--> [v, km, kv, n] = unique(M, "uniqueNan"); v',n'
  ans  =
    0.   1.   2.   Inf   Nan
 
@@ -285,12 +286,12 @@ unique(M, "c")
    0.    1.   1.    2.   2.   Nan   Nan   Nan
    Inf   0.   Nan   0.   1.   1.    1.    1.
 
---> [v, k, n] = unique(M, "c", "uniqueNan")
+--> [v, kmc, kvc, n] = unique(M, "c", "uniqueNan")
  v  =
    0.    1.   1.    2.   2.   Nan
    Inf   0.   Nan   0.   1.   1.
 
- k  =
+ kmc  =
    6.   7.   4.   2.   1.   3.
 
  n  =
@@ -337,7 +338,7 @@ unique(M, "c")
                             Введены опции "keepOrder" и "uniqueNan".
                         </listitem>
                         <listitem>
-                            Введён третий выходной аргумент <literal>nb</literal>.
+                            Введён четвертый выходной аргумент <literal>nb</literal>.
                         </listitem>
                     </itemizedlist>
                 </revdescription>
