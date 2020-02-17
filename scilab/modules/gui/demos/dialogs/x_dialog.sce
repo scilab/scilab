@@ -7,7 +7,9 @@ function demo_x_dialog()
 
     res = x_dialog(_("Message: enter a value"), "3.1592653");
 
-    disp(_("Value entered: "+string(res)));
+    if ~isempty(res) then
+        disp(_("Value entered: "+string(res)));
+    end
 
 endfunction
 

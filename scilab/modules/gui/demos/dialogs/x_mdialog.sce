@@ -10,7 +10,11 @@ function demo_x_mdialog()
     _(["first row";"second row";"etc..."]),...
     ["10";"20";"30"]);
 
-    disp(_("Values entered: "+res(1)+" "+res(2)+" "+res(3)));
+    if ~isempty(res) then
+        disp(_("Values entered: "+res(1)+" "+res(2)+" "+res(3)));
+    else
+        return
+    end
 
     n = 5;
     m = 4;
@@ -21,7 +25,9 @@ function demo_x_mdialog()
     labelh = col(ones(1, m))+string(1:m);
     res = evstr(x_mdialog(_("Matrix to edit"), labelv, labelh, string(mat)));
 
-    disp(_("Matrix entered: "),res);
+    if ~isempty(res) then
+        disp(_("Matrix entered: "),res);
+    end
 
 endfunction
 
