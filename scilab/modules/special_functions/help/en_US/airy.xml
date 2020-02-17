@@ -338,16 +338,10 @@ drawnow
       ]]></programlisting>
         <inlinemediaobject>
             <imageobject>
-                <imagedata fileref="../../../helptools/images/airy_z_numbers.png"  valign="middle"/>
-                <!--
-                <imagedata fileref="../images/airy_z_numbers.png"  valign="middle"/>
-                -->
+                <imagedata fileref="../../images/airy_z_numbers.png"  valign="middle"/>
             </imageobject>
         </inlinemediaobject>
-        <!-- The same automated image is poorer and 2.5x bigger (150kB instead of 61kB)
-      <scilab:image><![CDATA[
-]]></scilab:image>
-        -->
+        <!-- The same automated image is poorer and 2.5x bigger (150kB instead of 61kB) -->
     </refsection>
     <refsection role="see also">
         <title>See also</title>
