@@ -87,7 +87,7 @@ static types::InternalType* allocsci(void* data, const int rows, const int cols,
 /*--------------------------------------------------------------------------*/
 static types::InternalType* vartosci(types::InternalType* pIT, void* data, const int rows, const int cols, const int type)
 {
-    const int size = rows * cols;
+    int size = rows * cols;
     switch (type)
     {
         case SCSREAL_N:
@@ -97,6 +97,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
                 return pIT;
             }
             types::Double* var = pIT->getAs<types::Double>();
+            size = std::min(var->getSize(), size);
             for (int i = 0; i < size; ++i)
             {
                 var->get()[i] = ((types::Double::type*)data)[i];
@@ -110,6 +111,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
                 return pIT;
             }
             types::Double* var = pIT->getAs<types::Double>();
+            size = std::min(var->getSize(), size);
             for (int i = 0; i < size; ++i)
             {
                 var->get()[i] = ((types::Double::type*)data)[i];
@@ -124,6 +126,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
                 return pIT;
             }
             types::Int8* var = pIT->getAs<types::Int8>();
+            size = std::min(var->getSize(), size);
             for (int i = 0; i < size; ++i)
             {
                 var->get()[i] = ((types::Int8::type*)data)[i];
@@ -137,6 +140,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
                 return pIT;
             }
             types::Int16* var = pIT->getAs<types::Int16>();
+            size = std::min(var->getSize(), size);
             for (int i = 0; i < size; ++i)
             {
                 var->get()[i] = ((types::Int16::type*)data)[i];
@@ -150,6 +154,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
                 return pIT;
             }
             types::Int32* var = pIT->getAs<types::Int32>();
+            size = std::min(var->getSize(), size);
             for (int i = 0; i < size; ++i)
             {
                 var->get()[i] = ((types::Int32::type*)data)[i];
@@ -163,6 +168,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
                 return pIT;
             }
             types::UInt8* var = pIT->getAs<types::UInt8>();
+            size = std::min(var->getSize(), size);
             for (int i = 0; i < size; ++i)
             {
                 var->get()[i] = ((types::UInt8::type*)data)[i];
@@ -176,6 +182,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
                 return pIT;
             }
             types::UInt16* var = pIT->getAs<types::UInt16>();
+            size = std::min(var->getSize(), size);
             for (int i = 0; i < size; ++i)
             {
                 var->get()[i] = ((types::UInt16::type*)data)[i];
@@ -189,6 +196,7 @@ static types::InternalType* vartosci(types::InternalType* pIT, void* data, const
                 return pIT;
             }
             types::UInt32* var = pIT->getAs<types::UInt32>();
+            size = std::min(var->getSize(), size);
             for (int i = 0; i < size; ++i)
             {
                 var->get()[i] = ((types::UInt32::type*)data)[i];
