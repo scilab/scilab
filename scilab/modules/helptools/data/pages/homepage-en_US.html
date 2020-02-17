@@ -1,176 +1,204 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Scilab Help Homepage</title>
     <style type="text/css" media="all">
-      @import url("scilab_code.css");
-      @import url("xml_code.css");
-      @import url("c_code.css");
-      @import url("style.css");
+        @import url("scilab_code.css");
+        @import url("xml_code.css");
+        @import url("c_code.css");
+        @import url("style.css");
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="manualnavbar" align="left">
-      <a href="https://www.scilab.org/" class="ulink">Scilab Homepage</a> |
-      <a href="https://help.scilab.org/" class="ulink">Online Help</a> |
-      <a href="https://wiki.scilab.org/" class="ulink">Wiki</a> |
-      <a href="https://bugzilla.scilab.org/" class="ulink">Bug Tracker</a> |
-      <a href="https://forge.scilab.org/" class="ulink">Forge</a> |
-      <a href="https://lists.scilab.org/" class="ulink">Mailing Lists Archives</a> |
-      <a href="https://atoms.scilab.org/" class="ulink">ATOMS</a> |
-      <a href="https://fileexchange.scilab.org/" class="ulink">File Exchange</a>
-      <hr/>
+        <a href="https://www.scilab.org/" class="ulink">Scilab Homepage</a> |
+        <a href="https://help.scilab.org/" class="ulink">Online Help</a> |
+        <a href="https://wiki.scilab.org/" class="ulink">Wiki</a> |
+        <a href="https://bugzilla.scilab.org/" class="ulink">Bug Tracker</a> |
+        <a href="https://forge.scilab.org/" class="ulink">Forge</a> |
+        <a href="https://lists.scilab.org/" class="ulink">Mailing Lists Archives</a> |
+        <a href="https://atoms.scilab.org/" class="ulink">ATOMS</a> |
+        <a href="https://fileexchange.scilab.org/" class="ulink">File Exchange</a>
+        <hr />
     </div>
     <span class="path"><a href="index.html">Scilab help</a> &gt;&gt; Homepage</span>
-    <br/>
-    <br/>
+    <br />
+    <br />
     <div class="refsection">
-      <h3 class="title">Welcome to Scilab 6.0.2</h3>
-      <p class="para">
-        Scilab 6.0 is a major new release of Scilab, the open source
-        platform for numerical computation.
-      </p>
-      <p class="para">
-        Here is a tour of the changes between Scilab 6.0.0, 6.0.1 &amp; 6.0.2.
-      </p>
-      <h2 class="title">Feature Improvements</h2>
-      <p class="para">
-        The console &quot;File => Open a file&quot; menu now allows to open *.xcos *.zcos *.scg or lib
-        files with the proper Scilab component, and other files with the proper OS application.
-        All files were opened in Scinotes and could freeze it.
-      </p>
-      <p class="para">
-       &quot;gcd&quot; and &quot;lcm&quot; of integers now always return a positive result.
-      </p>
-      <p class="para">
-        &quot;cat&quot; has been rewritten. It is now fast and can process heavy arrays at high dimensions.
-      </p>
-      <p class="para">
-        Warnings from &quot;fplot3d1&quot; called without an option were removed.
-      </p>
-      <p class="para">
-        &quot;whereis&quot; has been upgraded:
-        <ul>
-          <li>It can now be used for built-in functions.</li>
-          <li>When the same function name is registered in several libraries, &quot;whereis&quot;
-            now returns all of them instead of only the last loaded one.</li>
-          <li>For unregistered user-defined macros, &quot;"script"&quot; is now returned
-            instead of &quot;[]&quot;.</li>
-        </ul>
-      </p>
-      <p class="para">
-        &quot;mgetl&quot; speed has been improved for files with a lot of lines.
-      </p>
-      <p class="para">
-        &quot;ndgrid(x)&quot; now accepts only one input &quot;x&quot;, with by default &quot;y=x&quot;.
-      </p>
-      <p class="para">
-        Some functions have been tagged obsolete and will be removed in Scilab 6.1: &quot;nanmin&quot;,
-        &quot;nanmax&quot;, &quot;xgetech&quot;, &quot;lstsize&quot;, &quot;eval&quot; &amp; &quot;dgettext&quot; &amp; &quot;denom&quot; &amp; &quot;numer&quot;.
-      </p>
-      <h2 class="title">Help pages</h2>
-      <p class="para">
-        Support to &quot;id&quot;, &quot;width&quot;, &quot;height&quot;, &quot;align&quot;
-        and &quot;style&quot; attributes added for the &quot;&lt;imagedata&gt;&quot; tag.
-      </p>
-      <p class="para">
-        Support to &quot;id&quot; attribute added for the &quot;&lt;tr&gt;&quot; tag.
-      </p>
-      <p class="para">
-        Numerous pages have been improved, comprising: &quot;ismatrix&quot;, &quot;xget&quot;, &quot;xset&quot;,
-        &quot;ieee&quot;, &quot;evstr&quot;, &quot;uigetfont&quot;, &quot;uigetdir&quot;, &quot;uigetfile&quot;,
-        &quot;uiputfile&quot;, &quot;cat&quot;, &quot;makecell&quot;, &quot;xstring&quot;, &quot;norm&quot;,
-        &quot;barhomogenize&quot;, &quot;colordef&quot;, &quot;matrix&quot;, &quot;type&quot;, &quot;isinf&quot;,
-        &quot;unique&quot;, &quot;getPreferencesValue&quot;, &quot;gcd&quot;, &quot;isglobal&quot;,
-        &quot;whereis&quot;, &quot;mode&quot; &amp; &quot;%onprompt&quot;.
-      </p>
-      <h2 class="title">Bug fixes</h2>
-      <p class="para">
-        In this version, extra effort has been expended on bug fixing and stabilization.
-        Detailed information about those improvements can be found on the <a href="CHANGES.html">CHANGES</a> file.
-      </p>
-      <h3 class="title">What was new in Scilab 6.0.x</h3>
-      <h2 class="title">New language, new core &amp; new Xcos</h2>
-      <p class="para">
-        This release includes a major rewrite of Scilab's internal
-        core, for better usability and performance: the changes to the
-        visible aspects of the software are limited.
-      </p>
-      <p class="para">
-        The first big internal change is a completely new language
-        parser and interpreter.
-      </p>
-      <p class="para">
-        The language changes are not all backward compatible. You will
-        have to update your scripts/programs/modules, but it will be
-        very simple in pretty much all cases.
+        <h3 class="title">Welcome to Scilab 6.1</h3>
+        <p class="para">
+            Scilab 6.1 is a major new release of Scilab, the open-source
+            platform for numerical computation.
         </p>
-      <p class="para">
-        The second big internal change is the ability to manipulate
-        bigger data sets, without exhausting system resources.
-      </p>
-      <p class="para">
-        Xcos - the graphical tool for dynamic systems modeling and simulation - also uses the
-        new re-written Scilab engine, and is now running in native code, which should provide
-        much better performance as well as support for much bigger models. Xcos can load and
-        run models created with earlier versions of Scilab.
-      </p>
-      <h2 class="title">Utilities for code productivity</h2>
-      <p class="para">This release includes also several features
-        to write better and more efficient Scilab scripts:
+        <p class="para">
+            Here is a tour of the changes between Scilab 6.0.2, &amp; 6.1.0.
+        </p>
+        <h2 class="title">Main new features</h2>
+        <p class="para">
+            In summary, the main new features are:
+            <ul>
+                <li>Webtools utilities added for HTTP protocol, JSON data usage.</li>
+                <li>Profiled values are available as Scilab values</li>
+                <li>Values have a cleaner display:
+                    <ul>
+                        <li>they are displayed in order on assignment.</li>
+                        <li>strings are quoted</li>
+                        <li>complex numbers are aligned for matrices</li>
+                        <li>numbers (IEEE 754 double) are not rounded</li>
+                        <li>polynomials and rationals display is more compact</li>
+                        <li>In structures, nested lists or structures are now displayed recursively compactly and more explicitly.</li>
+                    </ul>
+                </li>
+                <li><code>importgui</code> function has been added to easily interface csvRead</li>
+            </ul>
+        </p>
+        <h2 class="title">Feature changes and additions</h2>
         <ul>
-          <li>A full-featured debugger is now included.</li>
-          <li>A new profiler and coverage tool has been added.</li>
-          <li>A &quot;lint&quot;-like command, slint, has been added,
-          for code static analysis: it detects unclear, risky or
-          suspicious code. It is not documented yet, however.</li>
+            <li><code>airy</code> is added: Evaluation of Airy functions of the first and second kind, and their first derivative,
+                possibly scaled.</li>
+            <li>Empty strings are used as the default values on String allocation.</li>
+            <li>HTTP get, post, put, upload, patch, delete functions added.</li>
+            <li>JSON format compatibility through Scilab variables.</li>
+            <li>Memory invalid accesses have been greatly reduced thanks to :
+                <ul>
+                    <li>PVS-Studio inspections blog report</li>
+                    <li>Coverity scan weekly source analysis</li>
+                </ul>
+            </li>
+            <li><code>bitget</code> is upgraded:
+                <ul>
+                    <li>It now accepts positive signed encoded integers.</li>
+                    <li>It now supports the new uint64 and int64 types of encoded integers.</li>
+                    <li>For decimal numbers: bits with indices > 52 can now be retrieved (up to <code>log2(number_properties("huge"))</code> = 1024).</li>
+                    <li>For decimal numbers <code>x &gt; 2^52</code>, queried bits below <code>%eps</code> (indices &lt; log2(x)-52) now return <code>Nan</code> instead of 0.</li>
+                    <li>Several bits can now be retrieved from each component of an input array.</li>
+                </ul>
+            </li>
+            <li><code>edit</code> now accepts a line number as text (like "23").</li>
+            <li><code>profileEnable, profileDisable, profileGetInfo</code> could be used to instrument functions and gather execution information within Scilab.</li>
+            <li><code>prettyprint</code> is upgraded:
+                <ul>
+                    <li>Integer and Text input are now actually supported.</li>
+                    <li>Default input arguments can be skipped instead of still having to be provided.</li>
+                    <li>The result string is better formatted to be easily wrappable and indented.</li>
+                </ul>
+            </li>
+            <li><code>mesh2d</code> has been introduced to compute a 2d mesh from vectors (x,y) of points.</li>
+            <li><code>loadmatfile</code> is upgraded:
+                <ul>
+                    <li>Octave native text data files can now be read.</li>
+                    <li>Automatic detection of the input data format implemented.</li>
+                    <li><code>-toStruct</code> option added, to return results in a structure instead of in the calling environment.</li>
+                </ul>
+            </li>
+            <li><code>jremove</code> is optional and <code>clear</code> could be used to release Java objects mapped to Scilab.</li>
+            <li><code>blockdiag</code> is introduced to improve, replace, and extend <code>sysdiag</code> to strings.</li>
+            <li><code>assert_checkequal</code> is upgraded:
+                <ul>
+                    <li>support added for Nan and void in lists, Nan in sparses, implicit lists, graphic handles, macros, libraries, and built-in.</li>
+                    <li>For arrays of matching typeof and sizes, and for lists of matching lengths, the failure message now indicates the index and values of the first mismatching elements.</li>
+                </ul>
+            </li>
+            <li><code>diophant</code> is upgraded:
+                <ul>
+                    <li>Encoded integers are accepted, in addition to decimal numbers. Only integer solutions are then searched.</li>
+                    <li>When there is no solution, <code>[]</code> is returned.</li>
+                    <li>When there is an infinite number of solutions, the err flag has a specific value.</li>
+                    <li>The output size gets the input's size.</li>
+                </ul>
+            </li>
+            <li><code>csvRead</code> and <code>csvTextScan</code> are now implemented without extra copies.</li>
+            <li><code>editvar</code> GUI support copy-paste of strings removing quotes.</li>
+            <li><code>calendar</code> can now display formatted calendars.</li>
+            <li><code>xmlSetValues</code> clones <code>setPreferencesValue</code> that is now obsolete.</li>
+            <li><code>unique</code> is upgraded:
+                <ul>
+                    <li>return the number of occurrences of distinct entities found in the input array.</li>
+                    <li>return distinct entities in their initial order (rather than sorted), with the <code>"keepOrder"</code> option.</li>
+                    <li>consider all <code>Nan</code> values as the same one, with the <code>"uniqueNan"</code> option.</li>
+                </ul>
+            </li>
+            <li><code>ellipj</code> function introduced, to compute the <code>sn, cn, dn, ns, nc and nd</code> Jacobi elliptic functions.</li>
+            <li><code>riccati</code> is upgraded:
+                <ul>
+                    <li><code>riccati(H)</code> and <code>riccati(H, E)</code> syntaxes added, to describe the Riccati equation through its Hamiltonian H or (E,H) pencil.</li>
+                    <li>The residual is returned as a new 3rd output argument.</li>
+                    <li>When no solution is found, <code>X=[] | X1=[]</code> is returned instead of yielding an error.</li>
+                </ul>
+            </li>
+            <li><code>hallchart</code> is upgraded:
+                <ul>
+                    <li>The default set of modules is set automatically, according to data bounds.</li>
+                    <li>Handles of the grids and labels are returned. Post-processing them becomes easy.</li>
+                    <li>Named colors accepted; better default colors.</li>
+                    <li>Improved placement of labels.</li>
+                </ul>
+            </li>
+            <li><code>playsnd</code> is upgraded:
+                <ul>
+                    <li>the name of a wav file can now be specified (instead of the sound data).</li>
+                    <li>the input sound can now be repeated a given number of times.</li>
+                    <li>the modal/non-modal processing is improved.</li>
+                </ul>
+            </li>
+            <li><code>nicholschart</code> is improved: more neutral default frame color; improved labels positioning; colors can now be specified by their predefined name or "#RRGGBB" hexa code; a structure of handles is now returned to easily post-process both subframes and the set of labels.</li>
+            <li><code>sciargs</code> returns a column instead of formerly a row.</li>
+            <li>Booleans and encoded integers can now be concatenated together, as in <code>[%f int8(-5)]</code>.</li>
+            <li><code>gsort</code> can now perform multilevel sorting. This noticeably allows sorting completely complex numbers.</li>
+            <li><code>factorial</code> can be used now from n=171 up to n=10^14.</li>
+            <li><code>intersect</code> now supports complex numbers.</li>
+            <li><code>setdiff</code> now supports complex numbers.</li>
+            <li><code>twinkle</code> can now blink together several hierarchically independent objects, like a curve and its labels, etc.</li>
+            <li><code>repmat</code> is improved: more neutral default frame color; improved labels positioning; colors can now be specified by their predefined name or "#RRGGBB" hexa code; a structure of handles is now returned to easily post-process both subframes and the set of labels.</li>
         </ul>
-      </p>
-      <h2 class="title">Newsfeed</h2>
-      <p class="para">
-        A new view is available in the visual environment of Scilab: the
-        &quot;Newsfeed&quot;. It provides a continuous feed of news,
-        tips and general communication from the community and from the Scilab Team.
-      </p>
-      <h2 class="title">Licensing changes</h2>
-      <p class="para">
-        Scilab is now released under the terms of the GNU General Public License (GPL) v2.0.
-        Prior to this version, Scilab was licensed under the terms of the CeCILL v2.1 and
-        continues to be available under such terms.
-      </p>
-      <p class="para">
-        In this version, the Intel Math Kernel Library and the FFTW library optimized by Intel
-        Math Kernel Library are included in Scilab. They are subject
-        to the Intel EULA.
-      </p>
+        <h2 class="title">Help pages</h2>
+        <ul>
+            <li>overhauled/rewritten: <code>bitget, edit, factorial</code></li>
+            <li>fixed / improved:  <code>bench_run, M_SWITCH, comet, comet3d</code></li>
+        </ul>
+
+        <h2 class="title">Bug fixes</h2>
+        <p class="para">
+            In this version, extra effort has been expended on bug fixing and stabilization.
+            Detailed information about those improvements can be found on the <a href="CHANGES.html">CHANGES</a> file.
+        </p>
     </div>
-    <hr/>
-    <br/>
+    <hr />
+    <br />
     <div class="refsection">
-      <h3 class="title">Documentations and help</h3>
-      <p class="para">If you are new to Scilab, please use
-      the <a href="https://www.scilab.org/sites/default/files/Scilab_beginners_0.pdf">Scilab
-      beginners tutorial</a>
-      and <a href="https://www.scilab.org/sites/default/files/Xcos_beginners_0.pdf">Xcos
-      beginners tutorial</a> provided by the Scilab Team.</p>
-      <p class="para">The Scilab Team provides also
-      some <a href="https://www.scilab.org/tutorials">documentation
-      and tutorials</a>.</p>
-      <br/>
+        <h3 class="title">Documentation and help</h3>
+        <p class="para">If you are new to Scilab, please use
+            the <a href="https://www.scilab.org/sites/default/files/Scilab_beginners_0.pdf">Scilab
+                beginners tutorial</a>
+            and <a href="https://www.scilab.org/sites/default/files/Xcos_beginners_0.pdf">Xcos
+                beginners tutorial</a> provided by the Scilab Team.</p>
+        <p class="para">The Scilab Team provides also
+            some <a href="https://www.scilab.org/tutorials">documentation
+                and tutorials</a>.</p>
+        <br />
     </div>
-    <hr/>
-    <br/>
+    <hr />
+    <br />
     <div class="refsection">
-      <h3 class="title">Other resources</h3>
-      <p class="para"><a href="https://www.scilab.org/" class="ulink">Scilab Homepage</a> - Consult Scilab official website</p>
-      <p class="para"><a href="https://wiki.scilab.org/" class="ulink">Wiki</a> - Consult documentations, tricks, etc.</p>
-      <p class="para"><a href="https://bugzilla.scilab.org/" class="ulink">Bug Tracker</a> - Report bugs and wishes about Scilab</p>
-      <p class="para"><a href="https://forge.scilab.org/" class="ulink">Forge</a> - Browse and publish Scilab modules</p>
-      <p class="para"><a href="https://www.scilab.org/about/community/mailing-lists" class="ulink">Mailing Lists</a> - Communicate and exchange with the community</p>
-      <p class="para"><a href="https://atoms.scilab.org/" class="ulink">ATOMS</a> - Browse Scilab packaged modules</p>
-      <p class="para"><a href="https://fileexchange.scilab.org/" class="ulink">File Exchange</a> - Exchange your scripts, results and files.</p>
-      <br/>
+        <h3 class="title">Other resources</h3>
+        <p class="para"><a href="https://www.scilab.org/" class="ulink">Scilab Homepage</a> - Consult Scilab official
+            website</p>
+        <p class="para"><a href="https://wiki.scilab.org/" class="ulink">Wiki</a> - Consult documentations, tricks, etc.
+        </p>
+        <p class="para"><a href="https://bugzilla.scilab.org/" class="ulink">Bug Tracker</a> - Report bugs and wishes
+            about Scilab</p>
+        <p class="para"><a href="https://forge.scilab.org/" class="ulink">Forge</a> - Browse and publish Scilab modules
+        </p>
+        <p class="para"><a href="https://www.scilab.org/about/community/mailing-lists" class="ulink">Mailing Lists</a> -
+            Communicate and exchange with the community</p>
+        <p class="para"><a href="https://atoms.scilab.org/" class="ulink">ATOMS</a> - Browse Scilab packaged modules</p>
+        <p class="para"><a href="https://fileexchange.scilab.org/" class="ulink">File Exchange</a> - Exchange your
+            scripts, results and files.</p>
+        <br />
     </div>
-  </body>
+</body>
+
 </html>
