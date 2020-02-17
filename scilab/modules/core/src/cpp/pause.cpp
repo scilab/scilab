@@ -27,12 +27,8 @@ void pause(void)
     int iOldMode = ConfigVariable::getPromptMode();
     ConfigVariable::setPromptMode(2);
 
-    // save current runner
-    Runner* rCurrent = StaticRunner::getCurrentRunner();
-
-    // send the good signal to unlock wait
-    // ie: unlock console thread to display prompt again
-    StaticRunner::sendExecDoneSignal();
+    // unlock console thread to display prompt again
+    ThreadManagement::SendConsoleExecDoneSignal();
 
     int iPauseLevel = ConfigVariable::getPauseLevel();
     while (ConfigVariable::getPauseLevel() == iPauseLevel)
@@ -44,10 +40,6 @@ void pause(void)
             StaticRunner::launch();
         }
     }
-
-    // set back the runner to know wich "execution done" signal send
-    // StaticRunner::sendExecDoneSignal
-    StaticRunner::setCurrentRunner(rCurrent);
 
     //return from console so change mode to initial
     ConfigVariable::setPromptMode(iOldMode);

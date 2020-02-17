@@ -31,13 +31,12 @@ extern "C"
 
 std::atomic<Runner*> StaticRunner::m_RunMe(nullptr);
 std::atomic<Runner*> StaticRunner::m_CurrentRunner(nullptr);
-std::atomic<bool> StaticRunner::m_bInterruptibleCommand(true);
 
 static bool initialJavaHooks = false;
 
 void StaticRunner::sendExecDoneSignal()
 {
-    switch (getCurrentRunner()->getCommandOrigin())
+    switch (m_CurrentRunner.load()->getCommandOrigin())
     {
         case DEBUGGER :
         {
@@ -45,13 +44,13 @@ void StaticRunner::sendExecDoneSignal()
             break;
         }
         case CONSOLE :
-        case TCLSCI :
-        case NONE :
-        default :
         {
             ThreadManagement::SendConsoleExecDoneSignal();
             break;
         }
+        case TCLSCI :
+        case NONE :
+        default : {}
     }
 }
 
@@ -66,10 +65,13 @@ int StaticRunner::launch()
     }
 
     int iRet = 0;
+
+    // save current runner
+    Runner* pRunSave = m_CurrentRunner.load();
+
     // get the runner to execute
     std::unique_ptr<Runner> runMe(getRunner());
-    // set if the current command is interruptible
-    setInterruptibleCommand(runMe->isInterruptible());
+
     debugger::DebuggerManager* manager = debugger::DebuggerManager::getInstance();
 
     ConfigVariable::resetExecutionBreak();
@@ -149,6 +151,8 @@ int StaticRunner::launch()
         if (ConfigVariable::getPauseLevel())
         {
             ConfigVariable::DecreasePauseLevel();
+            // set back the runner wich have been overwritten in StaticRunner::getRunner
+            m_CurrentRunner.store(pRunSave);
             throw ia;
         }
 
@@ -165,6 +169,8 @@ int StaticRunner::launch()
         // send the good signal about the end of execution
         sendExecDoneSignal();
 
+        // set back the runner wich have been overwritten in StaticRunner::getRunner
+        m_CurrentRunner.store(pRunSave);
         throw ia;
     }
 
@@ -196,6 +202,10 @@ int StaticRunner::launch()
 
     //clean debugger step flag if debugger is not interrupted ( end of debug )
     manager->resetStep();
+
+    // set back the runner wich have been overwritten in StaticRunner::getRunner
+    m_CurrentRunner.store(pRunSave);
+
     return iRet;
 }
 
@@ -204,21 +214,10 @@ void StaticRunner::setRunner(Runner* _RunMe)
     m_RunMe = _RunMe;
 }
 
-void StaticRunner::setCurrentRunner(Runner* _RunMe)
-{
-    m_CurrentRunner = _RunMe;
-}
-
 Runner* StaticRunner::getRunner(void)
 {
-    Runner* tmp = m_RunMe.exchange(nullptr);
-    setCurrentRunner(tmp);
+    m_CurrentRunner.store(m_RunMe.exchange(nullptr));
     ThreadManagement::SendAvailableRunnerSignal();
-    return tmp;
-}
-
-Runner* StaticRunner::getCurrentRunner(void)
-{
     return m_CurrentRunner.load();
 }
 
@@ -228,14 +227,9 @@ bool StaticRunner::isRunnerAvailable(void)
     return m_RunMe.load() != nullptr;
 }
 
-void StaticRunner::setInterruptibleCommand(bool _bInterruptibleCommand)
-{
-    m_bInterruptibleCommand = _bInterruptibleCommand;
-}
-
 bool StaticRunner::isInterruptibleCommand()
 {
-    return m_bInterruptibleCommand;
+    return m_CurrentRunner.load()->isInterruptible();
 }
 
 command_origin_t StaticRunner::getCommandOrigin()
@@ -243,14 +237,9 @@ command_origin_t StaticRunner::getCommandOrigin()
     return m_RunMe.load()->getCommandOrigin();
 }
 
-command_origin_t StaticRunner::getCurrentCommandOrigin()
+void StaticRunner::setCommandOrigin(command_origin_t _origin)
 {
-    return m_CurrentRunner.load()->getCommandOrigin();
-}
-
-void StaticRunner::setCurrentCommandOrigin(command_origin_t origin)
-{
-    m_CurrentRunner.load()->setCommandOrigin(origin);
+    m_CurrentRunner.load()->setCommandOrigin(_origin);
 }
 
 void StaticRunner::execAndWait(ast::Exp* _theProgram, ast::RunVisitor *_visitor,
@@ -305,22 +294,12 @@ int StaticRunner_isInterruptibleCommand(void)
     return StaticRunner::isInterruptibleCommand() ? 1 : 0;
 }
 
-void StaticRunner_setInterruptibleCommand(int val)
-{
-    StaticRunner::setInterruptibleCommand(val == 1);
-}
-
 command_origin_t StaticRunner_getCommandOrigin(void)
 {
     return StaticRunner::getCommandOrigin();
 }
 
-command_origin_t StaticRunner_getCurrentCommandOrigin(void)
+void StaticRunner_setCommandOrigin(command_origin_t _origin)
 {
-    return StaticRunner::getCurrentCommandOrigin();
-}
-
-void StaticRunner_setCurrentCommandOrigin(command_origin_t _origin)
-{
-    StaticRunner::setCurrentCommandOrigin(_origin);
+    StaticRunner::setCommandOrigin(_origin);
 }
