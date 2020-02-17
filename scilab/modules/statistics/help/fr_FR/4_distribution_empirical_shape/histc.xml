@@ -58,21 +58,21 @@
                 <term>h</term>
                 <listitem>
                     <para>
-                      <itemizedlist>
-                        <listitem>
-                          Si <varname>normalization</varname> est %T: densités de probabilité sur
-                          les intervalles définis par <varname>n</varname> or <varname>x</varname>,
-                          telles que l'aire de chaque intervalle est proportionnelle à sa population.
-                        </listitem>
-                        <listitem>
-                          Si <varname>normalization</varname> est %F: nombres d'éléments peuplant
-                          les intervalles.
-                        </listitem>
-                      </itemizedlist>
+                        <itemizedlist>
+                            <listitem>
+                                Si <varname>normalization</varname> est %T: densités de probabilité sur
+                                les intervalles définis par <varname>n</varname> or <varname>x</varname>,
+                                telles que l'aire de chaque intervalle est proportionnelle à sa population.
+                            </listitem>
+                            <listitem>
+                                Si <varname>normalization</varname> est %F: nombres d'éléments peuplant
+                                les intervalles.
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
-          <!--
+            <!--
             <varlistentry>
                 <term>ind</term>
                 <listitem>
@@ -88,8 +88,8 @@
                 <term>normalization</term>
                 <listitem>
                     <para>
-                      booléen simple (%T par défaut), déterminant le type de résultat
-                      (voir <varname>h</varname>).
+                        booléen simple (%T par défaut), déterminant le type de résultat
+                        (voir <varname>h</varname>).
                     </para>
                 </listitem>
             </varlistentry>
@@ -115,7 +115,7 @@
             Quand la normalisation a lieu, l'histogramme vérifie:
         </para>
         <para>
-            <latex style="display"><![CDATA[ \int_{x(1)}^{x(n+1)}h(x)\,\mathrm{d}x = 1 ]]></latex>
+            <latex style="display"><![CDATA[ \int_{x(1)}^{x(n+1)}h(x)\,\mathrm{d}x=1 ]]></latex>
         </para>
         <para>
             quand <emphasis>x(1)&lt;=min(data)</emphasis> et <emphasis>max(data) &lt;= x(n+1)</emphasis>

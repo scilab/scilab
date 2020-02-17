@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scicos
  *
@@ -22,25 +21,15 @@
  *
  * See the file ./license.txt
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="scicos_graphics">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scicos_graphics">
     <refnamediv>
-
         <refname>scicos_graphics</refname>
-
-        <refpurpose>graphics構造体を定義</refpurpose>
-
+        <refpurpose>Define an Xcos block graphics structure</refpurpose>
     </refnamediv>
-
     <refsect1 id="graphics_scicos_graphics">
-
         <title>graphics</title>
-
         <para>
-
-            ブロックの機能に関するグラフィック情報を有するScilabオブジェクト.
-
+            Scilab object including graphical information concerning the features of the block. These information are used on the editor to render the block and display values. These values are not propagated to the compiled <link linkend="scicos_cpr">cpr</link> representation.
         </para>
         <para>
             Type : scilab tlist of type <code>"graphics"</code> with fields :

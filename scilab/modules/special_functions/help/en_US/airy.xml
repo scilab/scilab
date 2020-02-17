@@ -46,12 +46,26 @@
                     "Ai" "dAi" "Bi" "dBi", or an equivalent integer in [0, 3] (for compatibility
                     with Octave and Julia)
                     <table>
-                        <tr><td colspan="2" align="center"><emphasis role="bold">fun</emphasis></td>
-                            <td><emphasis role="bold">Description</emphasis></td></tr>
-                        <tr><td>0</td><td>"Ai"</td><td>Airy function of the first kind (default)</td></tr>
-                        <tr><td>1</td><td>"dAi"</td><td>Derivative Ai' of Ai</td></tr>
-                        <tr><td>2</td><td>"Bi"</td><td>Airy function of the second kind</td></tr>
-                        <tr><td>3</td><td>"dBi"</td><td>Derivative Bi' of Bi</td></tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <emphasis role="bold">fun</emphasis>
+                            </td>
+                            <td>
+                                <emphasis role="bold">Description</emphasis>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>0</td><td>"Ai"</td><td>Airy function of the first kind (default)</td>
+                        </tr>
+                        <tr>
+                            <td>1</td><td>"dAi"</td><td>Derivative Ai' of Ai</td>
+                        </tr>
+                        <tr>
+                            <td>2</td><td>"Bi"</td><td>Airy function of the second kind</td>
+                        </tr>
+                        <tr>
+                            <td>3</td><td>"dBi"</td><td>Derivative Bi' of Bi</td>
+                        </tr>
                     </table>
                     <para/>
                 </listitem>
@@ -63,7 +77,8 @@
                     %T or set to 1, the raw result is scaled by the following factors before
                     being returned:
                     <table>
-                        <tr style="white-space:nowrap"><td valign="bottom">Ai, dAi : </td>
+                        <tr style="white-space:nowrap">
+                            <td valign="bottom">Ai, dAi : </td>
                             <td valign="top"><latex fontsize="15" alt="exp(z^1.5 * 2/3)">
                                     exp\left(2\,z^{3/2}/ 3\right)
                                 </latex>
@@ -252,9 +267,7 @@ drawlater
 [nc, cmin] = (100, 15);
 fig.color_map = [0.6 0.6 0.6; jetcolormap(nc-1)];
 meshColor = 1; // grey60 will be used for the mesh color
-if ~isDocked(fig) then
-    fig.axes_size = [800 600];
-end
+fig.axes_size = [800 600];
 fr = 0.55;
 
 

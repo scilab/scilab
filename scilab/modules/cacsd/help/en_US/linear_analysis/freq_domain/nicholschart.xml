@@ -71,7 +71,7 @@
                             A 1x3 or 2x3 matrix of [r g b] intensities such that 0 &lt;= r,g,b &lt;= 1.
                         </listitem>
                     </itemizedlist>
-                <para/>
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -111,8 +111,8 @@
             <link linkend="black">black</link>.
         </para>
         <note>
-          To use the default value of an input argument, just skip it, as in
-          <literal>nicholschart(modules,,colors)</literal>.
+            To use the default value of an input argument, just skip it, as in
+            <literal>nicholschart(modules,,colors)</literal>.
         </note>
     </refsection>
     <refsection>
@@ -128,13 +128,13 @@
     ]]></programlisting>
         <para>
             <scilab:image localized="true">
-            clf
-            subplot(1,2,1)
-            nicholschart()
-            subplot(1,2,2)
-            mod = [-35:5:-10 -6 -3 -1 -0.2 1 2 3 6];
-            nicholschart(mod, -[1 20 40 80 160 180],["khaki" "paleturquoise"]);
-            gcf().axes_size = [700 350];
+                clf
+                subplot(1,2,1)
+                nicholschart()
+                subplot(1,2,2)
+                mod = [-35:5:-10 -6 -3 -1 -0.2 1 2 3 6];
+                nicholschart(mod, -[1 20 40 80 160 180],["khaki" "paleturquoise"]);
+                gcf().axes_size = [700 350];
             </scilab:image>
         </para>
         <programlisting role="example"><![CDATA[
@@ -157,20 +157,20 @@
     h.gainLabels.font_foreground = color("orange");
     ]]></programlisting>
         <para>
-            <scilab:image>
-            //Black diagram with Nichols chart as a grid
-            s = poly(0,'s');
-            Plant = syslin('c',16000/((s+1)*(s+10)*(s+100)));
-            //two degree of freedom PID
-            tau = 0.2;
-            xsi = 1.2;
-            PID = syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
-            clf
-            black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
-            //move the caption in the lower right corner
-            gca().children(1).legend_location="in_lower_right";
-            h = nicholschart(,,'wheat');
-            h.gainLabels.font_foreground = color("orange");
+            <scilab:image localized="true">
+                //Black diagram with Nichols chart as a grid
+                s = poly(0,'s');
+                Plant = syslin('c',16000/((s+1)*(s+10)*(s+100)));
+                //two degree of freedom PID
+                tau = 0.2;
+                xsi = 1.2;
+                PID = syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau^2*s^2));
+                clf
+                black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
+                //move the caption in the lower right corner
+                gca().children(1).legend_location="in_lower_right";
+                h = nicholschart(,,'wheat');
+                h.gainLabels.font_foreground = color("orange");
             </scilab:image>
         </para>
     </refsection>
