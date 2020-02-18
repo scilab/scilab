@@ -168,10 +168,10 @@
             Dans l'exemple suivant le Super bloc est un simple commutateur à transistor.
         </para>
         <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/OUTIMPL_f_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/OUTIMPL_f_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
-                        <imagedata fileref="../../../../examples/portaction_pal/fr_FR/OUTIMPL_f_fr_FR.zcos" align="center" valign="middle"/>
+                        <imagedata fileref="../../../../examples/portaction_pal/en_US/OUTIMPL_f_en_US.zcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
@@ -187,7 +187,7 @@ function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
 endfunction
 warning("on")
 
-importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/fr_FR/OUTIMPL_f_fr_FR.zcos");
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/en_US/OUTIMPL_f_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
     </refsection>
