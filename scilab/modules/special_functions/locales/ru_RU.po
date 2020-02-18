@@ -103,6 +103,28 @@ msgid ""
 "  Check arguments or define function %s for overloading.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integer number or string expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица вещественных "
+"чисел.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица вещественных "
+"чисел.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица вещественных "
+"чисел.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
@@ -110,6 +132,36 @@ msgstr "%s: Неверное количество входных аргумен�
 #, c-format
 msgid "%s: Wrong value for argument #%d: 0, 1 or 2 expected.\n"
 msgstr "%s: Неверное значение аргумента №%d: ожидался 0, 1 или 2.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица вещественных "
+"чисел.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица вещественных "
+"чисел.\n"
+
+#
+# File: modules/special_functions/macros/ellipj.sci, line: 76
+#, c-format
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"

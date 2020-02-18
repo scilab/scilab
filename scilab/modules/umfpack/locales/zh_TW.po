@@ -404,7 +404,9 @@ msgid ""
 "step\n"
 msgstr ""
 
-msgid "  4/ you may also compute the 1-norm condition number quicky with:"
+#
+# File: modules/umfpack/demos/sparse_matrices.sce, line: 102
+msgid "  4/ you may also compute the 1-norm condition number quickly with:"
 msgstr ""
 
 #, c-format

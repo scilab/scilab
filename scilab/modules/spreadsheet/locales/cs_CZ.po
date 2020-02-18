@@ -121,14 +121,6 @@ msgid "%s: separator and decimal must have different values.\n"
 msgstr "%s: oddělovač a desetinné číslo musí mít různé hodnoty.\n"
 
 #, c-format
-msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
-msgstr "%s: Levé indexy rozsahu řádku a/nebo sloupce mimo rozsah.\n"
-
-#, c-format
-msgid "%s: can not convert data.\n"
-msgstr "%s: nelze převést data.\n"
-
-#, c-format
 msgid "%s: %s does not exist.\n"
 msgstr "%s: %s neexistuje.\n"
 
@@ -145,17 +137,13 @@ msgid "%s: can not read file %s.\n"
 msgstr "%s: nelze přečíst soubor %s.\n"
 
 #, c-format
+msgid "%s: can not convert data.\n"
+msgstr "%s: nelze převést data.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec vektoru.\n"
-
-#, c-format
-msgid "%s: can not read text: Error in the column structure\n"
-msgstr "%s: nelze přečíst text: Chyba ve struktuře sloupce\n"
-
-#, c-format
-msgid "%s: can not read text.\n"
-msgstr "%s: nelze přečíst text.\n"
 
 #, c-format
 msgid ""
@@ -270,6 +258,10 @@ msgid "%s: End of file.\n"
 msgstr "%s: Konec souboru.\n"
 
 #, c-format
+msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
+msgstr "%s: Levé indexy rozsahu řádku a/nebo sloupce mimo rozsah.\n"
+
+#, c-format
 msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
 "the previous had %d.\n"
@@ -279,6 +271,10 @@ msgstr ""
 
 msgid "Warning"
 msgstr "Varování"
+
+#, fuzzy, c-format
+msgid "%s: can not read file, error in the column structure\n"
+msgstr "%s: nelze číst soubor %s: Chyba ve struktuře sloupce\n"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
@@ -450,3 +446,11 @@ msgstr ""
 
 msgid "Read a xls file"
 msgstr ""
+
+#, c-format
+#~ msgid "%s: can not read text: Error in the column structure\n"
+#~ msgstr "%s: nelze přečíst text: Chyba ve struktuře sloupce\n"
+
+#, c-format
+#~ msgid "%s: can not read text.\n"
+#~ msgstr "%s: nelze přečíst text.\n"

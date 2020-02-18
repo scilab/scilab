@@ -428,6 +428,15 @@ msgstr ""
 msgid "%s: Invalid attribute name: %s."
 msgstr "Некорректное имя файла: "
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась непустая строка.\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr "Недопустимый файл"
+
 #, c-format
 #~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 #~ msgstr ""

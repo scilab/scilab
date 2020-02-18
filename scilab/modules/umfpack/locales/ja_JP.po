@@ -401,7 +401,8 @@ msgstr ""
 "     または x = umf_lusolve(lup,b,Ax''=b,A)  (反復改良ステップを追加する場"
 "合)\n"
 
-msgid "  4/ you may also compute the 1-norm condition number quicky with:"
+#, fuzzy
+msgid "  4/ you may also compute the 1-norm condition number quickly with:"
 msgstr "  4/ 第一ノルム条件数を次のように簡単に計算することも可能です:"
 
 #, c-format

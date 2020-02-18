@@ -156,12 +156,6 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: L'argument d'entrada #%d té un valor incorrecte.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte. El camí '%s' és "
-"invàlid.\n"
-
-#, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s: El fitxer %s no està obert per a l'Scilab.\n"
 
@@ -677,3 +671,9 @@ msgstr ""
 
 msgid "The system cannot find the file specified."
 msgstr ""
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té un valor incorrecte. El camí '%s' és "
+#~ "invàlid.\n"

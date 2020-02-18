@@ -105,12 +105,14 @@ msgstr ""
 "caractères attendue.\n"
 
 #, c-format
-msgid "%s: Invalid %s file.\n"
-msgstr "%s : Fichier %s invalide.\n"
+msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice 2xN "
+"attendue.\n"
 
 #, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s : Le fichier %s n'existe pas.\n"
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr "%s : Fichier XConfiguration.xml invalide.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
@@ -133,11 +135,9 @@ msgid "%s: Invalid attribute name: %s."
 msgstr "%s : Nom d'attribut invalide : %s"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice 2xN "
-"attendue.\n"
+#~ msgid "%s: Invalid %s file.\n"
+#~ msgstr "%s : Fichier %s invalide.\n"
 
 #, c-format
-msgid "%s: Invalid XConfiguration.xml file.\n"
-msgstr "%s : Fichier XConfiguration.xml invalide.\n"
+#~ msgid "%s: The file %s does not exist.\n"
+#~ msgstr "%s : Le fichier %s n'existe pas.\n"

@@ -798,12 +798,18 @@ msgstr ""
 msgid "Wrong value for field %s.%s : Round number expected.\n"
 msgstr ""
 
-#, c-format
-msgid "Wrong type for field %s.%s : Real matrix expected.\n"
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : Real vector expected.\n"
 msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: očekávána datová struktura %s.\n"
+
+#, fuzzy, c-format
+msgid "Wrong size for field %s.%s : Real vector expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána matice %d-krát-%d.\n"
 
 #, c-format
-msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
+msgid "Wrong type for field %s.%s : Real matrix expected.\n"
 msgstr ""
 
 #, c-format

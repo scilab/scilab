@@ -911,6 +911,28 @@ msgstr ""
 "Mindestens ein Operand ist eine leere Matrix für Operand: %s, Ergebnis wird "
 "nach [] gesetzt."
 
+#
+# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 25
+#, c-format
+msgid ""
+"If %s is imaginary and its module is > 1\n"
+"      the real part of %s is -/2 in Scilab instead of +/2 in Matlab."
+msgstr ""
+
+#
+# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 27
+#, c-format
+msgid ""
+"If %s is in [0,1)\n"
+"  imag(%s) is -/2 in Scilab instead of +/2 in Matlab."
+msgstr ""
+
 #, c-format
 msgid ""
 "If %s is outside [-1,1]\n"
@@ -919,23 +941,15 @@ msgstr ""
 "Wenn %s außerhalb [-1,1] liegt\n"
 "   komplexer Teil der Ausgabe von %s wird das Gegenteil der von Matlab sein."
 
-msgid "is Real."
-msgstr "ist reell"
-
-#, c-format
-msgid ""
-"If %s is outside [-1,1]\n"
-"   real part of output of %s will be the opposite of Matlab one."
-msgstr ""
-"wenn %s außerhalb von [-1,1] ist.\n"
-"   reller Teil der Ausgabe von %s wird gegenüber der von MAtlab sein."
-
 #, fuzzy, c-format
 msgid ""
 "If %s < -1, complex part of output of %s will be the opposite of Matlab one."
 msgstr ""
 "Wenn %s außerhalb [-1,1] liegt\n"
 "   komplexer Teil der Ausgabe von %s wird das Gegenteil der von Matlab sein."
+
+msgid "is Real."
+msgstr "ist reell"
 
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling nur im 3d Modus verwendet."
@@ -1156,6 +1170,14 @@ msgstr "%s: Ausgabe Wert nach 'ein' gesetzt."
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
+
+#, c-format
+#~ msgid ""
+#~ "If %s is outside [-1,1]\n"
+#~ "   real part of output of %s will be the opposite of Matlab one."
+#~ msgstr ""
+#~ "wenn %s außerhalb von [-1,1] ist.\n"
+#~ "   reller Teil der Ausgabe von %s wird gegenüber der von MAtlab sein."
 
 #~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 #~ msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet.\n"

@@ -736,6 +736,10 @@ msgstr "Ширина: "
 msgid "Recursion limit: "
 msgstr "Обмеження на рекурсію: "
 
+#, fuzzy
+msgid "Containers display depth: "
+msgstr "Кількість показаних рядків:"
+
 msgid "Language setting"
 msgstr "Параметр мови"
 
@@ -832,3 +836,27 @@ msgstr "Не вдалося змінити шрифт консолі."
 
 msgid "Could not change the Console Foreground."
 msgstr "Не вдалося змінити параметри тексту у консолі."
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: Мало бути вказано невід’ємний "
+"скаляр.\n"

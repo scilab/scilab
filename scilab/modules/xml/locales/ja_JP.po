@@ -425,6 +425,16 @@ msgstr ""
 msgid "%s: Invalid attribute name: %s."
 msgstr "ファイル名が無効です: "
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 空でない文字列を指定してくださ"
+"い.\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr "ファイルが不正です"
+
 #, c-format
 #~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 #~ msgstr ""

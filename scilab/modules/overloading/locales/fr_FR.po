@@ -438,6 +438,83 @@ msgstr ""
 "%s : Les matrices d'entrée et de sortie doivent avoir le même nombre "
 "d'éléments.\n"
 
+#
+# File: modules/overloading/macros/%st_p.sci, line: 43
+#, c-format
+msgid "%s struct with no field"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%st_p.sci, line: 52
+msgid "0x0 struct with fields:"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%st_p.sci, line: 62
+#, c-format
+msgid "%s struct with fields:"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%st_p.sci, line: 97
+msgid "(void)"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%st_p.sci, line: 114
+#, c-format
+msgid "(%d lines)"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%st_p.sci, line: 119
+msgid "rational"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%st_p.sci, line: 121
+msgid "complex rational"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%st_p.sci, line: 123
+#, c-format
+msgid "[%s %s] of %s"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%st_p.sci, line: 131
+msgid "cell"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%st_p.sci, line: 137
+msgid " empty list()"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%st_p.sci, line: 164
+#, c-format
+msgid "[%s] %s without field."
+msgstr ""
+
+#
+# File: modules/overloading/macros/%st_p.sci, line: 166
+#, c-format
+msgid "[%s] %s with fields:"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%st_p.sci, line: 219
+msgid "[0x0 struct] with no field"
+msgstr ""
+
+#
+# File: modules/overloading/macros/%st_p.sci, line: 225
+#, c-format
+msgid "[%s struct] with fields:"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong size or value for input argument #%d.\n"
 msgstr "%s : Dimension ou valeur erronée de l'argument d'entrée n°%d.\n"

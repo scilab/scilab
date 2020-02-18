@@ -157,10 +157,6 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: '%s' je neplatná cesta.\n"
-
-#, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s: Soubor %s není ve Scilabu otevřen.\n"
 
@@ -660,3 +656,8 @@ msgstr "Neurčeno"
 
 msgid "The system cannot find the file specified."
 msgstr "Systém nemůže nalézt zadaný soubor."
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
+#~ msgstr ""
+#~ "%s: Špatná hodnota vstupního argumentu #%d: '%s' je neplatná cesta.\n"

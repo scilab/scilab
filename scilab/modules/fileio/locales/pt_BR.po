@@ -161,12 +161,6 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Valor incorreto para o argumento de entrada #%d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada  #%d: '%s' é um caminho "
-"inválido.\n"
-
-#, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s: O arquivo %s não está aberto no Scilab.\n"
 
@@ -686,3 +680,9 @@ msgstr ""
 
 msgid "The system cannot find the file specified."
 msgstr ""
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada  #%d: '%s' é um caminho "
+#~ "inválido.\n"

@@ -64,25 +64,6 @@ msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидается вещественный скаляр.\n"
 
-#, c-format
-msgid ""
-"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
-msgstr "%s: Возможность %s устарела и будет навсегда удалена в Scilab %s\n"
-
-msgid "Warning"
-msgstr "Предупреждение"
-
-#, c-format
-msgid "%s: Please use %s instead.\n"
-msgstr "%s: Пожалуйста, используйте вместо этого %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s: Неверные значения входного параметра №%d: ожидались неотрицательные "
-"целые числа.\n"
-
 #, fuzzy, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
@@ -97,17 +78,18 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
 msgstr "%s: Неверное значение входного аргумента №#%d: ожидалось 's'.\n"
 
-#, c-format
-msgid "%s: Wrong type for input arguments: Must be scalars.\n"
-msgstr "%s: Неверный тип входных параметров: должен быть скаляр.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s: Неверный тип входных параметров: ожидалось скалярное значение.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: должен быть между %d и %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
-msgstr "%s: Неверное значение входного параметра: должно быть между %d и %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: Неверное количество входных параметров.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
 
 msgid "Jan"
 msgstr "Янв"
@@ -145,7 +127,7 @@ msgstr "Ноя"
 msgid "Dec"
 msgstr "Дек"
 
-msgid  "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
+msgid "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
 msgstr "Пн   Вт   Ср   Чт   Пт   Сб   Вс"
 
 #, c-format
@@ -231,10 +213,6 @@ msgstr ""
 "размер.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
 msgstr ""
@@ -287,3 +265,35 @@ msgstr "Четверг"
 
 msgid "Friday"
 msgstr "Пятница"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
+#~ msgstr "%s: Возможность %s устарела и будет навсегда удалена в Scilab %s\n"
+
+#~ msgid "Warning"
+#~ msgstr "Предупреждение"
+
+#, c-format
+#~ msgid "%s: Please use %s instead.\n"
+#~ msgstr "%s: Пожалуйста, используйте вместо этого %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+#~ msgstr ""
+#~ "%s: Неверные значения входного параметра №%d: ожидались неотрицательные "
+#~ "целые числа.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+#~ msgstr "%s: Неверный тип входных параметров: должен быть скаляр.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра: должно быть между %d и %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments.\n"
+#~ msgstr "%s: Неверное количество входных параметров.\n"

@@ -167,10 +167,6 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s' は無効なパスです.\n"
-
-#, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s: ファイル %s をscilabで開けませんでした.\n"
 
@@ -699,3 +695,7 @@ msgstr "未定義"
 
 msgid "The system cannot find the file specified."
 msgstr "指定したファイルが見つかりません."
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
+#~ msgstr "%s: 入力引数 #%d の値が間違っています: '%s' は無効なパスです.\n"

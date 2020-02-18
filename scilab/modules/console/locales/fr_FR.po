@@ -732,6 +732,10 @@ msgstr "Largeur : "
 msgid "Recursion limit: "
 msgstr "Limite récursive : "
 
+#, fuzzy
+msgid "Containers display depth: "
+msgstr "Lignes à afficher :"
+
 msgid "Language setting"
 msgstr "Paramètres de la langue"
 
@@ -827,3 +831,25 @@ msgstr "Impossible de changer la police de la console."
 
 msgid "Could not change the Console Foreground."
 msgstr "Impossible de changer la couleur de fond de la console."
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un scalaire (>= 0) "
+"attendu.\n"

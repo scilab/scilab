@@ -121,6 +121,20 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: значення має належати "
 "діапазону від 0.0 до 1.0.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
+msgstr ""
+"%s: цю можливість буде остаточно вилучено з Scilab %s\n"
+"\n"
+
+msgid "Warning"
+msgstr "Попередження"
+
+#, fuzzy, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "Будь ласка, скористайтеся 1."
+
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s: додатковий параметр не на місці: №%d має бути у позиції %d.\n"
@@ -704,9 +718,6 @@ msgstr ""
 "%s: цю можливість буде остаточно вилучено з Scilab %s\n"
 "\n"
 
-msgid "Warning"
-msgstr "Попередження"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
@@ -1098,9 +1109,9 @@ msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
 "Помилкова розмірність властивості «%s»: значення має належати множині {%s}.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
+"Invalid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
 msgstr ""
 "Некоректне значвення властивості «%s», мало бути «always», «mouseclick» або "
 "«mouseover».\n"
@@ -1725,6 +1736,50 @@ msgstr ""
 "%s: помилкова розмірність або тип вхідного параметра №%d: слід "
 "використовувати рядок.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Positive scalar number expected.\n"
+msgstr ""
+"%s: параметр %d: мало бути вказано десяткове число або десяткові числа.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar number expected.\n"
+msgstr ""
+"%s: параметр %d: мало бути вказано десяткове число або десяткові числа.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr "%s: параметр %d: помилкова специфікація кольору.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність або значення вхідного параметра №%d: мало бути "
+"вказано матрицю з дійсними елементами.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: 'on' or 'off' expected.\n"
+msgstr ""
+"%s: параметр №%d: мало бути вказано одне зі значень: tight, on або off.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text expected.\n"
+msgstr "%s: параметр №%d: мало бути вказано текстові дані.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано принаймні "
+"один %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real matrix or a string matrix "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"дійсних або рядкових значень.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a real scalar expected.\n"
 msgstr ""
@@ -1771,10 +1826,6 @@ msgid "%s: Argument #%d: Must be in the interval %s.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: значення має перебувати у "
 "інтервалі %s.\n"
-
-#, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
-msgstr "%s: параметр %d: помилкова специфікація кольору.\n"
 
 #, c-format
 msgid ""
@@ -2265,7 +2316,8 @@ msgstr "Скасувати"
 msgid "April"
 msgstr "квітень"
 
-msgid "Febuary"
+#, fuzzy
+msgid "February"
 msgstr "лютий"
 
 msgid "January"
@@ -2357,9 +2409,12 @@ msgstr "%s: параметр %d: мало бути вказано числа а�
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr "%s: параметр №%d: мало бути вказано текстові дані.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Characters in {a.#1} expected.\n"
+msgstr "%s: параметр %d: мало бути вказано числа або текст.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): 0, 1, or 2 arguments expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: мало бути 0, 1, 2 або 4 "
 "параметрів.\n"
@@ -2370,16 +2425,6 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано графічний "
 "елемент керування або рядок.\n"
-
-msgid ""
-"isoview: The syntax isoview(xmin, xmax, ymin, ymax) will be removed from "
-"Scilab 6.1\n"
-"Please use replot([xmin xmax ymin ymax]) after isoview(..) instead.\n"
-msgstr ""
-"isoview: можливість використання синтаксичної конструкції isoview(xmin, "
-"xmax, ymin, ymax) буде вилучено з Scilab 6.1\n"
-"Будь ласка, скористайтеся командою-замінником replot([xmin xmax ymin ymax]) "
-"після isoview(..).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
@@ -2543,20 +2588,6 @@ msgstr ""
 "позначки.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"вектор 3 на 1 або 1 на 3.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Vector or index in the colormap "
-"expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано вектор або "
-"індекс у карті кольорів.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
 
@@ -2581,30 +2612,6 @@ msgid "%s: Wrong type for input argument #%d: A marker style expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати стиль "
 "позначки.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
-msgstr ""
-"%s: помилкова розмірність або значення вхідного параметра №%d: мало бути "
-"вказано матрицю з дійсними елементами.\n"
-
-msgid "Incorrect input: ..."
-msgstr "Помилкові вхідні дані: …"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути вказано принаймні "
-"один %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real matrix or a string matrix "
-"expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
-"дійсних або рядкових значень.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -2714,6 +2721,33 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: вказано помилкове значення %s."
+
+#~ msgid ""
+#~ "isoview: The syntax isoview(xmin, xmax, ymin, ymax) will be removed from "
+#~ "Scilab 6.1\n"
+#~ "Please use replot([xmin xmax ymin ymax]) after isoview(..) instead.\n"
+#~ msgstr ""
+#~ "isoview: можливість використання синтаксичної конструкції isoview(xmin, "
+#~ "xmax, ymin, ymax) буде вилучено з Scilab 6.1\n"
+#~ "Будь ласка, скористайтеся командою-замінником replot([xmin xmax ymin "
+#~ "ymax]) після isoview(..).\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+#~ "вектор 3 на 1 або 1 на 3.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Vector or index in the colormap "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: мало бути використано вектор "
+#~ "або індекс у карті кольорів.\n"
+
+#~ msgid "Incorrect input: ..."
+#~ msgstr "Помилкові вхідні дані: …"
 
 #, c-format
 #~ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"

@@ -901,6 +901,28 @@ msgstr ""
 "Przynajmniej jeden operand jest pustą macierzą dla operatora: %s: wynik "
 "ustawiony na []."
 
+#
+# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 25
+#, c-format
+msgid ""
+"If %s is imaginary and its module is > 1\n"
+"      the real part of %s is -/2 in Scilab instead of +/2 in Matlab."
+msgstr ""
+
+#
+# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 27
+#, c-format
+msgid ""
+"If %s is in [0,1)\n"
+"  imag(%s) is -/2 in Scilab instead of +/2 in Matlab."
+msgstr ""
+
 #, c-format
 msgid ""
 "If %s is outside [-1,1]\n"
@@ -910,18 +932,6 @@ msgstr ""
 "   Zespolona część parametru wejściowego %s będzie przeciwieństwem tego, co "
 "daje Matlab."
 
-msgid "is Real."
-msgstr "jest typu real."
-
-#, c-format
-msgid ""
-"If %s is outside [-1,1]\n"
-"   real part of output of %s will be the opposite of Matlab one."
-msgstr ""
-"Jeśli %s jest po za [-1 1]\n"
-"   Rzeczywista część parametru wejściowego %s będzie przeciwieństwem tego, "
-"co daje Matlab."
-
 #, fuzzy, c-format
 msgid ""
 "If %s < -1, complex part of output of %s will be the opposite of Matlab one."
@@ -929,6 +939,9 @@ msgstr ""
 "Jeśli %s jest po za [-1 1]\n"
 "   Zespolona część parametru wejściowego %s będzie przeciwieństwem tego, co "
 "daje Matlab."
+
+msgid "is Real."
+msgstr "jest typu real."
 
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling może być użyte tylko w trybie 3d."
@@ -1150,6 +1163,15 @@ msgstr "%s: Wartość wyjściowa ustawiona na  'on"
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
+
+#, c-format
+#~ msgid ""
+#~ "If %s is outside [-1,1]\n"
+#~ "   real part of output of %s will be the opposite of Matlab one."
+#~ msgstr ""
+#~ "Jeśli %s jest po za [-1 1]\n"
+#~ "   Rzeczywista część parametru wejściowego %s będzie przeciwieństwem "
+#~ "tego, co daje Matlab."
 
 #~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 #~ msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"

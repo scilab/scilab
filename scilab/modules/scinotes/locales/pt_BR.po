@@ -1124,9 +1124,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
 msgstr ""
+"%s: Tamanho incorreto para os argumentos de entrada #%d e #%d: esperava-se "
+"as mesmas dimensões.\n"
 
 #
 # File: modules/scinotes/macros/edit.sci, line: 51

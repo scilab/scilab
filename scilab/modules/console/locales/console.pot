@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-01-14 14:21+0100\n"
+"Revision-Date: 2020-02-18 16:36+0100\n"
 
 # File: modules/console/sci_gateway/c/sci_tohome.c, line: 32
 # File: modules/console/sci_gateway/cpp/sci_clc.cpp, line: 62
@@ -147,7 +147,7 @@ msgstr ""
 
 #
 # File: modules/console/src/c/cmdLine/getKey.c, line: 367
-# File: modules/console/src/java/org/scilab/modules/console/SciConsole.java, line: 563
+# File: modules/console/src/java/org/scilab/modules/console/SciConsole.java, line: 570
 #, c-format
 msgid ""
 "Command is too long (more than %d characters long): could not send it to "
@@ -318,16 +318,16 @@ msgstr ""
 #
 # File: modules/console/src/console_fake_xml.c, line: 560
 # File: modules/console/src/console_fake_xml.c, line: 827
-# File: modules/console/src/console_fake_xml.c, line: 1191
-# File: modules/console/src/console_fake_xml.c, line: 1513
+# File: modules/console/src/console_fake_xml.c, line: 1204
+# File: modules/console/src/console_fake_xml.c, line: 1539
 msgid "Start-up directory"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 562
 # File: modules/console/src/console_fake_xml.c, line: 829
-# File: modules/console/src/console_fake_xml.c, line: 1231
-# File: modules/console/src/console_fake_xml.c, line: 1553
+# File: modules/console/src/console_fake_xml.c, line: 1244
+# File: modules/console/src/console_fake_xml.c, line: 1579
 msgid "Confirmation dialogs"
 msgstr ""
 
@@ -1416,178 +1416,184 @@ msgstr ""
 #
 # File: modules/console/src/console_fake_xml.c, line: 794
 # File: modules/console/src/console_fake_xml.c, line: 1061
-# File: modules/console/src/console_fake_xml.c, line: 1372
-# File: modules/console/src/console_fake_xml.c, line: 1694
+# File: modules/console/src/console_fake_xml.c, line: 1385
+# File: modules/console/src/console_fake_xml.c, line: 1720
 msgid "Demos"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 1078
-# File: modules/console/src/console_fake_xml.c, line: 1400
+# File: modules/console/src/console_fake_xml.c, line: 1413
 msgid "Environment"
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 1080
-# File: modules/console/src/console_fake_xml.c, line: 1402
+# File: modules/console/src/console_fake_xml.c, line: 1415
 msgid "Floating point exception (ieee): "
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 1096
-# File: modules/console/src/console_fake_xml.c, line: 1418
+# File: modules/console/src/console_fake_xml.c, line: 1431
 msgid "Printing format: "
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 1110
-# File: modules/console/src/console_fake_xml.c, line: 1432
+# File: modules/console/src/console_fake_xml.c, line: 1445
 msgid "Width: "
 msgstr ""
 
 #
 # File: modules/console/src/console_fake_xml.c, line: 1124
-# File: modules/console/src/console_fake_xml.c, line: 1446
+# File: modules/console/src/console_fake_xml.c, line: 1459
 msgid "Recursion limit: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1142
-# File: modules/console/src/console_fake_xml.c, line: 1464
+# File: modules/console/src/console_fake_xml.c, line: 1135
+# File: modules/console/src/console_fake_xml.c, line: 1470
+msgid "Containers display depth: "
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1155
+# File: modules/console/src/console_fake_xml.c, line: 1490
 msgid "Language setting"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1144
-# File: modules/console/src/console_fake_xml.c, line: 1466
+# File: modules/console/src/console_fake_xml.c, line: 1157
+# File: modules/console/src/console_fake_xml.c, line: 1492
 msgid "Default language: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1159
-# File: modules/console/src/console_fake_xml.c, line: 1183
-# File: modules/console/src/console_fake_xml.c, line: 1481
-# File: modules/console/src/console_fake_xml.c, line: 1505
+# File: modules/console/src/console_fake_xml.c, line: 1172
+# File: modules/console/src/console_fake_xml.c, line: 1196
+# File: modules/console/src/console_fake_xml.c, line: 1507
+# File: modules/console/src/console_fake_xml.c, line: 1531
 msgid "(This requires a restart of Scilab)"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1169
-# File: modules/console/src/console_fake_xml.c, line: 1491
+# File: modules/console/src/console_fake_xml.c, line: 1182
+# File: modules/console/src/console_fake_xml.c, line: 1517
 msgid "Java Heap Memory"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1171
-# File: modules/console/src/console_fake_xml.c, line: 1493
+# File: modules/console/src/console_fake_xml.c, line: 1184
+# File: modules/console/src/console_fake_xml.c, line: 1519
 msgid "Select the memory (in MB) available in Java: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1193
-# File: modules/console/src/console_fake_xml.c, line: 1515
+# File: modules/console/src/console_fake_xml.c, line: 1206
+# File: modules/console/src/console_fake_xml.c, line: 1541
 msgid "Use current working directory"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1199
-# File: modules/console/src/console_fake_xml.c, line: 1521
+# File: modules/console/src/console_fake_xml.c, line: 1212
+# File: modules/console/src/console_fake_xml.c, line: 1547
 msgid "Use previous working directory"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1205
-# File: modules/console/src/console_fake_xml.c, line: 1527
+# File: modules/console/src/console_fake_xml.c, line: 1218
+# File: modules/console/src/console_fake_xml.c, line: 1553
 msgid "Use default directory"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1214
-# File: modules/console/src/console_fake_xml.c, line: 1536
+# File: modules/console/src/console_fake_xml.c, line: 1227
+# File: modules/console/src/console_fake_xml.c, line: 1562
 msgid "Default startup directory"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1251
-# File: modules/console/src/console_fake_xml.c, line: 1573
+# File: modules/console/src/console_fake_xml.c, line: 1264
+# File: modules/console/src/console_fake_xml.c, line: 1599
 msgid "Desktop Layout"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1253
-# File: modules/console/src/console_fake_xml.c, line: 1575
+# File: modules/console/src/console_fake_xml.c, line: 1266
+# File: modules/console/src/console_fake_xml.c, line: 1601
 msgid "Select a layout"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1267
-# File: modules/console/src/console_fake_xml.c, line: 1589
+# File: modules/console/src/console_fake_xml.c, line: 1280
+# File: modules/console/src/console_fake_xml.c, line: 1615
 msgid "(Modifying the layout requires to restart Scilab)"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1279
-# File: modules/console/src/console_fake_xml.c, line: 1601
+# File: modules/console/src/console_fake_xml.c, line: 1292
+# File: modules/console/src/console_fake_xml.c, line: 1627
 msgid "Save layout on exiting"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1284
-# File: modules/console/src/console_fake_xml.c, line: 1606
+# File: modules/console/src/console_fake_xml.c, line: 1297
+# File: modules/console/src/console_fake_xml.c, line: 1632
 msgid "Reset layout"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1294
-# File: modules/console/src/console_fake_xml.c, line: 1616
+# File: modules/console/src/console_fake_xml.c, line: 1307
+# File: modules/console/src/console_fake_xml.c, line: 1642
 msgid "Keys binding"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1297
-# File: modules/console/src/console_fake_xml.c, line: 1619
+# File: modules/console/src/console_fake_xml.c, line: 1310
+# File: modules/console/src/console_fake_xml.c, line: 1645
 msgid "Filter on action name: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1307
-# File: modules/console/src/console_fake_xml.c, line: 1629
+# File: modules/console/src/console_fake_xml.c, line: 1320
+# File: modules/console/src/console_fake_xml.c, line: 1655
 msgid "Component"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1319
-# File: modules/console/src/console_fake_xml.c, line: 1641
+# File: modules/console/src/console_fake_xml.c, line: 1332
+# File: modules/console/src/console_fake_xml.c, line: 1667
 msgid "Name: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1325
-# File: modules/console/src/console_fake_xml.c, line: 1647
+# File: modules/console/src/console_fake_xml.c, line: 1338
+# File: modules/console/src/console_fake_xml.c, line: 1673
 msgid "Description: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1331
-# File: modules/console/src/console_fake_xml.c, line: 1653
+# File: modules/console/src/console_fake_xml.c, line: 1344
+# File: modules/console/src/console_fake_xml.c, line: 1679
 msgid "Binding: "
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1363
-# File: modules/console/src/console_fake_xml.c, line: 1685
+# File: modules/console/src/console_fake_xml.c, line: 1376
+# File: modules/console/src/console_fake_xml.c, line: 1711
 msgid "Action name"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1364
-# File: modules/console/src/console_fake_xml.c, line: 1686
+# File: modules/console/src/console_fake_xml.c, line: 1377
+# File: modules/console/src/console_fake_xml.c, line: 1712
 msgid "Key binding"
 msgstr ""
 
 #
-# File: modules/console/src/console_fake_xml.c, line: 1379
-# File: modules/console/src/console_fake_xml.c, line: 1701
+# File: modules/console/src/console_fake_xml.c, line: 1392
+# File: modules/console/src/console_fake_xml.c, line: 1727
 msgid "The demo interface is dockable"
 msgstr ""
 
@@ -1610,16 +1616,41 @@ msgid "No help"
 msgstr ""
 
 #
-# File: modules/console/src/java/org/scilab/modules/console/SciConsole.java, line: 446
+# File: modules/console/src/java/org/scilab/modules/console/SciConsole.java, line: 450
 msgid "Out of Screen"
 msgstr ""
 
 #
-# File: modules/console/src/java/org/scilab/modules/console/SciConsole.java, line: 651
+# File: modules/console/src/java/org/scilab/modules/console/SciConsole.java, line: 658
 msgid "Could not change the Console Font."
 msgstr ""
 
 #
-# File: modules/console/src/java/org/scilab/modules/console/SciConsole.java, line: 714
+# File: modules/console/src/java/org/scilab/modules/console/SciConsole.java, line: 721
 msgid "Could not change the Console Foreground."
+msgstr ""
+
+# File: modules/console/macros/input.sci, line: 19
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/console/macros/input.sci, line: 24
+# File: modules/console/macros/input.sci, line: 38
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#
+# File: modules/console/macros/input.sci, line: 29
+# File: modules/console/macros/input.sci, line: 43
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+
+#
+# File: modules/console/macros/input.sci, line: 48
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
 msgstr ""

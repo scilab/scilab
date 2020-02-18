@@ -103,12 +103,14 @@ msgstr ""
 "рядків.\n"
 
 #, c-format
-msgid "%s: Invalid %s file.\n"
-msgstr "%s: некоректний файл %s.\n"
+msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
+"матрицю 2xN.\n"
 
 #, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s: файла з назвою %s не існує.\n"
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr "%s: некоректний файл XConfiguration.xml.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
@@ -133,11 +135,9 @@ msgid "%s: Invalid attribute name: %s."
 msgstr "%s: некоректна назва атрибута: %s."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
-"матрицю 2xN.\n"
+#~ msgid "%s: Invalid %s file.\n"
+#~ msgstr "%s: некоректний файл %s.\n"
 
 #, c-format
-msgid "%s: Invalid XConfiguration.xml file.\n"
-msgstr "%s: некоректний файл XConfiguration.xml.\n"
+#~ msgid "%s: The file %s does not exist.\n"
+#~ msgstr "%s: файла з назвою %s не існує.\n"

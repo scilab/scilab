@@ -100,12 +100,12 @@ msgstr ""
 "значений.\n"
 
 #, c-format
-msgid "%s: Invalid %s file.\n"
-msgstr "%s: Недопустимый файл %s.\n"
+msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидалась матрица 2xN.\n"
 
 #, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s: Файл %s не существует.\n"
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr "%s: Некорректный файл XConfiguration.xml.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
@@ -128,9 +128,9 @@ msgid "%s: Invalid attribute name: %s."
 msgstr "%s: Недопустимое имя атрибута: %s."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
-msgstr "%s: Неверный размер входного аргумента №%d: ожидалась матрица 2xN.\n"
+#~ msgid "%s: Invalid %s file.\n"
+#~ msgstr "%s: Недопустимый файл %s.\n"
 
 #, c-format
-msgid "%s: Invalid XConfiguration.xml file.\n"
-msgstr "%s: Некорректный файл XConfiguration.xml.\n"
+#~ msgid "%s: The file %s does not exist.\n"
+#~ msgstr "%s: Файл %s не существует.\n"

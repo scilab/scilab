@@ -123,6 +123,40 @@ msgstr "%s: Špatný počet výstupních argumentů.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Špatný počet výstupních argumentů.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: %s expected.\n"
+msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 54
+#, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
+msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 91
+#, c-format
+msgid "%s: Argument #%d: The file '%s' does not exist.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number expected.\n"
+msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 100
+#, c-format
+msgid "%s: Argument #%d: Must be > %d.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
 msgstr "%s: Nelze přehrát zvuk pomocí příkazu: %s.\n"
@@ -176,6 +210,12 @@ msgstr ""
 "%s: Špatná hodnota pro vstupní argument: Rozsah ukazatele musí být určen "
 "jako skalár, nebo vektor s %d prvky.\n"
 
+#
+# File: modules/sound/macros/wavread.sci, line: 84
+#, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr ""
+
 msgid ".wav file does not contain the RIFF identifier."
 msgstr "soubor .wav neobsahuje identifikátor RIFF."
 
@@ -203,8 +243,11 @@ msgstr "Neplatný soubor .wav: nalezena data před informacemi o formátu."
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Nesprávná velikost kusu informací v souboru RIFF."
 
-msgid "Invalid wav format."
-msgstr "Neplatný formát wav."
+#
+# File: modules/sound/macros/wavread.sci, line: 217
+#, c-format
+msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
+msgstr ""
 
 msgid "Error reading wav file."
 msgstr "Vyba při čtení souboru .wav."
@@ -221,3 +264,6 @@ msgstr "Vektor limitu vzorku musí mít 2 záznamy."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Neplatné limity vzorkování (použijte vzestupné pořadí)."
+
+#~ msgid "Invalid wav format."
+#~ msgstr "Neplatný formát wav."

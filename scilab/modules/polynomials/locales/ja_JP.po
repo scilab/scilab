@@ -180,6 +180,10 @@ msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 論理値スカラーを指定してくださ"
 "い.\n"
 
+# File: modules/polynomials/demos/intro/poly.intro.dem.sce, line: 8
+msgid "Press &lt;enter> in the console to proceed step by step"
+msgstr ""
+
 msgid "Polynomials"
 msgstr "多項式"
 

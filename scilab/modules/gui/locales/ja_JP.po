@@ -1272,6 +1272,12 @@ msgstr "ファイルを選択して出力"
 msgid "Figure saved.\n"
 msgstr "図を保存しました.\n"
 
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 702
+# File: modules/gui/src/gui_fake_xml.c, line: 742
+msgid "'Right click and drag to rotate.'"
+msgstr ""
+
 msgid "Colors"
 msgstr "色"
 
@@ -1832,7 +1838,8 @@ msgstr "直線"
 msgid "Nurbs"
 msgstr "nurbs"
 
-msgid "Anti-alising"
+#, fuzzy
+msgid "Anti-aliasing"
 msgstr "アンチエイリアス"
 
 msgid "Auto Clear"
@@ -2548,6 +2555,10 @@ msgstr "UIコントロールの配置"
 
 msgid "Uicontrols messagebox-like"
 msgstr "メッセージボックスに似たUIコントロール"
+
+#, fuzzy
+msgid "UIcontrols Game of Dice"
+msgstr "UIコントロールのデモ"
 
 msgid "<Enter color name here>"
 msgstr "<色名を入力してください>"

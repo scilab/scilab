@@ -904,6 +904,28 @@ msgstr ""
 "Pelo menos um operando é uma matriz vazia para o operador: %s, resultado "
 "ajustado para []."
 
+#
+# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 25
+#, c-format
+msgid ""
+"If %s is imaginary and its module is > 1\n"
+"      the real part of %s is -/2 in Scilab instead of +/2 in Matlab."
+msgstr ""
+
+#
+# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 27
+#, c-format
+msgid ""
+"If %s is in [0,1)\n"
+"  imag(%s) is -/2 in Scilab instead of +/2 in Matlab."
+msgstr ""
+
 #, c-format
 msgid ""
 "If %s is outside [-1,1]\n"
@@ -912,23 +934,15 @@ msgstr ""
 "Se %s está fora de [-1,1]\n"
 "   a parte complexa da saída de %s será o oposto da do Matlab."
 
-msgid "is Real."
-msgstr "É real."
-
-#, c-format
-msgid ""
-"If %s is outside [-1,1]\n"
-"   real part of output of %s will be the opposite of Matlab one."
-msgstr ""
-"se %s está fora de [-1,1]\n"
-"   parte real de saída de %s será oposta à da do Matlab."
-
 #, fuzzy, c-format
 msgid ""
 "If %s < -1, complex part of output of %s will be the opposite of Matlab one."
 msgstr ""
 "Se %s está fora de [-1,1]\n"
 "   a parte complexa da saída de %s será o oposto da do Matlab."
+
+msgid "is Real."
+msgstr "É real."
 
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling utilizado apenas no modo 3D."
@@ -1150,6 +1164,14 @@ msgstr "%s: Valor de saída ajustado para 'on'."
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
+
+#, c-format
+#~ msgid ""
+#~ "If %s is outside [-1,1]\n"
+#~ "   real part of output of %s will be the opposite of Matlab one."
+#~ msgstr ""
+#~ "se %s está fora de [-1,1]\n"
+#~ "   parte real de saída de %s será oposta à da do Matlab."
 
 #~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 #~ msgstr ""

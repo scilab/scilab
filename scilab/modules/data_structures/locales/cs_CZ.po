@@ -61,10 +61,6 @@ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Not implemented in scilab...\n"
 msgstr ""
 
@@ -91,18 +87,6 @@ msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d."
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
@@ -115,8 +99,8 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d."
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d."
 
 #, c-format
 #~ msgid ""

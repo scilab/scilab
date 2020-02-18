@@ -877,13 +877,17 @@ msgstr "フィールド%s.%sの型が間違っています: 文字列行列を�
 msgid "Wrong value for field %s.%s : Round number expected.\n"
 msgstr "フィールド%s.%sの値が間違っています: 概数を指定してください.\n"
 
-#, c-format
-msgid "Wrong type for field %s.%s : Real matrix expected.\n"
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : Real vector expected.\n"
+msgstr "フィールド%s.%sの型が間違っています: 実数行列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "Wrong size for field %s.%s : Real vector expected.\n"
 msgstr "フィールド%s.%sの型が間違っています: 実数行列を指定してください.\n"
 
 #, c-format
-msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
-msgstr "フィールド%s.%sの大きさが間違っています: %d行%d列を指定してください.\n"
+msgid "Wrong type for field %s.%s : Real matrix expected.\n"
+msgstr "フィールド%s.%sの型が間違っています: 実数行列を指定してください.\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 expected.\n"
@@ -1529,6 +1533,11 @@ msgid ""
 msgstr ""
 "%s に指定された回答は\n"
 "間違っています: %s.\n"
+
+#, c-format
+#~ msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
+#~ msgstr ""
+#~ "フィールド%s.%sの大きさが間違っています: %d行%d列を指定してください.\n"
 
 #, c-format
 #~ msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"

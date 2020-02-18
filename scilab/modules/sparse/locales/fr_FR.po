@@ -106,12 +106,6 @@ msgstr ""
 "incompatibles.\n"
 
 #, c-format
-msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
-msgstr ""
-"%s : Type erroné pour l'argument d'entrée #%d : matrice pleine ou creuse "
-"attendue.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : un entier attendu.\n"
 
@@ -623,6 +617,12 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
+#~ msgstr ""
+#~ "%s : Type erroné pour l'argument d'entrée #%d : matrice pleine ou creuse "
+#~ "attendue.\n"
 
 #~ msgid ""
 #~ "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"

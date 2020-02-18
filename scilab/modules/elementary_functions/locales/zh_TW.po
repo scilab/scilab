@@ -18,12 +18,14 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
 
 #
 # File: src/c/sci_tools.c, line: 108
@@ -39,28 +41,12 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間."
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid base %d representations "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -81,7 +67,8 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
 msgstr ""
 
-msgid "Warning : singularity of 'log' or 'tan' function.\n"
+#, c-format
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #, c-format
@@ -134,6 +121,21 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: converted value is out of range.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid base %d representations "
+"expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是一個矩陣.\n"
 
 #
 # File: macros/meshgrid.sci, line: 18
@@ -209,10 +211,9 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: %s expected.\n"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] expected.\n"
-msgstr "%s: 第 %d 輸入參數的資料數值錯誤: 應該是  ['g' 'r' 'c' 'lc' 'lr'] .\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr "%s: 輸入參數 #%d 的大小錯誤. 應該是實數純量.\n"
 
 #
 # File: modules/elementary_functions/sci_gateway/cpp/sci_linspace.cpp, line: 80
@@ -301,16 +302,21 @@ msgstr ""
 msgid ": 2-D examples"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' , '%s'  或 '%s' .\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應該是矩陣型態.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s'.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: List expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應該是矩陣型態.\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應該是矩陣型態.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: List of functions identifiers expected.\n"
+msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Column expected.\n"
@@ -331,6 +337,17 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' , '%s'  或 '%s' .\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
@@ -562,22 +579,16 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一整數.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
-"positive integers expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤:  應為正整數之純量/向量/矩陣/超矩陣.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一正整數.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一正整數.\n"
 
-#, c-format
-msgid "%s: Cannot flip hypermatrix blockwise. %d input arguments expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be <= %d.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應該是矩陣型態.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一正整數.\n"
 
 #, c-format
 msgid ""
@@ -586,12 +597,22 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: %d,'%s',%d or 應為 '%s'\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 或 %d才對.\n"
+
+#
+# File: modules/elementary_functions/macros/intersect.sci, line: 98
+#, c-format
+msgid "%s: Argument #%d: Orientation not supported for hypermatrix.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: %s not supported.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應該是矩陣型態.\n"
 
 #, fuzzy, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
@@ -723,29 +744,19 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一實數.\n"
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s: 輸入參數的個數錯誤: 應該至少是 %d.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"
-msgstr "%s: #%d輸入的參數型態錯誤: 應該是實數純量或向量.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A real scalar or vector expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar or vector expected.\n"
 msgstr "%s: 輸入參數 #%d 的大小錯誤: 應該是實數純量或向量.\n"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
-msgstr "%s: 輸入參數 #%d 的大小錯誤. 應該是實數純量.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應該是矩陣型態.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong number of output matrix dimensions required: %d expected for "
-"sparse matrices.\n"
-msgstr "%s: 輸出的矩陣維度數錯誤, 稀疏矩陣應該需要 %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
-msgstr ""
+"%s: Wrong dimensions for input arguments: The sparse result must be 2D, not "
+"%dD.\n"
+msgstr "%s: 第 %d 輸入參數的資料長度錯誤: 應該是稀疏矩陣.\n"
 
 msgid "RESIZING a matrix of DECIMALS:"
 msgstr ""
@@ -792,10 +803,6 @@ msgid "%s: conversion into %s is not supported\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
 msgstr ""
 
@@ -817,6 +824,10 @@ msgid ""
 "%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
 "r(1).\n"
 msgstr "%s: 第 %d 及第 %d 個輸入參數數值錯誤: c(1) 應等於 r(1).\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: %d,'%s',%d or 應為 '%s'\n"
 
 msgid "Press return to display 2D examples"
 msgstr ""
@@ -842,10 +853,6 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d 或 %d才對.\n"
-
-#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
 msgstr "%s:  第#%d個 和第 #%d個參數不相容: 型別相同才對.\n"
 
@@ -855,3 +862,27 @@ msgstr "%s:  第#%d個 和第 #%d個參數不相容: 型別相同才對.\n"
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: 輸入參數之長度錯誤: 長度不匹配.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: 第 %d 輸入參數的資料數值錯誤: 應該是  ['g' 'r' 'c' 'lc' 'lr'] .\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix "
+#~ "of positive integers expected.\n"
+#~ msgstr "%s: 第 %d 個輸入參數數值錯誤:  應為正整數之純量/向量/矩陣/超矩陣.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"
+#~ msgstr "%s: #%d輸入的參數型態錯誤: 應該是實數純量或向量.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong number of output matrix dimensions required: %d expected for "
+#~ "sparse matrices.\n"
+#~ msgstr "%s: 輸出的矩陣維度數錯誤, 稀疏矩陣應該需要 %d.\n"

@@ -126,6 +126,36 @@ msgstr "%s : Nombre erroné d'arguments de sortie.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: %s expected.\n"
+msgstr "%s : Argument d'entrée n°%d faux : '%s' ou '%s' attendu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être >= %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
+msgstr "%s : Argument d'entrée n°%d faux : '%s' ou '%s' attendu.\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 91
+#, c-format
+msgid "%s: Argument #%d: The file '%s' does not exist.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number expected.\n"
+msgstr "%s : Type erroné de l'argument n°%d : Une matrice réelle attendue.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be > %d.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être >= %d.\n"
+
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
 msgstr "%s : Impossible de lire le son avec la commande : %s.\n"
@@ -181,6 +211,12 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée : La plage d'index doit être "
 "spécifiée sous la forme d'un scalaire ou d'un vecteur de %d éléments.\n"
 
+#
+# File: modules/sound/macros/wavread.sci, line: 84
+#, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr ""
+
 msgid ".wav file does not contain the RIFF identifier."
 msgstr "Le ficher .wav ne contient pas l'identifieur RIFF."
 
@@ -211,8 +247,11 @@ msgstr ""
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Information erronée de la taille des fragments dans le fichier RIFF."
 
-msgid "Invalid wav format."
-msgstr "Format wav invalide."
+#
+# File: modules/sound/macros/wavread.sci, line: 217
+#, c-format
+msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
+msgstr ""
 
 msgid "Error reading wav file."
 msgstr "Erreur pendant la lecture du fichier .wav."
@@ -232,3 +271,6 @@ msgstr "Le vecteur des limites d'échantillonnages doit avoir 2 entrées."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Limites d'échantillonnage invalides (utilisez un ordre croissant)."
+
+#~ msgid "Invalid wav format."
+#~ msgstr "Format wav invalide."

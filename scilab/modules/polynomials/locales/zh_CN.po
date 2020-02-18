@@ -154,6 +154,10 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A boolean scalar expected.\n"
 msgstr ""
 
+# File: modules/polynomials/demos/intro/poly.intro.dem.sce, line: 8
+msgid "Press &lt;enter> in the console to proceed step by step"
+msgstr ""
+
 msgid "Polynomials"
 msgstr ""
 

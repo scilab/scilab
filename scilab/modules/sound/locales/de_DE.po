@@ -124,6 +124,40 @@ msgstr "%s: Fehlerhafte Anzahl an Ausgabeargumenten.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Falscher Typ für Ausgangsargument.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Falsche Anzahl an Eingangsargumenten: %d zu %d erwartet.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: %s expected.\n"
+msgstr "%s: falsches Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 54
+#, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
+msgstr "%s: falsches Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 91
+#, c-format
+msgid "%s: Argument #%d: The file '%s' does not exist.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number expected.\n"
+msgstr "%s: falsches Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 100
+#, c-format
+msgid "%s: Argument #%d: Must be > %d.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
 msgstr ""
@@ -177,6 +211,12 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument: Indexbereich muß als Skalar oder %d-"
 "Element Vektor angegeben werden.\n"
 
+#
+# File: modules/sound/macros/wavread.sci, line: 84
+#, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr ""
+
 msgid ".wav file does not contain the RIFF identifier."
 msgstr ".wav-Datei enthält keine RIFF Identifikation."
 
@@ -205,8 +245,11 @@ msgstr "Ungültige .wav-Datei gefunden: Daten beginnen vor Formatinformationen."
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Inkorrekte Information der Blockgröße in RIFF Datei,"
 
-msgid "Invalid wav format."
-msgstr "Ungültiges wav-Format"
+#
+# File: modules/sound/macros/wavread.sci, line: 217
+#, c-format
+msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
+msgstr ""
 
 msgid "Error reading wav file."
 msgstr "Fehler beim Lesen der Wavedatei"
@@ -225,3 +268,6 @@ msgstr "Abtast-Grenz-Vektor muß 2 Einträge haben."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "ungültige Abtastgrenzen (verwenden aufsteigende Folge)."
+
+#~ msgid "Invalid wav format."
+#~ msgstr "Ungültiges wav-Format"

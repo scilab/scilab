@@ -117,6 +117,20 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être comprise entre "
 "0.0 et 1.0.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
+msgstr ""
+"%s : Cette fonction sera définitivement supprimée dans Scilab %s\n"
+"\n"
+
+msgid "Warning"
+msgstr "Attention"
+
+#, fuzzy, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "Veuillez utiliser 1 à la place."
+
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s : Argument optionnel mal placé : n°%d doit être à la position %d.\n"
@@ -690,9 +704,6 @@ msgstr ""
 "%s : Cette fonction sera définitivement supprimée dans Scilab %s\n"
 "\n"
 
-msgid "Warning"
-msgstr "Attention"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
@@ -1050,9 +1061,9 @@ msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr ""
 "Dimension erronée de la propriété '%s' : Doit être dans l'ensemble {%s}.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
+"Invalid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
 msgstr ""
 "Valeur invalide pour la propriété '%s' : utiliser 'always', 'mouseclick' ou "
 "'mouseover'.\n"
@@ -1654,6 +1665,46 @@ msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Positive scalar number expected.\n"
+msgstr "%s Argument #%d : Nombre(s) réel(s) attendu(s).\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar number expected.\n"
+msgstr "%s Argument #%d : Nombre(s) réel(s) attendu(s).\n"
+
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr "%s : Argument #%d : Couleur spécifiée erronée.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s : Dimension ou type erroné de l'argument d'entrée n°%d : Une matrice "
+"réelle attendue.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: 'on' or 'off' expected.\n"
+msgstr "%s : Argument #%d : valeurs 'tight', 'on' ou 'off' attendues.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text expected.\n"
+msgstr "%s : Argument #%d : texte(s) attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Au moins une %s attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real matrix or a string matrix "
+"expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle ou une "
+"matrice de chaîne de caractères attendu.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a real scalar expected.\n"
 msgstr ""
@@ -1696,10 +1747,6 @@ msgstr "%s Argument #%d : valeurs ≥ 0 attendues.\n"
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval %s.\n"
 msgstr "%s : Argument n°%d : valeur requise dans l'intervalle %s.\n"
-
-#, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
-msgstr "%s : Argument #%d : Couleur spécifiée erronée.\n"
 
 #, c-format
 msgid ""
@@ -2175,7 +2222,8 @@ msgstr "Annuler"
 msgid "April"
 msgstr "Avril"
 
-msgid "Febuary"
+#, fuzzy
+msgid "February"
 msgstr "Février"
 
 msgid "January"
@@ -2264,9 +2312,12 @@ msgstr "%s Argument #%d : Texte ou réels attendu.\n"
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr "%s : Argument #%d : texte(s) attendu(s).\n"
 
-#, c-format
-msgid ""
-"%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Characters in {a.#1} expected.\n"
+msgstr "%s Argument #%d : Texte ou réels attendu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): 0, 1, or 2 arguments expected.\n"
 msgstr ""
 "%s : Nombre erroné d'argument(s) d'entrée : 0, 1, 2 ou 4 argument(s) "
 "attendu(s).\n"
@@ -2277,16 +2328,6 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : un gestionnaire de graphique "
 "ou une chaîne attendu.\n"
-
-msgid ""
-"isoview: The syntax isoview(xmin, xmax, ymin, ymax) will be removed from "
-"Scilab 6.1\n"
-"Please use replot([xmin xmax ymin ymax]) after isoview(..) instead.\n"
-msgstr ""
-"isoview : La syntaxe isoview(xmin, xmax, ymin, ymax) sera supprimée à partir "
-"de Scilab 6.1\n"
-"Veuillez utiliser replot([xmin xmax ymin ymax]) après isoview(..) à la "
-"place.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
@@ -2445,20 +2486,6 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur de taille "
-"3x1 ou 1x3 attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Vector or index in the colormap "
-"expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un vecteur ou un index dans "
-"la plage de couleurs attendu.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
 
@@ -2482,29 +2509,6 @@ msgstr "%s : Valeur de MarkStyle ambiguë.\n"
 msgid "%s: Wrong type for input argument #%d: A marker style expected.\n"
 msgstr ""
 "%s : Valeur incorrecte de l'argument n°%d : n° de symbole existant attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
-msgstr ""
-"%s : Dimension ou type erroné de l'argument d'entrée n°%d : Une matrice "
-"réelle attendue.\n"
-
-msgid "Incorrect input: ..."
-msgstr "Entrée invalide : ..."
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Au moins une %s attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real matrix or a string matrix "
-"expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle ou une "
-"matrice de chaîne de caractères attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -2611,6 +2615,33 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s : Valeur erronée donnée pour %s."
+
+#~ msgid ""
+#~ "isoview: The syntax isoview(xmin, xmax, ymin, ymax) will be removed from "
+#~ "Scilab 6.1\n"
+#~ "Please use replot([xmin xmax ymin ymax]) after isoview(..) instead.\n"
+#~ msgstr ""
+#~ "isoview : La syntaxe isoview(xmin, xmax, ymin, ymax) sera supprimée à "
+#~ "partir de Scilab 6.1\n"
+#~ "Veuillez utiliser replot([xmin xmax ymin ymax]) après isoview(..) à la "
+#~ "place.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
+#~ msgstr ""
+#~ "%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur de taille "
+#~ "3x1 ou 1x3 attendu.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Vector or index in the colormap "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s : Type erroné de l'argument d'entrée n°%d : Un vecteur ou un index "
+#~ "dans la plage de couleurs attendu.\n"
+
+#~ msgid "Incorrect input: ..."
+#~ msgstr "Entrée invalide : ..."
 
 #, c-format
 #~ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"

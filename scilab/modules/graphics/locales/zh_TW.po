@@ -98,6 +98,22 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
+#
+# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 40
+#, c-format
+msgid ""
+"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 41
+#, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr "%s: 選擇性參數誤置  #%d 必須放在位置 %d.\n"
@@ -557,9 +573,6 @@ msgid ""
 "\n"
 msgstr ""
 
-msgid "Warning"
-msgstr ""
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
@@ -871,9 +884,11 @@ msgstr "'%s' 屬性之型態錯誤:應該為實數或  '%s' 代碼(handle).\n"
 msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr "'%s' 屬性之大小錯誤: 應該為在集合 {%s} 內.\n"
 
+#
+# File: modules/graphics/src/c/getHandleProperty/set_datatip_property.c, line: 116
 #, c-format
 msgid ""
-"Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
+"Invalid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
 msgstr ""
 
 #, c-format
@@ -1406,6 +1421,41 @@ msgstr ""
 msgid "%s: Wrong size or type for input argument #%d: string expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Positive scalar number expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是實數純量.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar number expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一字串.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: 'on' or 'off' expected.\n"
+msgstr "%s: 第  #%d 個輸入參數數值錯誤: 應該為 '%s' 或 '%s'.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為實數向量.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real matrix or a string matrix "
+"expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a real scalar expected.\n"
 msgstr ""
@@ -1448,10 +1498,6 @@ msgstr ""
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval %s.\n"
 msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該位於區間 %s.內\n"
-
-#, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -1855,7 +1901,9 @@ msgstr "取消"
 msgid "April"
 msgstr ""
 
-msgid "Febuary"
+#
+# File: modules/graphics/macros/hist3d.sci, line: 30
+msgid "February"
 msgstr ""
 
 msgid "January"
@@ -1942,20 +1990,17 @@ msgstr ""
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Characters in {a.#1} expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為實數向量.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): 0, 1, or 2 arguments expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個."
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Graphic handle or string expected.\n"
-msgstr ""
-
-msgid ""
-"isoview: The syntax isoview(xmin, xmax, ymin, ymax) will be removed from "
-"Scilab 6.1\n"
-"Please use replot([xmin xmax ymin ymax]) after isoview(..) instead.\n"
 msgstr ""
 
 #, c-format
@@ -2086,16 +2131,6 @@ msgid "%s: Wrong value for input argument #%d: A marker style expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Vector or index in the colormap "
-"expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 
@@ -2115,24 +2150,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A marker style expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
-msgstr ""
-
-msgid "Incorrect input: ..."
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real matrix or a string matrix "
-"expected.\n"
 msgstr ""
 
 #, c-format

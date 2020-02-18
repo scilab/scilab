@@ -910,13 +910,17 @@ msgstr ""
 msgid "Wrong value for field %s.%s : Round number expected.\n"
 msgstr "Valeur erronée du champ %s.%s : valeur entière attendue.\n"
 
-#, c-format
-msgid "Wrong type for field %s.%s : Real matrix expected.\n"
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : Real vector expected.\n"
+msgstr "Type erroné du champ %s.%s : une matrice réelle attendue.\n"
+
+#, fuzzy, c-format
+msgid "Wrong size for field %s.%s : Real vector expected.\n"
 msgstr "Type erroné du champ %s.%s : une matrice réelle attendue.\n"
 
 #, c-format
-msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
-msgstr "Taille erronée du champ %s.%s : %dx%d attendue.\n"
+msgid "Wrong type for field %s.%s : Real matrix expected.\n"
+msgstr "Type erroné du champ %s.%s : une matrice réelle attendue.\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 expected.\n"
@@ -1562,6 +1566,10 @@ msgid ""
 msgstr ""
 "La solution donnée pour %s \n"
 " est erronée : %s.\n"
+
+#, c-format
+#~ msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
+#~ msgstr "Taille erronée du champ %s.%s : %dx%d attendue.\n"
 
 #, c-format
 #~ msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"

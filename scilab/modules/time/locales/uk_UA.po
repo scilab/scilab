@@ -72,27 +72,6 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати дійсне "
 "число.\n"
 
-#, c-format
-msgid ""
-"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
-msgstr ""
-"%s: можливість %s вважається застарілою, її буде остаточно вилучено у Scilab "
-"%s\n"
-
-msgid "Warning"
-msgstr "Попередження"
-
-#, c-format
-msgid "%s: Please use %s instead.\n"
-msgstr "%s: будь ласка, скористайтеся %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s: помилкові значення вхідного параметра №%d: слід використовувати "
-"невід’ємні цілі числа\n"
-
 #, fuzzy, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
@@ -108,20 +87,22 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
 msgstr "%s: помилкове значення вхідного параметра №%d: мало бути «s».\n"
 
-#, c-format
-msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
-"%s: помилковий тип вхідних параметрів: значення мають бути скалярними.\n"
+"%s: помилковий тип вхідних параметрів: слід використовувати скалярні "
+"значення.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"значення між %d та %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра: слід використовувати значення між "
-"%d та %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: помилкова кількість вхідних параметрів.\n"
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
 
 msgid "Jan"
 msgstr "січ"
@@ -159,7 +140,7 @@ msgstr "лис"
 msgid "Dec"
 msgstr "гру"
 
-msgid  "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
+msgid "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
 msgstr "Пнд  Втр  Сер  Чтв  Птн  Сбт  Ндл"
 
 #, c-format
@@ -248,11 +229,6 @@ msgstr ""
 "бути однаковими.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
 msgstr ""
@@ -306,3 +282,39 @@ msgstr "Четвер"
 
 msgid "Friday"
 msgstr "п'ятниця"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
+#~ msgstr ""
+#~ "%s: можливість %s вважається застарілою, її буде остаточно вилучено у "
+#~ "Scilab %s\n"
+
+#~ msgid "Warning"
+#~ msgstr "Попередження"
+
+#, c-format
+#~ msgid "%s: Please use %s instead.\n"
+#~ msgstr "%s: будь ласка, скористайтеся %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+#~ msgstr ""
+#~ "%s: помилкові значення вхідного параметра №%d: слід використовувати "
+#~ "невід’ємні цілі числа\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідних параметрів: значення мають бути скалярними.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра: слід використовувати значення "
+#~ "між %d та %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments.\n"
+#~ msgstr "%s: помилкова кількість вхідних параметрів.\n"

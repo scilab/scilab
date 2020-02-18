@@ -98,11 +98,6 @@ msgid "%s: Wrong size for input argument #%d: Incompatible dimensions.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 次元に互換性がありません.\n"
 
 #, c-format
-msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
-msgstr ""
-"%s: 引数 %d の型が間違っています: 疎行列または行列を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数値を指定してください.\n"
 
@@ -717,6 +712,11 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
+#~ msgstr ""
+#~ "%s: 引数 %d の型が間違っています: 疎行列または行列を指定してください.\n"
 
 #~ msgid ""
 #~ "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"

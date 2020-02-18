@@ -1203,6 +1203,12 @@ msgstr "Sélectionner un fichier à écrire"
 msgid "Figure saved.\n"
 msgstr "Figure enregistrée.\n"
 
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 702
+# File: modules/gui/src/gui_fake_xml.c, line: 742
+msgid "'Right click and drag to rotate.'"
+msgstr ""
+
 msgid "Colors"
 msgstr "Couleurs"
 
@@ -1762,7 +1768,8 @@ msgstr "Lignes"
 msgid "Nurbs"
 msgstr "Nurbs"
 
-msgid "Anti-alising"
+#, fuzzy
+msgid "Anti-aliasing"
 msgstr "Anti-aliasing"
 
 msgid "Auto Clear"
@@ -2481,6 +2488,10 @@ msgstr "Disposition des uicontrols"
 
 msgid "Uicontrols messagebox-like"
 msgstr "Uicontrols ressemblant aux messagebox"
+
+#, fuzzy
+msgid "UIcontrols Game of Dice"
+msgstr "Démo des interfaces graphiques de contrôle"
 
 msgid "<Enter color name here>"
 msgstr "<Entrez le nom de la couleur ici>"

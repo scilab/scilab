@@ -129,6 +129,44 @@ msgstr "%s: помилкова кількість вихідних параме�
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: помилкова кількість вихідних параметрів.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: %s expected.\n"
+msgstr ""
+"%s: помилковий вхідний параметра №%d: слід використовувати «%s» або «%s».\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення має бути >= %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
+msgstr ""
+"%s: помилковий вхідний параметра №%d: слід використовувати «%s» або «%s».\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 91
+#, c-format
+msgid "%s: Argument #%d: The file '%s' does not exist.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: слід використовувати матрицю дійсних "
+"значень.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення має бути >= %d.\n"
+
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
 msgstr "%s: не вдалося відтворити звук за допомогою цієї команди: %s.\n"
@@ -189,6 +227,12 @@ msgstr ""
 "%s: помилкове значення вхідного параметра: діапазон індексів слід визначати "
 "як скалярне значення або вектор з %d елементів.\n"
 
+#
+# File: modules/sound/macros/wavread.sci, line: 84
+#, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr ""
+
 msgid ".wav file does not contain the RIFF identifier."
 msgstr "Файл .wav не містить ідентифікатора RIFF."
 
@@ -218,8 +262,11 @@ msgstr ""
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Помилкові дані щодо розмірів фрагмента у файлі RIFF."
 
-msgid "Invalid wav format."
-msgstr "Некоректний формат wav."
+#
+# File: modules/sound/macros/wavread.sci, line: 217
+#, c-format
+msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
+msgstr ""
 
 msgid "Error reading wav file."
 msgstr "Помилка читання файла wav."
@@ -236,3 +283,6 @@ msgstr "Вектор обмеження семпла має складатися
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Некоректні межі семпла (слід впорядковувати за зростанням)."
+
+#~ msgid "Invalid wav format."
+#~ msgstr "Некоректний формат wav."

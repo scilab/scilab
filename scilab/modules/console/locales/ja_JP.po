@@ -735,6 +735,10 @@ msgstr "幅: "
 msgid "Recursion limit: "
 msgstr "再帰制限: "
 
+#, fuzzy
+msgid "Containers display depth: "
+msgstr "表示する行;"
+
 msgid "Language setting"
 msgstr "言語設定"
 
@@ -832,3 +836,21 @@ msgstr "コンソールのフォントを変更できません."
 
 msgid "Could not change the Console Foreground."
 msgstr "コンソールの表示を変更できません."
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています : スカラー (>= 0) を指定してください.\n"

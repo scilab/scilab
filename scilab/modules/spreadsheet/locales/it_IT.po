@@ -131,16 +131,6 @@ msgid "%s: separator and decimal must have different values.\n"
 msgstr "%s: separatore e decimale devono avere valori differenti.\n"
 
 #, c-format
-msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
-msgstr ""
-"%s: Riga dell'intervallo o/e indice sinistro della colonna fuori dai "
-"limiti.\n"
-
-#, c-format
-msgid "%s: can not convert data.\n"
-msgstr "%s: impossibile convertire i dati.\n"
-
-#, c-format
 msgid "%s: %s does not exist.\n"
 msgstr "%s: %s non esiste.\n"
 
@@ -158,19 +148,14 @@ msgid "%s: can not read file %s.\n"
 msgstr "%s: impossibile leggere il file %s.\n"
 
 #, c-format
+msgid "%s: can not convert data.\n"
+msgstr "%s: impossibile convertire i dati.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "vettore di tipo stringa.\n"
-
-#, c-format
-msgid "%s: can not read text: Error in the column structure\n"
-msgstr ""
-"%s: impossibile leggere il testo: errore nella struttura della colonna\n"
-
-#, c-format
-msgid "%s: can not read text.\n"
-msgstr "%s: impossibile leggere il testo.\n"
 
 #, c-format
 msgid ""
@@ -288,6 +273,12 @@ msgid "%s: End of file.\n"
 msgstr "%s: Fine del file.\n"
 
 #, c-format
+msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
+msgstr ""
+"%s: Riga dell'intervallo o/e indice sinistro della colonna fuori dai "
+"limiti.\n"
+
+#, c-format
 msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
 "the previous had %d.\n"
@@ -297,6 +288,11 @@ msgstr ""
 
 msgid "Warning"
 msgstr "Attenzione"
+
+#, fuzzy, c-format
+msgid "%s: can not read file, error in the column structure\n"
+msgstr ""
+"%s: impossibile aprire il file %s: errore nella struttura della colonna\n"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
@@ -486,3 +482,12 @@ msgstr ""
 
 msgid "Read a xls file"
 msgstr ""
+
+#, c-format
+#~ msgid "%s: can not read text: Error in the column structure\n"
+#~ msgstr ""
+#~ "%s: impossibile leggere il testo: errore nella struttura della colonna\n"
+
+#, c-format
+#~ msgid "%s: can not read text.\n"
+#~ msgstr "%s: impossibile leggere il testo.\n"

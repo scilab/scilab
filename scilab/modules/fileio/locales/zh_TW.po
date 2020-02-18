@@ -148,12 +148,6 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤.\n"
 
-#
-# File: sci_gateway/c/sci_fullpath.c, line: 59
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: '%s' 唯一無效之路徑.\n"
-
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s:  %s檔在 scilab中還沒打開.\n"
@@ -736,3 +730,9 @@ msgstr ""
 
 msgid "The system cannot find the file specified."
 msgstr ""
+
+#
+# File: sci_gateway/c/sci_fullpath.c, line: 59
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
+#~ msgstr "%s: 第 %d 個輸入參數數值錯誤: '%s' 唯一無效之路徑.\n"

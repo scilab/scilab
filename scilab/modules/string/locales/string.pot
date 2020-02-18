@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-01-14 14:21+0100\n"
+"Revision-Date: 2020-02-18 16:36+0100\n"
 
 # File: modules/string/sci_gateway/cpp/sci_ascii.cpp, line: 69
 # File: modules/string/sci_gateway/cpp/sci_isletter.cpp, line: 45
@@ -510,7 +510,7 @@ msgstr ""
 msgid "%s: Unknown error.\n"
 msgstr ""
 
-# File: modules/string/macros/%p_part.sci, line: 21
+# File: modules/string/macros/%p_part.sci, line: 20
 #, c-format
 msgid "%s: $ is the only implicit variable supported in selected indices"
 msgstr ""
@@ -645,8 +645,8 @@ msgid "%s: Type %s is not handled : Define the function %s2%s."
 msgstr ""
 
 #
-# File: modules/string/macros/sci2exp.sci, line: 115
-# File: modules/string/macros/sci2exp.sci, line: 856
+# File: modules/string/macros/sci2exp.sci, line: 112
+# File: modules/string/macros/sci2exp.sci, line: 857
 #, c-format
 msgid ""
 "%s: This feature has not been implemented: Variable translation of type %s.\n"

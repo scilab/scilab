@@ -204,6 +204,10 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
 "числове значення типу «boolean».\n"
 
+# File: modules/polynomials/demos/intro/poly.intro.dem.sce, line: 8
+msgid "Press &lt;enter> in the console to proceed step by step"
+msgstr ""
+
 msgid "Polynomials"
 msgstr "Поліноми"
 

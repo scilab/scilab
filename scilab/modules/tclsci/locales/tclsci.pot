@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-01-14 14:21+0100\n"
+"Revision-Date: 2020-02-18 16:36+0100\n"
 
 # File: modules/tclsci/sci_gateway/c/gw_tclsci.c, line: 72
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
@@ -239,15 +239,15 @@ msgid "Impossible to set system encoding."
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 70
+# File: modules/tclsci/src/c/InitTclTk.c, line: 77
 msgid ""
 "The SCI environment variable is not set.\n"
 "TCL initialisation failed !\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 98
-# File: modules/tclsci/src/c/InitTclTk.c, line: 130
+# File: modules/tclsci/src/c/InitTclTk.c, line: 106
+# File: modules/tclsci/src/c/InitTclTk.c, line: 139
 msgid ""
 "Unable to find Tcl initialisation scripts.\n"
 "Check your SCI environment variable.\n"
@@ -255,31 +255,31 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 113
+# File: modules/tclsci/src/c/InitTclTk.c, line: 121
 msgid ""
 "The SCI environment variable is not set.\n"
 "Tcl initialisation failed !\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 156
+# File: modules/tclsci/src/c/InitTclTk.c, line: 167
 msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 168
+# File: modules/tclsci/src/c/InitTclTk.c, line: 180
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 184
+# File: modules/tclsci/src/c/InitTclTk.c, line: 199
 #, c-format
 msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 199
+# File: modules/tclsci/src/c/InitTclTk.c, line: 216
 #, c-format
 msgid ""
 "Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
@@ -287,7 +287,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/InitTclTk.c, line: 223
+# File: modules/tclsci/src/c/InitTclTk.c, line: 241
 #, c-format
 msgid ""
 "Tcl Error: Error during the Scilab/TK init process. Error while loading %s: "

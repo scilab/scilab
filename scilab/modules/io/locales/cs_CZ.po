@@ -252,16 +252,8 @@ msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr "%s: Legenda se do současného kontextu nevejde. Přeskočeno\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: očekávána hodnota '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
@@ -279,3 +271,12 @@ msgstr "%s: chyby při spouštění %s"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr "%s: Příkaz selhal s kódem chyby %s a následující zprávou:\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+#~ msgstr ""
+#~ "%s: Špatná hodnota vstupního argumentu #%d: očekávána hodnota '%s'.\n"

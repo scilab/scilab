@@ -254,18 +254,9 @@ msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwano '%s'\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
@@ -283,3 +274,8 @@ msgstr "%s: błąd podczas wykonywania %s"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr ""
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwano '%s'\n"

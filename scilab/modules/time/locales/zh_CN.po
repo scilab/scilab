@@ -61,23 +61,6 @@ msgstr "%s：输入参数#%d的类型错误：应该为整数或者'%s'。\n"
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
-msgstr ""
-
-msgid "Warning"
-msgstr ""
-
-#, c-format
-msgid "%s: Please use %s instead.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为非负整数矩阵。\n"
-
 #, fuzzy, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d个或%d个。\n"
@@ -92,17 +75,17 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for input arguments: Must be scalars.\n"
-msgstr "%s：输入参数的类型错误：必须为标量。\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s：输入参数值错误：应该为标量。\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
+msgstr "%s：输入参数#%d的大小错误：必须介于%d与%d之间。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
-msgstr "%s：输入参数的值错误：必须介于%d与%d之间。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s：输入参数的数目错误。\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d个或%d个。\n"
 
 msgid "Jan"
 msgstr "1月"
@@ -140,7 +123,7 @@ msgstr "11月"
 msgid "Dec"
 msgstr "12月"
 
-msgid  "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
+msgid "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
 msgstr "周一 周二  周三 周四  周五 周六  周日"
 
 #, c-format
@@ -212,10 +195,6 @@ msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr "%s：第%d个输入参数和第%d个输入参数的维度错度：应该为相同维度。\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d个或%d个。\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为实数常量矩阵。\n"
@@ -265,3 +244,20 @@ msgstr "星期四"
 
 msgid "Friday"
 msgstr "星期五"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+#~ msgstr "%s：输入参数#%d的值错误：应该为非负整数矩阵。\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+#~ msgstr "%s：输入参数的类型错误：必须为标量。\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+#~ msgstr "%s：输入参数的值错误：必须介于%d与%d之间。\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments.\n"
+#~ msgstr "%s：输入参数的数目错误。\n"

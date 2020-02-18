@@ -15,38 +15,34 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-01-14 14:21+0100\n"
+"Revision-Date: 2020-02-18 16:36+0100\n"
 
-# File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 45
-# File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 58
 # File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 51
 # File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 88
 # File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 127
 # File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 162
 # File: modules/elementary_functions/sci_gateway/c/sci_frexp.c, line: 42
-# File: modules/elementary_functions/sci_gateway/c/sci_log10.c, line: 59
-# File: modules/elementary_functions/sci_gateway/c/sci_log10.c, line: 67
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 51
+# File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 57
+# File: modules/elementary_functions/sci_gateway/cpp/sci_base2dec.cpp, line: 40
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 71
-# File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 100
+# File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 63
+# File: modules/elementary_functions/sci_gateway/cpp/sci_base2dec.cpp, line: 46
 #, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 77
-# File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 101
-# File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 111
 # File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 69
 # File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 106
 # File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 135
@@ -56,50 +52,25 @@ msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 84
 # File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 77
 # File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 113
+# File: modules/elementary_functions/sci_gateway/cpp/sci_base2dec.cpp, line: 53
 # File: modules/elementary_functions/src/cpp/getmode.cpp, line: 72
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 90
+# File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 100
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#
 # File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 119
+# File: modules/elementary_functions/sci_gateway/cpp/sci_base2dec.cpp, line: 59
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
-msgstr ""
-
-#
-# File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 127
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid base %d representations "
-"expected.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 143
-# File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 200
-# File: modules/elementary_functions/sci_gateway/c/sci_log10.c, line: 119
-# File: modules/elementary_functions/sci_gateway/c/sci_log10.c, line: 130
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 57
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 63
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
 msgstr ""
 
 #
@@ -131,8 +102,9 @@ msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/c/sci_log10.c, line: 110
-msgid "Warning : singularity of 'log' or 'tan' function.\n"
+# File: modules/elementary_functions/sci_gateway/c/sci_dec2base.c, line: 200
+#, c-format
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
@@ -164,27 +136,27 @@ msgid "%s: unknown property kind.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/elem_func_gw.cpp, line: 169
+# File: modules/elementary_functions/sci_gateway/cpp/elem_func_gw.cpp, line: 170
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/elem_func_gw.cpp, line: 189
-# File: modules/elementary_functions/sci_gateway/cpp/elem_func_gw.cpp, line: 219
-# File: modules/elementary_functions/sci_gateway/cpp/elem_func_gw.cpp, line: 231
+# File: modules/elementary_functions/sci_gateway/cpp/elem_func_gw.cpp, line: 190
+# File: modules/elementary_functions/sci_gateway/cpp/elem_func_gw.cpp, line: 220
+# File: modules/elementary_functions/sci_gateway/cpp/elem_func_gw.cpp, line: 232
 #, c-format
 msgid "%s: variable size exceeded : less than %d expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/elem_func_gw.cpp, line: 316
+# File: modules/elementary_functions/sci_gateway/cpp/elem_func_gw.cpp, line: 317
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/elem_func_gw.cpp, line: 331
+# File: modules/elementary_functions/sci_gateway/cpp/elem_func_gw.cpp, line: 332
 # File: modules/elementary_functions/sci_gateway/cpp/sci_eye.cpp, line: 48
 # File: modules/elementary_functions/sci_gateway/cpp/sci_rand.cpp, line: 152
 msgid "Invalid index.\n"
@@ -192,8 +164,8 @@ msgstr ""
 
 #
 # File: modules/elementary_functions/sci_gateway/cpp/sci_atan.cpp, line: 86
-# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 77
-# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 103
+# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 97
+# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 130
 # File: modules/elementary_functions/sci_gateway/cpp/sci_log1p.cpp, line: 73
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
@@ -226,9 +198,30 @@ msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 msgstr ""
 
 #
+# File: modules/elementary_functions/sci_gateway/cpp/sci_base2dec.cpp, line: 90
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: converted value is out of range.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/sci_gateway/cpp/sci_base2dec.cpp, line: 96
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid base %d representations "
+"expected.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/sci_gateway/cpp/sci_base2dec.cpp, line: 109
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+
+#
 # File: modules/elementary_functions/sci_gateway/cpp/sci_bitstring.cpp, line: 25
 # File: modules/elementary_functions/sci_gateway/cpp/sci_linspace.cpp, line: 54
-# File: modules/elementary_functions/sci_gateway/cpp/sci_permute.cpp, line: 148
+# File: modules/elementary_functions/sci_gateway/cpp/sci_permute.cpp, line: 149
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected."
 msgstr ""
@@ -347,7 +340,7 @@ msgid "%s: Wrong size for input argument #%d : A square matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 81
+# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 58
 # File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 66
 # File: modules/elementary_functions/sci_gateway/cpp/sci_rat.cpp, line: 52
 #, c-format
@@ -355,23 +348,23 @@ msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 91
-# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 109
+# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 69
+# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 124
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 98
+# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 131
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 121
+# File: modules/elementary_functions/sci_gateway/cpp/sci_isreal.cpp, line: 51
+# File: modules/elementary_functions/sci_gateway/cpp/sci_isreal.cpp, line: 59
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] expected.\n"
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
@@ -388,8 +381,8 @@ msgid "%s: Wrong values for input argument #%d: Must be less than %d.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 84
-# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 110
+# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 104
+# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 137
 #, c-format
 msgid ""
 "%ls: Warning: Wrong value for input argument #%d : Singularity of the "
@@ -504,22 +497,28 @@ msgid ": 2-D examples"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/%hm_gsort.sci, line: 25
-# File: modules/elementary_functions/macros/%hm_gsort.sci, line: 34
-# File: modules/elementary_functions/macros/%sp_gsort.sci, line: 26
-# File: modules/elementary_functions/macros/%sp_gsort.sci, line: 35
+# File: modules/elementary_functions/macros/%gsort_multilevel.sci, line: 40
+# File: modules/elementary_functions/macros/%gsort_multilevel.sci, line: 54
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
+msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/%hm_gsort.sci, line: 37
-# File: modules/elementary_functions/macros/%sp_gsort.sci, line: 38
-# File: modules/elementary_functions/macros/vectorfind.sci, line: 60
+# File: modules/elementary_functions/macros/%gsort_multilevel.sci, line: 67
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgid "%s: Argument #%d: List expected.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/%gsort_multilevel.sci, line: 71
+#, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/%gsort_multilevel.sci, line: 84
+#, c-format
+msgid "%s: Argument #%d: List of functions identifiers expected.\n"
 msgstr ""
 
 #
@@ -556,6 +555,22 @@ msgstr ""
 # File: modules/elementary_functions/macros/%spb_sum.sci, line: 44
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/%sp_gsort.sci, line: 26
+# File: modules/elementary_functions/macros/%sp_gsort.sci, line: 35
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/%sp_gsort.sci, line: 38
+# File: modules/elementary_functions/macros/vectorfind.sci, line: 60
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
@@ -643,7 +658,7 @@ msgstr ""
 # File: modules/elementary_functions/macros/coshm.sci, line: 23
 # File: modules/elementary_functions/macros/cosm.sci, line: 29
 # File: modules/elementary_functions/macros/cotg.sci, line: 26
-# File: modules/elementary_functions/macros/coth.sci, line: 25
+# File: modules/elementary_functions/macros/coth.sci, line: 23
 # File: modules/elementary_functions/macros/cothm.sci, line: 23
 # File: modules/elementary_functions/macros/csch.sci, line: 21
 # File: modules/elementary_functions/macros/sech.sci, line: 22
@@ -740,6 +755,9 @@ msgstr ""
 
 #
 # File: modules/elementary_functions/macros/bitget.sci, line: 42
+# File: modules/elementary_functions/macros/factorial.sci, line: 34
+# File: modules/elementary_functions/macros/repmat.sci, line: 35
+# File: modules/elementary_functions/macros/repmat.sci, line: 53
 #, c-format
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
 msgstr ""
@@ -868,7 +886,7 @@ msgstr ""
 
 #
 # File: modules/elementary_functions/macros/dec2bin.sci, line: 37
-# File: modules/elementary_functions/macros/setdiff.sci, line: 25
+# File: modules/elementary_functions/macros/setdiff.sci, line: 26
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
@@ -894,35 +912,25 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/factorial.sci, line: 26
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
-"positive integers expected.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/macros/flipdim.sci, line: 35
-# File: modules/elementary_functions/macros/flipdim.sci, line: 43
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/macros/flipdim.sci, line: 38
-# File: modules/elementary_functions/macros/flipdim.sci, line: 46
+# File: modules/elementary_functions/macros/flipdim.sci, line: 40
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/flipdim.sci, line: 49
+# File: modules/elementary_functions/macros/flipdim.sci, line: 43
 #, c-format
-msgid "%s: Cannot flip hypermatrix blockwise. %d input arguments expected.\n"
+msgid "%s: Argument #%d: Must be <= %d.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/flipdim.sci, line: 70
+# File: modules/elementary_functions/macros/flipdim.sci, line: 53
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/flipdim.sci, line: 56
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A divisor of the selected dimension "
@@ -930,16 +938,28 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/intersect.sci, line: 139
-# File: modules/elementary_functions/macros/union.sci, line: 58
+# File: modules/elementary_functions/macros/intersect.sci, line: 23
+# File: modules/elementary_functions/macros/vectorfind.sci, line: 20
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/intersect.sci, line: 98
+#, c-format
+msgid "%s: Argument #%d: Orientation not supported for hypermatrix.\n"
 msgstr ""
 
 #
 # File: modules/elementary_functions/macros/isempty.sci, line: 25
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/isinf.sci, line: 29
+#, c-format
+msgid "%s: Argument #%d: %s not supported.\n"
 msgstr ""
 
 #
@@ -1116,43 +1136,29 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/repmat.sci, line: 15
+# File: modules/elementary_functions/macros/repmat.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/repmat.sci, line: 24
+# File: modules/elementary_functions/macros/repmat.sci, line: 41
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar or vector expected.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/repmat.sci, line: 57
+#, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/repmat.sci, line: 85
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/macros/repmat.sci, line: 27
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A real scalar or vector expected.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/macros/repmat.sci, line: 35
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/macros/repmat.sci, line: 68
-#, c-format
-msgid ""
-"%s: Wrong number of output matrix dimensions required: %d expected for "
-"sparse matrices.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/macros/repmat.sci, line: 120
-#, c-format
-msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
+"%s: Wrong dimensions for input arguments: The sparse result must be 2D, not "
+"%dD.\n"
 msgstr ""
 
 #
@@ -1224,21 +1230,13 @@ msgid "%s: conversion into %s is not supported\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/setdiff.sci, line: 37
-# File: modules/elementary_functions/macros/unique.sci, line: 61
-# File: modules/elementary_functions/macros/unique.sci, line: 111
-#, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/macros/setdiff.sci, line: 45
+# File: modules/elementary_functions/macros/setdiff.sci, line: 46
 #, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/macros/setdiff.sci, line: 49
+# File: modules/elementary_functions/macros/setdiff.sci, line: 50
 #, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of rows expected.\n"
 msgstr ""
@@ -1262,6 +1260,12 @@ msgstr ""
 msgid ""
 "%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
 "r(1).\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/union.sci, line: 58
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
 msgstr ""
 
 #
@@ -1299,12 +1303,6 @@ msgstr ""
 # File: modules/elementary_functions/macros/unwrap.sci, line: 89
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
-msgstr ""
-
-#
-# File: modules/elementary_functions/macros/vectorfind.sci, line: 20
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #

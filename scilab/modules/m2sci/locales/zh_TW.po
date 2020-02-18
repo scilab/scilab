@@ -823,19 +823,32 @@ msgid ""
 "At least one operand is an empty matrix for operator: %s, result set to []."
 msgstr ""
 
+#
+# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 25
+#, c-format
+msgid ""
+"If %s is imaginary and its module is > 1\n"
+"      the real part of %s is -/2 in Scilab instead of +/2 in Matlab."
+msgstr ""
+
+#
+# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 27
+#, c-format
+msgid ""
+"If %s is in [0,1)\n"
+"  imag(%s) is -/2 in Scilab instead of +/2 in Matlab."
+msgstr ""
+
 #, c-format
 msgid ""
 "If %s is outside [-1,1]\n"
 "   complex part of output of %s will be the opposite of Matlab one."
-msgstr ""
-
-msgid "is Real."
-msgstr ""
-
-#, c-format
-msgid ""
-"If %s is outside [-1,1]\n"
-"   real part of output of %s will be the opposite of Matlab one."
 msgstr ""
 
 #
@@ -843,6 +856,9 @@ msgstr ""
 #, c-format
 msgid ""
 "If %s < -1, complex part of output of %s will be the opposite of Matlab one."
+msgstr ""
+
+msgid "is Real."
 msgstr ""
 
 msgid "cube_scaling only used in 3d mode."

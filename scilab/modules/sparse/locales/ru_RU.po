@@ -99,11 +99,6 @@ msgstr ""
 "%s: Неверный размер входного аргумента №%d: несовместимые размерности.\n"
 
 #, c-format
-msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
-msgstr ""
-"%s: Неверный тип аргумента %d: ожидалась разрежённая или полная матрица.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидалось целое число.\n"
 
@@ -596,6 +591,11 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип аргумента %d: ожидалась разрежённая или полная матрица.\n"
 
 #~ msgid ""
 #~ "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"

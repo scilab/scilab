@@ -95,12 +95,12 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr "%s：第%d个输入参数的类型错误，应该为字符串矩阵。\n"
 
 #, c-format
-msgid "%s: Invalid %s file.\n"
-msgstr "%s：无效%s文件。\n"
+msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
+msgstr "%s：第%d个输入参数的维度错误：应该为2xN矩阵。\n"
 
 #, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s：文件%s不存在。\n"
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr "%s：无效XConfiguration.xml文件。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
@@ -123,9 +123,9 @@ msgid "%s: Invalid attribute name: %s."
 msgstr "%s：无效属性名：%s。"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
-msgstr "%s：第%d个输入参数的维度错误：应该为2xN矩阵。\n"
+#~ msgid "%s: Invalid %s file.\n"
+#~ msgstr "%s：无效%s文件。\n"
 
 #, c-format
-msgid "%s: Invalid XConfiguration.xml file.\n"
-msgstr "%s：无效XConfiguration.xml文件。\n"
+#~ msgid "%s: The file %s does not exist.\n"
+#~ msgstr "%s：文件%s不存在。\n"

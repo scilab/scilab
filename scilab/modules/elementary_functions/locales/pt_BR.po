@@ -22,40 +22,6 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Não foi possível ler o argumento de entrada #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de texto.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Tamanho incorreto para o argumento de entrada #%d.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Memória esgotada.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve estar entre %d e "
-"%d."
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid base %d representations "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Erro de alocação de memória.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
 msgstr ""
@@ -68,6 +34,24 @@ msgid ""
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um valor "
 "escalar inteiro.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memória esgotada.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Tamanho incorreto para o argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve estar entre %d e "
+"%d."
 
 #, c-format
 msgid ""
@@ -96,8 +80,9 @@ msgstr ""
 "%s: Valor errado para o argumento de entrada #%d: impossível converter o(s) "
 "valor(es).\n"
 
-msgid "Warning : singularity of 'log' or 'tan' function.\n"
-msgstr ""
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Erro de alocação de memória.\n"
 
 #, c-format
 msgid ""
@@ -151,6 +136,24 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: converted value is out of range.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: impossível converter o(s) "
+"valor(es).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid base %d representations "
+"expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: a string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected."
@@ -227,12 +230,11 @@ msgid "%s: Wrong value for input argument #%d: %s expected.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s'.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ['g' 'r' "
-"'c' 'lc' 'lr'].\n"
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"escalar real.\n"
 
 #, fuzzy, c-format
 msgid "%s: Arguments %d and %d must have same dimensions.\n"
@@ -321,19 +323,23 @@ msgstr ""
 msgid ": 2-D examples"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", \"%s"
-"\", \"%s\", \"%s\" ou \"%s\".\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr "%s: Argumentos #%d e #%d : os mesmos números de linhas esperados.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: List expected.\n"
+msgstr "%s: Argumentos #%d e #%d : os mesmos números de linhas esperados.\n"
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
+msgstr "%s: Argumentos #%d e #%d : os mesmos números de colunas esperados.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: List of functions identifiers expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s' ou "
-"'%s'.\n"
+"%s: Argumentos de entrada #%d e #%d incompatíveis : Mesmos tipos inteiros "
+"esperados.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Column expected.\n"
@@ -356,6 +362,20 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", \"%s"
+"\", \"%s\", \"%s\" ou \"%s\".\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s' ou "
+"'%s'.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
@@ -592,28 +612,20 @@ msgstr ""
 "inteiro.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
-"positive integers expected.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um escalar, "
-"vetor, matriz ou hipermatriz de inteiros positivos.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento #%d: esperava-se um número inteiro "
-"positivo.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
 "inteiro positivo.\n"
 
-#, c-format
-msgid "%s: Cannot flip hypermatrix blockwise. %d input arguments expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be <= %d.\n"
+msgstr "%s: Argumentos #%d e #%d : os mesmos números de linhas esperados.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
+"%s: Tamanho incorreto para o argumento #%d: esperava-se um número inteiro "
+"positivo.\n"
 
 #, c-format
 msgid ""
@@ -622,14 +634,23 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: Valor  incorreto para o argumento de entrada #%d: esperava-se %d, '%s', "
-"%d ou '%s'.\n"
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
+
+#
+# File: modules/elementary_functions/macros/intersect.sci, line: 98
+#, c-format
+msgid "%s: Argument #%d: Orientation not supported for hypermatrix.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Tipo incorreto para o argumento de entrada #%d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: %s not supported.\n"
+msgstr "%s: Argumentos #%d e #%d : os mesmos números de linhas esperados.\n"
 
 #, fuzzy, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
@@ -762,35 +783,23 @@ msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 "%s: Número incorreto de argumentos de entrada: eperava-se no mínimo %d.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um escalar "
-"ou um vetor real.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A real scalar or vector expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar or vector expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
 "escalar ou um vetor real.\n"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"escalar real.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s: Argumentos #%d e #%d : os mesmos números de linhas esperados.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"%s: Wrong number of output matrix dimensions required: %d expected for "
-"sparse matrices.\n"
+"%s: Wrong dimensions for input arguments: The sparse result must be 2D, not "
+"%dD.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: a vector expected.\n"
-msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se vetores "
+"esparsos.\n"
 
 msgid "RESIZING a matrix of DECIMALS:"
 msgstr ""
@@ -837,10 +846,6 @@ msgid "%s: conversion into %s is not supported\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of columns expected.\n"
 msgstr "%s: Argumentos #%d e #%d : os mesmos números de colunas esperados.\n"
 
@@ -866,6 +871,12 @@ msgstr ""
 "%s: Valor incorreto para os argumentos de entrada #%d e #%d: c(1) deve ser "
 "igual a r(1).\n"
 
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
+msgstr ""
+"%s: Valor  incorreto para o argumento de entrada #%d: esperava-se %d, '%s', "
+"%d ou '%s'.\n"
+
 msgid "Press return to display 2D examples"
 msgstr ""
 
@@ -890,11 +901,6 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
-
-#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
 msgstr ""
 "%s: Argumentos de entrada #%d e #%d incompatíveis: esperava-se o mesmo "
@@ -905,3 +911,33 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Tamanho incorreto para os argumentos de entrada: tamanhos "
 "incompatíveis.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma "
+#~ "matriz de texto.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se ['g' 'r' "
+#~ "'c' 'lc' 'lr'].\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix "
+#~ "of positive integers expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um "
+#~ "escalar, vetor, matriz ou hipermatriz de inteiros positivos.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A real scalar or vector expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
+#~ "escalar ou um vetor real.\n"

@@ -633,7 +633,8 @@ msgstr ""
 msgid "ESI Group\n"
 msgstr "Група ESI\n"
 
-msgid "Copyright (c) 2017-2019 (ESI Group)\n"
+#, fuzzy
+msgid "Copyright (c) 2017-2020 (ESI Group)\n"
 msgstr "© ESI Group, 2017–2019\n"
 
 msgid "Copyright (c) 2011-2017 (Scilab Enterprises)\n"
@@ -718,6 +719,17 @@ msgstr "Лінійна алгебра"
 
 msgid "Call an external routine"
 msgstr "Викликати зовнішню процедуру"
+
+#
+# File: modules/core/demos/intro/external_routine.dem.sce, line: 8
+# File: modules/core/demos/intro/linear_algebra.dem.sce, line: 8
+# File: modules/core/demos/intro/online_definition_fct.dem.sce, line: 8
+# File: modules/core/demos/intro/operations.dem.sce, line: 8
+# File: modules/core/demos/intro/optimization_simulation.dem.sce, line: 8
+# File: modules/core/demos/intro/scilab_objects.dem.sce, line: 8
+# File: modules/core/demos/intro/systems.dem.sce, line: 8
+msgid "Press &lt;enter> in the console to proceed step by step"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"

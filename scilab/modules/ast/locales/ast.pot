@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-07 09:15+0100\n"
+"Revision-Date: 2020-02-18 16:36+0100\n"
 
 # File: modules/ast/src/c/operations/matrix_power.c, line: 544
 # File: modules/ast/src/c/operations/matrix_power.c, line: 684
@@ -106,7 +106,7 @@ msgstr ""
 # File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 2020
 # File: modules/ast/src/cpp/ast/visitor_common.cpp, line: 2148
 # File: modules/ast/src/cpp/types/arrayof.cpp, line: 494
-# File: modules/ast/src/cpp/types/arrayof.cpp, line: 1795
+# File: modules/ast/src/cpp/types/arrayof.cpp, line: 1825
 # File: modules/ast/src/cpp/types/implicitlist.cpp, line: 624
 # File: modules/ast/src/cpp/types/macro.cpp, line: 399
 # File: modules/ast/src/cpp/types/sparse.cpp, line: 2261
@@ -514,30 +514,30 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1274
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1256
 msgid "in builtin "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1275
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1257
 #, c-format
 msgid "at line % 5d of function "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1276
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1258
 #, c-format
 msgid "at line % 5d of executed string "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1277
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1259
 #, c-format
 msgid "at line % 5d of executed file "
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1333
+# File: modules/ast/src/cpp/system_env/configvariable.cpp, line: 1315
 msgid "line"
 msgstr ""
 
@@ -702,7 +702,7 @@ msgid "Function not defined for given argument type(s),\n"
 msgstr ""
 
 #
-# File: modules/ast/src/cpp/types/polynom.cpp, line: 797
+# File: modules/ast/src/cpp/types/polynom.cpp, line: 807
 msgid "Input arguments should have the same formal variable name.\n"
 msgstr ""
 

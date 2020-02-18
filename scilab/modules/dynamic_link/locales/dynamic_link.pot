@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-01-14 14:21+0100\n"
+"Revision-Date: 2020-02-18 16:36+0100\n"
 
 # File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 35
 # File: modules/dynamic_link/sci_gateway/cpp/sci_call.cpp, line: 61
@@ -424,13 +424,13 @@ msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/detectmsvc64tools.sci, line: 76
+# File: modules/dynamic_link/macros/detectmsvc64tools.sci, line: 82
 msgid ""
 "Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/detectmsvc64tools.sci, line: 86
+# File: modules/dynamic_link/macros/detectmsvc64tools.sci, line: 92
 msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
 msgstr ""
 

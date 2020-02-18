@@ -135,6 +135,41 @@ msgstr "%s: 出力引数の数が間違っています.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: 出力引数の数が間違っています.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: %s expected.\n"
+msgstr ""
+"%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr ""
+"%s: 引数 %d の値が間違っています:　%d 個以上の引数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
+msgstr ""
+"%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 91
+#, c-format
+msgid "%s: Argument #%d: The file '%s' does not exist.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number expected.\n"
+msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: 引数 %d の値が間違っています:　%d 個以上の引数を指定してください.\n"
+
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
 msgstr "%s:コマンド %s で音を発することができませんでした.\n"
@@ -193,6 +228,12 @@ msgstr ""
 "%s: 入力引数の値が間違っています: インデックスの範囲はスカラーまたは %d-要素"
 "ベクトルで指定してください.\n"
 
+#
+# File: modules/sound/macros/wavread.sci, line: 84
+#, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr ""
+
 msgid ".wav file does not contain the RIFF identifier."
 msgstr ".wavファイルにRIFF識別子が含まれていません."
 
@@ -231,8 +272,11 @@ msgstr "不正な .wav ファイル: フォーマット情報の前にデータ�
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "RIFF・ファイルの不正確なチャンクサイズ情報。"
 
-msgid "Invalid wav format."
-msgstr "wavフォーマットが間違っています."
+#
+# File: modules/sound/macros/wavread.sci, line: 217
+#, c-format
+msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
+msgstr ""
 
 #
 # File: macros/wavread.sci, line: 189
@@ -255,3 +299,6 @@ msgstr "サンプル範囲ベクトルは2つのエントリを有する必要�
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "サンプル範囲が間違っています (昇順としてください)"
+
+#~ msgid "Invalid wav format."
+#~ msgstr "wavフォーマットが間違っています."

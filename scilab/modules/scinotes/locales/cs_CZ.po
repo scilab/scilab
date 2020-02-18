@@ -1123,9 +1123,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: Špatný typ argumentu #%d: Očekávána řetězcová matice.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekávána řetězcová matice.\n"
 
 #
 # File: modules/scinotes/macros/edit.sci, line: 51

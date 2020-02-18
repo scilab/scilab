@@ -422,6 +422,15 @@ msgstr ""
 msgid "%s: Invalid attribute name: %s."
 msgstr "Neplatný název souboru: "
 
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván neprázdný řetězec.\n"
+
+#, fuzzy, c-format
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr "Neplatný soubor"
+
 #, c-format
 #~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 #~ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"

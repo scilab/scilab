@@ -97,12 +97,68 @@ msgid ""
 "  Check arguments or define function %s for overloading.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: número incorrecto de argumentos de entrada: Se esperan al menos %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integer number or string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaban números "
+"reales.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaban números "
+"reales.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal or complex number expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaban números "
+"reales.\n"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for argument #%d: 0, 1 or 2 expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: número incorrecto de argumentos de entrada: Se esperan al menos %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+"%s: número incorrecto de argumentos de entrada: Se esperan al menos %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaban números "
+"reales.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: número incorrecto de argumentos de entrada: Se esperan al menos %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaban números "
+"reales.\n"
+
+#
+# File: modules/special_functions/macros/ellipj.sci, line: 76
+#, c-format
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 
 #, c-format

@@ -1250,6 +1250,12 @@ msgstr "Вкажіть файл для запису"
 msgid "Figure saved.\n"
 msgstr "Рисунок збережено.\n"
 
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 702
+# File: modules/gui/src/gui_fake_xml.c, line: 742
+msgid "'Right click and drag to rotate.'"
+msgstr ""
+
 msgid "Colors"
 msgstr "Кольори"
 
@@ -1807,7 +1813,8 @@ msgstr "Лінії"
 msgid "Nurbs"
 msgstr "Сплайни"
 
-msgid "Anti-alising"
+#, fuzzy
+msgid "Anti-aliasing"
 msgstr "Згладжування"
 
 msgid "Auto Clear"
@@ -2524,6 +2531,10 @@ msgstr "Компонування керування інтерфейсом"
 
 msgid "Uicontrols messagebox-like"
 msgstr "Подібні до повідомлення засоби керування інтерфейсом"
+
+#, fuzzy
+msgid "UIcontrols Game of Dice"
+msgstr "Демонстрація елементів керування"
 
 msgid "<Enter color name here>"
 msgstr "<Тут вкажіть назву кольору>"

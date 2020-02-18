@@ -273,17 +273,8 @@ msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr "%s: 凡例はカレントのコンテキストに適合しません.　スキップしました.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s' 値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
@@ -301,6 +292,15 @@ msgstr "%s: %s 実行中にエラーが発生しました"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr "%s: コマンドはエラーコード %s および以下のメッセージで終了しました:\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+#~ msgstr "%s: 入力引数 #%d の値が間違っています: '%s' 値を指定してください.\n"
 
 #, c-format
 #~ msgid "End of file at line %d.\n"

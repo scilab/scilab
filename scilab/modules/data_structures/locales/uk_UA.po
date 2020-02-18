@@ -67,12 +67,6 @@ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
-"%d.\n"
-
-#, c-format
 msgid "%s: Not implemented in scilab...\n"
 msgstr "%s: не реалізовано у scilab...\n"
 
@@ -105,19 +99,6 @@ msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
-msgstr "%s: помилковий тип параметра %d: мало бути використано список.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
@@ -131,11 +112,31 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати не "
+#~ "більше %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument %d: List expected.\n"
+#~ msgstr "%s: помилковий тип параметра %d: мало бути використано список.\n"
+
 #, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
-"%d.\n"
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати не "
+#~ "більше %d.\n"
 
 #, c-format
 #~ msgid ""

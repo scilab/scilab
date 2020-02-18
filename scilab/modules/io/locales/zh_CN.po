@@ -252,16 +252,8 @@ msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr "%s: Legend 不适合目前的情况。跳过\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr "%s: 第%d个输入参数的值错误：应该为‘%s’。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
@@ -279,6 +271,14 @@ msgstr "%s：%s在执行过程中发生错误"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr "%s：命令执行失败，其错误代码为%s，错误消息为：\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+#~ msgstr "%s: 第%d个输入参数的值错误：应该为‘%s’。\n"
 
 #, c-format
 #~ msgid "End of file at line %d.\n"

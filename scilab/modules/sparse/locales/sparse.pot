@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-01-14 14:21+0100\n"
+"Revision-Date: 2020-02-18 16:36+0100\n"
 
 # File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 34
 # File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 51
@@ -32,7 +32,7 @@ msgstr ""
 # File: modules/sparse/sci_gateway/cpp/sci_blkslvi.cpp, line: 43
 # File: modules/sparse/sci_gateway/cpp/sci_full.cpp, line: 41
 # File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 45
-# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 70
+# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 66
 # File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 41
 # File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 45
 # File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 88
@@ -74,7 +74,7 @@ msgstr ""
 # File: modules/sparse/sci_gateway/cpp/sci_full.cpp, line: 35
 # File: modules/sparse/sci_gateway/cpp/sci_inpnv.cpp, line: 39
 # File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 54
-# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 58
+# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 60
 # File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 35
 # File: modules/sparse/sci_gateway/cpp/sci_sfinit.cpp, line: 39
 # File: modules/sparse/sci_gateway/cpp/sci_sp2adj.cpp, line: 34
@@ -230,12 +230,6 @@ msgstr ""
 # File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 133
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Incompatible dimensions.\n"
-msgstr ""
-
-#
-# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 64
-#, c-format
-msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
 msgstr ""
 
 #

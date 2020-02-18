@@ -256,22 +256,10 @@ msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr "%s: La legenda non corrisponde al contesto attuale. Saltata\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
-"%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso il valore "
-"'%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
@@ -291,3 +279,15 @@ msgid ""
 msgstr ""
 "%s: Il comando è fallito con il codice di errore %s e il seguente "
 "messaggio:\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+#~ "%d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso il "
+#~ "valore '%s'.\n"

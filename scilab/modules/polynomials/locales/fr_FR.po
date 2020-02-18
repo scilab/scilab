@@ -195,6 +195,10 @@ msgstr ""
 "%s : Dimension erronée pour l'argument d'entrée n°%d : Un scalaire booléen "
 "attendu.\n"
 
+# File: modules/polynomials/demos/intro/poly.intro.dem.sce, line: 8
+msgid "Press &lt;enter> in the console to proceed step by step"
+msgstr ""
+
 msgid "Polynomials"
 msgstr "Polynômes"
 

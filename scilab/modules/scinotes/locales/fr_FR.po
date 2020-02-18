@@ -1180,8 +1180,8 @@ msgstr "%s : au moins %d arguments d'entrée attendus.\n"
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s : Argument n°%d : type texte attendu.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
 msgstr "%s : argument n°%d : nombre attendu.\n"
 
 #

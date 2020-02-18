@@ -68,25 +68,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
-msgstr ""
-
-msgid "Warning"
-msgstr ""
-
-#, c-format
-msgid "%s: Please use %s instead.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té valors incorrectes: Han de ser nombres "
-"enters no-negatius.\n"
-
 #, fuzzy, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
@@ -102,19 +83,21 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
 "%s: Els arguments d'entrada són d'un tipus incorrecte: Han de ser escalars.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
-"%s: L'argument d'entrada té un valor incorrecte: Ha de ser entre %d i %d.\n"
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser entre %d i "
+"%d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
 
 msgid "Jan"
 msgstr "Gen"
@@ -152,7 +135,7 @@ msgstr "Nov"
 msgid "Dec"
 msgstr "Des"
 
-msgid  "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
+msgid "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
 msgstr "Dl   Dt   Dc   Dj   Dv   Ds   Dg"
 
 #, c-format
@@ -236,11 +219,6 @@ msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
 msgstr ""
@@ -294,3 +272,26 @@ msgstr "Dijous"
 
 msgid "Friday"
 msgstr "Divendres"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té valors incorrectes: Han de ser nombres "
+#~ "enters no-negatius.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+#~ msgstr ""
+#~ "%s: Els arguments d'entrada són d'un tipus incorrecte: Han de ser "
+#~ "escalars.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada té un valor incorrecte: Ha de ser entre %d i "
+#~ "%d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments.\n"
+#~ msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"

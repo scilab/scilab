@@ -256,19 +256,9 @@ msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr "%s: la llegenda no encaixa en el context actual. S'ignora\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: nombre de paràmetres d'entrada incorrecte: n'hi ha d'haver entre %d i "
-"%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
@@ -286,3 +276,14 @@ msgstr "%s: Error durant l'execució %s"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr ""
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: nombre de paràmetres d'entrada incorrecte: n'hi ha d'haver entre %d i "
+#~ "%d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"

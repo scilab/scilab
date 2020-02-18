@@ -113,6 +113,20 @@ msgstr ""
 "%s: 入力引数 #%d の値が間違っています: 0.0 と 1.0の間の値を指定してくださ"
 "い.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
+msgstr ""
+"%s: この機能は Scilab %s 以降廃止されます\n"
+"\n"
+
+msgid "Warning"
+msgstr "警告"
+
+#, fuzzy, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "代わりに1を使用してください."
+
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr ""
@@ -658,9 +672,6 @@ msgid ""
 msgstr ""
 "%s: この機能は Scilab %s 以降廃止されます\n"
 "\n"
-
-msgid "Warning"
-msgstr "警告"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
@@ -1211,9 +1222,9 @@ msgstr ""
 "'%s' プロパティの大きさが間違っています: 集合 {%s} の中から指定してくださ"
 "い.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
+"Invalid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
 msgstr ""
 "'%s'プロパティの値が無効です, always', 'mouseclick' または 'mouseover' を使用"
 "してください.\n"
@@ -1970,6 +1981,46 @@ msgid "%s: Wrong size or type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさと型が間違っています: 文字列を指定してください.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Positive scalar number expected.\n"
+msgstr "%s: 引数 #%d: 10進数を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar number expected.\n"
+msgstr "%s: 引数 #%d: 10進数を指定してください.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr "%s: 引数 #%d: 色の指定が間違っています.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさまたは型が間違っています: 実数の行列を指定してくださ"
+"い.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: 'on' or 'off' expected.\n"
+msgstr "%s: 引数 #%d: tight,onまたはoffを指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text expected.\n"
+msgstr "%s: 引数 #%d: テキストを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
+msgstr ""
+"%s: 入力引数 #%dの値が間違っています:  %s 以上の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real matrix or a string matrix "
+"expected.\n"
+msgstr ""
+"%s: 入力引数 #%dの型が間違っています:  実数の行列または文字列行列を指定してく"
+"ださい.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a real scalar expected.\n"
 msgstr ""
@@ -2011,10 +2062,6 @@ msgstr ""
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval %s.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 範囲 %s とする必要があります.\n"
-
-#, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
-msgstr "%s: 引数 #%d: 色の指定が間違っています.\n"
 
 #, c-format
 msgid ""
@@ -2504,7 +2551,8 @@ msgstr "キャンセル"
 msgid "April"
 msgstr "4月"
 
-msgid "Febuary"
+#, fuzzy
+msgid "February"
 msgstr "2月"
 
 msgid "January"
@@ -2592,9 +2640,12 @@ msgstr "%s: 引数 #%d: 数値または文字列を指定してください.\n"
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr "%s: 引数 #%d: テキストを指定してください.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Characters in {a.#1} expected.\n"
+msgstr "%s: 引数 #%d: 数値または文字列を指定してください.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): 0, 1, or 2 arguments expected.\n"
 msgstr ""
 "%s: 入力引数の数が間違っています: 0, 1, 2, または4個の引数を指定してくださ"
 "い.\n"
@@ -2605,13 +2656,6 @@ msgid ""
 msgstr ""
 "%s: 入力引数#%d の型が間違っています: グラフィックハンドルまたは文字列を指定"
 "してください.\n"
-
-msgid ""
-"isoview: The syntax isoview(xmin, xmax, ymin, ymax) will be removed from "
-"Scilab 6.1\n"
-"Please use replot([xmin xmax ymin ymax]) after isoview(..) instead.\n"
-msgstr ""
-"isoview: 構文 isoview(xmin, xmax, ymin, ymax) は Scilab 6.1で削除されます\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
@@ -2764,20 +2808,6 @@ msgstr ""
 "い.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  3x1 または 1x3のベクトルとしてく"
-"ださい.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Vector or index in the colormap "
-"expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: ベクトルまたはカラーマップの添字を指定"
-"してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
 
@@ -2802,29 +2832,6 @@ msgid "%s: Wrong type for input argument #%d: A marker style expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の値が間違っています:  マーカーのスタイルを指定してくださ"
 "い.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさまたは型が間違っています: 実数の行列を指定してくださ"
-"い.\n"
-
-msgid "Incorrect input: ..."
-msgstr "入力が不正確です: ..."
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
-msgstr ""
-"%s: 入力引数 #%dの値が間違っています:  %s 以上の引数を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real matrix or a string matrix "
-"expected.\n"
-msgstr ""
-"%s: 入力引数 #%dの型が間違っています:  実数の行列または文字列行列を指定してく"
-"ださい.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -2929,6 +2936,31 @@ msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: %s に指定された値が間違っています."
+
+#~ msgid ""
+#~ "isoview: The syntax isoview(xmin, xmax, ymin, ymax) will be removed from "
+#~ "Scilab 6.1\n"
+#~ "Please use replot([xmin xmax ymin ymax]) after isoview(..) instead.\n"
+#~ msgstr ""
+#~ "isoview: 構文 isoview(xmin, xmax, ymin, ymax) は Scilab 6.1で削除されま"
+#~ "す\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の大きさが間違っています:  3x1 または 1x3のベクトルとして"
+#~ "ください.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Vector or index in the colormap "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の型が間違っています: ベクトルまたはカラーマップの添字を"
+#~ "指定してください.\n"
+
+#~ msgid "Incorrect input: ..."
+#~ msgstr "入力が不正確です: ..."
 
 #, c-format
 #~ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"

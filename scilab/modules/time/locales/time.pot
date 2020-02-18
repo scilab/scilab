@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-01-14 14:21+0100\n"
+"Revision-Date: 2020-02-18 16:36+0100\n"
 
 # File: modules/time/sci_gateway/c/sci_calendar.c, line: 59
 # File: modules/time/sci_gateway/c/sci_calendar.c, line: 68
@@ -90,148 +90,122 @@ msgstr ""
 # File: modules/time/sci_gateway/c/sci_realtime.c, line: 59
 # File: modules/time/sci_gateway/c/sci_realtime.c, line: 107
 # File: modules/time/sci_gateway/c/sci_realtime.c, line: 113
-# File: modules/time/sci_gateway/c/sci_xpause.c, line: 61
-# File: modules/time/sci_gateway/cpp/sci_sleep.cpp, line: 47
+# File: modules/time/sci_gateway/cpp/sci_sleep.cpp, line: 44
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/time/sci_gateway/c/sci_xpause.c, line: 38
-#, c-format
-msgid ""
-"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
-msgstr ""
-
-#
-# File: modules/time/sci_gateway/c/sci_xpause.c, line: 38
-# File: modules/time/sci_gateway/c/sci_xpause.c, line: 39
-msgid "Warning"
-msgstr ""
-
-#
-# File: modules/time/sci_gateway/c/sci_xpause.c, line: 39
-#, c-format
-msgid "%s: Please use %s instead.\n"
-msgstr ""
-
-#
-# File: modules/time/sci_gateway/c/sci_xpause.c, line: 69
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-
-#
-# File: modules/time/sci_gateway/cpp/sci_sleep.cpp, line: 41
+# File: modules/time/sci_gateway/cpp/sci_sleep.cpp, line: 38
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/time/sci_gateway/cpp/sci_sleep.cpp, line: 54
+# File: modules/time/sci_gateway/cpp/sci_sleep.cpp, line: 51
 #, c-format
 msgid "%s: Argument #%d: the scalar must be positive.\n"
 msgstr ""
 
 #
-# File: modules/time/sci_gateway/cpp/sci_sleep.cpp, line: 64
+# File: modules/time/sci_gateway/cpp/sci_sleep.cpp, line: 61
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
 msgstr ""
 
-# File: modules/time/macros/calendar.sci, line: 30
+# File: modules/time/macros/calendar.sci, line: 27
 #, c-format
-msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 32
+# File: modules/time/macros/calendar.sci, line: 35
 #, c-format
-msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 36
+# File: modules/time/macros/calendar.sci, line: 41
+# File: modules/time/macros/weekday.sci, line: 27
 #, c-format
-msgid "%s: Wrong number of input arguments.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 40
+# File: modules/time/macros/calendar.sci, line: 46
 # File: modules/time/macros/date.sci, line: 15
 # File: modules/time/macros/weekday.sci, line: 59
 msgid "Jan"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 41
+# File: modules/time/macros/calendar.sci, line: 47
 # File: modules/time/macros/date.sci, line: 16
 msgid "Feb"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 42
+# File: modules/time/macros/calendar.sci, line: 48
 # File: modules/time/macros/date.sci, line: 17
 msgid "Mar"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 43
+# File: modules/time/macros/calendar.sci, line: 49
 # File: modules/time/macros/date.sci, line: 18
 msgid "Apr"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 44
+# File: modules/time/macros/calendar.sci, line: 50
 # File: modules/time/macros/date.sci, line: 19
 msgid "May"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 45
+# File: modules/time/macros/calendar.sci, line: 51
 # File: modules/time/macros/date.sci, line: 20
 msgid "Jun"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 46
+# File: modules/time/macros/calendar.sci, line: 52
 # File: modules/time/macros/date.sci, line: 21
 msgid "Jul"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 47
+# File: modules/time/macros/calendar.sci, line: 53
 # File: modules/time/macros/date.sci, line: 22
 msgid "Aug"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 48
+# File: modules/time/macros/calendar.sci, line: 54
 # File: modules/time/macros/date.sci, line: 23
 msgid "Sep"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 49
+# File: modules/time/macros/calendar.sci, line: 55
 # File: modules/time/macros/date.sci, line: 24
 msgid "Oct"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 50
+# File: modules/time/macros/calendar.sci, line: 56
 # File: modules/time/macros/date.sci, line: 25
 msgid "Nov"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 51
+# File: modules/time/macros/calendar.sci, line: 57
 # File: modules/time/macros/date.sci, line: 26
 msgid "Dec"
 msgstr ""
 
 #
-# File: modules/time/macros/calendar.sci, line: 55
+# File: modules/time/macros/calendar.sci, line: 61
 msgid "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
 msgstr ""
 
@@ -348,12 +322,6 @@ msgstr ""
 # File: modules/time/macros/etime.sci, line: 38
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
-msgstr ""
-
-#
-# File: modules/time/macros/weekday.sci, line: 27
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #

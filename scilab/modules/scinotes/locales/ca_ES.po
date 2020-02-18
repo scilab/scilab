@@ -1122,9 +1122,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
 msgstr ""
+"%s: Els arguments d'entrada #%d i #%d tenen una mida incorrecta: Han de "
+"tenir les mateixes dimensions.\n"
 
 #
 # File: modules/scinotes/macros/edit.sci, line: 51

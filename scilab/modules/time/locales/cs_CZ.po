@@ -62,24 +62,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
-#, c-format
-msgid ""
-"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
-msgstr ""
-
-msgid "Warning"
-msgstr ""
-
-#, c-format
-msgid "%s: Please use %s instead.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s: Špatné hodnoty vstupního argumentu #%d: Očekávána nezáporná celá čísla.\n"
-
 #, fuzzy, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
@@ -94,17 +76,17 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for input arguments: Must be scalars.\n"
-msgstr "%s: Špatný typ vstupních argumentů: Musí být skaláry.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s: Špatný typ vstupních argumentů: Očekávány skalární hodnoty.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Musí být mezi %d a %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu: Musí být mezi %d a %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: Špatný počet vstupních argumentů.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
 
 msgid "Jan"
 msgstr "Led"
@@ -142,7 +124,7 @@ msgstr "Lis"
 msgid "Dec"
 msgstr "Pro"
 
-msgid  "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
+msgid "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
 msgstr "Pon  Úte  Stř  Čtv  Pát  Sob  Ned"
 
 #, c-format
@@ -217,10 +199,6 @@ msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
 msgstr ""
@@ -272,3 +250,22 @@ msgstr "Čtvrtek"
 
 msgid "Friday"
 msgstr "Pátek"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+#~ msgstr ""
+#~ "%s: Špatné hodnoty vstupního argumentu #%d: Očekávána nezáporná celá "
+#~ "čísla.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+#~ msgstr "%s: Špatný typ vstupních argumentů: Musí být skaláry.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+#~ msgstr "%s: Špatná hodnota vstupního argumentu: Musí být mezi %d a %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments.\n"
+#~ msgstr "%s: Špatný počet vstupních argumentů.\n"

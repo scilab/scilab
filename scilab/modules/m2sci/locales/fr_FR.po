@@ -913,6 +913,28 @@ msgstr ""
 "Au moins un opérande est une matrice vide pour l'opérateur : %s, le résultat "
 "est réglé sur []."
 
+#
+# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 25
+#, c-format
+msgid ""
+"If %s is imaginary and its module is > 1\n"
+"      the real part of %s is -/2 in Scilab instead of +/2 in Matlab."
+msgstr ""
+
+#
+# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 27
+#, c-format
+msgid ""
+"If %s is in [0,1)\n"
+"  imag(%s) is -/2 in Scilab instead of +/2 in Matlab."
+msgstr ""
+
 #, c-format
 msgid ""
 "If %s is outside [-1,1]\n"
@@ -921,23 +943,15 @@ msgstr ""
 "Si %s est en dehors de [-1,1]\n"
 "   La partie complexe de la sortie de %s sera l'opposée de celle de Matlab."
 
-msgid "is Real."
-msgstr "est réel."
-
-#, c-format
-msgid ""
-"If %s is outside [-1,1]\n"
-"   real part of output of %s will be the opposite of Matlab one."
-msgstr ""
-"Si %s ne fait pas partie de [- 1.1]\n"
-"   La partie réelle de la sortie de %s sera l'opposé de celle de Matlab."
-
 #, fuzzy, c-format
 msgid ""
 "If %s < -1, complex part of output of %s will be the opposite of Matlab one."
 msgstr ""
 "Si %s est en dehors de [-1,1]\n"
 "   La partie complexe de la sortie de %s sera l'opposée de celle de Matlab."
+
+msgid "is Real."
+msgstr "est réel."
 
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling est uniquement utilisé en mode 3d."
@@ -1165,6 +1179,14 @@ msgstr "%s : La valeur de sortie est réglée sur 'on'."
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
+
+#, c-format
+#~ msgid ""
+#~ "If %s is outside [-1,1]\n"
+#~ "   real part of output of %s will be the opposite of Matlab one."
+#~ msgstr ""
+#~ "Si %s ne fait pas partie de [- 1.1]\n"
+#~ "   La partie réelle de la sortie de %s sera l'opposé de celle de Matlab."
 
 #~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 #~ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"

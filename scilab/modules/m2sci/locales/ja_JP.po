@@ -1123,6 +1123,28 @@ msgid ""
 msgstr ""
 "演算子 %s の少なくとも1つのオペランドが空行列です, 結果は [] に設定されます."
 
+#
+# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 25
+# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 25
+#, c-format
+msgid ""
+"If %s is imaginary and its module is > 1\n"
+"      the real part of %s is -/2 in Scilab instead of +/2 in Matlab."
+msgstr ""
+
+#
+# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 27
+# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 27
+#, c-format
+msgid ""
+"If %s is in [0,1)\n"
+"  imag(%s) is -/2 in Scilab instead of +/2 in Matlab."
+msgstr ""
+
 #, c-format
 msgid ""
 "If %s is outside [-1,1]\n"
@@ -1131,23 +1153,15 @@ msgstr ""
 "%s が [-1,1]の外側の場合,\n"
 "    %s の出力の虚部は Matlab とは逆になります."
 
-msgid "is Real."
-msgstr "は実数です."
-
-#, c-format
-msgid ""
-"If %s is outside [-1,1]\n"
-"   real part of output of %s will be the opposite of Matlab one."
-msgstr ""
-"%s が [-1,1] の外側の場合,\n"
-"%s の出力の実部は Matlab とは逆になります."
-
 #, fuzzy, c-format
 msgid ""
 "If %s < -1, complex part of output of %s will be the opposite of Matlab one."
 msgstr ""
 "%s が [-1,1]の外側の場合,\n"
 "    %s の出力の虚部は Matlab とは逆になります."
+
+msgid "is Real."
+msgstr "は実数です."
 
 #
 # File: macros/sci_files/sci_axis.sci, line: 78
@@ -1429,6 +1443,14 @@ msgstr "%s: 出力値に'on'を設定"
 # File: macros/translatepaths.sci, line: 188
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
+
+#, c-format
+#~ msgid ""
+#~ "If %s is outside [-1,1]\n"
+#~ "   real part of output of %s will be the opposite of Matlab one."
+#~ msgstr ""
+#~ "%s が [-1,1] の外側の場合,\n"
+#~ "%s の出力の実部は Matlab とは逆になります."
 
 #~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 #~ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"

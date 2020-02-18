@@ -1040,6 +1040,12 @@ msgstr "选择一个文件写入"
 msgid "Figure saved.\n"
 msgstr "Figure已被保存\n"
 
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 702
+# File: modules/gui/src/gui_fake_xml.c, line: 742
+msgid "'Right click and drag to rotate.'"
+msgstr ""
+
 msgid "Colors"
 msgstr "颜色"
 
@@ -1586,7 +1592,9 @@ msgstr ""
 msgid "Nurbs"
 msgstr ""
 
-msgid "Anti-alising"
+#
+# File: modules/gui/src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 57
+msgid "Anti-aliasing"
 msgstr ""
 
 msgid "Auto Clear"
@@ -2294,6 +2302,11 @@ msgid "Uicontrols layout"
 msgstr ""
 
 msgid "Uicontrols messagebox-like"
+msgstr ""
+
+#
+# File: modules/gui/demos/gui.dem.gateway.sce, line: 40
+msgid "UIcontrols Game of Dice"
 msgstr ""
 
 msgid "<Enter color name here>"

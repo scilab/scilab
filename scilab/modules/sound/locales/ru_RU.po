@@ -127,6 +127,36 @@ msgstr "%s: Неверное количество выходных параме�
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Неверное количество выходных параметров.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: %s expected.\n"
+msgstr "%s: Неверный входной параметр №%d: ожидался «%s» или «%s».\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr "%s: Неверное значение входного аргумента №%d: должно быть >= %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
+msgstr "%s: Неверный входной параметр №%d: ожидался «%s» или «%s».\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 91
+#, c-format
+msgid "%s: Argument #%d: The file '%s' does not exist.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась вещественная матрица.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be > %d.\n"
+msgstr "%s: Неверное значение входного аргумента №%d: должно быть >= %d.\n"
+
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
 msgstr "%s: Не удалось воспроизвести звук с помощью команды: %s.\n"
@@ -181,6 +211,12 @@ msgstr ""
 "%s: Неверное значение входного параметра: интервальный указатель должен быть "
 "задан как скаляр или вектор из %d элементов.\n"
 
+#
+# File: modules/sound/macros/wavread.sci, line: 84
+#, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr ""
+
 msgid ".wav file does not contain the RIFF identifier."
 msgstr ".wav файл не содержит идентификатора RIFF."
 
@@ -208,8 +244,11 @@ msgstr "Неверный .wav файл: данные найдены до инф�
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Некорректная информация о размере блока в RIFF файле."
 
-msgid "Invalid wav format."
-msgstr "Неверный формат wav."
+#
+# File: modules/sound/macros/wavread.sci, line: 217
+#, c-format
+msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
+msgstr ""
 
 msgid "Error reading wav file."
 msgstr "Ошибка чтения wav файла."
@@ -226,3 +265,6 @@ msgstr "Вектор границ сэмплов (Sample limit vector) долж�
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Неверные границы сэмплов (нужно указывать их по возрастанию)."
+
+#~ msgid "Invalid wav format."
+#~ msgstr "Неверный формат wav."

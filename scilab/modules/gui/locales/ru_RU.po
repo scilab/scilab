@@ -1156,6 +1156,12 @@ msgstr "Выберите файл для записи"
 msgid "Figure saved.\n"
 msgstr "Данные графического окна сохранены.\n"
 
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 702
+# File: modules/gui/src/gui_fake_xml.c, line: 742
+msgid "'Right click and drag to rotate.'"
+msgstr ""
+
 msgid "Colors"
 msgstr "Цвета"
 
@@ -1713,7 +1719,8 @@ msgstr "Линии"
 msgid "Nurbs"
 msgstr "Неоднородный рациональный B-сплайн"
 
-msgid "Anti-alising"
+#, fuzzy
+msgid "Anti-aliasing"
 msgstr "Устранение искажений"
 
 msgid "Auto Clear"
@@ -2428,6 +2435,10 @@ msgstr "Слой элементов графического интерфейс�
 
 msgid "Uicontrols messagebox-like"
 msgstr "Элементы графического интерфейса подобные информационным окнам"
+
+#, fuzzy
+msgid "UIcontrols Game of Dice"
+msgstr "Демонстрация элементов графического интерфейса"
 
 msgid "<Enter color name here>"
 msgstr "<Введите здесь название цвета>"

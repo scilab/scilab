@@ -1129,9 +1129,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #
 # File: modules/scinotes/macros/edit.sci, line: 51

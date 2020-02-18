@@ -722,6 +722,10 @@ msgstr "Šířka: "
 msgid "Recursion limit: "
 msgstr ""
 
+#, fuzzy
+msgid "Containers display depth: "
+msgstr "Řádky k zobrazení:"
+
 msgid "Language setting"
 msgstr "Nastavení jazyka"
 
@@ -817,3 +821,19 @@ msgstr "Nebylo možné změnit písmo konzole."
 
 msgid "Could not change the Console Foreground."
 msgstr "Nebylo možné změnit popředí konzole."
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván skalár (>= 0).\n"

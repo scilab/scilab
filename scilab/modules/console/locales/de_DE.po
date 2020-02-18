@@ -725,6 +725,12 @@ msgstr ""
 msgid "Recursion limit: "
 msgstr ""
 
+#
+# File: modules/console/src/console_fake_xml.c, line: 1135
+# File: modules/console/src/console_fake_xml.c, line: 1470
+msgid "Containers display depth: "
+msgstr ""
+
 msgid "Language setting"
 msgstr ""
 
@@ -823,3 +829,24 @@ msgstr "Kann den Konsolenzeichensatz nicht ändern."
 
 msgid "Could not change the Console Foreground."
 msgstr "Kann den Konsolenvordergrund nicht ändern."
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: Eine Zeichenkette wird erwartet.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: Eine Zeichenkette wird erwartet.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: Eine Zeichenkette wird erwartet.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+msgstr ""
+"%s: Falscher Wert für Eingangsargument #%d: Ein Skalar (>= 0) wird "
+"erwartet.\n"

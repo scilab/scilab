@@ -149,10 +149,6 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s：输入参数#%d的值错误。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
-msgstr "%s：输入参数#%d的值错误：'%s'是一个不正确的路径。\n"
-
-#, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s：不能在Scilab中打开文件 %s 。\n"
 
@@ -638,3 +634,7 @@ msgstr ""
 
 msgid "The system cannot find the file specified."
 msgstr ""
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
+#~ msgstr "%s：输入参数#%d的值错误：'%s'是一个不正确的路径。\n"

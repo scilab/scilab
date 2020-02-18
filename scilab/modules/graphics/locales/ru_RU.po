@@ -109,6 +109,20 @@ msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: должно быть между 0.0 и 1.0.\n"
 
+#, fuzzy, c-format
+msgid ""
+"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
+msgstr ""
+"%s: Эта возможность будет навсегда удалена в Scilab %s\n"
+"\n"
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+#, fuzzy, c-format
+msgid "%s: Please use %s instead.\n"
+msgstr "Пожалуйста, используйте 1 вместо этого."
+
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
 msgstr ""
@@ -655,9 +669,6 @@ msgstr ""
 "%s: Эта возможность будет навсегда удалена в Scilab %s\n"
 "\n"
 
-msgid "Warning"
-msgstr "Предупреждение"
-
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
@@ -997,9 +1008,9 @@ msgstr ""
 msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr "Неверный размер свойства «%s»: должно быть из множества {%s}.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid ""
-"Inavlid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
+"Invalid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
 msgstr ""
 "Недопустимое значение для свойства '%s', используйте 'always', 'mouseclick' "
 "или 'mouseover'.\n"
@@ -1577,6 +1588,46 @@ msgstr ""
 "%s: Неверный размер или тип входного аргумента №%d: ожидалось строковое "
 "значение.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Positive scalar number expected.\n"
+msgstr "%s: Аргумент №%d: ожидалось десятичное число.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar number expected.\n"
+msgstr "%s: Аргумент №%d: ожидалось десятичное число.\n"
+
+#, c-format
+msgid "%s: Argument #%d: Wrong color specification.\n"
+msgstr "%s: Аргумент №%d: неверная спецификация цвета.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s: Неверный размер или тип входного аргумента №%d: ожидалась вещественная "
+"матрица.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: 'on' or 'off' expected.\n"
+msgstr "%s: Аргумент №%d: ожидались значения 'tight' или 'on' или 'off'.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text expected.\n"
+msgstr "%s: Аргумент №%d: ожидался текст.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось хотя бы одно %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real matrix or a string matrix "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась вещественная матрица или "
+"матрица строк.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a real scalar expected.\n"
 msgstr ""
@@ -1619,10 +1670,6 @@ msgstr ""
 msgid "%s: Argument #%d: Must be in the interval %s.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: должно быть в интервале %s.\n"
-
-#, c-format
-msgid "%s: Argument #%d: Wrong color specification.\n"
-msgstr "%s: Аргумент №%d: неверная спецификация цвета.\n"
 
 #, c-format
 msgid ""
@@ -2081,7 +2128,8 @@ msgstr "Отменить"
 msgid "April"
 msgstr "Апрель"
 
-msgid "Febuary"
+#, fuzzy
+msgid "February"
 msgstr "Февраль"
 
 msgid "January"
@@ -2171,9 +2219,12 @@ msgstr "%s: Аргумент №%d: ожидались числа или тек�
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr "%s: Аргумент №%d: ожидался текст.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong number of input argument(s): 0, 1, 2, or 4 arguments expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Characters in {a.#1} expected.\n"
+msgstr "%s: Аргумент №%d: ожидались числа или текст.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input argument(s): 0, 1, or 2 arguments expected.\n"
 msgstr ""
 "%s: Неверное число входных аргументов: ожидалось 0, 1, 2 или 4 аргумента.\n"
 
@@ -2183,16 +2234,6 @@ msgid ""
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался графический дескриптор или "
 "строка.\n"
-
-msgid ""
-"isoview: The syntax isoview(xmin, xmax, ymin, ymax) will be removed from "
-"Scilab 6.1\n"
-"Please use replot([xmin xmax ymin ymax]) after isoview(..) instead.\n"
-msgstr ""
-"isoview: синтаксис isoview(xmin, xmax, ymin, ymax) будет  удалён из Scilab "
-"6.1.\n"
-"Пожалуйста,  используйте вместо него replot([xmin xmax ymin ymax]) после "
-"isoview(..).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
@@ -2341,19 +2382,6 @@ msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидался стиль маркера.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d: ожидался вектор 3x1 или 1x3.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Vector or index in the colormap "
-"expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидался вектор или индекс на "
-"цветовой карте.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидалось целое число.\n"
 
@@ -2377,29 +2405,6 @@ msgstr "%s: Неоднозначное значение стиля маркер�
 msgid "%s: Wrong type for input argument #%d: A marker style expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидался стиль маркера.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
-msgstr ""
-"%s: Неверный размер или тип входного аргумента №%d: ожидалась вещественная "
-"матрица.\n"
-
-msgid "Incorrect input: ..."
-msgstr "Некорректный ввод: ..."
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидалось хотя бы одно %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real matrix or a string matrix "
-"expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась вещественная матрица или "
-"матрица строк.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
@@ -2504,6 +2509,32 @@ msgstr "%s: Неверный размер входных аргументов: �
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: Для %s дано неверное значение."
+
+#~ msgid ""
+#~ "isoview: The syntax isoview(xmin, xmax, ymin, ymax) will be removed from "
+#~ "Scilab 6.1\n"
+#~ "Please use replot([xmin xmax ymin ymax]) after isoview(..) instead.\n"
+#~ msgstr ""
+#~ "isoview: синтаксис isoview(xmin, xmax, ymin, ymax) будет  удалён из "
+#~ "Scilab 6.1.\n"
+#~ "Пожалуйста,  используйте вместо него replot([xmin xmax ymin ymax]) после "
+#~ "isoview(..).\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: 3x1 or 1x3 vector expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного аргумента №%d: ожидался вектор 3x1 или 1x3.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Vector or index in the colormap "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного аргумента №%d: ожидался вектор или индекс на "
+#~ "цветовой карте.\n"
+
+#~ msgid "Incorrect input: ..."
+#~ msgstr "Некорректный ввод: ..."
 
 #, c-format
 #~ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"

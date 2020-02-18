@@ -105,12 +105,14 @@ msgstr ""
 "di stringhe.\n"
 
 #, c-format
-msgid "%s: Invalid %s file.\n"
+msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"matrice 2xN.\n"
 
 #, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr ""
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr "%s: FIle XConfiguration.xml non valido.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
@@ -132,13 +134,3 @@ msgstr "%s: Il nodo obiettivo non e un XML_ELEMENT_NODE."
 #, c-format
 msgid "%s: Invalid attribute name: %s."
 msgstr "%s: Nome di attributo non valido: %s."
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"matrice 2xN.\n"
-
-#, c-format
-msgid "%s: Invalid XConfiguration.xml file.\n"
-msgstr "%s: FIle XConfiguration.xml non valido.\n"

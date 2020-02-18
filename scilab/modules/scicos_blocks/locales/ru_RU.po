@@ -374,7 +374,7 @@ msgstr "Время инициализации"
 #
 # File: modules/scicos_blocks/macros/Events/EVTDLY_c.sci, line: 32
 msgid ""
-"Set Event Delay block parameters<br><br>Delay  is the delay between an input "
+"Set Event Delay block parameters<br><br>Delay is the delay between an input "
 "event<br>&nbsp; and the generated output event.<br>Block may initially "
 "generate an output event before <br>&nbsp; any input event.<br>'Date of "
 "initial output event' gives the date of this event.<br>&nbsp; Set a negative "
@@ -395,11 +395,11 @@ msgstr "Номер порта должен быть положительным �
 #
 # File: modules/scicos_blocks/macros/Events/EVTDLY_f.sci, line: 32
 msgid ""
-"Set Event Delay  block parameters<br><br>Delay  is the delay between an "
-"input event<br>and the generated output event.<br>Block may initially "
-"generate an output event<br> before any input event.<br>'Date of initial "
-"output event' gives the date of this event.<br>&nbsp;&nbsp;Set a negative "
-"value if no initial event is required.<br><br>"
+"Set Event Delay block parameters<br><br>Delay is the delay between an input "
+"event<br>and the generated output event.<br>Block may initially generate an "
+"output event<br> before any input event.<br>'Date of initial output event' "
+"gives the date of this event.<br>&nbsp;&nbsp;Set a negative value if no "
+"initial event is required.<br><br>"
 msgstr ""
 
 #
@@ -448,7 +448,7 @@ msgid "The offset and frequency must have the same size"
 msgstr ""
 
 #, fuzzy
-msgid "The frequency must be a positif number"
+msgid "The frequency must be a positive number"
 msgstr "Номер порта должен быть положительным целым числом"
 
 #
@@ -1025,7 +1025,7 @@ msgstr ""
 
 #
 # File: modules/scicos_blocks/macros/MatrixOp/MATMAGPHI.sci, line: 40
-msgid "Conversion: 1=Complex(Mag,Phi), 2=(Mag,Phi)Complex"
+msgid "Conversion: 1=Complex->(Mag,Phi), 2=(Mag,Phi)->Complex"
 msgstr ""
 
 #
@@ -1050,11 +1050,6 @@ msgstr ""
 #
 # File: modules/scicos_blocks/macros/MatrixOp/MATMUL.sci, line: 57
 msgid "Multiplication rule must be 1,2 or 3"
-msgstr ""
-
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATRESH.sci, line: 39
-msgid "Datatype (1=real double  2=Complex)Input size"
 msgstr ""
 
 #, fuzzy
@@ -1087,7 +1082,7 @@ msgstr ""
 
 #
 # File: modules/scicos_blocks/macros/MatrixOp/MATZREIM.sci, line: 40
-msgid "Conversion type: 1=complex(Real,Imag), 2=(Real,Imag)complex"
+msgid "Conversion type: 1=complex->(Real,Imag), 2=(Real,Imag)->complex"
 msgstr ""
 
 #
@@ -1190,7 +1185,7 @@ msgstr ""
 
 #
 # File: modules/scicos_blocks/macros/Misc/BOUNCE.sci, line: 47
-msgid "C (aerodynamic coeff"
+msgid "C (aerodynamic coeff)"
 msgstr ""
 
 #
@@ -1407,7 +1402,7 @@ msgstr ""
 
 #
 # File: modules/scicos_blocks/macros/Misc/HYSTHERESIS.sci, line: 45
-msgid "switch on value must be  switch off value"
+msgid "switch on value must be >= switch off value"
 msgstr ""
 
 #
@@ -1528,8 +1523,8 @@ msgstr ""
 #
 # File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 241
 msgid ""
-"Parameters properties must be:<br>0: if it is a paramater,<br>1: if it is an "
-"initial value of state,<br>2: if it it is a fixed initial state value."
+"Parameters properties must be:<br>0: if it is a parameter,<br>1: if it is an "
+"initial value of state,<br>2: if it is a fixed initial state value."
 msgstr ""
 
 #
@@ -1936,7 +1931,7 @@ msgstr ""
 #
 # File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 674
 # File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 643
-msgid "Change the window size: 'Data' menu -> 'Databounds"
+msgid "Change the window size: Data menu -> Databounds"
 msgstr ""
 
 #
@@ -2447,10 +2442,9 @@ msgstr ""
 msgid "The Total number of digits must be > 3"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/AFFICH_m.sci, line: 74
-msgid "The Number of frational part digits must be  0"
-msgstr ""
+#, fuzzy
+msgid "The Number of fractional part digits must be >= 0"
+msgstr "Число строк должно быть степенью двух."
 
 #
 # File: modules/scicos_blocks/macros/Sinks/AFFICH_m.sci, line: 79
@@ -2567,26 +2561,20 @@ msgstr ""
 msgid "'Window sizes' must be [] or a 2 vector"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 63
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 59
-# File: modules/scicos_blocks/macros/Sinks/CEVENTSCOPE.sci, line: 69
-# File: modules/scicos_blocks/macros/Sinks/CMSCOPE.sci, line: 73
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 61
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 64
-msgid "The Window number must be  -1"
-msgstr ""
-
 #, fuzzy
-msgid "The Number of curves must be  1"
+msgid "The Window number must be >= -1"
 msgstr "Число строк должно быть степенью двух."
 
 #, fuzzy
-msgid "The Buffer size must be  1"
+msgid "The Number of curves must be >= 1"
+msgstr "Число строк должно быть степенью двух."
+
+#, fuzzy
+msgid "The Buffer size must be >= 1"
 msgstr "Размер буфера должен быть не меньше 2."
 
 #, fuzzy
-msgid "The Buffer size must be  2"
+msgid "The Buffer size must be >= 2"
 msgstr "Размер буфера должен быть не меньше 2."
 
 #
@@ -2621,10 +2609,9 @@ msgstr ""
 msgid "Not enough curves styles: At least %d expected."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 78
-msgid "The Buffer size must be  2, or Change a color (must be <0)"
-msgstr ""
+#, fuzzy
+msgid "The Buffer size must be >= 2, or Change a color (must be <0)"
+msgstr "Размер буфера должен быть не меньше 2."
 
 #
 # File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 87
@@ -2662,10 +2649,9 @@ msgstr "&nbsp; Количество столбцов даёт число вых�
 msgid "The Refresh period must be > 0"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 62
-msgid "'Window number' must be  -1"
-msgstr ""
+#, fuzzy
+msgid "'Window number' must be >= -1"
+msgstr "Изменился размер буфера или входного размера!\n"
 
 #
 # File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 78
@@ -2852,10 +2838,6 @@ msgstr ""
 # File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 65
 msgid "Window number can't be  < -1"
 msgstr ""
-
-#, fuzzy
-msgid "The Buffer size must be >= 2"
-msgstr "Размер буфера должен быть не меньше 2."
 
 #
 # File: modules/scicos_blocks/macros/Sinks/TOWS_c.sci, line: 36
@@ -3377,10 +3359,9 @@ msgstr ""
 msgid "Same sizes expected."
 msgstr "Ожидались одинаковые размеры."
 
-#
-# File: modules/scicos_blocks/macros/Sources/SampleCLK.sci, line: 40
-msgid "'Sample time' must be  0"
-msgstr ""
+#, fuzzy
+msgid "'Sample time' must be >= 0"
+msgstr "Размер буфера должен быть не меньше 2."
 
 #
 # File: modules/scicos_blocks/macros/Sources/SampleCLK.sci, line: 44
@@ -3422,6 +3403,14 @@ msgstr "Постоянное значение должно иметь по кр�
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не больше %d.\n"
+
+#, fuzzy
+#~ msgid "The Buffer size must be  1"
+#~ msgstr "Размер буфера должен быть не меньше 2."
+
+#, fuzzy
+#~ msgid "The Buffer size must be  2"
+#~ msgstr "Размер буфера должен быть не меньше 2."
 
 #~ msgid "Data Type %s"
 #~ msgstr "Тип данных %s"

@@ -394,7 +394,8 @@ msgstr ""
 "     або  x = umf_lusolve(lup,b,Ax''=b,A), щоб додати крок ітеративного "
 "уточнення\n"
 
-msgid "  4/ you may also compute the 1-norm condition number quicky with:"
+#, fuzzy
+msgid "  4/ you may also compute the 1-norm condition number quickly with:"
 msgstr ""
 "  4) Також можна швидко обчислити обумовленість 1-норма за допомогою такої "
 "команди:"

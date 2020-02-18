@@ -285,22 +285,10 @@ msgstr ""
 "%s: умовні позначення не відповідають поточному контексту. Пропущено.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
-"«%s».\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
@@ -320,6 +308,18 @@ msgid ""
 msgstr ""
 "%s: спроба виконати команду завершилася помилкою з кодом %s та таким "
 "повідомленням:\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
+#~ "до %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати "
+#~ "значення «%s».\n"
 
 #, c-format
 #~ msgid "End of file at line %d.\n"

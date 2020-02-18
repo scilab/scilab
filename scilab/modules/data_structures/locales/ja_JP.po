@@ -63,10 +63,6 @@ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr "%s: 入力引数(s)で不正な値: すくなくとも %d を想定します。\n"
-
-#, c-format
 msgid "%s: Not implemented in scilab...\n"
 msgstr "%s: scilabで実装されていません...\n"
 
@@ -96,18 +92,6 @@ msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください."
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
-msgstr "%s: 引数 %d の型が間違っています: リストを指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
@@ -120,9 +104,25 @@ msgstr "%s: 引数 #%d が間違っています: 正の整数を指定してく�
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#~ msgstr "%s: 入力引数(s)で不正な値: すくなくとも %d を想定します。\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
+#~ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument %d: List expected.\n"
+#~ msgstr "%s: 引数 %d の型が間違っています: リストを指定してください.\n"
+
 #, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: 入力引数(s)で不正な値: すくなくとも %d を想定します。\n"
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s: 入力引数(s)で不正な値: すくなくとも %d を想定します。\n"
 
 #, c-format
 #~ msgid ""

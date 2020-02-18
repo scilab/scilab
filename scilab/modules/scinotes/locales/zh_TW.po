@@ -1116,9 +1116,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 參數型態錯誤 #%d: 應為 string 型態.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
+msgstr "%s: 參數型態錯誤 #%d: 應為 string 型態.\n"
 
 #
 # File: modules/scinotes/macros/edit.sci, line: 51

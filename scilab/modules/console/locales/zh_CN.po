@@ -720,6 +720,10 @@ msgstr "宽度: "
 msgid "Recursion limit: "
 msgstr "递推次数： "
 
+#, fuzzy
+msgid "Containers display depth: "
+msgstr "显示行数："
+
 msgid "Language setting"
 msgstr "语言设置"
 
@@ -815,3 +819,19 @@ msgstr "无法改变控制台字体"
 
 msgid "Could not change the Console Foreground."
 msgstr "无法改变控制台前景"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为非负标量。\n"

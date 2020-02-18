@@ -131,16 +131,6 @@ msgid "%s: separator and decimal must have different values.\n"
 msgstr "%s: роздільник і десяткове число мають бути різними.\n"
 
 #, c-format
-msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
-msgstr ""
-"%s: решта номерів діапазону рядків або стовпчиків лежить поза межами "
-"доступного діапазону.\n"
-
-#, c-format
-msgid "%s: can not convert data.\n"
-msgstr "%s: не вдалося перетворити дані.\n"
-
-#, c-format
 msgid "%s: %s does not exist.\n"
 msgstr "%s: %s не існує.\n"
 
@@ -157,18 +147,14 @@ msgid "%s: can not read file %s.\n"
 msgstr "%s: не вдалося прочитати файл %s.\n"
 
 #, c-format
+msgid "%s: can not convert data.\n"
+msgstr "%s: не вдалося перетворити дані.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок "
 "рядків.\n"
-
-#, c-format
-msgid "%s: can not read text: Error in the column structure\n"
-msgstr "%s: не вдалося прочитати текст: помилка у структурі стовпчиків\n"
-
-#, c-format
-msgid "%s: can not read text.\n"
-msgstr "%s: не вдалося прочитати текст.\n"
 
 #, c-format
 msgid ""
@@ -288,6 +274,12 @@ msgid "%s: End of file.\n"
 msgstr "%s: кінець файла.\n"
 
 #, c-format
+msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
+msgstr ""
+"%s: решта номерів діапазону рядків або стовпчиків лежить поза межами "
+"доступного діапазону.\n"
+
+#, c-format
 msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
 "the previous had %d.\n"
@@ -297,6 +289,10 @@ msgstr ""
 
 msgid "Warning"
 msgstr "Попередження"
+
+#, fuzzy, c-format
+msgid "%s: can not read file, error in the column structure\n"
+msgstr "%s: не вдалося прочитати файл %s: помилка у структурі стовпчиків\n"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
@@ -484,3 +480,11 @@ msgstr "Електронна таблиця"
 
 msgid "Read a xls file"
 msgstr "Прочитати дані з файла xls"
+
+#, c-format
+#~ msgid "%s: can not read text: Error in the column structure\n"
+#~ msgstr "%s: не вдалося прочитати текст: помилка у структурі стовпчиків\n"
+
+#, c-format
+#~ msgid "%s: can not read text.\n"
+#~ msgstr "%s: не вдалося прочитати текст.\n"

@@ -108,12 +108,6 @@ msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: несумісні розмірності.\n"
 
 #, c-format
-msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
-msgstr ""
-"%s: помилковий тип параметра %d: слід використовувати розріджену або "
-"звичайну матрицю.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d. Слід використовувати значення "
@@ -647,6 +641,12 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
 "«%s».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип параметра %d: слід використовувати розріджену або "
+#~ "звичайну матрицю.\n"
 
 #~ msgid ""
 #~ "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"

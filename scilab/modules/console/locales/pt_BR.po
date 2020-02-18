@@ -727,6 +727,12 @@ msgstr ""
 msgid "Recursion limit: "
 msgstr ""
 
+#
+# File: modules/console/src/console_fake_xml.c, line: 1135
+# File: modules/console/src/console_fake_xml.c, line: 1470
+msgid "Containers display depth: "
+msgstr ""
+
 msgid "Language setting"
 msgstr ""
 
@@ -824,3 +830,24 @@ msgstr "Não foi possível mudar a fonte do console."
 
 msgid "Could not change the Console Foreground."
 msgstr "Não foi possível mudar a cor de primeiro plano do console."
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se uma "
+"grandeza escalar não-negativa.\n"

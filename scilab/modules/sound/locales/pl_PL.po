@@ -126,6 +126,44 @@ msgstr "%s: Nieprawidłowa liczba parametrów wyjściowych.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Nieprawidłowa liczba argumentów wyjściowych.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: %s expected.\n"
+msgstr ""
+"%s: Nieprawidłowy parametr wejściowy nr %d: oczekiwano '%s' lub '%s'.\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 54
+#, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
+msgstr ""
+"%s: Nieprawidłowy parametr wejściowy nr %d: oczekiwano '%s' lub '%s'.\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 91
+#, c-format
+msgid "%s: Argument #%d: The file '%s' does not exist.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number expected.\n"
+msgstr ""
+"%s: Nieprawidłowy parametr wejściowy nr %d: oczekiwano '%s' lub '%s'.\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 100
+#, c-format
+msgid "%s: Argument #%d: Must be > %d.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
 msgstr ""
@@ -181,6 +219,12 @@ msgstr ""
 "%s: Zła wartość parametru wejściowego: Zakres indeksów musi być określony "
 "jako skalar lub %d-elementowy wektor.\n"
 
+#
+# File: modules/sound/macros/wavread.sci, line: 84
+#, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr ""
+
 msgid ".wav file does not contain the RIFF identifier."
 msgstr "Plik .wav nie zawiera idektyfikatora RIFF."
 
@@ -209,8 +253,11 @@ msgstr "Niewłaściwy plik .wav: znaleziono dane przed informacja o formacie."
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Nieprawidłowy rozmiar informacji kawałka w pliku typu RIFF."
 
-msgid "Invalid wav format."
-msgstr "Niewłaściwy format wav."
+#
+# File: modules/sound/macros/wavread.sci, line: 217
+#, c-format
+msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
+msgstr ""
 
 msgid "Error reading wav file."
 msgstr "Błąd odczytu pliku WAV."
@@ -228,3 +275,6 @@ msgstr "Wektor granic próbki musi posiadać dwie wartości."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Niewłaściwe granice próbki (użyj kolejności rosnącej)."
+
+#~ msgid "Invalid wav format."
+#~ msgstr "Niewłaściwy format wav."

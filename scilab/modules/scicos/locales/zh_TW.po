@@ -778,12 +778,20 @@ msgstr ""
 msgid "Wrong value for field %s.%s : Round number expected.\n"
 msgstr ""
 
+#
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 351
 #, c-format
-msgid "Wrong type for field %s.%s : Real matrix expected.\n"
+msgid "Wrong type for field %s.%s : Real vector expected.\n"
+msgstr ""
+
+#
+# File: modules/scicos/src/cpp/view_scilab/ModelAdapter.cpp, line: 359
+#, c-format
+msgid "Wrong size for field %s.%s : Real vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
+msgid "Wrong type for field %s.%s : Real matrix expected.\n"
 msgstr ""
 
 #, c-format

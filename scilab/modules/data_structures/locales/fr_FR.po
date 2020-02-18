@@ -64,10 +64,6 @@ msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : un entier attendu.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : au plus %d attendu(s).\n"
-
-#, c-format
 msgid "%s: Not implemented in scilab...\n"
 msgstr "%s : Non implémenté dans Scilab...\n"
 
@@ -98,18 +94,6 @@ msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments de sortie : %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: List expected.\n"
-msgstr "%s Type erroné pour l'argument %d : liste attendue.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : au moins %d attendus.\n"
 
@@ -122,9 +106,26 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s : %d à %d arguments d'entrée attendus.\n"
 
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+#~ msgstr ""
+#~ "%s : Nombre erroné d'argument(s) d'entrée : au plus %d attendu(s).\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of output arguments: %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments de sortie : %d attendu(s).\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendu(s).\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument %d: List expected.\n"
+#~ msgstr "%s Type erroné pour l'argument %d : liste attendue.\n"
+
 #, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s : %d à %d arguments d'entrée attendus.\n"
+#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+#~ msgstr "%s : %d à %d arguments d'entrée attendus.\n"
 
 #, c-format
 #~ msgid ""

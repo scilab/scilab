@@ -728,6 +728,10 @@ msgstr "Ширина: "
 msgid "Recursion limit: "
 msgstr "Предел рекурсии: "
 
+#, fuzzy
+msgid "Containers display depth: "
+msgstr "Строки для показа:"
+
 msgid "Language setting"
 msgstr "Настройка языка"
 
@@ -823,3 +827,20 @@ msgstr "Не удалось изменить шрифт в командном о
 
 msgid "Could not change the Console Foreground."
 msgstr "Не удалось изменить цвет фона в командном окне"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+msgstr ""
+"%s: Неверное значение для входного аргумента №%d: Ожидается скаляр (>= 0).\n"

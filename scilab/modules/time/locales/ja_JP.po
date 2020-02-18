@@ -66,24 +66,6 @@ msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の型が間違っています: 実数スカラーを指定してください.\n"
 
-#, c-format
-msgid ""
-"%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
-msgstr "%s: 機能 %s は廃止予定であり, Scilab %s で削除されます\n"
-
-msgid "Warning"
-msgstr "警告"
-
-#, c-format
-msgid "%s: Please use %s instead.\n"
-msgstr "%s: 代わりに %s を使用してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
-
 #, fuzzy, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
@@ -99,19 +81,19 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 's' を指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong type for input arguments: Must be scalars.\n"
-msgstr "%s: 入力引数の型が間違っています： スカラー指定してください.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
+msgstr "%s: 入力引数の型が間違っています： スカラー値で指定してください.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
-"%s: 入力引数の値が間違っています:  %d  および %d の間の値を指定してくださ"
-"い.\n"
+"%s: 入力引数 #%d の大きさが間違っています: %d および %d の間としてください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: 入力引数の数が間違っています.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #
 # File: macros/calendar.sci, line: 37
@@ -188,7 +170,7 @@ msgstr "12月"
 
 #
 # File: macros/calendar.sci, line: 52
-msgid  "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
+msgid "Mon  Tue  Wed  Thu  Fri  Sat  Sun"
 msgstr "月   火   水    木   金    土   日"
 
 #, c-format
@@ -280,11 +262,6 @@ msgstr ""
 "ださい.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type  for input argument #%d: Real constant matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実定数行列を指定してください.\n"
@@ -363,3 +340,35 @@ msgstr "木曜日"
 # File: macros/weekday.sci, line: 55
 msgid "Friday"
 msgstr "金曜日"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
+#~ msgstr "%s: 機能 %s は廃止予定であり, Scilab %s で削除されます\n"
+
+#~ msgid "Warning"
+#~ msgstr "警告"
+
+#, c-format
+#~ msgid "%s: Please use %s instead.\n"
+#~ msgstr "%s: 代わりに %s を使用してください.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input arguments: Must be scalars.\n"
+#~ msgstr "%s: 入力引数の型が間違っています： スカラー指定してください.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
+#~ msgstr ""
+#~ "%s: 入力引数の値が間違っています:  %d  および %d の間の値を指定してくださ"
+#~ "い.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments.\n"
+#~ msgstr "%s: 入力引数の数が間違っています.\n"

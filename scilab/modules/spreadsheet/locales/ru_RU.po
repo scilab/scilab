@@ -121,14 +121,6 @@ msgid "%s: separator and decimal must have different values.\n"
 msgstr "%s: разделитель и десятичная точка должны иметь разные значения.\n"
 
 #, c-format
-msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
-msgstr "%s: Диапазон строк или/и столбцов оставляет индекс(ы) за пределами.\n"
-
-#, c-format
-msgid "%s: can not convert data.\n"
-msgstr "%s: не удалось преобразовать данные.\n"
-
-#, c-format
 msgid "%s: %s does not exist.\n"
 msgstr "%s: %s не существует.\n"
 
@@ -145,16 +137,12 @@ msgid "%s: can not read file %s.\n"
 msgstr "%s: не удалось прочитать файл %s.\n"
 
 #, c-format
+msgid "%s: can not convert data.\n"
+msgstr "%s: не удалось преобразовать данные.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
 msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор строк.\n"
-
-#, c-format
-msgid "%s: can not read text: Error in the column structure\n"
-msgstr "%s: не удалось прочитать текст: ошибка в структуре столбцов\n"
-
-#, c-format
-msgid "%s: can not read text.\n"
-msgstr "%s: не удалось прочитать текст.\n"
 
 #, c-format
 msgid ""
@@ -270,6 +258,10 @@ msgid "%s: End of file.\n"
 msgstr "%s: Конец файла.\n"
 
 #, c-format
+msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
+msgstr "%s: Диапазон строк или/и столбцов оставляет индекс(ы) за пределами.\n"
+
+#, c-format
 msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
 "the previous had %d.\n"
@@ -279,6 +271,10 @@ msgstr ""
 
 msgid "Warning"
 msgstr "Внимание"
+
+#, fuzzy, c-format
+msgid "%s: can not read file, error in the column structure\n"
+msgstr "%s: не удалось прочитать файл %s: ошибка в структуре столбцов\n"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
@@ -456,3 +452,11 @@ msgstr "Электронная таблица"
 
 msgid "Read a xls file"
 msgstr "Читать xls-файл"
+
+#, c-format
+#~ msgid "%s: can not read text: Error in the column structure\n"
+#~ msgstr "%s: не удалось прочитать текст: ошибка в структуре столбцов\n"
+
+#, c-format
+#~ msgid "%s: can not read text.\n"
+#~ msgstr "%s: не удалось прочитать текст.\n"

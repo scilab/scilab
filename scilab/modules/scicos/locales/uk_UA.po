@@ -923,14 +923,20 @@ msgstr "Помилковий тип поля %s.%s: мала бути матри
 msgid "Wrong value for field %s.%s : Round number expected.\n"
 msgstr "Помилкове значення поля %s.%s: мало бути вказано округлене число.\n"
 
-#, c-format
-msgid "Wrong type for field %s.%s : Real matrix expected.\n"
+#, fuzzy, c-format
+msgid "Wrong type for field %s.%s : Real vector expected.\n"
+msgstr ""
+"Помилковий тип поля %s.%s: мало бути вказано матрицю з дійсних чисел.\n"
+
+#, fuzzy, c-format
+msgid "Wrong size for field %s.%s : Real vector expected.\n"
 msgstr ""
 "Помилковий тип поля %s.%s: мало бути вказано матрицю з дійсних чисел.\n"
 
 #, c-format
-msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
-msgstr "Помилкова розмірність поля %s.%s: мало бути %d x %d.\n"
+msgid "Wrong type for field %s.%s : Real matrix expected.\n"
+msgstr ""
+"Помилковий тип поля %s.%s: мало бути вказано матрицю з дійсних чисел.\n"
 
 #, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 expected.\n"
@@ -1593,6 +1599,10 @@ msgid ""
 msgstr ""
 "Відповідь, вказана для %s \n"
 " є помилковою: %s.\n"
+
+#, c-format
+#~ msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
+#~ msgstr "Помилкова розмірність поля %s.%s: мало бути %d x %d.\n"
 
 #, c-format
 #~ msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"

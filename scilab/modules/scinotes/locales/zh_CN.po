@@ -1118,9 +1118,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该为字符串.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
+msgstr "%s：第%d个参数的类型错误：应该为字符串.\n"
 
 #
 # File: modules/scinotes/macros/edit.sci, line: 51

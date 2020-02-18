@@ -281,19 +281,10 @@ msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr "%s : La légende ne correspond pas au contexte actuel. Ignoré\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Une valeur '%s' attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
@@ -313,6 +304,16 @@ msgid ""
 msgstr ""
 "%s : La commande a échoué avec pour code d'erreur %s et le message "
 "suivant :\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+#~ msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+#~ msgstr ""
+#~ "%s : Valeur erronée de l'argument d'entrée n°%d : Une valeur '%s' "
+#~ "attendue.\n"
 
 #, c-format
 #~ msgid "End of file at line %d.\n"

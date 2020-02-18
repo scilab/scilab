@@ -120,6 +120,40 @@ msgstr "%s：输出参数的数目错误。\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s：输出参数的数目错误。\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: %s expected.\n"
+msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 54
+#, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
+msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 91
+#, c-format
+msgid "%s: Argument #%d: The file '%s' does not exist.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal number expected.\n"
+msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
+
+#
+# File: modules/sound/macros/playsnd.sci, line: 100
+#, c-format
+msgid "%s: Argument #%d: Must be > %d.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
 msgstr "%s：用命令播放声音失败：%s。\n"
@@ -170,6 +204,12 @@ msgid ""
 "scalar or %d-element vector.\n"
 msgstr "%s：输入参数的值错误：索引范围必须制定为一个标量，或有%d元素的向量。\n"
 
+#
+# File: modules/sound/macros/wavread.sci, line: 84
+#, c-format
+msgid "%s: The file '%s' does not exist.\n"
+msgstr ""
+
 msgid ".wav file does not contain the RIFF identifier."
 msgstr ".wav文件不包含RIFF标识。"
 
@@ -196,8 +236,11 @@ msgstr "不正确的.wav文件：在格式信息之前发现数据"
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "在RIFF文件中有不正确的块（chunk）大小信息。"
 
-msgid "Invalid wav format."
-msgstr "不正确的wav格式。"
+#
+# File: modules/sound/macros/wavread.sci, line: 217
+#, c-format
+msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
+msgstr ""
 
 msgid "Error reading wav file."
 msgstr "读wav文件时发生错误。"
@@ -214,3 +257,6 @@ msgstr "采样限制向量必须有2个入口。"
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "不正确的采样限制（使用升序）"
+
+#~ msgid "Invalid wav format."
+#~ msgstr "不正确的wav格式。"

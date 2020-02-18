@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-01-14 14:21+0100\n"
+"Revision-Date: 2020-02-18 16:36+0100\n"
 
 # File: modules/fileio/sci_gateway/c/sci_chdir.c, line: 56
 # File: modules/fileio/sci_gateway/c/sci_chdir.c, line: 73
@@ -320,12 +320,6 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/fileio/sci_gateway/cpp/sci_fullpath.cpp, line: 69
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
-msgstr ""
-
-#
 # File: modules/fileio/sci_gateway/cpp/sci_get_absolute_file_path.cpp, line: 83
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
@@ -540,7 +534,7 @@ msgstr ""
 
 #
 # File: modules/fileio/sci_gateway/cpp/sci_mgetl.cpp, line: 94
-# File: modules/fileio/sci_gateway/cpp/sci_mopen.cpp, line: 141
+# File: modules/fileio/sci_gateway/cpp/sci_mopen.cpp, line: 140
 # File: modules/fileio/sci_gateway/cpp/sci_mputl.cpp, line: 73
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -555,7 +549,7 @@ msgstr ""
 
 #
 # File: modules/fileio/sci_gateway/cpp/sci_mgetl.cpp, line: 103
-# File: modules/fileio/sci_gateway/cpp/sci_mopen.cpp, line: 158
+# File: modules/fileio/sci_gateway/cpp/sci_mopen.cpp, line: 157
 # File: modules/fileio/sci_gateway/cpp/sci_mputl.cpp, line: 82
 #, c-format
 msgid "%s: invalid status.\n"
@@ -587,7 +581,7 @@ msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: modules/fileio/sci_gateway/cpp/sci_mopen.cpp, line: 150
+# File: modules/fileio/sci_gateway/cpp/sci_mopen.cpp, line: 149
 #, c-format
 msgid "%s: invalid filename.\n"
 msgstr ""

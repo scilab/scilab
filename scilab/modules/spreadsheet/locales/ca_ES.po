@@ -102,14 +102,6 @@ msgid "%s: separator and decimal must have different values.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: can not convert data.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: %s does not exist.\n"
 msgstr ""
 
@@ -126,15 +118,11 @@ msgid "%s: can not read file %s.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: can not convert data.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: can not read text: Error in the column structure\n"
-msgstr ""
-
-#, c-format
-msgid "%s: can not read text.\n"
 msgstr ""
 
 #, c-format
@@ -245,12 +233,22 @@ msgid "%s: End of file.\n"
 msgstr "%s: Final de fitxer.\n"
 
 #, c-format
+msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
 "the previous had %d.\n"
 msgstr ""
 
 msgid "Warning"
+msgstr ""
+
+#
+# File: modules/spreadsheet/src/c/csvRead.c, line: 446
+#, c-format
+msgid "%s: can not read file, error in the column structure\n"
 msgstr ""
 
 #, c-format

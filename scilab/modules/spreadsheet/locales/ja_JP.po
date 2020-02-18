@@ -118,14 +118,6 @@ msgid "%s: separator and decimal must have different values.\n"
 msgstr "%s: セパレータと小数点は異なる値とする必要があります.\n"
 
 #, c-format
-msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
-msgstr "%s: 行または列添字が範囲外です.\n"
-
-#, c-format
-msgid "%s: can not convert data.\n"
-msgstr "%s: データを変換できません.\n"
-
-#, c-format
 msgid "%s: %s does not exist.\n"
 msgstr "%s: %s は存在しません.\n"
 
@@ -142,18 +134,14 @@ msgid "%s: can not read file %s.\n"
 msgstr "%s: ファイル %s を読み込めません.\n"
 
 #, c-format
+msgid "%s: can not convert data.\n"
+msgstr "%s: データを変換できません.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
 msgstr ""
 "%s: 入力引数 #%d の大きさが間違っています: 文字列ベクトルを指定してくださ"
 "い.\n"
-
-#, c-format
-msgid "%s: can not read text: Error in the column structure\n"
-msgstr "%s: テキストを読み込めません: 列構造体にエラーがあります\n"
-
-#, c-format
-msgid "%s: can not read text.\n"
-msgstr "%s: テキストを読み込めません.\n"
 
 #, c-format
 msgid ""
@@ -277,6 +265,10 @@ msgid "%s: End of file.\n"
 msgstr "%s: ファイルの終端に達しました.\n"
 
 #, c-format
+msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
+msgstr "%s: 行または列添字が範囲外です.\n"
+
+#, c-format
 msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
 "the previous had %d.\n"
@@ -285,6 +277,10 @@ msgstr ""
 
 msgid "Warning"
 msgstr "警告"
+
+#, fuzzy, c-format
+msgid "%s: can not read file, error in the column structure\n"
+msgstr "%s: ファイル %s を読み込めません: 列構造体にエラーがあります\n"
 
 #
 # File: src/c/ripole/logger.c, line: 117
@@ -511,3 +507,11 @@ msgstr "表計算"
 
 msgid "Read a xls file"
 msgstr "xlsファイルを読み込む"
+
+#, c-format
+#~ msgid "%s: can not read text: Error in the column structure\n"
+#~ msgstr "%s: テキストを読み込めません: 列構造体にエラーがあります\n"
+
+#, c-format
+#~ msgid "%s: can not read text.\n"
+#~ msgstr "%s: テキストを読み込めません.\n"

@@ -92,10 +92,6 @@ msgid "%s: Wrong size for input argument #%d: Incompatible dimensions.\n"
 msgstr "%s：第%d个输入参数的维度错误：不兼容的维数。\n"
 
 #, c-format
-msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
-msgstr "%s：参数%d的类型错误：应该为稀疏矩阵或普通矩阵。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为整数。\n"
 
@@ -556,6 +552,10 @@ msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\n"
+
+#, c-format
+#~ msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
+#~ msgstr "%s：参数%d的类型错误：应该为稀疏矩阵或普通矩阵。\n"
 
 #~ msgid ""
 #~ "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"

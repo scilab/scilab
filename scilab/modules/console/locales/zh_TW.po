@@ -720,6 +720,12 @@ msgstr ""
 msgid "Recursion limit: "
 msgstr ""
 
+#
+# File: modules/console/src/console_fake_xml.c, line: 1135
+# File: modules/console/src/console_fake_xml.c, line: 1470
+msgid "Containers display depth: "
+msgstr ""
+
 msgid "Language setting"
 msgstr ""
 
@@ -815,3 +821,28 @@ msgstr "無法改變控制台之字型"
 
 msgid "Could not change the Console Foreground."
 msgstr "無法改變控制台之背景"
+
+# File: modules/console/macros/input.sci, line: 19
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/console/macros/input.sci, line: 24
+# File: modules/console/macros/input.sci, line: 38
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#
+# File: modules/console/macros/input.sci, line: 29
+# File: modules/console/macros/input.sci, line: 43
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+
+#
+# File: modules/console/macros/input.sci, line: 48
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
+msgstr ""
