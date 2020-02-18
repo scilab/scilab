@@ -37,8 +37,6 @@ Source: modules\{#WEBTOOLS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#WEB
 ;Source: modules\{#WEBTOOLS}\macros\*.bin; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#WEBTOOLS}\macros\lib; DestDir: {app}\modules\{#WEBTOOLS}\macros; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#WEBTOOLS}\demos\*.*; DestDir: {app}\modules\{#WEBTOOLS}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-;
 Source: modules\{#WEBTOOLS}\tests\*.*; DestDir: {app}\modules\{#WEBTOOLS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
