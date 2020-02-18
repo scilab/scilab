@@ -702,6 +702,10 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
 
         if (iret == 1) // error
         {
+            for (types::InternalType* pIT : lpDblOut)
+            {
+                pIT->killMe();
+            }
             lpDblOut.clear();
             DifferentialEquation::removeDifferentialEquationFunctions();
             FREE(pdYdotData);
@@ -766,6 +770,7 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
     {
         int pos = i * rowsOut;
         C2F(dcopy)(&rowsOut, lpDblOut.front()->get(), &one, pDblOut->get() + pos, &one);
+        lpDblOut.front()->killMe();
         lpDblOut.pop_front();
     }
     out.push_back(pDblOut);
