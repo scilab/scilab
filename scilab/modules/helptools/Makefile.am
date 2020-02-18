@@ -127,9 +127,7 @@ libscihelptools_la_data_pages_DATA = \
 data/pages/CHANGES.html \
 data/pages/error.html \
 data/pages/homepage-en_US.html \
-data/pages/homepage-fr_FR.html \
-data/pages/ban-en_US.png \
-data/pages/ban-fr_FR.png
+data/pages/ban-en_US.png
 
 mostlyclean-local:
 	rm -rf web javaHelp html pdf
