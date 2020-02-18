@@ -644,12 +644,12 @@ types::InternalType* refreshblklist(types::InternalType* pIT, const scicos_block
     }
 
     /* 7 - z */
-    m->set(7, vartosci(m->get(7), Blocks->z, Blocks->nz, 1, SCSREAL_N));
+    m->set(6, vartosci(m->get(6), Blocks->z, Blocks->nz, 1, SCSREAL_N));
 
     /* 11 - ozptr */
-    if (m->get(11)->isList())
+    if (m->get(10)->isList())
     {
-        types::List* ozptr = m->get(11)->getAs<types::List>();
+        types::List* ozptr = m->get(10)->getAs<types::List>();
         for (int k = 0; k < Blocks->noz; k++)
         {
             const int rows = Blocks->ozsz[k];               /* retrieve number of rows */
@@ -657,36 +657,36 @@ types::InternalType* refreshblklist(types::InternalType* pIT, const scicos_block
             const int type = Blocks->oztyp[k];              /* retrieve type */
             ozptr->set(k, vartosci(ozptr->get(k), Blocks->ozptr[k], rows, cols, type));
         }
-        m->set(11, ozptr);
+        m->set(10, ozptr);
     }
 
     /* 13 - x */
     if (flag_imp >= 0)
     {
-        m->set(13, vartosci(m->get(13), &x[xptr[flag_imp] - 1], Blocks->nx, 1, SCSREAL_N));
+        m->set(12, vartosci(m->get(12), &x[xptr[flag_imp] - 1], Blocks->nx, 1, SCSREAL_N));
     }
     else
     {
-        m->set(13, vartosci(m->get(13), Blocks->x, Blocks->nx, 1, SCSREAL_N));
+        m->set(12, vartosci(m->get(12), Blocks->x, Blocks->nx, 1, SCSREAL_N));
     }
 
     /* 14 - xd */
     if (flag_imp >= 0)
     {
-        m->set(14, vartosci(m->get(14), &xd[xptr[flag_imp] - 1], Blocks->nx, 1, SCSREAL_N));
+        m->set(13, vartosci(m->get(13), &xd[xptr[flag_imp] - 1], Blocks->nx, 1, SCSREAL_N));
     }
     else
     {
-        m->set(14, vartosci(m->get(14), Blocks->xd, Blocks->nx, 1, SCSREAL_N));
+        m->set(13, vartosci(m->get(13), Blocks->xd, Blocks->nx, 1, SCSREAL_N));
     }
 
     /* 15 - res */
-    m->set(15, vartosci(m->get(15), Blocks->res, Blocks->nx, 1, SCSREAL_N));
+    m->set(14, vartosci(m->get(14), Blocks->res, Blocks->nx, 1, SCSREAL_N));
 
     /* 18 - inptr */
-    if (m->get(18)->isList())
+    if (m->get(17)->isList())
     {
-        types::List* inptr = m->get(18)->getAs<types::List>();
+        types::List* inptr = m->get(17)->getAs<types::List>();
         for (int k = 0; k < Blocks->nin; k++)
         {
             const int rows = Blocks->insz[k];                   /* retrieve number of rows */
@@ -694,13 +694,13 @@ types::InternalType* refreshblklist(types::InternalType* pIT, const scicos_block
             const int type = Blocks->insz[2 * Blocks->nin + k]; /* retrieve type */
             inptr->set(k, vartosci(inptr->get(k), Blocks->inptr[k], rows, cols, type));
         }
-        m->set(18, inptr);
+        m->set(17, inptr);
     }
 
     /* 21 - outptr */
-    if (m->get(21)->isList())
+    if (m->get(20)->isList())
     {
-        types::List* outptr = m->get(21)->getAs<types::List>();
+        types::List* outptr = m->get(20)->getAs<types::List>();
         for (int k = 0; k < Blocks->nout; k++)
         {
             const int rows = Blocks->outsz[k];                    /* retrieve number of rows */
@@ -708,30 +708,30 @@ types::InternalType* refreshblklist(types::InternalType* pIT, const scicos_block
             const int type = Blocks->outsz[2 * Blocks->nout + k]; /* retrieve type */
             outptr->set(k, vartosci(outptr->get(k), Blocks->outptr[k], rows, cols, type));
         }
-        m->set(21, outptr);
+        m->set(20, outptr);
     }
 
     /* 23 - evout */
-    m->set(23, vartosci(m->get(23), Blocks->evout, Blocks->nevout, 1, SCSREAL_N));
+    m->set(22, vartosci(m->get(22), Blocks->evout, Blocks->nevout, 1, SCSREAL_N));
 
     /* 33 - g */
     if (flag_imp >= 0)
     {
-        m->set(33, vartosci(m->get(33), &g[zcptr[flag_imp] - 1], Blocks->ng, 1, SCSREAL_N));
+        m->set(32, vartosci(m->get(32), &g[zcptr[flag_imp] - 1], Blocks->ng, 1, SCSREAL_N));
     }
     else
     {
-        m->set(33, vartosci(m->get(33), Blocks->g, Blocks->ng, 1, SCSREAL_N));
+        m->set(32, vartosci(m->get(32), Blocks->g, Blocks->ng, 1, SCSREAL_N));
     }
 
     /* 35 - jroot */
-    m->set(35, vartosci(m->get(35), Blocks->jroot, Blocks->ng, 1, SCSREAL_N));
+    m->set(34, vartosci(m->get(34), Blocks->jroot, Blocks->ng, 1, SCSREAL_N));
 
     /* 39 - mode */
-    m->set(39, vartosci(m->get(39), Blocks->mode, Blocks->nmode, 1, SCSREAL_N));
+    m->set(38, vartosci(m->get(38), Blocks->mode, Blocks->nmode, 1, SCSREAL_N));
 
     /* 40 - xprop */
-    m->set(40, vartosci(m->get(40), Blocks->xprop, Blocks->nx, 1, SCSREAL_N));
+    m->set(39, vartosci(m->get(39), Blocks->xprop, Blocks->nx, 1, SCSREAL_N));
 
     return m;
 }

@@ -263,19 +263,16 @@ void sciblk4(scicos_block* blk, const int flag)
         *blk->work = pIT;
         pIT->IncreaseRef();
     }
-    else
+    else if (flag == 5) // Ending
     {
-        pIT = *(types::InternalType**) blk->work;
-    }
-
-    if (flag == 5) // Ending
-    {
+        pIT = *(types::InternalType**)blk->work;
         pIT->DecreaseRef();
     }
     else // any other flag might use refreshed values
     {
+        pIT = *(types::InternalType**)blk->work;
         pIT = refreshblklist(pIT, blk, -1, funtyp[kfun - 1]);
-    }
+	}
 
     in.push_back(pIT);
     /* * flag * */
