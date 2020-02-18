@@ -7,17 +7,17 @@ function idle_gui()
         elaps = etime(getdate(e), getdate(idle.time));
         rolls = floor(elaps / 5);
 
-        if rolls > 0 then        
+        if rolls > 0 then
             dice = 0;
             for i = 1:idle.dice
                 if idle.dices(i).enable
                     dice = dice + 1;
                 end
             end
-        
+
             r = int(rand(rolls, dice) * 6) + 1;
-            
-            gain = 0;    
+
+            gain = 0;
             for j = 1:rolls
                 [g, msg] = idle_roll_gain(r(j, :))
                 s = 0;
@@ -28,14 +28,13 @@ function idle_gui()
                     end
                 end
 
-                printf("%d: %d\n", g, s * g);
                 gain = gain + g * s;
             end
 
-    
+
             msg = sprintf("During your absence you earned %s", formatEng(gain));
             messagebox(msg, "Game of Dice", "info", "modal");
-            
+
             idle.gain = idle.gain + gain;
         end
     else
@@ -50,7 +49,7 @@ function idle_gui()
         idle.reset = %f;
         idle.action.type = [];
         idle.history = [];
-        
+
         idle.colors = [0.8666667   0.4666667   0.4313725
                        0.8784314   0.5058824   0.427451
                        0.8862745   0.5333333   0.4235294
@@ -383,7 +382,6 @@ function idle_dice_gui(i)
         v = "on";
     end
 
-    //disp(fullfile(idle.path, "images", "dice-1.png"));
     //image
     uicontrol(fr, ...
         "style", "image", ...
@@ -464,7 +462,7 @@ function idle_buy(x)
         idle.dice = idle.dice + 1;
         idle_dice_gui(x + 1);
     end
-    
+
     victory = and(list2vec(idle.dices.level) == 100);
     if victory then
         msg = ["Victory !";
@@ -544,7 +542,7 @@ endfunction
 function [g, msg] = idle_roll_gain(r)
     g = 1;
     rsort = gsort(r, "c", "i");
-    [a, b, c] = unique(rsort);
+    [a, b, ?, c] = unique(rsort);
     c = gsort(c);
     s = length(rsort);
 
@@ -557,7 +555,7 @@ function [g, msg] = idle_roll_gain(r)
     elseif s == 5 && c(1) == 3 && c(2) == 2 then
         g = 50;
         msg = "Fullhouse"
-    elseif s == 5 && (rsort == 1:5 || rsort == 2:6) then
+    elseif s == 5 && (and(rsort == 1:5) || and(rsort == 2:6)) then
         g = 40;
         msg = "Straight"
     elseif s >= 3 && c(1) == 3 then
@@ -689,7 +687,7 @@ function idle_show_help()
            "After the first purchase, the game can roll alone.";
            "but you can anticipate the draw by clicking on ""Roll !""";
            ];
-           
+
     messagebox(msg, "Game of Dice", "info", "modal");
 endfunction
 
@@ -703,7 +701,7 @@ function idle_event_loop()
     while idle.quit == %f
         action = idle.action;
         idle.action = struct("type", []);
-        
+
         select(action.type)
         case "roll"
             set("idle_progress", "position", [2 2 0 20]);
@@ -732,7 +730,7 @@ function idle_event_loop()
         case "help"
             idle_show_help();
         end
-        
+
         if idle.autoroll then
             t = toc();
             p = round((t / 5) * 100);
@@ -750,7 +748,7 @@ function idle_event_loop()
         //relax CPU
         sleep(10);
     end
-    
+
     idle.time = getdate("s");
     //to allow restart
     idle.quit = %f;
