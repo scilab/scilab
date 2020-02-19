@@ -166,9 +166,6 @@ find(u(2:$)<>u(1:$-1))
                 <link linkend="sprand">sprand</link>
             </member>
             <member>
-                <link linkend="sysrand">sysrand</link>
-            </member>
-            <member>
                 <link linkend="randpencil">randpencil</link>
             </member>
         </simplelist>
