@@ -60,7 +60,8 @@ types::Function::ReturnValue sci_getshortpathname(types::typed_list &in, int _iR
     {
         BOOL flagtrail = FALSE;
         wchar_t* tmp = getshortpathnameW(p[i], (BOOL*)&pBool[i]);
-        if (p[i][wcslen(p[i]) - 1] == '\\' || p[i][wcslen(p[i]) - 1] == '/')
+        size_t len = wcslen(p[i]);
+        if (len > 0 && (p[i][len - 1] == '\\' || p[i][len - 1] == '/'))
         {
             flagtrail = TRUE;
         }
