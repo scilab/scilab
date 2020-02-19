@@ -33,7 +33,7 @@
 #include "api_scilab.h"
 #include "sci_malloc.h"
 
-static char logFlagsCpy[3] ; /* real logflags may use either this or the stack */
+static char logFlagsCpy[4] ; /* real logflags may use either this or the stack */
 
 /*--------------------------------------------------------------------------*/
 /* get_style */
