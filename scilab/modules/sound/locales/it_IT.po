@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 22:01+0000\n"
+"PO-Revision-Date: 2015-10-08 22:01+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: it\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -30,7 +30,8 @@ msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Il modulo di Scilab per il suono non è installato.\n"
@@ -65,9 +66,9 @@ msgstr ""
 "L'intervallo dell'indice deve essere specificato come uno scalare o un "
 "vettore a 2 elementi."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: File '%s': Unrecognized data format.\n"
-msgstr "Formato di dati non riconosciuto."
+msgstr ""
 
 msgid "Sample limit vector must have 2 elements."
 msgstr "Il vettore limite di esempio deve avere 2 elementi"
@@ -81,8 +82,6 @@ msgstr "I limiti di esempio devono essere forniti in ordine crescente."
 msgid "Error in file format."
 msgstr "Errore nel formato del file."
 
-#
-# File: modules/sound/macros/auread.sci, line: 174
 #, c-format
 msgid "%s: File '%s' is not a .au sound file.\n"
 msgstr ""
@@ -128,41 +127,33 @@ msgstr "%s: Il numero degli argomenti in uscita è sbagliato.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Il numero degli argomenti in uscita è sbagliato.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
-"%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: %s expected.\n"
-msgstr "%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere >=%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
-msgstr "%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
+msgstr ""
 
-#
-# File: modules/sound/macros/playsnd.sci, line: 91
 #, c-format
 msgid "%s: Argument #%d: The file '%s' does not exist.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal number expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una matrice "
-"reale.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere >=%d.\n"
 
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
@@ -224,8 +215,6 @@ msgstr ""
 "%s: L'argomento in ingresso è di tipo sbagliato: l'estensione dell'indice "
 "deve essere specificata come uno scalare o un vettore a %d elementi.\n"
 
-#
-# File: modules/sound/macros/wavread.sci, line: 84
 #, c-format
 msgid "%s: The file '%s' does not exist.\n"
 msgstr ""
@@ -247,7 +236,8 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Si è verificato un errore: %s non è supportato.\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Si è verificato un errore: il formato di file non è valido. Errore nel "
 "leggere la porzione <%s>.\n"
@@ -261,8 +251,6 @@ msgid "Incorrect chunk size information in RIFF file."
 msgstr ""
 "Nel file RIFF l'informazione sulla dimensione del frammento non è corretta."
 
-#
-# File: modules/sound/macros/wavread.sci, line: 217
 #, c-format
 msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
 msgstr ""
@@ -286,6 +274,3 @@ msgstr "Il vettore del limite del campione audio  deve avere 2 voci."
 msgid "Invalid sample limits (use ascending order)."
 msgstr ""
 "Estremi del campione audio non valido (usare l'ordinamento ascendente)."
-
-#~ msgid "Invalid wav format."
-#~ msgstr "Formato wav non valido"

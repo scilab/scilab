@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 22:09+0000\n"
+"PO-Revision-Date: 2015-10-08 22:09+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: it\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected."
@@ -67,7 +67,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Assertion failed: expected = %s while computed = %s"
-msgstr "%s: Affermazione fallita: era attesa = %s mentre quella calcolata = %s"
+msgstr ""
+"%s: Affermazione fallita: era attesa = %s mentre quella calcolata = %s"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -88,45 +89,37 @@ msgstr "%s: Il valore calcolato è reale, ma ne era atteso uno complesso."
 msgid "%s: Computed is complex, but expected is real."
 msgstr "%s: Il valore calcolato è complesso, ma ne era atteso uno reale."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Assertion failed: expected= %s  while computed= %s"
-msgstr "%s: Affermazione fallita: era attesa = %s mentre quella calcolata = %s"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Assertion failed: expected and computed are two distinct built-in "
 "functions."
-msgstr "%s: Affermazione fallita: era attesa = %s mentre quella calcolata = %s"
+msgstr ""
 
-#
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 175
 #, c-format
 msgid "expected(%d)= "
 msgstr ""
 
-#
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 176
 #, c-format
 msgid "computed(%d)= "
 msgstr ""
 
-#
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 178
 msgid "expected= "
 msgstr ""
 
-#
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 179
 msgid "computed= "
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Assertion failed: %s  while %s (mean diff = %s)"
-msgstr "%s: Affermazione fallita: era attesa = %s mentre quella calcolata = %s"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Assertion failed: %s  while %s"
-msgstr "%s: Affermazione fallita: era attesa = %s mentre quella calcolata = %s"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -233,7 +226,8 @@ msgstr ""
 "quelli in ingresso %d."
 
 #, c-format
-msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgid ""
+"%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
 "%s: Erano attese %d righe nell'argomento in ingresso #%d, ma ve ne sono %d "
 "invece."
@@ -392,9 +386,3 @@ msgstr ""
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "Nessuna variabile %s_ref è presente nel file di riferimento"
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument: %d expected.\n"
-#~ msgstr ""
-#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
-#~ "%d.\n"

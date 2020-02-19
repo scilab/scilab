@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 14:06+0000\n"
+"PO-Revision-Date: 2019-03-24 10:34+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Answer appears to be lower than lowest search bound %g\n"
@@ -150,7 +150,8 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d, %d или %d.\n"
+msgstr ""
+"%s: Неверное количество входных аргументов: ожидалось %d, %d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -240,10 +241,13 @@ msgid ""
 "%s: Function not defined for given argument #%d type.\n"
 "Check arguments or define function %s for overloading.\n"
 msgstr ""
+"%s: Функция не определена для типа указанного аргумента №%d.\n"
+"Проверьте аргументы или определите функцию %s для перегрузки.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр или вектор.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался скаляр или вектор.\n"
 
 #, c-format
 msgid ""
@@ -341,7 +345,8 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr "%s: Обнаружены значения NaN, вместо этого используйте %s().\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидались неотрицательные "
 "значения.\n"
@@ -392,14 +397,15 @@ msgstr "Собственные значения"
 
 #, c-format
 msgid "%s: Argument #%d: Array of real numbers expected.\n"
-msgstr ""
+msgstr "%s: Аргумент №%d: ожидался массив вещественных чисел.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Неверный размер входного аргумента №%d.\n"
 
 #, c-format
-msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid ""
+"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра %d: ожидалось «%s», «%s», %d или "
 "%d.\n"

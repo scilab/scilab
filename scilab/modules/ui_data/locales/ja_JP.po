@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 15:43+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2020-01-14 20:02+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ja\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -27,8 +27,7 @@ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d, %d または %d を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d, %d または %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -73,8 +72,6 @@ msgstr "型"
 msgid "Visibility"
 msgstr "可視性"
 
-#
-# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 50
 msgid "Memory"
 msgstr ""
 
@@ -382,16 +379,3 @@ msgstr "&?"
 
 msgid "&About Scilab..."
 msgstr "Scilabバージョン情報(&A)..."
-
-#, c-format
-#~ msgid "%s: ans cannot be edited.\n"
-#~ msgstr "%s: ans は編集できません.\n"
-
-#~ msgid "Bytes"
-#~ msgstr "バイト数"
-
-#~ msgid "Bytes:"
-#~ msgstr "バイト数:"
-
-#~ msgid "Compiled function"
-#~ msgstr "コンパイル済みの関数"

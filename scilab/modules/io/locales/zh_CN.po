@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 17:23+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-02-18 22:04+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: zh_CN\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -111,8 +111,8 @@ msgstr "%s： \n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", \"%s"
-"\" \n"
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", "
+"\"%s\" \n"
 msgstr "%s：第%d个输入参数的值错误：“%s”、“%s”、“%s”、“%s”、“%s” \n"
 
 #, c-format
@@ -208,9 +208,6 @@ msgstr "%s：第%d个输入参数的维度错误：应该为整数标量。\n"
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s：输入参数%d错误。\n"
 
-#
-# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 429
-# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 648
 #, c-format
 msgid "%s: Input missing from console.\n"
 msgstr ""
@@ -271,15 +268,3 @@ msgstr "%s：%s在执行过程中发生错误"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr "%s：命令执行失败，其错误代码为%s，错误消息为：\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-#~ msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-#~ msgstr "%s: 第%d个输入参数的值错误：应该为‘%s’。\n"
-
-#, c-format
-#~ msgid "End of file at line %d.\n"
-#~ msgstr "文件结束于第%d行。\n"

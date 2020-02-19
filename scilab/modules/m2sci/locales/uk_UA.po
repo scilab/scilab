@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-01-20 15:52+0000\n"
+"PO-Revision-Date: 2020-02-19 07:06+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: uk\n"
 
 msgid "Input file"
 msgstr "Вхідний файл"
@@ -48,6 +48,7 @@ msgstr "Про_інструменти_M2SCI"
 msgid ""
 "%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
 msgstr ""
+"%s: вставлення розрідженої матриці до числової матриці не визначено.\n"
 
 #, c-format
 msgid ""
@@ -87,7 +88,8 @@ msgstr ""
 "параметра, не відповідають вказаному вмісту комірок.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s: цю можливість не реалізовано: підтримка гіперматриць.\n"
 
 #, c-format
@@ -134,7 +136,8 @@ msgstr ""
 "матрицю.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати %s, %s, "
 "«%s» або «%s».\n"
@@ -222,7 +225,8 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s: у Scilab не передбачено додаткової ґратки.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"
@@ -255,7 +259,8 @@ msgstr "%s: параметр «%s» проігноровано.\n"
 
 #, c-format
 msgid "%s: Unknown line style found in '%s' -> set to 6.\n"
-msgstr "%s: у «%s» виявлено невідомий стиль лінії -> встановлено значення 6.\n"
+msgstr ""
+"%s: у «%s» виявлено невідомий стиль лінії -> встановлено значення 6.\n"
 
 #, c-format
 msgid "%s: Unknown color found in '%s' -> set to black.\n"
@@ -454,7 +459,8 @@ msgid "lhs cannot be a %s."
 msgstr "lhs не може бути %s."
 
 #, c-format
-msgid "recursive extraction with one index of type %s is not yet implemented."
+msgid ""
+"recursive extraction with one index of type %s is not yet implemented."
 msgstr "рекурсивне видобування з одним індексом типу %s ще не реалізовано."
 
 #, c-format
@@ -469,7 +475,8 @@ msgid "Matlab function %s not yet converted."
 msgstr "Функцію Matlab %s ще не перетворено."
 
 #, c-format
-msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid ""
+"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 "mtlb(%s) можна замінити на %s() або %s, незалежно від того, є %s M-файлом чи "
 "ні."
@@ -525,7 +532,8 @@ msgid "// Display mode"
 msgstr "// Режим показу"
 
 msgid "// Display warning for floating point exception"
-msgstr "// Показ попередження для виключень під час операцій з плаваючою комою"
+msgstr ""
+"// Показ попередження для виключень під час операцій з плаваючою комою"
 
 msgid "// Output variables initialisation (not found in input variables)"
 msgstr "// Ініціалізація вихідних змінних (не знайдено у вхідних змінних)"
@@ -609,8 +617,8 @@ msgstr "якщо"
 msgid ""
 "not enough data, you should give at least variable_name|dimensions|datatype."
 msgstr ""
-"недостатньо даних, вам слід вказати принаймні variable_name|dimensions|"
-"datatype."
+"недостатньо даних, вам слід вказати принаймні "
+"variable_name|dimensions|datatype."
 
 msgid "too much data."
 msgstr "забагато даних."
@@ -800,11 +808,9 @@ msgstr "Зміна синтаксису…"
 msgid "Syntax modification: Done"
 msgstr "Зміна синтаксису: виконано"
 
-#
-# File: modules/m2sci/macros/mfile2sci.sci, line: 212
 #, c-format
 msgid "%s: %s does not exist or is not the macro name.\n"
-msgstr ""
+msgstr "%s: %s не існує або не є назвою макроса.\n"
 
 #, c-format
 msgid ""
@@ -867,7 +873,8 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** Завершення сеансу mfile2sci() ******"
 
 #, c-format
-msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid ""
+"At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Принаймні один з операндів %s є порожньою матрицею. Еквівалентом у Scilab "
 "буде []."
@@ -877,14 +884,16 @@ msgid "recursive extraction from a variable %s of type %s."
 msgstr "рекурсивне видобування зі змінної %s типу %s."
 
 msgid "Extraction from strings with more than two indexes not implemented."
-msgstr "Видобування рядків з кількістю індексів, більшою за 2, не реалізовано."
+msgstr ""
+"Видобування рядків з кількістю індексів, більшою за 2, не реалізовано."
 
 #, c-format
 msgid "M2SCI bug: extraction from unknown variable %s in varslist."
 msgstr "Вада M2SCI: видобування невідомої змінної %s у списку змінних."
 
 #, c-format
-msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid ""
+"recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
 "рекурсивна вставка у змінну, яка не належить до типу «cell» або «struct»: %s."
 
@@ -894,7 +903,8 @@ msgstr "змінна призначення не є коміркою: %s нал�
 
 #, c-format
 msgid "One operand is an empty matrix in : %s, result set to []."
-msgstr "У %s одним з операндів є порожня матриця, результат встановлено у []."
+msgstr ""
+"У %s одним з операндів є порожня матриця, результат встановлено у []."
 
 #, c-format
 msgid ""
@@ -903,27 +913,21 @@ msgstr ""
 "Принаймні один з операндів є порожньою матрицею: %s, встановлено результат "
 "[]."
 
-#
-# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 25
 #, c-format
 msgid ""
 "If %s is imaginary and its module is > 1\n"
 "      the real part of %s is -/2 in Scilab instead of +/2 in Matlab."
 msgstr ""
+"Якщо %s є уявною частиною і її модуль > 1,\n"
+"      дійсна частина %s у Scilab дорівнює -π/2, а не +π/2, як у Matlab."
 
-#
-# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 27
 #, c-format
 msgid ""
 "If %s is in [0,1)\n"
 "  imag(%s) is -/2 in Scilab instead of +/2 in Matlab."
 msgstr ""
+"Якщо %s належить [0,1)\n"
+"  imag(%s) у Scilab дорівнює -π/2, а не +π/2, як у Matlab."
 
 #, c-format
 msgid ""
@@ -934,13 +938,12 @@ msgstr ""
 "   комплексна частина вихідного значення %s матиме знак, протилежний до "
 "визначеного у Matlab."
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "If %s < -1, complex part of output of %s will be the opposite of Matlab one."
 msgstr ""
-"Якщо %s не перебуває у проміжку [-1,1]\n"
-"   комплексна частина вихідного значення %s матиме знак, протилежний до "
-"визначеного у Matlab."
+"Якщо %s < -1, комплексна частина результату %s буде мати протилежний знак "
+"відносно отриманої за допомогою Matlab."
 
 msgid "is Real."
 msgstr "є дійсним числом."
@@ -1073,13 +1076,15 @@ msgstr ""
 msgid "Unhandled class: %s."
 msgstr "Непридатний для обробки клас: %s."
 
-msgid "isequal requires fields are in the same order for structs to be equal."
+msgid ""
+"isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 "Для isequal потрібно використовувати поля у тому самому порядку для того, "
 "щоб структури були рівними."
 
 msgid "Option -regexp not yet handled: will be ignored."
-msgstr "Обробки параметра -regexp ще не передбачено, його буде проігноровано."
+msgstr ""
+"Обробки параметра -regexp ще не передбачено, його буде проігноровано."
 
 #, c-format
 msgid "%s is an empty matrix, so result is set to []."
@@ -1100,7 +1105,8 @@ msgid "%s considered to be a Scilab macro."
 msgstr "%s розпізнано як макрос Scilab."
 
 msgid "string output can be different from Matlab num2str output."
-msgstr "вихідний рядок може відрізнятися від вихідного рядка num2str у Matlab."
+msgstr ""
+"вихідний рядок може відрізнятися від вихідного рядка num2str у Matlab."
 
 msgid "See msprintf for solutions."
 msgstr "Див. шляхи розв’язання у msprintf."
@@ -1123,7 +1129,8 @@ msgstr ""
 "розмірності, це не стосується матриць."
 
 msgid "Option -append not yet handled: will be ignored."
-msgstr "Обробки параметра -append ще не передбачено, його буде проігноровано."
+msgstr ""
+"Обробки параметра -append ще не передбачено, його буде проігноровано."
 
 #, c-format
 msgid ""
@@ -1164,31 +1171,3 @@ msgstr "%s: вихідне значення встановлено у значе
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
-
-#, c-format
-#~ msgid ""
-#~ "If %s is outside [-1,1]\n"
-#~ "   real part of output of %s will be the opposite of Matlab one."
-#~ msgstr ""
-#~ "Якщо %s не належатиме проміжку [-1,1],\n"
-#~ "   дійсна частина виводу %s матиме протилежний знак щодо значення у "
-#~ "Matlab."
-
-#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
-#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
-
-#~ msgid "%s: %s module is not installed.\n"
-#~ msgstr "%s: модуль %s не встановлено.\n"
-
-#~ msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип параметра %d: слід використовувати матрицю булівських "
-#~ "значень.\n"
-
-#~ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова розмірність вхідного параметра №%d: мала бути матриця %d на "
-#~ "%d.\n"
-
-#~ msgid "%s: Could not read variables in %s"
-#~ msgstr "%s: не вдалося прочитати змінні з %s"

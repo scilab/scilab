@@ -8,17 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 11:14+0000\n"
-"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"PO-Revision-Date: 2019-03-24 12:57+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ru\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%s: An MPI communicator expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%s: An MPI communicator expected.\n"
 msgstr ""
 
 #, c-format
@@ -45,6 +46,8 @@ msgstr ""
 #, c-format
 msgid "%s: Unable to deserialize data.\n"
 msgstr ""
+"%s: Невозможно преобразовать данные из последовательной формы в "
+"параллельную.\n"
 
 #, c-format
 msgid "%s: Unable to create variable.\n"
@@ -70,15 +73,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: MPI_Probe failed. Rank %d / Tag %d: %s\n"
-msgstr ""
+msgstr "%s: MPI_Probe провален. Rank %d / Tag %d: %s\n"
 
 #, c-format
 msgid "%s: MPI_Get_count failed. Rank %d / Tag %d: %s\n"
-msgstr ""
+msgstr "%s: MPI_Get_count провален. Rank %d / Tag %d: %s\n"
 
 #, c-format
 msgid "%s: MPI_Irecv failed. Rank %d / Tag %d: %s\n"
-msgstr ""
+msgstr "%s: MPI_Irecv провален. Rank %d / Tag %d: %s\n"
 
 #, c-format
 msgid "%s: Could not send the variable to the node %d: %s\n"
@@ -98,7 +101,7 @@ msgstr "%s: Невозможно преобразовать данные в па
 
 #, c-format
 msgid "%s: MPI_Wait failed while waiting %d: %s\n"
-msgstr ""
+msgstr "%s: MPI_Wait провален во время ожидания %d: %s\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -110,4 +113,5 @@ msgstr "%s: Неверное количество выходных аргуме�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Matrix expected.\n"
-msgstr "%s: Неверное количество выходных аргументов #%d: ожидалась матрица.\n"
+msgstr ""
+"%s: Неверное количество выходных аргументов #%d: ожидалась матрица.\n"

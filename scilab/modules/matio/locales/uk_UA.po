@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 07:31+0000\n"
+"PO-Revision-Date: 2020-01-15 18:48+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
-"Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
@@ -156,7 +156,8 @@ msgstr "%s: помилковий тип параметра %d: мало бути
 
 #, c-format
 msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
-msgstr "%s: m-списки типу %s не можна записувати до бінарних файлів Matlab.\n"
+msgstr ""
+"%s: m-списки типу %s не можна записувати до бінарних файлів Matlab.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
@@ -174,21 +175,17 @@ msgstr ""
 msgid "%s: This feature has not been implemented: %s."
 msgstr "%s: цю можливість не реалізовано: %s."
 
-#
-# File: modules/matio/macros/loadmatfile.sci, line: 74
 #, c-format
 msgid "%s: The file '%s' does not exist.\n"
-msgstr ""
+msgstr "%s: файла «%s» не існує.\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: не вдалося відкрити файл %s.\n"
 
-#
-# File: modules/matio/macros/loadmatfile.sci, line: 179
 #, c-format
 msgid "%s: Unsupported input file data type: '%s'.\n"
-msgstr ""
+msgstr "%s: непідтримуваний тип даних у файлі вхідних даних: «%s».\n"
 
 #, c-format
 msgid ""
@@ -197,41 +194,40 @@ msgstr ""
 "%s: з файла «%s» не прочитано жодної змінної. Перевірте, чи не пошкоджено це "
 "файл.\n"
 
-#
-# File: modules/matio/macros/loadmatfile.sci, line: 216
-# File: modules/matio/macros/loadmatfile.sci, line: 365
-# File: modules/matio/macros/loadmatfile.sci, line: 409
-# File: modules/matio/macros/loadmatfile.sci, line: 428
-# File: modules/matio/macros/loadmatfile.sci, line: 436
 #, c-format
 msgid "loadmatfile: Error in input file at line #%d: '%s' expected.\n"
 msgstr ""
+"loadmatfile: помилка у рядку %d файла вхідних даних: мало бути «%s».\n"
 
-#
-# File: modules/matio/macros/matfile2sci.sci, line: 24
 #, c-format
 msgid "%s: %s module is not installed.\n"
-msgstr ""
+msgstr "%s: модуль %s не встановлено.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
+"%s: помилковий тип параметра %d: слід використовувати матрицю булівських "
+"значень.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мала бути матриця %d на "
+"%d.\n"
 
 #, c-format
 msgid "%s: Could not read variables in %s"
-msgstr ""
+msgstr "%s: не вдалося прочитати змінні у %s"
 
 #, c-format
 msgid "%s: Argument #%d: String expected.\n"
-msgstr ""
+msgstr "%s: параметр %d: мало бути використано рядок.\n"
 
 #, c-format
 msgid "Option %s not implemented: IGNORED."
@@ -245,14 +241,14 @@ msgid ""
 "%s: Name conflict: it is not possible to save variable with name %s "
 "(ignored)."
 msgstr ""
+"%s: конфлікт назв: не можна зберегти змінну із назвою %s (проігноровано)."
 
 msgid "Attempt to write an unsupported data type to a binary file."
 msgstr "Спроба запису непідтримуваного типу даних до файла двійковий."
 
-#
-# File: modules/matio/macros/savematfile.sci, line: 301
 msgid "savematfile: No variable to save => No file written."
 msgstr ""
+"savematfile: немає змінних для збереження => ніяких файлів не записано."
 
 #, c-format
 msgid "%s: Could not open file '%s'.\n"
@@ -267,9 +263,5 @@ msgid ""
 "%s: Variable %s can not be saved in MAT-file version %s (type %d "
 "unsupported): IGNORED.\n"
 msgstr ""
-
-#~ msgid "All inputs must be character strings."
-#~ msgstr "Всі вхідні значення мають бути рядками з символів."
-
-#~ msgid "Variable %s can not be saved in ASCII file: IGNORED."
-#~ msgstr "Змінну %s не можна зберегти у файлі ASCII: ПРОПУЩЕНО."
+"%s: змінну %s не можна зберегти у файлі MAT версії %s (не передбачено "
+"підтримки типу %d): ПРОІГНОРОВАНО.\n"

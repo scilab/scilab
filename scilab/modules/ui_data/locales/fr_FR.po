@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 10:43+0000\n"
-"Last-Translator: Paul Bignier <Unknown>\n"
+"PO-Revision-Date: 2020-02-14 08:56+0000\n"
+"Last-Translator: Stéphane Mottelet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: fr\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -27,7 +27,8 @@ msgstr "%s : Nombre erroné d'arguments de sortie : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d attendu(s).\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -74,8 +75,6 @@ msgstr "Type"
 msgid "Visibility"
 msgstr "Visibilité"
 
-#
-# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 50
 msgid "Memory"
 msgstr ""
 
@@ -275,7 +274,7 @@ msgid "Export the selection to CSV"
 msgstr "Exporter la sélection en CSV"
 
 msgid "Rows number"
-msgstr "Nombre de rangées"
+msgstr "Nombre de lignes"
 
 msgid "Columns number"
 msgstr "Nombre de colonnes"
@@ -383,16 +382,3 @@ msgstr "&?"
 
 msgid "&About Scilab..."
 msgstr "&À propos de Scilab..."
-
-#, c-format
-#~ msgid "%s: ans cannot be edited.\n"
-#~ msgstr "%s : ans ne peut être édité.\n"
-
-#~ msgid "Bytes"
-#~ msgstr "Octets"
-
-#~ msgid "Bytes:"
-#~ msgstr "Octets :"
-
-#~ msgid "Compiled function"
-#~ msgstr "Fonction compilée"

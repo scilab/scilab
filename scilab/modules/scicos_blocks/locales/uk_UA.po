@@ -3,20 +3,20 @@
 # This file is distributed under the same license as the scilab package.
 #
 # Yuri Chornoivan <yurchor@gmail.com>, 2011.
-# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2013.
+# Yuri Chornoivan <yurchor@ukr.net>, 2011, 2013, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 15:28+0000\n"
+"PO-Revision-Date: 2020-02-19 09:13+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
-"Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 msgid "overflow error"
 msgstr "помилка переповнення"
@@ -138,245 +138,154 @@ msgstr "Значення вектора часових даних має бут�
 msgid "Set %s block parameters"
 msgstr "Визначити параметри блоку %s"
 
-#
-# File: modules/scicos_blocks/macros/Branching/CLKFROM.sci, line: 33
-# File: modules/scicos_blocks/macros/Branching/CLKGOTO.sci, line: 35
-# File: modules/scicos_blocks/macros/Branching/FROM.sci, line: 35
-# File: modules/scicos_blocks/macros/Branching/FROMMO.sci, line: 35
-# File: modules/scicos_blocks/macros/Branching/GOTO.sci, line: 35
-# File: modules/scicos_blocks/macros/Branching/GOTOMO.sci, line: 35
 msgid "Tag"
-msgstr ""
+msgstr "Мітка"
 
-#
-# File: modules/scicos_blocks/macros/Branching/CLKGOTO.sci, line: 41
-# File: modules/scicos_blocks/macros/Branching/GOTO.sci, line: 42
-# File: modules/scicos_blocks/macros/Branching/GOTOMO.sci, line: 42
 msgid "Tag Visibility must be between 1 and 3"
-msgstr ""
+msgstr "Значенням видимості мітки має бути число від 1 до 3"
 
-#
-# File: modules/scicos_blocks/macros/Branching/CLKGotoTagVisibility.sci, line: 35
-# File: modules/scicos_blocks/macros/Branching/GotoTagVisibility.sci, line: 35
-# File: modules/scicos_blocks/macros/Branching/GotoTagVisibilityMO.sci, line: 35
 msgid "Goto Tag"
-msgstr ""
+msgstr "Мітка переходу"
 
-#, fuzzy
 msgid "Number of output ports or vector of sizes"
-msgstr "Кількість бітів або позиція біта"
+msgstr "Кількість вихідних портів або вектор розмірностей"
 
-#
-# File: modules/scicos_blocks/macros/Branching/DEMUX.sci, line: 41
 msgid "The block must have from 2 to 31 output ports"
-msgstr ""
+msgstr "У блоку має бути від 2 до 31 вихідних портів"
 
-#
-# File: modules/scicos_blocks/macros/Branching/DEMUX.sci, line: 48
-msgid "The block must have from 2 to 31 output ports.<br>size 0 is not allowed"
+msgid ""
+"The block must have from 2 to 31 output ports.<br>size 0 is not allowed"
 msgstr ""
+"У блоку має бути від 2 до 31 вихідних портів.<br>Розмірність 0 "
+"використовувати не можна"
 
-#
-# File: modules/scicos_blocks/macros/Branching/DEMUX_f.sci, line: 41
 msgid "The block must have from 2 to 8 output ports"
-msgstr ""
+msgstr "У блоку має бути від 2 до 8 вихідних портів"
 
-#
-# File: modules/scicos_blocks/macros/Branching/DEMUX_f.sci, line: 48
-msgid "The block must have from 2 to 8 output ports.<br>size 0 is not allowed."
+msgid ""
+"The block must have from 2 to 8 output ports.<br>size 0 is not allowed."
 msgstr ""
+"У блоку має бути від 2 до 8 вихідних портів.<br>Розмірність 0 "
+"використовувати не можна."
 
-#, fuzzy
 msgid "Number of output event ports"
-msgstr "Кількість рядків має бути рівною степеню двійки."
+msgstr "Кількість портів вихідних подій"
 
-#, fuzzy
 msgid "The block must have at least two output ports"
-msgstr ""
-"Вхідними даними часу для блоку перемикача має бути дискретна послідовність "
-"чисел."
+msgstr "У блоку має бути принаймні два вхідних порти"
 
-#, fuzzy
 msgid "Indices to extract"
-msgstr "Біти для видобування"
+msgstr "Індекси для видобування"
 
-#, fuzzy
 msgid "Number of outputs"
-msgstr "Кількість вузлів:"
+msgstr "Кількість виходів"
 
-#
-# File: modules/scicos_blocks/macros/Branching/ISELECT_f.sci, line: 41
-# File: modules/scicos_blocks/macros/Branching/ISELECT_m.sci, line: 43
-# File: modules/scicos_blocks/macros/Branching/RELAY_f.sci, line: 42
-# File: modules/scicos_blocks/macros/Branching/SELECT_f.sci, line: 41
-# File: modules/scicos_blocks/macros/Branching/SELECT_m.sci, line: 43
-# File: modules/scicos_blocks/macros/Branching/SWITCH_f.sci, line: 42
 msgid "The initial connected input is not a valid input port number"
-msgstr ""
+msgstr "Початковий з'єднаний вхід не є коректним номером вхідного порту"
 
-#
-# File: modules/scicos_blocks/macros/Branching/ISELECT_m.sci, line: 35
 msgid "Datatype (1= real double  2=Complex 3=int32 ...)"
-msgstr ""
+msgstr "Тип даних (1=дійсний подвійної точності 2=комплексний 3=int32 ...)"
 
-#
-# File: modules/scicos_blocks/macros/Branching/ISELECT_m.sci, line: 45
-# File: modules/scicos_blocks/macros/Branching/SWITCH2_m.sci, line: 61
 msgid "Datatype not supported"
-msgstr ""
+msgstr "Підтримки типу даних не передбачено"
 
-#, fuzzy
 msgid "Number of input ports or vector of sizes"
-msgstr "Кількість бітів або позиція біта"
+msgstr "Кількість вхідних портів або вектор розмірностей"
 
-#, fuzzy
 msgid "The block must have from 2 to 31 input ports"
-msgstr ""
-"Вхідними даними часу для блоку перемикача має бути дискретна послідовність "
-"чисел."
+msgstr "У блоку має бути від 2 до 31 вхідних портів"
 
-#
-# File: modules/scicos_blocks/macros/Branching/MUX.sci, line: 48
 msgid ""
 "The block must have from 2 to 31 input ports.<br>size 0 is not allowed. "
 msgstr ""
+"У блоку має бути від 2 до 31 вхідних портів.<br>Розмірність 0 "
+"використовувати не можна. "
 
-#
-# File: modules/scicos_blocks/macros/Branching/MUX_f.sci, line: 41
 msgid "Block must have from 2 to 8 input ports"
-msgstr ""
+msgstr "У блоку має бути від 2 до 8 вхідних портів"
 
-#
-# File: modules/scicos_blocks/macros/Branching/MUX_f.sci, line: 48
-msgid "The block must have from 2 to 8 input ports.<br>size 0 is not allowed."
+msgid ""
+"The block must have from 2 to 8 input ports.<br>size 0 is not allowed."
 msgstr ""
+"У блоку має бути від 2 до 8 вхідних портів.<br>Розмірність 0 використовувати "
+"не можна."
 
-#, fuzzy
 msgid "Number of inputs"
-msgstr "Кількість вузлів:"
+msgstr "Кількість входів"
 
-#, fuzzy
 msgid "Number of inputs >=1 expected"
-msgstr "Кількість бітів або позиція біта"
+msgstr "Кількість входів має бути >=1"
 
-#
-# File: modules/scicos_blocks/macros/Branching/M_SWITCH.sci, line: 47
 msgid "The zero base indexing must be 1 or 0"
-msgstr ""
+msgstr "Індексуванням нульового рівня має бути 1 або 0"
 
-#
-# File: modules/scicos_blocks/macros/Branching/M_SWITCH.sci, line: 49
 msgid "Unknown rounding rule"
-msgstr ""
+msgstr "Невідоме правило округлення"
 
-#, fuzzy
 msgid "number of inputs"
-msgstr "Кількість вузлів:"
+msgstr "кількість входів"
 
-#
-# File: modules/scicos_blocks/macros/Branching/SCALAR2VECTOR.sci, line: 36
 msgid "Size of output (-1: if don't know)"
-msgstr ""
+msgstr "Розмірність виходу (-1: невідома)"
 
-#
-# File: modules/scicos_blocks/macros/Branching/SCALAR2VECTOR.sci, line: 43
 msgid "The size of output must be -1 or > 0"
-msgstr ""
+msgstr "Розмір виходу має бути рівним -1 або > 0"
 
-#
-# File: modules/scicos_blocks/macros/Branching/SELECT_m.sci, line: 35
 msgid "Datatype (1= real double  2=Complex 3=int32 ..)"
-msgstr ""
+msgstr "Тип даних (1=дійсний подвійної точності 2=комплексний 3=int32 ..)"
 
-#
-# File: modules/scicos_blocks/macros/Branching/SELECT_m.sci, line: 45
-# File: modules/scicos_blocks/macros/Linear/REGISTER.sci, line: 72
-# File: modules/scicos_blocks/macros/Linear/SAMPHOLD_m.sci, line: 42
-# File: modules/scicos_blocks/macros/Linear/SUMMATION.sci, line: 83
-# File: modules/scicos_blocks/macros/MatrixOp/SUBMAT.sci, line: 59
 msgid "Unknown Datatype"
-msgstr ""
+msgstr "Невідомий тип даних"
 
-#
-# File: modules/scicos_blocks/macros/Branching/SWITCH2.sci, line: 35
 msgid "Pass first input if: u2>=a (0), u2>a (1), u2~=a (2)"
-msgstr ""
+msgstr "Умова передавання першого входу: u2>=a (0), u2>a (1), u2~=a (2)"
 
-#
-# File: modules/scicos_blocks/macros/Branching/SWITCH2_m.sci, line: 35
 msgid "Datatype (1=real double  2=complex 3=int32 ...)"
-msgstr ""
+msgstr "Тип даних (1=дійсний подвійної точності 2=комплексний 3=int32 ...)"
 
-#
-# File: modules/scicos_blocks/macros/Branching/SWITCH_f.sci, line: 36
 msgid "Connected input"
-msgstr ""
+msgstr "З'єднаний вхід"
 
-#, fuzzy
 msgid "Initial Voltage"
-msgstr "Початкове значення"
+msgstr "Початкова напруга"
 
-#
-# File: modules/scicos_blocks/macros/Electrical/Diode.sci, line: 35
 msgid "Saturation current (A)"
-msgstr ""
+msgstr "Струм насичення (А)"
 
-#
-# File: modules/scicos_blocks/macros/Electrical/Gyrator.sci, line: 39
 msgid "G1: Gyration conductance"
-msgstr ""
+msgstr "G1: комплексна електропровідність"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Set %s block parameters\n"
-msgstr "Визначити параметри блоку %s"
+msgstr "Визначити параметри блоку %s\n"
 
-#
-# File: modules/scicos_blocks/macros/Electrical/NMOS.sci, line: 35
-# File: modules/scicos_blocks/macros/Electrical/PMOS.sci, line: 35
 msgid "Width [m]"
-msgstr ""
+msgstr "Ширина [м]"
 
-#
-# File: modules/scicos_blocks/macros/Electrical/NPN.sci, line: 39
-# File: modules/scicos_blocks/macros/Electrical/PNP.sci, line: 39
 msgid "Bf  : Forward beta"
-msgstr ""
+msgstr "Bf  : коефіцієнт підсилення струму"
 
-#
-# File: modules/scicos_blocks/macros/Electrical/OpAmp.sci, line: 35
 msgid "Open Loop Gain"
-msgstr ""
+msgstr "Підсилення відкритого циклу"
 
-#
-# File: modules/scicos_blocks/macros/Electrical/SineVoltage.sci, line: 39
-# File: modules/scicos_blocks/macros/Electrical/VsourceAC.sci, line: 39
 msgid "Amplitude (Volt)"
-msgstr ""
+msgstr "Амплітуда (вольти)"
 
-#
-# File: modules/scicos_blocks/macros/Electrical/Switch.sci, line: 38
 msgid "non-ideal electrical switch"
-msgstr ""
+msgstr "неідеальний електричний перемикач"
 
-#
-# File: modules/scicos_blocks/macros/Electrical/Switch.sci, line: 39
 msgid "Resistance in On state (Ohm)"
-msgstr ""
+msgstr "Опір у стані «увімкнено» (Ом)"
 
-#, fuzzy
 msgid "Frequency (Hz)"
-msgstr "Частота (рад/с)"
+msgstr "Частота (Гц)"
 
-#, fuzzy
 msgid "Set final simulation time"
-msgstr "Час ініціалізації"
+msgstr "Встановлення часу завершення імітації"
 
-#, fuzzy
 msgid "Final simulation time"
-msgstr "Час ініціалізації"
+msgstr "Час завершення імітації"
 
-#
-# File: modules/scicos_blocks/macros/Events/EVTDLY_c.sci, line: 32
 msgid ""
 "Set Event Delay block parameters<br><br>Delay is the delay between an input "
 "event<br>&nbsp; and the generated output event.<br>Block may initially "
@@ -384,20 +293,19 @@ msgid ""
 "initial output event' gives the date of this event.<br>&nbsp; Set a negative "
 "value to mind only the input events.<br><br>"
 msgstr ""
+"Встановлення параметрів блоку затримки події<br><br>Затримка — затримка між "
+"вхідною подією<br>&nbsp; і створеною вихідною подією.<br>Блок у початковому "
+"стані може створювати вихідну подію навіть до<br>&nbsp; будь-якої вхідної "
+"події.<br>«Момент початкової вихідної події» задає момент, коли слід "
+"надіслати повідомлення про початкову вихідну подію.<br>&nbsp; Встановіть "
+"від'ємне значення, щоб блок реагував лише на вхідні події.<br><br>"
 
-#
-# File: modules/scicos_blocks/macros/Events/EVTDLY_c.sci, line: 35
-# File: modules/scicos_blocks/macros/Events/EVTDLY_f.sci, line: 35
-# File: modules/scicos_blocks/macros/Linear/TIME_DELAY.sci, line: 37
 msgid "Delay"
-msgstr ""
+msgstr "Затримка"
 
-#, fuzzy
 msgid "Delay must be positive"
-msgstr "Номер порту має бути додатним цілим числом"
+msgstr "Затримка має бути додатною"
 
-#
-# File: modules/scicos_blocks/macros/Events/EVTDLY_f.sci, line: 32
 msgid ""
 "Set Event Delay block parameters<br><br>Delay is the delay between an input "
 "event<br>and the generated output event.<br>Block may initially generate an "
@@ -405,78 +313,59 @@ msgid ""
 "gives the date of this event.<br>&nbsp;&nbsp;Set a negative value if no "
 "initial event is required.<br><br>"
 msgstr ""
+"Встановлення параметрів блоку затримки події<br><br>Затримка — затримка між "
+"вхідною подією<br>і створеною вихідною подією.<br>Блок у початковому стані "
+"може створювати вихідну подію навіть до<br>будь-якої вхідної "
+"події.<br>«Момент початкової вихідної події» задає момент, коли слід "
+"надіслати повідомлення про початкову вихідну "
+"подію.<br>&nbsp;&nbsp;Встановіть від'ємне значення, якщо вхідна подія "
+"непотрібна.<br><br>"
 
-#
-# File: modules/scicos_blocks/macros/Events/EVTGEN_f.sci, line: 33
 msgid "Set Event time"
-msgstr ""
+msgstr "Встановлення часу події"
 
-#, fuzzy
 msgid "Event Time"
-msgstr "Час сходинки"
+msgstr "Час події"
 
-#
-# File: modules/scicos_blocks/macros/Events/EVTVARDLY.sci, line: 33
 msgid "Set parameter of variable event delay"
-msgstr ""
+msgstr "Встановлення параметра змінної затримки події"
 
-#
-# File: modules/scicos_blocks/macros/Events/EVTVARDLY.sci, line: 34
 msgid "Initial event firing time (<0 if none)"
-msgstr ""
+msgstr "Час початкового ініціювання події (<0, якщо немає)"
 
-#
-# File: modules/scicos_blocks/macros/Events/HALT_f.sci, line: 35
 msgid "State on halt"
-msgstr ""
+msgstr "Стан при перериванні"
 
-#
-# File: modules/scicos_blocks/macros/Events/IFTHEL_f.sci, line: 41
 msgid "Inherit (1: no, 0: yes)"
-msgstr ""
+msgstr "Успадкування (1: ні, 0: так)"
 
-#
-# File: modules/scicos_blocks/macros/Events/MFCLCK_f.sci, line: 34
 msgid "Basic period (1/f)"
-msgstr ""
+msgstr "Базовий період (1/f)"
 
-#
-# File: modules/scicos_blocks/macros/Events/M_freq.sci, line: 35
-# File: modules/scicos_blocks/macros/Sources/SampleCLK.sci, line: 35
 msgid "Sample time"
-msgstr ""
+msgstr "Час вибірки"
 
-#
-# File: modules/scicos_blocks/macros/Events/M_freq.sci, line: 43
 msgid "The offset and frequency must have the same size"
-msgstr ""
+msgstr "Розмірності зсуву і частоти мають бути однаковими"
 
-#, fuzzy
 msgid "The frequency must be a positive number"
-msgstr "Номер порту має бути додатним цілим числом"
+msgstr "Частота має бути додатним числом"
 
-#
-# File: modules/scicos_blocks/macros/Events/M_freq.sci, line: 49
 msgid "The |Offset| must be less than the Frequency"
-msgstr ""
+msgstr "Значення зсуву має бути меншим за частоту"
 
-#, fuzzy
 msgid "Set frequency division block parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення параметрів блоку поділу за частотою"
 
-#
-# File: modules/scicos_blocks/macros/Events/freq_div.sci, line: 55
 msgid "Phase (0 to division factor -1)"
-msgstr ""
+msgstr "Фаза (0 для коефіцієнта поділу -1)"
 
 msgid "Clear a bit"
 msgstr "Спорожнити біт"
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/BITCLEAR.sci, line: 39
 #, c-format
 msgid "Data Type %s (3:int32, 4:int16, 5:int8, ...)"
-msgstr ""
+msgstr "Тип даних %s (3:int32, 4:int16, 5:int8, ...)"
 
 msgid "Index of Bit (0 is least significant)"
 msgstr "Позиція біта (0 — менший біт)"
@@ -505,21 +394,18 @@ msgstr "Тип даних"
 msgid "Set a bit"
 msgstr "Визначити біт"
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/BITSET.sci, line: 38
-# File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 35
-# File: modules/scicos_blocks/macros/IntegerOp/INTMUL.sci, line: 38
-# File: modules/scicos_blocks/macros/IntegerOp/SHIFT.sci, line: 38
 msgid "Data Type (3:int32, 4:int16, 5:int8, ...)"
-msgstr ""
+msgstr "Тип даних (3:int32, 4:int16, 5:int8, ...)"
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 33
 msgid ""
-"Set CONVERT block parameters<br><br>Type conversion<br><br>(a) 1|2:"
-"double&nbsp;  3:int32&nbsp;  4:int16&nbsp;  5:int8&nbsp;  6:uint32&nbsp;  7:"
-"uint16&nbsp;  8:uint8<br>(b) 0:Nothing, 1:Saturate, 2:Error<br><br>"
+"Set CONVERT block parameters<br><br>Type conversion<br><br>(a) "
+"1|2:double&nbsp;  3:int32&nbsp;  4:int16&nbsp;  5:int8&nbsp;  6:uint32&nbsp; "
+" 7:uint16&nbsp;  8:uint8<br>(b) 0:Nothing, 1:Saturate, 2:Error<br><br>"
 msgstr ""
+"Встановлення параметрів блоку перетворення<br><br>Тип "
+"перетворення<br><br>(a) 1|2:double&nbsp;  3:int32&nbsp;  4:int16&nbsp;  "
+"5:int8&nbsp;  6:uint32&nbsp;  7:uint16&nbsp;  8:uint8<br>(b) 0:Нічого, "
+"1:Насичення, 2:Помилка<br><br>"
 
 msgid "Input type (a)"
 msgstr "Тип вхідних даних (a)"
@@ -539,17 +425,24 @@ msgstr "Вхідний тип"
 msgid "Output Type"
 msgstr "Тип вихідних даних"
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 32
 msgid ""
 "Set EXTRACTBITS block parameters<br><br>Bits Extraction<br><br>&nbsp;- Bits "
-"to Extract:<br>&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half<br>&nbsp;&nbsp;&nbsp;"
-"&nbsp;2 Lower Half<br>&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB<br>&nbsp;"
-"&nbsp;&nbsp;&nbsp;4 Range to LSB<br>&nbsp;&nbsp;&nbsp;&nbsp;5 Range of "
-"Bits<br>&nbsp;- Number of Bits or Index of bit : Index 0 is LSB<br>&nbsp;"
-"&nbsp;&nbsp;&nbsp;If 'Bits to Extract' is set to 'Range of bits': [Start, "
-"End]<br><br>"
+"to Extract:<br>&nbsp;&nbsp;&nbsp;&nbsp;1 Upper "
+"Half<br>&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half<br>&nbsp;&nbsp;&nbsp;&nbsp;3 "
+"Range from MSB<br>&nbsp;&nbsp;&nbsp;&nbsp;4 Range to "
+"LSB<br>&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits<br>&nbsp;- Number of Bits or "
+"Index of bit : Index 0 is LSB<br>&nbsp;&nbsp;&nbsp;&nbsp;If 'Bits to "
+"Extract' is set to 'Range of bits': [Start, End]<br><br>"
 msgstr ""
+"Встановлення параметрів блоку EXTRACTBITS<br><br>Видобування "
+"бітів<br><br>&nbsp;— Біти, які слід видобути:<br>&nbsp;&nbsp;&nbsp;&nbsp;1 — "
+"верхня половина<br>&nbsp;&nbsp;&nbsp;&nbsp;2 — нижня "
+"половина<br>&nbsp;&nbsp;&nbsp;&nbsp;3 — діапазон від старшого "
+"розряду<br>&nbsp;&nbsp;&nbsp;&nbsp;4 — діапазон до меншого "
+"розряду<br>&nbsp;&nbsp;&nbsp;&nbsp;5 — діапазон бітів<br>&nbsp;— Кількість "
+"бітів або індекс біта: індекс 0 — найменший "
+"розряд<br>&nbsp;&nbsp;&nbsp;&nbsp;Якщо встановлено «Діапазон бітів» для "
+"параметра «Біти для видобування»: [Початок, Кінець]<br><br>"
 
 msgid "Bits to extract"
 msgstr "Біти для видобування"
@@ -598,24 +491,28 @@ msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
 msgstr ""
 "Дія при переповненні (0: Нічого, 1: Доповнити, 2: Повідомити про помилку)"
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/JKFLIPFLOP.sci, line: 43
 msgid ""
 "Set JKFLIPFLOP block parameters<br><br>JK flip-flop<br><br>The 'Initial "
 "Value' must be 0 or 1 of type int8<br>&nbsp;- Negative values are considered "
 "as int8(0)<br>&nbsp;- Positive values are considered as int8(1)<br><br>"
 msgstr ""
+"Встановлення параметрів блоку JKFLIPFLOP<br><br>перемикач "
+"JK<br><br>Значенням параметра «Початкове значення» має бути 0 або 1 типу "
+"int8<br>&nbsp;— Від'ємні значення вважаються рівними int8(0)<br>&nbsp;— "
+"Додатні значення вважаються рівними int8(1)<br><br>"
 
 msgid "Initial Value"
 msgstr "Початкове значення"
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/LOGIC.sci, line: 33
 msgid ""
 "Set LOGIC block parameters<br><br>Combinatorial logic:<br><br>&nbsp; Rows of "
 "the matrix are the output values.<br>&nbsp; Number of rows must be a power "
 "of two.<br>&nbsp; Number of columns gives the number of outputs.<br><br>"
 msgstr ""
+"Встановлення параметрів логічного блоку<br><br>Комбінаторна "
+"логіка:<br><br>&nbsp; Рядки матриці є значеннями для виведення.<br>&nbsp; "
+"Кількість рядків має бути степенем двійки.<br>&nbsp; Кількість стовпчиків "
+"задає кількість виходів.<br><br>"
 
 msgid "Truth Table (matrix of outputs)"
 msgstr "Таблиця істинності (матриця виведених даних)"
@@ -657,1488 +554,924 @@ msgstr "Тип зсуву (0: арифметичний, 1: циклічний)"
 msgid "Shift Type"
 msgstr "Тип зсуву"
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/SRFLIPFLOP.sci, line: 43
 msgid ""
 "Set SR flip-flop block parameters<br><br>The 'Initial Value' must be 0 or 1 "
 "of type int8<br>&nbsp;- Negative values are considered as int8(0)<br>&nbsp;- "
 "Positive values are considered as int8(1)<br><br>"
 msgstr ""
+"Встановлення параметрів блоку перемикача SR<br><br>Значенням параметра "
+"«Початкове значення» має бути 0 або 1 типу int8<br>&nbsp;— Від'ємні значення "
+"вважаються рівними int8(0)<br>&nbsp;— Додатні значення вважаються рівними "
+"int8(1)<br><br>"
 
-#
-# File: modules/scicos_blocks/macros/Linear/BIGSOM_f.sci, line: 35
 msgid "Inputs ports signs/gain"
-msgstr ""
+msgstr "Знаки або підсилення вхідних портів"
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLR.sci, line: 40
-# File: modules/scicos_blocks/macros/Linear/CLR_f.sci, line: 42
 msgid "Set continuous SISO transfer parameters"
 msgstr ""
+"Встановлення параметрів неперервного передавання «один вхід — один вихід»"
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLR.sci, line: 41
-# File: modules/scicos_blocks/macros/Linear/CLR_f.sci, line: 43
 msgid "Numerator (s)"
-msgstr ""
+msgstr "Чисельник (s)"
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLR.sci, line: 48
 msgid "Transfer function must be proper (degree(numer)  degree(denom))."
 msgstr ""
+"Функція передавання має бути відповідною — (порядок(чисельник) =< "
+"порядок(знаменник))."
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLR_f.sci, line: 50
 msgid "Transfer must be proper (degree(numer)  degree(denom))"
 msgstr ""
+"Передавання має бути відповідним — (порядок(чисельник) =< "
+"порядок(знаменник))."
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLSS.sci, line: 37
-# File: modules/scicos_blocks/macros/Linear/CLSS_f.sci, line: 37
-# File: modules/scicos_blocks/macros/Linear/DIFF_c.sci, line: 38
-# File: modules/scicos_blocks/macros/Linear/TCLSS.sci, line: 37
-# File: modules/scicos_blocks/macros/Linear/TCLSS_f.sci, line: 37
-# File: modules/scicos_blocks/macros/Misc/DIFF_f.sci, line: 34
 msgid "Set continuous linear system parameters"
-msgstr ""
+msgstr "Встановлення параметрів неперервної лінійної системи"
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLSS.sci, line: 38
-# File: modules/scicos_blocks/macros/Linear/CLSS_f.sci, line: 38
-# File: modules/scicos_blocks/macros/Linear/DLSS_f.sci, line: 38
-# File: modules/scicos_blocks/macros/Linear/TCLSS.sci, line: 38
-# File: modules/scicos_blocks/macros/Linear/TCLSS_f.sci, line: 38
 msgid "A matrix"
-msgstr ""
+msgstr "Матриця A"
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLSS.sci, line: 72
 msgid "The Matrix A must be square"
-msgstr ""
+msgstr "Матриця A має бути квадратною"
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLSS.sci, line: 74
-# File: modules/scicos_blocks/macros/Linear/DLSS.sci, line: 74
 msgid "The matrix D has some wrong size"
-msgstr ""
+msgstr "Розмір матриці D є помилковим"
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLSS_f.sci, line: 62
-# File: modules/scicos_blocks/macros/Linear/DLSS.sci, line: 72
-# File: modules/scicos_blocks/macros/Linear/DLSS_f.sci, line: 62
-# File: modules/scicos_blocks/macros/Linear/TCLSS.sci, line: 62
-# File: modules/scicos_blocks/macros/Linear/TCLSS_f.sci, line: 62
 msgid "The matrix A must be square"
-msgstr ""
+msgstr "Матриця A має бути квадратною"
 
-#, fuzzy
 msgid "Set delay parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення параметрів затримки"
 
-#
-# File: modules/scicos_blocks/macros/Linear/DELAYV_f.sci, line: 48
 msgid "Register's length must be > 1"
-msgstr ""
+msgstr "Довжина регістру має бути > 1"
 
-#
-# File: modules/scicos_blocks/macros/Linear/DELAYV_f.sci, line: 52
-# File: modules/scicos_blocks/macros/Linear/TIME_DELAY.sci, line: 49
-# File: modules/scicos_blocks/macros/Linear/VARIABLE_DELAY.sci, line: 47
 msgid "Delay must be > 0"
-msgstr ""
+msgstr "Значення затримки має бути > 0"
 
-#
-# File: modules/scicos_blocks/macros/Linear/DELAY_f.sci, line: 54
 msgid ""
 "This block implements a discretized delay.<br>It consists of a shift "
 "register and a clock<br>value of the delay given by the<br>discretization "
 "time step multiplied by the<br>number-1 of state of the register"
 msgstr ""
+"У цьому блоці реалізовано дискретну затримку.<br>Блок складається зі "
+"регістру зсуву і значення<br>затримки за годинником, яка задається<br>кроком "
+"дискретизації за часом, помноженим на<br>стан регістру -1."
 
-#, fuzzy
 msgid "Discretization time step"
-msgstr "Спосіб просторової дискретизації"
+msgstr "Крок дискретизації за часом"
 
-#, fuzzy
 msgid "Register's length must be at least 1"
-msgstr "Розмір буфера не повинен бути меншим за 2."
+msgstr "Довжина регістру має бути більшою або рівною  1"
 
-#
-# File: modules/scicos_blocks/macros/Linear/DELAY_f.sci, line: 66
 msgid "Discretization time step must be > 0"
-msgstr ""
+msgstr "Розмір кроку дискретизації за часом має бути > 0"
 
-#, fuzzy
 msgid "Initial state"
-msgstr "Початкове значення"
+msgstr "Початковий стан"
 
-#
-# File: modules/scicos_blocks/macros/Linear/DIFF_c.sci, line: 49
 msgid ""
 "Incompatible sizes: states and their derivatives should have the same size"
 msgstr ""
+"Несумісні розмірності: розмірності векторів станів і їхніх похідних мають "
+"бути однаковими"
 
-#
-# File: modules/scicos_blocks/macros/Linear/DIFF_c.sci, line: 53
 msgid "Initial state must have a size > 0"
-msgstr ""
+msgstr "Початковий стан повинен мати розмір > 0"
 
-#
-# File: modules/scicos_blocks/macros/Linear/DLR.sci, line: 39
-# File: modules/scicos_blocks/macros/Linear/DLR_f.sci, line: 38
 msgid "Set discrete SISO transfer parameters"
 msgstr ""
+"Встановлення параметрів дискретного передавання «один вхід — один вихід»"
 
-#
-# File: modules/scicos_blocks/macros/Linear/DLR.sci, line: 40
-# File: modules/scicos_blocks/macros/Linear/DLR_f.sci, line: 39
 msgid "Numerator (z)"
-msgstr ""
+msgstr "Чисельник (z)"
 
-#
-# File: modules/scicos_blocks/macros/Linear/DLR.sci, line: 47
 msgid "Transfer function must be proper (degree(numer)  degree(denom))"
 msgstr ""
+"Функція передавання має бути відповідною — (порядок(чисельник) =< "
+"порядок(знаменник))"
 
-#
-# File: modules/scicos_blocks/macros/Linear/DLR_f.sci, line: 46
 msgid "Transfer must be proper (degree(numer)   degree(denom))"
 msgstr ""
+"Передавання має бути відповідним — (порядок(чисельник) =< "
+"порядок(знаменник))."
 
-#, fuzzy
 msgid "Set discrete linear system parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення параметрів дискретної лінійної системи"
 
-#, fuzzy
 msgid "Set 1/z block parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення параметрів блоку 1/z"
 
-#, fuzzy
 msgid "Initial condition"
-msgstr "Початкові умови"
+msgstr "Початкова умова"
 
-#, fuzzy
 msgid "Initial condition's datatype not supported"
-msgstr "Початкові умови"
+msgstr "Підтримки типу даних початкової умови не передбачено"
 
-#, fuzzy
 msgid "Initial condition: datatype not supported."
-msgstr "Початкові умови"
+msgstr "Початкова умова: підтримки типу даних не передбачено."
 
-#
-# File: modules/scicos_blocks/macros/Linear/GAINBLK.sci, line: 41
-# File: modules/scicos_blocks/macros/Linear/GAINBLK_f.sci, line: 35
-# File: modules/scicos_blocks/macros/Linear/GAIN_f.sci, line: 35
 msgid "Gain"
-msgstr ""
+msgstr "Підсилення"
 
-#, fuzzy
 msgid "Gain must have at least one element"
-msgstr "Стала має складатися принаймні з одного елемента."
+msgstr "Підсилення має складатися принаймні з одного елемента"
 
-#
-# File: modules/scicos_blocks/macros/Linear/GAINBLK.sci, line: 58
 msgid "Complex gain not supported"
-msgstr ""
+msgstr "Підтримки комплексних значень підсилення не передбачено"
 
-#
-# File: modules/scicos_blocks/macros/Linear/GAINBLK.sci, line: 82
-# File: modules/scicos_blocks/macros/Linear/GAINBLK.sci, line: 105
 msgid "gain's datatype not supported."
-msgstr ""
+msgstr "Підтримки типу даних підсилення не передбачено."
 
-#, fuzzy
 msgid "gain's datatype: Encoded integer expected."
-msgstr "Слід вказати додатне ціле число."
+msgstr "Тип даних підсилення: мало бути вказано закодоване ціле число."
 
-#
-# File: modules/scicos_blocks/macros/Linear/GAINBLK.sci, line: 132
 msgid "Do on Overflow must be 0, 1, or 2"
-msgstr ""
+msgstr "Дія при переповненні має дорівнювати 0, 1 або 2"
 
-#, fuzzy
 msgid "Initial Condition"
-msgstr "Початкові умови"
+msgstr "Початкова умова"
 
-#
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL.sci, line: 59
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL_m.sci, line: 62
 msgid "x0 and Upper limit and Lower limit must have the same size"
 msgstr ""
+"x0, обмеження згори і обмеження знизу повинні мати однакову розмірність"
 
-#
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL.sci, line: 62
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL_m.sci, line: 65
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL_m.sci, line: 86
 msgid "Upper limits must be > Lower limits"
-msgstr ""
+msgstr "Обмеження згори мають бути > за обмеження знизу"
 
-#
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL.sci, line: 65
 msgid "Initial condition x0 should be within the limits"
-msgstr ""
+msgstr "Початкова умова x0 має перебувати між обмеженнями"
 
-#
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL_m.sci, line: 68
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL_m.sci, line: 89
 msgid "Initial condition x0 should be inside the limits"
-msgstr ""
+msgstr "Початкова умова x0 має перебувати між обмеженнями"
 
-#
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL_m.sci, line: 83
 msgid "x0 and Upper limit and Lower limit must have same size"
 msgstr ""
+"x0, обмеження згори і обмеження знизу повинні мати однакову розмірність"
 
-#
-# File: modules/scicos_blocks/macros/Linear/PID.sci, line: 74
 msgid "Proportional"
-msgstr ""
+msgstr "Пропорційні"
 
-#, fuzzy
 msgid "Register initial condition"
-msgstr "Будь ласка, вкажіть початкову умову %s"
+msgstr "Початкова умова регістру"
 
-#
-# File: modules/scicos_blocks/macros/Linear/REGISTER.sci, line: 44
-# File: modules/scicos_blocks/macros/Linear/REGISTER_f.sci, line: 40
 msgid "Register's length must be > 0"
-msgstr ""
+msgstr "Довжина регістру має бути > 0"
 
-#, fuzzy
 msgid "Register's initial condition"
-msgstr "Будь ласка, вкажіть початкову умову %s"
+msgstr "Початкова умова регістру"
 
-#
-# File: modules/scicos_blocks/macros/Linear/SAMPHOLD_m.sci, line: 36
-# File: modules/scicos_blocks/macros/MatrixOp/MATMUL.sci, line: 44
 msgid "Datatype (1=real double 2=Complex 3=int32 ...)"
-msgstr ""
+msgstr "Тип даних (1=дійсний подвійної точності 2=комплексний 3=int32 ...)"
 
-#
-# File: modules/scicos_blocks/macros/Linear/SOM_f.sci, line: 52
 msgid ""
 "This sum block is obsolete<br><br>Parameters cannot be modified. Please "
 "replace it with<br>the new sum and gain blocks in the linear "
-"palette<br><br>Input ports are located at up, side and down positions."
-"<br>Current gains are: "
+"palette<br><br>Input ports are located at up, side and down "
+"positions.<br>Current gains are: "
 msgstr ""
+"Цей блок підсумовування є застарілим<br><br>Значення параметрів не можна "
+"змінювати. Будь ласка, замініть його на<br>нові блоки підсумовування та "
+"підсилення з лінійної палітри.<br><br>Вхідні порити розташовано згори, збоку "
+"і знизу.<br>Підсилення струму: "
 
-#
-# File: modules/scicos_blocks/macros/Linear/SUMMATION.sci, line: 40
 msgid "Datatype (1=real double  2=complex 3=int32 ..)"
-msgstr ""
+msgstr "Тип даних (1=дійсний подвійної точності 2=комплексний 3=int32 ..)"
 
-#, fuzzy
 msgid "Do on overflow: must be 0,1, or 2"
-msgstr "Виконувати при переповненні (b)"
+msgstr "Дія при переповненні має дорівнювати 0, 1 або 2"
 
-#, fuzzy
 msgid "Number of inputs must be > 0"
-msgstr "Кількість рядків має бути рівною степеню двійки."
+msgstr "Кількість входів має бути > 0"
 
-#
-# File: modules/scicos_blocks/macros/Linear/SUMMATION.sci, line: 68
-# File: modules/scicos_blocks/macros/NonLinear/PRODUCT.sci, line: 63
 msgid "Signs can only be +1 or -1"
-msgstr ""
+msgstr "Знаки можуть мати лише значення +1 і -1"
 
-#, fuzzy
 msgid "Buffer must be larger than 1"
-msgstr "Розмір буфера не повинен бути меншим за 2."
+msgstr "Значення буфера має бути більшим за 1"
 
-#
-# File: modules/scicos_blocks/macros/Linear/VARIABLE_DELAY.sci, line: 36
 msgid "Max delay"
-msgstr ""
+msgstr "Максимальна затримка"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/CUMSUM.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/EXTRACT.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/EXTTRI.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATBKSL.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATDET.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATDIAG.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATDIV.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATEIG.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATEXPM.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATINV.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATLU.sci, line: 40
-# File: modules/scicos_blocks/macros/MatrixOp/MATPINV.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATSING.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATSUM.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/ROOTCOEF.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/SUBMAT.sci, line: 40
 msgid "Datatype (1=real double  2=Complex)"
-msgstr ""
+msgstr "Тип даних (1=дійсний подвійної точності 2=комплексний)"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/CUMSUM.sci, line: 57
-# File: modules/scicos_blocks/macros/MatrixOp/CUMSUM.sci, line: 70
-# File: modules/scicos_blocks/macros/MatrixOp/MATSUM.sci, line: 57
-# File: modules/scicos_blocks/macros/MatrixOp/MATSUM.sci, line: 73
 msgid "Unknown summation direction"
-msgstr ""
+msgstr "Невідомий напрямок підсумовування"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/CUMSUM.sci, line: 76
-# File: modules/scicos_blocks/macros/MatrixOp/EXTRACT.sci, line: 56
-# File: modules/scicos_blocks/macros/MatrixOp/EXTTRI.sci, line: 73
-# File: modules/scicos_blocks/macros/MatrixOp/MATBKSL.sci, line: 52
-# File: modules/scicos_blocks/macros/MatrixOp/MATDET.sci, line: 52
-# File: modules/scicos_blocks/macros/MatrixOp/MATDIAG.sci, line: 52
-# File: modules/scicos_blocks/macros/MatrixOp/MATDIV.sci, line: 52
-# File: modules/scicos_blocks/macros/MatrixOp/MATEIG.sci, line: 75
-# File: modules/scicos_blocks/macros/MatrixOp/MATEXPM.sci, line: 52
-# File: modules/scicos_blocks/macros/MatrixOp/MATINV.sci, line: 52
-# File: modules/scicos_blocks/macros/MatrixOp/MATLU.sci, line: 53
-# File: modules/scicos_blocks/macros/MatrixOp/MATMUL.sci, line: 53
-# File: modules/scicos_blocks/macros/MatrixOp/MATPINV.sci, line: 53
-# File: modules/scicos_blocks/macros/MatrixOp/MATRESH.sci, line: 79
-# File: modules/scicos_blocks/macros/MatrixOp/MATSING.sci, line: 79
-# File: modules/scicos_blocks/macros/MatrixOp/MATSUM.sci, line: 79
-# File: modules/scicos_blocks/macros/MatrixOp/MATTRAN.sci, line: 59
-# File: modules/scicos_blocks/macros/MatrixOp/ROOTCOEF.sci, line: 53
-# File: modules/scicos_blocks/macros/MatrixOp/SQRT.sci, line: 45
-# File: modules/scicos_blocks/macros/Misc/LOGICAL_OP.sci, line: 85
-# File: modules/scicos_blocks/macros/Sources/RAND_m.sci, line: 62
 msgid "Unknown datatype"
-msgstr ""
+msgstr "Невідомий тип даних"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/EXTRACT.sci, line: 62
 msgid "Empty field"
-msgstr ""
+msgstr "Порожнє поле"
 
-#, fuzzy
 msgid "Invalid index"
-msgstr "Номер початкового запису"
+msgstr "Некоректний індекс"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/EXTTRI.sci, line: 54
-# File: modules/scicos_blocks/macros/MatrixOp/EXTTRI.sci, line: 67
 msgid "Unknown extraction type"
-msgstr ""
+msgstr "Невідомий тип видобування"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATEIG.sci, line: 56
-# File: modules/scicos_blocks/macros/MatrixOp/MATEIG.sci, line: 70
-# File: modules/scicos_blocks/macros/MatrixOp/MATSING.sci, line: 58
-# File: modules/scicos_blocks/macros/MatrixOp/MATSING.sci, line: 74
 msgid "Unknown decomposition type"
-msgstr ""
+msgstr "Невідомий тип розкладу"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATMAGPHI.sci, line: 40
 msgid "Conversion: 1=Complex->(Mag,Phi), 2=(Mag,Phi)->Complex"
 msgstr ""
+"Перетворення: 1=комплексне число -> (модуль, аргумент), 2=(модуль, аргумент) "
+"-> комплексне число"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATMAGPHI.sci, line: 41
 msgid "Conversion code (1|2)"
-msgstr ""
+msgstr "Код перетворення (1|2)"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATMAGPHI.sci, line: 59
-# File: modules/scicos_blocks/macros/MatrixOp/MATZREIM.sci, line: 59
 msgid "Unknown conversion code"
-msgstr ""
+msgstr "Невідомий код перетворення"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATMUL.sci, line: 41
 msgid ""
 "Set MATMUL parameter<br><br>For the Multiplication rule:<br>    1= Matrix by "
 "Matrix<br>    2= Matrix by Matrix element wise <br>    3= Matrix by "
 "Scalar<br>In the third case, the second input will be the scalar<br><br>"
 msgstr ""
+"Встановлення параметра MATMUL<br><br>Для правила множення:<br>    1= матриця "
+"на матрицю<br>    2= матриця на матрицю поелементно <br>    3= матриця на "
+"скаляр<br>У третьому випадку другим вхідним значенням має бути скаляр<br><br>"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATMUL.sci, line: 57
 msgid "Multiplication rule must be 1,2 or 3"
-msgstr ""
+msgstr "Значенням правила множення має бути 1, 2 або 3"
 
-#, fuzzy
 msgid "Output size > 0 expected"
-msgstr "Розмірності мали збігатися."
+msgstr "Розмірність виходу мала бути > 0"
 
-#, fuzzy
 msgid "Input size > 0 expected"
-msgstr "Розмірності мали збігатися."
+msgstr "Розмір входу має бути > 0"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATRESH.sci, line: 58
 msgid "The first dimension of the output is too big"
-msgstr ""
+msgstr "Перша розмірність виходу є надто великою"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATRESH.sci, line: 62
 msgid "The second dimension of the output is too big"
-msgstr ""
+msgstr "Друга розмірність виходу є надто великою"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATRESH.sci, line: 66
 msgid "The dimensions of the output are too big"
-msgstr ""
+msgstr "Розмірності виходу є надто великими"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATTRAN.sci, line: 40
 msgid "Datatype (1=real double 2=Complex)"
-msgstr ""
+msgstr "Тип даних (1=дійсний подвійної точності 2=комплексний)"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATZREIM.sci, line: 40
 msgid "Conversion type: 1=complex->(Real,Imag), 2=(Real,Imag)->complex"
 msgstr ""
+"Тип перетворення: 1=комплексне число -> (дійсна частина, уявна частина), "
+"2=(дійсна частина, уявна частиа)->комплексне число"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATZREIM.sci, line: 41
 msgid "Conversion direction (1|2)"
-msgstr ""
+msgstr "Напрямок перетворення (1|2)"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/RICC.sci, line: 39
 msgid "Type (1=Cont  2=Disc)"
-msgstr ""
+msgstr "Тип (1=неперервний  2=дискретний)"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/SQRT.sci, line: 36
 msgid "Datatype(1=real double  2=Complex)"
-msgstr ""
+msgstr "Тип даних (1=дійсний подвійної точності 2=комплексний)"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/SUBMAT.sci, line: 67
 msgid "Ending row index must be greater than starting one"
-msgstr ""
+msgstr "Індекс кінцевого рядка має бути більшим за індекс початкового"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/SUBMAT.sci, line: 71
 msgid "Ending column index must be greater than starting one"
-msgstr ""
+msgstr "Індекс кінцевого стовпчика має бути більшим за індекс початкового"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/SUBMAT.sci, line: 75
 msgid "The index of ending row is out of range"
-msgstr ""
+msgstr "Індекс кінцевого рядка поза діапазоном"
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/SUBMAT.sci, line: 79
 msgid "The index of ending column is out of range"
-msgstr ""
+msgstr "Індекс кінцевого стовпчика поза діапазоном"
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 37
 msgid "Jump from Mode "
-msgstr ""
+msgstr "Перехід з режиму "
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 48
 msgid "Set Finite state machine model"
-msgstr ""
+msgstr "Встановлення моделі скінченного автомата"
 
-#, fuzzy
 msgid "Number of finite-state Modes"
-msgstr "Кількість вузлів:"
+msgstr "Кількість режимів скінченного автомата"
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 73
 #, c-format
 msgid "The size of initial continuous-time states should be NX=%d"
 msgstr ""
+"Розмірність вектора початкових неперервних за часом станів має бути NX=%d"
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 82
 #, c-format
 msgid "Xproperty matrix is not valid: It should have one or NMode=%d rows"
 msgstr ""
+"Матриця Xproperty є некоректною: у ній повинен бути один рядок або NMode=%d "
+"рядків"
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 117
 #, c-format
 msgid "The number of modes should be %d"
-msgstr ""
+msgstr "Кількість режимів має бути рівною %d"
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 118
 #, c-format
 msgid "A destination mode in Mode#%d targets is invalid!"
-msgstr ""
+msgstr "Режим призначення у цілях режиму %d є некоректним!"
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 123
 #, c-format
 msgid "There is an unused Mode or the Number of Modes should be %d"
-msgstr ""
+msgstr "Маємо невикористаний режим або кількість режимів має дорівнювати %d"
 
-#, fuzzy
 msgid "Initial output"
-msgstr "Початкове значення"
+msgstr "Початкове виведення"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCE.sci, line: 39
 msgid "Mass"
-msgstr ""
+msgstr "Маса"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCE.sci, line: 40
 msgid "Radius"
-msgstr ""
+msgstr "Радіус"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCE.sci, line: 46
 msgid "g (gravity)"
-msgstr ""
+msgstr "g (прискорення падіння)"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCE.sci, line: 47
 msgid "C (aerodynamic coeff)"
-msgstr ""
+msgstr "C (аеродинамічний коефіцієнт)"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCE.sci, line: 69
 msgid "All vectors must have the same size"
-msgstr ""
+msgstr "Розмірності усіх векторів мають бути однаковими"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCE.sci, line: 72
 msgid "Mass and radius must be > 0"
-msgstr ""
+msgstr "Значення маси і радіуса має бути > 0"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCEXY.sci, line: 37
 msgid "Colors"
-msgstr ""
+msgstr "Кольори"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCEXY.sci, line: 38
 msgid "Radii"
-msgstr ""
+msgstr "Радіуси"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCEXY.sci, line: 39
 msgid "Window number (-1 for automatic)"
-msgstr ""
+msgstr "Номер вікна (-1 — автоматично)"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCEXY.sci, line: 40
 msgid "Animation mode (0,1)"
-msgstr ""
+msgstr "Режим анімації (0, 1)"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCEXY.sci, line: 53
 msgid "Colors and Radii must have the same size (number of balls)"
 msgstr ""
+"Вектори кольорів і радіусів повинні мати однакові розмірності (рівні "
+"кількості кульок)"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCEXY.sci, line: 58
 msgid "The window number cannot be &lt; -1"
-msgstr ""
+msgstr "Номер вікна не може бути &lt; -1"
 
-#, fuzzy
 msgid "Ymax > Ymin expected"
-msgstr "Розмірності мали збігатися."
+msgstr "Має бути Ymax > Ymin"
 
-#, fuzzy
 msgid "Xmax > Xmin expected"
-msgstr "Розмірності мали збігатися."
+msgstr "Має бути Xmax > Xmin"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BPLATFORM.sci, line: 36
-# File: modules/scicos_blocks/macros/Misc/PENDULUM_ANIM.sci, line: 37
 msgid "Pendulum length"
-msgstr ""
+msgstr "Довжина маятника"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BPLATFORM.sci, line: 37
-# File: modules/scicos_blocks/macros/Misc/PENDULUM_ANIM.sci, line: 38
 msgid "Cart size (square side)"
-msgstr ""
+msgstr "Розмір візка (бічна сторона квадрата)"
 
 msgid "Slope"
 msgstr "Нахил"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BPLATFORM.sci, line: 46
 msgid "The pendulum length and cart size must be > 0."
-msgstr ""
+msgstr "Довжина маятника або розмір візка мають бути значеннями > 0."
 
-#, fuzzy
 msgid "Ymax > Ymin expected."
-msgstr "Розмірності мали збігатися."
+msgstr "Має бути Ymax > Ymin."
 
-#, fuzzy
 msgid "Xmax > Xmin expected."
-msgstr "Розмірності мали збігатися."
+msgstr "Має бути Xmax > Xmin."
 
-#, fuzzy
 msgid "Simulation function"
-msgstr "Пилкоподібна функція"
+msgstr "Функція імітації"
 
-#
-# File: modules/scicos_blocks/macros/Misc/CBLOCK.sci, line: 78
-# File: modules/scicos_blocks/macros/Misc/CBLOCK4.sci, line: 84
-# File: modules/scicos_blocks/macros/Misc/generic_block.sci, line: 75
 msgid "Input/output events ports size must be [] or 1"
 msgstr ""
+"Розмірності портів вхідних або вихідних подій мають дорівнювати [] або 1"
 
-#, fuzzy
 msgid "Set C-Block4 block parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення параметрів блоку C-Block4"
 
-#, fuzzy
 msgid "Set Constraint block parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення параметрів блоку обмежень"
 
-#
-# File: modules/scicos_blocks/macros/Misc/CONSTRAINT2_c.sci, line: 38
 msgid "Initial guess values of states x"
-msgstr ""
+msgstr "Початкові приблизні значення станів за x"
 
-#
-# File: modules/scicos_blocks/macros/Misc/CONSTRAINT2_c.sci, line: 53
 msgid "States and their derivatives must have the same size."
-msgstr ""
+msgstr "Розмірності векторів станів та їхніх похідних мають бути однаковими."
 
-#
-# File: modules/scicos_blocks/macros/Misc/CONSTRAINT2_c.sci, line: 57
 msgid "States and ID must have the same size."
 msgstr ""
+"Розмірності векторів станів та ідентифікаторів мають бути однаковими."
 
-#
-# File: modules/scicos_blocks/macros/Misc/CONSTRAINT2_c.sci, line: 61
 msgid "Number of states (constraints) must be > 0"
-msgstr ""
+msgstr "Кількість станів (обмежень) має бути > 0"
 
-#
-# File: modules/scicos_blocks/macros/Misc/CONSTRAINT2_c.sci, line: 69
 msgid ""
 "Id(i) must be either:<br> 0 when x'(i) is not present in the feedback<br> 1: "
 "when x'(i) is present in the feedback"
 msgstr ""
+"Id(i) має бути одним із таких значень:<br> 0, якщо у відгуку немає x'(i)<br> "
+"1: якщо у відгуку є x'(i)"
 
-#, fuzzy
 msgid "Set solver block parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення параметрів блоку розв'язування"
 
-#, fuzzy
 msgid "Initial guess values"
-msgstr "Початкове значення"
+msgstr "Початкові приблизні значення"
 
-#
-# File: modules/scicos_blocks/macros/Misc/CONSTRAINT_c.sci, line: 43
 msgid "The number of states (constraints) must be > 0 "
-msgstr ""
+msgstr "Кількість станів (обмежень) має бути > 0 "
 
-#
-# File: modules/scicos_blocks/macros/Misc/DEADBAND.sci, line: 35
-# File: modules/scicos_blocks/macros/NonLinear/SATURATION.sci, line: 35
 msgid "Upper limit"
-msgstr ""
+msgstr "Верхня межа"
 
-#
-# File: modules/scicos_blocks/macros/Misc/DEADBAND.sci, line: 43
-# File: modules/scicos_blocks/macros/NonLinear/SATURATION.sci, line: 43
 msgid "Upper limit must be > Lower limit"
-msgstr ""
+msgstr "Верхня межа має бути більшою за нижню межу"
 
-#
-# File: modules/scicos_blocks/macros/Misc/DEBUG.sci, line: 34
 msgid "Enter scilab instructions for debugging."
-msgstr ""
+msgstr "Введіть інструкції scilab для діагностики."
 
-#
-# File: modules/scicos_blocks/macros/Misc/DEBUG.sci, line: 49
 msgid "Error in the instructions"
-msgstr ""
+msgstr "Помилка в інструкціях"
 
 msgid "Invalid masked block."
 msgstr "Некоректно замаскований блок."
 
-#
-# File: modules/scicos_blocks/macros/Misc/EDGETRIGGER.sci, line: 35
 msgid "rising (1), falling (-1), both (0)"
-msgstr ""
+msgstr "підняття (1), падіння (-1), обидва (0)"
 
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 40
 msgid ""
 "Set EXPRESSION block parameters<br><br>Give a scalar scilab expression using "
 "inputs u1, u2,...<br>If only one input, input is vector [u1,u2,...] (max "
 "8)<br>ex: (dd*u1+sin(u2)>0)*u3<br>Note that here dd must be defined in the "
 "context<br><br>"
 msgstr ""
+"Встановлення параметрів блоку виразу<br><br>Вкажіть вираз scilab із числовим "
+"результатом і вхідними параметрами u1, u2,...<br>Якщо у блоку є лише один "
+"вхід, вхідним значенням має бути вектор [u1,u2,...] (максимальна кількість "
+"параметрів — 8)<br>Приклад: (dd*u1+sin(u2)>0)*u3<br>Зауважте, що тут dd має "
+"бути визначено у відповідному контексті.<br><br>"
 
-#, fuzzy
 msgid "Erroneous expression"
-msgstr "Вираз ДРЧП:"
+msgstr "Помилковий вираз"
 
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 263
 #, c-format
 msgid "Variable %s is not scalar."
-msgstr ""
+msgstr "Змінна %s не є скаляром."
 
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 272
 #, c-format
 msgid "Unknown variable %s."
-msgstr ""
+msgstr "Невідома змінна %s."
 
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 288
 #, c-format
 msgid "%s must have %d arguments"
-msgstr ""
+msgstr "%s повинна мати %d параметрів"
 
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 336
 #, c-format
 msgid "Function %s not supported."
-msgstr ""
+msgstr "Підтримки функції %s не передбачено."
 
-#
-# File: modules/scicos_blocks/macros/Misc/HYSTHERESIS.sci, line: 35
 msgid "Switch on at"
-msgstr ""
+msgstr "Умова вмикання"
 
-#
-# File: modules/scicos_blocks/macros/Misc/HYSTHERESIS.sci, line: 45
 msgid "switch on value must be >= switch off value"
-msgstr ""
+msgstr "значення вмикання має бути >= значення вимикання"
 
-#
-# File: modules/scicos_blocks/macros/Misc/LOGICAL_OP.sci, line: 39
 msgid "Operator codes: 0=AND  1=OR  2=NAND  3=NOR  4=XOR  5=NOT"
-msgstr ""
+msgstr "Коди операторів: 0=І  1=АБО  2=НЕ-І  3=НЕ-АБО  4=Викл. АБО  5=НІ"
 
-#
-# File: modules/scicos_blocks/macros/Misc/LOGICAL_OP.sci, line: 55
 #, c-format
 msgid "Incorrect operator code %d ; must be 0 to 5."
-msgstr ""
+msgstr "Помилковий код оператора — %d; код має бути цілим числом від 0 до 5."
 
-#
-# File: modules/scicos_blocks/macros/Misc/LOGICAL_OP.sci, line: 58
 msgid "Only one input allowed for NOT operation"
-msgstr ""
+msgstr "Один вхід можливий лише для операції НІ"
 
-#
-# File: modules/scicos_blocks/macros/Misc/LOGICAL_OP.sci, line: 61
 msgid "Bitwise rule is only activated when Data type is integer"
 msgstr ""
+"Побітове правило активується, лише якщо типом даних є тип цілих чисел"
 
-#, fuzzy
 msgid "Set Modelica generic block parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення параметрів загального блоку Modelica"
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 122
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 123
 msgid "Error in evaluation of variables."
-msgstr ""
+msgstr "Помилка під час обчислення змінних."
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 139
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 140
 #, c-format
 msgid "Invalid variable name for the input #%d: %s."
-msgstr ""
+msgstr "Некоректна назва змінної для входу %d: %s."
 
-#, fuzzy
 msgid "Please choose another variable name."
-msgstr "Будь ласка, вкажіть знак дискримінанта змінної"
+msgstr "Будь ласка, виберіть іншу назву змінної."
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 156
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 157
 #, c-format
 msgid "Invalid variable name for the output #%d: %s."
-msgstr ""
+msgstr "Некоректна назва змінної для виходу %d: %s."
 
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid variable name for the parameter #%d: %s."
-msgstr "Помилкове значення параметра «%s»: %s."
+msgstr "Некоректна назва змінної для параметра %d: %s."
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 187
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 188
 msgid "Input type should be 'E' or 'I'!"
-msgstr ""
+msgstr "Вхідним типом має бути «E» або «I»!"
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 202
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 203
 msgid "Output type should be 'E' or 'I'!"
-msgstr ""
+msgstr "Вихідним типом має бути «E» або «I»!"
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 213
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 214
 msgid "Input variables are not well defined!"
-msgstr ""
+msgstr "Вхідні змінні визначено некоректно!"
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 221
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 222
 msgid "Output variables are not well defined!"
-msgstr ""
+msgstr "Некоректно задані вихідні змінні!"
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 231
 msgid "The size of param and<br>size of param properties<br>must match"
 msgstr ""
+"Розмірності вектора параметрів<br>і вектора властивостей параметрів<br>мають "
+"бути однаковими"
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 240
 msgid "Parameters properties must be :"
-msgstr ""
+msgstr "Властивостями параметрів мають бути:"
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 252
 msgid "The filename is not defined!"
-msgstr ""
+msgstr "Назву файла не визначено!"
 
-#, fuzzy
 msgid "Set parameters values"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення значень параметрів"
 
-#, fuzzy
 msgid "Set memory block parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення параметрів блоку пам'яті"
 
-#, fuzzy
 msgid "The initial condition is empty"
-msgstr "Початкові умови"
+msgstr "Початкова умова є порожньою"
 
-#
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 89
 msgid "Input variables:    "
-msgstr ""
+msgstr "Вхідні змінні:    "
 
-#
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 241
 msgid ""
 "Parameters properties must be:<br>0: if it is a parameter,<br>1: if it is an "
 "initial value of state,<br>2: if it is a fixed initial state value."
 msgstr ""
+"Варіанти властивостей параметрів:<br>0: параметр,<br>1: початкове значення "
+"стану,<br>2: фіксоване початкове значення стану."
 
-#
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 251
 msgid "The model name is not defined."
-msgstr ""
+msgstr "Назву моделі не визначено."
 
-#
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 260
 msgid "Invalid model name"
-msgstr ""
+msgstr "Некоректна назва моделі"
 
-#
-# File: modules/scicos_blocks/macros/Misc/PENDULUM_ANIM.sci, line: 46
 msgid "Pendulum length and cart size must be > 0."
-msgstr ""
+msgstr "Довжина маятника або розмір візка мають бути значеннями > 0."
 
-#
-# File: modules/scicos_blocks/macros/Misc/PENDULUM_ANIM.sci, line: 50
 msgid "Ymax > Ymin required"
-msgstr ""
+msgstr "Має бути Ymax > Ymin"
 
-#
-# File: modules/scicos_blocks/macros/Misc/PENDULUM_ANIM.sci, line: 54
 msgid "Xmax > Xmin required"
-msgstr ""
+msgstr "Має бути Xmax > Xmin"
 
-#
-# File: modules/scicos_blocks/macros/Misc/RATELIMITER.sci, line: 35
 msgid "Maximal slope (> 0)"
-msgstr ""
+msgstr "Максимальний нахил (> 0)"
 
-#
-# File: modules/scicos_blocks/macros/Misc/RATELIMITER.sci, line: 41
 msgid "We must have max_slope > 0 > min_slope."
-msgstr ""
+msgstr "Має бути max_slope > 0 > min_slope."
 
-#
-# File: modules/scicos_blocks/macros/Misc/RELATIONALOP.sci, line: 38
 msgid "Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)"
-msgstr ""
+msgstr "Оператор: == (0), ~= (1), < (2), <= (3), > (4), >= (5)"
 
-#
-# File: modules/scicos_blocks/macros/Misc/RELATIONALOP.sci, line: 50
 #, c-format
 msgid "Incorrect operator code #%d : must be 0 to 5."
-msgstr ""
+msgstr "Помилковий код оператора — %d; код має бути цілим числом від 0 до 5."
 
-#
-# File: modules/scicos_blocks/macros/Misc/TEXT_f.sci, line: 44
 msgid "Text"
-msgstr ""
+msgstr "Текст"
 
-#
-# File: modules/scicos_blocks/macros/Misc/TEXT_f.sci, line: 51
 msgid "The font number must be in [1, 6]"
-msgstr ""
+msgstr "Номером шрифту має бути число у межах [1, 6]"
 
-#, fuzzy
 msgid "The font size must be positive"
-msgstr "Номер порту має бути додатним цілим числом"
+msgstr "Розмір шрифту має бути додатним числом"
 
-#, fuzzy
 msgid "Input ports sizes"
-msgstr "Вхідна розмірність"
+msgstr "Розміри вхідних портів"
 
-#, fuzzy
 msgid "Set GENERIC block parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення параметрів загального блоку"
 
-#
-# File: modules/scicos_blocks/macros/Misc/generic_block.sci, line: 70
-# File: modules/scicos_blocks/macros/Misc/generic_block2.sci, line: 72
-# File: modules/scicos_blocks/macros/Misc/generic_block3.sci, line: 75
 msgid "The function type cannot be negative"
-msgstr ""
+msgstr "Типом функції не може бути від'ємне число"
 
-#
-# File: modules/scicos_blocks/macros/Misc/generic_block2.sci, line: 77
-# File: modules/scicos_blocks/macros/Misc/generic_block3.sci, line: 80
 msgid "Input/output events ports sizes must be [] or 1"
 msgstr ""
+"Розмірності портів вхідних або вихідних подій мають дорівнювати [] або 1"
 
-#
-# File: modules/scicos_blocks/macros/Misc/generic_block3.sci, line: 85
 msgid "Object parameters must be a list"
-msgstr ""
+msgstr "Параметри об'єкта мають бути списком"
 
-#
-# File: modules/scicos_blocks/macros/Misc/generic_block3.sci, line: 89
 msgid "Initial object state must be a list"
-msgstr ""
+msgstr "Початковий стан об'єкта має бути списком"
 
-#, fuzzy
 msgid "Frequency"
-msgstr "Частота (рад/с)"
+msgstr "Частота"
 
-#
-# File: modules/scicos_blocks/macros/Misc/scifunc_block.sci, line: 70
-# File: modules/scicos_blocks/macros/Misc/scifunc_block_m.sci, line: 45
 msgid "Only regular blocks are supported"
-msgstr ""
+msgstr "Передбачено підтримку лише звичайних блоків"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/ABS_VALUE.sci, line: 35
-# File: modules/scicos_blocks/macros/NonLinear/SIGNUM.sci, line: 35
 msgid "Use zero_crossing (1:yes) (0:no)"
-msgstr ""
+msgstr "Використання zero_crossing (1:так) (0:ні)"
 
-#, fuzzy
 msgid "Set block parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення параметрів блоку"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/DLRADAPT_f.sci, line: 35
 msgid "Vector of p mesh points"
-msgstr ""
+msgstr "Вектор точок p-сітки"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/DLRADAPT_f.sci, line: 51
 msgid ""
 "Transfer must be strictly proper, with<br>degree(Numerator) &lt; "
 "degree(Denominator)"
 msgstr ""
+"Дріб передавання має бути строго правильним:<br>порядок(чисельник) &lt; "
+"порядок(знаменник)"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/DLRADAPT_f.sci, line: 53
 msgid "Numerator roots matrix row size's is incorrect"
-msgstr ""
+msgstr "Розмірність рядка матриці коренів чисельника є некоректною"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/EXPBLK_f.sci, line: 36
 msgid "a^u: raise the value a to the power of the input"
-msgstr ""
+msgstr "a^u: піднести значення a до степеня вхідного значення"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/EXPBLK_f.sci, line: 42
-# File: modules/scicos_blocks/macros/NonLinear/EXPBLK_m.sci, line: 42
 msgid "a^u : a must be > 0"
-msgstr ""
+msgstr "a^u : a має бути > 0"
 
-#, fuzzy
 msgid "Set Interpolation block parameters"
-msgstr "Визначити параметри вхідного блоку"
+msgstr "Встановлення параметрів блоку інтерполяції"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/INTRP2BLK_f.sci, line: 35
-# File: modules/scicos_blocks/macros/NonLinear/INTRPLBLK_f.sci, line: 35
 msgid "X coord."
-msgstr ""
+msgstr "Коорд. X"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/INTRP2BLK_f.sci, line: 41
 msgid "X, Y, Z: incompatible sizes"
-msgstr ""
+msgstr "X, Y, Z: несумісні розмірності"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/INTRP2BLK_f.sci, line: 43
 msgid "X and Y must be strictly increasing"
-msgstr ""
+msgstr "X і Y мають строго зростати"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/INTRPLBLK_f.sci, line: 40
 msgid "X and Y must have the same sizes"
-msgstr ""
+msgstr "X і Y повинні мати однакові розміри"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/INTRPLBLK_f.sci, line: 42
 msgid "X must be strictly increasing"
-msgstr ""
+msgstr "X має строго зростати"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/INVBLK.sci, line: 42
 msgid "Error on divide by zero (1:yes) (0:no)"
-msgstr ""
+msgstr "Помилка при діленні на нуль (1:так) (0:ні)"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOGBLK_f.sci, line: 38
 msgid "Basis (>1)"
-msgstr ""
+msgstr "Основа (>1)"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOGBLK_f.sci, line: 43
 msgid "Basis must be > 1"
-msgstr ""
+msgstr "Значенням основи має бути число > 1"
 
-#, fuzzy
 msgid "2D Lookup table parameters"
-msgstr "Визначити параметри вхідного блоку"
+msgstr "Параметри плоскої таблиці пошуку"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci, line: 41
 msgid "Row index input values"
-msgstr ""
+msgstr "Вхідні значення індексів рядків"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci, line: 78
 msgid "Input row/column data size should be > 1"
-msgstr ""
+msgstr "Розмірність даних вхідних рядків або стовпчиків має бути > 1"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci, line: 82
 msgid "Incompatible size of x and y"
-msgstr ""
+msgstr "Несумісні розмірності x і y"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci, line: 87
 msgid "Row input values must be monotonically increasing"
-msgstr ""
+msgstr "Вхідні значення у рядках мають бути монотонно зростаючими"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci, line: 92
 msgid "Column input values must be monotonically increasing"
-msgstr ""
+msgstr "Вхідні значення у стовпчиках мають бути монотонно зростаючими"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci, line: 148
 #, c-format
 msgid "x contains no data in x(%d)"
-msgstr ""
+msgstr "x не містить даних у x(%d)"
 
-#, fuzzy
 msgid "Lookup table parameters"
-msgstr "Визначити параметри вхідного блоку"
+msgstr "Параметри таблиці пошуку"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 43
 msgid "Spline Interpolation method (0..9)"
-msgstr ""
+msgstr "Метод сплайнової інтерполяції (0..9)"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 46
 msgid "Extrapolate method (0,1)"
-msgstr ""
+msgstr "Метод екстраполяції (0, 1)"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 47
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 47
 msgid "Launch graphic window (y/n)?"
-msgstr ""
+msgstr "Відкрити графічне вікно (y — так/n — ні)?"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 88
 msgid "Incompatible sizes of x and y"
-msgstr ""
+msgstr "Несумісні розмірності x і y"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 241
 msgid " No [y] provided"
-msgstr ""
+msgstr " Не вказано [y]"
 
-#, fuzzy
 msgid "Clear"
-msgstr "Спорожнити біт"
+msgstr "Очистити"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 349
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 669
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 330
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 638
 msgid "Help"
-msgstr ""
+msgstr "Довідка"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 350
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 459
 msgid "Autoscale"
-msgstr ""
+msgstr "Автомасштаб"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 401
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 386
 msgid "Mouse click is offside!"
-msgstr ""
+msgstr "Клацання кнопкою миші поза межами!"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 441
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 425
 msgid "Data Bounds"
-msgstr ""
+msgstr "Межі даних"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 443
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 428
 msgid "Enter new bounds"
-msgstr ""
+msgstr "Введіть нові межі"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 450
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 433
 msgid "Incorrect bounds"
-msgstr ""
+msgstr "Некоректні межі"
 
-#, fuzzy
 msgid "Extrapolation"
-msgstr "Видобування бітів"
+msgstr "Екстраполяція"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 470
 msgid "Extrapolation method (only for Method 1)"
-msgstr ""
+msgstr "Метод екстраполяції (лише для методу 1)"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 471
 msgid "0: hold end values, 1: extrapolation"
-msgstr ""
+msgstr "0: утримувати кінцеві значення, 1: екстраполяція"
 
-#, fuzzy
 msgid " Sine parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr " Параметри синусоїди"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 487
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 510
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 530
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 544
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 467
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 490
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 510
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 524
-# File: modules/scicos_blocks/macros/Sources/GENSIN_f.sci, line: 37
-# File: modules/scicos_blocks/macros/Sources/GENSQR_f.sci, line: 38
 msgid "Amplitude"
-msgstr ""
+msgstr "Амплітуда"
 
-#, fuzzy
 msgid "Sawtooth signal parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Параметри пилкоподібного сигналу"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 543
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 523
 msgid "Square wave pulse signal"
-msgstr ""
+msgstr "Сигнал із прямокутними хвильовими пульсаціями"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 581
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 558
 msgid "Normal (Gaussian) random signal"
-msgstr ""
+msgstr "Нормальний (ґаусів) випадковий сигнал"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 582
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 559
 msgid "Mean"
-msgstr ""
+msgstr "Мат. сподівання"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 603
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 576
 msgid "Uniform random signal"
-msgstr ""
+msgstr "Однорідно випадковий сигнал"
 
 msgid "Minimum"
 msgstr "Мінімум"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 624
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 593
 msgid "Save/Exit"
-msgstr ""
+msgstr "Зберегти/Вийти"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 645
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 614
 msgid "Exit without save"
-msgstr ""
+msgstr "Вийти без збереження"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 658
 msgid "Edit text data NOT IN USE"
-msgstr ""
+msgstr "Редагування тестових даних, які не використовуються"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 660
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 629
 msgid "Enter x and y data"
-msgstr ""
+msgstr "Введіть дані x і y"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 670
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 639
 msgid "Mouse-left click: adding a new point"
-msgstr ""
+msgstr "Клацання лівою кнопкою миші: додавання нової точки"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 671
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 640
 msgid "Mouse-right click: remove a point"
-msgstr ""
+msgstr "Клацання правою кнопкою миші: вилучення точки"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 672
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 641
 msgid "Mouse-left double click: edit a point's coordinates"
-msgstr ""
+msgstr "Подвійне клацання лівою кнопкою миші: редагувати координати точки"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 673
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 642
 msgid "Mouse-left button press/drag/release: move a  point"
 msgstr ""
+"Натискання-пересування-відпускання лівої кнопки миші: пересунути точку"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 674
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 643
 msgid "Change the window size: Data menu -> Databounds"
-msgstr ""
+msgstr "Зміна розмірів вікна: меню «Дані -> Обмеження даних»"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 677
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 646
 msgid "Load from Excel"
-msgstr ""
+msgstr "Завантажити з Excel"
 
-#, fuzzy
 msgid "Load from text file"
-msgstr "Читати з файла вхідних даних"
+msgstr "Завантажити з текстового файла"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 695
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 664
 msgid "Save to text file"
-msgstr ""
+msgstr "Зберегти до текстового файла"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 698
 msgid "Replot"
-msgstr ""
+msgstr "Перемалювати"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 745
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 722
 msgid "Enter new x and y"
-msgstr ""
+msgstr "Введіть нові x і y"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 783
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 759
 #, c-format
 msgid "%d points,  Method: %s,  %s"
-msgstr ""
+msgstr "%d точок,  метод: %s,  %s"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 897
 msgid "Excel data file "
-msgstr ""
+msgstr "файл даних Excel "
 
-#, fuzzy
 msgid "Filename"
-msgstr "Назва файла вхідних даних"
+msgstr "Назва файла"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 908
 #, c-format
 msgid "Scicos cannot find the excel file: %s"
-msgstr ""
+msgstr "Scicos не вдалося знайти файл excel: %s"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 929
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 937
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 918
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 926
 #, c-format
 msgid "Bad address in X: %s"
-msgstr ""
+msgstr "Помилкова адреса у X: %s"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 945
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 953
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 934
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 942
 #, c-format
 msgid "Bad address in Y: %s"
-msgstr ""
+msgstr "Помилкова адреса у Y: %s"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 990
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 979
 msgid "Error in Row data addresses"
-msgstr ""
+msgstr "Помилка у адресах даних рядків"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 994
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 983
 msgid "Error in Column data addresses"
-msgstr ""
+msgstr "Помилка у адресах даних стовпчиків"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1012
 msgid " Scicos cannot read your Excel file, please verify the parameters"
 msgstr ""
+" Scicos не вдалося прочитати дані з вашого файла Excel. Будь ласка, "
+"перевірте, чи правильно вказано параметри."
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1032
 #, c-format
 msgid " x contains no data:x(%d)"
-msgstr ""
+msgstr " x не містить даних: x(%d)"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1036
 #, c-format
 msgid " Y contains no data:y(%d)"
-msgstr ""
+msgstr " Y не містить даних: y(%d)"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1090
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1139
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1081
 msgid "Text data file "
-msgstr ""
+msgstr "Файл текстових даних "
 
-#, fuzzy
 msgid "Bad format in reading data file"
-msgstr "Читати з файла вхідних даних"
+msgstr "Помилковий формат при читанні файла даних"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Scicos cannot open the data file: %s"
-msgstr "Не вдалося відкрити файл!\n"
+msgstr "Scicos не вдалося відкрити файл даних: %s"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1116
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1107
 msgid "No data read"
-msgstr ""
+msgstr "Даних не прочитано"
 
-#, fuzzy
 msgid "Bad format"
-msgstr "Можливі такі формати: "
+msgstr "Помилковий формат"
 
-#, fuzzy
 msgid "Bad format in writing data file"
-msgstr "Читати з файла вхідних даних"
+msgstr "Помилковий формат під час запису файла даних"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1278
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1292
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1302
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1313
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1323
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1231
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1250
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1265
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1280
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1295
-# File: modules/scicos_blocks/macros/Sources/Sigbuilder.sci, line: 424
-# File: modules/scicos_blocks/macros/Sources/Sigbuilder.sci, line: 434
-# File: modules/scicos_blocks/macros/Sources/Sigbuilder.sci, line: 445
-# File: modules/scicos_blocks/macros/Sources/Sigbuilder.sci, line: 455
 #, c-format
 msgid "ERROR in SPLINE: %s"
-msgstr ""
+msgstr "Помилка у сплайні: %s"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_f.sci, line: 50
 msgid "You have not defined a function"
-msgstr ""
+msgstr "Вами не визначено функцію"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/MAXMIN.sci, line: 35
 msgid "Min (1) or Max (2) "
-msgstr ""
+msgstr "Мін. (1) або Макс. (2) "
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/MAXMIN.sci, line: 49
 msgid "Wrong number of inputs: Only 1 and 2 allowed"
-msgstr ""
+msgstr "Помилкова кількість входів: може бути лише 1 або 2"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/POWBLK_f.sci, line: 37
 msgid "u^a: raise each element of the input"
-msgstr ""
+msgstr "u^a: піднесення до степеня усіх вхідних елементів"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/POWBLK_f.sci, line: 38
 msgid "to the power of"
-msgstr ""
+msgstr "є степенем"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/PRODUCT.sci, line: 42
 msgid ""
 "<html>Number of inputs or sign vector<br>(multiplication is set with + 1, "
 "division with -1)"
 msgstr ""
+"<html>Кількість входів або вектор знаків<br>(множення встановлюється за "
+"допомогою + 1, ділення — за допомогою -1)"
 
-#, fuzzy
 msgid "Set parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Вказати параметри"
 
-#, fuzzy
 msgid "Step"
-msgstr "Час сходинки"
+msgstr "Крок"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/QUANT_f.sci, line: 40
 msgid "Quantization Type must be from 1 to 4"
-msgstr ""
+msgstr "Типом квантизації має бути число від 1 до 4"
 
-#, fuzzy
 msgid "Set Saturation parameters"
-msgstr "Визначити параметри вхідного блоку"
+msgstr "Встановлення параметрів насиченості"
 
-#, fuzzy
 msgid "Min"
-msgstr "Мінімум"
+msgstr "Мін."
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/SAT_f.sci, line: 40
 msgid "Max must be > 0"
-msgstr ""
+msgstr "Макс. має бути > 0"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/SAT_f.sci, line: 42
 msgid "Slope must be > 0"
-msgstr ""
+msgstr "Значення нахилу має бути > 0"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/TrigFun.sci, line: 37
 #, c-format
 msgid "Choose among %s,<br>%s"
-msgstr ""
+msgstr "Виберіть серед %s,<br>%s"
 
 msgid "Finite differences"
 msgstr "Скінченні різниці"
@@ -2262,136 +1595,90 @@ msgstr "Будь ласка, вкажіть початкову умову %s"
 msgid "Please give the boundary conditions"
 msgstr "Будь ласка, вкажіть граничні умови"
 
-#
-# File: modules/scicos_blocks/macros/PDE/IHM_EDP.sci, line: 590
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 195
 msgid "The chosen point is out of the domain"
-msgstr ""
+msgstr "Вибрана точка перебуває поза доменом"
 
-#, fuzzy
 msgid "Please select the operators"
-msgstr "Будь ласка, вкажіть коефіцієнти оператора %s"
+msgstr "Будь ласка, виберіть оператори"
 
-#
-# File: modules/scicos_blocks/macros/PDE/PDE.sci, line: 65
 msgid "PLEASE, GIVE US THE BLOCK's NAME. "
-msgstr ""
+msgstr "Будь ласка, вкажіть назву блоку. "
 
-#
-# File: modules/scicos_blocks/macros/PDE/PDE.sci, line: 66
 msgid "New block's name: "
-msgstr ""
+msgstr "Назва нового блоку: "
 
-#
-# File: modules/scicos_blocks/macros/PDE/PDE.sci, line: 76
 msgid "Sorry, undefined C file name."
-msgstr ""
+msgstr "Вибачте, невизначена назва файла коду C."
 
-#
-# File: modules/scicos_blocks/macros/PDE/PDE.sci, line: 97
 msgid ""
 "The discriminant isn't constant.<br>You must choose its sign in the GUI."
 msgstr ""
+"Дискримінант не є сталим.<br>Вам слід вибрати його знак за допомогою "
+"графічного інтерфейсу."
 
-#, fuzzy
 msgid "Please provide the values<br>of the domain's discretization"
-msgstr "Будь ласка, вкажіть кількість точок дискретизації"
+msgstr "Будь ласка, вкажіть значення<br>дискретизації домену"
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 71
 msgid "Please provide the coefficients<br>    of the d2u/dt2 operator"
-msgstr ""
+msgstr "Будь ласка, вкажіть коефіцієнти<br>      оператора d2u/dt2"
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 79
 msgid "Please provide the coefficients<br>   of the d2u/dx2 operator"
-msgstr ""
+msgstr "Будь ласка, вкажіть коефіцієнти<br>      оператора d2u/dx2"
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 87
 msgid "Please provide the coefficients<br>   of the du/dt operator"
-msgstr ""
+msgstr "Будь ласка, вкажіть коефіцієнти<br>      оператора du/dt"
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 95
 msgid "Please provide the coefficients<br>   of the d2u/dtdx operator"
-msgstr ""
+msgstr "Будь ласка, вкажіть коефіцієнти<br>      оператора d2u/dtdx"
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 103
 msgid "Please provide the coefficients<br>    of the du/dx operator"
-msgstr ""
+msgstr "Будь ласка, вкажіть коефіцієнти<br>      оператора du/dx"
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 111
 msgid "Please provide the coefficients<br>      of the u operator"
-msgstr ""
+msgstr "Будь ласка, вкажіть коефіцієнти<br>      оператора u"
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 119
 msgid "Please provide the coefficients<br>      of the f operator."
-msgstr ""
+msgstr "Будь ласка, вкажіть коефіцієнти<br>      оператора f."
 
-#, fuzzy
 msgid "Please provide the sign of<br>the non-constant discriminant."
-msgstr "Будь ласка, вкажіть знак дискримінанта змінної"
+msgstr "Будь ласка, вкажіть знак<br>змінного дискримінанта."
 
-#, fuzzy
 msgid "Please provide the type of<br>the discretization method."
-msgstr "Будь ласка, вкажіть тип методу дискретизації"
+msgstr "Будь ласка, вкажіть тип<br>методу дискретизації."
 
-#, fuzzy
 msgid "Please provide the degree of<br>the discretization method."
-msgstr "Будь ласка, вкажіть тип методу дискретизації"
+msgstr "Будь ласка, вкажіть порядок<br>методу дискретизації."
 
-#, fuzzy
 msgid "Please provide the number<br>of discretisation points."
-msgstr "Будь ласка, вкажіть кількість точок дискретизації"
+msgstr "Будь ласка, вкажіть кількість<br>точок дискретизації."
 
-#, fuzzy
 msgid "Please provide the<br>initial condition u(x,t0)."
-msgstr "Будь ласка, вкажіть початкову умову %s"
+msgstr "Будь ласка, вкажіть<br>початкову умову u(x,t0)."
 
-#, fuzzy
 msgid "Please provide the<br>initial condition du/dx|t0"
-msgstr "Будь ласка, вкажіть початкову умову %s"
+msgstr "Будь ласка, вкажіть<br>початкову умову du/dx|t0"
 
-#, fuzzy
 msgid "Please provide the boundary conditions."
-msgstr "Будь ласка, вкажіть граничні умови"
+msgstr "Будь ласка, вкажіть граничні умови."
 
-#
-# File: modules/scicos_blocks/macros/PDE/code_generation.sci, line: 78
 msgid "   /* First output */ "
-msgstr ""
+msgstr "   /* Перше виведення */ "
 
-#
-# File: modules/scicos_blocks/macros/PDE/code_generation.sci, line: 82
-# File: modules/scicos_blocks/macros/PDE/code_generation.sci, line: 99
 msgid "   /* Second output */ "
-msgstr ""
+msgstr "   /* Друге виведення */ "
 
-#
-# File: modules/scicos_blocks/macros/PDE/code_generation.sci, line: 89
-# File: modules/scicos_blocks/macros/PDE/code_generation.sci, line: 94
 msgid "   /* Fist output */ "
-msgstr ""
+msgstr "   /* Перше виведення */ "
 
-#
-# File: modules/scicos_blocks/macros/PDE/lecture_xml.sci, line: 86
 msgid "No decision."
-msgstr ""
+msgstr "Немає розв'язку."
 
-#
-# File: modules/scicos_blocks/macros/PDE/multMatVect.sci, line: 33
 msgid "Usage: y = multMatVect(M, x)"
-msgstr ""
+msgstr "Користування: y = multMatVect(M, x)"
 
-#
-# File: modules/scicos_blocks/macros/PDE/multMatVect.sci, line: 43
 #, c-format
 msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
-msgstr ""
+msgstr "%s: параметри %d і %d: несумісні розмірності.\n"
 
 #, c-format
 msgid "The finite element discretization took %.2f seconds"
@@ -2412,227 +1699,126 @@ msgstr "Створення коду, компіляція та компонув�
 msgid "Input Size"
 msgstr "Вхідна розмірність"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/AFFICH_m.sci, line: 59
 msgid "The Font number must be > 0"
-msgstr ""
+msgstr "Номер шрифту має бути > 0"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/AFFICH_m.sci, line: 64
 msgid "The Font size must be > 0"
-msgstr ""
+msgstr "Значення розміру шрифту має бути > 0"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/AFFICH_m.sci, line: 69
 msgid "The Total number of digits must be > 3"
-msgstr ""
+msgstr "Загальна кількість цифр має бути > 3"
 
-#, fuzzy
 msgid "The Number of fractional part digits must be >= 0"
-msgstr "Кількість рядків має бути рівною степеню двійки."
+msgstr "Кількість цифр у дробовій частині має бути >= 0"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/AFFICH_m.sci, line: 79
-# File: modules/scicos_blocks/macros/Sinks/AFFICH_m.sci, line: 89
-# File: modules/scicos_blocks/macros/Sinks/CEVENTSCOPE.sci, line: 79
-# File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 82
-# File: modules/scicos_blocks/macros/Sinks/CMAT3D.sci, line: 54
-# File: modules/scicos_blocks/macros/Sinks/CMATVIEW.sci, line: 48
-# File: modules/scicos_blocks/macros/Sinks/CMSCOPE.sci, line: 96
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 76
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 113
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 89
 msgid "Some specified values are inconsistent:"
-msgstr ""
+msgstr "Деякі із вказаних значень є несумісними:"
 
-#, fuzzy
 msgid "Accept inherited values are 0 and 1"
-msgstr "Приймах успадковані події"
+msgstr "Прийнятними успадкованими значеннями є 0 і 1"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/BARXY.sci, line: 30
 msgid "Segs Thickness"
-msgstr ""
+msgstr "Товщина сегментів"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/BARXY.sci, line: 38
-# File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 74
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 73
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY3D.sci, line: 85
 msgid "Ymax > Ymin is required."
-msgstr ""
+msgstr "Має бути Ymax > Ymin."
 
-#
-# File: modules/scicos_blocks/macros/Sinks/BARXY.sci, line: 41
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 78
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 76
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY3D.sci, line: 89
 msgid "Xmax > Xmin is required."
-msgstr ""
+msgstr "Має бути Xmax > Xmin."
 
-#
-# File: modules/scicos_blocks/macros/Sinks/BARXY.sci, line: 44
 msgid "The lines thickness must be > 0."
-msgstr ""
+msgstr "Товщина ліній має бути > 0."
 
-#, fuzzy
 msgid "Number of Curves"
-msgstr "Кількість вузлів:"
+msgstr "Кількість кривих"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 39
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 37
-# File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 37
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 37
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 38
 msgid "Curves styles: Colors>0 | marks<0"
-msgstr ""
+msgstr "Стилі кривих: кольори > 0 | позначки < 0"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 40
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 38
 msgid "Curves thicknesses | marks sizes"
-msgstr ""
+msgstr "Товщина кривих або розміри позначок"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 41
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 39
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 38
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 39
 msgid "Output window number (-1 for automatic)"
-msgstr ""
+msgstr "Номер вікна виведення (-1 — автоматично)"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 42
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 40
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 39
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 40
 msgid "Output window position"
-msgstr ""
+msgstr "Розташування вікна виведення"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 43
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 41
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 40
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 41
 msgid "Output window sizes"
-msgstr ""
+msgstr "Розміри вікна виведення"
 
 msgid "Buffer size"
 msgstr "Розмір буфера"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 57
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 53
-# File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 54
-# File: modules/scicos_blocks/macros/Sinks/CMSCOPE.sci, line: 67
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 55
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 55
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY3D.sci, line: 53
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 73
 msgid "'Window position' must be [] or a 2 vector"
-msgstr ""
+msgstr "Розташуванням вікна має бути [] або вектор із двох значень"
 
-#, fuzzy
 msgid "'Window sizes' must be [] or a 2 vector"
-msgstr "Розмірність вихідного порту має бути вектором з двох елементів"
+msgstr "Розмірами вікна має бути [] або вектор із двох значень"
 
-#, fuzzy
 msgid "The Window number must be >= -1"
-msgstr "Кількість рядків має бути рівною степеню двійки."
+msgstr "Номер вікна має бути >= -1"
 
-#, fuzzy
 msgid "The Number of curves must be >= 1"
-msgstr "Кількість рядків має бути рівною степеню двійки."
+msgstr "Кількість кривих має бути >= 1"
 
-#, fuzzy
 msgid "The Buffer size must be >= 1"
-msgstr "Розмір буфера не повинен бути меншим за 2."
+msgstr "Розмір буфера має бути >= 1"
 
-#, fuzzy
 msgid "The Buffer size must be >= 2"
-msgstr "Розмір буфера не повинен бути меншим за 2."
+msgstr "Розмір буфера має бути >= 2"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 75
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 84
-# File: modules/scicos_blocks/macros/Sinks/CMSCOPE.sci, line: 89
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 70
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 105
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 77
 msgid "Ymax > Ymin is required"
-msgstr ""
+msgstr "Має бути Ymax > Ymin"
 
-#, fuzzy
 msgid "Number of curves"
-msgstr "Кількість вузлів:"
+msgstr "Кількість кривих"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 38
 msgid "Curves thicknesses or marks sizes"
-msgstr ""
+msgstr "Товщина кривих або розміри позначок"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 62
 msgid ""
 "The numbers of curves styles and of<br>curves thickness or marks size must "
 "match."
 msgstr ""
+"Кількості стилів кривих і<br>товщин кривих або розмірів позначок мають "
+"збігатися."
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 68
 #, c-format
 msgid "Not enough curves styles: At least %d expected."
-msgstr ""
+msgstr "Недостатньо стилів кривих: має бути принаймні %d."
 
-#, fuzzy
 msgid "The Buffer size must be >= 2, or Change a color (must be <0)"
-msgstr "Розмір буфера не повинен бути меншим за 2."
+msgstr ""
+"Розмір буфера має бути >= 2 або має бути застосовано зміну кольору (має бути "
+"<0)"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 87
 msgid "Xmax > Xmin is required"
-msgstr ""
+msgstr "Має бути Xmax > Xmin"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 90
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY3D.sci, line: 93
 msgid "Zmax > Zmin is required"
-msgstr ""
+msgstr "Має бути Zmax > Zmin"
 
-#, fuzzy
 msgid "Number of event inputs"
-msgstr "Кількість вузлів:"
+msgstr "Кількість вхідних подій"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CEVENTSCOPE.sci, line: 51
 msgid "The Window position must be [] or a 2 vector"
-msgstr ""
+msgstr "Розташуванням вікна має бути [] або вектор із двох значень"
 
-#, fuzzy
 msgid "The block must have at least one input event"
-msgstr "Стала має складатися принаймні з одного елемента."
+msgstr "Блок повинен мати принаймні одна вхідна подія"
 
-#, fuzzy
 msgid "The number of curves styles must match the Number of inputs"
-msgstr "&nbsp; Кількість стовпчиків вказує на кількість виведених значень."
+msgstr "Кількості стилів кривих і вході мають бути однаковими"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CEVENTSCOPE.sci, line: 73
-# File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 66
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 64
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 69
 msgid "The Refresh period must be > 0"
-msgstr ""
+msgstr "Значення періоду оновлення має бути > 0"
 
-#, fuzzy
 msgid "'Window number' must be >= -1"
-msgstr "Розмір буфера бо розмір вхідних даних було змінено!\n"
+msgstr "Значення параметра «Номер вікна» має бути >= -1"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 78
 msgid "Link to view must be positive"
-msgstr ""
+msgstr "Значення кількості зв'язків із переглядом має бути додатним"
 
 msgid "Event output port"
 msgstr "Порт виведення даних подій"
@@ -2647,192 +1833,134 @@ msgstr "Помилкове значення параметра «Номер по
 msgid "Strictly positive integer expected."
 msgstr "Слід вказати додатне ціле число."
 
-#, fuzzy
 msgid "Set Event Output block parameters"
-msgstr "Визначити параметри вхідного блоку"
+msgstr "Встановлення параметрів блоку вихідної події"
 
-#, fuzzy
 msgid "Port number must be an integer > 0"
-msgstr "Номер порту має бути додатним цілим числом"
+msgstr "Номер порту має бути цілим числом > 0"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMAT3D.sci, line: 35
 msgid "Bounds Vector X (-1 for standard)"
-msgstr ""
+msgstr "Вектор меж за X (-1 — стандартні межі)"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMAT3D.sci, line: 36
 msgid "Bounds Vector Y (-1 for standard)"
-msgstr ""
+msgstr "Вектор меж за Y (-1 — стандартні межі)"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMAT3D.sci, line: 37
-# File: modules/scicos_blocks/macros/Sinks/CMATVIEW.sci, line: 35
 msgid "ColorMap"
-msgstr ""
+msgstr "Мапа кольорів"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMAT3D.sci, line: 46
 msgid "Vectors X and Y must have the same size."
-msgstr ""
+msgstr "Розмірності векторів X та Y мають бути однаковими."
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMAT3D.sci, line: 50
 msgid "Zmax > Zmin is required."
-msgstr ""
+msgstr "Має бути Zmax > Zmin."
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMATVIEW.sci, line: 44
 msgid "Error with minimum and maximum values"
-msgstr ""
+msgstr "Помилка із мінімальним і максимальним значеннями"
 
-#, fuzzy
 msgid "The block must have at least one input port"
-msgstr ""
-"Вхідними даними часу для блоку перемикача має бути дискретна послідовність "
-"чисел."
+msgstr "Блок повинен мати принаймні один вхідний порт"
 
-#, fuzzy
 msgid "Port sizes must be > 0"
-msgstr "Розмір буфера не повинен бути меншим за 2."
+msgstr "Розмірності портів мають бути > 0"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMSCOPE.sci, line: 63
 #, c-format
 msgid "At least %d curves styles expected."
-msgstr ""
+msgstr "Мало бути вказано принаймні %d стилів кривих."
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMSCOPE.sci, line: 77
 msgid "The size of 'Refresh Periods' must match the Ymin|Ymax's one"
 msgstr ""
+"Розмірність значення «Періоди оновлення» має дорівнювати розмірності Ymin "
+"або Ymax"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMSCOPE.sci, line: 82
 msgid "All Refresh Periods must be > 0"
-msgstr ""
+msgstr "Усі значення періодів оновлення мають бути > 0"
 
-#, fuzzy
 msgid "'Accept herited events' must be 0 or 1"
-msgstr "Приймає успадковані події (0: Ні, 1: Так)"
+msgstr "Значенням параметра «Прийняття успадкованих подій» має бути 0 або 1"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 37
 msgid "Curve style: Color>0 | mark<0"
-msgstr ""
+msgstr "Стиль кривої: колір > 0 | позначки < 0"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 43
 msgid "Refresh period"
-msgstr ""
+msgstr "Період оновлення"
 
-#, fuzzy
 msgid "Accept herited events 0/1"
-msgstr "Приймах успадковані події"
+msgstr "Прийняття успадкованих подій — 0/1"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 46
 msgid "Name of Scope (label&Id)"
-msgstr ""
+msgstr "Назва області (мітка&Ід)"
 
-#, fuzzy
 msgid "The Number of Curves must be > 0"
-msgstr "Кількість рядків має бути рівною степеню двійки."
+msgstr "Кількість кривих має бути > 0"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY3D.sci, line: 61
 msgid ""
 "<html>The number of Colors or Mark styles<br>and the number of curves "
 "thicknesses or marks sizes<br>must match."
 msgstr ""
+"<html>Кількості стилів кольорів або позначок<br>і товщин кривих або розмірів "
+"позначок<br>мають бути однаковими."
 
-#, fuzzy
 msgid "The number of curves must be > 0"
-msgstr "Кількість рядків має бути рівною степеню двійки."
+msgstr "Кількість кривих має бути > 0"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY3D.sci, line: 69
 msgid "The Window's number must be > -1"
-msgstr ""
+msgstr "Номер вікна має бути > -1"
 
-#, fuzzy
 msgid "The Buffer size must be at least 1"
-msgstr "Розмір буфера не повинен бути меншим за 2."
+msgstr "Розмір буфера не повинен бути меншим за 1"
 
-#, fuzzy
 msgid "The Buffer size must be at least 2 or Change a color (must be >0)"
-msgstr "Розмір буфера не повинен бути меншим за 2."
+msgstr ""
+"Розмір буфера має бути >= 2 або зміна має бути зміною кольору (має бути > 0)"
 
-#, fuzzy
 msgid "Implicit output port:"
-msgstr "Неявний порт виведення даних"
+msgstr "Неявний порт виведення даних:"
 
 msgid "Regular output port"
 msgstr "Порт звичайного виведення даних"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 68
 #, c-format
 msgid "Not enough colors defined: At least %d required."
-msgstr ""
+msgstr "Визначено недостатньо кольорів: мало бути принаймні %d."
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 81
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 85
 msgid "'Auto scaling' must be 0:No or 1:Yes"
-msgstr ""
+msgstr "Значенням параметра «Автомасштаб» має бути 0:ні або 1:так"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 85
 msgid "'Window number' can't be  < -1"
-msgstr ""
+msgstr "Номер вікна не може бути  < -1"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 90
 msgid "Size of Refresh Period must equal size of Ymin/Ymax vector"
 msgstr ""
+"Розмірність параметра «Період оновлення» має дорівнювати розмірності вектора "
+"Ymin/Ymax"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 96
 msgid "Refresh Period must be > 0"
-msgstr ""
+msgstr "Значення періоду оновлення має бути > 0"
 
-#, fuzzy
 msgid "The Buffer size must be at least 2"
-msgstr "Розмір буфера не повинен бути меншим за 2."
+msgstr "Розмір буфера не повинен бути меншим за 2"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 57
 msgid "Window position must be [] or a 2 vector"
-msgstr ""
+msgstr "Розташуванням вікна має бути [] або вектор із двох значень"
 
-#, fuzzy
 msgid "Window sizes must be [] or a 2 vector"
-msgstr "Розмірність вихідного порту має бути вектором з двох елементів"
+msgstr "Розмірами вікна має бути [] або вектор із двох значень"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 65
 msgid "Window number can't be  < -1"
-msgstr ""
+msgstr "Номер вікна не може бути  < -1"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/TOWS_c.sci, line: 36
 msgid "Size of buffer"
-msgstr ""
+msgstr "Розмір буфера"
 
-#, fuzzy
 msgid "Size of buffer must be > 0"
-msgstr "Розмір буфера бо розмір вхідних даних було змінено!\n"
+msgstr "Розмір буфера має бути > 0"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/TOWS_c.sci, line: 54
 msgid "Invalid variable's name.<br>Please choose another name."
-msgstr ""
+msgstr "Некоректна назва змінної.<br>Будь ласка, виберіть іншу назву."
 
-#
-# File: modules/scicos_blocks/macros/Sinks/TOWS_c.sci, line: 59
 msgid "Protected variable name.<br>Please choose another name."
 msgstr ""
+"Використано назву захищеної змінної.<br>Будь ласка, виберіть іншу назву."
 
 msgid "Buffer Size"
 msgstr "Розмір буфера"
@@ -2885,7 +2013,6 @@ msgstr "Каталогу «%s» не існує"
 msgid "Event input port"
 msgstr "Порт введення даних подій"
 
-#, fuzzy
 msgid "Port Number"
 msgstr "Номер порту"
 
@@ -2893,13 +2020,11 @@ msgstr "Номер порту"
 msgid "Wrong values for 'Port Number' parameter: %d."
 msgstr "Помилкові значення параметра «Номер порту»: %d."
 
-#, fuzzy
 msgid "Set Event Input block parameters"
-msgstr "Визначити параметри вхідного блоку"
+msgstr "Встановлення параметрів блоку вхідної події"
 
-#, fuzzy
 msgid "'Port number' must be a positive integer."
-msgstr "Номер порту має бути додатним цілим числом"
+msgstr "Номер порту має бути додатним цілим числом."
 
 msgid "Event clock generator"
 msgstr "Породжувач подій годинника"
@@ -2920,52 +2045,39 @@ msgstr "Мало бути вказано додатне число"
 msgid "Wrong values for '%s' parameter: %5.1e."
 msgstr "Помилкове значення параметра «%s»: %5.1e."
 
-#, fuzzy
 msgid "Set Clock  block parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення параметрів блоку годинника"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CLOCK_f.sci, line: 52
 msgid "Period must be > 0"
-msgstr ""
+msgstr "Значенням періоду має бути > 0"
 
-#, fuzzy
 msgid "Set Constant value block"
-msgstr "Значення сталої"
+msgstr "Встановлення блоку сталого значення"
 
-#, fuzzy
 msgid "Value"
-msgstr "Остаточне значення"
+msgstr "Значення"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CONST.sci, line: 41
 msgid "The value must be non-empty"
-msgstr ""
+msgstr "Значення має бути непорожнім"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CONST.sci, line: 43
 msgid ""
 "The input value must be scalar.<br>Please use CONST_m to set a<br>constant "
 "input vector or matrix."
 msgstr ""
+"Вхідним значенням має бути скаляр.<br>Будь ласка, скористайтеся CONST_m для "
+"встановлення<br>сталого вектора вхідних даних або матриці."
 
-#, fuzzy
 msgid "Set Constant Block"
-msgstr "Значення сталої"
+msgstr "Встановлення блоку сталої"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CONST_f.sci, line: 34
 msgid "Value (scalar | vector | matrix)"
-msgstr ""
+msgstr "Значення (scalar | vector | matrix)"
 
-#, fuzzy
 msgid "The value must have at least one element."
-msgstr "Стала має складатися принаймні з одного елемента."
+msgstr "Значення має складатися з принаймні одного елемента."
 
-#
-# File: modules/scicos_blocks/macros/Sources/CONST_m.sci, line: 36
 msgid "Provides a CONSTant scalar, vector or Matrix"
-msgstr ""
+msgstr "Надає сталий скаляр, вектор або матрицю"
 
 msgid "Constant Value"
 msgstr "Значення сталої"
@@ -2981,87 +2093,59 @@ msgstr "Помилкова розмірність параметра «%s»"
 msgid "Wrong type for '%s' parameter"
 msgstr "Помилковий тип параметра «%s»"
 
-#, fuzzy
 msgid "The value must be numeric<br>(double, complex, int, int8, ..uint32)."
 msgstr ""
-"Значення має належати до числового типу (double, complex, int, int8, ...)."
+"Значення має бути числовим<br>(double, complex, int, int8, ..uint32)."
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 44
 msgid "Spline data"
-msgstr ""
+msgstr "Сплайнові дані"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 45
 msgid "Spline Method (0..7)"
-msgstr ""
+msgstr "Метод сплайнів (0..7)"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 46
 msgid "Periodic signal (y/n)?"
-msgstr ""
+msgstr "Періодичний сигнал (y — так/n — ні)?"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 83
 msgid "Incompatible sizes of [x] and [y]"
-msgstr ""
+msgstr "Несумісні розмірності [x] і [y]"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 235
 msgid " No [y] is provided"
-msgstr ""
+msgstr " Не вказано [y]"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 437
 msgid "X should be positive"
-msgstr ""
+msgstr "X має бути додатним"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 455
 msgid "Generating periodic signal"
-msgstr ""
+msgstr "Створення періодичного сигналу"
 
-#, fuzzy
 msgid "Sine parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Параметри синусоїди"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 886
 msgid "Excel data file"
-msgstr ""
+msgstr "файл даних Excel"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 897
 #, c-format
 msgid "Scicos cannot find the excel file '%s'."
-msgstr ""
+msgstr "Scicos не вдалося знайти файл excel «%s»."
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1001
 msgid "Scicos cannot read your Excel file. Please verify the parameters"
 msgstr ""
+"Scicos не вдалося прочитати дані з вашого файла Excel. Будь ласка, "
+"перевірте, чи правильно вказано параметри."
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1021
 #, c-format
 msgid "x contains no data:x(%d)"
-msgstr ""
+msgstr "x не містить даних: x(%d)"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1025
 #, c-format
 msgid "Y contains no data:y(%d)"
-msgstr ""
+msgstr "Y не містить даних: y(%d)"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1131
 msgid "Text data file"
-msgstr ""
+msgstr "Файл текстових даних"
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURV_f.sci, line: 55
 msgid "Abscissae must be in increasing order"
-msgstr ""
+msgstr "Абсциси має бути вказано у порядку збільшення"
 
 msgid "Integer counter generator"
 msgstr "Породжувач цілого лічильника"
@@ -3083,30 +2167,24 @@ msgstr "«Мінімум» має бути меншим за «Максимум�
 msgid "Wrong value for 'Rule' parameter: %d"
 msgstr "Помилкове значення параметра «Правило»: %d"
 
-#, fuzzy
 msgid "Variable name"
-msgstr "Дискримінант змінної:"
+msgstr "Назва змінної"
 
-#
-# File: modules/scicos_blocks/macros/Sources/FROMWS_c.sci, line: 44
 msgid "'Interpolation method' should be chosen in [0,1,2,3]"
 msgstr ""
+"Значення «Метод інтерполяції» має бути вибрано із набору [0, 1, 2, 3]"
 
-#
-# File: modules/scicos_blocks/macros/Sources/FROMWS_c.sci, line: 49
 msgid "'Use zero crossing' should be either 0 or 1"
-msgstr ""
+msgstr "Значенням «Використання перетину нуля» має бути 0 або 1"
 
-#
-# File: modules/scicos_blocks/macros/Sources/FROMWS_c.sci, line: 54
 msgid "'Output at end' should be either 0 or 1"
-msgstr ""
+msgstr "Значенням параметра «Виводити наприкінці» має бути 0 або 1"
 
-#
-# File: modules/scicos_blocks/macros/Sources/FROMWS_c.sci, line: 62
 msgid ""
 "Invalid variable name.<br>Please use another variable<br>or define this one."
 msgstr ""
+"Некоректна назва змінної.<br>Будь ласка, скористайтеся іншою назвою<br>або "
+"визначте цю."
 
 msgid "Sine wave generator"
 msgstr "Генератор синусоїдальної хвилі"
@@ -3121,9 +2199,8 @@ msgstr "Фаза (рад)"
 msgid "Wrong value for 'Frequency' parameter: %e."
 msgstr "Помилкове значення параметра «Частота»: %e."
 
-#, fuzzy
 msgid "Minimum Value"
-msgstr "Мінімум"
+msgstr "Мінімальне значення"
 
 msgid "Implicit input port"
 msgstr "Неявний порт введення даних"
@@ -3165,23 +2242,17 @@ msgstr "Слід вказати нульове або додатне ціле ч
 msgid "Wrong values for 'Upper Limit' parameter: %d."
 msgstr "Помилкові значення параметра «Верхня межа»: %d."
 
-#, fuzzy
 msgid "Set Pulse Generator parameters"
-msgstr "Визначити параметри блоку %s"
+msgstr "Встановлення параметрів генератора пульсацій"
 
-#, fuzzy
 msgid "Phase delay (s)"
-msgstr "Фаза (рад)"
+msgstr "Затримка фази (с)"
 
-#
-# File: modules/scicos_blocks/macros/Sources/PULSE_SC.sci, line: 72
 msgid "The pulse width must be in [0,100]"
-msgstr ""
+msgstr "Шириною пульсації має бути число у діапазоні [0,100]"
 
-#
-# File: modules/scicos_blocks/macros/Sources/PULSE_SC.sci, line: 73
 msgid "Offset must be < Period*(1-Width/100)"
-msgstr ""
+msgstr "Значення зсуву має бути < Період*(1-Ширина/100)"
 
 msgid "Ramp function"
 msgstr "Пилкоподібна функція"
@@ -3193,45 +2264,41 @@ msgstr "Час початку"
 msgid "Wrong value for 'Start Time' parameter: %e."
 msgstr "Помилкове значення параметра «Час початку»: %e."
 
-#, fuzzy
 msgid "Set Random generator block parameters"
-msgstr "Визначити параметри вхідного блоку"
+msgstr "Встановлення параметрів блоку генератора випадкових чисел"
 
-#
-# File: modules/scicos_blocks/macros/Sources/RAND_f.sci, line: 41
 msgid ""
 "flag = 0 : Uniform distribution. A is min and A+B max<br>flag = 1 : Normal "
 "distribution. A is mean and B deviation.<br><br>A and B must be vector with "
 "equal sizes.<br>Seed is the seed of random number generator (integer<2**31)"
 msgstr ""
+"прапорець = 0: однорідно розподілена величина, A — мінімум, A+B — "
+"максимум<br>прапорець = 1: нормально розподілена величина, A — математичне "
+"сподівання, B — середньо-квадратичне відхилення<br><br>A і B мають бути "
+"векторами однакових розмірностей.<br>Базою має бути початкове число для "
+"генератора випадкових чисел (ціле число < 2**31)"
 
-#
-# File: modules/scicos_blocks/macros/Sources/RAND_f.sci, line: 48
-# File: modules/scicos_blocks/macros/Sources/RAND_m.sci, line: 48
 msgid "'flag' must be equal to 0 or 1"
-msgstr ""
+msgstr "Значенням «прапорець» має бути число рівне 0 або 1"
 
-#
-# File: modules/scicos_blocks/macros/Sources/RAND_m.sci, line: 39
 msgid ""
 "flag = 0 : Uniform distribution A is min and A+B max.<br>flag = 1 : Normal "
 "distribution A is mean and B deviation<br><br>A and B must be matrix with "
 "equal sizes"
 msgstr ""
+"прапорець = 0: однорідно розподілена величина, A — мінімум, A+B — "
+"максимум.<br>прапорець = 1: нормально розподілена величина, A — математичне "
+"сподівання, B — середньо-квадратичне відхилення<br><br>A і B мають бути "
+"матрицями однакових розмірностей."
 
-#
-# File: modules/scicos_blocks/macros/Sources/RAND_m.sci, line: 41
 msgid "Datatype (1=real double  2=complex)"
-msgstr ""
+msgstr "Тип даних (1=дійсний подвійної точності 2=комплексний)"
 
-#
-# File: modules/scicos_blocks/macros/Sources/RAND_m.sci, line: 42
 msgid "Seed"
-msgstr ""
+msgstr "База"
 
-#, fuzzy
 msgid "Read an Audio File"
-msgstr "(Читаих файл аудіоданих)"
+msgstr "Читання звукового файла"
 
 msgid "Read is done on a binary '.au' file"
 msgstr "Читання виконано з файла двійкових даних «.au»"
@@ -3281,12 +2348,13 @@ msgstr "Номер початкового запису"
 msgid "Read from an input file"
 msgstr "Читати з файла вхідних даних"
 
-#, fuzzy
 msgid ""
 "Read is done on:<br>&nbsp; - A binary file if no format given.<br>&nbsp; - A "
 "formatted text file if a  format (fortran type) is given.<br>"
 msgstr ""
-"&nbsp; - Форматований текстовий файл, якщо вказано формат у запису fortran"
+"Читання буде виконано для:<br>&nbsp; - файла двійкових даних, якщо формат не "
+"вказано.<br>&nbsp; - форматованого текстового файла, якщо вказано формат a "
+"(типу форматів Фортрану).<br>"
 
 msgid "Empty matrix or scalar expected."
 msgstr "Мало бути вказано порожню матрицю або число."
@@ -3341,142 +2409,37 @@ msgstr ""
 msgid "Same sizes expected."
 msgstr "Розмірності мали збігатися."
 
-#, fuzzy
 msgid "'Sample time' must be >= 0"
-msgstr "Розмір буфера не повинен бути меншим за 2."
+msgstr "Значення параметра «Час вимірювання» має бути >= 0"
 
-#
-# File: modules/scicos_blocks/macros/Sources/SampleCLK.sci, line: 44
 msgid "The |Offset| must be less than the Sample time"
-msgstr ""
+msgstr "Значення зсуву має бути меншим за час вибірки"
 
-#, fuzzy
 msgid "Min value"
-msgstr "Остаточне значення"
+msgstr "Мін. значення"
 
-#
-# File: modules/scicos_blocks/macros/Sources/tkscaleblk.sci, line: 53
 msgid "TK Source: "
-msgstr ""
+msgstr "Джерело TK: "
 
-#
-# File: modules/scicos_blocks/macros/Threshold/GENERAL_f.sci, line: 38
 msgid "Set General Zero-Crossing parameters"
-msgstr ""
+msgstr "Встановити загальні параметри перетину нуля"
 
-#, fuzzy
 msgid "Input size"
-msgstr "Вхідна розмірність"
+msgstr "Розмірність входу"
 
-#
-# File: modules/scicos_blocks/macros/Threshold/GENERAL_f.sci, line: 52
 msgid "Routing matrix"
-msgstr ""
+msgstr "Матриця маршрутизації"
 
-#
-# File: modules/scicos_blocks/macros/Threshold/ZCROSS_f.sci, line: 34
 msgid "Set Zero-Crossing parameters<br><br>All surfaces must cross together"
 msgstr ""
+"Встановити загальні параметри перетину нуля<br><br>Усі поверхні мають "
+"перетинатися між собою"
 
-#, fuzzy
 msgid "The block must have at least one input"
-msgstr ""
-"Вхідними даними часу для блоку перемикача має бути дискретна послідовність "
-"чисел."
+msgstr "Блок повинен мати принаймні один вхід"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
 "%d.\n"
-
-#, fuzzy
-#~ msgid "The Buffer size must be  1"
-#~ msgstr "Розмір буфера не повинен бути меншим за 2."
-
-#, fuzzy
-#~ msgid "The Buffer size must be  2"
-#~ msgstr "Розмір буфера не повинен бути меншим за 2."
-
-#~ msgid "Data Type %s"
-#~ msgstr "Тип даних %s"
-
-#~ msgid "Type conversion"
-#~ msgstr "Перетворення типів"
-
-#~ msgid "(b) 0:Nothing, 1:Saturate, 2:Error"
-#~ msgstr "(b) 0: нічого, 1: наситити, 2: помилка"
-
-#~ msgid "&nbsp;- Bits to Extract:"
-#~ msgstr "&nbsp;- Біти для видобування:"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;1 верхня половина"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;2 нижня половина"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;3 діапазон від старшого біта"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;4 діапазон до меншого біта"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;5 діапазон бітів"
-
-#~ msgid "&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"
-#~ msgstr "&nbsp;- Кількість бітів або позиція біта: позиція 0 — менший біт"
-
-#~ msgid ""
-#~ "&nbsp;&nbsp;&nbsp;&nbsp;If 'Bits to Extract' is set to 'Range of bits': "
-#~ "[Start, End]"
-#~ msgstr ""
-#~ "&nbsp;&nbsp;&nbsp;&nbsp;Якщо значенням «Біти для видобування» є «Діапазон "
-#~ "бітів»: [Початок, Кінець]"
-
-#~ msgid "JK flip-flop"
-#~ msgstr "JK-тригер"
-
-#~ msgid "The 'Initial Value' must be 0 or 1 of type int8"
-#~ msgstr ""
-#~ "«Початкове значення» має бути рівним 0 або 1 і належати до типу int8"
-
-#~ msgid "&nbsp;- Negative values are considered as int8(0)"
-#~ msgstr "&nbsp;- Вважається, що від’ємні дані належать до типу int8(0)"
-
-#~ msgid "&nbsp;- Positive values are considered as int8(1)"
-#~ msgstr "&nbsp;- Вважається, що додатні дані належать до типу int8(1)"
-
-#~ msgid "Combinatorial logic"
-#~ msgstr "Комбінаторна логіка"
-
-#~ msgid "&nbsp; Number of rows must be a power of two."
-#~ msgstr "&nbsp; Кількість рядків має бути рівною степеню двійки."
-
-#~ msgid "&nbsp; Rows of the matrix are the output values"
-#~ msgstr "&nbsp; Рядками матриці є виведені дані"
-
-#~ msgid "SR flip-flop"
-#~ msgstr "SR-тригер"
-
-#~ msgid "Matrix A is not square or D has wrong dimension"
-#~ msgstr "Матриця A не є квадратною або розмірності матриці D є помилковими"
-
-#~ msgid "Output Format"
-#~ msgstr "Формат вихідних даних"
-
-#~ msgid "Constant value generator"
-#~ msgstr "Породжувач значень сталої"
-
-#~ msgid "Magnitude"
-#~ msgstr "Амплітуда"
-
-#~ msgid "&nbsp; - A binary file if no format given"
-#~ msgstr "&nbsp; — файл двійових даних, якщо не вказано формату"
-
-#~ msgid "Read is done on:"
-#~ msgstr "Читання виконано:"
-
-#~ msgid "Step Function"
-#~ msgstr "Східчаста функція"

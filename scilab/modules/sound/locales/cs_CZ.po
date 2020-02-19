@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 22:03+0000\n"
+"PO-Revision-Date: 2015-10-08 22:03+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -61,9 +61,9 @@ msgstr "%s: Nelze otevřít soubor %s.\n"
 msgid "Index range must be specified as a scalar or a 2 elements vector."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: File '%s': Unrecognized data format.\n"
-msgstr "Nerozpoznaný formát dat."
+msgstr ""
 
 msgid "Sample limit vector must have 2 elements."
 msgstr "Vektor omezení vzorku musí mít 2 prvky."
@@ -77,8 +77,6 @@ msgstr "Omezení prvku musí být zadáno ve vzestupném pořadí."
 msgid "Error in file format."
 msgstr "Chyba ve formátu souboru."
 
-#
-# File: modules/sound/macros/auread.sci, line: 174
 #, c-format
 msgid "%s: File '%s' is not a .au sound file.\n"
 msgstr ""
@@ -123,36 +121,30 @@ msgstr "%s: Špatný počet výstupních argumentů.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Špatný počet výstupních argumentů.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: %s expected.\n"
-msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
+msgstr ""
 
-#
-# File: modules/sound/macros/playsnd.sci, line: 54
 #, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
-msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
+msgstr ""
 
-#
-# File: modules/sound/macros/playsnd.sci, line: 91
 #, c-format
 msgid "%s: Argument #%d: The file '%s' does not exist.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal number expected.\n"
-msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
+msgstr ""
 
-#
-# File: modules/sound/macros/playsnd.sci, line: 100
 #, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
 msgstr ""
@@ -210,8 +202,6 @@ msgstr ""
 "%s: Špatná hodnota pro vstupní argument: Rozsah ukazatele musí být určen "
 "jako skalár, nebo vektor s %d prvky.\n"
 
-#
-# File: modules/sound/macros/wavread.sci, line: 84
 #, c-format
 msgid "%s: The file '%s' does not exist.\n"
 msgstr ""
@@ -233,7 +223,8 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Vyskytla se chyba: %s není podporován.\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Vyskytla se chyba: neplatný formát souboru. Chyba při čtení kusu <%s>.\n"
 
@@ -243,8 +234,6 @@ msgstr "Neplatný soubor .wav: nalezena data před informacemi o formátu."
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Nesprávná velikost kusu informací v souboru RIFF."
 
-#
-# File: modules/sound/macros/wavread.sci, line: 217
 #, c-format
 msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
 msgstr ""
@@ -264,6 +253,3 @@ msgstr "Vektor limitu vzorku musí mít 2 záznamy."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Neplatné limity vzorkování (použijte vzestupné pořadí)."
-
-#~ msgid "Invalid wav format."
-#~ msgstr "Neplatný formát wav."

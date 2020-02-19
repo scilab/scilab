@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 20:13+0000\n"
-"Last-Translator: Mickael Albertus <Unknown>\n"
+"PO-Revision-Date: 2020-01-14 20:00+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: fr\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
@@ -173,18 +173,14 @@ msgstr ""
 msgid "%s: This feature has not been implemented: %s."
 msgstr "%s : Cette fonctionnalité n'a pas été implémentée : %s."
 
-#
-# File: modules/matio/macros/matfile2sci.sci, line: 24
-#, fuzzy, c-format
+#, c-format
 msgid "%s: The file '%s' does not exist.\n"
-msgstr "%s: le module %s n'est pas installé.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s : Impossible d'ouvrir le fichier %s.\n"
 
-#
-# File: modules/matio/macros/loadmatfile.sci, line: 179
 #, c-format
 msgid "%s: Unsupported input file data type: '%s'.\n"
 msgstr ""
@@ -196,12 +192,6 @@ msgstr ""
 "%s : Impossible de lire le fichier '%s'. Veuillez vérifier qu'il n'est pas "
 "corrompu.\n"
 
-#
-# File: modules/matio/macros/loadmatfile.sci, line: 216
-# File: modules/matio/macros/loadmatfile.sci, line: 365
-# File: modules/matio/macros/loadmatfile.sci, line: 409
-# File: modules/matio/macros/loadmatfile.sci, line: 428
-# File: modules/matio/macros/loadmatfile.sci, line: 436
 #, c-format
 msgid "loadmatfile: Error in input file at line #%d: '%s' expected.\n"
 msgstr ""
@@ -252,8 +242,6 @@ msgstr ""
 "Tentative d'écriture dans un fichier binaire d'un type de données non "
 "supporté."
 
-#
-# File: modules/matio/macros/savematfile.sci, line: 301
 msgid "savematfile: No variable to save => No file written."
 msgstr ""
 
@@ -272,9 +260,3 @@ msgid ""
 msgstr ""
 "%s : variable %s ignorée. Enregistrement en fichier .mat version %s "
 "impossible (type %d non supporté).\n"
-
-#~ msgid "All inputs must be character strings."
-#~ msgstr "Toutes les entrées doivent être des chaînes de caractères."
-
-#~ msgid "Variable %s can not be saved in ASCII file: IGNORED."
-#~ msgstr "Impossible d'enregistrer la variable %s au format ASCII : IGNORÉ."

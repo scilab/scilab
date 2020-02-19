@@ -9,18 +9,19 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 19:06+0000\n"
+"PO-Revision-Date: 2020-02-07 13:13+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -105,7 +106,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути не більше %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути не більше %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -281,13 +283,12 @@ msgstr ""
 
 #, c-format
 msgid "\t%s (%s) will be installed in the '%s' section"
-msgstr ""
+msgstr "\t%s (%s) буде встановлено до розділу «%s»"
 
-#
-# File: modules/atoms/macros/atomsInstall.sci, line: 259
 #, c-format
 msgid "\t%s (%s) is already installed in the '%s' section and up-to-date"
 msgstr ""
+"\t%s (%s) вже встановлено до розділу «%s» і оновлено до найсвіжішої версії"
 
 #, c-format
 msgid ""
@@ -299,7 +300,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error while copying the file '%s' to the directory '%s'.\n"
-msgstr "%s: під час копіювання файла «%s» до каталогу «%s» сталася помилка.\n"
+msgstr ""
+"%s: під час копіювання файла «%s» до каталогу «%s» сталася помилка.\n"
 
 #, c-format
 msgid "%s: Error while creating the directory '%s'.\n"
@@ -402,64 +404,63 @@ msgid ""
 msgstr ""
 "%s: у вас недостатньо прав для вилучення будь-якої версії пакунка %s.\n"
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 217
 #, c-format
 msgid ""
 "\t%s (%s) will be removed from the '%s' section and its package fully deleted"
 msgstr ""
+"\t%s (%s) буде вилучено з розділу «%s», а його пакунок повністю вилучено"
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 219
 #, c-format
 msgid "\t%s (%s) will be removed from the '%s' section"
-msgstr ""
+msgstr "\t%s (%s) буде вилучено з розділу «%s»"
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 222
 #, c-format
 msgid "\t%s (%s) cannot be removed from the '%s' section and will be broken"
 msgstr ""
+"\t%s (%s) не може бути вилучено з розділу «%s», отже його буде пошкоджено"
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 247
 #, c-format
 msgid ""
 "\tthe package %s (%s) is currently loaded, It will be removed at next Scilab "
 "start\n"
 msgstr ""
+"\tпакунок %s (%s) зараз завантажено, його буде вилучено під час наступного "
+"запуску Scilab\n"
 
 #, c-format
 msgid "\tRemoving %s (%s)(%s)... "
-msgstr "\tВилучення %s (%s)(%s)..."
+msgstr "\tВилучення %s (%s)(%s)... "
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
 "SCIHOME.\n"
 "\tFor security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
-"%s: каталог цього пакунка (%s—%s) розташовано за адресою, запису якої немає "
-"у жодній зі змінних, SCI або SCIHOME. З міркувань безпеки ATOMS не буде "
-"вилучати цей каталог.\n"
+"%s: каталог цього пакунка (%s-%s) розташовано поза записами у SCI і "
+"SCIHOME.\n"
+"\tЗ міркувань безпеки, ATOMS не вилучатиме цей каталог.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: The package (%s - %s) directory %s cannot be deleted.\n"
 "\tIt may be used and locked. Please also check that you have write "
 "permission on it.\n"
 msgstr ""
-"%s: не вдалося створити каталог %s, будь ласка, перевірте, чи є у вас права "
-"доступу на запис до відповідного каталогу.\n"
+"%s: каталог пакунка (%s - %s), %s, не вдалося вилучити.\n"
+"\tМожливо, каталог використовує стороння програма, яка його заблокувала. "
+"Будь ласка, перевірте, чи є у вас права на запис до цього каталогу.\n"
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 314
 #, c-format
 msgid ""
 "%s: The package (%s - %s) has been removed from its root directory %s.\n"
 "\tHowever, this empty directory cannot be deleted. It may be used and "
 "locked, or you may have no write permission on it.\n"
 msgstr ""
+"%s: пакунок (%s - %s) було вилучено з його кореневого каталогу %s.\n"
+"\tВтім, сам порожній каталог вилучити не вдалося. Каталог може бути "
+"заблоковано сторонньою програмою, яка його використовує, або у вас немає "
+"прав на запис до цього каталогу.\n"
 
 #, c-format
 msgid ""
@@ -629,7 +630,8 @@ msgstr "Встановлення"
 msgid "Installation failed!"
 msgstr "Невдала спроба встановлення!"
 
-msgid "Installation done! Please restart Scilab to take changes into account."
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "Встановлення завершено! Будь ласка, перезапустіть Scilab, щоб зміни набули "
 "чинності."
@@ -718,8 +720,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути «filter:"
-"all»,«filter:main» або коректна назва основної категорії.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути "
+"«filter:all»,«filter:main» або коректна назва основної категорії.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -780,7 +782,8 @@ msgstr "%s: не знайдено gzip.\n"
 
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
-msgstr "%s: спроба видобування файла DESCRIPTION («%s») завершилася невдало.\n"
+msgstr ""
+"%s: спроба видобування файла DESCRIPTION («%s») завершилася невдало.\n"
 
 msgid "Done"
 msgstr "Виконано"
@@ -962,15 +965,16 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - Отримана MD5SUM: «%s»\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «error» "
 "або «warning».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with .tar."
-"gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід було вказати один рядок, "
 "що завершується на .tar.gz, .tgz або .zip.\n"
@@ -1115,15 +1119,16 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: не вдалося побудувати ієрархію залежностей.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати літеру "
 "«A» або «I».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version/"
-"dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid "
+"version/dependency.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: вказано некоректну версію або "
 "залежність.\n"
@@ -1186,7 +1191,8 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) не встановлено.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: некоректне значення версії.\n"
 
@@ -1195,19 +1201,3 @@ msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «ASC» "
 "або «DESC».\n"
-
-#~ msgid ""
-#~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
-#~ "check if you have write access on this directory : %s.\n"
-#~ msgstr ""
-#~ "%s: не вдалося вилучити каталог цього пакунка (%s—%s), будь ласка, "
-#~ "перевірте, чи є у вас права доступу на запис до відповідного каталогу: "
-#~ "%s.\n"
-
-#~ msgid ""
-#~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
-#~ "please check if you have write access on this directory : %s.\n"
-#~ msgstr ""
-#~ "%s: не вдалося вилучити кореневий каталог цього пакунка (%s—%s), будь "
-#~ "ласка, перевірте, чи є у вас права доступу на запис до відповідного "
-#~ "каталогу: %s.\n"

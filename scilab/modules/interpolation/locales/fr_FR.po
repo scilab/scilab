@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 11:42+0000\n"
+"PO-Revision-Date: 2016-07-17 11:42+0000\n"
 "Last-Translator: Mickael Albertus <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: fr\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -47,7 +47,8 @@ msgstr ""
 "%s : Type erroné pour l'argument d'entrée n°%d : Une %s tlist attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d : A vector of size 3 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d : A vector of size 3 expected.\n"
 msgstr ""
 "%s : Dimension erronée pour l'argument d'entrée n°%d : Un vecteur de "
 "dimension 3 attendue.\n"
@@ -70,7 +71,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
-msgstr "%s : Nœuds dupliqués ou tous les nœuds sont colinéaires (ier = %d).\n"
+msgstr ""
+"%s : Nœuds dupliqués ou tous les nœuds sont colinéaires (ier = %d).\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
@@ -78,7 +80,8 @@ msgstr ""
 "%s : Nombre erroné de(s) argument(s) de sortie : %d, %d ou %d attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
 msgstr ""
 "%s : Type erroné pour l'argument d'entrée n°%d : Une tlist de type %s "
 "attendue.\n"
@@ -136,10 +139,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s : Dimension erronée des arguments d'entrée n°%d et n°%d : Mêmes "
 "dimensions attendues.\n"
@@ -180,7 +185,8 @@ msgstr ""
 "valeurs de la grille sur la dimension %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d : A vector of size 2 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d : A vector of size 2 expected.\n"
 msgstr ""
 "%s : Dimension erronée pour l'argument d'entrée n°%d : Un vecteur de "
 "dimension 2 attendu.\n"
@@ -194,60 +200,42 @@ msgid "%ls: Warning: Rank deficiency of the least square matrix.\n"
 msgstr ""
 "%ls : Attention : Déficience de rang de la matrice des moindres carrés.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: incorrect element #%d\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou un réel attendu.\n"
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 90
 #, c-format
 msgid "%s: last connected component of boundary is not closed\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: some points are identical.\n"
-msgstr "%s : Pas assez de points pour l'ajustement.\n"
+msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 126
 #, c-format
 msgid "%s: wrong boundary array.\n"
 msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 127
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 130
 #, c-format
 msgid "%s: crossed boundary.\n"
 msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 128
 #, c-format
 msgid "%s: wrong orientation of the boundary.\n"
 msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 129
 #, c-format
 msgid "%s: size limitation.\n"
 msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 131
 #, c-format
 msgid "%s: an interior point is on the boundary.\n"
 msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 132
 #, c-format
 msgid "%s: an interior point is too close to the boundary.\n"
 msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 133
 #, c-format
 msgid "%s: some points are identical or size limitation.\n"
 msgstr ""
@@ -268,7 +256,8 @@ msgstr ""
 "même dimensions attendus.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d : A matrix of size 2 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d : A matrix of size 2 expected.\n"
 msgstr ""
 "%s : Dimension erronée pour l'argument d'entrée n°%d : Une matrice de "
 "dimension 2 attendue.\n"
@@ -343,7 +332,8 @@ msgstr "%s : Problème avec 'flag' = %d\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : Doit être entre %d et %d.\n"
+msgstr ""
+"%s : Nombre erroné d'arguments d'entrée : Doit être entre %d et %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
@@ -385,24 +375,14 @@ msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Deux lignes attendues.\n"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
-
-#
-# File: modules/interpolation/macros/mesh2d.sci, line: 68
 #, c-format
-msgid "%s: all points are coincident.\n"
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
 
 #, c-format
-#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
-#~ msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
+msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+msgstr ""
 
 #, c-format
-#~ msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-#~ msgstr "%s : Type erroné de l'argument %d : Une matrice réelle attendue.\n"
+msgid "%s: all points are coincident.\n"
+msgstr ""

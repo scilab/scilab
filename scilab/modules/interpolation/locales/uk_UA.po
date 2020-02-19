@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 05:44+0000\n"
+"PO-Revision-Date: 2020-01-15 18:45+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -48,7 +48,8 @@ msgstr ""
 "список (tlist) %s.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d : A vector of size 3 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d : A vector of size 3 expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
 "вектор розмірності 3.\n"
@@ -80,7 +81,8 @@ msgstr ""
 "%s: помилкова кількість вихідних параметрів: мало бути %d, %d або %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати tlist типу "
 "%s.\n"
@@ -93,7 +95,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid ""
@@ -145,7 +148,8 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідних параметрів №%d і №%d: розмірність мала "
 "збігатися.\n"
@@ -186,7 +190,8 @@ msgstr ""
 "розмірності %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d : A vector of size 2 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d : A vector of size 2 expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
 "вектор розмірності 2.\n"
@@ -201,64 +206,47 @@ msgstr ""
 "%ls: попередження: недостатнє значення рангу для матриці методу найменших "
 "квадратів.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: incorrect element #%d\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути вказано «%s» або "
-"дійсне значення.\n"
+"%s: помилкове значення вхідного параметра №%d: некоректний елемент №%d\n"
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 90
 #, c-format
 msgid "%s: last connected component of boundary is not closed\n"
-msgstr ""
+msgstr "%s: останній з'єднаний компонент межі не замкнено\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: some points are identical.\n"
-msgstr "%s: недостатньо точок для інтерполяції.\n"
+msgstr "%s: деякі з точок збігаються між собою.\n"
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 126
 #, c-format
 msgid "%s: wrong boundary array.\n"
-msgstr ""
+msgstr "%s: помилковий масив межі.\n"
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 127
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 130
 #, c-format
 msgid "%s: crossed boundary.\n"
-msgstr ""
+msgstr "%s: самоперетин межі.\n"
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 128
 #, c-format
 msgid "%s: wrong orientation of the boundary.\n"
-msgstr ""
+msgstr "%s: помилкова орієнтація межі.\n"
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 129
 #, c-format
 msgid "%s: size limitation.\n"
-msgstr ""
+msgstr "%s: обмеження на розмір.\n"
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 131
 #, c-format
 msgid "%s: an interior point is on the boundary.\n"
-msgstr ""
+msgstr "%s: внутрішня точка перебуває на межі.\n"
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 132
 #, c-format
 msgid "%s: an interior point is too close to the boundary.\n"
-msgstr ""
+msgstr "%s: внутрішня точка є надто близькою до межі.\n"
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 133
 #, c-format
 msgid "%s: some points are identical or size limitation.\n"
 msgstr ""
+"%s: деякі точки збігаються між собою або перевищено обмеження на розмір.\n"
 
 #, c-format
 msgid ""
@@ -276,7 +264,8 @@ msgstr ""
 "мали збігатися.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d : A matrix of size 2 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d : A matrix of size 2 expected.\n"
 msgstr ""
 "%s: помилковий вхідний параметр №%d: мала бути матриця розмірності 2.\n"
 
@@ -398,28 +387,14 @@ msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути два рядки.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d або %d.\n"
 
-#
-# File: modules/interpolation/macros/mesh2d.sci, line: 68
 #, c-format
 msgid "%s: all points are coincident.\n"
-msgstr ""
-
-#, c-format
-#~ msgid "%s: Wrong number of output argument(s): %d expected.\n"
-#~ msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип параметра %d: слід використовувати матрицю дійсних "
-#~ "значень.\n"
+msgstr "%s: усі точки збігаються між собою.\n"

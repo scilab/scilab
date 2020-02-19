@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 15:26+0000\n"
+"PO-Revision-Date: 2017-11-02 15:26+0000\n"
 "Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: zh_CN\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -30,7 +30,8 @@ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为整数。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为整数或字符串。\n"
 
 #, c-format
@@ -59,9 +60,9 @@ msgstr "%s：第%d个输入参数的值错误：应该为‘%s’或‘%s’。\
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串向量。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -142,21 +143,3 @@ msgstr "请使用 %s 替代。"
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "该函数将被永久地从 Scilab %s 中移除。"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: A character string expected.\n"
-#~ msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
-
-#, c-format
-#~ msgid "%s: Undefined variable %s.\n"
-#~ msgstr "%s：没定义的变量 %s。\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Name of a Scilab function "
-#~ "expected.\n"
-#~ msgstr "%s：输入参数#%d的值错误：应该为一个Scilab函数名。\n"
-
-#~ msgid "No comment available."
-#~ msgstr "没有有效注释。"

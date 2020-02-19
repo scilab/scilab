@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 14:43+0000\n"
+"PO-Revision-Date: 2020-02-18 21:58+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -77,7 +77,8 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась непустая строка.\n"
 
 #, c-format
-msgid "%s: The XML Document has not an URI and there is no second argument.\n"
+msgid ""
+"%s: The XML Document has not an URI and there is no second argument.\n"
 msgstr "%s: Документ XML не имеет URI и нет второго аргумента.\n"
 
 #, c-format
@@ -108,7 +109,8 @@ msgid "%s: XMLList does not exist.\n"
 msgstr "%s: XMLList не существует.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось «%s», «%s» или "
 "«%s».\n"
@@ -384,61 +386,48 @@ msgid "%s: Field %s is not modifiable: %s\n"
 msgstr "%s: Поле %s нельзя изменять: %s\n"
 
 msgid "CML read"
+msgstr "Чтение CML"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
-
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Invalid %s file.\n"
-msgstr "Недопустимый файл"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr "%s: XMLList не существует.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидался %s.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Invalid XPath request.\n"
 msgstr ""
-"%s: Плохой запрос XPath:\n"
-"%s"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Invalid XPath request."
 msgstr ""
-"%s: Плохой запрос XPath:\n"
-"%s"
 
-#
-# File: modules/xml/macros/xmlGetValues.sci, line: 79
 #, c-format
 msgid "%s: Target node is not a XML_ELEMENT_NODE."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Invalid attribute name: %s."
-msgstr "Некорректное имя файла: "
-
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
 msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась непустая строка.\n"
-
-#, fuzzy, c-format
-msgid "%s: Invalid XConfiguration.xml file.\n"
-msgstr "Недопустимый файл"
 
 #, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-#~ msgstr ""
-#~ "%s: Неверный тип входного аргумента №%d: Ожидалась матрица строковых "
-#~ "значений.\n"
+msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr ""

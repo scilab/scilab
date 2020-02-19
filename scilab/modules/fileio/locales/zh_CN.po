@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 12:33+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2019-02-15 22:13+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: zh_CN\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -157,7 +157,8 @@ msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 
 #, c-format
@@ -192,7 +193,8 @@ msgid "%s: Wrong file descriptor: %d.\n"
 msgstr "%s：错误的文件描述符：%d。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
 
 #, c-format
@@ -276,7 +278,8 @@ msgid "%s: invalid status.\n"
 msgstr "%s：不正确的状态。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -304,7 +307,8 @@ msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format
@@ -386,18 +390,21 @@ msgid "%s: An error occurred: too many (> %d) conversion required.\n"
 msgstr "%s：发生了一个错误：需要太多（>%d）转换。\n"
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
 msgstr "%s：发生了一个错误：对 %%[ 标志来说域 %d 太长（>%d）。\n"
 
 msgid "Bad conversion."
 msgstr "错误的转换。"
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr "%s：发生了一个错误：对 %%s 标志来说域 %d 太长(>%d).\n"
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr "%s：发生了一个错误：对 %%c 标志来说域 %d 太长(>%d).\n"
 
 #, c-format
@@ -473,7 +480,8 @@ msgid ""
 msgstr "%s：输入参数#%d（%s）的大小错误：应该为非空字符串。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgid ""
+"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr "%s：输入参数#%d（%s）的值错误：格式未被识别。\n"
 
 #, c-format
@@ -492,108 +500,66 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 15
 msgid "Import data"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 65
 msgid "Select a file"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 71
 msgid "File has a header"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 78
 msgid "Show all columns"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 79
 msgid "It can take a long time"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 86
 msgid "Separator"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 92
 msgid "Colon"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 92
-# File: modules/fileio/macros/importgui/importgui.sci, line: 107
 msgid "Comma"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 92
 msgid "Pipe"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 92
 msgid "Semicolon"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 92
 msgid "Space"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 92
 msgid "Tab"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 101
 msgid "Decimal"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 107
 msgid "Point"
 msgstr ""
 
-#, fuzzy
 msgid "Conversion"
-msgstr "错误的转换。"
+msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 122
 msgid "Convert to double"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 122
 msgid "Keep as strings"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 144
 msgid "Import as variable"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 152
 msgid "Quit"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui.sci, line: 158
 msgid "Copy function to clipboard"
 msgstr ""
 
-#
-# File: modules/fileio/macros/importgui/importgui_preview.sci, line: 36
 msgid "Cancel preview"
 msgstr ""
 
@@ -634,7 +600,3 @@ msgstr ""
 
 msgid "The system cannot find the file specified."
 msgstr ""
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
-#~ msgstr "%s：输入参数#%d的值错误：'%s'是一个不正确的路径。\n"

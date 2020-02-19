@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 17:08+0000\n"
+"PO-Revision-Date: 2019-02-15 22:06+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: es\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -160,8 +160,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument #"
-"%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument "
+"#%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -237,11 +237,13 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
 msgstr ""
 
 #, c-format
@@ -275,7 +277,8 @@ msgid "%s: DORGQR exit with info = %d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -312,7 +315,8 @@ msgid "%s: Wrong size for input argument #%d: Must have %d rows expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
 msgstr ""
 
 #, c-format
@@ -352,7 +356,8 @@ msgid "%s: Wrong type for input argument #%d: A real polynom expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -364,13 +369,14 @@ msgid "%s: Wrong value for input argument #%d: A real polynom expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: More than degree of input argument #"
-"%d expected.\n"
+"%s: Wrong value for input argument #%d: More than degree of input argument "
+"#%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -438,7 +444,8 @@ msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -541,7 +548,8 @@ msgid "Press Return to continue ... \n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid ""
+"%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 "%s: Tipo incorrecto de argumento de entrada: Se esperaba un sistema lineal "
 "dinámico.\n"
@@ -665,7 +673,8 @@ msgstr "%s: %s debe ser de dimensión (%s, %s).\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s'.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s'.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Undefined time domain.\n"
@@ -825,7 +834,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba %d.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba %d.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
@@ -899,7 +909,8 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Tamaño incorrecto para el argumento %d: Se esperaba %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada#%d: Se esperaba un sistema "
 "estabilizable.\n"
@@ -970,7 +981,8 @@ msgstr "%s: Condicionamiento equivocado.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s: Número incorrecto de argumentos de salida: Se esperaban %d o %d.\n"
+msgstr ""
+"%s: Número incorrecto de argumentos de salida: Se esperaban %d o %d.\n"
 
 #, c-format
 msgid "%s: More than %d iterations.\n"
@@ -1124,8 +1136,6 @@ msgid ""
 "%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"
 msgstr ""
 
-#
-# File: modules/cacsd/macros/freson.sci, line: 80
 msgid "freson: Some maxima frequencies may be undetected."
 msgstr ""
 
@@ -1160,7 +1170,8 @@ msgid "%s: %s is indefinite.\n"
 msgstr "%s: %s es indefinida.\n"
 
 #, c-format
-msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid ""
+"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr ""
 "%s: Modos controlables y observables de %s están cerca del eje imaginario.\n"
 
@@ -1277,8 +1288,6 @@ msgstr ""
 "Hinfnorm es probablemente exacto máx sv(D)\n"
 "El sistema tal vez sea todos-pasan"
 
-#
-# File: modules/cacsd/macros/sgrid.sci, line: 84
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"
 msgstr ""
@@ -1346,7 +1355,8 @@ msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 
 #, c-format
@@ -1362,7 +1372,8 @@ msgid "%s: incompatible time domains\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
 "%s: Tipo erróneo de argumentos de entrada #%d: se esperaba un espacio de "
 "estados lineal.\n"
@@ -1379,7 +1390,8 @@ msgstr ""
 "%s: Modo controlables y observables de A están cerca del eje imaginario."
 
 #, c-format
-msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid ""
+"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 "%s: Todos los modos de A son casi no-mínimos tal que || G || es casi 0.\n"
 
@@ -1448,12 +1460,10 @@ msgstr "fase(y) (grados)"
 msgid "magnitude(y) (dB)"
 msgstr "magnitud(y) (dB)"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument %s: real floating point array expected\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d : se esperaba un arreglo de "
-"reales flotantes\n"
 
 msgid "Nyquist plot"
 msgstr "Nyquist plot"
@@ -1519,10 +1529,9 @@ msgstr "Polos"
 msgid "Transmission zeros and poles"
 msgstr "Transmisión de ceros y polos"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: real matrix expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento #%d: Matriz de números reales esperada.\n"
 
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
@@ -1544,14 +1553,13 @@ msgstr ""
 msgid "%s: Stationary Riccati solver failed.\n"
 msgstr "%s: Solucionador Riccati estacionario falló.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %s expected.\n"
-msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: No solution found. Dimension(stable subspace)=%d. %d expected.\n"
 msgstr ""
-"%s: Dimensión incorrecta (%d) del subespacio estable: Se esperaba %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
@@ -1784,7 +1792,8 @@ msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 
 #, c-format

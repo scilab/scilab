@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 19:13+0000\n"
+"PO-Revision-Date: 2020-01-15 18:14+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected."
@@ -71,7 +71,8 @@ msgstr "%s: помилка порівняння. Мало бути %s, обчи�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
@@ -88,47 +89,39 @@ msgid "%s: Computed is complex, but expected is real."
 msgstr ""
 "%s: обчислено комплексне значення, а потрібне значення має бути дійсним."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Assertion failed: expected= %s  while computed= %s"
-msgstr "%s: помилка порівняння. Мало бути %s, обчислене значення — %s"
+msgstr "%s: перевірку не пройдено: мало бути %s, маємо — %s"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Assertion failed: expected and computed are two distinct built-in "
 "functions."
-msgstr "%s: помилка порівняння. Мало бути %s, обчислене значення — %s"
+msgstr ""
+"%s: перевірку не пройдено: очікуване і обчислене значення є надто різними "
+"вбудованими функціями."
 
-#
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 175
 #, c-format
 msgid "expected(%d)= "
-msgstr ""
+msgstr "мало бути (%d)= "
 
-#
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 176
 #, c-format
 msgid "computed(%d)= "
-msgstr ""
+msgstr "маємо (%d)= "
 
-#
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 178
 msgid "expected= "
-msgstr ""
+msgstr "мало бути= "
 
-#
-# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 179
 msgid "computed= "
-msgstr ""
+msgstr "маємо= "
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Assertion failed: %s  while %s (mean diff = %s)"
-msgstr ""
-"%s: помилка під час перевірки: мало бути = %s, результат обчислень = %s "
-"(середня різниця = %s)"
+msgstr "%s: перевірку не пройдено: %s, хоча %s (середня різниця %s)"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Assertion failed: %s  while %s"
-msgstr "%s: помилка порівняння. Мало бути %s, обчислене значення — %s"
+msgstr "%s: перевірку не пройдено: %s, хоча %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -187,7 +180,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Assertion failed: Entry %%T found in condition(%d).\n"
-msgstr ""
+msgstr "%s: не пройдено перевірку: запис %%T виявлено в умові(%d).\n"
 
 #, c-format
 msgid ""
@@ -217,7 +210,7 @@ msgstr "%s: не вдалося закрити файл %s.\n"
 
 #, c-format
 msgid "%s: Assertion failed: Entry %%F found in condition(%d).\n"
-msgstr ""
+msgstr "%s: не пройдено перевірку: запис %%F виявлено в умові(%d).\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -234,8 +227,10 @@ msgstr ""
 "параметрів %d."
 
 #, c-format
-msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
-msgstr "%s: мало бути %d рядків у вхідному параметрі №%d, виявлено %d рядків."
+msgid ""
+"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgstr ""
+"%s: мало бути %d рядків у вхідному параметрі №%d, виявлено %d рядків."
 
 #, c-format
 msgid ""
@@ -394,7 +389,3 @@ msgstr ""
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr "У еталонному файлі немає змінної %s_ref"
-
-#, c-format
-#~ msgid "%s: Wrong number of input argument: %d expected.\n"
-#~ msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"

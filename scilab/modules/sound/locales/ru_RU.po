@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: sound-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 21:49+0000\n"
-"Last-Translator: Dmitriy Nogay <imcatwhocode@protonmail.ch>\n"
+"PO-Revision-Date: 2020-02-15 08:54+0000\n"
+"Last-Translator: Aleksey Kabanov <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -65,9 +65,9 @@ msgstr ""
 "Диапазон индексов должен быть определён в виде скаляра или 2-элементным "
 "вектором."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: File '%s': Unrecognized data format.\n"
-msgstr "Неизвестный формат данных."
+msgstr "%s: Файл '%s': неопознанный формат данных.\n"
 
 msgid "Sample limit vector must have 2 elements."
 msgstr "Вектор пределов выборки должен иметь 2 элемента."
@@ -81,11 +81,9 @@ msgstr "Пределы выборки должны быть указаны в п
 msgid "Error in file format."
 msgstr "Ошибка в формате файла."
 
-#
-# File: modules/sound/macros/auread.sci, line: 174
 #, c-format
 msgid "%s: File '%s' is not a .au sound file.\n"
-msgstr ""
+msgstr "%s: Файл '%s' не является звуковым файлом .au.\n"
 
 msgid "Error while reading sound file."
 msgstr "Ошибка во время чтения звукового файла."
@@ -127,35 +125,33 @@ msgstr "%s: Неверное количество выходных параме�
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: Неверное количество выходных параметров.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: %s expected.\n"
-msgstr "%s: Неверный входной параметр №%d: ожидался «%s» или «%s».\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
-msgstr "%s: Неверное значение входного аргумента №%d: должно быть >= %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
-msgstr "%s: Неверный входной параметр №%d: ожидался «%s» или «%s».\n"
+msgstr ""
 
-#
-# File: modules/sound/macros/playsnd.sci, line: 91
 #, c-format
 msgid "%s: Argument #%d: The file '%s' does not exist.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal number expected.\n"
-msgstr "%s: Неверный тип аргумента №%d: ожидалась вещественная матрица.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
-msgstr "%s: Неверное значение входного аргумента №%d: должно быть >= %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
@@ -211,8 +207,6 @@ msgstr ""
 "%s: Неверное значение входного параметра: интервальный указатель должен быть "
 "задан как скаляр или вектор из %d элементов.\n"
 
-#
-# File: modules/sound/macros/wavread.sci, line: 84
 #, c-format
 msgid "%s: The file '%s' does not exist.\n"
 msgstr ""
@@ -234,7 +228,8 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Произошла ошибка: %s не подерживается.\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Произошла ошибка: неверный формат файла. Ошибка чтения блока <%s>.\n"
 
@@ -244,8 +239,6 @@ msgstr "Неверный .wav файл: данные найдены до инф�
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Некорректная информация о размере блока в RIFF файле."
 
-#
-# File: modules/sound/macros/wavread.sci, line: 217
 #, c-format
 msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
 msgstr ""
@@ -261,10 +254,8 @@ msgid "Cannot read .wav file  with more than 16 bits per sample."
 msgstr "Не удалось прочитать .wav файл с более чем 16-ю битами на сэмпл."
 
 msgid "Sample limit vector must have 2 entries."
-msgstr "Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."
+msgstr ""
+"Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Неверные границы сэмплов (нужно указывать их по возрастанию)."
-
-#~ msgid "Invalid wav format."
-#~ msgstr "Неверный формат wav."

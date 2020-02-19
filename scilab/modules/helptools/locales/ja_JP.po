@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 12:21+0000\n"
+"PO-Revision-Date: 2019-12-09 12:53+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -43,8 +43,8 @@ msgid ""
 "If Scilab is started in a chroot, you might want to try to set the two "
 "environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
 msgstr ""
-"Scilabがchrootで起動された場合,ユーザが以下の2つの環境変数を設定する可能性が"
-"あります :  SCI_DISABLE_TK=1, SCI_JAVA_ENABLE_HEADLESS=1\n"
+"Scilabがchrootで起動された場合,ユーザが以下の2つの環境変数を設定する可能性があります :  SCI_DISABLE_TK=1, "
+"SCI_JAVA_ENABLE_HEADLESS=1\n"
 
 #
 # File: sci_gateway/nogui/nogui.c, line: 20
@@ -80,8 +80,7 @@ msgstr "%s: 入力引数 #%d で不正な型: 真偽値を想定します。\n"
 # File: macros/xmltoformat.sci, line: 60
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: 入力引数 #%d と #%d で互換性がありません: 等しいサイズを想定します。\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 等しいサイズを想定します。\n"
 
 #
 # File: macros/help.sci, line: 24
@@ -117,8 +116,7 @@ msgstr "%s: 入力引数で不正な値: %d から %d を想定します。\n"
 # File: macros/xmltoformat.sci, line: 686
 #, c-format
 msgid "%s: Directory %s does not exist or read access denied."
-msgstr ""
-"%s: ディレクトリー %s は、存在しません。あるいは、読みこみは拒否されました。"
+msgstr "%s: ディレクトリー %s は、存在しません。あるいは、読みこみは拒否されました。"
 
 #
 # File: macros/clean_help.sci, line: 112
@@ -127,35 +125,29 @@ msgstr "-- ヘルプファイルを削除 --\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
-# File: macros/apropos.sci, line: 13
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数で不正な値: %d を想定します。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Undefined variable %s.\n"
-msgstr "%s: ファイル %s を開けません。\n"
+msgstr ""
 
-#
-# File: macros/help.sci, line: 24
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 適当な既に在るファイルを想定します。\n"
+msgstr ""
 
-#
-# File: modules/helptools/macros/head_comments.sci, line: 59
 msgid "No comment available."
 msgstr ""
 
@@ -175,8 +167,7 @@ msgstr "%s: ヘルプファイル(.jar) がインストールされていませ�
 msgid ""
 "%s: Wrong value for input argument #%d: A valid existing directory is "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正な値: 適当な既に在るディレクトリを想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な値: 適当な既に在るディレクトリを想定します。\n"
 
 #, c-format
 msgid "%s: Reading from directory %s\n"
@@ -355,11 +346,9 @@ msgstr ""
 "\n"
 "マニュアルファイル　[%s] を構築中.\n"
 
-#
-# File: modules/helptools/macros/xmltoformat.sci, line: 754
 #, c-format
 msgid "Post-processing Right-to-Left pages in %s...\n"
-msgstr ""
+msgstr "%s の右から左の頁を処理中...\n"
 
 #
 # File: macros/xmltoformat.sci, line: 491
@@ -416,16 +405,13 @@ msgstr "%s: CHAPTER ファイルは 行 %d で満足にフォーマットされ�
 # File: macros/help.sci, line: 24
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with ."
-"last_successful_build expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正な値: last_successful_buildで文字列の終了を想定しま"
-"す。\n"
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: last_successful_buildで文字列の終了を想定します。\n"
 
 #, c-format
 msgid "%s: The last_successful_build file is not well formatted at line %d\n"
-msgstr ""
-"%s: last_successful_build ファイルは 行 %d で満足にフォーマットされません\n"
+msgstr "%s: last_successful_build ファイルは 行 %d で満足にフォーマットされません\n"
 
 #
 # File: sci_gateway/cpp/sci_buildDoc.cpp, line: 80

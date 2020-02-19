@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 13:14+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2020-02-07 13:10+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
-"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: zh_CN\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -60,9 +60,7 @@ msgstr "%s：模块“%s - %s”没有安装。\n"
 msgid ""
 "%s: The following module is installed in the user section, you cannot add it "
 "to the autoload list for all users:\n"
-msgstr ""
-"%s：下一个模块不能被安装在用户部分，您不能为所有用户将其加入到自动加载列"
-"表：\n"
+msgstr "%s：下一个模块不能被安装在用户部分，您不能为所有用户将其加入到自动加载列表：\n"
 
 #, c-format
 msgid "\t - '%s - %s'\n"
@@ -231,8 +229,6 @@ msgstr ""
 msgid "\t%s (%s) will be installed in the '%s' section"
 msgstr ""
 
-#
-# File: modules/atoms/macros/atomsInstall.sci, line: 259
 #, c-format
 msgid "\t%s (%s) is already installed in the '%s' section and up-to-date"
 msgstr ""
@@ -333,57 +329,43 @@ msgid ""
 "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr ""
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 217
 #, c-format
 msgid ""
 "\t%s (%s) will be removed from the '%s' section and its package fully deleted"
 msgstr ""
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 219
 #, c-format
 msgid "\t%s (%s) will be removed from the '%s' section"
 msgstr ""
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 222
 #, c-format
 msgid "\t%s (%s) cannot be removed from the '%s' section and will be broken"
 msgstr ""
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 247
 #, c-format
 msgid ""
 "\tthe package %s (%s) is currently loaded, It will be removed at next Scilab "
 "start\n"
 msgstr ""
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 251
 #, c-format
 msgid "\tRemoving %s (%s)(%s)... "
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
 "SCIHOME.\n"
 "\tFor security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
-"%s：这个包 （%s-%s） 的路径既不在 SCI ，也不在 SCIHOME。出于安全原因，ATOMS "
-"拒绝删除这个路径。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: The package (%s - %s) directory %s cannot be deleted.\n"
 "\tIt may be used and locked. Please also check that you have write "
 "permission on it.\n"
-msgstr "%s：路径 %s 不能被创建，请检查您是否在这个路径上写了访问。\n"
+msgstr ""
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 314
 #, c-format
 msgid ""
 "%s: The package (%s - %s) has been removed from its root directory %s.\n"
@@ -405,8 +387,7 @@ msgstr "%s：输入参数 #%d 的值出错：This （"
 msgid ""
 "%s: Wrong value for input argument #%d: 'all','user','allusers' or "
 "'official' expected.\n"
-msgstr ""
-"%s：输入参数 #%d 的值出错：应该为“all”，“users”，“alluser”或“official”。\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“all”，“users”，“alluser”或“official”。\n"
 
 #, c-format
 msgid "File %s does not exist: could not restore previous configuration."
@@ -547,7 +528,8 @@ msgstr ""
 msgid "Installation failed!"
 msgstr "安装失败！"
 
-msgid "Installation done! Please restart Scilab to take changes into account."
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
 msgstr "安装完成！请重新运行Scilab，以使改动生效。"
 
 msgid "Updating"
@@ -832,13 +814,14 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - MD5SUM 值被查看到为：“%s”\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“error”或“warning”。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with .tar."
-"gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
 msgstr ""
 
 #, c-format
@@ -965,13 +948,14 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s：依存关系树不能被处理。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为字母“A”或“I”。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version/"
-"dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid "
+"version/dependency.\n"
 msgstr "%s：输入参数 #%d 的值出错：这是一个无效的版本或依存。\n"
 
 msgid "Atoms:"
@@ -986,8 +970,7 @@ msgstr "%s：输入参数 #%d 的值出错：应该为“system”或“install�
 msgid ""
 "%s: Wrong value for input argument #%d: 'all','allusers','user' or 'session' "
 "expected.\n"
-msgstr ""
-"%s：输入参数 #%d 的值出错：应该为“all”，“allusers”，“user”或“session”。\n"
+msgstr "%s：输入参数 #%d 的值出错：应该为“all”，“allusers”，“user”或“session”。\n"
 
 #, c-format
 msgid ""
@@ -1023,16 +1006,10 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s：%s （%s）没有安装。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr "%s：输入参数 #%d 的值出错：这是一个无效的版本。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为 ASC 或 DESC。\n"
-
-#~ msgid ""
-#~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
-#~ "please check if you have write access on this directory : %s.\n"
-#~ msgstr ""
-#~ "%s：这个包 （%s-%s） 的根目录不能被删除，请您检查是否能读取这个目录："
-#~ "%s。\n"

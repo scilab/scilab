@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 20:16+0000\n"
+"PO-Revision-Date: 2020-02-19 07:14+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -31,7 +31,8 @@ msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 "#%s: помилковий тип параметра №%d: слід використовувати матрицю дійсних "
 "значень або рядок «readonly».\n"
@@ -537,7 +538,8 @@ msgid "%s is a directory."
 msgstr "%s — це каталог."
 
 msgid "Your modifications will be lost, change encoding anyway?"
-msgstr "Внесені вами зміни буде втрачено. Попри це бажаєте змінити кодування?"
+msgstr ""
+"Внесені вами зміни буде втрачено. Попри це бажаєте змінити кодування?"
 
 msgid "Continue ?"
 msgstr "Продовжити?"
@@ -997,7 +999,8 @@ msgid "Completion"
 msgstr "Доповнення"
 
 msgid "Auto-complete brackets when cursor is at the end of a line"
-msgstr "Автоматично доповнювати дужки, коли курсор перебуває наприкінці рядка"
+msgstr ""
+"Автоматично доповнювати дужки, коли курсор перебуває наприкінці рядка"
 
 msgid "General display options"
 msgstr "Загальні параметри показу"
@@ -1126,37 +1129,34 @@ msgstr "Типовий заголовок"
 msgid "Add a default header to new file"
 msgstr "Додавати до нових файлів типовий заголовок"
 
-#
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1474
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 2038
 msgid "Available variables: {{$current-date}}, {{$current-year}}"
-msgstr ""
+msgstr "Доступні змінні: {{$current-date}}, {{$current-year}}"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: помилковий тип параметра №%d: слід використовувати рядок.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Number expected.\n"
-msgstr "%s: помилковий тип параметра №%d: слід використовувати рядок.\n"
+msgstr "%s: помилковий тип вхідного параметра %d: мало бути вказано число.\n"
 
-#
-# File: modules/scinotes/macros/edit.sci, line: 51
 #, c-format
 msgid ""
 "edit: %s is an alias of %s => editing %s()\n"
 "      Please reset %s=%s if %s() is recompiled.\n"
 msgstr ""
+"редагування: %s є іншою назвою %s => редагуємо %s()\n"
+"      Будь ласка, скиньте %s=%s, якщо %s() перезібрано.\n"
 
-#
-# File: modules/scinotes/macros/edit.sci, line: 92
 #, c-format
 msgid "%s: %s() is an uneditable hard coded function.\n"
-msgstr ""
+msgstr "%s: %s() є непридатною до редагування вбудованою функцією.\n"
 
 msgid "The last error did not occur inside a Scilab macro."
 msgstr "Остання помилка не сталася у межах макросу Scilab."

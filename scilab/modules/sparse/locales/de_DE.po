@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 22:03+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2020-02-19 09:25+0000\n"
+"Last-Translator: davidcl <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: de\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -34,7 +34,8 @@ msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input arguments %d: A vector of size %d expected.\n"
+msgid ""
+"%s: Wrong size for input arguments %d: A vector of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -127,12 +128,10 @@ msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgid ""
+"%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr ""
 
-#
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 163
-# File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 180
 #, c-format
 msgid "%s: Invalid index.\n"
 msgstr ""
@@ -266,7 +265,7 @@ msgid ""
 "Density = %2.2lf%%.\n"
 msgstr ""
 "\n"
-"Dichte = %2.21f%%.\n"
+"Dichte = %2.2lf%%.\n"
 
 #, c-format
 msgid "Number of fill-ins = %1d.\n"
@@ -319,7 +318,7 @@ msgstr "     Gesamte Anzahl an Elementen per Reihe=%lf\n"
 
 #, c-format
 msgid "     Density = %lf%%\n"
-msgstr "     Dichte=%1f%%\n"
+msgstr "     Dichte=%lf%%\n"
 
 #, c-format
 msgid "     Relative Threshold = %e\n"
@@ -349,7 +348,8 @@ msgstr "Norm der rechten Hand Seite: %s\n"
 
 #, c-format
 msgid "Special processing where the right-hand side is zero.\n"
-msgstr "Spezielle Datenverarbeitung, während die rechte-Hand Seite Null ist.\n"
+msgstr ""
+"Spezielle Datenverarbeitung, während die rechte-Hand Seite Null ist.\n"
 
 #, c-format
 msgid "  Type of preconditionning #1 : %d\n"
@@ -449,7 +449,8 @@ msgstr "%s: falsche Typ für Eingangsargument #%d: Skalar erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: Spaltenvektor erwartet.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: Spaltenvektor erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"

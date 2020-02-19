@@ -8,21 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 22:12+0000\n"
+"PO-Revision-Date: 2020-02-18 22:01+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s: Špatná velikost vstupních argumentů #%d a #%d: Nekompatibilní délka.\n"
 
@@ -65,7 +66,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real scalar expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný skalár.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný skalár.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"
@@ -85,7 +87,8 @@ msgid "%s: The handle is not valid.\n"
 msgstr "%s: Obslužná rutina není platná.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno 2D pole řetězců.\n"
 
 #, c-format
@@ -97,11 +100,10 @@ msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
-#
-# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 40
 #, c-format
 msgid ""
 "%s: Feature %s is obsolete and will be permanently removed in Scilab %s\n"
@@ -110,9 +112,9 @@ msgstr ""
 msgid "Warning"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Please use %s instead.\n"
-msgstr "Prosím použijte místo toho 1"
+msgstr ""
 
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
@@ -176,7 +178,8 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: očekáváno %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný skalár.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný skalár.\n"
 
 #, c-format
 msgid "%s: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
@@ -214,7 +217,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván vektor %s nebo %s.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván vektor %s nebo %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
@@ -240,7 +244,8 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong number of mandatory input arguments. At least %d expected.\n"
+msgid ""
+"%s: Wrong number of mandatory input arguments. At least %d expected.\n"
 msgstr ""
 "%s: Špatný počet povinných vstupních argumentů. Očekáváno alespoň %d.\n"
 
@@ -314,7 +319,8 @@ msgstr ""
 "délka.\n"
 
 #, c-format
-msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s: Špatná hodnota vstupních argumentů #%d a #%d: Nekompatibilní délka.\n"
 
@@ -374,7 +380,8 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván jeden řetězec.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván jeden řetězec.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A matrix of string expected.\n"
@@ -391,7 +398,8 @@ msgid "%s: Wrong number of input argument(s) : an odd number is expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A handle or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A handle or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -474,7 +482,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván booleovský vektor.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekáván booleovský vektor.\n"
 
 #, c-format
 msgid ""
@@ -503,7 +512,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván '%s' nebo '%s'.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván '%s' nebo '%s'.\n"
 
 #, c-format
 msgid "%s: Incompatible length for input arguments #%d and #%d.\n"
@@ -571,7 +581,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
-msgstr "%s: Chyba ve vstupním argumentu #%d: Určené hranice nejsou správné.\n"
+msgstr ""
+"%s: Chyba ve vstupním argumentu #%d: Určené hranice nejsou správné.\n"
 
 #, c-format
 msgid "%s: Invalid vertex index.\n"
@@ -624,7 +635,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván vektor s %d prvky.\n"
 
@@ -767,7 +779,8 @@ msgid "'%s' property does not exist for this handle.\n"
 msgstr "Vlastnost '%s' pro tuto obslužnou rutinu neexistuje.\n"
 
 msgid "Tlist could not be created, check ticks location and label vectors.\n"
-msgstr "Tlist nelze vytvořit, zkontrolujte umístění odkazů a vektory štítků.\n"
+msgstr ""
+"Tlist nelze vytvořit, zkontrolujte umístění odkazů a vektory štítků.\n"
 
 #, c-format
 msgid "%s should be a vector of double.\n"
@@ -944,17 +957,18 @@ msgstr ""
 msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
 msgstr "Špatná velikost vlastnosti '%s': Musí být v sadě {%s}.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Invalid value for '%s' property, use 'always', 'mouseclick' or 'mouseover'.\n"
-msgstr "Špatná hodnota vlastnosti '%s': Očekáváno '%s' nebo '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: Non-empty string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong value for '%s' property: String with length 3 or less expected.\n"
+msgid ""
+"Wrong value for '%s' property: String with length 3 or less expected.\n"
 msgstr ""
 
 #, c-format
@@ -1001,7 +1015,8 @@ msgstr ""
 "stránku nápovědy.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
+msgid ""
+"Wrong value for '%s' property: An Integer between %d and %d expected.\n"
 msgstr "Špatný hodnota vlastnosti '%s': Očekáváno celé číslo mezi %d a %d.\n"
 
 msgid "Could not retrieve format.\n"
@@ -1062,7 +1077,8 @@ msgstr "Špatný hodnota vlastnosti '%s': Musí být mezi %d a %d.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
-msgstr "Špatný typ vlastnosti '%s': Očekáváno pole grafické obslužné rutiny.\n"
+msgstr ""
+"Špatný typ vlastnosti '%s': Očekáváno pole grafické obslužné rutiny.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be a '%s' handle.\n"
@@ -1178,7 +1194,8 @@ msgid "%s: Wrong type for input argument #%d: Columns vectors expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
 msgstr ""
 
 #, c-format
@@ -1251,8 +1268,6 @@ msgstr ""
 msgid "Press enter to go on..."
 msgstr ""
 
-#
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 56
 msgid "Data on 3 or 4 quadrants"
 msgstr ""
 
@@ -1262,8 +1277,6 @@ msgstr ""
 msgid "Big radii are supported..."
 msgstr ""
 
-#
-# File: modules/graphics/demos/2d_3d_plots/polarplot.dem.sce, line: 76
 msgid "... as well as very tiny ones"
 msgstr ""
 
@@ -1336,8 +1349,6 @@ msgstr ""
 msgid "Finite Elements"
 msgstr ""
 
-#
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 20
 msgid "Stems bars histograms"
 msgstr ""
 
@@ -1350,8 +1361,6 @@ msgstr ""
 msgid "Complex elementary functions"
 msgstr ""
 
-#
-# File: modules/graphics/demos/graphics.dem.gateway.sce, line: 24
 msgid "Technical plots"
 msgstr ""
 
@@ -1370,28 +1379,18 @@ msgstr ""
 msgid "Matplot"
 msgstr ""
 
-#
-# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 14
 msgid "Stems (plot2d3)"
 msgstr ""
 
-#
-# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 15
 msgid "Bars (custom)"
 msgstr ""
 
-#
-# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 16
 msgid "Bars (grouped)"
 msgstr ""
 
-#
-# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 17
 msgid "histplot"
 msgstr ""
 
-#
-# File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 18
 msgid "hist3d"
 msgstr ""
 
@@ -1446,8 +1445,6 @@ msgstr "%s: obslužná rutina již není platná, ignorováno.\n"
 msgid "%s : Invalid entity %s\n"
 msgstr "%s: Neplatný objekt %s\n"
 
-#
-# File: modules/graphics/macros/%h_set.sci, line: 57
 #, c-format
 msgid "%s: Unsupported assignment for property '%s'.\n"
 msgstr ""
@@ -1495,13 +1492,13 @@ msgstr ""
 msgid "%s: Wrong size or type for input argument #%d: string expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Positive scalar number expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáván reálný skalár.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar number expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Wrong color specification.\n"
@@ -1512,13 +1509,13 @@ msgid ""
 "%s: Wrong size or type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: 'on' or 'off' expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván '%s' nebo '%s'.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Text expected.\n"
-msgstr "%s: Špatná velikost argumentu %d: očekáváno %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: At least one %s expected.\n"
@@ -1558,9 +1555,6 @@ msgstr ""
 msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
 msgstr ""
 
-#
-# File: modules/graphics/macros/bar.sci, line: 125
-# File: modules/graphics/macros/bar.sci, line: 130
 #, c-format
 msgid "%s: Argument #%d: Inf and Nan values forbidden.\n"
 msgstr ""
@@ -1571,7 +1565,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval %s.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
 
 #, c-format
 msgid ""
@@ -1589,7 +1584,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -1670,9 +1666,6 @@ msgstr ""
 msgid "%s: Argument #%d: Vector with %d elements expected.\n"
 msgstr ""
 
-#
-# File: modules/graphics/macros/colorbar.sci, line: 178
-# File: modules/graphics/macros/colorbar.sci, line: 217
 #, c-format
 msgid ""
 "%s: Argument #%d: Can't retrieve a default value: Decimal number expected.\n"
@@ -1700,7 +1693,8 @@ msgstr "%s: Špatný typ argumentu %d: Očekáván reálný skalár.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -1740,7 +1734,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real vector expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný vektor.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný vektor.\n"
 
 #, c-format
 msgid "Error %d : in plot2d called by contour2d"
@@ -1791,7 +1786,8 @@ msgid ""
 msgstr ""
 "Výběr objektu nemůže být povolen, pole čísla data uživatele je již použito"
 
-msgid "Left click on a curve to create a datatip, right opens contextual menu"
+msgid ""
+"Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 "Levým kliknutím na křivku vytvoříte popisek dat, pravým otevřete kontextové "
 "menu"
@@ -1846,7 +1842,8 @@ msgstr "Vyberte styl vrcholu"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d:  Očekáván booleovský skalár.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d:  Očekáván booleovský skalár.\n"
 
 msgid "&File"
 msgstr "&Soubor"
@@ -1945,9 +1942,11 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván Reálné číslo\
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
 
-msgid "Entity picker cannot be enabled, user data figure field is already used"
+msgid ""
+"Entity picker cannot be enabled, user data figure field is already used"
 msgstr ""
 "Výběr objektu nemůže být povolen, pole čísla data uživatele je již použito"
 
@@ -1986,7 +1985,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
 
 msgid "Ok"
 msgstr "Ok"
@@ -1997,9 +1997,8 @@ msgstr "Zrušit"
 msgid "April"
 msgstr "Duben"
 
-#, fuzzy
 msgid "February"
-msgstr "Únor"
+msgstr ""
 
 msgid "January"
 msgstr "Leden"
@@ -2050,32 +2049,27 @@ msgstr "Přesná gaussovská hustota"
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekávána platná vlastnost.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
 "function expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána reálná matice nebo funkce "
-"Scilab.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+msgstr ""
 
-#
-# File: modules/graphics/macros/implicitplot.sci, line: 102
 #, c-format
 msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Error %d : in plot called by implicitplot"
-msgstr "Chyba %d: v plot2d volaný countour2d"
+msgstr ""
 
 #, c-format
 msgid "%s: Argument #%d: Numbers or text expected.\n"
@@ -2085,13 +2079,14 @@ msgstr ""
 msgid "%s: Argument #%d: Text(s) expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Characters in {a.#1} expected.\n"
-msgstr "%s: Špatný typ argumentu #%d: Očekávána řetězcová matice.\n"
+msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input argument(s): 0, 1, or 2 arguments expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d nebo %d."
+#, c-format
+msgid ""
+"%s: Wrong number of input argument(s): 0, 1, or 2 arguments expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -2150,8 +2145,6 @@ msgstr ""
 msgid "%s: Argument #%d: Graphic handle(s) of type %s expected.\n"
 msgstr ""
 
-#
-# File: modules/graphics/macros/plot.sci, line: 217
 #, c-format
 msgid "%s: wrong list() specification for the curve #%d.\n"
 msgstr ""
@@ -2212,7 +2205,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
+msgid ""
+"%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu '%s': Očekáván vektor o velikosti "
 "%d.\n"
@@ -2291,20 +2285,15 @@ msgstr ""
 msgid "%s: Argument #%d: At least %d components expected.\n"
 msgstr ""
 
-#
-# File: modules/graphics/macros/surf.sci, line: 143
 #, c-format
 msgid "%s: Argument #%d: Wrong list() specification.\n"
 msgstr ""
 
-#
-# File: modules/graphics/macros/surf.sci, line: 176
 #, c-format
-msgid "%s: Argument #%d : Unable to evaluate Z: Error %d at line %d in %s: '%s"
+msgid ""
+"%s: Argument #%d : Unable to evaluate Z: Error %d at line %d in %s: '%s"
 msgstr ""
 
-#
-# File: modules/graphics/macros/surf.sci, line: 188
 #, c-format
 msgid "%s: Argument #%d: Inconsistent size of the result.\n"
 msgstr ""
@@ -2338,7 +2327,8 @@ msgstr ""
 "stejnou velikostí.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
+msgid ""
+"%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupních argumentů '%s' a '%s': Očekávány stejné "
 "velikosti.\n"
@@ -2351,31 +2341,14 @@ msgstr ""
 msgid "%s: file %s does not exist.\n"
 msgstr "%s: soubor %s neexistuje.\n"
 
-#
-# File: modules/graphics/macros/xload.sci, line: 100
 msgid "xload: Given file is not a graphic one."
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
+msgstr ""
+"%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
 
 #, c-format
 msgid "%s: Wrong value given for %s."
 msgstr "%s: Zadána špatná hodnota pro %s."
-
-#~ msgid "Incorrect input: ..."
-#~ msgstr "Nesprávný vstup: ..."
-
-#, c-format
-#~ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-#~ msgstr ""
-#~ "%s: Špatná velikost vstupního argumentu #%d: Očekávána matice %d-krát-"
-#~ "%d.\n"
-
-#~ msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-#~ msgstr ""
-#~ "%s: Špatný typ vstupního argumentu #%d: očekávána datová struktura %s.\n"
-
-#~ msgid "%s: Error : unable to evaluate input function."
-#~ msgstr "%s: Chyba : nelze vyhodnotit vstupní funkci."

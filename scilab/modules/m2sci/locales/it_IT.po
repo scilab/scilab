@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-01-20 15:52+0000\n"
+"PO-Revision-Date: 2020-02-18 21:59+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: it\n"
 
 msgid "Input file"
 msgstr "File di ingresso"
@@ -88,7 +88,8 @@ msgstr ""
 "primo argomento non corrispondono ai contenuti della cella specificata.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s: La seguente caratteristica non è stata sviluppata: supporto per le "
 "ipermatrici.\n"
@@ -138,7 +139,8 @@ msgstr ""
 "quadrata.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso %s, %s, "
 "'%s' o '%s'.\n"
@@ -229,7 +231,8 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s: Non c'è una griglia minore in Scilab.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s', "
 "'%s' o '%s'.\n"
@@ -469,7 +472,8 @@ msgid "lhs cannot be a %s."
 msgstr "lhs non può essere un %s"
 
 #, c-format
-msgid "recursive extraction with one index of type %s is not yet implemented."
+msgid ""
+"recursive extraction with one index of type %s is not yet implemented."
 msgstr ""
 "l'estrazione ricorsiva con un indice di tipo %s non è ancora sviluppata."
 
@@ -485,7 +489,8 @@ msgid "Matlab function %s not yet converted."
 msgstr "La funzione %s di Matlab non è ancora convertita."
 
 #, c-format
-msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid ""
+"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 "mtlb(%s) può essere sostituito da %s() o da %s sia che %s è un M-file sia "
 "che non lo è."
@@ -588,8 +593,8 @@ msgid ""
 "loginfos: verb_mode 0 should not be used in this context, information "
 "ignored."
 msgstr ""
-"loginfo: verb_mode 0 non dovrebbe essere usato in questo contesto,"
-"l'informazione è ignorata."
+"loginfo: verb_mode 0 non dovrebbe essere usato in questo "
+"contesto,l'informazione è ignorata."
 
 msgid "m2sciassume is obsolete, used m2scideclare instead."
 msgstr "m2sciassume è obsoleto, viene usato invece m2scideclare."
@@ -821,8 +826,6 @@ msgstr "Modifica della sintassi..."
 msgid "Syntax modification: Done"
 msgstr "Modifica ella sintassi: effettuata"
 
-#
-# File: modules/m2sci/macros/mfile2sci.sci, line: 212
 #, c-format
 msgid "%s: %s does not exist or is not the macro name.\n"
 msgstr ""
@@ -889,7 +892,8 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** Fine della sessione di mfile2sci() ******"
 
 #, c-format
-msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid ""
+"At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Almeno un operando di %s è una matrice vuota, l'equivalente in Scilab è []."
 
@@ -906,7 +910,8 @@ msgstr ""
 "Bug in M2SCI: estrazione dalla variabile %s sconosciuta nella varslist."
 
 #, c-format
-msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid ""
+"recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
 "inserimento ricorsivo in una variabile che non è una cell né uno struct: %s."
 
@@ -926,22 +931,12 @@ msgstr ""
 "Almeno un operando è una matrice vuota per l'operatore: %s, il risultato è "
 "impostato a [] ."
 
-#
-# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 25
 #, c-format
 msgid ""
 "If %s is imaginary and its module is > 1\n"
 "      the real part of %s is -/2 in Scilab instead of +/2 in Matlab."
 msgstr ""
 
-#
-# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 27
 #, c-format
 msgid ""
 "If %s is in [0,1)\n"
@@ -957,13 +952,10 @@ msgstr ""
 "\n"
 "   la parte complessa del risultato di %s sarà l'opposto di quella di Matlab."
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "If %s < -1, complex part of output of %s will be the opposite of Matlab one."
 msgstr ""
-"Se %s è fuori dall'intervallo [-1,1]\n"
-"\n"
-"   la parte complessa del risultato di %s sarà l'opposto di quella di Matlab."
 
 msgid "is Real."
 msgstr "è reale"
@@ -1103,7 +1095,8 @@ msgstr ""
 msgid "Unhandled class: %s."
 msgstr "Classe non gestita: %s."
 
-msgid "isequal requires fields are in the same order for structs to be equal."
+msgid ""
+"isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 "isequal richiede che i campi siano nello stesso ordine affinché gli structs "
 "siano uguali."
@@ -1198,32 +1191,3 @@ msgstr "%s valore in uscita impostato a 'on'."
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
-
-#, c-format
-#~ msgid ""
-#~ "If %s is outside [-1,1]\n"
-#~ "   real part of output of %s will be the opposite of Matlab one."
-#~ msgstr ""
-#~ "Se %s è fuori da [-1,1]\n"
-#~ "   la parte reale del risultato di %s sarà l'opposto di quello di Matlab."
-
-#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
-#~ msgstr ""
-#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
-#~ "%d.\n"
-
-#~ msgid "%s: %s module is not installed.\n"
-#~ msgstr "%s: il modulo %s non è installato.\n"
-
-#~ msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-#~ msgstr ""
-#~ "%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una "
-#~ "matrice di valori booleani.\n"
-
-#~ msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-#~ msgstr ""
-#~ "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa "
-#~ "una matrice %d-per-%d.\n"
-
-#~ msgid "%s: Could not read variables in %s"
-#~ msgstr "%s: Impossibile leggere le variabili in %s"

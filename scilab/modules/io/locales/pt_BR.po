@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 22:00+0000\n"
+"PO-Revision-Date: 2019-02-15 22:15+0000\n"
 "Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: pt_BR\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -112,8 +112,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", \"%s"
-"\" \n"
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", "
+"\"%s\" \n"
 msgstr ""
 
 #, c-format
@@ -210,9 +210,6 @@ msgstr ""
 msgid "%s: Wrong input argument %d.\n"
 msgstr ""
 
-#
-# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 429
-# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 648
 #, c-format
 msgid "%s: Input missing from console.\n"
 msgstr ""
@@ -276,9 +273,3 @@ msgstr "%s: erro durante a execução de %s"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr ""
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-#~ msgstr ""
-#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se o valor "
-#~ "'%s'.\n"

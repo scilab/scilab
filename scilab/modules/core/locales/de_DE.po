@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 13:04+0000\n"
+"PO-Revision-Date: 2020-02-18 22:04+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: de\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -86,8 +86,6 @@ msgstr "%s: falscher Typ für Eingangsargument #%d: ein Skalar erwartet.\n"
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr "%s: falscher Wert für Eingangsargument '%d: '%s', '%s' oder '%s'.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
 #, c-format
 msgid "%s: must be call from a function.\n"
 msgstr ""
@@ -108,8 +106,6 @@ msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 47
 #, c-format
 msgid "%s: Debugger cannot be activated in pause\n"
 msgstr ""
@@ -138,7 +134,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
-msgstr "%s: falscher Typ für Argument %d: Matrix mit Zeichenfolgen erwartet.\n"
+msgstr ""
+"%s: falscher Typ für Argument %d: Matrix mit Zeichenfolgen erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
@@ -168,7 +165,8 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -204,7 +202,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: falsche Größe des Eingabewertes #%d: Zeichenkette wird erwartet.\n"
+msgstr ""
+"%s: falsche Größe des Eingabewertes #%d: Zeichenkette wird erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong file version.xml %s.\n"
@@ -266,7 +265,8 @@ msgid "Pause mode: enter empty lines to continue.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
 
 #, c-format
@@ -290,7 +290,8 @@ msgid "%s: Wrong size for input argument #%d: string expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -430,11 +431,10 @@ msgstr "Scilab Version Information"
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
-msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid ""
+"(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/InitScilab.cpp, line: 1176
 #, c-format
 msgid "%s: Command missing.\n"
 msgstr ""
@@ -443,22 +443,17 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
 msgid "callstack:"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/InitScilab.cpp, line: 1297
 #, c-format
 msgid "#%-5d%s"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/InitScilab.cpp, line: 1301
 #, c-format
 msgid "#%-5d%s (line %d)"
 msgstr ""
@@ -552,8 +547,6 @@ msgstr ""
 msgid "ESI Group\n"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/banner.cpp, line: 41
 msgid "Copyright (c) 2017-2020 (ESI Group)\n"
 msgstr ""
 
@@ -638,14 +631,6 @@ msgstr ""
 msgid "Call an external routine"
 msgstr ""
 
-#
-# File: modules/core/demos/intro/external_routine.dem.sce, line: 8
-# File: modules/core/demos/intro/linear_algebra.dem.sce, line: 8
-# File: modules/core/demos/intro/online_definition_fct.dem.sce, line: 8
-# File: modules/core/demos/intro/operations.dem.sce, line: 8
-# File: modules/core/demos/intro/optimization_simulation.dem.sce, line: 8
-# File: modules/core/demos/intro/scilab_objects.dem.sce, line: 8
-# File: modules/core/demos/intro/systems.dem.sce, line: 8
 msgid "Press &lt;enter> in the console to proceed step by step"
 msgstr ""
 
@@ -721,27 +706,3 @@ msgstr "Größe"
 
 msgid "Bytes"
 msgstr "Bytes"
-
-#~ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-#~ msgstr "%s: Falscher Typ für Eingangargument #%d: Typ double erwartet.\n"
-
-#~ msgid "%s: Unable to find Perl file: %s"
-#~ msgstr "%s: Kann Perl Datei nicht finden: %s"
-
-#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-#~ msgstr "%s: unerwarteter Eingansargumentstyp  #%d: Zeichenkette erwartet\n"
-
-#~ msgid "%s: No perl command specified."
-#~ msgstr "%s: Kein Perl Befehl angegeben."
-
-#~ msgid "%s: Unable to find Perl in '%s"
-#~ msgstr "%s: Perl in '%s' nicht auffindbar"
-
-#~ msgid "%s: Unable to find Perl.\n"
-#~ msgstr "%s: Kann Perl nicht finden.\n"
-
-#~ msgid "%s: System error: Command executed: %s"
-#~ msgstr "%s: Systemfehler: Befehl ausgeführt: %s"
-
-#~ msgid " by "
-#~ msgstr " von "

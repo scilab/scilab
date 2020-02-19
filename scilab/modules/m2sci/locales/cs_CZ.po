@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-01-20 15:52+0000\n"
+"PO-Revision-Date: 2020-02-18 22:01+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: cs\n"
 
 msgid "Input file"
 msgstr "Vstupní soubor"
@@ -52,7 +52,8 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: Cell elements must be character arrays.\n"
-msgstr "%s: Špatný typ vstupního argumentu: Prvky buňky musí být pole znaků.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu: Prvky buňky musí být pole znaků.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented.\n"
@@ -83,7 +84,8 @@ msgstr ""
 "neshodují  se zadanými obsahy buňky.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s: Tato funkce nebyla zavedena: Podpora hypermatic.\n"
 
 #, c-format
@@ -123,10 +125,12 @@ msgstr "%s: Všechna okna smazána.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
+msgstr ""
+"%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: očekáván %s, %s, '%s', nebo "
 "'%s'.\n"
@@ -190,7 +194,8 @@ msgstr "%s: %s není zavedeno.\n"
 #, c-format
 msgid ""
 "%s: %s Scilab function does not work with more than one row variables.\n"
-msgstr "%s: Funkce Scilabu %s nepracuje s více než jednou řadou proměnných.\n"
+msgstr ""
+"%s: Funkce Scilabu %s nepracuje s více než jednou řadou proměnných.\n"
 
 #, c-format
 msgid "%s: The format '%s' is unknown.\n"
@@ -213,7 +218,8 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s: Ve Scilabu není žádná malá mřížka.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', '%s' nebo '%s'.\n"
 
@@ -432,7 +438,8 @@ msgid "lhs cannot be a %s."
 msgstr "lhs nemůže být  %s."
 
 #, c-format
-msgid "recursive extraction with one index of type %s is not yet implemented."
+msgid ""
+"recursive extraction with one index of type %s is not yet implemented."
 msgstr "rekurzivní extrakce s jedním indexem typu %s není ještě zavedena."
 
 #, c-format
@@ -447,8 +454,10 @@ msgid "Matlab function %s not yet converted."
 msgstr "Funkce Matlab %s není ještě převedena."
 
 #, c-format
-msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
-msgstr "mtlb(%s) může být nahrazeno %s() nebo %s ať je %s M-soubor či nikoliv."
+msgid ""
+"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgstr ""
+"mtlb(%s) může být nahrazeno %s() nebo %s ať je %s M-soubor či nikoliv."
 
 msgid "input argument must be an 'operation' tlist."
 msgstr "vstupní argument musí být tlist 'operation'."
@@ -502,7 +511,8 @@ msgid "// Display warning for floating point exception"
 msgstr "// Zobrazit varování pro výjimky destinných čísel"
 
 msgid "// Output variables initialisation (not found in input variables)"
-msgstr "// Zavedení výstupních proměnných (nenalezeno ve vstupních proměnných)"
+msgstr ""
+"// Zavedení výstupních proměnných (nenalezeno ve vstupních proměnných)"
 
 msgid "TESTING M2SCI: creating varslist file..."
 msgstr "TEST M2SCI: vytvoření souboru varslist..."
@@ -583,8 +593,8 @@ msgstr "když"
 msgid ""
 "not enough data, you should give at least variable_name|dimensions|datatype."
 msgstr ""
-"není dostatek dat, meli byste zadat alespoň jméno_proměnné|rozměry|"
-"datový_typ."
+"není dostatek dat, meli byste zadat alespoň "
+"jméno_proměnné|rozměry|datový_typ."
 
 msgid "too much data."
 msgstr "příliš mnoho dat."
@@ -774,8 +784,6 @@ msgstr "Změna syntaxu..."
 msgid "Syntax modification: Done"
 msgstr "Změna syntaxu: Hotovo"
 
-#
-# File: modules/m2sci/macros/mfile2sci.sci, line: 212
 #, c-format
 msgid "%s: %s does not exist or is not the macro name.\n"
 msgstr ""
@@ -839,7 +847,8 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** Konec relace mfile2sci() ******"
 
 #, c-format
-msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid ""
+"At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Alespoň jeden operand je prázdná matice pro operátor: %s, obdoba Scilabu je "
 "[]."
@@ -856,8 +865,10 @@ msgid "M2SCI bug: extraction from unknown variable %s in varslist."
 msgstr "Chyba M2SCI: extrakce z neznámé proměnné %s v seznamu proměnných."
 
 #, c-format
-msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
-msgstr "rekurzivní vložení v proměnné, která není ani Buňka ani Struktura: %s"
+msgid ""
+"recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgstr ""
+"rekurzivní vložení v proměnné, která není ani Buňka ani Struktura: %s"
 
 #, c-format
 msgid "destination variable is not a cell: %s is of type %s."
@@ -874,22 +885,12 @@ msgstr ""
 "Alespoň jeden operand je prázdná matice pro operátor: %s, výsledek nastaven "
 "na []."
 
-#
-# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 25
 #, c-format
 msgid ""
 "If %s is imaginary and its module is > 1\n"
 "      the real part of %s is -/2 in Scilab instead of +/2 in Matlab."
 msgstr ""
 
-#
-# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 27
 #, c-format
 msgid ""
 "If %s is in [0,1)\n"
@@ -904,12 +905,10 @@ msgstr ""
 "Pokud je %s mimo [-1,1]\n"
 "   komplexní část výstupu %s bude opakem té z Matlabu."
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "If %s < -1, complex part of output of %s will be the opposite of Matlab one."
 msgstr ""
-"Pokud je %s mimo [-1,1]\n"
-"   komplexní část výstupu %s bude opakem té z Matlabu."
 
 msgid "is Real."
 msgstr "je Reálný."
@@ -990,7 +989,8 @@ msgstr ""
 "Ověřit, že výraz vyhodnocený pomocí execstr() je kompatibilní se Scilabem."
 
 msgid "No equivalent for findstr() in Scilab so mtlb_findstr() is called."
-msgstr "Žádná obdoba v Scilabu pro findstr(), takže je voláno mtlb_findstr()."
+msgstr ""
+"Žádná obdoba v Scilabu pro findstr(), takže je voláno mtlb_findstr()."
 
 msgid "fopen('all') has no translation."
 msgstr "fopen('all') nemá žádný překlad,"
@@ -1030,13 +1030,15 @@ msgstr "Možnost %s."
 
 #, c-format
 msgid "Scilab %s() does not work with Complex values: %s() call IGNORED."
-msgstr "Scilab %s() nefunguje s Komplexními hodnotami: volání %s(( IGNOROVÁNO."
+msgstr ""
+"Scilab %s() nefunguje s Komplexními hodnotami: volání %s(( IGNOROVÁNO."
 
 #, c-format
 msgid "Unhandled class: %s."
 msgstr "Neobsluhovatelná třída: %s."
 
-msgid "isequal requires fields are in the same order for structs to be equal."
+msgid ""
+"isequal requires fields are in the same order for structs to be equal."
 msgstr "isequal vyžaduje pole ve stejném pořadí, aby se struktury rovnaly."
 
 msgid "Option -regexp not yet handled: will be ignored."
@@ -1124,17 +1126,3 @@ msgstr "%s: Hodnota výstupu nastavena na 'on'."
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
-
-#, c-format
-#~ msgid ""
-#~ "If %s is outside [-1,1]\n"
-#~ "   real part of output of %s will be the opposite of Matlab one."
-#~ msgstr ""
-#~ "Pokud je %s mimo [-1,1]\n"
-#~ "   reálná část výstupu %s bude opakem té z Matlabu."
-
-#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
-#~ msgstr "%s: Špatný počet vstupních argumentů: Očekáván %d.\n"
-
-#~ msgid "%s: %s module is not installed.\n"
-#~ msgstr "%s: modul %s není nainstalován.\n"

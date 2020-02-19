@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 22:08+0000\n"
+"PO-Revision-Date: 2020-01-14 19:57+0000\n"
 "Last-Translator: Ramiro Pereira de Magalhães <ramiro.p.magalhaes@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: pt_BR\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -76,8 +76,6 @@ msgstr "Tipo"
 msgid "Visibility"
 msgstr "Visibilidade"
 
-#
-# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 50
 msgid "Memory"
 msgstr ""
 
@@ -385,13 +383,3 @@ msgstr "&?"
 
 msgid "&About Scilab..."
 msgstr "Sobre o Scil&ab..."
-
-#, c-format
-#~ msgid "%s: ans cannot be edited.\n"
-#~ msgstr "%s: ans não pode ser editado.\n"
-
-#~ msgid "Bytes"
-#~ msgstr "Bytes"
-
-#~ msgid "Compiled function"
-#~ msgstr "Função compilada"

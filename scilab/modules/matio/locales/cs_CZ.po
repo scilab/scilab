@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 22:04+0000\n"
+"PO-Revision-Date: 2020-01-14 19:58+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
@@ -131,11 +131,13 @@ msgstr ""
 
 #, c-format
 msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
-msgstr "%s: Mlisty typu %s nemůžou být zapsány do binárních souborů Matlab.\n"
+msgstr ""
+"%s: Mlisty typu %s nemůžou být zapsány do binárních souborů Matlab.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
-msgstr "%s: Špatný typ prvního vstupního argumentu: Očekávána řídká matice.\n"
+msgstr ""
+"%s: Špatný typ prvního vstupního argumentu: Očekávána řídká matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -145,8 +147,6 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězc�
 msgid "%s: This feature has not been implemented: %s."
 msgstr "%s: Tato funkce ení ještě zavedena: %s."
 
-#
-# File: modules/matio/macros/loadmatfile.sci, line: 74
 #, c-format
 msgid "%s: The file '%s' does not exist.\n"
 msgstr ""
@@ -155,8 +155,6 @@ msgstr ""
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Nelze otevřít soubor %s.\n"
 
-#
-# File: modules/matio/macros/loadmatfile.sci, line: 179
 #, c-format
 msgid "%s: Unsupported input file data type: '%s'.\n"
 msgstr ""
@@ -168,18 +166,10 @@ msgstr ""
 "%s: V souboru '%s' není žádná proměnná read, Zkontrolujte, zda není Váš "
 "soubor poškozen.\n"
 
-#
-# File: modules/matio/macros/loadmatfile.sci, line: 216
-# File: modules/matio/macros/loadmatfile.sci, line: 365
-# File: modules/matio/macros/loadmatfile.sci, line: 409
-# File: modules/matio/macros/loadmatfile.sci, line: 428
-# File: modules/matio/macros/loadmatfile.sci, line: 436
 #, c-format
 msgid "loadmatfile: Error in input file at line #%d: '%s' expected.\n"
 msgstr ""
 
-#
-# File: modules/matio/macros/matfile2sci.sci, line: 24
 #, c-format
 msgid "%s: %s module is not installed.\n"
 msgstr ""
@@ -220,8 +210,6 @@ msgstr "%s : Konflikt v názvu: není možné uložit proměnnou %s (ignorováno
 msgid "Attempt to write an unsupported data type to a binary file."
 msgstr "Pokus o zápis nepodporovaného typu dat do souboru binárního."
 
-#
-# File: modules/matio/macros/savematfile.sci, line: 301
 msgid "savematfile: No variable to save => No file written."
 msgstr ""
 
@@ -238,9 +226,3 @@ msgid ""
 "%s: Variable %s can not be saved in MAT-file version %s (type %d "
 "unsupported): IGNORED.\n"
 msgstr ""
-
-#~ msgid "All inputs must be character strings."
-#~ msgstr "Všechny vstupy musí být řetězce znaků."
-
-#~ msgid "Variable %s can not be saved in ASCII file: IGNORED."
-#~ msgstr "Proměnná %s nemůže být uložena v souboru ASCII: IGNOROVÁNO."

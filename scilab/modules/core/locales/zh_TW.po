@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 13:07+0000\n"
+"PO-Revision-Date: 2020-02-18 22:06+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
-"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: zh_TW\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -125,8 +125,6 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是純量．\n"
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
 #, c-format
 msgid "%s: must be call from a function.\n"
 msgstr ""
@@ -146,8 +144,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是字串.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 47
 #, c-format
 msgid "%s: Debugger cannot be activated in pause\n"
 msgstr ""
@@ -205,7 +201,8 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -304,7 +301,8 @@ msgid "Pause mode: enter empty lines to continue.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
 
 #
@@ -330,7 +328,8 @@ msgid "%s: Wrong size for input argument #%d: string expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -430,8 +429,8 @@ msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"錯誤:不是一個有效的版本檔%s (開頭應是<MODULE_VERSION>且包含<VERSION major='' "
-"minor='' maintenance='' revision='' string=''>)\n"
+"錯誤:不是一個有效的版本檔%s (開頭應是<MODULE_VERSION>且包含<VERSION major='' minor='' "
+"maintenance='' revision='' string=''>)\n"
 
 #, c-format
 msgid ""
@@ -476,11 +475,10 @@ msgstr "Scilab 版本 資訊."
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
-msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid ""
+"(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/InitScilab.cpp, line: 1176
 #, c-format
 msgid "%s: Command missing.\n"
 msgstr ""
@@ -489,21 +487,17 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是字串.\n"
+msgstr ""
 
 msgid "callstack:"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/InitScilab.cpp, line: 1297
 #, c-format
 msgid "#%-5d%s"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/InitScilab.cpp, line: 1301
 #, c-format
 msgid "#%-5d%s (line %d)"
 msgstr ""
@@ -599,8 +593,6 @@ msgstr ""
 msgid "ESI Group\n"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/banner.cpp, line: 41
 msgid "Copyright (c) 2017-2020 (ESI Group)\n"
 msgstr ""
 
@@ -691,14 +683,6 @@ msgstr ""
 msgid "Call an external routine"
 msgstr ""
 
-#
-# File: modules/core/demos/intro/external_routine.dem.sce, line: 8
-# File: modules/core/demos/intro/linear_algebra.dem.sce, line: 8
-# File: modules/core/demos/intro/online_definition_fct.dem.sce, line: 8
-# File: modules/core/demos/intro/operations.dem.sce, line: 8
-# File: modules/core/demos/intro/optimization_simulation.dem.sce, line: 8
-# File: modules/core/demos/intro/scilab_objects.dem.sce, line: 8
-# File: modules/core/demos/intro/systems.dem.sce, line: 8
 msgid "Press &lt;enter> in the console to proceed step by step"
 msgstr ""
 
@@ -778,36 +762,3 @@ msgstr "大小"
 
 msgid "Bytes"
 msgstr "位元組"
-
-#~ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-#~ msgstr "%s: 輸入參數 #%d 的型態錯誤: 應該是雙精度.\n"
-
-# File: macros/perl.sci, line: 12
-#~ msgid "%s: Unable to find Perl file: %s"
-#~ msgstr "%s:無法找到 Perl 程序檔: %s"
-
-#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-#~ msgstr "%s: 輸入參數 #%d 型態錯誤: 應為字串.\n"
-
-#
-# File: macros/perl.sci, line: 32
-#~ msgid "%s: No perl command specified."
-#~ msgstr "%s: perl 指令未給定(specified)."
-
-#
-# File: macros/perl.sci, line: 40
-#~ msgid "%s: Unable to find Perl in '%s"
-#~ msgstr "%s: 無法在 '%s' 中找到 Perl"
-
-#
-# File: macros/perl.sci, line: 56
-#~ msgid "%s: Unable to find Perl.\n"
-#~ msgstr "%s: 無法找到 Perl.\n"
-
-#
-# File: macros/perl.sci, line: 61
-#~ msgid "%s: System error: Command executed: %s"
-#~ msgstr "%s: 系統錯誤: 執行指令為: %s"
-
-#~ msgid " by "
-#~ msgstr " 由 "

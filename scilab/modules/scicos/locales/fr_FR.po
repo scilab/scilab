@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 09:20+0000\n"
-"Last-Translator: Paul Bignier <Unknown>\n"
+"PO-Revision-Date: 2020-02-18 22:05+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: fr\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -214,7 +214,8 @@ msgstr ""
 
 #, c-format
 msgid "%s : Undetermined Size. intyp(%d)=%d. Please adjust your model.\n"
-msgstr "%s : Taille indéterminée. intyp(%d)=%d. Prière d'ajuster le modèle.\n"
+msgstr ""
+"%s : Taille indéterminée. intyp(%d)=%d. Prière d'ajuster le modèle.\n"
 
 #, c-format
 msgid "%s : Unknown Data type\n"
@@ -232,7 +233,8 @@ msgstr ""
 
 #, c-format
 msgid "%s : Undetermined Size. outtyp(%d)=%d. Please adjust your model.\n"
-msgstr "%s : Taille indéterminée. outtyp(%d)=%d. Prière d'ajuster le modèle.\n"
+msgstr ""
+"%s : Taille indéterminée. outtyp(%d)=%d. Prière d'ajuster le modèle.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
@@ -283,11 +285,9 @@ msgstr ""
 "%s : Taille erronée de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be one of %ls.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée #%d : doit être dans l'ensemble "
-"[%ls].\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"
@@ -300,7 +300,8 @@ msgstr ""
 "%s : Taille erronée de l'argument d'entrée n°%d : Un vecteur ligne attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
 msgstr ""
 "%s : Valeur erronéee de l'argument d'entrée #%d : type \"%ls\" non prévu.\n"
 
@@ -372,7 +373,8 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
 msgstr ""
 "%s : Valeur erronée pour l'argument d'entrée n°%d : %s, %s, %s, %s ou %s "
 "attendu.\n"
@@ -408,8 +410,8 @@ msgid ""
 "%s: Wrong type for element #%d of element #%d of argument #%d : A matrix "
 "expected.\n"
 msgstr ""
-"%s : Type erroné pour l'élément %d de l'élément %d de l'argument d'entrée n°"
-"%d : une matrice attendue.\n"
+"%s : Type erroné pour l'élément %d de l'élément %d de l'argument d'entrée "
+"n°%d : une matrice attendue.\n"
 
 #, c-format
 msgid "%s : No more free memory.\n"
@@ -514,7 +516,8 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgid ""
+"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
 msgstr ""
 "%s : Champs erronés pour l'argument d'entrée #%d : \"%s\" et \"%s\" "
 "attendus.\n"
@@ -793,7 +796,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: unknown integer type.\n"
-msgstr "%s : Type erroné de l'argument d'entrée #%d : type d'entier inconnu.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée #%d : type d'entier inconnu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Could not read its content.\n"
@@ -823,7 +827,8 @@ msgstr ""
 "matrice de textes ne peut pas être vide.\n"
 
 #, c-format
-msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
 "%s : Valeur erronée pour l'élément %d de l'argument d'entrée #%d : type "
 "inconnu.\n"
@@ -910,13 +915,13 @@ msgstr ""
 msgid "Wrong value for field %s.%s : Round number expected.\n"
 msgstr "Valeur erronée du champ %s.%s : valeur entière attendue.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : Real vector expected.\n"
-msgstr "Type erroné du champ %s.%s : une matrice réelle attendue.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong size for field %s.%s : Real vector expected.\n"
-msgstr "Type erroné du champ %s.%s : une matrice réelle attendue.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for field %s.%s : Real matrix expected.\n"
@@ -1113,7 +1118,8 @@ msgstr ""
 "caractères attendue.\n"
 
 msgid "Can't convert old diagram (problem in version)"
-msgstr "Impossible de convertir l'ancien diagramme (problème dans la version)"
+msgstr ""
+"Impossible de convertir l'ancien diagramme (problème dans la version)"
 
 #, c-format
 msgid ""
@@ -1194,7 +1200,8 @@ msgid "Input port %s size is: %s"
 msgstr "La dimension du port d'entrée %s est : %s"
 
 msgid "Block has connected output port<br />with incompatible type."
-msgstr "Le bloc a un port de sortie connecté<br />avec un type incompatible :"
+msgstr ""
+"Le bloc a un port de sortie connecté<br />avec un type incompatible :"
 
 #, c-format
 msgid "Output port %s type is: %s"
@@ -1294,15 +1301,16 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined size:"
 msgstr ""
-"<em>Veuillez mettre à jour le diagramme pour éviter cet avertissement.</"
-"em><br />Le  port de sortie du bloc a une dimension indéterminée :"
+"<em>Veuillez mettre à jour le diagramme pour éviter cet "
+"avertissement.</em><br />Le  port de sortie du bloc a une dimension "
+"indéterminée :"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined type:"
 msgstr ""
-"<em>Veuillez mettre à jour le diagramme pour éviter cet avertissement.</"
-"em><br />Le  port de sortie du bloc a un type indéterminé :"
+"<em>Veuillez mettre à jour le diagramme pour éviter cet "
+"avertissement.</em><br />Le  port de sortie du bloc a un type indéterminé :"
 
 #, c-format
 msgid "Output port %s type."
@@ -1316,15 +1324,16 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined size:"
 msgstr ""
-"<em>Veuillez mettre à jour le diagramme pour éviter cet avertissement.</"
-"em><br />Le  port d'entrée du bloc a une dimension indéterminée :"
+"<em>Veuillez mettre à jour le diagramme pour éviter cet "
+"avertissement.</em><br />Le  port d'entrée du bloc a une dimension "
+"indéterminée :"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined type:"
 msgstr ""
-"<em>Veuillez mettre à jour le diagramme pour éviter cet avertissement.</"
-"em><br />Le  port d'entrée du bloc a un type indéterminé :"
+"<em>Veuillez mettre à jour le diagramme pour éviter cet "
+"avertissement.</em><br />Le  port d'entrée du bloc a un type indéterminé :"
 
 msgid ""
 "Highlighted block(s) have connected ports \n"
@@ -1335,8 +1344,6 @@ msgstr ""
 "avec des dimensions qui ne peuvent pas être déterminées par le contexte.\n"
 "Quelle est la dimension de ce lien ?"
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2294
 #, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
@@ -1493,10 +1500,6 @@ msgstr "%s : Diagramme vide"
 msgid "%s: Wrong input argument.\n"
 msgstr "%s : Argument d'entrée erroné.\n"
 
-#
-# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 42
-# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 68
-# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 111
 msgid "Set Xcos context"
 msgstr ""
 
@@ -1524,7 +1527,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
-msgstr "%s : Type erroné du paramètre '%s' du bloc : %s(%s) attendu, %s obtenu"
+msgstr ""
+"%s : Type erroné du paramètre '%s' du bloc : %s(%s) attendu, %s obtenu"
 
 msgid ""
 "There are too many Modelica files.\n"
@@ -1566,12 +1570,3 @@ msgid ""
 msgstr ""
 "La solution donnée pour %s \n"
 " est erronée : %s.\n"
-
-#, c-format
-#~ msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
-#~ msgstr "Taille erronée du champ %s.%s : %dx%d attendue.\n"
-
-#, c-format
-#~ msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
-#~ msgstr ""
-#~ "Valeur erronée du champ %s.%s : le port FIXME n'a pas été mis à jour.\n"

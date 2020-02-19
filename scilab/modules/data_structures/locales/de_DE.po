@@ -8,79 +8,84 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 21:58+0000\n"
+"PO-Revision-Date: 2020-02-18 21:44+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: de\n"
 
 #, c-format
 msgid "%s:  Wrong type for input argument #%d: List expected.\n"
-msgstr ""
+msgstr "%s: Falscher Typ für Eingabeargument #%d: Liste erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: List expected.\n"
-msgstr ""
+msgstr "%s: Falscher Typ für Eingabeargument #%d: Liste erwartet.\n"
 
 #, c-format
 msgid "%s: Soft coded field names not yet implemented.\n"
-msgstr ""
+msgstr "%s: Softcodierte Feldnamen noch nicht implementiert.\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
-msgstr ""
+msgstr "%s: Ungültiger Index.\n"
 
 msgid "Invalid index.\n"
-msgstr ""
+msgstr "Ungültiger Index.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Falsche Anzahl an Ausgabeargumenten: %d erwartet.\n"
 
 #, c-format
 msgid "List element number %d is Undefined.\n"
-msgstr ""
+msgstr "Listenelement Nummer %d ist nicht definiert.\n"
 
 #, c-format
 msgid "%s: Could not read the argument #%d properties.\n"
-msgstr ""
+msgstr "%s: Konnte die Eigenschaften des Arguments #%d nicht lesen.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
+"%s: Falscher Wert des Eingangsarguments #%d: Ein Integer-Wert wird "
+"erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: At most %d expected.\n"
-msgstr ""
+msgstr "%s: Falsche Wert für Eingabeargument #%d: Höchstens %d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr ""
+msgstr "%s: Falscher Typ für Eingabeargument #%d: Integer erwartet.\n"
 
 #, c-format
 msgid "%s: Not implemented in scilab...\n"
-msgstr ""
+msgstr "%s: Nicht in scilab implementiert...\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
-msgstr ""
+msgstr "%s: Falscher Typ für Eingabeargument #%d: Zelle erwartet.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Same type expected for all cell "
 "contents"
 msgstr ""
+"%s: Falscher Typ für Eingabeargument #%d: Gleicher Typ für alle Zellinhalte "
+"erwartet"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be <= %d.\n"
-msgstr ""
+msgstr "%s: Falsche Größe für Eingabeargument #%d: Muss <= %d sein.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
 msgstr ""
+"%s: Falscher Typ für Eingabeargument #%d: Matrix der Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
@@ -88,30 +93,12 @@ msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
+msgstr "%s: Falsche Anzahl an Eingabeargumenten: Mindestens %d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr ""
+msgstr "%s: Falsches Argument #%d: Positiver Integer erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, fuzzy, c-format
-#~ msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-#~ msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d erwartet"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong values for input argument #%d: Elements must be non-negative "
-#~ "integers.\n"
-#~ msgstr ""
-#~ "%s: Falsche Werte für das Eingabeargument #%d: die Elemente müssen "
-#~ "positive ganze Zahlen sein.\n"
-
-#, c-format
-#~ msgid "%s: Number of entries does not match product of dimensions"
-#~ msgstr ""
-#~ "%s: Anzahl an Einträgen stimmt nicht mit dem Produkt der Dimensionen "
-#~ "überein."
+msgstr "%s: Falsche Anzahl an Eingabeargumenten: %d bis %d erwartet.\n"

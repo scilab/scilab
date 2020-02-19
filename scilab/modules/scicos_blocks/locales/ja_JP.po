@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 12:39+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2020-02-18 22:04+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ja\n"
 
 msgid "overflow error"
 msgstr "オーバーフローエラー"
@@ -27,8 +27,7 @@ msgstr "トリガーブロックは離散時間入力が必要です."
 msgid ""
 "The LU factorization has been completed, but the factor U is exactly "
 "singular : U(%d,%d) is exactly zero."
-msgstr ""
-"LU分解は完了しましたが,分解したUが完全に特異です:  U(%d,%d) が完全にゼロです."
+msgstr "LU分解は完了しましたが,分解したUが完全に特異です:  U(%d,%d) が完全にゼロです."
 
 msgid "Read error!\n"
 msgstr "読込エラー!\n"
@@ -65,9 +64,7 @@ msgstr "変数'%s'が存在しません.\n"
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
-msgstr ""
-"%s:  SODファイル形式のバージョンが間違っています. 仕様上の最大値: %d 指定値: "
-"%d\n"
+msgstr "%s:  SODファイル形式のバージョンが間違っています. 仕様上の最大値: %d 指定値: %d\n"
 
 msgid "Erroneous saved file.\n"
 msgstr "保存されたファイルに誤りがあります.\n"
@@ -121,9 +118,7 @@ msgstr "ベクトル型Timeは複素数です.\n"
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
-msgstr ""
-"時間ベクトルの大きさが間違っています, [%d, %d] を指定し, [%d, %d] を取得して"
-"ください.\n"
+msgstr "時間ベクトルの大きさが間違っています, [%d, %d] を指定し, [%d, %d] を取得してください.\n"
 
 msgid "Cannot read the time field.\n"
 msgstr "時間フィールドを読み込めません.\n"
@@ -135,241 +130,146 @@ msgstr "timeベクトルは単調増加するベクトルとする必要があ�
 msgid "Set %s block parameters"
 msgstr "%s ブロックパラメータを設定"
 
-#
-# File: modules/scicos_blocks/macros/Branching/CLKFROM.sci, line: 33
-# File: modules/scicos_blocks/macros/Branching/CLKGOTO.sci, line: 35
-# File: modules/scicos_blocks/macros/Branching/FROM.sci, line: 35
-# File: modules/scicos_blocks/macros/Branching/FROMMO.sci, line: 35
-# File: modules/scicos_blocks/macros/Branching/GOTO.sci, line: 35
-# File: modules/scicos_blocks/macros/Branching/GOTOMO.sci, line: 35
 msgid "Tag"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/CLKGOTO.sci, line: 41
-# File: modules/scicos_blocks/macros/Branching/GOTO.sci, line: 42
-# File: modules/scicos_blocks/macros/Branching/GOTOMO.sci, line: 42
 msgid "Tag Visibility must be between 1 and 3"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/CLKGotoTagVisibility.sci, line: 35
-# File: modules/scicos_blocks/macros/Branching/GotoTagVisibility.sci, line: 35
-# File: modules/scicos_blocks/macros/Branching/GotoTagVisibilityMO.sci, line: 35
 msgid "Goto Tag"
 msgstr ""
 
-#, fuzzy
 msgid "Number of output ports or vector of sizes"
-msgstr "ビット数またはビット添字"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/DEMUX.sci, line: 41
 msgid "The block must have from 2 to 31 output ports"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/DEMUX.sci, line: 48
-msgid "The block must have from 2 to 31 output ports.<br>size 0 is not allowed"
+msgid ""
+"The block must have from 2 to 31 output ports.<br>size 0 is not allowed"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/DEMUX_f.sci, line: 41
 msgid "The block must have from 2 to 8 output ports"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/DEMUX_f.sci, line: 48
-msgid "The block must have from 2 to 8 output ports.<br>size 0 is not allowed."
+msgid ""
+"The block must have from 2 to 8 output ports.<br>size 0 is not allowed."
 msgstr ""
 
-#, fuzzy
 msgid "Number of output event ports"
-msgstr "行の数は2の累乗とする必要があります."
+msgstr ""
 
-#, fuzzy
 msgid "The block must have at least two output ports"
-msgstr "トリガーブロックは離散時間入力が必要です."
+msgstr ""
 
-#, fuzzy
 msgid "Indices to extract"
-msgstr "展開するビット"
+msgstr ""
 
-#, fuzzy
 msgid "Number of outputs"
-msgstr "ノードの数:"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/ISELECT_f.sci, line: 41
-# File: modules/scicos_blocks/macros/Branching/ISELECT_m.sci, line: 43
-# File: modules/scicos_blocks/macros/Branching/RELAY_f.sci, line: 42
-# File: modules/scicos_blocks/macros/Branching/SELECT_f.sci, line: 41
-# File: modules/scicos_blocks/macros/Branching/SELECT_m.sci, line: 43
-# File: modules/scicos_blocks/macros/Branching/SWITCH_f.sci, line: 42
 msgid "The initial connected input is not a valid input port number"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/ISELECT_m.sci, line: 35
 msgid "Datatype (1= real double  2=Complex 3=int32 ...)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/ISELECT_m.sci, line: 45
-# File: modules/scicos_blocks/macros/Branching/SWITCH2_m.sci, line: 61
 msgid "Datatype not supported"
 msgstr ""
 
-#, fuzzy
 msgid "Number of input ports or vector of sizes"
-msgstr "ビット数またはビット添字"
+msgstr ""
 
-#, fuzzy
 msgid "The block must have from 2 to 31 input ports"
-msgstr "トリガーブロックは離散時間入力が必要です."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/MUX.sci, line: 48
 msgid ""
 "The block must have from 2 to 31 input ports.<br>size 0 is not allowed. "
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/MUX_f.sci, line: 41
 msgid "Block must have from 2 to 8 input ports"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/MUX_f.sci, line: 48
-msgid "The block must have from 2 to 8 input ports.<br>size 0 is not allowed."
+msgid ""
+"The block must have from 2 to 8 input ports.<br>size 0 is not allowed."
 msgstr ""
 
-#, fuzzy
 msgid "Number of inputs"
-msgstr "ノードの数:"
+msgstr ""
 
-#, fuzzy
 msgid "Number of inputs >=1 expected"
-msgstr "ビット数またはビット添字"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/M_SWITCH.sci, line: 47
 msgid "The zero base indexing must be 1 or 0"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/M_SWITCH.sci, line: 49
 msgid "Unknown rounding rule"
 msgstr ""
 
-#, fuzzy
 msgid "number of inputs"
-msgstr "ノードの数:"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/SCALAR2VECTOR.sci, line: 36
 msgid "Size of output (-1: if don't know)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/SCALAR2VECTOR.sci, line: 43
 msgid "The size of output must be -1 or > 0"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/SELECT_m.sci, line: 35
 msgid "Datatype (1= real double  2=Complex 3=int32 ..)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/SELECT_m.sci, line: 45
-# File: modules/scicos_blocks/macros/Linear/REGISTER.sci, line: 72
-# File: modules/scicos_blocks/macros/Linear/SAMPHOLD_m.sci, line: 42
-# File: modules/scicos_blocks/macros/Linear/SUMMATION.sci, line: 83
-# File: modules/scicos_blocks/macros/MatrixOp/SUBMAT.sci, line: 59
 msgid "Unknown Datatype"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/SWITCH2.sci, line: 35
 msgid "Pass first input if: u2>=a (0), u2>a (1), u2~=a (2)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/SWITCH2_m.sci, line: 35
 msgid "Datatype (1=real double  2=complex 3=int32 ...)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Branching/SWITCH_f.sci, line: 36
 msgid "Connected input"
 msgstr ""
 
-#, fuzzy
 msgid "Initial Voltage"
-msgstr "初期値"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Electrical/Diode.sci, line: 35
 msgid "Saturation current (A)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Electrical/Gyrator.sci, line: 39
 msgid "G1: Gyration conductance"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Set %s block parameters\n"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Electrical/NMOS.sci, line: 35
-# File: modules/scicos_blocks/macros/Electrical/PMOS.sci, line: 35
 msgid "Width [m]"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Electrical/NPN.sci, line: 39
-# File: modules/scicos_blocks/macros/Electrical/PNP.sci, line: 39
 msgid "Bf  : Forward beta"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Electrical/OpAmp.sci, line: 35
 msgid "Open Loop Gain"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Electrical/SineVoltage.sci, line: 39
-# File: modules/scicos_blocks/macros/Electrical/VsourceAC.sci, line: 39
 msgid "Amplitude (Volt)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Electrical/Switch.sci, line: 38
 msgid "non-ideal electrical switch"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Electrical/Switch.sci, line: 39
 msgid "Resistance in On state (Ohm)"
 msgstr ""
 
-#, fuzzy
 msgid "Frequency (Hz)"
-msgstr "周波数 (rad/s)"
+msgstr ""
 
-#, fuzzy
 msgid "Set final simulation time"
-msgstr "初期化時間"
+msgstr ""
 
-#, fuzzy
 msgid "Final simulation time"
-msgstr "初期化時間"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Events/EVTDLY_c.sci, line: 32
 msgid ""
 "Set Event Delay block parameters<br><br>Delay is the delay between an input "
 "event<br>&nbsp; and the generated output event.<br>Block may initially "
@@ -378,19 +278,12 @@ msgid ""
 "value to mind only the input events.<br><br>"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Events/EVTDLY_c.sci, line: 35
-# File: modules/scicos_blocks/macros/Events/EVTDLY_f.sci, line: 35
-# File: modules/scicos_blocks/macros/Linear/TIME_DELAY.sci, line: 37
 msgid "Delay"
 msgstr ""
 
-#, fuzzy
 msgid "Delay must be positive"
-msgstr "ポート番号は正の整数とする必要があります"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Events/EVTDLY_f.sci, line: 32
 msgid ""
 "Set Event Delay block parameters<br><br>Delay is the delay between an input "
 "event<br>and the generated output event.<br>Block may initially generate an "
@@ -399,74 +292,48 @@ msgid ""
 "initial event is required.<br><br>"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Events/EVTGEN_f.sci, line: 33
 msgid "Set Event time"
 msgstr ""
 
-#, fuzzy
 msgid "Event Time"
-msgstr "ステップ時間"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Events/EVTVARDLY.sci, line: 33
 msgid "Set parameter of variable event delay"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Events/EVTVARDLY.sci, line: 34
 msgid "Initial event firing time (<0 if none)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Events/HALT_f.sci, line: 35
 msgid "State on halt"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Events/IFTHEL_f.sci, line: 41
 msgid "Inherit (1: no, 0: yes)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Events/MFCLCK_f.sci, line: 34
 msgid "Basic period (1/f)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Events/M_freq.sci, line: 35
-# File: modules/scicos_blocks/macros/Sources/SampleCLK.sci, line: 35
 msgid "Sample time"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Events/M_freq.sci, line: 43
 msgid "The offset and frequency must have the same size"
 msgstr ""
 
-#, fuzzy
 msgid "The frequency must be a positive number"
-msgstr "ポート番号は正の整数とする必要があります"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Events/M_freq.sci, line: 49
 msgid "The |Offset| must be less than the Frequency"
 msgstr ""
 
-#, fuzzy
 msgid "Set frequency division block parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Events/freq_div.sci, line: 55
 msgid "Phase (0 to division factor -1)"
 msgstr ""
 
 msgid "Clear a bit"
 msgstr "ビットをクリア"
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/BITCLEAR.sci, line: 39
 #, c-format
 msgid "Data Type %s (3:int32, 4:int16, 5:int8, ...)"
 msgstr ""
@@ -498,20 +365,13 @@ msgstr "データ型"
 msgid "Set a bit"
 msgstr "ビットをセット"
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/BITSET.sci, line: 38
-# File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 35
-# File: modules/scicos_blocks/macros/IntegerOp/INTMUL.sci, line: 38
-# File: modules/scicos_blocks/macros/IntegerOp/SHIFT.sci, line: 38
 msgid "Data Type (3:int32, 4:int16, 5:int8, ...)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/CONVERT.sci, line: 33
 msgid ""
-"Set CONVERT block parameters<br><br>Type conversion<br><br>(a) 1|2:"
-"double&nbsp;  3:int32&nbsp;  4:int16&nbsp;  5:int8&nbsp;  6:uint32&nbsp;  7:"
-"uint16&nbsp;  8:uint8<br>(b) 0:Nothing, 1:Saturate, 2:Error<br><br>"
+"Set CONVERT block parameters<br><br>Type conversion<br><br>(a) "
+"1|2:double&nbsp;  3:int32&nbsp;  4:int16&nbsp;  5:int8&nbsp;  6:uint32&nbsp; "
+" 7:uint16&nbsp;  8:uint8<br>(b) 0:Nothing, 1:Saturate, 2:Error<br><br>"
 msgstr ""
 
 msgid "Input type (a)"
@@ -532,16 +392,14 @@ msgstr "入力の型"
 msgid "Output Type"
 msgstr "出力の型"
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci, line: 32
 msgid ""
 "Set EXTRACTBITS block parameters<br><br>Bits Extraction<br><br>&nbsp;- Bits "
-"to Extract:<br>&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half<br>&nbsp;&nbsp;&nbsp;"
-"&nbsp;2 Lower Half<br>&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB<br>&nbsp;"
-"&nbsp;&nbsp;&nbsp;4 Range to LSB<br>&nbsp;&nbsp;&nbsp;&nbsp;5 Range of "
-"Bits<br>&nbsp;- Number of Bits or Index of bit : Index 0 is LSB<br>&nbsp;"
-"&nbsp;&nbsp;&nbsp;If 'Bits to Extract' is set to 'Range of bits': [Start, "
-"End]<br><br>"
+"to Extract:<br>&nbsp;&nbsp;&nbsp;&nbsp;1 Upper "
+"Half<br>&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half<br>&nbsp;&nbsp;&nbsp;&nbsp;3 "
+"Range from MSB<br>&nbsp;&nbsp;&nbsp;&nbsp;4 Range to "
+"LSB<br>&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits<br>&nbsp;- Number of Bits or "
+"Index of bit : Index 0 is LSB<br>&nbsp;&nbsp;&nbsp;&nbsp;If 'Bits to "
+"Extract' is set to 'Range of bits': [Start, End]<br><br>"
 msgstr ""
 
 msgid "Bits to extract"
@@ -590,8 +448,6 @@ msgstr "整数行列乗算"
 msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
 msgstr "オーバーフロー時の動作 (0:何もしない, 1:飽和, 2:エラー)"
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/JKFLIPFLOP.sci, line: 43
 msgid ""
 "Set JKFLIPFLOP block parameters<br><br>JK flip-flop<br><br>The 'Initial "
 "Value' must be 0 or 1 of type int8<br>&nbsp;- Negative values are considered "
@@ -601,8 +457,6 @@ msgstr ""
 msgid "Initial Value"
 msgstr "初期値"
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/LOGIC.sci, line: 33
 msgid ""
 "Set LOGIC block parameters<br><br>Combinatorial logic:<br><br>&nbsp; Rows of "
 "the matrix are the output values.<br>&nbsp; Number of rows must be a power "
@@ -648,708 +502,408 @@ msgstr "シフトの型 (0: 算術, 1:環状)"
 msgid "Shift Type"
 msgstr "シフト型"
 
-#
-# File: modules/scicos_blocks/macros/IntegerOp/SRFLIPFLOP.sci, line: 43
 msgid ""
 "Set SR flip-flop block parameters<br><br>The 'Initial Value' must be 0 or 1 "
 "of type int8<br>&nbsp;- Negative values are considered as int8(0)<br>&nbsp;- "
 "Positive values are considered as int8(1)<br><br>"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/BIGSOM_f.sci, line: 35
 msgid "Inputs ports signs/gain"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLR.sci, line: 40
-# File: modules/scicos_blocks/macros/Linear/CLR_f.sci, line: 42
 msgid "Set continuous SISO transfer parameters"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLR.sci, line: 41
-# File: modules/scicos_blocks/macros/Linear/CLR_f.sci, line: 43
 msgid "Numerator (s)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLR.sci, line: 48
 msgid "Transfer function must be proper (degree(numer)  degree(denom))."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLR_f.sci, line: 50
 msgid "Transfer must be proper (degree(numer)  degree(denom))"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLSS.sci, line: 37
-# File: modules/scicos_blocks/macros/Linear/CLSS_f.sci, line: 37
-# File: modules/scicos_blocks/macros/Linear/DIFF_c.sci, line: 38
-# File: modules/scicos_blocks/macros/Linear/TCLSS.sci, line: 37
-# File: modules/scicos_blocks/macros/Linear/TCLSS_f.sci, line: 37
-# File: modules/scicos_blocks/macros/Misc/DIFF_f.sci, line: 34
 msgid "Set continuous linear system parameters"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLSS.sci, line: 38
-# File: modules/scicos_blocks/macros/Linear/CLSS_f.sci, line: 38
-# File: modules/scicos_blocks/macros/Linear/DLSS_f.sci, line: 38
-# File: modules/scicos_blocks/macros/Linear/TCLSS.sci, line: 38
-# File: modules/scicos_blocks/macros/Linear/TCLSS_f.sci, line: 38
 msgid "A matrix"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLSS.sci, line: 72
 msgid "The Matrix A must be square"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLSS.sci, line: 74
-# File: modules/scicos_blocks/macros/Linear/DLSS.sci, line: 74
 msgid "The matrix D has some wrong size"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/CLSS_f.sci, line: 62
-# File: modules/scicos_blocks/macros/Linear/DLSS.sci, line: 72
-# File: modules/scicos_blocks/macros/Linear/DLSS_f.sci, line: 62
-# File: modules/scicos_blocks/macros/Linear/TCLSS.sci, line: 62
-# File: modules/scicos_blocks/macros/Linear/TCLSS_f.sci, line: 62
 msgid "The matrix A must be square"
 msgstr ""
 
-#, fuzzy
 msgid "Set delay parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/DELAYV_f.sci, line: 48
 msgid "Register's length must be > 1"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/DELAYV_f.sci, line: 52
-# File: modules/scicos_blocks/macros/Linear/TIME_DELAY.sci, line: 49
-# File: modules/scicos_blocks/macros/Linear/VARIABLE_DELAY.sci, line: 47
 msgid "Delay must be > 0"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/DELAY_f.sci, line: 54
 msgid ""
 "This block implements a discretized delay.<br>It consists of a shift "
 "register and a clock<br>value of the delay given by the<br>discretization "
 "time step multiplied by the<br>number-1 of state of the register"
 msgstr ""
 
-#, fuzzy
 msgid "Discretization time step"
-msgstr "空間離散化手法"
+msgstr ""
 
-#, fuzzy
 msgid "Register's length must be at least 1"
-msgstr "バッファの大きさは2以上を指定してください."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/DELAY_f.sci, line: 66
 msgid "Discretization time step must be > 0"
 msgstr ""
 
-#, fuzzy
 msgid "Initial state"
-msgstr "初期値"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/DIFF_c.sci, line: 49
 msgid ""
 "Incompatible sizes: states and their derivatives should have the same size"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/DIFF_c.sci, line: 53
 msgid "Initial state must have a size > 0"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/DLR.sci, line: 39
-# File: modules/scicos_blocks/macros/Linear/DLR_f.sci, line: 38
 msgid "Set discrete SISO transfer parameters"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/DLR.sci, line: 40
-# File: modules/scicos_blocks/macros/Linear/DLR_f.sci, line: 39
 msgid "Numerator (z)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/DLR.sci, line: 47
 msgid "Transfer function must be proper (degree(numer)  degree(denom))"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/DLR_f.sci, line: 46
 msgid "Transfer must be proper (degree(numer)   degree(denom))"
 msgstr ""
 
-#, fuzzy
 msgid "Set discrete linear system parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#, fuzzy
 msgid "Set 1/z block parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#, fuzzy
 msgid "Initial condition"
-msgstr "初期条件"
+msgstr ""
 
-#, fuzzy
 msgid "Initial condition's datatype not supported"
-msgstr "初期条件"
+msgstr ""
 
-#, fuzzy
 msgid "Initial condition: datatype not supported."
-msgstr "初期条件"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/GAINBLK.sci, line: 41
-# File: modules/scicos_blocks/macros/Linear/GAINBLK_f.sci, line: 35
-# File: modules/scicos_blocks/macros/Linear/GAIN_f.sci, line: 35
 msgid "Gain"
 msgstr ""
 
-#, fuzzy
 msgid "Gain must have at least one element"
-msgstr "定数値には1個以上の要素が必要です."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/GAINBLK.sci, line: 58
 msgid "Complex gain not supported"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/GAINBLK.sci, line: 82
-# File: modules/scicos_blocks/macros/Linear/GAINBLK.sci, line: 105
 msgid "gain's datatype not supported."
 msgstr ""
 
-#, fuzzy
 msgid "gain's datatype: Encoded integer expected."
-msgstr "厳密に正の整数を指定してください."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/GAINBLK.sci, line: 132
 msgid "Do on Overflow must be 0, 1, or 2"
 msgstr ""
 
-#, fuzzy
 msgid "Initial Condition"
-msgstr "初期条件"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL.sci, line: 59
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL_m.sci, line: 62
 msgid "x0 and Upper limit and Lower limit must have the same size"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL.sci, line: 62
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL_m.sci, line: 65
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL_m.sci, line: 86
 msgid "Upper limits must be > Lower limits"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL.sci, line: 65
 msgid "Initial condition x0 should be within the limits"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL_m.sci, line: 68
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL_m.sci, line: 89
 msgid "Initial condition x0 should be inside the limits"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/INTEGRAL_m.sci, line: 83
 msgid "x0 and Upper limit and Lower limit must have same size"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/PID.sci, line: 74
 msgid "Proportional"
 msgstr ""
 
-#, fuzzy
 msgid "Register initial condition"
-msgstr "初期条件 %s を指定してください"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/REGISTER.sci, line: 44
-# File: modules/scicos_blocks/macros/Linear/REGISTER_f.sci, line: 40
 msgid "Register's length must be > 0"
 msgstr ""
 
-#, fuzzy
 msgid "Register's initial condition"
-msgstr "初期条件 %s を指定してください"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/SAMPHOLD_m.sci, line: 36
-# File: modules/scicos_blocks/macros/MatrixOp/MATMUL.sci, line: 44
 msgid "Datatype (1=real double 2=Complex 3=int32 ...)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/SOM_f.sci, line: 52
 msgid ""
 "This sum block is obsolete<br><br>Parameters cannot be modified. Please "
 "replace it with<br>the new sum and gain blocks in the linear "
-"palette<br><br>Input ports are located at up, side and down positions."
-"<br>Current gains are: "
+"palette<br><br>Input ports are located at up, side and down "
+"positions.<br>Current gains are: "
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/SUMMATION.sci, line: 40
 msgid "Datatype (1=real double  2=complex 3=int32 ..)"
 msgstr ""
 
-#, fuzzy
 msgid "Do on overflow: must be 0,1, or 2"
-msgstr "オーバーフロー時に実行 (b)"
+msgstr ""
 
-#, fuzzy
 msgid "Number of inputs must be > 0"
-msgstr "行の数は2の累乗とする必要があります."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/SUMMATION.sci, line: 68
-# File: modules/scicos_blocks/macros/NonLinear/PRODUCT.sci, line: 63
 msgid "Signs can only be +1 or -1"
 msgstr ""
 
-#, fuzzy
 msgid "Buffer must be larger than 1"
-msgstr "バッファの大きさは2以上を指定してください."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Linear/VARIABLE_DELAY.sci, line: 36
 msgid "Max delay"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/CUMSUM.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/EXTRACT.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/EXTTRI.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATBKSL.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATDET.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATDIAG.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATDIV.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATEIG.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATEXPM.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATINV.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATLU.sci, line: 40
-# File: modules/scicos_blocks/macros/MatrixOp/MATPINV.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATSING.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/MATSUM.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/ROOTCOEF.sci, line: 39
-# File: modules/scicos_blocks/macros/MatrixOp/SUBMAT.sci, line: 40
 msgid "Datatype (1=real double  2=Complex)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/CUMSUM.sci, line: 57
-# File: modules/scicos_blocks/macros/MatrixOp/CUMSUM.sci, line: 70
-# File: modules/scicos_blocks/macros/MatrixOp/MATSUM.sci, line: 57
-# File: modules/scicos_blocks/macros/MatrixOp/MATSUM.sci, line: 73
 msgid "Unknown summation direction"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/CUMSUM.sci, line: 76
-# File: modules/scicos_blocks/macros/MatrixOp/EXTRACT.sci, line: 56
-# File: modules/scicos_blocks/macros/MatrixOp/EXTTRI.sci, line: 73
-# File: modules/scicos_blocks/macros/MatrixOp/MATBKSL.sci, line: 52
-# File: modules/scicos_blocks/macros/MatrixOp/MATDET.sci, line: 52
-# File: modules/scicos_blocks/macros/MatrixOp/MATDIAG.sci, line: 52
-# File: modules/scicos_blocks/macros/MatrixOp/MATDIV.sci, line: 52
-# File: modules/scicos_blocks/macros/MatrixOp/MATEIG.sci, line: 75
-# File: modules/scicos_blocks/macros/MatrixOp/MATEXPM.sci, line: 52
-# File: modules/scicos_blocks/macros/MatrixOp/MATINV.sci, line: 52
-# File: modules/scicos_blocks/macros/MatrixOp/MATLU.sci, line: 53
-# File: modules/scicos_blocks/macros/MatrixOp/MATMUL.sci, line: 53
-# File: modules/scicos_blocks/macros/MatrixOp/MATPINV.sci, line: 53
-# File: modules/scicos_blocks/macros/MatrixOp/MATRESH.sci, line: 79
-# File: modules/scicos_blocks/macros/MatrixOp/MATSING.sci, line: 79
-# File: modules/scicos_blocks/macros/MatrixOp/MATSUM.sci, line: 79
-# File: modules/scicos_blocks/macros/MatrixOp/MATTRAN.sci, line: 59
-# File: modules/scicos_blocks/macros/MatrixOp/ROOTCOEF.sci, line: 53
-# File: modules/scicos_blocks/macros/MatrixOp/SQRT.sci, line: 45
-# File: modules/scicos_blocks/macros/Misc/LOGICAL_OP.sci, line: 85
-# File: modules/scicos_blocks/macros/Sources/RAND_m.sci, line: 62
 msgid "Unknown datatype"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/EXTRACT.sci, line: 62
 msgid "Empty field"
 msgstr ""
 
-#, fuzzy
 msgid "Invalid index"
-msgstr "初期レコードインデックス"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/EXTTRI.sci, line: 54
-# File: modules/scicos_blocks/macros/MatrixOp/EXTTRI.sci, line: 67
 msgid "Unknown extraction type"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATEIG.sci, line: 56
-# File: modules/scicos_blocks/macros/MatrixOp/MATEIG.sci, line: 70
-# File: modules/scicos_blocks/macros/MatrixOp/MATSING.sci, line: 58
-# File: modules/scicos_blocks/macros/MatrixOp/MATSING.sci, line: 74
 msgid "Unknown decomposition type"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATMAGPHI.sci, line: 40
 msgid "Conversion: 1=Complex->(Mag,Phi), 2=(Mag,Phi)->Complex"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATMAGPHI.sci, line: 41
 msgid "Conversion code (1|2)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATMAGPHI.sci, line: 59
-# File: modules/scicos_blocks/macros/MatrixOp/MATZREIM.sci, line: 59
 msgid "Unknown conversion code"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATMUL.sci, line: 41
 msgid ""
 "Set MATMUL parameter<br><br>For the Multiplication rule:<br>    1= Matrix by "
 "Matrix<br>    2= Matrix by Matrix element wise <br>    3= Matrix by "
 "Scalar<br>In the third case, the second input will be the scalar<br><br>"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATMUL.sci, line: 57
 msgid "Multiplication rule must be 1,2 or 3"
 msgstr ""
 
-#, fuzzy
 msgid "Output size > 0 expected"
-msgstr "同じ大きさを指定してください."
+msgstr ""
 
-#, fuzzy
 msgid "Input size > 0 expected"
-msgstr "同じ大きさを指定してください."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATRESH.sci, line: 58
 msgid "The first dimension of the output is too big"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATRESH.sci, line: 62
 msgid "The second dimension of the output is too big"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATRESH.sci, line: 66
 msgid "The dimensions of the output are too big"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATTRAN.sci, line: 40
 msgid "Datatype (1=real double 2=Complex)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATZREIM.sci, line: 40
 msgid "Conversion type: 1=complex->(Real,Imag), 2=(Real,Imag)->complex"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/MATZREIM.sci, line: 41
 msgid "Conversion direction (1|2)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/RICC.sci, line: 39
 msgid "Type (1=Cont  2=Disc)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/SQRT.sci, line: 36
 msgid "Datatype(1=real double  2=Complex)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/SUBMAT.sci, line: 67
 msgid "Ending row index must be greater than starting one"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/SUBMAT.sci, line: 71
 msgid "Ending column index must be greater than starting one"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/SUBMAT.sci, line: 75
 msgid "The index of ending row is out of range"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/MatrixOp/SUBMAT.sci, line: 79
 msgid "The index of ending column is out of range"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 37
 msgid "Jump from Mode "
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 48
 msgid "Set Finite state machine model"
 msgstr ""
 
-#, fuzzy
 msgid "Number of finite-state Modes"
-msgstr "ノードの数:"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 73
 #, c-format
 msgid "The size of initial continuous-time states should be NX=%d"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 82
 #, c-format
 msgid "Xproperty matrix is not valid: It should have one or NMode=%d rows"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 117
 #, c-format
 msgid "The number of modes should be %d"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 118
 #, c-format
 msgid "A destination mode in Mode#%d targets is invalid!"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/AUTOMAT.sci, line: 123
 #, c-format
 msgid "There is an unused Mode or the Number of Modes should be %d"
 msgstr ""
 
-#, fuzzy
 msgid "Initial output"
-msgstr "初期値"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCE.sci, line: 39
 msgid "Mass"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCE.sci, line: 40
 msgid "Radius"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCE.sci, line: 46
 msgid "g (gravity)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCE.sci, line: 47
 msgid "C (aerodynamic coeff)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCE.sci, line: 69
 msgid "All vectors must have the same size"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCE.sci, line: 72
 msgid "Mass and radius must be > 0"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCEXY.sci, line: 37
 msgid "Colors"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCEXY.sci, line: 38
 msgid "Radii"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCEXY.sci, line: 39
 msgid "Window number (-1 for automatic)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCEXY.sci, line: 40
 msgid "Animation mode (0,1)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCEXY.sci, line: 53
 msgid "Colors and Radii must have the same size (number of balls)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BOUNCEXY.sci, line: 58
 msgid "The window number cannot be &lt; -1"
 msgstr ""
 
-#, fuzzy
 msgid "Ymax > Ymin expected"
-msgstr "同じ大きさを指定してください."
+msgstr ""
 
-#, fuzzy
 msgid "Xmax > Xmin expected"
-msgstr "同じ大きさを指定してください."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BPLATFORM.sci, line: 36
-# File: modules/scicos_blocks/macros/Misc/PENDULUM_ANIM.sci, line: 37
 msgid "Pendulum length"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/BPLATFORM.sci, line: 37
-# File: modules/scicos_blocks/macros/Misc/PENDULUM_ANIM.sci, line: 38
 msgid "Cart size (square side)"
 msgstr ""
 
 msgid "Slope"
 msgstr "傾き"
 
-#
-# File: modules/scicos_blocks/macros/Misc/BPLATFORM.sci, line: 46
 msgid "The pendulum length and cart size must be > 0."
 msgstr ""
 
-#, fuzzy
 msgid "Ymax > Ymin expected."
-msgstr "同じ大きさを指定してください."
+msgstr ""
 
-#, fuzzy
 msgid "Xmax > Xmin expected."
-msgstr "同じ大きさを指定してください."
+msgstr ""
 
-#, fuzzy
 msgid "Simulation function"
-msgstr "ランプ関数"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/CBLOCK.sci, line: 78
-# File: modules/scicos_blocks/macros/Misc/CBLOCK4.sci, line: 84
-# File: modules/scicos_blocks/macros/Misc/generic_block.sci, line: 75
 msgid "Input/output events ports size must be [] or 1"
 msgstr ""
 
-#, fuzzy
 msgid "Set C-Block4 block parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#, fuzzy
 msgid "Set Constraint block parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/CONSTRAINT2_c.sci, line: 38
 msgid "Initial guess values of states x"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/CONSTRAINT2_c.sci, line: 53
 msgid "States and their derivatives must have the same size."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/CONSTRAINT2_c.sci, line: 57
 msgid "States and ID must have the same size."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/CONSTRAINT2_c.sci, line: 61
 msgid "Number of states (constraints) must be > 0"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/CONSTRAINT2_c.sci, line: 69
 msgid ""
 "Id(i) must be either:<br> 0 when x'(i) is not present in the feedback<br> 1: "
 "when x'(i) is present in the feedback"
 msgstr ""
 
-#, fuzzy
 msgid "Set solver block parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#, fuzzy
 msgid "Initial guess values"
-msgstr "初期値"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/CONSTRAINT_c.sci, line: 43
 msgid "The number of states (constraints) must be > 0 "
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/DEADBAND.sci, line: 35
-# File: modules/scicos_blocks/macros/NonLinear/SATURATION.sci, line: 35
 msgid "Upper limit"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/DEADBAND.sci, line: 43
-# File: modules/scicos_blocks/macros/NonLinear/SATURATION.sci, line: 43
 msgid "Upper limit must be > Lower limit"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/DEBUG.sci, line: 34
 msgid "Enter scilab instructions for debugging."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/DEBUG.sci, line: 49
 msgid "Error in the instructions"
 msgstr ""
 
 msgid "Invalid masked block."
 msgstr "無効なマスク済みブロック."
 
-#
-# File: modules/scicos_blocks/macros/Misc/EDGETRIGGER.sci, line: 35
 msgid "rising (1), falling (-1), both (0)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 40
 msgid ""
 "Set EXPRESSION block parameters<br><br>Give a scalar scilab expression using "
 "inputs u1, u2,...<br>If only one input, input is vector [u1,u2,...] (max "
@@ -1357,776 +911,453 @@ msgid ""
 "context<br><br>"
 msgstr ""
 
-#, fuzzy
 msgid "Erroneous expression"
-msgstr "PDE式:"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 263
 #, c-format
 msgid "Variable %s is not scalar."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 272
 #, c-format
 msgid "Unknown variable %s."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 288
 #, c-format
 msgid "%s must have %d arguments"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/EXPRESSION.sci, line: 336
 #, c-format
 msgid "Function %s not supported."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/HYSTHERESIS.sci, line: 35
 msgid "Switch on at"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/HYSTHERESIS.sci, line: 45
 msgid "switch on value must be >= switch off value"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/LOGICAL_OP.sci, line: 39
 msgid "Operator codes: 0=AND  1=OR  2=NAND  3=NOR  4=XOR  5=NOT"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/LOGICAL_OP.sci, line: 55
 #, c-format
 msgid "Incorrect operator code %d ; must be 0 to 5."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/LOGICAL_OP.sci, line: 58
 msgid "Only one input allowed for NOT operation"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/LOGICAL_OP.sci, line: 61
 msgid "Bitwise rule is only activated when Data type is integer"
 msgstr ""
 
-#, fuzzy
 msgid "Set Modelica generic block parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 122
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 123
 msgid "Error in evaluation of variables."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 139
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 140
 #, c-format
 msgid "Invalid variable name for the input #%d: %s."
 msgstr ""
 
-#, fuzzy
 msgid "Please choose another variable name."
-msgstr "変数判別式の符号を指定してください"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 156
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 157
 #, c-format
 msgid "Invalid variable name for the output #%d: %s."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Invalid variable name for the parameter #%d: %s."
-msgstr "'%s' パラメータの値が間違っています: %s."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 187
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 188
 msgid "Input type should be 'E' or 'I'!"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 202
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 203
 msgid "Output type should be 'E' or 'I'!"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 213
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 214
 msgid "Input variables are not well defined!"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 221
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 222
 msgid "Output variables are not well defined!"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 231
 msgid "The size of param and<br>size of param properties<br>must match"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 240
 msgid "Parameters properties must be :"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MBLOCK.sci, line: 252
 msgid "The filename is not defined!"
 msgstr ""
 
-#, fuzzy
 msgid "Set parameters values"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#, fuzzy
 msgid "Set memory block parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#, fuzzy
 msgid "The initial condition is empty"
-msgstr "初期条件"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 89
 msgid "Input variables:    "
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 241
 msgid ""
 "Parameters properties must be:<br>0: if it is a parameter,<br>1: if it is an "
 "initial value of state,<br>2: if it is a fixed initial state value."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 251
 msgid "The model name is not defined."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/MPBLOCK.sci, line: 260
 msgid "Invalid model name"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/PENDULUM_ANIM.sci, line: 46
 msgid "Pendulum length and cart size must be > 0."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/PENDULUM_ANIM.sci, line: 50
 msgid "Ymax > Ymin required"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/PENDULUM_ANIM.sci, line: 54
 msgid "Xmax > Xmin required"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/RATELIMITER.sci, line: 35
 msgid "Maximal slope (> 0)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/RATELIMITER.sci, line: 41
 msgid "We must have max_slope > 0 > min_slope."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/RELATIONALOP.sci, line: 38
 msgid "Operator: == (0), ~= (1), < (2), <= (3), > (4), >= (5)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/RELATIONALOP.sci, line: 50
 #, c-format
 msgid "Incorrect operator code #%d : must be 0 to 5."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/TEXT_f.sci, line: 44
 msgid "Text"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/TEXT_f.sci, line: 51
 msgid "The font number must be in [1, 6]"
 msgstr ""
 
-#, fuzzy
 msgid "The font size must be positive"
-msgstr "ポート番号は正の整数とする必要があります"
+msgstr ""
 
-#, fuzzy
 msgid "Input ports sizes"
-msgstr "入力の大きさ"
+msgstr ""
 
-#, fuzzy
 msgid "Set GENERIC block parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/generic_block.sci, line: 70
-# File: modules/scicos_blocks/macros/Misc/generic_block2.sci, line: 72
-# File: modules/scicos_blocks/macros/Misc/generic_block3.sci, line: 75
 msgid "The function type cannot be negative"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/generic_block2.sci, line: 77
-# File: modules/scicos_blocks/macros/Misc/generic_block3.sci, line: 80
 msgid "Input/output events ports sizes must be [] or 1"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/generic_block3.sci, line: 85
 msgid "Object parameters must be a list"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/generic_block3.sci, line: 89
 msgid "Initial object state must be a list"
 msgstr ""
 
-#, fuzzy
 msgid "Frequency"
-msgstr "周波数 (rad/s)"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Misc/scifunc_block.sci, line: 70
-# File: modules/scicos_blocks/macros/Misc/scifunc_block_m.sci, line: 45
 msgid "Only regular blocks are supported"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/ABS_VALUE.sci, line: 35
-# File: modules/scicos_blocks/macros/NonLinear/SIGNUM.sci, line: 35
 msgid "Use zero_crossing (1:yes) (0:no)"
 msgstr ""
 
-#, fuzzy
 msgid "Set block parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/DLRADAPT_f.sci, line: 35
 msgid "Vector of p mesh points"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/DLRADAPT_f.sci, line: 51
 msgid ""
 "Transfer must be strictly proper, with<br>degree(Numerator) &lt; "
 "degree(Denominator)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/DLRADAPT_f.sci, line: 53
 msgid "Numerator roots matrix row size's is incorrect"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/EXPBLK_f.sci, line: 36
 msgid "a^u: raise the value a to the power of the input"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/EXPBLK_f.sci, line: 42
-# File: modules/scicos_blocks/macros/NonLinear/EXPBLK_m.sci, line: 42
 msgid "a^u : a must be > 0"
 msgstr ""
 
-#, fuzzy
 msgid "Set Interpolation block parameters"
-msgstr "入力ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/INTRP2BLK_f.sci, line: 35
-# File: modules/scicos_blocks/macros/NonLinear/INTRPLBLK_f.sci, line: 35
 msgid "X coord."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/INTRP2BLK_f.sci, line: 41
 msgid "X, Y, Z: incompatible sizes"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/INTRP2BLK_f.sci, line: 43
 msgid "X and Y must be strictly increasing"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/INTRPLBLK_f.sci, line: 40
 msgid "X and Y must have the same sizes"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/INTRPLBLK_f.sci, line: 42
 msgid "X must be strictly increasing"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/INVBLK.sci, line: 42
 msgid "Error on divide by zero (1:yes) (0:no)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOGBLK_f.sci, line: 38
 msgid "Basis (>1)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOGBLK_f.sci, line: 43
 msgid "Basis must be > 1"
 msgstr ""
 
-#, fuzzy
 msgid "2D Lookup table parameters"
-msgstr "入力ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci, line: 41
 msgid "Row index input values"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci, line: 78
 msgid "Input row/column data size should be > 1"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci, line: 82
 msgid "Incompatible size of x and y"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci, line: 87
 msgid "Row input values must be monotonically increasing"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci, line: 92
 msgid "Column input values must be monotonically increasing"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci, line: 148
 #, c-format
 msgid "x contains no data in x(%d)"
 msgstr ""
 
-#, fuzzy
 msgid "Lookup table parameters"
-msgstr "入力ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 43
 msgid "Spline Interpolation method (0..9)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 46
 msgid "Extrapolate method (0,1)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 47
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 47
 msgid "Launch graphic window (y/n)?"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 88
 msgid "Incompatible sizes of x and y"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 241
 msgid " No [y] provided"
 msgstr ""
 
-#, fuzzy
 msgid "Clear"
-msgstr "ビットをクリア"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 349
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 669
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 330
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 638
 msgid "Help"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 350
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 459
 msgid "Autoscale"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 401
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 386
 msgid "Mouse click is offside!"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 441
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 425
 msgid "Data Bounds"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 443
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 428
 msgid "Enter new bounds"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 450
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 433
 msgid "Incorrect bounds"
 msgstr ""
 
-#, fuzzy
 msgid "Extrapolation"
-msgstr "ビットの展開"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 470
 msgid "Extrapolation method (only for Method 1)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 471
 msgid "0: hold end values, 1: extrapolation"
 msgstr ""
 
-#, fuzzy
 msgid " Sine parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 487
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 510
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 530
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 544
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 467
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 490
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 510
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 524
-# File: modules/scicos_blocks/macros/Sources/GENSIN_f.sci, line: 37
-# File: modules/scicos_blocks/macros/Sources/GENSQR_f.sci, line: 38
 msgid "Amplitude"
 msgstr ""
 
-#, fuzzy
 msgid "Sawtooth signal parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 543
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 523
 msgid "Square wave pulse signal"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 581
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 558
 msgid "Normal (Gaussian) random signal"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 582
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 559
 msgid "Mean"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 603
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 576
 msgid "Uniform random signal"
 msgstr ""
 
 msgid "Minimum"
 msgstr "最小値"
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 624
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 593
 msgid "Save/Exit"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 645
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 614
 msgid "Exit without save"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 658
 msgid "Edit text data NOT IN USE"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 660
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 629
 msgid "Enter x and y data"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 670
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 639
 msgid "Mouse-left click: adding a new point"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 671
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 640
 msgid "Mouse-right click: remove a point"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 672
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 641
 msgid "Mouse-left double click: edit a point's coordinates"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 673
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 642
 msgid "Mouse-left button press/drag/release: move a  point"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 674
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 643
 msgid "Change the window size: Data menu -> Databounds"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 677
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 646
 msgid "Load from Excel"
 msgstr ""
 
-#, fuzzy
 msgid "Load from text file"
-msgstr "入力ファイルから読み込む"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 695
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 664
 msgid "Save to text file"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 698
 msgid "Replot"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 745
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 722
 msgid "Enter new x and y"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 783
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 759
 #, c-format
 msgid "%d points,  Method: %s,  %s"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 897
 msgid "Excel data file "
 msgstr ""
 
-#, fuzzy
 msgid "Filename"
-msgstr "入力ファイル名"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 908
 #, c-format
 msgid "Scicos cannot find the excel file: %s"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 929
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 937
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 918
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 926
 #, c-format
 msgid "Bad address in X: %s"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 945
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 953
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 934
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 942
 #, c-format
 msgid "Bad address in Y: %s"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 990
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 979
 msgid "Error in Row data addresses"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 994
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 983
 msgid "Error in Column data addresses"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1012
 msgid " Scicos cannot read your Excel file, please verify the parameters"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1032
 #, c-format
 msgid " x contains no data:x(%d)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1036
 #, c-format
 msgid " Y contains no data:y(%d)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1090
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1139
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1081
 msgid "Text data file "
 msgstr ""
 
-#, fuzzy
 msgid "Bad format in reading data file"
-msgstr "入力ファイルから読み込む"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Scicos cannot open the data file: %s"
-msgstr "ファイルをオープンできません!\n"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1116
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1107
 msgid "No data read"
 msgstr ""
 
-#, fuzzy
 msgid "Bad format"
-msgstr "有効な形式: "
+msgstr ""
 
-#, fuzzy
 msgid "Bad format in writing data file"
-msgstr "入力ファイルから読み込む"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1278
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1292
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1302
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1313
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci, line: 1323
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1231
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1250
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1265
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1280
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1295
-# File: modules/scicos_blocks/macros/Sources/Sigbuilder.sci, line: 424
-# File: modules/scicos_blocks/macros/Sources/Sigbuilder.sci, line: 434
-# File: modules/scicos_blocks/macros/Sources/Sigbuilder.sci, line: 445
-# File: modules/scicos_blocks/macros/Sources/Sigbuilder.sci, line: 455
 #, c-format
 msgid "ERROR in SPLINE: %s"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/LOOKUP_f.sci, line: 50
 msgid "You have not defined a function"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/MAXMIN.sci, line: 35
 msgid "Min (1) or Max (2) "
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/MAXMIN.sci, line: 49
 msgid "Wrong number of inputs: Only 1 and 2 allowed"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/POWBLK_f.sci, line: 37
 msgid "u^a: raise each element of the input"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/POWBLK_f.sci, line: 38
 msgid "to the power of"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/PRODUCT.sci, line: 42
 msgid ""
 "<html>Number of inputs or sign vector<br>(multiplication is set with + 1, "
 "division with -1)"
 msgstr ""
 
-#, fuzzy
 msgid "Set parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#, fuzzy
 msgid "Step"
-msgstr "ステップ時間"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/QUANT_f.sci, line: 40
 msgid "Quantization Type must be from 1 to 4"
 msgstr ""
 
-#, fuzzy
 msgid "Set Saturation parameters"
-msgstr "入力ブロックパラメータを設定"
+msgstr ""
 
-#, fuzzy
 msgid "Min"
-msgstr "最小値"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/SAT_f.sci, line: 40
 msgid "Max must be > 0"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/SAT_f.sci, line: 42
 msgid "Slope must be > 0"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/NonLinear/TrigFun.sci, line: 37
 #, c-format
 msgid "Choose among %s,<br>%s"
 msgstr ""
@@ -2253,133 +1484,85 @@ msgstr "初期条件 %s を指定してください"
 msgid "Please give the boundary conditions"
 msgstr "境界条件を指定してください"
 
-#
-# File: modules/scicos_blocks/macros/PDE/IHM_EDP.sci, line: 590
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 195
 msgid "The chosen point is out of the domain"
 msgstr ""
 
-#, fuzzy
 msgid "Please select the operators"
-msgstr "%s 演算子係数を指定してください"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/PDE.sci, line: 65
 msgid "PLEASE, GIVE US THE BLOCK's NAME. "
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/PDE.sci, line: 66
 msgid "New block's name: "
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/PDE.sci, line: 76
 msgid "Sorry, undefined C file name."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/PDE.sci, line: 97
 msgid ""
 "The discriminant isn't constant.<br>You must choose its sign in the GUI."
 msgstr ""
 
-#, fuzzy
 msgid "Please provide the values<br>of the domain's discretization"
-msgstr "離散化点の数を指定してください"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 71
 msgid "Please provide the coefficients<br>    of the d2u/dt2 operator"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 79
 msgid "Please provide the coefficients<br>   of the d2u/dx2 operator"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 87
 msgid "Please provide the coefficients<br>   of the du/dt operator"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 95
 msgid "Please provide the coefficients<br>   of the d2u/dtdx operator"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 103
 msgid "Please provide the coefficients<br>    of the du/dx operator"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 111
 msgid "Please provide the coefficients<br>      of the u operator"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/cb_IHM_EDP.sci, line: 119
 msgid "Please provide the coefficients<br>      of the f operator."
 msgstr ""
 
-#, fuzzy
 msgid "Please provide the sign of<br>the non-constant discriminant."
-msgstr "変数判別式の符号を指定してください"
+msgstr ""
 
-#, fuzzy
 msgid "Please provide the type of<br>the discretization method."
-msgstr "離散化メソッド型を指定してください"
+msgstr ""
 
-#, fuzzy
 msgid "Please provide the degree of<br>the discretization method."
-msgstr "離散化メソッド型を指定してください"
+msgstr ""
 
-#, fuzzy
 msgid "Please provide the number<br>of discretisation points."
-msgstr "離散化点の数を指定してください"
+msgstr ""
 
-#, fuzzy
 msgid "Please provide the<br>initial condition u(x,t0)."
-msgstr "初期条件 %s を指定してください"
+msgstr ""
 
-#, fuzzy
 msgid "Please provide the<br>initial condition du/dx|t0"
-msgstr "初期条件 %s を指定してください"
+msgstr ""
 
-#, fuzzy
 msgid "Please provide the boundary conditions."
-msgstr "境界条件を指定してください"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/code_generation.sci, line: 78
 msgid "   /* First output */ "
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/code_generation.sci, line: 82
-# File: modules/scicos_blocks/macros/PDE/code_generation.sci, line: 99
 msgid "   /* Second output */ "
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/code_generation.sci, line: 89
-# File: modules/scicos_blocks/macros/PDE/code_generation.sci, line: 94
 msgid "   /* Fist output */ "
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/lecture_xml.sci, line: 86
 msgid "No decision."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/multMatVect.sci, line: 33
 msgid "Usage: y = multMatVect(M, x)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/PDE/multMatVect.sci, line: 43
 #, c-format
 msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
 msgstr ""
@@ -2403,225 +1586,120 @@ msgstr "コード生成, コンパイルおよびリンクに %.2f 秒かかり�
 msgid "Input Size"
 msgstr "入力の大きさ"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/AFFICH_m.sci, line: 59
 msgid "The Font number must be > 0"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/AFFICH_m.sci, line: 64
 msgid "The Font size must be > 0"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/AFFICH_m.sci, line: 69
 msgid "The Total number of digits must be > 3"
 msgstr ""
 
-#, fuzzy
 msgid "The Number of fractional part digits must be >= 0"
-msgstr "行の数は2の累乗とする必要があります."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/AFFICH_m.sci, line: 79
-# File: modules/scicos_blocks/macros/Sinks/AFFICH_m.sci, line: 89
-# File: modules/scicos_blocks/macros/Sinks/CEVENTSCOPE.sci, line: 79
-# File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 82
-# File: modules/scicos_blocks/macros/Sinks/CMAT3D.sci, line: 54
-# File: modules/scicos_blocks/macros/Sinks/CMATVIEW.sci, line: 48
-# File: modules/scicos_blocks/macros/Sinks/CMSCOPE.sci, line: 96
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 76
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 113
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 89
 msgid "Some specified values are inconsistent:"
 msgstr ""
 
-#, fuzzy
 msgid "Accept inherited values are 0 and 1"
-msgstr "継承されたイベントを受け付ける"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/BARXY.sci, line: 30
 msgid "Segs Thickness"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/BARXY.sci, line: 38
-# File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 74
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 73
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY3D.sci, line: 85
 msgid "Ymax > Ymin is required."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/BARXY.sci, line: 41
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 78
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 76
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY3D.sci, line: 89
 msgid "Xmax > Xmin is required."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/BARXY.sci, line: 44
 msgid "The lines thickness must be > 0."
 msgstr ""
 
-#, fuzzy
 msgid "Number of Curves"
-msgstr "ノードの数:"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 39
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 37
-# File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 37
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 37
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 38
 msgid "Curves styles: Colors>0 | marks<0"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 40
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 38
 msgid "Curves thicknesses | marks sizes"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 41
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 39
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 38
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 39
 msgid "Output window number (-1 for automatic)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 42
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 40
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 39
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 40
 msgid "Output window position"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 43
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 41
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 40
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 41
 msgid "Output window sizes"
 msgstr ""
 
 msgid "Buffer size"
 msgstr "バッファの大きさ"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 57
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 53
-# File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 54
-# File: modules/scicos_blocks/macros/Sinks/CMSCOPE.sci, line: 67
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 55
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY.sci, line: 55
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY3D.sci, line: 53
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 73
 msgid "'Window position' must be [] or a 2 vector"
 msgstr ""
 
-#, fuzzy
 msgid "'Window sizes' must be [] or a 2 vector"
-msgstr "出力ポートの大きさは2要素のベクトルとする必要があります"
+msgstr ""
 
-#, fuzzy
 msgid "The Window number must be >= -1"
-msgstr "行の数は2の累乗とする必要があります."
+msgstr ""
 
-#, fuzzy
 msgid "The Number of curves must be >= 1"
-msgstr "行の数は2の累乗とする必要があります."
+msgstr ""
 
-#, fuzzy
 msgid "The Buffer size must be >= 1"
-msgstr "バッファの大きさは2以上を指定してください."
+msgstr ""
 
-#, fuzzy
 msgid "The Buffer size must be >= 2"
-msgstr "バッファの大きさは2以上を指定してください."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY.sci, line: 75
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 84
-# File: modules/scicos_blocks/macros/Sinks/CMSCOPE.sci, line: 89
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 70
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 105
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 77
 msgid "Ymax > Ymin is required"
 msgstr ""
 
-#, fuzzy
 msgid "Number of curves"
-msgstr "ノードの数:"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 38
 msgid "Curves thicknesses or marks sizes"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 62
 msgid ""
 "The numbers of curves styles and of<br>curves thickness or marks size must "
 "match."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 68
 #, c-format
 msgid "Not enough curves styles: At least %d expected."
 msgstr ""
 
-#, fuzzy
 msgid "The Buffer size must be >= 2, or Change a color (must be <0)"
-msgstr "バッファの大きさは2以上を指定してください."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 87
 msgid "Xmax > Xmin is required"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CANIMXY3D.sci, line: 90
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY3D.sci, line: 93
 msgid "Zmax > Zmin is required"
 msgstr ""
 
-#, fuzzy
 msgid "Number of event inputs"
-msgstr "ノードの数:"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CEVENTSCOPE.sci, line: 51
 msgid "The Window position must be [] or a 2 vector"
 msgstr ""
 
-#, fuzzy
 msgid "The block must have at least one input event"
-msgstr "定数値には1個以上の要素が必要です."
+msgstr ""
 
-#, fuzzy
 msgid "The number of curves styles must match the Number of inputs"
-msgstr "&nbsp; 列の数は出力の数を指定します."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CEVENTSCOPE.sci, line: 73
-# File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 66
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 64
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 69
 msgid "The Refresh period must be > 0"
 msgstr ""
 
-#, fuzzy
 msgid "'Window number' must be >= -1"
-msgstr "バッファの大きさまたは入力の大きさが変更されています!\n"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CFSCOPE.sci, line: 78
 msgid "Link to view must be positive"
 msgstr ""
 
@@ -2638,188 +1716,124 @@ msgstr "'ポート番号'パラメータの値が間違っています: %d."
 msgid "Strictly positive integer expected."
 msgstr "厳密に正の整数を指定してください."
 
-#, fuzzy
 msgid "Set Event Output block parameters"
-msgstr "入力ブロックパラメータを設定"
+msgstr ""
 
-#, fuzzy
 msgid "Port number must be an integer > 0"
-msgstr "ポート番号は正の整数とする必要があります"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMAT3D.sci, line: 35
 msgid "Bounds Vector X (-1 for standard)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMAT3D.sci, line: 36
 msgid "Bounds Vector Y (-1 for standard)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMAT3D.sci, line: 37
-# File: modules/scicos_blocks/macros/Sinks/CMATVIEW.sci, line: 35
 msgid "ColorMap"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMAT3D.sci, line: 46
 msgid "Vectors X and Y must have the same size."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMAT3D.sci, line: 50
 msgid "Zmax > Zmin is required."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMATVIEW.sci, line: 44
 msgid "Error with minimum and maximum values"
 msgstr ""
 
-#, fuzzy
 msgid "The block must have at least one input port"
-msgstr "トリガーブロックは離散時間入力が必要です."
+msgstr ""
 
-#, fuzzy
 msgid "Port sizes must be > 0"
-msgstr "バッファの大きさは2以上を指定してください."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMSCOPE.sci, line: 63
 #, c-format
 msgid "At least %d curves styles expected."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMSCOPE.sci, line: 77
 msgid "The size of 'Refresh Periods' must match the Ymin|Ymax's one"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CMSCOPE.sci, line: 82
 msgid "All Refresh Periods must be > 0"
 msgstr ""
 
-#, fuzzy
 msgid "'Accept herited events' must be 0 or 1"
-msgstr "継承されたイベントを受け入れる (0: はい, 1: いいえ)"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 37
 msgid "Curve style: Color>0 | mark<0"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 43
 msgid "Refresh period"
 msgstr ""
 
-#, fuzzy
 msgid "Accept herited events 0/1"
-msgstr "継承されたイベントを受け付ける"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CSCOPE.sci, line: 46
 msgid "Name of Scope (label&Id)"
 msgstr ""
 
-#, fuzzy
 msgid "The Number of Curves must be > 0"
-msgstr "行の数は2の累乗とする必要があります."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY3D.sci, line: 61
 msgid ""
 "<html>The number of Colors or Mark styles<br>and the number of curves "
 "thicknesses or marks sizes<br>must match."
 msgstr ""
 
-#, fuzzy
 msgid "The number of curves must be > 0"
-msgstr "行の数は2の累乗とする必要があります."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/CSCOPXY3D.sci, line: 69
 msgid "The Window's number must be > -1"
 msgstr ""
 
-#, fuzzy
 msgid "The Buffer size must be at least 1"
-msgstr "バッファの大きさは2以上を指定してください."
+msgstr ""
 
-#, fuzzy
 msgid "The Buffer size must be at least 2 or Change a color (must be >0)"
-msgstr "バッファの大きさは2以上を指定してください."
+msgstr ""
 
-#, fuzzy
 msgid "Implicit output port:"
-msgstr "陰的出力ポート"
+msgstr ""
 
 msgid "Regular output port"
 msgstr "標準出力ポート"
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 68
 #, c-format
 msgid "Not enough colors defined: At least %d required."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 81
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 85
 msgid "'Auto scaling' must be 0:No or 1:Yes"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 85
 msgid "'Window number' can't be  < -1"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 90
 msgid "Size of Refresh Period must equal size of Ymin/Ymax vector"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CMSCOPE.sci, line: 96
 msgid "Refresh Period must be > 0"
 msgstr ""
 
-#, fuzzy
 msgid "The Buffer size must be at least 2"
-msgstr "バッファの大きさは2以上を指定してください."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 57
 msgid "Window position must be [] or a 2 vector"
 msgstr ""
 
-#, fuzzy
 msgid "Window sizes must be [] or a 2 vector"
-msgstr "出力ポートの大きさは2要素のベクトルとする必要があります"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/SCALE_CSCOPE.sci, line: 65
 msgid "Window number can't be  < -1"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/TOWS_c.sci, line: 36
 msgid "Size of buffer"
 msgstr ""
 
-#, fuzzy
 msgid "Size of buffer must be > 0"
-msgstr "バッファの大きさまたは入力の大きさが変更されています!\n"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/TOWS_c.sci, line: 54
 msgid "Invalid variable's name.<br>Please choose another name."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sinks/TOWS_c.sci, line: 59
 msgid "Protected variable name.<br>Please choose another name."
 msgstr ""
 
@@ -2874,21 +1888,18 @@ msgstr "ディレクトリ '%s' が存在しません"
 msgid "Event input port"
 msgstr "入力ポートのイベント"
 
-#, fuzzy
 msgid "Port Number"
-msgstr "ポート番号"
+msgstr ""
 
 #, c-format
 msgid "Wrong values for 'Port Number' parameter: %d."
 msgstr "'ポート番号'パラメータの値が間違っています: %d."
 
-#, fuzzy
 msgid "Set Event Input block parameters"
-msgstr "入力ブロックパラメータを設定"
+msgstr ""
 
-#, fuzzy
 msgid "'Port number' must be a positive integer."
-msgstr "ポート番号は正の整数とする必要があります"
+msgstr ""
 
 msgid "Event clock generator"
 msgstr "イベントクロック生成器"
@@ -2909,50 +1920,35 @@ msgstr "厳密に正の数を指定してください."
 msgid "Wrong values for '%s' parameter: %5.1e."
 msgstr "'%s' パラメータの値が間違っています: %5.1e."
 
-#, fuzzy
 msgid "Set Clock  block parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CLOCK_f.sci, line: 52
 msgid "Period must be > 0"
 msgstr ""
 
-#, fuzzy
 msgid "Set Constant value block"
-msgstr "定数値"
+msgstr ""
 
-#, fuzzy
 msgid "Value"
-msgstr "最終地"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CONST.sci, line: 41
 msgid "The value must be non-empty"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CONST.sci, line: 43
 msgid ""
 "The input value must be scalar.<br>Please use CONST_m to set a<br>constant "
 "input vector or matrix."
 msgstr ""
 
-#, fuzzy
 msgid "Set Constant Block"
-msgstr "定数値"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CONST_f.sci, line: 34
 msgid "Value (scalar | vector | matrix)"
 msgstr ""
 
-#, fuzzy
 msgid "The value must have at least one element."
-msgstr "定数値には1個以上の要素が必要です."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CONST_m.sci, line: 36
 msgid "Provides a CONSTant scalar, vector or Matrix"
 msgstr ""
 
@@ -2970,84 +1966,54 @@ msgstr "'%s' パラメータの大きさが間違っています"
 msgid "Wrong type for '%s' parameter"
 msgstr "'%s' パラメータの型が間違っています"
 
-#, fuzzy
 msgid "The value must be numeric<br>(double, complex, int, int8, ..uint32)."
-msgstr "値の型は数値型 (double, 複素数, int, int8, ...) とする必要があります."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 44
 msgid "Spline data"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 45
 msgid "Spline Method (0..7)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 46
 msgid "Periodic signal (y/n)?"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 83
 msgid "Incompatible sizes of [x] and [y]"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 235
 msgid " No [y] is provided"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 437
 msgid "X should be positive"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 455
 msgid "Generating periodic signal"
 msgstr ""
 
-#, fuzzy
 msgid "Sine parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 886
 msgid "Excel data file"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 897
 #, c-format
 msgid "Scicos cannot find the excel file '%s'."
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1001
 msgid "Scicos cannot read your Excel file. Please verify the parameters"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1021
 #, c-format
 msgid "x contains no data:x(%d)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1025
 #, c-format
 msgid "Y contains no data:y(%d)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURVE_c.sci, line: 1131
 msgid "Text data file"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/CURV_f.sci, line: 55
 msgid "Abscissae must be in increasing order"
 msgstr ""
 
@@ -3071,27 +2037,18 @@ msgstr "'Minimum' は 'Maximum'よりも小さくする必要があります."
 msgid "Wrong value for 'Rule' parameter: %d"
 msgstr "'Rule' パラメータの値が間違っています: %d"
 
-#, fuzzy
 msgid "Variable name"
-msgstr "可変判別式:"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/FROMWS_c.sci, line: 44
 msgid "'Interpolation method' should be chosen in [0,1,2,3]"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/FROMWS_c.sci, line: 49
 msgid "'Use zero crossing' should be either 0 or 1"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/FROMWS_c.sci, line: 54
 msgid "'Output at end' should be either 0 or 1"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/FROMWS_c.sci, line: 62
 msgid ""
 "Invalid variable name.<br>Please use another variable<br>or define this one."
 msgstr ""
@@ -3109,9 +2066,8 @@ msgstr "位相 (rad)"
 msgid "Wrong value for 'Frequency' parameter: %e."
 msgstr "'周波数'パラメータに間違った値が使用されました %e."
 
-#, fuzzy
 msgid "Minimum Value"
-msgstr "最小値"
+msgstr ""
 
 msgid "Implicit input port"
 msgstr "陰的入力ポート"
@@ -3129,8 +2085,7 @@ msgid "Outport Size must be a 2 elements vector"
 msgstr "出力ポートの大きさは2要素のベクトルとする必要があります"
 
 msgid "Outport type must be a number between 1 and 9, or -1 for inheritance."
-msgstr ""
-"出力ポートの型は1と9の間の数, または継承の場合は -1とする必要があります"
+msgstr "出力ポートの型は1と9の間の数, または継承の場合は -1とする必要があります"
 
 msgid "Modulo counter (0 to N counter)"
 msgstr "剰余カウンタ (0 から Nのカウンタ)"
@@ -3152,21 +2107,15 @@ msgstr "ヌルまたは正の整数を指定してください."
 msgid "Wrong values for 'Upper Limit' parameter: %d."
 msgstr "'上限'パラメータの値が間違っています: %d."
 
-#, fuzzy
 msgid "Set Pulse Generator parameters"
-msgstr "%s ブロックパラメータを設定"
+msgstr ""
 
-#, fuzzy
 msgid "Phase delay (s)"
-msgstr "位相 (rad)"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/PULSE_SC.sci, line: 72
 msgid "The pulse width must be in [0,100]"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/PULSE_SC.sci, line: 73
 msgid "Offset must be < Period*(1-Width/100)"
 msgstr ""
 
@@ -3180,45 +2129,32 @@ msgstr "開始時刻"
 msgid "Wrong value for 'Start Time' parameter: %e."
 msgstr "'開始時刻'パラメータの値が間違っています: %e."
 
-#, fuzzy
 msgid "Set Random generator block parameters"
-msgstr "入力ブロックパラメータを設定"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/RAND_f.sci, line: 41
 msgid ""
 "flag = 0 : Uniform distribution. A is min and A+B max<br>flag = 1 : Normal "
 "distribution. A is mean and B deviation.<br><br>A and B must be vector with "
 "equal sizes.<br>Seed is the seed of random number generator (integer<2**31)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/RAND_f.sci, line: 48
-# File: modules/scicos_blocks/macros/Sources/RAND_m.sci, line: 48
 msgid "'flag' must be equal to 0 or 1"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/RAND_m.sci, line: 39
 msgid ""
 "flag = 0 : Uniform distribution A is min and A+B max.<br>flag = 1 : Normal "
 "distribution A is mean and B deviation<br><br>A and B must be matrix with "
 "equal sizes"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/RAND_m.sci, line: 41
 msgid "Datatype (1=real double  2=complex)"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/RAND_m.sci, line: 42
 msgid "Seed"
 msgstr ""
 
-#, fuzzy
 msgid "Read an Audio File"
-msgstr "(オーディオファイルを読み込む)"
+msgstr ""
 
 msgid "Read is done on a binary '.au' file"
 msgstr "バイナリ '.au' ファイルの読込が完了しました"
@@ -3268,12 +2204,10 @@ msgstr "初期レコードインデックス"
 msgid "Read from an input file"
 msgstr "入力ファイルから読み込む"
 
-#, fuzzy
 msgid ""
 "Read is done on:<br>&nbsp; - A binary file if no format given.<br>&nbsp; - A "
 "formatted text file if a  format (fortran type) is given.<br>"
 msgstr ""
-"&nbsp; - フォーマット(fortran型)が指定された場合は整形済みのテキストファイル"
 
 msgid "Empty matrix or scalar expected."
 msgstr "空の行列またはスカラーを指定してください."
@@ -3323,137 +2257,33 @@ msgstr "'初期値'と'終端値': 大きさに互換性がありません: %d �
 msgid "Same sizes expected."
 msgstr "同じ大きさを指定してください."
 
-#, fuzzy
 msgid "'Sample time' must be >= 0"
-msgstr "バッファの大きさは2以上を指定してください."
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/SampleCLK.sci, line: 44
 msgid "The |Offset| must be less than the Sample time"
 msgstr ""
 
-#, fuzzy
 msgid "Min value"
-msgstr "最終地"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Sources/tkscaleblk.sci, line: 53
 msgid "TK Source: "
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Threshold/GENERAL_f.sci, line: 38
 msgid "Set General Zero-Crossing parameters"
 msgstr ""
 
-#, fuzzy
 msgid "Input size"
-msgstr "入力の大きさ"
+msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Threshold/GENERAL_f.sci, line: 52
 msgid "Routing matrix"
 msgstr ""
 
-#
-# File: modules/scicos_blocks/macros/Threshold/ZCROSS_f.sci, line: 34
 msgid "Set Zero-Crossing parameters<br><br>All surfaces must cross together"
 msgstr ""
 
-#, fuzzy
 msgid "The block must have at least one input"
-msgstr "トリガーブロックは離散時間入力が必要です."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: 最大でも %d 個としてください.\n"
-
-#, fuzzy
-#~ msgid "The Buffer size must be  1"
-#~ msgstr "バッファの大きさは2以上を指定してください."
-
-#, fuzzy
-#~ msgid "The Buffer size must be  2"
-#~ msgstr "バッファの大きさは2以上を指定してください."
-
-#~ msgid "Data Type %s"
-#~ msgstr "データ型 %s"
-
-#~ msgid "Type conversion"
-#~ msgstr "型変換"
-
-#~ msgid "(b) 0:Nothing, 1:Saturate, 2:Error"
-#~ msgstr "(b) 0:通常, 1:飽和, 2:エラー"
-
-#~ msgid "&nbsp;- Bits to Extract:"
-#~ msgstr "&nbsp;- 展開するビット:"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;1 上半分"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;2 下半分"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;3 MSB以降の範囲"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;4 LSBまでの範囲"
-
-#~ msgid "&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"
-#~ msgstr "&nbsp;&nbsp;&nbsp;&nbsp;5 ビットの範囲"
-
-#~ msgid "&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"
-#~ msgstr "&nbsp;- ビット数またはビットの添字: 添字 0 は LSB です"
-
-#~ msgid ""
-#~ "&nbsp;&nbsp;&nbsp;&nbsp;If 'Bits to Extract' is set to 'Range of bits': "
-#~ "[Start, End]"
-#~ msgstr ""
-#~ "&nbsp;&nbsp;&nbsp;&nbsp;展開するビットをビットの範囲に設定するかどうか: "
-#~ "[開始,終了]"
-
-#~ msgid "JK flip-flop"
-#~ msgstr "JK フリップ-フロップ"
-
-#~ msgid "The 'Initial Value' must be 0 or 1 of type int8"
-#~ msgstr "'初期値'はint8型の0または1とする必要があります"
-
-#~ msgid "&nbsp;- Negative values are considered as int8(0)"
-#~ msgstr "&nbsp;- 負の値は int8(0) とみなされます"
-
-#~ msgid "&nbsp;- Positive values are considered as int8(1)"
-#~ msgstr "&nbsp;- 正の値は int8(1) とみなされます"
-
-#~ msgid "Combinatorial logic"
-#~ msgstr "複合論理"
-
-#~ msgid "&nbsp; Number of rows must be a power of two."
-#~ msgstr "&nbsp; 行の数は2の累乗とする必要があります."
-
-#~ msgid "&nbsp; Rows of the matrix are the output values"
-#~ msgstr "&nbsp; 行列の行は出力値です"
-
-#~ msgid "SR flip-flop"
-#~ msgstr "SR フリップ-フロップ"
-
-#~ msgid "Matrix A is not square or D has wrong dimension"
-#~ msgstr "行列Aが正方でないかDの次元が間違っています"
-
-#~ msgid "Output Format"
-#~ msgstr "出力の形式"
-
-#~ msgid "Constant value generator"
-#~ msgstr "定数値生成器"
-
-#~ msgid "Magnitude"
-#~ msgstr "ゲイン"
-
-#~ msgid "&nbsp; - A binary file if no format given"
-#~ msgstr "&nbsp; - フォーマットが指定されない場合はバイナリファイル"
-
-#~ msgid "Read is done on:"
-#~ msgstr "読込完了:"
-
-#~ msgid "Step Function"
-#~ msgstr "ステップ関数"

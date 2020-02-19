@@ -1,0 +1,125 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2020 Rosetta Contributors and Canonical Ltd 2020
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2020-02-21 13:24+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: A scalar string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %s: мало бути вказано числовий рядок.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%s: 'none' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра %s: мало бути вказано «none».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: A scalar boolean expected.\n"
+msgstr ""
+"%s: помилкове значення параметра %s: мало бути вказано числове булеве "
+"значення.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"file\" expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра %d: мало бути вказано «file».\n"
+
+#, c-format
+msgid "%s: JSON format expected.\n"
+msgstr "%s: мало бути використано формат JSON.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"рядок.\n"
+
+#, c-format
+msgid "%s: CURL initialization failed.\n"
+msgstr "%s: не вдалося ініціалізувати CURL.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong proxy information, please check in the 'internet' Scilab "
+"preference.\n"
+msgstr ""
+"%s: помилкові дані щодо проксі-сервера. Будь ласка, перевірте налаштування "
+"інтернету у Scilab.\n"
+
+#, c-format
+msgid ""
+"%s: CURL execution failed.\n"
+"%s\n"
+msgstr ""
+"%s: не вдалося виконати CURL.\n"
+"%s\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The given path does not exist.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра %d: вказаного шляху не існує.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %d: мало бути вказано рядок з "
+"матриць.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A structure of size %d expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра %d: мало бути вказано структуру "
+"розмірності %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%s: 'PUT' or 'POST' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра %s: мало бути «PUT» або «POST».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: The given path does not exists.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра %d: вказаного шляху не існує.\n"

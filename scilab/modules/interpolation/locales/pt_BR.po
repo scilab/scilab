@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 01:44+0000\n"
+"PO-Revision-Date: 2012-04-22 01:44+0000\n"
 "Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: pt_BR\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -41,7 +41,8 @@ msgid "%s: Wrong type for input argument #%d: A %s tlist expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d : A vector of size 3 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d : A vector of size 3 expected.\n"
 msgstr ""
 
 #, c-format
@@ -65,7 +66,8 @@ msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -112,7 +114,8 @@ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Tamanho errado para os argumentos de entrada #%d e #%d: Esperava-se "
 "tamanhos iguais.\n"
@@ -153,7 +156,8 @@ msgstr ""
 "grid na dimensão %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d : A vector of size 2 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d : A vector of size 2 expected.\n"
 msgstr ""
 
 #, c-format
@@ -164,60 +168,42 @@ msgstr "%s: Não há pontos suficientes para o ajuste.\n"
 msgid "%ls: Warning: Rank deficiency of the least square matrix.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: incorrect element #%d\n"
 msgstr ""
-"%s: Valor errado para argumento de entrada #%d: '%s' ou real é esperado.\n"
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 90
 #, c-format
 msgid "%s: last connected component of boundary is not closed\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: some points are identical.\n"
-msgstr "%s: Não há pontos suficientes para o ajuste.\n"
+msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 126
 #, c-format
 msgid "%s: wrong boundary array.\n"
 msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 127
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 130
 #, c-format
 msgid "%s: crossed boundary.\n"
 msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 128
 #, c-format
 msgid "%s: wrong orientation of the boundary.\n"
 msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 129
 #, c-format
 msgid "%s: size limitation.\n"
 msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 131
 #, c-format
 msgid "%s: an interior point is on the boundary.\n"
 msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 132
 #, c-format
 msgid "%s: an interior point is too close to the boundary.\n"
 msgstr ""
 
-#
-# File: modules/interpolation/sci_gateway/cpp/sci_mesh2di.cpp, line: 133
 #, c-format
 msgid "%s: some points are identical or size limitation.\n"
 msgstr ""
@@ -236,7 +222,8 @@ msgstr ""
 "vetores de mesmo tamanho.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d : A matrix of size 2 expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d : A matrix of size 2 expected.\n"
 msgstr ""
 
 #, c-format
@@ -293,7 +280,8 @@ msgstr "%s: Problema com 'flag' = %d\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
-msgstr "%s: Número errado de argumentos de entrada: deve ser entre %d e %d.\n"
+msgstr ""
+"%s: Número errado de argumentos de entrada: deve ser entre %d e %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
@@ -333,18 +321,14 @@ msgstr ""
 "%s: Tamanho errado para argumento de entrada #%d: duas linhas são "
 "esperadas.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
-"%s: Valor errado para argumento de entrada #%d: '%s' ou real é esperado.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
 msgstr ""
-"%s: Valor errado para argumento de entrada #%d: '%s' ou real é esperado.\n"
 
-#
-# File: modules/interpolation/macros/mesh2d.sci, line: 68
 #, c-format
 msgid "%s: all points are coincident.\n"
 msgstr ""

@@ -8,16 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 03:39+0000\n"
+"PO-Revision-Date: 2019-02-15 22:07+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ru\n"
 
-# File: modules/graphic_export/sci_gateway/cpp/sci_driver.cpp, line: 56
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -76,7 +75,8 @@ msgstr "%s: Входной аргумент № #%d должен быть кор
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: Ожидался дескриптор ''%s''.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидался дескриптор ''%s''.\n"
 
 #, c-format
 msgid ""
@@ -136,11 +136,11 @@ msgstr ""
 "элементов или размера фигуры должно исправить эту ошибку."
 
 msgid ""
-"Unable to create export file, please fill a bug report at http://bugzilla."
-"scilab.org."
+"Unable to create export file, please fill a bug report at "
+"http://bugzilla.scilab.org."
 msgstr ""
-"Невозможно создать экспортный файл, пожалуйста, сообщите об ошибке на http://"
-"bugzilla.scilab.org."
+"Невозможно создать экспортный файл, пожалуйста, сообщите об ошибке на "
+"http://bugzilla.scilab.org."
 
 msgid ""
 "Unable to create export file, the file cannot be created or is locked by "

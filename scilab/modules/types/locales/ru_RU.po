@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 17:20+0000\n"
+"PO-Revision-Date: 2019-04-28 14:46+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ru\n"
 
 msgid "Double"
 msgstr "Число двойной точности"
@@ -59,15 +59,11 @@ msgstr "Типизированный список"
 msgid "Mlist"
 msgstr "Mlist"
 
-#
-# File: modules/types/src/java/org/scilab/modules/types/ScilabTypeEnumDescription.java, line: 56
 msgid "Struct"
-msgstr ""
+msgstr "Структура"
 
-#
-# File: modules/types/src/java/org/scilab/modules/types/ScilabTypeEnumDescription.java, line: 58
 msgid "Cell"
-msgstr ""
+msgstr "Ячейка"
 
 msgid "Pointer"
 msgstr "Указатель"
@@ -80,6 +76,3 @@ msgstr "Встроенная функция"
 
 msgid "Unknown datatype"
 msgstr "Неизвестный тип данных"
-
-#~ msgid "Compiled function"
-#~ msgstr "Компилированная функция"

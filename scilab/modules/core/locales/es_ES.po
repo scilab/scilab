@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 13:04+0000\n"
+"PO-Revision-Date: 2020-02-18 22:02+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: es\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -23,7 +23,8 @@ msgstr "%s: No se puede leer el argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s: Tipo incorrecto para argumento %d: Se esperaba un escalar real.\n"
+msgstr ""
+"%s: Tipo incorrecto para argumento %d: Se esperaba un escalar real.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
@@ -95,8 +96,6 @@ msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: '%s', '%s' o '%s'.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_checkNamedArguments.cpp, line: 41
 #, c-format
 msgid "%s: must be call from a function.\n"
 msgstr ""
@@ -117,8 +116,6 @@ msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
-#
-# File: modules/core/sci_gateway/cpp/sci_debug.cpp, line: 47
 #, c-format
 msgid "%s: Debugger cannot be activated in pause\n"
 msgstr ""
@@ -181,7 +178,8 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -282,7 +280,8 @@ msgid "Pause mode: enter empty lines to continue.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
 
 #, c-format
@@ -306,7 +305,8 @@ msgid "%s: Wrong size for input argument #%d: string expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -447,11 +447,10 @@ msgstr "Información sobre la versión de Scilab"
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
-msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid ""
+"(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/InitScilab.cpp, line: 1176
 #, c-format
 msgid "%s: Command missing.\n"
 msgstr ""
@@ -460,22 +459,17 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 msgid "callstack:"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/InitScilab.cpp, line: 1297
 #, c-format
 msgid "#%-5d%s"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/InitScilab.cpp, line: 1301
 #, c-format
 msgid "#%-5d%s (line %d)"
 msgstr ""
@@ -571,8 +565,6 @@ msgstr ""
 msgid "ESI Group\n"
 msgstr ""
 
-#
-# File: modules/core/src/cpp/banner.cpp, line: 41
 msgid "Copyright (c) 2017-2020 (ESI Group)\n"
 msgstr ""
 
@@ -659,14 +651,6 @@ msgstr ""
 msgid "Call an external routine"
 msgstr ""
 
-#
-# File: modules/core/demos/intro/external_routine.dem.sce, line: 8
-# File: modules/core/demos/intro/linear_algebra.dem.sce, line: 8
-# File: modules/core/demos/intro/online_definition_fct.dem.sce, line: 8
-# File: modules/core/demos/intro/operations.dem.sce, line: 8
-# File: modules/core/demos/intro/optimization_simulation.dem.sce, line: 8
-# File: modules/core/demos/intro/scilab_objects.dem.sce, line: 8
-# File: modules/core/demos/intro/systems.dem.sce, line: 8
 msgid "Press &lt;enter> in the console to proceed step by step"
 msgstr ""
 
@@ -744,30 +728,3 @@ msgstr "Tamaño"
 
 msgid "Bytes"
 msgstr "Bytes"
-
-#~ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo incorrecto para el argumento de entrada #%d: Se esperaba un "
-#~ "double.\n"
-
-#~ msgid "%s: Unable to find Perl file: %s"
-#~ msgstr "%s: Incapaz de encontrar el archivo Perl: %s"
-
-#~ msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-#~ msgstr ""
-#~ "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaban strings.\n"
-
-#~ msgid "%s: No perl command specified."
-#~ msgstr "%s: No se especificó un comando perl."
-
-#~ msgid "%s: Unable to find Perl in '%s"
-#~ msgstr "%s: Incapaz de encontrar Perl en '%s"
-
-#~ msgid "%s: Unable to find Perl.\n"
-#~ msgstr "%s: Incapaz de encontrar Perl.\n"
-
-#~ msgid "%s: System error: Command executed: %s"
-#~ msgstr "%s: Error del sistema: Comando ejecutado: %s"
-
-#~ msgid " by "
-#~ msgstr " por "

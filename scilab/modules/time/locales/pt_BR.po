@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-01-10 22:00+0000\n"
+"PO-Revision-Date: 2020-01-21 14:09+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: pt_BR\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
@@ -52,11 +52,13 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr "%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A real expected.\n"
-msgstr "%s: Valor errado para argumento de entrada #%d: um real é esperado.\n"
+msgstr ""
+"%s: Valor errado para argumento de entrada #%d: um real é esperado.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
@@ -68,13 +70,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
 
-#
-# File: modules/time/sci_gateway/cpp/sci_sleep.cpp, line: 54
 #, c-format
 msgid "%s: Argument #%d: the scalar must be positive.\n"
 msgstr ""
@@ -83,17 +82,13 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: 's' expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
-"%s: Tipo incorreto para os argumentos de entrada: esperava-se valores "
-"escalares.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: deve ser entre %d e "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -153,7 +148,8 @@ msgstr ""
 "matriz m*3 ou m*6.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Valor incorretos para o argumento de entrada #%d: %s deve estar entre %d "
 "e%d.\n"
@@ -202,7 +198,8 @@ msgstr ""
 "inteiro.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para os argumentos de entrada #%d e #%d: esperava-se "
 "dimensões iguais.\n"
@@ -279,25 +276,3 @@ msgstr "Quinta-feira"
 
 msgid "Friday"
 msgstr "Sexta-feira"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-#~ msgstr ""
-#~ "%s: Valores incorretos para o argumento de entrada #%d: esperava-se "
-#~ "números inteiros não negativos.\n"
-
-#, c-format
-#~ msgid "%s: Wrong type for input arguments: Must be scalars.\n"
-#~ msgstr ""
-#~ "%s: Tipo incorreto para os argumentos de entrada: devem ser escalares.\n"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
-#~ msgstr ""
-#~ "%s: Valor incorreto para o argumento de entrada: deve estar entre %d e "
-#~ "%d.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments.\n"
-#~ msgstr "%s: Quantidade incorreta de argumentos de entrada.\n"

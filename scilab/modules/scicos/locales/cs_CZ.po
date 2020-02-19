@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 22:11+0000\n"
+"PO-Revision-Date: 2016-12-07 22:11+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -244,9 +244,9 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be one of %ls.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"
@@ -257,7 +257,8 @@ msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
 msgstr ""
 
 #, c-format
@@ -318,7 +319,8 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -440,7 +442,8 @@ msgid "%s: Wrong size for input argument #%d : A single struct expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgid ""
+"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
 msgstr ""
 
 #, c-format
@@ -718,7 +721,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr ""
 
 #, c-format
@@ -798,15 +802,13 @@ msgstr ""
 msgid "Wrong value for field %s.%s : Round number expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : Real vector expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: očekávána datová struktura %s.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong size for field %s.%s : Real vector expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekávána matice %d-krát-%d.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : Real matrix expected.\n"
@@ -1105,7 +1107,8 @@ msgid ""
 msgstr ""
 
 msgid "Diagram contains implicit blocks, compiling for implicit Solver."
-msgstr "Graf obsahuje implicitní bloky, sestavování na implicitního řešitele."
+msgstr ""
+"Graf obsahuje implicitní bloky, sestavování na implicitního řešitele."
 
 msgid "Algebraic loop on events."
 msgstr "Algebraické smyčky při událostech"
@@ -1155,15 +1158,15 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined size:"
 msgstr ""
-"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto varování.</"
-"em><br />Výstupní port bloku má neurčenou velikost:"
+"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto "
+"varování.</em><br />Výstupní port bloku má neurčenou velikost:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined type:"
 msgstr ""
-"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto varování.</"
-"em><br />Výstupní port bloku má neurčený typ:"
+"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto "
+"varování.</em><br />Výstupní port bloku má neurčený typ:"
 
 #, c-format
 msgid "Output port %s type."
@@ -1177,15 +1180,15 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined size:"
 msgstr ""
-"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto varování.</"
-"em><br />Vstupní port bloku má neurčenou velikost:"
+"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto "
+"varování.</em><br />Vstupní port bloku má neurčenou velikost:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined type:"
 msgstr ""
-"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto varování.</"
-"em><br />Vstupní port bloku má neurčený typ:"
+"<em>Aktualizujte, prosím, Váš graf, abyste zabránili tomuto "
+"varování.</em><br />Vstupní port bloku má neurčený typ:"
 
 msgid ""
 "Highlighted block(s) have connected ports \n"
@@ -1196,8 +1199,6 @@ msgstr ""
 "s velikostmi, které nemohou být zjištěny pomocí kontextu.\n"
 "Jaká je velikost tohoto propojení?"
 
-#
-# File: modules/scicos/macros/scicos_scicos/c_pass2.sci, line: 2294
 #, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
@@ -1351,10 +1352,6 @@ msgstr "%s: Prázdné schéma"
 msgid "%s: Wrong input argument.\n"
 msgstr ""
 
-#
-# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 42
-# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 68
-# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 111
 msgid "Set Xcos context"
 msgstr ""
 

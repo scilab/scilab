@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 12:42+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2020-02-18 22:04+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -30,9 +30,7 @@ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real or integer matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実数または整数の行列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数または整数の行列を指定してください.\n"
 
 #, c-format
 msgid "%s : inconsistent dimensions between arguments.\n"
@@ -56,9 +54,7 @@ msgstr "%s : 最初の引数は、scicosブロック 型リストでなくては
 
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
-msgstr ""
-"%s: 最初の引数は有効な scicos_block 型付きリスト(tlist) とする必要がありま"
-"す.\n"
+msgstr "%s: 最初の引数は有効な scicos_block 型付きリスト(tlist) とする必要があります.\n"
 
 #, c-format
 msgid "%s : Second argument must be scalar.\n"
@@ -86,24 +82,19 @@ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real, complex or integer matrix "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実数, 複素数または整数の行列を指定して"
-"ください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数, 複素数または整数の行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Only hypermatrices with 3 dimensions "
 "are allowed.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 3次元のハイパー行列のみ使用可能で"
-"す.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 3次元のハイパー行列のみ使用可能です.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real expected.\n"
@@ -111,8 +102,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定し�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : A real value expected.\n"
@@ -124,8 +114,7 @@ msgstr "%s: 第1および第2引数の大きさを同じにしてください.\n
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 msgid ""
 "\n"
@@ -159,8 +148,7 @@ msgstr "  次の値を指定して呼び出す必要があります:\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Undefined field in string matrix position: %d.\n"
@@ -192,8 +180,7 @@ msgstr "%s : 関数型は定義されていません\n"
 
 #, c-format
 msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
-msgstr ""
-"%s:　大きさが定義されていません. in(%d)=%d. モデルを調整してください.\n"
+msgstr "%s:　大きさが定義されていません. in(%d)=%d. モデルを調整してください.\n"
 
 #, c-format
 msgid "%s : Allocation error.\n"
@@ -201,8 +188,7 @@ msgstr "%s: 領域確保エラー.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. in2(%d)=%d. Please adjust your model.\n"
-msgstr ""
-"%s: 大きさが定義されていません. in2(%d)=%d. モデルを調整してください.\n"
+msgstr "%s: 大きさが定義されていません. in2(%d)=%d. モデルを調整してください.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. intyp(%d)=%d. Please adjust your model.\n"
@@ -214,13 +200,11 @@ msgstr "%s: 未知のデータ型\n"
 
 #, c-format
 msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
-msgstr ""
-"%s: 大きさが定義されていません. out(%d)=%d. モデルを調整してください.\n"
+msgstr "%s: 大きさが定義されていません. out(%d)=%d. モデルを調整してください.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
-msgstr ""
-"%s: 大きさが定義されていません. out2(%d)=%d. モデルを調整してください.\n"
+msgstr "%s: 大きさが定義されていません. out2(%d)=%d. モデルを調整してください.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. outtyp(%d)=%d. Please adjust your model.\n"
@@ -248,13 +232,11 @@ msgstr "%s: \"%s\"を保存できません.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A real scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 実数スカラーを指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : An integer value expected.\n"
@@ -266,13 +248,11 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr ""
-"%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be one of %ls.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 集合{%ls}の中とする必要があります.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"
@@ -280,18 +260,16 @@ msgstr "%s: 入力引数 #%d の値が間違っています: \"%ls\"を設定で
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 行ベクトルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 行ベクトルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: \"%ls\" 型は管理されていません.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: \"%ls\" 型は管理されていません.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  %dx%d を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  %dx%d を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: invalid UID.\n"
@@ -303,18 +281,15 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 処理できない�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String or ID expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列またはIDを指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはIDを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
+msgstr "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist expected.\n"
@@ -322,8 +297,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: tlistを指定し�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : %d elements expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: %d個の要素を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d個の要素を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for element #%d of argument #%d : A matrix expected.\n"
@@ -331,8 +305,7 @@ msgstr "%s: 要素#%d (引数 #%d)の型が間違っています: 行列を指�
 
 #, c-format
 msgid "%s: Wrong type for element #%d of argument #%d : A list expected.\n"
-msgstr ""
-"%s: 要素#%d (引数 #%d)の型が間違っています: リストを指定してください.\n"
+msgstr "%s: 要素#%d (引数 #%d)の型が間違っています: リストを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
@@ -345,25 +318,20 @@ msgstr "%s: sim.nb の右辺パラメータに互換性がありません.\n"
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of argument #%d : A string matrix expected.\n"
-msgstr ""
-"%s: 要素#%d (入力引数 #%d)の型が間違っています: 文字列の行列を指定してくださ"
-"い.\n"
+msgstr "%s: 要素#%d (入力引数 #%d)の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %s, %s %s %s または %s を指定してくだ"
-"さい.\n"
+msgid ""
+"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %s, %s %s %s または %s を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : %d to %d elements expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: %dから%d個の要素を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %dから%d個の要素を指定してください.\n"
 
 #, c-format
 msgid "%s : error in cross variable size checking : %d\n"
@@ -372,25 +340,19 @@ msgstr "%s: cross 変数の大きさを確認する際にエラーを発生し�
 #, c-format
 msgid ""
 "%s: Wrong size for element #%d of input argument #%d : A scalar expected.\n"
-msgstr ""
-"%s: 要素 #%d (入力引数 #%d)の大きさが間違っています:スカラーを指定してくださ"
-"い.\n"
+msgstr "%s: 要素 #%d (入力引数 #%d)の大きさが間違っています:スカラーを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of input argument #%d : string or macro "
 "expected.\n"
-msgstr ""
-"%s: 要素 #%d (入力引数 #%d )の大きさが間違っています:文字列またはマクロを指定"
-"してください.\n"
+msgstr "%s: 要素 #%d (入力引数 #%d )の大きさが間違っています:文字列またはマクロを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d of element #%d of argument #%d : A matrix "
 "expected.\n"
-msgstr ""
-"%s: 要素 #%dの要素 #%d  (入力引数 #%d)の型が間違っています:行列を指定してくだ"
-"さい.\n"
+msgstr "%s: 要素 #%dの要素 #%d  (入力引数 #%d)の型が間違っています:行列を指定してください.\n"
 
 #, c-format
 msgid "%s : No more free memory.\n"
@@ -432,9 +394,7 @@ msgid "sliding mode condition, cannot integrate"
 msgstr "スライド・モード状態、統合できません"
 
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
-msgstr ""
-"初期モードをみつけることができませんでした. おそらく, スライディングモード条"
-"件が存在します."
+msgstr "初期モードをみつけることができませんでした. おそらく, スライディングモード条件が存在します."
 
 msgid ""
 "You have changed a parameter in your model, but the model has been compiled "
@@ -442,10 +402,8 @@ msgid ""
 "either recompile your Scicos diagram or [re]launch the initialization "
 "interface to regenerate the XML file  with new parameters."
 msgstr ""
-"あなたはモデルでパラメーターを変えました、しかし、そのモデルは最初の値とパラ"
-"メーターを含んでいるXMLファイルを使うために編集されました。そのとおりであれ"
-"ば、Scicos図形を再編集するか、あるいは再度、初期化インターフェースで新しいパ"
-"ラメーターを持つXMLファイルを復活させて下さい。"
+"あなたはモデルでパラメーターを変えました、しかし、そのモデルは最初の値とパラメーターを含んでいるXMLファイルを使うために編集されました。そのとおりであれ"
+"ば、Scicos図形を再編集するか、あるいは再度、初期化インターフェースで新しいパラメーターを持つXMLファイルを復活させて下さい。"
 
 msgid "Undefined data type."
 msgstr "データ型は定義されていません。"
@@ -456,10 +414,9 @@ msgid ""
 "relaxed a parameter using FIXED property (i.e., fixed=false) in a Modelica "
 "model. This will be corrected in the next version"
 msgstr ""
-"Modelicaコンパイラによって生成したコードが想定したものはScicosブロックによっ"
-"て提供されたパラメーターの数が異なります。あなたは、プロパティを利用したパラ"
-"メーターを緩めることができたかもしれません。(すなわち、fixed=false)Modelicaモ"
-"デルで。これは、次のバージョンで正されるでしょう。"
+"Modelicaコンパイラによって生成したコードが想定したものはScicosブロックによって提供されたパラメーターの数が異なります。あなたは、プロパティを"
+"利用したパラメーターを緩めることができたかもしれません。(すなわち、fixed=false)Modelicaモデルで。これは、次のバージョンで正されるでし"
+"ょう。"
 
 msgid "unknown or erroneous block"
 msgstr "未知、または誤りのあるブロック"
@@ -473,8 +430,7 @@ msgstr "scicosで予期しないエラーが発生しました, 報告してく�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : %d or %d expected.\n"
@@ -486,34 +442,28 @@ msgstr "%s: 入力引数 #%d の型が間違っています:構造体を指定�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A single struct expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:構造体を一つ指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:構造体を一つ指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
-msgstr ""
-"%s: 入力引数 #%d のフィールドが間違っています:\"%s\"および\"%s\"を指定してく"
-"ださい.\n"
+msgid ""
+"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgstr "%s: 入力引数 #%d のフィールドが間違っています:\"%s\"および\"%s\"を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  文字列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real row vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています:実数の行ベクトルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:実数の行ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 行ベクトルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 行ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: At least %dx%d expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: %dx%d以上を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %dx%d以上を指定してください.\n"
 
 msgid "type 1 function not allowed for scilab blocks\n"
 msgstr "scilabブロックのために許されない型1関数です\n"
@@ -567,8 +517,8 @@ msgid ""
 "****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
 "ATOL)\n"
 msgstr ""
-"****SUNDIALS.Cvode: time=%g における処理が過大です (スティッフな領域です,  "
-"RTOL およびATOLを変更してください)\n"
+"****SUNDIALS.Cvode: time=%g における処理が過大です (スティッフな領域です,  RTOL "
+"およびATOLを変更してください)\n"
 
 #, c-format
 msgid "root found at t=: %f\n"
@@ -606,8 +556,7 @@ msgstr "****SUNDIALS.Ida 達しました: %f\n"
 msgid ""
 "**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and "
 "ATOL)\n"
-msgstr ""
-"**** SUNDIALS.Ida: 動作のための十分な時間=%g (硬領域, RTOLとATOLの変更)\n"
+msgstr "**** SUNDIALS.Ida: 動作のための十分な時間=%g (硬領域, RTOLとATOLの変更)\n"
 
 #, c-format
 msgid "block %d [%s] is called "
@@ -770,51 +719,41 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 内容を読み込�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています:  %s, %s, %s, %s または %s 型..\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  %s, %s, %s, %s または %s 型..\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for element #%d of input argument #%d: Integer matrix cannot "
 "be empty.\n"
-msgstr ""
-"%s: 要素 #%d (入力引数 #%d )の値が間違っています:  整数行列を空にすることはで"
-"きません.\n"
+msgstr "%s: 要素 #%d (入力引数 #%d )の値が間違っています:  整数行列を空にすることはできません.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for element #%d of input argument #%d: String matrix cannot "
 "be empty.\n"
-msgstr ""
-"%s: 要素 #%d (入力引数 #%d )の値が間違っています:  文字列行列を空にすることは"
-"できません.\n"
+msgstr "%s: 要素 #%d (入力引数 #%d )の値が間違っています:  文字列行列を空にすることはできません.\n"
 
 #, c-format
-msgid "%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
 msgstr "%s: 要素 #%d (入力引数 #%d )の値が間違っています:  型が未知です.\n"
 
 #, c-format
 msgid "Wrong type for field %ls: Tlist or Mlist expected.\n"
-msgstr ""
-"フィールド %ls の型が間違っています: Tlist または Mlist を指定してください.\n"
+msgstr "フィールド %ls の型が間違っています: Tlist または Mlist を指定してください.\n"
 
 #, c-format
 msgid "Wrong length for field %ls: at least %d element expected.\n"
-msgstr ""
-"フィールド %ls の長さが間違っています:  %d個以上の要素を指定してください.\n"
+msgstr "フィールド %ls の長さが間違っています:  %d個以上の要素を指定してください.\n"
 
 #, c-format
 msgid ""
 "Wrong length for header of field \"%ls\": at least %d element expected.\n"
-msgstr ""
-"フィールド %ls のヘッダの長さが間違っています:  %d個以上の要素を指定してくだ"
-"さい.\n"
+msgstr "フィールド %ls のヘッダの長さが間違っています:  %d個以上の要素を指定してください.\n"
 
 #, c-format
 msgid "Wrong value for header of field \"%ls\": \"%ls\" expected.\n"
-msgstr ""
-"フィールド \"%ls\" のヘッダの値が間違っています: \"%ls\" を指定してくださ"
-"い.\n"
+msgstr "フィールド \"%ls\" のヘッダの値が間違っています: \"%ls\" を指定してください.\n"
 
 #, c-format
 msgid "Wrong type for field %s: list expected.\n"
@@ -830,8 +769,7 @@ msgstr "フィールド%sの次元が間違っています: %d行%d列を指定�
 
 #, c-format
 msgid "Wrong size for field %s: at least %d-by-%d expected.\n"
-msgstr ""
-"フィールド%sの大きさが間違っています: %d行%d列以上を指定してください.\n"
+msgstr "フィールド%sの大きさが間違っています: %d行%d列以上を指定してください.\n"
 
 #, c-format
 msgid "\"%s\" is a read-only field.\n"
@@ -877,13 +815,13 @@ msgstr "フィールド%s.%sの型が間違っています: 文字列行列を�
 msgid "Wrong value for field %s.%s : Round number expected.\n"
 msgstr "フィールド%s.%sの値が間違っています: 概数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong type for field %s.%s : Real vector expected.\n"
-msgstr "フィールド%s.%sの型が間違っています: 実数行列を指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "Wrong size for field %s.%s : Real vector expected.\n"
-msgstr "フィールド%s.%sの型が間違っています: 実数行列を指定してください.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for field %s.%s : Real matrix expected.\n"
@@ -903,15 +841,11 @@ msgstr "フィールド%s.%sの型が間違っています: %s (%s) のポート
 
 #, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid implicit port.\n"
-msgstr ""
-"フィールド%s.%sの値が間違っています:  %s (%s) が無効な陰的ポート番号を有しま"
-"す.\n"
+msgstr "フィールド%s.%sの値が間違っています:  %s (%s) が無効な陰的ポート番号を有します.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s : %s (%s) has an invalid explicit port.\n"
-msgstr ""
-"フィールド%s.%sの値が間違っています: %s(%s)が無効な陽的ポート番号を有しま"
-"す.\n"
+msgstr "フィールド%s.%sの値が間違っています: %s(%s)が無効な陽的ポート番号を有します.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s : Diagram expected.\n"
@@ -923,8 +857,7 @@ msgstr "フィールド%s.%sの型が間違っています: リストは前の�
 
 #, c-format
 msgid "Wrong dimension for field %s.%s : m-by-1 matrix expected.\n"
-msgstr ""
-"フィールド%s.%sの次元が間違っています: m行1列の行列を指定してください.\n"
+msgstr "フィールド%s.%sの次元が間違っています: m行1列の行列を指定してください.\n"
 
 #, c-format
 msgid "Wrong value for field %s.%s : Integer values expected.\n"
@@ -972,13 +905,11 @@ msgstr "フィールド%sの型が間違っています: mlistを指定してく
 
 #, c-format
 msgid "Wrong size for field %s: at least %d elements expected.\n"
-msgstr ""
-"フィールド%sの大きさが間違っています: %d個以上の要素を指定してください.\n"
+msgstr "フィールド%sの大きさが間違っています: %d個以上の要素を指定してください.\n"
 
 #, c-format
 msgid "Wrong value for header of field %s: field %s expected.\n"
-msgstr ""
-"フィールド%sのヘッダの値が間違っています: フィールド %s を指定してください.\n"
+msgstr "フィールド%sのヘッダの値が間違っています: フィールド %s を指定してください.\n"
 
 #, c-format
 msgid "Wrong dimensions for field %s.%s: %d-by-%d expected.\n"
@@ -993,8 +924,8 @@ msgid ""
 "Wrong value for field %s.%s: '%s' unrecognized, only expected '%s' or '%s' "
 "vector. Switching to '%s'.\n"
 msgstr ""
-"フィールド%s.%sの値が間違っています: '%s' が認識できません,  '%s' または "
-"'%s' ベクトルのみが認識できます. '%s'に変更します.\n"
+"フィールド%s.%sの値が間違っています: '%s' が認識できません,  '%s' または '%s' ベクトルのみが認識できます. "
+"'%s'に変更します.\n"
 
 #, c-format
 msgid "Wrong type for field %s.%s.\n"
@@ -1014,8 +945,7 @@ msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: ダイアグラムを指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: ダイアグラムを指定してください.\n"
 
 #, c-format
 msgid "%s: Error during block parameters evaluation.\n"
@@ -1047,9 +977,7 @@ msgstr "%s:入力引数 #%dの大きさが間違っています: 空の行列を
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してください.\n"
 
 #
 # File: macros/scicos_auto/scicos_simulate.sci, line: 181
@@ -1059,8 +987,7 @@ msgstr "%s: 入力引数の数が不正です: %d と %d の間である必要�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が正しくありません: %s データ構造を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません: %s データ構造を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
@@ -1119,8 +1046,7 @@ msgstr "%s: プロパティ %s は廃止予定です, 代わりに %s を使用�
 
 #, c-format
 msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
-msgstr ""
-"ダイアグラム要素#%dの型が間違っています: %s, %sまたは%sを指定してください.\n"
+msgstr "ダイアグラム要素#%dの型が間違っています: %s, %sまたは%sを指定してください.\n"
 
 msgid ""
 "Your model contains states defined in standard Scicos blocks.\n"
@@ -1197,8 +1123,8 @@ msgid ""
 msgstr ""
 "連続時間状態量がありません. 閾値が無視されました; \n"
 "これにより外部イベントを生成しない場合には問題はないでしょう.\n"
-"閾値を再度有効にする場合, ダイアグラムに連続時間状態量を有するブロックを含め"
-"る必要があります. 例にDUMMY CLSS ブロック (線形パレット)を含めることができる."
+"閾値を再度有効にする場合, ダイアグラムに連続時間状態量を有するブロックを含める必要があります. 例にDUMMY CLSS ブロック "
+"(線形パレット)を含めることができる."
 
 msgid "Diagram contains implicit blocks, compiling for implicit Solver."
 msgstr "ダイアグラムには陰的ブロックが含まれています. 陰解法でコンパイル中."
@@ -1242,8 +1168,7 @@ msgstr ""
 "未接続/未定義の出力ポートを有するブロックがある可能性があります."
 
 msgid "One of this block output has negative size.<br />Please check."
-msgstr ""
-"このｂロックの出力の一つの大きさが負になっています.<br />確認してください."
+msgstr "このｂロックの出力の一つの大きさが負になっています.<br />確認してください."
 
 msgid "Block input has negative size:"
 msgstr "ブロック入力に負の大きさが指定されています:"
@@ -1257,16 +1182,12 @@ msgstr "SuperBlockにエラーを出力することはできません."
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined size:"
-msgstr ""
-"<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック出"
-"力ポートの大きさが一部定義されていません:"
+msgstr "<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック出力ポートの大きさが一部定義されていません:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined type:"
-msgstr ""
-"<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック出"
-"力ポートの型が一部定義されていません:"
+msgstr "<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック出力ポートの型が一部定義されていません:"
 
 #, c-format
 msgid "Output port %s type."
@@ -1279,27 +1200,22 @@ msgstr "入力ポート %s 型."
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined size:"
-msgstr ""
-"<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック入"
-"力ポートの大きさが一部定義されていません:"
+msgstr "<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック入力ポートの大きさが一部定義されていません:"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined type:"
-msgstr ""
-"<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック入"
-"力ポートの型が一部定義されていません:"
+msgstr "<em>この警告を避けるにはダイアグラムを更新してください.</em><br />ブロック入力ポートの型が一部定義されていません:"
 
 msgid ""
 "Highlighted block(s) have connected ports \n"
 "with  sizes that cannot be determined by the context.\n"
 "What is the size of this link?"
 msgstr ""
-"ハイライト表示されたブロックは,大きさがコンテキストにより定義できない接続ポー"
-"トを有しています.\n"
+"ハイライト表示されたブロックは,大きさがコンテキストにより定義できない接続ポートを有しています.\n"
 "このリンクの大きさは何ですか?"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "the dep_ut size of the %s block is not correct.\n"
 "It should be a column vector of size %d."
@@ -1413,8 +1329,8 @@ msgid ""
 "%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, "
 "%%scicos_prob=%%%s).\n"
 msgstr ""
-"%s: ブロック %s [uid='%s'] をコールした際にエラーが発生しました : パラメータ"
-"が無効です (ier=%f, %%scicos_prob=%%%s).\n"
+"%s: ブロック %s [uid='%s'] をコールした際にエラーが発生しました : パラメータが無効です (ier=%f, "
+"%%scicos_prob=%%%s).\n"
 
 msgid "Cannot load dynamic library: "
 msgstr "動的ライブラリを読み込めませんでした: "
@@ -1460,10 +1376,6 @@ msgstr "%s: ダイアグラムが空です"
 msgid "%s: Wrong input argument.\n"
 msgstr "%s: 入力引数が間違っています.\n"
 
-#
-# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 42
-# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 68
-# File: modules/scicos/macros/scicos_scicos/script2var.sci, line: 111
 msgid "Set Xcos context"
 msgstr ""
 
@@ -1484,15 +1396,11 @@ msgstr "%s: %s 型は実装されていません.\n"
 
 #, c-format
 msgid "%s: Wrong size for block parameter '%s': %s expected, getting %s"
-msgstr ""
-"%s: ブロックパラメータ '%s' の大きさが間違っています: %s を予測しましたが, "
-"%s が取得されました"
+msgstr "%s: ブロックパラメータ '%s' の大きさが間違っています: %s を予測しましたが, %s が取得されました"
 
 #, c-format
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
-msgstr ""
-"%s: ブロックパラメータ '%s' の型が間違っています:  %s(%s) を予測しましたが, "
-"%s が取得されました"
+msgstr "%s: ブロックパラメータ '%s' の型が間違っています:  %s(%s) を予測しましたが, %s が取得されました"
 
 msgid ""
 "There are too many Modelica files.\n"
@@ -1533,12 +1441,3 @@ msgid ""
 msgstr ""
 "%s に指定された回答は\n"
 "間違っています: %s.\n"
-
-#, c-format
-#~ msgid "Wrong size for field %s.%s : %d-by-%d expected.\n"
-#~ msgstr ""
-#~ "フィールド%s.%sの大きさが間違っています: %d行%d列を指定してください.\n"
-
-#, c-format
-#~ msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
-#~ msgstr "フィールド %s.%sの値が間違っています: ポート番号が更新されました.\n"

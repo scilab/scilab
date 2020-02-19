@@ -8,22 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 15:01+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2019-10-15 12:12+0000\n"
+"Last-Translator: GuoZhiqiang <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
-"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: zh_CN\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s：不能读取第%d个输入参数。\n"
+msgstr "%s：无法读取第%d个输入参数。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s：参数%d的类型错误：应该为实数标量。\n"
+msgstr "%s：第%d个参数的类型错误：应该为实数标量。\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -59,21 +59,21 @@ msgstr "%s：第%d个输入参数的类型错误：应该为整型或双精度�
 
 #, c-format
 msgid "%s: '%s' already defined by the '%s' argument."
-msgstr "%s：‘%s’已被参数‘%s’定义。"
+msgstr "%s: '%s' 已经被 '%s' 参数所定义。"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "%s：输入参数的值错误：‘%s’、‘%s’、‘%s’、‘%s’或‘%s。\n"
+msgstr "%s：输入参数的值错误：应当为‘%s’、‘%s’、‘%s’、‘%s’或‘%s。\n"
 
 #, c-format
 msgid "%s: Non implemented feature.\n"
-msgstr ""
+msgstr "%s：尚未实现。\n"
 
 #, c-format
 msgid "%s: %s expected instead of %s.\n"
-msgstr ""
+msgstr "%s：使用%s 替换 %s。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -85,12 +85,12 @@ msgstr "%s：第%d个参数的类型错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: A single string expected.\n"
-msgstr "%s：第%d个参数的维度错误：应该为字符串。\n"
+msgstr "%s：第%d个参数的维度错误：应该为单字符串。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for argument #%d: A single string of size %d to %d expected.\n"
-msgstr "%s：第%d个参数的维度错误：应该为%d~%d元素字符串。\n"
+msgstr "%s：第%d个参数的维度错误：应该为%d到%d个字符串。\n"
 
 #, c-format
 msgid "%s: Incorrect integer type: %s .\n"

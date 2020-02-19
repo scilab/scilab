@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 15:21+0000\n"
+"PO-Revision-Date: 2018-01-10 15:21+0000\n"
 "Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: zh_CN\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
@@ -697,11 +697,6 @@ msgstr "保存历史"
 msgid "Save file"
 msgstr "保存文件"
 
-#
-# File: modules/console/src/console_fake_xml.c, line: 794
-# File: modules/console/src/console_fake_xml.c, line: 1061
-# File: modules/console/src/console_fake_xml.c, line: 1372
-# File: modules/console/src/console_fake_xml.c, line: 1694
 msgid "Demos"
 msgstr ""
 
@@ -720,9 +715,8 @@ msgstr "宽度: "
 msgid "Recursion limit: "
 msgstr "递推次数： "
 
-#, fuzzy
 msgid "Containers display depth: "
-msgstr "显示行数："
+msgstr ""
 
 msgid "Language setting"
 msgstr "语言设置"
@@ -757,9 +751,8 @@ msgstr "界面布局"
 msgid "Select a layout"
 msgstr "选择布局"
 
-#, fuzzy
 msgid "(Modifying the layout requires to restart Scilab)"
-msgstr "（修改布局需要重启Scilab）"
+msgstr ""
 
 msgid "Save layout on exiting"
 msgstr "退出时保存布局"
@@ -791,9 +784,6 @@ msgstr "操作名"
 msgid "Key binding"
 msgstr "快捷键绑定"
 
-#
-# File: modules/console/src/console_fake_xml.c, line: 1379
-# File: modules/console/src/console_fake_xml.c, line: 1701
 msgid "The demo interface is dockable"
 msgstr ""
 
@@ -820,18 +810,18 @@ msgstr "无法改变控制台字体"
 msgid "Could not change the Console Foreground."
 msgstr "无法改变控制台前景"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为非负标量。\n"
+msgstr ""

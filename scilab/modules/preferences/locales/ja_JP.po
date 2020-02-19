@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 15:25+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2020-02-18 21:59+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ja\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -84,8 +84,7 @@ msgstr "保存"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -93,13 +92,11 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 2xNの行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 2xNの行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Invalid XConfiguration.xml file.\n"
@@ -124,11 +121,3 @@ msgstr "%s:  ターゲットノードが XML_ELEMENT_NODE ではありません.
 #, c-format
 msgid "%s: Invalid attribute name: %s."
 msgstr "%s: 属性名が無効です: %s."
-
-#, c-format
-#~ msgid "%s: Invalid %s file.\n"
-#~ msgstr "%s: %s ファイルが無効です.\n"
-
-#, c-format
-#~ msgid "%s: The file %s does not exist.\n"
-#~ msgstr "%s: ファイル %s は存在しません。\n"

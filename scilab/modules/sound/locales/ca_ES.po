@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 22:07+0000\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
-"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ca\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -62,9 +62,9 @@ msgstr "%s: No s'ha pogut obrir el fitxer %s.\n"
 msgid "Index range must be specified as a scalar or a 2 elements vector."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: File '%s': Unrecognized data format.\n"
-msgstr "El format de les dades és desconegut."
+msgstr ""
 
 msgid "Sample limit vector must have 2 elements."
 msgstr ""
@@ -78,8 +78,6 @@ msgstr ""
 msgid "Error in file format."
 msgstr ""
 
-#
-# File: modules/sound/macros/auread.sci, line: 174
 #, c-format
 msgid "%s: File '%s' is not a .au sound file.\n"
 msgstr ""
@@ -125,37 +123,30 @@ msgstr "%s: El nombre d'arguments de sortida és incorrecte.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: El nombre d'arguments de sortida és incorrecte.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: %s expected.\n"
-msgstr "%s: L'argument d'entrada #%d és incorrecte: Ha de ser '%s' o '%s'.\n"
+msgstr ""
 
-#
-# File: modules/sound/macros/playsnd.sci, line: 54
 #, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
-msgstr "%s: L'argument d'entrada #%d és incorrecte: Ha de ser '%s' o '%s'.\n"
+msgstr ""
 
-#
-# File: modules/sound/macros/playsnd.sci, line: 91
 #, c-format
 msgid "%s: Argument #%d: The file '%s' does not exist.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal number expected.\n"
-msgstr "%s: L'argument d'entrada #%d és incorrecte: Ha de ser '%s' o '%s'.\n"
+msgstr ""
 
-#
-# File: modules/sound/macros/playsnd.sci, line: 100
 #, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
 msgstr ""
@@ -214,8 +205,6 @@ msgstr ""
 "%s: L'argument d'entrada té un valor incorrecte: El rang d'índexos s'ha "
 "d'especificar com un escalar o un vector de %d elements.\n"
 
-#
-# File: modules/sound/macros/wavread.sci, line: 84
 #, c-format
 msgid "%s: The file '%s' does not exist.\n"
 msgstr ""
@@ -237,10 +226,11 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: S'ha produït un error: %s no està suportat.\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
-"%s: S'ha produït un error: Format de fitxer invàlid. Error en la lectura de <"
-"%s>.\n"
+"%s: S'ha produït un error: Format de fitxer invàlid. Error en la lectura de "
+"<%s>.\n"
 
 msgid "Invalid .wav file: found data before format information."
 msgstr ""
@@ -250,8 +240,6 @@ msgstr ""
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "S'ha trobat informació incorrecta de peça en el fitxer RIFF."
 
-#
-# File: modules/sound/macros/wavread.sci, line: 217
 #, c-format
 msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
 msgstr ""
@@ -273,6 +261,3 @@ msgstr "El vector de límit de mostra ha de tenir 2 entrades."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Els límits de la mostra són invàlids (utilitzeu un ordre ascendent)."
-
-#~ msgid "Invalid wav format."
-#~ msgstr "El format wav no és vàlid."

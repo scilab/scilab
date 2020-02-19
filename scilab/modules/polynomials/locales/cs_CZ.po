@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 19:25+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2019-02-15 22:13+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
@@ -30,7 +30,8 @@ msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
 msgstr ""
 
 #, c-format
@@ -154,7 +155,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A boolean scalar expected.\n"
 msgstr ""
 
-# File: modules/polynomials/demos/intro/poly.intro.dem.sce, line: 8
 msgid "Press &lt;enter> in the console to proceed step by step"
 msgstr ""
 
@@ -181,9 +181,6 @@ msgstr ""
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 
-#
-# File: modules/polynomials/macros/diophant.sci, line: 24
-# File: modules/polynomials/macros/diophant.sci, line: 30
 #, c-format
 msgid "%s: Argument #%d: Inf or NaN coefficients not supported.\n"
 msgstr ""
@@ -193,7 +190,8 @@ msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván mnohočlen.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván racionální zlomek.\n"
 
@@ -258,8 +256,10 @@ msgstr ""
 "%s: Špatný typ argumentu #%d: Očekáváno pole celých čísel nebo polynom.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
-msgstr "%s: Špatný typ argumentu #%d: Očekávána reálná matice nebo polynomy.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgstr ""
+"%s: Špatný typ argumentu #%d: Očekávána reálná matice nebo polynomy.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: String expected.\n"

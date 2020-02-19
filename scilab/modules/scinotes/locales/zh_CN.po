@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 17:24+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2019-02-15 22:06+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: zh_CN\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -30,7 +30,8 @@ msgid "%s: No more memory.\n"
 msgstr "%s：内存不足。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该为实矩阵或‘只读’。\n"
 
 #, c-format
@@ -1104,9 +1105,6 @@ msgstr "默认文件头"
 msgid "Add a default header to new file"
 msgstr "新建文件自动添加默认文件头"
 
-#
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1474
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 2038
 msgid "Available variables: {{$current-date}}, {{$current-year}}"
 msgstr ""
 
@@ -1118,20 +1116,16 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该为字符串.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Number expected.\n"
-msgstr "%s：第%d个参数的类型错误：应该为字符串.\n"
+msgstr ""
 
-#
-# File: modules/scinotes/macros/edit.sci, line: 51
 #, c-format
 msgid ""
 "edit: %s is an alias of %s => editing %s()\n"
 "      Please reset %s=%s if %s() is recompiled.\n"
 msgstr ""
 
-#
-# File: modules/scinotes/macros/edit.sci, line: 92
 #, c-format
 msgid "%s: %s() is an uneditable hard coded function.\n"
 msgstr ""

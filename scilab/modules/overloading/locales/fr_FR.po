@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 01:01+0000\n"
-"Last-Translator: Paul Bignier <Unknown>\n"
+"PO-Revision-Date: 2019-02-15 22:15+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: fr\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -58,7 +58,8 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid ""
+"%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr ""
 "%s : L'affectation d'une chaîne de caractères dans une matrice de nombres "
 "n'est pas implémentée.\n"
@@ -69,10 +70,9 @@ msgstr "%s : Arguments #%d et #%d : tailles incompatibles.\n"
 
 #, c-format
 msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
-msgstr "%s : La syntaxe x(j) est seulement autorisée pour les blocs C ligne.\n"
+msgstr ""
+"%s : La syntaxe x(j) est seulement autorisée pour les blocs C ligne.\n"
 
-#
-# File: modules/overloading/macros/%cblock_p.sci, line: 16
 msgid "  (empty table)\n"
 msgstr ""
 
@@ -81,7 +81,8 @@ msgid "%s: Invalid field name.\n"
 msgstr "%s : Nom de champ invalide.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Un nom de champ valide "
 "attendu.\n"
@@ -95,7 +96,8 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s : Nombre erroné d'arguments de sortie.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : La transposée ne peut "
 "pas être définie.\n"
@@ -197,7 +199,8 @@ msgstr "%s : Le problème est singulier.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %s attendu.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %s attendu.\n"
 
 #, c-format
 msgid "%s: Inconsistent addition.\n"
@@ -286,14 +289,10 @@ msgstr "%s : Hypermatrice non supportée.\n"
 msgid "%s: Inconsistent multiplication.\n"
 msgstr "%s : Multiplication incohérente.\n"
 
-#
-# File: modules/overloading/macros/%r_p.sci, line: 75
 #, c-format
 msgid "column %d"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%r_p.sci, line: 77
 #, c-format
 msgid "columns %d to %d"
 msgstr ""
@@ -376,8 +375,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr "%s : Argument n°%d : matrice carrée attendue.\n"
 
-#
-# File: modules/overloading/macros/%s_pow.sci, line: 66
 #, c-format
 msgid "%s: Unable to diagonalize.\n"
 msgstr ""
@@ -433,84 +430,57 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s : Type erroné de l'argument %d : Un scalaire réel attendu.\n"
 
 #, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
+msgid ""
+"%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 "%s : Les matrices d'entrée et de sortie doivent avoir le même nombre "
 "d'éléments.\n"
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 43
 #, c-format
 msgid "%s struct with no field"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 52
 msgid "0x0 struct with fields:"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 62
 #, c-format
 msgid "%s struct with fields:"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 97
 msgid "(void)"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 114
 #, c-format
 msgid "(%d lines)"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 119
 msgid "rational"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 121
 msgid "complex rational"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 123
 #, c-format
 msgid "[%s %s] of %s"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 131
 msgid "cell"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 137
 msgid " empty list()"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 164
 #, c-format
 msgid "[%s] %s without field."
 msgstr ""
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 166
 #, c-format
 msgid "[%s] %s with fields:"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 219
 msgid "[0x0 struct] with no field"
 msgstr ""
 
-#
-# File: modules/overloading/macros/%st_p.sci, line: 225
 #, c-format
 msgid "[%s struct] with fields:"
 msgstr ""

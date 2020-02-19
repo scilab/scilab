@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 12:53+0000\n"
+"PO-Revision-Date: 2017-11-02 12:53+0000\n"
 "Last-Translator: Webish <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: zh_CN\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -61,9 +61,9 @@ msgstr "%s：无法打开文件%s。\n"
 msgid "Index range must be specified as a scalar or a 2 elements vector."
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: File '%s': Unrecognized data format.\n"
-msgstr "无法识别的数据格式。"
+msgstr ""
 
 msgid "Sample limit vector must have 2 elements."
 msgstr ""
@@ -77,8 +77,6 @@ msgstr ""
 msgid "Error in file format."
 msgstr ""
 
-#
-# File: modules/sound/macros/auread.sci, line: 174
 #, c-format
 msgid "%s: File '%s' is not a .au sound file.\n"
 msgstr ""
@@ -120,36 +118,30 @@ msgstr "%s：输出参数的数目错误。\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s：输出参数的数目错误。\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个。\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: %s expected.\n"
-msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
+msgstr ""
 
-#
-# File: modules/sound/macros/playsnd.sci, line: 54
 #, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
-msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
+msgstr ""
 
-#
-# File: modules/sound/macros/playsnd.sci, line: 91
 #, c-format
 msgid "%s: Argument #%d: The file '%s' does not exist.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal number expected.\n"
-msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
+msgstr ""
 
-#
-# File: modules/sound/macros/playsnd.sci, line: 100
 #, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
 msgstr ""
@@ -195,8 +187,7 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
 "vector of %d integers.\n"
-msgstr ""
-"%s：输入参数#%d的值错误：必须为%s或%s，一个整数，或者一个含有%d整数的向量。\n"
+msgstr "%s：输入参数#%d的值错误：必须为%s或%s，一个整数，或者一个含有%d整数的向量。\n"
 
 #, c-format
 msgid ""
@@ -204,8 +195,6 @@ msgid ""
 "scalar or %d-element vector.\n"
 msgstr "%s：输入参数的值错误：索引范围必须制定为一个标量，或有%d元素的向量。\n"
 
-#
-# File: modules/sound/macros/wavread.sci, line: 84
 #, c-format
 msgid "%s: The file '%s' does not exist.\n"
 msgstr ""
@@ -227,7 +216,8 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s：发生了一个错误：不支持%s。\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr "%s：发生了一个错误：不正确的文件格式。读<%s>区块时出错。\n"
 
 msgid "Invalid .wav file: found data before format information."
@@ -236,8 +226,6 @@ msgstr "不正确的.wav文件：在格式信息之前发现数据"
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "在RIFF文件中有不正确的块（chunk）大小信息。"
 
-#
-# File: modules/sound/macros/wavread.sci, line: 217
 #, c-format
 msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
 msgstr ""
@@ -257,6 +245,3 @@ msgstr "采样限制向量必须有2个入口。"
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "不正确的采样限制（使用升序）"
-
-#~ msgid "Invalid wav format."
-#~ msgstr "不正确的wav格式。"

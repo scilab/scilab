@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 15:52+0000\n"
+"PO-Revision-Date: 2020-02-07 13:10+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: es\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -281,8 +281,6 @@ msgstr ""
 msgid "\t%s (%s) will be installed in the '%s' section"
 msgstr "\t%s (%s) se instalará en la sección '%s'"
 
-#
-# File: modules/atoms/macros/atomsInstall.sci, line: 259
 #, c-format
 msgid "\t%s (%s) is already installed in the '%s' section and up-to-date"
 msgstr ""
@@ -399,27 +397,19 @@ msgid ""
 msgstr ""
 "%s: No tiene permisos suficientes para borrar una versión del paquete %s.\n"
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 217
 #, c-format
 msgid ""
 "\t%s (%s) will be removed from the '%s' section and its package fully deleted"
 msgstr ""
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 219
 #, c-format
 msgid "\t%s (%s) will be removed from the '%s' section"
 msgstr ""
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 222
 #, c-format
 msgid "\t%s (%s) cannot be removed from the '%s' section and will be broken"
 msgstr ""
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 247
 #, c-format
 msgid ""
 "\tthe package %s (%s) is currently loaded, It will be removed at next Scilab "
@@ -430,27 +420,20 @@ msgstr ""
 msgid "\tRemoving %s (%s)(%s)... "
 msgstr "\tRemoviendo %s (%s)(%s)... "
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
 "SCIHOME.\n"
 "\tFor security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
-"%s: El directorio de este paquete (%s-%s) no está ubicado en SCI ni en "
-"SCIHOME. Por motivos de seguridad, ATOMS no permite eliminar este "
-"directorio.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: The package (%s - %s) directory %s cannot be deleted.\n"
 "\tIt may be used and locked. Please also check that you have write "
 "permission on it.\n"
 msgstr ""
-"%s: No puede crearse el directorio %s, por favor revise si tiene acceso de "
-"escritura en este directorio.\n"
 
-#
-# File: modules/atoms/macros/atomsRemove.sci, line: 314
 #, c-format
 msgid ""
 "%s: The package (%s - %s) has been removed from its root directory %s.\n"
@@ -583,7 +566,8 @@ msgstr ""
 "o revisar si su sistema operativo es compatible con ATOMS"
 
 msgid "No ATOMS module is available: your repository list is empty."
-msgstr "Módulos de ATOMOS no disponibles: su lista de repositorios está vacía"
+msgstr ""
+"Módulos de ATOMOS no disponibles: su lista de repositorios está vacía"
 
 msgid "File"
 msgstr "Archivo"
@@ -624,7 +608,8 @@ msgstr "Instalando"
 msgid "Installation failed!"
 msgstr "¡Falló la instalación!"
 
-msgid "Installation done! Please restart Scilab to take changes into account."
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "¡Instalación finalizada! Por favor reinicie Scilab para que se apliquen los "
 "cambios."
@@ -710,8 +695,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: 'filter:all','filter:"
-"main' o una categoría principal válida eperada.\n"
+"%s: Valor incorrecto del argumento de entrada #%d: "
+"'filter:all','filter:main' o una categoría principal válida eperada.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -943,15 +928,16 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - MD5SUM observada  : '%s'\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: se esperaba 'error' o "
 "'warning'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with .tar."
-"gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: Valor incorrecto para el argumento de entrada #%d: Se esperaba una "
 "cadena simple que termine con .tar.gz, .tgz or .zip.\n"
@@ -1089,18 +1075,19 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: No puede resolverse el árbol de dependencias.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada#%d: Se esperaban las letras "
 "'A' o 'I'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version/"
-"dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid "
+"version/dependency.\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Esto no es una versión/"
-"dependencia válida.\n"
+"%s: Valor incorrecto del argumento de entrada #%d: Esto no es una "
+"versión/dependencia válida.\n"
 
 msgid "Atoms:"
 msgstr ""
@@ -1159,7 +1146,8 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) no esta instalado.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Esta no es una versión "
 "válida.\n"
@@ -1168,17 +1156,3 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba ASC o DESC.\n"
-
-#~ msgid ""
-#~ "%s: The directory of this package (%s-%s) cannot been deleted, please "
-#~ "check if you have write access on this directory : %s.\n"
-#~ msgstr ""
-#~ "%s: El directorio de este paquete (%s-%s) no puede ser eliminado, por "
-#~ "favor revise si tiene acceso de escritura en este directorio : %s.\n"
-
-#~ msgid ""
-#~ "%s: The root directory of this package (%s-%s) cannot been deleted, "
-#~ "please check if you have write access on this directory : %s.\n"
-#~ msgstr ""
-#~ "%s: El directorio raíz de este paquete (%s-%s) no puede ser eliminado,por "
-#~ "favor revise si tiene acceso de escritura en este directorio : %s.\n"

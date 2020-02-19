@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 17:55+0000\n"
+"PO-Revision-Date: 2019-02-15 22:14+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
-"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: pl\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -98,17 +98,16 @@ msgstr ""
 msgid "%s: variable size exceeded : less than %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: musi być w przedziale "
-"[%s, %s].\n"
 
 msgid "Invalid index.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
+msgid ""
+"%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr ""
 
 #, c-format
@@ -125,12 +124,10 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: converted value is out of range.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być pomiędzy %d "
-"i %d.\n"
 
 #, c-format
 msgid ""
@@ -138,20 +135,17 @@ msgid ""
 "expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected."
 msgstr "%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwano '%s' lub "
-"'%s' .\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
@@ -218,23 +212,17 @@ msgid "%s: Wrong value for input argument #%d: %s expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego #%d: oczekiwano '%s'.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
-#
-# File: modules/elementary_functions/sci_gateway/cpp/sci_linspace.cpp, line: 80
-# File: modules/elementary_functions/sci_gateway/cpp/sci_linspace.cpp, line: 87
 #, c-format
 msgid "%s: Arguments %d and %d must have same dimensions.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong values for input argument #%d: Must be less than %d.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być pomiędzy %d "
-"i %d.\n"
 
 #, c-format
 msgid ""
@@ -258,7 +246,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Input and output matrices must have the same number of elements.\n"
+msgid ""
+"%s: Input and output matrices must have the same number of elements.\n"
 msgstr ""
 
 #, c-format
@@ -313,23 +302,21 @@ msgstr ""
 msgid ": 2-D examples"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Text(s) expected.\n"
-msgstr "%s: Niewłaściwy typ argumentu %d: Oczekiwana jest macierz.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: List expected.\n"
-msgstr "%s: Niewłaściwy typ argumentu %d: Oczekiwana jest macierz.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Arguments #%d and #%d: Same numbers of elements expected.\n"
-msgstr "%s: Niewłaściwy typ argumentu %d: Oczekiwana jest macierz.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: List of functions identifiers expected.\n"
 msgstr ""
-"%s: Nieprawidłowy argument wejściowy nr %d: oczekiwana liczba całkowitą bez "
-"znaku.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Column expected.\n"
@@ -375,9 +362,6 @@ msgstr ""
 msgid "%s: Wrong size of input argument: %d expected.\n"
 msgstr ""
 
-#
-# File: modules/elementary_functions/macros/%sp_max.sci, line: 29
-# File: modules/elementary_functions/macros/%sp_min.sci, line: 29
 msgid " (in list)"
 msgstr ""
 
@@ -385,9 +369,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
 msgstr ""
 
-#
-# File: modules/elementary_functions/macros/%sp_max.sci, line: 41
-# File: modules/elementary_functions/macros/%sp_min.sci, line: 41
 #, c-format
 msgid "%s: Argument #%d: Complex numbers not supported.\n"
 msgstr ""
@@ -402,9 +383,6 @@ msgid ""
 "expected.\n"
 msgstr ""
 
-#
-# File: modules/elementary_functions/macros/%sp_max.sci, line: 140
-# File: modules/elementary_functions/macros/%sp_min.sci, line: 139
 #, c-format
 msgid "%s: Argument #%d%s: Complex numbers not supported.\n"
 msgstr ""
@@ -483,11 +461,9 @@ msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być pomiędzy %d "
 "i %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
 msgstr ""
-"%s: Nieprawidłowy argument wejściowy nr %d: oczekiwana liczba całkowitą bez "
-"znaku.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
@@ -505,8 +481,6 @@ msgid ""
 "integers expected.\n"
 msgstr ""
 
-#
-# File: modules/elementary_functions/macros/blockdiag.sci, line: 29
 #, c-format
 msgid ""
 "Function not defined for given argument type(s),\n"
@@ -548,7 +522,8 @@ msgstr ""
 "kwadratowej.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
 "%s: Niewłaściwa wartość argumentu wejściowego nr %d: macierz nie można "
 "zdiagonalizować.\n"
@@ -585,8 +560,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
 "integers expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwany skalar/"
-"wektor/macierz liczb całkowitych dodatnich.\n"
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwany "
+"skalar/wektor/macierz liczb całkowitych dodatnich.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
@@ -606,15 +581,14 @@ msgstr ""
 "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana liczba "
 "całkowita dodatnia.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be <= %d.\n"
-msgstr "%s: Niewłaściwy typ argumentu %d: Oczekiwana jest macierz.\n"
-
-#, fuzzy, c-format
-msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwano liczby "
-"całkowitej dodatniej.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -627,8 +601,6 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
 
-#
-# File: modules/elementary_functions/macros/intersect.sci, line: 98
 #, c-format
 msgid "%s: Argument #%d: Orientation not supported for hypermatrix.\n"
 msgstr ""
@@ -637,13 +609,13 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: %s not supported.\n"
-msgstr "%s: Niewłaściwy typ argumentu %d: Oczekiwana jest macierz.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal numbers expected.\n"
-msgstr "%s: Niewłaściwy typ argumentu %d: Oczekiwana jest macierz.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Log of a singular matrix.\n"
@@ -741,7 +713,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid ""
+"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -767,23 +740,19 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar or vector expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwany wektor "
-"rzadki.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
-msgstr "%s: Niewłaściwy typ argumentu %d: Oczekiwana jest macierz.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "%s: Wrong dimensions for input arguments: The sparse result must be 2D, not "
 "%dD.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwany wektor "
-"rzadki.\n"
 
 msgid "RESIZING a matrix of DECIMALS:"
 msgstr ""
@@ -882,7 +851,8 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #, c-format
@@ -896,19 +866,3 @@ msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego: Niekompatybilny "
 "rozmiar.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s: Niepoprawna wartość argumentu wejściowego nr %d: oczekiwane ['g' 'r' "
-#~ "'c' 'lc' 'lr'].\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix "
-#~ "of positive integers expected.\n"
-#~ msgstr ""
-#~ "%s: Niepoprawna wartość argumentu wejściowego nr %d: Oczekiwany skalar/"
-#~ "wektor/macierz/hipermacierz z liczb całkowitych dodatnich.\n"

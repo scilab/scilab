@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 16:16+0000\n"
-"Last-Translator: Mickael Albertus <Unknown>\n"
+"PO-Revision-Date: 2020-02-18 14:49+0000\n"
+"Last-Translator: CARNIS Adeline <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: fr\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -63,9 +63,9 @@ msgstr ""
 "La gamme des index doit être spécifiée comme un scalaire ou un vecteur à 2 "
 "éléments."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: File '%s': Unrecognized data format.\n"
-msgstr "Format de données non reconnu."
+msgstr "%s : Fichier '%s' : Format de données non reconnu.\n"
 
 msgid "Sample limit vector must have 2 elements."
 msgstr "Le vecteur des limites de l'échantillon doit avoir 2 éléments."
@@ -74,16 +74,15 @@ msgid "Sample limits out of range."
 msgstr "Limites d'échantillonnage en dehors de l'intervalle."
 
 msgid "Sample limits must be given in ascending order."
-msgstr "Les limites de l'échantillon doivent être données par ordre croissant."
+msgstr ""
+"Les limites de l'échantillon doivent être données par ordre croissant."
 
 msgid "Error in file format."
 msgstr "Erreur de format de fichier."
 
-#
-# File: modules/sound/macros/auread.sci, line: 174
 #, c-format
 msgid "%s: File '%s' is not a .au sound file.\n"
-msgstr ""
+msgstr "%s : Fichier '%s' n'est pas un fichier son .au\n"
 
 msgid "Error while reading sound file."
 msgstr "Erreur à la lecture du fichier son."
@@ -126,35 +125,33 @@ msgstr "%s : Nombre erroné d'arguments de sortie.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s : Nombre erroné d'argument(s) de sortie.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: %s expected.\n"
-msgstr "%s : Argument d'entrée n°%d faux : '%s' ou '%s' attendu.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être >= %d.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
-msgstr "%s : Argument d'entrée n°%d faux : '%s' ou '%s' attendu.\n"
+msgstr ""
 
-#
-# File: modules/sound/macros/playsnd.sci, line: 91
 #, c-format
 msgid "%s: Argument #%d: The file '%s' does not exist.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal number expected.\n"
-msgstr "%s : Type erroné de l'argument n°%d : Une matrice réelle attendue.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être >= %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
@@ -176,7 +173,8 @@ msgstr "Format de données inconnu."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 msgid "Requires 2-D values only."
 msgstr "Requiert des valeurs 2D seulement."
@@ -211,8 +209,6 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée : La plage d'index doit être "
 "spécifiée sous la forme d'un scalaire ou d'un vecteur de %d éléments.\n"
 
-#
-# File: modules/sound/macros/wavread.sci, line: 84
 #, c-format
 msgid "%s: The file '%s' does not exist.\n"
 msgstr ""
@@ -234,7 +230,8 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s : Une erreur est survenue : %s n'est pas supporté.\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s : Une erreur est survenue : Format de fichier invalide. Erreur pendant la "
 "lecture du morceau <%s>.\n"
@@ -247,8 +244,6 @@ msgstr ""
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Information erronée de la taille des fragments dans le fichier RIFF."
 
-#
-# File: modules/sound/macros/wavread.sci, line: 217
 #, c-format
 msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
 msgstr ""
@@ -271,6 +266,3 @@ msgstr "Le vecteur des limites d'échantillonnages doit avoir 2 entrées."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Limites d'échantillonnage invalides (utilisez un ordre croissant)."
-
-#~ msgid "Invalid wav format."
-#~ msgstr "Format wav invalide."

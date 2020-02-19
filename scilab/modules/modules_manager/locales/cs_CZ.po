@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 21:59+0000\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
-"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: cs\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -68,7 +68,8 @@ msgstr ""
 "zápis do tohoto souboru.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
 #, c-format
@@ -116,14 +117,10 @@ msgstr "Vytvářím loader.sce...\n"
 msgid "Generating unloader.sce...\n"
 msgstr "Vytváření unloader.sce...\n"
 
-#
-# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 70
 #, c-format
 msgid "%s: The module '%s' has no entry to be localized.\n"
 msgstr ""
 
-#
-# File: modules/modules_manager/macros/tbx_build_localization.sci, line: 74
 #, c-format
 msgid ""
 "%s: \n"

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 15:52+0000\n"
+"PO-Revision-Date: 2019-03-26 16:35+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ru\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -30,7 +30,8 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 "%s: Неверный тип аргумента №%d: ожидалась вещественная матрица либо "
 "'readonly'.\n"
@@ -104,7 +105,8 @@ msgid "The file could not be created, check the path"
 msgstr "Не удалось создать файл, проверьте путь"
 
 msgid "The file is not writable so it is opened in read-only mode"
-msgstr "Нет разрешения на запись файла, поэтому он доступен только для чтения"
+msgstr ""
+"Нет разрешения на запись файла, поэтому он доступен только для чтения"
 
 msgid "You do not have the permissions to write this file"
 msgstr "У вас нет разрешения на запись этого файла"
@@ -987,7 +989,8 @@ msgid "Completion"
 msgstr "Завершение"
 
 msgid "Auto-complete brackets when cursor is at the end of a line"
-msgstr "Автоматически закрывать скобки, когда курсор находится в конце строки"
+msgstr ""
+"Автоматически закрывать скобки, когда курсор находится в конце строки"
 
 msgid "General display options"
 msgstr "Общие настройки отображения"
@@ -1116,37 +1119,34 @@ msgstr "Заголовок по умолчанию"
 msgid "Add a default header to new file"
 msgstr "Добавлять заголовок по умолчанию к новому файлу"
 
-#
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 1474
-# File: modules/scinotes/src/scinotes_fake_xml.c, line: 2038
 msgid "Available variables: {{$current-date}}, {{$current-year}}"
-msgstr ""
+msgstr "Доступные переменные: {{$current-date}}, {{$current-year}}"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
+"%s: Неверное количество входных аргументов: ожидалось как минимум %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Number expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
-msgid "%s: Wrong type for input argument #%d: Number expected.\n"
-msgstr "%s: Неверный тип аргумента №%d: ожидалась матрица строк.\n"
-
-#
-# File: modules/scinotes/macros/edit.sci, line: 51
 #, c-format
 msgid ""
 "edit: %s is an alias of %s => editing %s()\n"
 "      Please reset %s=%s if %s() is recompiled.\n"
 msgstr ""
+"правка: %s является псевдонимом %s => редакция %s()\n"
+"      Пожалуйста, перезапустите %s=%s если%s() перекомпилировано.\n"
 
-#
-# File: modules/scinotes/macros/edit.sci, line: 92
 #, c-format
 msgid "%s: %s() is an uneditable hard coded function.\n"
 msgstr ""
+"%s: %s() является нередактируемой жёстко запрограммированной функцией.\n"
 
 msgid "The last error did not occur inside a Scilab macro."
 msgstr "Последняя ошибка не встретилась внутри макроса Scilab."

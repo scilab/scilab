@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 03:58+0000\n"
+"PO-Revision-Date: 2013-03-04 03:58+0000\n"
 "Last-Translator: Alvin Tseng <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
-"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: zh_TW\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -63,7 +63,8 @@ msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+msgid ""
+"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
 
 #, c-format
@@ -174,7 +175,8 @@ msgid "%s: Error with %s: info = %d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 
 #, c-format

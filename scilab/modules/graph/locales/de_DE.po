@@ -1,0 +1,57 @@
+# German translation for scilab
+# Copyright (c) 2020 Rosetta Contributors and Canonical Ltd 2020
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2020-01-11 17:29+0000\n"
+"Last-Translator: Dan Cooper <Unknown>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+
+msgid "Copy"
+msgstr "Kopieren"
+
+msgid "Cut"
+msgstr "Ausschneiden"
+
+msgid "Group"
+msgstr "Gruppieren"
+
+msgid "UnGroup"
+msgstr "Gruppierung aufheben"
+
+msgid "Paste"
+msgstr "Einfügen"
+
+msgid "Redo"
+msgstr "Aktion erneut ausführen"
+
+msgid "Undo"
+msgstr "Rückgängig"
+
+msgid "Zoom In"
+msgstr "Vergrößern"
+
+msgid "Zoom Out"
+msgstr "Verkleinern"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Select all"
+msgstr "Alle auswählen"
+
+msgid "Invert selection"
+msgstr "Auswahl umkehren"
+
+#, c-format
+msgid "Untitled - %s"
+msgstr "Unbetitelt - %s"

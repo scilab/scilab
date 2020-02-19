@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 21:21+0000\n"
+"PO-Revision-Date: 2020-02-18 22:04+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -133,11 +133,3 @@ msgstr "%s: вузол призначення не належить до тип�
 #, c-format
 msgid "%s: Invalid attribute name: %s."
 msgstr "%s: некоректна назва атрибута: %s."
-
-#, c-format
-#~ msgid "%s: Invalid %s file.\n"
-#~ msgstr "%s: некоректний файл %s.\n"
-
-#, c-format
-#~ msgid "%s: The file %s does not exist.\n"
-#~ msgstr "%s: файла з назвою %s не існує.\n"

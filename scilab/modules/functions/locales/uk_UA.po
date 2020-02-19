@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 20:00+0000\n"
+"PO-Revision-Date: 2020-01-15 18:14+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -36,7 +36,8 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано ціле число.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано ціле число "
 "або рядок.\n"
@@ -73,11 +74,10 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
 "рядків.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -168,25 +168,3 @@ msgstr "Будь ласка, використовуйте %s."
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "Цю функцію буде назавжди вилучено у Scilab %s"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: A character string expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати рядок з "
-#~ "символів.\n"
-
-#, c-format
-#~ msgid "%s: Undefined variable %s.\n"
-#~ msgstr "%s: невизначена змінна %s.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Name of a Scilab function "
-#~ "expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати назву "
-#~ "функції Scilab.\n"
-
-#~ msgid "No comment available."
-#~ msgstr "Немає коментаря."

@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 12:24+0000\n"
+"PO-Revision-Date: 2017-01-27 12:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation-team-uk@lists.sourceforge.net>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -139,7 +139,8 @@ msgstr ""
 "рядок або вектор-стовпчик з дійсних значень.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано масив-рядок з "
 "рядків.\n"
@@ -209,7 +210,8 @@ msgstr "%s: некоректна кількість параметрів: пар
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
@@ -236,7 +238,8 @@ msgstr "%s: помилкова кількість вхідних парамет�
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s: Unable to open file: '%s'.\n"
@@ -251,7 +254,8 @@ msgstr "%s: %s не є коректним файлом бібліотеки.\n"
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
-msgstr "%s: помилкова версія формату файлів SOD. Мало бути: %d Виявлено: %d\n"
+msgstr ""
+"%s: помилкова версія формату файлів SOD. Мало бути: %d Виявлено: %d\n"
 
 #, c-format
 msgid "%s: Unable to load '%s'.\n"
@@ -303,7 +307,8 @@ msgstr "%s: не вдалося оновити запис версії форм�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: More than %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути більше за %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути більше за %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or double expected.\n"
@@ -548,7 +553,8 @@ msgstr "Не вдалося створити вказаний файл hdf5: %s.
 #, c-format
 msgid ""
 "Cannot open the file: %s, an empty file with the same name already exists."
-msgstr "Не вдалося відкрити файл: %s, вже існує порожній файл з такою назвою."
+msgstr ""
+"Не вдалося відкрити файл: %s, вже існує порожній файл з такою назвою."
 
 #, c-format
 msgid "Cannot append the file (not HDF5): %s."
@@ -796,7 +802,8 @@ msgid "Invalid rank, must be in the interval [0, %d]."
 msgstr "Некоректний ранг. Ранг має належати інтервалу [0, %d]."
 
 msgid "No converter found for the specified target datatype."
-msgstr "Для вказаного типу даних призначення не виявлено засобу перетворення."
+msgstr ""
+"Для вказаного типу даних призначення не виявлено засобу перетворення."
 
 msgid "Cannot create a new dataspace."
 msgstr "Не вдалося створити новий простір даних."

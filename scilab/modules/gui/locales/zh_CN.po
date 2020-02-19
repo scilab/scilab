@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 17:21+0000\n"
-"Last-Translator: Webish <Unknown>\n"
+"PO-Revision-Date: 2019-02-15 22:03+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
-"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: zh_CN\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -233,7 +233,8 @@ msgid "%s: Wrong size for input argument #%d: A '%s' handle expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为'%s'句柄。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 
 #, c-format
@@ -276,11 +277,13 @@ msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d个。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
@@ -309,7 +312,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -472,7 +476,8 @@ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s：第%d个输入参数错误：应该为‘%s’或‘%s’。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 
 #, c-format
@@ -688,7 +693,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid ""
+"Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr "属性'%s'的类型错误：应该为一个实数行向量或者一个字符串。\n"
 
 #, c-format
@@ -1040,9 +1046,6 @@ msgstr "选择一个文件写入"
 msgid "Figure saved.\n"
 msgstr "Figure已被保存\n"
 
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 702
-# File: modules/gui/src/gui_fake_xml.c, line: 742
 msgid "'Right click and drag to rotate.'"
 msgstr ""
 
@@ -1175,9 +1178,7 @@ msgid ""
 "Due to your video card drivers limitations, that are not able to manage "
 "OpenGL, Scilab will not be able to draw any graphics. Please update your "
 "driver."
-msgstr ""
-"由于显卡驱动限制，无法管理OpenGL，所以Scilab无法绘制任何图形。请升级您的驱"
-"动。"
+msgstr "由于显卡驱动限制，无法管理OpenGL，所以Scilab无法绘制任何图形。请升级您的驱动。"
 
 msgid ""
 "disp(\"WARNING: Despite of our previous warning, you choose to use Scilab "
@@ -1417,8 +1418,6 @@ msgstr ""
 msgid "Clear axes"
 msgstr "清除該區域"
 
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 312
 msgid "Delete axes contents and labels"
 msgstr ""
 
@@ -1440,32 +1439,24 @@ msgstr ""
 msgid "Copy figure to system clipboard"
 msgstr ""
 
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 320
 msgid "Set the axes main title"
 msgstr ""
 
 msgid "Label X"
 msgstr ""
 
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 322
 msgid "Set the X axis label"
 msgstr ""
 
 msgid "Label Y"
 msgstr ""
 
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 324
 msgid "Set the Y axis label"
 msgstr ""
 
 msgid "Label Z"
 msgstr ""
 
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 326
 msgid "Set the Z axis label"
 msgstr ""
 
@@ -1592,8 +1583,6 @@ msgstr ""
 msgid "Nurbs"
 msgstr ""
 
-#
-# File: modules/gui/src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 57
 msgid "Anti-aliasing"
 msgstr ""
 
@@ -2184,7 +2173,8 @@ msgstr "无法打开： "
 msgid "Restoration error"
 msgstr ""
 
-msgid "The configuration file has been corrupted and reset to the default one."
+msgid ""
+"The configuration file has been corrupted and reset to the default one."
 msgstr ""
 
 msgid "The configuration file has been corrupted. Scilab needs to restart."
@@ -2304,8 +2294,6 @@ msgstr ""
 msgid "Uicontrols messagebox-like"
 msgstr ""
 
-#
-# File: modules/gui/demos/gui.dem.gateway.sce, line: 40
 msgid "UIcontrols Game of Dice"
 msgstr ""
 
@@ -2511,7 +2499,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -2602,7 +2591,8 @@ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s：输入参数的数目错误：至少%d个。\n"
 
 #, c-format
-msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 
 #, c-format

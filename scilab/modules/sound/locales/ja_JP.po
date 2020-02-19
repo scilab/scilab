@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 15:27+0000\n"
+"PO-Revision-Date: 2017-05-01 15:27+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
-"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
 "X-Poedit-Country: Japan\n"
+"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -32,8 +32,7 @@ msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr "%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Scilab sound モジュールがインストールされていません.\n"
@@ -55,8 +54,7 @@ msgstr "'mapsound'関数を参照"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #
 # File: macros/auread.sci, line: 43
@@ -71,9 +69,9 @@ msgstr "%s: ファイル %s がオープンできません。\n"
 msgid "Index range must be specified as a scalar or a 2 elements vector."
 msgstr "添字範囲はスカラーまたは2要素のベクトルで指定する必要があります."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: File '%s': Unrecognized data format.\n"
-msgstr "データ形式を認識できません."
+msgstr ""
 
 msgid "Sample limit vector must have 2 elements."
 msgstr "サンプル制限ベクトルは2要素としてください."
@@ -87,8 +85,6 @@ msgstr "サンプル制限は昇順で指定してください."
 msgid "Error in file format."
 msgstr "ファイル形式エラー:"
 
-#
-# File: modules/sound/macros/auread.sci, line: 174
 #, c-format
 msgid "%s: File '%s' is not a .au sound file.\n"
 msgstr ""
@@ -104,8 +100,7 @@ msgstr "データファイルが切れています."
 
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
-msgstr ""
-"%s: 入力引数の値が間違っています: ファイル名には文字列を指定してください.\n"
+msgstr "%s: 入力引数の値が間違っています: ファイル名には文字列を指定してください.\n"
 
 msgid "Data array must have 1- or 2-dimensions only."
 msgstr "データ配列の次元は 1または2次元としてください."
@@ -119,9 +114,7 @@ msgid "Error while writing sound file."
 msgstr "サウンド・ファイルの書き込み中にエラー。"
 
 msgid "Mu-law can only be used with 8 bit data. Use method='linear' instead."
-msgstr ""
-"Mu-law は 8ビットデータでのみ使用可能です. method='linear' を代わりに使用して"
-"ください."
+msgstr "Mu-law は 8ビットデータでのみ使用可能です. method='linear' を代わりに使用してください."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -135,40 +128,33 @@ msgstr "%s: 出力引数の数が間違っています.\n"
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr "%s: 出力引数の数が間違っています.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: %s expected.\n"
 msgstr ""
-"%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be >= %d.\n"
 msgstr ""
-"%s: 引数 %d の値が間違っています:　%d 個以上の引数を指定してください.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: '%s' is a directory. File expected.\n"
 msgstr ""
-"%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
 
-#
-# File: modules/sound/macros/playsnd.sci, line: 91
 #, c-format
 msgid "%s: Argument #%d: The file '%s' does not exist.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Decimal number expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
+msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Argument #%d: Must be > %d.\n"
 msgstr ""
-"%s: 引数 %d の値が間違っています:　%d 個以上の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
@@ -199,9 +185,7 @@ msgstr "2次元の値のみとする必要があります."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
@@ -209,27 +193,20 @@ msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定し
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d.\n"
-msgstr ""
-"%s: 引数 %d の値が間違っています:　%d 個以上の引数を指定してください.\n"
+msgstr "%s: 引数 %d の値が間違っています:　%d 個以上の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
 "vector of %d integers.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %s または %s , 整数または %d 整数のベ"
-"クトルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %s または %s , 整数または %d 整数のベクトルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: Index range must be specified as a "
 "scalar or %d-element vector.\n"
-msgstr ""
-"%s: 入力引数の値が間違っています: インデックスの範囲はスカラーまたは %d-要素"
-"ベクトルで指定してください.\n"
+msgstr "%s: 入力引数の値が間違っています: インデックスの範囲はスカラーまたは %d-要素ベクトルで指定してください.\n"
 
-#
-# File: modules/sound/macros/wavread.sci, line: 84
 #, c-format
 msgid "%s: The file '%s' does not exist.\n"
 msgstr ""
@@ -259,10 +236,9 @@ msgstr "%s: エラーが発生しました : %s はサポートされません.\
 #
 # File: macros/wavread.sci, line: 236
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
-msgstr ""
-"%s: エラーが起きました: ファイルフォーマットが不正です、 <%s>　チャンク読み取"
-"りエラー。\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgstr "%s: エラーが起きました: ファイルフォーマットが不正です、 <%s>　チャンク読み取りエラー。\n"
 
 msgid "Invalid .wav file: found data before format information."
 msgstr "不正な .wav ファイル: フォーマット情報の前にデータが見つかりました."
@@ -272,8 +248,6 @@ msgstr "不正な .wav ファイル: フォーマット情報の前にデータ�
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "RIFF・ファイルの不正確なチャンクサイズ情報。"
 
-#
-# File: modules/sound/macros/wavread.sci, line: 217
 #, c-format
 msgid "%s: wav format #%d detected. Only wav formats #%s are supported.\n"
 msgstr ""
@@ -288,8 +262,7 @@ msgstr "wavファイルの読み込みエラーです。"
 # File: macros/wavread.sci, line: 236
 #, c-format
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
-msgstr ""
-"%s: エラーが起きました: データ圧縮フォーマット %s サポートされません。\n"
+msgstr "%s: エラーが起きました: データ圧縮フォーマット %s サポートされません。\n"
 
 msgid "Cannot read .wav file  with more than 16 bits per sample."
 msgstr "16ビット/サンプルを超える .wav ファイルを読み込むことはできません."
@@ -299,6 +272,3 @@ msgstr "サンプル範囲ベクトルは2つのエントリを有する必要�
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "サンプル範囲が間違っています (昇順としてください)"
-
-#~ msgid "Invalid wav format."
-#~ msgstr "wavフォーマットが間違っています."

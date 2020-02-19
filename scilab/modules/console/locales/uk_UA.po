@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 05:46+0000\n"
+"PO-Revision-Date: 2020-02-19 06:30+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
@@ -57,7 +57,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -713,13 +714,8 @@ msgstr "Зберегти журнал"
 msgid "Save file"
 msgstr "Зберегти файл"
 
-#
-# File: modules/console/src/console_fake_xml.c, line: 794
-# File: modules/console/src/console_fake_xml.c, line: 1061
-# File: modules/console/src/console_fake_xml.c, line: 1372
-# File: modules/console/src/console_fake_xml.c, line: 1694
 msgid "Demos"
-msgstr ""
+msgstr "Демонстрації"
 
 msgid "Environment"
 msgstr "Середовище"
@@ -736,9 +732,8 @@ msgstr "Ширина: "
 msgid "Recursion limit: "
 msgstr "Обмеження на рекурсію: "
 
-#, fuzzy
 msgid "Containers display depth: "
-msgstr "Кількість показаних рядків:"
+msgstr "Глибина показу контейнерів: "
 
 msgid "Language setting"
 msgstr "Параметр мови"
@@ -773,9 +768,9 @@ msgstr "Компонування"
 msgid "Select a layout"
 msgstr "Виберіть компонування"
 
-#, fuzzy
 msgid "(Modifying the layout requires to restart Scilab)"
-msgstr "(Зміна компонування потребуватиме перезапуску Scilab)"
+msgstr ""
+"(Для набуття чинності зміненим компонуванням слід перезапустити Scilab)"
 
 msgid "Save layout on exiting"
 msgstr "Зберігати компонування під час виходу з програми"
@@ -807,11 +802,8 @@ msgstr "Назва дії"
 msgid "Key binding"
 msgstr "Прив’язка клавіш"
 
-#
-# File: modules/console/src/console_fake_xml.c, line: 1379
-# File: modules/console/src/console_fake_xml.c, line: 1701
 msgid "The demo interface is dockable"
-msgstr ""
+msgstr "Панель демонстрацій можна швартувати до вікна"
 
 #, c-format
 msgid ""
@@ -837,26 +829,23 @@ msgstr "Не вдалося змінити шрифт консолі."
 msgid "Could not change the Console Foreground."
 msgstr "Не вдалося змінити параметри тексту у консолі."
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
+"%d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
+msgstr "%s: помилковий тип параметра №%d: слід використовувати рядок.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: Мало бути вказано невід’ємний "
-"скаляр.\n"
+"%s: помилкове значення вхідного параметра %d: мало бути використано значення "
+"«%s».\n"

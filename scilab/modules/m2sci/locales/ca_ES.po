@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2020-01-20 15:53+0000\n"
+"PO-Revision-Date: 2020-02-18 22:05+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
-"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: ca\n"
 
 msgid "Input file"
 msgstr "Fitxer d'entrada"
@@ -88,7 +88,8 @@ msgstr ""
 "primer argument no concorda amb el contingut especificat per a les cel·les.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s: Aquesta característica no està implementada: Suport per hipermatrius.\n"
 
@@ -137,7 +138,8 @@ msgstr ""
 "quadrada.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %s, %s,'%s' o "
 "'%s'.\n"
@@ -226,7 +228,8 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s: No hi ha reixa menor a Scilab.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s', '%s' o "
 "'%s'.\n"
@@ -267,7 +270,8 @@ msgstr "%s: Color desconegut a '%s' -> S'ha posat a negre.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver %d o %d.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver %d o %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
@@ -324,7 +328,8 @@ msgstr "Encara no s'ha implementat."
 
 #, c-format
 msgid "Extraction of %s from '%s' tlist is not yet implemented."
-msgstr "Encara no s'ha implementat l'extració de %s a partir d'una tlist '%s'."
+msgstr ""
+"Encara no s'ha implementat l'extració de %s a partir d'una tlist '%s'."
 
 #, c-format
 msgid "index must be a list instead of a: %s."
@@ -420,7 +425,8 @@ msgstr ""
 
 #, c-format
 msgid "(Warning name conflict: function name changed from %s to %s)."
-msgstr "(Avís, conflicte de noms: El nom de la funció ha canviat de %s a %s)."
+msgstr ""
+"(Avís, conflicte de noms: El nom de la funció ha canviat de %s a %s)."
 
 #, c-format
 msgid ""
@@ -455,7 +461,8 @@ msgid "lhs cannot be a %s."
 msgstr "El lhs no pot ser un %s."
 
 #, c-format
-msgid "recursive extraction with one index of type %s is not yet implemented."
+msgid ""
+"recursive extraction with one index of type %s is not yet implemented."
 msgstr ""
 "Encara no s'ha implementat l'extracció recursiva amb un índex del tipus %s."
 
@@ -471,7 +478,8 @@ msgid "Matlab function %s not yet converted."
 msgstr "La funció %s del Matlab encara no s'ha convertit."
 
 #, c-format
-msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid ""
+"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 "El mtlb(%s) es pot reemplaçar per %s() o per %s depenent de si el %s està en "
 "un fitxer M o no."
@@ -489,7 +497,8 @@ msgstr "L.%d: La variable desconeguda %s és un fitxer M."
 
 #, c-format
 msgid "L.%d: Unknown variable %s is a M-file (sci_%s exists)."
-msgstr "L.%d: La variable desconeguda %s és un fitxer M (Existeix el sci_%s)."
+msgstr ""
+"L.%d: La variable desconeguda %s és un fitxer M (Existeix el sci_%s)."
 
 #, c-format
 msgid "Variable %s supposed to be the Imaginary unit."
@@ -809,8 +818,6 @@ msgstr "Modificació de la sintaxi..."
 msgid "Syntax modification: Done"
 msgstr "Modificació de la sintaxi: Feta"
 
-#
-# File: modules/m2sci/macros/mfile2sci.sci, line: 212
 #, c-format
 msgid "%s: %s does not exist or is not the macro name.\n"
 msgstr ""
@@ -878,7 +885,8 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** Final de la sessió mfile2sci() ******"
 
 #, c-format
-msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid ""
+"At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Com a mínim un operand de %s és una matriu buida. L'equivalent al Scilab és "
 "[]."
@@ -899,7 +907,8 @@ msgstr ""
 "variables."
 
 #, c-format
-msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid ""
+"recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
 "La inserció recursiva en una variable que no és ni una cel·la ni una "
 "estructrura: %s."
@@ -921,22 +930,12 @@ msgstr ""
 "Com a mínim un operand és una matriu buida a l'operador: %s, s'ha definit el "
 "resultat com a []."
 
-#
-# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 25
-# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 25
 #, c-format
 msgid ""
 "If %s is imaginary and its module is > 1\n"
 "      the real part of %s is -/2 in Scilab instead of +/2 in Matlab."
 msgstr ""
 
-#
-# File: modules/m2sci/macros/sci_files/sci_acoth.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_asin.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_atan.sci, line: 27
-# File: modules/m2sci/macros/sci_files/sci_atanh.sci, line: 27
 #, c-format
 msgid ""
 "If %s is in [0,1)\n"
@@ -951,12 +950,10 @@ msgstr ""
 "Si %s no és al rang[-1,1]\n"
 "   la part complexa de la sortida %s serà l'oposat al del Matlab."
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "If %s < -1, complex part of output of %s will be the opposite of Matlab one."
 msgstr ""
-"Si %s no és al rang[-1,1]\n"
-"   la part complexa de la sortida %s serà l'oposat al del Matlab."
 
 msgid "is Real."
 msgstr "és real."
@@ -965,7 +962,8 @@ msgid "cube_scaling only used in 3d mode."
 msgstr "El cube_scaling només s'utilitza en el mode 3D."
 
 msgid "Bessel function is not implemented for 2 outputs arguments."
-msgstr "La funció de Bessel no està implementada per a 2 arguments de sortida."
+msgstr ""
+"La funció de Bessel no està implementada per a 2 arguments de sortida."
 
 msgid "is a scalar."
 msgstr "és un escalar."
@@ -1025,7 +1023,8 @@ msgid "Matlab exist(), mtlb_exist() is called."
 msgstr "S'ha cridat al exist(), mtlb_exist() del Matlab."
 
 msgid "mtlb_exist() is just a partial emulation of Matlab exist() function."
-msgstr "mtlb_exist() és una emulació parcial de la funció exist() del Matlab."
+msgstr ""
+"mtlb_exist() és una emulació parcial de la funció exist() del Matlab."
 
 msgid "Unknown type for input parameter: consider fclose(fid)."
 msgstr ""
@@ -1072,7 +1071,8 @@ msgstr "No hi ha prou informació a %s per a definir la marca correcta."
 
 #, c-format
 msgid "Global variable %s added to M2SCI variable list."
-msgstr "S'ha afegit la variable global %s a la llista de variables del M2SCI."
+msgstr ""
+"S'ha afegit la variable global %s a la llista de variables del M2SCI."
 
 msgid "No minor grid in Scilab."
 msgstr "No s'ha definit la reixa menor del Scilab."
@@ -1091,7 +1091,8 @@ msgstr ""
 msgid "Unhandled class: %s."
 msgstr "No s'ha tractat la classe: %s."
 
-msgid "isequal requires fields are in the same order for structs to be equal."
+msgid ""
+"isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 "El isequal requereix camps del mateix ordre per tal que les estructures "
 "siguin iguals."
@@ -1101,7 +1102,8 @@ msgstr "Encara no es pot tractar l'opció -regexp: S'ignorarà."
 
 #, c-format
 msgid "%s is an empty matrix, so result is set to []."
-msgstr "%s és una matriu buida, de manera que el resultat es deixarà com a []."
+msgstr ""
+"%s és una matriu buida, de manera que el resultat es deixarà com a []."
 
 msgid "second output argument will be ignored."
 msgstr "S'ignorarà el segon arugment de sortida."
@@ -1184,17 +1186,3 @@ msgstr "%s: La variable de sortida s'ha deixat com a 'on'."
 
 msgid "unitfile.dat"
 msgstr "unitfile.dat"
-
-#, c-format
-#~ msgid ""
-#~ "If %s is outside [-1,1]\n"
-#~ "   real part of output of %s will be the opposite of Matlab one."
-#~ msgstr ""
-#~ "Si %s és fora de [-1,1]\n"
-#~ "   la part real de %s serà l'oposada del Matlab."
-
-#~ msgid "%s: Wrong number of input argument(s): %d expected.\n"
-#~ msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
-
-#~ msgid "%s: %s module is not installed.\n"
-#~ msgstr "%s: El mòdul %s no està instal·lat.\n"

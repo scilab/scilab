@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 06:03+0000\n"
+"PO-Revision-Date: 2020-02-18 21:59+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
-"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: uk\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -122,11 +122,11 @@ msgstr "%s: \n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", \"%s"
-"\" \n"
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", "
+"\"%s\" \n"
 msgstr ""
-"%s: помилкове значення параметра №%d: мало бути «%s», «%s», «%s», «%s», "
-"«%s» \n"
+"%s: помилкове значення параметра №%d: мало бути «%s», «%s», «%s», «%s», «%s» "
+"\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
@@ -240,18 +240,17 @@ msgstr ""
 msgid "%s: Wrong input argument %d.\n"
 msgstr "%s: помилковий вхідний параметр %d.\n"
 
-#
-# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 429
-# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 648
 #, c-format
 msgid "%s: Input missing from console.\n"
-msgstr ""
+msgstr "%s: не отримано вхідних даних із консолі.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real matrix or column vector "
 "expected.\n"
 msgstr ""
+"%s: помилковий тип вхідного параметра %d: мало бути використано матрицю або "
+"вектор-стовпчик із дійсними елементами.\n"
 
 #, c-format
 msgid "Undefined environment variable %s.\n"
@@ -308,19 +307,3 @@ msgid ""
 msgstr ""
 "%s: спроба виконати команду завершилася помилкою з кодом %s та таким "
 "повідомленням:\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-#~ msgstr ""
-#~ "%s: помилкова кількість вхідних параметрів: слід використовувати від %d "
-#~ "до %d.\n"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати "
-#~ "значення «%s».\n"
-
-#, c-format
-#~ msgid "End of file at line %d.\n"
-#~ msgstr "Кінець файла у рядку %d.\n"

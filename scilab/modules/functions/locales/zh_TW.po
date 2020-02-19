@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2019-02-12 10:57+0000\n"
+"PO-Revision-Date: 2016-06-09 10:57+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
-"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 18857)\n"
+"X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
+"Language: zh_TW\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -30,7 +30,8 @@ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
 
 #, c-format
@@ -59,9 +60,9 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
@@ -142,18 +143,3 @@ msgstr "請用 %s 替換."
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"
 msgstr "此函數 %s 將在 Scilab 中永遠停用."
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: A character string expected.\n"
-#~ msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是字元字串型態.\n"
-
-#, c-format
-#~ msgid "%s: Undefined variable %s.\n"
-#~ msgstr "%s: %s 變數未被定義.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Name of a Scilab function "
-#~ "expected.\n"
-#~ msgstr "%s: 第#%d個參數值有誤:  Scilab 函數名稱才對 .\n"
