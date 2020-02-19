@@ -7,6 +7,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- NO CHECK REF -->
 
 // unit tests for msprintf function
 // =============================================================================
@@ -198,3 +199,14 @@ assert_checkfalse(execstr("msprintf(""%s %s"",""plop"");","errcatch")     <> 999
 refMsg = msprintf(_("%s: Wrong number of input arguments: data doesn''t fit with format.\n"), "msprintf");
 assert_checkerror("msprintf(""%s %s"",""plop"");", refMsg);
 
+// parameter field
+// =============================================================================
+
+assert_checkequal(msprintf("%1$d",1), "1");
+assert_checkequal(msprintf("%1$d%2$d", 1, 2), "12");
+assert_checkequal(msprintf("%2$d%1$d", 1, 2), "21");
+
+refMsg = msprintf(_("%s: Wrong number of input arguments: data doesn''t fit with format.\n"), "msprintf");
+assert_checkerror("msprintf(""%2$d"", 1);", refMsg);
+assert_checkerror("msprintf(""%d%1$d"", 1);", refMsg);
+assert_checkerror("msprintf(""%1$d%d"", 1);", refMsg);

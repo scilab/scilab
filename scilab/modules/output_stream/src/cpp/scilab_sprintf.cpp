@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <cmath>
 #include <list>
+#include <numeric>
 #include "types.hxx"
 #include "double.hxx"
 #include "string.hxx"
@@ -86,12 +87,14 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
 
     wchar_t* pwstStart = pwstFirstOutput;
     bool percentpercent = false;
+    std::vector<int> argumentPos;
 
     while (finish == false)
     {
         wchar_t* pwstEnd = wcsstr(pwstStart + (token.size() == 0 ? 0 : 1), L"%");
         start = pwstStart - pwstFirstOutput;
         percentpercent = false;
+        bool positioned = false;
         if (pwstEnd != nullptr)
         {
             if (token.size() && pwstStart[1] == L'%')
@@ -123,6 +126,19 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
             //end of string
             end = wcslen(pwstFirstOutput);
             finish = true;
+        }
+
+        // parameter field placeholders; manage "%2$d" field
+        if (end > 0)
+        {
+            wchar_t* pwstDollar = wcsstr(pwstStart + (token.size() == 0 ? 0 : 1), L"$");
+            if (pwstDollar != nullptr && (pwstDollar - pwstFirstOutput) < end)
+            {
+                argumentPos.push_back(os_wtoi(pwstStart + 1) - 1);
+                start = pwstDollar - pwstFirstOutput;
+                pwstFirstOutput[start] = L'%';
+                positioned = true;
+            }
         }
 
         TokenDef* tok = new TokenDef;
@@ -237,6 +253,19 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
             wchar_t wcType = *(pwstPercent + 1);
             tok->typePos = static_cast<int>((pwstPercent + 1) - tok->pwstToken);
 
+            //check numer of input
+            //printf("%f") or printf("%$2", 1) for example
+            if (itPos == inPos.end() || (positioned ? argumentPos.back() + 1 : (*itPos).first) >= in.size())
+            {
+                FREE(pwstFirstOutput);
+                Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+                *_piOutputRows = 0;
+                return nullptr;
+            }
+
+            int p = positioned ? argumentPos.back() + 1 : (*itPos).first;
+            int c = (*itPos).second;
+
             switch (wcType)
             {
                 case L'i': //integer
@@ -250,8 +279,6 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         return nullptr;
                     }
 
-                    int p = (*itPos).first;
-                    int c = (*itPos).second;
                     if (in[p]->getType() != types::InternalType::ScilabDouble)
                     {
                         FREE(pwstFirstOutput);
@@ -309,8 +336,6 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         return nullptr;
                     }
 
-                    int p = (*itPos).first;
-                    int c = (*itPos).second;
                     if (in[p]->getType() != types::InternalType::ScilabDouble)
                     {
                         FREE(pwstFirstOutput);
@@ -336,8 +361,6 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         return nullptr;
                     }
 
-                    int p = (*itPos).first;
-                    int c = (*itPos).second;
                     if (in[p]->getType() != types::InternalType::ScilabString)
                     {
                         FREE(pwstFirstOutput);
@@ -383,6 +406,49 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
         }
     }
 
+    // parameter field placeholders MUST all be specified
+    if (!argumentPos.empty())
+    {
+        std::vector<int> sortedArgumentPos = argumentPos;
+        std::sort(sortedArgumentPos.begin(), sortedArgumentPos.end());
+        int previous = 0;
+        for (int i = 1; i < sortedArgumentPos.size() && 0 <= previous && previous < 2; ++i)
+        {
+            previous = sortedArgumentPos[i] - sortedArgumentPos[i - 1];
+        }
+        if (previous < 0 || 2 < previous)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+            *_piOutputRows = 0;
+            return nullptr;
+        }
+        if (sortedArgumentPos.back() + 1 != token.size() - 1)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+            *_piOutputRows = 0;
+            return nullptr;
+        }
+        if (argumentPos.size() != token.size() - 1)
+        {
+            Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
+            *_piOutputRows = 0;
+            return nullptr;
+        }
+
+        /*
+        // update token's pos
+        for (auto it = token.begin(); it != token.end(); ++it)
+        {
+            TokenDef* tok = *it;
+            if (tok->pos == 0)
+            {
+                continue;
+            }
+            tok->pos = argumentPos[tok->pos - 1] + 1;
+        }
+        */
+    }
+
     // count number of output lines in function of \n and size of input args
     (*_piOutputRows) *= iLoop;
     (*_piOutputRows) += *_piNewLine == 1 ? 0 : 1;
@@ -390,7 +456,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
     pwstOutput = (wchar_t**)MALLOC((*_piOutputRows) * sizeof(wchar_t*));
     int outputIter = 0;
     std::wostringstream oFirstOutput;
-    for (int j = 0; j < iLoop; j++)
+    for (int j = 0; j < iLoop; ++j)
     {
         wchar_t* tmpToken = NULL;
         for (auto it = token.begin(); it != token.end();/*no inc*/)
@@ -399,7 +465,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
             wchar_t* token = tmpToken ? tmpToken : tok->pwstToken;
             // find LF in token
             wchar_t* lf = wcsstr(token, L"\n");
-            if(lf)
+            if (lf)
             {
                 // create tkoen as part of current token
                 size_t sToken = lf - token;
@@ -624,7 +690,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                 }
             }
 
-            if(lf)
+            if (lf)
             {
                 // write current line
                 pwstOutput[outputIter++] = os_wcsdup((wchar_t*)oFirstOutput.str().c_str());
@@ -635,7 +701,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                 // skip LF
                 tmpToken = ++lf;
                 // if not at the end of token, continue with same token
-                if(static_cast<size_t>(lf - tok->pwstToken) < wcslen(tok->pwstToken))
+                if (static_cast<size_t>(lf - tok->pwstToken) < wcslen(tok->pwstToken))
                 {
                     continue;
                 }
@@ -656,7 +722,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
     {
         pwstOutput[outputIter++] = os_wcsdup(L"");
     }
-    
+
     for (auto & tok : token)
     {
         delete[] tok->pwstToken;
@@ -808,7 +874,7 @@ static void replace_ld_lld(TokenDef* token)
 static void print_nan_or_inf(wchar_t* pwstTemp, double dblVal, const wchar_t* token, int pos, int width)
 {
     int sizeTotal = (int)wcslen(token);
-    wchar_t* pwstToken = new wchar_t[sizeTotal + 2]{ 0 };
+    wchar_t* pwstToken = new wchar_t[sizeTotal + 2] { 0 };
 
     if (width)
     {
