@@ -77,7 +77,7 @@ wchar_t *getFullFilenameW(const wchar_t* FilenameInput)
             }
         }
 
-        wcTmp = get_full_pathW((const wchar_t*)wcPath);
+        wcTmp = get_full_pathW(wcPath);
         wcscpy(wcPath, wcTmp);
         FREE(wcTmp);
         wcTmp = NULL;

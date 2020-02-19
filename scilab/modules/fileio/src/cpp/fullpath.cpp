@@ -50,6 +50,7 @@ char *get_full_path(const char *_Path)
     {
         canonPath /= "";
     }
+
     return os_strdup(std::filesystem::absolute(canonPath).string().c_str());
 #endif // _MSC_VER
 }
@@ -58,7 +59,18 @@ char *get_full_path(const char *_Path)
 wchar_t *get_full_pathW(const wchar_t * _wcPath)
 {
 #ifdef _MSC_VER
-    std::filesystem::path relPath = std::filesystem::path(_wcPath);
+    std::wstring s(_wcPath);
+    size_t pos = s.find_last_of(L"/\\");
+
+    //remove "file" part
+    bool bAppend = false;
+    if (pos != std::wstring::npos && s.substr(pos + 1) != L"..")
+    {
+        s = s.substr(0, pos);
+        bAppend = true;
+    }
+
+    std::filesystem::path relPath = std::filesystem::path(s);
     std::filesystem::path canonPath = std::filesystem::weakly_canonical(relPath);
     auto relPathIt = relPath.end();
     auto canonPathIt = canonPath.end();
@@ -66,7 +78,16 @@ wchar_t *get_full_pathW(const wchar_t * _wcPath)
     {
         canonPath /= "";
     }
-    return os_wcsdup(std::filesystem::absolute(canonPath).wstring().c_str());
+
+    std::filesystem::path p = std::filesystem::absolute(canonPath);
+
+    //add "file" part
+    if (bAppend)
+    {
+        p /= (_wcPath + pos + 1);
+    }
+
+    return os_wcsdup(p.wstring().c_str());
 #else // POSIX
     char *_FullPath = NULL;
     wchar_t *wFullPath = NULL;
@@ -85,5 +106,3 @@ wchar_t *get_full_pathW(const wchar_t * _wcPath)
     return wFullPath;
 #endif // _MSC_VER
 }
-
-
