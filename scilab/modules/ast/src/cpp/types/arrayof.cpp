@@ -1349,7 +1349,7 @@ GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
             }
             else
             {
-                if ((*_pArgs)[0]->isBool())
+                if ((*_pArgs)[0]->isBool() || (*_pArgs)[0]->isSparseBool())
                 {
                     //boolean extraction must return a column vector
                     int piRealDim[2] = { piCountDim[0], 1 };
