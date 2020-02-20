@@ -77,11 +77,6 @@
 #include BinariesSourcePath + "\modules\spreadsheet\spreadsheet.iss"
 #include BinariesSourcePath + "\modules\differential_equations\differential_equations.iss"
 #include BinariesSourcePath + "\modules\development_tools\development_tools.iss"
-<<<<<<< HEAD
-#include BinariesSourcePath + "\modules\simulated_annealing\simulated_annealing.iss"
-=======
-#include BinariesSourcePath + "\modules\genetic_algorithms\genetic_algorithms.iss"
->>>>>>> 3941781e44f... * Bug 14734 fixed: [simulated_annealing] merged in [optimization]
 #include BinariesSourcePath + "\modules\parameters\parameters.iss"
 #include BinariesSourcePath + "\modules\matio\matio.iss"
 #include BinariesSourcePath + "\modules\call_scilab\call_scilab.iss"
