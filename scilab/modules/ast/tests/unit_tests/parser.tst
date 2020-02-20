@@ -255,7 +255,7 @@ assert_checkequal(a, expected);
 
 //KRONRDIVIDE
 a = [[2 3] ./. -3];
-expected = [([2, 3]./.(-3))];
+expected = -[2 3] / 3;
 assert_checkequal(a, expected);
 
 a = [[2 3] ./. ...
@@ -267,16 +267,15 @@ a = [[2 3] ./. ... // a comment
 assert_checkequal(a, expected);
 
 //KRONLDIVIDE
-a = [[2 3] .\. -3];
-expected = [([2, 3].\.(-3))];
+a = [-3 .\. [2 3]];
 assert_checkequal(a, expected);
 
-a = [[2 3] .\. ...
- -3];
+a = [-3 .\. ...
+ [2 3]];
 assert_checkequal(a, expected);
 
-a = [[2 3] .\. ... // a comment
- -3];
+a = [-3 .\. ... // a comment
+ [2 3]];
 assert_checkequal(a, expected);
 
 //EQ
@@ -468,13 +467,12 @@ assert_checkequal(a, expected);
 //kronrdivide
 a = [[2 3] ./. ... /* a comment */
  -3];
-expected = [([2, 3]./.(-3))];
+expected = [([2, 3] ./. (-3))];
 assert_checkequal(a, expected);
 
 //KRONLDIVIDE
-a = [[2 3] .\. ... /* a comment */
- -3];
-expected = [([2, 3].\.(-3))];
+a = [-3 .\.  ... /* a comment */
+ [2 3]];
 assert_checkequal(a, expected);
 
 //EQ
@@ -650,10 +648,9 @@ expected = [([2, 3]./.(-3))];
 assert_checkequal(a, expected);
 
 //KRONLDIVIDE
-a = [[2 3] .\. ... /* a comment 
+a = [ -3 .\. ... /* a comment 
  on several lines */
- -3];
-expected = [([2, 3].\.(-3))];
+ [2 3] ];
 assert_checkequal(a, expected);
 
 //EQ
