@@ -373,7 +373,7 @@ set([ax.title ax.x_label ax.y_label ax.z_label], "font_size",4);
 xsetech([0.12 0.11 0.37 0.42]);
 ax = drawCnk(0:1000:1e5);
 ax.sub_ticks = [3 3];
-gce().parent.sub_ticks(2) = 4;
+gce().sub_ticks(2) = 4;
 
 drawnow
    ]]></programlisting>
@@ -402,7 +402,7 @@ function ax= drawCnk(n)
 
     // Color bar
     colorbar();
-    cb = gce().parent;
+    cb = gce();
     cb.y_ticks.labels = msprintf("$\\Large 10^{%s}$\n", cb.y_ticks.labels);
     title(cb,"$C_n^k$", "fontsize",3)
 endfunction
@@ -424,7 +424,7 @@ set([ax.title ax.x_label ax.y_label ax.z_label], "font_size",4);
 xsetech([0.12 0.11 0.37 0.42]);
 ax = drawCnk(0:1000:1e5);
 ax.sub_ticks = [3 3];
-gce().parent.sub_ticks(2) = 4;
+gce().sub_ticks(2) = 4;
 
 drawnow
    ]]></scilab:image>
