@@ -237,6 +237,7 @@ Feature changes and additions on 6.1.1
 * `mopen` and `mclose` now handle multiple files and file descriptors.
 * `hash` function with SHA-1,SHA-2 and SHA-3 Secure Hash Algorithms has been added.
 * `loglog`, `semilogx`, `semilogy` Matlab-compatible functions added.
+* `scatter` and `scatter3d` are reforged. New `scatter` options: `"smallOnTop"` and `"datatips"`.
 
 
 Help pages:
@@ -563,6 +564,7 @@ Bug Fixes
 * [#15428](https://bugzilla.scilab.org/15428): `repmat` was slow. Its code did not use `kron` and was complex.
 * [#15431](https://bugzilla.scilab.org/15431): The empty matrix `[]` and its non-convertibility were poorly documented.
 * [#15451](https://bugzilla.scilab.org/15451): The code was not adapted to use `lucene 4.10` in Debian.
+* [#15481](https://bugzilla.scilab.org/15481): `scatter` and `scatter3d` failed when specifying a single data point.
 * [#15514](https://bugzilla.scilab.org/15514): The `set` documentation page needed to be overhauled.
 * [#15517](https://bugzilla.scilab.org/15517): `factorial` could be actually used up to only n=170.
 * [#15522](https://bugzilla.scilab.org/15522): `unique` was not able to consider all Nan values as the same value. A `uniqueNan` option now allows it.
