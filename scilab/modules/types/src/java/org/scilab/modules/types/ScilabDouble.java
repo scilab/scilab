@@ -410,7 +410,7 @@ public class ScilabDouble implements ScilabType {
                 swaped = in.readBoolean();
                 break;
             default:
-                throw new ClassNotFoundException("A class ScilabDouble with a version " + version + " does not exists");
+                throw new ClassNotFoundException("A class ScilabDouble with a version " + version + " does not exist");
         }
     }
 

@@ -853,7 +853,7 @@ public class ScilabInteger implements ScilabType {
                 swaped = in.readBoolean();
                 break;
             default:
-                throw new ClassNotFoundException("A class ScilabInteger with a version " + version + " does not exists");
+                throw new ClassNotFoundException("A class ScilabInteger with a version " + version + " does not exist");
         }
     }
 

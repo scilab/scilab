@@ -16,7 +16,7 @@ c     Copyright Inria
       logical creadmat
       dimension y(3), ydot(3), param(3)
 
-c     If "param" does not exists return else loads param
+c     If "param" does not exist: return, else: loads param
       if(.not.creadmat('param'//char(0),m,n,param)) return
 c     ***********************************
 

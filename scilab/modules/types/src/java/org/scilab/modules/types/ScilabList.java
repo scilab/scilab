@@ -180,7 +180,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
                 varName = (String) in.readObject();
                 break;
             default:
-                throw new ClassNotFoundException("A class ScilabList with a version " + version + " does not exists");
+                throw new ClassNotFoundException("A class ScilabList with a version " + version + " does not exist");
         }
     }
 

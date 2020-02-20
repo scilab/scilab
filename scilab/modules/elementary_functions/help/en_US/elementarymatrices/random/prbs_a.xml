@@ -61,7 +61,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>prbs_a()</literal> will be usefull to simulate the behavior of a 2-state
+            <literal>prbs_a()</literal> will be useful to simulate the behavior of a 2-state
             random system.
         </para>
         <para>
@@ -74,7 +74,7 @@
             The initial state <literal>u(1)</literal> has an equiprobable value -1 or +1.
         </para>
         <para>
-            The distribution of commutations positions along <varname>u</varname> is statistically
+            The distribution of commutation positions along <varname>u</varname> is statistically
             uniform.
         </para>
         <note>
@@ -84,7 +84,7 @@
         <para>
             <literal>prbs_a(n,,positions)</literal> does the same, but sets commutations at the
             given <varname>positions</varname>, instead of at random ones. <varname>nc</varname>
-            is then ignored. Setting a commutation at a position = i insures that
+            is then ignored. Setting a commutation at a position = i ensures that
             <literal>u(i+1)</literal> will be <literal>-u(i)</literal>.
         </para>
         <para>

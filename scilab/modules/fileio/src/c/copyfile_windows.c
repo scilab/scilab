@@ -41,14 +41,14 @@ int CopyFileFunction(wchar_t *DestinationFilename, wchar_t *SourceFilename)
 /*--------------------------------------------------------------------------*/
 int CopyDirectoryFunction(wchar_t *DestinationDirectory, wchar_t *SourceDirectory)
 {
-    /* remove last file separator if it does not exists */
+    /* remove last file separator if it does not exist */
     if ( (SourceDirectory[wcslen(SourceDirectory) - 1] == L'\\') ||
             (SourceDirectory[wcslen(SourceDirectory) - 1] == L'/') )
     {
         SourceDirectory[wcslen(SourceDirectory) - 1] = L'\0';
     }
 
-    /* remove last file separator if it does not exists */
+    /* remove last file separator if it does not exist */
     if ( (DestinationDirectory[wcslen(DestinationDirectory) - 1] == L'\\') ||
             (DestinationDirectory[wcslen(DestinationDirectory) - 1] == L'/') )
     {

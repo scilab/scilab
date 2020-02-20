@@ -22,7 +22,7 @@ function s=%ce_6(varargin)
         if or(varargin(1)==f(3:$)) then //field exists
             // perform standard field extraction
             s=%st_e(varargin(:));
-        else //field does not exists
+        else //field does not exist
             // return empty struct
             s=mlist(["ce","dims"],int32([0 0]))
         end

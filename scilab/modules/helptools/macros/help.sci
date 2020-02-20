@@ -52,7 +52,7 @@ function help(varargin)
 
             helpbrowser(%helps(:,1), key, getlanguage(), %f);
 
-            // If the function name does not exists then full-text search is done (See Java code)
+            // If the function name does not exist, then full-text search is done (See Java code)
 
         else
             error(msprintf(gettext("%s: The help browser is disabled in %s mode.\n"), "help", getscilabmode()));

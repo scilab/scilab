@@ -933,7 +933,7 @@ function varargout = %_sodload(%__varnameList__)
         ok=%t;
         for p=paths
             e=ax;
-            p(1)=p(1)-1// the caption does not exists yet
+            p(1)=p(1)-1// the caption does not exist yet
             for kp=1:size(p,"*"),
                 if or(e.type==["Axes","Compound"])&p(kp)<=size(e.children,"*") then
                     e=e.children(p(kp)),

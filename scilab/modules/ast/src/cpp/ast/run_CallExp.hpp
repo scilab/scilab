@@ -425,7 +425,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
     {
         //result == NULL ,variable doesn't exist :(
         // Should never be in this case
-        // In worst case variable pointing to function does not exists
+        // In worst case variable pointing to function does not exist
         // visitprivate(SimpleVar) will throw the right exception.
     }
     CoverageInstance::stopChrono((void*)&e);

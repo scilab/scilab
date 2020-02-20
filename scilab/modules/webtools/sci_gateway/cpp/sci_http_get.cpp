@@ -83,7 +83,7 @@ types::Function::ReturnValue sci_http_get(types::typed_list &in, types::optional
         FREE(pcFileName);
         if(fd == NULL)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: The given path does not exists.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong value for input argument #%d: The given path does not exist.\n"), fname, 2);
             FREE(pwcFileName);
             return types::Function::Error;
         }

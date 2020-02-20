@@ -91,7 +91,7 @@ function model = configure(model)
     model.out2 = ones(model.out2);
     model.outtyp = ones(model.outtyp);
 endfunction
-// If the following block simulation function does not exists then fail the
+// If the following block simulation function does not exist then fail the
 // test.
 for i = 1:size(defaultlibs,"*")
     [macros, path] = libraryinfo(defaultlibs(i));

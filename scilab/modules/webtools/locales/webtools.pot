@@ -132,7 +132,7 @@ msgstr ""
 # File: modules/webtools/sci_gateway/cpp/sci_http_get.cpp, line: 86
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: The given path does not exists.\n"
+"%s: Wrong value for input argument #%d: The given path does not exist.\n"
 msgstr ""
 
 #

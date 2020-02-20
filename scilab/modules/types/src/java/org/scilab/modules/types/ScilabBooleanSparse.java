@@ -376,7 +376,7 @@ public class ScilabBooleanSparse implements ScilabType {
                 varName = (String) in.readObject();
                 break;
             default:
-                throw new ClassNotFoundException("A class ScilabBooleanSparse with a version " + version + " does not exists");
+                throw new ClassNotFoundException("A class ScilabBooleanSparse with a version " + version + " does not exist");
         }
     }
 

@@ -116,7 +116,7 @@ int sci_figure(char * fname, void* pvApiCtx)
 
         //get current fig from id
         iFig = getFigureFromIndex(iId);
-        if (iFig == 0) // Figure does not exists, create a new one
+        if (iFig == 0) // Figure does not exist, create a new one
         {
             iFig = createNewFigureWithAxes();
             setGraphicObjectProperty(iFig, __GO_ID__, &iId, jni_int,  1);

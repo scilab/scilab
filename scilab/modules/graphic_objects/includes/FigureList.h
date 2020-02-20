@@ -57,7 +57,7 @@ GRAPHIC_OBJECTS_IMPEXP BOOL sciHasFigures(void);
 
 /**
  * returns the UID of window i
- * or NULL if this window does not exists
+ * or NULL if this window does not exist
  */
 GRAPHIC_OBJECTS_IMPEXP int getFigureFromIndex(int figNum);
 

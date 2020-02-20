@@ -374,7 +374,7 @@ public class ScilabPolynomial implements ScilabType {
                 swaped = in.readBoolean();
                 break;
             default:
-                throw new ClassNotFoundException("A class ScilabPolynomial with a version " + version + " does not exists");
+                throw new ClassNotFoundException("A class ScilabPolynomial with a version " + version + " does not exist");
         }
     }
 

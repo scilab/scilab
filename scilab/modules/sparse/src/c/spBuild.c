@@ -254,7 +254,7 @@ spGetElement( char *eMatrix, int Row, int Col )
  *  FIND ELEMENT BY SEARCHING COLUMN
  *
  *  Searches column starting at element specified at PtrAddr and finds element
- *  in Row. If Element does not exists, it is created. The pointer to the
+ *  in Row. If Element does not exist, it is created. The pointer to the
  *  element is returned.
  *
  *  >>> Returned:

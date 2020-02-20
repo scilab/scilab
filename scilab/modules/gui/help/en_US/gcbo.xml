@@ -17,7 +17,7 @@
             each time a callback in executed. This variable is initialised using <link linkend="getcallbackobject">getcallbackobject</link>.
         </para>
         <para>
-            <literal>gcbo</literal> does not exists in Scilab environment if no
+            <literal>gcbo</literal> does not exist in Scilab environment if no
             callback is currently executed.
         </para>
         <para>

@@ -10,7 +10,7 @@
 //
 
 // <-- Short Description -->
-// file returns a wrong error message when file does not exists.
+// file returns a wrong error message when file does not exist.
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=3478

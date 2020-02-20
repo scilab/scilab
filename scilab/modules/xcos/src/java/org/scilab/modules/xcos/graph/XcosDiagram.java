@@ -1857,7 +1857,7 @@ public class XcosDiagram extends ScilabGraph {
         final String filename = writeFile.getName();
 
         /*
-         * Look for the user extension if it does not exists, append a default one
+         * Look for the user extension if it does not exist, append a default one
          *
          * if the specified extension is handled, update the save format ; else append a default extension and use the default format
          */

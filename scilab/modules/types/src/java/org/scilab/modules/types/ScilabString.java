@@ -232,7 +232,7 @@ public class ScilabString implements ScilabType {
                 swaped = in.readBoolean();
                 break;
             default:
-                throw new ClassNotFoundException("A class ScilabString with a version " + version + " does not exists");
+                throw new ClassNotFoundException("A class ScilabString with a version " + version + " does not exist");
         }
     }
 

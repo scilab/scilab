@@ -25,7 +25,7 @@ delete(f);
 execstr("xdel(123456)", "errcatch");
 scf(1);
 scf(10);
-// figure with id 9 does not exists
+// figure with id 9 does not exist
 execstr("xdel([1, 10, 9])", "errcatch");
 // check that last call to xdel was canceled and did not destroy any window.
 if (winsid() <> [1, 10]) then bugmes();quit;end
