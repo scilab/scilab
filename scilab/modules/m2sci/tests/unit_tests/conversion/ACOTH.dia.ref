@@ -24,125 +24,125 @@ if ~m2sciTestConversion("ACOTH") then bugmes();quit;end
   Macro to tree conversion...
   Conversion of M-tree...
   !! L.5: If [] is in [0,1)
-  !!   imag(acoth([])) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth([])) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.7: If mtlb_double(m2sciUnknownType([])) is in [0,1)
-  !!   imag(acoth(mtlb_double(m2sciUnknownType([])))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(mtlb_double(m2sciUnknownType([])))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.9: If m2sciUnknownDims([]) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims([]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims([]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.11: If 1 is in [0,1)
-  !!   imag(acoth(1)) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(1)) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.13: If [1,2,3] is in [0,1)
-  !!   imag(acoth([1,2,3])) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth([1,2,3])) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.15: If [1;2;3] is in [0,1)
-  !!   imag(acoth([1;2;3])) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth([1;2;3])) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.17: If [1,2,3;4,5,6] is in [0,1)
-  !!   imag(acoth([1,2,3;4,5,6])) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth([1,2,3;4,5,6])) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.19: If mtlb_double(m2sciUnknownType(1)) is in [0,1)
-  !!   imag(acoth(mtlb_double(m2sciUnknownType(1)))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(mtlb_double(m2sciUnknownType(1)))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.21: If mtlb_double(m2sciUnknownType([1,2,3])) is in [0,1)
-  !!   imag(acoth(mtlb_double(m2sciUnknownType([1,2,3])))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(mtlb_double(m2sciUnknownType([1,2,3])))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.23: If mtlb_double(m2sciUnknownType([1;2;3])) is in [0,1)
-  !!   imag(acoth(mtlb_double(m2sciUnknownType([1;2;3])))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(mtlb_double(m2sciUnknownType([1;2;3])))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.25: If mtlb_double(m2sciUnknownType([1,2,3;4,5,6])) is in [0,1)
-  !!   imag(acoth(mtlb_double(m2sciUnknownType([1,2,3;4,5,6])))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(mtlb_double(m2sciUnknownType([1,2,3;4,5,6])))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.27: If m2sciUnknownDims(1) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims(1))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims(1))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.29: If m2sciUnknownDims([1,2,3]) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims([1,2,3]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims([1,2,3]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.31: If m2sciUnknownDims([1;2;3]) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims([1;2;3]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims([1;2;3]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.33: If m2sciUnknownDims([1,2,3;4,5,6]) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims([1,2,3;4,5,6]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims([1,2,3;4,5,6]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   Variable i supposed to be the Imaginary unit.
   !! L.35: If %%i is in [0,1)
-  !!   imag(acoth(%%i)) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(%%i)) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   Variable i supposed to be the Imaginary unit.
   !! L.37: If [%%i,2*%%i,3*%%i] is in [0,1)
-  !!   imag(acoth([%%i,2*%%i,3*%%i])) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth([%%i,2*%%i,3*%%i])) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   Variable i supposed to be the Imaginary unit.
   !! L.39: If [%%i;2*%%i;3*%%i] is in [0,1)
-  !!   imag(acoth([%%i;2*%%i;3*%%i])) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth([%%i;2*%%i;3*%%i])) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   Variable i supposed to be the Imaginary unit.
   !! L.41: If [%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i] is in [0,1)
-  !!   imag(acoth([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i])) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i])) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   Variable i supposed to be the Imaginary unit.
   !! L.43: If mtlb_double(m2sciUnknownType(%%i)) is in [0,1)
-  !!   imag(acoth(m2sciUnknownType(%%i))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownType(%%i))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   Variable i supposed to be the Imaginary unit.
   !! L.45: If mtlb_double(m2sciUnknownType([%%i,2*%%i,3*%%i])) is in [0,1)
-  !!   imag(acoth(m2sciUnknownType([%%i,2*%%i,3*%%i]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownType([%%i,2*%%i,3*%%i]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   Variable i supposed to be the Imaginary unit.
   !! L.47: If mtlb_double(m2sciUnknownType([%%i;2*%%i;3*%%i])) is in [0,1)
-  !!   imag(acoth(m2sciUnknownType([%%i;2*%%i;3*%%i]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownType([%%i;2*%%i;3*%%i]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   Variable i supposed to be the Imaginary unit.
   !! L.49: If mtlb_double(m2sciUnknownType([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i])) is in [0,1)
-  !!   imag(acoth(m2sciUnknownType([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownType([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   Variable i supposed to be the Imaginary unit.
   !! L.51: If m2sciUnknownDims(%%i) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims(%%i))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims(%%i))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   Variable i supposed to be the Imaginary unit.
   !! L.53: If m2sciUnknownDims([%%i,2*%%i,3*%%i]) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims([%%i,2*%%i,3*%%i]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims([%%i,2*%%i,3*%%i]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   Variable i supposed to be the Imaginary unit.
   !! L.55: If m2sciUnknownDims([%%i;2*%%i;3*%%i]) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims([%%i;2*%%i;3*%%i]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims([%%i;2*%%i;3*%%i]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   Variable i supposed to be the Imaginary unit.
   !! L.57: If m2sciUnknownDims([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.59: If asciimat("s") is in [0,1)
-  !!   imag(acoth("s")) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth("s")) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.61: If asciimat("str1") is in [0,1)
-  !!   imag(acoth("str1")) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth("str1")) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.63: If asciimat("str1"+"str2"+"str3") is in [0,1)
-  !!   imag(acoth("str1"+"str2"+"str3")) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth("str1"+"str2"+"str3")) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.65: If asciimat(["str1";"str2";"str3"]) is in [0,1)
-  !!   imag(acoth(["str1";"str2";"str3"])) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(["str1";"str2";"str3"])) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.67: If asciimat(["str1"+"str2"+"str3";"str4"+"str5"+"str6"]) is in [0,1)
-  !!   imag(acoth(["str1"+"str2"+"str3";"str4"+"str5"+"str6"])) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(["str1"+"str2"+"str3";"str4"+"str5"+"str6"])) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.69: If mtlb_double(m2sciUnknownType("s")) is in [0,1)
-  !!   imag(acoth(m2sciUnknownType("s"))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownType("s"))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.71: If mtlb_double(m2sciUnknownType("str1")) is in [0,1)
-  !!   imag(acoth(m2sciUnknownType("str1"))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownType("str1"))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.73: If mtlb_double(m2sciUnknownType("str1"+"str2"+"str3")) is in [0,1)
-  !!   imag(acoth(m2sciUnknownType("str1"+"str2"+"str3"))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownType("str1"+"str2"+"str3"))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.75: If mtlb_double(m2sciUnknownType(["str1";"str2";"str3"])) is in [0,1)
-  !!   imag(acoth(m2sciUnknownType(["str1";"str2";"str3"]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownType(["str1";"str2";"str3"]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.77: If mtlb_double(m2sciUnknownType(["str1"+"str2"+"str3";"str4"+"str5"+"str6"])) is in [0,1)
-  !!   imag(acoth(m2sciUnknownType(["str1"+"str2"+"str3";"str4"+"str5"+"str6"]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownType(["str1"+"str2"+"str3";"str4"+"str5"+"str6"]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.79: If asciimat(m2sciUnknownDims("s")) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims("s"))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims("s"))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.81: If asciimat(m2sciUnknownDims("str1")) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims("str1"))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims("str1"))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.83: If asciimat(m2sciUnknownDims("str1"+"str2"+"str3")) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims("str1"+"str2"+"str3"))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims("str1"+"str2"+"str3"))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.85: If asciimat(m2sciUnknownDims(["str1";"str2";"str3"])) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims(["str1";"str2";"str3"]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims(["str1";"str2";"str3"]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.87: If asciimat(m2sciUnknownDims(["str1"+"str2"+"str3";"str4"+"str5"+"str6"])) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims(["str1"+"str2"+"str3";"str4"+"str5"+"str6"]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims(["str1"+"str2"+"str3";"str4"+"str5"+"str6"]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.89: If bool2s(1==1) is in [0,1)
-  !!   imag(acoth(1==1)) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(1==1)) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.91: If bool2s([1,2,3]==[1,0,3]) is in [0,1)
-  !!   imag(acoth([1,2,3]==[1,0,3])) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth([1,2,3]==[1,0,3])) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.93: If bool2s([1;2;3]==[1;0;3]) is in [0,1)
-  !!   imag(acoth([1;2;3]==[1;0;3])) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth([1;2;3]==[1;0;3])) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.95: If bool2s([1,2,3;4,5,6]==[1,0,3;4,5,0]) is in [0,1)
-  !!   imag(acoth([1,2,3;4,5,6]==[1,0,3;4,5,0])) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth([1,2,3;4,5,6]==[1,0,3;4,5,0])) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.97: If mtlb_double(m2sciUnknownType(1==1)) is in [0,1)
-  !!   imag(acoth(m2sciUnknownType(1==1))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownType(1==1))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.99: If mtlb_double(m2sciUnknownType([1,2,3]==[1,0,3])) is in [0,1)
-  !!   imag(acoth(m2sciUnknownType([1,2,3]==[1,0,3]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownType([1,2,3]==[1,0,3]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.101: If mtlb_double(m2sciUnknownType([1;2;3]==[1;0;3])) is in [0,1)
-  !!   imag(acoth(m2sciUnknownType([1;2;3]==[1;0;3]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownType([1;2;3]==[1;0;3]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.103: If mtlb_double(m2sciUnknownType([1,2,3;4,5,6]==[1,0,3;4,5,0])) is in [0,1)
-  !!   imag(acoth(m2sciUnknownType([1,2,3;4,5,6]==[1,0,3;4,5,0]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownType([1,2,3;4,5,6]==[1,0,3;4,5,0]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.105: If bool2s(m2sciUnknownDims(1==1)) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims(1==1))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims(1==1))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.107: If bool2s(m2sciUnknownDims([1,2,3]==[1,0,3])) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims([1,2,3]==[1,0,3]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims([1,2,3]==[1,0,3]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.109: If bool2s(m2sciUnknownDims([1;2;3]==[1;0;3])) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims([1;2;3]==[1;0;3]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims([1;2;3]==[1;0;3]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   !! L.111: If bool2s(m2sciUnknownDims([1,2,3;4,5,6]==[1,0,3;4,5,0])) is in [0,1)
-  !!   imag(acoth(m2sciUnknownDims([1,2,3;4,5,6]==[1,0,3;4,5,0]))) is -π/2 in Scilab instead of +π/2 in Matlab.
+  !!   imag(acoth(m2sciUnknownDims([1,2,3;4,5,6]==[1,0,3;4,5,0]))) is -pi/2 in Scilab instead of +pi/2 in Matlab.
   Conversion of M-tree: Done
 TESTING M2SCI: creating varslist file...
   Macro to tree conversion: Done

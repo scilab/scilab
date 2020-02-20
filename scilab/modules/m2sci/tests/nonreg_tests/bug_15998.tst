@@ -23,7 +23,7 @@ mfile2sci(File + ".m", TMPDIR)
 t = mgetl(File + ".sci");
 tref = ["x = 4;"
         "// !! L.2: If x is imaginary and its module is > 1"
-        "// !!       the real part of atan(x) is -π/2 in Scilab instead of +π/2 in Matlab."
+        "// !!       the real part of atan(x) is -pi/2 in Scilab instead of +pi/2 in Matlab."
         "y = atan(x);"
         ];
 assert_checkequal(t($-3:$), tref);

@@ -21,7 +21,7 @@ mputl(["x = 4;" "y = acoth(x);"], File + ".m");
 mfile2sci(File + ".m", TMPDIR)
 t = mgetl(File + ".sci");
 ref = ["// !! L.2: If x is in [0,1)"
-       "// !!   imag(acoth(x)) is -π/2 in Scilab instead of +π/2 in Matlab."
+       "// !!   imag(acoth(x)) is -pi/2 in Scilab instead of +pi/2 in Matlab."
        "y = acoth(x);"
        ];
 assert_checkequal(t($-2:$), ref);

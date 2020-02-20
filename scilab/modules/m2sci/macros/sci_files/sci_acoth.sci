@@ -22,9 +22,9 @@ function tree = sci_acoth(tree)
     tree.rhs = Rhs_tlist(A)
 
     if tree.name=="atan" then
-        set_infos(msprintf(gettext("If %s is imaginary and its module is > 1\n      the real part of %s is -π/2 in Scilab instead of +π/2 in Matlab."), strcat(expression2code(A), ""), strcat(expression2code(tree), "")),2)
+        set_infos(msprintf(gettext("If %s is imaginary and its module is > 1\n      the real part of %s is -pi/2 in Scilab instead of +pi/2 in Matlab."), strcat(expression2code(A), ""), strcat(expression2code(tree), "")),2)
     elseif tree.name=="acoth" then
-        set_infos(msprintf(gettext("If %s is in [0,1)\n  imag(%s) is -π/2 in Scilab instead of +π/2 in Matlab."), strcat(expression2code(A), ""), strcat(expression2code(tree), "")),2)
+        set_infos(msprintf(gettext("If %s is in [0,1)\n  imag(%s) is -pi/2 in Scilab instead of +pi/2 in Matlab."), strcat(expression2code(A), ""), strcat(expression2code(tree), "")),2)
     elseif tree.name=="asin" then
         set_infos(msprintf(gettext("If %s is outside [-1,1]\n   complex part of output of %s will be the opposite of Matlab one."), strcat(expression2code(A), ""), strcat(expression2code(tree), "")),2)
     else
