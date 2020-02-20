@@ -124,6 +124,10 @@ workspace/
 /compile_commands.json
 .ccls*
 
+# VSCode files
+.vscode/
+
+
 # MacOS files
 .DS_Store
 
