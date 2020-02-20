@@ -187,9 +187,6 @@
     <None Include="..\resources\xcos.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="WScilex.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\..\ast\ast.vcxproj">
       <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
@@ -211,6 +208,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\startup\src\cpp\scilab.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WScilex-cli.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

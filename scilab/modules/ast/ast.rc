@@ -7,7 +7,6 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-//#include "afxres.h"
 #define APSTUDIO_HIDDEN_SYMBOLS
 #include "windows.h"
 /////////////////////////////////////////////////////////////////////////////
@@ -33,7 +32,6 @@ BEGIN
     "resource.h\0"
 END
 
-
 3 TEXTINCLUDE 
 BEGIN
     "\r\n"
@@ -58,19 +56,19 @@ VS_VERSION_INFO VERSIONINFO
  FILEFLAGS 0x0L
 #endif
  FILEOS 0x4L
- FILETYPE 0x0L
+ FILETYPE 0x2L
  FILESUBTYPE 0x0L
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "nospreadsheet module"
+            VALUE "FileDescription", "ast module"
             VALUE "FileVersion", "6, 1, 0, 0"
-            VALUE "InternalName", "nospreadsheet module"
+            VALUE "InternalName", "ast module"
             VALUE "LegalCopyright", "Copyright (C) 2020"
-            VALUE "OriginalFilename", "nospreadsheet.dll"
-            VALUE "ProductName", " nospreadsheet"
+            VALUE "OriginalFilename", "ast.dll"
+            VALUE "ProductName", "ast module"
             VALUE "ProductVersion", "6, 1, 0, 0"
         END
     END

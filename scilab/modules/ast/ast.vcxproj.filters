@@ -81,6 +81,9 @@
     <Filter Include="Source Files\analysis">
       <UniqueIdentifier>{cc737210-ca11-42b1-99f7-444901ee9add}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource File">
+      <UniqueIdentifier>{f8837897-bb68-4845-be91-a92ac245052a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_Import.def">
@@ -1572,5 +1575,10 @@
     <ClCompile Include="src\c\types\dtoa.c">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ast.rc">
+      <Filter>Resource File</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
