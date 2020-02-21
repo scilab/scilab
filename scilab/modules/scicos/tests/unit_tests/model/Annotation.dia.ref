@@ -51,7 +51,7 @@ o.void
     []
 o.gui
  ans  =
- TEXT_f
+  "TEXT_f"
 // Redefine gca() to prevent graphic display
 p = funcprot();
 funcprot(0);
@@ -102,7 +102,7 @@ o.void
     []
 o.gui
  ans  =
- TEXT_f
+  "TEXT_f"
 // Check that all the model items are freed
 clear
 Xcos info:    objectDeleted( 2 , ANNOTATION )

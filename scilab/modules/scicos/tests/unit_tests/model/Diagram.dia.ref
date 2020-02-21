@@ -52,7 +52,7 @@ scs_m.objs
      ()
 scs_m.version
  ans  =
- 
+  ""
 scs_m.contrib
  ans  =
      ()

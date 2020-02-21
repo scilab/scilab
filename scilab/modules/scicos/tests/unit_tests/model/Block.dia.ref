@@ -157,7 +157,7 @@ equations = list()
 uid = ""
 o.gui
  ans  =
- BIGSOM_f
+  "BIGSOM_f"
 o.doc
  ans  =
      ()
@@ -1392,7 +1392,7 @@ equations = list()
 uid = ""
 o.gui
  ans  =
- CSCOPE
+  "CSCOPE"
 o.doc
  ans  =
      ()
@@ -2283,18 +2283,17 @@ Xcos trace:   objectReferenced( 34 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 34 , BLOCK ) : 0
  ans  =
        ans(1)
-!modelica  model  inputs  outputs  parameters  !
+  "modelica"  "model"  "inputs"  "outputs"  "parameters"
        ans(2)
- VsourceAC
+  "VsourceAC"
        ans(3)
- p
+  "p"
        ans(4)
- n
+  "n"
        ans(5)
               ans(5)(1)
-!VA  !
-!    !
-!f   !
+  "VA"
+  "f" 
               ans(5)(2)
                      ans(5)(2)(1)
    220.
@@ -2511,26 +2510,29 @@ Xcos trace:   objectReferenced( 37 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 37 , BLOCK ) : 0
  ans  =
        ans(1)
-!MBLOCK  in  intype  out  outtype  param  paramv  pprop  nameF  funtxt  !
+         column 1 to 8
+  "MBLOCK"  "in"  "intype"  "out"  "outtype"  "param"  "paramv"  "pprop"
+         column 9 to 10
+  "nameF"  "funtxt"
        ans(2)
- "u1"
+  ""u1""
        ans(3)
- "I"
+  ""I""
        ans(4)
- ["y1";"y2"]
+  "["y1";"y2"]"
        ans(5)
- ["I";"E"]
+  "["I";"E"]"
        ans(6)
- ["R";"L"]
+  "["R";"L"]"
        ans(7)
               ans(7)(1)
- 0.1
+  "0.1"
               ans(7)(2)
- 0.0001
+  "0.0001"
        ans(8)
- [0;0]
+  "[0;0]"
        ans(9)
- generic
+  "generic"
        ans(10)
     []
 o.model.equations
@@ -2538,20 +2540,18 @@ Xcos trace:   objectReferenced( 37 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 37 , BLOCK ) : 0
  ans  =
        ans(1)
-!modelica  model  inputs  outputs  parameters  !
+  "modelica"  "model"  "inputs"  "outputs"  "parameters"
        ans(2)
- generic
+  "generic"
        ans(3)
- u1
+  "u1"
        ans(4)
-!y1  !
-!    !
-!y2  !
+  "y1"
+  "y2"
        ans(5)
               ans(5)(1)
-!R  !
-!   !
-!L  !
+  "R"
+  "L"
               ans(5)(2)
                      ans(5)(2)(1)
    0.1
@@ -2944,183 +2944,140 @@ Xcos trace:   objectUnreferenced( 52 , BLOCK ) : 0
  ans  =
        ans(1)
               ans(1)(1)
-!paramspde        !
-!                 !
-!a                !
-!                 !
-!b                !
-!                 !
-!txt_exp          !
-!                 !
-!check_op1        !
-!                 !
-!a1               !
-!                 !
-!b1               !
-!                 !
-!check_op2        !
-!                 !
-!a2               !
-!                 !
-!b2               !
-!                 !
-!check_op3        !
-!                 !
-!a3               !
-!                 !
-!b3               !
-!                 !
-!check_op4        !
-!                 !
-!a4               !
-!                 !
-!b4               !
-!                 !
-!check_op5        !
-!                 !
-!a5               !
-!                 !
-!b5               !
-!                 !
-!check_op6        !
-!                 !
-!a6               !
-!                 !
-!b6               !
-!                 !
-!check_op7        !
-!                 !
-!a7               !
-!                 !
-!b7               !
-!                 !
-!discr_cst        !
-!                 !
-!discr_non_cst    !
-!                 !
-!signe            !
-!                 !
-!rad_automatique  !
-!                 !
-!rad_manuel       !
-!                 !
-!methode          !
-!                 !
-!ord1             !
-!                 !
-!ord2             !
-!                 !
-!ord3             !
-!                 !
-!degre            !
-!                 !
-!nnode            !
-!                 !
-!txt_pas          !
-!                 !
-!CI               !
-!                 !
-!dCI              !
-!                 !
-!CLa              !
-!                 !
-!CLa_exp          !
-!                 !
-!CLb              !
-!                 !
-!CLb_exp          !
-!                 !
-!points           !
+  "paramspde"      
+  "a"              
+  "b"              
+  "txt_exp"        
+  "check_op1"      
+  "a1"             
+  "b1"             
+  "check_op2"      
+  "a2"             
+  "b2"             
+  "check_op3"      
+  "a3"             
+  "b3"             
+  "check_op4"      
+  "a4"             
+  "b4"             
+  "check_op5"      
+  "a5"             
+  "b5"             
+  "check_op6"      
+  "a6"             
+  "b6"             
+  "check_op7"      
+  "a7"             
+  "b7"             
+  "discr_cst"      
+  "discr_non_cst"  
+  "signe"          
+  "rad_automatique"
+  "rad_manuel"     
+  "methode"        
+  "ord1"           
+  "ord2"           
+  "ord3"           
+  "degre"          
+  "nnode"          
+  "txt_pas"        
+  "CI"             
+  "dCI"            
+  "CLa"            
+  "CLa_exp"        
+  "CLb"            
+  "CLb_exp"        
+  "points"         
               ans(1)(2)
- 
+  ""
               ans(1)(3)
- 
+  ""
               ans(1)(4)
- 
+  ""
               ans(1)(5)
- 0
+  "0"
               ans(1)(6)
- 
+  ""
               ans(1)(7)
- IN_EDP1(t)
+  "IN_EDP1(t)"
               ans(1)(8)
- 0
+  "0"
               ans(1)(9)
- 
+  ""
               ans(1)(10)
- IN_EDP2(t)
+  "IN_EDP2(t)"
               ans(1)(11)
- 0
+  "0"
               ans(1)(12)
- 
+  ""
               ans(1)(13)
- IN_EDP3(t)
+  "IN_EDP3(t)"
               ans(1)(14)
- 0
+  "0"
               ans(1)(15)
- 
+  ""
               ans(1)(16)
- IN_EDP4(t)
+  "IN_EDP4(t)"
               ans(1)(17)
- 0
+  "0"
               ans(1)(18)
- 
+  ""
               ans(1)(19)
- IN_EDP5(t)
+  "IN_EDP5(t)"
               ans(1)(20)
- 0
+  "0"
               ans(1)(21)
- 
+  ""
               ans(1)(22)
- IN_EDP6(t)
+  "IN_EDP6(t)"
               ans(1)(23)
- 0
+  "0"
               ans(1)(24)
- 
+  ""
               ans(1)(25)
- IN_EDP7(t)
+  "IN_EDP7(t)"
               ans(1)(26)
- 0
+  "0"
               ans(1)(27)
- 0
+  "0"
               ans(1)(28)
- 0
+  "0"
               ans(1)(29)
- 0
+  "0"
               ans(1)(30)
- 0
+  "0"
               ans(1)(31)
- 0
+  "0"
               ans(1)(32)
- 
+  ""
               ans(1)(33)
- 
+  ""
               ans(1)(34)
- 
+  ""
               ans(1)(35)
- 
+  ""
               ans(1)(36)
- 
+  ""
               ans(1)(37)
- 
+  ""
               ans(1)(38)
- 
+  ""
               ans(1)(39)
- 
+  ""
               ans(1)(40)
- 0
+  "0"
               ans(1)(41)
- IN_CL1(t)
+  "IN_CL1(t)"
               ans(1)(42)
- 0
+  "0"
               ans(1)(43)
- IN_CL2(t)
+  "IN_CL2(t)"
               ans(1)(44)
- 
+  ""
        ans(2)
     []
        ans(3)
- 
+  ""
 // Test 'ipar', 'nzcross' and 'nmode' fields
 o = scicos_block();
 Xcos info:    objectCreated( 60 , BLOCK )

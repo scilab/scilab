@@ -14,22 +14,24 @@ end
 if or(~isdef(["modelica_libs" "scicos_pal_libs"])) then
     [modelica_libs, scicos_pal_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables()
 end
+ modelica_libs  = 
+         column 1
+  "SCI/modules/scicos_blocks/macros/Electrical"
+         column 2
+  "SCI/modules/scicos_blocks/macros/Hydraulics"
+ scicos_pal_libs  = 
+         column 1 to 6
+  "Branching"  "Events"  "Misc"  "Sinks"  "Threshold"  "Linear"
+         column 7 to 12
+  "MatrixOp"  "NonLinear"  "Sources"  "Electrical"  "Hydraulics"  "PDE"
+         column 13
+  "IntegerOp"
+ %scicos_with_grid  = 
+  F
  %scs_wgrid  = 
    10.
    10.
    12.
- %scicos_with_grid  = 
-  F
- scicos_pal_libs  = 
-         column 1 to 8
-!Branching  Events  Misc  Sinks  Threshold  Linear  MatrixOp  NonLinear  !
-         column 9 to 13
-!Sources  Electrical  Hydraulics  PDE  IntegerOp  !
- modelica_libs  = 
-         column 1
-!SCI/modules/scicos_blocks/macros/Electrical  !
-         column 2
-!SCI/modules/scicos_blocks/macros/Hydraulics  !
 exec(loadpallibs,-1)
 exec("SCI/modules/scicos/tests/unit_tests/scicos_tests.sci");
 options = default_options();

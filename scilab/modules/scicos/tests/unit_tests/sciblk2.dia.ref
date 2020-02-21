@@ -175,10 +175,9 @@ function [xd, tvec, z, x, outptr] = anim_pen(flag, nevprt, t, x, z, rpar, ipar, 
 endfunction
 warning(wMode);
 cpr = scicos_simulate(scs_m);
- INTEGRAL('set'): Wrong type for block parameter 'Initial Condition': v 
- ec(-1) expected, getting z0                                           
- INTEGRAL('set'): Wrong type for block parameter 'Initial Condition': v 
- ec(-1) expected, getting th0                                             Generate a loader file
+  "INTEGRAL('set'): Wrong type for block parameter 'Initial Condition': vec(-1) expected, getting z0"
+  "INTEGRAL('set'): Wrong type for block parameter 'Initial Condition': vec(-1) expected, getting th0"
+   Generate a loader file
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
    ilib_gen_Make: Copy inv_pend.c to TMPDIR
@@ -188,10 +187,8 @@ cpr = scicos_simulate(scs_m);
    Generate a cleaner file
 Shared archive loaded.
 Link done.
- INTEGRAL('set'): Wrong type for block parameter 'Initial Condition': v 
- ec(-1) expected, getting z0                                           
- INTEGRAL('set'): Wrong type for block parameter 'Initial Condition': v 
- ec(-1) expected, getting th0                                          
+  "INTEGRAL('set'): Wrong type for block parameter 'Initial Condition': vec(-1) expected, getting z0"
+  "INTEGRAL('set'): Wrong type for block parameter 'Initial Condition': vec(-1) expected, getting th0"
 cpr229 = [ ...
 -0.00000010072892435; ...
 -0.0000000093251865; ...

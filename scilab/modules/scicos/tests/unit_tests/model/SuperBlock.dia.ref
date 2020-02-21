@@ -551,7 +551,7 @@ uid = ""
 sb.gui
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 0
  ans  =
- SUPER_f
+  "SUPER_f"
 sb.doc
  ans  =
      ()
@@ -834,7 +834,7 @@ Xcos trace:   objectReferenced( 10 , BLOCK ) : 2
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 1
 Xcos trace:   objectUnreferenced( 10 , BLOCK ) : 0
  ans  =
- 
+  ""
 sb.model.rpar.contrib
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 1
 Xcos trace:   objectReferenced( 10 , BLOCK ) : 2

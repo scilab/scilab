@@ -8,7 +8,7 @@
 // <-- CLI SHELL MODE -->
 scicos_log("INFO")
  ans  =
- WARNING
+  "WARNING"
 loadXcosLibs();
 // check contained blocks interfaces
 o = CONST_m("define");
