@@ -22,6 +22,7 @@
 extern "C"
 {
 #include "sci_malloc.h"
+#include "sciprint.h"
 #include "localization.h"
 #include "Scierror.h"
 }
@@ -29,6 +30,9 @@ extern "C"
 
 types::Function::ReturnValue sci_saveafterncommands(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    sciprint(_("%s: This function is canceled. It will be permanently removed in Scilab %s\n"), "saveaftercommands", "6.1.x");
+
+    /*
     if (in.size() == 0)
     {
         int num = HistoryManager::getInstance()->getAfterHowManyLinesHistoryIsSaved();
@@ -58,6 +62,8 @@ types::Function::ReturnValue sci_saveafterncommands(types::typed_list &in, int _
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "saveafterncommands", 0, 1);
         return types::Function::Error;
     }
+    */
+
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

@@ -93,7 +93,6 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     std::unordered_map<std::wstring, std::wstring> map;
 
     // Scilab 6.1.0 => 6.1.x
-    map.emplace(L"setPreferencesValue", L"xmlSetValues");
 
     // Scilab 6.0.x => 6.1.0
     map.emplace(L"get_figure_handle", L"findobj(\'figure_id\',n)");
@@ -114,6 +113,8 @@ std::unordered_map<std::wstring, std::wstring> DeprecatedChecker::initDep()
     map.emplace(L"noisegen", L"grand");
     map.emplace(L"numer", L".num");
     map.emplace(L"ric_desc", L"riccati");
+    map.emplace(L"saveafterncommands", L"");
+    map.emplace(L"setPreferencesValue", L"xmlSetValues");
     map.emplace(L"square", L"replot");
     map.emplace(L"sysdiag", L"blockdiag");
     map.emplace(L"with_tk", L"with_module('tclsci')");

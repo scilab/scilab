@@ -235,6 +235,7 @@ Obsolete functions or features
 * `get_figure_handle(n)` is obsolete. Please use `findobj('figure_id',n)` instead.
 * `hist3d` is renamed `bar3d`. The former `hist3d` function is declared obsolete and will be replaced by an actual 3D histogram function in Scilab 6.2.
 * `scatter3` is obsolete. Please use `scatter3d` instead.
+* `saveafterncommands` is canceled. It will be removed from Scilab 6.1.x
 
 Removed Functions
 -----------------

@@ -13,14 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="saveafterncommands">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="en" xml:id="saveafterncommands">
     <refnamediv>
         <refname>saveafterncommands</refname>
-        <refpurpose>Save the history file after n statements are added to the file.</refpurpose>
+        <refpurpose>
+            Save the history file after n statements are added to the file
+            <emphasis role="bold">(obsolete)</emphasis>
+    </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>saveafterncommands(n)
+        <synopsis>
+            saveafterncommands(n)
             v = saveafterncommands()
         </synopsis>
     </refsynopsisdiv>
@@ -43,6 +50,11 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            saveafterncommand(..) is canceled and does nothing. The history is now always
+            updated after each instruction run in the console. saveafterncommand(..) will
+            be removed from Scilab 6.1.x.
+        </warning>
         <para>Save the history file after n statements are added to the file.</para>
         <para>For example, when you select the option and set n to 5, after every 5 statements are added,
             the history file is automatically saved.
@@ -58,5 +70,16 @@
         <programlisting role="example"><![CDATA[
 saveafterncommands(3)
  ]]></programlisting>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    saveafterncommands(..) is canceled. It will be removed from Scilab 6.1.x
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -17,7 +17,8 @@
     <refnamediv>
         <refname>saveafterncommands</refname>
         <refpurpose>
-            ファイルにn個の命令を追加した後,履歴ファイルを保存する.
+            ファイルにn個の命令を追加した後,履歴ファイルを保存する
+            <emphasis role="bold">(obsolete)</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -45,6 +46,11 @@
     </refsection>
     <refsection>
         <title>説明</title>
+        <warning>
+            saveafterncommand(..) is canceled and does nothing. The history is now always
+            updated after each instruction run in the console. saveafterncommand(..) will
+            be removed from Scilab 6.1.x.
+        </warning>
         <para>
             ファイルにn個の命令を追加した後,履歴ファイルを保存します.
         </para>
@@ -67,5 +73,16 @@
         <programlisting role="example"><![CDATA[
 saveafterncommands(3)
  ]]></programlisting>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.0</revnumber>
+                <revdescription>
+                    saveafterncommands(..) is canceled. It will be removed from Scilab 6.1.x
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
