@@ -223,7 +223,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="basic_functions.c" />
     <ClCompile Include="ceil.c" />
     <ClCompile Include="cmp.c" />
-    <ClCompile Include="convertbase.c" />
     <ClCompile Include="cos.c" />
     <ClCompile Include="cosh.c" />
     <ClCompile Include="cupro.c" />
@@ -307,7 +306,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="..\cpp\prod.hxx" />
     <ClInclude Include="..\cpp\sum.hxx" />
     <ClInclude Include="cmp.h" />
-    <ClInclude Include="convertbase.h" />
     <ClInclude Include="expm.h" />
     <ClInclude Include="IsEqualVar.h" />
     <ClInclude Include="qsort-char.h" />

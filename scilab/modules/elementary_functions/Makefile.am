@@ -44,8 +44,7 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/matrix_generation.c \
     src/c/vmul.c \
     src/c/add_vector.c \
-    src/c/sub_vector.c \
-    src/c/convertbase.c
+    src/c/sub_vector.c
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \

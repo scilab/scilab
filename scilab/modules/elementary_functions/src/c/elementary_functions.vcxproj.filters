@@ -125,9 +125,6 @@
     <ClCompile Include="atan.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="convertbase.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -269,9 +266,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="vfrexp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="convertbase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\abs.h">

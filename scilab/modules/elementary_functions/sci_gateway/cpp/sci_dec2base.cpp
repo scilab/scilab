@@ -84,22 +84,24 @@ types::Function::ReturnValue sci_dec2base(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
+        double max_value = pow(2, 53);
+        double* dbl_in = pDblIn->get();
         for (int i = 0; i < pDblIn->getSize(); i++)
         {
-            if (trunc(pDblIn->get(i)) != pDblIn->get(i))
+            if (trunc(dbl_in[i]) != dbl_in[i])
             {
                 Scierror(999, _("%s: Wrong value(s) for input argument #%d: A matrix of positive integer values expected.\n"), "dec2base", 1);
                 return types::Function::Error;
             }
 
-            if (pDblIn->get(i) > pow(2, 53))
+            if (dbl_in[i] > max_value)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: Must be between 0 and 2^53.\n"), "dec2base", 1);
                 return types::Function::Error;
             }
         }
 
-        pOut = dectobase(in[0]->getAs<types::Double>(), iParam);
+        pOut = dectobase(pDblIn, iParam);
     }
     else if (in[0]->isInt())
     {

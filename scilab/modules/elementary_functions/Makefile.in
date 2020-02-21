@@ -281,8 +281,7 @@ am__objects_4 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-matrix_generation.lo \
 	src/c/libscielementary_functions_algo_la-vmul.lo \
 	src/c/libscielementary_functions_algo_la-add_vector.lo \
-	src/c/libscielementary_functions_algo_la-sub_vector.lo \
-	src/c/libscielementary_functions_algo_la-convertbase.lo
+	src/c/libscielementary_functions_algo_la-sub_vector.lo
 am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/wwdiv.lo src/fortran/wdotcr.lo src/fortran/iset.lo \
 	src/fortran/franck.lo src/fortran/dwpowe.lo \
@@ -504,7 +503,6 @@ am__depfiles_remade = sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_
 	src/c/$(DEPDIR)/libscielementary_functions_algo_la-basic_functions.Plo \
 	src/c/$(DEPDIR)/libscielementary_functions_algo_la-ceil.Plo \
 	src/c/$(DEPDIR)/libscielementary_functions_algo_la-cmp.Plo \
-	src/c/$(DEPDIR)/libscielementary_functions_algo_la-convertbase.Plo \
 	src/c/$(DEPDIR)/libscielementary_functions_algo_la-cos.Plo \
 	src/c/$(DEPDIR)/libscielementary_functions_algo_la-cosh.Plo \
 	src/c/$(DEPDIR)/libscielementary_functions_algo_la-cupro.Plo \
@@ -971,8 +969,7 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/matrix_generation.c \
     src/c/vmul.c \
     src/c/add_vector.c \
-    src/c/sub_vector.c \
-    src/c/convertbase.c
+    src/c/sub_vector.c
 
 
 # List of the cpp files
@@ -1817,8 +1814,6 @@ src/c/libscielementary_functions_algo_la-add_vector.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-sub_vector.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscielementary_functions_algo_la-convertbase.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wasum.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dexpm1.lo: src/fortran/$(am__dirstamp) \
@@ -2353,7 +2348,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-basic_functions.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-ceil.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-cmp.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-convertbase.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-cos.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-cosh.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-cupro.Plo@am__quote@ # am--include-marker
@@ -2723,13 +2717,6 @@ src/c/libscielementary_functions_algo_la-sub_vector.lo: src/c/sub_vector.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sub_vector.c' object='src/c/libscielementary_functions_algo_la-sub_vector.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-sub_vector.lo `test -f 'src/c/sub_vector.c' || echo '$(srcdir)/'`src/c/sub_vector.c
-
-src/c/libscielementary_functions_algo_la-convertbase.lo: src/c/convertbase.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-convertbase.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-convertbase.Tpo -c -o src/c/libscielementary_functions_algo_la-convertbase.lo `test -f 'src/c/convertbase.c' || echo '$(srcdir)/'`src/c/convertbase.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscielementary_functions_algo_la-convertbase.Tpo src/c/$(DEPDIR)/libscielementary_functions_algo_la-convertbase.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/convertbase.c' object='src/c/libscielementary_functions_algo_la-convertbase.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-convertbase.lo `test -f 'src/c/convertbase.c' || echo '$(srcdir)/'`src/c/convertbase.c
 
 sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo: sci_gateway/c/sci_number_properties.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_number_properties.Tpo -c -o sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo `test -f 'sci_gateway/c/sci_number_properties.c' || echo '$(srcdir)/'`sci_gateway/c/sci_number_properties.c
@@ -3530,7 +3517,6 @@ distclean: distclean-am
 	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-basic_functions.Plo
 	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-ceil.Plo
 	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-cmp.Plo
-	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-convertbase.Plo
 	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-cos.Plo
 	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-cosh.Plo
 	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-cupro.Plo
@@ -3691,7 +3677,6 @@ maintainer-clean: maintainer-clean-am
 	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-basic_functions.Plo
 	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-ceil.Plo
 	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-cmp.Plo
-	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-convertbase.Plo
 	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-cos.Plo
 	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-cosh.Plo
 	-rm -f src/c/$(DEPDIR)/libscielementary_functions_algo_la-cupro.Plo
