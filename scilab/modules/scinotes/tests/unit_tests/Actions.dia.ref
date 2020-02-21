@@ -29,24 +29,15 @@ good = ["a=""abcdef""";
 	"        a=""abcdef""""""";
 	"    end";
 	"end"]
- good  =
- 
-!a="abcdef"            !
-!                      !
-!if a==1               !
-!                      !
-!    b=1+"abcdef"      !
-!                      !
-!    c=2               !
-!                      !
-!    d=3               !
-!                      !
-!    if                !
-!                      !
-!        a="abcdef"""  !
-!                      !
-!    end               !
-!                      !
-!end                   !
+ good  = 
+  "a="abcdef""          
+  "if a==1"             
+  "    b=1+"abcdef""    
+  "    c=2"             
+  "    d=3"             
+  "    if"              
+  "        a="abcdef""""
+  "    end"             
+  "end"                 
 corrected = mgetl(f);
 if (good <> corrected) then bugmes();quit;end;
