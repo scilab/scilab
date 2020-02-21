@@ -59,13 +59,15 @@ c-----------------------------------------------------------------------
 cDEC$ ATTRIBUTES DLLIMPORT:: /eh0001/
       common /eh0001/ mesflg, lunit
       integer num, imess, imode
-      character*80 str
+      character*81 str
       imode = 0
 c-----------------------------------------------------------------------
       if (mesflg .eq. 0) go to 100
 c get logical unit number. ---------------------------------------------
 cstd      lun = lunit
       lun = 6
+c clear the string for C compatibility ---------------------------------
+      str(1:81) = ''
 c get number of words in message. --------------------------------------
       nch = min(len(msg),80)
 c write the message. ---------------------------------------------------
