@@ -55,14 +55,7 @@ function bOK = detectmsvc64tools()
         "msvc140pro", ..
         "msvc140express", ..
         "msvc120pro", ..
-        "msvc120express", ..
-        "msvc110pro", ..
-        "msvc110express", ..
-        "msvc100pro", ..
-        "msvc100express", ..
-        "msvc90pro", ..
-        "msvc90std", ..
-        "msvc90express"];
+        "msvc120express"];
 
         if (find(supported_compiler == compiler) <> []) then
             MSVCBIN64PATH = dlwGet64BitPath();

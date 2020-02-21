@@ -18,7 +18,7 @@ function vcPath64 = dlwGet64BitPath();
         if find(MSCompiler == ["msvc142express";"msvc142pro";"msvc141express";"msvc141pro"]) then
             vers = getVsWhereInformation();
             vcPath64 = vers(MSCompiler);
-        elseif find(MSCompiler == ["msvc140express";"msvc120express";"msvc110express";"msvc100express";"msvc90express"]) then
+        elseif find(MSCompiler == ["msvc140express";"msvc120express"]) then
             programFilesx86Path = getenv("ProgramFiles(x86)", "");
             if (programFilesx86Path <> "") then
                 if isfile(programFilesx86Path + "\Microsoft Visual Studio 14.0\VC\bin\cl.exe") then
@@ -30,41 +30,15 @@ function vcPath64 = dlwGet64BitPath();
                     vcPath64 = programFilesx86Path + "\Microsoft Visual Studio 12.0";
                     return
                 end
-
-                if isfile(programFilesx86Path + "\Microsoft Visual Studio 11.0\VC\bin\cl.exe") then
-                    vcPath64 = programFilesx86Path + "\Microsoft Visual Studio 11.0";
-                    return
-                end
-
-                if isfile(programFilesx86Path + "\Microsoft Visual Studio 10.0\VC\bin\amd64\cl.exe") then
-                    vcPath64 = programFilesx86Path + "\Microsoft Visual Studio 10.0";
-                    return
-                end
-
-                if isfile(programFilesx86Path + "\Microsoft Visual Studio 9.0\VC\bin\amd64\cl.exe") then
-                    vcPath64 = programFilesx86Path + "\Microsoft Visual Studio 9.0";
-                end
             end
         else
             select MSCompiler,
                 // Microsoft Visual 2015 Studio Professional
             case  "msvc140pro" then
-                vcPath64 = dlwGetVc14ProPath(); //same as VS2012
+                vcPath64 = dlwGetVc14ProPath();
                 // Microsoft Visual 2013 Studio Professional
             case  "msvc120pro" then
-                vcPath64 = dlwGetVc12ProPath(); //same as VS2012
-                // Microsoft Visual 2012 Studio Professional
-            case  "msvc110pro" then
-                vcPath64 = dlwGetVc11ProPath();
-                // Microsoft Visual 2010 Studio Professional
-            case  "msvc100pro" then
-                vcPath64 = dlwGetVc10ProPath();
-                // Microsoft Visual 2008 Studio Professional
-            case  "msvc90pro" then
-                vcPath64 = dlwGetVc90ProPath();
-                // Microsoft Visual 2008 Studio Standard
-            case  "msvc90std" then
-                vcPath64 = dlwGetVc90StdPath();
+                vcPath64 = dlwGetVc12ProPath();
             else
                 vcPath64 = [];
             end
