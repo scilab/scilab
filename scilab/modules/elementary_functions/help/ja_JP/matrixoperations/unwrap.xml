@@ -353,7 +353,7 @@ drawnow()
         <para/>
         <inlinemediaobject>
             <imageobject>
-                <imagedata fileref="../../../../helptools/images/unwrap_2D.png"/>
+                <imagedata fileref="../../images/unwrap_2D.png"/>
             </imageobject>
         </inlinemediaobject>
     </refsection>
