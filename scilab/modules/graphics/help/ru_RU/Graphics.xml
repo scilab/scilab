@@ -428,10 +428,10 @@
                     <para>
                         <scilab:image>deff("[z]=surface(x,y)","z=sin(x)*cos(y)")
                             t=%pi*(-10:10)/10;
-                            // трёхмерный график поверхности
+                            // 3D plot of the surface
                             fplot3d(t,t,surface,35,45,"X@Y@Z")
-                            // теперь (t,t,sin(t).*cos(t)) является кривой на поверхности,
-                            // которая может быть нарисована используя geom3d и xpoly
+                            // now (t,t,sin(t).*cos(t)) is a curve on the surface
+                            // which can be drawn using geom3d and xpoly
                             [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
                         </scilab:image>
                     </para>
@@ -1091,7 +1091,7 @@
                         <emphasis role="bold">Пример:</emphasis>
                     </para>
                     <para>
-                        <scilab:image>s=poly(0,'s')
+                        <scilab:image localized="true">s=poly(0,'s')
                             h1=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
                             h2=syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
                             clf();gainplot([h1;h2],0.01,100,['h1';'h2'])
