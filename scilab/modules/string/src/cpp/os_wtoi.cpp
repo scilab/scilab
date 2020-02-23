@@ -26,7 +26,7 @@ int os_wtoi(const wchar_t *_pwcsSource)
 {
     std::wstring wstr(_pwcsSource);
     std::wistringstream wstrm(wstr);
-    int num;
+    int num = 0;
     wstrm >> num;
     return num;
 }
