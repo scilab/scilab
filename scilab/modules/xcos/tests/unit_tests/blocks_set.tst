@@ -32,6 +32,7 @@ notTested = ["DSUPER" "SUPER_f" "TEXT_f" "PAL_f" ,..   // Specific blocks
 ,..                                        // not interface function
 "WFILE_f", "func_block", ..                // Deprecated blocks
 "tkscaleblk", "m_sin", "bplatform2", "anim_pen" ,..
+"expr2LaTeX",..
 "BARXY_sim" ];
 
 funcprot(0);
