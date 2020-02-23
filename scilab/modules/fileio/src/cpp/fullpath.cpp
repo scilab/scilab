@@ -21,6 +21,7 @@ extern "C"
 #include "fullpath.h"
 #include "sci_malloc.h"
 #include "os_string.h"
+#include "expandPathVariable.h"
 }
 
 char *get_full_path(const char *_Path)
@@ -42,7 +43,10 @@ char *get_full_path(const char *_Path)
     }
     return _FullPath;
 #else // POSIX
-    std::filesystem::path relPath = std::filesystem::path(_Path);
+    char* expanded = expandPathVariable(_Path);
+    std::filesystem::path relPath = std::filesystem::path(expanded);
+    FREE(expanded);
+
     std::filesystem::path canonPath = std::filesystem::weakly_canonical(relPath);
     auto relPathIt = relPath.end();
     auto canonPathIt = canonPath.end();
@@ -59,7 +63,9 @@ char *get_full_path(const char *_Path)
 wchar_t *get_full_pathW(const wchar_t * _wcPath)
 {
 #ifdef _MSC_VER
-    std::wstring s(_wcPath);
+    wchar_t* pwstExpand = expandPathVariableW(_wcPath);
+    std::wstring s(pwstExpand);
+
     size_t pos = s.find_last_of(L"/\\");
 
     //remove "file" part
@@ -84,9 +90,10 @@ wchar_t *get_full_pathW(const wchar_t * _wcPath)
     //add "file" part
     if (bAppend)
     {
-        p /= (_wcPath + pos + 1);
+        p /= (pwstExpand + pos + 1);
     }
 
+    FREE(pwstExpand);
     return os_wcsdup(p.wstring().c_str());
 #else // POSIX
     char *_FullPath = NULL;
