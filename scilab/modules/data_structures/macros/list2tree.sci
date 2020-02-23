@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2019 - Samuel GOUGEON
+// Copyright (C) 2019 - 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -107,7 +107,7 @@ function tree = list2tree_inc(x, Path, tree, styles, arrayByFields)
             v = container_get_ijk_labels(size(x))
         end
 
-    elseif type(x)==17 & typeof(x)=="st" then
+    elseif (type(x)==17 & typeof(x)=="st") then
         // Structures are displayed first by k indices, then
         // for each x(k), by field. In this way, each x(k) is
         // displayed as a whole object/record, instead of being split.
@@ -139,7 +139,7 @@ function tree = list2tree_inc(x, Path, tree, styles, arrayByFields)
             end
             tree($).label = tree($).label + tmp
         end
-        
+
     elseif typeof(x)=="rational"
         v = getfield(1,x);
         II = 2:4
@@ -152,6 +152,17 @@ function tree = list2tree_inc(x, Path, tree, styles, arrayByFields)
             tmp = msprintf(" [%s rational]", ..
                     strcat(msprintf("%d\n",size(x)'),"x"));
         end
+        tree($).label = tree($).label + tmp
+
+    elseif type(x)==128 & or(typeof(x)==["diagram" "Block"])
+        tmp = _(" [Xcos diagram]")
+        if typeof(x)=="Block" then
+            tmp = _(" [Xcos block]")
+        end
+        struct_array = %f
+        v = ["" ; fieldnames(x)]
+        II = 2:size(v,"*")  // fields indices
+        //list_field_content = size(x)
         tree($).label = tree($).label + tmp
 
     else // or(type(x)==[16 17])
@@ -188,10 +199,10 @@ function tree = list2tree_inc(x, Path, tree, styles, arrayByFields)
         if styles <> ""
             titre = strsubst("<html>"+styles, "$", titre)
         end
-    
+
         // Reads the object
         clear o
-        if typeof(x)=="st" then
+        if typeof(x)=="st" | (type(x)==128 & or(typeof(x)==["diagram" "Block"])) then
             if ~struct_array
                 o = x(v(i))
             else
@@ -221,17 +232,17 @@ function tree = list2tree_inc(x, Path, tree, styles, arrayByFields)
 
         elseif typeof(o)=="implicitlist"
             tree = uiConcatTree(tree, uiCreateNode(titre + sci2exp(o)));
-            
+
         elseif type(o)== 13    // function
             p = macr2tree(o)
-            tmp = msprintf(_("%s() (%d lines)"), p.name, p.nblines) 
+            tmp = msprintf(_("%s() (%d lines)"), p.name, p.nblines)
             tree = uiConcatTree(tree, uiCreateNode(titre + tmp));
-            
+
         elseif type(o)== 14    // library
             tmp = string(o)
             p = strsubst(tmp(1), "\", "/"); // not escaped chars for mprintf()
             libname = xmlGetValues("/scilablib","name",p + "lib")
-            tmp = msprintf("%s library of %d functions @ %s", ..
+            tmp = msprintf(_("%s library of %d functions @ %s"), ..
                            libname, size(tmp,1)-1, p)
             tree = uiConcatTree(tree, uiCreateNode(titre + tmp));
 

@@ -19,7 +19,9 @@
           xml:lang="en" xml:id="tree_show">
     <refnamediv>
         <refname>tree_show</refname>
-        <refpurpose>Displays a tree view of a list, tlist, mlist, cell or structure array</refpurpose>
+        <refpurpose>
+            Displays a tree view of a list, tlist, mlist, cell or structure array, Xcos diagram or block
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -38,7 +40,8 @@
                 <listitem>
                     <para>
                     Container to display. Supported containers: list, mlist, tlist, array of cells,
-                    array of structures. Other containers may be nested in <varname>x</varname>.
+                    array of structures, identifier of an Xcos diagram or block.
+                    Other containers may be nested in <varname>x</varname>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -131,49 +134,49 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-    <para>
-    <emphasis role="bold">list(), including a cells array</emphasis> :
-    </para>
-    <table>
-        <tr>
-            <td>
-                <programlisting role="example"><![CDATA[
-        films = struct("Title", "A.I. Artificial Intelligence",..
-                       "Year", 2001, ..
-                       "Director", "Steven Spielberg", ..
-                       "Duration", 140);
-        L = list([%t %f %f],                ..
-                 $:-1:3,                    ..
-                 int8([1 2 3 ; 4 5 6]),     ..
-                 [-%inf, -1, 0, %i, 7.1, 3.3e20, %inf, %nan], ..
-                 sparse([0 1 2; 3 0 4]),    ..
-                 ["This" "is" "some" "text"], ..
-                 ,              ..
-                 sin,           ..
-                 logspace,      ..
-                 iolib,         ..
-                 {%pi, "abcd" ;
-                  list(,)(1),(%i-%s)^3},    ..
-                  {},           ..
-                 films);
-        tree_show(L)
-         ]]></programlisting>
-            </td>
-            <td>
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata fileref="../images/tree_show_list.png"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </td>
-        </tr>
-    </table>
+        <para>
+            <emphasis role="bold">list(), including a cells array</emphasis> :
+        </para>
+        <table>
+            <tr>
+                <td>
+                    <programlisting role="example"><![CDATA[
+            films = struct("Title", "A.I. Artificial Intelligence",..
+                           "Year", 2001, ..
+                           "Director", "Steven Spielberg", ..
+                           "Duration", 140);
+            L = list([%t %f %f],                ..
+                     $:-1:3,                    ..
+                     int8([1 2 3 ; 4 5 6]),     ..
+                     [-%inf, -1, 0, %i, 7.1, 3.3e20, %inf, %nan], ..
+                     sparse([0 1 2; 3 0 4]),    ..
+                     ["This" "is" "some" "text"], ..
+                     ,              ..
+                     sin,           ..
+                     logspace,      ..
+                     iolib,         ..
+                     {%pi, "abcd" ;
+                      list(,)(1),(%i-%s)^3},    ..
+                      {},           ..
+                     films);
+            tree_show(L)
+             ]]></programlisting>
+                </td>
+                <td>
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../images/tree_show_list.png"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </td>
+            </tr>
+        </table>
 
-    <para>
-    <emphasis role="bold">Using the <emphasis>rootTitle</emphasis> and <emphasis>styles</emphasis>
-        options
-    </emphasis> :
-    </para>
+        <para>
+            <emphasis role="bold">
+                Using the <emphasis>rootTitle</emphasis> and <emphasis>styles</emphasis> options
+            </emphasis> :
+        </para>
         <programlisting role="example"><![CDATA[
 // Data to display:
 clear films
@@ -193,17 +196,17 @@ tree_show(films, mainTitle , "<font color=""red"">$</font><i>");
 // Styling only the contents:
 mainTitle = "<html><b>Films (B)</b>";
 tree_show(films([1 4]), mainTitle, "$<font color=""green"">", %t);
- ]]></programlisting>
-    <para/>
-    <inlinemediaobject>
-        <imageobject>
-            <imagedata fileref="../images/tree_show_styling.png"/>
-        </imageobject>
-    </inlinemediaobject>
+     ]]></programlisting>
+        <para/>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../images/tree_show_styling.png"/>
+            </imageobject>
+        </inlinemediaobject>
 
-    <para>
-    <emphasis role="bold">Array of structures</emphasis> :
-    </para>
+        <para>
+            <emphasis role="bold">Array of structures</emphasis> :
+        </para>
         <programlisting role="example"><![CDATA[
 clear films
 films(1) = struct("Title", "A.I. Artificial Intelligence",..
@@ -227,24 +230,22 @@ tree_show(films(:),"Films (I)");
 tree_show(films   ,"Films (II)");
 tree_show(films(:),"Films (III)", , %t);
 tree_show(films   ,"Films (IV)" , , %t);
- ]]></programlisting>
-    <screen><![CDATA[
+     ]]></programlisting>
+        <screen><![CDATA[
 2x2 struct array with fields:
    Title
    Director
    Year
    Duration
 ]]></screen>
-    <inlinemediaobject>
-        <imageobject>
-            <imagedata fileref="../images/tree_show_2x2.png"/>
-        </imageobject>
-    </inlinemediaobject>
-    <para/>
-
-    <para>
-    <emphasis role="bold">With a custom tlist or mlist</emphasis> :
-    </para>
+        <inlinemediaobject>
+            <imageobject>
+                <imagedata fileref="../images/tree_show_2x2.png"/>
+            </imageobject>
+        </inlinemediaobject>
+        <para>
+            <emphasis role="bold">With a custom tlist or mlist</emphasis> :
+        </para>
         <programlisting role="example"><![CDATA[
 // For a mlist:
 str = ['a','b','c','d','e','f','g','h'];
@@ -256,8 +257,21 @@ tree_show(Mm);
 // For a tlist:
 Mt = tlist(['V','name','value'],['a','b','c'],[1 2 3]);
 tree_show(Mt);
- ]]></programlisting>
-    <para/>
+     ]]></programlisting>
+        <para/>
+        <para>
+            <emphasis role="bold">For an Xcos diagram or block</emphasis> :
+        </para>
+        <programlisting role="example"><![CDATA[
+loadXcosLibs();
+
+filename = SCI+"/modules/xcos/demos/demo_Datatype.xmi";
+xcosDiag = scicosDiagramToScilab(filename);
+tree_show(xcosDiag)
+
+blk = BIGSOM_f("define");
+tree_show(blk)
+     ]]></programlisting>
     </refsection>
 
     <refsection role="see also">

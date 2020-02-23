@@ -509,3 +509,4 @@ Bug Fixes
 * [#16321](https://bugzilla.scilab.org/16321): There were typo errors in the documentation.
 * [#16323](https://bugzilla.scilab.org/16323): `conj(sparse(x))` was complex when x is real.
 * [#16325](https://bugzilla.scilab.org/16325): `mgetl` could not read single line data which is greater than ~260,000 characters.
+* [#16333](https://bugzilla.scilab.org/16333): `tree_show` crashed for an input Xcos block.
