@@ -30,7 +30,7 @@ extern "C"
 
 types::Function::ReturnValue sci_saveafterncommands(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    sciprint(_("%s: This function is canceled. It will be permanently removed in Scilab %s\n"), "saveaftercommands", "6.1.x");
+    sciprint(_("%s: This function is canceled. It will be permanently removed in Scilab %s\n"), "saveafterncommands", "6.1.x");
 
     /*
     if (in.size() == 0)

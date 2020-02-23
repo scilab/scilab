@@ -779,11 +779,11 @@ systmat
 %lt_i_s
 %m_n_l
 %m_o_l
-%mc_i_h
-%mc_i_s
-%mc_i_st
-%mc_n_st
-%mc_o_st
+%function_i_h
+%function_i_s
+%function_i_st
+%function_n_st
+%function_o_st
 %msp_i_s
 %msp_i_st
 %msp_n_msp
@@ -1803,6 +1803,7 @@ blockdiag
 cat
 cell2mat
 cellstr
+circshift
 complex
 convertindex
 cosd

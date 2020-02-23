@@ -21,7 +21,7 @@
         <refname>tree_show</refname>
         <refpurpose>
             Отображает в виде дерева содержимое list, tlist, mlist, cell-массивы или массивы структур,
-            Xcos diagram or block
+            Xcos block
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -41,7 +41,7 @@
                 <listitem>
                     <para>
                         Контейнер для отображения. Поддерживаемые контейнеры list, mlist, tlist,
-                        cell-массивы или массивы структур, identifier of an Xcos diagram or block.
+                        cell-массивы или массивы структур, identifier of an Xcos block.
                         Другие контейнеры могут быть вложены в <varname>x</varname>.
                     </para>
                 </listitem>
@@ -263,14 +263,10 @@ tree_show(Mt);
      ]]></programlisting>
         <para/>
         <para>
-            <emphasis role="bold">For an Xcos diagram or block</emphasis> :
+            <emphasis role="bold">For an Xcos block</emphasis> :
         </para>
         <programlisting role="example"><![CDATA[
 loadXcosLibs();
-
-filename = SCI+"/modules/xcos/demos/demo_Datatype.xmi";
-xcosDiag = scicosDiagramToScilab(filename);
-tree_show(xcosDiag)
 
 blk = BIGSOM_f("define");
 tree_show(blk)

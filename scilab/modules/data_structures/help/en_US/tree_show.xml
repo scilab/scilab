@@ -20,7 +20,7 @@
     <refnamediv>
         <refname>tree_show</refname>
         <refpurpose>
-            Displays a tree view of a list, tlist, mlist, cell or structure array, Xcos diagram or block
+            Displays a tree view of a list, tlist, mlist, cell or structure array, Xcos block
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -40,7 +40,7 @@
                 <listitem>
                     <para>
                     Container to display. Supported containers: list, mlist, tlist, array of cells,
-                    array of structures, identifier of an Xcos diagram or block.
+                    array of structures, identifier of an Xcos block.
                     Other containers may be nested in <varname>x</varname>.
                     </para>
                 </listitem>
@@ -260,14 +260,10 @@ tree_show(Mt);
      ]]></programlisting>
         <para/>
         <para>
-            <emphasis role="bold">For an Xcos diagram or block</emphasis> :
+            <emphasis role="bold">For an Xcos block</emphasis> :
         </para>
         <programlisting role="example"><![CDATA[
 loadXcosLibs();
-
-filename = SCI+"/modules/xcos/demos/demo_Datatype.xmi";
-xcosDiag = scicosDiagramToScilab(filename);
-tree_show(xcosDiag)
 
 blk = BIGSOM_f("define");
 tree_show(blk)
