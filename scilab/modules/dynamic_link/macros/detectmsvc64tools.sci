@@ -61,7 +61,7 @@ function bOK = detectmsvc64tools()
             MSVCBIN64PATH = dlwGet64BitPath();
             if dlwIsVc141Express() ||dlwIsVc141Pro() ||dlwIsVc142Express() ||dlwIsVc142Pro() then
                 MSVCBIN64PATH = MSVCBIN64PATH + filesep() + "VC\Auxiliary\Build";
-            elseif dlwIsVc11Express() | dlwIsVc12Express() | dlwIsVc140Express() then
+            elseif dlwIsVc12Express() | dlwIsVc14Express() then
                 MSVCBIN64PATH = MSVCBIN64PATH + filesep() + "VC\bin";
             else
                 MSVCBIN64PATH = MSVCBIN64PATH + filesep() + "VC\bin\amd64";
