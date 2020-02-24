@@ -42,16 +42,16 @@ function [x,y,typ]=scifunc_block_m(job,arg1,arg2)
         while %t do
             [ok,i,o,ci,co,xx,z,rpar,auto0,deptime,lab]=scicos_getvalue(..
             [ msprintf(_("Set %s block parameters"), "scifunc_block");
-             _("Only regular blocks are supported")],..
-             _(["Input ports sizes";
-                "Output port sizes";
-                "Input event ports sizes";
-                "Output events ports sizes";
-                "Initial continuous state";
-                "Initial discrete state";
-                "System parameters vector";
-                "Initial firing vector (<0 for no firing)";
-                "Is block always active (0:no, 1:yes)"]),..
+            _("Only regular blocks are supported")],..
+            _(["Input ports sizes";
+            "Output port sizes";
+            "Input event ports sizes";
+            "Output events ports sizes";
+            "Initial continuous state";
+            "Initial discrete state";
+            "System parameters vector";
+            "Initial firing vector (<0 for no firing)";
+            "Is block always active (0:no, 1:yes)"]),..
             list("mat",[-1 2],"mat",[-2 2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,..
             "vec",-1,"vec",-1,"vec",1),exprs(1))
             if ~ok then
@@ -99,30 +99,11 @@ function [x,y,typ]=scifunc_block_m(job,arg1,arg2)
                 x.model=model
                 exprs(2)=tt
                 graphics.exprs=exprs
-
-                // Protecting the "<" in the function expression as pointed
-                // in http://bugzilla.scilab.org/15921 can't be done with
-                // "&lt;" due to the ";" that is a separator in
-                // graphics.style => LaTeX required
-                // + other protections and style improvements with LaTeX
-                lab = expr2LaTeX(tt(1));
-                tmp = [
-                    "$\mathsf\scalebox{0.8}{"
-                    "\begin{array}{c}"
-                        "\mbox{Expression:}\\"
-                        "\scalebox{0.9}{"+lab+"}"
-                    "\end{array}"
-                    "}$"
-                    ];
-                lab = "scifunc_block_m;displayedLabel="+strcat(tmp);
-                graphics.style = lab;
-                sleep(100)
                 x.graphics=graphics
                 break
             end
         end
         needcompile=resume(needcompile)
-
     case "define" then
         in=1
         out=1
