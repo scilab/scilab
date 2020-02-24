@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2019-03-24 10:48+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: ru\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -79,8 +79,7 @@ msgstr "%s: Ошибка LAPACK №%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
@@ -123,8 +122,7 @@ msgstr "Предупреждение:\n"
 
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
-msgstr ""
-"матрица близка к сингулярной или плохо масштабирована. rcond = %1.4E\n"
+msgstr "матрица близка к сингулярной или плохо масштабирована. rcond = %1.4E\n"
 
 #, c-format
 msgid "%s: Problem is singular.\n"
@@ -242,8 +240,7 @@ msgstr "%s: Возврат с ошибкой из DTGEVC.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
-msgstr ""
-"%s:  Неверное количество выходных аргументов: ожидалось не менее %d.\n"
+msgstr "%s:  Неверное количество выходных аргументов: ожидалось не менее %d.\n"
 
 #, c-format
 msgid "%s: Convergence problem...\n"
@@ -325,10 +322,8 @@ msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась квадратная матрица.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
 
 #, c-format
 msgid ""
@@ -354,19 +349,16 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидался вектор-столбец.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор-столбец.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
+msgid "%s: Wrong type for argument %d: Decimal or complex numbers expected.\n"
 msgstr ""
 "%s: Неверный тип аргумента %d: ожидались десятичные или комплексные числа.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d: ожидался вектор-столбец.\n"
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор-столбец.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"

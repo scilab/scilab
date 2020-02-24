@@ -11,25 +11,23 @@ msgstr ""
 "PO-Revision-Date: 2016-02-13 08:24+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидалась матрица строк.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar string expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась скалярная строка.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась скалярная строка.\n"
 
 #, c-format
 msgid ""

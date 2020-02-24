@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-18 16:36+0100\n"
+"Revision-Date: 2020-02-24 11:08+0100\n"
 
 # File: modules/gui/sci_gateway/c/sci_delmenu.c, line: 55
 # File: modules/gui/sci_gateway/c/sci_setmenu.c, line: 49
@@ -1496,614 +1496,626 @@ msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 1
-# File: modules/gui/src/gui_fake_xml.c, line: 37
-# File: modules/gui/src/gui_fake_xml.c, line: 73
-# File: modules/gui/src/gui_fake_xml.c, line: 81
-# File: modules/gui/src/gui_fake_xml.c, line: 89
-# File: modules/gui/src/gui_fake_xml.c, line: 142
+# File: modules/gui/src/gui_fake_xml.c, line: 38
+# File: modules/gui/src/gui_fake_xml.c, line: 75
+# File: modules/gui/src/gui_fake_xml.c, line: 83
+# File: modules/gui/src/gui_fake_xml.c, line: 91
+# File: modules/gui/src/gui_fake_xml.c, line: 144
 msgid "&File"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 2
-# File: modules/gui/src/gui_fake_xml.c, line: 38
+# File: modules/gui/src/gui_fake_xml.c, line: 39
 msgid "&New figure..."
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 3
-# File: modules/gui/src/gui_fake_xml.c, line: 39
+# File: modules/gui/src/gui_fake_xml.c, line: 40
 msgid "&Load..."
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 4
-# File: modules/gui/src/gui_fake_xml.c, line: 40
+# File: modules/gui/src/gui_fake_xml.c, line: 41
 msgid "&Save..."
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 5
-# File: modules/gui/src/gui_fake_xml.c, line: 41
+# File: modules/gui/src/gui_fake_xml.c, line: 42
 msgid "&Export to..."
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 6
-# File: modules/gui/src/gui_fake_xml.c, line: 42
+# File: modules/gui/src/gui_fake_xml.c, line: 43
 msgid "&Copy to clipboard"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 7
-# File: modules/gui/src/gui_fake_xml.c, line: 43
-# File: modules/gui/src/gui_fake_xml.c, line: 101
-# File: modules/gui/src/gui_fake_xml.c, line: 154
+# File: modules/gui/src/gui_fake_xml.c, line: 44
+# File: modules/gui/src/gui_fake_xml.c, line: 103
+# File: modules/gui/src/gui_fake_xml.c, line: 156
 msgid "P&age setup..."
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 8
-# File: modules/gui/src/gui_fake_xml.c, line: 44
-# File: modules/gui/src/gui_fake_xml.c, line: 102
-# File: modules/gui/src/gui_fake_xml.c, line: 155
+# File: modules/gui/src/gui_fake_xml.c, line: 45
+# File: modules/gui/src/gui_fake_xml.c, line: 104
+# File: modules/gui/src/gui_fake_xml.c, line: 157
 msgid "&Print..."
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 9
-# File: modules/gui/src/gui_fake_xml.c, line: 45
+# File: modules/gui/src/gui_fake_xml.c, line: 46
 msgid "C&lose"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 10
-# File: modules/gui/src/gui_fake_xml.c, line: 46
-# File: modules/gui/src/gui_fake_xml.c, line: 75
-# File: modules/gui/src/gui_fake_xml.c, line: 83
+# File: modules/gui/src/gui_fake_xml.c, line: 47
+# File: modules/gui/src/gui_fake_xml.c, line: 77
+# File: modules/gui/src/gui_fake_xml.c, line: 85
 msgid "&Tools"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 11
-# File: modules/gui/src/gui_fake_xml.c, line: 47
-# File: modules/gui/src/gui_fake_xml.c, line: 110
-# File: modules/gui/src/gui_fake_xml.c, line: 163
+# File: modules/gui/src/gui_fake_xml.c, line: 48
+# File: modules/gui/src/gui_fake_xml.c, line: 112
+# File: modules/gui/src/gui_fake_xml.c, line: 165
 msgid "Show/Hide &Toolbar"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 12
-# File: modules/gui/src/gui_fake_xml.c, line: 48
+# File: modules/gui/src/gui_fake_xml.c, line: 49
 msgid "&Zoom"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 13
-# File: modules/gui/src/gui_fake_xml.c, line: 49
+# File: modules/gui/src/gui_fake_xml.c, line: 50
 msgid "&Original View"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 14
-# File: modules/gui/src/gui_fake_xml.c, line: 50
-# File: modules/gui/src/gui_fake_xml.c, line: 198
-# File: modules/gui/src/gui_fake_xml.c, line: 206
+# File: modules/gui/src/gui_fake_xml.c, line: 51
+# File: modules/gui/src/gui_fake_xml.c, line: 200
+# File: modules/gui/src/gui_fake_xml.c, line: 209
 msgid "Reframe to contents"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 15
-# File: modules/gui/src/gui_fake_xml.c, line: 51
+# File: modules/gui/src/gui_fake_xml.c, line: 52
 msgid "2D/3D &Rotation"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 16
-# File: modules/gui/src/gui_fake_xml.c, line: 52
-# File: modules/gui/src/gui_fake_xml.c, line: 104
-# File: modules/gui/src/gui_fake_xml.c, line: 157
+# File: modules/gui/src/gui_fake_xml.c, line: 53
+# File: modules/gui/src/gui_fake_xml.c, line: 106
+# File: modules/gui/src/gui_fake_xml.c, line: 159
 msgid "&Edit"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 17
-# File: modules/gui/src/gui_fake_xml.c, line: 53
+# File: modules/gui/src/gui_fake_xml.c, line: 54
 msgid "&Select as current figure"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 18
-# File: modules/gui/src/gui_fake_xml.c, line: 54
+# File: modules/gui/src/gui_fake_xml.c, line: 55
 msgid "&Clear figure"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 19
-# File: modules/gui/src/gui_fake_xml.c, line: 55
+# File: modules/gui/src/gui_fake_xml.c, line: 56
 msgid "&Figure properties"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 20
-# File: modules/gui/src/gui_fake_xml.c, line: 56
+# File: modules/gui/src/gui_fake_xml.c, line: 57
 msgid "&Axes properties"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 21
-# File: modules/gui/src/gui_fake_xml.c, line: 57
-msgid "&Start entity picker"
+# File: modules/gui/src/gui_fake_xml.c, line: 58
+msgid "&Move objects"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 22
-# File: modules/gui/src/gui_fake_xml.c, line: 58
-msgid "S&top entity picker"
+# File: modules/gui/src/gui_fake_xml.c, line: 59
+msgid "Start entity &picker"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 23
-# File: modules/gui/src/gui_fake_xml.c, line: 59
-msgid "&Start datatip manager"
+# File: modules/gui/src/gui_fake_xml.c, line: 60
+msgid "S&top entity picker"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 24
-# File: modules/gui/src/gui_fake_xml.c, line: 60
-msgid "Stop datatip manager"
+# File: modules/gui/src/gui_fake_xml.c, line: 61
+msgid "Start &datatip manager"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 25
-# File: modules/gui/src/gui_fake_xml.c, line: 61
-msgid "Start curve data modification"
+# File: modules/gui/src/gui_fake_xml.c, line: 62
+msgid "Stop datatip manager"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 26
-# File: modules/gui/src/gui_fake_xml.c, line: 62
-msgid "Stop curve data modification"
+# File: modules/gui/src/gui_fake_xml.c, line: 63
+msgid "Start curve data modification"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 27
-# File: modules/gui/src/gui_fake_xml.c, line: 63
+# File: modules/gui/src/gui_fake_xml.c, line: 64
+msgid "Stop curve data modification"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 28
+# File: modules/gui/src/gui_fake_xml.c, line: 65
 # File: modules/gui/src/java/org/scilab/modules/gui/plotbrowser/MessagesPlotBrowser.java, line: 28
 msgid "Plot Browser"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 28
-# File: modules/gui/src/gui_fake_xml.c, line: 64
+# File: modules/gui/src/gui_fake_xml.c, line: 29
+# File: modules/gui/src/gui_fake_xml.c, line: 66
 msgid "Scilab Graphic Editor - GED"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 29
-# File: modules/gui/src/gui_fake_xml.c, line: 65
+# File: modules/gui/src/gui_fake_xml.c, line: 30
+# File: modules/gui/src/gui_fake_xml.c, line: 67
 msgid "&Quick Editor"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 30
-# File: modules/gui/src/gui_fake_xml.c, line: 66
+# File: modules/gui/src/gui_fake_xml.c, line: 31
+# File: modules/gui/src/gui_fake_xml.c, line: 68
 msgid "&MVC"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 31
-# File: modules/gui/src/gui_fake_xml.c, line: 67
+# File: modules/gui/src/gui_fake_xml.c, line: 32
+# File: modules/gui/src/gui_fake_xml.c, line: 69
 msgid "&Log View (Trace all View notifications)"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 32
-# File: modules/gui/src/gui_fake_xml.c, line: 68
+# File: modules/gui/src/gui_fake_xml.c, line: 33
+# File: modules/gui/src/gui_fake_xml.c, line: 70
 msgid "&All Objects View (All objects with properties)"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 33
-# File: modules/gui/src/gui_fake_xml.c, line: 69
+# File: modules/gui/src/gui_fake_xml.c, line: 34
+# File: modules/gui/src/gui_fake_xml.c, line: 71
 msgid "&Ged-like View (Future ged)"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 34
-# File: modules/gui/src/gui_fake_xml.c, line: 70
-# File: modules/gui/src/gui_fake_xml.c, line: 79
-# File: modules/gui/src/gui_fake_xml.c, line: 87
-# File: modules/gui/src/gui_fake_xml.c, line: 126
-# File: modules/gui/src/gui_fake_xml.c, line: 179
+# File: modules/gui/src/gui_fake_xml.c, line: 35
+# File: modules/gui/src/gui_fake_xml.c, line: 72
+# File: modules/gui/src/gui_fake_xml.c, line: 81
+# File: modules/gui/src/gui_fake_xml.c, line: 89
+# File: modules/gui/src/gui_fake_xml.c, line: 128
+# File: modules/gui/src/gui_fake_xml.c, line: 181
 msgid "&?"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 35
-# File: modules/gui/src/gui_fake_xml.c, line: 71
+# File: modules/gui/src/gui_fake_xml.c, line: 36
+# File: modules/gui/src/gui_fake_xml.c, line: 73
 msgid "&Scilab Help"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 36
-# File: modules/gui/src/gui_fake_xml.c, line: 72
-# File: modules/gui/src/gui_fake_xml.c, line: 80
-# File: modules/gui/src/gui_fake_xml.c, line: 88
-# File: modules/gui/src/gui_fake_xml.c, line: 141
-# File: modules/gui/src/gui_fake_xml.c, line: 194
-msgid "&About Scilab..."
-msgstr ""
-
-#
+# File: modules/gui/src/gui_fake_xml.c, line: 37
 # File: modules/gui/src/gui_fake_xml.c, line: 74
 # File: modules/gui/src/gui_fake_xml.c, line: 82
-msgid "&Close"
+# File: modules/gui/src/gui_fake_xml.c, line: 90
+# File: modules/gui/src/gui_fake_xml.c, line: 143
+# File: modules/gui/src/gui_fake_xml.c, line: 196
+msgid "&About Scilab..."
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 76
 # File: modules/gui/src/gui_fake_xml.c, line: 84
-msgid "&Incremental Search"
-msgstr ""
-
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 77
-# File: modules/gui/src/gui_fake_xml.c, line: 85
-msgid "In&crease font size"
+msgid "&Close"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 78
 # File: modules/gui/src/gui_fake_xml.c, line: 86
+msgid "&Incremental Search"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 79
+# File: modules/gui/src/gui_fake_xml.c, line: 87
+msgid "In&crease font size"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 80
+# File: modules/gui/src/gui_fake_xml.c, line: 88
 msgid "&Decrease font size"
-msgstr ""
-
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 90
-# File: modules/gui/src/gui_fake_xml.c, line: 143
-msgid "&Execute..."
-msgstr ""
-
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 91
-# File: modules/gui/src/gui_fake_xml.c, line: 144
-msgid "&Open a file..."
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 92
 # File: modules/gui/src/gui_fake_xml.c, line: 145
-msgid "&Load environment..."
+msgid "&Execute..."
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 93
 # File: modules/gui/src/gui_fake_xml.c, line: 146
-msgid "&Save environment..."
+msgid "&Open a file..."
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 94
 # File: modules/gui/src/gui_fake_xml.c, line: 147
-msgid "&Current Working Directory"
+msgid "&Load environment..."
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 95
 # File: modules/gui/src/gui_fake_xml.c, line: 148
-msgid "    &Browse for new"
+msgid "&Save environment..."
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 96
 # File: modules/gui/src/gui_fake_xml.c, line: 149
-msgid "    Go to &Favorite"
+msgid "&Current Working Directory"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 97
 # File: modules/gui/src/gui_fake_xml.c, line: 150
-msgid "TMPDIR"
+msgid "    &Browse for new"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 98
 # File: modules/gui/src/gui_fake_xml.c, line: 151
-msgid "SCIHOME"
+msgid "    Go to &Favorite"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 99
 # File: modules/gui/src/gui_fake_xml.c, line: 152
-msgid "SCI"
+msgid "TMPDIR"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 100
 # File: modules/gui/src/gui_fake_xml.c, line: 153
-msgid "User's home ~"
+msgid "SCIHOME"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 103
-# File: modules/gui/src/gui_fake_xml.c, line: 156
-msgid "&Quit"
+# File: modules/gui/src/gui_fake_xml.c, line: 101
+# File: modules/gui/src/gui_fake_xml.c, line: 154
+msgid "SCI"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 102
+# File: modules/gui/src/gui_fake_xml.c, line: 155
+msgid "User's home ~"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 105
 # File: modules/gui/src/gui_fake_xml.c, line: 158
-msgid "C&ut"
-msgstr ""
-
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 106
-# File: modules/gui/src/gui_fake_xml.c, line: 159
-msgid "&Copy"
+msgid "&Quit"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 107
 # File: modules/gui/src/gui_fake_xml.c, line: 160
-msgid "&Paste"
+msgid "C&ut"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 108
 # File: modules/gui/src/gui_fake_xml.c, line: 161
-msgid "&Empty clipboard"
+msgid "&Copy"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 109
 # File: modules/gui/src/gui_fake_xml.c, line: 162
-msgid "&Select all"
+msgid "&Paste"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 110
+# File: modules/gui/src/gui_fake_xml.c, line: 163
+msgid "&Empty clipboard"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 111
 # File: modules/gui/src/gui_fake_xml.c, line: 164
-msgid "Clear &History"
-msgstr ""
-
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 112
-# File: modules/gui/src/gui_fake_xml.c, line: 165
-msgid "Clear C&onsole"
+msgid "&Select all"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 113
 # File: modules/gui/src/gui_fake_xml.c, line: 166
-msgid "P&references"
+msgid "Clear &History"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 114
 # File: modules/gui/src/gui_fake_xml.c, line: 167
-msgid "&Control"
+msgid "Clear C&onsole"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 115
 # File: modules/gui/src/gui_fake_xml.c, line: 168
-msgid "&Resume"
+msgid "P&references"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 116
 # File: modules/gui/src/gui_fake_xml.c, line: 169
-msgid "&Abort"
+msgid "&Control"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 117
 # File: modules/gui/src/gui_fake_xml.c, line: 170
-msgid "&Interrupt"
+msgid "&Resume"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 118
 # File: modules/gui/src/gui_fake_xml.c, line: 171
-msgid "&Applications"
+msgid "&Abort"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 119
 # File: modules/gui/src/gui_fake_xml.c, line: 172
-msgid "&SciNotes"
+msgid "&Interrupt"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 120
 # File: modules/gui/src/gui_fake_xml.c, line: 173
-msgid "&Xcos"
+msgid "&Applications"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 121
 # File: modules/gui/src/gui_fake_xml.c, line: 174
-msgid "&Matlab to Scilab translator"
+msgid "&SciNotes"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 122
 # File: modules/gui/src/gui_fake_xml.c, line: 175
-msgid "M&odule manager - ATOMS"
+msgid "&Xcos"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 123
 # File: modules/gui/src/gui_fake_xml.c, line: 176
-msgid "&Variable Browser"
+msgid "&Matlab to Scilab translator"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 124
 # File: modules/gui/src/gui_fake_xml.c, line: 177
-msgid "&Command History"
+msgid "M&odule manager - ATOMS"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 125
 # File: modules/gui/src/gui_fake_xml.c, line: 178
-msgid "&File Browser"
+msgid "&Variable Browser"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 126
+# File: modules/gui/src/gui_fake_xml.c, line: 179
+msgid "&Command History"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 127
 # File: modules/gui/src/gui_fake_xml.c, line: 180
-msgid "Scilab &Help"
-msgstr ""
-
-#
-# File: modules/gui/src/gui_fake_xml.c, line: 128
-# File: modules/gui/src/gui_fake_xml.c, line: 181
-msgid "Scilab &Demonstrations"
+msgid "&File Browser"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 129
 # File: modules/gui/src/gui_fake_xml.c, line: 182
-msgid "&News feed"
+msgid "Scilab &Help"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 130
 # File: modules/gui/src/gui_fake_xml.c, line: 183
-msgid "&Links"
+msgid "Scilab &Demonstrations"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 131
 # File: modules/gui/src/gui_fake_xml.c, line: 184
-msgid "Scilab &Web Site"
+msgid "&News feed"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 132
 # File: modules/gui/src/gui_fake_xml.c, line: 185
-msgid "Scilab &Online Help"
+msgid "&Links"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 133
 # File: modules/gui/src/gui_fake_xml.c, line: 186
-msgid "Scilab &Wiki"
+msgid "Scilab &Web Site"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 134
 # File: modules/gui/src/gui_fake_xml.c, line: 187
-msgid "Scilab &ATOMS Web Site"
+msgid "Scilab &Online Help"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 135
 # File: modules/gui/src/gui_fake_xml.c, line: 188
-msgid "&File Exchange"
+msgid "Scilab &Wiki"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 136
 # File: modules/gui/src/gui_fake_xml.c, line: 189
-msgid "&Mailing Lists"
+msgid "Scilab &ATOMS Web Site"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 137
 # File: modules/gui/src/gui_fake_xml.c, line: 190
-msgid "Mailing Lists &Archives"
+msgid "&File Exchange"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 138
 # File: modules/gui/src/gui_fake_xml.c, line: 191
-msgid "&Forge"
+msgid "&Mailing Lists"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 139
 # File: modules/gui/src/gui_fake_xml.c, line: 192
-msgid "&Bugs And Requests"
+msgid "Mailing Lists &Archives"
 msgstr ""
 
 #
 # File: modules/gui/src/gui_fake_xml.c, line: 140
 # File: modules/gui/src/gui_fake_xml.c, line: 193
+msgid "&Forge"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 141
+# File: modules/gui/src/gui_fake_xml.c, line: 194
+msgid "&Bugs And Requests"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 142
+# File: modules/gui/src/gui_fake_xml.c, line: 195
 msgid "&Scilab Enterprises"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 195
-# File: modules/gui/src/gui_fake_xml.c, line: 203
+# File: modules/gui/src/gui_fake_xml.c, line: 197
+# File: modules/gui/src/gui_fake_xml.c, line: 206
 msgid "Rotate"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 196
-# File: modules/gui/src/gui_fake_xml.c, line: 204
+# File: modules/gui/src/gui_fake_xml.c, line: 198
+# File: modules/gui/src/gui_fake_xml.c, line: 207
 msgid "Zoom Area"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 197
-# File: modules/gui/src/gui_fake_xml.c, line: 205
+# File: modules/gui/src/gui_fake_xml.c, line: 199
+# File: modules/gui/src/gui_fake_xml.c, line: 208
 msgid "Original View"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 199
-# File: modules/gui/src/gui_fake_xml.c, line: 207
+# File: modules/gui/src/gui_fake_xml.c, line: 201
+# File: modules/gui/src/gui_fake_xml.c, line: 210
 msgid "Toggle datatip mode"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 200
-# File: modules/gui/src/gui_fake_xml.c, line: 208
+# File: modules/gui/src/gui_fake_xml.c, line: 202
+# File: modules/gui/src/gui_fake_xml.c, line: 211
 msgid "Open the graphics editor"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 201
-# File: modules/gui/src/gui_fake_xml.c, line: 209
+# File: modules/gui/src/gui_fake_xml.c, line: 203
+# File: modules/gui/src/gui_fake_xml.c, line: 212
 msgid "Toggle curve data modification"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 202
-# File: modules/gui/src/gui_fake_xml.c, line: 210
-# File: modules/gui/src/gui_fake_xml.c, line: 222
-# File: modules/gui/src/gui_fake_xml.c, line: 234
+# File: modules/gui/src/gui_fake_xml.c, line: 204
+# File: modules/gui/src/gui_fake_xml.c, line: 213
+msgid "Move objects"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 205
+# File: modules/gui/src/gui_fake_xml.c, line: 214
+# File: modules/gui/src/gui_fake_xml.c, line: 226
+# File: modules/gui/src/gui_fake_xml.c, line: 238
 # File: modules/gui/src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 95
 # File: modules/gui/src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 177
 msgid "Help Browser"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 211
-# File: modules/gui/src/gui_fake_xml.c, line: 223
+# File: modules/gui/src/gui_fake_xml.c, line: 215
+# File: modules/gui/src/gui_fake_xml.c, line: 227
 msgid "Launch SciNotes"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 212
-# File: modules/gui/src/gui_fake_xml.c, line: 224
+# File: modules/gui/src/gui_fake_xml.c, line: 216
+# File: modules/gui/src/gui_fake_xml.c, line: 228
 msgid "Open a file"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 213
-# File: modules/gui/src/gui_fake_xml.c, line: 225
+# File: modules/gui/src/gui_fake_xml.c, line: 217
+# File: modules/gui/src/gui_fake_xml.c, line: 229
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 95
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 305
 msgid "Cut"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 214
-# File: modules/gui/src/gui_fake_xml.c, line: 226
+# File: modules/gui/src/gui_fake_xml.c, line: 218
+# File: modules/gui/src/gui_fake_xml.c, line: 230
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 102
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowserViewer.java, line: 605
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 303
@@ -2111,293 +2123,293 @@ msgid "Copy"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 215
-# File: modules/gui/src/gui_fake_xml.c, line: 227
+# File: modules/gui/src/gui_fake_xml.c, line: 219
+# File: modules/gui/src/gui_fake_xml.c, line: 231
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 109
 # File: modules/gui/src/java/org/scilab/modules/gui/editor/Editor.java, line: 307
 msgid "Paste"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 216
-# File: modules/gui/src/gui_fake_xml.c, line: 228
+# File: modules/gui/src/gui_fake_xml.c, line: 220
+# File: modules/gui/src/gui_fake_xml.c, line: 232
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 82
 # File: modules/gui/src/java/org/scilab/modules/gui/bridge/console/SwingScilabConsole.java, line: 123
 msgid "Clear Console"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 217
-# File: modules/gui/src/gui_fake_xml.c, line: 229
+# File: modules/gui/src/gui_fake_xml.c, line: 221
+# File: modules/gui/src/gui_fake_xml.c, line: 233
 msgid "Print..."
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 218
-# File: modules/gui/src/gui_fake_xml.c, line: 230
+# File: modules/gui/src/gui_fake_xml.c, line: 222
+# File: modules/gui/src/gui_fake_xml.c, line: 234
 msgid "Module manager - ATOMS"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 219
-# File: modules/gui/src/gui_fake_xml.c, line: 231
+# File: modules/gui/src/gui_fake_xml.c, line: 223
+# File: modules/gui/src/gui_fake_xml.c, line: 235
 msgid "Xcos"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 220
-# File: modules/gui/src/gui_fake_xml.c, line: 232
+# File: modules/gui/src/gui_fake_xml.c, line: 224
+# File: modules/gui/src/gui_fake_xml.c, line: 236
 msgid "Scilab Preferences"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 221
-# File: modules/gui/src/gui_fake_xml.c, line: 233
+# File: modules/gui/src/gui_fake_xml.c, line: 225
+# File: modules/gui/src/gui_fake_xml.c, line: 237
 msgid "Scilab Demonstrations"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 385
-# File: modules/gui/src/gui_fake_xml.c, line: 548
+# File: modules/gui/src/gui_fake_xml.c, line: 389
+# File: modules/gui/src/gui_fake_xml.c, line: 555
 msgid "Select a file to load"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 388
-# File: modules/gui/src/gui_fake_xml.c, line: 551
+# File: modules/gui/src/gui_fake_xml.c, line: 392
+# File: modules/gui/src/gui_fake_xml.c, line: 558
 msgid "Figure loaded.\n"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 396
-# File: modules/gui/src/gui_fake_xml.c, line: 559
+# File: modules/gui/src/gui_fake_xml.c, line: 400
+# File: modules/gui/src/gui_fake_xml.c, line: 566
 msgid "Select a file to write"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 402
-# File: modules/gui/src/gui_fake_xml.c, line: 565
+# File: modules/gui/src/gui_fake_xml.c, line: 406
+# File: modules/gui/src/gui_fake_xml.c, line: 572
 msgid "Figure saved.\n"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 702
-# File: modules/gui/src/gui_fake_xml.c, line: 742
+# File: modules/gui/src/gui_fake_xml.c, line: 712
+# File: modules/gui/src/gui_fake_xml.c, line: 755
 msgid "'Right click and drag to rotate.'"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 1470
-# File: modules/gui/src/gui_fake_xml.c, line: 1507
+# File: modules/gui/src/gui_fake_xml.c, line: 1486
+# File: modules/gui/src/gui_fake_xml.c, line: 1523
 # File: modules/gui/src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 103
 msgid "Colors"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 1558
-# File: modules/gui/src/gui_fake_xml.c, line: 1830
+# File: modules/gui/src/gui_fake_xml.c, line: 1574
+# File: modules/gui/src/gui_fake_xml.c, line: 1846
 msgid "Desktop color"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 1566
-# File: modules/gui/src/gui_fake_xml.c, line: 1580
-# File: modules/gui/src/gui_fake_xml.c, line: 1838
-# File: modules/gui/src/gui_fake_xml.c, line: 1852
+# File: modules/gui/src/gui_fake_xml.c, line: 1582
+# File: modules/gui/src/gui_fake_xml.c, line: 1596
+# File: modules/gui/src/gui_fake_xml.c, line: 1854
+# File: modules/gui/src/gui_fake_xml.c, line: 1868
 msgid "Use system color"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 1616
-# File: modules/gui/src/gui_fake_xml.c, line: 1888
+# File: modules/gui/src/gui_fake_xml.c, line: 1632
+# File: modules/gui/src/gui_fake_xml.c, line: 1904
 msgid "Text "
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 1630
-# File: modules/gui/src/gui_fake_xml.c, line: 1902
+# File: modules/gui/src/gui_fake_xml.c, line: 1646
+# File: modules/gui/src/gui_fake_xml.c, line: 1918
 msgid "Background "
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 1644
-# File: modules/gui/src/gui_fake_xml.c, line: 1916
+# File: modules/gui/src/gui_fake_xml.c, line: 1660
+# File: modules/gui/src/gui_fake_xml.c, line: 1932
 msgid "Cursor "
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 1668
-# File: modules/gui/src/gui_fake_xml.c, line: 1940
+# File: modules/gui/src/gui_fake_xml.c, line: 1684
+# File: modules/gui/src/gui_fake_xml.c, line: 1956
 msgid "Syntax highlighting colors"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 1700
-# File: modules/gui/src/gui_fake_xml.c, line: 1972
+# File: modules/gui/src/gui_fake_xml.c, line: 1716
+# File: modules/gui/src/gui_fake_xml.c, line: 1988
 msgid "Keyword color "
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 1724
-# File: modules/gui/src/gui_fake_xml.c, line: 1996
+# File: modules/gui/src/gui_fake_xml.c, line: 1740
+# File: modules/gui/src/gui_fake_xml.c, line: 2012
 msgid "&lt;html&gt;&lt;b&gt;Bold&lt;/b&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 1738
-# File: modules/gui/src/gui_fake_xml.c, line: 2010
+# File: modules/gui/src/gui_fake_xml.c, line: 1754
+# File: modules/gui/src/gui_fake_xml.c, line: 2026
 msgid "&lt;html&gt;&lt;i&gt;Italic&lt;/i&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 1752
-# File: modules/gui/src/gui_fake_xml.c, line: 2024
+# File: modules/gui/src/gui_fake_xml.c, line: 1768
+# File: modules/gui/src/gui_fake_xml.c, line: 2040
 msgid "&lt;html&gt;&lt;u&gt;Underline&lt;/u&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 1766
-# File: modules/gui/src/gui_fake_xml.c, line: 2038
+# File: modules/gui/src/gui_fake_xml.c, line: 1782
+# File: modules/gui/src/gui_fake_xml.c, line: 2054
 msgid "&lt;html&gt;&lt;s&gt;Strike-through&lt;/s&gt;&lt;html&gt;"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2088
-# File: modules/gui/src/gui_fake_xml.c, line: 2101
+# File: modules/gui/src/gui_fake_xml.c, line: 2104
+# File: modules/gui/src/gui_fake_xml.c, line: 2117
 msgid "Fonts"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2153
-# File: modules/gui/src/gui_fake_xml.c, line: 2405
+# File: modules/gui/src/gui_fake_xml.c, line: 2169
+# File: modules/gui/src/gui_fake_xml.c, line: 2421
 msgid "Desktop font"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2161
-# File: modules/gui/src/gui_fake_xml.c, line: 2413
+# File: modules/gui/src/gui_fake_xml.c, line: 2177
+# File: modules/gui/src/gui_fake_xml.c, line: 2429
 msgid "Use system font"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2193
-# File: modules/gui/src/gui_fake_xml.c, line: 2445
+# File: modules/gui/src/gui_fake_xml.c, line: 2209
+# File: modules/gui/src/gui_fake_xml.c, line: 2461
 msgid "Desktop text font: "
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2224
-# File: modules/gui/src/gui_fake_xml.c, line: 2476
+# File: modules/gui/src/gui_fake_xml.c, line: 2240
+# File: modules/gui/src/gui_fake_xml.c, line: 2492
 msgid "Custom font"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2252
-# File: modules/gui/src/gui_fake_xml.c, line: 2504
+# File: modules/gui/src/gui_fake_xml.c, line: 2268
+# File: modules/gui/src/gui_fake_xml.c, line: 2520
 msgid "Fonts to use:"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2258
-# File: modules/gui/src/gui_fake_xml.c, line: 2510
+# File: modules/gui/src/gui_fake_xml.c, line: 2274
+# File: modules/gui/src/gui_fake_xml.c, line: 2526
 msgid "Desktop text font"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2270
-# File: modules/gui/src/gui_fake_xml.c, line: 2522
+# File: modules/gui/src/gui_fake_xml.c, line: 2286
+# File: modules/gui/src/gui_fake_xml.c, line: 2538
 msgid "Custom:"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2329
-# File: modules/gui/src/gui_fake_xml.c, line: 2581
+# File: modules/gui/src/gui_fake_xml.c, line: 2345
+# File: modules/gui/src/gui_fake_xml.c, line: 2597
 msgid "LaTeX preview"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2333
-# File: modules/gui/src/gui_fake_xml.c, line: 2585
+# File: modules/gui/src/gui_fake_xml.c, line: 2349
+# File: modules/gui/src/gui_fake_xml.c, line: 2601
 msgid "LaTeX font size:"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2962
-# File: modules/gui/src/gui_fake_xml.c, line: 2970
+# File: modules/gui/src/gui_fake_xml.c, line: 2978
+# File: modules/gui/src/gui_fake_xml.c, line: 2986
 msgid "Web"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2988
-# File: modules/gui/src/gui_fake_xml.c, line: 3135
+# File: modules/gui/src/gui_fake_xml.c, line: 3004
+# File: modules/gui/src/gui_fake_xml.c, line: 3151
 msgid "Web browser and mailer"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2990
-# File: modules/gui/src/gui_fake_xml.c, line: 3137
+# File: modules/gui/src/gui_fake_xml.c, line: 3006
+# File: modules/gui/src/gui_fake_xml.c, line: 3153
 msgid "Use default web browser"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 2996
-# File: modules/gui/src/gui_fake_xml.c, line: 3143
+# File: modules/gui/src/gui_fake_xml.c, line: 3012
+# File: modules/gui/src/gui_fake_xml.c, line: 3159
 msgid "Command for web browser: "
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 3011
-# File: modules/gui/src/gui_fake_xml.c, line: 3042
-# File: modules/gui/src/gui_fake_xml.c, line: 3158
-# File: modules/gui/src/gui_fake_xml.c, line: 3189
+# File: modules/gui/src/gui_fake_xml.c, line: 3027
+# File: modules/gui/src/gui_fake_xml.c, line: 3058
+# File: modules/gui/src/gui_fake_xml.c, line: 3174
+# File: modules/gui/src/gui_fake_xml.c, line: 3205
 msgid "(Don't forget to quote path containing white spaces)"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 3021
-# File: modules/gui/src/gui_fake_xml.c, line: 3168
+# File: modules/gui/src/gui_fake_xml.c, line: 3037
+# File: modules/gui/src/gui_fake_xml.c, line: 3184
 msgid "Use default mailer"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 3027
-# File: modules/gui/src/gui_fake_xml.c, line: 3174
+# File: modules/gui/src/gui_fake_xml.c, line: 3043
+# File: modules/gui/src/gui_fake_xml.c, line: 3190
 msgid "Command for mailer: "
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 3055
-# File: modules/gui/src/gui_fake_xml.c, line: 3202
+# File: modules/gui/src/gui_fake_xml.c, line: 3071
+# File: modules/gui/src/gui_fake_xml.c, line: 3218
 msgid "Proxy settings"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 3057
-# File: modules/gui/src/gui_fake_xml.c, line: 3204
+# File: modules/gui/src/gui_fake_xml.c, line: 3073
+# File: modules/gui/src/gui_fake_xml.c, line: 3220
 msgid "Enable proxy"
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 3063
-# File: modules/gui/src/gui_fake_xml.c, line: 3210
+# File: modules/gui/src/gui_fake_xml.c, line: 3079
+# File: modules/gui/src/gui_fake_xml.c, line: 3226
 msgid "Host: "
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 3077
-# File: modules/gui/src/gui_fake_xml.c, line: 3224
+# File: modules/gui/src/gui_fake_xml.c, line: 3093
+# File: modules/gui/src/gui_fake_xml.c, line: 3240
 msgid "Port: "
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 3091
-# File: modules/gui/src/gui_fake_xml.c, line: 3238
+# File: modules/gui/src/gui_fake_xml.c, line: 3107
+# File: modules/gui/src/gui_fake_xml.c, line: 3254
 msgid "User: "
 msgstr ""
 
 #
-# File: modules/gui/src/gui_fake_xml.c, line: 3105
-# File: modules/gui/src/gui_fake_xml.c, line: 3252
+# File: modules/gui/src/gui_fake_xml.c, line: 3121
+# File: modules/gui/src/gui_fake_xml.c, line: 3268
 msgid "Password: "
 msgstr ""
 
@@ -4791,7 +4803,7 @@ msgstr ""
 # File: modules/gui/macros/tree/uiConcatTree.sci, line: 36
 # File: modules/gui/macros/tree/uiCreateTree.sci, line: 37
 # File: modules/gui/macros/tree/uiDeleteNode.sci, line: 30
-# File: modules/gui/macros/tree/uiDumpTree.sci, line: 29
+# File: modules/gui/macros/tree/uiDumpTree.sci, line: 27
 # File: modules/gui/macros/tree/uiEqualsTree.sci, line: 28
 # File: modules/gui/macros/tree/uiEqualsTree.sci, line: 35
 # File: modules/gui/macros/tree/uiFindNode.sci, line: 31
@@ -4859,7 +4871,7 @@ msgid "%s: No matching node.\n"
 msgstr ""
 
 #
-# File: modules/gui/macros/tree/uiDumpTree.sci, line: 37
+# File: modules/gui/macros/tree/uiDumpTree.sci, line: 35
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-18 16:36+0100\n"
+"Revision-Date: 2020-02-24 11:08+0100\n"
 
 # File: modules/atoms/macros/atomsAutoload.sci, line: 50
 # File: modules/atoms/macros/atomsLoad.sci, line: 41
@@ -31,7 +31,7 @@ msgstr ""
 # File: modules/atoms/macros/atomsAutoloadDel.sci, line: 38
 # File: modules/atoms/macros/atomsCategoryList.sci, line: 32
 # File: modules/atoms/macros/atomsGetConfig.sci, line: 23
-# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 27
+# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 23
 # File: modules/atoms/macros/atomsIsInstalled.sci, line: 41
 # File: modules/atoms/macros/atomsRepositoryAdd.sci, line: 69
 # File: modules/atoms/macros/atomsRepositoryDel.sci, line: 36
@@ -124,7 +124,8 @@ msgstr ""
 # File: modules/atoms/macros/atomsCategoryList.sci, line: 39
 # File: modules/atoms/macros/atomsGetConfig.sci, line: 29
 # File: modules/atoms/macros/atomsGetInstalled.sci, line: 49
-# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 34
+# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 30
+# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 52
 # File: modules/atoms/macros/atomsInstall.sci, line: 100
 # File: modules/atoms/macros/atomsIsInstalled.sci, line: 79
 # File: modules/atoms/macros/atomsList.sci, line: 38
@@ -288,7 +289,6 @@ msgstr ""
 
 #
 # File: modules/atoms/macros/atomsAutoloadDel.sci, line: 78
-# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 61
 # File: modules/atoms/macros/atoms_internals/atomsGetInstalledDetails.sci, line: 52
 # File: modules/atoms/macros/atoms_internals/atomsGetInstalledStatus.sci, line: 52
 # File: modules/atoms/macros/atoms_internals/atomsGetInstalledVers.sci, line: 51
@@ -532,22 +532,18 @@ msgid "%s: The config file ('%s') is not well formatted at line %d\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 38
-# File: modules/atoms/macros/atoms_internals/atomsGetInstalledDetails.sci, line: 37
+# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 34
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgid "%s: Argument #%d: Matrix with %s columns expected.\n"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 44
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 34
+msgid "1 to 3"
 msgstr ""
 
 #
-# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 65
+# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 56
 # File: modules/atoms/macros/atomsRemove.sci, line: 115
 # File: modules/atoms/macros/atomsRemove.sci, line: 154
 # File: modules/atoms/macros/atomsRepositoryDel.sci, line: 77
@@ -562,6 +558,12 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 63
+#, c-format
+msgid "%s: Argument #%d (:,3): 'user' or 'allusers' or 'all' expected.\n"
 msgstr ""
 
 #
@@ -1625,6 +1627,13 @@ msgstr ""
 # File: modules/atoms/macros/atoms_internals/atomsUpdateDeps.sci, line: 37
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/atoms/macros/atoms_internals/atomsGetInstalledDetails.sci, line: 37
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
 msgstr ""
 
 #

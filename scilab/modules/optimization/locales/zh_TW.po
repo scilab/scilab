@@ -6,11 +6,11 @@ msgstr ""
 "PO-Revision-Date: 2020-02-20 18:16+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: zh_TW\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
@@ -26,8 +26,7 @@ msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該有 %d 列.\n"
 
 #, c-format
@@ -135,8 +134,7 @@ msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A jacobian or a real expected.\n"
+msgid "%s: Wrong type for input argument #%d: A jacobian or a real expected.\n"
 msgstr ""
 
 #, c-format
@@ -165,8 +163,7 @@ msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -218,8 +215,7 @@ msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -261,8 +257,7 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -429,7 +424,8 @@ msgstr "dtrcon 內之錯誤, info = %d.\n"
 msgid ""
 "The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
 "are very badly conditioned).\n"
-msgstr "矩陣 F0i, i=1,...,m 為線性相依 (或初始位置 之條件很糟,badly conditioned).\n"
+msgstr ""
+"矩陣 F0i, i=1,...,m 為線性相依 (或初始位置 之條件很糟,badly conditioned).\n"
 
 #
 # File: src/c/sp.c, line: 558
@@ -532,13 +528,50 @@ msgstr ""
 msgid "Simulated Annealing and Ising problem"
 msgstr ""
 
-msgid "Non linear data fitting"
+#
+# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 9
+msgid "Parabolic model (3 params)"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 10
+msgid "Sloping gaussian model (5 params)"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 11
+msgid "Tilted ellipse (5 params)"
 msgstr ""
 
 msgid "Experimental data"
 msgstr ""
 
 msgid "Fitting function"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 84
+msgid "datafit() random demo : ellipse fitting (unweighted)"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 91
+msgid "True elliptical law"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 92
+msgid "Data = true + noise dx|y = +/-7%"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 93
+msgid "Best ellipse fitting Data"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 102
+msgid "datafit: Fitting on 30 random unweighted data points"
 msgstr ""
 
 #, c-format
@@ -712,8 +745,7 @@ msgstr ""
 msgid "Relative error on f = %e\n"
 msgstr ""
 
-msgid ""
-"Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgid "Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
 msgstr ""
 
 msgid ""
@@ -869,6 +901,11 @@ msgstr ""
 msgid "Optimization and Simulation"
 msgstr ""
 
+#
+# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 14
+msgid "datafit: Nonlinear fitting"
+msgstr ""
+
 msgid "Optimisation"
 msgstr ""
 
@@ -893,7 +930,8 @@ msgstr "optim_sa: sa_f 是強制性的"
 msgid ""
 "%s: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = "
 "%f\n"
-msgstr "%s: 溫度步級 %d /%d - T = %f, E9f(T)) = %f var(f(T)) = %f f_best = %f\n"
+msgstr ""
+"%s: 溫度步級 %d /%d - T = %f, E9f(T)) = %f var(f(T)) = %f f_best = %f\n"
 
 #, c-format
 msgid "%s: More than 20 equations are not allowed"
@@ -916,16 +954,26 @@ msgstr ""
 msgid "%s: Jacobian cannot be a list, parameters must be set in G."
 msgstr ""
 
+#
+# File: modules/optimization/macros/datafit.sci, line: 66
 #, c-format
-msgid "%s: Wrong measurement matrix."
+msgid "%s: Data points must be real numbers."
 msgstr ""
 
+#
+# File: modules/optimization/macros/datafit.sci, line: 81
 #, c-format
-msgid "%s: Initial guess must be a column vector."
+msgid "%s: Initial guess p0 is missing."
 msgstr ""
 
 #, c-format
 msgid "%s: Weighting matrix must be square."
+msgstr ""
+
+#
+# File: modules/optimization/macros/datafit.sci, line: 107
+#, c-format
+msgid "%s: error with parameters bounds or initial guess\n"
 msgstr ""
 
 #, c-format
@@ -1001,8 +1049,7 @@ msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
 
 #, c-format
@@ -1026,8 +1073,7 @@ msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 
 #, c-format
@@ -1371,13 +1417,11 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Expected function but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 
 #, c-format
@@ -1447,8 +1491,7 @@ msgid "%s: Unknown restart detection %s"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Randomized bounds initial simplex is not available without bounds."
+msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
 
 #, c-format
@@ -1469,8 +1512,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Problem has no constraints, but Box algorithm is designed for them."
+msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 
 #, c-format
@@ -1480,8 +1522,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Randomized bounds restart simplex is not available without bounds."
+msgid "%s: Randomized bounds restart simplex is not available without bounds."
 msgstr ""
 
 #, c-format
@@ -1537,8 +1578,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
+msgid "%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
 msgstr ""
 
 #, c-format

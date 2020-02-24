@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-18 16:36+0100\n"
+"Revision-Date: 2020-02-24 11:08+0100\n"
 
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 89
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 115
@@ -805,7 +805,6 @@ msgstr ""
 msgid "An error occurred while getting OptimizationFunctions object.\n"
 msgstr ""
 
-#
 # File: modules/optimization/demos/annealing/SAIsing2ddemo.sce, line: 10
 # File: modules/optimization/demos/annealing/SAdemo.sce, line: 10
 msgid "Please wait ..."
@@ -813,6 +812,7 @@ msgstr ""
 
 #
 # File: modules/optimization/demos/annealing/simulated_annealing.dem.gateway.sce, line: 7
+# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 25
 msgid "Simulated Annealing"
 msgstr ""
 
@@ -821,20 +821,55 @@ msgstr ""
 msgid "Simulated Annealing and Ising problem"
 msgstr ""
 
-# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 8
-# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 13
-msgid "Non linear data fitting"
+#
+# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 9
+msgid "Parabolic model (3 params)"
 msgstr ""
 
 #
-# File: modules/optimization/demos/datafit/demo_datafit.sci, line: 40
-# File: modules/optimization/demos/datafit/demo_datafit.sci, line: 49
+# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 10
+msgid "Sloping gaussian model (5 params)"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 11
+msgid "Tilted ellipse (5 params)"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/datafit.dem.sce, line: 38
+# File: modules/optimization/demos/datafit/datafit.dem.sce, line: 47
 msgid "Experimental data"
 msgstr ""
 
 #
-# File: modules/optimization/demos/datafit/demo_datafit.sci, line: 49
+# File: modules/optimization/demos/datafit/datafit.dem.sce, line: 47
 msgid "Fitting function"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 84
+msgid "datafit() random demo : ellipse fitting (unweighted)"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 91
+msgid "True elliptical law"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 92
+msgid "Data = true + noise dx|y = +/-7%"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 93
+msgid "Best ellipse fitting Data"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 102
+msgid "datafit: Fitting on 30 random unweighted data points"
 msgstr ""
 
 #
@@ -850,7 +885,7 @@ msgstr ""
 
 #
 # File: modules/optimization/demos/genetic/genetic_algorithms.dem.gateway.sce, line: 12
-# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 19
+# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 21
 msgid "Genetic algorithms"
 msgstr ""
 
@@ -1475,16 +1510,21 @@ msgstr ""
 
 #
 # File: modules/optimization/demos/optimization.dem.gateway.sce, line: 14
-msgid "Optimisation"
+msgid "datafit: Nonlinear fitting"
 msgstr ""
 
 #
 # File: modules/optimization/demos/optimization.dem.gateway.sce, line: 15
-msgid "fminsearch"
+msgid "Optimisation"
 msgstr ""
 
 #
 # File: modules/optimization/demos/optimization.dem.gateway.sce, line: 16
+msgid "fminsearch"
+msgstr ""
+
+#
+# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 17
 msgid "ICSE"
 msgstr ""
 
@@ -1540,31 +1580,37 @@ msgid "%s: Wrong type for input argument #%s: external expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/macros/datafit.sci, line: 77
+# File: modules/optimization/macros/datafit.sci, line: 57
 #, c-format
 msgid "%s: Jacobian cannot be a list, parameters must be set in G."
 msgstr ""
 
 #
-# File: modules/optimization/macros/datafit.sci, line: 85
+# File: modules/optimization/macros/datafit.sci, line: 66
 #, c-format
-msgid "%s: Wrong measurement matrix."
+msgid "%s: Data points must be real numbers."
 msgstr ""
 
 #
-# File: modules/optimization/macros/datafit.sci, line: 96
+# File: modules/optimization/macros/datafit.sci, line: 81
 #, c-format
-msgid "%s: Initial guess must be a column vector."
+msgid "%s: Initial guess p0 is missing."
 msgstr ""
 
 #
-# File: modules/optimization/macros/datafit.sci, line: 98
+# File: modules/optimization/macros/datafit.sci, line: 95
 #, c-format
 msgid "%s: Weighting matrix must be square."
 msgstr ""
 
 #
-# File: modules/optimization/macros/datafit.sci, line: 113
+# File: modules/optimization/macros/datafit.sci, line: 107
+#, c-format
+msgid "%s: error with parameters bounds or initial guess\n"
+msgstr ""
+
+#
+# File: modules/optimization/macros/datafit.sci, line: 122
 #, c-format
 msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""

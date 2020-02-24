@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2020-02-20 18:16+0000\n"
 "Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: fr\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -32,8 +32,7 @@ msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr "%s : Dimension erronée de l'argument d'entrée n°%d : %d attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Nombre de colonnes %d "
 "attendu.\n"
@@ -142,14 +141,12 @@ msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A jacobian or a real expected.\n"
+msgid "%s: Wrong type for input argument #%d: A jacobian or a real expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real Scalar expected.\n"
@@ -173,8 +170,7 @@ msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -226,8 +222,7 @@ msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 
 #, c-format
@@ -269,8 +264,7 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -513,13 +507,50 @@ msgstr "Recuit simulé"
 msgid "Simulated Annealing and Ising problem"
 msgstr "Recuit simulé et problème d'Ising"
 
-msgid "Non linear data fitting"
+#
+# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 9
+msgid "Parabolic model (3 params)"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 10
+msgid "Sloping gaussian model (5 params)"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 11
+msgid "Tilted ellipse (5 params)"
 msgstr ""
 
 msgid "Experimental data"
 msgstr ""
 
 msgid "Fitting function"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 84
+msgid "datafit() random demo : ellipse fitting (unweighted)"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 91
+msgid "True elliptical law"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 92
+msgid "Data = true + noise dx|y = +/-7%"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 93
+msgid "Best ellipse fitting Data"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 102
+msgid "datafit: Fitting on 30 random unweighted data points"
 msgstr ""
 
 #, c-format
@@ -693,8 +724,7 @@ msgstr ""
 msgid "Relative error on f = %e\n"
 msgstr ""
 
-msgid ""
-"Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgid "Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
 msgstr ""
 
 msgid ""
@@ -850,6 +880,11 @@ msgstr ""
 msgid "Optimization and Simulation"
 msgstr ""
 
+#
+# File: modules/optimization/demos/optimization.dem.gateway.sce, line: 14
+msgid "datafit: Nonlinear fitting"
+msgstr ""
+
 msgid "Optimisation"
 msgstr ""
 
@@ -904,17 +939,23 @@ msgstr ""
 "%s : Le Jacobien ne peut pas être une liste, les paramètres doivent être "
 "configurés dans G."
 
-#, c-format
-msgid "%s: Wrong measurement matrix."
-msgstr "%s : Matrice de mesure erronée."
-
-#, c-format
-msgid "%s: Initial guess must be a column vector."
+#, fuzzy, c-format
+msgid "%s: Data points must be real numbers."
 msgstr "%s : L'estimation initiale doit être un vecteur colonne."
+
+#, fuzzy, c-format
+msgid "%s: Initial guess p0 is missing."
+msgstr "%s : Le point initial est réalisable."
 
 #, c-format
 msgid "%s: Weighting matrix must be square."
 msgstr "%s : La matrice de pondération doit être carrée."
+
+#
+# File: modules/optimization/macros/datafit.sci, line: 107
+#, c-format
+msgid "%s: error with parameters bounds or initial guess\n"
+msgstr ""
 
 #, c-format
 msgid "%s: With hard coded function, user must give output size of G."
@@ -990,8 +1031,7 @@ msgstr ""
 "l'intervalle [0,1]."
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : maxiter doit être "
 "supérieur à 1."
@@ -1024,8 +1064,7 @@ msgstr ""
 "borne inférieure lb."
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : x0 est plus grand que la "
 "borne supérieure ub."
@@ -1227,8 +1266,7 @@ msgstr ""
 "inconnues D1, ..., DN"
 
 msgid "For a detailed description and examples consult: "
-msgstr ""
-"Pour une description détaillée et des exemples, veuillez consulter : "
+msgstr "Pour une description détaillée et des exemples, veuillez consulter : "
 
 msgid ""
 "          'LMITOOL: a Package for LMI Optimization in Scilab, User's Guide' "
@@ -1416,15 +1454,13 @@ msgstr ""
 "l'entrée n°%d, mais %s obtenu à la place."
 
 #, c-format
-msgid ""
-"%s: Expected function but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s : Fonction attendue mais pour la variable %s à l'entrée n°%d, %s obtenu à "
 "la place."
 
 #, c-format
-msgid ""
-"%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s : Booléen attendu mais pour la variable %s en argument d'entrée n°%d, %s "
 "obtenu à la place."
@@ -1514,8 +1550,7 @@ msgid "%s: Unknown restart detection %s"
 msgstr "%s : Méthode de détection du redémarrage inconnue : %s"
 
 #, c-format
-msgid ""
-"%s: Randomized bounds initial simplex is not available without bounds."
+msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
 "%s : Le calcul du simplexe initial fondé sur un tirage aléatoire des "
 "contraintes de bornes n'est pas possible s'il n'y a pas de bornes."
@@ -1540,8 +1575,7 @@ msgstr ""
 "contraintes d'inégalités"
 
 #, c-format
-msgid ""
-"%s: Problem has no constraints, but Box algorithm is designed for them."
+msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 "%s : Le problème n'a pas de contraintes, mais l'algorithme de Box est conçu "
 "pour elles."
@@ -1555,8 +1589,7 @@ msgstr ""
 "de redémarrage du simplexe %s"
 
 #, c-format
-msgid ""
-"%s: Randomized bounds restart simplex is not available without bounds."
+msgid "%s: Randomized bounds restart simplex is not available without bounds."
 msgstr ""
 "%s : Le calcul du simplexe de redémarrage fondé sur un tirage aléatoire des "
 "contraintes de bornes n'est pas possible s'il n'y a pas de bornes."
@@ -1624,8 +1657,7 @@ msgstr ""
 "minimales : %d.\n"
 
 #, c-format
-msgid ""
-"%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
+msgid "%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
 msgstr ""
 "%s : La borne maximale %s pour la variable n°%d est inférieure à la borne "
 "minimale %s.\n"
@@ -1754,8 +1786,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid ""
@@ -1863,8 +1894,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: The number of rows in x is %d, while expected %d."
-msgstr ""
-"%s : Le nombre de lignes de x est %d, alors que %d étaient attendues."
+msgstr "%s : Le nombre de lignes de x est %d, alors que %d étaient attendues."
 
 #, c-format
 msgid "%s: The number of columns in x is %d, while expected %d."
@@ -1902,3 +1932,7 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Une valeur entière "
 "attendue.\n"
+
+#, c-format
+#~ msgid "%s: Wrong measurement matrix."
+#~ msgstr "%s : Matrice de mesure erronée."

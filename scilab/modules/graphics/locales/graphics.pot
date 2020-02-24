@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-23 16:36+0100\n"
+"Revision-Date: 2020-02-24 11:08+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 83
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 221
@@ -483,6 +483,33 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_plot3d.c, line: 105
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
+msgstr ""
+
+#
+# File: modules/graphics/sci_gateway/c/sci_champ.c, line: 173
+# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 367
+# File: modules/graphics/sci_gateway/c/sci_drawaxis.c, line: 400
+# File: modules/graphics/sci_gateway/c/sci_fec.c, line: 131
+# File: modules/graphics/sci_gateway/c/sci_geom3d.c, line: 123
+# File: modules/graphics/sci_gateway/c/sci_geom3d.c, line: 130
+# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 144
+# File: modules/graphics/sci_gateway/c/sci_param3d.c, line: 151
+# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 144
+# File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 240
+# File: modules/graphics/sci_gateway/c/sci_xarrows.c, line: 90
+# File: modules/graphics/sci_gateway/c/sci_xchange.c, line: 115
+# File: modules/graphics/sci_gateway/c/sci_xchange.c, line: 195
+# File: modules/graphics/sci_gateway/c/sci_xfpoly.c, line: 92
+# File: modules/graphics/sci_gateway/c/sci_xfpolys.c, line: 116
+# File: modules/graphics/sci_gateway/c/sci_xfpolys.c, line: 152
+# File: modules/graphics/sci_gateway/c/sci_xgetmouse.c, line: 106
+# File: modules/graphics/sci_gateway/c/sci_xpoly.c, line: 103
+# File: modules/graphics/sci_gateway/c/sci_xpolys.c, line: 102
+# File: modules/graphics/sci_gateway/c/sci_xsegs.c, line: 95
+# File: modules/graphics/sci_gateway/c/sci_xsegs.c, line: 187
+# File: modules/graphics/sci_gateway/cpp/sci_contour2dm.cpp, line: 89
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
 
 #
@@ -3134,7 +3161,7 @@ msgstr ""
 
 #
 # File: modules/graphics/demos/hist_bar_stem/histBarStem.dem.gateway.sce, line: 18
-msgid "hist3d"
+msgid "bar3d"
 msgstr ""
 
 #
@@ -3415,6 +3442,7 @@ msgstr ""
 # File: modules/graphics/macros/bar.sci, line: 147
 # File: modules/graphics/macros/colorbar.sci, line: 196
 # File: modules/graphics/macros/colorbar.sci, line: 236
+# File: modules/graphics/macros/plotimplicit.sci, line: 98
 #, c-format
 msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
@@ -3461,6 +3489,89 @@ msgstr ""
 # File: modules/graphics/macros/bar.sci, line: 154
 #, c-format
 msgid "%s: Argument #%d: Must be in the interval %s.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 29
+# File: modules/graphics/macros/hist3d.sci, line: 30
+msgid "April"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 29
+msgid "Febuary"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 29
+# File: modules/graphics/macros/hist3d.sci, line: 30
+msgid "January"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 29
+# File: modules/graphics/macros/hist3d.sci, line: 30
+msgid "June"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 29
+# File: modules/graphics/macros/hist3d.sci, line: 30
+msgid "March"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 29
+# File: modules/graphics/macros/hist3d.sci, line: 30
+msgid "May"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 30
+# File: modules/graphics/macros/hist3d.sci, line: 31
+msgid "August"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 30
+# File: modules/graphics/macros/hist3d.sci, line: 31
+msgid "July"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 30
+# File: modules/graphics/macros/hist3d.sci, line: 31
+msgid "November"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 30
+# File: modules/graphics/macros/hist3d.sci, line: 31
+msgid "October"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 30
+# File: modules/graphics/macros/hist3d.sci, line: 31
+msgid "September"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 31
+# File: modules/graphics/macros/hist3d.sci, line: 32
+msgid "Average"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 31
+# File: modules/graphics/macros/hist3d.sci, line: 32
+msgid "December"
+msgstr ""
+
+#
+# File: modules/graphics/macros/bar3d.sci, line: 50
+# File: modules/graphics/macros/hist3d.sci, line: 53
+msgid "Average monthly temperatures in french cities"
 msgstr ""
 
 #
@@ -3548,44 +3659,44 @@ msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/checkXYPair.sci, line: 74
+# File: modules/graphics/macros/checkXYPair.sci, line: 73
 msgid "Transposing row vector X to get compatible dimensions"
 msgstr ""
 
 #
-# File: modules/graphics/macros/checkXYPair.sci, line: 76
+# File: modules/graphics/macros/checkXYPair.sci, line: 75
 msgid "Transposing row vector Y to get compatible dimensions"
 msgstr ""
 
 #
-# File: modules/graphics/macros/checkXYPair.sci, line: 83
-# File: modules/graphics/macros/checkXYPair.sci, line: 90
+# File: modules/graphics/macros/checkXYPair.sci, line: 82
+# File: modules/graphics/macros/checkXYPair.sci, line: 89
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A non empty matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/checkXYPair.sci, line: 111
-# File: modules/graphics/macros/checkXYPair.sci, line: 135
+# File: modules/graphics/macros/checkXYPair.sci, line: 110
+# File: modules/graphics/macros/checkXYPair.sci, line: 134
 msgid "Transposing data matrix Y to get compatible dimensions"
 msgstr ""
 
 #
-# File: modules/graphics/macros/checkXYPair.sci, line: 123
-# File: modules/graphics/macros/checkXYPair.sci, line: 146
-# File: modules/graphics/macros/checkXYPair.sci, line: 159
+# File: modules/graphics/macros/checkXYPair.sci, line: 122
+# File: modules/graphics/macros/checkXYPair.sci, line: 145
+# File: modules/graphics/macros/checkXYPair.sci, line: 161
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Incompatible dimensions.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/checkXYPair.sci, line: 139
+# File: modules/graphics/macros/checkXYPair.sci, line: 138
 msgid "Transposing column vector X to get row vector"
 msgstr ""
 
 #
-# File: modules/graphics/macros/clf.sci, line: 63
+# File: modules/graphics/macros/clf.sci, line: 65
 # File: modules/graphics/macros/createConstraints.sci, line: 33
 # File: modules/graphics/macros/createConstraints.sci, line: 58
 # File: modules/graphics/macros/rotate.sci, line: 23
@@ -3598,13 +3709,13 @@ msgid "%s: Wrong number of input argument(s): %d to %d expected."
 msgstr ""
 
 #
-# File: modules/graphics/macros/clf.sci, line: 68
+# File: modules/graphics/macros/clf.sci, line: 70
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'clear' or 'reset' expected."
 msgstr ""
 
 #
-# File: modules/graphics/macros/clf.sci, line: 81
+# File: modules/graphics/macros/clf.sci, line: 83
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A vector of 'Figure' or 'Frame' "
@@ -3634,7 +3745,7 @@ msgstr ""
 #
 # File: modules/graphics/macros/colordef.sci, line: 24
 # File: modules/graphics/macros/colordef.sci, line: 34
-# File: modules/graphics/macros/legends.sci, line: 28
+# File: modules/graphics/macros/legends.sci, line: 29
 # File: modules/graphics/macros/titlepage.sci, line: 25
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
@@ -3736,8 +3847,6 @@ msgstr ""
 # File: modules/graphics/macros/contour2d.sci, line: 32
 # File: modules/graphics/macros/contourf.sci, line: 58
 # File: modules/graphics/macros/contourf.sci, line: 62
-# File: modules/graphics/macros/implicitplot.sci, line: 38
-# File: modules/graphics/macros/implicitplot.sci, line: 50
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
@@ -3769,8 +3878,6 @@ msgstr ""
 # File: modules/graphics/macros/contour2d.sci, line: 48
 # File: modules/graphics/macros/contourf.sci, line: 111
 # File: modules/graphics/macros/contourf.sci, line: 115
-# File: modules/graphics/macros/implicitplot.sci, line: 41
-# File: modules/graphics/macros/implicitplot.sci, line: 53
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real vector expected.\n"
 msgstr ""
@@ -3837,12 +3944,6 @@ msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/twinkle.sci, line: 38
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
-msgstr ""
-
-#
 # File: modules/graphics/macros/datatips/datatipManagerMode.sci, line: 48
 #, c-format
 msgid "%s: too many input arguments"
@@ -3880,16 +3981,6 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: handle on axes or axes children "
 "expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/getcolor.sci, line: 88
-msgid "&Edit"
-msgstr ""
-
-#
-# File: modules/graphics/macros/getcolor.sci, line: 89
-msgid "&?"
 msgstr ""
 
 #
@@ -4033,6 +4124,26 @@ msgid "%s: Wrong size for input argument #%d: A real expected.\n"
 msgstr ""
 
 #
+# File: modules/graphics/macros/getcolor.sci, line: 86
+msgid "&File"
+msgstr ""
+
+#
+# File: modules/graphics/macros/getcolor.sci, line: 87
+msgid "&Tools"
+msgstr ""
+
+#
+# File: modules/graphics/macros/getcolor.sci, line: 88
+msgid "&Edit"
+msgstr ""
+
+#
+# File: modules/graphics/macros/getcolor.sci, line: 89
+msgid "&?"
+msgstr ""
+
+#
 # File: modules/graphics/macros/getcolor.sci, line: 140
 # File: modules/graphics/macros/getcolor.sci, line: 143
 msgid "Ok"
@@ -4046,72 +4157,7 @@ msgstr ""
 
 #
 # File: modules/graphics/macros/hist3d.sci, line: 30
-msgid "April"
-msgstr ""
-
-#
-# File: modules/graphics/macros/hist3d.sci, line: 30
 msgid "February"
-msgstr ""
-
-#
-# File: modules/graphics/macros/hist3d.sci, line: 30
-msgid "January"
-msgstr ""
-
-#
-# File: modules/graphics/macros/hist3d.sci, line: 30
-msgid "June"
-msgstr ""
-
-#
-# File: modules/graphics/macros/hist3d.sci, line: 30
-msgid "March"
-msgstr ""
-
-#
-# File: modules/graphics/macros/hist3d.sci, line: 30
-msgid "May"
-msgstr ""
-
-#
-# File: modules/graphics/macros/hist3d.sci, line: 31
-msgid "August"
-msgstr ""
-
-#
-# File: modules/graphics/macros/hist3d.sci, line: 31
-msgid "July"
-msgstr ""
-
-#
-# File: modules/graphics/macros/hist3d.sci, line: 31
-msgid "November"
-msgstr ""
-
-#
-# File: modules/graphics/macros/hist3d.sci, line: 31
-msgid "October"
-msgstr ""
-
-#
-# File: modules/graphics/macros/hist3d.sci, line: 31
-msgid "September"
-msgstr ""
-
-#
-# File: modules/graphics/macros/hist3d.sci, line: 32
-msgid "Average"
-msgstr ""
-
-#
-# File: modules/graphics/macros/hist3d.sci, line: 32
-msgid "December"
-msgstr ""
-
-#
-# File: modules/graphics/macros/hist3d.sci, line: 53
-msgid "Average monthly temperatures in french cities"
 msgstr ""
 
 #
@@ -4134,39 +4180,6 @@ msgstr ""
 # File: modules/graphics/macros/histplot.sci, line: 78
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/implicitplot.sci, line: 44
-# File: modules/graphics/macros/implicitplot.sci, line: 56
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Real value expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/implicitplot.sci, line: 63
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real matrix or String or Scilab "
-"function expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/implicitplot.sci, line: 73
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Scalar string expected.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/implicitplot.sci, line: 102
-#, c-format
-msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
-msgstr ""
-
-#
-# File: modules/graphics/macros/implicitplot.sci, line: 148
-#, c-format
-msgid "Error %d : in plot called by implicitplot"
 msgstr ""
 
 #
@@ -4213,7 +4226,7 @@ msgid "%s: No '%s' handle found.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/legends.sci, line: 32
+# File: modules/graphics/macros/legends.sci, line: 34
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real array or graphic handle array "
@@ -4221,7 +4234,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/legends.sci, line: 45
+# File: modules/graphics/macros/legends.sci, line: 48
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
@@ -4229,14 +4242,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/graphics/macros/legends.sci, line: 101
+# File: modules/graphics/macros/legends.sci, line: 108
 #, c-format
 msgid ""
 "%s: Wrong value for input argument %s: Must be in the interval [%d, %d]."
 msgstr ""
 
 #
-# File: modules/graphics/macros/legends.sci, line: 171
+# File: modules/graphics/macros/legends.sci, line: 181
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polyline handles expected.\n"
 msgstr ""
@@ -4265,25 +4278,37 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/plot.sci, line: 49
+# File: modules/graphics/macros/plot.sci, line: 58
 #, c-format
 msgid "%s: Argument #%d: Graphic handle(s) of type %s expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/plot.sci, line: 217
+# File: modules/graphics/macros/plot.sci, line: 70
+#, c-format
+msgid "%s: Argument #%d: log flags: scalar expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plot.sci, line: 77
+#, c-format
+msgid "%s: Argument #%d: log flags: wrong value. Ignored.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plot.sci, line: 245
 #, c-format
 msgid "%s: wrong list() specification for the curve #%d.\n"
 msgstr ""
 
 #
-# File: modules/graphics/macros/plot.sci, line: 259
+# File: modules/graphics/macros/plot.sci, line: 287
 #, c-format
 msgid "%s: Error : unable to evaluate input function %s."
 msgstr ""
 
 #
-# File: modules/graphics/macros/plot.sci, line: 260
+# File: modules/graphics/macros/plot.sci, line: 288
 #, c-format
 msgid "Error %d at line %d of the function: '%s"
 msgstr ""
@@ -4295,6 +4320,55 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plotimplicit.sci, line: 43
+# File: modules/graphics/macros/plotimplicit.sci, line: 69
+#, c-format
+msgid "%s: Argument #%d: Real vector or colon : expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plotimplicit.sci, line: 52
+# File: modules/graphics/macros/plotimplicit.sci, line: 75
+#, c-format
+msgid "%s: Argument #%d: Vector expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plotimplicit.sci, line: 55
+# File: modules/graphics/macros/plotimplicit.sci, line: 78
+#, c-format
+msgid "%s: Argument #%d: Real value expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plotimplicit.sci, line: 93
+#, c-format
+msgid ""
+"%s: Argument #%d: Real matrix or String or Scilab function or list "
+"expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plotimplicit.sci, line: 118
+#, c-format
+msgid ""
+"%s: Argument #%d(#%d): Identifier of a Scilab or built-in function "
+"expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plotimplicit.sci, line: 179
+#, c-format
+msgid "%s: Function evaluation in selected range does not cross any zeros.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/plotimplicit.sci, line: 217
+#, c-format
+msgid "Error %d : in plot called by plotimplicit"
 msgstr ""
 
 #
@@ -4536,6 +4610,12 @@ msgstr ""
 # File: modules/graphics/macros/surf.sci, line: 544
 #, c-format
 msgid "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
+msgstr ""
+
+#
+# File: modules/graphics/macros/twinkle.sci, line: 38
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
 
 #

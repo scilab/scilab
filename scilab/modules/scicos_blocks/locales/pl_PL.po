@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2020-02-18 21:49+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: pl\n"
 
 msgid "overflow error"
 msgstr "błąd przepełnienia"
@@ -142,15 +142,13 @@ msgstr ""
 msgid "The block must have from 2 to 31 output ports"
 msgstr ""
 
-msgid ""
-"The block must have from 2 to 31 output ports.<br>size 0 is not allowed"
+msgid "The block must have from 2 to 31 output ports.<br>size 0 is not allowed"
 msgstr ""
 
 msgid "The block must have from 2 to 8 output ports"
 msgstr ""
 
-msgid ""
-"The block must have from 2 to 8 output ports.<br>size 0 is not allowed."
+msgid "The block must have from 2 to 8 output ports.<br>size 0 is not allowed."
 msgstr ""
 
 msgid "Number of output event ports"
@@ -187,8 +185,7 @@ msgstr ""
 msgid "Block must have from 2 to 8 input ports"
 msgstr ""
 
-msgid ""
-"The block must have from 2 to 8 input ports.<br>size 0 is not allowed."
+msgid "The block must have from 2 to 8 input ports.<br>size 0 is not allowed."
 msgstr ""
 
 msgid "Number of inputs"
@@ -328,6 +325,147 @@ msgstr ""
 msgid "Phase (0 to division factor -1)"
 msgstr ""
 
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 38
+msgid "RESERVOIR parameters"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 39
+msgid "Pressure at the reservoir surface : Patm (Pa)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 40
+msgid "Reservoir section : A (m2)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 41
+msgid "Altitude of input connection #1: ze1 (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 42
+msgid "Altitude of input connection #2: ze2 (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 43
+msgid "Altitude of output connection #1: zs1 (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 44
+msgid "Altitude of output connection #2: zs2 (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 45
+msgid "Starting fluid Altitude : z0 (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 46
+msgid "Initial fluid temperature : T0 (K)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 47
+# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 44
+msgid "If >0, fixed fluid density : p_rho (kg/m3)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Flowmeter.sci, line: 37
+msgid "FLOWMETER parameters:"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 38
+msgid "PIPE parameters"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 39
+msgid "Pipe length : L (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 40
+msgid "Pipe internal diameter : D (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 41
+msgid "Coefficient of loss of load-friction (S.U): lambda"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 42
+msgid "Altitude of pipe's inlet: z1 (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 43
+msgid "Altitude of pipe's outlet: z2 (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 38
+msgid "Fluid SINK parameters"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 39
+msgid "Pressure of the source : P0 (Pa)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 40
+msgid "Temperature of the source : T0 (K)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 41
+msgid "Specific enthalpy of the source : H0 (J/kg)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 42
+msgid "Condition: 1=fixed temperature  2=fixed enthalpy"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 38
+msgid "Fluid SOURCE parameters"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 39
+msgid "Pressure : P0 (Pa)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 40
+msgid "Temperature : T0 (K)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 41
+msgid "Specific enthalpy : H0 (J/kg)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 42
+msgid "Condition: 1=Fixed temperature | 2=Fixed enthalpy"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/VanneReglante.sci, line: 38
+msgid "REGULATING VALVE parameters"
+msgstr ""
+
 msgid "Clear a bit"
 msgstr ""
 
@@ -366,9 +504,9 @@ msgid "Data Type (3:int32, 4:int16, 5:int8, ...)"
 msgstr ""
 
 msgid ""
-"Set CONVERT block parameters<br><br>Type conversion<br><br>(a) "
-"1|2:double&nbsp;  3:int32&nbsp;  4:int16&nbsp;  5:int8&nbsp;  6:uint32&nbsp; "
-" 7:uint16&nbsp;  8:uint8<br>(b) 0:Nothing, 1:Saturate, 2:Error<br><br>"
+"Set CONVERT block parameters<br><br>Type conversion<br><br>(a) 1|2:"
+"double&nbsp;  3:int32&nbsp;  4:int16&nbsp;  5:int8&nbsp;  6:uint32&nbsp;  7:"
+"uint16&nbsp;  8:uint8<br>(b) 0:Nothing, 1:Saturate, 2:Error<br><br>"
 msgstr ""
 
 msgid "Input type (a)"
@@ -391,12 +529,12 @@ msgstr "Typ wyjścia"
 
 msgid ""
 "Set EXTRACTBITS block parameters<br><br>Bits Extraction<br><br>&nbsp;- Bits "
-"to Extract:<br>&nbsp;&nbsp;&nbsp;&nbsp;1 Upper "
-"Half<br>&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half<br>&nbsp;&nbsp;&nbsp;&nbsp;3 "
-"Range from MSB<br>&nbsp;&nbsp;&nbsp;&nbsp;4 Range to "
-"LSB<br>&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits<br>&nbsp;- Number of Bits or "
-"Index of bit : Index 0 is LSB<br>&nbsp;&nbsp;&nbsp;&nbsp;If 'Bits to "
-"Extract' is set to 'Range of bits': [Start, End]<br><br>"
+"to Extract:<br>&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half<br>&nbsp;&nbsp;&nbsp;"
+"&nbsp;2 Lower Half<br>&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB<br>&nbsp;"
+"&nbsp;&nbsp;&nbsp;4 Range to LSB<br>&nbsp;&nbsp;&nbsp;&nbsp;5 Range of "
+"Bits<br>&nbsp;- Number of Bits or Index of bit : Index 0 is LSB<br>&nbsp;"
+"&nbsp;&nbsp;&nbsp;If 'Bits to Extract' is set to 'Range of bits': [Start, "
+"End]<br><br>"
 msgstr ""
 
 msgid "Bits to extract"
@@ -650,8 +788,8 @@ msgstr ""
 msgid ""
 "This sum block is obsolete<br><br>Parameters cannot be modified. Please "
 "replace it with<br>the new sum and gain blocks in the linear "
-"palette<br><br>Input ports are located at up, side and down "
-"positions.<br>Current gains are: "
+"palette<br><br>Input ports are located at up, side and down positions."
+"<br>Current gains are: "
 msgstr ""
 
 msgid "Datatype (1=real double  2=complex 3=int32 ..)"

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2020-02-07 13:13+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -39,8 +39,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
 
 #, c-format
 msgid ""
@@ -201,24 +200,27 @@ msgstr "%s: Неверное значение входного аргумент�
 msgid "%s: The config file ('%s') is not well formatted at line %d\n"
 msgstr "%s: Неправильный формат конфигурационного файла («%s») в строке %d\n"
 
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Matrix with %s columns expected.\n"
 msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась (m x 2) или (m x 3)-"
-"матрица строк.\n"
+"%s: Неверный тип входного параметра №%d: ожидался типизированный список на "
+"основе матриц.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+#
+# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 34
+msgid "1 to 3"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: версия всех модулей должна "
-"быть присвоена.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «user», «allusers» "
+"или «all».\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d (:,3): 'user' or 'allusers' or 'all' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «user», «allusers» "
 "или «all».\n"
@@ -338,8 +340,7 @@ msgstr "\t - «%s - %s» необходим для «%s»\n"
 #, c-format
 msgid ""
 "%s: The file '%s' from (%s - %s) does not exist or is not read accessible.\n"
-msgstr ""
-"%s: Файл '%s' из (%s - %s) не существует или не доступен для чтения.\n"
+msgstr "%s: Файл '%s' из (%s - %s) не существует или не доступен для чтения.\n"
 
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
@@ -595,8 +596,7 @@ msgstr "Идёт установка"
 msgid "Installation failed!"
 msgstr "Сбой при установке!"
 
-msgid ""
-"Installation done! Please restart Scilab to take changes into account."
+msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr "Установка завершена! Перезапустите Scilab для применения изменений."
 
 msgid "Updating"
@@ -678,8 +678,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалась "
-"«filter:all»,«filter:main» или допустимая основная категория.\n"
+"%s: Неверное значение входного параметра №%d: ожидалась «filter:all»,«filter:"
+"main» или допустимая основная категория.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -909,16 +909,15 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - наблюдаемая MD5SUM : «%s»\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «error» или "
 "«warning».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with "
-".tar.gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with .tar."
+"gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалась одиночная строка, "
 "которая заканчивается на «.tar.gz», «.tgz» или «.zip».\n"
@@ -947,6 +946,13 @@ msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась (1 x 2)-матрица "
 "строк.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась (m x 2) или (m x 3)-"
+"матрица строк.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
@@ -1061,15 +1067,14 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: Дерево зависимостей не может быть разрешено.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидались буквы «A» или «I».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid "
-"version/dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid version/"
+"dependency.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: данная версия или зависимость "
 "неверны.\n"
@@ -1130,12 +1135,18 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) не установлен.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: данная версия неверна.\n"
+msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgstr "%s: Неверное значение входного параметра №%d: данная версия неверна.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось ASC или DESC.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: All modules version should be "
+#~ "set.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: версия всех модулей должна "
+#~ "быть присвоена.\n"

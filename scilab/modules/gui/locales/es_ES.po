@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2019-02-23 22:13+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: es\n"
 
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
@@ -271,8 +271,7 @@ msgstr ""
 "'%s'.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un manejador "
 "'%s' válido.\n"
@@ -324,13 +323,11 @@ msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: string or macro name expected.\n"
+msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: string or macro name expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 
 #, c-format
@@ -359,8 +356,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -530,16 +526,14 @@ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: Argumento de entrada #%d incorrecto: Se esperaba '%s' o '%s'.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto para el argumento de entrada #%d: Se esperaba un valor "
 "'pos' o 'gdi'.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Número incorrecto de argumentos de salida: Se esperaban %d o %d.\n"
+msgstr "%s: Número incorrecto de argumentos de salida: Se esperaban %d o %d.\n"
 
 #, c-format
 msgid ""
@@ -799,8 +793,7 @@ msgstr ""
 "un valor numérico.\n"
 
 #, c-format
-msgid ""
-"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "Tipo incorrecto para la propiedad '%s': Se esperaba un vector fila real o un "
 "string.\n"
@@ -893,13 +886,21 @@ msgstr "Propiedades de la &figura"
 msgid "&Axes properties"
 msgstr "Propied&ades de los ejes."
 
-msgid "&Start entity picker"
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 21
+# File: modules/gui/src/gui_fake_xml.c, line: 58
+msgid "&Move objects"
+msgstr ""
+
+#, fuzzy
+msgid "Start entity &picker"
 msgstr "Empezar &selector de entidades"
 
 msgid "S&top entity picker"
 msgstr "Parar selec&tor de entidades"
 
-msgid "&Start datatip manager"
+#, fuzzy
+msgid "Start &datatip manager"
 msgstr "&Iniciar administrador de datatip"
 
 msgid "Stop datatip manager"
@@ -1107,6 +1108,12 @@ msgid "Open the graphics editor"
 msgstr ""
 
 msgid "Toggle curve data modification"
+msgstr ""
+
+#
+# File: modules/gui/src/gui_fake_xml.c, line: 204
+# File: modules/gui/src/gui_fake_xml.c, line: 213
+msgid "Move objects"
 msgstr ""
 
 msgid "Help Browser"
@@ -2286,8 +2293,7 @@ msgstr "No se pudo abrir: "
 msgid "Restoration error"
 msgstr ""
 
-msgid ""
-"The configuration file has been corrupted and reset to the default one."
+msgid "The configuration file has been corrupted and reset to the default one."
 msgstr ""
 
 msgid "The configuration file has been corrupted. Scilab needs to restart."
@@ -2583,8 +2589,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for '%s' property: string expected.\n"
-msgstr ""
-"%s: Tipo incorrecto para la propiedad '%s' : Se esperaba un string.\n"
+msgstr "%s: Tipo incorrecto para la propiedad '%s' : Se esperaba un string.\n"
 
 #, c-format
 msgid "%s: function not available in NWNI mode.\n"
@@ -2619,8 +2624,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -2714,8 +2718,7 @@ msgstr ""
 "%s: Número incorrecto de argumentos de entrada: Se esperaban al menos %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 
 #, c-format
@@ -2789,8 +2792,7 @@ msgstr "%s: Tipo incorrecto para %s: Se esperaba un string.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
-msgstr ""
-"%s: Tipo incorrecto para %s: Se esperaba un vector fila de strings.\n"
+msgstr "%s: Tipo incorrecto para %s: Se esperaba un vector fila de strings.\n"
 
 #, c-format
 msgid "%s: Wrong size for %s: A row vector of strings expected.\n"

@@ -11,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: 2020-02-19 09:13+0000\n"
 "Last-Translator: davidcl <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
 "X-Poedit-Country: Japan\n"
-"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
@@ -43,7 +43,9 @@ msgstr "%s: ディレクトリに移動できません.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: A valid filename or directory "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 有効なファイル名またはディレクトリを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 有効なファイル名またはディレクトリを指"
+"定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value(s) for input argument(s).\n"
@@ -52,13 +54,17 @@ msgstr "%s: 入力引数の値が間違っています.\n"
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 1行n列またはm行列の配列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 1行n列またはm行列の配列を指定して"
+"ください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Matrix of floating point numbers "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 浮動小数点数の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 浮動小数点数の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
@@ -90,17 +96,21 @@ msgstr "%s: エラーが発生しました.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A string (3 characters max.) "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列 (最大3文字)を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 文字列 (最大3文字)を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -112,11 +122,14 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar boolean expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラー論理値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: スカラー論理値を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -132,11 +145,13 @@ msgstr "%ls: 警告: ディレクトリ '%ls' は既に存在しています.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -144,7 +159,8 @@ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -156,21 +172,26 @@ msgstr "%s: ファイル %s をscilabで開けませんでした.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same size expected.\n"
-msgstr "%s: 入力引数 #%d と #%d に互換性がありません:  同じ大きさで指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d と #%d に互換性がありません:  同じ大きさで指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています:  %d 文字より短くする必要があります.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています:  %d 文字より短くする必要がありま"
+"す.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -180,7 +201,9 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定し�
 msgid ""
 "%s: Cannot check the end of file whose descriptor is %d: File is not "
 "active.\n"
-msgstr "%s: ディスクリプタが %d のファイルの終端を確認できません: ファイルはアクティブではありません.\n"
+msgstr ""
+"%s: ディスクリプタが %d のファイルの終端を確認できません: ファイルはアクティ"
+"ブではありません.\n"
 
 #, c-format
 msgid "%s: File not found: '%s'.\n"
@@ -195,23 +218,28 @@ msgid "%s: Wrong file descriptor: %d.\n"
 msgstr "%s: ファイル記述子が間違っています: %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A integer or string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数または文字列を指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: A integer or string expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 整数または文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%ls: Cannot check the end of file whose descriptor is %d: File is not "
 "active.\n"
-msgstr "%ls: ディスクリプタが %d のファイルの終端を確認できません: ファイルはアクティブではありません.\n"
+msgstr ""
+"%ls: ディスクリプタが %d のファイルの終端を確認できません: ファイルはアクティ"
+"ブではありません.\n"
 
 #, c-format
 msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
-msgstr "%s: 記述子が %d のファイルを読み込めません:  ファイルがアクティブではありません.\n"
+msgstr ""
+"%s: 記述子が %d のファイルを読み込めません:  ファイルがアクティブではありませ"
+"ん.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
@@ -223,7 +251,9 @@ msgstr "%s: ファイルモードが間違っています: 読込み専用.\n"
 
 #, c-format
 msgid "%s: Error while writing in file: disk full or deleted file.\n"
-msgstr "%s: ファイルに書き込む際にエラーが発生しました: ディスクフルまたはファイルが削除されました.\n"
+msgstr ""
+"%s: ファイルに書き込む際にエラーが発生しました: ディスクフルまたはファイルが"
+"削除されました.\n"
 
 #, c-format
 msgid "%s: Cannot read file %d.\n"
@@ -249,7 +279,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定し�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
@@ -280,9 +311,9 @@ msgid "%s: invalid status.\n"
 msgstr "%s: ステータスが無効です.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
-msgstr "%s: 入力引数  #%d の型が間違っています: 文字列または整数を指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgstr ""
+"%s: 入力引数  #%d の型が間違っています: 文字列または整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Unable to read file %d.\n"
@@ -306,12 +337,14 @@ msgstr "%s: データに不整合があります.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数または文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数または文字列を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s'  または '%s' を指定してください.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s'  または '%s' を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Strings expected.\n"
@@ -331,7 +364,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Warning: Directory '%ls' does not exist.\n"
@@ -392,22 +426,25 @@ msgid "%s: An error occurred: too many (> %d) conversion required.\n"
 msgstr "%s: エラーが発生しました:  指定した変換の数が多すぎます (> %d) .\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
-msgstr "%1$s: エラーが発生しました:  %%[  ディレクティブのフィールド %2$d が長過ぎます (> %3$d) .\n"
+msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgstr ""
+"%1$s: エラーが発生しました:  %%[  ディレクティブのフィールド %2$d が長過ぎま"
+"す (> %3$d) .\n"
 
 msgid "Bad conversion."
 msgstr "変換が不正です."
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
-msgstr "%1$s: エラーが発生しました: %%s ディレクティブのフィールド %2$d は長過ぎます(< %3$d).\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgstr ""
+"%1$s: エラーが発生しました: %%s ディレクティブのフィールド %2$d は長過ぎます"
+"(< %3$d).\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
-msgstr "%1$s: エラーが発生しました: %%c ディレクティブのフィールド %2$d が長過ぎます(< %3$d).\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgstr ""
+"%1$s: エラーが発生しました: %%c ディレクティブのフィールド %2$d が長過ぎます"
+"(< %3$d).\n"
 
 #, c-format
 msgid "%s: An error occurred: format is too long (> %d).\n"
@@ -450,12 +487,16 @@ msgstr "カレントのディレクトリを取得できません.\n"
 
 #, c-format
 msgid "%s: Cannot close file whose descriptor is %d: File is not active.\n"
-msgstr "%s: 記述子が %d のファイルを閉じることができません: ファイルがアクティブではありません.\n"
+msgstr ""
+"%s: 記述子が %d のファイルを閉じることができません: ファイルがアクティブでは"
+"ありません.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' または '%s' を指定し"
+"てください.\n"
 
 #, c-format
 msgid "%s: No input file associated to logical unit %d.\n"
@@ -463,7 +504,9 @@ msgstr "%s: 論理ユニット %d に関連付けられた入力ファイルが�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 空でない文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 空でない文字列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
@@ -478,17 +521,21 @@ msgstr "警告: ファイル '%s' は既に Scilabで開かれています。\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d (%s) の値が間違っています: '%s' または '%s' または'%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d (%s) の値が間違っています: '%s' または '%s' または'%s' を指"
+"定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"
-msgstr "%s: 入力引数 #%d (%s) の大きさが間違っています: 空でない文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d (%s) の大きさが間違っています: 空でない文字列を指定してくだ"
+"さい.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
-msgstr "%s: 入力引数 #%d ('%s') の値が間違っています: フォーマットを認識できません.\n"
+msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgstr ""
+"%s: 入力引数 #%d ('%s') の値が間違っています: フォーマットを認識できません.\n"
 
 #, c-format
 msgid "%s: No output file.\n"

@@ -494,9 +494,6 @@ msgstr "不連続"
 msgid "Lookup Tables"
 msgstr "ルックアップ・テーブル"
 
-msgid "Signal Processing"
-msgstr "信号処理"
-
 msgid "Zero crossing detection"
 msgstr "ゼロクロス検出"
 
@@ -517,9 +514,6 @@ msgstr "ポートとサブシステム"
 
 msgid "Annotations"
 msgstr "注釈"
-
-msgid "Discrete time systems"
-msgstr "離散時間システム"
 
 msgid "Event handling"
 msgstr "イベント・ハンドリング"

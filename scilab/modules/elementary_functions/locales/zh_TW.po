@@ -6,69 +6,15 @@ msgstr ""
 "PO-Revision-Date: 2019-02-15 22:13+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: zh_TW\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
-msgstr ""
-
-#
-# File: src/c/sci_tools.c, line: 108
-# File: src/c/sci_tools.c, line: 133
-# File: src/c/sci_tools.c, line: 163
-# File: src/c/sci_tools.c, line: 185
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 記憶體耗盡.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間."
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value(s) for input argument #%d: A matrix of positive integer "
-"values expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #, c-format
@@ -105,8 +51,7 @@ msgid "Invalid index.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Singularity of the function.\n"
+msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr ""
 
 #, c-format
@@ -122,6 +67,24 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間."
 
 #, c-format
 msgid ""
@@ -164,6 +127,26 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"
 msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value(s) for input argument #%d: A matrix of positive integer "
+"values expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^53.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : A real or integer matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數矩陣.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
@@ -246,8 +229,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Input and output matrices must have the same number of elements.\n"
+msgid "%s: Input and output matrices must have the same number of elements.\n"
 msgstr ""
 
 #, c-format
@@ -333,6 +315,13 @@ msgstr ""
 msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
 msgstr ""
 
+#
+# File: macros/vectorfind.sci, line: 9
+# File: macros/vectorfind.sci, line: 18
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
+msgstr "%s: 輸入參數之長度錯誤: 長度不匹配.\n"
+
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
@@ -341,7 +330,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' , '%s'  或 '%s' .\n"
+msgstr ""
+"%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' , '%s'  或 '%s' .\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -449,29 +439,27 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間.\n"
 msgid "%s: Argument #%d: Non-negative integers expected.\n"
 msgstr ""
 
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 或 %d才對.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-negative real integers expected.\n"
+msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: integers > 0 expected.\n"
+msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers <= %d expected.\n"
+msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
+
 #
-# File: macros/bitxor.sci, line: 32
-# File: macros/bitor.sci, line: 35
-# File: macros/pmodulo.sci, line: 21
-# File: macros/modulo.sci, line: 18
-# File: macros/intsplin.sci, line: 19
-# File: macros/cat.sci, line: 58
-# File: macros/bitget.sci, line: 35
-# File: macros/bitget.sci, line: 45
-# File: macros/inttrap.sci, line: 15
-# File: macros/bitand.sci, line: 35
-#, c-format
-msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s: 輸入參數長度錯誤 : 預期應為相同長度.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 0 or 1 expected.\n"
-msgstr ""
-
+# File: modules/elementary_functions/macros/bitset.sci, line: 78
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
-"integers expected.\n"
+"%s: Argument #%d is longer than %d. Please check against duplicate values.\n"
 msgstr ""
 
 #, c-format
@@ -498,6 +486,24 @@ msgstr "%s: 輸入參數長度錯誤: 應為相同長度.\n"
 msgid "%s: Wrong type for input arguments: Same types expected.\n"
 msgstr "%s: 輸入參數型態錯誤 : 預期應為相同型態.\n"
 
+#
+# File: macros/bitxor.sci, line: 28
+# File: macros/bitor.sci, line: 31
+# File: macros/cat.sci, line: 80
+# File: macros/cat.sci, line: 85
+# File: macros/bitand.sci, line: 31
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong type. A sizeable type expected.\n"
+msgstr "%s: 輸入參數型態錯誤 : 預期應為相同型態.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integer(s) expected.\n"
+msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
+msgstr "%s: 輸入參數 #%d 數值錯誤: 應該是 [%s, %s] 的區間.\n"
+
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應該是矩陣型態.\n"
@@ -511,8 +517,7 @@ msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一方陣.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 矩陣無法主對角線化 (diagonalisable).\n"
 
 #, c-format
@@ -524,6 +529,21 @@ msgid ""
 "%s: Wrong type for input argument #%d: A real, complex, boolean or "
 "polynomial matrix expected.\n"
 msgstr ""
+
+#
+# File: macros/bitxor.sci, line: 32
+# File: macros/bitor.sci, line: 35
+# File: macros/pmodulo.sci, line: 21
+# File: macros/modulo.sci, line: 18
+# File: macros/intsplin.sci, line: 19
+# File: macros/cat.sci, line: 58
+# File: macros/bitget.sci, line: 35
+# File: macros/bitget.sci, line: 45
+# File: macros/inttrap.sci, line: 15
+# File: macros/bitand.sci, line: 35
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr "%s: 輸入參數長度錯誤 : 預期應為相同長度.\n"
 
 #, c-format
 msgid ""
@@ -565,18 +585,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A positive integer expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
 "%s: Wrong value for input argument #%d: A divisor of the selected dimension "
 "size expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d 或 %d才對.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Orientation not supported for hypermatrix.\n"
@@ -610,6 +621,10 @@ msgstr "%s: 無法進行對角線化 (diagonalize).\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一整數.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
@@ -685,6 +700,20 @@ msgstr ""
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal integer expected.\n"
+msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
+
+#
+# File: modules/elementary_functions/macros/nchoosek.sci, line: 62
+#, c-format
+msgid "%s: n(%d) < k(%d) is forbidden.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應該是矩陣型態.\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Booleans, Integers, Decimals, Complexes, "
@@ -697,20 +726,42 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr ""
 
+#
+# File: modules/elementary_functions/macros/perms.sci, line: 70
+msgid ""
+"perms: The unique option can be used only for sortable real numbers, "
+"booleans or texts.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/macros/perms.sci, line: 199
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為向量.\n"
+msgid "perms: Too many permutations (%d). Would run out of memory.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval %s.\n"
+msgstr "%s: 輸入參數 #%d 數值錯誤: 應該是 [%s, %s] 的區間.\n"
+
+#
+# File: modules/elementary_functions/macros/prbs_a.sci, line: 54
+#, c-format
+msgid "%s: The number of switches can't be  %d = number of points.\n"
 msgstr ""
 
 #, c-format
@@ -826,17 +877,38 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為向量.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
 msgstr "%s:  第#%d個 和第 #%d個參數不相容: 型別相同才對.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text or integer decimal expected.\n"
+msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為向量.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: non-zero number expected.\n"
+msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
+
 #
-# File: macros/vectorfind.sci, line: 9
-# File: macros/vectorfind.sci, line: 18
+# File: src/c/sci_tools.c, line: 108
+# File: src/c/sci_tools.c, line: 133
+# File: src/c/sci_tools.c, line: 163
+# File: src/c/sci_tools.c, line: 185
 #, c-format
-msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
-msgstr "%s: 輸入參數之長度錯誤: 長度不匹配.\n"
+#~ msgid "%s: No more memory.\n"
+#~ msgstr "%s: 記憶體耗盡.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d.\n"
+#~ msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"

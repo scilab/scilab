@@ -11,19 +11,18 @@ msgstr ""
 "PO-Revision-Date: 2020-02-07 13:09+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: ru\n"
 
 msgid "Warning :\n"
 msgstr "Предупреждение:\n"
 
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
-msgstr ""
-"матрица близка к сингулярной или плохо масштабирована. rcond = %1.4E\n"
+msgstr "матрица близка к сингулярной или плохо масштабирована. rcond = %1.4E\n"
 
 msgid "computing least squares solution. (see lsq).\n"
 msgstr "вычисление решения по методу наименьших квадратов. (См. lsq).\n"
@@ -79,8 +78,7 @@ msgid "for expression : Wrong type for loop iterator.\n"
 msgstr "для выражения: неверный тип итератора цикла.\n"
 
 msgid "With input arguments, return / resume expects output arguments.\n"
-msgstr ""
-"С входными аргументами, return / resume ожидает выходные аргументы.\n"
+msgstr "С входными аргументами, return / resume ожидает выходные аргументы.\n"
 
 #, c-format
 msgid "%ls: Can not transpose multiple elements.\n"
@@ -183,15 +181,6 @@ msgstr "Оператор / : ошибка %d ещё не контролируе�
 msgid "Warning : division by zero...\n"
 msgstr "Предупреждение: деление на нуль...\n"
 
-msgid "Bad value in the left or right operand.\n"
-msgstr "Плохое значение в левом или правом операнде.\n"
-
-msgid "Bad size for left or right operand.\n"
-msgstr "Плохой размер левого или правого операнде.\n"
-
-msgid "Bad value in the left operand.\n"
-msgstr "Плохое значение в левом операнде.\n"
-
 msgid "With NaN or Inf a left division by scalar expected.\n"
 msgstr "С NaN или Inf ожидалось левое деление на скаляр.\n"
 
@@ -206,8 +195,7 @@ msgid "Operator \\ : Error %d not yet managed.\n"
 msgstr "Оператор \\ : ошибка %d ещё не контролируется\n"
 
 msgid "Invalid exponent: expected finite integer exponents.\n"
-msgstr ""
-"Некорректная экспонента: ожидались экспоненты конечных целых чисел.\n"
+msgstr "Некорректная экспонента: ожидались экспоненты конечных целых чисел.\n"
 
 msgid "Invalid exponent.\n"
 msgstr "Недопустимая экспонента.\n"
@@ -334,8 +322,7 @@ msgstr "Невозможно вводить множество элементо�
 msgid "Index out of bounds.\n"
 msgstr "Индекс за пределами.\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Неверное количество входных аргументов: эта функция не имеет входных "
 "аргументов.\n"
@@ -401,10 +388,19 @@ msgstr "Назначение между разными типами не доп�
 msgid "Can not allocate data.\n"
 msgstr "Нельзя распределить данные.\n"
 
-#, c-format
-msgid "Field \"%ls\" does not exists\n"
+#, fuzzy, c-format
+msgid "Field \"%ls\" does not exist\n"
 msgstr "Поле \"%ls\" не существует\n"
 
 #, c-format
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr "размер переменной превышен : ожидалось менее %d.\n"
+
+#~ msgid "Bad value in the left or right operand.\n"
+#~ msgstr "Плохое значение в левом или правом операнде.\n"
+
+#~ msgid "Bad size for left or right operand.\n"
+#~ msgstr "Плохой размер левого или правого операнде.\n"
+
+#~ msgid "Bad value in the left operand.\n"
+#~ msgstr "Плохое значение в левом операнде.\n"

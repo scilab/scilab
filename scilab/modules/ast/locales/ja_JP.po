@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2020-02-07 13:12+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: ja\n"
 
 msgid "Warning :\n"
 msgstr "警告:\n"
@@ -87,12 +87,15 @@ msgstr "%ls: 複数の要素を転置することはできません.\n"
 #, c-format
 msgid ""
 "It is not possible to redefine the %s primitive this way (see clearfun).\n"
-msgstr "%s プリミティブをこの方法で再定義することはできません (clearfun 参照).\n"
+msgstr ""
+"%s プリミティブをこの方法で再定義することはできません (clearfun 参照).\n"
 
 #, c-format
 msgid ""
 "%ls: Too many %ls or wrong type for argument %d: Real scalar expected.\n"
-msgstr "%ls: %ls が多いまたは引数 %d の型が間違っています: 実スカラーを指定してください.\n"
+msgstr ""
+"%ls: %ls が多いまたは引数 %d の型が間違っています: 実スカラーを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%ls: Wrong type for argument %d: Real scalar expected.\n"
@@ -137,7 +140,8 @@ msgid "Submatrix incorrectly defined.\n"
 msgstr "誤ったサブ行列の定義が行われました.\n"
 
 msgid "Wrong insertion: A Cell expected: use {...} instead of (...).\n"
-msgstr "挿入が間違っています:  セルでは (...) の代わりに {...} を指定してください.\n"
+msgstr ""
+"挿入が間違っています:  セルでは (...) の代わりに {...} を指定してください.\n"
 
 msgid "Inconsistent row/column dimensions.\n"
 msgstr "行/列の次元が不整合です.\n"
@@ -154,10 +158,13 @@ msgstr "+ 演算子 : 警告: 行列に空行列を加算すると, 空行列と
 #, c-format
 msgid ""
 "Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"
-msgstr "エラー:  %ls 演算子: 行列の次元を整合させる必要があります (op1 は %ls, op2 は %ls).\n"
+msgstr ""
+"エラー:  %ls 演算子: 行列の次元を整合させる必要があります (op1 は %ls, op2 "
+"は %ls).\n"
 
 msgid "With NaN or Inf a division by scalar expected.\n"
-msgstr "NaN または Inf を指定した場合, スカラーによる割り算を指定してください.\n"
+msgstr ""
+"NaN または Inf を指定した場合, スカラーによる割り算を指定してください.\n"
 
 msgid "Division by zero...\n"
 msgstr "ゼロによる割り算...\n"
@@ -172,17 +179,9 @@ msgstr "/ 演算子 : エラー %d はまだ管理されていません.\n"
 msgid "Warning : division by zero...\n"
 msgstr "警告: ゼロ割...\n"
 
-msgid "Bad value in the left or right operand.\n"
-msgstr "左または右オペランドの値が不正です.\n"
-
-msgid "Bad size for left or right operand.\n"
-msgstr "左または右オペランドの大きさが不正です.\n"
-
-msgid "Bad value in the left operand.\n"
-msgstr "左オペランドの値が不正です.\n"
-
 msgid "With NaN or Inf a left division by scalar expected.\n"
-msgstr "NaNまたはInfを指定した場合, スカラーによる左割り算を指定してください.\n"
+msgstr ""
+"NaNまたはInfを指定した場合, スカラーによる左割り算を指定してください.\n"
 
 msgid "Left division by zero...\n"
 msgstr "ゼロによる左割り算...\n"
@@ -233,7 +232,9 @@ msgstr "グローバル変数:"
 #, c-format
 msgid ""
 "Warning : redefining function: %s. Use funcprot(0) to avoid this message"
-msgstr "警告: 関数の再定義: %s. このメッセージを回避するには, funcport(0) を使用してください"
+msgstr ""
+"警告: 関数の再定義: %s. このメッセージを回避するには, funcport(0) を使用して"
+"ください"
 
 msgid "in builtin "
 msgstr "組込み "
@@ -314,8 +315,7 @@ msgstr "リストに複数の要素を挿入することはできません.\n"
 msgid "Index out of bounds.\n"
 msgstr "添字が範囲を超えています.\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr "入力引数の数が間違っています: この関数は入力引数を有しません.\n"
 
 msgid "Wrong number of input arguments.\n"
@@ -341,7 +341,8 @@ msgstr "オープンできません: %s.\n"
 msgid ""
 "Warning : please rename your overloaded function\n"
 " \"%s\" to \"%s\"\n"
-msgstr "警告: オーバーロードされた関数の名前を\"%s\" から \"%s\"に変更してください\n"
+msgstr ""
+"警告: オーバーロードされた関数の名前を\"%s\" から \"%s\"に変更してください\n"
 
 #, c-format
 msgid "check or define function %s for overloading.\n"
@@ -377,10 +378,19 @@ msgstr "類似性がない型の間の代入はできません.\n"
 msgid "Can not allocate data.\n"
 msgstr "データ保持用のメモリを確保できません.\n"
 
-#, c-format
-msgid "Field \"%ls\" does not exists\n"
+#, fuzzy, c-format
+msgid "Field \"%ls\" does not exist\n"
 msgstr "フィールド \"%ls\" は存在しません.\n"
 
 #, c-format
 msgid "variable size exceeded : less than %d expected.\n"
 msgstr "変数の大きさを超えました: %d 未満にしてください.\n"
+
+#~ msgid "Bad value in the left or right operand.\n"
+#~ msgstr "左または右オペランドの値が不正です.\n"
+
+#~ msgid "Bad size for left or right operand.\n"
+#~ msgstr "左または右オペランドの大きさが不正です.\n"
+
+#~ msgid "Bad value in the left operand.\n"
+#~ msgstr "左オペランドの値が不正です.\n"

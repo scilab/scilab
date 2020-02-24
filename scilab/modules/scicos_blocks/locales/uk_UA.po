@@ -12,11 +12,11 @@ msgstr ""
 "PO-Revision-Date: 2020-02-19 09:13+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 msgid "overflow error"
 msgstr "помилка переповнення"
@@ -153,8 +153,7 @@ msgstr "Кількість вихідних портів або вектор р�
 msgid "The block must have from 2 to 31 output ports"
 msgstr "У блоку має бути від 2 до 31 вихідних портів"
 
-msgid ""
-"The block must have from 2 to 31 output ports.<br>size 0 is not allowed"
+msgid "The block must have from 2 to 31 output ports.<br>size 0 is not allowed"
 msgstr ""
 "У блоку має бути від 2 до 31 вихідних портів.<br>Розмірність 0 "
 "використовувати не можна"
@@ -162,8 +161,7 @@ msgstr ""
 msgid "The block must have from 2 to 8 output ports"
 msgstr "У блоку має бути від 2 до 8 вихідних портів"
 
-msgid ""
-"The block must have from 2 to 8 output ports.<br>size 0 is not allowed."
+msgid "The block must have from 2 to 8 output ports.<br>size 0 is not allowed."
 msgstr ""
 "У блоку має бути від 2 до 8 вихідних портів.<br>Розмірність 0 "
 "використовувати не можна."
@@ -204,8 +202,7 @@ msgstr ""
 msgid "Block must have from 2 to 8 input ports"
 msgstr "У блоку має бути від 2 до 8 вхідних портів"
 
-msgid ""
-"The block must have from 2 to 8 input ports.<br>size 0 is not allowed."
+msgid "The block must have from 2 to 8 input ports.<br>size 0 is not allowed."
 msgstr ""
 "У блоку має бути від 2 до 8 вхідних портів.<br>Розмірність 0 використовувати "
 "не можна."
@@ -315,11 +312,10 @@ msgid ""
 msgstr ""
 "Встановлення параметрів блоку затримки події<br><br>Затримка — затримка між "
 "вхідною подією<br>і створеною вихідною подією.<br>Блок у початковому стані "
-"може створювати вихідну подію навіть до<br>будь-якої вхідної "
-"події.<br>«Момент початкової вихідної події» задає момент, коли слід "
-"надіслати повідомлення про початкову вихідну "
-"подію.<br>&nbsp;&nbsp;Встановіть від'ємне значення, якщо вхідна подія "
-"непотрібна.<br><br>"
+"може створювати вихідну подію навіть до<br>будь-якої вхідної події."
+"<br>«Момент початкової вихідної події» задає момент, коли слід надіслати "
+"повідомлення про початкову вихідну подію.<br>&nbsp;&nbsp;Встановіть від'ємне "
+"значення, якщо вхідна подія непотрібна.<br><br>"
 
 msgid "Set Event time"
 msgstr "Встановлення часу події"
@@ -360,6 +356,142 @@ msgstr "Встановлення параметрів блоку поділу з
 msgid "Phase (0 to division factor -1)"
 msgstr "Фаза (0 для коефіцієнта поділу -1)"
 
+#, fuzzy
+msgid "RESERVOIR parameters"
+msgstr "Вказати параметри"
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 39
+msgid "Pressure at the reservoir surface : Patm (Pa)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 40
+msgid "Reservoir section : A (m2)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 41
+msgid "Altitude of input connection #1: ze1 (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 42
+msgid "Altitude of input connection #2: ze2 (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 43
+msgid "Altitude of output connection #1: zs1 (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 44
+msgid "Altitude of output connection #2: zs2 (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 45
+msgid "Starting fluid Altitude : z0 (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 46
+msgid "Initial fluid temperature : T0 (K)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/Bache.sci, line: 47
+# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 44
+msgid "If >0, fixed fluid density : p_rho (kg/m3)"
+msgstr ""
+
+#, fuzzy
+msgid "FLOWMETER parameters:"
+msgstr "Вказати параметри"
+
+#, fuzzy
+msgid "PIPE parameters"
+msgstr "Вказати параметри"
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 39
+msgid "Pipe length : L (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 40
+msgid "Pipe internal diameter : D (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 41
+msgid "Coefficient of loss of load-friction (S.U): lambda"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 42
+msgid "Altitude of pipe's inlet: z1 (m)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PerteDP.sci, line: 43
+msgid "Altitude of pipe's outlet: z2 (m)"
+msgstr ""
+
+#, fuzzy
+msgid "Fluid SINK parameters"
+msgstr " Параметри синусоїди"
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 39
+msgid "Pressure of the source : P0 (Pa)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 40
+msgid "Temperature of the source : T0 (K)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 41
+msgid "Specific enthalpy of the source : H0 (J/kg)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/PuitsP.sci, line: 42
+msgid "Condition: 1=fixed temperature  2=fixed enthalpy"
+msgstr ""
+
+#, fuzzy
+msgid "Fluid SOURCE parameters"
+msgstr " Параметри синусоїди"
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 39
+msgid "Pressure : P0 (Pa)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 40
+msgid "Temperature : T0 (K)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 41
+msgid "Specific enthalpy : H0 (J/kg)"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/SourceP.sci, line: 42
+msgid "Condition: 1=Fixed temperature | 2=Fixed enthalpy"
+msgstr ""
+
+#
+# File: modules/scicos_blocks/macros/Hydraulics/VanneReglante.sci, line: 38
+msgid "REGULATING VALVE parameters"
+msgstr ""
+
 msgid "Clear a bit"
 msgstr "Спорожнити біт"
 
@@ -398,14 +530,14 @@ msgid "Data Type (3:int32, 4:int16, 5:int8, ...)"
 msgstr "Тип даних (3:int32, 4:int16, 5:int8, ...)"
 
 msgid ""
-"Set CONVERT block parameters<br><br>Type conversion<br><br>(a) "
-"1|2:double&nbsp;  3:int32&nbsp;  4:int16&nbsp;  5:int8&nbsp;  6:uint32&nbsp; "
-" 7:uint16&nbsp;  8:uint8<br>(b) 0:Nothing, 1:Saturate, 2:Error<br><br>"
+"Set CONVERT block parameters<br><br>Type conversion<br><br>(a) 1|2:"
+"double&nbsp;  3:int32&nbsp;  4:int16&nbsp;  5:int8&nbsp;  6:uint32&nbsp;  7:"
+"uint16&nbsp;  8:uint8<br>(b) 0:Nothing, 1:Saturate, 2:Error<br><br>"
 msgstr ""
 "Встановлення параметрів блоку перетворення<br><br>Тип "
-"перетворення<br><br>(a) 1|2:double&nbsp;  3:int32&nbsp;  4:int16&nbsp;  "
-"5:int8&nbsp;  6:uint32&nbsp;  7:uint16&nbsp;  8:uint8<br>(b) 0:Нічого, "
-"1:Насичення, 2:Помилка<br><br>"
+"перетворення<br><br>(a) 1|2:double&nbsp;  3:int32&nbsp;  4:int16&nbsp;  5:"
+"int8&nbsp;  6:uint32&nbsp;  7:uint16&nbsp;  8:uint8<br>(b) 0:Нічого, 1:"
+"Насичення, 2:Помилка<br><br>"
 
 msgid "Input type (a)"
 msgstr "Тип вхідних даних (a)"
@@ -427,20 +559,19 @@ msgstr "Тип вихідних даних"
 
 msgid ""
 "Set EXTRACTBITS block parameters<br><br>Bits Extraction<br><br>&nbsp;- Bits "
-"to Extract:<br>&nbsp;&nbsp;&nbsp;&nbsp;1 Upper "
-"Half<br>&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half<br>&nbsp;&nbsp;&nbsp;&nbsp;3 "
-"Range from MSB<br>&nbsp;&nbsp;&nbsp;&nbsp;4 Range to "
-"LSB<br>&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits<br>&nbsp;- Number of Bits or "
-"Index of bit : Index 0 is LSB<br>&nbsp;&nbsp;&nbsp;&nbsp;If 'Bits to "
-"Extract' is set to 'Range of bits': [Start, End]<br><br>"
+"to Extract:<br>&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half<br>&nbsp;&nbsp;&nbsp;"
+"&nbsp;2 Lower Half<br>&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB<br>&nbsp;"
+"&nbsp;&nbsp;&nbsp;4 Range to LSB<br>&nbsp;&nbsp;&nbsp;&nbsp;5 Range of "
+"Bits<br>&nbsp;- Number of Bits or Index of bit : Index 0 is LSB<br>&nbsp;"
+"&nbsp;&nbsp;&nbsp;If 'Bits to Extract' is set to 'Range of bits': [Start, "
+"End]<br><br>"
 msgstr ""
 "Встановлення параметрів блоку EXTRACTBITS<br><br>Видобування "
 "бітів<br><br>&nbsp;— Біти, які слід видобути:<br>&nbsp;&nbsp;&nbsp;&nbsp;1 — "
-"верхня половина<br>&nbsp;&nbsp;&nbsp;&nbsp;2 — нижня "
-"половина<br>&nbsp;&nbsp;&nbsp;&nbsp;3 — діапазон від старшого "
-"розряду<br>&nbsp;&nbsp;&nbsp;&nbsp;4 — діапазон до меншого "
-"розряду<br>&nbsp;&nbsp;&nbsp;&nbsp;5 — діапазон бітів<br>&nbsp;— Кількість "
-"бітів або індекс біта: індекс 0 — найменший "
+"верхня половина<br>&nbsp;&nbsp;&nbsp;&nbsp;2 — нижня половина<br>&nbsp;&nbsp;"
+"&nbsp;&nbsp;3 — діапазон від старшого розряду<br>&nbsp;&nbsp;&nbsp;&nbsp;4 — "
+"діапазон до меншого розряду<br>&nbsp;&nbsp;&nbsp;&nbsp;5 — діапазон "
+"бітів<br>&nbsp;— Кількість бітів або індекс біта: індекс 0 — найменший "
 "розряд<br>&nbsp;&nbsp;&nbsp;&nbsp;Якщо встановлено «Діапазон бітів» для "
 "параметра «Біти для видобування»: [Початок, Кінець]<br><br>"
 
@@ -509,10 +640,10 @@ msgid ""
 "the matrix are the output values.<br>&nbsp; Number of rows must be a power "
 "of two.<br>&nbsp; Number of columns gives the number of outputs.<br><br>"
 msgstr ""
-"Встановлення параметрів логічного блоку<br><br>Комбінаторна "
-"логіка:<br><br>&nbsp; Рядки матриці є значеннями для виведення.<br>&nbsp; "
-"Кількість рядків має бути степенем двійки.<br>&nbsp; Кількість стовпчиків "
-"задає кількість виходів.<br><br>"
+"Встановлення параметрів логічного блоку<br><br>Комбінаторна логіка:"
+"<br><br>&nbsp; Рядки матриці є значеннями для виведення.<br>&nbsp; Кількість "
+"рядків має бути степенем двійки.<br>&nbsp; Кількість стовпчиків задає "
+"кількість виходів.<br><br>"
 
 msgid "Truth Table (matrix of outputs)"
 msgstr "Таблиця істинності (матриця виведених даних)"
@@ -726,8 +857,8 @@ msgstr "Тип даних (1=дійсний подвійної точності 
 msgid ""
 "This sum block is obsolete<br><br>Parameters cannot be modified. Please "
 "replace it with<br>the new sum and gain blocks in the linear "
-"palette<br><br>Input ports are located at up, side and down "
-"positions.<br>Current gains are: "
+"palette<br><br>Input ports are located at up, side and down positions."
+"<br>Current gains are: "
 msgstr ""
 "Цей блок підсумовування є застарілим<br><br>Значення параметрів не можна "
 "змінювати. Будь ласка, замініть його на<br>нові блоки підсумовування та "
@@ -957,8 +1088,7 @@ msgid "States and their derivatives must have the same size."
 msgstr "Розмірності векторів станів та їхніх похідних мають бути однаковими."
 
 msgid "States and ID must have the same size."
-msgstr ""
-"Розмірності векторів станів та ідентифікаторів мають бути однаковими."
+msgstr "Розмірності векторів станів та ідентифікаторів мають бути однаковими."
 
 msgid "Number of states (constraints) must be > 0"
 msgstr "Кількість станів (обмежень) має бути > 0"
@@ -1045,8 +1175,7 @@ msgid "Only one input allowed for NOT operation"
 msgstr "Один вхід можливий лише для операції НІ"
 
 msgid "Bitwise rule is only activated when Data type is integer"
-msgstr ""
-"Побітове правило активується, лише якщо типом даних є тип цілих чисел"
+msgstr "Побітове правило активується, лише якщо типом даних є тип цілих чисел"
 
 msgid "Set Modelica generic block parameters"
 msgstr "Встановлення параметрів загального блоку Modelica"
@@ -1341,8 +1470,7 @@ msgid "Mouse-left double click: edit a point's coordinates"
 msgstr "Подвійне клацання лівою кнопкою миші: редагувати координати точки"
 
 msgid "Mouse-left button press/drag/release: move a  point"
-msgstr ""
-"Натискання-пересування-відпускання лівої кнопки миші: пересунути точку"
+msgstr "Натискання-пересування-відпускання лівої кнопки миші: пересунути точку"
 
 msgid "Change the window size: Data menu -> Databounds"
 msgstr "Зміна розмірів вікна: меню «Дані -> Обмеження даних»"
@@ -2094,8 +2222,7 @@ msgid "Wrong type for '%s' parameter"
 msgstr "Помилковий тип параметра «%s»"
 
 msgid "The value must be numeric<br>(double, complex, int, int8, ..uint32)."
-msgstr ""
-"Значення має бути числовим<br>(double, complex, int, int8, ..uint32)."
+msgstr "Значення має бути числовим<br>(double, complex, int, int8, ..uint32)."
 
 msgid "Spline data"
 msgstr "Сплайнові дані"
@@ -2171,8 +2298,7 @@ msgid "Variable name"
 msgstr "Назва змінної"
 
 msgid "'Interpolation method' should be chosen in [0,1,2,3]"
-msgstr ""
-"Значення «Метод інтерполяції» має бути вибрано із набору [0, 1, 2, 3]"
+msgstr "Значення «Метод інтерполяції» має бути вибрано із набору [0, 1, 2, 3]"
 
 msgid "'Use zero crossing' should be either 0 or 1"
 msgstr "Значенням «Використання перетину нуля» має бути 0 або 1"
@@ -2286,8 +2412,8 @@ msgid ""
 "distribution A is mean and B deviation<br><br>A and B must be matrix with "
 "equal sizes"
 msgstr ""
-"прапорець = 0: однорідно розподілена величина, A — мінімум, A+B — "
-"максимум.<br>прапорець = 1: нормально розподілена величина, A — математичне "
+"прапорець = 0: однорідно розподілена величина, A — мінімум, A+B — максимум."
+"<br>прапорець = 1: нормально розподілена величина, A — математичне "
 "сподівання, B — середньо-квадратичне відхилення<br><br>A і B мають бути "
 "матрицями однакових розмірностей."
 

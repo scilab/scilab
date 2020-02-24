@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2019-02-15 22:09+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: pt_BR\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
@@ -30,8 +30,7 @@ msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
+msgid "%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
 msgstr ""
 
 #, c-format
@@ -193,8 +192,7 @@ msgstr ""
 "polinômio.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
 "fração racional.\n"
@@ -267,8 +265,7 @@ msgstr ""
 "ou polinômios.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
 msgstr ""
 
 #, c-format

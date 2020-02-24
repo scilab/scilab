@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2018-10-29 22:10+0000\n"
 "Last-Translator: Stephan Woidowski <swoidowski@t-online.de>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: de\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -71,8 +71,7 @@ msgstr ""
 "%s: Falscher Typ für das Eingabeargument #%d: sigma muss eine Realzahl sein\n"
 
 #, c-format
-msgid ""
-"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
 "%s: B ist nicht eindeutig positiv. Versuchen Sie es mit sigma='SM' oder "
 "sigma=scalar.\n"
@@ -153,8 +152,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: Falscher Typ für das Eingabeargument #%d: Zeichenkette erwartet.\n"
+msgstr "%s: Falscher Typ für das Eingabeargument #%d: Zeichenkette erwartet.\n"
 
 #, c-format
 msgid ""
@@ -214,8 +212,7 @@ msgid "%s: Error with %s: info = %d.\n"
 msgstr "%s: Fehler bei %s: info = %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 "%s: Falscher Typ für das Eingabeargument #%d: n muss eine positive ganze "
 "Zahl sein.\n"
@@ -273,8 +270,8 @@ msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
 "N by 1.\n"
 msgstr ""
-"%s: Falsche Dimension für das Eingabeargument #%d: Der Startvektor "
-"opts.resid muss N x 1 sein.\n"
+"%s: Falsche Dimension für das Eingabeargument #%d: Der Startvektor opts."
+"resid muss N x 1 sein.\n"
 
 #, c-format
 msgid ""

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2020-02-18 22:04+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: pl\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -173,8 +173,7 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -193,8 +192,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwany łańcuch.\n"
+msgstr "%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwany łańcuch.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
@@ -275,8 +273,7 @@ msgid "Pause mode: enter empty lines to continue.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
 
 #, c-format
@@ -300,8 +297,7 @@ msgid "%s: Wrong size for input argument #%d: string expected."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -443,8 +439,7 @@ msgstr "Informacja o wersji Scilab."
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
-msgid ""
-"(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
 #, c-format

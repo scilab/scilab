@@ -11,65 +11,14 @@ msgstr ""
 "PO-Revision-Date: 2019-02-15 22:14+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: pl\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Brak pamięci.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
-msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego nr %d: musi być pomiędzy %d i "
-"%d."
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value(s) for input argument #%d: A matrix of positive integer "
-"values expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #, c-format
@@ -106,8 +55,7 @@ msgid "Invalid index.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d : Singularity of the function.\n"
+msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr ""
 
 #, c-format
@@ -123,6 +71,26 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
+msgstr ""
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: musi być pomiędzy %d i "
+"%d."
 
 #, c-format
 msgid ""
@@ -163,6 +131,30 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"
 msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value(s) for input argument #%d: A matrix of positive integer "
+"values expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between 0 and 2^53.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być pomiędzy %d "
+"i %d.\n"
+
+#, fuzzy, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : A real or integer matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwana macierz  liczb "
+"rzeczywistych lub zespolonych.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
@@ -246,8 +238,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Input and output matrices must have the same number of elements.\n"
+msgid "%s: Input and output matrices must have the same number of elements.\n"
 msgstr ""
 
 #, c-format
@@ -333,6 +324,12 @@ msgstr ""
 #, c-format
 msgid "%s: Arguments #%d and #%d: Same integer types expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Arguments #%d and #%d: Incompatible sizes.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego: Niekompatybilny "
+"rozmiar.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
@@ -466,19 +463,33 @@ msgid "%s: Argument #%d: Non-negative integers expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentów wejściowych: Oczekiwano tego samego "
-"rozmiaru.\n"
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 0 or 1 expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Non-negative real integers expected.\n"
 msgstr ""
+"%s: Nieprawidłowy argument wejściowy nr %d: oczekiwana liczba całkowitą bez "
+"znaku.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: integers > 0 expected.\n"
+msgstr ""
+"%s: Nieprawidłowy argument wejściowy nr %d: oczekiwana liczba całkowitą bez "
+"znaku.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integers <= %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowy argument wejściowy nr %d: oczekiwana liczba całkowitą bez "
+"znaku.\n"
+
+#
+# File: modules/elementary_functions/macros/bitset.sci, line: 78
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
-"integers expected.\n"
+"%s: Argument #%d is longer than %d. Please check against duplicate values.\n"
 msgstr ""
 
 #, c-format
@@ -505,6 +516,24 @@ msgstr ""
 "%s: Nieprawidłowy typ dla argumentu wejściowego: Oczekiwano tego samego "
 "typu.\n"
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Wrong type. A sizeable type expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ dla argumentu wejściowego: Oczekiwano tego samego "
+"typu.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Integer(s) expected.\n"
+msgstr ""
+"%s: Nieprawidłowy argument wejściowy nr %d: oczekiwana liczba całkowitą bez "
+"znaku.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: musi być w przedziale "
+"[%s, %s].\n"
+
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: Niewłaściwy typ argumentu %d: Oczekiwana jest macierz.\n"
@@ -522,8 +551,7 @@ msgstr ""
 "kwadratowej.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
 "%s: Niewłaściwa wartość argumentu wejściowego nr %d: macierz nie można "
 "zdiagonalizować.\n"
@@ -537,6 +565,12 @@ msgid ""
 "%s: Wrong type for input argument #%d: A real, complex, boolean or "
 "polynomial matrix expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentów wejściowych: Oczekiwano tego samego "
+"rozmiaru.\n"
 
 #, c-format
 msgid ""
@@ -560,8 +594,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
 "integers expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwany "
-"skalar/wektor/macierz liczb całkowitych dodatnich.\n"
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwany skalar/"
+"wektor/macierz liczb całkowitych dodatnich.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
@@ -587,19 +621,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A positive integer expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
 "%s: Wrong value for input argument #%d: A divisor of the selected dimension "
 "size expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
 
 #, c-format
 msgid "%s: Argument #%d: Orientation not supported for hypermatrix.\n"
@@ -628,6 +652,12 @@ msgstr "%s: Brak możliwości diagonalizacji.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwana liczba "
+"całkowita.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
@@ -701,6 +731,22 @@ msgstr ""
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Decimal integer expected.\n"
+msgstr ""
+"%s: Nieprawidłowy argument wejściowy nr %d: oczekiwana liczba całkowitą bez "
+"znaku.\n"
+
+#
+# File: modules/elementary_functions/macros/nchoosek.sci, line: 62
+#, c-format
+msgid "%s: n(%d) < k(%d) is forbidden.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text expected.\n"
+msgstr "%s: Niewłaściwy typ argumentu %d: Oczekiwana jest macierz.\n"
+
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Booleans, Integers, Decimals, Complexes, "
@@ -713,21 +759,46 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: If x is negative, then n must contain odd integers only.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+#
+# File: modules/elementary_functions/macros/perms.sci, line: 70
+msgid ""
+"perms: The unique option can be used only for sortable real numbers, "
+"booleans or texts.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Oczekiwano wektora.\n"
+
+#
+# File: modules/elementary_functions/macros/perms.sci, line: 199
+#, c-format
+msgid "perms: Too many permutations (%d). Would run out of memory.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
+msgstr ""
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be >= %d.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być pomiędzy %d "
+"i %d.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Must be in the interval %s.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego #%d: musi być w przedziale "
+"[%s, %s].\n"
+
+#
+# File: modules/elementary_functions/macros/prbs_a.sci, line: 54
+#, c-format
+msgid "%s: The number of switches can't be  %d = number of points.\n"
 msgstr ""
 
 #, c-format
@@ -851,9 +922,13 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Oczekiwano wektora.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
@@ -861,8 +936,27 @@ msgstr ""
 "%s: niekompatybilne typy parametrów wejściowych nr %d i nr %d. Oczekiwano "
 "ten sam typ.\n"
 
-#, c-format
-msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Text or integer decimal expected.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego: Niekompatybilny "
-"rozmiar.\n"
+"%s: Nieprawidłowy argument wejściowy nr %d: oczekiwana liczba całkowitą bez "
+"znaku.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Oczekiwano wektora.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d: non-zero number expected.\n"
+msgstr ""
+"%s: Nieprawidłowy argument wejściowy nr %d: oczekiwana liczba całkowitą bez "
+"znaku.\n"
+
+#, c-format
+#~ msgid "%s: No more memory.\n"
+#~ msgstr "%s: Brak pamięci.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d.\n"
+#~ msgstr "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d.\n"

@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2020-02-18 22:02+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: es\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -23,8 +23,7 @@ msgstr "%s: No se puede leer el argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s: Tipo incorrecto para argumento %d: Se esperaba un escalar real.\n"
+msgstr "%s: Tipo incorrecto para argumento %d: Se esperaba un escalar real.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
@@ -178,8 +177,7 @@ msgid "%s: Wrong type for input argument #%d: An integer expected."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -280,8 +278,7 @@ msgid "Pause mode: enter empty lines to continue.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgid "%s: Wrong value for input argument #%d: Valid function name expected.\n"
 msgstr ""
 
 #, c-format
@@ -305,8 +302,7 @@ msgid "%s: Wrong size for input argument #%d: string expected."
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -447,8 +443,7 @@ msgstr "Información sobre la versión de Scilab"
 msgid "Debugger is on a breakpoint\n"
 msgstr ""
 
-msgid ""
-"(c)ontinue or (a)bort current execution before execute a new command\n"
+msgid "(c)ontinue or (a)bort current execution before execute a new command\n"
 msgstr ""
 
 #, c-format

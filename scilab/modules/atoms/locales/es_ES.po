@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2020-02-07 13:10+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: es\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -211,24 +211,27 @@ msgstr ""
 "%s: El archivo de configuración ('%s') no tiene el formato correcto en la "
 "línea %d\n"
 
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Matrix with %s columns expected.\n"
 msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: se esperaba una matriz "
-"de strings mx2 ó mx3.\n"
+"%s: Tipo incorrecto del argumento de entrada #%d: se esperaba una lista tipo "
+"matriz orientada.\n"
 
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+#
+# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 34
+msgid "1 to 3"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Deben asignarse las "
-"versiones de todos los módulos.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba 'user' o "
+"'allusers' o 'all'.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d (:,3): 'user' or 'allusers' or 'all' expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba 'user' o "
 "'allusers' o 'all'.\n"
@@ -566,8 +569,7 @@ msgstr ""
 "o revisar si su sistema operativo es compatible con ATOMS"
 
 msgid "No ATOMS module is available: your repository list is empty."
-msgstr ""
-"Módulos de ATOMOS no disponibles: su lista de repositorios está vacía"
+msgstr "Módulos de ATOMOS no disponibles: su lista de repositorios está vacía"
 
 msgid "File"
 msgstr "Archivo"
@@ -608,8 +610,7 @@ msgstr "Instalando"
 msgid "Installation failed!"
 msgstr "¡Falló la instalación!"
 
-msgid ""
-"Installation done! Please restart Scilab to take changes into account."
+msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "¡Instalación finalizada! Por favor reinicie Scilab para que se apliquen los "
 "cambios."
@@ -695,8 +696,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: "
-"'filter:all','filter:main' o una categoría principal válida eperada.\n"
+"%s: Valor incorrecto del argumento de entrada #%d: 'filter:all','filter:"
+"main' o una categoría principal válida eperada.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -928,16 +929,15 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - MD5SUM observada  : '%s'\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: se esperaba 'error' o "
 "'warning'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with "
-".tar.gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with .tar."
+"gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: Valor incorrecto para el argumento de entrada #%d: Se esperaba una "
 "cadena simple que termine con .tar.gz, .tgz or .zip.\n"
@@ -966,6 +966,13 @@ msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrad #%d: Se esperaba una matriz de "
 "strings de 1x2.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: se esperaba una matriz "
+"de strings mx2 ó mx3.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
@@ -1075,19 +1082,18 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: No puede resolverse el árbol de dependencias.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada#%d: Se esperaban las letras "
 "'A' o 'I'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid "
-"version/dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid version/"
+"dependency.\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Esto no es una "
-"versión/dependencia válida.\n"
+"%s: Valor incorrecto del argumento de entrada #%d: Esto no es una versión/"
+"dependencia válida.\n"
 
 msgid "Atoms:"
 msgstr ""
@@ -1146,8 +1152,7 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) no esta instalado.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Esta no es una versión "
 "válida.\n"
@@ -1156,3 +1161,11 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba ASC o DESC.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: All modules version should be "
+#~ "set.\n"
+#~ msgstr ""
+#~ "%s: Valor incorrecto del argumento de entrada #%d: Deben asignarse las "
+#~ "versiones de todos los módulos.\n"

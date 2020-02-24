@@ -12,11 +12,11 @@ msgstr ""
 "PO-Revision-Date: 2020-02-20 18:16+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: uk\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -34,8 +34,7 @@ msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr "%s: помилкова розмірність вхідного параметра №%d: мало бути %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: кількість стовпчиків має "
 "дорівнювати %d.\n"
@@ -119,8 +118,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s: Subroutine not found: %s\n"
@@ -149,8 +147,7 @@ msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr "%s: параметр №%d: мало бути вказано скаляр (1 елемент).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A jacobian or a real expected.\n"
+msgid "%s: Wrong type for input argument #%d: A jacobian or a real expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра %d: мало бути вказано якобіан або "
 "дійсне значення.\n"
@@ -191,8 +188,7 @@ msgstr ""
 "вектора.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
 "вектор розмірності %d.\n"
@@ -256,12 +252,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути %d або більше.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або більше.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю або "
 "поліном.\n"
@@ -315,8 +309,7 @@ msgstr ""
 "«string».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати скаляр з "
 "рядка.\n"
@@ -582,14 +575,51 @@ msgstr "Імітована нормалізація"
 msgid "Simulated Annealing and Ising problem"
 msgstr "Імітована нормалізація і задача Ізінґа"
 
-msgid "Non linear data fitting"
-msgstr "Нелінійна апроксимація даних"
+#
+# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 9
+msgid "Parabolic model (3 params)"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 10
+msgid "Sloping gaussian model (5 params)"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/datafit.dem.gateway.sce, line: 11
+msgid "Tilted ellipse (5 params)"
+msgstr ""
 
 msgid "Experimental data"
 msgstr "Експериментальні дані"
 
 msgid "Fitting function"
 msgstr "Функція наближення"
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 84
+msgid "datafit() random demo : ellipse fitting (unweighted)"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 91
+msgid "True elliptical law"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 92
+msgid "Data = true + noise dx|y = +/-7%"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 93
+msgid "Best ellipse fitting Data"
+msgstr ""
+
+#
+# File: modules/optimization/demos/datafit/ellipse.dem.sce, line: 102
+msgid "datafit: Fitting on 30 random unweighted data points"
+msgstr ""
 
 #, c-format
 msgid "%s: optimization starting, please wait ...\n"
@@ -766,8 +796,7 @@ msgstr "Очікувана f = %f\n"
 msgid "Relative error on f = %e\n"
 msgstr "Відносна похибка для f = %e\n"
 
-msgid ""
-"Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgid "Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
 msgstr "Ілюструє чутливість до розмірностей алгоритму Нелдера-Міда\n"
 
 msgid ""
@@ -935,6 +964,10 @@ msgstr "Похідна"
 msgid "Optimization and Simulation"
 msgstr "Оптимізація та імітація"
 
+#, fuzzy
+msgid "datafit: Nonlinear fitting"
+msgstr "Нелінійна апроксимація даних"
+
 msgid "Optimisation"
 msgstr "Оптимізація"
 
@@ -984,17 +1017,23 @@ msgstr ""
 msgid "%s: Jacobian cannot be a list, parameters must be set in G."
 msgstr "%s: якобіан не може бути списком, слід встановити параметри у G."
 
-#, c-format
-msgid "%s: Wrong measurement matrix."
-msgstr "%s: помилкова матриця вимірнювання."
-
-#, c-format
-msgid "%s: Initial guess must be a column vector."
+#, fuzzy, c-format
+msgid "%s: Data points must be real numbers."
 msgstr "%s: початкове припущення має бути вектором-стовпчиком."
+
+#, fuzzy, c-format
+msgid "%s: Initial guess p0 is missing."
+msgstr "%s: початкове припущення є досяжним."
 
 #, c-format
 msgid "%s: Weighting matrix must be square."
 msgstr "%s: вагова матриця має бути квадратною."
+
+#
+# File: modules/optimization/macros/datafit.sci, line: 107
+#, c-format
+msgid "%s: error with parameters bounds or initial guess\n"
+msgstr ""
 
 #, c-format
 msgid "%s: With hard coded function, user must give output size of G."
@@ -1073,8 +1112,7 @@ msgstr ""
 "[0,1]."
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d. Максимальна кількість "
 "ітерацій (maxiter) має перевищувати 1."
@@ -1106,8 +1144,7 @@ msgstr ""
 "нижню межу lb."
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d. x0 перевищує верхню межу (ub)."
 
@@ -1402,8 +1439,7 @@ msgid "3- Define "
 msgstr "3- Визначити "
 
 msgid "To check the result, use [LME,LMI,OBJ]="
-msgstr ""
-"Щоб ознайомитися з результатом, скористайтеся командою [LME,LMI,OBJ]="
+msgstr "Щоб ознайомитися з результатом, скористайтеся командою [LME,LMI,OBJ]="
 
 #, c-format
 msgid "%s: Unknown step %s"
@@ -1465,8 +1501,7 @@ msgstr "%s: неочікуване значення максимальної к�
 
 #, c-format
 msgid "%s: Unexpected maximum number of function evaluations %s."
-msgstr ""
-"%s: неочікуване значення максимальної кількості обчислень функції %s."
+msgstr "%s: неочікуване значення максимальної кількості обчислень функції %s."
 
 #, c-format
 msgid "%s: Unknown status %s"
@@ -1492,15 +1527,13 @@ msgstr ""
 "%s: для змінної %s мав бути рядок у вхідному параметрі №%d, але вказано %s."
 
 #, c-format
-msgid ""
-"%s: Expected function but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: для змінної %s мало бути вказано функцію у вхідному параметрі №%d, але "
 "вказано %s."
 
 #, c-format
-msgid ""
-"%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: для змінної %s мало бути вказано булівське значення у вхідному параметрі "
 "№%d, але вказано %s."
@@ -1590,8 +1623,7 @@ msgid "%s: Unknown restart detection %s"
 msgstr "%s: невідомий метод %s виявлення потреби у поновленні оптимізації"
 
 #, c-format
-msgid ""
-"%s: Randomized bounds initial simplex is not available without bounds."
+msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr ""
 "%s: використовувати початковий симплекс з випадковими межами у задачі без "
 "обмежень не можна."
@@ -1616,8 +1648,7 @@ msgstr ""
 "нерівностей-обмежень"
 
 #, c-format
-msgid ""
-"%s: Problem has no constraints, but Box algorithm is designed for them."
+msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 "%s: у задачі не передбачено обмежень, але алгоритм Box побудовано саме для "
 "задач з обмеженнями."
@@ -1631,8 +1662,7 @@ msgstr ""
 "методом %s"
 
 #, c-format
-msgid ""
-"%s: Randomized bounds restart simplex is not available without bounds."
+msgid "%s: Randomized bounds restart simplex is not available without bounds."
 msgstr ""
 "%s: використовувати перезапущений симплекс з випадковими межами у задачі без "
 "обмежень не можна."
@@ -1688,8 +1718,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: The number of variables %d does not match the number of max bounds: %d.\n"
-msgstr ""
-"%s: кількість змінних, %d, не відповідає кількості верхніх меж: %d.\n"
+msgstr "%s: кількість змінних, %d, не відповідає кількості верхніх меж: %d.\n"
 
 #, c-format
 msgid ""
@@ -1697,8 +1726,7 @@ msgid ""
 msgstr "%s: кількість змінних, %d, не відповідає кількості нижніх меж: %d.\n"
 
 #, c-format
-msgid ""
-"%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
+msgid "%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
 msgstr "%s: верхня межа %s для змінної №%d є меншою за нижню межу %s.\n"
 
 #, c-format
@@ -1715,8 +1743,7 @@ msgstr "%s: матриця %s з costf(x0,%d) складається з %d ря�
 
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
-msgstr ""
-"%s: матриця %s з costf(x0,%d) складається з %d стовпчиків, замість %d."
+msgstr "%s: матриця %s з costf(x0,%d) складається з %d стовпчиків, замість %d."
 
 #, c-format
 msgid "%s: Initial guess is not feasible."
@@ -1724,8 +1751,7 @@ msgstr "%s: початкова точка не задовольняє умова
 
 #, c-format
 msgid "%s: Wrong size for x0 argument: A vector expected."
-msgstr ""
-"%s: помилкова розмірність параметра x0: мало бути використано вектор."
+msgstr "%s: помилкова розмірність параметра x0: мало бути використано вектор."
 
 #, c-format
 msgid "%s: Unknown value %s for %s option"
@@ -1734,8 +1760,7 @@ msgstr "%s: невідоме значення %s параметра %s"
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 are expected."
-msgstr ""
-"%s: неочікувана кількість вхідних параметрів: вказано %d, мало бути 2."
+msgstr "%s: неочікувана кількість вхідних параметрів: вказано %d, мало бути 2."
 
 #, c-format
 msgid ""
@@ -1970,3 +1995,7 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
 "значення.\n"
+
+#, c-format
+#~ msgid "%s: Wrong measurement matrix."
+#~ msgstr "%s: помилкова матриця вимірнювання."

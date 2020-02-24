@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2020-02-18 16:36+0100\n"
+"Revision-Date: 2020-02-24 11:08+0100\n"
 
 #
 # File: modules/data_structures/sci_gateway/cpp/sci_definedfields.cpp, line: 44
@@ -128,6 +128,56 @@ msgid "%s: Wrong number of input arguments: %d expected"
 msgstr ""
 
 #
+# File: modules/data_structures/macros/list2tree.sci, line: 27
+# File: modules/data_structures/macros/tree_show.sci, line: 37
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/data_structures/macros/list2tree.sci, line: 32
+# File: modules/data_structures/macros/tree_show.sci, line: 42
+#, c-format
+msgid "%s: Argument #%d: Container or Xcos object expected.\n"
+msgstr ""
+
+#
+# File: modules/data_structures/macros/list2tree.sci, line: 43
+# File: modules/data_structures/macros/tree_show.sci, line: 53
+#, c-format
+msgid "%s: Argument #%d: Boolean(s) expected.\n"
+msgstr ""
+
+#
+# File: modules/data_structures/macros/list2tree.sci, line: 52
+# File: modules/data_structures/macros/tree_show.sci, line: 62
+#, c-format
+msgid "%s: Argument #%d: Text(s) expected.\n"
+msgstr ""
+
+#
+# File: modules/data_structures/macros/list2tree.sci, line: 158
+msgid " [Xcos diagram]"
+msgstr ""
+
+#
+# File: modules/data_structures/macros/list2tree.sci, line: 160
+msgid " [Xcos block]"
+msgstr ""
+
+#
+# File: modules/data_structures/macros/list2tree.sci, line: 238
+#, c-format
+msgid "%s() (%d lines)"
+msgstr ""
+
+#
+# File: modules/data_structures/macros/list2tree.sci, line: 245
+#, c-format
+msgid "%s library of %d functions @ %s"
+msgstr ""
+
+#
 # File: modules/data_structures/macros/num2cell.sci, line: 36
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -137,10 +187,4 @@ msgstr ""
 # File: modules/data_structures/macros/num2cell.sci, line: 46
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr ""
-
-#
-# File: modules/data_structures/macros/tree_show.sci, line: 25
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""

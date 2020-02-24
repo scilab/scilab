@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2013-03-12 18:25+0000\n"
 "Last-Translator: Juan Antonio Castro <hardcorejuin@gmail.com>\n"
 "Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: es\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -54,8 +54,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A vector of size 11 expected.\n"
+msgid "%s: Wrong size for input argument #%d: A vector of size 11 expected.\n"
 msgstr ""
 
 #, c-format
@@ -132,8 +131,7 @@ msgid "%s: The collocation matrix is singular.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: The expected no. of subintervals exceeds storage specifications.\n"
+msgid "%s: The expected no. of subintervals exceeds storage specifications.\n"
 msgstr ""
 
 #, c-format
@@ -638,8 +636,7 @@ msgstr ""
 msgid "Singular partial derivatives matrix (may be redundant equations).\n"
 msgstr ""
 
-msgid ""
-"Either ill-posed problem or discontinuity or singularity encountered.\n"
+msgid "Either ill-posed problem or discontinuity or singularity encountered.\n"
 msgstr ""
 
 msgid "External 'res' return many times with ires=-1.\n"
@@ -688,13 +685,11 @@ msgid "%s: Wrong size for output argument #%d: Matrix of size %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"
+msgid "%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"
+msgid "%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -706,8 +701,7 @@ msgid ""
 "%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
 
-msgid ""
-"An error occurred while getting DifferentialEquationFunctions object.\n"
+msgid "An error occurred while getting DifferentialEquationFunctions object.\n"
 msgstr ""
 
 msgid "Unstable trajectory"
@@ -805,9 +799,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: (%d,%d) expected.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Scalar (1 element) expected.\n"
 msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un real.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
@@ -931,8 +926,7 @@ msgstr "5 : un paso, sin pasar tcrit, y vuelve"
 msgid "Meaning of jactype:"
 msgstr "Significado de jactype"
 
-msgid ""
-"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0 : iteraciones funcionales (no se uso jacobiano (solo 'adams' o 'stiff'))"
 
@@ -943,8 +937,7 @@ msgid "2 : internally generated full jacobian"
 msgstr "2 : jacobiano completo generado internamente"
 
 msgid "3 : internally generated diagonal jacobian ('adams' or 'stiff' only)"
-msgstr ""
-"3 : jacobiano diagonal generado internamente (solo 'adams' o 'stiff')"
+msgstr "3 : jacobiano diagonal generado internamente (solo 'adams' o 'stiff')"
 
 msgid "4 : user-supplied banded jacobian (see ml,mu)"
 msgstr "4 : jacobiano banda proporcionada por el usuario (vea ml,mu)"

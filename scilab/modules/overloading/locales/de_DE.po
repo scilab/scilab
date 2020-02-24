@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2019-02-15 22:06+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: de\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -51,8 +51,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr ""
 
 #, c-format
@@ -71,8 +70,7 @@ msgid "%s: Invalid field name.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 
 #, c-format
@@ -84,8 +82,7 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 
 #, c-format
@@ -210,8 +207,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Falsche Größe für Eingabeargument #%d: Ein Skalar wird erwartet.\n"
+msgstr "%s: Falsche Größe für Eingabeargument #%d: Ein Skalar wird erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
@@ -346,8 +342,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Falsche Größe für Eingabeargument #%d: Ein Skalar wird erwartet.\n"
+msgstr "%s: Falsche Größe für Eingabeargument #%d: Ein Skalar wird erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
@@ -364,21 +359,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
-msgstr "%s: Falscher Argumenttyp %d: Echter Vektor erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s: Falscher Argumenttyp %d: Echtes Skalar erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: input and output matrices  must have the same number of elements.\n"
-msgstr ""
-"%s: Eingabe- und Ausgabe-Matrizen müssen über die gleiche Anzahl an "
-"Elementen verfügen.\n"
 
 #, c-format
 msgid "%s struct with no field"
@@ -429,14 +409,6 @@ msgstr ""
 msgid "[%s struct] with fields:"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong size or value for input argument #%d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
-
 msgid "Inconsistent row/column dimensions.\n"
 msgstr ""
 
@@ -473,3 +445,18 @@ msgstr ""
 #, c-format
 msgid "%s: Incorrect assignment.\n"
 msgstr ""
+
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
+#~ msgstr "%s: Falscher Argumenttyp %d: Echter Vektor erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
+#~ msgstr "%s: Falscher Argumenttyp %d: Echtes Skalar erwartet.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: input and output matrices  must have the same number of elements.\n"
+#~ msgstr ""
+#~ "%s: Eingabe- und Ausgabe-Matrizen müssen über die gleiche Anzahl an "
+#~ "Elementen verfügen.\n"

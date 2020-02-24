@@ -11,11 +11,11 @@ msgstr ""
 "PO-Revision-Date: 2020-02-07 13:13+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Launchpad (build 19413b719a8df7423ab1390528edadce9e0e4aca)\n"
-"Language: zh_TW\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -60,7 +60,9 @@ msgstr "%s: '%s - %s' 模組未安裝.\n"
 msgid ""
 "%s: The following module is installed in the user section, you cannot add it "
 "to the autoload list for all users:\n"
-msgstr "%s: 以下模組使用者決定是否安裝, 你無法將它們加入到為所有使用者自動載入的清單中:\n"
+msgstr ""
+"%s: 以下模組使用者決定是否安裝, 你無法將它們加入到為所有使用者自動載入的清單"
+"中:\n"
 
 #, c-format
 msgid "\t - '%s - %s'\n"
@@ -179,20 +181,23 @@ msgstr ""
 msgid "%s: The config file ('%s') is not well formatted at line %d\n"
 msgstr "%s: 組態檔 ('%s') 在 %d 行的格式不符\n"
 
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
-msgstr "%s: 第 #%d 輸入參數大小錯誤: 應為 mx2 或 mx3 字串矩陣.\n"
+#, fuzzy, c-format
+msgid "%s: Argument #%d: Matrix with %s columns expected.\n"
+msgstr "%s: 第 #%d 輸入參數型態錯誤: 應為矩陣串列 (mlist).\n"
 
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be set.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 所有模組版本皆須設定 .\n"
+#
+# File: modules/atoms/macros/atomsGetInstalledPath.sci, line: 34
+msgid "1 to 3"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
+msgstr "%s: 第 %d 個的輸入參數值錯誤: 應該是 'user' 或 'allusers' 或 'all'.\n"
+
+#, fuzzy, c-format
+msgid "%s: Argument #%d (:,3): 'user' or 'allusers' or 'all' expected.\n"
 msgstr "%s: 第 %d 個的輸入參數值錯誤: 應該是 'user' 或 'allusers' 或 'all'.\n"
 
 #, c-format
@@ -227,7 +232,9 @@ msgstr "%s: 套件  '%s' 內未發現 DESCRIPTION 描述檔\n"
 msgid ""
 "Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
 "not check the latest modules availables."
-msgstr "ATOMS 設置中的 offline 選項設定為 True. atomsSystemUpdate 尚未取得檢查最後的模組."
+msgstr ""
+"ATOMS 設置中的 offline 選項設定為 True. atomsSystemUpdate 尚未取得檢查最後的"
+"模組."
 
 #, c-format
 msgid "\t%s (%s) will be installed in the '%s' section"
@@ -393,7 +400,8 @@ msgstr "%s: 第 %d 的輸入參數值錯誤: 這 ("
 msgid ""
 "%s: Wrong value for input argument #%d: 'all','user','allusers' or "
 "'official' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為'all','user','allusers' 或'official' .\n"
+msgstr ""
+"%s: 第 %d 個輸入參數數值錯誤: 應為'all','user','allusers' 或'official' .\n"
 
 #, c-format
 msgid "File %s does not exist: could not restore previous configuration."
@@ -490,7 +498,9 @@ msgstr "ATOMS 錯誤"
 msgid ""
 "No ATOMS module is available. Please, check your Internet connection or make "
 "sure that your OS is compatible with ATOMS."
-msgstr "無任何有效的 ATOMS 模組. 請檢查網路連線是否正常或是確認您的作業系統與 ATOMS 是相容的."
+msgstr ""
+"無任何有效的 ATOMS 模組. 請檢查網路連線是否正常或是確認您的作業系統與 ATOMS "
+"是相容的."
 
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr "沒有可取得的ATOMS模組:你的倉庫清單是空的."
@@ -534,8 +544,7 @@ msgstr "安裝中"
 msgid "Installation failed!"
 msgstr "安裝失敗."
 
-msgid ""
-"Installation done! Please restart Scilab to take changes into account."
+msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr "安裝完畢！請重新啟動 Scilab 使變更發生作用."
 
 msgid "Updating"
@@ -608,7 +617,8 @@ msgstr "%s: 第 #%d 輸入參數型態錯誤: 應為矩陣串列 (mlist).\n"
 msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
-msgstr "%s: 第 #%d個輸入值有誤: 'filter:all','filter:main' 或是有用的分類才對.\n"
+msgstr ""
+"%s: 第 #%d個輸入值有誤: 'filter:all','filter:main' 或是有用的分類才對.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -676,7 +686,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: String that contains 'TOOLBOXES' or "
 "'DESCRIPTION' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤:應為內含 'TOOLBOXES' 或'DESCRIPTION' 的字串 .\n"
+msgstr ""
+"%s: 第 %d 個輸入參數數值錯誤:應為內含 'TOOLBOXES' 或'DESCRIPTION' 的字串 .\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -824,15 +835,15 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - 檢查 MD5SUM : '%s'\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr "%s: 第  %d 輸入參數數值錯誤: 應為 'error' 或 'warning'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with "
-".tar.gz, .tgz or .zip expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤:應為後綴為  .tar.gz, .tgz 或 .zip 的字串 .\n"
+"%s: Wrong value for input argument #%d: Single string that ends with .tar."
+"gz, .tgz or .zip expected.\n"
+msgstr ""
+"%s: 第 %d 個輸入參數數值錯誤:應為後綴為  .tar.gz, .tgz 或 .zip 的字串 .\n"
 
 #, c-format
 msgid "%s: The file %s does not exist or is not read accessible.\n"
@@ -854,6 +865,11 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤:  1x1 or 1x2 string matrix 才對
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應為 1x2 矩陣字串.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應為 mx2 或 mx3 字串矩陣.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
@@ -958,14 +974,13 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: 無法解析出相依樹  (dependency tree )\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為字母 'A' 或 'I'\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid "
-"version/dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid version/"
+"dependency.\n"
 msgstr "%s: 第  %d 輸入參數數值錯誤: 版本/相依性不符.\n"
 
 msgid "Atoms:"
@@ -980,7 +995,8 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為'system' 或'install' .\n"
 msgid ""
 "%s: Wrong value for input argument #%d: 'all','allusers','user' or 'session' "
 "expected.\n"
-msgstr "%s: 第 #%d 輸入參數數值錯誤: 應為 'all','allusers','user' 或 'session'.\n"
+msgstr ""
+"%s: 第 #%d 輸入參數數值錯誤: 應為 'all','allusers','user' 或 'session'.\n"
 
 #, c-format
 msgid ""
@@ -1016,10 +1032,15 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) 尚未安裝.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr "%s: 第  %d 輸入參數數值錯誤: 版本錯誤.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ASC  或 DESC .\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: All modules version should be "
+#~ "set.\n"
+#~ msgstr "%s: 第 %d 個輸入參數數值錯誤: 所有模組版本皆須設定 .\n"
