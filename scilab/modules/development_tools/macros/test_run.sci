@@ -941,6 +941,12 @@ function status = test_single(_module, _testPath, _testName)
                 // libraries
 
                 if ~isempty(txt) then
+                    // Gtk style on Ubuntu or other Gtk logging
+                    toRemove = grep(txt, "Gtk-Message:");
+                    txt(toRemove) = [];
+                end
+
+                if ~isempty(txt) then
                     // MESA / EGL display some warning on stderr
                     toRemove = grep(txt, "libEGL warning:");
                     txt(toRemove) = [];
