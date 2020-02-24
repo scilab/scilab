@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Farid BELAHCENE
+ * Copyright (C) 2013, 2016 - Samuel GOUGEON : 5.5.0 extensions, page overhauled
+ *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+    xmlns:scilab="http://www.scilab.org" xml:id="flipdim" xml:lang="ru">
+    <refnamediv>
+        <refname>flipdim</refname>
+        <refpurpose>меняем порядок (частей) строк, столбцов, страниц... массива</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            y = flipdim(x, dim)
+            y = flipdim(x, dim, blockSize)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection role="parameters">
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y</term>
+                <listitem>
+                    <para>
+                        векторы, матрицы или гиперматрицы любого обычного типа данных или cell-массива.
+                        <varname>y</varname> получает размеры <varname>x</varname>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dim</term>
+                <listitem>
+                        <para>
+                            положительное целое: индексы размерности/направления 
+                            <literal>x</literal>, вдоль которой порядок элементов
+                            <varname>x</varname> должен быть изменён.
+                        </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>blockSize</term>
+                <listitem>
+                    <para>
+                        положительное целое, общий делитель <literal>size(x,dim)</literal>:
+                        число строк, столбцов страниц и т.д. в каждом блоке. Значение по умолчанию 1.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Описание</title>
+        <para>
+            <literal>flipdim(x, 1)</literal> изменяет порядок
+            <emphasis role="italic">строк</emphasis> в <varname>x</varname>.
+        </para>
+        <para>
+            <literal>flipdim(x, 2)</literal> изменяет порядок
+            <emphasis role="italic">столбцов</emphasis> в <varname>x</varname>.
+        </para>
+        <para>
+            <literal>flipdim(x, 3)</literal> изменяет порядок
+            <emphasis role="italic">страниц</emphasis> в <varname>x</varname>. И т.д.
+        </para>
+        <para>
+            Необязательный параметр <varname>blockSize</varname> позволяет разделить
+            <varname>x</varname> на <literal>size(x,1)/blockSize</literal> блоков
+            из <varname>blockSize</varname> строк (<literal>dim=1</literal>),
+            или в <literal>size(x,2)/blockSize</literal> блоков из <varname>blockSize</varname>
+            столбцов (<literal>dim=2</literal>) и т.д. (<literal>dim>2</literal>)
+            и меняет их порядок. В каждом блоке меняется порядок элементов (строк, столбцов,
+            страниц и т.д.).
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+// Пример 1: переключает строки x (= элементы вдоль первой размерности)
+x = [1 2 3 4; 5 6 7 8]
+y = flipdim(x, 1)
+
+// Пример 2: переключает столбцы (= элементы вдоль второй размерности)
+y = flipdim(x, 2)
+
+// Пример 3: переключает страницы (= элементы вдоль третьей размерности)
+x = matrix(1:24, [3 2 4])
+y = flipdim(x, 3)
+
+// Пример 4: первый пример с комплексными числами
+x = [1+%i 2*%i 3 4; 5 6-%i 7 8*%pi*%i]
+y = flipdim(x, 1)
+
+// Кодированные целые числа:
+x = int16(grand(4, 3, 2, "uin", -9, 9))
+y = flipdim(x, 1)
+
+// Логические значения:
+x = (grand(3, 4, "uin", -9, 9) > 0)
+y = flipdim(x, 2)
+
+// Тексты:
+x = matrix(strsplit("a":"x", 1:23), 4, 6);
+x = x+x
+flipdim(x, 2)
+
+// Полиномы:
+x = inv_coeff(grand(3, 9, "uin", 0, 3), 2)
+flipdim(x, 1)
+
+// Дробно-рациональные:
+n = inv_coeff(grand(3, 9, "uin", 0, 3), 2);
+d = inv_coeff(grand(3, 9, "uin", 0, 3), 2);
+r = n./d
+flipdim(r, 2)
+ ]]></programlisting>
+        <para>
+            Примеры, использующие <literal>blockSize</literal> :
+        </para>
+        <programlisting role="example"><![CDATA[
+X = [0 1 2 3 4 5 6 7 8 9 10 11];
+flipdim(X, 2, 2) // => [10 11   8 9   6 7   4 5   2 3   0 1] // Размер блока = 2.
+flipdim(X, 2, 3) // => [9 10 11   6 7 8   3 4 5   0 1 2]
+flipdim(X, 2, 4) // => [8 9 10 11   4 5 6 7   0 1 2 3]
+flipdim(X, 2, 6) // => [6 7 8 9 10 11   0 1 2 3 4 5]
+
+// Ошибка, если blockSize не делится на результирующую размерность x.
+y = flipdim(x, 2, 5); // size(X) = [1 12] и blockSize=5 не делится на 12.
+ ]]></programlisting>
+    <para>Примеры результатов:</para>
+    <screen><![CDATA[
+--> x
+ x  =
+ -5 -2  0  9
+  0 -7 -6  9
+ -1 -8 -7  8
+
+--> flipdim(x, 1)
+ ans  =
+ -1 -8 -7  8
+  0 -7 -6  9
+ -5 -2  0  9
+
+--> flipdim(x, 2)
+ ans  =
+  9  0 -2 -5
+  9 -6 -7  0
+  8 -7 -8 -1
+]]></screen>
+    <para></para>
+    <screen><![CDATA[
+--> x
+ x  =
+(:,:,1)
+  9  4 -3
+ -4 -8 -3
+
+(:,:,2)
+  5  8  9
+  4  4  9
+
+--> flipdim(x, 3)
+ ans  =
+(:,:,1)
+  5  8  9
+  4  4  9
+
+(:,:,2)
+  9  4 -3
+ -4 -8 -3
+]]></screen>
+    <para></para>
+    <screen><![CDATA[
+--> x
+ x  =
+ -2  3 -5  9 -4 -8
+  2  8  4 -9  6 -6
+ -9  8  3  4 -3  4
+
+--> flipdim(x, 2, 2)
+ ans  =
+ -4 -8 -5  9 -2  3
+  6 -6  4 -9  2  8
+ -3  4  3  4 -9  8
+
+--> flipdim(x, 2, 3)
+ ans  =
+  9 -4 -8 -2  3 -5
+ -9  6 -6  2  8  4
+  4 -3  4 -9  8  3
+]]></screen>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="circshift">circshift</link>
+            </member>
+            <member>
+                <link linkend="fftshift">fftshift</link>
+            </member>
+            <member>
+                <link linkend="ifftshift">ifftshift</link>
+            </member>
+            <member>
+                <link linkend="colon">двоеточие</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>
+                            Расширение на все обычные типы данных: логические, целые числа,
+                            строковые, полиномы, дробно-рациональны, графические указатели и т.д.
+                        </listitem>
+                        <listitem>
+                            Новый входной аргумент <literal>blockSize</literal> для поблокового
+                            переключения <literal>x</literal>.
+                        </listitem>
+                    </itemizedlist>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

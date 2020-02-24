@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="fftshift">
+    <refnamediv>
+        <refname>fftshift</refname>
+        <refpurpose>
+            перегруппировывает результат БПФ, сдвигая нулевую частоту в центр спектра
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            y = fftshift(x)
+            y = fftshift(x, along)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y</term>
+                <listitem>
+                    <para>векторы, матрицы или гиперматрицы одинакового размера.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>along</term>
+                <listitem>
+                    <para>
+                        1 | "r" | 2 | "c" | 0&lt;along&lt;=ndims(x): размерность, вдоль которой 
+                        половинки меняются местами.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Если <varname>x</varname> является результатом вычисления БПФ, то
+            <literal>y=fftshift(x)</literal> или <literal>y=fftshift(x,"all")</literal>
+            двигает нулевую частоту в центр спектра, что иногда является более удобной формой.
+        </para>
+        <screen><![CDATA[
+x = [x1  x2 ]    даёт   y = [x2  x1 ]  // вектор
+
+    [x11 x12]                [x22 x21]
+x = |       |    даёт   y = |       |  // матрица
+    [x21 x22]                [x12 x11]
+и т.д.
+]]></screen>
+        <para>
+            <literal>y=fftshift(x,n)</literal> меняет местами только вдоль <literal>n</literal>-ой размерности.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+x = [1 2 3 4 5 6 7]
+fftshift(x)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> x = [1 2 3 4 5 6 7]
+ x  =
+   1.   2.   3.   4.   5.   6.   7.
+
+--> fftshift(x)
+ ans  =
+   5.   6.   7.   1.   2.   3.   4.
+]]></screen>
+    <para/>
+        <programlisting role="example"><![CDATA[
+x = matrix(1:36,6,6)
+fftshift(x)
+fftshift(x, "r")
+fftshift(x, "c")
+ ]]></programlisting>
+    <screen><![CDATA[
+--> x = matrix(1:36,6,6)
+ x  =
+   1.   7.    13.   19.   25.   31.
+   2.   8.    14.   20.   26.   32.
+   3.   9.    15.   21.   27.   33.
+   4.   10.   16.   22.   28.   34.
+   5.   11.   17.   23.   29.   35.
+   6.   12.   18.   24.   30.   36.
+
+--> fftshift(x)       // Углы переходят в центр
+ ans  =
+   22.   28.   34.   4.   10.   16.
+   23.   29.   35.   5.   11.   17.
+   24.   30.   36.   6.   12.   18.
+   19.   25.   31.   1.   7.    13.
+   20.   26.   32.   2.   8.    14.
+   21.   27.   33.   3.   9.    15.
+
+--> fftshift(x, "r")  // Внешние строки становятся строками в середине
+ ans  =
+   4.   10.   16.   22.   28.   34.
+   5.   11.   17.   23.   29.   35.
+   6.   12.   18.   24.   30.   36.
+   1.   7.    13.   19.   25.   31.
+   2.   8.    14.   20.   26.   32.
+   3.   9.    15.   21.   27.   33.
+
+--> fftshift(x, "c")  // Внешние столбцы становятся столбцами в середине
+ ans  =
+   19.   25.   31.   1.   7.    13.
+   20.   26.   32.   2.   8.    14.
+   21.   27.   33.   3.   9.    15.
+   22.   28.   34.   4.   10.   16.
+   23.   29.   35.   5.   11.   17.
+   24.   30.   36.   6.   12.   18.
+]]></screen>
+    <para/>
+
+ <programlisting role="example"><![CDATA[
+// Сделаем сигнал
+t = 0:0.1:1000;
+x = 3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
+// Выполним БПФ
+y = fft(x,-1);
+
+// Отобразим
+clf();
+subplot(2,1,1); plot2d(abs(y))
+subplot(2,1,2); plot2d(fftshift(abs(y)))
+ ]]></programlisting>
+        <scilab:image>
+            t=0:0.1:1000;
+            x=3*sin(t)+8*sin(3*t)+0.5*sin(5*t)+3*rand(t);
+            y=fft(x,-1);
+            subplot(2,1,1);plot2d(abs(y))
+            subplot(2,1,2);plot2d(fftshift(abs(y)))
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// Сделаем двумерную картинку
+t = 0:0.1:30;
+x = 3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
+  0.5*sin(5*t')*sin(5*t)+3*rand(t')*rand(t);
+// Выполним БПФ
+y = fft(x,-1);
+
+// Отобразим
+clf();
+gcf().color_map = hotcolormap(256);
+subplot(2,1,1); Matplot(abs(y))
+subplot(2,1,2); Matplot(fftshift(abs(y)))
+ ]]></programlisting>
+        <scilab:image>
+            t=0:0.1:30;
+            x=3*sin(t')*cos(2*t)+8*sin(3*t')*sin(5*t)+..
+            0.5*sin(5*t')*sin(5*t)+3*rand(t')*rand(t);
+            y=fft(x,-1);
+            gcf().color_map = hotcolormap(256);
+            subplot(2,1,1);
+            Matplot(abs(y))
+            subplot(2,1,2);
+            Matplot(fftshift(abs(y)))
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ifftshift">ifftshift</link>
+            </member>
+            <member>
+                <link linkend="flipdim">flipdim</link>
+            </member>
+            <member>
+                <link linkend="circshift">circshift</link>
+            </member>
+            <member>
+                <link linkend="fft">fft</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
