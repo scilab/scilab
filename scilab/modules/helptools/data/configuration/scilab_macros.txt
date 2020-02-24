@@ -565,6 +565,7 @@ inv_coeff
 invr
 lcm
 lcmdiag
+nchoosek
 pdiv
 pfactors
 pol2des
