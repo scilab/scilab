@@ -20,11 +20,13 @@
           xmlns:scilab="http://www.scilab.org"  xml:id="bar3d" xml:lang="en">
     <refnamediv>
         <refname>bar3d</refname>
-        <refpurpose>3D representation of a histogram</refpurpose>
+        <refpurpose>3D bars plot</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>bar3d(mtx,[theta,alpha,leg,flag,ebox])
+        <synopsis>
+            bar3d()     // Example
+            bar3d(mtx,[theta,alpha,leg,flag,ebox])
             bar3d(mtx,&lt;opt_args&gt;)
             bar3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])
             bar3d(list(mtx,x,y),&lt;opt_args&gt;)
@@ -79,13 +81,11 @@
         <title>Description</title>
         <para>
             <literal>bar3d</literal> represents a 2d histogram as a 3D plot.
-            The values are associated to the intervals <literal>[x(i) x(i+1)[ X [y(i)
-                y(i+1)[
-            </literal>
-            .
+            The values are associated to the intervals
+            <literal>[x(i), x(i+1)[ × [y(i), y(i+1)[</literal>.
         </para>
         <para>
-            Enter the command <literal>bar3d()</literal> to see a demo.
+            Enter the command <literal>bar3d()</literal> to see an example.
         </para>
     </refsection>
     <refsection>
@@ -96,15 +96,17 @@
 
         <scilab:image localized="true">bar3d();</scilab:image>
         <programlisting role="example"><![CDATA[
-bar3d(10*rand(10,10));
+bar3d(grand(10, 10, "nor", 0, 10))
  ]]></programlisting>
-        <scilab:image>bar3d(10*rand(10,10));</scilab:image>
+        <scilab:image>bar3d(grand(10, 10, "nor", 0, 10))</scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
 A = abs(rand(40,5));
 Z(1:40,:) = A;
-scf();
-bar3d(Z);
+
+clf
+bar3d(Z)
+isoview off
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -112,6 +114,7 @@ bar3d(Z);
             Z(1:40,:) = A;
             scf();
             bar3d(Z);
+            isoview off
         </scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
@@ -119,8 +122,10 @@ A = abs(rand(40,5));
 Z(1:40,:) = A;
 Index = find(Z==0);
 Z(Index) = %nan;
-scf();
-bar3d(Z);
+
+clf
+bar3d(Z)
+isoview off
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -130,6 +135,7 @@ bar3d(Z);
             Z(Index) = %nan;
             scf();
             bar3d(Z);
+            isoview off
         </scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
@@ -137,8 +143,10 @@ A = abs(rand(40,5));
 Z(1:40,:) = A;
 A = abs(rand(10,5));
 Z(91:100,:) = A;
-scf();
-bar3d(Z);
+
+clf
+bar3d(Z)
+isoview off
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -148,6 +156,8 @@ bar3d(Z);
             Z(91:100,:) = A;
             scf();
             bar3d(Z);
+            isoview off
+            gca().rotation_angles = [30 50];
         </scilab:image>
     </refsection>
     <refsection role="see also">
@@ -166,14 +176,11 @@ bar3d(Z);
     </refsection>
     <refsection role="history">
         <title>History</title>
-        <title>履歴</title>
-        <title>Histórico</title>
-        <title>История</title>
         <revhistory>
             <revision>
                 <revnumber>6.1.0</revnumber>
                 <revdescription>
-                  <para>bar3d() introduced, equal to the current hist3d() to be redefined.</para>
+                    bar3d() introduced, equal to the current hist3d() to be redefined.
                 </revdescription>
             </revision>
         </revhistory>

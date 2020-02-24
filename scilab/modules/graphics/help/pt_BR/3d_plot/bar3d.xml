@@ -20,11 +20,13 @@
           xmlns:scilab="http://www.scilab.org" xml:id="bar3d" xml:lang="pt">
     <refnamediv>
         <refname>bar3d</refname>
-        <refpurpose>representação 3d de um histograma</refpurpose>
+        <refpurpose>Gráfico de barras 3D</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>bar3d(mtx,[theta,alpha,leg,flag,ebox])
+        <synopsis>
+            bar3d()     // Exemplo
+            bar3d(mtx,[theta,alpha,leg,flag,ebox])
             bar3d(mtx,&lt;opt_args&gt;)
             bar3d(list(mtx,x,y),[theta,alpha,leg,flag,ebox])
             bar3d(list(mtx,x,y),&lt;opt_args&gt;)
@@ -67,10 +69,8 @@
         <title>Descrição</title>
         <para>
             <literal>bar3d</literal> representa um histograma 2d como um esboço
-            3d. Os valores são associados aos intervalos <literal>[x(i) x(i+1)[ X
-                [y(i) y(i+1)[
-            </literal>
-            .
+            3d. Os valores são associados aos intervalos
+            <literal>[x(i),x(i+1)[ × [y(i),y(i+1)[</literal>.
         </para>
         <para>
             Entre com o comando <literal>bar3d()</literal> para visualizar uma
@@ -84,15 +84,17 @@
  ]]></programlisting>
         <scilab:image localized="true">bar3d();</scilab:image>
         <programlisting role="example"><![CDATA[
-bar3d(10*rand(10,10));
+bar3d(grand(10, 10, "nor", 0, 10))
  ]]></programlisting>
-        <scilab:image>bar3d(10*rand(10,10));</scilab:image>
+        <scilab:image>bar3d(grand(10, 10, "nor", 0, 10))</scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
 A = abs(rand(40,5));
 Z(1:40,:) = A;
-scf();
-bar3d(Z);
+
+clf
+bar3d(Z)
+isoview off
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -100,6 +102,7 @@ bar3d(Z);
             Z(1:40,:) = A;
             scf();
             bar3d(Z);
+            isoview off
         </scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
@@ -107,8 +110,10 @@ A = abs(rand(40,5));
 Z(1:40,:) = A;
 Index = find(Z==0);
 Z(Index) = %nan;
-scf();
-bar3d(Z);
+
+clf
+bar3d(Z)
+isoview off
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -118,6 +123,7 @@ bar3d(Z);
             Z(Index) = %nan;
             scf();
             bar3d(Z);
+            isoview off
         </scilab:image>
         <programlisting role="example"><![CDATA[
 Z = zeros(100,5);
@@ -125,8 +131,10 @@ A = abs(rand(40,5));
 Z(1:40,:) = A;
 A = abs(rand(10,5));
 Z(91:100,:) = A;
-scf();
-bar3d(Z);
+
+clf
+bar3d(Z)
+isoview off
  ]]></programlisting>
         <scilab:image>
             Z = zeros(100,5);
@@ -136,6 +144,8 @@ bar3d(Z);
             Z(91:100,:) = A;
             scf();
             bar3d(Z);
+            isoview off
+            gca().rotation_angles = [30 50];
         </scilab:image>
     </refsection>
     <refsection>
@@ -158,7 +168,7 @@ bar3d(Z);
             <revision>
                 <revnumber>6.1.0</revnumber>
                 <revdescription>
-                  <para>bar3d() introduced, equal to the current hist3d() to be redefined.</para>
+                  bar3d() introduced, equal to the current hist3d() to be redefined.
                 </revdescription>
             </revision>
         </revhistory>
