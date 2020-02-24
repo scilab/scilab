@@ -140,12 +140,22 @@ Please report anything we could have missed, on the <a href="http://mailinglists
 <li>Several bits can now be retrieved from each component of an input array.</li>
 </ul>
 </li>
+<li><code>bitset</code> is upgraded:
+<ul>
+<li>It now accepts positive Signed encoded integers.</li>
+<li>It now supports the new uint64 and int64 types of encoded integers.</li>
+<li>For decimal numbers: bits with indices &gt; 32 can now be set (up to #1024).</li>
+<li>Several bits can now be set for each input component.</li>
+<li>Distributive scalar inputs are now accepted.</li>
+</ul>
+</li>
 <li><code>bitstring</code> function added.</li>
 <li><code>edit</code> now accepts a line number as text (like &quot;23&quot;).</li>
 <li><code>profileEnable</code>, <code>profileDisable</code>, <code>profileGetInfo</code> could be used to instrument functions and gather execution information within Scilab.</li>
 <li><code>prettyprint</code> is upgraded:
 <ul>
 <li>Integer and Text input are now actually supported.</li>
+<li>HTML is now supported as output format.</li>
 <li>Default input arguments can be skipped instead of still having to be provided.</li>
 <li>The result string is better formatted to be easily wrappable and indented.</li>
 </ul>
@@ -217,11 +227,50 @@ Please report anything we could have missed, on the <a href="http://mailinglists
 <li><code>setdiff</code> now supports complex numbers.</li>
 <li><code>twinkle</code> can now blink together several hierarchically independent objects, like a curve and its labels, etc.</li>
 <li><code>repmat</code> has been rewritten. It is 7 times faster now.</li>
+<li><code>plot</code> can now work in semi or bi-logarithmic mode with some input logflag.</li>
+<li><code>plotimplicit</code> function added.</li>
+<li>The default smarter grid_style value is now 7 instead of 3.</li>
+<li><code>weekday</code> accepts new date formats and new syntaxes. A language option applying to the day names is now available.</li>
+<li><code>vectorfind</code> is upgraded:
+<ul>
+<li>vectorfind(m, []) now returns [] instead of an error.</li>
+<li>A too long needle now returns [] instead of an error.</li>
+<li>%nan values never matched. They are now regularly processed, as other values.</li>
+<li>A needle shorter than the haystack size can now be used.</li>
+<li>A wildcard value matching any value of the haystack can now be specified and used in the needle. Actual matching ranges can then be returned: Options <code>joker</code> and <code>matching</code> added.</li>
+<li>Hypermatrices are now accepted as haystack.</li>
+<li>The probing direction can now be numeric: 1, 2, ..</li>
+<li>Returned indices can now be formatted with the new option <code>indType</code>.</li>
+<li>There were no unit tests. More than 100 tests are added.</li>
+</ul>
+</li>
+<li><code>datafit</code> is now able to fit weighted data. It now supports any gap function vectorized for Data points, and so is much faster. It now accepts any matrix of parameters (not necessarily a colum). It now returns the average Mode-to-data distance, and the termination status for the quasi-Newton algo.</li>
+<li><code>tree_show</code> is upgraded:
+<ul>
+<li>New <code>rootTitle</code> and <code>styles</code> optional inputs.</li>
+<li>New <code>arrayByFields</code> option, to allow displaying each array component as an object in its whole.</li>
+<li>Improved layout: detailled indices for 2D arrays, simplified symbols, etc.</li>
+<li>The content of implicitlist objects, and information for Scilab functions and libraries of functions are now displayed.</li>
+</ul>
+</li>
+<li><code>nchoosek</code> is introduced, to compute the binomial coefficients.</li>
+<li>The left .. and right ./. Kronecker divisions are now implemented, for arrays of decimal or complex numbers.</li>
+<li><code>perms</code> can now build and return only unique permutations, without duplicates.</li>
+<li>Most of graphic objects can be moved interactively in opened figures.</li>
+<li><code>circshift</code> is introduced.</li>
+<li><code>atomsGetInstalledPath</code> is no longer sensitive to the case or completeness of the modules names. Providing the modules versions is now optional.</li>
+<li><code>function</code> replaces <code>mc</code> as the new overloading code for functions in Scilab language.</li>
 </ul>
 <h2>Help pages:</h2>
 <ul>
-<li>overhauled / rewritten: <code>bitget</code>, <code>edit</code>, <code>factorial</code></li>
+<li>overhauled / rewritten: <code>bitget</code>, <code>edit</code>, <code>factorial</code>, <code>vectorfind</code>, <code>datafit</code></li>
 <li>fixed / improved:  <code>bench_run</code> <code>M_SWITCH</code>, <code>comet</code>, <code>comet3d</code></li>
+<li>Rewritten: <code>weekday</code></li>
+<li>Translations added:
+<ul>
+<li>(ru): <code>weekday</code></li>
+</ul>
+</li>
 </ul>
 <h2>User Interface improvements:</h2>
 <ul>
@@ -258,6 +307,9 @@ Please report anything we could have missed, on the <a href="http://mailinglists
 <li><code>ric_desc</code> is obsolete and will be removed from Scilab 6.1.x. Please use <code>riccati</code> instead.</li>
 <li><code>noisegen</code> will be removed from Scilab 6.1.x. Please use <code>grand</code> instead.</li>
 <li><code>get_figure_handle(n)</code> is obsolete. Please use <code>findobj('figure_id',n)</code> instead.</li>
+<li><code>hist3d</code> is renamed <code>bar3d</code>. The former <code>hist3d</code> function is declared obsolete and will be replaced by an actual 3D histogram function in Scilab 6.2.</li>
+<li><code>scatter3</code> is obsolete. Please use <code>scatter3d</code> instead.</li>
+<li><code>saveafterncommands</code> is canceled. It will be removed from Scilab 6.1.x</li>
 </ul>
 <h2>Removed Functions</h2>
 <ul>
@@ -279,198 +331,741 @@ Please report anything we could have missed, on the <a href="http://mailinglists
 <h2>Bug Fixes</h2>
 <h3>Bugs fixed in 6.1.0:</h3>
 <ul>
-<li><a href="https://bugzilla.scilab.org/2694">#2694</a>: <code>bitget</code> did not accept positive integers of types int8, int16 or int32.</li>
-<li><a href="https://bugzilla.scilab.org/6070">#6070</a>: How to make multiscaled plots was not documented.</li>
-<li><a href="https://bugzilla.scilab.org/7562">#7562</a>: <code>factorial</code> could use a huge memory amount even for a scalar argument.</li>
-<li><a href="https://bugzilla.scilab.org/7657">#7657</a>: <code>lstsize</code> was a duplicate of <code>size</code> and should be removed.</li>
-<li><a href="https://bugzilla.scilab.org/7724">#7724</a>: When a figure is created in .auto_resize=&quot;on&quot; mode, its .axes_size sets its .figure_size accordingly, not the reverse. But this was not documented.</li>
-<li><a href="https://bugzilla.scilab.org/7765">#7765</a>: <code>champ1</code> is useless. <code>champ().colored</code> is available for a long time.</li>
-<li><a href="https://bugzilla.scilab.org/7948">#7948</a>: <code>gsort</code> could not perform multilevel sorting, and could not sort complex numbers completely.</li>
-<li><a href="https://bugzilla.scilab.org/7967">#7967</a>: The tricky size <code>[ny,nx]</code> of <code>meshgrid(x,y)</code> results and usages with graphics was not enough documented.</li>
-<li><a href="https://bugzilla.scilab.org/8301">#8301</a>: <code>definedfields</code> wrongly considered as defined void elements in lists, tlists and mlists.</li>
-<li><a href="https://bugzilla.scilab.org/8307">#8307</a>: <code>list2vec</code> and <code>vec2list</code> were located in the optimization module instead of in data_structures, and were missing in the <code>See also</code> section of <code>list</code>.</li>
-<li><a href="https://bugzilla.scilab.org/8393">#8393</a>: <code>isdef</code> and <code>definedfields</code> had mismatching answers for void elements in lists, mlists or tlists.</li>
-<li><a href="https://bugzilla.scilab.org/8418">#8418</a>: <code>unique</code> was not able to return the number of occurences of returned dictinct entities.</li>
-<li><a href="https://bugzilla.scilab.org/8784">#8784</a>: Automatic self-adjusting blocks <code>SCALE_CSCOPE</code> &amp; <code>SCALE_CMSCOPE</code> in Xcos.</li>
-<li><a href="https://bugzilla.scilab.org/5512">#5512</a>: <code>disp</code> puzzlingly displayed arguments in reverse order.</li>
-<li><a href="https://bugzilla.scilab.org/9007">#9007</a>: On Linux, <code>sciargs()</code> included twice <code>-nw</code> when <code>-nw</code> is used.</li>
-<li><a href="https://bugzilla.scilab.org/9529">#9529</a>: <code>assert_checkequal(list(1,,3), list(1,,3))</code> yielded an error.</li>
-<li><a href="https://bugzilla.scilab.org/9673">#9673</a>: Priority of colon <code>:</code> operator was too low</li>
-<li><a href="https://bugzilla.scilab.org/10078">#10078</a>: <code>isinf</code> was not reliable for polynomials.</li>
-<li><a href="https://bugzilla.scilab.org/10353">#10353</a>: Documentation: The referential for the uicontrol.position property was not provided. Moreover, <code>gca().axes_bounds</code> refered to <code>fig.figure_size</code> instead of <code>fig.axes_size</code>.</li>
-<li><a href="https://bugzilla.scilab.org/10553">#10553</a>: After calling <code>colorbar</code>, retrieving the handle of the new color bar was not trivial.</li>
-<li><a href="https://bugzilla.scilab.org/10723">#10723</a>: <code>subplot</code>'s action was unclearly described in its help page. Page improved.</li>
-<li><a href="https://bugzilla.scilab.org/11852">#11852</a>: File browser didn't update after file creation or removal.</li>
-<li><a href="https://bugzilla.scilab.org/11363">#11363</a>: <code>show_window()</code> did not raise the current graphics window.</li>
-<li><a href="https://bugzilla.scilab.org/13738">#13738</a>: <code>get_figure_handle</code> was a specific duplicate of the more powerful <code>findobj('figure_id',n)</code> feature. It is now obsolete.</li>
-<li><a href="https://bugzilla.scilab.org/12520">#12520</a>: Variable browser did not display the size of the variables.</li>
-<li><a href="https://bugzilla.scilab.org/12534">#12534</a>: Variable browser did not display the size of the variables.</li>
-<li><a href="https://bugzilla.scilab.org/12837">#12837</a>: <code>strcmpi</code> was an obsolete duplicate of <code>strcmp(,'i')</code>. It is removed.</li>
-<li><a href="https://bugzilla.scilab.org/13683">#13683</a>: unsetmenu for a dockable=&quot;off&quot; figure crashed Scilab.</li>
-<li><a href="https://bugzilla.scilab.org/13766">#13766</a>: Minimal values for <code>.figure_size</code> were not documented.</li>
-<li><a href="https://bugzilla.scilab.org/14015">#14015</a>: Nan terms added to a polynomial were ignored.</li>
-<li><a href="https://bugzilla.scilab.org/14422">#14422</a>: <code>clc(0)</code> did nothing, now clears last console entry. Remove leading blank after a <code>clc()</code>.</li>
-<li><a href="https://bugzilla.scilab.org/14498">#14498</a>: <code>size([],3)</code> returned 1 instead of 0.</li>
-<li><a href="https://bugzilla.scilab.org/14501">#14501</a>: <code>strsubst</code> crashed on consecutive occurrences.</li>
-<li><a href="https://bugzilla.scilab.org/14557">#14557</a>: <code>csim</code> failed when the system has no state.</li>
-<li><a href="https://bugzilla.scilab.org/14498">#14498</a>: <code>size([],3)</code> returned 1 instead of 0.</li>
-<li><a href="https://bugzilla.scilab.org/14502">#14502</a>: <code>Demo &gt; GUI &gt; Uicontrols 2</code> could not be exported to a file.</li>
-<li><a href="https://bugzilla.scilab.org/14604">#14604</a>: <code>emptystr</code> is 40x slower with 6.0.0 wrt 5.5.2</li>
-<li><a href="https://bugzilla.scilab.org/14605">#14605</a>: fixed - <code>bench_run</code> was too strict about the specification of tests names.</li>
-<li><a href="https://bugzilla.scilab.org/14606">#14606</a>: Memory used by variables returned by <code>[names,mem]=who()</code> was always zero.</li>
-<li><a href="https://bugzilla.scilab.org/14610">#14610</a>: <code>x = ric_desc(H,E)</code> always yielded an error. [x1,x2,residual] = ric_desc(..) returned a wrong <code>residual</code> value.</li>
-<li><a href="https://bugzilla.scilab.org/14642">#14642</a>: No more &quot;\r&quot; carriage return with printf.</li>
-<li><a href="https://bugzilla.scilab.org/14735">#14735</a>: The <code>genetic_algorithms</code> module was out of the <code>optimization</code> one.</li>
-<li><a href="https://bugzilla.scilab.org/14741">#14741</a>: The syntax <code>[m,e]=log2(x)</code> was not documented. As public function <code>frexp</code> was in duplicate with <code>[m,e]=log2(x)</code>.</li>
-<li><a href="https://bugzilla.scilab.org/14742">#14742</a>: <code>mprintf</code>, <code>msprintf</code> a non finite number displayed nothing.</li>
-<li><a href="https://bugzilla.scilab.org/14746">#14746</a>: Tiny numbers were sometimes displayed as 0.</li>
-<li><a href="https://bugzilla.scilab.org/14791">#14791</a>: <code>sleep 1</code> crashed Scilab.</li>
-<li><a href="https://bugzilla.scilab.org/14812">#14812</a>: Minor typos in messages.</li>
-<li><a href="https://bugzilla.scilab.org/14836">#14836</a>: Calling <code>exportUI</code> on a non dockable figure crashed scilab.</li>
-<li><a href="https://bugzilla.scilab.org/14863">#14863</a>: In Xcos, the default ending time was unhandily high (100000), reduced it to 30.</li>
-<li><a href="https://bugzilla.scilab.org/14982">#14982</a>: <code>msprintf</code> segmentation fault was caught due to wrong size</li>
-<li><a href="https://bugzilla.scilab.org/14985">#14985</a>: Scilab crashed if a .bin file was not found.</li>
-<li><a href="https://bugzilla.scilab.org/15068">#15068</a>: <code>size(sum(ones(2,3,4,5),4))</code> was [4 2 3] instead of [2 3 4].</li>
-<li><a href="https://bugzilla.scilab.org/15087">#15087</a>: Deleting rows or columns from a matrix is slow (regression)</li>
-<li><a href="https://bugzilla.scilab.org/15248">#15248</a>: <code>lsq</code>was leaking memory.</li>
-<li><a href="https://bugzilla.scilab.org/15269">#15269</a>: <code>xgetech</code> was poor and stiff compared to any combination of <code>gca()</code> properties <code>.axes_bounds</code>, <code>.data_bounds</code>, <code>.log_flags</code>, and <code>.margins</code>. It is removed.</li>
-<li><a href="https://bugzilla.scilab.org/15271">#15271</a>: <code>bitget</code> needed to be upgraded.</li>
-<li><a href="https://bugzilla.scilab.org/15309">#15309</a>: <code>eval</code> was a weak duplicate of <code>evstr</code>. It should be removed.</li>
-<li><a href="https://bugzilla.scilab.org/15321">#15321</a>: <code>lu</code> was leaking memory.</li>
-<li><a href="https://bugzilla.scilab.org/15350">#15350</a>: <code>ric_desc</code> should be merged into <code>riccati</code>.</li>
-<li><a href="https://bugzilla.scilab.org/15359">#15359</a>: <code>twinkle</code> was not able to blink several independent objects.</li>
-<li><a href="https://bugzilla.scilab.org/15360">#15360</a>: <code>numer</code> and <code>denom</code> were poor and duplicates of the <code>.num</code> and <code>.den</code> fields of rationals. They are removed.</li>
-<li><a href="https://bugzilla.scilab.org/15368">#15368</a>: <code>freson</code> silently returned frequencies not corresponding to a maximum, or returned [] instead of some still computable maxima frequencies.</li>
-<li><a href="https://bugzilla.scilab.org/15392">#15392</a>: <code>comet</code> and <code>comet3d</code> did not allow specifying colors with colors names.</li>
-<li><a href="https://bugzilla.scilab.org/15393">#15393</a>: In a new figure, <code>nicholschart</code> plotted nothing. The default frame color was a flashy cyan. The position of gain labels could be puzzling. It was not possible to specify colors by their names. Postprocessing the frames and the set of labels was not easy.</li>
-<li><a href="https://bugzilla.scilab.org/15425">#15425</a>: The Kronecker product <code>a .*. b</code> failed when <code>a</code> or <code>b</code> or both are hypermatrices, with one or both being polynomials or rationals.</li>
-<li><a href="https://bugzilla.scilab.org/15428">#15428</a>: <code>repmat</code> was slow. Its code did not use <code>kron</code> and was complex.</li>
-<li><a href="https://bugzilla.scilab.org/15431">#15431</a>: The empty matrix <code>[]</code> and its non-convertibility were poorly documented.</li>
-<li><a href="https://bugzilla.scilab.org/15451">#15451</a>: The code was not adapted to use <code>lucene 4.10</code> in Debian.</li>
-<li><a href="https://bugzilla.scilab.org/15514">#15514</a>: The <code>set</code> documentation page needed to be overhauled.</li>
-<li><a href="https://bugzilla.scilab.org/15517">#15517</a>: <code>factorial</code> could be actually used up to only n=170.</li>
-<li><a href="https://bugzilla.scilab.org/15522">#15522</a>: <code>unique</code> was not able to consider all Nan values as the same value. A <code>uniqueNan</code> option now allows it.</li>
-<li><a href="https://bugzilla.scilab.org/15523">#15523</a>: <code>%ODEOPTIONS(1)=2</code> didn't work with solvers 'rk' and 'rkf'</li>
-<li><a href="https://bugzilla.scilab.org/15534">#15534</a>: Booleans and encoded integers could not be concatenated together.</li>
-<li><a href="https://bugzilla.scilab.org/15577">#15577</a>: <code>edit</code> did not accept a line number as text, as with <code>edit linspace 21</code>.</li>
-<li><a href="https://bugzilla.scilab.org/15580">#15580</a>: <code>det(sparse([],[]))</code> yielded an error.</li>
-<li><a href="https://bugzilla.scilab.org/15737">#15737</a>: <code>setdiff</code> was wrong with complex numbers.</li>
-<li><a href="https://bugzilla.scilab.org/15981">#15981</a>: <code>wavread</code> kept the wav file open and locked when returning on errors. It weakly managed the input file name. It claimed for invalid data formats instead of unsupported ones, with poor information about the current format vs the supported ones. Several error messages refered to a wrong function.</li>
-<li><a href="https://bugzilla.scilab.org/15595">#15595</a>: <code>unique</code> was not able to return distinct values in their original order, without sorting them. A <code>keepOrder</code> option now allows it.</li>
-<li><a href="https://bugzilla.scilab.org/15668">#15668</a>: <code>save(filename)</code> saved all predefined Scilab constants %e %pi etc.. (regression)</li>
-<li><a href="https://bugzilla.scilab.org/15715">#15715</a>: <code>%nan</code> indices crashed Scilab.</li>
-<li><a href="https://bugzilla.scilab.org/15734">#15734</a>: <code>intersect</code> did not support complex numbers.</li>
-<li><a href="https://bugzilla.scilab.org/15742">#15742</a>: The <code>compatibility_functions</code> module should be merged in the <code>m2sci</code> one.</li>
-<li><a href="https://bugzilla.scilab.org/15581">#15581</a>: display of complex matrix was ugly.</li>
-<li><a href="https://bugzilla.scilab.org/15628">#15628</a>: <code>with_tk</code> was a duplicate of <code>with_module('tclsci')</code>. It is removed.</li>
-<li><a href="https://bugzilla.scilab.org/15680">#15680</a>: <code>loadmatfile</code> could not return variables in a structure instead of into the calling environment.</li>
-<li><a href="https://bugzilla.scilab.org/15701">#15701</a>: <code>A\B</code> was not faster when <code>A</code> is square and triangular.</li>
-<li><a href="https://bugzilla.scilab.org/15734">#15734</a>:  Trivial infinite loop could not be interrupted.</li>
-<li><a href="https://bugzilla.scilab.org/15744">#15744</a>: <code>sylm(a,b)</code> yielded an error when degree(a)==0 or degree(b)==0.</li>
-<li><a href="https://bugzilla.scilab.org/15745">#15745</a>: <code>diophant(0,0,m)</code>, <code>diophant([p 0],q)</code>, <code>diophant([0 p],q)</code> with m&lt;&gt;0 and p&gt;q were wrong. There was no flag for cases with an infinite number of solutions. When there is no solution, some values were returned anyway, instead of []. In this case, the documented definition of the err value was dubious. Decimal numbers and integers were accepted, but not encoded integers. Inf and NaN input coefficients were not rejected.</li>
-<li><a href="https://bugzilla.scilab.org/15812">#15812</a>: On assigning variables the source variable may become become corrupted</li>
-<li><a href="https://bugzilla.scilab.org/15821">#15821</a>: <code>fac3d</code> and <code>fac3d1</code> were still in Scilab 6.0 despite they were tagged obsolete 14 years ago in Scilab 4.1</li>
-<li><a href="https://bugzilla.scilab.org/15825">#15825</a>: <code>gsort</code> could not sort completely dense matrices of complex numbers.</li>
-<li><a href="https://bugzilla.scilab.org/15840">#15840</a>: <code>grand(1,&quot;prm&quot;,m)</code> yielded an unsqueezed size([size(m) 1]) hypermatrix</li>
-<li><a href="https://bugzilla.scilab.org/15934">#15934</a>: The <code>^ hat</code> page wrongly indicated that <code>^</code> applied to a rectangular matrix not being a vector is done element-wise.</li>
-<li><a href="https://bugzilla.scilab.org/15948">#15948</a>: <code>xlabel</code>, <code>ylabel</code>, <code>zlabel</code> and <code>title</code> needed to be upgraded.</li>
-<li><a href="https://bugzilla.scilab.org/15954">#15964</a>: A complex empty sparse matrix could be obtained after insertion.</li>
-<li><a href="https://bugzilla.scilab.org/15967">#15967</a>: <code>setdiff(1,[])</code> was [] instead of <code>1</code>. <code>setdiff(a,[],..)</code> was not enough tested.</li>
-<li><a href="https://bugzilla.scilab.org/15969">#15969</a>: Fix spelling</li>
-<li><a href="https://bugzilla.scilab.org/15974">#15974</a>: <code>msprintf(&quot;%d&quot;, %nan)</code> did not return Nan</li>
-<li><a href="https://bugzilla.scilab.org/15977">#15977</a>: The documentation for <code>wavread(..,'info')</code> had a mistake. The <code>wavread</code> page deserved some improvements.</li>
-<li><a href="https://bugzilla.scilab.org/15978">#15978</a>: The <code>writewav</code> page in english said that input data are one column per channel, instead of one row per channel. In addition, in case of writing error, <code>savewave</code> kept the output file open and locked.</li>
-<li><a href="https://bugzilla.scilab.org/15983">#15983</a>: <code>group</code> regressed in 5.5.2 due to a too intrusive fix.</li>
-<li><a href="https://bugzilla.scilab.org/15984">#15984</a>: display scale was wrong with Retina dispplays on OSX..</li>
-<li><a href="https://bugzilla.scilab.org/15995">#15995</a>: patch was missing in surface plot (regression)</li>
-<li><a href="https://bugzilla.scilab.org/15998">#15998</a>: <code>mfile2sci</code> yielded an unsuitable warning when converting <code>atan</code>.</li>
-<li><a href="https://bugzilla.scilab.org/16000">#16000</a>: <code>mfile2sci</code> converted <code>acoth</code> using <code>atanh</code> and yielding a wrong warning message.</li>
-<li><a href="https://bugzilla.scilab.org/16003">#16003</a>: Zoom with mouse scroll wheel was broken on simple surfaces.</li>
-<li><a href="https://bugzilla.scilab.org/16005">#16005</a>: The <code>intdec</code> example was biased and not robust when changing sampling frequencies.</li>
-<li><a href="https://bugzilla.scilab.org/16007">#16007</a>: Non-integer index in sparse makes Scilab crash.</li>
-<li><a href="https://bugzilla.scilab.org/16008">#16008</a>: Uimenu .callback_type, .children, .handle_visible, .user_data properties, and using HTML styling in .label were not documented.</li>
-<li><a href="https://bugzilla.scilab.org/16011">#16011</a>: <code>colorbar(umin, umax)</code> did not work after <code>plot3d2</code>.</li>
-<li><a href="https://bugzilla.scilab.org/16012">#16012</a>: <code>[struct() struct()]</code> crashed Scilab.</li>
-<li><a href="https://bugzilla.scilab.org/16013">#16013</a>: Load previously saved environment with &quot;File/Load environment&quot; menu failed.</li>
-<li><a href="https://bugzilla.scilab.org/16014">#16014</a>: after <code>x.a=1; x(:)=[]</code> x.a was an empty list.</li>
-<li><a href="https://bugzilla.scilab.org/16015">#16015</a>: <code>intg(a,b,f)</code> called f(x) with x outside [a,b].</li>
-<li><a href="https://bugzilla.scilab.org/16019">#16019</a>: <code>polarplot(x,Z)</code> yielded an error when x is a vector and Z a matrix.</li>
-<li><a href="https://bugzilla.scilab.org/16021">#16021</a>: <code>tand([-90 90])</code> answered [Nan Nan] instead of [-Inf, Inf]. <code>cotd([-90 90])</code> answered [Nan Nan] instead of [0 0]. <code>1 ./cosd([-90 90])</code> answered [Inf -Inf] instead of [Inf Inf].</li>
-<li><a href="https://bugzilla.scilab.org/16026">#16026</a>: For <code>atanh</code>, neither the documentation pages nor the <code>m2sci</code> converter were up to date.</li>
-<li><a href="https://bugzilla.scilab.org/16046">#16046</a>: After <code>w=ssrand(2,3,4)</code>, <code>[]+w</code>, <code>[]-w</code>, <code>w+[]</code> and <code>w-[]</code> yielded an &quot;operation +/- []&quot; warning.</li>
-<li><a href="https://bugzilla.scilab.org/16051">#16051</a>: undefined list elements could be of 2 distinct typeof &quot;void&quot; or &quot;listundefined&quot; according to the way they are created.</li>
-<li><a href="https://bugzilla.scilab.org/16053">#16053</a>: <code>plot(,&quot;color&quot;,c)</code> no longer supported standard abbreviated color names c like &quot;k&quot; for black.</li>
-<li><a href="https://bugzilla.scilab.org/16067">#16067</a>: The display of matrices of signed integers was misaligned (regression of 6.0.0 vs 5.5.2)</li>
-<li><a href="https://bugzilla.scilab.org/16071">#16071</a>: <code>prettyprint(complex(1,%nan))</code> omitted the &quot;+&quot; in <code>1 + Nani</code>. It printed positive exponents with a useless &quot;+&quot;. For any input nul polynomial, the string result never included the name of the variable. Default input arguments could not be skipped. ExportFormat was uselessly case-sensitive. For tex|latex: for text input, $ \ % &amp; { } ~ and ^ special characters were not protected ; spaces were not protected, all words were concatenated ; for polynomials and rationals, the result string could be extremely long and not easily wrappable. For MathML: &quot;&lt;&quot; was not protected ; <mi></mi> were missing for text input ; <mtable>, </mtable>, <mtr>, </mtr>, <mtd>, <mfenced> and </mfenced> tags were not wrapped and could not be indented. Delimiters: &quot;&quot; was not documented as possible value ; &quot;)&quot; was wrongly documented. Dynamical linear systems were not documented as possible input.</li>
-<li><a href="https://bugzilla.scilab.org/16072">#16072</a>: <code>prettyprint</code> did not actually support input encoded integers.</li>
-<li><a href="https://bugzilla.scilab.org/16075">#16075</a>: <code>prettyprint</code> was broken for cells.</li>
-<li><a href="https://bugzilla.scilab.org/16079">#16079</a>: <code>part(&quot;&quot;,$)</code> and <code>part(&quot;&quot;,$-1:$+2)</code> yielded an error instead of returning &quot;&quot; and &quot;  &quot;.</li>
-<li><a href="https://bugzilla.scilab.org/16085">#16085</a>: insertion in an empty struct was broken.</li>
-<li><a href="https://bugzilla.scilab.org/16087">#16087</a>: Insertion of struct in a non-empty struct crashed Scilab.</li>
-<li><a href="https://bugzilla.scilab.org/16089">#16089</a>: x=1:1e10 freezed Scilab.</li>
-<li><a href="https://bugzilla.scilab.org/16095">#16095</a>: For a matrix of graphic handles of same types, it was no longer possible to clear a property by assigning [].</li>
-<li><a href="https://bugzilla.scilab.org/16097">#16097</a>: <code>coth</code> was more than twice slower than <code>1./tanh()</code>. <code>tanh</code> and <code>coth</code> did not accept sparse-encoded input.</li>
-<li><a href="https://bugzilla.scilab.org/16102">#16102</a>: <code>lstcat</code> could not concatenate input lists with mixed objects of types&gt;10 like 1:$, sin, sind, struct, cells, tlists or mlists. In addition, it was slow for very long inputs lists.</li>
-<li><a href="https://bugzilla.scilab.org/16104">#16104</a>: <code>assert_checkequal</code> did not support properly or at all Nan and void in lists, Nan in sparse, implicit lists, macros, libraries, built-in functions, graphical handles. For input arrays or lists of matching typeof and sizes, the failure message did not display neither the index nor the values of the first mismatching elements.</li>
-<li><a href="https://bugzilla.scilab.org/16111">#16111</a>: <code>isglobal</code> was not supporting non-scalar array of strings as input.</li>
-<li><a href="https://bugzilla.scilab.org/16118">#16118</a>: <code>%s &lt;&gt; (1+%s)</code> returned %F.</li>
-<li><a href="https://bugzilla.scilab.org/16135">#16135</a>: base2dec did not detect invalid numbers.</li>
-<li><a href="https://bugzilla.scilab.org/16137">#16137</a>: After running <code>playsnd</code> on Windows for a long sound, it was not possible to stop it.</li>
-<li><a href="https://bugzilla.scilab.org/16138">#16138</a>: <code>playsnd</code> could not be run in a non-modal (asynchronous) way on Linux and MacOS.</li>
-<li><a href="https://bugzilla.scilab.org/16139">#16139</a>: <code>auread</code> and <code>auwrite</code> kept the sound file open and locked when returning on errors. They poorly handled the default .au sound file extension.</li>
-<li><a href="https://bugzilla.scilab.org/16140">#16140</a>: <code>playsnd</code> could not directly accept an audio file and could not repeat the input sound.</li>
-<li><a href="https://bugzilla.scilab.org/16143">#16143</a>: <code>clc(n)</code> cleared n+1 lines instead of n&gt;0. Thus, it was not possible to clear only one line.</li>
-<li><a href="https://bugzilla.scilab.org/16144">#16144</a>: Addition of sparse matrices gave incorrect results.</li>
-<li><a href="https://bugzilla.scilab.org/16148">#16148</a>: <code>setPreferencesValue</code> is a general usage function and deserved to be renamed <code>xmlSetValues</code>.</li>
-<li><a href="https://bugzilla.scilab.org/16149">#16149</a>: <code>fullpath</code> did not support symbolic links in paths</li>
-<li><a href="https://bugzilla.scilab.org/16152">#16152</a>: For sparse or boolean sparse matrix <code>s</code>, <code>s([])</code> returned <code>[]</code> instead of <code>sparse([])</code>.</li>
-<li><a href="https://bugzilla.scilab.org/16155">#16155</a>: <code>flipdim(hypermat,dim,sb)</code> yielded wrong results for dim&lt;3 and sb&gt;1, and yielded an error for dim&gt;2.</li>
-<li><a href="https://bugzilla.scilab.org/16158">#16158</a>: When a multicolumn array of rationals was displayed wide column per column, columns #2:$ were replaced with its column #2.</li>
-<li><a href="https://bugzilla.scilab.org/16160">#16160</a>: <code>ppol</code> changed values of third input variable.</li>
-<li><a href="https://bugzilla.scilab.org/16164">#16164</a>: Help pages in elementary_functions/signal_processing were mislocated.</li>
-<li><a href="https://bugzilla.scilab.org/16166">#16166</a>: <code>noisegen</code> is crooky, even threatening, and very poor. It is tagged as obsolete and will be removed from Scilab 6.1.x.</li>
-<li><a href="https://bugzilla.scilab.org/16168">#16168</a>: On some Linux installations, <code>test_run</code> always failed.</li>
-<li><a href="https://bugzilla.scilab.org/16174">#16174</a>: <code>libraryinfo</code> yielded 0x0 matrix of strings for libs without macro</li>
-<li><a href="https://bugzilla.scilab.org/16177">#16177</a>: In the uicontrol help page, the first example was bugged.</li>
-<li><a href="https://bugzilla.scilab.org/16178">#16178</a>: <code>sci2exp</code> yielded an error for any input macro without output argument.</li>
-<li><a href="https://bugzilla.scilab.org/16181">#16181</a>: <code>mfile2sci</code> yielded an error on <code>a(end)</code> standing for <code>a($)</code> (Scilab 6 regression).</li>
-<li><a href="https://bugzilla.scilab.org/16190">#16190</a>: console width was fixed at 75 in nw and nwni mode regardless of terminal width.</li>
-<li><a href="https://bugzilla.scilab.org/16197">#16197</a>: result of extraction was not decomplexified when applicable.</li>
-<li><a href="https://bugzilla.scilab.org/16199">#16199</a>: In the documentation, <code>zpk2tf</code> and <code>zpk2ss</code> examples yielded an error.</li>
-<li><a href="https://bugzilla.scilab.org/16200">#16200</a>: Concatenation of transposed cells crashed Scilab.</li>
-<li><a href="https://bugzilla.scilab.org/16208">#16208</a>: Using 3D string matrix with old C-api gateways may crash Scilab.</li>
-<li><a href="https://bugzilla.scilab.org/16209">#16209</a>: <code>grand</code> causes a freeze after several consecutive calls when using default base generator.</li>
-<li><a href="https://bugzilla.scilab.org/16210">#16210</a>: The uicontrol.units = &quot;normalized&quot; property was not described.</li>
-<li><a href="https://bugzilla.scilab.org/16215">#16215</a>: <code>mfile2sci</code> badly converted the colon <code>:</code> into <code>mtlb(:)</code></li>
-<li><a href="https://bugzilla.scilab.org/16227">#16227</a>: <code>WSCI</code> was not defined as environment variable and could not be used as <code>%WSCI%</code> in commands sent with <code>host</code> or <code>unix_*</code>.</li>
-<li><a href="https://bugzilla.scilab.org/16229">#16229</a>: Some outdated parts of the <code>help scilab</code> page were misleading.</li>
-<li><a href="https://bugzilla.scilab.org/16230">#16230</a>: <code>MSWin&gt;scilab --help</code> missed displaying some options like <code>-args..</code>, <code>-noatomsautoload</code>, etc.</li>
-<li><a href="https://bugzilla.scilab.org/16232">#16232</a>: <code>colorbar</code> did not support <code>$</code> in <code>colminmax</code>, standing for the number of colors in the current color map.</li>
-<li><a href="https://bugzilla.scilab.org/16234">#16234</a>: Airy functions were not available.</li>
-<li><a href="https://bugzilla.scilab.org/16242">#16242</a>: <code>loadmatfile</code> could not read Octave native text data files.</li>
-<li><a href="https://bugzilla.scilab.org/16245">#16245</a>: <code>gsort</code> could not sort booleans.</li>
-<li><a href="https://bugzilla.scilab.org/16246">#16246</a>: <code>isvector</code> was broken for sparse matrices.</li>
-<li><a href="https://bugzilla.scilab.org/16257">#16257</a>: <code>blockdiag</code> implemented to replace <code>sysdiag</code>, improved and extended to strings.</li>
-<li><a href="https://bugzilla.scilab.org/16259">#16259</a>: <code>*</code> and <code>.*</code> multiplications involving a sparse boolean and a double, or involving 2 booleans, were not implemented.</li>
-<li><a href="https://bugzilla.scilab.org/16260">#16260</a>: overloading <code>nnz</code> was not possible (regression).</li>
-<li><a href="https://bugzilla.scilab.org/16263">#16263</a>: Polynomial insertion was broken for complex case.</li>
-<li><a href="https://bugzilla.scilab.org/16264">#16264</a>: After empty for loop iterator was left uninitialized.</li>
-<li><a href="https://bugzilla.scilab.org/16265">#16265</a>: The translated pages of the <code>warning</code> documentation were not up-to-date.</li>
-<li><a href="https://bugzilla.scilab.org/16269">#16269</a>: Scalar structures were poorly displayed.</li>
-<li><a href="https://bugzilla.scilab.org/16271">#16271</a>: <code>loadmatfile</code> was never able to automatically detect the input data format.</li>
-<li><a href="https://bugzilla.scilab.org/16272">#16272</a>: <code>spzeros(0,n)</code> and <code>spzeros(n,0)</code> were different from <code>sparse(0,0)</code>.</li>
-<li><a href="https://bugzilla.scilab.org/16273">#16273</a>: <code>calendar</code> had no formated display mode.</li>
-<li><a href="https://bugzilla.scilab.org/16275">#16275</a>: <code>fsolve(x0, fun, tol)</code> no longer took <code>tol</code> into account.</li>
-<li><a href="https://bugzilla.scilab.org/16290">#16290</a>: The <code>cn</code>, <code>dn</code>, <code>ns</code>, <code>nc</code> and <code>nd</code> Jacobi elliptic functions were not available.</li>
-<li><a href="https://bugzilla.scilab.org/16292">#16292</a>: <code>hallchart</code> had bugs and a poor rendering.</li>
-<li><a href="https://bugzilla.scilab.org/16293">#16293</a>: Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.</li>
-<li><a href="https://bugzilla.scilab.org/16299">#16299</a>: After <code>graypolarplot</code>, <code>colorbar</code> displayed an empty ungraduated color bar.</li>
-<li><a href="https://bugzilla.scilab.org/16303">#16303</a>: log10(x) had wrong dimensions when x is an hypermatrix.</li>
-<li><a href="https://bugzilla.scilab.org/16307">#16307</a>: <code>dockable=&quot;off&quot;</code> and <code>closerequestfcn</code> on figures crached Scilab.</li>
-<li><a href="https://bugzilla.scilab.org/16320">#16320</a>: There were unsupported UTF-8 characters in some gettext id messages.</li>
-<li><a href="https://bugzilla.scilab.org/16321">#16321</a>: There were typo errors in the documentation.</li>
-<li><a href="https://bugzilla.scilab.org/16323">#16323</a>: <code>conj(sparse(x))</code> was complex when x is real.</li>
-<li><a href="https://bugzilla.scilab.org/16325">#16325</a>: <code>mgetl</code> could not read single line data which is greater than ~260,000 characters.</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/2694">#2694</a>: <code>bitget</code> did not accept positive integers of types int8, int16 or int32.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/5824">#5824</a>: The <code>datafit</code> algorithm was not documented.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/6070">#6070</a>: How to make multiscaled plots was not documented.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/7293">#7293</a>: There was no function to circularly shift components, rows, columns or subarrays of an array. <code>circshift</code> introduced.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/7562">#7562</a>: <code>factorial</code> could use a huge memory amount even for a scalar argument.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/7589">#7589</a>: There was no function computing the binomial coefficients.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/7657">#7657</a>: <code>lstsize</code> was a duplicate of <code>size</code> and should be removed.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/7724">#7724</a>: When a figure is created in .auto_resize=&quot;on&quot; mode, its .axes_size sets its .figure_size accordingly, not the reverse. But this was not documented.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/7732">#7732</a>: The <code>datafit</code> help page needed to be fixed and overhauled.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/7765">#7765</a>: <code>champ1</code> is useless. <code>champ().colored</code> is available for a long time.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/7777">#7777</a>: <code>ged</code> did not allow moving several objects.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/7948">#7948</a>: <code>gsort</code> could not perform multilevel sorting, and could not sort complex numbers completely.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/7967">#7967</a>: The tricky size <code>[ny,nx]</code> of <code>meshgrid(x,y)</code> results and usages with graphics was not enough documented.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/8301">#8301</a>: <code>definedfields</code> wrongly considered as defined void elements in lists, tlists and mlists.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/8307">#8307</a>: <code>list2vec</code> and <code>vec2list</code> were located in the optimization module instead of in data_structures, and were missing in the <code>See also</code> section of <code>list</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/8328">#8328</a>: Tabs of the Xcos block Format =&gt; Edit dialog were unclear.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/8393">#8393</a>: <code>isdef</code> and <code>definedfields</code> had mismatching answers for void elements in lists, mlists or tlists.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/8418">#8418</a>: <code>unique</code> was not able to return the number of occurences of returned dictinct entities.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/8784">#8784</a>: Automatic self-adjusting blocks <code>SCALE_CSCOPE</code> &amp; <code>SCALE_CMSCOPE</code> in Xcos.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/5512">#5512</a>: <code>disp</code> puzzlingly displayed arguments in reverse order.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/9007">#9007</a>: On Linux, <code>sciargs()</code> included twice <code>-nw</code> when <code>-nw</code> is used.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/9130">#9130</a>: In the SigBuilder Xcos page, the parameters of the block were not described. The page refered to the CURVE_c block removed fron Scilab 5.0.0.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/9529">#9529</a>: <code>assert_checkequal(list(1,,3), list(1,,3))</code> yielded an error.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/9673">#9673</a>: Priority of colon <code>:</code> operator was too low</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/10014">#10014</a>: <code>DominationRank</code> could be made private in <code>optim_nsga2</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/10078">#10078</a>: <code>isinf</code> was not reliable for polynomials.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/10092">#10092</a>: The left and right Kronecker divisions were not actually implemented nor documented.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/10353">#10353</a>: Documentation: The referential for the uicontrol.position property was not provided. Moreover, <code>gca().axes_bounds</code> refered to <code>fig.figure_size</code> instead of <code>fig.axes_size</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/10553">#10553</a>: After calling <code>colorbar</code>, retrieving the handle of the new color bar was not trivial.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/10702">#10702</a>: The icon of the FROMWSB xcos block did not show the name of the source variable.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/10723">#10723</a>: <code>subplot</code>'s action was unclearly described in its help page. Page improved.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/11852">#11852</a>: File browser didn't update after file creation or removal.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/11363">#11363</a>: <code>show_window()</code> did not raise the current graphics window.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/12013">#12013</a>: <code>bitset</code> did not work for numbers greater than 2^32-1.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/12302">#12302</a>: Blocks of legends could not be moved interactively.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/12428">#12428</a>: A part of an error message from <code>toprint</code> was not translated.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/12520">#12520</a>: Variable browser did not display the size of the variables.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/12534">#12534</a>: Variable browser did not display the size of the variables.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/12837">#12837</a>: <code>strcmpi</code> was an obsolete duplicate of <code>strcmp(,'i')</code>. It is removed.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/13603">#13603</a>: <code>plot(1:3, 10)</code> failed.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/13683">#13683</a>: unsetmenu for a dockable=&quot;off&quot; figure crashed Scilab.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/13738">#13738</a>: <code>get_figure_handle</code> was a specific duplicate of the more powerful <code>findobj('figure_id',n)</code> feature. It is now obsolete.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/13766">#13766</a>: Minimal values for <code>.figure_size</code> were not documented.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14015">#14015</a>: Nan terms added to a polynomial were ignored.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14191">#14191</a>: Unlike <code>plot2d()</code>, <code>plot()</code> did not accept logflags among input arguments.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14422">#14422</a>: <code>clc(0)</code> did nothing, now clears last console entry. Remove leading blank after a <code>clc()</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14498">#14498</a>: <code>size([],3)</code> returned 1 instead of 0.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14501">#14501</a>: <code>strsubst</code> crashed on consecutive occurrences.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14557">#14557</a>: <code>csim</code> failed when the system has no state.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14498">#14498</a>: <code>size([],3)</code> returned 1 instead of 0.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14487">#14487</a>: matrix indexing was not coherent with MATLAB.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14502">#14502</a>: <code>Demo &gt; GUI &gt; Uicontrols 2</code> could not be exported to a file.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14585">#14585</a>: <code>closeEditvar()</code> had to be replaced with <code>editvar(&quot;close&quot;)</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14604">#14604</a>: <code>emptystr</code> is 40x slower with 6.0.0 wrt 5.5.2</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14605">#14605</a>: fixed - <code>bench_run</code> was too strict about the specification of tests names.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14606">#14606</a>: Memory used by variables returned by <code>[names,mem]=who()</code> was always zero.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14610">#14610</a>: <code>x = ric_desc(H,E)</code> always yielded an error. [x1,x2,residual] = ric_desc(..) returned a wrong <code>residual</code> value.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14642">#14642</a>: No more &quot;\r&quot; carriage return with printf.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14655">#14655</a>: <code>bitset</code> worked only element-wise, without accepting mixed scalar and array inputs.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14660">#14660</a>: <code>dec2base</code> was 53-bit limited by double and not uint64 ready</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14734">#14734</a>: The <code>simulated_annealing</code> module was out of the <code>optimization</code> one.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14735">#14735</a>: The <code>genetic_algorithms</code> module was out of the <code>optimization</code> one.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org14738">#14738</a>: <code>hist3d</code> was not actually an histogram function. It is renamed <code>bar3d</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14741">#14741</a>: The syntax <code>[m,e]=log2(x)</code> was not documented. As public function <code>frexp</code> was in duplicate with <code>[m,e]=log2(x)</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14742">#14742</a>: <code>mprintf</code>, <code>msprintf</code> a non finite number displayed nothing.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14746">#14746</a>: Tiny numbers were sometimes displayed as 0.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14791">#14791</a>: <code>sleep 1</code> crashed Scilab.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14812">#14812</a>: Minor typos in messages.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14836">#14836</a>: Calling <code>exportUI</code> on a non dockable figure crashed scilab.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14863">#14863</a>: In Xcos, the default ending time was unhandily high (100000), reduced it to 30.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14900">#14900</a>: In Scilab 6.0, the new overloading code <code>function</code> replacing <code>mc</code> for functions in Scilab language was not documented.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14982">#14982</a>: <code>msprintf</code> segmentation fault was caught due to wrong size</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/14985">#14985</a>: Scilab crashed if a .bin file was not found.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15067">#15067</a>: <code>.xmi</code> files saved from Xcos could not be opened by drag &amp; dropping them into the console.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15068">#15068</a>: <code>size(sum(ones(2,3,4,5),4))</code> was [4 2 3] instead of [2 3 4].</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15087">#15087</a>: Deleting rows or columns from a matrix is slow (regression)</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15200">#15200</a>: <code>weekday</code> yielded an error for some row of input dates.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15248">#15248</a>: <code>lsq</code>was leaking memory.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15260">#15260</a>: <code>sci2exp</code> was no longer able to convert non-scalar structures.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15269">#15269</a>: <code>xgetech</code> was poor and stiff compared to any combination of <code>gca()</code> properties <code>.axes_bounds</code>, <code>.data_bounds</code>, <code>.log_flags</code>, and <code>.margins</code>. It is removed.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15271">#15271</a>: <code>bitget</code> needed to be upgraded.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15309">#15309</a>: <code>eval</code> was a weak duplicate of <code>evstr</code>. It should be removed.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15321">#15321</a>: <code>lu</code> was leaking memory.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15350">#15350</a>: <code>ric_desc</code> should be merged into <code>riccati</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15357">#15357</a>: <code>atomsGetInstalledPath</code> returned &quot;&quot; if the provided technical name differs only by the case, or is a fragment, or failed when the version is not provided.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15359">#15359</a>: <code>twinkle</code> was not able to blink several independent objects.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15360">#15360</a>: <code>numer</code> and <code>denom</code> were poor and duplicates of the <code>.num</code> and <code>.den</code> fields of rationals. They are removed.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15368">#15368</a>: <code>freson</code> silently returned frequencies not corresponding to a maximum, or returned [] instead of some still computable maxima frequencies.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15392">#15392</a>: <code>comet</code> and <code>comet3d</code> did not allow specifying colors with colors names.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15393">#15393</a>: In a new figure, <code>nicholschart</code> plotted nothing. The default frame color was a flashy cyan. The position of gain labels could be puzzling. It was not possible to specify colors by their names. Postprocessing the frames and the set of labels was not easy.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15421">#15421</a>: A new smarter default grid_style was required since smart lines styles #7-10 are available.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15425">#15425</a>: The Kronecker product <code>a .*. b</code> failed when <code>a</code> or <code>b</code> or both are hypermatrices, with one or both being polynomials or rationals.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15428">#15428</a>: <code>repmat</code> was slow. Its code did not use <code>kron</code> and was complex.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15431">#15431</a>: The empty matrix <code>[]</code> and its non-convertibility were poorly documented.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15451">#15451</a>: The code was not adapted to use <code>lucene 4.10</code> in Debian.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15514">#15514</a>: The <code>set</code> documentation page needed to be overhauled.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15517">#15517</a>: <code>factorial</code> could be actually used up to only n=170.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15522">#15522</a>: <code>unique</code> was not able to consider all Nan values as the same value. A <code>uniqueNan</code> option now allows it.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15523">#15523</a>: <code>%ODEOPTIONS(1)=2</code> didn't work with solvers 'rk' and 'rkf'</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15534">#15534</a>: Booleans and encoded integers could not be concatenated together.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15577">#15577</a>: <code>edit</code> did not accept a line number as text, as with <code>edit linspace 21</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15580">#15580</a>: <code>det(sparse([],[]))</code> yielded an error.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15581">#15581</a>: display of complex matrix was ugly.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15595">#15595</a>: <code>unique</code> was not able to return distinct values in their original order, without sorting them. A <code>keepOrder</code> option now allows it.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15628">#15628</a>: <code>with_tk</code> was a duplicate of <code>with_module('tclsci')</code>. It is removed.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15643">#15643</a>: Features with the signed zero -0 were not documented.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15668">#15668</a>: <code>save(filename)</code> saved all predefined Scilab constants %e %pi etc.. (regression)</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15680">#15680</a>: <code>loadmatfile</code> could not return variables in a structure instead of into the calling environment.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15701">#15701</a>: <code>A\B</code> was not faster when <code>A</code> is square and triangular.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15715">#15715</a>: <code>%nan</code> indices crashed Scilab.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15734">#15734</a>: <code>intersect</code> did not support complex numbers.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15734">#15734</a>:  Trivial infinite loop could not be interrupted.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15737">#15737</a>: <code>setdiff</code> was wrong with complex numbers.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15742">#15742</a>: The <code>compatibility_functions</code> module should be merged in the <code>m2sci</code> one.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15744">#15744</a>: <code>sylm(a,b)</code> yielded an error when degree(a)==0 or degree(b)==0.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15745">#15745</a>: <code>diophant(0,0,m)</code>, <code>diophant([p 0],q)</code>, <code>diophant([0 p],q)</code> with m&lt;&gt;0 and p&gt;q were wrong. There was no flag for cases with an infinite number of solutions. When there is no solution, some values were returned anyway, instead of []. In this case, the documented definition of the err value was dubious. Decimal numbers and integers were accepted, but not encoded integers. Inf and NaN input coefficients were not rejected.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15812">#15812</a>: On assigning variables the source variable may become become corrupted</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15821">#15821</a>: <code>fac3d</code> and <code>fac3d1</code> were still in Scilab 6.0 despite they were tagged obsolete 14 years ago in Scilab 4.1</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15825">#15825</a>: <code>gsort</code> could not sort completely dense matrices of complex numbers.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15840">#15840</a>: <code>grand(1,&quot;prm&quot;,m)</code> yielded an unsqueezed size([size(m) 1]) hypermatrix</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15861">#15861</a>: The <code>overloadname</code> internal macro defined in CACSD was a duplicate of <code>typeof(,&quot;overload&quot;)</code>. It is removed.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15874">#15874</a>: The <code>scatter3</code> function name was an unfounded naming exception. It had to be renamed <code>scatter3d</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15921">#15921</a>: Xcos user's function <code>scifunc_block_m</code> block: any <code>&lt;</code> in the expression was not displayed on the block's icon.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15934">#15934</a>: The <code>^ hat</code> page wrongly indicated that <code>^</code> applied to a rectangular matrix not being a vector is done element-wise.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15948">#15948</a>: <code>xlabel</code>, <code>ylabel</code>, <code>zlabel</code> and <code>title</code> needed to be upgraded.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15954">#15964</a>: A complex empty sparse matrix could be obtained after insertion.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15965">#15965</a>: <code>plot(x,y)</code> did not accept y as encoded integers.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15967">#15967</a>: <code>setdiff(1,[])</code> was [] instead of <code>1</code>. <code>setdiff(a,[],..)</code> was not enough tested.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15969">#15969</a>: Fix spelling</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15974">#15974</a>: <code>msprintf(&quot;%d&quot;, %nan)</code> did not return Nan</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15977">#15977</a>: The documentation for <code>wavread(..,'info')</code> had a mistake. The <code>wavread</code> page deserved some improvements.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15978">#15978</a>: The <code>writewav</code> page in english said that input data are one column per channel, instead of one row per channel. In addition, in case of writing error, <code>savewave</code> kept the output file open and locked.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15979">#15979</a>: <code>EXPRESSION</code>, <code>CLR</code> and <code>DLR</code> Xcos blocks did not (always) correctly display multicharacter exponents in expressions displayed in their icons.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15981">#15981</a>: <code>wavread</code> kept the wav file open and locked when returning on errors. It weakly managed the input file name. It claimed for invalid data formats instead of unsupported ones, with poor information about the current format vs the supported ones. Several error messages refered to a wrong function.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15983">#15983</a>: <code>group</code> regressed in 5.5.2 due to a too intrusive fix.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15984">#15984</a>: display scale was wrong with Retina dispplays on OSX..</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15995">#15995</a>: patch was missing in surface plot (regression)</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/15998">#15998</a>: <code>mfile2sci</code> yielded an unsuitable warning when converting <code>atan</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16000">#16000</a>: <code>mfile2sci</code> converted <code>acoth</code> using <code>atanh</code> and yielding a wrong warning message.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16003">#16003</a>: Zoom with mouse scroll wheel was broken on simple surfaces.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16005">#16005</a>: The <code>intdec</code> example was biased and not robust when changing sampling frequencies.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16007">#16007</a>: Non-integer index in sparse makes Scilab crash.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16008">#16008</a>: Uimenu .callback_type, .children, .handle_visible, .user_data properties, and using HTML styling in .label were not documented.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16011">#16011</a>: <code>colorbar(umin, umax)</code> did not work after <code>plot3d2</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16012">#16012</a>: <code>[struct() struct()]</code> crashed Scilab.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16013">#16013</a>: Load previously saved environment with &quot;File/Load environment&quot; menu failed.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16014">#16014</a>: after <code>x.a=1; x(:)=[]</code> x.a was an empty list.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16015">#16015</a>: <code>intg(a,b,f)</code> called f(x) with x outside [a,b].</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16019">#16019</a>: <code>polarplot(x,Z)</code> yielded an error when x is a vector and Z a matrix.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16021">#16021</a>: <code>tand([-90 90])</code> answered [Nan Nan] instead of [-Inf, Inf]. <code>cotd([-90 90])</code> answered [Nan Nan] instead of [0 0]. <code>1 ./cosd([-90 90])</code> answered [Inf -Inf] instead of [Inf Inf].</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16026">#16026</a>: For <code>atanh</code>, neither the documentation pages nor the <code>m2sci</code> converter were up to date.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16028">#16028</a>: The length of <code>intdec(intdec(x, r), 1/r)</code> was most often different from length(x).</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16046">#16046</a>: After <code>w=ssrand(2,3,4)</code>, <code>[]+w</code>, <code>[]-w</code>, <code>w+[]</code> and <code>w-[]</code> yielded an &quot;operation +/- []&quot; warning.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16051">#16051</a>: undefined list elements could be of 2 distinct typeof &quot;void&quot; or &quot;listundefined&quot; according to the way they are created.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16053">#16053</a>: <code>plot(,&quot;color&quot;,c)</code> no longer supported standard abbreviated color names c like &quot;k&quot; for black.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16062">#16062</a>: <code>tbx_make</code> did not allow easily to force building all toolbox sections without the toolbox builder (if any). <code>tbx_make(Dir,&quot;*&quot;)</code> now does it.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16064">#16064</a>: <code>tbx_make(Dir,'localization')</code> did not update <code>.mo</code> files from <code>.po</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16065">#16065</a>: Building help pages including some <a href="scilab:image">scilab:image</a> tags used and finally deleted the current on-screen figures (if any)!</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16067">#16067</a>: The display of matrices of signed integers was misaligned (regression of 6.0.0 vs 5.5.2)</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16071">#16071</a>: <code>prettyprint(complex(1,%nan))</code> omitted the &quot;+&quot; in <code>1 + Nani</code>. It printed positive exponents with a useless &quot;+&quot;. For any input nul polynomial, the string result never included the name of the variable. Default input arguments could not be skipped. ExportFormat was uselessly case-sensitive. For tex|latex: for text input, $ \ % &amp; { } ~ and ^ special characters were not protected ; spaces were not protected, all words were concatenated ; for polynomials and rationals, the result string could be extremely long and not easily wrappable. For MathML: &quot;&lt;&quot; was not protected ; <mi></mi> were missing for text input ; <mtable>, </mtable>, <mtr>, </mtr>, <mtd>, <mfenced> and </mfenced> tags were not wrapped and could not be indented. Delimiters: &quot;&quot; was not documented as possible value ; &quot;)&quot; was wrongly documented. Dynamical linear systems were not documented as possible input.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16072">#16072</a>: <code>prettyprint</code> did not actually support input encoded integers.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16075">#16075</a>: <code>prettyprint</code> was broken for cells.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16079">#16079</a>: <code>part(&quot;&quot;,$)</code> and <code>part(&quot;&quot;,$-1:$+2)</code> yielded an error instead of returning &quot;&quot; and &quot;  &quot;.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16081">#16081</a>: <code>prettyprint</code> did not allow to export objects into HTML.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16085">#16085</a>: insertion in an empty struct was broken.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16087">#16087</a>: Insertion of struct in a non-empty struct crashed Scilab.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16089">#16089</a>: x=1:1e10 freezed Scilab.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16090">#16090</a>: The documentation of <code>prbs_a</code> was poor and unclear.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16095">#16095</a>: For a matrix of graphic handles of same types, it was no longer possible to clear a property by assigning [].</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16097">#16097</a>: <code>coth</code> was more than twice slower than <code>1./tanh()</code>. <code>tanh</code> and <code>coth</code> did not accept sparse-encoded input.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16102">#16102</a>: <code>lstcat</code> could not concatenate input lists with mixed objects of types&gt;10 like 1:$, sin, sind, struct, cells, tlists or mlists. In addition, it was slow for very long inputs lists.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16104">#16104</a>: <code>assert_checkequal</code> did not support properly or at all Nan and void in lists, Nan in sparse, implicit lists, macros, libraries, built-in functions, graphical handles. For input arrays or lists of matching typeof and sizes, the failure message did not display neither the index nor the values of the first mismatching elements.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16108">#16108</a>: For the CSCOPE and CMSCOPE blocks, the Label&amp;id parameter entered in their interface were not displayed below the block's icon.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16111">#16111</a>: <code>isglobal</code> was not supporting non-scalar array of strings as input.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16118">#16118</a>: <code>%s &lt;&gt; (1+%s)</code> returned %F.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16120">#16120</a>: <code>tree_show</code> was broken cells within containers.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16121">#16121</a>: <code>tree_show</code> void components were displayed as non-empty.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16124">#16124</a>: <code>sci2exp({})</code> result could not be executed.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16128">#16128</a>: <code>tree_show</code> need improvements.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16129">#16129</a>: <code>uiDumpTree()</code> interpreted &quot;\n&quot; &quot;\r&quot; &quot;\t&quot; sequences in contents as special ones.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16135">#16135</a>: base2dec did not detect invalid numbers.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16137">#16137</a>: After running <code>playsnd</code> on Windows for a long sound, it was not possible to stop it.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16138">#16138</a>: <code>playsnd</code> could not be run in a non-modal (asynchronous) way on Linux and MacOS.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16139">#16139</a>: <code>auread</code> and <code>auwrite</code> kept the sound file open and locked when returning on errors. They poorly handled the default .au sound file extension.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16140">#16140</a>: <code>playsnd</code> could not directly accept an audio file and could not repeat the input sound.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16143">#16143</a>: <code>clc(n)</code> cleared n+1 lines instead of n&gt;0. Thus, it was not possible to clear only one line.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16144">#16144</a>: Addition of sparse matrices gave incorrect results.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16145">#16145</a>: <code>integrate</code> and <code>intg</code> default absolute tolerances atol were no longer the same. <code>integrate</code>'s default relative tolerance rtol was not the same in case of 3 or 4 input arguments.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16148">#16148</a>: <code>setPreferencesValue</code> is a general usage function and deserved to be renamed <code>xmlSetValues</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16149">#16149</a>: <code>fullpath</code> did not support symbolic links in paths</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16152">#16152</a>: For sparse or boolean sparse matrix <code>s</code>, <code>s([])</code> returned <code>[]</code> instead of <code>sparse([])</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16155">#16155</a>: <code>flipdim(hypermat,dim,sb)</code> yielded wrong results for dim&lt;3 and sb&gt;1, and yielded an error for dim&gt;2.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16158">#16158</a>: When a multicolumn array of rationals was displayed wide column per column, columns #2:$ were replaced with its column #2.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16160">#16160</a>: <code>ppol</code> changed values of third input variable.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16162">#16162</a>: <code>noisegen()</code> and <code>prbs_a()</code> deserved to be moved to the elementary_functions module, gathered with <code>rand()</code> and <code>grand()</code> in a new <code>elementarymatrices/random</code> help subsection.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16163">#16163</a>: <code>prbs_a()</code> did not comply with the requested number of switches. The biased number of actual switches was unpredictable, preventing to manage its statistical distribution. The probability of the initial state was biased. For instance, prbs_a(n,0) always returned ones(1,n).</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16164">#16164</a>: Help pages in elementary_functions/signal_processing were mislocated.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16166">#16166</a>: <code>noisegen</code> is crooky, even threatening, and very poor. It is tagged as obsolete and will be removed from Scilab 6.1.x.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16167">#16167</a>: When get(0).showHiddenHandles is &quot;on&quot;, clf('reset') unexpectedly removed native menus.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16168">#16168</a>: On some Linux installations, <code>test_run</code> always failed.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16174">#16174</a>: <code>libraryinfo</code> yielded 0x0 matrix of strings for libs without macro</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16177">#16177</a>: In the uicontrol help page, the first example was bugged.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16178">#16178</a>: <code>sci2exp</code> yielded an error for any input macro without output argument.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16181">#16181</a>: <code>mfile2sci</code> yielded an error on <code>a(end)</code> standing for <code>a($)</code> (Scilab 6 regression).</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16190">#16190</a>: console width was fixed at 75 in nw and nwni mode regardless of terminal width.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16197">#16197</a>: result of extraction was not decomplexified when applicable.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16199">#16199</a>: In the documentation, <code>zpk2tf</code> and <code>zpk2ss</code> examples yielded an error.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16200">#16200</a>: Concatenation of transposed cells crashed Scilab.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16208">#16208</a>: Using 3D string matrix with old C-api gateways may crash Scilab.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16209">#16209</a>: <code>grand</code> causes a freeze after several consecutive calls when using default base generator.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16210">#16210</a>: The uicontrol.units = &quot;normalized&quot; property was not described.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16215">#16215</a>: <code>mfile2sci</code> badly converted the colon <code>:</code> into <code>mtlb(:)</code></p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16223">#16223</a>: <code>EXPRESSION</code>, <code>CLR</code> and <code>DLR</code> Xcos blocks sometimes displayed multiplied terms in an ambiguous way in their icons.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16227">#16227</a>: <code>WSCI</code> was not defined as environment variable and could not be used as <code>%WSCI%</code> in commands sent with <code>host</code> or <code>unix_*</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16228">#16228</a>: <code>bode</code> and <code>nyquist</code> inline demos did not clear and reset the current axes where to draw, what could yield an error.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16229">#16229</a>: Some outdated parts of the <code>help scilab</code> page were misleading.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16230">#16230</a>: <code>MSWin&gt;scilab --help</code> missed displaying some options like <code>-args..</code>, <code>-noatomsautoload</code>, etc.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16232">#16232</a>: <code>colorbar</code> did not support <code>$</code> in <code>colminmax</code>, standing for the number of colors in the current color map.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16234">#16234</a>: Airy functions were not available.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16242">#16242</a>: <code>loadmatfile</code> could not read Octave native text data files.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16244">#16244</a>: <code>perms</code> could freeze the whole computer. It could not ignore duplicate permutations.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16245">#16245</a>: <code>gsort</code> could not sort booleans.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16246">#16246</a>: <code>isvector</code> was broken for sparse matrices.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16257">#16257</a>: <code>blockdiag</code> implemented to replace <code>sysdiag</code>, improved and extended to strings.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16259">#16259</a>: <code>*</code> and <code>.*</code> multiplications involving a sparse boolean and a double, or involving 2 booleans, were not implemented.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16260">#16260</a>: overloading <code>nnz</code> was not possible (regression).</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16263">#16263</a>: Polynomial insertion was broken for complex case.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16264">#16264</a>: After empty for loop iterator was left uninitialized.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16265">#16265</a>: The translated pages of the <code>warning</code> documentation were not up-to-date.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16269">#16269</a>: Scalar structures were poorly displayed.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16271">#16271</a>: <code>loadmatfile</code> was never able to automatically detect the input data format.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16272">#16272</a>: <code>spzeros(0,n)</code> and <code>spzeros(n,0)</code> were different from <code>sparse(0,0)</code>.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16273">#16273</a>: <code>calendar</code> had no formated display mode.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16275">#16275</a>: <code>fsolve(x0, fun, tol)</code> no longer took <code>tol</code> into account.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16290">#16290</a>: The <code>cn</code>, <code>dn</code>, <code>ns</code>, <code>nc</code> and <code>nd</code> Jacobi elliptic functions were not available.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16292">#16292</a>: <code>hallchart</code> had bugs and a poor rendering.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16293">#16293</a>: Some demos run in step-by-step console mode(4) did not focus user's attention to the console to proceed.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16299">#16299</a>: After <code>graypolarplot</code>, <code>colorbar</code> displayed an empty ungraduated color bar.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16303">#16303</a>: log10(x) had wrong dimensions when x is an hypermatrix.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16307">#16307</a>: <code>dockable=&quot;off&quot;</code> and <code>closerequestfcn</code> on figures crached Scilab.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16320">#16320</a>: There were unsupported UTF-8 characters in some gettext id messages.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16321">#16321</a>: There were typo errors in the documentation.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16323">#16323</a>: <code>conj(sparse(x))</code> was complex when x is real.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16325">#16325</a>: <code>mgetl</code> could not read single line data which is greater than ~260,000 characters.</p>
+</li>
+<li>
+<p><a href="https://bugzilla.scilab.org/16333">#16333</a>: <code>tree_show</code> crashed for an input Xcos block.</p>
+</li>
 </ul>
 <!-- End of the html rendered CHANGES.md file -->
     </div>
