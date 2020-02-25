@@ -1,8 +1,8 @@
-Welcome to Scilab 6.1.X
+Welcome to Scilab 6.1.0
 =======================
 
-This file details the changes between Scilab 6.1.X (this development branch), and the previous release 6.0.X.
-For changelogs of earlier releases, please see [Scilab 6.0.0][1].
+This file details the changes between Scilab 6.1.0 (this version), and the previous release 6.0.2.
+For changelogs of earlier releases, please see [Scilab 6.0.2][1].
 
 This file is intended for the specific needs of advanced users, and describes:
 - High-level new features,
@@ -12,10 +12,9 @@ This file is intended for the specific needs of advanced users, and describes:
 - Changes in functions (removed/added/modified),
 - Bug fixes.
 
-This is an in-development version which might be unstable.
 Please report anything we could have missed, on the [mailing lists][2] or the [bug tracker][3].
 
-[1]: https://help.scilab.org/docs/6.0.0/en_US/CHANGES.html
+[1]: https://help.scilab.org/docs/6.0.2/en_US/CHANGES.html
 [2]: http://mailinglists.scilab.org
 [3]: https://bugzilla.scilab.org
 

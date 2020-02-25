@@ -72,7 +72,7 @@
                 <ul>
                     <li>It now accepts positive signed encoded integers.</li>
                     <li>It now supports the new uint64 and int64 types of encoded integers.</li>
-                    <li>For decimal numbers: bits with indices > 52 can now be retrieved (up to <code>log2(number_properties("huge"))</code> = 1024).</li>
+                    <li>For decimal numbers: bits with indices &gt; 52 can now be retrieved (up to <code>log2(number_properties("huge"))</code> = 1024).</li>
                     <li>For decimal numbers <code>x &gt; 2^52</code>, queried bits below <code>%eps</code> (indices &lt; log2(x)-52) now return <code>Nan</code> instead of 0.</li>
                     <li>Several bits can now be retrieved from each component of an input array.</li>
                 </ul>
@@ -81,7 +81,7 @@
                 <ul>
                     <li>It now accepts positive Signed encoded integers.</li>
                     <li>It now supports the new uint64 and int64 types of encoded integers.</li>
-                    <li>For decimal numbers: bits with indices > 32 can now be set (up to #1024).</li>
+                    <li>For decimal numbers: bits with indices &gt; 32 can now be set (up to #1024).</li>
                     <li>Several bits can now be set for each input component.</li>
                     <li>Distributive scalar inputs are now accepted.</li>
                 </ul>
