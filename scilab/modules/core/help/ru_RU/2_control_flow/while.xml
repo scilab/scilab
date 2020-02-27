@@ -21,20 +21,19 @@
         <refname>while</refname>
         <refpurpose>ключевое слово while</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            while expr, инструкции,..., end
+            while expr do инструкции,..., end
+            while expr then инструкции,..., end
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Описание</title>
         <para>
             Оператор <literal>while</literal> должен заканчиваться ключевым словом
             <literal>"end"</literal>.
-        </para>
-        <para>
-            <literal>while expr ,инструкции,...[,else инструкции], end</literal>
-        </para>
-        <para>
-            <literal>while expr do инструкции,...[,else инструкции], end</literal>
-        </para>
-        <para>
-            <literal>while expr then инструкции,...[,else инструкции], end</literal>
         </para>
         <para>Примечания:</para>
         <itemizedlist>

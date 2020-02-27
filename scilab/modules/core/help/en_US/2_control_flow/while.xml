@@ -18,20 +18,18 @@
         <refname>while</refname>
         <refpurpose>Opens a block of instructions iterated on a heading condition</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            while expr, instructions,..., end
+            while expr do instructions,..., end
+            while expr then instructions,..., end
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>while</literal> clause must be terminated by
-            <literal>"end"</literal>.
-        </para>
-        <para>
-            <literal>while expr ,instructions,..., end</literal>
-        </para>
-        <para>
-            <literal>while expr do instructions,..., end</literal>
-        </para>
-        <para>
-            <literal>while expr then instructions,..., end</literal>
+            The <literal>while</literal> clause must be terminated by <literal>"end"</literal>.
         </para>
         <para>Notes:</para>
         <itemizedlist>

@@ -4,6 +4,12 @@
         <refname>pause</refname>
         <refpurpose>pause mode, invoke keyboard</refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>
+            pause
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Description</title>
         <para>

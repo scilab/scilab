@@ -22,12 +22,12 @@
         <title>呼び出し手順</title>
         <synopsis>
             if expr1 then
-                statements
+                statements
             elseif expri then
-                statements
-                ....
+                statements
+                ....
             else
-                statements
+                statements
             end
         </synopsis>
     </refsynopsisdiv>

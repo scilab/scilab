@@ -20,8 +20,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>return
-            [x1,..,xn]=return(a1,..,an)
+        <synopsis>
+            return
+            [x1,..,xn] = return(a1,..,an)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

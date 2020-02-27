@@ -20,7 +20,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Синтаксис</title>
-        <synopsis>resume
+        <synopsis>
+          resume
             [x1, ..., xn] = resume(a1, ..., an)
         </synopsis>
     </refsynopsisdiv>
@@ -137,8 +138,8 @@ foo2()
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revdescription>
-                  <literal>resume</literal> is now protected:
-                  Assignments like <literal>resume=1</literal> are no longer possible.
+                  <literal>resume</literal> теперь защищена:
+                  Присвоения, такие как <literal>resume=1</literal>, более не возможны.
                 </revdescription>
             </revision>
         </revhistory>

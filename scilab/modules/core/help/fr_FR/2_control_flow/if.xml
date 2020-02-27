@@ -22,12 +22,12 @@
         <title>Séquence d'appel</title>
         <synopsis>
             if expr1 then
-                instructions
+                statements
             elseif expri then
-                instructions
-                ....
+                statements
+                ....
             else
-                instructions
+                statements
             end
         </synopsis>
     </refsynopsisdiv>

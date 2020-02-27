@@ -25,12 +25,12 @@
         <title>Синтаксис</title>
         <synopsis>
             if expr1 then
-                statements 1
+                statements1
             elseif expri then
-                statements i
-                ....
+                statementsi
+                ....
             else
-                statements
+                statements
             end
         </synopsis>
     </refsynopsisdiv>

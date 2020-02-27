@@ -28,10 +28,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>try
-            statements
+        <synopsis>
+            try
+                statements
             catch
-            statements
+                statements
             end
         </synopsis>
     </refsynopsisdiv>

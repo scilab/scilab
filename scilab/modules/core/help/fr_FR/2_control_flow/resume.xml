@@ -20,8 +20,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>resume
-            [x1,..,xn]=resume(a1,..,an)
+        <synopsis>
+            resume
+            [x1,..,xn] = resume(a1,..,an)
         </synopsis>
     </refsynopsisdiv>
     <refsection>

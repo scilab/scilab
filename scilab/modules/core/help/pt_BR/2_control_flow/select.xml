@@ -20,18 +20,24 @@
             acordo com a variável)")
         </refpurpose>
     </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>
+            select variável
+            case valor_1 then
+                instruções_1
+            case valor_2 then
+                instruções_2
+                ...
+            case valor_n then
+                instruções_n
+           [else
+                instruções]
+            end
+        </synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Descrição</title>
-        <programlisting role=""><![CDATA[
-select expressão,
-  case expressão1 then instruções1,
-  case expressão2 then instruções2,
-  ...
-  case expressãon then instruçõesn,
-  [else instruções],
-end
- ]]></programlisting>
-        <para/>
         <para>Notas:</para>
         <itemizedlist>
             <listitem>
@@ -41,8 +47,8 @@ end
             </listitem>
             <listitem>
                 <para>A palavra-chave "then" pode ser substituída por uma vírgula ou
-                    um retorno de carro. <literal>instruçõesi</literal> são executadas se
-                    <literal>expressãoi=expressão</literal>.
+                    um retorno de carro. <literal>instruções_i</literal> são executadas se
+                    <literal>variável == valor_i</literal>.
                 </para>
             </listitem>
         </itemizedlist>
