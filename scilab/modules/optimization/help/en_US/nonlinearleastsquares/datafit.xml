@@ -765,6 +765,9 @@ xstring(-2.5, 0.9, "dmin = " + msprintf("%5.3f", dmin))
         <title>See also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="backslash">backslash</link>
+            </member>
+            <member>
                 <link linkend="lsqrsolve">lsqrsolve</link>
             </member>
             <member>

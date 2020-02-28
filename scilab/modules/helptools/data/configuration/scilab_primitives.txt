@@ -658,6 +658,7 @@ mclearerr
 mclose
 meof
 merror
+mesh2d
 messagebox
 mfscanf
 mget
@@ -1003,6 +1004,7 @@ dos
 filter
 findfileassociation
 fprintfMat
+fromJSON
 getio
 getpid
 getsystemmetrics
@@ -1015,6 +1017,12 @@ htmlDump
 htmlRead
 htmlReadStr
 htmlWrite
+http_delete
+http_get
+http_patch
+http_post
+http_put
+http_upload
 istssession
 jcompile
 mcisendstring
@@ -1037,6 +1045,7 @@ slint
 spcompack
 sprintf
 toprint
+toJSON
 what
 who
 win64

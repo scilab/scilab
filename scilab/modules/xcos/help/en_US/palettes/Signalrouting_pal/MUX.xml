@@ -81,7 +81,7 @@
                 <para>
                     <emphasis role="bold">Number of input ports or vector of sizes</emphasis>
                 </para>
-                <para> integer greater than or equal to 1 and less than 8.</para>
+                <para> integer in [1, 31].</para>
                 <para> Properties : Type 'vec' of size -1.</para>
             </listitem>
         </itemizedlist>

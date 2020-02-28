@@ -49,7 +49,7 @@
         <para>
             The entries of <varname>y</varname> are the cosecant
             <literal>1/sin(x)</literal> of the entries of <varname>x</varname> given in
-            degree. The results are real and in <literal>]-∞ -1] ∪ [1 ∞[</literal>.
+            degree. The results are real and in <literal>]-∞,-1] ∪ [1,∞[</literal>.
             For entries equal to <literal>n*180</literal> with
             <literal>n</literal> integer, the result is infinite (or an error
             depending on <link linkend="ieee">ieee</link> mode). For entries equal to

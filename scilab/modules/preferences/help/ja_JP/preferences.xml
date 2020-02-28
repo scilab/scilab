@@ -80,6 +80,9 @@ xmlGetValues("//general/confirmation-dialogs/body/tools/tool",["id" "state"])
                 <link linkend="xmlGetValues">xmlGetValues</link>
             </member>
             <member>
+                <link linkend="xmlSetValues">xmlSetValues</link>
+            </member>
+            <member>
                 <link linkend="ieee">ieee</link>
             </member>
             <member>

@@ -760,12 +760,26 @@
                             <term>auto_clear: </term>
                             <listitem>
                                 <para>
-                                    このプロパティが<literal>"on"</literal>に等しい場合,
-                                    高レベルグラフィクをコールする際に
-                                    カレントの軸は再初期化され,描画前に全ての子が消去されます.
-                                    この値が<literal>"off"</literal>の場合,
-                                    描画内容が<literal>"auto_scale"</literal>プロパティに基づき
-                                    カレントの軸に追加されます.
+                                    <literal>"on"</literal>: calling any high level graphic function
+                                    targeting the axes
+                                    <itemizedlist>
+                                        <listitem>
+                                            erases all children of the axes,
+                                        </listitem>
+                                        <listitem>
+                                            resets its <literal>.log_flags</literal> and
+                                            <literal>.data_bounds</literal> properties to their default value
+                                        </listitem>
+                                        <listitem>
+                                            keeps its other properties
+                                        </listitem>
+                                    </itemizedlist>
+                                    before performing the drawing.
+                                </para>
+                                <para>
+                                    <literal>"off"</literal>: the forthcoming drawings are overplotted
+                                    in the axes according to the <literal>"auto_scale"</literal> rule
+                                    and other properties.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -773,12 +787,12 @@
                             <term>auto_scale: </term>
                             <listitem>
                                 <para>
-                                    軸データ境界を更新するためのプロパティ.
-                                    この値が <literal>"on"</literal>の場合,
-                                    プロットを新規に行うとカレントの軸プロパティは
-                                    以前とカレントのプロットに適合するよう調整されます.
-                                    この値が <literal>"off"</literal>の場合,
-                                    新規のプロットはカレントの軸データ境界内に描画されます.
+                                    Property enabling the auto update of <literal>.data_bounds</literal>.
+                                    <literal>"on"</literal>: Each new plot enlarges
+                                    <literal>.data_bounds</literal> values according to boundaries
+                                    of added data, if required.
+                                    <literal>"off"</literal>: Default or explicitly
+                                    initialized values of <literal>.data_bounds</literal> are not modified.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -1180,7 +1194,7 @@ a.ticks_st=[1 1;0 m(2)];
         </para>
         <programlisting role="example" id="axes_properties_vertical_xticks"><![CDATA[
 rain_Nice  = [51  45  39 69 45 34 12 18 73 133 104 93 ];
-months = _(["January" "Febuary" "March" "April" "May" "June" "July" ..
+months = _(["January" "February" "March" "April" "May" "June" "July" ..
             "August" "September" "October" "November" "December"]);
 clf
 bar(rain_Nice,1,"cyan");
@@ -1191,7 +1205,7 @@ set(gca(), "tight_limits", "on", "font_size", 2);
 ]]></programlisting>
     <scilab:image localized="true">
 rain_Nice  = [51  45  39 69 45 34 12 18 73 133 104 93 ];
-months = _(["January" "Febuary" "March" "April" "May" "June" "July" ..
+months = _(["January" "February" "March" "April" "May" "June" "July" ..
             "August" "September" "October" "November" "December"]);
 clf
 bar(rain_Nice, 1, "cyan")
