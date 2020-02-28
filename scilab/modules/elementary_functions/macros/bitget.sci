@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ???? - INRIA - Farid BELAHCENE
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL
-// Copyright (C) 2017 - Samuel GOUGEON
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2017 - 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -56,10 +56,10 @@ function z = bitget(x, pos)
     // check sizes
     fromEach = length(x)>1 & length(pos)>1 & (or(size(x)<>size(pos)));
     if size(x,"*") == 1
-        x = ones(pos) * x;
+        x = x(ones(pos))
     end
     if size(pos,"*") == 1
-        pos = ones(x) * pos;
+        pos = pos(ones(x));
     end
 
     // check pos value
@@ -82,26 +82,25 @@ function z = bitget(x, pos)
     // PROCESSING
     // ==========
     if fromEach then
-        masks = 2.^(pos-1);
+        masks = 2 .^ iconvert(pos-1, inttype(x));
         [X,B] = ndgrid(x(:), masks);
         z = bool2s(bitand(X,B)==B);
         if type(x)==1
             [X,B] = ndgrid(x(:), pos);
-            below_eps = B<=(log2(X)-52);
+            below_eps = B <= (log2(X)-52);
             z(below_eps) = %nan;
         else
             z = iconvert(z, inttype(x));
         end
     else
-        if  type(x)==8
-            mask = iconvert(2 .^(pos-1), inttype(x));
+        if type(x)==8
+            mask = 2 .^ iconvert(pos-1, inttype(x));
             z = iconvert(1 * ((x & mask) > 0),inttype(x));
         else
-            tmp = x ./ (2 .^pos);
-            z = bool2s((tmp - fix(tmp))>=0.5);
-            below_eps = pos<=(log2(x)-52);
+            tmp = x ./ (2 .^ pos);
+            z = bool2s((tmp - fix(tmp)) >= 0.5);
+            below_eps = pos <= (log2(x)-52);
             z(below_eps) = %nan;
         end
     end
 endfunction
-

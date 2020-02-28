@@ -36,29 +36,27 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>
-                        Скаляр, вектор, матрица или гиперматрица положительных десятичных или
-                        кодированных целых чисел.
-                    </para>
+                    Скаляр, вектор, матрица или гиперматрица положительных десятичных или
+                    кодированных целых чисел.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>pos</term>
                 <listitem>
-                    <para>
-                        Скаляр, вектор, матрица или гиперматрица десятичных или кодированных целых чисел в
-                        <literal>[1, bitmax]</literal>, где <literal>bitmax</literal> - это максимальный
-                        индекс битов для типа переменной <varname>x</varname>: индексы битов, которые
-                        следует извлечь. Бит №1 - это наименьший бит  (2<superscript>0</superscript>).
+                    Скаляр, вектор, матрица или гиперматрица десятичных или кодированных целых чисел в
+                    <literal>[1, bitmax]</literal>, где <literal>bitmax</literal> - это максимальный
+                    индекс битов для типа переменной <varname>x</varname>: индексы битов, которые
+                    следует извлечь. Бит №1 - это наименьший бит  (2<superscript>0</superscript>).
             <table>
                 <tr><th>typeof(x)</th><th>bitmax</th><td>..</td><th>typeof(x)</th><th>bitmax</th></tr>
                 <tr align="center"><td>int8  </td><td>7</td> <td>  </td><td>uint8</td><td>8</td></tr>
                 <tr align="center"><td>int16 </td><td>15</td><td>  </td><td>uint16</td><td>16</td></tr>
                 <tr align="center"><td>int32 </td><td>31</td><td>  </td><td>uint32</td><td>32</td></tr>
-                <tr align="center"><td>int64 </td><td>63</td><td>  </td><td>uint16</td><td>64</td></tr>
+                <tr align="center"><td>int64 </td><td>63</td><td>  </td><td>uint64</td><td>64</td></tr>
                 <tr align="center"><td>десятичное число</td><td>1024</td><td>  </td><td></td><td></td></tr>
             </table>
-                    </para>
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -67,65 +65,57 @@
                     <para>
                         Скаляр, вектор, матрица или гиперматрица из 0 и 1 типа переменной
                         <varname>x</varname>. Размеры и содержимое <varname>y</varname> следующие:
+                    </para>
+                    <para>
+                        <emphasis role="bold">Если <varname>x</varname> скаляр</emphasis>:
                         <itemizedlist>
                             <listitem>
-                                <para>
-                                Если <varname>x</varname> скаляр:
-                                <itemizedlist>
-                                    <listitem>
-                                        <varname>y</varname> имеет размеры <varname>pos</varname>
-                                    </listitem>
-                                    <listitem>
-                                        <literal>y(i,j,..)</literal> - это значение бита
-                                        №<literal>pos(i,j,..)</literal> переменной <varname>x</varname>.
-                                    </listitem>
-                                </itemizedlist>
-                                </para>
+                                <varname>y</varname> имеет размеры <varname>pos</varname>
                             </listitem>
                             <listitem>
-                                <para>
-                                Если <varname>pos</varname> скаляр:
-                                <itemizedlist>
-                                    <listitem>
-                                        <varname>y</varname> имеет размеры <varname>x</varname>
-                                    </listitem>
-                                    <listitem>
-                                        <literal>y(i,j,..)</literal> - это значение бита
-                                        №<literal>pos</literal> в <literal>x(i,j,..)</literal>.
-                                    </listitem>
-                                </itemizedlist>
-                                </para>
+                                <literal>y(i,j,..)</literal> - это значение бита
+                                №<literal>pos(i,j,..)</literal> переменной <varname>x</varname>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        <emphasis role="bold">Если <varname>pos</varname> скаляр</emphasis>:
+                        <itemizedlist>
+                            <listitem>
+                                <varname>y</varname> имеет размеры <varname>x</varname>
                             </listitem>
                             <listitem>
-                                <para>
-                                Если <varname>x</varname> и <varname>pos</varname> являются  массивами
-                                одинаковых размеров, то обработка идёт поэлементно:
-                                <itemizedlist>
-                                    <listitem>
-                                        <varname>y</varname> имеет размеры <varname>x</varname>
-                                        и <varname>pos</varname>
-                                    </listitem>
-                                    <listitem>
-                                        <literal>y(i,j,..)</literal> - это значение бита
-                                        №<literal>pos(i,j,..)</literal> в <literal>x(i,j,..)</literal>.
-                                    </listitem>
-                                </itemizedlist>
-                                </para>
+                                <literal>y(i,j,..)</literal> - это значение бита
+                                №<literal>pos</literal> в <literal>x(i,j,..)</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        <emphasis role="bold">Если <varname>x</varname> и <varname>pos</varname>
+                        являются  массивами одинаковых размеров</emphasis>,
+                        то обработка идёт поэлементно:
+                        <itemizedlist>
+                            <listitem>
+                                <varname>y</varname> имеет размеры <varname>x</varname>
+                                и <varname>pos</varname>
                             </listitem>
                             <listitem>
-                                <para>В противном случае:
-                                <itemizedlist>
-                                    <listitem>
-                                        <varname>y</varname> - это матрица, у которой
-                                        <literal>length(x)</literal> строк и
-                                        <literal>length(pos)</literal> столбцов.
-                                    </listitem>
-                                    <listitem>
-                                        <literal>y(i,j)</literal> - это значение бита
-                                        №<literal>pos(j)</literal> в <literal>x(i)</literal>.
-                                    </listitem>
-                                </itemizedlist>
-                                </para>
+                                <literal>y(i,j,..)</literal> - это значение бита
+                                №<literal>pos(i,j,..)</literal> в <literal>x(i,j,..)</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                    <para>
+                        <emphasis role="bold">В противном случае</emphasis>:
+                        <itemizedlist>
+                            <listitem>
+                                <varname>y</varname> - это матрица, у которой
+                                <literal>length(x)</literal> строк и
+                                <literal>length(pos)</literal> столбцов.
+                            </listitem>
+                            <listitem>
+                                <literal>y(i,j)</literal> - это значение бита
+                                №<literal>pos(j)</literal> в <literal>x(i)</literal>.
                             </listitem>
                         </itemizedlist>
                     </para>
@@ -166,14 +156,69 @@ dec2bin(13)
 bitget(uint8(13),4:-1:1)
    ]]></programlisting>
         <para>
-        <emphasis role="bold">С массивами и кодированными целыми числами:</emphasis>:
+            <emphasis role="bold">С кодированными целыми числами</emphasis>:
         </para>
         <programlisting role="example"><![CDATA[
+b = [1 3 8 11 15];
+x = sum(int16(2).^(b-1))
+B = bitget(x, 1:15)
+find(B)
+typeof(B)
    ]]></programlisting>
         <screen><![CDATA[
+--> b = [1 3 8 11 15];
+--> x = sum(int16(2).^(b-1))
+ x  =
+  17541
+
+--> B = bitget(x, 1:15)
+ B  =
+  1  0  1  0  0  0  0  1  0  0  1  0  0  0  1
+
+--> find(B)
+ ans  =
+   1.   3.   8.   11.   15.
+
+--> typeof(B)
+ ans  =
+  "int16"
 ]]></screen>
         <para>
-        <emphasis role="bold">С большими десятичными целыми числами > 2<superscript>52</superscript></emphasis>:
+            <emphasis role="bold">
+                С целыми числами типа uint64 больше 2<superscript>52</superscript>
+            </emphasis>:
+        </para>
+        <programlisting role="example"><![CDATA[
+b = [1 12 23 34 45 53 64];
+x = sum(uint64(2).^(b-1))
+B = bitget(x, 1:64)
+find(B)
+typeof(B)
+     ]]></programlisting>
+        <screen><![CDATA[
+--> b = [1 12 23 34 45 53 64];
+--> x = sum(uint64(2).^(b-1))
+ x  =
+  9227893237262321665
+
+--> B = bitget(x, 1:64)
+ B  =
+         column 1 to 32
+ 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0
+
+         column 33 to 64
+ 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1
+
+--> find(B)
+ ans  =
+   1.   12.   23.   34.   45.   53.   64.
+
+--> typeof(B)
+ ans  =
+  "uint64"
+]]></screen>
+        <para>
+        <emphasis role="bold">С большими десятичными целыми числами больше 2<superscript>52</superscript></emphasis>:
         </para>
         <programlisting role="example"><![CDATA[
 x = sum(2 .^([7 16 18 19 25 52 70]-1))
@@ -240,7 +285,7 @@ bitget(x, [5 8 12 39])
                 <revdescription>
                     <itemizedlist>
                         <listitem>
-                            Теперь принимаются положительные беззнаковые целые числа.
+                            Теперь принимаются положительные знаковые целые числа.
                         </listitem>
                         <listitem>
                             Теперь принимаются 64-битные кодированные целые числа.
