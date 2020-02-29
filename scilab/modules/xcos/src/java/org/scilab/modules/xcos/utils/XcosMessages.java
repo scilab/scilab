@@ -180,7 +180,7 @@ public final class XcosMessages {
 
     public static final String SET_CONTEXT_LABEL_TEXT = "<html>"
             + Messages
-            .gettext("You may enter here scilab instructions to define symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed (i.e. you click on OK and every time the diagram is loaded).")
+            .gettext("You may enter here scilab instructions to define symbolic parameters used in block definitions using Scilab instructions.<br/>These instructions are evaluated once confirmed (i.e. you click on OK), and every time the diagram is run.")
             + "</html>";
 
     public static final String FAIL_LOADING_DIAGRAM = Messages.gettext("Failed to load Diagram");
