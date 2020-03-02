@@ -2,7 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) DIGITEO - 2011 - Allan CORNET
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
-// Copyright (C) 2018 - 2019 - Samuel GOUGEON
+// Copyright (C) 2018 - 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,43 +19,62 @@ function [a, ka] = setdiff(a, b, orien)
     // * 2019 - S. Gougeon : complex numbers supported
 
     [lhs, rhs] = argn();
+    ka = []
 
+    // ========================
     // CHECKING INPUT ARGUMENTS
     // ========================
     if rhs < 2 | rhs > 3 then
-        msg = gettext("%s: Wrong number of input argument(s): %d or %d expected.\n");
-        error(msprintf(msg, "setdiff", 2, 3));
+        msg = _("%s: Wrong number of input argument(s): %d or %d expected.\n")
+        error(msprintf(msg, "setdiff", 2, 3))
     end
-    // Trivial case _whatever is b_
-    if isempty(a)
-        ka = []
-        return
+    typa = type(a)
+    if ~or(typa == [1 4 5 6 8 10]) then
+        msg = _("%s: Argument #%d: Unsupported type %s.\n")
+        error(msprintf(msg, "setdiff", 1, typeof(a)))
+    end
+
+    if size(a,"*") <> 0 & size(b,"*") <> 0 & typa==10 & type(b) <> 10 then
+        msg = _("%s: Arguments #%d and #%d: Same types expected.\n")
+        error(msprintf(msg, "setdiff", 1, 2))
+    end
+    if typa == 8 & type(b) == 8 & inttype(a) <> inttype(b) then
+        msg = _("%s: Arguments #%d and #%d: Same integer types expected.\n")
+        error(msprintf(msg, "setdiff", 1, 2))
     end
     // orien
     if ~isdef("orien","l") then
         orien = 0
-    elseif orien~="r" & orien~="c" & orien~=1 & orien~=2
-        msg = gettext("%s: Argument #%d: Must be in the set {%s}.\n");
-        error(msprintf(msg, "setdiff", 3, "''r'',''c'',1,2"));
-    elseif orien=="c"
-        orien = 2
-    elseif orien=="r"
+    elseif orien == "r"
         orien = 1
+    elseif orien == "c"
+        orien = 2
+    elseif orien ~= 1 & orien ~= 2
+        msg = _("%s: Argument #%d: Must be in the set {%s}.\n")
+        error(msprintf(msg, "setdiff", 3, "''r'',''c'',1,2"))
     end
-    if orien==1 & ~isempty(b) & size(a,2)~=size(b,2) then
+    // Trivial case, whatever is b
+    if size(a,"*")==0
+        return
+    end
+    //
+    if orien==1 & size(b,"*")<>0 & size(a,2)~=size(b,2) then
         msg = _("%s: Arguments #%d and #%d: Same numbers of columns expected.\n")
         error(msprintf(msg, "setdiff", 1, 2))
     end
-    if orien==2 & ~isempty(b) & size(a,1)~=size(b,1) then
+    if orien==2 & size(b,"*")<>0 &  size(a,1)~=size(b,1) then
         msg = _("%s: Arguments #%d and #%d: Same numbers of rows expected.\n")
         error(msprintf(msg, "setdiff", 1, 2))
     end
 
+    // ==========
     // PROCESSING
     // ==========
-    Complexes = (type(a)==1 && ~isreal(a)) | (type(b)==1 && ~isreal(b));
+    Complexes = (or(typa   ==[1 5]) && ~isreal(a)) | ..
+                (or(type(b)==[1 5]) && ~isreal(b));
+
     // "r" or "c"
-    // ----------
+    // ==========
     if orien then
         if ndims(a) > 2 then
             a = serialize_hypermat(a, orien)
@@ -65,95 +84,63 @@ function [a, ka] = setdiff(a, b, orien)
         end
         if lhs > 1
             [a, ka] = unique(a, orien)
-            if isempty(b)
-                return
-            end
-            it = inttype(a)
-            b = unique(b, orien)
-            if orien==2
-                a = a.'
-                b = b.'
-            end
-            if Complexes
-                [c, kc] = gsort([[a iconvert(ones(a(:,1)),it)] ;
-                                 [b iconvert(ones(b(:,1))*2,it)]], ..
-                                "lr", ["i" "i"], list(abs, atan))
-            else
-                [c, kc] = gsort([[a iconvert(ones(a(:,1)),it)] ;
-                                 [b iconvert(ones(b(:,1))*2,it)]], "lr","i")
-            end
-            k = find(or(c(1:$-1,1:$-1)~=c(2:$,1:$-1),"c") & c(1:$-1,$)==1)
-            if c($,$)==1
-                k = [k size(c,1)]
-            end
-            ka = ka(kc(k))
-            // a = a(ka,:) // in initial order
-            a = c(k,1:$-1)
-            if orien==2
-                ka = matrix(ka, 1, -1)
-                a = a.'
-            end
         else
             a = unique(a, orien)
-            if isempty(b)
-                return
+        end
+        if size(b,"*")==0
+            return
+        end
+        b = unique(b, orien)
+        if orien==2
+            a = a.'
+            b = b.'
+        end
+        if Complexes
+            [c, kc] = gsort([a ; b], "lr", ["i" "i"], list(abs, atan))
+        else
+            [c, kc] = gsort([a ; b], "lr", "i")
+        end
+        k = find(and(c(1:$-1,:) == c(2:$,:), "c"))
+        if k <> []
+            a(kc([k k+1]),:) = []
+            if lhs > 1
+                ka(kc([k k+1])) = []
             end
-            it = inttype(a)
-            b = unique(b, orien)
-            if orien==2
-                a = a.'
-                b = b.'
-            end
-            if Complexes
-                c = gsort([[a iconvert(ones(a(:,1)),it)] ;
-                           [b iconvert(ones(b(:,1))*2,it)]], ..
-                           "lr", ["i" "i"], list(abs, atan))
-            else
-                c = gsort([[a iconvert(ones(a(:,1)),it)] ;
-                           [b iconvert(ones(b(:,1))*2,it)]], "lr","i")
-            end
-            k = find(or(c(1:$-1,1:$-1)~=c(2:$,1:$-1),"c") & c(1:$-1,$)==1)
-            if c($,$)==1
-                k = [k size(c,1)]
-            end
-            // a = a(ka,:) // in initial order
-            a = c(k,1:$-1)
-            if orien==2
-                a = a.'
-            end
+        end
+        if orien==2
+            ka = matrix(ka, 1, -1)
+            a = a.'
         end
 
     else
         // by element
-        // ----------
+        // ==========
         if lhs > 1
-            [a,ka] = unique(a);
+            [a, ka] = unique(a);
         else
             a = unique(a);
         end
-        na = size(a,"*");
-        if isempty(b)
+        if size(b,"*")==0
             return
         end
         b = unique(b(:));
         if Complexes
-            [x,k] = gsort([a(:); b], "g", ["i" "i"], list(abs, atan));
+            [x, k] = gsort([a(:) ; b], "g", ["i" "i"], list(abs, atan));
         else
-            [x,k] = gsort([a(:); b], "g", "i");
+            [x, k] = gsort([a(:) ; b], "g", "i");
         end
-        d = find(x(2:$)==x(1:$-1));  //index of common entries in sorted table
-        if d <> [] then
-            k([d;d+1]) = [];
-        end
-
-        keep = find(k <= na);
-        a = a(k(keep));
-        if lhs > 1
-            ka = ka(k(keep))
+        e = find(x(2:$)==x(1:$-1));
+        if e <> []
+            a(k([e e+1])) = []
+            if lhs > 1
+                ka(k([e e+1])) = []
+            end
         end
     end
 endfunction
+
 // ----------------------------------------------------------------------------
+
 function h = serialize_hypermat(h, orien)
     if orien==1 then
         dims = 1:ndims(h)

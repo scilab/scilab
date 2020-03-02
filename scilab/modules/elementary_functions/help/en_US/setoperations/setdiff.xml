@@ -38,12 +38,14 @@
                 <term>a, b</term>
                 <listitem>
                     <para>
-                        vectors, matrices or hypermatrices of real or complex numbers, or encoded
-                        integers, or strings. Both must have the same data types (and integer types).
+                        vectors, matrices or hypermatrices of real or complex numbers, encoded
+                        integers, booleans, or strings. Sparse-encoded inputs are accepted.
+                        Both <varname>a</varname> and <varname>b</varname> must have the same
+                        data type (and integer type), but may mix dense and sparse encoding.
                     </para>
                     <para>
-                        If the option <literal>orien="r"</literal> is used, <literal>a</literal>
-                        and <literal>b</literal> must have the same number of columns.
+                        If the option <literal>orien="r"</literal> is used, <varname>a</varname>
+                        and <varname>b</varname> must have the same number of columns.
                         If the <literal>orien="c"</literal> is used, they must have the same
                         number of rows.
                     </para>
@@ -56,15 +58,15 @@
                     <itemizedlist>
                         <listitem>
                             <literal>"r"</literal>: rows of
-                            <literal>a</literal> are searched among <literal>b</literal> ones.
+                            <varname>a</varname> are searched among <varname>b</varname> ones.
                         </listitem>
                         <listitem>
                             <literal>"c"</literal>: columns of
-                            <literal>a</literal> are searched among <literal>b</literal> ones.
+                            <varname>a</varname> are searched among <varname>b</varname> ones.
                         </listitem>
                         <listitem>
-                            no orien: elements of <literal>a</literal> are searched among
-                            <literal>b</literal> ones.
+                            no orien: elements of <varname>a</varname> are searched among
+                            <varname>b</varname> ones.
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -72,18 +74,19 @@
             <varlistentry>
                 <term>v</term>
                 <listitem>
+                    Array with <varname>a</varname>'s data type and encoding:
                     <itemizedlist>
                         <listitem>
-                            sorted vector of <literal>a</literal>'s components that are not in
-                            <literal>b</literal>.
+                            sorted vector of <varname>a</varname>'s components that are not in
+                            <varname>b</varname>.
                         </listitem>
                         <listitem>
-                            <literal>orien="r"</literal>: matrix of rows of <literal>a</literal>
-                            that are not in <literal>b</literal>, sorted in lexicographic order.
+                            <literal>orien="r"</literal>: matrix of rows of <varname>a</varname>
+                            that are not in <varname>b</varname>, sorted in lexicographic order.
                         </listitem>
                         <listitem>
-                            <literal>orien="c"</literal>: matrix of columns of <literal>a</literal>
-                            that are not in <literal>b</literal>, sorted in lexicographic order.
+                            <literal>orien="c"</literal>: matrix of columns of <varname>a</varname>
+                            that are not in <varname>b</varname>, sorted in lexicographic order.
                         </listitem>
                     </itemizedlist>
                 </listitem>
@@ -92,7 +95,7 @@
                 <term>ka</term>
                 <listitem>
                     <para>
-                        vector of linear indices of selected  <literal>a</literal>'s components,
+                        vector of linear indices of selected  <varname>a</varname>'s components,
                         rows, or columns, such that
                         <itemizedlist>
                             <listitem>
@@ -114,25 +117,25 @@
         <title>Description</title>
         <para>
             <literal>setdiff(a, b,..)</literal> computes and returns the elements or rows or columns
-            of <literal>a</literal> that are NOT in <literal>b</literal>.
+            of <varname>a</varname> that are NOT in <varname>b</varname>.
         </para>
         <para>
-            All duplicates (elements or rows or columns) are removed from <literal>a</literal> and
-            from <literal>b</literal> before processing.
+            All duplicates (elements or rows or columns) are removed from <varname>a</varname> and
+            from <varname>b</varname> before processing.
         </para>
         <para>
-            If <literal>a</literal> is an hypermatrix and the <literal>"r"</literal> option is used,
-            <literal>a</literal> is replaced with the matrix of all its rows over all its higher
+            If <varname>a</varname> is an hypermatrix and the <literal>"r"</literal> option is used,
+            <varname>a</varname> is replaced with the matrix of all its rows over all its higher
             dimensions, before processing.
-            Same thing if <literal>b</literal> is an hypermatrix.
-            If the <literal>"c"</literal> option is used, <literal>a</literal> or/and
+            Same thing if <varname>b</varname> is an hypermatrix.
+            If the <literal>"c"</literal> option is used, <varname>a</varname> or/and
             <literal>"b"</literal> are replaced with the respective matrices of all their columns.
         </para>
         <para>
             The format of results is presented in the following table, according to the shape of
-            <literal>a</literal> and the <literal>orien</literal> option. In all cases, if all
-            entities of <literal>a</literal> are in <literal>b</literal>,
-            <literal>[]</literal> is returned for <literal>v</literal> as for <literal>ka</literal>:
+            <varname>a</varname> and the <varname>orien</varname> option. In all cases, if all
+            entities of <varname>a</varname> are in <varname>b</varname>,
+            <literal>[]</literal> is returned for <varname>v</varname> as for <varname>ka</varname>:
             <table>
                 <tr>
                     <th align="right">orien →</th>
@@ -192,9 +195,12 @@
             </table>
         </para>
         <para>
-            <literal>v</literal> and <literal>ka</literal> become empty <literal>[]</literal>
-            if <literal>a</literal> is empty (whatever is <literal>b</literal>), or if all
-            <literal>a</literal> elements are in <literal>b</literal>.
+            <varname>v</varname> and <varname>ka</varname> become empty
+            if <varname>a</varname> is empty (whatever is <varname>b</varname>), or if all
+            <varname>a</varname> elements are in <varname>b</varname>.
+        </para>
+        <para>
+            For booleans, <literal>setdiff(…)</literal> is useful mainly with the "r" or "c" options.
         </para>
     </refsection>
     <refsection>
@@ -317,7 +323,13 @@ r, k
             <revision>
                 <revnumber>6.1.0</revnumber>
                 <revdescription>
-                    Complex numbers are now accepted.
+                    Extension to complex numbers.
+                </revdescription>
+            </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Boolean inputs and sparse inputs (boolean or numeric) are now accepted.
                 </revdescription>
             </revision>
         </revhistory>

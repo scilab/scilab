@@ -217,6 +217,7 @@ Feature changes and additions on 6.1.1
 * `clock` now returns the milliseconds, the time zone, and the daylight saving time.
 * `mapsound` upgraded to have a colormap argument
 * `mprintf`, `msprintf` and `mfprintf` can now print input booleans, as `0`|`1` or as `T`|`F`.
+* `setdiff` now supports input booleans and sparse matrices (boolean or numeric).
 
 Help pages:
 -----------
@@ -336,6 +337,7 @@ Bug Fixes
 * [#15280](https://bugzilla.scilab.org/15280): `gsort` was unable to sort any hypermatrix along dimensions > "r"|"c".
 * [#15839](https://bugzilla.scilab.org/15839): `gsort`: the only sparse possible input were real or complex vectors, and only with the `g` method.
 * [#15842](https://bugzilla.scilab.org/15842): `unique` could not process 2D sparse matrices.
+* [#15868](https://bugzilla.scilab.org/15868): `setdiff(s,s2)` yielded an error when `s` or/and `s2` is sparse encoded.
 * [#15954](https://bugzilla.scilab.org/15954): `mfile2sci` abusively added a 6 lines `mode(0); ieee(1)` header to every converted file.
 * [#16069](https://bugzilla.scilab.org/16069): [].figure_name crashes Scilab.
 * [#16106](https://bugzilla.scilab.org/16106): Xcos sciblk4 user-defined blocks did not handle opar and odstate/oz correctly.
@@ -347,6 +349,7 @@ Bug Fixes
 * [#16274](https://bugzilla.scilab.org/16274): assert_checkequal() did not considered equal matching Nan or void elements in (nested) containers.
 * [#16297](https://bugzilla.scilab.org/16297): After function test(), e={}, endfunction; macr2tree(test)  crashes Scilab.
 * [#16337](https://bugzilla.scilab.org/16337): The 3rd output of `[U,km,ku] = unique(..)` was not implemented.
+* [#16340](https://bugzilla.scilab.org/16340): `setdiff("","")` produced `""` instead of `[]`. The `"c"` and `"r"` options yielded an error for string inputs. Input arguments were poorly checked.
 * [#16342](https://bugzilla.scilab.org/16342): `strcat()` was much slower in Scilab 6.0.2.
 * [#16350](https://bugzilla.scilab.org/16350): in if/while conditions, the empty sparse boolean was considered as TRUE.
 * [#16358](https://bugzilla.scilab.org/16358): `isdef([],..)` yielded an error instead of returning [].
@@ -370,6 +373,7 @@ Bug Fixes
 * [#16445](https://bugzilla.scilab.org/16445): `colorbar(..)` ignored how to guess `umin` and `umax` for a Champ object (with .colored="on").
 * [#16449](https://bugzilla.scilab.org/16449): Insertion of implicit vector in Cell was crahsing Scilab
 * [#16450](https://bugzilla.scilab.org/16450): Concatenating encoded integers with decimal or complex numbers was not possible.
+* [#16451](https://bugzilla.scilab.org/16451): `setdiff(a,b,"r"|"c")` with a and b boolean yielded an error.
 * [#16452](https://bugzilla.scilab.org/16452): `setdiff(sparse([1 3 0 2]), sparse([3 7]))` missed returning 0, and wrongly returned 3.
 * [#16454](https://bugzilla.scilab.org/16454): `gsort` yielded an error when sorting any sparse vector including some NaN.
 * [#16458](https://bugzilla.scilab.org/16458): `mean()` did not handle sparse numerical matrices.
