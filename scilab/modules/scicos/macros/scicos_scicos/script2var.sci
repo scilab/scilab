@@ -2,7 +2,7 @@
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 //  Copyright (C) 2011 - INRIA - Serge Steer
-//  Copyright (C) 2018 - Samuel GOUGEON
+//  Copyright (C) 2018, 2020 - Samuel GOUGEON
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -23,8 +23,8 @@
 
 function [%ll,%ierr] = script2var(%txt, %ll)
     //** [%scicos_context, ierr] = script2var(context, %scicos_context)
-    //** context is the scs_m.props.context (string array) associated with the current level
-    //** %scicos_context  is a struct containing the values defined by the
+    //** %txt is the scs_m.props.context (string array) associated with the current level
+    //** %ll  is a struct containing the values defined by the
     //    calling contexts
     //**
     //** 10 Jan 2006
@@ -48,7 +48,6 @@ function [%ll,%ierr] = script2var(%txt, %ll)
         end
     end
     [%ll,%ierr] = getvardef(%txt,%ll)
-    if %ierr<>0 then return, end
 endfunction
 
 //**--------------------------------------------------------------------------
@@ -59,11 +58,14 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
     //local variable names are prefixed with a %  to limit conflicts with
     //variables  defined in %txt instructions
 
-    %ierr = 0;  // to make sure %ierr does not enter the difference
     if isempty(%txt) then return,end
 
-    %ierr = execstr(%txt,"errcatch");
-    if %ierr<>0 then
+    global %_old_   // safe location in case of clear() in the context
+    %_ierr_ = 0;    // to make sure %ierr does not enter the difference
+    %_old_ = who("scope")
+    %_old_ = %_old_(isdef(%_old_,"l"))
+    %_ierr_ = execstr(%txt,"errcatch");
+    if %_ierr_<>0 then
         if errInMsgbox
             messagebox(lasterror(), _("Set Xcos context"), "warning", "modal")
         else
@@ -71,33 +73,32 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
         end
         return
     end
-
-    // Use 'macrovar' to extract the variable names present in %txt: listvar(5) contains all the output variables of the context
-    clear("foo"); // Locally reserve the "foo" name to avoid redefinition warning
-    deff("foo()", %txt);
-    listvar = macrovar(foo);
-    %mm = listvar(5);
-    // In case clear() has been used in the context, remove its arguments
-    if %mm <> [] then
-        %mm(~isdef(%mm, "l")) = [];
+    global %_old_
+    %_new_ = who("scope");
+    %_new_ = setdiff(%_new_, %_old_)
+    if %_new_ <> [] then
+        %_new_ = %_new_(isdef(%_new_,"l"))
     end
+    clearglobal %_old_
 
-    msg = []
-    tmp = _("The variable name %s cannot be used as block parameter: ignored\n")
-    msg0 = msprintf(tmp, "scs_m")
-    for %mi=%mm'
-        if %mi=="scs_m" then
-            msg = [msg ; msg0]
+    %_msg = []
+    %_tmp = _("The variable name %s cannot be used as block parameter: ignored\n")
+    %_msg0 = msprintf(%_tmp, "scs_m")
+    %_forbid = ["scs_m"]
+    %_ignore = ["ans"]
+    for %mi = matrix(%_new_, 1, -1)
+        if or(%mi==%_forbid) then
+            %_msg = [%_msg ; %_msg0]
             continue
-        elseif %mi=="ans" then
+        elseif or(%mi==%_ignore) then
             continue
         end
 
         clear %v
-        %v=evstr(%mi);
+        %v = evstr(%mi);
 
         if typeof(%v)=="scs_m" then
-            msg = [msg ; msg0]
+            %_msg = [%_msg ; %_msg0]
             continue
         elseif or(type(%v)==[13 14]) then
             continue
@@ -106,11 +107,11 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
         %ll(%mi)=%v;
         clear %v
     end
-    if msg ~=[] then
+    if %_msg ~=[] then
         if errInMsgbox
-            messagebox(msg, _("Set Xcos context"), "warning", "modal")
+            messagebox(%_msg, _("Set Xcos context"), "warning", "modal")
         else
-            mprintf("%s\n", msg)
+            mprintf("%s\n", %_msg)
         end
     end
 endfunction
