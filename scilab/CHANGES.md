@@ -265,6 +265,10 @@ Bug Fixes
 ---------
 
 ### Bugs fixed in 6.1.0:
+* [#16342](https://bugzilla.scilab.org/16342): `strcat()` was much slower in Scilab 6.0.2.
+
+
+### Bugs fixed in 6.1.0:
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
 * [#5824](https://bugzilla.scilab.org/5824): The `datafit` algorithm was not documented.
 * [#6070](https://bugzilla.scilab.org/6070): How to make multiscaled plots was not documented.

@@ -93,14 +93,12 @@ types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount,
     }
 
     types::String* pS = in[0]->getAs<types::String>();
-
     types::String* pOut = new types::String(pS->getRows(), pS->getCols());
-    wchar_t** pwstOutput = NULL;
 
     if (bRegExp)
     {
         int iErr = 0;
-        pwstOutput = wcssubst_reg(const_cast<const wchar_t**>(pS->get()), pS->getSize(), pwstSearch, pwstReplace, &iErr);
+        wchar_t** pwstOutput = wcssubst_reg(const_cast<const wchar_t**>(pS->get()), pS->getSize(), pwstSearch, pwstReplace, &iErr);
         if (iErr != NO_MATCH && iErr != PCRE_FINISHED_OK && iErr != PCRE_EXIT)
         {
             freeArrayOfWideString(pwstOutput, pOut->getSize());
@@ -108,14 +106,53 @@ types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount,
             delete pOut;
             return types::Function::Error;
         }
+
+        pOut->set(pwstOutput);
+        freeArrayOfWideString(pwstOutput, pOut->getSize());
     }
     else
     {
-        pwstOutput = wcssubst(const_cast<const wchar_t**>(pS->get()), pS->getSize(), pwstSearch, pwstReplace);
+        std::wstring search = pwstSearch;
+        std::wstring replace = pwstReplace;
+        size_t s_len = search.size();
+        size_t r_len = replace.size();
+
+        // on empty search string, convert only empty string to the replace
+        if (s_len == 0)
+        {
+            for (int i = 0; i < pS->getSize(); ++i)
+            {
+                wchar_t* wcs = pS->get()[i];
+                if (wcslen(wcs) > 0)
+                {
+                    pOut->set(i, wcs);
+                }
+                else
+                {
+                    pOut->set(i, pwstReplace);
+                }
+            }
+            out.push_back(pOut);
+            return types::Function::OK;
+        }
+
+        // regular string search
+        std::wstring string_out;
+        for (int i = 0; i < pS->getSize(); ++i)
+        {
+            string_out.assign(pS->get()[i]);
+
+            size_t pos = string_out.find(search);
+            while (pos != std::string::npos)
+            {
+                string_out.replace(pos, s_len, replace);
+                pos = string_out.find(search, pos + r_len);
+            }
+
+            pOut->set(i, string_out.data());
+        }
     }
 
-    pOut->set(pwstOutput);
-    freeArrayOfWideString(pwstOutput, pOut->getSize());
     out.push_back(pOut);
     return types::Function::OK;
 }

@@ -40,13 +40,6 @@ extern "C"
 #define ONE_CHAR 1
 #define EMPTY_CHAR ""
 /*-------------------------------------------------------------------------------------*/
-static int sci_strcat_three_rhs(char *fname);
-static int sci_strcat_two_rhs(char *fname);
-static int sci_strcat_one_rhs(char *fname);
-static int sci_strcat_rhs_one_is_a_matrix(char *fname);
-static int sumlengthstring(int rhspos);
-static int *lengthEachString(int rhspos, int *sizeArrayReturned);
-/*-------------------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iMode               = 0;
@@ -118,47 +111,25 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
 
             int size = pS->getSize();
             wchar_t** s = pS->get();
+            std::wstring string_out(s[0]);
 
-            int insertLen = 0;
-            if (pwstToInsert)
-            {
-                insertLen = (int)wcslen(pwstToInsert);
-            }
-
-            /*compute final size*/
-            int iLen = 1; //L'\0'
-            for (int i = 0 ; i < size ; i++)
-            {
-                iLen += (int)wcslen(s[i]);
-            }
-
-            if (pwstToInsert != NULL)
-            {
-                iLen += insertLen * (size - 1);
-            }
-
-            wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-            pwstOut[0] = L'\0';
-
-            wcscpy(pwstOut, s[0]);
             if (pwstToInsert)
             {
                 for (int i = 1; i < size; ++i)
                 {
-                    wcscat(pwstOut, pwstToInsert);
-                    wcscat(pwstOut, s[i]);
+                    string_out += pwstToInsert;
+                    string_out += s[i];
                 }
             }
             else
             {
                 for (int i = 1; i < size; ++i)
                 {
-                    wcscat(pwstOut, s[i]);
+                    string_out += s[i];
                 }
             }
 
-            pOut->set(0, pwstOut);
-            FREE(pwstOut);
+            pOut->set(0, string_out.data());
         }
         break;
         case 1 : //"r"
@@ -169,48 +140,29 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
 
             pOut = new types::String(1, cols);
 
-            int insertLen = 0;
-            if (pwstToInsert)
-            {
-                insertLen = (int)wcslen(pwstToInsert);
-            }
-            
             /*compute final size*/
+            std::wstring string_out;
             for (int i = 0 ; i < cols ; ++i)
             {
-                int iLen = 1; //L'\0'
-                for (int j = 0 ; j < rows; ++j)
-                {
-                    iLen += (int)wcslen(s[i * rows + j]);
-                }
+                string_out.assign(s[i * rows]);
 
-                if (pwstToInsert != NULL)
-                {
-                    iLen += insertLen * (rows - 1);
-                }
-
-                wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-                pwstOut[0] = L'\0';
-
-                wcscpy(pwstOut, s[i * rows]);
                 if (pwstToInsert)
                 {
                     for (int j = 1; j < rows; ++j)
                     {
-                        wcscat(pwstOut, pwstToInsert);
-                        wcscat(pwstOut, s[i * rows + j]);
+                        string_out += pwstToInsert;
+                        string_out += s[i * rows + j];
                     }
                 }
                 else
                 {
                     for (int j = 1; j < rows; ++j)
                     {
-                        wcscat(pwstOut, s[i * rows + j]);
+                        string_out += s[i * rows + j];
                     }
                 }
 
-                pOut->set(0, i, pwstOut);
-                FREE(pwstOut);
+                pOut->set(0, i, string_out.data());
             }
             break;
         }
@@ -222,48 +174,28 @@ types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, t
 
             pOut = new types::String(rows, 1);
 
-            int insertLen = 0;
-            if (pwstToInsert)
-            {
-                insertLen = (int)wcslen(pwstToInsert);
-            }
-
             /*compute final size*/
+            std::wstring string_out;
             for (int i = 0 ; i < rows ; ++i)
             {
-                int iLen = 1; //L'\0'
-                for (int j = 0 ; j < cols ; ++j)
-                {
-                    iLen += (int)wcslen(s[j * rows + i]);
-                }
-
-                if (pwstToInsert != NULL)
-                {
-                    iLen += insertLen * (cols - 1);
-                }
-
-                wchar_t* pwstOut = (wchar_t*)MALLOC(sizeof(wchar_t) * iLen);
-                pwstOut[0] = L'\0';
-
-                wcscpy(pwstOut, s[i]);
+                string_out.assign(s[i]);
                 if (pwstToInsert)
                 {
                     for (int j = 1; j < cols; ++j)
                     {
-                        wcscat(pwstOut, pwstToInsert);
-                        wcscat(pwstOut, s[j * rows + i]);
+                        string_out += pwstToInsert;
+                        string_out += s[j * rows + i];
                     }
                 }
                 else
                 {
                     for (int j = 1; j < cols; ++j)
                     {
-                        wcscat(pwstOut, s[j * rows + i]);
+                        string_out += s[j * rows + i];
                     }
                 }
 
-                pOut->set(i, 0, pwstOut);
-                FREE(pwstOut);
+                pOut->set(i, 0, string_out.data());
             }
             break;
         }
