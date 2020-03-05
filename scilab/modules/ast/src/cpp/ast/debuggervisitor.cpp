@@ -457,6 +457,13 @@ void DebuggerVisitor::visit(const SeqExp  &e)
 bool getMacroSourceFile(std::string* filename)
 {
     const std::vector<ConfigVariable::WhereEntry>& lWhereAmI = ConfigVariable::getWhere();
+    // "Where" can be empty at the end of script execution
+    // this function is called when the script ends after a step out
+    if(lWhereAmI.empty())
+    {
+        return false;
+    }
+
     std::string file = scilab::UTF8::toUTF8(*lWhereAmI.back().m_file_name);
     if (file.rfind(".bin") != std::string::npos)
     {
