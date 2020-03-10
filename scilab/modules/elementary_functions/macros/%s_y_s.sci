@@ -36,7 +36,11 @@ function x = %s_y_s(b, a)
     b = matrix(b(k), prod(sx), prod(sa))
 
     // Least square Processing
-    x = b / a(:).'
+    if issparse(a) then     // call by %sp_y_sp
+        x = (a(:) \ b.').'
+    else
+        x = b / a(:).'
+    end
 
     // Reshaping the raw result
     x = matrix(x, sx)

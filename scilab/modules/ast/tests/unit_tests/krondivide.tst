@@ -1,7 +1,7 @@
 // ============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 //
-// Copyright (C) 2019 - Samuel GOUGEON
+// Copyright (C) 2019-2020 - Samuel GOUGEON
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
@@ -74,5 +74,21 @@ for i = 1:n
         b = o2 .*. o;
         assert_checkalmostequal(b ./. o, o2, rtol)
         assert_checkalmostequal(o2 .\. b, o, rtol)
+    end
+end
+
+// Between sparse matrices
+// =======================
+rtol = 10*%eps;
+objects = list(sprand(10,1,0.5), sprand(1,8,0.5), sprand(5,5,0.5));
+n = length(objects);
+
+for i = 1:n
+    o = objects(i);
+    for j = 1:n
+        o2 = objects(j);
+        b = o .*. o2;
+        assert_checkalmostequal(b ./. o2, o, rtol)
+        assert_checkalmostequal(o .\. b, o2, rtol)
     end
 end
