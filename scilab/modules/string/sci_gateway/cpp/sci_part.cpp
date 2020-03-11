@@ -19,24 +19,24 @@
   c(i,j)  is the Input_StringMatrixing  "s[v(1)]...s[v(n)]"  (  s=mp(i,j)  ).
                                                                           */
 /*------------------------------------------------------------------------*/
-#include "string_gw.hxx"
+#include "double.hxx"
 #include "funcmanager.hxx"
 #include "function.hxx"
-#include "string.hxx"
-#include "double.hxx"
 #include "overload.hxx"
+#include "string.hxx"
+#include "string_gw.hxx"
 
 extern "C"
 {
-#include <string.h>
-#include <stdio.h>
 #include "Scierror.h"
-#include "localization.h"
 #include "freeArrayOfString.h"
+#include "localization.h"
 #include "partfunction.h"
+#include <stdio.h>
+#include <string.h>
 }
 /*--------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_part(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_part(types::typed_list& in, int _iRetCount, types::typed_list& out)
 {
     if (in.size() != 2)
     {
@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_part(types::typed_list &in, int _iRetCount, typ
 
     if (in[1]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[1]->getShortTypeStr() + L"_part";
+        std::wstring wstFuncName = L"%" + in[1]->getShortTypeStr() + L"_part";
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
@@ -81,7 +81,7 @@ types::Function::ReturnValue sci_part(types::typed_list &in, int _iRetCount, typ
 
     size_t i_len = pD->getSize();
     std::vector<int> index(i_len);
-    for (int i = 0 ; i < i_len; i++)
+    for (int i = 0; i < i_len; i++)
     {
         int idx = static_cast<int>(pD->get()[i]);
         if (idx < 1)
@@ -93,16 +93,22 @@ types::Function::ReturnValue sci_part(types::typed_list &in, int _iRetCount, typ
         index[i] = idx;
     }
 
-    //wchar_t** pwstOut = partfunctionW(pS->get(), pS->getRows(), pS->getCols(), piIndex, pD->getSize());
     types::String* pOut = new types::String(pS->getRows(), pS->getCols());
     std::wstring string_in;
-    std::wstring string_out;
 
+    // allocate the output strings
+    std::wstring string_out(i_len, L' ');
     for (int i = 0; i < pS->getSize(); ++i)
     {
-        string_in.assign(pS->get()[i]);
-        size_t s_len = string_in.size();
-        string_out.assign(i_len, L' ');
+        pOut->set(i, string_out.data());
+    }
+
+    // part() algorithm
+    for (int i = 0; i < pS->getSize(); ++i)
+    {
+        wchar_t* wcs_in = pS->get()[i];
+        wchar_t* wcs_out = pOut->get()[i];
+        size_t s_len = wcslen(wcs_in);
 
         for (int j = 0; j < i_len; ++j)
         {
@@ -111,10 +117,8 @@ types::Function::ReturnValue sci_part(types::typed_list &in, int _iRetCount, typ
                 continue;
             }
 
-            string_out[j] = string_in[index[j] - 1];
+            wcs_out[j] = wcs_in[index[j] - 1];
         }
-
-        pOut->set(i, string_out.data());
     }
 
     out.push_back(pOut);

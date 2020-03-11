@@ -265,6 +265,7 @@ Bug Fixes
 ---------
 
 ### Bugs fixed in 6.1.0:
+* [#3188](https://bugzilla.scilab.org/3188): `part()` was slower than in Scilab 4.1.2.
 * [#16342](https://bugzilla.scilab.org/16342): `strcat()` was much slower in Scilab 6.0.2.
 
 
