@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2018 - 2019 - Samuel GOUGEON
+ * Copyright (C) 2020 - Stéphane MOTTELET
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ru" xml:id="loglog">
+    <refnamediv>
+        <refname>loglog</refname>
+        <refpurpose>двумерный график в логарифмическом масштабе</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            loglog     // пример
+            loglog(y)
+            loglog(x, y)
+            loglog(x, fun)
+            loglog(x, list(fun, param))
+            loglog(.., LineSpec)
+            loglog(.., LineSpec, GlobalProperty)
+            loglog(x1, y1, LineSpec1, x2,y2,LineSpec2,...xN, yN, LineSpecN, GlobalProperty1,.. GlobalPropertyM)
+            loglog(x1,fun1,LineSpec1, x2,y2,LineSpec2,...xN,funN,LineSpecN, GlobalProperty1, ..GlobalPropertyM)
+            loglog(axes_handle,...)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        вектор или матрица строго положительных вещественных чисел или целых
+                        чисел. Если не указано, то предполагается, что это вектор
+                        <literal>1:n</literal>, где <literal>n</literal> - это число точек
+                        кривой, указанных в параметре <literal>y</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        вектор или матрица строго положительных вещественных чисел или целых
+                        чисел.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fun, fun1, ..</term>
+                <listitem>
+                    <para>
+                        указатель функции, как, например, <literal>loglog(x, gamma)</literal>.
+                    </para>
+                    <para>
+                        Если функции для построения нужны некоторые параметры в качестве входных
+                        аргументов, то функция и её параметры могут быть определены через список,
+                        как например, <literal>loglog(x, list(delip, -0.4))</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>LineSpec</term>
+                <listitem>
+                    <para>
+                        Этот необязательный аргумент должен быть строковым, который будет
+                        использоваться в качестве сокращения способа построения линии. Мы можем
+                        иметь один аргумент <literal>LineSpec</literal> на <literal>y</literal>
+                        или <literal>{x,y}</literal> ранее введённые. Опции
+                        <literal>LineSpec</literal> работают с указателями
+                        <literal>LineStyle</literal>, <literal>Marker</literal> и
+                        <literal>Color</literal> (см. <link linkend="LineSpec">LineSpec</link>).
+                        Эти указатели определяют стиль линии, стиль маркера и цвет линий графика.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>GlobalProperty</term>
+                <listitem>
+                    <para>
+                        Этот необязательный аргумент представляет последовательность пар
+                        операторов <literal>{PropertyName,PropertyValue}</literal>, которая
+                        определяет глобальные свойства объектов, применяемые ко всем кривым,
+                        созданным этим графиком. Полный обозор доступных свойств смотрите в
+                        <link linkend="GlobalProperty">GlobalProperty</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>axes_handle</term>
+                <listitem>
+                    <para>
+                        Этот необязательный аргумент заставляет график строиться внутри выбранных
+                        осей указанных с помощью <literal>axes_handle</literal>, а не в текущих
+                        осях (см. <link linkend="gca">gca</link>).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>loglog</literal> строит данные, используя логарифмическую шкалу по основанию
+            10 как по оси x, так и по оси y. Возможные синтаксисы и аргументы те же, что и у
+            функции <link linkend="plot">plot</link> при условии, что значения в агрументах
+            <term>x</term> и <term>y</term> будут строго положительными.
+        </para>
+        <para>
+            Если текущие оси не пусты и ось x или ось y имеют нижнюю отрицательную границу
+            диапазона, то масштаб графика останется линейным после построения.
+        </para>
+        <para>
+            Введите команду <literal>loglog</literal>, чтобы увидеть пример.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+            w=logspace(-2,2,1000);
+            s=%i*w;
+            g=[];
+            for alpha=logspace(-2,1,4);
+              g=[g;(1)./(s.^2+alpha*s+1)];
+            end
+            clf("reset")
+
+            loglog(w,abs(g));
+
+            legend(leg)
+            title("$\LARGE \left|s^2/(s^2+\alpha s+1)\right|\mbox{ for }s=i\omega$")
+            xlabel("$\LARGE \omega$") ]]></programlisting>
+        <scilab:image>
+            w=logspace(-2,2,1000);
+            s=%i*w;
+            g=[];
+            for alpha=logspace(-2,1,4);
+              g=[g;(1)./(s.^2+alpha*s+1)];
+            end
+            clf("reset")
+
+            loglog(w,abs(g));
+
+            title("$\LARGE \left|s^2/(s^2+\alpha s+1)\right|\mbox{ for }s=i\omega$")
+            xlabel("$\LARGE \omega$")        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="plot">plot</link>
+            </member>
+            <member>
+                <link linkend="semilogx">semilogx</link>
+            </member>
+            <member>
+                <link linkend="semilogy">semilogy</link>
+            </member>
+            <member>
+                <link linkend="LineSpec">LineSpec</link>
+            </member>
+            <member>
+                <link linkend="GlobalProperty">GlobalProperty</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Добавлена функция loglog.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

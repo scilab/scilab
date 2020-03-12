@@ -235,6 +235,7 @@ Feature changes and additions on 6.1.1
    - For assignable calls to `deff`, the `@` symbol can be used as function pseudo-name.
 * `mopen` and `mclose` now handle multiple files and file descriptors.
 * `hash` function with SHA-1,SHA-2 and SHA-3 Secure Hash Algorithms has been added.
+* `loglog`, `semilogx`, `semilogy` Matlab-compatible functions added.
 
 
 Help pages:
