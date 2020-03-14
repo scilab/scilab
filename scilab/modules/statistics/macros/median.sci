@@ -99,7 +99,7 @@ function y = median(x,orient)
         n = xsize(orient)
         for k = 1:N
             for i = 1:M
-                ytemp = gsort(x(i+(0:n-1)*M+(k-1)*P),"r","i")
+                ytemp = gsort(x(i+(0:n-1)'*M+(k-1)*P),"r","i")
                 if 2*int(n/2)==n then
                     // avoid overflow: http://bugzilla.scilab.org/14640
                     a = ytemp(n/2)
