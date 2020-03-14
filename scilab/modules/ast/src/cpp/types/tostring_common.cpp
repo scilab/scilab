@@ -106,7 +106,14 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
     if (dblEnt == 0)
     {
         //[-1, 1]
-        iNbDigit = (int)std::fabs(std::floor(std::log10(dblAbs)));
+        if (dblAbs == 0)
+        {
+            iNbDigit = -1;
+        }
+        else
+        {
+            iNbDigit = (int)std::fabs(std::floor(std::log10(dblAbs)));
+        }
 
         if (iNbDigit >= (iPrecNeeded - 2) || _pDF->bExp)
         {
@@ -180,8 +187,8 @@ void getComplexFormat(double _dblR, double _dblI, int *_piTotalWidth, DoubleForm
 {
     getDoubleFormat(_dblR, _pDFR);
     getDoubleFormat(_dblI, _pDFI);
-    
-    *_piTotalWidth = _pDFR->iWidth + _pDFI->iWidth + 2*(_pDFR->bPrintBlank ? BLANK_SIZE : 0) + BLANK_SIZE + SIZE_SYMBOL_I;
+
+    *_piTotalWidth = _pDFR->iWidth + _pDFI->iWidth + 2 * (_pDFR->bPrintBlank ? BLANK_SIZE : 0) + BLANK_SIZE + SIZE_SYMBOL_I;
 }
 
 void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat * _pDF)
@@ -297,11 +304,11 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         // trim or append trailing zeros, if applicable
         if (_pDF->bPrintPoint == false)
         {
-            iWidth = 1+str.length();
+            iWidth = 1 + str.length();
         }
         else if (std::atof(str.data()) != fabs(_dblVal) && _pDF->bPrintTrailingZeros == true)
         {
-            str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()))-1, '0');
+            str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length())) - 1, '0');
         }
 
         wchar_t* pwstData = to_wide_string(str.data());
