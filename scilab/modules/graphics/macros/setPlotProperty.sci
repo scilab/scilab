@@ -81,7 +81,7 @@ function [fail]=setPlotProperty(PropertyName,PropertyValue,Curves,current_figure
                 Curves.line_style=4;
                 Curves.line_mode = "on";
             elseif (PropertyValue==":")
-                Curves.line_style=5;
+                Curves.line_style=8;
                 Curves.line_mode = "on";
             elseif (PropertyValue=="-")
                 Curves.line_style=1;

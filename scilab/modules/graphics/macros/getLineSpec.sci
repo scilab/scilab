@@ -34,7 +34,7 @@ function [Color,Line,LineStyle,Marker,MarkerStyle,MarkerSize,fail]=getLineSpec(s
         Line = %T;
     elseif strindex(str,":")
         str=strsubst(str,":","");
-        LineStyle=5;
+        LineStyle=8;
         Line = %T;
     elseif strindex(str,"-")
         str=strsubst(str,"-","");
