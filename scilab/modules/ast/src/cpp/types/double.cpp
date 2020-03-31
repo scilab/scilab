@@ -392,6 +392,33 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             ostr << std::endl;
         }
     }
+    else if (getCols() == 1 && isComplex() == false)
+    {
+        // real column vector
+
+        // compute the number of ligne to print in function of max line
+        int iLinesToPrint = getRows() - m_iRows1PrintState;
+        if ((iMaxLines == 0 && iLinesToPrint >= MAX_LINES) || (iMaxLines != 0 && iLinesToPrint >= iMaxLines))
+        {
+            // Number of lines to print exceeds the max lines allowed
+            iLinesToPrint = iMaxLines ? iMaxLines : MAX_LINES;
+        }
+
+        // print lines
+        for (int i = 0; i < iLinesToPrint; i++)
+        {
+            printDoubleValue(ostr, m_pRealData[m_iRows1PrintState + i]);
+            ostr << std::endl;
+        }
+
+        // Record what line we were at
+        m_iRows1PrintState += iLinesToPrint;
+        if(m_iRows1PrintState != getRows())
+        {
+            // ask before continue to print
+            return false;
+        }
+    }
     else // matrix
     {
         std::wostringstream ostemp;
