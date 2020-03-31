@@ -13,9 +13,18 @@ res(2,3,4) = 0;
 computed = list([], 1, 10, list(2,3), list(2,3,4));
 expected = list([], 0, 0, [0 0 0;0 0 0], res);
 
+assert_checkequal(zeros(), 0);
 for i = 1:size(computed)
     assert_checkequal(zeros(computed(i)(:)), expected(i));
 end
+
+// by list extraction
+l = list(1, 2, 3)
+assert_checkequal(zeros(l(1:0)), 0);
+assert_checkequal(zeros(l(1:1)), 0);
+assert_checkequal(zeros(l(1:2)), [0, 0]);
+assert_checkequal(zeros(l(1:3)), matrix([0, 0, 0, 0, 0, 0] , 1, 2, 3));
+
 
 data = rand(4, 3, 2) * 1000;
 dataz = zeros(data);

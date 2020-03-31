@@ -306,9 +306,10 @@ types::Function::ReturnValue zerosOrOnesFromValue(types::typed_list& in, int _iR
     bool alloc = false;
 
     int size = (int)in.size();
-    types::InternalType* it = in[size - 1];
-    if (size > 1 && it->isString())
+    if (size > 1 && in[size - 1]->isString())
     {
+        types::InternalType* it = in[size - 1];
+
         // get optional type string
         wchar_t* pType = it->getAs<types::String>()->get()[0];
         auto f = mapOfTypes.find(pType);
@@ -350,7 +351,7 @@ types::Function::ReturnValue zerosOrOnesFromValue(types::typed_list& in, int _iR
     switch (reftype)
     {
         case types::InternalType::ScilabInt8:
-        {
+        {	
             types::Int8* pOut = new types::Int8(iDims, piDims);
             std::fill(pOut->get(), pOut->get() + pOut->getSize(), value);
             out.push_back(pOut);
