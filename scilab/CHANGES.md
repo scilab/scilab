@@ -269,7 +269,9 @@ Bug Fixes
 * [#16342](https://bugzilla.scilab.org/16342): `strcat()` was much slower in Scilab 6.0.2.
 * [#16350](https://bugzilla.scilab.org/16350): in if/while conditions, the empty sparse boolean was considered as TRUE.
 * [#16365](https://bugzilla.scilab.org/16365): `median(m,"r")` and `median(m,"c")` yielded wrong results (6.1.0 regression)
+* [#16401](https://bugzilla.scilab.org/16401): global `external_object_java` class was crashing Scilab.
 * [#16403](https://bugzilla.scilab.org/16403): 1D extraction of matrix with implicit index had wrong dimensions.
+
 
 ### Bugs fixed in 6.1.0:
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
