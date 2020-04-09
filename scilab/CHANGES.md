@@ -269,6 +269,7 @@ Bug Fixes
 * [#16342](https://bugzilla.scilab.org/16342): `strcat()` was much slower in Scilab 6.0.2.
 * [#16350](https://bugzilla.scilab.org/16350): in if/while conditions, the empty sparse boolean was considered as TRUE.
 * [#16365](https://bugzilla.scilab.org/16365): `median(m,"r")` and `median(m,"c")` yielded wrong results (6.1.0 regression)
+* [#16403](https://bugzilla.scilab.org/16403): 1D extraction of matrix with implicit index had wrong dimensions.
 
 ### Bugs fixed in 6.1.0:
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
@@ -281,7 +282,7 @@ Bug Fixes
 * [#7724](https://bugzilla.scilab.org/7724): When a figure is created in .auto_resize="on" mode, its .axes_size sets its .figure_size accordingly, not the reverse. But this was not documented.
 * [#7732](https://bugzilla.scilab.org/7732): The `datafit` help page needed to be fixed and overhauled.
 * [#7765](https://bugzilla.scilab.org/7765): `champ1` is useless. `champ().colored` is available for a long time.
-* [#7777](https://bugzilla.scilab.org/7777): `ged` did not allow moving several objects. 
+* [#7777](https://bugzilla.scilab.org/7777): `ged` did not allow moving several objects.
 * [#7948](https://bugzilla.scilab.org/7948): `gsort` could not perform multilevel sorting, and could not sort complex numbers completely.
 * [#7967](https://bugzilla.scilab.org/7967): The tricky size `[ny,nx]` of `meshgrid(x,y)` results and usages with graphics was not enough documented.
 * [#8301](https://bugzilla.scilab.org/8301): `definedfields` wrongly considered as defined void elements in lists, tlists and mlists.
@@ -305,7 +306,7 @@ Bug Fixes
 * [#11852](https://bugzilla.scilab.org/11852): File browser didn't update after file creation or removal.
 * [#11363](https://bugzilla.scilab.org/11363): `show_window()` did not raise the current graphics window.
 * [#12013](https://bugzilla.scilab.org/12013): `bitset` did not work for numbers greater than 2^32-1.
-* [#12302](https://bugzilla.scilab.org/12302): Blocks of legends could not be moved interactively. 
+* [#12302](https://bugzilla.scilab.org/12302): Blocks of legends could not be moved interactively.
 * [#12428](https://bugzilla.scilab.org/12428): A part of an error message from `toprint` was not translated.
 * [#12520](https://bugzilla.scilab.org/12520): Variable browser did not display the size of the variables.
 * [#12534](https://bugzilla.scilab.org/12534): Variable browser did not display the size of the variables.
@@ -321,7 +322,7 @@ Bug Fixes
 * [#14501](https://bugzilla.scilab.org/14501): `strsubst` crashed on consecutive occurrences.
 * [#14557](https://bugzilla.scilab.org/14557): `csim` failed when the system has no state.
 * [#14498](https://bugzilla.scilab.org/14498): `size([],3)` returned 1 instead of 0.
-* [#14487](https://bugzilla.scilab.org/14487): matrix indexing was not coherent with MATLAB. 
+* [#14487](https://bugzilla.scilab.org/14487): matrix indexing was not coherent with MATLAB.
 * [#14502](https://bugzilla.scilab.org/14502): `Demo > GUI > Uicontrols 2` could not be exported to a file.
 * [#14585](https://bugzilla.scilab.org/14585): `closeEditvar()` had to be replaced with `editvar("close")`.
 * [#14604](https://bugzilla.scilab.org/14604): `emptystr` is 40x slower with 6.0.0 wrt 5.5.2
