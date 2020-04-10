@@ -267,6 +267,7 @@ Bug Fixes
 ### Bugs fixed in 6.1.1:
 * [#3188](https://bugzilla.scilab.org/3188): `part()` was slower than in Scilab 4.1.2.
 * [#16342](https://bugzilla.scilab.org/16342): `strcat()` was much slower in Scilab 6.0.2.
+* [#16350](https://bugzilla.scilab.org/16350): in if/while conditions, the empty sparse boolean was considered as TRUE.
 * [#16365](https://bugzilla.scilab.org/16365): `median(m,"r")` and `median(m,"c")` yielded wrong results (6.1.0 regression)
 
 ### Bugs fixed in 6.1.0:
