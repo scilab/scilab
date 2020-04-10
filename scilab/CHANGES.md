@@ -271,6 +271,7 @@ Bug Fixes
 * [#16365](https://bugzilla.scilab.org/16365): `median(m,"r")` and `median(m,"c")` yielded wrong results (6.1.0 regression)
 * [#16366](https://bugzilla.scilab.org/16366): `plot([0 1], ":")` plotted a dash-dotted curve instead of a dotted one.
 * [#16369](https://bugzilla.scilab.org/16369): Right divisions / involving one or two sparse numerical matrices were no longer supported.
+* [#16370](https://bugzilla.scilab.org/16370): `msprintf()` did not handle LaTeX dollars anymore.
 * [#16397](https://bugzilla.scilab.org/16397): display of long (real) column vectors was slow (regression).
 * [#16399](https://bugzilla.scilab.org/16399): `mtlb_zeros([])` was crashing Scilab.
 * [#16401](https://bugzilla.scilab.org/16401): global `external_object_java` class was crashing Scilab.
