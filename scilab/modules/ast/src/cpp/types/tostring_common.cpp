@@ -132,7 +132,6 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
     else
     {
         double dblTemp = log10(dblEnt);
-
         if (dblTemp > (iPrecNeeded - 2) || _pDF->bExp)
         {
             //exponant mode
@@ -264,7 +263,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         if (_pDF->bPrintPoint || str.length() > 1)
         {
             /* add trailing zeros */
-            str.append(fmax(0, _pDF->iPrec + 1 - str.length()), '0');
+            str.append(std::max(0, _pDF->iPrec + 1 - (int)str.length()), '0');
             str.insert(1, ".");
         }
 
@@ -308,7 +307,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         }
         else if (std::atof(str.data()) != fabs(_dblVal) && _pDF->bPrintTrailingZeros == true)
         {
-            str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length())) - 1, '0');
+            str.append(std::max(0, (ConfigVariable::getFormatSize() - (int)str.length()) - 1), '0');
         }
 
         wchar_t* pwstData = to_wide_string(str.data());
