@@ -63,6 +63,8 @@ types::Function::ReturnValue sci_http_get(types::typed_list &in, types::optional
         return types::Function::Error;
     }
 
+    sciCurlObj->setCommonHeaders(curl);
+
     char* pcURL = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
     curl_easy_setopt(curl, CURLOPT_URL, pcURL);
     FREE(pcURL);
@@ -138,7 +140,7 @@ types::Function::ReturnValue sci_http_get(types::typed_list &in, types::optional
     if(_iRetCount == 2)
     {
         long http_code = 0;
-        curl_easy_getinfo (curl, CURLINFO_RESPONSE_CODE, &http_code);
+        curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
         out.push_back(new types::Double((double)http_code));
     }
 

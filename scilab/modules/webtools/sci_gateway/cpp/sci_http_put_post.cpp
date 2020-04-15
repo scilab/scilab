@@ -64,6 +64,8 @@ types::Function::ReturnValue sci_http_put_post(types::typed_list &in, types::opt
         return types::Function::Error;
     }
 
+    sciCurlObj->setCommonHeaders(curl);
+
     char* pcURL = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
     curl_easy_setopt(curl, CURLOPT_URL, pcURL);
     FREE(pcURL);
