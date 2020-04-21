@@ -96,7 +96,7 @@ int sci_toJSON(scilabEnv env, int nin, scilabVar *in, int nopt, scilabOpt opt, i
         case 3:
         {
             //must be a scalar double or single string
-            if (!scilab_isDouble(env, in[1]) && !scilab_isScalar(env, in[1]))
+            if (!scilab_isDouble(env, in[1]) || !scilab_isScalar(env, in[1]))
             {
                 Scierror(999, "%s: Wrong type for input argument #%d: double expected.\n", name.data(), 2);
                 return STATUS_ERROR;
@@ -107,7 +107,7 @@ int sci_toJSON(scilabEnv env, int nin, scilabVar *in, int nopt, scilabOpt opt, i
             indent = (int)dbl;
 
             //must be a scalar double or single string
-            if (!scilab_isString(env, in[2]) && !isScalar(env, in[2]))
+            if (!scilab_isString(env, in[2]) || !isScalar(env, in[2]))
             {
                 Scierror(999, "%s: Wrong type for input argument #%d: string expected.\n", name.data(), 3);
                 return STATUS_ERROR;
