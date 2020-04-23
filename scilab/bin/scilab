@@ -1110,10 +1110,10 @@ do_help()
     exit
 }
 
-# under MacOS X LANG is not set when launching Scilab from its icon 
+# under MacOS X LANG is not set when launching Scilab from its icon
 if test "$OS" = "Darwin"; then
     if test -z "$LANG"; then
-        export LANG=`osascript -e "return user locale of (get system info)"`.UTF-8
+      export LANG=$(defaults read NSGlobalDomain AppleLocale).UTF-8
     fi
 fi
 
