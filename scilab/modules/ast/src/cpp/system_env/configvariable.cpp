@@ -473,6 +473,20 @@ bool ConfigVariable::isSilentError(void)
     return m_iSilentError;
 }
 
+/* User Mode */
+
+int ConfigVariable::m_iUserMode = 0;
+void ConfigVariable::setUserMode(int _iPromptMode)
+{
+    m_iUserMode = _iPromptMode;
+    ConfigVariable::setPromptMode(_iPromptMode);
+}
+
+int ConfigVariable::getUserMode(void)
+{
+    return m_iUserMode;
+}
+
 /* Prompt Mode */
 
 int ConfigVariable::m_iPromptMode = 0;

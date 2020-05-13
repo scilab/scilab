@@ -434,7 +434,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         iScript = 1;
     }
 
-    ConfigVariable::setPromptMode(2);
+    ConfigVariable::setUserMode(2);
     InitializePreferences(iScript);
 
     return iMainRet;

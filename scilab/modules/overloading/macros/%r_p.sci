@@ -64,7 +64,10 @@ function %r_p(h)
                     end
                     txtr=txtr+[part(tlk,1:width(k));emptystr(height(l)-size(tlk,1),1)]
                 end
-                txt=[txt;emptystr(1);txtr]
+                txt=[txt;txtr];
+                if mode() == 2 && l < m
+                    txt=[txt;emptystr(1)];
+                end
             end
             // add matrix delimiter and columns title and display
             nt = size(txt,1)
