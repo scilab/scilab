@@ -337,6 +337,7 @@ Bug Fixes
 * [#16369](https://bugzilla.scilab.org/16369): Right divisions / involving one or two sparse numerical matrices were no longer supported.
 * [#16370](https://bugzilla.scilab.org/16370): `msprintf()` did not handle LaTeX dollars anymore.
 * [#16374](https://bugzilla.scilab.org/16374): Any plot with datatips saved in Scilab 5.5 could not be loaded in Scilab 6.
+* [#16385](https://bugzilla.scilab.org/16385): In Xcos without any diagram, the menu `Simulation => Modelica initialize` displayed "Undefined variable: flag" in the console.
 * [#16391](https://bugzilla.scilab.org/16391): `csvRead()` was crashing with CSV files containing empty lines.
 * [#16396](https://bugzilla.scilab.org/16396): recursive extraction `(m:n)(:)` crashed Scilab
 * [#16397](https://bugzilla.scilab.org/16397): display of long (real) column vectors was slow (regression).

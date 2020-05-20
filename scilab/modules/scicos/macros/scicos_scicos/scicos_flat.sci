@@ -343,10 +343,11 @@ function  [cor,corinv,links_table,cur_fictitious,sco_mat,ok, IN, OUT, EIN, EOUT]
     end //end of loop on objects
 
     if ksup==0&nb==0 then
-        if or(flag=="nw") then
-            disp(msprintf(gettext("%s: Empty diagram"), "scicos_flat"));
+        msg = msprintf(gettext("%s: Empty diagram"), "Xcos: scicos_flat")
+        if or(getscilabmode()==["NW" "NWNI"]) then
+            disp(msg);
         else
-            messagebox(msprintf(gettext("%s: Empty diagram"), "Xcos"),"modal");
+            messagebox(msg,"modal");
         end
         ok=%f
         return
