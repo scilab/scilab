@@ -279,6 +279,7 @@ Bug Fixes
 * [#16337](https://bugzilla.scilab.org/16337): The 3rd output of `[U,km,ku] = unique(..)` was not implemented.
 * [#16342](https://bugzilla.scilab.org/16342): `strcat()` was much slower in Scilab 6.0.2.
 * [#16350](https://bugzilla.scilab.org/16350): in if/while conditions, the empty sparse boolean was considered as TRUE.
+* [#16358](https://bugzilla.scilab.org/16358): `isdef([],..)` yielded an error instead of returning [].
 * [#16365](https://bugzilla.scilab.org/16365): `median(m,"r")` and `median(m,"c")` yielded wrong results (6.1.0 regression)
 * [#16366](https://bugzilla.scilab.org/16366): `plot([0 1], ":")` plotted a dash-dotted curve instead of a dotted one.
 * [#16369](https://bugzilla.scilab.org/16369): Right divisions / involving one or two sparse numerical matrices were no longer supported.
