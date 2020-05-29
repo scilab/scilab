@@ -131,7 +131,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 ostr << L" " << wstrName << L"  = " << std::endl;
                 if (ConfigVariable::isPrintCompact() == false)
                 {
-                    ostr << std::endl;                
+                    ostr << std::endl;
                 }
                 scilabWriteW(ostr.str().c_str());
                 std::wostringstream ostrName;
@@ -191,6 +191,17 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
             }
 
+            if (pITR->isImplicitList())
+            {
+                if (pITR->getAs<types::ImplicitList>()->isComputable())
+                {
+                    types::InternalType *pTemp = pITR->getAs<types::ImplicitList>()->extractFullMatrix();
+                    delete pITR;
+                    setResult(NULL);
+                    pITR = pTemp;
+                }
+            }
+
             try
             {
                 pOut = evaluateFields(pCell, fields, pITR);
@@ -230,7 +241,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                     ostr << L" " << *getStructNameFromExp(pCell) << L"  = " << std::endl;
                     if (ConfigVariable::isPrintCompact() == false)
                     {
-                        ostr << std::endl;                
+                        ostr << std::endl;
                     }
                     scilabWriteW(ostr.str().c_str());
 
@@ -403,7 +414,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 ostr << L" " << *getStructNameFromExp(&pCall->getName()) << L"  = " << std::endl;
                 if (ConfigVariable::isPrintCompact() == false)
                 {
-                    ostr << std::endl;                
+                    ostr << std::endl;
                 }
                 scilabWriteW(ostr.str().c_str());
 
@@ -549,7 +560,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 ostr << L" " << *pstName << L"  = " << std::endl;
                 if (ConfigVariable::isPrintCompact() == false)
                 {
-                    ostr << std::endl;                
+                    ostr << std::endl;
                 }
                 scilabWriteW(ostr.str().c_str());
 
