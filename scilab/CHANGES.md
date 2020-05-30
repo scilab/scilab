@@ -269,6 +269,7 @@ Bug Fixes
 * [#9909](https://bugzilla.scilab.org/9909): In the help browser, add a way to open the online version of the current page.
 * [#12889](https://bugzilla.scilab.org/12889): In the help browser, add a menu allowing to select the language of help pages, regardless of the language of the session.
 * [#16106](https://bugzilla.scilab.org/16106): Xcos sciblk4 user-defined blocks did not handle opar and odstate/oz correctly.
+* [#16337](https://bugzilla.scilab.org/16337): The 3rd output of `[U,km,ku] = unique(..)` was not implemented.
 * [#16342](https://bugzilla.scilab.org/16342): `strcat()` was much slower in Scilab 6.0.2.
 * [#16350](https://bugzilla.scilab.org/16350): in if/while conditions, the empty sparse boolean was considered as TRUE.
 * [#16365](https://bugzilla.scilab.org/16365): `median(m,"r")` and `median(m,"c")` yielded wrong results (6.1.0 regression)
