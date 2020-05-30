@@ -297,9 +297,11 @@ Bug Fixes
 * [#16408](https://bugzilla.scilab.org/16408): toJSON(var, indent, filename) is the right call sequence. Documentation has been udpated.
 * [#16445](https://bugzilla.scilab.org/16445): `colorbar(..)` ignored how to guess `umin` and `umax` for a Champ object (with .colored="on").
 * [#16449](https://bugzilla.scilab.org/16449): Insertion of implicit vector in Cell was crahsing Scilab
+* [#16450](https://bugzilla.scilab.org/16450): Concatenating encoded integers with decimal or complex numbers was not possible.
 * [#16452](https://bugzilla.scilab.org/16452): `setdiff(sparse([1 3 0 2]), sparse([3 7]))` missed returning 0, and wrongly returned 3.
 * [#16454](https://bugzilla.scilab.org/16454): `gsort` yielded an error when sorting any sparse vector including some NaN.
 * [#16473](https://bugzilla.scilab.org/16473): Deleting rows in a sparse squared the matrix with padding zeros (Scilab 6 regression).
+
 
 ### Bugs fixed in 6.1.0:
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
