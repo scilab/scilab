@@ -15,37 +15,37 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-          xmlns:scilab="http://www.scilab.org" xml:id="dawson" xml:lang="ja">
+		  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+		  xmlns:scilab="http://www.scilab.org" xml:id="dawson" xml:lang="ru">
     <refnamediv>
         <refname>dawson</refname>
-        <refpurpose>Dawson (スケーリングされた虚数の誤差) 関数を計算.</refpurpose>
+        <refpurpose>Вычислить функцию Доусона (масштабированная мнимая часть ошибки).</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>y = dawson(x)</synopsis>
+        <title>Синтаксис</title>
+        <synopsis>y = dawson(z)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>引数</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>z</term>
                 <listitem>
-                    ベクトルまたは行列
+                    вектор или матрица вещественных или комплексных чисел
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    (xと同じ大きさ)ベクトルまたは行列
+                    вектор или матрица вещественных или комплексных чисел (того же размера, что и <varname>x</varname>).
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>説明</title>
+        <title>Описание</title>
         <para>
-            <literal>dawson</literal> はスケーリングされた虚数の誤差関数を計算します:
+            <literal>dawson</literal> вычисляет масштабированную мнимую часть функции ошибки определённую как
         </para>
         <para>
             <latex alt="Dawson(z)=exp(-z^2).erfi(z).√π /2">
@@ -54,13 +54,13 @@
         </para>
     </refsection>
     <refsection>
-        <title>例</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 i = %i;
 x = [0, 0.01, 1, 100, i, 2*i, 4*i, 8*i,  1-i, 1+i, 2+i, 1e-4+2e-4*i].';
 [x, dawson(x), dawson(-x)]
-     ]]></programlisting>
-        <screen><![CDATA[
+ ]]></programlisting>
+    <screen><![CDATA[
 --> [x, dawson(x), dawson(-x)]
  ans  =
    0.     + 0.i       0.        + 0.i          0.        + 0.i
@@ -81,7 +81,7 @@ x = [0, 0.01, 1, 100, i, 2*i, 4*i, 8*i,  1-i, 1+i, 2+i, 1e-4+2e-4*i].';
 clf
 subplot(1,2,1)
 x = logspace(-20,20,100);
-y = dawson(x);         // the imaginary part is zero
+y = dawson(x);         // мнимая часть равна нулю
 plot("ll", x, y)
 xlabel x fontsize 3
 title dawson(x) fontsize 3.5
@@ -89,7 +89,7 @@ xgrid(color("grey60"))
 
 subplot(1,2,2)
 x = logspace(-7,1,100);
-y = imag(dawson(x*%i)); // the real part is zero
+y = imag(dawson(x*%i)); // вещественная часть равна нулю
 plot("ll", x, y)
 xlabel x fontsize 3
 title imag(dawson(x.i)) fontsize 3.5
@@ -117,13 +117,13 @@ xgrid(color("grey60"))
         </scilab:image>
     </refsection>
     <refsection>
-        <title>アルゴリズム</title>
+        <title>Алгоритмы</title>
         <para>
-            この関数は <ulink url="http://ab-initio.mit.edu/Faddeeva">Faddeevaパッケージ</ulink> ライブラリにもとづいています.
+            Эта функция основана на библиотеке <ulink url="http://ab-initio.mit.edu/Faddeeva">пакета Фаддеевой</ulink> library.
         </para>
     </refsection>
     <refsection role="see also">
-        <title>参照</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="erf">erf</link>
@@ -137,11 +137,11 @@ xgrid(color("grey60"))
         </simplelist>
     </refsection>
     <refsection>
-        <title>履歴</title>
+        <title>История</title>
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark>関数dawsonが追加されました</revremark>
+                <revremark>Введена функция Доусона</revremark>
             </revision>
         </revhistory>
     </refsection>

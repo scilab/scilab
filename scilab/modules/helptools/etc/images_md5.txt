@@ -645,6 +645,7 @@ datatipSetOrientation_1.png=195794e45b7ae088da862c074079b9e8
 datatipSetStyle_1.png=6c902d69034f718ca0e7ca418512126f
 datatips_1.png=d8254c1e9ef203384cdc9c45044737c2
 datatips_2.png=4052a4546ac5ee65fa61ed0dbe165513
+dawson_1.png=8337670f1b3d342ac563847ee9766b58
 detrend_1.png=2eccb4bd13c0ab0b23b0b8a36477116b
 detrend_2.png=87e3a6b831bea33f9497349bafa3ff14
 drawaxis_1.png=08e796fb40ab072abf4067a37542a620

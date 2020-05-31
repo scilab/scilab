@@ -125,6 +125,9 @@ mprintf('\nвремя, необходимое для решения систем
                 <link linkend="slash">slash</link>
             </member>
             <member>
+                <link linkend="lsq">lsq</link>
+            </member>
+            <member>
                 <link linkend="inv">inv</link>
             </member>
             <member>

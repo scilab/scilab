@@ -13,31 +13,27 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sda" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="sda" xml:lang="pt">
     <refnamediv>
         <refname>sda</refname>
-        <refpurpose>Ajusta eixos padrões </refpurpose>
+        <refpurpose>Redefine os eixos padrão para seus valores de fábrica</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>sda()
-            a = gda(); set(a,"default_values",1)
+        <synopsis>
+            sda()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parâmetros</title>
-        <variablelist>
-            <varlistentry>
-                <term>a</term>
-                <listitem>
-                    <para>manipulador dos eixos padrões </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
         <title>Descrição</title>
-        <para>Esta rotina reajusta o os eixos modelos para valores padrões.
+        <para>
+            Esta rotina redefine as propriedades do modelo dos eixos para seu valores de fábrica.
+        </para>
+        <para>
+            <literal>sda()</literal> é equivalente a <literal>set(gda(),"default_values",1)</literal>.
         </para>
     </refsection>
     <refsection>

@@ -16,13 +16,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
-          xmlns:scilab="http://www.scilab.org" xml:id="perms" xml:lang="en">
+          xmlns:scilab="http://www.scilab.org" xml:id="perms" xml:lang="fr">
     <refnamediv>
         <refname>perms</refname>
-        <refpurpose>Set of permutations of given components</refpurpose>
+        <refpurpose>Génère le tableau des permutations des éléments donnés</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Séquence d'appel</title>
         <synopsis>
             y = perms(x)
             y = perms(x, "unique")
@@ -35,8 +35,8 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        Row or column vector of any data type for which the size(), ==, and []
-                        operators are defined, including cells.
+                        Vecteur ligne ou colonne de tout type de données pour lesquelles les
+                        opérateurs size(), ==, et [] sont définis, incluant le type cell.
                     </para>
                 </listitem>
             </varlistentry>
@@ -44,10 +44,10 @@
                 <term>"unique"</term>
                 <listitem>
                     <para>
-                        Optional text flag, to compute and return the whole set of
-                        unique permutations, <emphasis>without any duplicate</emphasis> row.
-                        This option can be used only if <varname>x</varname> is sortable.
-                        That applies to boolean, integer, real number, and text data types.
+                        indicateur texte optionnel, pour calculer et produire uniquement les
+                        permutations uniques, sans aucun doublon.
+                        Cette option est utilisable uniquement si <varname>x</varname> est ordonnable :
+                        booléen, entier, réel, ou texte.
                     </para>
                 </listitem>
             </varlistentry>
@@ -55,10 +55,10 @@
                 <term>y</term>
                 <listitem>
                     <para>
-                        Array of the type of x, with n=size(x,"*") columns.
-                        Each row provides a permutation. Without using the "unique" option,
-                        <varname>y</varname> returns n! rows. Otherwise, the number
-                        size(y,1)≤ n! of rows depends on the multiplicities of unique values of x.
+                        Tableau du type de x, avec n=size(x,"*") colonnes.
+                        Chaque ligne contient une permutation. Sans utiliser l'option "unique",
+                        <varname>y</varname> comprend n! lignes. Sinon, le nombre de lignes
+                        size(y,1) ≤ n! dépend de la multiplicité des valeurs dédoublonnées de x.
                     </para>
                 </listitem>
             </varlistentry>
@@ -67,37 +67,41 @@
     <refsection>
         <title>Description</title>
         <para>
-            Given a vector <varname>x</varname> of length <literal>n</literal>,
-            <literal>perms(..)</literal> computes the expected number of permutations,
-            and checks if there is enough available memory to compute and store them as the result.
+            Etant donné un vecteur <literal>x</literal> de <literal>n</literal> éléments,
+            <literal>perms(..)</literal> calcule le nombre attendu de permutations attendues,
+            et vérifie qu'il y a suffisamment de mémoire vive disponible pour les calculer et les
+            stocker en résultat.
         </para>
         <para>
-            If there is not enough memory, nothing else is done and an error is generated.
+            S'il n'y a pas suffisamment de mémoire vive, aucun calcul effectif n'est effectué,
+            et une erreur est générée.
         </para>
         <para>
-            Otherwise, the permutations are computed and returned.
+            Sinon, les permutations sont calculées et retournées en résultat.
         </para>
         <note>
-            When "unique" is used,
+            Lorsque "unique" est utilisé,
             <itemizedlist>
                 <listitem>
-                    if no duplicate is detected in <varname>x</varname>, the computations are done
-                    as without "unique", that is faster.
+                    si aucun doublon n'est détecté dans <varname>x</varname>,
+                    l'algorithme sans "unique" est automatiquement utilisé pour effectuer
+                    les calculs plus rapidement.
                 </listitem>
                 <listitem>
-                    <varname>x</varname> is first sorted in ascending direction, and
-                    <varname>y</varname> is built in ascending lexicographic order.
+                    <varname>x</varname> est préalablement trié en ordre croissant, et
+                    <varname>y</varname> est construite en ordre lexicographique croissant.
                 </listitem>
             </itemizedlist>
-            Otherwise : The initial order of <varname>x</varname> components is kept, and the order
-            of permutations in <varname>y</varname> takes it into account. Thus, if necessary,
-            <varname>x</varname> can be sorted according to the order <emphasis>chosen by the user,
-            before</emphasis> calling <literal>perms()</literal>.
+            Sinon : l'ordre initial des éléments de <varname>x</varname> est conservé, et l'ordre
+            des permutations dans <varname>y</varname> en tient compte. Ainsi <varname>x</varname>
+            pourra si besoin être trié selon l'ordre <emphasis>choisi par l'utilisateur,
+            avant</emphasis> d'appeler <literal>perms()</literal>.
         </note>
         <warning>
-            As a reminder, here is the weight <varname>n*n!*8</varname> of <varname>y</varname>
-            in bytes, vs the length <literal>n</literal> of <varname>x</varname>,
-            if <varname>x</varname> are decimal numbers and "unique" is not used:
+            Pour mémoire, le poids <varname>n*n!*8</varname> de <varname>y</varname> en octets
+            est listé ci-dessous en fonction du nombre <literal>n</literal> d'éléments de
+            <varname>x</varname>, pour <varname>x</varname> nombres décimaux, et sans
+            l'option "unique" :
         </warning>
         <para>
             <table border="1">
@@ -107,7 +111,7 @@
                     <td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>
                 </tr>
                 <tr>
-                    <th>y [bytes]</th>
+                    <th>y [octets]</th>
                     <td>32</td><td>144</td><td>768</td><td>4800</td><td>34560</td><td>288240</td>
                     <td>2.58×10<superscript>6</superscript></td>
                     <td>26.1×10<superscript>6</superscript></td>
@@ -120,7 +124,7 @@
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Exemples</title>
         <programlisting role="example"><![CDATA[
 x = [4, 7, 10];
 y = perms(x)
@@ -161,7 +165,7 @@ perms(c)
   [1x1 string  ]  [1x1 constant]  [1x1 boolean ]
 ]]></screen>
     <para>
-        With duplicate elements:
+        Avec des éléments de multiplicité > 1 (doublons ou plus) :
     </para>
     <programlisting role="example"><![CDATA[
 perms([1 0 0])
@@ -196,14 +200,14 @@ size(p)
 --> p = perms([0 0 0 0 1 1 1 2 2 3], "unique");
 --> size(p)
  ans  =
-   12600.   10.  // instead of 10! = 3628800 rows
+   12600.   10.  // au lieu de 10! = 3628800 lignes
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
-                <link linkend="grand">grand(x,'prm')</link>
+                <link linkend="grand">grand(n,'prm',x)</link>
             </member>
             <member>
                 <link linkend="factorial">factorial</link>
@@ -220,12 +224,12 @@ size(p)
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>History</title>
+        <title>Historique</title>
         <revhistory>
             <revision>
                 <revnumber>6.1.0</revnumber>
                 <revdescription>
-                    "unique" option introduced.
+                    Option "unique" ajoutée.
                 </revdescription>
             </revision>
         </revhistory>

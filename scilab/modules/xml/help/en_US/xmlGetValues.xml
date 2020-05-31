@@ -20,7 +20,7 @@
           xmlns:scilab="http://www.scilab.org" xml:id="xmlGetValues" xml:lang="en">
     <refnamediv>
         <refname>xmlGetValues</refname>
-        <refpurpose>Parses and gets values of chosen tags attributes in a XML file of preferences</refpurpose>
+        <refpurpose>Parses and gets values of chosen tags attributes in a XML file</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>

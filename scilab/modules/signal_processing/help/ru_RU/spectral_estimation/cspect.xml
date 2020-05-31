@@ -170,8 +170,7 @@
             Кросс-спектр двух сигналов <varname>x</varname> и  <varname>y</varname>
             определяется как
             <latex style="display"
-                alt="S_xy(ω) = (∑{n=0…N-1} x(n) exp(-i ω n)).
-                               (∑{n=0…N-1} y'(n) exp(i ω n)) / N">
+                alt="S_xy(ω) = (∑{n=0…N-1} x(n) exp(-iωn)) . (∑{n=0…N-1} y'(n) exp(iωn)) / N">
                 S_{xy} (\omega) = {1 \over N}
                 \left(\sum_{n=0}^{N-1} x(n)\,e^{-i \omega n}\right)
                 \left( \sum_{n=0}^{N-1} \bar{y}(n)\,e^{i \omega n} \right)

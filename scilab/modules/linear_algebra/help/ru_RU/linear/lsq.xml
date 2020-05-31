@@ -16,69 +16,74 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-          xml:lang="en" xml:id="lsq">
+          xml:lang="ru" xml:id="lsq">
     <refnamediv>
         <refname>lsq</refname>
-        <refpurpose>linear least square solution of A*X=B with minimal norm(X)</refpurpose>
+        <refpurpose>
+            линейное решение наименьших квадратов A*X=B с минимальной norm(X)
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Синтаксис</title>
         <synopsis>
             X = lsq(A, B)
             X = lsq(A, B, tol)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>Real or complex (m x n) matrix</para>
+                    <para>вещественная или комплексная матрица (m x n)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>B</term>
                 <listitem>
-                    <para>real or complex (m x p) matrix</para>
+                    <para>вещественная или комплексная матрица (m x p)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>positive scalar,  used to determine the effective rank of A
-                        (defined as the order of the largest leading triangular
-                        submatrix R11 in the QR factorization with pivoting of A,
-                        whose estimated condition number &lt;= 1/tol). The tol default value is
-                        set to <literal>sqrt(%eps)</literal>.
+                    <para>
+                        положительный скаляр, используемый для определения действительного ранга
+                        <varname>A</varname> (определяемого как порядок наибольшей главной
+                        треугольной подматрицы <literal>R11</literal> в QR-разложении с выбором
+                        ведущего элемента <varname>A</varname>, чьё оцененое число
+                        обусловленности &lt;= 1/tol. Значение <varname>tol</varname> по
+                        умолчанию устанавливается равным <literal>sqrt(%eps)</literal>.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>X</term>
                 <listitem>
-                    <para>real or complex (n x p) matrix</para>
+                    <para>вещественная или комплексная матрица (n x p)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            <literal>X=lsq(A,B)</literal> computes the minimum norm least square solution of
-            the equation <literal>A*X=B</literal>, while <literal>X=A \ B</literal> compute a least square
-            solution with at most <literal>rank(A)</literal> nonzero components per column.
+            <literal>X=lsq(A,B)</literal> вычисляет решение наименьших квадратов с минимальной
+            нормой уравнения <literal>A*X=B</literal>, при этом <literal>X = A \ B</literal>
+            вычисляет решение наименьших квадратов с ненулевыми компонентами не более
+            <literal>rank(A)</literal> на столбец.
         </para>
     </refsection>
     <refsection>
-        <title>References</title>
+        <title>Сcылки</title>
         <para>
-            <literal>lsq</literal> function is  based on the LApack functions DGELSY for
-            real matrices and ZGELSY for complex matrices.
+            Функция <literal>lsq</literal> основана на функциях LApack DGELSY для
+            вещественных матриц и ZGELSY для комплексных матриц.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 //Build the data
 x=(1:10)';
@@ -94,19 +99,19 @@ y1e=X(1,1)*x+X(2,1);
 y2e=X(1,2)*x+X(2,2);
 plot2d(x,[y1e,y2e],[2,3])
 
-//Difference between lsq(A,b) and A\b
-A=rand(4,2)*rand(2,3);//a rank 2 matrix
+// Разница между lsq(A,b) и A\b
+A=rand(4,2)*rand(2,3);//ранг матрицы 2
 b=rand(4,1);
 X1=lsq(A,b)
 X2=A\b
-[A*X1-b, A*X2-b] //the residuals are the same
+[A*X1-b, A*X2-b] //остатки от деления одинаковы
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="backslash">backslash</link>
+                <link linkend="backslash">обратная косая черта</link>
             </member>
             <member>
                 <link linkend="inv">inv</link>

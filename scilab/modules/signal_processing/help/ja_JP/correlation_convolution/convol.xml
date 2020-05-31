@@ -55,7 +55,7 @@
             fftを用いて2つの離散シーケンスの畳込み <literal>y= h*x</literal>
             を計算します.
             畳込みは以下のように定義されます:
-            <latex style="display" alt="y_k = sum_j( h_j * x_{k+1-k} )">
+            <latex style="display" alt="y_k = sum_j( h_j * x_{k+1-j} )">
                 y_k \,= \sum_j h_j \; x_{k+1-j}
             </latex>
         </para>

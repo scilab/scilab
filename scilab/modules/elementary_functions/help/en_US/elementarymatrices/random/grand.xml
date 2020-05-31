@@ -977,6 +977,12 @@ grand("setsd",n)
             <member>
                 <link linkend="ssrand">ssrand</link>
             </member>
+            <member>
+                <link linkend="randpencil">randpencil</link>
+            </member>
+            <member>
+                <link linkend="genmarkov">genmarkov</link>
+            </member>
         </simplelist>
     </refsection>
 </refentry>

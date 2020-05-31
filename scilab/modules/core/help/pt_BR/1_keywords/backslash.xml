@@ -79,6 +79,9 @@ mprintf('\ntime needed to solve the system with the backslash operator: %.3f\n',
                 <link linkend="slash">slash</link>
             </member>
             <member>
+                <link linkend="lsq">lsq</link>
+            </member>
+            <member>
                 <link linkend="inv">inv</link>
             </member>
             <member>

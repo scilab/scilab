@@ -157,8 +157,7 @@ xsetech([0 0.5 0.55 0.5])
 champ(x, x, fx, fy, arfact=1.7)
 gce().colored = "on";
 title("arfact=1.7, .colored=""on""", "fontsize",3)
-L = sqrt(fx.^2 + fy.^2);
-colorbar(min(L), max(L));
+colorbar
 
 // Интенсивность поля = цвету, + расширенные пределы
 subplot(2,2,4)
@@ -217,8 +216,7 @@ title(".colored = ""on""", "fontsize",3)
 gce().colored = "on";
 
 gcf().color_map = jetcolormap(100);
-L = sqrt(fx.^2 + fy.^2);
-colorbar(min(L), max(L));
+colorbar
 ]]></programlisting>
         <scilab:image>
             x = -1.2:0.11:0.7;

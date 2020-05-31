@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="convol" xml:lang="ru">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="convol" xml:lang="ru">
     <refnamediv>
         <refname>convol</refname>
         <refpurpose>Свёртка</refpurpose>
@@ -58,7 +61,7 @@
             Вычисляет свёртку <literal>y= h*x</literal> двух дискретных
             последовательностей с помощю БПФ (fft). Свёртка определяется следующим
             образом:
-            <latex style="display" alt="y_k = sum_j( h_j * x_{k+1-k} )">
+            <latex alt="y_k = sum_j( h_j * x_{k+1-j} )" style="display">
                 y_k \,= \sum_j h_j \; x_{k+1-j}
             </latex>
         </para>

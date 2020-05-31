@@ -67,6 +67,9 @@ mprintf('\ntemps nécessaire à la résolution du système avec l''opérateur ba
                 <link linkend="slash">slash</link>
             </member>
             <member>
+                <link linkend="lsq">lsq</link>
+            </member>
+            <member>
                 <link linkend="inv">inv</link>
             </member>
             <member>

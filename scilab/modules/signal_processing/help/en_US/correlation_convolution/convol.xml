@@ -53,7 +53,7 @@
         <para>
             Calculates the convolution <literal>y= h*x</literal> of two discrete
             sequences by using the fft. The convolution is defined as follows:
-            <latex style="display" alt="y_k = sum_j( h_j * x_{k+1-k} )">
+            <latex style="display" alt="y_k = sum_j( h_j * x_{k+1-j} )">
                 y_k \,= \sum_j h_j \; x_{k+1-j}
             </latex>
         </para>
