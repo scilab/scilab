@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -14,198 +13,274 @@
  * along with this program.
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="find">
-
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="ja" xml:id="find">
     <refnamediv>
-
         <refname>find</refname>
-
         <refpurpose>論理値ベクトルまたは行列のtrue要素の添え字を見つける</refpurpose>
-
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
-        <synopsis>[ii]=find(x [,nmax])
-
-            [i1,i2,..]=find(x [,nmax])
-
+        <synopsis>
+            ii = find(x)
+            [i1,i2,..] = find(x)
+            .. = find(x, nmax)
         </synopsis>
-
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>x</term>
-
                 <listitem>
-
-                    <para>は論理値ベクトル,論理値行列,論理値ハイパー行列,
-
-                        "標準"行列またはハイパー行列です.
-
+                    <para>
+                        ブールまたは数値のベクトル、行列、または超行列. ゼロ以外の数値は％Tと見なされます.
+                        スパース行列が受け入れられます.
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
                 <term>nmax</term>
-
                 <listitem>
-
                     <para>返される添え字の最大数を指定する整数.
-
                         デフォルト値は"全て"を意味する -1 です.
-
                         このオプションは,全ての添え字の探索を避け,処理効率を改善するために
-
                         使用できます.
-
                     </para>
-
                 </listitem>
-
             </varlistentry>
-
             <varlistentry>
-
-                <term>ii, i1, i2, ..  </term>
-
+                <term>ii</term>
                 <listitem>
-
-                    <para>整数ベクトルの添字または空行列</para>
-
+                    <para>
+                        row vector of linearized indices of %T or non-zero elements, or empty matrix [].
+                    </para>
                 </listitem>
-
             </varlistentry>
-
+            <varlistentry>
+                <term>i1, i2, ..</term>
+                <listitem>
+                    <para>
+                        row vectors of directional indices, or empty matrix []
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
         <para>
-
             <literal>x</literal> が論理値の場合,
-
         </para>
-
         <para>
-
             <literal>ii=find(x)</literal> は<literal>x(i)</literal>が
-
             "true"の添字<literal>i</literal>のベクトルを返します.
-
             trueとなる要素がみつからない場合,空行列が返されます.
-
         </para>
-
         <para>
-
             <literal>[i1,i2,..]=find(x)</literal> は,
-
             <literal>x(i1(n),i2(n),..)</literal>が "true" の
-
             添字<literal>i1</literal> (行の場合) および
-
             <literal>i2</literal> (列の場合),..のベクトルを返します.
-
             trueとなる要素がみつからない場合,
-
             <literal>i1</literal>,<literal>i2</literal>, ...の空行列を返します.
-
         </para>
-
         <para>
-
             <literal>x</literal> が標準行列またはハイパー行列の場合,
-
             <literal>find(x)</literal>は<literal>find(x&lt;&gt;0)</literal>
-
             と解釈されます.
-
         </para>
-
         <para>
-
             <literal>find([])</literal> は <literal>[]</literal>を返します.
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
-
+        <para>
+            With input booleans:
+        </para>
         <programlisting role="example"><![CDATA[
-beers=["Desperados", "Leffe", "Kronenbourg", "Heineken"];
-find(beers=="Leffe") // OK
-find(beers=="1664") // KO
-find(beers=="Foster") // KO
-beers=[beers, "Foster"]
-find(beers=="Foster") // OK
-A=rand(1,20);
-w=find(A<0.4)
-A(w)
-w=find(A>100)
-B=rand(1,20);
-w=find(B<0.4,2) //最大2個の値を返す
-H=rand(4,3,5); //ハイパー行列
-[i,j,k]=find(H>0.9)
-H(i(1),j(1),k(1))
- ]]></programlisting>
+A = [%F %T %T %F ; %T %F %F %T]
+find(A)
+find(A,2)
+      ]]></programlisting>
+    <screen><![CDATA[
+--> A = [%F %T %T %F ; %T %F %F %T]
+ A  =
+  F T T F
+  T F F T
 
+--> find(A)
+ ans  =
+   2.   3.   5.   8.
+
+--> find(A,2)
+ ans  =
+   2.   3.
+]]></screen>
+    <para>
+        With input numbers:
+    </para>
+        <programlisting role="example"><![CDATA[
+B = [0 -1 0 3 ; 0 -1 -0.4 0]
+find(B)
+[i, j] = find(B);
+[i' j']
+      ]]></programlisting>
+    <screen><![CDATA[
+--> B = [0 -1 0 3 ; 0 -1 -0.4 0]
+ B  =
+   0.  -1.   0.    3.
+   0.  -1.  -0.4   0.
+
+--> find(B)
+ ans  =
+   3.   4.   6.   7.
+
+--> [i, j] = find(B);
+--> [i' j']
+ ans  =
+   1.   2.
+   2.   2.
+   2.   3.
+   1.   4.
+]]></screen>
+    <para>
+        With an input hypermatrix of numbers:
+    </para>
+        <programlisting role="example"><![CDATA[
+E = grand(2,5,2,"uin",1,6)
+find(E < 4)
+      ]]></programlisting>
+    <screen><![CDATA[
+--> E = grand(2,5,2,"uin",1,6)
+ E  =
+(:,:,1)
+   1.   6.   5.   5.   4.
+   6.   5.   3.   4.   4.
+(:,:,2)
+   2.   4.   3.   6.   5.
+   5.   6.   6.   6.   4.
+
+--> find(E < 4)
+ ans  =
+   1.   6.   11.   15.
+]]></screen>
+    <para>
+         With an input numerical or boolean sparse matrix:
+    </para>
+        <programlisting role="example"><![CDATA[
+C = [0  3  7  0  9  0
+     0  4  0  0  5  0
+     6  0  1  0  3  8
+    ];
+C = sparse(C);
+find(C)
+find(C, 4)
+
+// With input boolean sparse
+D = C > 4
+full(D)
+find(D)
+      ]]></programlisting>
+    <screen><![CDATA[
+--> C = sparse(C);
+--> find(C)
+ ans  =
+    3.    4.    5.    7.    9.    13.    14.    15.    18.
+
+-->find(C, 4)
+ ans  =
+    3.    4.    5.    7.
+
+--> // With input boolean sparse
+--> D = C > 4
+ D  =
+(  3,  6) sparse boolean matrix
+(  1,  3)   T
+(  1,  5)   T
+(  2,  5)   T
+(  3,  1)   T
+(  3,  6)   T
+
+--> full(D)
+ ans  =
+  F F T F T F
+  F F F F T F
+  T F F F F T
+
+-->find(D)
+ ans  =
+    3.    7.    13.    14.    18.
+]]></screen>
+    <para>
+        With the result of a boolean element-wise condition on texts
+    </para>
+        <programlisting role="example"><![CDATA[
+beers = ["Desperados", "Leffe", "Kronenbourg", "Heineken"];
+find(beers == "Leffe")
+find(beers == "1664")
+      ]]></programlisting>
+    <screen><![CDATA[
+--> find(beers == "Leffe")
+ ans  =
+   2.
+
+--> find(beers == "1664")
+ ans  =
+    []
+]]></screen>
+    <para>
+        Addressing selected elements:
+    </para>
+        <programlisting role="example"><![CDATA[
+// a) Through their linearized indices:
+H = [ 0  -2  -8  4  -5  -1
+     -2   2  -9  5   0   1
+    ];
+L = H;
+L(find(L < 0)) = -10
+
+// b) Directly through the array of their boolean status:
+L = H;
+L(L < 0) = -10
+      ]]></programlisting>
+    <screen><![CDATA[
+--> // a) Through their linearized indices:
+--> H = [ 0  -2  -8  4  -5  -1
+  >      -2   2  -9  5   0   1
+  >     ];
+--> L = H;
+--> L(find(L < 0)) = -10
+ L  =
+   0.   -10.  -10.   4.  -10.  -10.
+  -10.   2.   -10.   5.   0.    1.
+
+--> // b) Directly through the array of their boolean status:
+--> L = H;
+--> L(L < 0) = -10
+ L  =
+   0.   -10.  -10.   4.  -10.  -10.
+  -10.   2.   -10.   5.   0.    1.
+]]></screen>
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
-                <link linkend="boolean">boolean</link>
-
-            </member>
-
-            <member>
-
-                <link linkend="extraction">extraction</link>
-
-            </member>
-
-            <member>
-
-                <link linkend="insertion">insertion</link>
-
-            </member>
-
-            <member>
-
                 <link linkend="vectorfind">vectorfind</link>
-
             </member>
-
+            <member>
+                <link linkend="grep">grep</link>
+            </member>
+            <member>
+                <link linkend="findobj">findobj</link>
+            </member>
+            <member>
+                <link linkend="boolean">boolean</link>
+            </member>
         </simplelist>
-
     </refsection>
-
 </refentry>
-

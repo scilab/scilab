@@ -16,13 +16,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-          xml:lang="en" xml:id="find">
+          xml:lang="ru" xml:id="find">
     <refnamediv>
         <refname>find</refname>
-        <refpurpose>gives the indices of %T or non-zero elements</refpurpose>
+        <refpurpose>даёт индексы элементов с ненулевым значением или значением %T</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Синтаксис</title>
         <synopsis>
             ii = find(x)
             [i1,i2,..] = find(x)
@@ -30,15 +30,15 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
                     <para>
-                        Vector, matrix, or hypermatrix of booleans or of numbers.
-                        All non-zero numbers are considered as %T.
-                        Sparse matrices are accepted.
+                        Вектор, матрица или гиперматрица логических значений или чисел.
+                        Все ненулевые числа считаются значениями %T. Принимаются разрежённые 
+                        матрицы.
                     </para>
                 </listitem>
             </varlistentry>
@@ -46,9 +46,10 @@
                 <term>nmax</term>
                 <listitem>
                     <para>
-                        an integer giving the maximum number of indices to return.
-                        The default value is -1 which stands for "all".
-                        This option can be used for efficiency, to avoid searching all indices.
+                        целое число, указывающее максимальное количество индексов для возврата.
+                        Значение по умолчанию равно <literal>-1</literal>, которое стоит для 
+                        "все". Эта опция может использоваться для эффективности, чтобы исключить 
+                        поиск всех индексов.
                     </para>
                 </listitem>
             </varlistentry>
@@ -56,7 +57,8 @@
                 <term>ii</term>
                 <listitem>
                     <para>
-                        row vector of linearized indices of %T or non-zero elements, or empty matrix []
+                        вектор-строка линеаризованных индексов с ненулевым значением, или 
+                        значением <literal>%T</literal> или пустая матрица <literal>[]</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,40 +66,44 @@
                 <term>i1, i2, ..</term>
                 <listitem>
                     <para>
-                        row vectors of directional indices, or empty matrix []
+                        векторы-строки индексов направления или пустая матрица 
+                        <literal>[]</literal>
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            If <literal>x</literal> is a boolean matrix,
+            Если <varname>x</varname> является матрицей логических значений, то
         </para>
         <para>
-            <literal>ii=find(x)</literal> returns the vector
-            of indices <literal>i</literal> for which <literal>x(i)</literal> is "true". If no true element
-            found find returns an empty matrix.
+            <literal>ii=find(x)</literal> возвращает вектор индексов <literal>i</literal>,
+            для которых <literal>x(i)</literal> соответствует "истине". Если не найден ни один 
+            элемент со значением "истина", то возвращается пустая матрица.
         </para>
         <para>
-            <literal>[i1,i2,..]=find(x)</literal> returns vectors of indices <literal>i1</literal> (for rows) and <literal>i2</literal> (for columns),..
-            such that <literal>x(i1(n),i2(n),..)</literal> is "true". If no true element
-            found find returns  empty matrices in <literal>i1</literal>,
+            <literal>[i1,i2,..]=find(x)</literal> возвращает векторы индексов 
+            <literal>i1</literal> (для строк) и <literal>i2</literal> (для столбцов), 
+            <literal>..</literal> такие, что <literal>x(i1(n),i2(n),..)</literal>
+            соответствует "истине". Если не найден ни один элемент со значением 
+            "истина", то возвращаются пустые матрицы в  <literal>i1</literal>,
             <literal>i2</literal>, ...
         </para>
         <para>
-            if <literal>x</literal> is a standard matrix or hypermatrix <literal>find(x)</literal> is interpreted as
+            Если <varname>x</varname> - это стандартная матрица или гиперматрица,
+            то <literal>find(x)</literal> интерпретируется как 
             <literal>find(x&lt;&gt;0)</literal>
         </para>
         <para>
-            <literal>find([])</literal> returns <literal>[]</literal>
+            <literal>find([])</literal> возвращает <literal>[]</literal>.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <para>
-            With input booleans:
+            С входными логическими значениями:
         </para>
         <programlisting role="example"><![CDATA[
 A = [%F %T %T %F ; %T %F %F %T]
@@ -119,7 +125,7 @@ find(A,2)
    2.   3.
 ]]></screen>
     <para>
-        With input numbers:
+        С входными числами:
     </para>
         <programlisting role="example"><![CDATA[
 B = [0 -1 0 3 ; 0 -1 -0.4 0]
@@ -146,7 +152,7 @@ find(B)
    1.   4.
 ]]></screen>
     <para>
-        With an input hypermatrix of numbers:
+        С входными гиперматрицами чисел:
     </para>
         <programlisting role="example"><![CDATA[
 E = grand(2,5,2,"uin",1,6)
@@ -167,7 +173,7 @@ find(E < 4)
    1.   6.   11.   15.
 ]]></screen>
     <para>
-         With an input numerical or boolean sparse matrix:
+         С входной числовой или логической разрежённой матрицей:
     </para>
         <programlisting role="example"><![CDATA[
 C = [0  3  7  0  9  0
@@ -178,7 +184,7 @@ C = sparse(C);
 find(C)
 find(C, 4)
 
-// With input boolean sparse
+// С входной логической разрежённой матрицей
 D = C > 4
 full(D)
 find(D)
@@ -214,7 +220,7 @@ find(D)
     3.    7.    13.    14.    18.
 ]]></screen>
     <para>
-        With the result of a boolean element-wise condition on texts:
+        С результатом логического поэлементного условия на текстах:
     </para>
         <programlisting role="example"><![CDATA[
 beers = ["Desperados", "Leffe", "Kronenbourg", "Heineken"];
@@ -231,17 +237,17 @@ find(beers == "1664")
     []
 ]]></screen>
     <para>
-        Addressing selected elements:
+        Адресация выбранных элементов:
     </para>
         <programlisting role="example"><![CDATA[
-// a) Through their linearized indices:
+// a) Через их линеаризованные индексы:
 H = [ 0  -2  -8  4  -5  -1
      -2   2  -9  5   0   1
     ];
 L = H;
 L(find(L < 0)) = -10
 
-// b) Directly through the array of their boolean status:
+// b) Непосредственно через массив их логического статуса:
 L = H;
 L(L < 0) = -10
       ]]></programlisting>
@@ -265,7 +271,7 @@ L(L < 0) = -10
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="vectorfind">vectorfind</link>

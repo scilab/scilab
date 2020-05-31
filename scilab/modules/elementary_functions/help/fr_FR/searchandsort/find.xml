@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Bernard DUJARDIN
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,15 +13,22 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="find">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:lang="fr" xml:id="find">
     <refnamediv>
         <refname>find</refname>
-        <refpurpose>trouve les indices des éléments vrais d'un vecteur ou d'une matrice de booléens</refpurpose>
+        <refpurpose>
+            donne la position des éléments %T ou non nuls d'un tableau booléen ou numérique.
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>[ii]=find(x [,nmax])
-            [i1,i2,..]=find(x [,nmax])
+        <synopsis>
+            ii = find(x)
+            [i1,i2,..] = find(x)
+            .. = find(x, nmax)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,19 +37,40 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>peut être un vecteur booléen, une matrice booléenne, une hypermatrice booléenne, une matrice ou une hypermatrice "standard".</para>
+                    <para>
+                        Vecteur, matrice, ou hypermatrice de booléens ou de nombres.
+                        Tout nombre non nul est équivalent à %T.
+                        Les vecteurs ou matrices creuses sont acceptés.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>nmax</term>
                 <listitem>
-                    <para>un entier donnant le nombre maximal d'indices à retourner. La valeur par défaut est -1 qui signifie "tous". Cette option peut être utilisée dans un but d'efficacité en évitant la recherche de tous les indices.</para>
+                    <para>
+                        un entier donnant le nombre maximal d'indices à retourner.
+                        La valeur par défaut est -1 qui signifie "tous".
+                        Cette option peut être utilisée dans un but d'efficacité
+                        en évitant la recherche de tous les indices.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ii, i1, i2, ..  </term>
+                <term>ii</term>
                 <listitem>
-                    <para>vecteurs d'entiers des indices ou matrices vides</para>
+                    <para>
+                        vecteur ligne des indices linéarisés des éléments %T ou non nuls,
+                        ou matrice vide [].
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>i1, i2, ..</term>
+                <listitem>
+                    <para>
+                        vecteurs ligne des indices directionels des élements %T ou non nuls,
+                        or matrices vides [].
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -53,17 +81,20 @@
             Si <literal>x</literal> est une matrice booléenne,
         </para>
         <para>
-            <literal>ii=find(x)</literal> retourne le vecteur des indices <literal>i</literal> pour lesquels <literal>x(i)</literal> est "vrai". Si aucun élément vrai
-            n'est trouvé find retourne une matrice vide.
+            <literal>ii=find(x)</literal> retourne le vecteur des indices
+            <literal>i</literal> pour lesquels <literal>x(i)</literal> est "vrai".
+            Si aucun élément vrai n'est trouvé find retourne une matrice vide.
         </para>
         <para>
-            <literal>[i1,i2,..]=find(x)</literal> retourne le vecteur des indices <literal>i1</literal> (pour les lignes) et <literal>i2</literal> (pour les colonnes),..
+            <literal>[i1,i2,..]=find(x)</literal> retourne le vecteur des indices
+            <literal>i1</literal> (pour les lignes) et <literal>i2</literal> (pour les colonnes),..
             tel que <literal>x(i1(n),i2(n),..)</literal> est "vrai". Si aucun élément vrai n'est
             trouvé find retourne des matrices vides dans <literal>i1</literal>,
             <literal>i2</literal>, ...
         </para>
         <para>
-            Si <literal>x</literal> est une matrice standard ou une hypermatrice <literal>find(x)</literal> est interprété comme
+            Si <literal>x</literal> est une matrice standard ou une hypermatrice
+            <literal>find(x)</literal> est interprété comme
             <literal>find(x&lt;&gt;0).</literal>
         </para>
         <para>
@@ -72,42 +103,188 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
+        <para>
+            Avec un tableau booléen :
+        </para>
         <programlisting role="example"><![CDATA[
-beers=["Desperados", "Leffe", "Kronenbourg", "Heineken"];
-find(beers=="Leffe") // OK
-find(beers=="1664") // KO
-find(beers=="Foster") // KO
-beers=[beers, "Foster"]
-find(beers=="Foster") // OK
+A = [%F %T %T %F ; %T %F %F %T]
+find(A)
+find(A,2)
+      ]]></programlisting>
+    <screen><![CDATA[
+--> A = [%F %T %T %F ; %T %F %F %T]
+ A  =
+  F T T F
+  T F F T
 
-A=rand(1,20);
-w=find(A<0.4)
-A(w)
-w=find(A>100)
+--> find(A)
+ ans  =
+   2.   3.   5.   8.
 
-B=rand(1,20);
-w=find(B<0.4,2) //retourne au plus deux valeurs
+--> find(A,2)
+ ans  =
+   2.   3.
+]]></screen>
+    <para>
+        Avec un tableau de nombres :
+    </para>
+        <programlisting role="example"><![CDATA[
+B = [0 -1 0 3 ; 0 -1 -0.4 0]
+find(B)
+[i, j] = find(B);
+[i' j']
+      ]]></programlisting>
+    <screen><![CDATA[
+--> B = [0 -1 0 3 ; 0 -1 -0.4 0]
+ B  =
+   0.  -1.   0.    3.
+   0.  -1.  -0.4   0.
 
-H=rand(4,3,5); //une hypermatrice
-[i,j,k]=find(H>0.9)
+--> find(B)
+ ans  =
+   3.   4.   6.   7.
 
-H(i(1),j(1),k(1))
- ]]></programlisting>
+--> [i, j] = find(B);
+--> [i' j']
+ ans  =
+   1.   2.
+   2.   2.
+   2.   3.
+   1.   4.
+]]></screen>
+    <para>
+        Avec une hypermatrice de nombres :
+    </para>
+        <programlisting role="example"><![CDATA[
+E = grand(2,5,2,"uin",1,6)
+find(E < 4)
+      ]]></programlisting>
+    <screen><![CDATA[
+--> E = grand(2,5,2,"uin",1,6)
+ E  =
+(:,:,1)
+   1.   6.   5.   5.   4.
+   6.   5.   3.   4.   4.
+(:,:,2)
+   2.   4.   3.   6.   5.
+   5.   6.   6.   6.   4.
+
+--> find(E < 4)
+ ans  =
+   1.   6.   11.   15.
+]]></screen>
+    <para>
+         Avec une matrice creuse numérique ou booléenne :
+    </para>
+        <programlisting role="example"><![CDATA[
+C = [0  3  7  0  9  0
+     0  4  0  0  5  0
+     6  0  1  0  3  8
+    ];
+C = sparse(C);
+find(C)
+find(C, 4)
+
+// Avec une matrice creuse booléenne
+D = C > 4
+full(D)
+find(D)
+      ]]></programlisting>
+    <screen><![CDATA[
+--> C = sparse(C);
+--> find(C)
+ ans  =
+    3.    4.    5.    7.    9.    13.    14.    15.    18.
+
+-->find(C, 4)
+ ans  =
+    3.    4.    5.    7.
+
+--> // Avec une matrice creuse booléenne
+--> D = C > 4
+ D  =
+(  3,  6) sparse boolean matrix
+(  1,  3)   T
+(  1,  5)   T
+(  2,  5)   T
+(  3,  1)   T
+(  3,  6)   T
+
+--> full(D)
+ ans  =
+  F F T F T F
+  F F F F T F
+  T F F F F T
+
+-->find(D)
+ ans  =
+    3.    7.    13.    14.    18.
+]]></screen>
+    <para>
+        Avec le résultat booléen d'une condition individuelle sur du texte :
+    </para>
+        <programlisting role="example"><![CDATA[
+beers = ["Desperados", "Leffe", "Kronenbourg", "Heineken"];
+find(beers == "Leffe")
+find(beers == "1664")
+      ]]></programlisting>
+    <screen><![CDATA[
+--> find(beers == "Leffe")
+ ans  =
+   2.
+
+--> find(beers == "1664")
+ ans  =
+    []
+]]></screen>
+    <para>
+        Adressage des éléments sélectionnés :
+    </para>
+        <programlisting role="example"><![CDATA[
+// a) via leurs indices linéarisés :
+H = [ 0  -2  -8  4  -5  -1
+     -2   2  -9  5   0   1
+    ];
+L = H;
+L(find(L<0)) = -10
+
+// b) Directement via le tableau de leur statut booléen :
+L = H;
+L(L<0) = -10
+      ]]></programlisting>
+    <screen><![CDATA[
+--> // a) via leurs indices linéarisés :
+--> H = [ 0  -2  -8  4  -5  -1
+  >      -2   2  -9  5   0   1
+  >     ];
+--> L = H;
+--> L(find(L<0)) = -10
+ L  =
+   0.   -10.  -10.   4.  -10.  -10.
+  -10.   2.   -10.   5.   0.    1.
+
+--> // b) Directement via le tableau de leur statut booléen :
+--> L = H;
+--> L(L<0) = -10
+ L  =
+   0.   -10.  -10.   4.  -10.  -10.
+  -10.   2.   -10.   5.   0.    1.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
+                <link linkend="vectorfind">vectorfind</link>
+            </member>
+            <member>
+                <link linkend="grep">grep</link>
+            </member>
+            <member>
+                <link linkend="findobj">findobj</link>
+            </member>
+            <member>
                 <link linkend="boolean">boolean</link>
-            </member>
-            <member>
-                <link linkend="extraction">extraction</link>
-            </member>
-            <member>
-                <link linkend="insertion">insertion</link>
-            </member>
-            <member>
-                <link linkend="vectorfind">recherche de vecteur</link>
             </member>
         </simplelist>
     </refsection>
