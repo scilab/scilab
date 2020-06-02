@@ -310,6 +310,7 @@ Bug Fixes
 * [#16450](https://bugzilla.scilab.org/16450): Concatenating encoded integers with decimal or complex numbers was not possible.
 * [#16452](https://bugzilla.scilab.org/16452): `setdiff(sparse([1 3 0 2]), sparse([3 7]))` missed returning 0, and wrongly returned 3.
 * [#16454](https://bugzilla.scilab.org/16454): `gsort` yielded an error when sorting any sparse vector including some NaN.
+* [#16458](https://bugzilla.scilab.org/16458): `mean()` did not handle sparse numerical matrices.
 * [#16465](https://bugzilla.scilab.org/16465): Scinotes OpenRecent menu was not updated when it should.
 * [#16473](https://bugzilla.scilab.org/16473): Deleting rows in a sparse squared the matrix with padding zeros (Scilab 6 regression).
 

@@ -16,91 +16,98 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
-          xml:lang="en" xml:id="mean">
+          xml:lang="ru" xml:id="mean">
     <refnamediv>
         <refname>mean</refname>
-        <refpurpose>mean of all values, or means along a given dimension
+        <refpurpose>
+            матожидание всех значений или матожидания по заданной размерности
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Синтаксис</title>
         <synopsis>
             y = mean(x)
             y = mean(x, orientation)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    Vector, matrix, or hypermatrix of real or complex numbers.
-                    Sparse matrices accepted.
+                    вектор, матрица или гиперматрица вещественных или комплексных чисел.
+                    Допускаются разрежённые матрицы.
                     <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orientation</term>
                 <listitem>
-                    direction = index of the dimension along which the mean is computed.
-                    "r" is equivalent to 1. "c" is equivalent to 2. "m" is equivalent
-                    to <literal>find(size(x)>1,1)</literal>.
+                    направление соответствует индексу размерности по которой
+                    вычисляется матожидание. <literal>"r"</literal> эквивалентен 1.
+                    <literal>"c"</literal> эквивалентно 2. <literal>"m"</literal>
+                    эквивалентно <literal>find(size(x)>1,1)</literal>.
                     <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    dense scalar if <varname>orientation</varname> is not used or if
-                    <varname>x</varname> is a scalar. Otherwise, array such that
-                    <literal>size(y,orientation)</literal> is 1 (sparse-encoded if
-                    <varname>x</varname> is so).
+                    плотный скаляр, если <varname>orientation</varname> не используется
+                    либо если <varname>x</varname> скаляр. В противном случае
+                    массив, такой, что <literal>size(y,orientation)</literal>
+                    равен 1 (разрежённо-кодированный, если <varname>x</varname>
+                    является таким).
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            <emphasis role="bold">y = mean(x)</emphasis> returns the mean of all
-            entries. If at least one entry is NaN, NaN is returned.
-            This scalar result is always dense-encoded.
+            <emphasis role="bold">y = mean(x)</emphasis> возвращает матожидание
+            всех элементов. Если хотя бы один элемент равен NaN, то возвращается
+            NaN. Этот скалярный результат всегда плотно кодирован.
         </para>
         <para>
-            <emphasis role="bold">y = mean(x,1)</emphasis> or <literal>y=mean(x,"r")</literal>
-            computes the means accross rows. <varname>y</varname> is a row if
-            <varname>x</varname> is a matrix.
+            <emphasis role="bold">y = mean(x,1)</emphasis> или <literal>y=mean(x,"r")</literal>
+            вычисляет матожидания по строкам. <varname>y</varname> является строкой,
+            если <varname>x</varname> является матрицей.
         </para>
         <para>
-            <emphasis role="bold">y = mean(x,2)</emphasis> or <literal>y=mean(x,"c")</literal>
-            computes the means accross columns. <varname>y</varname> is a column if
-            <varname>x</varname> is a matrix.
+            <emphasis role="bold">y = mean(x,2)</emphasis> или <literal>y=mean(x,"c")</literal>
+            вычисляет матожидания по столбцам. <varname>y</varname> является столбцом,
+            если <varname>x</varname> является матрицей.
         </para>
         <para>
-            <emphasis role="bold">y = mean(x, n)</emphasis> with <literal>3 ≤ n ≤ ndims(x)</literal>
-            computes the means along the n<superscript>th</superscript> dimension of <varname>x</varname>.
+            <emphasis role="bold">y = mean(x, n)</emphasis> при
+            <literal>3 ≤ n ≤ ndims(x)</literal> вычисляет матожидания по
+            n<superscript>й</superscript> размерности <varname>x</varname>.
         </para>
         <para>
-            <emphasis role="bold">y = mean(x,'m')</emphasis> is the mean along the
-            first non singleton dimension of x (for compatibility with Matlab).
+            <emphasis role="bold">y = mean(x,'m')</emphasis> является матожидание
+            по первой неединичной размерности <varname>x</varname> (для совместимости
+            с Matlab).
         </para>
         <para>
             <warning>
-             <literal>mean([])</literal> and <literal>mean(sparse([]))</literal> return NaN.
-             For any <varname>orientation</varname> not "m",
-             <literal>mean([], orientation)</literal> returns <literal>[]</literal>, and
-             <literal>mean(sparse([]), orientation)</literal> returns <literal>sparse([])</literal>.
+             <literal>mean([])</literal> и <literal>mean(sparse([]))</literal>
+             возвращают NaN. Для любого <varname>orientation</varname> не
+             <literal>"m"</literal>, <literal>mean([], orientation)</literal>
+             возвращает <literal>[]</literal>, а
+             <literal>mean(sparse([]), orientation)</literal> возвращает
+             <literal>sparse([])</literal>.
             </warning>
         </para>
         <note>
-            <literal>mean()</literal> can be overloaded.
+            <literal>mean()</literal> может быть перегружена.
         </note>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <para>
-            With a matrix:
+            С матрицей:
         </para>
         <programlisting role="example"><![CDATA[
 A = [0,1,1,0,1;1,0,0,1,1;0,0,1,0,0;0,0,1,0,0]
@@ -132,7 +139,7 @@ mean(A, 'c')
    0.2
 ]]></screen>
         <para>
-            With an hypermatrix:
+            С гиперматрицей:
         </para>
         <programlisting role="example"><![CDATA[
 A = [1,0,0,1,0,0,1,1,1,1,1,1,0,1,0,1,1,0,1,1,1,1,1,0,1,0,1,0,1,1,1,0,1,0,0,1,0,1,1,0];
@@ -143,7 +150,7 @@ mean(A, 'c')
 mean(A, 3)
 
 A = matrix(1:12, [1,1,2,3,2]);
-// in this case mean(A,'m') is equivalent to mean(A,3), the first non singleton dimension of A
+// в этом случае mean(A,'m') эквивалентно mean(A,3), первая неединичная размерность A
 mean(A, 'm')
      ]]></programlisting>
         <screen><![CDATA[
@@ -196,7 +203,7 @@ mean(A, 'm')
 ]]></screen>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="sum">sum</link>
@@ -210,18 +217,18 @@ mean(A, 'm')
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>History</title>
+        <title>История</title>
         <revhistory>
             <revision>
                 <revnumber>6.0.1</revnumber>
                 <revdescription>
-                    mean() is now overloadable.
+                    mean() теперь может быть перегружена.
                 </revdescription>
             </revision>
             <revision>
                 <revnumber>6.1.1</revnumber>
                 <revdescription>
-                    Extension to sparse matrices.
+                    Расширение до разрежённых матриц.
                 </revdescription>
             </revision>
         </revhistory>
