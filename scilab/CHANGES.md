@@ -324,6 +324,7 @@ Bug Fixes
 * [#16401](https://bugzilla.scilab.org/16401): global `external_object_java` class was crashing Scilab.
 * [#16403](https://bugzilla.scilab.org/16403): 1D extraction of matrix with implicit index had wrong dimensions.
 * [#16406](https://bugzilla.scilab.org/16406): `edit_curv` yielded an error when reading data.
+* [#16407](https://bugzilla.scilab.org/16407): Fec rendering was incorrect
 * [#16408](https://bugzilla.scilab.org/16408): toJSON(var, indent, filename) is the right call sequence. Documentation has been udpated.
 * [#16445](https://bugzilla.scilab.org/16445): `colorbar(..)` ignored how to guess `umin` and `umax` for a Champ object (with .colored="on").
 * [#16449](https://bugzilla.scilab.org/16449): Insertion of implicit vector in Cell was crahsing Scilab
