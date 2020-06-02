@@ -552,6 +552,7 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
             //compute the row size for padding for the full matrix.
             for (int iCols1 = 0; iCols1 < getCols() ; iCols1++)
             {
+                DoubleFormat dfR, dfI;
                 for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
                 {
                     int iTotalWidth = 0;
@@ -559,13 +560,12 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     _piDims[1] = iCols1;
                     int iPos = getIndex(_piDims);
 
-                    DoubleFormat dfR, dfI;
                     getComplexFormat(m_pRealData[iPos], m_pImgData[iPos], &iTotalWidth, &dfR, &dfI);
                     // keep track of real and imaginary part width for further alignment
                     piISize[iCols1] = std::max(piISize[iCols1], dfI.iWidth);
                     piRSize[iCols1] = std::max(piRSize[iCols1], dfR.iWidth);
-                    piSize[iCols1]  = std::max(piSize[iCols1], iTotalWidth);
                 }
+                piSize[iCols1] = piISize[iCols1] + piRSize[iCols1] + 2 * (dfR.bPrintBlank ? BLANK_SIZE : 0) + BLANK_SIZE + SIZE_SYMBOL_I;
             }
 
             for (int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
