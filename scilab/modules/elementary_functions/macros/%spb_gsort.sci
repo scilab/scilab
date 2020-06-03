@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 //
-// Copyright (C) 2019 - Samuel GOUGEON
+// Copyright (C) 2018 - 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -9,17 +9,12 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function varargout = %b_gsort(varargin)
-    // Boolean hypermatrices are completely processed in %hm_gsort
-    // Sparse boolean matrices are sent to %spb_gsort
-
-    b = iconvert(varargin(1), 1);
-    if argn(1)==1 then
-        b = gsort(b, varargin(2:$))==int8(1);
-        varargout = list(b);
+function [A, k] = %spb_gsort(A, varargin)
+    lhs = argn(1)
+    if lhs > 1 then
+        [A, k] = gsort(A*1, varargin(:))
     else
-        [b, k] = gsort(b, varargin(2:$));
-        b = (b == int8(1));
-        varargout = list(b, k);
+        A = gsort(A*1, varargin(:))
     end
+    A = (A==1)
 endfunction

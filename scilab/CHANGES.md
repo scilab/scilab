@@ -191,6 +191,10 @@ Feature changes and additions
 * `atomsGetInstalledPath` is no longer sensitive to the case or completeness of the modules names. Providing the modules versions is now optional.
 * `function` replaces `mc` as the new overloading code for functions in Scilab language.
 
+6.1.1
+* `gsort` is fully enabled for sparse vectors and 2D matrices, in all `g, r, c, lr, lc` methods. It was formerly limited to real or complex vectors and only to the `g` mode. All boolean, real or complex vector or 2D matrices can now be sorted with any method. Multi-level sorting is enabled for all types of sparse input.
+* `unique` is enabled for any 2D sparse arrays.
+
 Help pages:
 -----------
 
@@ -268,6 +272,8 @@ Bug Fixes
 * [#8059](https://bugzilla.scilab.org/8059): A local `.wgetrc` config file could make troubles in `atomsDownload`.
 * [#9909](https://bugzilla.scilab.org/9909): In the help browser, add a way to open the online version of the current page.
 * [#12889](https://bugzilla.scilab.org/12889): In the help browser, add a menu allowing to select the language of help pages, regardless of the language of the session.
+* [#15839](https://bugzilla.scilab.org/15839): `gsort`: the only sparse possible input were real or complex vectors, and only with the `g` method.
+* [#15842](https://bugzilla.scilab.org/15842): `unique` could not process 2D sparse matrices. 
 * [#16106](https://bugzilla.scilab.org/16106): Xcos sciblk4 user-defined blocks did not handle opar and odstate/oz correctly.
 * [#16337](https://bugzilla.scilab.org/16337): The 3rd output of `[U,km,ku] = unique(..)` was not implemented.
 * [#16342](https://bugzilla.scilab.org/16342): `strcat()` was much slower in Scilab 6.0.2.
@@ -284,6 +290,8 @@ Bug Fixes
 * [#16406](https://bugzilla.scilab.org/16406): `edit_curv` yielded an error when reading data.
 * [#16408](https://bugzilla.scilab.org/16408): toJSON(var, indent, filename) is the right call sequence. Documentation has been udpated.
 * [#16445](https://bugzilla.scilab.org/16445): `colorbar(..)` ignored how to guess `umin` and `umax` for a Champ object (with .colored="on").
+* [#16452](https://bugzilla.scilab.org/16452): `setdiff(sparse([1 3 0 2]), sparse([3 7]))` missed returning 0, and wrongly returned 3.
+* [#16454](https://bugzilla.scilab.org/16454): `gsort` yielded an error when sorting any sparse vector including some NaN.
 
 
 ### Bugs fixed in 6.1.0:

@@ -10,7 +10,9 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 // =============================================================================
-
+//
+// NOTE: gsort() is tested for sparse booleans in gsort_sparse.tst
+//
 // <-- CLI SHELL MODE -->
 // <-- NO CHECK REF -->
 
