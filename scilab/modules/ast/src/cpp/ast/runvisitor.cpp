@@ -662,6 +662,12 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     {
         //get IL
         types::ImplicitList* pVar = pIT->getAs<types::ImplicitList>();
+        if (pVar->isComputable() == false)
+        {
+            std::wostringstream os;
+            os << _W("Invalid index.\n");
+            throw ast::InternalError(os.str(), 999, e.getLocation());
+        }
         //get IL initial Type
         types::InternalType * pIL = pVar->getInitalType();
         //std::cout << "for IL: " << pIL << std::endl;

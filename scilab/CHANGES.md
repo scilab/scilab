@@ -505,6 +505,7 @@ Bug Fixes
 * [#16197](https://bugzilla.scilab.org/16197): result of extraction was not decomplexified when applicable.
 * [#16199](https://bugzilla.scilab.org/16199): In the documentation, `zpk2tf` and `zpk2ss` examples yielded an error.
 * [#16200](https://bugzilla.scilab.org/16200): Concatenation of transposed cells crashed Scilab.
+* [#16204](https://bugzilla.scilab.org/16204): `for i=1:$, end` crashed Scilab.
 * [#16208](https://bugzilla.scilab.org/16208): Using 3D string matrix with old C-api gateways may crash Scilab.
 * [#16209](https://bugzilla.scilab.org/16209): `grand` causes a freeze after several consecutive calls when using default base generator.
 * [#16210](https://bugzilla.scilab.org/16210): The uicontrol.units = "normalized" property was not described.
