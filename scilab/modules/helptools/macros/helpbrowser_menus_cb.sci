@@ -40,10 +40,15 @@ function helpbrowser_menus_cb(action, param)
             messagebox(msg, "modal")
             return
         end
-        v = getversion("scilab")
-        v = msprintf("%d.%d.%d", v(1),v(2),v(3))
+        v = getversion()
+        if grep(v, "-branch-") <> []
+            v = "current"
+        else
+            v = getversion("scilab")
+            v = msprintf("%d.%d.%d", v(1),v(2),v(3))
+        end
         url = "https://help.scilab.org/docs/%s/%s/%s.html"
-        url = msprintf(url,v, currentLang, id)
+        url = msprintf(url, v, currentLang, id)
         openURL(url)
 
     case "bugs"
