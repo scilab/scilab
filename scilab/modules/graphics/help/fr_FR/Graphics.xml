@@ -933,14 +933,6 @@
                     <para>renvoie la liste des fenêtre graphiques</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="xname">xname</link>
-                </term>
-                <listitem>
-                    <para>change le nom d'une fenêtre graphique</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

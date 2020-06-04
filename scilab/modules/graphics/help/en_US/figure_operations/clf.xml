@@ -135,7 +135,7 @@
             <title>Clearing specific parts of a figure</title>
             <itemizedlist>
                 <listitem>
-                    <literal>xname("")</literal> or <literal>gcf().name = ""</literal> clears the
+                    <literal>gcf().name = ""</literal> clears the
                     name of the window, displayed at its very top left corner.
                 </listitem>
                 <listitem>
@@ -195,9 +195,6 @@
             </member>
             <member>
                 <link linkend="console_properties">ShowHiddenHandles</link>
-            </member>
-            <member>
-                <link linkend="xname">xname</link>
             </member>
             <member>
                 <link linkend="uicontrol">frames</link>

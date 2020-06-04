@@ -242,6 +242,7 @@ Obsolete functions or features
 * `hist3d` is renamed `bar3d`. The former `hist3d` function is declared obsolete and will be replaced by an actual 3D histogram function in Scilab 6.2.
 * `scatter3` is obsolete. Please use `scatter3d` instead.
 * `saveafterncommands` is canceled. It will be removed from Scilab 6.1.x
+* `xname` is obsolete. It will be removed from Scilab 6.2.x. Please use `gcf().figure_name` instead.
 
 Removed Functions
 -----------------

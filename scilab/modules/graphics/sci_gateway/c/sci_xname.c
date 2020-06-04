@@ -23,6 +23,7 @@
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "localization.h"
 
 #include "BuildObjects.h"
@@ -44,6 +45,8 @@ int sci_xname(char *fname, void *pvApiCtx)
 
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
+
+    sciprint(_("%s is obsolete. It will be removed from Scilab %s.\nPlease use %s instead.\n"), "xname()", "6.2.x", "gcf().figure_name");
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
     if (sciErr.iErr)

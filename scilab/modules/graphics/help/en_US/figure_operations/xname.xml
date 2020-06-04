@@ -16,7 +16,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xname">
     <refnamediv>
         <refname>xname</refname>
-        <refpurpose>change the name of the current graphics window</refpurpose>
+        <refpurpose>
+            change the name of the current graphics window
+            <emphasis role="bold">(obsolete)</emphasis>)
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
@@ -35,6 +38,10 @@
     </refsection>
     <refsection>
         <title>Description</title>
+        <warning>
+            <literal>xname()</literal> is obsolete. It will be removed in Scilab 6.2.x.
+            Please use <literal>gcf().figure_name = "New name"</literal> instead.
+        </warning>
         <para>
             <function>xname</function> changes the name of the current graphics window.
         </para>
@@ -47,5 +54,16 @@ x=-%pi*2:0.1:%pi*2;
 plot(x,sin(x))
 xname("sin(x) with x between -%pi*2 and %pi*2")
  ]]></programlisting>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    xname() declared obsolete. Replaced with gcf().figure_name="New name".
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
