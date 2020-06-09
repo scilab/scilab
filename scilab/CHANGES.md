@@ -545,3 +545,4 @@ Bug Fixes
 * [#16333](https://bugzilla.scilab.org/16333): `tree_show` crashed for an input Xcos block.
 * [#16373](https://bugzilla.scilab.org/16373): Scilab Crashed or showing wrong output when running on Arm processor
 * [#16459](https://bugzilla.scilab.org/16459): The display of one column hypermatrix was wrong.
+* [#16463](https://bugzilla.scilab.org/16463): `matrix(sparse([]),[0 0])` yielded `[]` instead of `sparse([])`.

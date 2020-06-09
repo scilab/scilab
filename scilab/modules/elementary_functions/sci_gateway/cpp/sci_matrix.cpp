@@ -52,8 +52,8 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
     }
 
     if (in[0]->isArrayOf()      == false &&
-            in[0]->isSparse()       == false &&
-            in[0]->isSparseBool()   == false)
+        in[0]->isSparse()       == false &&
+        in[0]->isSparseBool()   == false)
     {
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_matrix";
         return Overload::call(wstFuncName, in, _iRetCount, out);
@@ -62,19 +62,7 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
     pGTIn = in[0]->getAs<types::GenericType>();
     if (pGTIn->getSize() == 0)
     {
-        if (pGTIn->isStruct())
-        {
-            out.push_back(new types::Struct());
-        }
-        else if (pGTIn->isCell())
-        {
-            out.push_back(new types::Cell());
-        }
-        else
-        {
-            out.push_back(types::Double::Empty());
-        }
-
+        out.push_back(pGTIn->clone());
         return types::Function::OK;
     }
 
