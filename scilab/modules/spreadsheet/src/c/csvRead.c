@@ -511,12 +511,15 @@ static void moveEmptyLinesToEnd(wchar_t** lines, int* nonEmptyLines)
 // =============================================================================
 static int hasOnlyBlankCharacters(wchar_t** line)
 {
+    const wchar_t* iter = *line;
+
+    // EMPTY_STR is a tagged, non-allocated value for the empty string. It is 
+    // used to flag a blank string.
     if (*line == EMPTY_STR)
     {
         return 1;
     }
 
-    const wchar_t* iter = *line;
     while (*iter == L'\t' || *iter == L'\r' || *iter == L'\n' || *iter == L' ')
     {
         iter++;
