@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ This file is part of the Cardiovascular Wawes Analysis toolbox
+ Copyright (C) 2014 - INRIA - Serge Steer
+ This file must be used under the terms of the CeCILL.
+ This source file is licensed as described in the file COPYING, which
+ you should have received as part of this distribution.  The terms
+ are also available at
+ http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xml:id="sgolay" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>sgolay</refname>
+
+    <refpurpose>Savitzky-Golay Filter Design.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[B [,C]] = sgolay(k,nf [,w])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>a positive scalar with integer value: the fitting polynomial
+          degree.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nf</term>
+
+        <listitem>
+          <para>a positive scalar with integer value: the filter length, must
+          be odd and greater the k+1.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>w</term>
+
+        <listitem>
+          <para>a real vector of length nf with positive entries: the weights.
+          If omitted no weights are applied.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>B</term>
+
+        <listitem>
+          <para>a real n by n array: the set of filter coefficients: the early
+          rows of B smooth based on future values and later rows smooth based
+          on past values, with the middle row using half future and half past.
+          In particular, you can use row i to estimate x(k) based on the i-1
+          preceding values and the n-i following values of x values as y(k) =
+          B(i,:) * x(k-i+1:k+n-i).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>C</term>
+
+        <listitem>
+          <para>a real n by k+1 array: the matrix of differentiation filters.
+          Each column of C is a differentiation filter for derivatives of
+          order P-1 where P is the column index. Given a signal X with length
+          nf, an estimate of the P-th order derivative of its middle value can
+          be found from: <para/> (P) X ((nf+1)/2) = P!*C(:,P+1)'*X</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This function computes the smoothing FIR Savitzky-Golay
+    Filter. This is achieved by fitting successive sub-sets of
+    adjacent data points with a low-degree polynomial by the method of
+    linear least squares.</para>
+
+    <para>This filter can also be used to approximate numerical
+    derivatives.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <variablelist>
+      <varlistentry>
+        <listitem>
+          <para>The sgolay function can be used to construct FIR filter with
+          no group delay. The following instructions explains what the <link
+          linkend="sgolayfilt">sgolayfilt</link> function does:</para>
+
+          <programlisting role="example"><![CDATA[
+dt=0.01;
+t = (0:0.01:4*%pi)';
+x = sin(t)+0.05*rand(t,'normal');
+
+nf = 61;
+[B,C] = sgolay(3,nf); 
+nfs2 = floor(nf/2);
+
+//compute the middle part of the filtered signal
+xfm = filter(B(nfs2+1,:), 1, x);
+xfm = xfm(nf:$);
+//compute the left part of the filtered signal
+xfl = B(1:nfs2,:)*x(1:nf);
+//compute the right part of the filtered signal
+xfr = B(nfs2+2:nf,:)*x($-nf+1:$);
+clf;ax=gca();
+plot(t,x,'b',t,[xfl;xfm;xfr],'r');
+e=gce();set(e.children(1),"thickness",2);
+legend(["Raw","Filtered"]);
+    ]]></programlisting>
+
+          <para>The above script generate this graph:</para>
+
+          <scilab:image><![CDATA[
+dt=0.01;
+t = (0:0.01:4*%pi)';
+x = sin(t)+0.05*rand(t,'normal');
+
+nf = 61;
+[B,C] = sgolay(3,nf); 
+nfs2 = floor(nf/2);
+
+//compute the middle part of the filtered signal
+xfm = filter(B(nfs2+1,:), 1, x);
+xfm = xfm(nf:$);
+//compute the left part of the filtered signal
+xfl = B(1:nfs2,:)*x(1:nf);
+//compute the right part of the filtered signal
+xfr = B(nfs2+2:nf,:)*x($-nf+1:$);
+clf;ax=gca();
+plot(t,x,'b',t,[xfl;xfm;xfr],'r');
+e=gce();set(e.children(1),"thickness",2);
+legend(["Raw","Filtered"]);
+    ]]></scilab:image>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <listitem>
+          <para>It can also be used to obtain approximate derivatives:</para>
+
+          <programlisting role="example"><![CDATA[
+dt=0.01;
+t = (0:0.01:4*%pi)';
+x = sin(t)+0.03*rand(t,'normal');
+
+nf = 61;
+[B,C] = sgolay(3,nf); 
+nfs2 = floor(nf/2);
+
+dx=-conv(x,C(:,2)',"valid");
+d2x=2*conv(x,C(:,3)',"valid");
+
+clf();
+subplot(211)
+plot(t(2:$),diff(x)/dt,'g',t,cos(t),'b',t(nfs2+1:$-nfs2),dx/dt,'r');
+legend(["diff","theoretical","sgolay"]);
+title("First order differentiation")
+subplot(212)
+plot(t,-sin(t),'b',t(nfs2+1:$-nfs2),d2x/(dt^2),'r');
+legend(["theoretical","sgolay"]);
+title("Second order differentiation")
+    ]]></programlisting>
+
+          <scilab:image><![CDATA[
+dt=0.01;
+t = (0:0.01:4*%pi)';
+x = sin(t)+0.03*rand(t,'normal');
+
+nf = 61;
+[B,C] = sgolay(3,nf); 
+nfs2 = floor(nf/2);
+
+dx=-conv(x,C(:,2)',"valid");
+d2x=2*conv(x,C(:,3)',"valid");
+
+clf();
+subplot(211)
+plot(t(2:$),diff(x)/dt,'g',t,cos(t),'b',t(nfs2+1:$-nfs2),dx/dt,'r');
+legend(["diff","theoretical","sgolay"]);
+title("First order differentiation")
+subplot(212)
+plot(t,-sin(t),'b',t(nfs2+1:$-nfs2),d2x/(dt^2),'r');
+legend(["theoretical","sgolay"]);
+title("Second order differentiation")
+    ]]></scilab:image>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sgolayfilt">sgolayfilt</link></member>
+
+      <member><link linkend="conv">conv</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Bibliography</title>
+
+    <para>Abraham Savitzky et Marcel J. E. Golay, « Smoothing and
+    Differentiation of Data by Simplified Least Squares Procedures »,
+    Analytical Chemistry, vol. 8, no 36,‎ 1964, p. 1627–1639 (DOI
+    10.1021/ac60214a047)</para>
+
+    <para><ulink
+    url="http://en.wikipedia.org/wiki/Savitzky%E2%80%93Golay_filter">http://en.wikipedia.org/wiki/Savitzky-Golay_filter</ulink>.</para>
+  </refsection>
+
+  <refsection>
+    <title>History</title>
+
+    <revhistory>
+      <revision>
+        <revnumber>0.0</revnumber>
+
+        <revdescription>Function added</revdescription>
+      </revision>
+    </revhistory>
+  </refsection>
+
+  <refsection>
+    <title>Used Functions</title>
+
+    <para><link linkend="pinv">pinv</link></para>
+  </refsection>
+</refentry>

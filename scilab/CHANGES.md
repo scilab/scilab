@@ -213,6 +213,7 @@ Feature changes and additions on 6.1.1
   - Decimal positive integers > 2^52 up to 2^1024 = number_properties("huge") can now be processed, with bitnum up to 1024 instead of 52.
   - bitnum can actually be an array. It is now optional as well for input decimal integers.
 * The `Arnoldi` module is now internal.
+* `sgolay` and the companion `sgolayfilter` and `sgolaydiff` functions have been added to implement Savitsky-Golay filters.
 
 Help pages:
 -----------
