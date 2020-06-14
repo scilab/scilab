@@ -53,7 +53,7 @@ y = complex(A,B);
 assert_checkequal(b, [3 2 1 4 5]);
 assert_checkequal(y(b), a);
 
-refMsg = msprintf(_("%s: Argument #%d: Must be in the set {%s}.\n"), "gsort", 2, "''g'',''r'',''c'',''lc'',''lr''");
+refMsg = msprintf(_("%s: Argument #%d: Must be in the set {%s} or integer in range [%d, %d].\n"), "gsort", 2, "''g'',''r'',''c'',''lc'',''lr''", 1, 2);
 assert_checkerror("[a,b] = gsort(y,''l'')", refMsg);
 
 ierr = execstr("[a,b] = gsort(y,''g'');","errcatch");
@@ -74,7 +74,7 @@ assert_checkequal(ierr, 0);
 // -------------------------------------------------------------------
 // Error messages
 // -------------------------------------------------------------------
-msg = msprintf(_("%s: Argument #%d: Must be in the set {%s}.\n"), "gsort", 2, "''g'',''r'',''c'',''lc'',''lr''");
+msg = msprintf(_("%s: Argument #%d: Must be in the set {%s} or integer in range [%d, %d].\n"), "gsort", 2, "''g'',''r'',''c'',''lc'',''lr''", 1, 2);
 assert_checkerror("gsort(%i,''q'')", msg);
 msg = msprintf(_("%s: Argument #%d: Text(s) expected.\n"), "gsort", 3);
 assert_checkerror("gsort(%i,''g'',1)", msg);
@@ -258,8 +258,7 @@ end
 m = complex([7  6  9  2  8  1  0  4  3  2], 0);
 assert_checkequal(gsort(m, "g", "i", list(atan)), m);
 assert_checkequal(gsort(m, "g", "i", list(imag)), m);
-//assert_checkequal(gsort(m, "g", ["i" "i"], list(imag, atan)), m);
-// zeros(n,2) is actually sorted, while it should be preserved. TO BE INVESTIGATED
+assert_checkequal(gsort(m, "g", ["i" "i"], list(imag, atan)), m);
 assert_checkequal(gsort(m+%i, "g", "d", list(imag)), m+%i);
 
 // -------------------------------------------------------------------

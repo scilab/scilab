@@ -63,7 +63,8 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
 
     // Get the sorting method, always as argin#2 for all generic types
     // ----------------------
-    char* msg = _("%s: Argument #%d: 'g','r','c','lc','lr' or integer in [1, %d] expected.\n");
+    char* msg = _("%s: Argument #%d: Must be in the set {%s} or integer in range [%d, %d].\n");
+    std::string argSetError = "'g','r','c','lc','lr'";
     std::wstring wstrProcess = L"g";
     int iOrientation = 0;
     int ndims = static_cast<int>(pGTIn->getDims());
@@ -84,7 +85,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
 
             if (iOrientation <= 0 || iOrientation > ndims)
             {
-                Scierror(999, msg, "gsort", 2, ndims);
+                Scierror(999, msg, "gsort", 2, argSetError.data(), 1, ndims);
                 return types::Function::Error;
             }
             if ( iOrientation == 1 )
@@ -99,7 +100,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
         }
         else if (in[1]->isString() == false)
         {
-            Scierror(999, msg, "gsort", 2, ndims);
+            Scierror(999, msg, "gsort", 2, argSetError.data(), 1, ndims);
             return types::Function::Error;
         }
         else
@@ -112,7 +113,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
                  wstrProcess != L"lc" &&
                  wstrProcess != L"lr")
             {
-                Scierror(999, msg, "gsort", 2, ndims);
+                Scierror(999, msg, "gsort", 2, argSetError.data(), 1, ndims);
                 return types::Function::Error;
             }
         }
