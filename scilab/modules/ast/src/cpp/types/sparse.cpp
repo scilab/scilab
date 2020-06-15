@@ -1911,7 +1911,7 @@ GenericType* Sparse::remove(typed_list* _pArgs)
     }
     else
     {
-        pOut = new Sparse(piNewDims[0], piNewDims[0], isComplex());
+        pOut = new Sparse(piNewDims[0], piNewDims[1], isComplex());
     }
 
     delete[] piNewDims;
