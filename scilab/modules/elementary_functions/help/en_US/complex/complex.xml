@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,42 +19,37 @@
           xmlns:scilab="http://www.scilab.org" xml:id="complex" xml:lang="en">
     <refnamediv>
         <refname>complex</refname>
-        <refpurpose>Create a complex number.</refpurpose>
+        <refpurpose>Build an array of complex numbers from their parts</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
         <synopsis>
-            c=complex(a)
-            c=complex(a,b)
+            c = complex(u)
+            c = complex(a, b)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>a</term>
+                <term>u, a, b</term>
                 <listitem>
-                    <para>
-                        a 1-by-1 or a n-by-m real matrix of doubles, the real part.
-                        If <literal>a</literal> has an imaginary part, an error
-                        is generated.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>b</term>
-                <listitem>
-                    <para>
-                        a 1-by-1 or a n-by-m real matrix of doubles, the imaginary part (default b=0).
-                        If <literal>b</literal> has an imaginary part, an error
-                        is generated.
-                    </para>
+                    scalars, vectors, matrices or hypermatrices of real numbers.
+                    If both <varname>a</varname> and <varname>b</varname> are not
+                    scalars, they must have the same sizes.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>c</term>
                 <listitem>
-                    <para>a n-by-m complex matrix of doubles, the complex number.</para>
+                    array of complex numbers, of the size of <varname>u</varname> or of
+                    <varname>a</varname> and <varname>b</varname>.
+                    If <varname>u</varname> is sparse, or if <varname>a</varname> and
+                    <varname>b</varname> have the same sizes and both are sparse,
+                    then <varname>c</varname> is also sparse.
+                    Otherwise <varname>c</varname> is dense-encoded.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -62,18 +57,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            c=complex(a) creates a complex number from its real part <literal>a</literal>
-            and zero as the imaginary part.
+            <emphasis role="bold">c = complex(u)</emphasis> creates an array
+            of complex numbers from their real parts <varname>u</varname>,
+            and zero as imaginary parts.
         </para>
         <para>
-            c=complex(a,b) creates a complex number from its real part <literal>a</literal>
-            and imaginary part <literal>b</literal>.
+            <emphasis role="bold">c = complex(a,b)</emphasis> creates an array
+            of complex numbers from their respective real parts <varname>a</varname>
+            and their imaginary parts <varname>b</varname>.
         </para>
         <para>
-            This function is a substitute for expressions such as <literal>a+%i*b</literal>,
-            especially in cases where the complex arithmetic interferes with particular
-            floating point numbers such as <literal>%inf</literal> or
-            <literal>%nan</literal>.
+            This function is equivalent to <literal>a + imult(b)</literal>, which
+            handles properly special Inf and NaN real and imaginary parts.
         </para>
     </refsection>
     <refsection>
@@ -87,26 +82,26 @@ complex(1,2)
 complex([1 2],[3 4])
  ]]></programlisting>
         <para>
-            If <literal>a</literal> only is specified, then the imaginary
+            If <varname>a</varname> only is specified, then the imaginary
             part is set to zero.
         </para>
         <programlisting role="example"><![CDATA[
 complex([1 2 3])
  ]]></programlisting>
         <para>
-            If <literal>a</literal> is a scalar and <literal>b</literal>
-            is a matrix, then the result <literal>c</literal> has the same
-            size as <literal>b</literal>.
-            Similarly, if <literal>b</literal> is a scalar and <literal>a</literal>
-            is a matrix, then the result <literal>c</literal> has the same
-            size as <literal>a</literal>.
+            If <varname>a</varname> is a scalar and <varname>b</varname>
+            is a matrix, then the result <varname>c</varname> has the same
+            size as <varname>b</varname>.
+            Similarly, if <varname>b</varname> is a scalar and <varname>a</varname>
+            is a matrix, then the result <varname>c</varname> has the same
+            size as <varname>a</varname>.
         </para>
         <programlisting role="example"><![CDATA[
 c = complex([1 2 3], 4)
 c = complex(1, [2 3 4])
  ]]></programlisting>
         <para>
-            If <literal>a</literal> and <literal>b</literal> are two
+            If <varname>a</varname> and <varname>b</varname> are two
             matrices with different sizes, an error is generated, as in the
             following session.
         </para>
@@ -118,29 +113,41 @@ at line      33 of function complex called by :
 complex(ones(2,3),ones(4,5))
  ]]></screen>
         <para>
-            The purpose of the <literal>complex</literal> function is to manage
-            IEEE floating point numbers such as Nans or Infinities.
-            In the following example, we show that creating a complex number where
-            the real and imaginary parts are complex is not straightforward if
-            we use the complex arithmetic.
-            This is because the product <literal>%i</literal> times <literal>%inf</literal>
-            is evaluated as <literal>(0+%i) * (%inf+%i*0)</literal>.
-            This produces the intermediate expression <literal>0*%inf</literal>,
-            which is <literal>%nan</literal>.
+            With special real or/and imaginary parts:
         </para>
+        <programlisting role="example"><![CDATA[
+r = [0   0    0 %inf %inf %inf %nan %nan %nan].';
+i = [0 %inf %nan  0  %inf %nan   0  %inf %nan].';
+[r, i]
+
+// Then let's compare complex(r, i) with r + i*%i :
+[complex(r,i), r+i*%i]
+ ]]></programlisting>
         <screen><![CDATA[
--->%inf+%i*%inf
+--> [r, i]
  ans  =
-    Nan + Inf
- ]]></screen>
-        <para>
-            The solution of this issue is to use the <literal>complex</literal>
-            function.
-        </para>
-        <screen><![CDATA[
--->complex(%inf,%inf)
+   0.    0.
+   0.    Inf
+   0.    Nan
+   Inf   0.
+   Inf   Inf
+   Inf   Nan
+   Nan   0.
+   Nan   Inf
+   Nan   Nan
+
+// Then let's compare complex(r, i) with r + i*%i :
+--> [complex(r,i), r+i*%i]
  ans  =
-    Inf + Inf
+   0.  + 0.i    0.  + 0.i
+   0.  + Infi   Nan + Infi
+   0.  + Nani   Nan + Nani
+   Inf + 0.i    Inf + 0.i
+   Inf + Infi   Nan + Infi
+   Inf + Nani   Nan + Nani
+   Nan + 0.i    Nan + 0.i
+   Nan + Infi   Nan + Infi
+   Nan + Nani   Nan + Nani
  ]]></screen>
     </refsection>
     <refsection role="see also">
@@ -153,5 +160,15 @@ complex(ones(2,3),ones(4,5))
                 <link linkend="imult">imult</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>Extension to sparse arrays.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

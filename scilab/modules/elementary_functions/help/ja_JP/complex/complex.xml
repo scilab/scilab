@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -19,42 +19,37 @@
           xmlns:scilab="http://www.scilab.org" xml:id="complex" xml:lang="ja">
     <refnamediv>
         <refname>complex</refname>
-        <refpurpose>複素数を計算する.</refpurpose>
+        <refpurpose>複素数を計算する</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            c=complex(a)
-            c=complex(a,b)
+            c = complex(u)
+            c = complex(a, b)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
         <variablelist>
             <varlistentry>
-                <term>a</term>
+                <term>u, a, b</term>
                 <listitem>
-                    <para>
-                        1行1列またはn行m列の倍精度実数行列, 実部.
-                        <literal>a</literal> が虚部を有する場合,
-                        エラーが発生します.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>b</term>
-                <listitem>
-                    <para>
-                        1行1列またはn行m列の倍精度実数行列, 虚部 (デフォルト b=0).
-                        <literal>b</literal> が虚部を有する場合,
-                        エラーが発生します.
-                    </para>
+                    scalars, vectors, matrices or hypermatrices of real numbers.
+                    If both <varname>a</varname> and <varname>b</varname> are not
+                    scalars, they must have the same sizes.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>c</term>
                 <listitem>
-                    <para>n行m列の倍精度複素行列, 複素数.</para>
+                    array of complex numbers, of the size of <varname>u</varname> or of
+                    <varname>a</varname> and <varname>b</varname>.
+                    If <varname>u</varname> is sparse, or if <varname>a</varname> and
+                    <varname>b</varname> have the same sizes and both are sparse,
+                    then <varname>c</varname> is also sparse.
+                    Otherwise <varname>c</varname> is dense-encoded.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -62,18 +57,16 @@
     <refsection>
         <title>説明</title>
         <para>
-            c=complex(a) は, <literal>a</literal>を実部,
+            <emphasis role="bold">c = complex(u)</emphasis> は, <varname>u</varname>を実部,
             0 を虚部とする複素数を作成します.
         </para>
         <para>
-            c=complex(a,b) は実部<literal>a</literal> ,
-            虚部<literal>b</literal>の複素数を作成します.
+            <emphasis role="bold">c = complex(a,b)</emphasis> は実部<varname>a</varname> ,
+            虚部<varname>b</varname>の複素数を作成します.
         </para>
         <para>
-            この関数は,
-            特に複素数演算が<literal>%inf</literal> または<literal>%nan</literal>
-            のような特定の浮動小数点数と競合する場合に,
-            <literal>a+%i*b</literal>のような式の代替手段となります.
+            This function is equivalent to <literal>a + imult(b)</literal>, which
+            handles properly special Inf and NaN real and imaginary parts.
         </para>
     </refsection>
     <refsection>
@@ -86,25 +79,25 @@ complex(1,2)
 complex([1 2],[3 4])
  ]]></programlisting>
         <para>
-            <literal>a</literal> のみが指定された場合, 虚部は0に設定されます.
+            <varname>a</varname> のみが指定された場合, 虚部は0に設定されます.
         </para>
         <programlisting role="example"><![CDATA[
 complex([1 2 3])
  ]]></programlisting>
         <para>
-            <literal>a</literal> がスカラーで <literal>b</literal> が
-            行列の場合, 結果 <literal>c</literal> は,
-            <literal>b</literal>と同じ大きさとなります.
-            同様に, <literal>b</literal> がスカラーで <literal>a</literal>
-            が行列の場合, 結果 <literal>c</literal> は
-            <literal>a</literal>と同じ大きさになります.
+            <varname>a</varname> がスカラーで <varname>b</varname> が
+            行列の場合, 結果 <varname>c</varname> は,
+            <varname>b</varname>と同じ大きさとなります.
+            同様に, <varname>b</varname> がスカラーで <varname>a</varname>
+            が行列の場合, 結果 <varname>c</varname> は
+            <varname>a</varname>と同じ大きさになります.
         </para>
         <programlisting role="example"><![CDATA[
 c = complex([1 2 3], 4)
 c = complex(1, [2 3 4])
  ]]></programlisting>
         <para>
-            <literal>a</literal> と <literal>b</literal> が
+            <varname>a</varname> と <varname>b</varname> が
             異なる大きさの行列の場合,以下のセッションのような
             エラーが発生します.
         </para>
@@ -116,28 +109,41 @@ at line      33 of function complex called by :
 complex(ones(2,3),ones(4,5))
  ]]></screen>
         <para>
-            <literal>complex</literal> 関数の目的は,NaNや無限大のような
-            IEEE 浮動小数点数を管理することです.
-            以下の例では,複素数演算を使用する場合,
-            実部と虚部が複合体となる複素数を作成するのは
-            容易ではないことを示します.
-            これは,<literal>%i</literal> と <literal>%inf</literal>の積が
-            <literal>(0+%i) * (%inf+%i*0)</literal>と評価されるためです.
-            この結果は,中間式<literal>0*%inf</literal>,つまり,
-            <literal>%nan</literal>となります.
+            With special real or/and imaginary parts:
         </para>
+        <programlisting role="example"><![CDATA[
+r = [0   0    0 %inf %inf %inf %nan %nan %nan].';
+i = [0 %inf %nan  0  %inf %nan   0  %inf %nan].';
+[r, i]
+
+// Then let's compare complex(r, i) with r + i*%i :
+[complex(r,i), r+i*%i]
+ ]]></programlisting>
         <screen><![CDATA[
--->%inf+%i*%inf
+--> [r, i]
  ans  =
-    Nan + Inf
- ]]></screen>
-        <para>
-            この問題の解決策は <literal>complex</literal>関数を使用することです.
-        </para>
-        <screen><![CDATA[
--->complex(%inf,%inf)
+   0.    0.
+   0.    Inf
+   0.    Nan
+   Inf   0.
+   Inf   Inf
+   Inf   Nan
+   Nan   0.
+   Nan   Inf
+   Nan   Nan
+
+// Then let's compare complex(r, i) with r + i*%i :
+--> [complex(r,i), r+i*%i]
  ans  =
-    Inf + Inf
+   0.  + 0.i    0.  + 0.i
+   0.  + Infi   Nan + Infi
+   0.  + Nani   Nan + Nani
+   Inf + 0.i    Inf + 0.i
+   Inf + Infi   Nan + Infi
+   Inf + Nani   Nan + Nani
+   Nan + 0.i    Nan + 0.i
+   Nan + Infi   Nan + Infi
+   Nan + Nani   Nan + Nani
  ]]></screen>
     </refsection>
     <refsection role="see also">
@@ -150,5 +156,15 @@ complex(ones(2,3),ones(4,5))
                 <link linkend="imult">imult</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>Extension to sparse arrays.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
