@@ -17,18 +17,13 @@ package org.scilab.modules.ui_data;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.types.ScilabTypeEnum;
 import org.scilab.modules.types.ScilabTypeEnumDescription;
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
 
-/**
- *
- * Static class to open/close Scilab Variable browser
- *
- */
+/** Static class to open/close Scilab Variable browser */
 public class BrowseVar {
 
     public static final int ICON_COLUMN_INDEX = 0;
@@ -42,23 +37,36 @@ public class BrowseVar {
     public static final int NB_ROWS_INDEX = 8;
     public static final int NB_COLS_INDEX = 9;
 
-    public static final String[] COLUMNNAMES = new String[] {"", /* Icon */
-            Messages.gettext("Name"),
-            Messages.gettext("Value"),
-            Messages.gettext("Type"),
-            Messages.gettext("Visibility"),
-            Messages.gettext("Memory"),
-            Messages.gettext("User"),
-            Messages.gettext("Type int value"),
-            "", /* nbrows */
-            "" /* nbcols */
-                                                            };
+    public static final String[] COLUMNNAMES =
+        new String[] {
+        "", /* Icon */
+        Messages.gettext("Name"),
+        Messages.gettext("Value"),
+        Messages.gettext("Type"),
+        Messages.gettext("Visibility"),
+        Messages.gettext("Memory"),
+        Messages.gettext("User"),
+        Messages.gettext("Type int value"),
+        "", /* nbrows */
+        "" /* nbcols */
+    };
 
-    public static final int[] COLUMNSALIGNMENT = new int[] { -1, JLabel.LEFT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT};
+    public static final int[] COLUMNSALIGNMENT =
+        new int[] {
+        -1,
+        JLabel.LEFT,
+        JLabel.RIGHT,
+        JLabel.RIGHT,
+        JLabel.RIGHT,
+        JLabel.RIGHT,
+        JLabel.RIGHT,
+        JLabel.RIGHT
+        };
 
     private static final ImageIcon NO_ICON = new ImageIcon(FindIconHelper.findIcon("noicon"));
     private static final ImageIcon DOUBLE_ICON = new ImageIcon(FindIconHelper.findIcon("double"));
-    private static final ImageIcon POLYNOMIAL_ICON = new ImageIcon(FindIconHelper.findIcon("polynomial"));
+    private static final ImageIcon POLYNOMIAL_ICON =
+        new ImageIcon(FindIconHelper.findIcon("polynomial"));
     private static final ImageIcon BOOLEAN_ICON = new ImageIcon(FindIconHelper.findIcon("boolean"));
     private static final ImageIcon SPARSE_ICON = new ImageIcon(FindIconHelper.findIcon("sparse"));
     private static final ImageIcon INT_ICON = new ImageIcon(FindIconHelper.findIcon("int"));
@@ -72,13 +80,12 @@ public class BrowseVar {
     private static final ImageIcon USER_ICON = new ImageIcon(FindIconHelper.findIcon("user"));
     private static final ImageIcon FPTR_ICON = new ImageIcon(FindIconHelper.findIcon("fptr"));
 
-    /**
-     * Default private constructor for utility class
-     */
-    private BrowseVar() { }
+    /** Default private constructor for utility class */
+    private BrowseVar() {}
 
     /**
      * Get ImageIcon instance from Scilab type (as int)
+     *
      * @param type : scilab type as integer
      * @return instance of type Icon
      */
@@ -103,8 +110,8 @@ public class BrowseVar {
             case 11:
             case 13:
                 return FUNCTION_ICON;
-                /*case 14:
-                  return LIBRARY_ICON;*/
+            /*case 14:
+            return LIBRARY_ICON;*/
             case 15:
                 return LIST_ICON;
             case 16:
@@ -123,15 +130,14 @@ public class BrowseVar {
         }
     }
 
-    /**
-     * Open Variable Browser
-     */
+    /** Open Variable Browser */
     public static void openVariableBrowser() {
         ScilabVariableBrowser.openVariableBrowser();
     }
 
     /**
      * Set the Variable Browser data given by Scilab
+     *
      * @param dataNames : scilab variable name
      * @param dataBytes : scilab variable size in bytes
      * @param dataTypes : scilab variable type (as integer)
@@ -140,20 +146,34 @@ public class BrowseVar {
      * @param dataVisibility : local or global variable
      * @param dataFromUser : Scilab data or user data
      */
-    public static void setVariableBrowserData(String[] dataNames, long[] dataBytes, int[] dataTypes, int[] dataIntegerTypes, String[] variableListTypes, String[] dataSizes, int[] dataNbRows, int[] dataNbCols, String[] dataVisibility, boolean[] dataFromUser) {
+    public static void setVariableBrowserData(
+        String[] dataNames,
+        long[] dataBytes,
+        int[] dataTypes,
+        int[] dataIntegerTypes,
+        String[] variableListTypes,
+        String[] dataSizes,
+        int[] dataNbRows,
+        int[] dataNbCols,
+        String[] dataVisibility,
+        boolean[] dataFromUser) {
         Object[][] data = new Object[dataNames.length][COLUMNNAMES.length];
         for (int i = 0; i < dataNames.length; ++i) {
             data[i][ICON_COLUMN_INDEX] = getIconFromType(dataTypes[i]);
             data[i][NAME_COLUMN_INDEX] = dataNames[i];
             data[i][SIZE_COLUMN_INDEX] = dataSizes[i];
-            data[i][TYPE_DESC_COLUMN_INDEX] = ScilabTypeEnumDescription.getTypeDescriptionFromId(dataTypes[i]);
+            data[i][TYPE_DESC_COLUMN_INDEX] =
+                ScilabTypeEnumDescription.getTypeDescriptionFromId(dataTypes[i]);
 
             if (dataTypes[i] == ScilabTypeEnum.sci_ints.swigValue() && dataIntegerTypes[i] != 0) {
                 // It is an integer. We want to detail the precision of the int
-                data[i][TYPE_DESC_COLUMN_INDEX] = data[i][TYPE_DESC_COLUMN_INDEX] + " " + dataIntegerTypes[i];
+                data[i][TYPE_DESC_COLUMN_INDEX] =
+                    data[i][TYPE_DESC_COLUMN_INDEX] + " " + dataIntegerTypes[i];
             }
 
-            if ((dataTypes[i] == ScilabTypeEnum.sci_tlist.swigValue() || dataTypes[i] == ScilabTypeEnum.sci_mlist.swigValue()) && !variableListTypes[i].equals("")) {
+            if ((dataTypes[i] == ScilabTypeEnum.sci_tlist.swigValue()
+                    || dataTypes[i] == ScilabTypeEnum.sci_mlist.swigValue())
+                    && !variableListTypes[i].equals("")) {
                 // Improve the display of the list
                 String varType = ScilabTypeEnumDescription.getListTypeDescription(variableListTypes[i]);
 
@@ -162,18 +182,21 @@ public class BrowseVar {
             }
             data[i][VISIBILITY_COLUMN_INDEX] = dataVisibility[i];
             data[i][BYTES_COLUMN_INDEX] = humanReadableByteCount(dataBytes[i], true);
-            data[i][FROM_SCILAB_COLUMN_INDEX] = dataFromUser[i]; /* Tag if it is a variable from the user or from Scilab (%pi, %eps, etc) */
+            data[i][FROM_SCILAB_COLUMN_INDEX] =
+                dataFromUser[
+                    i]; /* Tag if it is a variable from the user or from Scilab (%pi, %eps, etc) */
             data[i][TYPE_COLUMN_INDEX] = dataTypes[i];
             data[i][NB_ROWS_INDEX] = dataNbRows[i];
             data[i][NB_COLS_INDEX] = dataNbCols[i];
         }
         ScilabVariableBrowser.setVariableBrowserData(data);
     }
-    
+
     /**
      * Convert a byte-count into a human readable string
-     * @see https://stackoverflow.com/questions/3758606/how-to-convert-byte-size-into-human-readable-format-in-java/3758880#3758880
-     * 
+     *
+     * @see
+     *     https://stackoverflow.com/questions/3758606/how-to-convert-byte-size-into-human-readable-format-in-java/3758880#3758880
      * @param bytes the number of bytes
      * @param si true if you wish to format as International System, false for Binary System
      * @return a formatted string
@@ -181,31 +204,25 @@ public class BrowseVar {
     public static String humanReadableByteCount(long bytes, boolean si) {
         int unit = si ? 1000 : 1024;
         if (bytes < unit) {
-			return bytes + " B";
-		}
+            return bytes + " B";
+        }
 
         int exp = (int) (Math.log(bytes) / Math.log(unit));
-        String pre = (si ? "kMGTPE" : "KMGTPE").charAt(exp-1) + (si ? "" : "i");
+        String pre = (si ? "kMGTPE" : "KMGTPE").charAt(exp - 1) + (si ? "" : "i");
         return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
     }
 
-    /**
-     * Update Variable Browser
-     */
+    /** Update Variable Browser */
     public static void updateVariableBrowserData() {
         ScilabVariableBrowser.updateVariableBrowser();
     }
 
-    /**
-     * @return true if an instance of BrowseVar already exists.
-     */
+    /** @return true if an instance of BrowseVar already exists. */
     public static boolean isVariableBrowserOpened() {
         return ScilabVariableBrowser.isBrowseVarOpened();
     }
 
-    /**
-     * Close Variable Browser
-     */
+    /** Close Variable Browser */
     public static void closeVariableBrowser() {
         ScilabVariableBrowser.closeVariableBrowser();
     }
