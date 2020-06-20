@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="lsq_splin" xml:lang="ja">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) R.F. Boisvert, C. De Boor (código da biblioteca FORTRAN CMLIB)
+ * Copyright (C) B. Pincon (interface Scilab)
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="lsq_splin" xml:lang="ja">
     <refnamediv>
         <refname>lsq_splin</refname>
         <refpurpose>重み付き最小二乗三次スプラインフィッティング</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[y, d] = lsq_splin(xd, yd [, wd], x)</synopsis>
+        <synopsis>
+            [y, d] = lsq_splin(xd, yd, x)
+            [y, d] = lsq_splin(xd, yd, wd, x)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -65,13 +84,12 @@
             あらゆる3次スプライン関数の空間とする場合,
             得られるスプライン <emphasis>s</emphasis>は次のようになります:
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/lsq_splin_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" fontsize="18" alt="∑_k=1→m wd(k).[s(xd(k))-yd(k)]² ⬅ ∑_k=1→m wd(k).[f(xd(k))-yd(k)]²">
+                \sum_{k=1}^m wd(k)\left(s(xd(k))-yd(k)\right)^2 \,\leftarrow\,
+                \sum_{k=1}^m wd(k)\left(f(xd(k))-yd(k)\right)^2
+            </latex>
+        </para>
         <para>
             ただし,<emphasis>fはSの中の任意の値</emphasis>.
             すなわち,<emphasis>S</emphasis>の任意の関数について,
@@ -147,6 +165,12 @@ show_window()
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="backslash">backslash</link>
+            </member>
+            <member>
+                <link linkend="datafit">datafit</link>
+            </member>
             <member>
                 <link linkend="interp">interp</link>
             </member>

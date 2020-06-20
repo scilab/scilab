@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="splin" xml:lang="pt">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) F. N. Fritsch (rotina pchim.f Slatec é usada para interpolação monótona)
+ * Copyright (C) B. Pincon (interface Scilab)
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="splin" xml:lang="pt">
     <refnamediv>
         <refname>splin</refname>
         <refpurpose>interpolação por spline cúbico</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>d = splin(x, y [,spline_type [, der]])</synopsis>
+        <synopsis>
+            d = splin(x, y)
+            d = splin(x, y, spline_type)
+            d = splin(x, y, spline_type, der)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -65,9 +85,9 @@
             <literal>d</literal> é o vetor com as derivadas nos <literal>xi</literal>:
             <emphasis>s'(xi)=di</emphasis> (esta forma é chamada de forma de
             <emphasis>Hermite ou hermitiana</emphasis> ). A avaliação do spline em
-            alguns pontos deve ser feita pela função <link linkend="interp">interp</link>. Vários tipos de splines podem ser
-            computados selecionando o parâmetro <literal>spline_type</literal>
-            apropriado:
+            alguns pontos deve ser feita pela função <link linkend="interp">interp</link>.
+            Vários tipos de splines podem ser  computados selecionando o parâmetro
+            <literal>spline_type</literal> apropriado:
         </para>
         <variablelist>
             <varlistentry>
@@ -76,10 +96,12 @@
                     <para>este é o caso padrão, o spline cúbico é computado sob as
                         seguintes condições (considerando n pontos x1,...,xn):
                     </para>
-                    <programlisting role=""><![CDATA[
-s'''(x2-) = s'''(x2+)
-s'''(x{n-1}-) = s'''(x{n-1}+)
- ]]></programlisting>
+                    <para>
+                        <latex fontsize="18" alt="s′′′(x₂⁻)=s′′′(x₂⁺), s′′′(x{n-1}⁻)=s′′′(x{n-1}⁺)">
+                            s'''(x_2^-) = s'''(x_2^+) \\
+                            s'''(x_{n-1}^-) = s'''(x_{n-1}^+)
+                        </latex>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -89,20 +111,24 @@ s'''(x{n-1}-) = s'''(x{n-1}+)
                         extremidades do intervalo que devem ser fornecidas como último
                         argumento <literal>der</literal>:
                     </para>
-                    <programlisting role=""><![CDATA[
-s'(x1) = der(1)
-s'(xn) = der(2)
- ]]></programlisting>
+                    <para>
+                        <table align="center">
+                        <tr align="center"><td><emphasis>s'(x<subscript>1</subscript>) = der(1)</emphasis></td></tr>
+                        <tr align="center"><td><emphasis>s'(x<subscript>n</subscript>) = der(2)</emphasis></td></tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"natural"</term>
                 <listitem>
                     <para>o spline cúbico é computado sob as seguintes condições:</para>
-                    <programlisting role=""><![CDATA[
-s''(x1) = 0
-s''(xn) = 0
- ]]></programlisting>
+                    <para>
+                        <table align="center">
+                        <tr align="center"><td><emphasis>s''(x<subscript>1</subscript>) = 0</emphasis></td></tr>
+                        <tr align="center"><td><emphasis>s''(x<subscript>n</subscript>) = 0</emphasis></td></tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -113,10 +139,20 @@ s''(xn) = 0
                         deve verificar <emphasis>y1=yn</emphasis>) sob as seguintes
                         condições:
                     </para>
-                    <programlisting role=""><![CDATA[
-s'(x1) = s'(xn)
-s''(x1) = s''(xn)
- ]]></programlisting>
+                    <para>
+                        <table align="center">
+                        <tr align="center">
+                            <td>
+                            <emphasis>s'(x<subscript>1</subscript>) = s'(x<subscript>n</subscript>)</emphasis>
+                            </td>
+                        </tr>
+                        <tr align="center">
+                            <td>
+                            <emphasis>s''(x<subscript>1</subscript>) = s''(x<subscript>n</subscript>)</emphasis>
+                            </td>
+                        </tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -128,10 +164,16 @@ s''(x1) = s''(xn)
                         para os <emphasis>di</emphasis> tais que s é monótono em cada
                         intervalo:
                     </para>
-                    <programlisting role=""><![CDATA[
-if y(i) <= y(i+1)  s é crescente em [x(i), x(i+1)]
-if y(i) >= y(i+1)  s é decrescente em [x(i), x(i+1)]
- ]]></programlisting>
+                    <para>
+                        <itemizedlist>
+                            <listitem>
+                                If y(i) ≤ y(i+1), s is increasing on <literal>[x(i), x(i+1)]</literal>.
+                            </listitem>
+                            <listitem>
+                                If y(i) ≥ y(i+1), s is increasing on <literal>[x(i), x(i+1)]</literal>.
+                            </listitem>
+                        </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -162,21 +204,25 @@ if y(i) >= y(i+1)  s é decrescente em [x(i), x(i+1)]
         <title>Observações </title>
         <para>De um ponto de vista de precisão, use essencialmente o tipo
             <emphasis role="bold">clamped</emphasis> se você conhece as derivadas nas
-            extremidades, de outro modo, use <emphasis role="bold">not_a_knot</emphasis>. Mas se a função subjacente aproximada é
-            periódica, use o tipo <emphasis role="bold">periodic</emphasis> Sob boas
-            suposições, estes tipos de spline têm um comportamento assintótico
-            <literal>O(h^4)</literal> do erro. Não use o tipo <emphasis role="bold">natural</emphasis> a não ser que a função subjacente possua
-            zero derivadas segundas nas extremidades.
+            extremidades, de outro modo, use <emphasis role="bold">not_a_knot</emphasis>.
+            Mas se a função subjacente aproximada é periódica, use o tipo
+            <emphasis role="bold">periodic</emphasis> Sob boas suposições, estes tipos de spline
+            têm um comportamento assintótico <literal>O(h^4)</literal> do erro.
+            Não use o tipo <emphasis role="bold">natural</emphasis> a não ser que a função
+            subjacente possua zero derivadas segundas nas extremidades.
         </para>
         <para>
-            Os tipos <emphasis role="bold">monotone</emphasis>, <emphasis role="bold">fast</emphasis> (ou <emphasis role="bold">fast_periodic</emphasis>) podem ser úteis e alguns caso, por
+            Os tipos <emphasis role="bold">monotone</emphasis>, <emphasis role="bold">fast</emphasis>
+            (ou <emphasis role="bold">fast_periodic</emphasis>) podem ser úteis e alguns caso, por
             exemplo, para limitar oscilações (estes tipos de sub-splines têm um
             comportamento assintótico <literal>O(h^3)</literal> do erro).
         </para>
         <para>
             Se <emphasis>n=2</emphasis> (e <literal>spline_type</literal> não é
             <emphasis role="bold">clamped</emphasis>) é usada interpolação linear. Se
-            <emphasis>n=3</emphasis> e <literal>spline_type</literal> é <emphasis role="bold">not_a_knot</emphasis>, então, um sub-spline tipo <emphasis role="bold">fast</emphasis> é computado, na verdade.
+            <emphasis>n=3</emphasis> e <literal>spline_type</literal> é
+            <emphasis role="bold">not_a_knot</emphasis>, então, um sub-spline tipo
+            <emphasis role="bold">fast</emphasis> é computado, na verdade.
         </para>
     </refsection>
     <refsection>
@@ -222,15 +268,6 @@ show_window()
             </member>
             <member>
                 <link linkend="lsq_splin">lsq_splin</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>Autores</title>
-        <simplelist type="vert">
-            <member>B. Pincon</member>
-            <member>F. N. Fritsch (rotina pchim.f Slatec é usada para interpolação
-                monótona)
             </member>
         </simplelist>
     </refsection>

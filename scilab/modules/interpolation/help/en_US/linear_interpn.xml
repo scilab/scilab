@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="linear_interpn" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="linear_interpn" xml:lang="en">
     <refnamediv>
         <refname>linear_interpn</refname>
         <refpurpose>n dimensional linear interpolation</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</synopsis>
+        <synopsis>
+            vp = linear_interpn(xp1,xp2,..,xpn, x1,...,xn, v)
+            vp = linear_interpn(xp1,xp2,..,xpn, x1,...,xn, v, out_mode)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -46,8 +52,7 @@
                 <term>vp</term>
                 <listitem>
                     <para>
-                        vector or matrix of same size than <literal>xp1, ...,
-                            xpn
+                        vector or matrix of same size than <literal>xp1, ..., xpn
                         </literal>
                     </para>
                 </listitem>
@@ -63,38 +68,46 @@
             and the values <literal>v</literal> of a function (says
             <emphasis>f</emphasis>) at the grid points :
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/linear_interpn_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <table align="center">
+            <tr><td>
+                    v(i<subscript>1</subscript>,
+                      i<subscript>2</subscript>,…,
+                      i<subscript>n</subscript>) =
+                      <emphasis>f</emphasis>(x1(i<subscript>1</subscript>),
+                                             x2(i<subscript>2</subscript>),…,
+                                             xn(i<subscript>n</subscript>))
+                </td>
+            </tr>
+            </table>
+        </para>
         <para>this function computes the linear interpolant of
             <emphasis>f</emphasis> from the grid (called <emphasis>s</emphasis> in the
             following) at the points which coordinates are defined by the vectors (or
             matrices) <literal>xp1, xp2, ..., xpn</literal>:
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/linear_interpn_equation2.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <table align="center">
+            <tr align="center">
+                <td>vp(i) = <emphasis>s</emphasis>(xp1(i), xp2(i), …, xpn(i))</td></tr>
+            <tr align="center"><td>or</td></tr>
+            <tr align="center">
+                <td>vp(i,j) = <emphasis>s</emphasis>(xp1(i,j), xp2(i,j), …, xpn(i,j))</td>
+            </tr>
+            </table>
+            in case the xpk are matrices.
+        </para>
         <para>
             The <literal>out_mode</literal> parameter set the evaluation rule
             for extrapolation: if we note
             <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> then
             <literal>out_mode</literal> defines the evaluation rule when:
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/linear_interpn_equation3.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <table align="center">
+            <tr><td>P(i) ∉ [x1(1), x1($)] × [x2(1), x2($)] × … × [xn(1), xn($)]</td></tr>
+            </table>
+        </para>
         <para>The different choices are:</para>
         <variablelist>
             <varlistentry>
@@ -284,14 +297,5 @@ show_window()
                 <link linkend="splin3d">splin3d</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>previously, imaginary part of input arguments were implicitly ignored.</revremark>
-            </revision>
-        </revhistory>
     </refsection>
 </refentry>

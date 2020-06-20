@@ -45,13 +45,11 @@
             <literal>dlgamma(x)</literal> calcule la dérivée de la fonction
             gammaln pour chaque composante de <literal>x</literal>.
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/dlgamma_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" alt="d(ln(Γ(x))/dx = dΓ(x)/dx . 1/Γ(x)">
+                \frac{d\,\ln\left(\Gamma(x)\right)}{dx}=\frac{d\Gamma(x)}{dx\,\Gamma(x)}
+            </latex>
+        </para>
         <para>
             <literal>x</literal> doit être réel. Cette fonction est aussi connue
             sous le nom de fonction psi

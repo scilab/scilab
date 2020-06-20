@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="interp" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="interp" xml:lang="ja">
     <refnamediv>
         <refname>interp</refname>
         <refpurpose>3次スプライン評価関数</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[yp [,yp1 [,yp2 [,yp3]]]]=interp(xp, x, y, d [, out_mode])</synopsis>
+        <synopsis>
+            [yp, yp1, yp2, yp3] = interp(xp, x, y, d)
+            [yp, yp1, yp2, yp3] = interp(xp, x, y, d, out_mode)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -35,7 +41,7 @@
                 <term>out_mode</term>
                 <listitem>
                     <para>
-                        (オプション)<latex>[x_1,\ x_n]</latex>の外側で.
+                        (オプション)[x<subscript>1</subscript>, x<subscript>n</subscript>]の外側で.
                         <literal>X</literal> に対する<literal>s(X)</literal>を定義します.
                         利用可能な値: "by_zero" | "by_nan" | "C0" | "natural" | "linear" | "periodic"
                     </para>
@@ -77,20 +83,59 @@
         <title>説明</title>
         <para>
             指定した点の<literal>(x,y)</literal> 集合を補間する3次スプライン関数 <literal>s(X)</literal>
-            は,<latex>[x_1,\ x_n]</latex>の範囲で定義された,連続で微分可能な関数です.
-            これは,3次元多項式の集合からなり,その各々は<latex>p_k(X)</latex>が
-            <latex>[x_k,\ x_{k+1}]</latex>で定義され,
-            隣接する多項式と値と傾きで接続されています.
-            つまり, <latex>X\ \in\ [x_k,\ x_{k+1}],\ s(X) = p_k(X)</latex>の各々について,
-            <latex>s(x_i) = y_i,\quad \mbox{and}\quad s'(x_i) = d_i</latex>を記述できます.
+            は,[x<subscript>1</subscript>, x<subscript>n</subscript>]の範囲で定義された,連続で微分可能な関数です.
+            これは,3次元多項式の集合からなり,その各々はp<subscript>k</subscript>(X)が
+            [x<subscript>k</subscript>, x<subscript>k+1</subscript>]で定義され,
+            隣接する多項式と値と傾きで接続されています. つまり,
+            <emphasis>
+                X &#8712; [x<subscript>k</subscript>, x<subscript>k+1</subscript>],
+                s(X) = p<subscript>k</subscript>(X)
+            </emphasis> の各々について,
+            <emphasis>
+                s(x<subscript>i</subscript>) = y<subscript>i</subscript>,  and  
+                s'(x<subscript>i</subscript>) = d<subscript>i</subscript>
+            </emphasis>
+            を記述できます.
         </para>
-        <latex style="display" align="center"><![CDATA[ yp_i = s(xp_i) \quad or \quad yp_{i,j} = s(xp_{i,j})  ]]></latex>
-        <latex style="display" align="center"><![CDATA[ yp1_i = s'(xp_i) \quad or \quad yp1_{i,j} = s'(xp_{i,j})  ]]></latex>
-        <latex style="display" align="center"><![CDATA[ yp2_i = s''(xp_i) \quad or \quad yp2_{i,j} = s''(xp_{i,j})  ]]></latex>
-        <latex style="display" align="center"><![CDATA[ yp3_i = s'''(xp_i) \quad or \quad yp3_{i,j} = s'''(xp_{i,j})  ]]></latex>
+        <para>
+            <table align="center">
+            <tr align="center">
+                <td><emphasis>
+                        yp<subscript>i</subscript> = s(xp<subscript>i</subscript>)
+                           or   
+                        yp<subscript>ij</subscript> = s(xp<subscript>ij</subscript>)
+                    </emphasis>
+                </td>
+            </tr>
+            <tr align="center">
+                <td><emphasis>
+                        yp1<subscript>i</subscript> = s'(xp<subscript>i</subscript>)
+                           or   
+                        yp1<subscript>ij</subscript> = s'(xp<subscript>ij</subscript>)
+                    </emphasis>
+                </td>
+            </tr>
+            <tr align="center">
+                <td><emphasis>
+                        yp2<subscript>i</subscript> = s''(xp<subscript>i</subscript>)
+                           or   
+                        yp2<subscript>ij</subscript> = s''(xp<subscript>ij</subscript>)
+                    </emphasis>
+                </td>
+            </tr>
+            <tr align="center">
+                <td><emphasis>
+                        yp3<subscript>i</subscript> = s'''(xp<subscript>i</subscript>)
+                           or   
+                        yp3<subscript>ij</subscript> = s'''(xp<subscript>ij</subscript>)
+                    </emphasis>
+                </td>
+            </tr>
+            </table>
+        </para>
         <para>
             <literal>out_mode</literal>パラメータは
-            補外,すなわち,<literal>xp(i)</literal>が<latex>[x_1,\ x_n]</latex> の範囲にない場合
+            補外,すなわち,<literal>xp(i)</literal>が[x<subscript>1</subscript>, x<subscript>n</subscript>] の範囲にない場合
             の評価規則を設定します :
         </para>
         <variablelist>
@@ -109,28 +154,55 @@
             <varlistentry>
                 <term>"C0"</term>
                 <listitem>
-                    <para>以下のように定義される補外 :</para>
-                    <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = y_1 ]]></latex>
-                    <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = y_n ]]></latex>
+                    <para>以下のように定義される補外 :
+                        <table align="center">
+                        <tr align="center"><td><emphasis>
+                            xp<subscript>i</subscript> &lt; x<subscript>1</subscript>  ⇒ 
+                            yp<subscript>i</subscript> = y<subscript>1</subscript>
+                            </emphasis></td></tr>
+                        <tr align="center"><td><emphasis>
+                            xp<subscript>i</subscript> > x<subscript>n</subscript>  ⇒ 
+                            yp<subscript>i</subscript> = y<subscript>n</subscript>
+                            </emphasis></td></tr>
+                        </table>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"natural"</term>
                 <listitem>
                     <para>以下のように定義される補外
-                        (<latex>p_i(x)</latex> は,<latex>[x_i,\ x_{i+1}]</latex>
+                        (p<subscript>i</subscript>(x) は,[x<subscript>i</subscript>, x<subscript>i+1</subscript>]
                         において<literal>s(X)</literal>を定義する多項式です)
                     </para>
-                    <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = p_1(xp_i) ]]></latex>
-                    <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = p_{n-1}(xp_i) ]]></latex>
+                    <table align="center">
+                    <tr align="center"><td><emphasis>
+                        xp<subscript>i</subscript> &lt; x<subscript>1</subscript>  ⇒ 
+                        yp<subscript>i</subscript> = p<subscript>1</subscript>(xp<subscript>i</subscript>)
+                        </emphasis></td></tr>
+                    <tr align="center"><td><emphasis>
+                        xp<subscript>i</subscript> > x<subscript>n</subscript>  ⇒ 
+                        yp<subscript>i</subscript> = p<subscript>n-1</subscript>(xp<subscript>i</subscript>)
+                        </emphasis></td></tr>
+                    </table>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>"linear"</term>
                 <listitem>
                     <para>補外は以下のように定義されます :</para>
-                    <latex style="display" align="center"><![CDATA[ xp_i < x_1   \Rightarrow  yp_i = y_1 + d_1.(xp_i - x_1) ]]></latex>
-                    <latex style="display" align="center"><![CDATA[ xp_i > x_n   \Rightarrow  yp_i = y_n + d_n.(xp_i - x_n) ]]></latex>
+                    <table align="center">
+                    <tr align="center"><td><emphasis>
+                        xp<subscript>i</subscript> &lt; x<subscript>1</subscript>  ⇒ 
+                        yp<subscript>i</subscript> = y<subscript>1</subscript> +
+                            d<subscript>1</subscript>.(xp<subscript>i</subscript> - x<subscript>1</subscript>)
+                        </emphasis></td></tr>
+                    <tr align="center"><td><emphasis>
+                        xp<subscript>i</subscript> > x<subscript>n</subscript>  ⇒ 
+                        yp<subscript>i</subscript> = y<subscript>n</subscript> +
+                            d<subscript>n</subscript>.(xp<subscript>i</subscript> - x<subscript>n</subscript>)
+                        </emphasis></td></tr>
+                    </table>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -139,7 +211,11 @@
                     <para>
                         <literal>s</literal> は周期性により拡張されます.
                     </para>
-                    <latex style="display" align="center"><![CDATA[ yp_i = s( x_1 + ( (xp_i-x_1)\ \mbox{modulo}\ [x_n-x_1] ) ) ]]></latex>
+                    <table align="center">
+                    <tr><td><emphasis>
+                        yp<subscript>i</subscript> = s( x<subscript>1</subscript> + (xp<subscript>i</subscript> - x<subscript>1</subscript>) modulo (x<subscript>n</subscript>-x<subscript>1</subscript>) )
+                        </emphasis></td></tr>
+                    </table>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -236,14 +312,5 @@ xtitle(" different way to evaluate a spline outside its domain")
                 <link linkend="lsq_splin">lsq_splin</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>履歴</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>以前では, 入力引数の虚部は暗黙のうちに無視されていました.</revremark>
-            </revision>
-        </revhistory>
     </refsection>
 </refentry>

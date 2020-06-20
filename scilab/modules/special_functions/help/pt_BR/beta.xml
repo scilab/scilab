@@ -49,12 +49,11 @@
     <refsection>
         <title>Descrição</title>
         <para>Computa a função beta completa : </para>
-        <programlisting role=""><![CDATA[
-               /1
-               |   x-1     y-1        gamma(x) gamma(y)
-  beta(x,y) =  |  t   (1-t)    dt  =  ----------------
-               /0                        gamma(x+y)
- ]]></programlisting>
+        <para>
+            <latex style="display" fontsize="18" alt="B(x,y)=∫_0→1 t^{x-1}.(1-t)^{y-1} dt = Γ(x).Γ(y)/ Γ(x+y)">
+                B(x,y)=\int_0^1\!t^{x-1}\left(1-t\right)^{y-1}dt=\frac{\Gamma(x)\,\Gamma(y)}{\Gamma(x+y)}
+            </latex>
+        </para>
         <para>
             Para <literal>x</literal> e <literal>y</literal> pequenos, o
             algoritmo usa a expressão em função da função gama, de outro modo, ele

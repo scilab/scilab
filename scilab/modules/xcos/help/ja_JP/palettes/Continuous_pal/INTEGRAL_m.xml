@@ -66,13 +66,11 @@
             このブロックは積分器です. 出力yは,カレント時間ステップtにおける
             入力uの積分です.
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../mml/integral_m.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" alt="y(t)= y0 + ∫_t0→t u(τ)dτ">
+                y(t)=y_0 + \int_{t_0}^t\! u(\tau)\,d\tau
+            </latex>
+        </para>
         ただし, y<subscript>0</subscript> は初期条件, t<subscript>0</subscript> は対応する時間です.
     </refsection>
     <refsection id="Dialogbox_INTEGRAL_m">

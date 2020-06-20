@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bsplin3val" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="bsplin3val" xml:lang="ja">
     <refnamediv>
         <refname>bsplin3val</refname>
         <refpurpose>3次元スプラインの任意微分評価関数</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[dfp]=bsplin3val(xp,yp,zp,tl,der)</synopsis>
+        <synopsis>dfp = bsplin3val(xp, yp, zp, tl, der)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -57,13 +60,13 @@
             計算する微分値は引数<literal>der=[ox,oy,oz]</literal>で
             指定されます  :
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/bsplin3val_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" fontsize="18"
+                alt="dfp(i)=∂^{oxoyoz}/(∂^ox.∂^oy.∂^oz) s(xp(i),yp(i),zp(i))">
+                dfp(i)=\frac{\partial^{ox\,oy\,oz}}{\partial ^{ox}\,\partial ^{oy}\,\partial ^{oz}}
+                        s\left(xp(i),yp(i),zp(i)\right)
+            </latex>
+        </para>
         <para>
             この場合,<literal>der=[0 0 0]</literal> は
             <emphasis>s</emphasis>, <literal>der=[1 0 0]</literal>は
@@ -114,16 +117,5 @@ fxxyz_i = bsplin3val(xp,yp,zp,tl,[2 1 1])
                 <link linkend="interp3d">interp3d</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>履歴</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>
-                    以前は,入力引数の虚部は暗黙的に無視されていました.
-                </revremark>
-            </revision>
-        </revhistory>
     </refsection>
 </refentry>

@@ -74,9 +74,12 @@
         </para>
         <para>
             <emphasis role="bold">gamma(u)</emphasis> computes
-            <latex style="display" fontsize="18" alt="Γ(u)= ∫_0→∞ t^{u-1}.exp(-t).dt">
-                \Gamma(u)=\int_0^\infty\! t^{u-1}e^{-t}\,dt
+            <latex style="display" fontsize="18" alt="Γ(x)= ∫_0→∞ t^{x-1}.exp(-t).dt">
+                \Gamma(x)=\int_0^\infty\! t^{x-1}e^{-t}\,dt
             </latex>
+        </para>
+        <para>and generalizes the factorial function for real numbers
+            (<literal>gamma(u+1) = u*gamma(u)</literal>).
         </para>
         <refsect3>
             <title>Incomplete normalized integrals</title>

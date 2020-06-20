@@ -20,7 +20,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>z = beta(x,y)</synopsis>
+        <synopsis>z = beta(x, y)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -47,13 +47,11 @@
     <refsection>
         <title>Description</title>
         <para>Computes the complete beta function :</para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/beta_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" fontsize="18" alt="B(x,y)=∫_0→1 t^{x-1}.(1-t)^{y-1} dt = Γ(x).Γ(y)/ Γ(x+y)">
+                B(x,y)=\int_0^1\!t^{x-1}\left(1-t\right)^{y-1}dt=\frac{\Gamma(x)\,\Gamma(y)}{\Gamma(x+y)}
+            </latex>
+        </para>
         <para>
             For small <literal>x</literal> and <literal>y</literal> (<literal>x+y ≤ 2</literal> elementwise),
             the algorithm uses the expression in function of the gamma function, else it

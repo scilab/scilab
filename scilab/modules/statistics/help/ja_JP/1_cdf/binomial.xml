@@ -13,14 +13,17 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="binomial" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="binomial" xml:lang="ja">
     <refnamediv>
         <refname>binomial</refname>
         <refpurpose>2項分布確率</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>pr=binomial(p,n)</synopsis>
+        <synopsis>pr = binomial(p, n)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -59,13 +62,11 @@
             <literal>pr(k+1) = probability(X=k)</literal>で,
             数値的には以下のようになります :
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../mml/binomial_equation_1_en_US.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" alt="pr(k+1) = p^k (1-p)^(n-k) n!/[k!(n-k)!]">
+                pr(k+1)=\left(\frac{n!}{k!\,(n-k)!}\right)\,p^k\,(1-p)^{n-k}
+            </latex>
+        </para>
     </refsection>
     <refsection>
         <title>例</title>

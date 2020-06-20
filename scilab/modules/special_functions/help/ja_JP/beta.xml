@@ -48,13 +48,11 @@
     <refsection>
         <title>説明</title>
         <para>完全ベータ関数を計算します :</para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/beta_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <latex style="display" fontsize="18" alt="B(x,y)=∫_0→1 t^{x-1}.(1-t)^{y-1} dt = Γ(x).Γ(y)/ Γ(x+y)">
+                B(x,y)=\int_0^1\!t^{x-1}\left(1-t\right)^{y-1}dt=\frac{\Gamma(x)\,\Gamma(y)}{\Gamma(x+y)}
+            </latex>
+        </para>
         <para>
             <literal>x</literal> および<literal>y</literal>が小さい場合,
             このアルゴリズムは,関数内でガンマ関数の式を使用します.

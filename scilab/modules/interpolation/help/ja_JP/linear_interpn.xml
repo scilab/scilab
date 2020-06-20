@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="linear_interpn" xml:lang="ja">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="linear_interpn" xml:lang="ja">
     <refnamediv>
         <refname>linear_interpn</refname>
         <refpurpose>n 次元線形補間</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</synopsis>
+        <synopsis>
+            vp = linear_interpn(xp1,xp2,..,xpn, x1,...,xn, v)
+            vp = linear_interpn(xp1,xp2,..,xpn, x1,...,xn, v, out_mode)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -62,37 +68,45 @@
             n個のベクトル<literal>x1 ,x2,..., xn</literal>で定義された n次元グリッド
             とそのグリッドにおける関数(例えば <emphasis>f</emphasis>)の値を次のように指定すると:
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/linear_interpn_equation1.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <table align="center">
+            <tr><td>
+                    v(i<subscript>1</subscript>,
+                      i<subscript>2</subscript>,…,
+                      i<subscript>n</subscript>) =
+                      <emphasis>f</emphasis>(x1(i<subscript>1</subscript>),
+                                             x2(i<subscript>2</subscript>),…,
+                                             xn(i<subscript>n</subscript>))
+                </td>
+            </tr>
+            </table>
+        </para>
         <para>
             この関数は, ベクトル<literal>xp1, xp2, ..., xpn</literal>(または行列)により定義された座標にある
             (以下 <emphasis>s</emphasis> と呼ぶ)グリッドから次のように
             <emphasis>f</emphasis>の線形補間を計算します:
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/linear_interpn_equation2.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <table align="center">
+            <tr align="center">
+                <td>vp(i) = <emphasis>s</emphasis>(xp1(i), xp2(i), …, xpn(i))</td></tr>
+            <tr align="center"><td>or</td></tr>
+            <tr align="center">
+                <td>vp(i,j) = <emphasis>s</emphasis>(xp1(i,j), xp2(i,j), …, xpn(i,j))</td>
+            </tr>
+            </table>
+            in case the xpk are matrices.
+        </para>
         <para>
             <literal>out_mode</literal> パラメータは捕外の評価規則を設定します:
             <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> とすると,
             <literal>out_mode</literal> は次の場合に評価規則を定義します:
         </para>
-        <informalequation>
-            <mediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../mml/linear_interpn_equation3.mml"/>
-                </imageobject>
-            </mediaobject>
-        </informalequation>
+        <para>
+            <table align="center">
+            <tr><td>P(i) ∉ [x1(1), x1($)] × [x2(1), x2($)] × … × [xn(1), xn($)]</td></tr>
+            </table>
+        </para>
         <para>その他の選択肢は以下があります:</para>
         <variablelist>
             <varlistentry>
@@ -279,14 +293,5 @@ show_window()
                 <link linkend="splin3d">splin3d</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>履歴</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>以前では, 入力引数の虚部は暗黙のうちに無視されていました.</revremark>
-            </revision>
-        </revhistory>
     </refsection>
 </refentry>
