@@ -83,11 +83,4 @@ int		getTclCommandReturn(void);
 */
 char		*getTclCommandResult(void);
 
-/* The tclLoop thread Id
-in order to wait it ends when closing Scilab */
-__threadId TclThread;
-
-__threadSignal InterpReady;
-__threadSignalLock InterpReadyLock;
-
 #endif /* !__TCL_COMMAND_H__ */

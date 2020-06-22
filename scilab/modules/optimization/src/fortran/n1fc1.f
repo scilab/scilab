@@ -53,7 +53,8 @@ C
       niz = 2 * (memax+1)
       nrz = nq + n*memax - 1
       ndz = nw2 + memax
-      if (iprint.gt.0) call n1fc1o(io,2,n,memax,niz,nrz,ndz,d1,d2,d3,d4)
+      i5(1) = ndz
+      if (iprint.gt.0) call n1fc1o(io,2,n,memax,niz,nrz,i5,d1,d2,d3,d4)
       do 110 i = 1,niz
  110  iz(i) = 0
       do 120 i = 1,nrz

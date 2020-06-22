@@ -128,13 +128,13 @@ C         values
       if (na.lt.0) then
 c     .  element wise case x and alpha are supposed to have the same size
          do i=1,nx
-            call  dbesig (x(i), alpha(i),kode,1,y(i), nz, w1,ier)
+            call  dbesig (x(i), alpha(i),kode,1,y(i), nz, w,ier)
             ierr=max(ierr,ier)
          enddo
       elseif (na.eq.1) then
 c     .  element wise case x and alpha are supposed to have the same size
          do i=1,nx
-            call  dbesig (x(i), alpha(1),kode,1,y(i), nz, w1,ier)
+            call  dbesig (x(i), alpha(1),kode,1,y(i), nz, w,ier)
             ierr=max(ierr,ier)
          enddo
       else

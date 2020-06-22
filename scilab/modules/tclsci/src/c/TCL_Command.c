@@ -27,6 +27,13 @@
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"
 
+/* The tclLoop thread Id
+in order to wait it ends when closing Scilab */
+__threadId TclThread;
+
+__threadSignal InterpReady;
+__threadSignalLock InterpReadyLock;
+
 // Globla Tcl Slave Name
 char *			TclSlave;
 // Global Tcl Command Buffer
