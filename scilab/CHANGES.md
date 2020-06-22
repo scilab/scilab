@@ -360,6 +360,7 @@ Bug Fixes
 * [#16465](https://bugzilla.scilab.org/16465): Scinotes OpenRecent menu was not updated when it should.
 * [#16473](https://bugzilla.scilab.org/16473): Deleting rows in a sparse squared the matrix with padding zeros (Scilab 6 regression).
 * [#16474](https://bugzilla.scilab.org/16474): `imult(%z)` crashed Scilab.
+* [#16476](https://bugzilla.scilab.org/16476): `issquare` was not overloaded.
 * [#16488](https://bugzilla.scilab.org/16488): Concatenations mixing boolean and double with at least one operand being sparse were not supported.
 * [#16496](https://bugzilla.scilab.org/16496): The `getdate` page should be rewritten: a) `getdate("s")` does NOT take leap seconds into account. b) `D=getdate(X)` is vectorized, accepts fractional seconds and returns them in `[0,1)` in D(10) instead of milliseconds. Moreover, the time referential of the result was unclear (time zone, daylight saving offset).
 * [#16508](https://bugzilla.scilab.org/16508): csvTextScan and csvRead did not handle well complex data.
@@ -379,7 +380,6 @@ Bug Fixes
 * [#16629](https://bugzilla.scilab.org/16629): `interp1`'s documentation did not tell the spline edges conditions ; extrapolation modes were poorly explained. ; the description of the result's size was completely wrong ; x as an option was not documented. A wrong extrapolation value could silently return a wrong result. There was some dead code like `if varargin(5)==%nan`. A bugged error message yielded its own error. When x is implicit, the argument index in error messages could be wrong. `periodic` and `edgevalue` extrapolation modes were not available. `linear` extrapolation was not available for splines. When `xp` is an hypermatrix with `size(xp,1)==1`, the size of the result was irregular/wrong.
 * [#16644](https://bugzilla.scilab.org/16644): `input("message:")` yielded a wrong error message about `mprintf` in case of non-interpretable input.
 * [#16654](https://bugzilla.scilab.org/16654): `interp` was leaking memory.
-
 
 ### Bugs fixed in 6.1.0:
 * [#2694](https://bugzilla.scilab.org/2694): `bitget` did not accept positive integers of types int8, int16 or int32.
