@@ -37,7 +37,10 @@
             <varlistentry>
                 <term>M</term>
                 <listitem>
-                    <para>Vetor, matriz ou hipermatriz de booleanos, números, ou texto.</para>
+                    <para>
+                        Vetor, matriz ou hipermatriz de booleanos, números, ou texto.
+                        Numeric or boolean sparses are accepted.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -68,6 +71,8 @@
                         </listitem>
                       </itemizedlist>
                     </para>
+                    If <varname>M</varname> is sparse, then <varname>U</varname> is always sparse.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -98,6 +103,10 @@
                         </listitem>
                     </itemizedlist>
                     <para/>
+                    <warning>
+                        <varname>ku</varname> is dense, even when <varname>M</varname> is sparse and the
+                        overall "*" mode is used.
+                    </warning>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -376,7 +385,7 @@ unique(M, "c")
             <revision>
                 <revnumber>6.1.1</revnumber>
                 <revdescription>
-                    ku 3rd output implemented.
+                    ku 3rd output implemented. Sparse 2D matrices are now accepted.
                 </revdescription>
             </revision>
         </revhistory>

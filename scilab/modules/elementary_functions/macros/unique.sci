@@ -19,8 +19,11 @@ function [x, ki, ko, nb] = unique(x, varargin)
     //   - add uniqueNan option: http://bugzilla.scilab.org/15522
     //   - add keepOrder option: http://bugzilla.scilab.org/15795
     //   - add nb output option: http://bugzilla.scilab.org/8418
+    //
     // * 2020 - S. Gougeon :
+    //   - Complex numbers are now completely sorted, by magnitude, + by phase
     //   - add ku output indices: http://bugzilla.scilab.org/16337
+    //   - Sparse 2D matrices accepted: http://bugzilla.scilab.org/15842
 
     keepOrder = %f
     uniqueNan = %f
@@ -180,7 +183,7 @@ function [x, ki, ko, nb] = unique(x, varargin)
             else
                 x = gsort(x,"lr","i");
             end
-            x( find(and(x(2:$,:) == x(1:$-1,:),"c")),:) = [];
+            x(find(and(x(2:$,:) == x(1:$-1,:),"c")),:) = [];
         end
         if  orient==2 | orient=="c" then
             x = x.'
@@ -189,6 +192,7 @@ function [x, ki, ko, nb] = unique(x, varargin)
             nb = nb'
         end
     end
+    ko = full(ko)
 
     if uniqueNan
         x = uniqueProcessNan(x, newInf, "restoreNan")
@@ -247,7 +251,7 @@ function [x, newInf] = uniqueProcessNan(x, newInf, way)
             end
             r(r<>r) = %inf
             i(i<>i) = %inf
-            x = complex(r,i);
+            x = r + imult(i);
         end
 
     // Restoring  NaN
@@ -267,7 +271,7 @@ function [x, newInf] = uniqueProcessNan(x, newInf, way)
                 r(r==newInf) = %inf
                 i(i==newInf) = %inf
             end
-            x = complex(r, i)
+            x = r + imult(i)
         end
     end
 endfunction

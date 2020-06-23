@@ -38,6 +38,7 @@
                 <listitem>
                     <para>
                         вектор, матрица или гиперматрица логических значений, чисел или текстов.
+                        Принимаются числовые или логические разрежённые матрицы.
                     </para>
                 </listitem>
             </varlistentry>
@@ -70,6 +71,9 @@
                         </listitem>
                       </itemizedlist>
                     </para>
+                    <para>
+                        Если <varname>M</varname> является разрежённой, то <varname>U</varname> всегда разрежённая.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -82,7 +86,7 @@
                     </para>
                     <para>
                         <varname>km</varname> является строкой, если <varname>M</varname> является
-                        строкой или если используется <literal>orient="c"</literal>. В проитвном случае
+                        строкой или если используется <literal>orient="c"</literal>. В противном случае
                         это столбец.
                     </para>
                 </listitem>
@@ -104,6 +108,10 @@
                         </listitem>
                     </itemizedlist>
                     <para/>
+                    <warning>
+                        <varname>ku</varname> является плотной, даже когда <varname>M</varname>
+                        является разрежённой и используется всеобщий режим "*".
+                    </warning>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -380,6 +388,7 @@ unique(M, "c")
                 <revnumber>6.1.1</revnumber>
                 <revdescription>
                   Реализован третий выходной аргумент <literal>ku</literal>.
+                  Теперь принимаются двумерные разрежённые матрицы.
                 </revdescription>
             </revision>
         </revhistory>

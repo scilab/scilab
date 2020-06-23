@@ -39,6 +39,7 @@
                 <listitem>
                     <para>
                         vecteur, matrice, ou hypermatrice de booléens, de nombres, ou de textes.
+                        Les matrices numériques ou booléennes creuses sont acceptées.
                     </para>
                 </listitem>
             </varlistentry>
@@ -54,23 +55,25 @@
             <varlistentry>
                 <term>U</term>
                 <listitem>
-                    <para>
-                      <itemizedlist>
-                        <listitem>
-                            <para>
-                                Sans <varname>orient</varname>: vecteur d'éléments de
-                                <varname>M</varname> triés par ordre croissant.
-                                Si <varname>M</varname> est un vecteur ligne, <varname>U</varname>
-                                aussi. Dans tous les autres cas, <varname>U</varname> est un
-                                vecteur colonne.
-                            </para>
-                        </listitem>
-                        <listitem>
-                          Avec <varname>orient</varname>: Matrice de lignes ou de colonnes extraites
-                          de <varname>M</varname>, triées par ordre lexicographique croissant.
-                        </listitem>
-                      </itemizedlist>
-                    </para>
+                    <itemizedlist>
+                    <listitem>
+                        <para>
+                            Sans <varname>orient</varname>: vecteur d'éléments de
+                            <varname>M</varname> triés par ordre croissant.
+                            Si <varname>M</varname> est un vecteur ligne, <varname>U</varname>
+                            aussi. Dans tous les autres cas, <varname>U</varname> est un
+                            vecteur colonne.
+                        </para>
+                    </listitem>
+                    <listitem>
+                      Avec <varname>orient</varname>: Matrice de lignes ou de colonnes extraites
+                      de <varname>M</varname>, triées par ordre lexicographique croissant.
+                    </listitem>
+                </itemizedlist>
+                <para/>
+                <para>
+                    <varname>U</varname> est toujours creuse si en entrée <varname>M</varname> l'est.
+                </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -105,6 +108,10 @@
                         </listitem>
                     </itemizedlist>
                     <para/>
+                    <warning>
+                        <varname>ku</varname> est dense, y compris lorsque <varname>M</varname> est
+                        creuse et que le mode simple "*" est utilisé.
+                    </warning>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -387,7 +394,7 @@ unique(M, "c")
             <revision>
                 <revnumber>6.1.1</revnumber>
                 <revdescription>
-                    3ème résultat ku implémenté.
+                    3ème résultat ku implémenté. Les matrices creuses 2D sont désormais acceptées.
                 </revdescription>
             </revision>
         </revhistory>

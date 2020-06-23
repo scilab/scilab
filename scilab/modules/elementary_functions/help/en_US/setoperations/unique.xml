@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
- * Copyright (C) 2017 - 2019 - Samuel GOUGEON
+ * Copyright (C) 2017 - 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -37,6 +37,7 @@
                 <term>M</term>
                 <listitem>
                     vector, matrix, or hypermatrix of booleans, numbers, or text.
+                    Numeric or boolean sparses are accepted.
                     <para/>
                 </listitem>
             </varlistentry>
@@ -65,6 +66,8 @@
                       <varname>M</varname> rows or columns, sorted in lexicographic ascending order.
                     </listitem>
                   </itemizedlist>
+                  <para/>
+                  If <varname>M</varname> is sparse, then <varname>U</varname> is always sparse.
                   <para/>
                 </listitem>
             </varlistentry>
@@ -96,6 +99,10 @@
                         </listitem>
                     </itemizedlist>
                     <para/>
+                    <warning>
+                        <varname>ku</varname> is dense, even when <varname>M</varname> is sparse and the
+                        overall "*" mode is used.
+                    </warning>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -374,7 +381,7 @@ unique(M, "c")
             <revision>
                 <revnumber>6.1.1</revnumber>
                 <revdescription>
-                    ku 3rd output implemented.
+                    ku 3rd output implemented. Sparse 2D matrices are now accepted.
                 </revdescription>
             </revision>
         </revhistory>

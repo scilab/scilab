@@ -193,7 +193,7 @@ Feature changes and additions
 
 6.1.1
 * `gsort` is fully enabled for sparse vectors and 2D matrices, in all `g, r, c, lr, lc` methods. It was formerly limited to real or complex vectors and only to the `g` mode. All boolean, real or complex vector or 2D matrices can now be sorted with any method. Multi-level sorting is enabled for all types of sparse input.
-* `unique` is enabled for any 2D sparse arrays.
+* `unique` is enabled for any 2D sparse arrays, in simple, 'c' and 'r' modes.
 
 Help pages:
 -----------
