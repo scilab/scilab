@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,14 +13,16 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="squeeze">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="squeeze">
     <refnamediv>
         <refname>squeeze</refname>
-        <refpurpose>removes singleton dimensions of a hypermatrix</refpurpose>
+        <refpurpose>removes singleton dimensions of a ND-array</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>hypOut = squeeze(hypIn)</synopsis>
+        <synopsis>r = squeeze(hypIn)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,13 +30,13 @@
             <varlistentry>
                 <term>hypIn</term>
                 <listitem>
-                    <para>a hypermatrix or matrix of constant type.</para>
+                    <para>a ND-array of any native type (boolean, .., cells, structures)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>hypOut</term>
+                <term>r</term>
                 <listitem>
-                    <para>a hypermatrix or matrix of constant type.</para>
+                    <para>an array or ND-array of the same type.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -42,21 +44,78 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <function>squeeze</function> function removes singleton dimensions of a
-            hypermatrix, that is any dimension for which the size is <literal>1</literal>. If
-            the input <varname>hypIn</varname> is a matrix, it is unaffected.
+            <literal>squeeze(…)</literal> removes singleton dimensions of an hypermatrix or ND-array,
+            that is any dimension for which the size is <literal>1</literal>.
+            If the input <varname>hypIn</varname> is a matrix, it is returned as is.
         </para>
+        <note>
+            Scilab squeezes highest singleton dimensions automatically.
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-	M1 = zeros(2,1,5)
-	squeeze(M1)
-	squeeze(M1(:,:,1))
+// For 2D input matrices => no action
+u = squeeze(ones(1,4))
+size(u)
 
-	M2 = matrix(1:4, [2 1 2 1])
-	squeeze(M2)
-	]]></programlisting>
+// auto-squeezing of highest singleton dimensions:
+v = ones(2,3,1,1);
+size(v)
+
+// For an actual input ND-array:
+w = squeeze(ones(1,3,1,4))
+size(w)
+
+// for a 4D-array of cells
+c = cat(4, {%t}, {%pi}, {"abc"});
+size(c)
+x = squeeze(c)
+size(x)
+    ]]></programlisting>
+    <screen><![CDATA[
+--> u = squeeze(ones(1,4))
+ u  =
+   1.   1.   1.   1.
+
+--> size(u)
+ ans  =
+   1.   4.
+
+--> // auto-squeezing of highest singleton dimensions:
+--> v = ones(2,3,1,1);
+--> size(v)
+ ans  =
+   2.   3.
+
+--> // For an actual input ND-array:
+--> w = squeeze(ones(1,3,1,4))
+ w  =
+   1.   1.   1.   1.
+   1.   1.   1.   1.
+   1.   1.   1.   1.
+
+--> size(w)
+ ans  =
+   3.   4.
+
+
+--> // for a 4D-array of cells
+--> c = cat(4, {%t}, {%pi}, {"abc"});
+--> size(c)
+ ans  =
+   1.   1.   1.   3.
+
+--> x = squeeze(c)
+ x  =
+  [1x1 boolean ]
+  [1x1 constant]
+  [1x1 string  ]
+
+--> size(x)
+ ans  =
+   3.   1.
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>

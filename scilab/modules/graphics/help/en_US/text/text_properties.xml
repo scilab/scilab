@@ -168,12 +168,14 @@
                     <para>
                         <itemizedlist>
                             <listitem>
-                                <literal>"on"</literal> : If <literal>.box="on"</literal>, the line
-                                of the box is drawn (frame).
+                                <literal>"on"</literal> : draws a line as box border,
+                                provided that <literal>.box="on"</literal> as well.
+                                The border's color is then set with <literal>.foreground</literal>.
                             </listitem>
                             <listitem>
-                                <literal>"off"</literal> : If <literal>.box="on"</literal>, the box
-                                is drawn without surrounding frame (only with its filling color).
+                                <literal>"off"</literal> : no line as box border is drawn.
+                                The box's filling background is independently enabled/disabled
+                                with the <literal>.fill_mode</literal> property.
                             </listitem>
                         </itemizedlist>
                     </para>
@@ -182,10 +184,11 @@
             <varlistentry>
                 <term>foreground: </term>
                 <listitem>
-                    <para>Color index of the line used to draw the edge of the box, when
-                    <literal>.line_mode</literal> is turned on. Its value refers to the current
-                       colormap. <literal>-1</literal> is black (default) and <literal>-2</literal>
-                       is white whatever is the colormap.
+                    <para>
+                        Color's index of the line used to draw the edge of the box when
+                        <literal>.box="on"</literal> and <literal>.line_mode="on"</literal>.
+                        Its value refers to the current colormap. <literal>-1</literal> is black
+                        (default) and <literal>-2</literal> is white whatever is the colormap.
                     </para>
                 </listitem>
             </varlistentry>
@@ -193,19 +196,26 @@
                 <term>fill_mode: </term>
                 <listitem>
                     <para>
-                        This boolean property allows to draw or not the background of the box
-                        when the <literal>box</literal> property is <literal>"on"</literal>.
-                        If <literal>fill_mode</literal> is <literal>"off"</literal>, the
-                        background of the box is not transparent.
+                        <literal>"on"</literal>: enables the box background, provided that
+                        <literal>.box="on"</literal> as well. The background's color can
+                        then be set with the <literal>.background</literal> property.
+                   </para>
+                    <para>
+                      <literal>"off"</literal> (default): disables the box background,
+                      that becomes transparent.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>background: </term>
                 <listitem>
-                    <para>This field contains the color used to fill the box around of the
-                        text. Its value should be a color index (relative to the current
-                        colormap).
+                    <para>
+                        Index of the color used to fill the box around of the text,
+                        provided that <literal>.box="on"</literal> and
+                        <literal>.fill_mode="on"</literal>. The color index is relative
+                        to the current colormap. Whatever is the colormap,
+                        <literal>-1</literal> is black (default) and <literal>-2</literal>
+                        is white.
                     </para>
                 </listitem>
             </varlistentry>

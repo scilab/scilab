@@ -200,13 +200,8 @@
                                     as soon as a sparse-encoded component is met and processed.
                                 </listitem>
                                 <listitem>
-                                    It is possible to concatenate polynomials or/and rationals
-                                    having different variable names. Then, the first polynomial
-                                    or rational met in the list sets the variable name to the
-                                    concatenation result:
-                                    <literal>[%z, 1+%s, 1-%i*%s]
-                                        // => [z, 1+z, 1-iz]
-                                    </literal>.
+                                    Concatenated polynomials or/and rationals must have the same
+                                    variable name.
                                 </listitem>
                                 <listitem>
                                     Text components can be concatenated (in the set meaning,
@@ -346,8 +341,7 @@ v = [10 1/%z], typeof(v)
         </para>
         <programlisting role="example"><![CDATA[
 [%F %z]
-[int8(%pi), uint8(%e)]
-[int8(%pi), int16(%e)]
+[%s %z]
 [int8(-70), sparse(18)]
 [int8(-70), sparse([%T %F])]
      ]]></programlisting>
@@ -355,6 +349,7 @@ v = [10 1/%z], typeof(v)
             Concatenation of cells arrays:
         </para>
         <programlisting role="example"><![CDATA[
+// Concatenation of cells arrays:
 c1 = {%pi %t};
 c2 = {%z "abc"};
 c = [[{%i} c1] ; [c2, {1/%z^2}]]  // comma mandatory, to not parse c2{1/%z^2}
@@ -464,8 +459,14 @@ s.r([2 4 6])
             <revision>
                 <revnumber>6.1.1</revnumber>
                 <revdescription>
-                    Concatenations between encoded integers and decimal numbers
-                    are now supported.
+                    <itemizedlist>
+                        <listitem>
+                            Concatenations between encoded integers and decimal numbers are now supported.
+                        </listitem>
+                        <listitem>
+                            Concatenated polynomials or/and rationals must have the same variable name.
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

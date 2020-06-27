@@ -216,13 +216,8 @@
                                     </para>
                                 </listitem>
                                 <listitem>
-                                    Des polynômes ou des fractions rationnelles de différentes
-                                    variables peuvent être concaténés entre eux. Le premier polynôme
-                                    ou fraction rationnelle listé donne alors le nom de sa variable
-                                    au résultat de la concaténation :
-                                    <literal>[%z, 1+%s, 1-%i*%s]
-                                        // => [z, 1+z, 1-iz]
-                                    </literal>.
+                                    Des polynômes et/ou des fractions rationnelles à concaténer doivent
+                                    avoir la même variable symbolique.
                                 </listitem>
                                 <listitem>
                                     Les éléments de texte (type "string") peuvent être concaténés
@@ -369,8 +364,7 @@ v = [10 1/%z], typeof(v)
         </para>
         <programlisting role="example"><![CDATA[
 [%F %z]
-[int8(%pi) uint8(%e)]
-[int8(%pi) int16(%e)]
+[%s %z]
 [int8(-70), sparse(18)]
 [int8(-70), sparse([%T %F])]
      ]]></programlisting>
@@ -490,8 +484,16 @@ s.r([2 4 6])
             <revision>
                 <revnumber>6.1.1</revnumber>
                 <revdescription>
-                    Concaténer des entiers encodés avec des réels ou complexes
-                    est désormais possible.
+                    <itemizedlist>
+                        <listitem>
+                            Concaténer des entiers encodés avec des réels ou complexes
+                            est désormais possible.
+                        </listitem>
+                        <listitem>
+                            Des polynômes et/ou fractions rationnelles à concaténer doivent avoir la
+                            même variable symbolique.
+                        </listitem>
+                    </itemizedlist>
                 </revdescription>
             </revision>
         </revhistory>

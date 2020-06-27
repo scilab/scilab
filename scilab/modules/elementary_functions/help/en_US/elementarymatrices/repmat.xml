@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - INRIA - Serge Steer
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,7 +13,10 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="repmat" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="repmat" xml:lang="en">
     <refnamediv>
         <refname>repmat</refname>
         <refpurpose>Replicate and tile an array</refpurpose>
@@ -32,33 +35,33 @@
             <varlistentry>
                 <term>A</term>
                 <listitem>
-                    <para>input 2D array.</para>
+                    Array of any native type (boolean, numeric, text,..., cells, structures),
+                    of any number of dimensions of any sizes. Boolean or numerical sparse
+                    matrices are supported.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>m, n, ...</term>
                 <listitem>
-                    <para>
-                        integers, number of <literal>A</literal> blocks for
-                        each dimension of <literal>B</literal>.
-                    </para>
+                    Positive integers: number of times that <varname>A</varname> must be replicated
+                    along the respective dimensions #1, #2, etc..
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>siz</term>
                 <listitem>
-                    <para>vector of integer, each element gives the number of
-                        <literal>A</literal> blocks for corresponding dimension of
-                        <literal>B</literal>.
-                    </para>
+                    Vector of replication numbers: <literal>siz=[m,n,..]</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>B</term>
                 <listitem>
-                    <para>
-                        resulting array form by tiling the <literal>A</literal> 2D array.
-                    </para>
+                    Tiled array or ND-array, of sizes [m*size(A,1), n*size(A,2), ..] or
+                    [siz(1)*size(A,1), siz(2)*size(A,2), ..].
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -66,48 +69,112 @@
     <refsection role="description">
         <title>Description</title>
         <para>
-            <literal>repmat(A,m,n)</literal> or similarly
-            <literal>repmat(A,[m,n])</literal> returns a large matrix
-            consisting of an <literal>m</literal>-by-<literal>n</literal>
-            tiling of copies of <literal>A</literal>. The size of the result
-            is <literal>[size(A,1)*M, size(A,2)*N]</literal>.
+            <emphasis role="bold">repmat(A, m)</emphasis> replicates and tiles
+            <literal>m</literal> × <literal>m</literal> copies of <varname>A</varname>.
         </para>
         <para>
-            <literal>repmat(A,m)</literal> creates an
-            <literal>m</literal>-by-<literal>m</literal> tiling.
+            <emphasis role="bold">repmat(A, m, n)</emphasis> or
+            <emphasis role="bold">repmat(A, [m, n])</emphasis> replicates and tiles
+            <literal>m</literal> × <literal>n</literal> copies of <varname>A</varname>.
         </para>
         <para>
-            <literal>repmat(A,[m n p ...])</literal> tiles the array A to produce a
-            multidimensional array  composed of copies of  <literal>A</literal>. The size of the result is
-            <literal>[size(A,1)*M, size(A,2)*N, size(A,3)*P, ...] </literal>.
+            <emphasis role="bold">repmat(A, m, n, p, ..)</emphasis> is a generalization of
+            <emphasis role="bold">repmat(A, m, n)</emphasis>.
         </para>
-        <para>For now,only arrays of real, integer, boolean, character
-            string, polynomial and rational as well as sparse matrices are
-            supported. This function definition can be extended using
-            overloading mechanism.
+        <para>
+            <literal>repmat(…)</literal> extends <literal>ones(m,n,..) .*. A</literal>
+            to non-numerical inputs <varname>A</varname>.
+        </para>
+        <para>
+             repmat(…)'s definition can be extended using the overloading mechanism.
         </para>
     </refsection>
     <refsection role="examples">
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-repmat(1:3,2,2)
-repmat(int8([1 0 1;0 1 0]),2,3,2)
-repmat("Scilab",3,2)
-t="Scilab";t(ones(3,2))
-repmat([1/%s;2/(%s+1)],1,3)
- ]]></programlisting>
+repmat([-1 3 7], 2, 4)
+
+repmat(int8([1 -2 3; 0 -1  1]), 2, 4, 2)
+
+b = cat(3, [%f %t %t], [%t %t %f])
+repmat(b, [2 3])
+
+t = "Scilab"; t(ones(2,4))
+repmat(["Scilab" "Xcos"], 2, 3)
+
+repmat([1/%s ; 2/(%s+1)], 1, 3)
+    ]]></programlisting>
+    <screen><![CDATA[
+--> repmat([-1 3 7], 2, 4)
+ ans  =
+  -1.   3.   7.  -1.   3.   7.  -1.   3.   7.  -1.   3.   7.
+  -1.   3.   7.  -1.   3.   7.  -1.   3.   7.  -1.   3.   7.
+
+
+--> repmat(int8([1 -2 3; 0 -1  1]), 2, 4, 2)
+ ans  =
+(:,:,1)
+  1 -2  3  1 -2  3  1 -2  3  1 -2  3
+  0 -1  1  0 -1  1  0 -1  1  0 -1  1
+  1 -2  3  1 -2  3  1 -2  3  1 -2  3
+  0 -1  1  0 -1  1  0 -1  1  0 -1  1
+(:,:,2)
+  1 -2  3  1 -2  3  1 -2  3  1 -2  3
+  0 -1  1  0 -1  1  0 -1  1  0 -1  1
+  1 -2  3  1 -2  3  1 -2  3  1 -2  3
+  0 -1  1  0 -1  1  0 -1  1  0 -1  1
+
+
+--> b = cat(3, [%f %t %t], [%t %t %f])
+ b  =
+(:,:,1)
+  F T T
+(:,:,2)
+  T T F
+
+--> repmat(b, [2 3])
+ ans  =
+(:,:,1)
+  F T T F T T F T T
+  F T T F T T F T T
+ (:,:,2)
+  T T F T T F T T F
+  T T F T T F T T F
+
+
+--> t = "Scilab"; t(ones(2,4))
+ ans  =
+  "Scilab"  "Scilab"  "Scilab"  "Scilab"
+  "Scilab"  "Scilab"  "Scilab"  "Scilab"
+
+--> repmat(["Scilab" "Xcos"], 2, 3)
+ ans  =
+  "Scilab"  "Xcos"  "Scilab"  "Xcos"  "Scilab"  "Xcos"
+  "Scilab"  "Xcos"  "Scilab"  "Xcos"  "Scilab"  "Xcos"
+
+
+--> repmat([1/%s ; 2/(%s+1)], 1, 3)
+ ans  =
+    1     1     1
+    -     -     -
+    s     s     s
+
+    2     2     2
+   ----  ----  ----
+   1 +s  1 +s  1 +s
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>See also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="matrix">matrix</link>
+                <link linkend="kron">kron</link>
             </member>
             <member>
-                <link linkend="extraction">extraction</link>
+                <link linkend="ndgrid">ndgrid</link>
             </member>
             <member>
-                <link linkend="size">size</link>
+                <link linkend="insertion">insertion</link>
             </member>
         </simplelist>
     </refsection>

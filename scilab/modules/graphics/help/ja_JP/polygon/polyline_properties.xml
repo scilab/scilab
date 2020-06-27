@@ -110,6 +110,17 @@
                         (破線, 一点鎖線, 長一点鎖線, 大鎖線, 大長一点鎖線, 点線, 2重点線, 長空白点線, 大空白点線)
                         の選択を意味します. 以下の例を参照ください.
                     </para>
+                    <scilab:image>
+                        plot2d([1 10], [1 1]'*(1:10), 2*ones(1,10));
+                        a = gca();
+                        a.children.children.line_style = (1:10)';
+                        a.children.children.thickness = 2;
+                        set(a, "axes_visible",["off" "on" "off"], "sub_ticks",[1 0]);
+                        a.margins(1) = 0.15;
+                        a.y_ticks=tlist(["ticks"  "locations"  "labels"],1:10,msprintf("%d\n",(1:10)')')
+                        ylabel("line_style value", "fontsize", 3)
+                        gcf().axes_size = [300 185];
+                    </scilab:image>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -276,11 +287,11 @@
                 <term>mark_size: </term>
                 <listitem>
                     <para>
-                        <literal>mark_size</literal>プロパティは,
-                        <literal>mark_mode</literal>プロパティが<literal>"on"</literal>の時,
-                        マーカの大きさを選択するために使用されます.
-                        この値は, 8pt, 10pt, 12pt, 14pt, 18pt および 24pt を意味する
-                        [0 5]の範囲の整数です.
+                        This property specifies the size of the marks displayed when the
+                        <literal>mark_mode</literal> property is <literal>"on"</literal>.
+                        If its value is scalar, the same mark size is set for all points of the curve.
+                        Otherwise it must be a row with as many elements as there are points in the curve.
+                        The type of values depends on the <literal>mark_size_unit</literal> property.
                     </para>
                 </listitem>
             </varlistentry>
@@ -288,19 +299,23 @@
                 <term>mark_foreground: </term>
                 <listitem>
                     <para>
-                        このフィールドは,マーカの縁の色である<literal>mark_foreground</literal>
-                        プロパティの値を有します.この値は(カレントのcolor_mapに関連する)色インデックス
-                        または透過エッジを意味する 0 とします.
+                        This property specifies the color of the edges or details of marks. Acceptable
+                        values are indices of colors in the current figure's colormap, or -2 for white,
+                        -1 for black, or 0 for transparent edges. If its value is scalar, the same
+                        specified color is used for the marks of all points of the curve.
+                        Otherwise it must be a row with as many elements as there are points in the curve.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>mark_background: </term>
                 <listitem>
-                    <para>このフィールドは,マーカの前景色である
-                        <literal>mark_background</literal>プロパティの値を有します.
-                        この値は(カレントのcolor_mapに関連する)色インデックス
-                        または透過エッジを意味する 0 とします.
+                    <para>
+                        This property specifies the color filling the background of marks. Acceptable
+                        values are indices of colors in the current figure's colormap, or -2 for white,
+                        -1 for black, or 0 for transparent edges. If its value is scalar, the same
+                        specified color is used for the marks of all points of the curve.
+                        Otherwise it must be a row with as many elements as there are points in the curve.
                     </para>
                 </listitem>
             </varlistentry>
@@ -539,44 +554,24 @@ p.line_style=4;
             p.polyline_style=3;
             p.line_style=4;
         </scilab:image>
-        <programlisting role="example"><![CDATA[
-// line_styleプロパティの例
-clf();
-f=gcf();
-for i=1:10
-    plot2d(1:10, i*ones([1:10]), 2);
-    // line_styleを変更:
-    f.children.children(1).children.line_style = i;
-    f.children.children(1).children.thickness = 2;
-end
-f.children.axes_visible = ["off","on","off"];
-f.children.y_label.text = "line_style value";
-f.children.y_label.font_size = 3;
- ]]></programlisting>
-        <scilab:image>
-            clf();
-            f=gcf();
-            for i=1:10
-            plot2d(1:10, i*ones([1:10]), 2);
-            f.children.children(1).children.line_style = i;
-            f.children.children(1).children.thickness = 2;
-            end
-            f.children.axes_visible = ["off","on","off"];
-            f.children.y_label.text = "line_style value";
-            f.children.y_label.font_size = 3;
-        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="champ_properties">champ_properties</link>
+            </member>
+            <member>
+                <link linkend="param3d_properties">param3d_properties</link>
+            </member>
+            <member>
+                <link linkend="plot">plot</link>
+            </member>
+            <member>
                 <link linkend="set">set</link>
             </member>
             <member>
                 <link linkend="get">get</link>
-            </member>
-            <member>
-                <link linkend="delete">delete</link>
             </member>
             <member>
                 <link linkend="xpoly">xpoly</link>
@@ -626,7 +621,16 @@ f.children.y_label.font_size = 3;
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revremark>
-                  <para>New property <literal>.datatip_display_mode</literal> introduced.</para>
+                    <itemizedlist>
+                        <listitem>
+                            New property <literal>.datatip_display_mode</literal> introduced.
+                        </listitem>
+                        <listitem>
+                            <literal>.mark_foreground</literal>, <literal>.mark_background</literal>
+                            and <literal>.mark_size</literal> can now be row vectors: Each point
+                            can have its own individual mark colors and size.
+                        </listitem>
+                    </itemizedlist>
                 </revremark>
             </revision>
         </revhistory>

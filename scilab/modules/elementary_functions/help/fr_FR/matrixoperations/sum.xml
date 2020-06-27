@@ -13,17 +13,21 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="sum" xml:lang="fr">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org" xml:id="sum" xml:lang="fr">
     <refnamediv>
         <refname>sum</refname>
-        <refpurpose>somme  des éléments d'un tableau.</refpurpose>
+        <refpurpose>somme des éléments d'un tableau.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>y=sum(x)
-            y=sum(x,orientation)
-            y=sum(x,outtype)
-            y=sum(x,orientation,outtype)
+        <synopsis>
+            y = sum(x)
+            y = sum(x, orientation)
+            y = sum(x, outtype)
+            y = sum(x, orientation, outtype)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,43 +36,44 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>un tableau de réels, de complexes, de booléens, de
-                        polynômes ou de fractions rationnelles.
-                    </para>
+                    Tableau de booléens (dense ou creux),  entiers encodés,
+                    nombres (dense ou creux), polynômes, ou fractions rationnelles.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>orientation</term>
                 <listitem>
-                    <para>
-                        Cet argument peut être
-                    </para>
+                    Cet argument peut être
                     <itemizedlist>
                         <listitem>
-                            <para>ou une chaîne de caractères pouvant avoir comme
-                                valeurs: <literal>"*"</literal>,
-                                <literal>"r"</literal>, <literal>"c"</literal> ou
-                                <literal>"m"</literal>
-                            </para>
+                            un caractère : <literal>"*"</literal>,
+                            <literal>"r"</literal>, <literal>"c"</literal> ou
+                            <literal>"m"</literal>
+                            <para/>
                         </listitem>
                         <listitem>
-                            <para>ou bien un nombre à valeur positive entière</para>
+                            un entier positif : n° de la dimension selon laquelle les sommes
+                            doivent être calculées.
+                            <para/>
                         </listitem>
                     </itemizedlist>
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>outtype</term>
                 <listitem>
-                    <para>
-                        une chaîne de caractères pouvant prendre les valeurs <literal>"native"</literal> ou <literal>"double"</literal>.
-                    </para>
+                    une chaîne de caractères pouvant prendre les valeurs
+                    <literal>"native"</literal> ou <literal>"double"</literal>.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para> un scalaire ou un tableau</para>
+                    un scalaire ou un tableau.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -205,6 +210,9 @@ sum(B,"native") //similar to or(B)
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="plus">plus</link>
+            </member>
             <member>
                 <link linkend="cumsum">cumsum</link>
             </member>

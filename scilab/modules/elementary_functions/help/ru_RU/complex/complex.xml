@@ -43,10 +43,10 @@
             <varlistentry>
                 <term>c</term>
                 <listitem>
-                    Array of complex numbers, of the size of <varname>u</varname> or of
-                    <varname>a</varname> and <varname>b</varname>.
-                    If <varname>u</varname> is sparse, or if <varname>a</varname> and
-                    <varname>b</varname> have the same sizes and both are sparse,
+                    Массив комплексных чисел того же размера, что и <varname>u</varname> или
+                    <varname>a</varname> и <varname>b</varname>.
+                    Если <varname>u</varname> является разрежённой, либо если <varname>a</varname> и
+                    <varname>b</varname> имеют одинаковые размеры и обе являются разрежёнными,
                     то <varname>c</varname> является также разрежённой.
                     В противном случае <varname>c</varname> является плотной.
                     <para/>
