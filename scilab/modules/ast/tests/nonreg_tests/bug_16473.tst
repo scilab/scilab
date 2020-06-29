@@ -14,8 +14,12 @@
 // http://bugzilla.scilab.org/16473
 //
 // <-- Short Description -->
-// Deleting rows with [] insertion in a sparse squares the matrix with padding zeros (6.0.0 regression)
+// Deleting rows with [] insertion in a sparse matrix squares it with padding zeros or %F
 
 m = int(sprand(10,3,0.5)*10);
 m([2 5],:) = [];
-assert_checkequal(size(m),[8 3])
+assert_checkequal(size(m),[8 3]);
+
+s = sprand(10,3,0.5);
+s(3,:) = [];
+assert_checkequal(size(s),[9 3]);

@@ -3858,7 +3858,7 @@ GenericType* SparseBool::remove(typed_list* _pArgs)
     }
     else
     {
-        pOut = new SparseBool(piNewDims[0], piNewDims[0]);
+        pOut = new SparseBool(piNewDims[0], piNewDims[1]);
     }
 
     delete[] piNewDims;
