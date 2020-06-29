@@ -135,6 +135,8 @@ s = list(1,,list(2,,4));
 assert_checkequal(s, s);
 s = list("foo",2);
 assert_checkequal(s, s);
+s = list(1,list(,%nan,,2),,%nan,1);
+assert_checkequal(s, s);
 ierr = execstr("assert_checkequal(list(2,,7), list(2,%F,8))","errcatch");
 MY_assert_equal(ierr, 10000);
 errmsg = lasterror();
@@ -143,6 +145,10 @@ refmsg = msprintf(refmsg, "assert_checkequal", ..
     msprintf(_("expected(%d)= "),2) + "F", ..
     msprintf(_("computed(%d)= "),2) + "(void)");
 MY_assert_equal( errmsg , refmsg );
+
+// void
+// ----
+assert_checkequal(list(,3)(1), list(,3)(1));
 
 // Mlist
 // -----
@@ -153,6 +159,13 @@ assert_checkequal(s, s);
 // -----
 s = tlist(["V","name","value"],["a","b";"c" "d"],[1 2; 3 4]);
 assert_checkequal(s, s);
+
+// Cells
+// -----
+assert_checkequal({}, {});
+o = {1, %f, %z ; "abc" %nan list(,3)};
+assert_checkequal(o, o);
+assert_checkequal({%nan}, {%nan});  // http://bugzilla.scilab.org/16274
 //
 // Polynomial
 // ----------
@@ -170,7 +183,7 @@ t = s;
 s(1)=12;
 instr="assert_checkequal(s, t)";
 ierr=execstr(instr,"errcatch");
-MY_assert_equal(ierr, 10000);
+MY_assert_equal(ierr, 999);
 
 //
 // Boolean
@@ -187,7 +200,7 @@ assert_checkequal(s, t);
 s(1)=%f;
 instr="assert_checkequal(s, t)";
 ierr=execstr(instr,"errcatch");
-MY_assert_equal(ierr, 10000);
+MY_assert_equal(ierr, 999);
 
 //
 // Integer 8

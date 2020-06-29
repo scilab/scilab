@@ -28,7 +28,6 @@
             assert_checkequal ( computed , expected )
             flag = assert_checkequal ( computed , expected )
             [flag,errmsg] = assert_checkequal ( computed , expected )
-
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -74,20 +73,18 @@
             Работает молча, если <varname>computed</varname> и <varname>expected</varname> равны.
         </para>
         <para>
-            Если тип обоих входных аргументов равен 1 (т.е. матрица вещественных или комплексных
-            чисел), то мы проверяем, что не-Nan значения равны (совпадающие Nan-значения
-            считаются равными).
-        </para>
-        <para>
             Для комплексных чисел: мы сравниваем сначала вещественные части. В случае равенства
             мы сравниваем мнимые части.
+        </para>
+        <para>
+            Сопоставляемые значения <literal>Nan</literal> всегда считаются равными.
         </para>
         <para>
             <literal>1/%z</literal> и <literal>2/(2*%z)</literal> не равны: для времени Scilab
             не нормирует эквивалентные рациональные значения.
         </para>
         <para>
-            В двух списках совпадающие пустые элементы считаются равными.
+            В контейнерах, сопоставляемые элементы <literal>void</literal> считаются равными.
         </para>
         <para>
             Если сравнение показывает, что вычисленное равно ожидаемому, то
@@ -183,6 +180,10 @@ assert_checkequal: Assertion failed: expected= lib@SCI\modules\core\macros\  whi
 ]]></screen>
     </refsection>
     <refsection>
+        <title>Литература</title>
+        <para>"Automated Software Testing for Matlab", Steven Eddins, 2009</para>
+    </refsection>
+    <refsection>
         <title>История</title>
         <revhistory>
             <revision>
@@ -195,28 +196,32 @@ assert_checkequal: Assertion failed: expected= lib@SCI\modules\core\macros\  whi
                 <revdescription>
                     <itemizedlist>
                       <listitem>
-                          The comparison of two implicit lists, Scilab functions, Scilab libraries,
-                          built-in functions or graphic handles is now always possible and properly
-                          done.
+                          Сравнение двух неявных списков, Scilab-функций, Scilab-библиотек,
+                          встроенных функций или графических дескрипторов теперь всегда возможны и
+                          и должным образом выполняются.
                       </listitem>
                       <listitem>
-                          In two lists, void and Nan elements are now supported, and matching ones
-                          are considered as equal.
+                          В двух списках теперь поддерживаются элементы void и Nan и соответствующие
+                          элементы рассматриваются как равные.
                       </listitem>
                       <listitem>
-                          Nan are now supported in input sparse matrices and are considered as equal.
+                          Nan теперь поддерживаются во входных разрежённых матрицах и считаются
+                          равными.
                       </listitem>
                       <listitem>
-                          When the test fails while inputs are arrays, the message now indicates
-                          the index of the first mismatching element.
+                          При провалах тестов, когда на входе массивы, сообщение теперь указывает
+                          индекс первого несовпадающего элемента.
                       </listitem>
                    </itemizedlist>
                 </revdescription>
             </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Соответствющие элементы NaN или void в простых или вложенных контейнерах теперь
+                    считаются равными.
+                </revdescription>
+            </revision>
         </revhistory>
-    </refsection>
-    <refsection>
-        <title>Литература</title>
-        <para>"Automated Software Testing for Matlab", Steven Eddins, 2009</para>
     </refsection>
 </refentry>

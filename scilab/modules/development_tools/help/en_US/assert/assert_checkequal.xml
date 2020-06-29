@@ -68,19 +68,18 @@
             Performs silently if <varname>computed</varname> and <varname>expected</varname> are equal.
         </para>
         <para>
-            If the type of both input arguments is 1 (i.e. a matrix of real or complex numbers),
-            we check that non-nan values are equal (matching Nan values are considered equal).
-        </para>
-        <para>
             For complex numbers: We compare first the real parts. In case of equality, we compare
             the imaginary parts.
+        </para>
+        <para>
+            Matching Nan values are always considered equal.
         </para>
         <para>
             <literal>1/%z</literal> and <literal>2/(2*%z)</literal> are not equal: For the time
             being, Scilab does not normalize equivalent rationals.
         </para>
         <para>
-            In two lists, matching void elements are considered equal.
+            In containers, matching <literal>void</literal> elements are considered equal.
         </para>
         <para>
             If the comparison shows that computed is equal to expected,
@@ -172,6 +171,10 @@ assert_checkequal: Assertion failed: expected= lib@SCI\modules\core\macros\  whi
 ]]></screen>
     </refsection>
     <refsection>
+        <title>Bibliography</title>
+        <para>"Automated Software Testing for Matlab", Steven Eddins, 2009</para>
+    </refsection>
+    <refsection>
         <title>History</title>
         <revhistory>
             <revision>
@@ -202,10 +205,12 @@ assert_checkequal: Assertion failed: expected= lib@SCI\modules\core\macros\  whi
                   </itemizedlist>
                 </revdescription>
             </revision>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    Matching NaN or void elements in simple or nested containers are now considered equal.
+                </revdescription>
+            </revision>
         </revhistory>
-    </refsection>
-    <refsection>
-        <title>Bibliography</title>
-        <para>"Automated Software Testing for Matlab", Steven Eddins, 2009</para>
     </refsection>
 </refentry>
