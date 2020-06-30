@@ -1,4 +1,4 @@
-8// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
 // Copyright (C) 2012 - 2016 - Scilab Enterprises

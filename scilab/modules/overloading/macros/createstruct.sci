@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - S. Steer, F. Delebecque, V. Couvert
-//
 // Copyright (C) 2012 - 2016 - Scilab Enterprises
+// Copyright (C) 2020 - Samuel GOUGEON
 //
 // This file is hereby licensed under the terms of the GNU GPL v2.0,
 // pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -12,6 +12,7 @@
 
 function  M=createstruct(index,N)
     // Create a struct with field pointed by index equal to N
+    // createstruct(list(indices,fieldname),N)  => M(indices).fieldname = N
 
     mtlbMode = oldEmptyBehaviour("query")=="off"
 
@@ -28,84 +29,59 @@ function  M=createstruct(index,N)
                 if type(index(1))==1 then
                     // X(p).f = y  -> index=list(p,f)
                     I=index(1)
+                    nmax = max(I)
                     if mtlbMode then
-                        Dims=[1 max(I)]
+                        Dims=[1 nmax]
                     else
-                        Dims=[max(I) 1]
+                        Dims=[nmax 1]
                     end
-                    nmax=prod(Dims);
                     if nmax==1 then
-                        M=mlist(["st","dims",index(2)],int32(Dims),N);
+                        M = struct(index(2), N);
                     else
-                        M=mlist(["st","dims",index(2)],int32(Dims));
-                        //initialize the structure with empty fields
-                        Li=list();for kl=1:nmax, Li(kl)=[];end
-                        //set fields pointed to by index(1) to N
-                        for kl=1:size(I,"*"), Li(I(kl))=N;end
-                        M=setfield(3,Li,M);
+                        M = cell(Dims(1),Dims(2))
+                        M{I} = N
+                        M = struct(index(2), M);
                     end
                     return;
                     // First index is a list of numerical values
                 elseif type(index(1))==15
                     // X(p,q[,...]).f=z -> index=list(list(p,q[,...]),f)
-                    I=index(1)
-                    Ndims = size(I) //the number of dimensions
-
-                    //compute the struct dimensions from max indices values
-                    Dims=[];for kDims=1:Ndims, Dims=[Dims,max(I(kDims)) ];end
-
-                    //initialize the structure with empty fields
-                    Li=list();for kl=1:prod(Dims),Li(kl)=[];end
-
-                    //set fields pointed to by I to N
-                    I1=sub2ind(Dims,I(:)) // build one dimensional index equivalent to I
-                    for kl=1:size(I1,"*"), Li(I1(kl))=N;end
-
-                    M=mlist(["st","dims",index(2)],int32(Dims),Li);
+                    I = index(1)
+                    M{I(:)} = N
+                    M = struct(index(2), M)
                     return;
                     // First index is also a fieldname
                 else
                     // X.f.g=y -> index=list(f,g)
-                    M=mlist(["st","dims",index(1)],int32([1,1]),...
-                    mlist(["st","dims",index(2)],int32([1,1]),N));
-                    return;
+                    M = struct(index(1), struct(index(2), N))
+                    return
                 end
 
                 // Second index is a fieldname
             else
                 // X.f(p[,q,...])=y : index=list(f,list(p[,q,...]))
-
-                if typeof(N)=="st" then // When recursive call of createstruct
-                    if type(index(2))==15 then // index=list(f,list(p,q[,...]))
-                        Dims=list2vec(index(2))'
-                    else // index=list(f,p)
-                        if mtlbMode then
-                            Dims=[1 index(2)]
-                        else
-                            Dims=[index(2) 1]
-                        end
-                    end
-                    kmax=prod(Dims)
-                    z=list()
-                    for kl=1:kmax
-                        z(kl)=[]
-                    end
-                    z(kmax)=getfield(3,N)
-                    z=mlist(getfield(1,N),int32(Dims),z);
-                else
-                    z(index(2)(:))=N;
+                if type(index(1)) <> 10 then
+                    msg = _("%s: Argument #1(1): string expected.\n")
+                    error(msprintf(msg, "createstruct"))
                 end
-                if type(index(1))<>10 then pause,end
-                M=mlist(["st","dims",index(1)],int32([1,1]),z);
-                return;
+                clear M
+                if typeof(N)=="st" then
+                    for f = fieldnames(N)'
+                        M(index(2)(:))(f) = N(f)
+                    end
+                else
+                    M(index(2)(:)) = N
+                end
+                M = struct(index(1), M)
+                return
             end
 
             // Any number of indexes <> 2
         else
             // Last index is a fieldname -> init struct
             if type(index($))==10 then
-                M=mlist(["st","dims",index($)],int32([1,1]),N);
-                index($)=null();
+                M = struct(index($), N)
+                index($) = null();
                 // Last index is a numerical value or a list of numerical values
             elseif type(index($))==1 | type(index($))==15 then
 
@@ -123,21 +99,20 @@ function  M=createstruct(index,N)
                         end
                         kmax=prod(Dims)
                         if kmax==1 then
-                            M=N
+                            M = N
                         else
-                            z=list()
-                            for kl=1:kmax
-                                z(kl)=[]
-                            end
-                            z(kmax)=getfield(3,N)
-                            M=mlist(getfield(1,N),int32(Dims),z);
+                            M = cell(Dims)
+                            f = fieldnames(N)(1)
+                            M($,$) = N(f)
+                            M = struct(f, M)
                         end
                     else
-                        M(index($)(:))=N;
+                        M(index($)(:)) = N;
                     end
                     index($)=null()
-                    // More than one index value
+
                 else
+                    // More than one index value
                     if typeof(N)=="st" then
                         if type(index($))==15 then
                             Dims=list2vec(index($))'
@@ -148,19 +123,16 @@ function  M=createstruct(index,N)
                                 Dims=[index($) 1]
                             end
                         end
-                        kmax=prod(Dims)
-                        z=list()
-                        for kl=1:kmax
-                            z(kl)=[]
-                        end
-                        z(kmax)=getfield(3,N)
-                        z=mlist(getfield(1,N),int32(Dims),z);
+                        z = cell(Dims)
+                        f = fieldnames(N)(1)
+                        z($) = N(f)
+                        z = struct(f, z)
                     else
                         z(index($)(:))=N;
                     end
-                    M=mlist(["st","dims",index($-1)],int32([1,1]),z);
-                    index($)=null()
-                    index($)=null()
+                    M = struct(index($-1), z)
+                    index($) = null()
+                    index($) = null()
                 end
             else
                 // This case should not happen (unknown kind of index)
@@ -174,7 +146,7 @@ function  M=createstruct(index,N)
         end
     else
         if type(index)==10 then
-            M=mlist(["st","dims",index($)],int32([1,1]),N);
+            M = struct(index($), N)
         else
             error(msprintf(_("%s: Not implemented.\n"),"createstruct"));
         end

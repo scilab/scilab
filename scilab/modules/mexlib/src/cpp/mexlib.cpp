@@ -29,26 +29,7 @@
  *    format. If A is a sparse Scilab matrix, it should be converted
  *    by the command A=mtlb_sparse(A) in the syntax of the
  *    mex function.
- *    -Structs and Cells are Scilab mlists:
- *    Struct=mlist(["st","dims","field1",...,"fieldk"],
- *                 int32([d1,d2,...,dn]),
- *                 list(obj1,      objN),
- *                 .....
- *                 list(obj1,      objN))     k such lists
- *           N = d1 x d2    x dn
- *           obj = Scilab variable or pointer to Scilab variable.
- *     Cell = Struct with one field called "entries" and "st" <- "ce"
- *    One dimensional structs or cells are as follows:
- *    Struct=mlist(["st","dims","field1",...,"fieldk"],
- *                 int32([1,1]),
- *                 obj1,...,objk)
- *
- *    -Nd dimensional arrays are Scilab mlists (for Nd > 2):
- *     X = mlist(["hm","dims","entries"],
- *                 int32([d1,d2,...,dn]),
- *                 values)
- *     values = vector of doubles or int8-16-32 or char
- --------------------------------------------------------------------------*/
+  --------------------------------------------------------------------------*/
 #include <stdarg.h>
 
 #include <limits>
@@ -911,7 +892,7 @@ int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
     else if (mxIsSparse(array_ptr))
     {
         int temp_dim = 0;
-        
+
         for (int i = 0; i < ndim; i++)
         {
             temp_dim += dims[i];
@@ -1606,11 +1587,11 @@ int mxGetNzmax(const mxArray *ptr)
     {
         return 0;
     }
-    
+
     types::GenericType *pGT = pIT->getAs<types::GenericType>();
 
     int nzmax = ((types::Sparse *)pGT)->nonZeros();
-    
+
     return nzmax;
 }
 
@@ -1648,7 +1629,7 @@ int *mxGetJc(const mxArray *ptr)
     {
         return NULL;
     }
-                    
+
     types::GenericType *pGT = pIT->getAs<types::GenericType>();
 
     int nzmax = ((types::Sparse *)pGT)->nonZeros();

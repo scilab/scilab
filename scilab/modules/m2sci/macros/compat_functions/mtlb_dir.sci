@@ -69,6 +69,6 @@ function [L]=mtlb_dir(path)
         lbytes=lbytes(1);
         lisdir=lisdir(1);
     end
-    L=mlist(["st","dims","name","date","bytes","isdir"],int32([n 1]),lfiles,ldate,lbytes,lisdir)
-
+    d = [n 1];  
+    L = struct("name",makecell(d, lfiles(:)), "date",makecell(d,ldate(:)), "bytes",makecell(d,lbytes(:)), "isdir",makecell(d,lisdir(:)));
 endfunction
