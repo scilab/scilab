@@ -551,3 +551,4 @@ Bug Fixes
 * [#16373](https://bugzilla.scilab.org/16373): Scilab Crashed or showing wrong output when running on Arm processor
 * [#16459](https://bugzilla.scilab.org/16459): The display of one column hypermatrix was wrong.
 * [#16463](https://bugzilla.scilab.org/16463): `matrix(sparse([]),[0 0])` yielded `[]` instead of `sparse([])`.
+* [#16483](https://bugzilla.scilab.org/16483): substraction of complex polynomial matrices was broken (Scilab 6 regression).
