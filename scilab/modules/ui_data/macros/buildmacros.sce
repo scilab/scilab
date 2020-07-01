@@ -15,5 +15,5 @@ if (isdef("genlib") == %f) then
     exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 
-//genlib("ui_datalib","SCI/modules/ui_data/macros",%f,%t);
+genlib("ui_datalib","SCI/modules/ui_data/macros",%f,%t);
 

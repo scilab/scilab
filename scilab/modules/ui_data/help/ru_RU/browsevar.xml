@@ -14,28 +14,31 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="browsevar">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="browsevar">
     <refnamediv>
         <refname>browsevar</refname>
-        <refpurpose>Scilab variable browser</refpurpose>
+        <refpurpose>браузер переменных Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Синтаксис</title>
         <synopsis>browsevar()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Description</title>
+        <title>Описание</title>
         <para>
-            <literal>browsevar</literal> is the embedded Scilab variable browser.
+            <literal>browsevar</literal> является встроенным в Scilab браузером
+            переменных.
         </para>
         <para>
-            <literal>browsevar</literal> lists all user variables the current environment.
+            <literal>browsevar</literal> составляет список всех переменных
+            пользователя в текущем окружении.
         </para>
         <para>
-            <literal>browsevar</literal> has several features:
+            <literal>browsevar</literal> имеет несколько особенностей:
             <itemizedlist>
-                <listitem><para>
-                        A simple and comprehensive list
+                <listitem>
+                    <para>
+                        Простой и понятный список
                         <para/>
                         <para>
                             <inlinemediaobject>
@@ -47,8 +50,9 @@
                         <para/>
                     </para>
                 </listitem>
-                <listitem><para>
-                        Easy tooltips on the dimensions or types
+                <listitem>
+                    <para>
+                        Лёгкие подсказки по размерам и типам
                         <para/>
                         <para>
                             <inlinemediaobject>
@@ -60,8 +64,9 @@
                         <para/>
                     </para>
                 </listitem>
-                <listitem><para>
-                        Sort by columns
+                <listitem>
+                    <para>
+                        Сортировка по столбцам
                         <para/>
                         <para>
                             <inlinemediaobject>
@@ -74,12 +79,13 @@
                     </para>
                 </listitem>
                 <listitem><para>
-                        Direct connection to the <link linkend="editvar">editvar component</link> by double-clicking on the variable name
+                        Прямое соединение с <link linkend="editvar">компонентами editvar</link>
+                        через двойной клик по имени переменной
                         <para/>
                     </para>
                 </listitem>
                 <listitem><para>
-                        Filter by type from the menu
+                        Фильтр по типу через меню
                         <para/>
                         <para>
                             <inlinemediaobject>
@@ -91,8 +97,10 @@
                         <para/>
                     </para>
                 </listitem>
-                <listitem><para>
-                        Filter out Scilab predefined variables (SCI, SCIHOME, %pi, etc) from the menu
+                <listitem>
+                    <para>
+                        Отфильтрация предопределённых переменных Scilab (SCI,
+                        SCIHOME, %pi, etc) через меню
                         <para/>
                         <para>
                             <inlinemediaobject>
@@ -108,7 +116,7 @@
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
 a = rand(10,10);
 b = "my string";
@@ -122,7 +130,9 @@ curves = gce();
 
 browsevar();
  ]]></programlisting>
-    <para>Then click on some variables in the browser, to edit or display them.</para>
+    <para>
+        Затем щелчок по некоторым переменным в браузере, чтобы редактировать или отобразить их.
+    </para>
     <table>
         <tr>
             <td valign="top" align="center">
@@ -155,7 +165,7 @@ browsevar();
     </table>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="editvar">editvar</link>
@@ -172,13 +182,14 @@ browsevar();
         </simplelist>
     </refsection>
     <refsection>
-        <title>History</title>
+        <title>История</title>
         <revhistory>
             <revision>
                 <revnumber>6.1.1</revnumber>
                 <revremark>
-                    Clicking on a variable of type graphic, function, library, list, structure,
-                    cell, syslin, or any custom tlist or mlist now displays it.
+                    Щелчок по переменной типа graphic, function, library, list,
+                    structure, cell, syslin или любого пользовательского tlist
+                    или mlist теперь отображает её.
                 </revremark>
             </revision>
         </revhistory>

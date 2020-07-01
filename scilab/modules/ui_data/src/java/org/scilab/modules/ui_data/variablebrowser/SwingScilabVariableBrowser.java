@@ -644,21 +644,25 @@ public final class SwingScilabVariableBrowser extends SwingScilabDockablePanel i
         try {
             asynchronousScilabExec(null,
                                    "if exists(\"" + variableName + "\") == 1 then "
-                                   + "  try "
-                                   + "    editvar(\"" + variableName + "\"); "
-                                   + "  catch "
-                                   + "    messagebox(\"Variables of type \"\"\" + typeof ("
-                                   + variableName + ") + \"\"\" can not be edited.\""
-                                   + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
-                                   + "    clear ans;"   // clear return value of messagebox
-                                   + "  end "
-                                   + "else "
-                                   + "  messagebox(\"Variable \"\""
-                                   + variableName + "\"\" no more exists.\""
-                                   + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
-                                   + "  clear ans;"  // clear return value of messagebox
-                                   + "  browsevar();" // Reload browsevar to remove cleared variables
-                                   + "end");
+                                 + "  if or(type(" + variableName + ")==[9 13 14 15 16 17]) "
+                                 + "    browsevar_seeSpecial(" + variableName + ",\"" + variableName + "\"); "
+                                 + "  else "
+                                 + "    try "
+                                 + "      editvar(\"" + variableName + "\"); "
+                                 + "    catch "
+                                 + "      messagebox(\"Variables of type \"\"\" + typeof ("
+                                 + variableName + ") + \"\"\" can not be edited.\""
+                                 + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
+                                 + "      clear ans;"   // clear return value of messagebox
+                                 + "    end "
+                                 + "  end "
+                                 + "else "
+                                 + "  messagebox(\"Variable \"\""
+                                 + variableName + "\"\" no more exists.\""
+                                 + ",\"" + UiDataMessages.VARIABLE_EDITOR + "\", \"error\", \"modal\");"
+                                 + "  clear ans;"  // clear return value of messagebox
+                                 + "  browsevar();" // Reload browsevar to remove cleared variables
+                                 + "end");
         } catch (InterpreterException e1) {
             System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage());
         }
