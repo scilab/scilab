@@ -215,7 +215,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 types::GenericType* pGTResult = poRow->getAs<types::GenericType>();
 
                 //check dimension
-                if (pGT->getDims() != 2 || pGT->getRows() != pGTResult->getRows())
+                if (pGT->getDims() != 2 || ( (pGT->getRows() != pGTResult->getRows()) && pGT->getRows() != 0 && pGTResult->getRows() != 0) )
                 {
                     poRow->killMe();
                     if (poRow != pGT)
@@ -274,7 +274,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     delete[] piRank;
                 }
 
-                types::InternalType *pNewSize = AddElementToVariable(NULL, poRow, pGTResult->getRows(), pGTResult->getCols() + pGT->getCols());
+                types::InternalType *pNewSize = AddElementToVariable(NULL, poRow, std::max(pGTResult->getRows(),pGT->getRows()), pGTResult->getCols() + pGT->getCols());
                 types::InternalType* p = AddElementToVariable(pNewSize, pGT, 0, pGTResult->getCols());
                 if (p != pNewSize)
                 {
@@ -363,7 +363,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             }
 
             //check dimension
-            if (pGT->getCols() != pGTResult->getCols())
+            if ((pGT->getCols() != pGTResult->getCols()) && pGT->getCols() != 0 &&  pGTResult->getCols() != 0)
             {
                 poRow->killMe();
                 if (poResult)
@@ -390,7 +390,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 pGTResult = poResult->getAs<types::GenericType>();
             }
 
-            types::InternalType* pNewSize = AddElementToVariable(NULL, poResult, pGTResult->getRows() + pGT->getRows(), pGT->getCols());
+            types::InternalType* pNewSize = AddElementToVariable(NULL, poResult, pGTResult->getRows() + pGT->getRows(), std::max(pGT->getCols(),pGTResult->getCols()));
             types::InternalType* p = AddElementToVariable(pNewSize, pGT, pGTResult->getRows(), 0);
             if (p != pNewSize)
             {
