@@ -681,7 +681,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             {
             }
         }
-        else if (pIT->isPoly())
+        else if (pIT->isPoly() && pIT->getAs<types::Polynom>()->getVariableName() == L"$")
         {
             //$
             Polynom* pMP = pIT->getAs<types::Polynom>();
