@@ -190,6 +190,23 @@ void ImplicitList::setEnd(InternalType* _poIT)
     m_bComputed = false;
 }
 
+bool ImplicitList::operator==(const InternalType& it)
+{
+    if (const_cast<InternalType &>(it).isImplicitList() == false)
+    {
+        return false;
+    }
+
+    ImplicitList* pIL = const_cast<InternalType &>(it).getAs<ImplicitList>();
+
+    return *m_poStart == *pIL->getStart() &&  *m_poStep == *pIL->getStep() &&  *m_poEnd == *pIL->getEnd();
+}
+
+bool ImplicitList::operator!=(const InternalType& it)
+{
+    return !(*this == it);
+}
+
 bool ImplicitList::compute()
 {
     if (m_bComputed == true)

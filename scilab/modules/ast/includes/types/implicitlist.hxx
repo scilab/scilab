@@ -69,6 +69,9 @@ public :
         return IdImplicitList;
     }
 
+    bool  operator==(const InternalType& it) override;
+    bool  operator!=(const InternalType& it) override;
+
     bool isImplicitList() override
     {
         return true;
