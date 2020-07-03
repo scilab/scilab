@@ -3,7 +3,7 @@
 // ====================================================================
 function cleanmacros()
 
-    libpath = get_absolute_file_path("cleanmacros.sce");
+    libpath = get_absolute_file_path();
 
     binfiles = ls(libpath+"/*.bin");
     for i = 1:size(binfiles,"*")

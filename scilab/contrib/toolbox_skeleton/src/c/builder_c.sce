@@ -4,7 +4,7 @@
 
 function builder_c()
 
-    src_c_path = get_absolute_file_path("builder_c.sce");
+    src_c_path = get_absolute_file_path();
 
     CFLAGS = ilib_include_flag(src_c_path);
 

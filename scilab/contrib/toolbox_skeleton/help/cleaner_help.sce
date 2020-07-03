@@ -1,7 +1,7 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 function cleaner_help()
-    path = get_absolute_file_path("cleaner_help.sce");
+    path = get_absolute_file_path();
     langdirs = dir(path);
     langdirs = langdirs.name(langdirs.isdir);
 

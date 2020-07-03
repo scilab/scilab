@@ -5,7 +5,7 @@ function builder_fortran()
     tbx_build_src(["fsum"],   ..
     ["fsum.f"], ..
     "f",        ..
-    get_absolute_file_path("builder_fortran.sce"));
+    get_absolute_file_path());
 
 endfunction
 

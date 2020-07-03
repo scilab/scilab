@@ -3,7 +3,7 @@
 // This macro compiles JAR from Java files
 
 function builder_java()
-    src_java_dir = get_absolute_file_path("builder_java.sce");
+    src_java_dir = get_absolute_file_path();
 
     curdir = pwd();
     cd(src_java_dir);

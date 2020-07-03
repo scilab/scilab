@@ -2,7 +2,7 @@
 
 function builder_gw_c()
 
-    includes_src_c = ilib_include_flag(get_absolute_file_path("builder_gateway_c.sce") + "../../src/c");
+    includes_src_c = ilib_include_flag(get_absolute_file_path() + "../../src/c");
 
     // PutLhsVar managed by user in sci_sum and in sci_sub
     // if you do not this variable, PutLhsVar is added
