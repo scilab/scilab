@@ -291,7 +291,7 @@ Bug Fixes
 * [#14488](https://bugzilla.scilab.org/14488): The `frameflag=9` and `strf=".9."` values of these `plot2d` options were no longer accepted. Their documentation was ambiguous.
 * [#14718](https://bugzilla.scilab.org/14718): `user` is removed for a while but was still documented.
 * [#14873](https://bugzilla.scilab.org/14873): `setfield` page: The output and the 6.0 history were documented only on the en_US version. The input was wrongly restricted to matrices, while any Scilab object is acceptable. The specific role of `setfield` for mlists was not really described nor illustrated. The example did not include any call to setfield.
-* [#15012](https://bugzilla.scilab.org/15012): `covStart(["isempty" ; "isscalar"])` crashed Scilab. 
+* [#15012](https://bugzilla.scilab.org/15012): `covStart(["isempty" ; "isscalar"])` crashed Scilab.
 * [#15163](https://bugzilla.scilab.org/15163): `getdate` page: The time referential was obscure: a) UTC for Unix Time Convention vs Coordinated Universal Time. b) unclear influence of the time zone.
 * [#15280](https://bugzilla.scilab.org/15280): `gsort` was unable to sort any hypermatrix along dimensions > "r"|"c".
 * [#15839](https://bugzilla.scilab.org/15839): `gsort`: the only sparse possible input were real or complex vectors, and only with the `g` method.
@@ -301,8 +301,8 @@ Bug Fixes
 * [#16106](https://bugzilla.scilab.org/16106): Xcos sciblk4 user-defined blocks did not handle opar and odstate/oz correctly.
 * [#16122](https://bugzilla.scilab.org/16122): concat polynomials with <> var did not raise an error.
 * [#16151](https://bugzilla.scilab.org/16151): `isequal(1:$, 2:$)` returned `%T`.
-* [#16193](https://bugzilla.scilab.org/16193): `covStart()` clear previous coverage information. `profileEnable()` could be use to append a macro later on. 
-* [#16196](https://bugzilla.scilab.org/16196): `covStart()` help page was incomplete about the API usage. 
+* [#16193](https://bugzilla.scilab.org/16193): `covStart()` clear previous coverage information. `profileEnable()` could be use to append a macro later on.
+* [#16196](https://bugzilla.scilab.org/16196): `covStart()` help page was incomplete about the API usage.
 * [#16274](https://bugzilla.scilab.org/16274): assert_checkequal() did not considered equal matching Nan or void elements in (nested) containers.
 * [#16337](https://bugzilla.scilab.org/16337): The 3rd output of `[U,km,ku] = unique(..)` was not implemented.
 * [#16342](https://bugzilla.scilab.org/16342): `strcat()` was much slower in Scilab 6.0.2.
@@ -329,6 +329,7 @@ Bug Fixes
 * [#16465](https://bugzilla.scilab.org/16465): Scinotes OpenRecent menu was not updated when it should.
 * [#16473](https://bugzilla.scilab.org/16473): Deleting rows in a sparse squared the matrix with padding zeros (Scilab 6 regression).
 * [#16474](https://bugzilla.scilab.org/16474): `imult(%z)` crashed Scilab.
+* [#16488](https://bugzilla.scilab.org/16488): Concatenations mixing boolean and double with at least one operand being sparse were not supported.
 * [#16496](https://bugzilla.scilab.org/16496): The `getdate` page should be rewritten: a) `getdate("s")` does NOT take leap seconds into account. b) `D=getdate(X)` is vectorized, accepts fractional seconds and returns them in `[0,1)` in D(10) instead of milliseconds. Moreover, the time referential of the result was unclear (time zone, daylight saving offset).
 * [#16512](https://bugzilla.scilab.org/16512): 1 ./ uint8(0) crashes Scilab (idem with int8, uint16, int16, uint32, int32, uint64, int64).
 * [#16517](https://bugzilla.scilab.org/16517): `getdate("s")` truncated the actual time to integer seconds. `getdate(u)(10)` returned fractional seconds instead of milliseconds as `getdate()`.

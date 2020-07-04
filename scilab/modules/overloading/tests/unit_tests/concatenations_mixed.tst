@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2018 - 2020 - Samuel GOUGEON
+// Copyright (C) 2018-2020 - Samuel GOUGEON - Le Mans Université
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -37,5 +37,38 @@ for it = [1 2 4 8 11 12 14 18]  // Loop on integer types
         assert_checkequal([iconvert(d,it), d], [d d]);
         assert_checkequal([d ; iconvert(d,it)], [d ; d]);
         assert_checkequal([iconvert(d,it) ; d], [d ; d]);
+    end
+end
+
+// -------------------------------------------------
+// A boolean and a double, at least one being sparse
+// -------------------------------------------------
+s = [2 -1 3 ; 4 0 2];
+sp = sparse(s);
+b = [%T %F %F ; %F %T %T];
+spb = sparse(b);
+objects = list(s, sp, b, spb);
+for a = objects
+    for b = objects
+        if (or(type(a)==[1 5]) & or(type(b)==[1 5])) | ..
+            (or(type(a)==[4 6]) & or(type(b)==[4 6])) | ..
+            (~issparse(a) & ~issparse(b))
+            continue
+        end
+        c = [a b];
+        if or(type(a)==[1 5]) | or(type(b)==[1 5])
+            assert_checkequal(type(c), 5);
+        else
+            assert_checkequal(type(c), 6);
+        end
+        assert_checkequal(size(c), [2 6]);
+
+        c = [a ; b];
+        if or(type(a)==[1 5]) | or(type(b)==[1 5])
+            assert_checkequal(type(c), 5);
+        else
+            assert_checkequal(type(c), 6);
+        end
+        assert_checkequal(size(c), [4 3]);
     end
 end
