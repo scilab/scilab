@@ -2,8 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
- *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ * Copyright (C) 2020 - Samuel GOUGEON
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -13,34 +13,51 @@
  * along with this program.
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="setfield" xml:lang="pt">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+          xml:id="setfield" xml:lang="pt">
     <refnamediv>
         <refname>setfield</refname>
-        <refpurpose>inserção de campos de listas</refpurpose>
+        <refpurpose>altera o valor de um elemento de uma mlist, tlist ou list</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>setfield(i,x,l)</synopsis>
+        <synopsis>uL = setfield(a, v, L)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>L</term>
                 <listitem>
-                    <para>matriz de qualquer tipo</para>
+                    lista do tipo <literal>list</literal>, <literal>tlist</literal> ou
+                    <literal>mlist</literal> : a lista cujo componente deve ser alterado.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>l</term>
+                <term>a</term>
                 <listitem>
-                    <para>lista, tlist ou mlist </para>
+                    Endereço do componente a ser alterado. Pode ser o nome do campo
+                    especificado como uma sequência, ou o índice especificado como
+                    um número inteiro positivo. Veja <link linkend="inserção">inserção</link>
+                    para mais detalhes.
+                    <para/>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>i</term>
+                <term>v</term>
                 <listitem>
-                    <para>índice de campo, ver "insertion" para mais detalhes.</para>
+                    Qualquer objeto Scilab : o valor a ser atribuído.
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>uL</term>
+                <listitem>
+                    A lista atualizada.
+                    <para/>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -48,19 +65,83 @@
     <refsection>
         <title>Descrição</title>
         <para>
-            Esta função é equivalente à sintaxe <literal>l(i)=x</literal> spara
-            inserção de campos, com a única diferença de que também se aplica a
-            objetos <literal>mlist</literal>.
+            <literal>L=setfield(a,v,L)</literal> addresses and changes the
+            i<superscript>th</superscript> element of a list, in a unified way
+            over lists, tlists and mlists.
+        </para>
+        <para>
+            For simple lists and for tlists, <literal>L=setfield(a,v,L)</literal>
+            is equivalent to <literal>L(a)=v</literal>, that is simpler and should be preferred.
+            The same stands for any mlist if the address <varname>a</varname> is a
+            field's name.
+        </para>
+        <para>
+            However, for any mlist L, if <literal>i</literal> is an index, the insertion
+            <literal>L(i)=v</literal> is not predefined, in order to let the user define
+            an overload implementing a matrix-oriented insertion, if required.
+            Yet <literal>setfield(i,v,L)</literal> is always defined, with the same meaning as
+            for other list and tlist types.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
+        <para>
+            For a tlist, <literal>setfield(3, v, T)</literal> is equivalent to
+            <literal>T(3)=v</literal> :
+        </para>
         <programlisting role="example"><![CDATA[
-l=list(1,'qwerw',%s)
-l(1)='Modificado'
-l(0)='Adicionado'
-l(6)=['mais um';'adicionado']
+T = tlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
+// The insertion is predefined:
+T(3) = [%t %t %f];
+T(3)
+
+T = setfield(3, [%f %t %f], T);
+T(3)
  ]]></programlisting>
+    <screen><![CDATA[
+--> T = tlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
+--> // The insertion is predefined:
+--> T(3) = [%t %t %f];
+--> T(3)
+ ans  =
+  T T F
+
+--> T = setfield(3, [%f %t %f], T);
+--> T(3)
+ ans  =
+  F T F
+]]></screen>
+        <para>
+            For a mlist, there is no predefined indexed insertion routine, to let
+             the user define a matrix-oriented insertion overload if required.
+        </para>
+        <programlisting role="example"><![CDATA[
+M = mlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
+M.b = [%t %t %t];
+M.b                 // OK, while ...
+M(3) = [%f %t %f];  // => error
+
+// But a raw direct insertion with setfield() is always possible:
+M = setfield(3, [%t %f %t], M);
+getfield(3, M)
+ ]]></programlisting>
+    <screen><![CDATA[
+--> M = mlist(['V','a','b'], [%z (1-%z) %z^2], [%f %t %t]);
+--> M.b = [%t %t %t];
+--> M.b                 // OK, while ...
+ ans  =
+  T T T
+
+--> M(3) = [%f %t %f];  // => error
+Function not defined for given argument type(s),
+  check arguments or define function %b_i_V for overloading.
+
+--> // But a raw direct insertion with setfield() is always possible:
+--> M = setfield(3, [%t %f %t], M);
+--> getfield(3, M)
+ ans  =
+  T F T
+]]></screen>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
@@ -68,6 +149,27 @@ l(6)=['mais um';'adicionado']
             <member>
                 <link linkend="insertion">insertion</link>
             </member>
+            <member>
+                <link linkend="getfield">getfield</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            The updated list is now returned, instead of being changed "in place".
+                        </listitem>
+                        <listitem>
+                            setfield() can no longer be used for cells arrays.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
