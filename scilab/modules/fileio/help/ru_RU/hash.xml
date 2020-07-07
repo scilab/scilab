@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2020 - Stéphane MOTTELET
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
+xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"
+xml:lang="ru" xml:id="hash">
+    <refnamediv>
+        <refname>hash</refname>
+        <refpurpose>
+            получает контрольную сумму файла или строки, используя различные алгоритмы
+            получения хеш-сумм
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Синтаксис</title>
+        <synopsis>
+            res = hash(fd, algorithm)
+            res = hash(string, algorithm)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>хеш-результат (строка)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fd</term>
+                <listitem>
+                    <para>
+                        матрица дескрипторов файлов, возвращаемых функцией <function>mopen</function>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>string</term>
+                <listitem>
+                    <para>строка или матрица строк</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>algorithm</term>
+                <listitem>
+                    <para>строка (алгоритм подсчёта хеш-суммы)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <function>hash</function> получает контрольную сумму файла или строки,
+            используя функцию получения хеш-сумм <varname>algorithm</varname>.
+            Доступными алгоритмами являются:
+        </para>
+        <para>
+        <informaltable border="1">
+               <tbody>
+                 <tr>
+                     <td>'crc32'</td><td>контрольная сумма crc32</td>
+                 </tr>
+                 <tr>
+                     <td>'md5'</td><td>алгоритм выборки сообщений 5</td>
+                 </tr>
+                <tr>
+                    <td>'sha1'</td><td>защищённый алгоритм хеширования 1 (160 бит)</td>
+                </tr>
+                <tr>
+                    <td>'sha2', 'sha256'</td><td>защищённый алгоритм хеширования 2 (256 бит)</td>
+                </tr>
+                <tr>
+                    <td>'sha3-224'</td><td>защищённый алгоритм хеширования 3 (224 бита)</td>
+                </tr>
+                <tr>
+                    <td>'sha3-256'</td><td>защищённый алгоритм хеширования 3 (256 бит)</td>
+                </tr>
+                <tr>
+                    <td>'sha3-384'</td><td>защищённый алгоритм хеширования 3 (384 бита)</td>
+                </tr>
+                <tr>
+                    <td>'sha3-512'</td><td>защищённый алгоритм хеширования 3 (512 бит)</td>
+                </tr>
+            </tbody>
+        </informaltable>
+    </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+hash('hello world', 'md5')
+hash('hello world', 'sha256')
+hash(['hello';'world'], 'sha3-256')
+
+hash( mopen(SCI+'/modules/core/etc/core.start') ,'sha256')
+ ]]></programlisting>
+    </refsection>
+      <refsection>
+        <title>История</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revremark>введена hash().</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -1,8 +1,8 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
- *
- * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *  Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *  Copyright (C) 2021 - Stéphane MOTTELET
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
  * pursuant to article 5.3.4 of the CeCILL v.2.1.
@@ -17,11 +17,11 @@
 #include "types.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "md5.hxx"
 
 extern "C"
 {
 #include "sci_malloc.h"
-#include "md5.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "charEncoding.h"
@@ -74,6 +74,8 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
     types::String *pIn = in[0]->getAs<types::String>();
     types::String *pOutput = new types::String(pIn->getRows(), pIn->getCols());
 
+    MD5 md5_digest;
+
     for (int i = 0 ; i < pIn->getSize() ; ++i)
     {
         wchar_t *wcsCurrentIn = pIn->get(i);
@@ -82,15 +84,16 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
         if (bStringMode)
         {
             pstPath = wide_string_to_UTF8(wcsCurrentIn);
-            char* pstMD5_ = md5_str(pstPath);
-            pstMD5 = to_wide_string(pstMD5_);
+            std::string pstMD5_ = md5_digest(pstPath);
+            pstMD5 = to_wide_string(pstMD5_.c_str());
             FREE(pstPath);
-            FREE(pstMD5_);
         }
         else
         {
             FILE *fp = NULL;
             wchar_t *real_path = NULL;
+            char pStData[64];
+            size_t iLen = 0;
 
             /* Replaces SCI, ~, HOME, TMPDIR by the real path */
             real_path = expandPathVariableW(wcsCurrentIn);
@@ -110,10 +113,14 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
 
             if (fp)
             {
-                char* pstrFile = md5_file(fp);
-                pstMD5 = to_wide_string(pstrFile);
+                while (!feof(fp))
+                {
+                    iLen = fread(pStData, 1, sizeof(pStData), fp);
+                    md5_digest.add(pStData, iLen);
+                }
+                std::string strHash = md5_digest.getHash();
+                pstMD5 = to_wide_string(strHash.c_str());
                 fclose(fp);
-                FREE(pstrFile);
             }
             else
             {
@@ -127,6 +134,7 @@ types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, t
             FREE(pstPath);
             FREE(real_path);
         }
+        md5_digest.reset();
 
         pOutput->set(i, pstMD5);
         FREE(pstMD5);

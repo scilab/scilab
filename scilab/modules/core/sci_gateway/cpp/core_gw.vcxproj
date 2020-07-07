@@ -81,7 +81,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/intl;../../../functions_manager/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../jvm/src/c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp/hash;../../../../libs/intl;../../../functions_manager/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../jvm/src/c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CORE_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -104,7 +104,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/intl;../../../functions_manager/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../jvm/src/c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp/hash;../../../../libs/intl;../../../functions_manager/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../jvm/src/c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CORE_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -125,7 +125,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/intl;../../../functions_manager/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../jvm/src/c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp/hash;../../../../libs/intl;../../../functions_manager/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../jvm/src/c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CORE_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -152,7 +152,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../libs/intl;../../../functions_manager/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../jvm/src/c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp/hash;../../../../libs/intl;../../../functions_manager/includes;../../../elementary_functions/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../fileio/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../jvm/src/c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;CORE_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -173,6 +173,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\cpp\hash\crc32.cpp" />
+    <ClCompile Include="..\..\src\cpp\hash\md5.cpp" />
+    <ClCompile Include="..\..\src\cpp\hash\sha1.cpp" />
+    <ClCompile Include="..\..\src\cpp\hash\sha256.cpp" />
+    <ClCompile Include="..\..\src\cpp\hash\sha3.cpp" />
     <ClCompile Include="sci_analyzeroptions.cpp" />
     <ClCompile Include="sci_cell.cpp" />
     <ClCompile Include="sci_checkNamedArguments.cpp" />
@@ -183,6 +188,7 @@
     <ClCompile Include="sci_funcprot.cpp" />
     <ClCompile Include="sci_funptr.cpp" />
     <ClCompile Include="sci_getmemory.cpp" />
+    <ClCompile Include="sci_hash.cpp" />
     <ClCompile Include="sci_ieee.cpp" />
     <ClCompile Include="sci_insert.cpp" />
     <ClCompile Include="sci_inspectorDeleteUnreferencedItems.cpp">
@@ -263,6 +269,12 @@
     <ClInclude Include="..\..\includes\core_gw.hxx" />
     <ClInclude Include="..\..\includes\dynlib_core_gw.h" />
     <ClInclude Include="..\..\includes\runner.hxx" />
+    <ClInclude Include="..\..\src\cpp\hash\crc32.hxx" />
+    <ClInclude Include="..\..\src\cpp\hash\hash.hxx" />
+    <ClInclude Include="..\..\src\cpp\hash\md5.hxx" />
+    <ClInclude Include="..\..\src\cpp\hash\sha1.hxx" />
+    <ClInclude Include="..\..\src\cpp\hash\sha256.hxx" />
+    <ClInclude Include="..\..\src\cpp\hash\sha3.hxx" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />

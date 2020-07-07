@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -247,7 +247,13 @@ cd ..
     <ClCompile Include="..\cpp\getfunctionsname.cpp" />
     <ClCompile Include="..\cpp\getmacrosname.cpp" />
     <ClCompile Include="..\cpp\getvariablesname.cpp" />
+    <ClCompile Include="..\cpp\hash\crc32.cpp" />
+    <ClCompile Include="..\cpp\hash\md5.cpp" />
+    <ClCompile Include="..\cpp\hash\sha1.cpp" />
+    <ClCompile Include="..\cpp\hash\sha256.cpp" />
+    <ClCompile Include="..\cpp\hash\sha3.cpp" />
     <ClCompile Include="..\cpp\InitScilab.cpp" />
+    <ClCompile Include="..\cpp\md5_file.cpp" />
     <ClCompile Include="..\cpp\parsecommand.cpp" />
     <ClCompile Include="..\cpp\pause.cpp" />
     <ClCompile Include="..\cpp\runner.cpp" />
@@ -279,7 +285,6 @@ cd ..
     <ClCompile Include="isanan.c" />
     <ClCompile Include="islittleendian.c" />
     <ClCompile Include="loadversion.c" />
-    <ClCompile Include="md5.c" />
     <ClCompile Include="returnanan.c" />
     <ClCompile Include="saveCWDInPreferences.c" />
     <ClCompile Include="setPrecisionFPU.c" />
@@ -337,7 +342,6 @@ cd ..
     <ClInclude Include="..\..\includes\islittleendian.h" />
     <ClInclude Include="..\..\includes\loadversion.h" />
     <ClInclude Include="..\..\includes\machine.h" />
-    <ClInclude Include="..\..\includes\md5.h" />
     <ClInclude Include="..\..\includes\parsecommand.h" />
     <ClInclude Include="..\..\includes\pause.h" />
     <ClInclude Include="..\..\includes\sci_malloc.h" />
