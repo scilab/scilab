@@ -22,8 +22,8 @@ import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
 
-import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.commons.ScilabCommons;
@@ -172,9 +172,22 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
                     return null;
                 }
             }
+        } else if (!language.equals(ScilabHelpBrowser.language)) {
+            // reload the help browser with the new language
+            ScilabHelpBrowser.language = language;
+            if (!SwingScilabHelpBrowser.isMainJarExists(language)) {
+                System.err.println("No help file available.");
+                return instance;
+            }
+            ((SwingScilabHelpBrowser)((ScilabHelpBrowser) instance).component).loadJar(helps, language);
+        } else if (!Arrays.deepEquals(helps, ScilabHelpBrowser.helps)) {
+            // reload the help browser with new help jar list
+            ScilabHelpBrowser.helps = helps;
+            ((SwingScilabHelpBrowser)((ScilabHelpBrowser) instance).component).loadJar(helps, language);
         }
 
-        ScilabGUIUtilities.toFront((SwingScilabDockablePanel) helpTab.getAsSimpleTab(),Messages.gettext("Help Browser"));
+
+        ScilabGUIUtilities.toFront((SwingScilabDockablePanel) helpTab.getAsSimpleTab(), Messages.gettext("Help Browser"));
 
         return instance;
     }

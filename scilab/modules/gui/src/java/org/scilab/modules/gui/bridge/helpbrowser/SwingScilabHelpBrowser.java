@@ -25,6 +25,7 @@ import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.Enumeration;
 import java.util.Locale;
 
@@ -69,9 +70,9 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
 
     private String currentLanguage = "";
     private JHelp jhelp;
-    private HelpSet helpSet;
     private URL homePageURL;
     private HelpSearchField searchField;
+    private ClassLoader classLoader;
 
     /* We are storing the HelpHistory model to be able to
      * use the back/forward feature from the jpopupmenu
@@ -109,13 +110,36 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
             ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         }
 
+        loadJar(helps, language);
+
+        /* Reinit status bar and cursor */
+        if (ScilabConsole.isExistingConsole() && ScilabConsole.getConsole().getInfoBar() != null) {
+            ScilabConsole.getConsole().getInfoBar().setText("");
+            ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        }
+
+        helpHistory = (DefaultHelpHistoryModel) jhelp.getHistoryModel();
+
+        try {
+            homePageURL = new URL(jhelp.getModel().getHelpSet().getHelpSetURL().toString().replace("jhelpset.hs", "ScilabHomePage.html"));
+        } catch (MalformedURLException ex) { }
+
+        jhelp.getContentViewer().addHelpModelListener(this);
+        setVisible(true);
+    }
+
+    /**
+     * Load (or reload) the help JAR files
+     * @param helps the helps path
+     * @param language the language
+     */
+    public final void loadJar(String[] helps, String language) {
         File[] jarFiles;
         if (helps != null) {
             jarFiles = new File[helps.length + 1]; /* +1 because of Scilab main help jar file */
         } else {
             jarFiles = new File[1]; /* Scilab main help jar file */
         }
-
         /* Main Jar file */
         File mainJar = new File(mainJarPath + language + jarExtension);
         currentLanguage = language;
@@ -123,7 +147,6 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
             mainJar = new File(mainJarPath + defaultLanguage + jarExtension);
             currentLanguage = defaultLanguage;
         }
-
         if (!mainJar.exists()) {
             String message = "'SCI/modules/helptools/jar/scilab_" + defaultLanguage + jarExtension + "' has not been found on the system.\n"
                              + "" + "Are you sure you built it?\nThe help will not be available.";
@@ -138,10 +161,8 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
             }
             return;
         }
-
         int nbFilesToLoad = 0;
         jarFiles[nbFilesToLoad++] = mainJar;
-
         /* Toolboxes jar files */
         if (helps != null) {
             for (int k = 0; k < helps.length; k++) {
@@ -189,16 +210,24 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
             }
         }
         jhelp.setModel(new DefaultHelpModel(new HelpSet()));
-
+        {
+            URL[] urls = new URL[jarFiles.length];
+            for (int i = 0; i < jarFiles.length; i++) {
+                try {
+                    urls[i] = jarFiles[i].toURI().toURL();
+                } catch (MalformedURLException ex) {
+                    urls[i] = null;
+                }
+            }
+            classLoader = new URLClassLoader(urls);
+        }
         for (int i = 0; i < nbFilesToLoad; ++i) {
             URI jarURI = jarFiles[i].toURI();
-
             StringBuilder buffer = new StringBuilder("jar:");
             buffer.append(jarURI);
             buffer.append("!/");
             buffer.append(rootName(jarURI));
             buffer.append("/jhelpset.hs");
-
             URL helpSetURL = null;
             try {
                 helpSetURL = new URL(buffer.toString());
@@ -206,9 +235,9 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
                 cannotHappen.printStackTrace();
                 continue;
             }
-
+            HelpSet helpSet;
             try {
-                helpSet = new HelpSet(/*classLoader*/ null, helpSetURL);
+                helpSet = new HelpSet(classLoader, helpSetURL);
             } catch (HelpSetException e) {
                 System.err.println("Could not load file: " + jarFiles[i] + ". Please check its contents, must be a Java Help file.");
                 System.err.println("Error message: " + e.getLocalizedMessage());
@@ -221,7 +250,6 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
             }
             jhelp.getModel().getHelpSet().add(helpSet);
         }
-
         /** Disable Index navigator because no index in Scilab help files */
         Enumeration navigators = jhelp.getHelpNavigators();
         while (navigators.hasMoreElements()) {
@@ -231,7 +259,6 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
                 break;
             }
         }
-
         navigators = jhelp.getHelpNavigators();
         while (navigators.hasMoreElements()) {
             Object nav = navigators.nextElement();
@@ -257,21 +284,6 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
                 break;
             }
         }
-
-        /* Reinit status bar and cursor */
-        if (ScilabConsole.isExistingConsole() && ScilabConsole.getConsole().getInfoBar() != null) {
-            ScilabConsole.getConsole().getInfoBar().setText("");
-            ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        }
-
-        helpHistory = (DefaultHelpHistoryModel) jhelp.getHistoryModel();
-
-        try {
-            homePageURL = new URL(jhelp.getModel().getHelpSet().getHelpSetURL().toString().replace("jhelpset.hs", "ScilabHomePage.html"));
-        } catch (MalformedURLException ex) { }
-
-        jhelp.getContentViewer().addHelpModelListener(this);
-        setVisible(true);
     }
 
     /**
