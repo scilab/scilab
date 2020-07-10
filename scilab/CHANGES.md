@@ -313,6 +313,7 @@ Bug Fixes
 * [#16458](https://bugzilla.scilab.org/16458): `mean()` did not handle sparse numerical matrices.
 * [#16465](https://bugzilla.scilab.org/16465): Scinotes OpenRecent menu was not updated when it should.
 * [#16473](https://bugzilla.scilab.org/16473): Deleting rows in a sparse squared the matrix with padding zeros (Scilab 6 regression).
+* [#16474](https://bugzilla.scilab.org/16474): `imult(%z)` crashed Scilab.
 * [#16522](https://bugzilla.scilab.org/16522): `bitget(x,pos)` and `bitset(x,pos)` results could be wrong when `pos` is an encoded integer.
 
 
