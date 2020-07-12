@@ -558,6 +558,9 @@ isoview off
             </member>
             <member>
                 <link linkend="gca">gca</link>
+            <member>
+            </member>
+                <link linkend="close">close</link>
             </member>
             <member>
                 <link linkend="axes_properties">axes_properties</link>

@@ -498,7 +498,7 @@ Z= [   0.0001    0.0013    0.0053   -0.0299   -0.1809   -0.2465   -0.1100   -0.0
     0.0002    0.0104    0.1733    1.0852    2.6741    2.6725    1.1119    0.1973    0.0152    0.0005
     0.0000    0.0012    0.0183    0.1099    0.2684    0.2683    0.1107    0.0190    0.0014    0.0000];
 
-xdel(winsid()) // 既存の図を全て削除
+close(winsid()) // 既存の図を全て削除
 surf(Z,Z+5) // colors 配列を指定
 e=gce();
 e.cdata_mapping='direct' // デフォルトはカラーマップに関して 'scaled' r
@@ -516,7 +516,7 @@ e.color_flag=3; // 補間影モード. surf のデフォルトは 4 ('flat' モ�
             -0.0014   -0.0017    0.3189    2.7414    7.1622    7.1361    3.1242    0.6633    0.0674    0.0030
             0.0002    0.0104    0.1733    1.0852    2.6741    2.6725    1.1119    0.1973    0.0152    0.0005
             0.0000    0.0012    0.0183    0.1099    0.2684    0.2683    0.1107    0.0190    0.0014    0.0000];
-            xdel(winsid()) // destroy all existing figures
+            close(winsid()) // destroy all existing figures
             surf(Z,Z+5) // colors array specified
             e=gce();
             e.cdata_mapping='direct' // default is 'scaled' relative to the colormap
@@ -690,7 +690,7 @@ surf(axfig10,Z,'ydat',[100:109],'marker','d','markerfac','green','markeredg','ye
                 <link linkend="clf">clf</link>
             </member>
             <member>
-                <link linkend="xdel">xdel</link>
+                <link linkend="close">close</link>
             </member>
             <member>
                 <link linkend="delete">delete</link>

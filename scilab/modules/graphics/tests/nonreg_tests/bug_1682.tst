@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 1682 -->
 //
@@ -48,4 +49,4 @@ ha1.rotation_angles = newAngles ;
 
 // check if both axes are turned
 if ( (ha1.rotation_angles <> newAngles) | (ha2.rotation_angles <> newAngles) ) then pause,end
-xdel(winsid());
+close(winsid());

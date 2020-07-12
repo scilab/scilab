@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 487 -->
 //
@@ -38,4 +39,4 @@
 lvl = -0.0003 + (1:10)*(0.0003-(-0.0003))/(10+1);
 
 if execstr("contour2d(1:10,1:10,rand(10,10),lvl,rect=[0,0,11,11])","errcatch","n")<>0 then pause,end
-xdel()
+close()

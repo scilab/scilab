@@ -18,7 +18,7 @@
 //  invisible or almost invisible.
 
 colordef("none")
-xdel(winsid())
+close(winsid())
 scf(1);
 param3d(), xtitle("General title","X title","Y title", "Z title")
 scf(2);
@@ -26,7 +26,7 @@ plot(), xtitle("General title","X title","Y title")
 // Check that titles are well visible in white
 
 colordef("black")
-xdel(winsid())
+close(winsid())
 scf(1);
 param3d(), xtitle("General title","X title","Y title", "Z title")
 scf(2);
@@ -34,7 +34,7 @@ plot(), xtitle("General title","X title","Y title")
 // Check that titles are well visible in white
 
 colordef("white")
-xdel(winsid())
+close(winsid())
 scf(1);
 param3d(), xtitle("General title","X title","Y title", "Z title")
 scf(2);
@@ -42,7 +42,7 @@ plot(), xtitle("General title","X title","Y title")
 // Check that titles are well visible in black on grey (unchanged)
 
 colordef("default")
-xdel(winsid())
+close(winsid())
 scf(1);
 param3d(), xtitle("General title","X title","Y title", "Z title")
 scf(2);

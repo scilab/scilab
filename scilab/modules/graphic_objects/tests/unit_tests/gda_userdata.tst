@@ -16,7 +16,7 @@ assert_checkequal(d.user_data, "test");
 a1=gca();
 assert_checkequal(a1.user_data, "test");
 
-xdel(winsid());
+close(winsid());
 assert_checkequal(d.user_data, "test");
 
 a1 = gca();
@@ -28,4 +28,4 @@ assert_checkequal(a1.user_data, "test");
 scf();
 a2 = gca();
 assert_checkequal(a2.user_data, "test 2");
-xdel(winsid());
+close(winsid());

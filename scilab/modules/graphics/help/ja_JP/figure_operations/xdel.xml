@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-
  * Copyright (C) ENPC - Jean-Philippe Chancelier
-
  *
-
-
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -17,118 +11,77 @@
  * and continues to be available under such terms.
  * For more information, see the COPYING file which you should have received
  * along with this program.
-
  *
-
  -->
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="xdel">
-
     <refnamediv>
-
         <refname>xdel</refname>
-
-        <refpurpose>グラフィックウインドウを削除する</refpurpose>
-
+        <refpurpose>グラフィックウインドウを削除する <emphasis role="bold">(obsolete)</emphasis></refpurpose>
     </refnamediv>
-
     <refsynopsisdiv>
-
         <title>呼び出し手順</title>
-
-        <synopsis>xdel([win_nums])</synopsis>
-
+        <synopsis>
+            xdel()
+            xdel(win_nums)
+        </synopsis>
     </refsynopsisdiv>
-
     <refsection>
-
         <title>引数</title>
-
         <variablelist>
-
             <varlistentry>
-
                 <term>win_nums</term>
-
                 <listitem>
-
                     <para>整数のスカラーまたはベクトル</para>
-
                 </listitem>
-
             </varlistentry>
-
         </variablelist>
-
     </refsection>
-
     <refsection>
-
         <title>説明</title>
-
+        <warning>
+            xdel(…) is obsolete and will be removed from Scilab 6.2. Please use close(…) instead.
+        </warning>
         <para>
-
             <function>xdel</function>は,
-
             番号がベクトル<varname>win_nums</varname>に含まれる
-
             グラフィックウインドウを削除します.
-
             引数が指定されない場合には,
-
             カレントのグラフィックウインドウを削除します.
-
         </para>
-
     </refsection>
-
     <refsection>
-
         <title>例</title>
-
         <programlisting role="example"><![CDATA[
-
 plot2d();
-
 scf();
-
 plot3d();
-
 xdel(0); // 最初のグラフィックを削除
-
 xdel(); // カレントのグラフィックを削除
-
  ]]></programlisting>
-
     </refsection>
-
     <refsection role="see also">
-
         <title>参照</title>
-
         <simplelist type="inline">
-
             <member>
-
                 <link linkend="close">close</link>
-
             </member>
-
             <member>
-
                 <link linkend="delete">delete</link>
-
             </member>
-
             <member>
-
                 <link linkend="winsid">winsid</link>
-
             </member>
-
         </simplelist>
-
     </refsection>
-
+    <refsection role="history">
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.1.1</revnumber>
+                <revdescription>
+                    xdel() declared obsolete. close() replaces it.
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
-

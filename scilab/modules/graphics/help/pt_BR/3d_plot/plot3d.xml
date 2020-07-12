@@ -395,7 +395,7 @@ cc=(xx+zz+2)*32;cc1=(xx1-orig(1)+zz1/r+2)*32;
 clf();plot3d1([xx xx1],[yy yy1],list([zz,zz1],[cc cc1]),theta=70,alpha=80,flag=[5,6,3])
 
 //operações disponíveis apenas no novo modo de gráficos
-delete(gcf());
+close()
 t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
 [xx,yy,zz]=genfac3d(t,t,z);
 plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
@@ -648,7 +648,7 @@ h.z_ticks = tlist(['ticks','locations','labels'],[-1,0,1],['Point 1','Point 2','
                 <link linkend="gcf">gcf</link>
             </member>
             <member>
-                <link linkend="xdel">xdel</link>
+                <link linkend="close">close</link>
             </member>
             <member>
                 <link linkend="delete">delete</link>

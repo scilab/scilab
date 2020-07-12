@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 1587 -->
 //
@@ -35,4 +36,4 @@ f.color_map = jc ;
 // check that the colormaps are well copied
 if abs( max( f.color_map - jc ) ) > 1e-8 then pause,end
 if abs( max(f2.color_map)-max(hc) ) > 1e-8 then pause,end
-xdel(winsid());
+close(winsid());

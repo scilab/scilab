@@ -928,7 +928,7 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xdel">xdel</link>
+                    <link linkend="close">close</link>
                 </term>
                 <listitem>
                     <para>グラフィックウインドウを削除</para>

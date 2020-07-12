@@ -37,7 +37,7 @@ close
                 </td>
                 <td>
                     <programlisting role="example"><![CDATA[
-close - xdel - delete
+close, delete
 ]]></programlisting>
                 </td>
             </tr>
@@ -66,7 +66,7 @@ close - xdel - delete
                 <term>close('all')</term>
                 <listitem>
                     <para>
-                        Scilab equivalent for Matlab <emphasis role="bold">close('all')</emphasis> is <emphasis role="bold">xdel(winsid())</emphasis>.
+                        Scilab equivalent for Matlab <emphasis role="bold">close('all')</emphasis> is <emphasis role="bold">close(winsid())</emphasis>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -82,7 +82,7 @@ close - xdel - delete
                 <term>close('all','hidden')</term>
                 <listitem>
                     <para>
-                        Scilab equivalent for Matlab <emphasis role="bold">close('all','hidden')</emphasis> is <emphasis role="bold">xdel(winsid())</emphasis> but Scilab kills all figures even if they are hidden.
+                        Scilab equivalent for Matlab <emphasis role="bold">close('all','hidden')</emphasis> is <emphasis role="bold">close(winsid())</emphasis> but Scilab kills all figures even if they are hidden.
                     </para>
                 </listitem>
             </varlistentry>

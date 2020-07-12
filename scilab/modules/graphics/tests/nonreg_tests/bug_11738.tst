@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 11738 -->
 //
@@ -21,7 +22,7 @@ plot();
 f=gcf();
 nbrChild = size(f.children());
 xsave("test.scg",0);
-xdel(0);
+close(0);
 xload("test.scg");
 
 f=gcf();

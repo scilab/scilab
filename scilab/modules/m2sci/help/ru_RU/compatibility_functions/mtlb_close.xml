@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT
+    *
+ * Copyright (C) 2012 - 2016 - Scilab Enterprises
+ *
+ * This file is hereby licensed under the terms of the GNU GPL v2.0,
+ * pursuant to article 5.3.4 of the CeCILL v.2.1.
+ * This file was originally licensed under the terms of the CeCILL v2.1,
+ * and continues to be available under such terms.
+ * For more information, see the COPYING file which you should have received
+ * along with this program.
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="mtlb_close">
+    <refnamediv>
+        <refname>mtlb_close</refname>
+        <refpurpose>функция эмуляции close в Matlab</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Эквивалент Scilab для <literal>close</literal> в Matlab отличается по
+            отношению к типу текущего окна (пользовательский интерфейс или
+            графическое окно).
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Если текущее окно является пользовательским интерфейсом:
+                    эквивалент Scilab для <literal>close</literal> в Matlab -
+                    это <literal>close</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Если текущее окно является графическим:
+                    эквивалент Scilab для <literal>close</literal> в Matlab -
+                    это <literal>close</literal> или <literal>delete</literal>.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    В Scilab мы не получаем статуса ошибки.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Функция <literal>mtlb_close([h])</literal> используется в
+            <literal>mfile2sci</literal> для замены <literal>close([h])</literal>,
+            когда невозможно узнать что и куда будет введено при портировании
+            кода Matlab в Scilab. Данная функция определит корректную семантику
+            во время выполнения. Если вы хотите иметь более эффективный код, то
+            можно заменить вызовы <literal>mtlb_close</literal>:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    если <literal>h</literal> является окном интерфейса, то
+                    <literal>mtlb_close(h)</literal> может быть заменена на
+                    <literal>close(h)</literal>;
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    если <literal>h</literal> является графическим окном, то
+                    <literal>mtlb_close(h)</literal> может быть заменена на <literal>delete(h)</literal>.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            <warning>
+                Осторожно: <literal>mtlb_close</literal> не должна использоваться
+                для функций, написанных вручную.
+            </warning>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="delete">delete</link>
+            </member>
+            <member>
+                <link linkend="winsid">winsid</link>
+            </member>
+            <member>
+                <link linkend="close">close</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

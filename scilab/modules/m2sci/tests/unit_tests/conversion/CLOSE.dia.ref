@@ -80,14 +80,14 @@ close
 close(h)
 
 mtlb_close("name")
-xdel(winsid())
-xdel(winsid())
+close(winsid())
+close(winsid())
 
 status = close()
 status = close(h)
 status = mtlb_close(name)
-status = xdel(winsid())
-status = xdel(winsid())
+status = close(winsid())
+status = close(winsid())
 
 
 delete(gcf())
@@ -95,11 +95,11 @@ delete(gcf())
 delete(h1)
 
 mtlb_close("name")
-xdel(winsid())
-xdel(winsid())
+close(winsid())
+close(winsid())
 
 status = delete(gcf())
 status = delete(h1)
 status = mtlb_close(name)
-status = xdel(winsid())
-status = xdel(winsid())
+status = close(winsid())
+status = close(winsid())

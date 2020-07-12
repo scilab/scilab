@@ -77,7 +77,7 @@ function [] = demo_clean()
 
     for i=1:size(opened_windows,"c")
         if (opened_windows(i)>=100000) & (opened_windows(i)<=100100) then
-            xdel(opened_windows(i));
+            close(opened_windows(i));
         end
     end
 

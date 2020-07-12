@@ -33,7 +33,7 @@
             <listitem>
                 <para>
                     Si la fenêtre courante est une fenêtre graphique : l'équivalent Scilab pour la fonction Matlab
-                    <literal>close</literal> est <literal>xdel</literal> ou <literal>delete</literal>
+                    <literal>close</literal> est <literal>close</literal> ou <literal>delete</literal>
                 </para>
             </listitem>
             <listitem>
@@ -73,9 +73,6 @@
     <refsection role="see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="xdel">xdel</link>
-            </member>
             <member>
                 <link linkend="delete">delete</link>
             </member>

@@ -795,7 +795,7 @@ function status = test_single(_module, _testPath, _testName)
     tail = [ tail; "diary(0);" ];
 
     if graphic then
-        tail = [ tail; "xdel(winsid());sleep(1000);" ];
+        tail = [ tail; "close(winsid());sleep(1000);" ];
     end
 
     tail = [ tail; "exit(0);" ; "// <-- FOOTER END -->" ];

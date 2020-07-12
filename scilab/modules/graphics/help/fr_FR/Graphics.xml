@@ -919,10 +919,10 @@
             </varlistentry>
             <varlistentry>
                 <term>
-                    <link linkend="xdel">xdel</link>
+                    <link linkend="close">close</link>
                 </term>
                 <listitem>
-                    <para>supprime une fenêtre graphique</para>
+                    <para>Ferme une ou plusieurs fenêtres graphiques</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

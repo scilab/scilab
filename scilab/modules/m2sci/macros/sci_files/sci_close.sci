@@ -41,7 +41,7 @@ function [tree]=sci_close(tree)
         elseif h.vtype==String then
             if typeof(h)=="cste" then
                 if h.value=="all" then // close('all')
-                    tree.name="xdel"
+                    tree.name="close"
                     tree.rhs(1)=Funcall("winsid",1,list(),list())
                 else // close(name)
                     tree.name="mtlb_close"
@@ -54,7 +54,7 @@ function [tree]=sci_close(tree)
         end
     else // close('all','hidden')
         set_infos(gettext("All windows will be deleted."),2);
-        tree.name="xdel"
+        tree.name="close"
         tree.rhs(1)=Funcall("winsid",1,list(),list())
         tree.rhs(2)=null()
     end

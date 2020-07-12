@@ -928,7 +928,7 @@ h.z_ticks = tlist(['ticks','locations','labels'],[-1,0,1],['Point 1','Point 2','
                 <link linkend="gcf">gcf</link>
             </member>
             <member>
-                <link linkend="xdel">xdel</link>
+                <link linkend="close">close</link>
             </member>
             <member>
                 <link linkend="delete">delete</link>

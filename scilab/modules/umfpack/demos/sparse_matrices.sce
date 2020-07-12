@@ -198,7 +198,7 @@ function demo_sparse_matrices()
            _("     computing time       = ") + string(t2_chol) + "\n")
 
     if num == max(winsid()) then
-        xdel(num);
+        close(num);
     end
 
 endfunction

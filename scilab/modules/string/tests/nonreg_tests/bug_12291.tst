@@ -6,6 +6,7 @@
 // =============================================================================
 //
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 12291 -->
 //
@@ -26,4 +27,4 @@ set(f,"axes_size",[490 400]);
 res="uicontrol(''ForegroundColor'', [-1 -1 -1] ,''Relief'', ''ridge'', ''String'', '''' ,''Style'', ''frame'', ''Userdata'', list(uicontrol(''ForegroundColor'', [-1 -1 -1] ,''Relief'', ''flat'', ''String'', ''OK'' ,''Style'', ''text'')))";
 assert_checkequal(sci2exp(frame,0),res);
 assert_checktrue(execstr("frame2="+sci2exp(frame),"errcatch")==0);
-xdel(winsid())
+close(winsid())

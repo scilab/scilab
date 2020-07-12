@@ -147,14 +147,14 @@ replot([-1,-1,10,2])
         </scilab:image>
         <programlisting role="example"><![CDATA[
 // 二番目の例
-xdel(winsid());
+close(winsid());
 plot() // plot demo
 f=gcf();
 replot([-1,-1,10,2],f.children(1)) // axesハンドルの値を指定
 replot([-3,-2,8,4],f.children(2))
  ]]></programlisting>
         <scilab:image>
-            xdel(winsid());
+            close(winsid());
             plot()
             f2=gcf();
             replot([-1,-1,10,2],f2.children(1))

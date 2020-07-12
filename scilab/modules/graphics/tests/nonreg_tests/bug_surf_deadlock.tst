@@ -16,6 +16,6 @@ plot3d;
 
 // used to lead to deadlock in OpenGL thread.
 // Scilab hanged
-xdel(winsid());
+close(winsid());
 
 

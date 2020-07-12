@@ -30,4 +30,4 @@ end
 
 setlookandfeel(); // system look and feel
 
-xdel(winsid());
+close(winsid());

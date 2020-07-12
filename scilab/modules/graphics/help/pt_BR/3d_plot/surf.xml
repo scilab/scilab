@@ -465,7 +465,7 @@ surf(X,Y,Z)
 
 
 //exemplos com LineSpec e GlobalProperty:
-xdel(winsid()) // destruindo todas as figuras existentes
+close(winsid()) // destruindo todas as figuras existentes
 surf(Z,Z+5) // array de cores especificado
 e=gce();
 e.cdata_mapping='direct' // o padrão é 'scaled' relativo ao mapa de cores colormap
@@ -495,7 +495,7 @@ surf(axfig10,Z,'ydat',[100:109],'marker','d','markerfac','green','markeredg','ye
                 <link linkend="clf">clf</link>
             </member>
             <member>
-                <link linkend="xdel">xdel</link>
+                <link linkend="close">close</link>
             </member>
             <member>
                 <link linkend="delete">delete</link>

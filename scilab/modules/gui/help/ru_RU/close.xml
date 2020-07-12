@@ -1,76 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg" xmlns:db="http://docbook.org/ns/docbook"
-          xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="close">
+          xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="close">
     <refnamediv>
         <refname>close</refname>
-        <refpurpose>closes graphic figures, progressionbars or waitbars</refpurpose>
+        <refpurpose>
+            закрывает графические окна, панели прогресса и панели состояния
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Syntax</title>
+        <title>Синтаксис</title>
         <synopsis>
             close
             close(H)
         </synopsis>
     </refsynopsisdiv>
     <refsection role="parameters">
-        <title>Arguments</title>
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>H</term>
                 <listitem>
-                    <para>Vector of graphic figures handles or ids, or of handles of progression bar
-                        or wait bar.
+                    <para>
+                        вектор дескрипторов графических окон или идентификаторов,
+                        либо дескрипторов панели прогресса и панели состояния.
                     </para>
                     <para>
-                        By default, the current graphic figure is considered.
+                        По умолчанию рассматривается текущее графическое окно.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection role="description">
-        <title>Description</title>
-        <para>Graphic windows based on the Tk technology (such as still used by imshow() in the SIVP
-            external module) may be closed as well by providing their number that is their handle.
+        <title>Описание</title>
+        <para>
+            Графические окна, основанные на технологии Tk (такие, как по-прежнему
+            используемое imshow() во внешнем модуле SIVP), могут быть закрыты
+            также по указанию их номера, который является их дескриптором.
         </para>
     </refsection>
     <refsection role="examples">
-        <title>Examples</title>
+        <title>Примеры</title>
         <programlisting role="example"><![CDATA[
-// creates  figure number 1.
+// создаём окно номер 1.
 h = scf();
-// put a clever text in figure 1
+// разместим чёткий текст в окне 1
 uicontrol( h, 'style','text', ...
               'string','scilab is great', ...
               'position',[50 70 100 100], ...
               'fontsize',15);
-// create figure 2
+// создаём окно номер 2
 scf();
-// put a text in figure 2
+// разместим текст в окне 2
 uicontrol( 'style','text', ...
            'string','Really great', 'position',[50 70 100 100], 'fontsize',15);
 
-close();   // close the current graphic window (ie fig. 2)
-close(h);  // close figure 1
+close();   // закрываем текущее графическое окно (т.е. номер 2)
+close(h);  // закрываем окно 1
 
-// create a progression bar
+// создаём панель прогресса
 wid1=progressionbar("Message");
-// close it
+// закроем его
 close(wid1);
 
-// Create and close several figures in a once:
+// Создаём и закрываем несколько окон за раз:
 scf(111); plot
 scf(25); plot2d
 gcf().figure_position(1) = 500;
 scf(200); param3d
 gcf().figure_position(1) = 700;
-sleep(5000);         // Watch at them!
-close([25 200 111])  // Finished!
+sleep(5000);         // смотрим на них!
+close([25 200 111])  // конец!
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See also</title>
+        <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
                 <link linkend="delete">delete</link>
@@ -87,12 +92,12 @@ close([25 200 111])  // Finished!
         </simplelist>
     </refsection>
     <refsection role="history">
-        <title>History</title>
+        <title>История</title>
         <revhistory>
             <revision>
                 <revnumber>6.1.1</revnumber>
                 <revdescription>
-                    Vector of several figures ids now accepted.
+                    Теперь принимаются идентификаторы нескольких окон.
                 </revdescription>
             </revision>
         </revhistory>

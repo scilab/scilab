@@ -110,4 +110,4 @@ locate(-1,1)
 //     r) locate() must return one [x;y] column of coordinates
 
 // -------------------------------------------------------------------
-xdel([0 10])
+close([0 10])

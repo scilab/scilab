@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- NO CHECK REF -->
 
 // <-- Non-regression test for bug 2577 -->
 //
@@ -18,7 +19,7 @@
 // besides giving the right error
 // 
 
-xdel(winsid())
+close(winsid())
 h=scf(0);
 delete(h);
 

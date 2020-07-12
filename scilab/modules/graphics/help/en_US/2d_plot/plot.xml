@@ -670,7 +670,7 @@ isoview off
                 <link linkend="clf">clf</link>
             </member>
             <member>
-                <link linkend="xdel">xdel</link>
+                <link linkend="close">close</link>
             </member>
             <member>
                 <link linkend="delete">delete</link>
