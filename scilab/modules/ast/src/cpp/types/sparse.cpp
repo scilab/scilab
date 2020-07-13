@@ -1859,6 +1859,13 @@ GenericType* Sparse::remove(typed_list* _pArgs)
     }
     delete[] pbKeep;
 
+    if (iNewDimSize == 0)
+    {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
+        return new Sparse(0, 0);
+    }
+
     int* piNewDims = new int[iDims];
     for (int i = 0; i < iDims; i++)
     {
@@ -1884,14 +1891,6 @@ GenericType* Sparse::remove(typed_list* _pArgs)
         {
             break;
         }
-    }
-
-    if (iNewDimSize == 0)
-    {
-        delete[] piNewDims;
-        //free pArg content
-        cleanIndexesArguments(_pArgs, &pArg);
-        return new Sparse(0, 0);
     }
 
     if (iDims == 1)
@@ -3827,6 +3826,13 @@ GenericType* SparseBool::remove(typed_list* _pArgs)
     }
     delete[] pbKeep;
 
+    if (iNewDimSize == 0)
+    {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
+        return new SparseBool(0, 0);
+    }
+
     int* piNewDims = new int[iDims];
     for (int i = 0; i < iDims; i++)
     {
@@ -3856,27 +3862,17 @@ GenericType* SparseBool::remove(typed_list* _pArgs)
 
     if (iDims == 1)
     {
-        if (iNewDimSize == 0)
+        //two cases, depends of original matrix/vector
+        if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] != 1)
         {
-            //free pArg content
-            cleanIndexesArguments(_pArgs, &pArg);
-            delete[] piNewDims;
-            return new SparseBool(0, 0);
+            //special case for row vector
+            pOut = new SparseBool(1, iNewDimSize);
+            //in this case we have to care of 2nd dimension
+            //iNotEntire = 1;
         }
         else
         {
-            //two cases, depends of original matrix/vector
-            if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] != 1)
-            {
-                //special case for row vector
-                pOut = new SparseBool(1, iNewDimSize);
-                //in this case we have to care of 2nd dimension
-                //iNotEntire = 1;
-            }
-            else
-            {
-                pOut = new SparseBool(iNewDimSize, 1);
-            }
+            pOut = new SparseBool(iNewDimSize, 1);
         }
     }
     else
