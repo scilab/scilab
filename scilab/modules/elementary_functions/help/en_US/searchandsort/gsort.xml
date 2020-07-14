@@ -49,23 +49,34 @@
             <varlistentry>
                 <term>method</term>
                 <listitem>
-                    A keyword: The sorting method:
+                    A keyword or index > 0: The sorting method:
                     <informaltable>
                         <tr valign="top">
-                            <th>'g'</th><td>:</td>
+                            <td><emphasis role="bold">'g'</emphasis></td><td>:</td>
                             <td>General sorting: All elements of <literal>A</literal> are sorted
                                 (default method).
                             </td>
                         </tr>
                         <tr valign="top">
-                            <th>'r'</th><td>:</td>
+                            <td style="white-space:nowrap">
+                                <emphasis role="bold">'r'</emphasis> or
+                                <emphasis role="bold">1</emphasis></td>
+                            <td>:</td>
                             <td>Rows of each column of <literal>A</literal> are sorted.</td>
                         </tr>
                         <tr valign="top">
-                            <th>'c'</th><td>:</td>
+                            <td style="white-space:nowrap">
+                                <emphasis role="bold">'c'</emphasis> or
+                                <emphasis role="bold">2</emphasis></td>
+                            <td>:</td>
                             <td>Columns of each row of <literal>A</literal> are sorted.</td>
                         </tr>
-                        <tr valign="top"><th>'lr'</th><td>:</td>
+                        <tr valign="top">
+                            <td><emphasis role="bold">3 ≤ m ≤ ndims(A)</emphasis></td>
+                            <td>:</td>
+                            <td>Elements of each vector along the dimension #m are sorted.</td>
+                        </tr>
+                        <tr valign="top"><td><emphasis role="bold">'lr'</emphasis></td><td>:</td>
                             <td>lexicographic sort of the rows of <literal>A</literal>:
                                 Sorts rows according to values in the first column. If a group of
                                 sorted rows have the same value in column #1, resorts the group
@@ -73,7 +84,7 @@
                                 Not applicable to hypermatrices.
                             </td>
                         </tr>
-                        <tr valign="top"><th>'lc'</th><td>:</td>
+                        <tr valign="top"><td><emphasis role="bold">'lc'</emphasis></td><td>:</td>
                             <td>lexicographic sort of the columns of <literal>A</literal>
                                 (not for hypermatrices).
                             </td>
@@ -582,6 +593,83 @@ P = evstr(P)
 ]]></screen>
         </para>
     </refsect3>
+
+    <refsect3>
+        <title>With an hypermatrix</title>
+        <para>
+            <emphasis role="bold">Sorting columns in each row:</emphasis>
+        </para>
+        <para>
+        <programlisting role="example"><![CDATA[
+h = matrix([9,7,9,0,2,9,4,2,0,9,5,8,5,2,0,0], [2,4,2])
+[s, k] = gsort(h, "c", "i")
+]]>     </programlisting>
+        <screen><![CDATA[
+--> h = matrix([9,7,9,0,2,9,4,2,0,9,5,8,5,2,0,0], [2,4,2])
+ h  =
+(:,:,1)
+   9.   9.   2.   4.
+   7.   0.   9.   2.
+(:,:,2)
+   0.   5.   5.   0.
+   9.   8.   2.   0.
+
+--> [s, k] = gsort(h, "c", "i")
+ s  =
+(:,:,1)
+   2.   4.   9.   9.
+   0.   2.   7.   9.
+(:,:,2)
+   0.   0.   5.   5.
+   0.   2.   8.   9.
+
+ k  =
+(:,:,1)
+   3.   4.   1.   2.
+   2.   4.   1.   3.
+(:,:,2)
+   1.   4.   2.   3.
+   4.   3.   2.   1.
+]]></screen>
+        </para>
+        <para>
+            <emphasis role="bold">Sorting values across pages:</emphasis>
+        </para>
+        <para>
+        <programlisting role="example"><![CDATA[
+h = matrix([9,7,9,0,2,9,4,2,0,9,5,8,5,2,0,0], [2,4,2])
+[s, k] = gsort(h, 3, "i")   // along the 3rd dimension = hypermat 'thickness'
+]]>     </programlisting>
+        <screen><![CDATA[
+--> h = matrix([9,7,9,0,2,9,4,2,0,9,5,8,5,2,0,0], [2,4,2])
+ h  =
+(:,:,1)
+   9.   9.   2.   4.
+   7.   0.   9.   2.
+(:,:,2)
+   0.   5.   5.   0.
+   9.   8.   2.   0.
+
+--> [s, k] = gsort(h, 3, "i")
+ s  =
+(:,:,1)
+   0.   5.   2.   0.
+   7.   0.   2.   0.
+(:,:,2)
+   9.   9.   5.   4.
+   9.   8.   9.   2.
+
+ k  =
+(:,:,1)
+   2.   2.   1.   2.
+   1.   1.   2.   2.
+(:,:,2)
+   1.   1.   2.   1.
+   2.   2.   1.   1.
+]]></screen>
+        </para>
+    </refsect3>
+
     </refsection>
     <refsection role="see also">
         <title>See also</title>
@@ -633,11 +721,17 @@ P = evstr(P)
             <revision>
                 <revnumber>6.1.1</revnumber>
                 <revremark>
-                    gsort() was formerly limited to real or complex vectors,
-                    and only to the `g` method. It is now fully enabled for sparse
-                    vectors and 2D matrices of booleans, real or complex numbers,
-                    in all `g, r, c, lr, lc` methods. Multi-level sorting is
-                    enabled for all types of sparse input.
+                    <itemizedlist>
+                        <listitem>
+                            For a sparse input, gsort() was limited to numerical vectors,
+                            and only to the `g` method. It is now fully enabled for vectors
+                            and 2D matrices of sparse booleans, real or complex numbers,
+                            in all `g, r, c, lr, lc` methods, including in multi-level mode.
+                        </listitem>
+                        <listitem>
+                            Sorting along a dimension > 2 is now possible.
+                        </listitem>
+                    </itemizedlist>
                 </revremark>
             </revision>
         </revhistory>
